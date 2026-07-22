@@ -1,64 +1,2532 @@
 {
   "summary": {
-    "total": 0,
+    "total": 347,
     "acknowledged": 0,
     "pending": 0,
-    "bySurface": {}
+    "bySurface": {
+      "figma": {
+        "mismatch": 4,
+        "behind": 2,
+        "ahead": 6
+      },
+      "figma-tokens": {
+        "behind": 56,
+        "ahead": 279
+      }
+    }
   },
-  "findings": [],
+  "findings": [
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "snapshot-provenance",
+      "detail": "figma-components.json was extracted from file 8nim1d0IPnehMxA7B7SYxC but the contracts anchor file d9FYAUcqdcNtsuaMgLefvJ — the snapshot describes a different Figma file",
+      "remedy": "Re-run parity/extract-figma.plugin.js in the anchored file and save fresh snapshots"
+    },
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "snapshot-stale",
+      "detail": "figma-components.json is 14.1 days old (max 14, override via MAX_SNAPSHOT_AGE_DAYS) — the Figma file has likely moved on",
+      "remedy": "Re-run parity/extract-figma.plugin.js and save fresh snapshots"
+    },
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "snapshot-provenance",
+      "detail": "figma-tokens.json was extracted from file 8nim1d0IPnehMxA7B7SYxC but the contracts anchor file d9FYAUcqdcNtsuaMgLefvJ — the snapshot describes a different Figma file",
+      "remedy": "Re-run parity/extract-figma.plugin.js in the anchored file and save fresh snapshots"
+    },
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "snapshot-stale",
+      "detail": "figma-tokens.json is 14.1 days old (max 14, override via MAX_SNAPSHOT_AGE_DAYS) — the Figma file has likely moved on",
+      "remedy": "Re-run parity/extract-figma.plugin.js and save fresh snapshots"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Button.Property 1",
+      "detail": "Contract prop \"variant\" has no VARIANT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Button.Contactez-nous",
+      "detail": "Contract prop \"children\" has no TEXT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Loading",
+      "detail": "Figma set declares BOOLEAN property \"Loading\" the contract does not define",
+      "proposedPatch": {
+        "name": "loading",
+        "type": "boolean",
+        "bindings": {
+          "figma": {
+            "kind": "BOOLEAN",
+            "property": "Loading"
+          },
+          "code": {
+            "prop": "loading"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Label",
+      "detail": "Figma set declares TEXT property \"Label\" the contract does not define",
+      "proposedPatch": {
+        "name": "label",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Label"
+          },
+          "code": {
+            "prop": "label"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Disabled",
+      "detail": "Figma set declares BOOLEAN property \"Disabled\" the contract does not define",
+      "proposedPatch": {
+        "name": "disabled",
+        "type": "boolean",
+        "bindings": {
+          "figma": {
+            "kind": "BOOLEAN",
+            "property": "Disabled"
+          },
+          "code": {
+            "prop": "disabled"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Variant",
+      "detail": "Figma set declares VARIANT property \"Variant\" the contract does not define",
+      "proposedPatch": {
+        "name": "variant",
+        "type": {
+          "enum": [
+            "Primary",
+            "Secondary",
+            "Danger",
+            "Ghost"
+          ]
+        },
+        "bindings": {
+          "figma": {
+            "kind": "VARIANT",
+            "property": "Variant"
+          },
+          "code": {
+            "prop": "variant"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Size",
+      "detail": "Figma set declares VARIANT property \"Size\" the contract does not define",
+      "proposedPatch": {
+        "name": "size",
+        "type": {
+          "enum": [
+            "Small",
+            "Medium",
+            "Large"
+          ]
+        },
+        "bindings": {
+          "figma": {
+            "kind": "VARIANT",
+            "property": "Size"
+          },
+          "code": {
+            "prop": "size"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.State",
+      "detail": "Figma set carries a hand-built State variant axis [Default, Hover, Focus Visible, Disabled] the contract does not declare — hand-maintained state previews rot; the contract can own them",
+      "remedy": "Declare interaction states + root token overrides in the contract (then opt into figmaStatePreviews), or retire the hand-built axis"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/bleu",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/orange",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/blanc",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/noir-bleute",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/beige",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/beige-clair",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/bleu-gris",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/bleu-clair",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/beige-clair-80",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/noir",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/orange-12",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/orange-42",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/color/nav-state",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/opacity/base",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/family/montserrat",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/14",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/16",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/18",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/20",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/24",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/32",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/40",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/size/48",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/font/line-height/22",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/space/0",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/space/4",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/space/10",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/space/16",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/space/32",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/radius/32",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/border-width/0",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Primitives/border-width/2",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/white",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/black",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/50",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/200",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/800",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/gray/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/blue/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/blue/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/blue/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/blue/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/blue/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/blue/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/blue/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/red/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/red/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/red/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/red/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/red/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/red/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/red/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/green/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/green/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/green/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/green/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/green/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/amber/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/amber/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/amber/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/amber/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/amber/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/50",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/150",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/200",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/radius/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/radius/200",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/radius/pill",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/border-width/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/border-width/200",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/font/family/sans",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/font/size/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/font/size/200",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/font/size/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/font/size/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/opacity/disabled",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/container/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/container/xs",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/container/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/radius/none",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/container/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/orange/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/orange/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/orange/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/yellow/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/yellow/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/yellow/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/teal/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/teal/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/teal/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/cyan/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/cyan/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/cyan/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/purple/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/purple/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/purple/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/pink/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/pink/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/pink/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/25",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/250",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/font/family/mono",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/control/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/control/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/control/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/space/overlap",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/purple/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/purple/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/purple/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/purple/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/teal/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/teal/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/teal/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/teal/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/accent/100",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/accent/300",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/accent/400",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/accent/500",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/accent/600",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/accent/700",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/accent/900",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/radius/control",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/font/control-family",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Brand/brand/font/control-weight",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-1/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-1/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-1/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-2/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-2/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-2/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-3/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-3/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-3/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-4/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-4/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-4/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-5/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-5/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-5/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-6/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-6/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/titre-6/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/paragraphe/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/paragraphe/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/paragraphe/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/lead/family",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/lead/size",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "behind",
+      "subject": "Semantic/typography/lead/weight",
+      "detail": "Token exists in tokens/ but has no Figma variable",
+      "remedy": "Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-x/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-x/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-x/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-y/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-y/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-y/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/gap/control",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/control",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/badge",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/border/width/focus",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/control/family",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/control/weight",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/control/size/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/control/size/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/control/size/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/badge/size",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/surface/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/surface/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/primary/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/primary/background-hover",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/primary/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/secondary/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/secondary/background-hover",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/secondary/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/danger/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/danger/background-hover",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/danger/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/border/focus",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/info/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/info/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/success/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/success/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/warning/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/warning/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/danger/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/danger/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/card",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/avatar",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/avatar/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/avatar/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/card/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/title/size",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/title/weight",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/avatar/size/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/avatar/size/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/surface/raised",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/border/subtle",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/identity/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/identity/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/table/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/table/cell-width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/table/cell-y/comfortable",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/table/cell-y/compact",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/surface/sunken",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/table/row/default",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/table/row/selected",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/gap/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/gap/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/gap/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/banner/card",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/banner/section",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/banner/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/error/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/feedback/error/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-x/xs",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/inset-y/xs",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/icon-button/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/icon-button/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/icon-button/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/checkbox/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/checkbox/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/dot",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/divider/length",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/border/width/divider/subtle",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/border/width/divider/strong",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/code/family",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/destructive/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/destructive/background-hover",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/destructive/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/ghost/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/ghost/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/action/ghost/background-hover",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/default/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/default/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/gray/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/gray/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/red/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/red/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/orange/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/orange/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/yellow/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/yellow/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/green/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/green/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/teal/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/teal/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/cyan/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/cyan/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/blue/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/blue/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/purple/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/purple/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/pink/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/token/pink/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/status/success",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/status/warning",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/status/error",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/status/accent",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/status/neutral",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/divider/subtle",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/divider/strong",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/input/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/input/placeholder",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/toast/info/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/toast/info/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/toast/error/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/toast/error/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/text/secondary",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/checkbox/unchecked/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/checkbox/unchecked/border",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/checkbox/checked/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/checkbox/checked/border",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/checkbox/indeterminate/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/checkbox/indeterminate/border",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/checkbox/icon",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/toolbar/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/toolbar/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/toolbar/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/list/compact",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/list/balanced",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/list/spacious",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/tab/default/weight",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/font/tab/selected/weight",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/section/section",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/section/muted",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/chat/user/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/chat/user/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/chat/assistant/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/chat/assistant/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/chat/system/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/chat/system/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/tab/default/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/tab/selected/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/nav/default/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/nav/default/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/nav/selected/background",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/nav/selected/foreground",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/progress/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/progress/height",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/slider/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/slider/track",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/slider/thumb",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/switch/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/switch/height",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/switch/thumb",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/spinner/sm",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/spinner/md",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/spinner/lg",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/skeleton/text/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/skeleton/text/height",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/skeleton/rect/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/skeleton/rect/height",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/skeleton/circle/width",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/size/skeleton/circle/height",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/skeleton/text",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/skeleton/rect",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/radius/skeleton/circle",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/space/avatarGroup/overlap",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/switch/off/track",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/switch/on/track",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/switch/thumb",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/progress/track",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/progress/accent",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/progress/success",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/progress/warning",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/progress/error",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/progress/neutral",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Semantic/color/skeleton",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    }
+  ],
   "acknowledged": [],
   "pending": [],
   "checkedContracts": [
-    "ds.accordion-item@1.1.0",
-    "ds.avatar-group@1.0.0",
-    "ds.avatar@1.0.0",
-    "ds.badge@1.1.0",
-    "ds.banner@1.0.0",
-    "ds.blockquote@1.0.0",
-    "ds.breadcrumb-item@1.0.0",
-    "ds.breadcrumbs@1.0.0",
-    "ds.button@1.5.0",
-    "ds.card@1.1.0",
-    "ds.chat-message-metadata@1.0.0",
-    "ds.chat-message@1.1.0",
-    "ds.chat-system-message@1.0.0",
-    "ds.checkbox@2.0.0",
-    "ds.citation@1.0.0",
-    "ds.code@1.0.0",
-    "ds.divider@1.0.0",
-    "ds.empty-state@1.0.0",
-    "ds.field@1.0.0",
-    "ds.heading@1.0.0",
-    "ds.icon-button@1.0.0",
-    "ds.inline@1.0.0",
-    "ds.kbd@1.0.0",
-    "ds.list-item@1.0.0",
-    "ds.list@1.0.0",
-    "ds.metadata-list-item@1.0.0",
-    "ds.metadata-list@1.0.0",
-    "ds.pagination@1.0.0",
-    "ds.progress-bar@1.0.1",
-    "ds.section@1.0.0",
-    "ds.side-nav-item@1.0.0",
-    "ds.skeleton@1.0.0",
-    "ds.slider@1.0.0",
-    "ds.spinner@1.0.0",
-    "ds.stack@1.0.0",
-    "ds.status-dot@1.0.0",
-    "ds.switch@2.0.0",
-    "ds.tab-list@1.0.0",
-    "ds.tab@1.0.0",
-    "ds.table-cell@1.1.0",
-    "ds.table-header-cell@1.1.0",
-    "ds.table-row@1.1.0",
-    "ds.table@1.1.0",
-    "ds.text-area@1.0.0",
-    "ds.text-field@1.1.0",
-    "ds.toast@1.0.0",
-    "ds.token@1.1.0",
-    "ds.toolbar@1.0.0",
-    "ds.top-nav-item@1.0.0",
-    "ds.top-nav@1.0.0",
-    "ds.typeahead-item@1.0.0"
+    "ds.button@1.0.0"
   ]
 }
