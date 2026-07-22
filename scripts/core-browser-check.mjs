@@ -14,7 +14,7 @@
  * number, not a vibe.
  */
 import { build } from 'esbuild';
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -53,7 +53,8 @@ try {
       primitives: read('tokens/primitives.tokens.json'),
       semantic: read('tokens/semantic.tokens.json'),
       light: read('tokens/modes/semantic.light.tokens.json'),
-      dark: read('tokens/modes/semantic.dark.tokens.json'),
+      // Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+      dark: existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json')) ? read('tokens/modes/semantic.dark.tokens.json') : {},
       brands,
     },
   });

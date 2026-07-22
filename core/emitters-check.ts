@@ -17,7 +17,7 @@
  * This is a node script (it writes samples) over pure functions — the same
  * split as every other shell in the repo.
  */
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../scripts/contract-schema.js';
 import { importFromUrl } from '../extract/figma/rest/fetch.js';
@@ -55,7 +55,8 @@ const ctx: EmitterCtx = {
     primitives: read('tokens/primitives.tokens.json'),
     semantic: read('tokens/semantic.tokens.json'),
     light: read('tokens/modes/semantic.light.tokens.json'),
-    dark: read('tokens/modes/semantic.dark.tokens.json'),
+    // Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+    dark: existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json')) ? read('tokens/modes/semantic.dark.tokens.json') : {},
     brands,
   },
   icons,

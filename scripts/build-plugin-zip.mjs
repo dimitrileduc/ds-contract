@@ -22,7 +22,7 @@
  *      identical inputs produce identical bytes.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -143,7 +143,8 @@ function collectEngineData() {
       primitives: readJson('tokens/primitives.tokens.json'),
       semantic: readJson('tokens/semantic.tokens.json'),
       light: readJson('tokens/modes/semantic.light.tokens.json'),
-      dark: readJson('tokens/modes/semantic.dark.tokens.json'),
+      // Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+      dark: existsSync(join(repoRoot, 'tokens/modes/semantic.dark.tokens.json')) ? readJson('tokens/modes/semantic.dark.tokens.json') : {},
       brands,
     },
     contracts,

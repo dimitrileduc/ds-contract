@@ -17,7 +17,7 @@
  *
  * Exit code 1 when drift exists (CI-able). Full report at parity/report.json.
  */
-import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import {
   ContractSchema,
@@ -574,7 +574,10 @@ const readTokens = (p: string) => flatten(JSON.parse(readFileSync(path.join(ROOT
 const primitives = readTokens('tokens/primitives.tokens.json');
 const semantic = readTokens('tokens/semantic.tokens.json');
 const light = readTokens('tokens/modes/semantic.light.tokens.json');
-const dark = readTokens('tokens/modes/semantic.dark.tokens.json');
+// Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+const dark = existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json'))
+  ? readTokens('tokens/modes/semantic.dark.tokens.json')
+  : new Map<string, unknown>();
 
 /** Normalize a token value for comparison against the Figma snapshot. */
 function norm(v: unknown): string {

@@ -19,7 +19,7 @@
  * Node script over pure functions (core/mint-tokens.ts, core/propose-figma.ts)
  * — the same shell/core split as every other check in the repo.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../scripts/contract-schema.js';
 import type { DumpNode, DumpSet } from '../extract/figma/types.js';
@@ -171,7 +171,8 @@ const inventory = tokenInventoryFromJson([
   read('tokens/primitives.tokens.json'),
   read('tokens/semantic.tokens.json'),
   read('tokens/modes/semantic.light.tokens.json'),
-  read('tokens/modes/semantic.dark.tokens.json'),
+  // Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+  existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json')) ? read('tokens/modes/semantic.dark.tokens.json') : {},
   m?.tree ?? {},
 ]);
 const emitCtx = { tokens: inventory, icons: new Map<string, string>(), contracts: new Map([[contract.id, contract]]) };

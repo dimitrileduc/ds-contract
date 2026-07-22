@@ -95,6 +95,43 @@ the foundation it binds to exists. **No value is ever invented** — every Pique
 >
 > Contract→Figma sync is **out of scope for this feature** (data-model E3) → its own follow-up.
 
+> **⚠️ CORRECTION #3 (2026-07-22, discovered running the Phase-4 gates).** US1's **mono-theme
+> migration was INCOMPLETE**, and it — not "demo coupling" — is the single biggest cause of the red
+> eval suite. Recorded, with numbers:
+>
+> 1. **Only 3 files were made dark-tolerant in US1** (`build-tokens.mjs`, `generate-figma.ts`,
+>    `generate-components.ts`, each carrying a "Mono-theme (Piqueray)" comment). **~35 files
+>    reference `tokens/modes/semantic.dark.tokens.json`**; every other one still read it
+>    unconditionally and threw `ENOENT`. That is why `deterministic-roundtrip`, `plugin:check`,
+>    `core-browser-check` and `parity` were red — **not** demo coupling.
+> 2. **Fixed here (6 engine files)**, same sanctioned `existsSync ? read : {}` pattern:
+>    `scripts/build-plugin-zip.mjs`, `scripts/core-browser-check.mjs`, `parity/diff.ts`,
+>    `core/emitters-check.ts`, `core/mint-check.ts`, `core/mint-code-check.ts`.
+> 3. **STILL BROKEN — 36 eval cases** fail on the same `ENOENT` (e.g.
+>    `examples/depth-composite/emit-composite-receipt.ts`, many `extract/figma/*-check.ts`).
+>    Finishing this sweep belongs to **T031**.
+> 4. **The determinism harness was built on a DEMO COMPOSITE.**
+>    `scripts/deterministic-roundtrip.mjs` bundled `ds.composite-modal` + the `card/badge/avatar/
+>    button` demo contracts **and** needed the demo token set (`buildEngineBundle()` bakes the
+>    repo's `tokens/`, and takes no override). Keeping it would have meant maintaining a **parallel
+>    fake design system** forever, so it is **re-pointed onto the Piqueray Button** (the hybrid rule
+>    the spec already applies to evals: re-point, don't delete). **NAMED DEGRADATION**: composite
+>    depth (nested instances, repeated collections, slots, multi-root anatomy) is **no longer
+>    exercised**; restore it when Piqueray gains a composite component. The limit is printed by the
+>    script itself and documented in its header. **T028 passes**: byte-identical ×2, 6 variants
+>    built, API recovered from the canvas, `<button>` host emitted.
+> 5. **The documented gate command is STALE.** `CLAUDE.md` and `docs/handoff/` say
+>    `node scripts/deterministic-roundtrip.mjs`; it imports `core/emit-react.js` (a TS module) so
+>    plain `node` cannot resolve it — it requires **`npx tsx`**. Pre-existing, not caused here.
+>
+> **Eval baseline, measured (the honest before/after):** last **committed** green run = **146/146**
+> (demo era) → **50/147** now. The 97 failures: **36** `semantic.dark` ENOENT · **18** deleted demo
+> contract refs · **10** demo drift expectations (`Card`, `Table`, `Button.Size`) · **6** eval
+> mutations targeting demo props (`size`, `loading` — they now hit the *Piqueray* Button and miss) ·
+> **27** other. **~70 of 97 are direct reconversion residue** → that is T031's real size, now known
+> instead of guessed. *(Caveat: `npm run eval` OVERWRITES `evals/results.json`; snapshot it first if
+> you need an intermediate before/after — one was lost this way.)*
+
 ---
 
 ## Phase 1: Setup (environment & baseline)
