@@ -31,6 +31,14 @@ non-negotiable: **dump → tokens (US1) → contract (US2) → gates (US3)**. No
 the foundation it binds to exists. **No value is ever invented** — every Piqueray value is
 `from-dump` or explicitly `authored`-marked (Honesty, Principle V).
 
+> **⚠️ CORRECTION (2026-07-22, discovered in implementation).** (1) Piqueray's Figma is **flat
+> primitives, no semantic layer** — the `color.action.*` layer authored in T010 was an
+> **invention** and was removed (**primitives-only**, the sanctioned Polaris BYO pattern); the
+> Button binds **primitives directly** via `tokensByProp`. (2) The repo joins Figma↔tokens **by
+> name** and refuses names outside `[a-z0-9.-]`, so the 14 Figma variables were **renamed
+> token-legal** (`Noir bleuté` → `color/noir-bleute`) — the prerequisite for automatic extraction
+> (US2), the "no manual remap" the North Star demands. See research **D2 correction**.
+
 ---
 
 ## Phase 1: Setup (environment & baseline)
@@ -78,7 +86,7 @@ in a single `:root` (mono-theme) with **no component existing yet**.
 *(Depends on Foundational T003 — the dump — for token values.)*
 
 - [X] T009 [P] [US1] Rewrite `tokens/primitives.tokens.json` to the Piqueray primitives — the 12 colours + NavState colour + Opacity + Montserrat family/sizes/weights as DTCG `$type`/`$value` leaves, values read **exactly** from the dump's `_variables` (from-dump; no invented value — FR-003, E1).
-- [X] T010 [P] [US1] Author `tokens/semantic.tokens.json` — the **alias layer the Button binds to**: `color.action.<variant>.{background,foreground,border}` for the 6 variants (default/orange/blanc/outlineBlanc/link/outlineNoir), `color.nav.state`, and `font.control.{family,weight,size}`, all as `{dot.path}` refs into the primitives (D2, token-foundation.interface).
+- [X] T010 [P] [US1] Author `tokens/semantic.tokens.json` — **CORRECTED to primitives-only**: it holds ONLY the 8 real Montserrat typography styles (`typography.titre-1..6`, `paragraphe`, `lead`) as aliases into primitives. The `color.action.*` / `color.nav.state` / `font.control.*` alias layer was an **invention** and was **removed** — Piqueray's Figma is flat primitives with no semantic layer, so the Button binds **primitives directly** (`{color.noir-bleute}` via `tokensByProp`), per the Polaris BYO precedent. See research **D2 correction**.
 - [X] T011 [P] [US1] Collapse `tokens/modes/` to a single mode: **delete** `tokens/modes/brand.aurora.tokens.json` and `tokens/modes/semantic.dark.tokens.json`; keep one brand/mode file (aliases → primitives only) (D1).
 - [X] T012 [P] [US1] Make `scripts/build-tokens.mjs` single-mode: empty `dark` map and turn the light/dark parity check into a **no-op when `dark.size === 0`** (build-tokens.mjs:66-89) — leaves a single `:root` CSS block and single-mode Figma collections.
 - [X] T013 [P] [US1] Delete the **51 demo contracts** under `contracts/` — the 50 non-Button demos **and** the demo `button.contract.json` (it is *replaced fresh* in US2, not evolved — D9). After this, `contracts/` holds no component.
@@ -109,7 +117,7 @@ two generations are byte-identical.
 - [ ] T021 [US2] **Human review** the proposal + every `figma-proposals.md` note (FR-009): confirm the 6-value `VARIANT` axis inverted correctly to the enum (default/orange/blanc/outlineBlanc/link/outlineNoir, default = first — FR-008), the TEXT label prop, anatomy parts, and anchors; each unbound/inferred value the extractor **named** is a review line item (Honesty V). Do not proceed on rejection.
 - [ ] T022 [US2] Author the **a11y + semantics baseline**, marked authored, in the reviewed proposal (FR-017/D5): `semantics = { element:"button", role:"button", provenance:"authored" }`; `a11y = { focusVisible:true, minHitArea:44, contrast:"AA", provenance:"authored" }` (Figma does not encode a11y — marker makes "authored, not extracted" machine-checkable) (depends on T021, T005).
 - [ ] T023 [US2] Fill `anchors.figma.dumpedAt` from the dump's `_provenance.extractedAt`, and confirm `fileKey` + `componentSetKey` + `nodeId` are all present on `anchors.figma` (FR-007/D4) (depends on T021, T004).
-- [ ] T024 [US2] Verify every `anatomy.*.tokens` value is a `{dot.path}` into the Piqueray semantic aliases (E1) — substituted refs like `{color.action.{variant}.background}` (D2); **no literals, no orphan tokens** (FR-005) (depends on T021, US1).
+- [ ] T024 [US2] Verify every `anatomy.*.tokens` value is a `{dot.path}` into the Piqueray **PRIMITIVES** (E1) — **per-variant primitive refs via `tokensByProp`** (e.g. text `color` base `{color.blanc}`, `tokensByProp` property1 → `{color.noir-bleute}`; per-variant `background`: default `{color.noir-bleute}`, orange `{color.orange}`, blanc `{color.blanc}`, outline/link transparent). **NOT** `{color.action.{variant}.background}` (see D2 correction — Piqueray has no semantic layer). **No literals, no orphan tokens** (FR-005) (depends on T021, US1).
 - [ ] T025 [US2] Adopt the reviewed proposal as `contracts/button.contract.json` — `id:"ds.button"`, `version:"1.0.0"` (fresh line, new DS — D9), `name:"Button"` (depends on T022, T023, T024).
 - [ ] T026 [US2] Generate + validate: `npm run build` green — a dangling token ref would fail **BY NAME** (FR-004) — then `npx tsc --noEmit && tsc -p tsconfig.build.json` green. Produces `src/components/Button/{Button.tsx,Button.module.css,Button.stories.tsx,index.ts}` with **no hand-editing of generated output** (FR-010, E4). Then **re-pin the golden** to include the Button: `npm run golden:update` (regeneration, never hand-edit — Principle IV/D7) (depends on T025).
 - [ ] T027 [US2] **Approve & commit** (US4 checkpoint): `git commit -am "step(contract): Button contract extracted from Figma dump, reviewed, adopted (6 variants, authored a11y)"` (depends on T026).

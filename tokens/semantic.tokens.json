@@ -1,44 +1,4 @@
 {
-  "color": {
-    "action": {
-      "default": {
-        "background": { "$type": "color", "$value": "{color.noir-bleute}" },
-        "foreground": { "$type": "color", "$value": "{color.blanc}" }
-      },
-      "orange": {
-        "background": { "$type": "color", "$value": "{color.orange}" },
-        "foreground": { "$type": "color", "$value": "{color.blanc}" }
-      },
-      "blanc": {
-        "background": { "$type": "color", "$value": "{color.blanc}" },
-        "foreground": { "$type": "color", "$value": "{color.noir-bleute}" }
-      },
-      "outlineBlanc": {
-        "background": { "$type": "color", "$value": "{color.nav-state}" },
-        "foreground": { "$type": "color", "$value": "{color.blanc}" },
-        "border": { "$type": "color", "$value": "{color.blanc}" }
-      },
-      "link": {
-        "background": { "$type": "color", "$value": "{color.nav-state}" },
-        "foreground": { "$type": "color", "$value": "{color.noir-bleute}" }
-      },
-      "outlineNoir": {
-        "background": { "$type": "color", "$value": "{color.nav-state}" },
-        "foreground": { "$type": "color", "$value": "{color.noir-bleute}" },
-        "border": { "$type": "color", "$value": "{color.noir-bleute}" }
-      }
-    },
-    "nav": {
-      "state": { "$type": "color", "$value": "{color.nav-state}" }
-    }
-  },
-  "font": {
-    "control": {
-      "family": { "$type": "fontFamily", "$value": "{brand.font.control-family}" },
-      "weight": { "$type": "fontWeight", "$value": "{brand.font.control-weight}" },
-      "size": { "$type": "dimension", "$value": "{font.size.16}" }
-    }
-  },
   "typography": {
     "titre-1": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },

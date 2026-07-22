@@ -5,6 +5,15 @@ binds to. Tiered per the repo's existing architecture (primitives → semantic a
 values are from-dump** (never invented — FR-003). Compiled by `scripts/build-tokens.mjs`, which
 **fails the build on any unresolvable `{dot.path}`** (the tokens-first guarantee, FR-004).
 
+> **⚠️ CORRECTED (2026-07-22) — primitives-only, no semantic alias layer.** Piqueray's Figma is a
+> single flat collection of 14 primitives named by colour — **no `color.action.*`**.
+> `tokens/semantic.tokens.json` now holds **only the 8 real Montserrat typography styles** (as
+> aliases). The `color.action.*` / `color.nav.state` / `font.control.*` aliases shown below were an
+> **invention** and have been **removed**; the Button binds **primitives directly**
+> (`{color.noir-bleute}`…). This is the sanctioned Polaris BYO shape (a flat foreign set → a
+> Primitives collection with empty semantic/brand). Figma variables were renamed token-legal
+> (`Noir bleuté` → `color/noir-bleute`). See research **D2 correction**.
+
 ## Inventory (SC-002) — exactly this, nothing more
 
 - **14 variables**: 12 colours + **NavState** + **Opacity**

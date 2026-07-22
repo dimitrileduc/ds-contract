@@ -7,6 +7,12 @@ the *interface* the generator and the differ consume. Value-bearing fields are *
 
 Validated by: `@ds-contracts/schema` (`ContractSchema`, Zod) at build time.
 
+> **⚠️ CORRECTED (2026-07-22) — no semantic layer, bind primitives.** Piqueray's Figma is flat
+> primitives, no `color.action.*`. The Button binds **primitives directly, per-variant** (via
+> `tokensByProp`). The `{color.action.{variant}.background}` substituted refs shown below are
+> **superseded** — see research **D2 correction**. Figma variables were renamed token-legal
+> (`Noir bleuté` → `color/noir-bleute`) so the extractor recovers clean refs.
+
 ```jsonc
 {
   "$schema": "./contract.schema.json",
@@ -44,12 +50,14 @@ Validated by: `@ds-contracts/schema` (`ContractSchema`, Zod) at build time.
   "anatomy": {
     "root": {
       "tokens": {
-        // EVERY value is a {dot.path} into the Piqueray semantic aliases (E1). No literals.
-        "background-color": "{color.action.{variant}.background}",   // substituted ref (D2)
-        "color":            "{color.action.{variant}.foreground}",
-        "border-color":     "{color.action.{variant}.border}",       // outline/link variants
-        "font-family":      "{font.control.family}"                  // → Montserrat
-        // …padding / radius / gap / font-size, all from-dump, all bound
+        // CORRECTED: bind PRIMITIVES directly, per-variant (extractor's real output — tokensByProp).
+        // NOT {color.action.*} (Piqueray has no semantic layer). Every value is still a {dot.path}
+        // into the Piqueray PRIMITIVES (E1), never a literal.
+        //   color (text):  base {color.blanc}; tokensByProp property1 → blanc/link/outlineNoir: {color.noir-bleute}
+        //   background:     per-variant — default {color.noir-bleute}, orange {color.orange}, blanc {color.blanc};
+        //                   outlineBlanc/link/outlineNoir have NO fill (transparent), authored per-variant
+        //   border-color:  outlineBlanc {color.blanc}, outlineNoir {color.noir-bleute}
+        "font-family": "{font.family.montserrat}"   // primitive → Montserrat (font-weight {font.weight.medium}, font-size {font.size.16})
       }
       // parts (label, optional icon) as inverted from the dump
     }

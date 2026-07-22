@@ -39,9 +39,27 @@ violates Honesty (V) by implying a capability that isn't exercised; delete it.
 
 ---
 
-## D2 — The 6 variants → a single VARIANT axis mapped to semantic colour aliases
+## D2 — The 6 variants → a single VARIANT axis mapped to ~~semantic colour aliases~~ **primitives (corrected)**
 
-**Decision.** Represent Piqueray's six variants (Default, Orange, Blanc, Outline blanc, Link,
+> **⚠️ IMPLEMENTATION CORRECTION (2026-07-22).** The premise below — that the Button binds
+> **semantic colour aliases** `color.action.{variant}.*` and that the extractor emits a
+> **substituted ref** `{color.action.{variant}.background}` — is **WRONG for Piqueray** and was
+> corrected during implementation. Verified against the live file: Piqueray has **one flat
+> collection of 14 primitives** named by colour (`Noir bleuté`, `Orange`, `Blanc`…), **no
+> semantic layer**, and the Button binds those **primitives directly** (Default→`Noir bleuté`,
+> Orange→`Orange`, Blanc→`Blanc`…). The `color.action.*` layer authored in US1 was an
+> **invention** and has been removed → **primitives-only**, exactly the sanctioned Polaris BYO
+> pattern (a flat foreign set maps to a Primitives collection with empty semantic/brand —
+> `examples/polaris/generate.ts`; and `core/tokens.ts` confirms a primitive path is a bindable
+> `{token.ref}`). The Figma variables were **renamed to token-legal slash names** (`Noir bleuté`
+> → `color/noir-bleute`) because the repo joins Figma↔tokens **by name** and refuses names
+> outside `[a-z0-9.-]`. The Button contract now binds **per-variant primitive refs**
+> (`{color.noir-bleute}`, `{color.blanc}`… via `tokensByProp`), **not**
+> `{color.action.{variant}.background}`. Everything else here (the single `variant` enum prop +
+> `VARIANT` binding, camelCased values, default = first) **still holds** — only the token tier
+> changed: primitives, not invented semantic aliases.
+
+**Decision (original, superseded on the tier).** Represent Piqueray's six variants (Default, Orange, Blanc, Outline blanc, Link,
 Outline noir) as **one `variant` enum prop** with a Figma `VARIANT` binding, exactly as the
 demo Button models `variant` (button.contract.json:13-40). Give each variant its semantic
 colour aliases under `color.action.<variant>.{background,foreground,border,…}` in

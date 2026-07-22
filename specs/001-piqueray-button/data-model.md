@@ -8,6 +8,13 @@ Six entities, lifted from the spec's *Key Entities* and grounded in the real on-
 introduces). Nothing here invents Piqueray values — value-bearing fields are marked
 **from-dump** (filled at implementation) or **authored** (hand-written, honesty-marked).
 
+> **⚠️ CORRECTED (2026-07-22).** E1 rows mentioning "**semantic aliases**" / `color.action.*` and
+> E2's `anatomy.*.tokens → semantic aliases` are **superseded**: Piqueray is **primitives-only**
+> (flat Figma collection, no semantic layer). E1's semantic file now holds only the 8 Montserrat
+> typography styles; the Button (E2) binds **primitives directly, per-variant** (`{color.noir-bleute}`
+> via `tokensByProp`), not `{color.action.{variant}.background}`. Figma variables were renamed
+> token-legal (`Noir bleuté` → `color/noir-bleute`). See research **D2 correction**.
+
 ---
 
 ## E1 — Piqueray Token Foundation

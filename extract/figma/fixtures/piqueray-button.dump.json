@@ -3,63 +3,63 @@
     "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
     "extractedAt": "2026-07-22",
     "dumpVersion": "1.5",
-    "note": "Node-tree STRUCTURE from the Figma REST API (extract/figma/rest/map.ts, dump v1.5). The 14 _variables (names + values) are FULL-FIDELITY — read from the live file via the Figma Console MCP desktop bridge; the REST /variables/local endpoint is Enterprise-gated (403 on this pro plan), which is why the bridge (not REST) supplied the inventory. IMPORTANT for US2: the per-paint variable NAMES were NOT recovered — fills carry the RESOLVED hex only. proposeFromDump binds a paint by its variable name (unifyPaint), so on this dump it takes the spec-anticipated REST fallback (research D3): with mintUnbound it MINTS provisional imported.* tokens from the resolved values and reports each for renaming. _variables is a name<->value REFERENCE for the US2 human-review that maps those onto the Piqueray semantic aliases — it cannot auto-reattach to nameless fills.",
-    "variablesSource": "figma-console-mcp (desktop WebSocket bridge)"
+    "note": "Node-tree structure via the Figma REST API (extract/figma/rest/map.ts, dump v1.5); per-fill/stroke variable bindings + names captured NATIVELY via the plugin bridge (Figma Console MCP), post-rename to token-legal slash names (color/noir-bleute, color/orange, …). Values full-fidelity. For design→contract proposal.",
+    "variablesSource": "figma-console-mcp (desktop plugin bridge); variables renamed token-legal"
   },
   "_variables": {
-    "Bleu": {
+    "color/bleu": {
       "type": "COLOR",
       "value": "#143a84"
     },
-    "Orange": {
+    "color/orange": {
       "type": "COLOR",
       "value": "#f98a0b"
     },
-    "Blanc": {
+    "color/blanc": {
       "type": "COLOR",
       "value": "#ffffff"
     },
-    "Noir bleuté": {
+    "color/noir-bleute": {
       "type": "COLOR",
       "value": "#26282c"
     },
-    "Beige": {
+    "color/beige": {
       "type": "COLOR",
       "value": "#f6d49f"
     },
-    "Beige clair": {
+    "color/beige-clair": {
       "type": "COLOR",
       "value": "#fff3e2"
     },
-    "Bleu gris": {
+    "color/bleu-gris": {
       "type": "COLOR",
       "value": "#9ba4b5"
     },
-    "Bleu clair": {
+    "color/bleu-clair": {
       "type": "COLOR",
       "value": "#f4f6fa"
     },
-    "Beige clair 80%": {
+    "color/beige-clair-80": {
       "type": "COLOR",
       "value": "#fff3e2cc"
     },
-    "Noir": {
+    "color/noir": {
       "type": "COLOR",
       "value": "#37373b"
     },
-    "Orange 12%": {
+    "color/orange-12": {
       "type": "COLOR",
       "value": "#f494001f"
     },
-    "Orange 42%": {
+    "color/orange-42": {
       "type": "COLOR",
       "value": "#f494006b"
     },
-    "NavState": {
+    "color/nav-state": {
       "type": "STRING",
       "value": "Transparent"
     },
-    "Opacity": {
+    "opacity/base": {
       "type": "FLOAT",
       "value": 100
     }
@@ -100,7 +100,7 @@
           "counterSizing": "AUTO"
         },
         "fill": {
-          "hex": "26282c"
+          "var": "color/noir-bleute"
         },
         "children": [
           {
@@ -124,7 +124,7 @@
               "lineHeight": 22
             },
             "fill": {
-              "hex": "ffffff"
+              "var": "color/blanc"
             }
           },
           {
@@ -162,7 +162,7 @@
           "counterSizing": "AUTO"
         },
         "fill": {
-          "hex": "f98a0b"
+          "var": "color/orange"
         },
         "children": [
           {
@@ -186,7 +186,7 @@
               "lineHeight": 22
             },
             "fill": {
-              "hex": "ffffff"
+              "var": "color/blanc"
             }
           },
           {
@@ -224,7 +224,7 @@
           "counterSizing": "AUTO"
         },
         "fill": {
-          "hex": "ffffff"
+          "var": "color/blanc"
         },
         "children": [
           {
@@ -248,7 +248,7 @@
               "lineHeight": 22
             },
             "fill": {
-              "hex": "26282c"
+              "var": "color/noir-bleute"
             }
           },
           {
@@ -286,7 +286,7 @@
           "counterSizing": "AUTO"
         },
         "stroke": {
-          "hex": "ffffff"
+          "var": "color/blanc"
         },
         "strokeWeight": 2,
         "children": [
@@ -311,7 +311,7 @@
               "lineHeight": 22
             },
             "fill": {
-              "hex": "ffffff"
+              "var": "color/blanc"
             }
           },
           {
@@ -371,7 +371,7 @@
               "lineHeight": 22
             },
             "fill": {
-              "hex": "26282c"
+              "var": "color/noir-bleute"
             }
           },
           {
@@ -408,7 +408,7 @@
           "counterSizing": "AUTO"
         },
         "stroke": {
-          "hex": "26282c"
+          "var": "color/noir-bleute"
         },
         "strokeWeight": 2,
         "children": [
@@ -433,7 +433,7 @@
               "lineHeight": 22
             },
             "fill": {
-              "hex": "26282c"
+              "var": "color/noir-bleute"
             }
           },
           {
