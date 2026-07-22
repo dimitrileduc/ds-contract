@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "6ef148a",
+    "gitCommit": "a918c77",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -115,6 +115,15 @@
       "--font-weight-regular",
       "--font-weight-medium",
       "--font-weight-semibold",
+      "--font-line-height-22",
+      "--space-0",
+      "--space-4",
+      "--space-10",
+      "--space-16",
+      "--space-32",
+      "--radius-32",
+      "--border-width-0",
+      "--border-width-2",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
@@ -141,5 +150,37 @@
       "--typography-lead-weight"
     ]
   },
-  "components": []
+  "components": [
+    {
+      "id": "ds.button",
+      "name": "Button",
+      "version": "1.0.0",
+      "status": "draft",
+      "description": "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label is a reusable prop.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6"
+      },
+      "props": [
+        {
+          "name": "variant",
+          "type": [
+            "default",
+            "orange",
+            "blanc",
+            "outlineBlanc",
+            "link",
+            "outilneNoir"
+          ],
+          "default": "default",
+          "description": "Visual style of the button."
+        }
+      ],
+      "children": {
+        "kind": "text",
+        "description": "Button label. Authored: promoted to a reusable prop — in the Figma source the text « Contactez-nous » is static (not a component property), so contract↔Figma parity will list this as authored drift."
+      },
+      "slots": []
+    }
+  ]
 }

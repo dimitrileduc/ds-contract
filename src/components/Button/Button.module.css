@@ -1,0 +1,64 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/button.contract.json (ds.button v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  cursor: pointer;
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-22);
+  color: var(--color-blanc);
+  gap: var(--space-10);
+  padding-block: var(--space-16);
+  padding-inline: var(--space-32);
+  border-width: var(--border-width-0);
+  position: relative;
+}
+
+/* a11y.minHitArea: non-visual hit-target floor — see contract */
+.root::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+.variant-default {
+  background-color: var(--color-noir-bleute);
+}
+
+.variant-orange {
+  background-color: var(--color-orange);
+}
+
+.variant-blanc {
+  background-color: var(--color-blanc);
+  color: var(--color-noir-bleute);
+}
+
+.variant-outlineBlanc {
+  border-width: var(--border-width-2);
+  border-color: var(--color-blanc);
+}
+
+.variant-link {
+  color: var(--color-noir-bleute);
+  border-radius: var(--radius-32);
+  padding-block: var(--space-4);
+  padding-inline: var(--space-0);
+}
+
+.variant-outilneNoir {
+  border-width: var(--border-width-2);
+  border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
