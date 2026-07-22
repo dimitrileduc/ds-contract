@@ -13,7 +13,7 @@
  *
  * Output is byte-guarded by evals/golden.json (golden covers figma-sync/*.js).
  */
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, sortByDependencies } from './contract-schema.js';
 import { createFigmaEngine, type ComponentData } from '../core/emit-figma-script.js';
@@ -49,7 +49,10 @@ const engine = createFigmaEngine({
     primitives: read('tokens/primitives.tokens.json'),
     semantic: read('tokens/semantic.tokens.json'),
     light: read('tokens/modes/semantic.light.tokens.json'),
-    dark: read('tokens/modes/semantic.dark.tokens.json'),
+    // Mono-theme (Piqueray): dark mode is optional — an absent file is an empty mode.
+    dark: existsSync(path.join(ROOT, 'tokens', 'modes', 'semantic.dark.tokens.json'))
+      ? read('tokens/modes/semantic.dark.tokens.json')
+      : {},
     brands: Object.fromEntries(brandNames.map((n) => [n, read(`tokens/modes/brand.${n}.tokens.json`)])),
   },
   icons: iconAssets,

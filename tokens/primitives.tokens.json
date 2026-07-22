@@ -1,346 +1,50 @@
 {
   "color": {
     "$type": "color",
-    "white": {
-      "$value": "#FFFFFF"
-    },
-    "black": {
-      "$value": "#000000"
-    },
-    "gray": {
-      "50": {
-        "$value": "#F9FAFB"
-      },
-      "100": {
-        "$value": "#F3F4F6"
-      },
-      "200": {
-        "$value": "#E5E7EB"
-      },
-      "300": {
-        "$value": "#D1D5DB"
-      },
-      "400": {
-        "$value": "#9CA3AF"
-      },
-      "500": {
-        "$value": "#6B7280"
-      },
-      "600": {
-        "$value": "#4B5563"
-      },
-      "700": {
-        "$value": "#374151"
-      },
-      "800": {
-        "$value": "#1F2937"
-      },
-      "900": {
-        "$value": "#111827"
-      }
-    },
-    "blue": {
-      "100": {
-        "$value": "#DBEAFE"
-      },
-      "300": {
-        "$value": "#93C5FD"
-      },
-      "400": {
-        "$value": "#60A5FA"
-      },
-      "500": {
-        "$value": "#3B82F6"
-      },
-      "600": {
-        "$value": "#2563EB"
-      },
-      "700": {
-        "$value": "#1D4ED8"
-      },
-      "900": {
-        "$value": "#1E3A8A"
-      }
-    },
-    "red": {
-      "100": {
-        "$value": "#FEE2E2"
-      },
-      "300": {
-        "$value": "#FCA5A5"
-      },
-      "400": {
-        "$value": "#F87171"
-      },
-      "500": {
-        "$value": "#EF4444"
-      },
-      "600": {
-        "$value": "#DC2626"
-      },
-      "700": {
-        "$value": "#B91C1C"
-      },
-      "900": {
-        "$value": "#7F1D1D"
-      }
-    },
-    "green": {
-      "100": {
-        "$value": "#DCFCE7"
-      },
-      "500": {
-        "$value": "#22C55E"
-      },
-      "600": {
-        "$value": "#16A34A"
-      },
-      "700": {
-        "$value": "#15803D"
-      },
-      "900": {
-        "$value": "#14532D"
-      }
-    },
-    "amber": {
-      "100": {
-        "$value": "#FEF3C7"
-      },
-      "500": {
-        "$value": "#F59E0B"
-      },
-      "600": {
-        "$value": "#D97706"
-      },
-      "700": {
-        "$value": "#B45309"
-      },
-      "900": {
-        "$value": "#78350F"
-      }
-    },
-    "orange": {
-      "100": {
-        "$value": "#FFEDD5"
-      },
-      "700": {
-        "$value": "#C2410C"
-      },
-      "900": {
-        "$value": "#7C2D12"
-      }
-    },
-    "yellow": {
-      "100": {
-        "$value": "#FEF9C3"
-      },
-      "700": {
-        "$value": "#A16207"
-      },
-      "900": {
-        "$value": "#713F12"
-      }
-    },
-    "teal": {
-      "100": {
-        "$value": "#CCFBF1"
-      },
-      "700": {
-        "$value": "#0F766E"
-      },
-      "900": {
-        "$value": "#134E4A"
-      },
-      "300": {
-        "$type": "color",
-        "$value": "#5EEAD4"
-      },
-      "400": {
-        "$type": "color",
-        "$value": "#2DD4BF"
-      },
-      "500": {
-        "$type": "color",
-        "$value": "#14B8A6"
-      },
-      "600": {
-        "$type": "color",
-        "$value": "#0D9488"
-      }
-    },
-    "cyan": {
-      "100": {
-        "$value": "#CFFAFE"
-      },
-      "700": {
-        "$value": "#0E7490"
-      },
-      "900": {
-        "$value": "#164E63"
-      }
-    },
-    "purple": {
-      "100": {
-        "$value": "#F3E8FF"
-      },
-      "700": {
-        "$value": "#7E22CE"
-      },
-      "900": {
-        "$value": "#581C87"
-      },
-      "300": {
-        "$type": "color",
-        "$value": "#D8B4FE"
-      },
-      "400": {
-        "$type": "color",
-        "$value": "#C084FC"
-      },
-      "500": {
-        "$type": "color",
-        "$value": "#A855F7"
-      },
-      "600": {
-        "$type": "color",
-        "$value": "#9333EA"
-      }
-    },
-    "pink": {
-      "100": {
-        "$value": "#FCE7F3"
-      },
-      "700": {
-        "$value": "#BE185D"
-      },
-      "900": {
-        "$value": "#831843"
-      }
-    }
-  },
-  "space": {
-    "25": {
-      "$value": "2px"
-    },
-    "50": {
-      "$value": "4px"
-    },
-    "100": {
-      "$value": "8px"
-    },
-    "150": {
-      "$value": "12px"
-    },
-    "200": {
-      "$value": "16px"
-    },
-    "250": {
-      "$value": "20px"
-    },
-    "300": {
-      "$value": "24px"
-    },
-    "400": {
-      "$value": "32px"
-    },
-    "$type": "dimension",
-    "overlap": {
-      "$value": "-8px"
-    }
-  },
-  "radius": {
-    "100": {
-      "$value": "4px"
-    },
-    "200": {
-      "$value": "8px"
-    },
-    "$type": "dimension",
-    "pill": {
-      "$value": "999px"
-    },
-    "none": {
-      "$value": "0px"
-    }
-  },
-  "border-width": {
-    "100": {
-      "$value": "1px"
-    },
-    "200": {
-      "$value": "2px"
-    },
-    "$type": "dimension"
-  },
-  "container": {
-    "$type": "dimension",
-    "sm": {
-      "$value": "320px"
-    },
-    "xs": {
-      "$value": "120px"
-    },
-    "md": {
-      "$value": "480px"
-    },
-    "lg": {
-      "$value": "640px"
-    }
-  },
-  "font": {
-    "family": {
-      "sans": {
-        "$type": "fontFamily",
-        "$value": "Inter, system-ui, -apple-system, sans-serif"
-      },
-      "mono": {
-        "$value": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
-        "$type": "fontFamily"
-      }
-    },
-    "size": {
-      "100": {
-        "$value": "12px"
-      },
-      "200": {
-        "$value": "14px"
-      },
-      "300": {
-        "$value": "16px"
-      },
-      "400": {
-        "$value": "18px"
-      },
-      "$type": "dimension"
-    },
-    "weight": {
-      "$type": "fontWeight",
-      "regular": {
-        "$value": 400
-      },
-      "medium": {
-        "$value": 500
-      },
-      "semibold": {
-        "$value": 600
-      }
+    "bleu": { "$value": "#143A84" },
+    "orange": { "$value": "#F98A0B" },
+    "blanc": { "$value": "#FFFFFF" },
+    "noir-bleute": { "$value": "#26282C" },
+    "beige": { "$value": "#F6D49F" },
+    "beige-clair": { "$value": "#FFF3E2" },
+    "bleu-gris": { "$value": "#9BA4B5" },
+    "bleu-clair": { "$value": "#F4F6FA" },
+    "beige-clair-80": { "$value": "#FFF3E2CC" },
+    "noir": { "$value": "#37373B" },
+    "orange-12": { "$value": "#F494001F" },
+    "orange-42": { "$value": "#F494006B" },
+    "nav-state": {
+      "$value": "#00000000",
+      "$description": "Piqueray Figma variable 'NavState' — a STRING whose only value is 'Transparent'. Projected to the transparent color #00000000 (alpha 0): the token / Figma-variable pipeline has no string channel and NavState denotes transparency. From-dump semantics; the hex is the faithful color projection."
     }
   },
   "opacity": {
     "$type": "number",
-    "disabled": {
-      "$value": 0.5
-    }
+    "base": { "$value": 100 }
   },
-  "control": {
-    "sm": {
-      "$value": "28px"
+  "font": {
+    "family": {
+      "montserrat": {
+        "$type": "fontFamily",
+        "$value": "Montserrat, sans-serif"
+      }
     },
-    "md": {
-      "$value": "36px"
+    "size": {
+      "$type": "dimension",
+      "14": { "$value": "14px" },
+      "16": { "$value": "16px" },
+      "18": { "$value": "18px" },
+      "20": { "$value": "20px" },
+      "24": { "$value": "24px" },
+      "32": { "$value": "32px" },
+      "40": { "$value": "40px" },
+      "48": { "$value": "48px" }
     },
-    "lg": {
-      "$value": "44px"
+    "weight": {
+      "$type": "fontWeight",
+      "regular": { "$value": 400 },
+      "medium": { "$value": 500 },
+      "semibold": { "$value": 600 }
     }
   }
 }

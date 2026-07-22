@@ -26,7 +26,7 @@
  * the pre-parameterization script. The `ds-contracts generate` verb calls
  * the same exported generateComponents() — one code path, two shells.
  */
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, sortByDependencies, type Contract } from './contract-schema.js';
 import { generateCss, generateStories, generateTsx, validateContract } from '../core/emit-react.js';
@@ -61,12 +61,15 @@ export class ContractViolationError extends Error {
   }
 }
 
-const defaultTokenFiles = (root: string) => [
-  path.join(root, 'tokens', 'primitives.tokens.json'),
-  path.join(root, 'tokens', 'semantic.tokens.json'),
-  path.join(root, 'tokens', 'modes', 'semantic.light.tokens.json'),
-  path.join(root, 'tokens', 'modes', 'semantic.dark.tokens.json'),
-];
+const defaultTokenFiles = (root: string) =>
+  [
+    path.join(root, 'tokens', 'primitives.tokens.json'),
+    path.join(root, 'tokens', 'semantic.tokens.json'),
+    path.join(root, 'tokens', 'modes', 'semantic.light.tokens.json'),
+    // Mono-theme (Piqueray): the dark-mode file is optional — kept in the list
+    // only when present, so a single-mode token set resolves without it.
+    path.join(root, 'tokens', 'modes', 'semantic.dark.tokens.json'),
+  ].filter((f) => existsSync(f));
 
 /** Icon assets are SOURCE (like tokens): <iconsDir>/<name>.svg, inlined by
  *  the generator on the code side and rendered as vectors in Figma. */
@@ -190,10 +193,14 @@ export async function generateComponents(
   mkdirSync(outDir, { recursive: true });
   writeFileSync(
     path.join(outDir, 'index.ts'),
-    generated
-      .sort()
-      .map((n) => `export * from './${n}';`)
-      .join('\n') + '\n',
+    generated.length > 0
+      ? generated
+          .sort()
+          .map((n) => `export * from './${n}';`)
+          .join('\n') + '\n'
+      : // Mono-theme foundation stage (Piqueray): no components yet — emit a
+        // valid empty ES module so the src/index.ts barrel re-export compiles.
+        'export {};\n',
   );
 
   return { generated, outDir };
