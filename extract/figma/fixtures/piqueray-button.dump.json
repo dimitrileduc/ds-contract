@@ -2,8 +2,8 @@
   "_provenance": {
     "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
     "extractedAt": "2026-07-22",
-    "note": "Node-tree dump from the Figma REST API (extract/figma/rest/map.ts, dump v1.5); _variables augmented from the desktop plugin bridge (Figma Console MCP) because the REST variables endpoint is Enterprise-gated. For design→contract proposal.",
     "dumpVersion": "1.5",
+    "note": "Node-tree STRUCTURE from the Figma REST API (extract/figma/rest/map.ts, dump v1.5). The 14 _variables (names + values) are FULL-FIDELITY — read from the live file via the Figma Console MCP desktop bridge; the REST /variables/local endpoint is Enterprise-gated (403 on this pro plan), which is why the bridge (not REST) supplied the inventory. IMPORTANT for US2: the per-paint variable NAMES were NOT recovered — fills carry the RESOLVED hex only. proposeFromDump binds a paint by its variable name (unifyPaint), so on this dump it takes the spec-anticipated REST fallback (research D3): with mintUnbound it MINTS provisional imported.* tokens from the resolved values and reports each for renaming. _variables is a name<->value REFERENCE for the US2 human-review that maps those onto the Piqueray semantic aliases — it cannot auto-reattach to nameless fills.",
     "variablesSource": "figma-console-mcp (desktop WebSocket bridge)"
   },
   "_variables": {
@@ -66,15 +66,10 @@
   },
   "_degradations": [
     {
-      "code": "variables-endpoint-unavailable",
-      "scope": "_variables",
-      "message": "Figma REST /v1/files/:key/variables/local is Enterprise-only and 403s on this (pro) plan; the 14 variable names+values were recovered from the desktop plugin bridge (Figma Console MCP, WebSocket) against the live file — captured, not invented."
-    },
-    {
       "code": "text-channel-unsupported",
       "scope": "Bouton/Contactez-nous",
       "field": "textCase",
-      "message": "textCase UPPER has no dump v1 projection; the label renders uppercase on canvas. Typography carries (fontSize, fontStyle, style identity) only."
+      "message": "textCase UPPER has no dump v1 projection; the label renders uppercase on the canvas. The dump carries fontSize / fontStyle / style identity only — the one channel genuinely not recoverable into dump v1."
     }
   ],
   "Bouton": {
