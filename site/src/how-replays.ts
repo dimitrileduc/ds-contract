@@ -19,7 +19,7 @@
  *     counted and layered from the file; the real sortByDependencies over
  *     the shipping contracts; the committed mega-session receipt.
  */
-import { cpSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
@@ -28,6 +28,9 @@ import type { GraphData } from './diagrams.js';
 const ROOT = process.cwd();
 const readJson = (rel: string): Record<string, unknown> =>
   JSON.parse(readFileSync(path.join(ROOT, rel), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readJsonOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? readJson(p) : ({} as ReturnType<typeof readJson>));
 
 // ---------------------------------------------------------------------------
 // Line diffs (real emitter output in, hunks out)
@@ -259,7 +262,7 @@ async function lifecycleReplay(): Promise<LifecycleReplay> {
     primitives: readJson('tokens/primitives.tokens.json'),
     semantic: readJson('tokens/semantic.tokens.json'),
     light: readJson('tokens/modes/semantic.light.tokens.json'),
-    dark: readJson('tokens/modes/semantic.dark.tokens.json'),
+    dark: readJsonOptional('tokens/modes/semantic.dark.tokens.json'),
     brands: { default: readJson('tokens/modes/brand.default.tokens.json') },
   };
   const icons = new Map<string, string>(

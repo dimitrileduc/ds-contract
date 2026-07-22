@@ -14,9 +14,15 @@
 // (diff.ts) verifies the key instead of this script guessing.
 await figma.loadAllPagesAsync();
 
+// v4: ALPHA IS PART OF THE VALUE. Dropping it made three translucent Piqueray
+// variables (#FFF3E2CC, #F494001F, #F494006B) read as opaque, so parity
+// reported a value MISMATCH against tokens/ that had captured the alpha
+// correctly — the instrument inventing drift that does not exist. 8-digit form
+// only when a < 1, so opaque colors keep their existing 6-digit spelling.
 const rgbToHex = (c) => {
   const h = (x) => Math.round(x * 255).toString(16).padStart(2, '0');
-  return ('#' + h(c.r) + h(c.g) + h(c.b)).toUpperCase();
+  const rgb = ('#' + h(c.r) + h(c.g) + h(c.b)).toUpperCase();
+  return typeof c.a === 'number' && c.a < 1 ? rgb + h(c.a).toUpperCase() : rgb;
 };
 
 // --- Component sets AND standalone components ---

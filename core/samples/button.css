@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.5.0 (core/emit-html.ts) */
+/* Button — from ds.button v1.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -6,15 +6,19 @@
 
 .button {
   display: inline-flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 0;
+  border-style: solid;
   cursor: pointer;
-  border-radius: var(--radius-control);
-  gap: var(--space-gap-control);
-  font-family: var(--font-control-family);
-  font-weight: var(--font-control-weight);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-22);
+  color: var(--color-blanc);
+  gap: var(--space-10);
+  padding-block: var(--space-16);
+  padding-inline: var(--space-32);
+  border-width: var(--border-width-0);
   position: relative;
 }
 
@@ -28,95 +32,35 @@
   transform: translate(-50%, -50%);
 }
 
-.button:focus-visible {
-  outline-style: solid;
-  outline-offset: 2px;
+.button--variant-default {
+  background-color: var(--color-noir-bleute);
 }
 
-.button:disabled {
-  cursor: not-allowed;
+.button--variant-orange {
+  background-color: var(--color-orange);
 }
 
-.button--variant-primary {
-  background-color: var(--color-action-primary-background);
-  color: var(--color-action-primary-foreground);
+.button--variant-blanc {
+  background-color: var(--color-blanc);
+  color: var(--color-noir-bleute);
 }
 
-.button--variant-secondary {
-  background-color: var(--color-action-secondary-background);
-  color: var(--color-action-secondary-foreground);
+.button--variant-outlineBlanc {
+  border-width: var(--border-width-2);
+  border-color: var(--color-blanc);
 }
 
-.button--variant-danger {
-  background-color: var(--color-action-danger-background);
-  color: var(--color-action-danger-foreground);
+.button--variant-link {
+  color: var(--color-noir-bleute);
+  border-radius: var(--radius-32);
+  padding-block: var(--space-4);
+  padding-inline: var(--space-0);
 }
 
-.button--variant-ghost {
-  background-color: var(--color-action-ghost-background);
-  color: var(--color-action-ghost-foreground);
-}
-
-.button--size-sm {
-  padding-inline: var(--space-inset-x-sm);
-  padding-block: var(--space-inset-y-sm);
-  font-size: var(--font-control-size-sm);
-}
-
-.button--size-md {
-  padding-inline: var(--space-inset-x-md);
-  padding-block: var(--space-inset-y-md);
-  font-size: var(--font-control-size-md);
-}
-
-.button--size-lg {
-  padding-inline: var(--space-inset-x-lg);
-  padding-block: var(--space-inset-y-lg);
-  font-size: var(--font-control-size-lg);
-}
-
-.button--variant-primary:hover:not(:disabled) {
-  background-color: var(--color-action-primary-background-hover);
-}
-
-.button--variant-secondary:hover:not(:disabled) {
-  background-color: var(--color-action-secondary-background-hover);
-}
-
-.button--variant-danger:hover:not(:disabled) {
-  background-color: var(--color-action-danger-background-hover);
-}
-
-.button--variant-ghost:hover:not(:disabled) {
-  background-color: var(--color-action-ghost-background-hover);
-}
-
-.button:focus-visible {
-  outline-color: var(--color-border-focus);
-}
-
-.button:focus-visible {
-  outline-width: var(--border-width-focus);
-}
-
-.button:disabled {
-  opacity: var(--opacity-disabled);
-}
-
-.button__loadingSpinner svg {
-  display: block;
-  width: 14px;
-  height: 14px;
-}
-
-.button__loadingSpinner {
-  display: inline-flex;
-  flex-shrink: 0;
-  animation: button-spin 0.8s linear infinite;
-}
-
-@keyframes button-spin {
-  to { transform: rotate(360deg); }
+.button--variant-outilneNoir {
+  border-width: var(--border-width-2);
+  border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
 }
 
 /* showcase chrome */

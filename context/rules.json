@@ -1,5 +1,5 @@
 {
-  "description": "Org-authored rules — the Figma Context stand-in. Every generating surface reads these before producing output. Rules with enforcement 'judge' are checked deterministically by parity/judge.ts; 'agent' rules guide generation and are reviewed by humans.",
+  "description": "Org-authored rules — the Figma Context stand-in. Every generating surface reads these before producing output. Rules with enforcement 'judge' are checked deterministically by parity/judge.ts; 'agent' rules guide generation and are reviewed by humans. REVISED 2026-07-22 for Piqueray: three demo-era rules were REMOVED because they governed components this design system does not have — 'one-primary-action' (the Piqueray Button has no `primary` variant; its enum is default/orange/blanc/outlineBlanc/link/outilneNoir), 'layout-via-primitives' (no Stack or Inline exists here) and 'avatars-are-people' (no Avatar). A judge enforcing rules about absent components measures nothing. They were removed rather than rewritten: deleting a rule about a component that does not exist is bookkeeping, whereas authoring Piqueray's own composition rules is a design decision that belongs to the owner. The three that remain are system-agnostic and hold for any catalog.",
   "rules": [
     {
       "id": "components-from-catalog",
@@ -14,28 +14,13 @@
     {
       "id": "no-raw-equivalents",
       "statement": "Never use raw HTML elements the system provides a component for.",
-      "forbiddenRawElements": ["button", "table", "input", "select"],
+      "forbiddenRawElements": ["button"],
       "enforcement": "judge"
     },
     {
       "id": "no-style-overrides",
       "statement": "No className or style props on system components. If a component can't express it, that's a gap in the contract — report it.",
       "enforcement": "judge"
-    },
-    {
-      "id": "one-primary-action",
-      "statement": "At most one primary Button per screen.",
-      "enforcement": "judge"
-    },
-    {
-      "id": "layout-via-primitives",
-      "statement": "Compose layout with Stack and Inline, not hand-styled wrappers.",
-      "enforcement": "judge"
-    },
-    {
-      "id": "avatars-are-people",
-      "statement": "Avatars represent people or entities, never decoration.",
-      "enforcement": "agent"
     }
   ]
 }

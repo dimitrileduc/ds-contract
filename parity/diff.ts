@@ -92,7 +92,9 @@ interface FigmaVariable {
   values: Record<string, unknown>;
 }
 const figmaTokens: {
-  collections: Array<{ name: string; variables: FigmaVariable[] }>;
+  // `modes` is written by parity/extract-figma.plugin.js (v2+). Optional so
+  // pre-v2 snapshots still parse — the naming bridge below simply won't fire.
+  collections: Array<{ name: string; variables: FigmaVariable[]; modes?: string[] }>;
   fileKey?: string;
   extractedAt?: number;
 } = JSON.parse(readFileSync(path.join(ROOT, 'parity', 'snapshots', 'figma-tokens.json'), 'utf8'));
@@ -597,11 +599,55 @@ for (const col of figmaTokens.collections) {
   figmaVarsByCollection.set(col.name, new Map(col.variables.map((v) => [v.name, v])));
 }
 
+// ---------------------------------------------------------------------------
+// Brownfield naming — the file may not use OUR collection/mode names.
+//
+// figma-sync/01-tokens.js CREATES `Primitives` (mode "Value"), `Brand`, and
+// `Semantic` (modes "Light"/"Dark"). A file the repo did NOT generate — a
+// brownfield adoption — names things its own way: Piqueray ships ONE
+// collection literally called "Variable collection" with a single mode
+// "Mode 1". A name-keyed join then reports every variable as absent while it
+// sits right there in the file, which is a false verdict, not a gap.
+//
+// So a SINGLE-collection file is treated as the flat primitives tier it is,
+// and a single-mode collection answers for whichever mode is asked. Both
+// substitutions are RECORDED and printed — a silent rename would be a worse
+// bug than the one it fixes, and the owner must be able to see that the join
+// only worked because we bridged two vocabularies.
+// ---------------------------------------------------------------------------
+
+const namingBridges: string[] = [];
+/** Collections already answering for a tier — by exact name OR by bridge. */
+const claimedCollections = new Set<string>();
+
+function resolveCollection(expected: string): string | null {
+  if (figmaVarsByCollection.has(expected)) {
+    claimedCollections.add(expected);
+    return expected;
+  }
+  if (figmaTokens.collections.length !== 1) return null;
+  const only = figmaTokens.collections[0].name;
+  // Answer for ONE tier only. Letting the same collection stand in for
+  // `Primitives` *and* `Brand`/`Semantic` would report every one of its
+  // variables as `ahead` of the tier that legitimately has no counterpart —
+  // which is exactly what happened the first time this ran against a file
+  // whose collection WAS named `Primitives`: the bridge then fired for
+  // `Brand` and invented 14 phantom `ahead` findings.
+  if (claimedCollections.has(only)) return null;
+  claimedCollections.add(only);
+  namingBridges.push(
+    `collection "${expected}" does not exist in the file — matched against its only collection, "${only}"`,
+  );
+  return only;
+}
+
 function checkTokens(
   collection: string,
   expected: Array<{ path: string; perMode: Record<string, unknown> }>,
 ) {
-  const figmaVars = figmaVarsByCollection.get(collection) ?? new Map<string, FigmaVariable>();
+  const actualName = resolveCollection(collection);
+  const figmaVars = (actualName ? figmaVarsByCollection.get(actualName) : undefined) ?? new Map<string, FigmaVariable>();
+  const actualModes = actualName ? (figmaTokens.collections.find((c) => c.name === actualName)?.modes ?? []) : [];
   const expectedPaths = new Set<string>();
   for (const { path: tokenPath, perMode } of expected) {
     expectedPaths.add(tokenPath);
@@ -617,7 +663,15 @@ function checkTokens(
       continue;
     }
     for (const [mode, want] of Object.entries(perMode)) {
-      const got = v.values[mode];
+      // Same bridge, one tier down: a single-mode collection answers for
+      // whichever mode name we asked for. Recorded, never silent.
+      let readMode = mode;
+      if (!(mode in v.values) && actualModes.length === 1) {
+        readMode = actualModes[0];
+        const note = `mode "${mode}" does not exist in collection "${actualName}" — read from its only mode, "${readMode}"`;
+        if (!namingBridges.includes(note)) namingBridges.push(note);
+      }
+      const got = v.values[readMode];
       if (norm(want) !== norm(got)) {
         add({
           surface: 'figma-tokens',
@@ -709,11 +763,28 @@ const summary = { total: active.length, acknowledged: acknowledged.length, pendi
 writeFileSync(
   path.join(ROOT, 'parity', 'report.json'),
   JSON.stringify(
-    { summary, findings: active, acknowledged, pending, checkedContracts: contracts.map((c) => `${c.id}@${c.version}`) },
+    {
+      summary,
+      findings: active,
+      acknowledged,
+      pending,
+      checkedContracts: contracts.map((c) => `${c.id}@${c.version}`),
+      // Vocabulary bridges the join had to make (brownfield collection/mode
+      // names). Empty means the file uses this repo's own naming. Carried in
+      // the report so surfaces that render it can show the reader that the
+      // comparison only lined up because two vocabularies were bridged.
+      namingBridges,
+    },
     null,
     2,
   ) + '\n',
 );
+
+if (namingBridges.length > 0) {
+  console.log('⚠ Figma naming bridged (the file does not use this repo\'s collection/mode names):');
+  for (const b of namingBridges) console.log(`    · ${b}`);
+  console.log('');
+}
 
 const printFinding = (f: Finding) => {
   console.log(`  [${f.surface} ${f.classification.toUpperCase()}] ${f.subject}`);

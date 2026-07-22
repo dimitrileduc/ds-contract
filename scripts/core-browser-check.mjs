@@ -40,7 +40,7 @@ try {
   const minSize = readFileSync(path.join(out, 'core.esm.min.js')).length;
 
   // Gate 2 — execute with zero node globals: bundle an iife probe that runs
-  // the real emitters over the real Badge contract + tokens.
+  // the real emitters over a real shipping contract + tokens.
   const read = (p) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
   const brands = Object.fromEntries(
     readdirSync(path.join(ROOT, 'tokens', 'modes'))
@@ -48,7 +48,7 @@ try {
       .map((f) => [f.replace(/^brand\.|\.tokens\.json$/g, ''), read(`tokens/modes/${f}`)]),
   );
   const data = JSON.stringify({
-    contract: read('contracts/badge.contract.json'),
+    contract: read(path.join('contracts', readdirSync(path.join(ROOT, 'contracts')).filter((f) => f.endsWith('.contract.json')).sort()[0])),
     tokens: {
       primitives: read('tokens/primitives.tokens.json'),
       semantic: read('tokens/semantic.tokens.json'),
@@ -84,7 +84,7 @@ try {
   }
 
   console.log(`✔ core barrel bundles for platform=browser: ${fmt(rawSize)} raw, ${fmt(minSize)} minified`);
-  console.log(`✔ all 4 emitters ran in a VM with no node globals (Badge): ${names.map((n) => `${n}=${result[n].join('+')}B`).join(', ')}`);
+  console.log(`✔ all 4 emitters ran in a VM with no node globals (${JSON.parse(data).contract.name}): ${names.map((n) => `${n}=${result[n].join('+')}B`).join(', ')}`);
 } catch (err) {
   console.error(`✖ core:browser-check failed — the core is not browser-importable:\n${err?.message ?? err}`);
   process.exitCode = 1;

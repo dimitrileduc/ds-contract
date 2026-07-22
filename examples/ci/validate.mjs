@@ -30,7 +30,7 @@
  * (network required: npm registry for the published CLI + the consumer
  *  install — this is a one-shot local validation, not an eval-suite gate.)
  */
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -165,7 +165,10 @@ cpSync(path.join(ROOT, 'evals', 'fixtures', 'storybook-skeleton'), designLed, { 
 mkdirSync(path.join(designLed, 'contracts'), { recursive: true });
 cpSync(path.join(ROOT, 'contracts', 'button.contract.json'), path.join(designLed, 'contracts', 'button.contract.json'));
 mkdirSync(path.join(designLed, 'tokens', 'modes'), { recursive: true });
-for (const t of ['primitives.tokens.json', 'semantic.tokens.json', 'modes/semantic.light.tokens.json', 'modes/semantic.dark.tokens.json']) {
+// Mono-theme (Piqueray): modes/semantic.dark.tokens.json was removed — copy what exists.
+for (const t of ['primitives.tokens.json', 'semantic.tokens.json', 'modes/semantic.light.tokens.json', 'modes/semantic.dark.tokens.json'].filter(
+  (f) => existsSync(path.join(ROOT, 'tokens', f)),
+)) {
   cpSync(path.join(ROOT, 'tokens', t), path.join(designLed, 'tokens', t));
 }
 cpSync(path.join(ROOT, 'assets', 'icons'), path.join(designLed, 'icons'), { recursive: true });
@@ -182,7 +185,8 @@ writeFileSync(
         'tokens/primitives.tokens.json',
         'tokens/semantic.tokens.json',
         'tokens/modes/semantic.light.tokens.json',
-        'tokens/modes/semantic.dark.tokens.json',
+        // Mono-theme (Piqueray): declared only when it exists.
+        ...(existsSync(path.join(ROOT, 'tokens', 'modes', 'semantic.dark.tokens.json')) ? ['tokens/modes/semantic.dark.tokens.json'] : []),
       ],
       idPrefix: 'ds',
       out: 'ds-contracts/out',

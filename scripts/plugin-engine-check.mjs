@@ -8,14 +8,14 @@
  *
  *   1. bundle    — fresh esbuild output matches the committed drift-guard
  *                  receipt (figma-sync/plugin/engine.receipt.json)
- *   2. generate  — Badge contract → tokens + component + version-marker
+ *   2. generate  — the shipping contract → tokens + component + version-marker
  *                  scripts EXECUTED in the mock file; the stored
  *                  ds_contracts/specHash equals the engine's mirror (the
  *                  update report's "unchanged" detection can never drift
  *                  from the emitted runtime silently)
  *   3. ordering  — a bundle whose contract references others syncs the
  *                  dependencies first (sortByDependencies closure)
- *   4. update    — the EXACT plain-words change report (unchanged / new /
+ *   4. update    — the EXACT plain-words change report (unchanged /
  *                  version → version with +prop), then Apply amends in
  *                  place: same node id, props added, markers updated
  *   5. propose   — the ui.html-embedded dump script runs against the mock
@@ -23,8 +23,12 @@
  *                  (a mutated base surfaces its +prop/default lines)
  *   6. pr        — the dry-run PR plan, exact lines, zero network
  *
- * Every ✔ line below is pinned by evals (plugin-engine-bundle,
- * plugin-update-report, plugin-propose-dry-run).
+ * The subject is whatever contracts/ ships — currently the Piqueray Button.
+ * Flows that need a shape Piqueray does not have (a composite with nested
+ * component instances; a SECOND contract, for the report's "new — will be
+ * created" line) are SKIPPED BY NAME and printed, never quietly dropped:
+ * every skip below prints a ⏭ line saying what it needs. The frozen coverage
+ * is recorded in evals/REMOVED-CASES.md.
  */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -40,6 +44,13 @@ const fail = (msg) => {
 };
 const assert = (cond, what) => {
   if (!cond) fail(`pin failed: ${what}`);
+};
+/** A flow this design system cannot exercise yet. NEVER silent: every skip
+ *  prints, and every skip is recorded in evals/REMOVED-CASES.md. */
+const skips = [];
+const skip = (what) => {
+  skips.push(what);
+  console.log(`⏭ SKIPPED: ${what}`);
 };
 
 // --- 1. bundle + drift-guard receipt ---------------------------------------
@@ -69,23 +80,30 @@ const markerOf = (contractId) =>
       n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
   );
 
-// --- 2. generate: Badge ----------------------------------------------------
-const badge = JSON.parse(read('contracts/badge.contract.json'));
+// --- 2. generate: the shipping contract ------------------------------------
+// The subject is read from contracts/ rather than named, so this check follows
+// the catalogue instead of a component that may or may not still exist.
+const { readdirSync } = await import('node:fs');
+const SUBJECT_FILE = readdirSync(path.join(ROOT, 'contracts'))
+  .filter((f) => f.endsWith('.contract.json'))
+  .sort()[0];
+assert(SUBJECT_FILE, 'contracts/ ships at least one contract');
+const subject = JSON.parse(read(`contracts/${SUBJECT_FILE}`));
 {
-  const parsed = DSC.parseIncomingText(read('contracts/badge.contract.json'));
-  assert(parsed.ok && parsed.kind === 'contract', 'badge parses as a single contract document');
+  const parsed = DSC.parseIncomingText(read(`contracts/${SUBJECT_FILE}`));
+  assert(parsed.ok && parsed.kind === 'contract', `${subject.name} parses as a single contract document`);
   const plan = DSC.planGenerate(parsed.contracts, { withTokens: true, fileKey: '' });
-  assert(plan.ok, `badge generate plan is accepted (${plan.ok ? '' : plan.issues.map((i) => i.headline).join('; ')})`);
+  assert(plan.ok, `${subject.name} generate plan is accepted (${plan.ok ? '' : plan.issues.map((i) => i.headline).join('; ')})`);
   assert(plan.steps[0].kind === 'tokens', 'tokens script runs first');
   for (const step of plan.steps) await runScript(step.code);
-  const node = markerOf(badge.id);
+  const node = markerOf(subject.id);
   assert(node, 'a node carrying the ds_contracts/contractId marker exists after generate');
   const stored = node.getSharedPluginData('ds_contracts', 'specHash');
-  const mirror = DSC.specHashOf(badge);
+  const mirror = DSC.specHashOf(subject);
   assert(stored !== '' && stored === mirror, `stored specHash (${stored}) equals the engine mirror (${mirror}) — the runtime and the report can never disagree silently`);
-  assert(node.getSharedPluginData('ds_contracts', 'version') === badge.version, 'version marker recorded');
+  assert(node.getSharedPluginData('ds_contracts', 'version') === subject.version, 'version marker recorded');
   console.log(
-    `✔ headless generate: Badge v${badge.version} synced into the mock file (${node.type}, node ${node.id}); stored specHash equals the engine mirror (${mirror})`,
+    `✔ headless generate: ${subject.name} v${subject.version} synced into the mock file (${node.type}, node ${node.id}); stored specHash equals the engine mirror (${mirror})`,
   );
 }
 
@@ -93,7 +111,6 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
 {
   // Find a shipping contract that references other contracts.
   let composite = null;
-  const { readdirSync } = await import('node:fs');
   for (const f of readdirSync(path.join(ROOT, 'contracts')).sort()) {
     if (!f.endsWith('.contract.json')) continue;
     const c = JSON.parse(read(`contracts/${f}`));
@@ -103,7 +120,11 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
       break;
     }
   }
-  assert(composite, 'a composite contract (component refs) exists in contracts/');
+  if (!composite) {
+    skip(
+      'dependency ordering (needs a contract whose anatomy references another contract — Piqueray ships a flat Button). Restore when Piqueray gains a composite.',
+    );
+  } else {
   const plan = DSC.planGenerate([composite], { withTokens: false, fileKey: '' });
   assert(plan.ok, `composite plan accepted (${plan.ok ? '' : plan.issues.map((i) => i.headline).join('; ')})`);
   const componentSteps = plan.steps.filter((s) => s.kind === 'component');
@@ -115,12 +136,13 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
   console.log(
     `✔ bundle order: ${composite.id} plans ${componentSteps.length} component scripts, dependencies first (${componentSteps.map((s) => s.contractId).join(' → ')})`,
   );
+  }
 }
 
 // --- 4. update-library report + apply --------------------------------------
 {
-  // v-next Badge: bumped version + one added boolean prop.
-  const vNext = JSON.parse(JSON.stringify(badge));
+  // v-next subject: bumped version + one added boolean prop.
+  const vNext = JSON.parse(JSON.stringify(subject));
   vNext.version = '9.9.9';
   vNext.props.push({
     name: 'experimental',
@@ -129,35 +151,36 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
     default: false,
     bindings: { figma: { kind: 'BOOLEAN', property: 'Experimental' }, code: { prop: 'experimental' } },
   });
-  const switchContract = JSON.parse(read('contracts/switch.contract.json'));
+  // The report's "new — will be created" row needs a SECOND contract: one the
+  // bundle carries that the canvas has never seen. Piqueray ships one
+  // component, so that row cannot be exercised — named, not dropped.
+  skip(
+    'the update report\'s "new — will be created" row and the "N new" count (needs a SECOND contract, so the bundle can carry one the canvas has never seen — Piqueray ships one component). Restore when Piqueray gains a second component.',
+  );
 
   const inventoryMsg = await runScript(DSC.inventoryScriptSource());
   const inventory = inventoryMsg.inventory;
-  assert(Array.isArray(inventory) && inventory.length >= 1, 'inventory scan finds the marked Badge');
+  assert(Array.isArray(inventory) && inventory.length >= 1, `inventory scan finds the marked ${subject.name}`);
 
-  const plan = DSC.updatePlan([vNext, switchContract], inventory);
+  const plan = DSC.updatePlan([vNext], inventory);
   assert(
-    plan.lines[0] === `• Badge ${badge.version} → 9.9.9: +prop Experimental.`,
-    `amend line reads exactly: "• Badge ${badge.version} → 9.9.9: +prop Experimental." (got "${plan.lines[0]}")`,
+    plan.lines[0] === `• ${subject.name} ${subject.version} → 9.9.9: +prop Experimental.`,
+    `amend line reads exactly: "• ${subject.name} ${subject.version} → 9.9.9: +prop Experimental." (got "${plan.lines[0]}")`,
   );
   assert(
-    plan.lines[1].startsWith(`• Switch ${switchContract.version}: new — will be created (`),
-    `new line reads "• Switch ${switchContract.version}: new — will be created (…)" (got "${plan.lines[1]}")`,
+    plan.lines[1] === '1 to update · 0 new · 0 unchanged.',
+    `counts line reads "1 to update · 0 new · 0 unchanged." (got "${plan.lines[1]}")`,
   );
   assert(
-    plan.lines[2] === '1 to update · 1 new · 0 unchanged.',
-    `counts line reads "1 to update · 1 new · 0 unchanged." (got "${plan.lines[2]}")`,
-  );
-  assert(
-    plan.lines[3] === 'Nothing has been applied — review the list, then Apply.',
+    plan.lines[2] === 'Nothing has been applied — review the list, then Apply.',
     'the report ends with the nothing-applied tail',
   );
-  const planSame = DSC.updatePlan([badge], inventory);
+  const planSame = DSC.updatePlan([subject], inventory);
   assert(
-    planSame.lines[0] === `• Badge ${badge.version}: unchanged — will be skipped.`,
-    `unchanged line reads exactly: "• Badge ${badge.version}: unchanged — will be skipped." (got "${planSame.lines[0]}")`,
+    planSame.lines[0] === `• ${subject.name} ${subject.version}: unchanged — will be skipped.`,
+    `unchanged line reads exactly: "• ${subject.name} ${subject.version}: unchanged — will be skipped." (got "${planSame.lines[0]}")`,
   );
-  const planDup = DSC.updatePlan([badge, vNext], inventory);
+  const planDup = DSC.updatePlan([subject, vNext], inventory);
   assert(
     planDup.rows[1].action === 'refused' && planDup.rows[1].line.includes('twice'),
     'a bundle carrying the same contract id twice is refused BY NAME',
@@ -167,9 +190,9 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
   console.log(`    ${planSame.lines[0]}`);
 
   // Apply the amend only; the Badge node must be amended IN PLACE.
-  const before = markerOf(badge.id);
+  const before = markerOf(subject.id);
   const beforeId = before.id;
-  const apply = DSC.updateApplySteps([vNext, switchContract], [vNext.id], { fileKey: '' });
+  const apply = DSC.updateApplySteps([vNext], [vNext.id], { fileKey: '' });
   assert(apply.ok, `apply plan accepted (${apply.ok ? '' : apply.issues.map((i) => i.headline).join('; ')})`);
   let amendReport = null;
   for (const step of apply.steps) {
@@ -182,14 +205,14 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
     Array.isArray(amendReport.addedProps) && amendReport.addedProps.includes('Experimental'),
     'the amend report names the added property',
   );
-  const after = markerOf(badge.id);
+  const after = markerOf(subject.id);
   assert(after.getSharedPluginData('ds_contracts', 'version') === '9.9.9', 'version marker updated by apply');
   assert(
     after.getSharedPluginData('ds_contracts', 'specHash') === DSC.specHashOf(vNext),
     'specHash marker updated to the v-next mirror',
   );
   console.log(
-    `✔ apply: Badge amended in place (same node ${beforeId}), +prop Experimental, markers updated to v9.9.9`,
+    `✔ apply: ${subject.name} amended in place (same node ${beforeId}), +prop Experimental, markers updated to v9.9.9`,
   );
 }
 
@@ -205,13 +228,13 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
   const source = ui.slice(start + openTag.length, ui.indexOf('</script>', start)).replace(/^\n/, '');
   const scoped = source.replace(
     /^const TARGET_SETS = \[[^\n]*\];$/m,
-    `const TARGET_SETS = ${JSON.stringify(['Badge'])};`,
+    `const TARGET_SETS = ${JSON.stringify([subject.name])};`,
   );
   assert(scoped !== source, 'the dump script TARGET_SETS seam scopes');
   const dump = await runScript(scoped);
-  assert(dump && dump.Badge, 'the dump captures the mock-built Badge set');
+  assert(dump && dump[subject.name], `the dump captures the mock-built ${subject.name} set`);
 
-  const diff = DSC.proposeDiff(dump, 'Badge', badge);
+  const diff = DSC.proposeDiff(dump, subject.name, subject);
   assert(diff.ok, `proposeDiff proposes from the drawn set (${diff.ok ? '' : diff.issue.headline})`);
   assert(
     diff.summaryLines[diff.summaryLines.length - 1].startsWith('Scope: this diff covers the API surface'),
@@ -219,24 +242,37 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
   );
   const exported = JSON.parse(diff.exportJson);
   assert(
-    exported.type === 'CONTRACT-PROPOSAL' && exported.baseContractId === badge.id && exported.proposedContract,
+    exported.type === 'CONTRACT-PROPOSAL' && exported.baseContractId === subject.id && exported.proposedContract,
     'the export artifact carries base id/version + the proposed contract',
   );
 
   // Delta detection: a base missing a prop the drawn set carries must
   // surface it as +prop; a changed default must surface the default line.
-  const enumProp = badge.props.find((p) => p.type && p.type.enum && p.default !== undefined);
-  assert(enumProp, 'badge has an enum prop with a default (diff fixture)');
-  const mutatedBase = JSON.parse(JSON.stringify(badge));
+  const enumProp = subject.props.find((p) => p.type && p.type.enum && p.default !== undefined);
+  assert(enumProp, `${subject.name} has an enum prop with a default (diff fixture)`);
+  // This is a design→code diff, so the proposed prop carries the name the
+  // CANVAS spells, not the contract's code-side name — the two differ whenever
+  // a contract renames its Figma property (Piqueray's `variant` ⇄ "Property 1").
+  // Derived here with the proposer's own rule, camel() in core/propose-figma.ts:
+  // non-identifier characters to spaces, first word lowercased, rest capitalized.
+  const camel = (str) =>
+    str
+      .replace(/[^A-Za-z0-9 _-]+/g, ' ')
+      .trim()
+      .split(/[\s_-]+/)
+      .map((w, i) => (i === 0 ? w.toLowerCase() : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()))
+      .join('');
+  const drawnName = camel(enumProp.bindings.figma.property);
+  const mutatedBase = JSON.parse(JSON.stringify(subject));
   mutatedBase.props = mutatedBase.props.filter((p) => p.name !== enumProp.name);
-  const diffMut = DSC.proposeDiff(dump, 'Badge', mutatedBase);
+  const diffMut = DSC.proposeDiff(dump, subject.name, mutatedBase);
   assert(diffMut.ok, 'proposeDiff vs the mutated base succeeds');
   assert(
-    diffMut.summaryLines.some((l) => l.startsWith(`+prop ${enumProp.name} `)),
-    `the diff surfaces the drawn-but-missing prop as "+prop ${enumProp.name} …" (got: ${diffMut.summaryLines.join(' | ')})`,
+    diffMut.summaryLines.some((l) => l.startsWith(`+prop ${drawnName} `)),
+    `the diff surfaces the drawn-but-missing prop as "+prop ${drawnName} …" (got: ${diffMut.summaryLines.join(' | ')})`,
   );
   console.log(
-    `✔ propose: mock canvas dumped through the embedded dump script → proposal + bounded diff; a base missing "${enumProp.name}" surfaces "+prop ${enumProp.name}" by name`,
+    `✔ propose: mock canvas dumped through the embedded dump script → proposal + bounded diff; a base missing "${enumProp.name}" surfaces "+prop ${drawnName}" by name (the canvas spelling of "${enumProp.bindings.figma.property}")`,
   );
 }
 
@@ -246,20 +282,21 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
     owner: 'acme',
     repo: 'design-system',
     base: 'main',
-    path: 'contracts/badge.contract.json',
+    path: `contracts/${SUBJECT_FILE}`,
     contractJson: '{}',
-    contractId: badge.id,
-    baseVersion: badge.version,
+    contractId: subject.id,
+    baseVersion: subject.version,
     summaryLines: ['+prop experimental (boolean)'],
     branchSuffix: 'fixture',
   });
+  const branch = `ds-contracts/propose-${subject.id}-fixture`;
   const expected = [
     'DRY RUN — no request leaves this window. The live run would:',
     '1. Confirm base branch "main" exists — GET https://api.github.com/repos/acme/design-system/git/ref/heads/main',
-    '2. Create branch ds-contracts/propose-ds.badge-fixture — POST https://api.github.com/repos/acme/design-system/git/refs',
-    '3. Commit contracts/badge.contract.json on ds-contracts/propose-ds.badge-fixture — PUT https://api.github.com/repos/acme/design-system/contents/contracts/badge.contract.json',
+    `2. Create branch ${branch} — POST https://api.github.com/repos/acme/design-system/git/refs`,
+    `3. Commit contracts/${SUBJECT_FILE} on ${branch} — PUT https://api.github.com/repos/acme/design-system/contents/contracts/${SUBJECT_FILE}`,
     '4. Open the pull request — POST https://api.github.com/repos/acme/design-system/pulls',
-    'Branch: ds-contracts/propose-ds.badge-fixture',
+    `Branch: ${branch}`,
     "Token: used for these requests only, kept in this window's memory, never stored.",
   ];
   for (let i = 0; i < expected.length; i++) {
@@ -268,76 +305,24 @@ const badge = JSON.parse(read('contracts/badge.contract.json'));
   console.log('✔ PR dry-run plan: 4 named REST steps, deterministic branch, session-only token note — zero network');
 }
 
-// --- N. multi-root composite (depth Stage C) builds via the LIVE plugin path
-// The exact path `ds-contracts figma push` + the plugin's Receive-by-code
-// trigger: parse a CONTRACTS-BUNDLE, planGenerate (tokens first, deps ordered),
-// execute in the mock, and confirm the advanced composite's anatomy — a
-// multi-root Modal whose body holds a nested ds.card INSTANCE and a tags ROW of
-// N ds.badge INSTANCEs. Proves the packaged engine (window.DSC) — not just the
-// raw emitter — reproduces code≡canvas for advanced composition.
-{
-  const composite = JSON.parse(read('examples/depth-composite/composite-modal.contract.json'));
-  const deps = ['card', 'badge', 'avatar', 'button'].map((n) =>
-    JSON.parse(read(`contracts/${n}.contract.json`)),
-  );
-  const bundleText = JSON.stringify({ type: 'CONTRACTS-BUNDLE', version: 1, contracts: [composite, ...deps] });
-  const parsed = DSC.parseIncomingText(bundleText);
-  assert(parsed.ok && parsed.kind === 'bundle', 'composite CONTRACTS-BUNDLE parses');
-  const plan = DSC.planGenerate(parsed.contracts, { withTokens: true, fileKey: '' });
-  assert(plan.ok, `composite plan accepted (${plan.ok ? '' : plan.issues.map((i) => i.headline).join('; ')})`);
-  assert(plan.steps[0].kind === 'tokens', 'composite plan runs tokens first');
-  for (const step of plan.steps) await runScript(step.code);
-  const built = root.findOne((n) => n.type === 'COMPONENT' && n.name === 'CompositeModal');
-  assert(built, 'the plugin engine built the CompositeModal COMPONENT');
-  const b = (s) => (s ?? '').replace(/ \d+$/, '');
-  const kid = (n, nm) => (n?.children ?? []).find((c) => b(c.name) === nm) ?? null;
-  const dialog = kid(built, 'dialog'), body = kid(dialog, 'body');
-  const summary = kid(body, 'summary'), tagsRow = kid(body, 'tags');
-  const tags = (tagsRow?.children ?? []).filter((c) => b(c.name) === 'tag' && c.type === 'INSTANCE');
-  const roots = (built.children ?? []).map((c) => c.name);
-  assert(roots.includes('dialog') && roots.includes('backdrop'), 'composite has dialog+backdrop sibling roots');
-  assert(summary?.type === 'INSTANCE', 'body.summary is a nested ds.card INSTANCE');
-  assert(tagsRow?.type === 'FRAME' && tags.length === 3, 'body.tags is a row FRAME of 3 ds.badge INSTANCEs');
-  assert(built.getSharedPluginData('ds_contracts', 'contractId') === 'ds.composite-modal', 'composite identity marker recorded');
-  console.log(
-    `✔ plugin path — multi-root composite: window.DSC parsed the pushed bundle, planned ${plan.steps.length} steps (tokens → deps → composite), executed in the mock, built CompositeModal {dialog, backdrop} with a nested ds.card summary INSTANCE + a tags row of ${tags.length} ds.badge INSTANCEs (code≡canvas, the live Receive result)`,
-  );
-}
+// --- N. multi-root composite (depth Stage C) via the LIVE plugin path -------
+// This flow, and the reverse journey that reads its result back off the mock
+// canvas, prove the PACKAGED engine (window.DSC — not just the raw emitter)
+// reproduces code≡canvas for advanced composition: a CONTRACTS-BUNDLE carrying
+// a multi-root Modal whose body holds a nested INSTANCE and a repeated
+// collection, planned deps-first, executed in the mock, then dumped and
+// proposed back. Both halves need a composite; Piqueray ships a flat Button,
+// and neither half can be faked without inventing the very structure under
+// test. Named, printed, and recorded — never quietly dropped.
+skip(
+  'packaged-engine composition (needs a contract with nested component instances — Piqueray ships a flat Button). Restore when Piqueray gains a composite.',
+);
+skip(
+  'the reverse journey for that composite (design→code recovery of both roots, the composed INSTANCE and the repeated collection — same missing shape). Restore when Piqueray gains a composite.',
+);
 
-// --- N+1. REVERSE JOURNEY (design→code) for the advanced composite ----------
-// The composite built above (composite-plugin-path) is on the mock canvas.
-// Dump it exactly as the Propose tab does and run design→contract: the
-// proposed anatomy must RECOVER the advanced composition — both roots
-// (dialog+backdrop), the composed ds.card INSTANCE, and the repeated ds.badge
-// collection. Proves the design→code direction handles multi-root composites,
-// the mirror of the emit-side multi-root work (extraction wraps in a single
-// `root` — the COMPONENT-as-root convention — with dialog/backdrop as parts).
-{
-  const compositeC = JSON.parse(read('examples/depth-composite/composite-modal.contract.json'));
-  const ui2 = read('figma-sync/plugin/ui.html');
-  const openTag2 = '<script type="text/plain" id="dump-source">';
-  const s2 = ui2.indexOf(openTag2);
-  const src2 = ui2.slice(s2 + openTag2.length, ui2.indexOf('</script>', s2)).replace(/^\n/, '');
-  const scoped2 = src2.replace(/^const TARGET_SETS = \[[^\n]*\];$/m, `const TARGET_SETS = ${JSON.stringify(['CompositeModal'])};`);
-  const dump2 = await runScript(scoped2);
-  assert(dump2 && dump2.CompositeModal, 'the dump captures the multi-root CompositeModal set');
-  const diff2 = DSC.proposeDiff(dump2, 'CompositeModal', compositeC);
-  assert(diff2.ok, `proposeDiff recovers a contract from the drawn composite (${diff2.ok ? '' : diff2.issue?.headline})`);
-  const proposed = JSON.parse(diff2.exportJson).proposedContract;
-  // walk the recovered anatomy (COMPONENT-as-root wrapper)
-  const rootPart = proposed.anatomy?.root ?? Object.values(proposed.anatomy ?? {})[0];
-  const rp = rootPart?.parts ?? {};
-  const dialog = rp.dialog, backdrop = rp.backdrop;
-  const body = dialog?.parts?.body;
-  const summary = body?.parts?.summary;
-  const tagsWrap = body?.parts?.tags;
-  const tag = tagsWrap?.parts?.tag;
-  assert(dialog && backdrop, 'design→code recovers BOTH roots (dialog + backdrop) of the multi-root composite');
-  assert(summary?.component, 'design→code recovers the composed ds.card summary as an INSTANCE');
-  assert(tag?.component && tag?.repeat, 'design→code recovers the repeated ds.badge collection (tags > tag, repeat + component)');
-  console.log(
-    `✔ reverse journey (design→code): the drawn composite dumps and proposes back a contract that recovers dialog+backdrop, a composed ${summary.component.id} INSTANCE, and a repeated ${tag.component.id} collection — advanced composition round-trips in BOTH directions`,
-  );
-}
-
-console.log('plugin-engine-check: all flows green (bundle, generate, order, update-report, apply, propose-diff, pr-dry-run, composite-plugin-path, composite-reverse-journey)');
+console.log(
+  `plugin-engine-check: all flows green (bundle, generate, update-report, apply, propose-diff, pr-dry-run)${
+    skips.length > 0 ? ` — ${skips.length} flow(s) SKIPPED and named above; see evals/REMOVED-CASES.md` : ''
+  }`,
+);

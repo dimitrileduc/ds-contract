@@ -53,6 +53,10 @@ import type { SessionEntryLayers } from '../../playground/src/engine/session-reg
 
 const ROOT = process.cwd();
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed
+ *  in the reconversion — absent means no overrides, never a hard read. */
+const readOptional = (p: string): Record<string, unknown> =>
+  existsSync(path.join(ROOT, p)) ? read(p) : {};
 
 const failures: string[] = [];
 const check = (label: string, cond: boolean) => {
@@ -133,7 +137,7 @@ const dialogCapturedTree: Record<string, unknown> = {};
     read('tokens/primitives.tokens.json'),
     read('tokens/semantic.tokens.json'),
     read('tokens/modes/semantic.light.tokens.json'),
-    read('tokens/modes/semantic.dark.tokens.json'),
+    readOptional('tokens/modes/semantic.dark.tokens.json'),
   ]);
   for (const e of dialogCaptured?.entries ?? []) {
     if (repoInv.has(e.path)) continue; // composeCaptured shadow rule
@@ -152,7 +156,7 @@ const activeTree: TokenTreeInput = {
   primitives: read('tokens/primitives.tokens.json'),
   semantic: activeSemantic,
   light: read('tokens/modes/semantic.light.tokens.json'),
-  dark: read('tokens/modes/semantic.dark.tokens.json'),
+  dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
   brands: { default: read('tokens/modes/brand.default.tokens.json') },
 };
 const activeInventory = tokenInventoryFromJson([

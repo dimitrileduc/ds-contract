@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "a918c77",
+    "gitCommit": "08ea7e5",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -25,10 +25,7 @@
       "id": "no-raw-equivalents",
       "statement": "Never use raw HTML elements the system provides a component for.",
       "forbiddenRawElements": [
-        "button",
-        "table",
-        "input",
-        "select"
+        "button"
       ],
       "enforcement": "judge"
     },
@@ -36,25 +33,10 @@
       "id": "no-style-overrides",
       "statement": "No className or style props on system components. If a component can't express it, that's a gap in the contract — report it.",
       "enforcement": "judge"
-    },
-    {
-      "id": "one-primary-action",
-      "statement": "At most one primary Button per screen.",
-      "enforcement": "judge"
-    },
-    {
-      "id": "layout-via-primitives",
-      "statement": "Compose layout with Stack and Inline, not hand-styled wrappers.",
-      "enforcement": "judge"
-    },
-    {
-      "id": "avatars-are-people",
-      "statement": "Avatars represent people or entities, never decoration.",
-      "enforcement": "agent"
     }
   ],
   "context": {
-    "memory": "# System memory\n\nWhat this design system is and is for — the standing context every generating\nsurface reads before producing anything. Edit freely (or via Contract Hub's\nContext page); this ships inside the catalog.\n\n- This system serves data-dense B2B product surfaces: settings, directories,\n  billing, member management.\n- Tone: quiet and information-first. Color signals state, never decoration.\n- Density matters: tables and forms should hold up at compact rhythm.\n- When a request needs something the catalog lacks, report the gap — never\n  approximate with lookalikes.\n",
+    "memory": "# System memory\n\nWhat this design system is and is for — the standing context every generating\nsurface reads before producing anything. Edit freely (or via Contract Hub's\nContext page); this ships inside the catalog.\n\n> **Rewritten 2026-07-22 for Piqueray.** The previous text described the retired\n> 51-component demo system (\"data-dense B2B product surfaces: settings,\n> directories, billing, member management\") and was still being handed to every\n> generating surface. What follows is **derived from the Piqueray artifacts\n> themselves** — the Figma file `d9FYAUcqdcNtsuaMgLefvJ`, the token set and the\n> Button contract. Lines marked **(unconfirmed)** are read off those artifacts,\n> not stated by the owner; correct them rather than letting them stand.\n\n- **Piqueray is a public-facing brand surface, not an internal product UI.**\n  (unconfirmed — inferred from the Figma file: a logo, a header nav with Solid\n  and Transparent states, a member picture, search / account / cart icons.)\n- **The palette is warm and editorial**, built on a deep blue `#143A84` and an\n  orange `#F98A0B`, over near-black `#26282C`, white, and a beige family\n  (`#F6D49F`, `#FFF3E2`). Colour is used for identity and emphasis, not only to\n  signal state.\n- **Typography is Montserrat throughout**, on a display-scale ramp — six title\n  levels from 48px down to 16px, plus `paragraphe` and `lead`. A ramp that\n  starts at 48px is built for editorial pages, not for compact tables.\n  (unconfirmed as intent — the scale is a fact, the reading of it is not.)\n- **The catalog currently holds one component: the Button**, six variants\n  (default, orange, blanc, outlineBlanc, link, outilneNoir). Anything else a\n  request needs does not exist yet.\n- **When a request needs something the catalog lacks, report the gap** — never\n  approximate with a lookalike. With a one-component catalog this will happen\n  constantly, and saying so is the correct behaviour, not a failure.\n\n**Still to be authored by the owner:** the tone of voice, the intended audience,\nand the composition rules that are Piqueray's own. The rules file\n(`context/rules.json`) was likewise stripped of the demo's rules rather than\nrewritten — inventing a design constitution is the owner's call, not the tool's.\n",
     "references": [
       "README.md"
     ],

@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import {
-  Alert, AlertDescription, AlertTitle, Badge, Button, Check, Section, Source, Table, TableBody,
-  TableCell, TableHead, TableHeader, TableRow, Textarea,
+  Alert, AlertDescription, AlertTitle, Badge, Button, Check, Section, Source, Textarea,
 } from '../components/ui';
-import { adherence, catalog, evalsByClaim } from '../data';
+import { catalog, evalsByClaim } from '../data';
 import { judgeSource, UNAVAILABLE_NOTE, type ApiResponse, type JudgeResult } from '../api';
 
-const JUDGE_STARTER = `import { Button, Stack } from 'ds-contracts-poc';
+// Piqueray, not the retired demo: `Stack` never existed here and the Button's
+// enum is default/orange/blanc/outlineBlanc/link/outilneNoir — `secondary` was
+// a demo variant. A starter that cites absent components teaches the wrong API.
+const JUDGE_STARTER = `import { Button } from 'ds-contracts-poc';
 
 export function Snippet() {
   return (
-    <Stack gap="md">
-      <Button variant="secondary">Cancel</Button>
-      <Button>Save</Button>
-    </Stack>
+    <div>
+      <Button variant="link">En savoir plus</Button>
+      <Button variant="orange">Contactez-nous</Button>
+    </div>
   );
 }
 `;
@@ -74,14 +76,6 @@ function JudgePlayground() {
 }
 
 export function Governance() {
-  const armA = adherence.summary['arm-a'];
-  const armB = adherence.summary['arm-b'];
-  const screens = armA.perScreen.map((screen) => ({
-    file: screen.file,
-    a: screen,
-    b: armB.perScreen.find((s) => s.file === screen.file),
-  }));
-
   return (
     <>
       <div>
@@ -119,38 +113,10 @@ export function Governance() {
         <JudgePlayground />
       </Section>
 
-      <Section
-        title="Adherence, per screen"
-        lead="Every eval screen scored in both arms. Same tasks, same model — the catalog in context is the only difference."
-      >
-        <div className="max-w-3xl">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Screen</TableHead>
-                <TableHead>Governed</TableHead>
-                <TableHead>Ungoverned</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {screens.map(({ file, a, b }) => (
-                <TableRow key={file}>
-                  <TableCell className="font-mono text-xs">{file}</TableCell>
-                  <TableCell>
-                    <span className="text-success font-medium tabular-nums">{a.score}</span>{' '}
-                    <span className="text-muted-foreground text-xs">({a.violations} violations)</span>
-                  </TableCell>
-                  <TableCell>
-                    <span className="text-destructive font-medium tabular-nums">{b?.score ?? '—'}</span>{' '}
-                    <span className="text-muted-foreground text-xs">({b?.violations ?? '—'} violations)</span>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-        <Source path="evals/adherence/results.json" />
-      </Section>
+      {/* ARCHIVED 2026-07-22 — the per-screen adherence table lived here. It
+          scored five screens generated against the retired 51-component demo
+          catalog; none of it describes Piqueray. Kept on disk under
+          evals/adherence/, explained in evals/adherence/ARCHIVE.md. */}
 
       <Section
         title="Deterministic eval suite"

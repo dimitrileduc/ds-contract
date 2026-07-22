@@ -28,7 +28,7 @@
  * Node shell over pure core functions. Reads the repo + committed fixtures;
  * writes nothing.
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, walkAnatomy, type Contract } from '../../scripts/contract-schema.js';
 import { capturedTokensFromDump } from '../../core/captured-tokens.js';
@@ -42,6 +42,9 @@ import { loadContracts } from './propose.js';
 const ROOT = process.cwd();
 const FIXTURE_DIR = path.join('extract', 'figma', 'gauntlet', 'fixtures');
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? read(p) : ({} as ReturnType<typeof read>));
 
 const failures: string[] = [];
 const check = (label: string, cond: boolean) => {
@@ -71,7 +74,7 @@ const repoTrees = {
   primitives: read('tokens/primitives.tokens.json'),
   semantic: read('tokens/semantic.tokens.json'),
   light: read('tokens/modes/semantic.light.tokens.json'),
-  dark: read('tokens/modes/semantic.dark.tokens.json'),
+  dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
 };
 const repoInventory = tokenInventoryFromJson([repoTrees.primitives, repoTrees.semantic, repoTrees.light, repoTrees.dark]);
 

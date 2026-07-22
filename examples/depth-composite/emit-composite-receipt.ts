@@ -29,7 +29,7 @@
  * Exits non-zero (named) on any failure.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { pathToFileURL } from 'node:url';
@@ -46,6 +46,9 @@ import { createFigmaMock } from '../../scripts/plugin-engine-mock-figma.mjs';
 const ROOT = process.cwd();
 const HERE = path.join(ROOT, 'examples', 'depth-composite');
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? read(p) : ({} as ReturnType<typeof read>));
 
 const contract: Contract = ContractSchema.parse(
   read('examples/depth-composite/composite-modal.contract.json'),
@@ -75,7 +78,7 @@ const tokens = {
   primitives: read('tokens/primitives.tokens.json'),
   semantic: read('tokens/semantic.tokens.json'),
   light: read('tokens/modes/semantic.light.tokens.json'),
-  dark: read('tokens/modes/semantic.dark.tokens.json'),
+  dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
   brands,
 };
 const name = contract.name;

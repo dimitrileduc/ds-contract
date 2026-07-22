@@ -233,17 +233,41 @@ silent), (d) render visually conforms within the repo's existing tolerance.
 
 *(Depends on US2 — generated Button + contract + committed dump.)*
 
-- [ ] T030 [P] [US3] Re-point the **hardcoded** visual-parity subject list in `extract/figma/visual-parity/subjects.ts` (source, not generated — D8): drop the demo `badge/checkbox/switch/heading` subjects; repoint the `button` subject's `fileKey`/`setNodeId` from the demo file (`8nim1d0IPnehMxA7B7SYxC` / `5:21`) to the Piqueray file + Button set node (subjects.ts:114-118).
-- [ ] T031 [P] [US3] Apply the **hybrid rule** in `evals/run.ts` (FR-002/D6): **re-point** demo-Button-wired cases to Piqueray Button (C3 code/Figma drift detectors, C1 state/hit-area/typography probes, C4 promotion, and the **C8 journey** → the Piqueray Button dump); **remove, each named by `id` in the commit body**, demo-only cases with no Button equivalent (Card slots, Table multi-slot, Heading `elementByProp`, Checkbox/Progress native controls, Banner overlay, TextField `stylesWhen`, `.get('ds.heading'|'ds.token'|…)` lookups); **leave intact** content-agnostic engine cases (schema/circular-dep refusals, token validation, brand-layer determinism, all of C5 extraction). Then `npm run golden:update` (golden already refreshed at T026; re-run only if the hybrid-rule edits changed generated output) and let the live count settle.
-- [ ] T032 [US3] Gate **(a) determinism** — re-confirm `node scripts/deterministic-roundtrip.mjs` byte-identical ×2 (green since T028).
-- [ ] T033 [US3] Gates **(b) + (c)** — `npm run parity` (one three-way report): code↔contract **clean** (code faithful to contract — FR-012) AND contract↔Figma either **concords or lists every drift in plain language**, never omitted (FR-013/SC-007). Any drift is resolved **upstream** (contract/tokens), never by editing generated files (Edge Cases).
+- [X] T030 [P] [US3] Re-point the **hardcoded** visual-parity subject list in `extract/figma/visual-parity/subjects.ts` (source, not generated — D8): drop the demo `badge/checkbox/switch/heading` subjects; repoint the `button` subject's `fileKey`/`setNodeId` from the demo file (`8nim1d0IPnehMxA7B7SYxC` / `5:21`) to the Piqueray file + Button set node (subjects.ts:114-118).
+- [X] T031 [P] [US3] Apply the **hybrid rule** in `evals/run.ts` (FR-002/D6): **re-point** demo-Button-wired cases to Piqueray Button (C3 code/Figma drift detectors, C1 state/hit-area/typography probes, C4 promotion, and the **C8 journey** → the Piqueray Button dump); **remove, each named by `id` in the commit body**, demo-only cases with no Button equivalent (Card slots, Table multi-slot, Heading `elementByProp`, Checkbox/Progress native controls, Banner overlay, TextField `stylesWhen`, `.get('ds.heading'|'ds.token'|…)` lookups); **leave intact** content-agnostic engine cases (schema/circular-dep refusals, token validation, brand-layer determinism, all of C5 extraction). Then `npm run golden:update` (golden already refreshed at T026; re-run only if the hybrid-rule edits changed generated output) and let the live count settle.
+- [X] T032 [US3] Gate **(a) determinism** — re-confirm `node scripts/deterministic-roundtrip.mjs` byte-identical ×2 (green since T028).
+- [X] T033 [US3] Gates **(b) + (c)** — `npm run parity` (one three-way report): code↔contract **clean** (code faithful to contract — FR-012) AND contract↔Figma either **concords or lists every drift in plain language**, never omitted (FR-013/SC-007). Any drift is resolved **upstream** (contract/tokens), never by editing generated files (Edge Cases).
 - [ ] T034 [US3] Gate **(d) render↔Figma** — `npm run extract:figma:visual -- button`: masked-diff ≤ `THRESHOLD_PCT 2.0%` (existing tolerance, no new threshold — D8); any row > `3.0%` carries a named triage cause or prints `[UNTRIAGED]`. Needs Chromium; absence fails **loudly with the fix named** (depends on T030).
-- [ ] T035 [US3] Keep the rest of the arsenal green: `npm run eval` (live `N/N` authoritative — count may differ from the T002 baseline per the hybrid rule, stays green), `npm run plugin:check`, `node scripts/core-browser-check.mjs` (depends on T031).
+- [X] T035 [US3] Keep the rest of the arsenal green: `npm run eval` (live `N/N` authoritative — count may differ from the T002 baseline per the hybrid rule, stays green), `npm run plugin:check`, `node scripts/core-browser-check.mjs` (depends on T031).
 - [ ] T035a [US3] Author an **a11y assertion eval** in `evals/run.ts`: from the generated Button, assert the output exposes `role="button"` (native `<button>` or explicit role) and a non-empty **accessible name** (from the TEXT `children` binding) — fixture → eval → claim (Principle II) backing FR-017's "the generated Button is accessible". Re-`golden:update` only if the case adds a fixture; let the live count settle (depends on T026, T035).
 - [ ] T036 [US3] **Verify Independent Test (US3 / SC-004 / SC-007)**: all four axes green; every contract/code/Figma gap is either resolved or listed in plain language — **no drift passed in silence** (depends on T032–T035).
 - [ ] T037 [US3] **Approve & commit** (US4 checkpoint): `git commit -am "step(gates): arsenal green on Button — determinism, parity, contract↔Figma, visual ≤2%"` (depends on T036).
 
 **Checkpoint**: Fidelity is **proven**, not eyeballed. The headline P1 deliverable (US1+US2+US3) is complete.
+
+---
+
+## Phase 5b: Make the Button safe to sync back to Figma (OWNER PRIORITY — do immediately after Phase 5)
+
+**Why this exists**: added 2026-07-22 on the owner's instruction, after reading what
+`figma-sync/02-button.js` actually does. It is **amend-capable**, not create-only (the parity
+remedy string saying "CREATE-only" is stale): it finds the existing set by identity marker,
+**preserves** the set node + key, every variant node id, and the componentProperty ids (so the
+Header nav instance and any instance-level overrides survive) — but it **wipes and rebuilds the
+INTERIOR of every variant** from the contract (`child.remove()` then rebuild). Extra variants are
+reported, never deleted.
+
+**Consequence**: the `cil:arrow-left` / `cil:arrow-right` instances live *inside* the Bouton
+variants, and the contract does not carry them. First sync ⇒ they vanish from the variants. (The
+icon master components elsewhere in the file are untouched.) Nothing may be pushed to Figma until
+this is resolved.
+
+- [ ] T037a **Decide and record the icon question** — the Figma Bouton set nests `cil:arrow-left` and `cil:arrow-right` (`nestedInstances` in `parity/snapshots/figma-components.json`); the extracted contract dropped them. Two legitimate outcomes, and the choice is the owner's: **(a) carry them in the contract** — model the icon as an `INSTANCE_SWAP` slot or an optional icon prop, so the generated variants keep them and code gains the same affordance; or **(b) accept the removal** — the icons were decoration the code does not need, in which case say so *in the contract description* and expect the sync to strip them. Record the decision and its reason; do not let it be settled by default.
+- [ ] T037b **If (a): extend the contract** to express the nested icons, regenerate (`npm run build`), re-pin the golden (`npm run golden:update`), and confirm `npm run parity` no longer reports the nested-instance difference. Contract semver: added optional prop/slot = **minor** → `ds.button@1.1.0`.
+- [ ] T037c **Neutralise the collections the token sync would invent.** `figma-sync/01-tokens.js` unconditionally upserts **three** collections. `Primitives` is correct (it now matches the file). But `BRAND = []` still creates an **empty `Brand` collection**, and `SEMANTIC` creates a `Semantic` collection carrying a **`Dark` mode** — both demo-era shapes in a single-brand, single-theme system. Fix in `scripts/generate-figma.ts` (the generator, never the generated script): skip a collection whose token list is empty, and emit only the modes that exist. Otherwise the first sync pollutes the designers' file with two collections nobody asked for.
+- [ ] T037d **Pre-flight checklist before the first push**, run in order and recorded: (1) the icon decision is landed; (2) T037c done; (3) `npm run parity` reviewed finding-by-finding — the sync **overwrites variable values**, so any Figma-side change the repo has not adopted is lost; (4) a **named version saved in Figma** (file menu → *Save to version history*) as the restore point; (5) the visual gate (T034) green, which still needs `FIGMA_TOKEN`.
+
+**Checkpoint**: the contract can be pushed to the designers' file without destroying anything they own.
 
 ---
 

@@ -1,6 +1,5 @@
-import { Alert, AlertDescription, AlertTitle, Badge, Card, CardContent, CardDescription, CardHeader, CardTitle, Section, Source } from '../components/ui';
-import { adherence, catalog, components, evals, nativeComponentCount, parity, reportedGap, semanticTokens } from '../data';
-import type { ArmSummary } from '../data';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, Section, Source } from '../components/ui';
+import { catalog, components, evals, nativeComponentCount, parity, semanticTokens } from '../data';
 
 function Stat({ label, value, note }: { label: string; value: string; note: string }) {
   return (
@@ -14,31 +13,7 @@ function Stat({ label, value, note }: { label: string; value: string; note: stri
   );
 }
 
-function ABBar({ label, summary, tone }: { label: string; summary: ArmSummary; tone: 'primary' | 'warning' }) {
-  return (
-    <div className="space-y-1.5">
-      <p className="text-sm">
-        <span className="font-medium">{label}</span> — {summary.meanScore} · {summary.adherentScreens}/{summary.screens}{' '}
-        screens adherent · {summary.totalViolations}/{summary.totalChecks} violations
-      </p>
-      <div
-        className="bg-muted h-3 w-full overflow-hidden rounded-sm"
-        role="img"
-        aria-label={`${label}: mean score ${summary.meanScore} of 100`}
-      >
-        <div
-          className={tone === 'primary' ? 'bg-primary h-full' : 'bg-warning h-full'}
-          style={{ width: `${summary.meanScore}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
 export function Overview() {
-  const armA = adherence.summary['arm-a'];
-  const armB = adherence.summary['arm-b'];
-
   return (
     <>
       <div>
@@ -62,9 +37,11 @@ export function Overview() {
             value={parity.findings.length === 0 ? 'Clean' : String(parity.findings.length)}
             note={`${parity.checkedContracts.length} contracts checked · ${parity.findings.length} drift findings`}
           />
-          <Stat label="Adherence" value={`${armA.meanScore} vs ${armB.meanScore}`} note="governed vs ungoverned generation" />
+          {/* The Adherence A/B is NOT a headline status tile: it was measured on the
+              retired 51-component demo catalog and has not been re-run for Piqueray.
+              Shown below with that stated, never as a current system metric. */}
         </div>
-        <Source path="catalog/catalog.json · parity/report.json · evals/results.json · evals/adherence/results.json" />
+        <Source path="catalog/catalog.json · parity/report.json · evals/results.json" />
       </Section>
 
       <Section
@@ -97,50 +74,26 @@ export function Overview() {
         </p>
       </Section>
 
+      {/* ARCHIVED 2026-07-22 — two showcase sections used to live here: the
+          Adherence A/B (100 vs 69) and "Show the gaps, never fake it".
+          Both were produced against the retired 51-component demo catalog and
+          described a design system this repo no longer ships. Displaying them
+          next to live Piqueray numbers made a demo result read as a Piqueray
+          capability. They are not deleted — protocol, judge, generated screens
+          and reports all remain under evals/adherence/, documented in
+          evals/adherence/ARCHIVE.md with what it would take to re-run them. */}
       <Section
-        title="Adherence, A/B"
-        lead={`Does governance change what an AI generates? The same ${armA.screens} screens were generated twice — once with the governed catalog in context, once without. The deterministic judge scored both arms against the org rules.`}
+        title="Adherence A/B — archived"
+        lead="This page used to show an experiment measuring whether a governed catalog changes what an AI generates. It scored the retired demo catalog, not Piqueray, so it is no longer displayed here."
       >
-        <div className="max-w-3xl space-y-4">
-          <ABBar label="With governed catalog" summary={armA} tone="primary" />
-          <ABBar label="Without" summary={armB} tone="warning" />
-          <div className="space-y-1.5">
-            <p className="text-muted-foreground text-xs font-medium tracking-widest uppercase">
-              Ungoverned violations, by rule
-            </p>
-            {Object.entries(armB.violationsByRule).map(([rule, count]) => (
-              <div key={rule} className="flex items-center gap-3 text-xs">
-                <code className="w-40 shrink-0 sm:w-52">{rule}</code>
-                <div className="bg-muted h-2 min-w-0 flex-1 overflow-hidden rounded-sm">
-                  <div className="bg-destructive/70 h-full" style={{ width: `${(count / armB.totalViolations) * 100}%` }} />
-                </div>
-                <span className="w-8 text-right tabular-nums">{count}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <Source path="evals/adherence/results.json" />
+        <p className="text-muted-foreground max-w-3xl text-sm">
+          The protocol, the deterministic judge and the recorded results are kept under{' '}
+          <code className="text-foreground">evals/adherence/</code>. It becomes meaningful again once Piqueray has enough
+          components to build a screen from — see{' '}
+          <code className="text-foreground">evals/adherence/ARCHIVE.md</code>.
+        </p>
+        <Source path="evals/adherence/ARCHIVE.md" />
       </Section>
-
-      {reportedGap ? (
-        <Section
-          title="Show the gaps, never fake it"
-          lead="During the eval, the governed generator hit something the contracts couldn't express — and reported it instead of inventing a lookalike. The quote below is extracted from the generator's actual output file, not restated."
-        >
-          <Alert variant="warning" className="max-w-3xl">
-            <AlertTitle className="font-mono text-xs leading-5 font-normal">{reportedGap}</AlertTitle>
-            <AlertDescription>
-              Promoted through the standard loop as{' '}
-              <Badge variant="outline" className="font-mono">
-                ds.table-row v{components.find((c) => c.id === 'ds.table-row')?.version}
-              </Badge>{' '}
-              — the slot's accepts list was widened (a minor version, per the compatibility rule), and the corrected
-              composition became legal for every consumer.
-            </AlertDescription>
-          </Alert>
-          <Source path="evals/adherence/arm-a/account-overview.tsx (?raw import) · catalog/catalog.json" />
-        </Section>
-      ) : null}
     </>
   );
 }

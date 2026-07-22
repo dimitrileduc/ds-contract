@@ -20,7 +20,7 @@
  *
  * Exits non-zero with a named failure on any violated expectation.
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema } from '../../scripts/contract-schema.js';
 import { capturedTokensFromDump } from '../../core/captured-tokens.js';
@@ -39,6 +39,9 @@ const fail = (msg: string): never => {
 
 const ROOT = process.cwd();
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? read(p) : ({} as ReturnType<typeof read>));
 const dump = read('extract/figma/gauntlet/live/fixtures/fill-matrix-depth-drop-badge-chip-alert.dump.json');
 
 const corpus = loadTokenCorpus(ROOT);
@@ -57,7 +60,7 @@ const repoTrees = {
   primitives: read('tokens/primitives.tokens.json'),
   semantic: read('tokens/semantic.tokens.json'),
   light: read('tokens/modes/semantic.light.tokens.json'),
-  dark: read('tokens/modes/semantic.dark.tokens.json'),
+  dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
 };
 const repoInventory = tokenInventoryFromJson([repoTrees.primitives, repoTrees.semantic, repoTrees.light, repoTrees.dark]);
 const captured = capturedTokensFromDump(dump);
