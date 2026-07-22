@@ -15,8 +15,9 @@ woven in as verification tasks (FR-002 proves the *engine*; the gates prove *But
 **Organization**: Grouped by user story. The reconversion is **subtractive + additive within
 existing glob-driven mechanisms** — deleting the 51 demo contracts and regenerating auto-shrinks
 every downstream surface, so most work concentrates in four hand-authored sources: `tokens/`,
-`contracts/button.contract.json`, the schema (+2 optional fields), and the two hardcoded lists
-(`evals/run.ts`, `extract/figma/visual-parity/subjects.ts`). Each story lands as one **git commit**
+`contracts/button.contract.json`, the schema (+2 optional fields), and the three hardcoded lists
+(`evals/run.ts`, `extract/figma/visual-parity/subjects.ts`, and — discovered in implementation —
+`dashboard/src/samples.tsx`; see **CORRECTION #2**). Each story lands as one **git commit**
 (the step named in the message) — git history *is* the auditable approval trail (FR-016, D10).
 
 ## Format: `[ID] [P?] [Story] Description`
@@ -38,6 +39,61 @@ the foundation it binds to exists. **No value is ever invented** — every Pique
 > name** and refuses names outside `[a-z0-9.-]`, so the 14 Figma variables were **renamed
 > token-legal** (`Noir bleuté` → `color/noir-bleute`) — the prerequisite for automatic extraction
 > (US2), the "no manual remap" the North Star demands. See research **D2 correction**.
+
+> **⚠️ CORRECTION #2 (2026-07-22, discovered on first opening the dashboard after US2 generated
+> the Button).** Four findings — none block US2; all are **recorded, not silently fixed**:
+>
+> 1. **The dashboard is NOT fully glob-driven.** `dashboard/src/samples.tsx` is a **hand-authored,
+>    hardcoded registry** (`renderSample`) that imported all **51 demo components** to live-render
+>    them; once US1 deleted the demo contracts it threw `does not provide an export named
+>    'AccordionItem'` and **crashed the dashboard at load**. It is a **4th hardcoded surface** the
+>    plan never counted (plan.md claimed "three", and marked `dashboard/` as "→ auto"). It is also
+>    **demo residue**, so **SC-001 was violated** until fixed. Rewritten to sample the Button only,
+>    `renderSample`/`SAMPLE_TEXT` API unchanged, 3 consuming views untouched (**T040a**).
+> 2. **Regeneration debt is invisible.** `catalog/catalog.json` was regenerated in US1 while
+>    `contracts/` was empty, so the dashboard listed **0 components** even after the Button
+>    generated. Fixed by re-running `npm run catalog` + `npm run figma:plan` — a **missing
+>    regeneration, not a bug**. Folded into **T026** (the golden must be re-pinned *after* these).
+> 3. **Stale reports render as current — an Honesty (V) gap.** `parity/report.json` still lists the
+>    51 demo contracts (incl. `ds.button@1.5.0`) and displays as "**Parity — Clean · 51 contracts
+>    checked · 0 drift findings**"; `parity/snapshots/figma-*.json` are snapshots of the **demo**
+>    Figma file (`8nim1d0IPnehMxA7B7SYxC`), not Piqueray (`d9FYAUcqdcNtsuaMgLefvJ`) — which is why
+>    every Binding-map row reads ✗ (the lone `font/weight/medium` ✓ is a **false positive**: the
+>    demo file happens to carry the same variable name, and the repo joins **by name**). T033
+>    regenerates them, but **nothing marks a stale report as stale** — a silent-omission class bug,
+>    the highest severity here (**T045b**).
+> 4. **The adherence A/B was never re-planned.** `evals/adherence/results.json` (100 vs 69) is
+>    demo-era and no task re-runs or retires it — a genuine **hole in the task list** (**T045c**).
+>
+> **The minted dimension tokens read ✗ "not in Figma" — that means "NOT YET SYNCED", not "fake".**
+> *(Note itself CORRECTED 2026-07-22: an earlier draft called this ✗ "expected-permanent" and framed
+> the mint as dishonest. Both were wrong, on two counts.)*
+>
+> - **(a) T024 offered a FALSE BINARY.** "Mint or omit" was wrong: the schema admits **`literals`**
+>   for exactly these channels — `LITERAL_CHANNELS` contains `padding-block`/`padding-inline`, `gap`,
+>   `border-radius`, `border-width`, `line-height`, documented as *"geometry and paint channels where
+>   **foreign systems keep component-private literals**"*. A third, purpose-built option existed and
+>   was not presented.
+> - **(b) The ✗ is a to-do, not a lie.** The contract is the SSoT that generates **both** surfaces:
+>   `figma-sync/01-tokens.js` **already** carries `space/{0,4,10,16,32}`, `radius/32`,
+>   `border-width/{0,2}`, `font/line-height/22` with correct Figma scopes (`GAP`, `CORNER_RADIUS`,
+>   `STROKE_FLOAT`) + `codeSyntax`. Running contract→Figma **creates** them and the ✗ become ✓.
+>
+> **OWNER DECISION — (A) keep the mint.** Piqueray *gains* a governed spacing/radius/border scale;
+> that is the product's thesis (one contract, two surfaces, both governed). The ✗ is **"sync pending"**.
+>
+> **⛔ SYNC SAFETY — do NOT run contract→Figma yet:**
+> 1. `figma-sync/02-button.js` **REDRAWS** the Bouton set from the contract (targets the existing set
+>    by key `e6fa6786…`, guarded to fileKey `d9FYAUcqdcNtsuaMgLefvJ`). Our contract **deliberately
+>    dropped the `cil:arrow-*` icons** → syncing now would **DELETE them from the designers' file**.
+> 2. **Order is non-negotiable: prove fidelity FIRST (US3 — parity + visual ≤ 2%), sync AFTER.**
+>    Never push an unverified contract into a production design file.
+> 3. Verify Piqueray's 14 variables live in a collection literally named **"Primitives"** —
+>    `01-tokens.js` upserts that name, so a differently-named existing collection would be **DUPLICATED**.
+> 4. `border-width/0` is a **technical artefact** (it exists only so the emitter resolves
+>    `border-style: solid`), **not** a design decision — revisit before engraving it in Figma.
+>
+> Contract→Figma sync is **out of scope for this feature** (data-model E3) → its own follow-up.
 
 ---
 
@@ -113,7 +169,7 @@ two generations are byte-identical.
 
 *(Depends on: US1 — tokens exist; Foundational T003 — dump; T004–T007 — schema fields present.)*
 
-- [ ] T020 [US2] Propose the contract from the committed dump: `npm run extract:figma -- extract/figma/fixtures/piqueray-button.dump.json` → `proposeFromDump` (`core/propose-figma.ts`) emits a schema-valid `button.contract.proposed.json` + a `figma-proposals.md` review report (D3).
+- [X] T020 [US2] Propose the contract from the committed dump: `npm run extract:figma -- extract/figma/fixtures/piqueray-button.dump.json` → `proposeFromDump` (`core/propose-figma.ts`) emits a schema-valid `button.contract.proposed.json` + a `figma-proposals.md` review report (D3).
 - [ ] T021 [US2] **Human review** the proposal + every `figma-proposals.md` note (FR-009): confirm the 6-value `VARIANT` axis inverted correctly to the enum (default/orange/blanc/outlineBlanc/link/outlineNoir, default = first — FR-008), the TEXT label prop, anatomy parts, and anchors; each unbound/inferred value the extractor **named** is a review line item (Honesty V). Do not proceed on rejection.
 - [ ] T022 [US2] Author the **a11y + semantics baseline**, marked authored, in the reviewed proposal (FR-017/D5): `semantics = { element:"button", role:"button", provenance:"authored" }`; `a11y = { focusVisible:true, minHitArea:44, contrast:"AA", provenance:"authored" }` (Figma does not encode a11y — marker makes "authored, not extracted" machine-checkable) (depends on T021, T005).
 - [ ] T023 [US2] Fill `anchors.figma.dumpedAt` from the dump's `_provenance.extractedAt`, and confirm `fileKey` + `componentSetKey` + `nodeId` are all present on `anchors.figma` (FR-007/D4) (depends on T021, T004).
@@ -180,7 +236,8 @@ variants (and no demo component).
 
 *(Depends on US2 — the generated Button.)*
 
-- [ ] T040 [P] [US5] Verify the dashboard: `npm run dashboard` → http://localhost:5180 shows the Piqueray Button and **only** it — no demo component (glob-driven `import.meta.glob('../../contracts/*.contract.json')`, no edit) (FR-015/SC-006).
+- [X] T040a [US5] **De-demo the dashboard's hardcoded sample registry** (CORRECTION #2.1, done 2026-07-22): `dashboard/src/samples.tsx` imported all **51 demo components** and crashed the dashboard at load once US1 deleted them (`does not provide an export named 'AccordionItem'`). Rewritten to sample the **Button only**; `renderSample`/`SAMPLE_TEXT` API unchanged so `ComponentsList` / `ComponentDetail` / `CodeEditorSim` are untouched; header comment now **names it a hand-maintained hardcoded list**. Verified: no other dashboard file imports `src/components`; `tsc` green (root, lib, dashboard). **Blocks T040.**
+- [ ] T040 [P] [US5] Verify the dashboard: `npm run dashboard` → http://localhost:5180 shows the Piqueray Button and **only** it — no demo component (FR-015/SC-006). ⚠️ **CORRECTED**: the dashboard is glob-driven for the contract data (`import.meta.glob('../../contracts/*.contract.json')`) **but NOT for live previews** — `dashboard/src/samples.tsx` is hand-maintained (T040a) — **and the component list reads the generated `catalog/catalog.json`**, so `npm run catalog` must have run *after* the contract exists (CORRECTION #2.2), else the list shows zero components.
 - [ ] T041 [P] [US5] Verify Storybook: `npm run storybook` shows the Button story with its **6 variants** (stories glob `../src/**/*.stories.@(ts|tsx)`, no edit) (FR-015/SC-006).
 
 **Checkpoint**: The result is visible and shareable in both surfaces.
@@ -195,6 +252,8 @@ variants (and no demo component).
 - [ ] T043 [P] Sync every quoted eval count to the live `npm run eval N/N` wherever it is claimed (README, `docs/handoff/`, the CLAUDE.md eval-count note) — no stale count survives (Honesty; the count legitimately changed under the hybrid rule).
 - [ ] T044 [P] Record the reconversion in `MILESTONES.md` (dated proof log) with the live gate results, and confirm the `docs/02-contract-spec.md` bump from T006 landed — **claims rule**: no capability sentence without the eval behind it (Principle II).
 - [ ] T045 Final honesty pass: confirm **no invented token values** (every value is from-dump or `authored`-marked), **removed eval cases are named by id** in the Step-4 commit body, **contract↔Figma drift is listed not omitted** (SC-007), and **no silent demo residue** remains anywhere (SC-001).
+- [ ] T045b **Stale reports must not render as current** (CORRECTION #2.3 — Honesty V, silent-omission class). The dashboard displays `parity/report.json` and `parity/snapshots/figma-*.json` with **no staleness marker**: after US1 it showed "Parity — Clean · 51 contracts checked · 0 drift findings" about **deleted** contracts, and the Binding map compared the Piqueray contract against a snapshot of the **demo** Figma file. T033 regenerates the content, but the **latent bug is the missing marker**. Decide and implement the honest minimum: surface each report's `fileKey`/timestamp/contract-set and **flag it stale** when it does not match the current contracts + `anchors.figma.fileKey` (never present a stale report as a clean verdict).
+- [ ] T045c **Decide the fate of the adherence A/B** (CORRECTION #2.4 — hole in the plan). `evals/adherence/results.json` (100 vs 69, 5 screens, demo-era) is displayed as a headline stat but was **never re-planned for Piqueray**; no task re-runs or retires it. Choose explicitly: (a) **re-run** the A/B against the Piqueray catalog (fixture → eval → claim, Principle II), or (b) **retire/label** the tile as a demo-era artifact. **Claims rule**: the score must not be quoted as a Piqueray capability while it measures the demo.
 
 ---
 

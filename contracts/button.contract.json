@@ -1,0 +1,118 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.button",
+  "name": "Button",
+  "version": "1.0.0",
+  "status": "draft",
+  "description": "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label is a reusable prop.",
+  "semantics": {
+    "element": "button",
+    "role": "button",
+    "provenance": "authored"
+  },
+  "props": [
+    {
+      "name": "variant",
+      "description": "Visual style of the button.",
+      "type": {
+        "enum": ["default", "orange", "blanc", "outlineBlanc", "link", "outilneNoir"]
+      },
+      "default": "default",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Property 1",
+          "values": {
+            "default": "Default",
+            "orange": "Orange",
+            "blanc": "Blanc",
+            "outlineBlanc": "Outline blanc",
+            "link": "Link",
+            "outilneNoir": "Outilne noir"
+          }
+        },
+        "code": { "prop": "variant" }
+      }
+    },
+    {
+      "name": "children",
+      "description": "Button label. Authored: promoted to a reusable prop — in the Figma source the text « Contactez-nous » is static (not a component property), so contract↔Figma parity will list this as authored drift.",
+      "type": "text",
+      "default": "Contactez-nous",
+      "bindings": {
+        "figma": { "kind": "TEXT", "property": "Contactez-nous" },
+        "code": { "prop": "children" }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "tokens": {
+        "font-family": "{font.family.montserrat}",
+        "font-size": "{font.size.16}",
+        "font-weight": "{font.weight.medium}",
+        "line-height": "{font.line-height.22}",
+        "color": "{color.blanc}",
+        "gap": "{space.10}",
+        "padding-block": "{space.16}",
+        "padding-inline": "{space.32}",
+        "border-width": "{border-width.0}"
+      },
+      "tokensByProp": {
+        "prop": "variant",
+        "map": {
+          "default": {
+            "background-color": "{color.noir-bleute}"
+          },
+          "orange": {
+            "background-color": "{color.orange}"
+          },
+          "blanc": {
+            "background-color": "{color.blanc}",
+            "color": "{color.noir-bleute}"
+          },
+          "outlineBlanc": {
+            "border-width": "{border-width.2}",
+            "border-color": "{color.blanc}"
+          },
+          "link": {
+            "color": "{color.noir-bleute}",
+            "border-radius": "{radius.32}",
+            "padding-block": "{space.4}",
+            "padding-inline": "{space.0}"
+          },
+          "outilneNoir": {
+            "border-width": "{border-width.2}",
+            "border-color": "{color.noir-bleute}",
+            "color": "{color.noir-bleute}"
+          }
+        }
+      },
+      "parts": {
+        "label": {
+          "element": "span",
+          "content": { "prop": "children" }
+        }
+      }
+    }
+  },
+  "a11y": {
+    "focusVisible": true,
+    "minHitArea": 44,
+    "contrast": "AA",
+    "provenance": "authored"
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
+      "nodeId": "6:122",
+      "dumpedAt": "2026-07-22"
+    },
+    "code": {
+      "importPath": "src/components/Button",
+      "export": "Button"
+    }
+  }
+}

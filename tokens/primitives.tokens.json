@@ -45,6 +45,31 @@
       "regular": { "$value": 400 },
       "medium": { "$value": 500 },
       "semibold": { "$value": 600 }
+    },
+    "line-height": {
+      "$type": "dimension",
+      "$description": "Authored from the Button canvas geometry (dump v1.5: text lineHeight 22px). NOT a Figma variable — Piqueray binds no line-height variable; minted from-dump so anatomy can reference a token instead of a literal (the schema forbids literals in anatomy tokens).",
+      "22": { "$value": "22px" }
     }
+  },
+  "space": {
+    "$type": "dimension",
+    "$description": "Authored from the Button canvas geometry (dump v1.5: itemSpacing 10, padding 16/32, Link padding 4/0). NOT Figma variables — Piqueray binds no spacing variables; minted from-dump so anatomy references tokens, not literals.",
+    "0": { "$value": "0px" },
+    "4": { "$value": "4px" },
+    "10": { "$value": "10px" },
+    "16": { "$value": "16px" },
+    "32": { "$value": "32px" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "Authored from the Button canvas geometry (dump v1.5: Link cornerRadius 32). NOT a Figma variable; minted from-dump.",
+    "32": { "$value": "32px" }
+  },
+  "border-width": {
+    "$type": "dimension",
+    "$description": "Authored from the Button canvas geometry (dump v1.5: outline strokeWeight 2; non-outline variants have no stroke = 0). NOT Figma variables; minted from-dump. The 0 is the base border so border-style resolves solid and the outline variants' 2px border renders.",
+    "0": { "$value": "0px" },
+    "2": { "$value": "2px" }
   }
 }
