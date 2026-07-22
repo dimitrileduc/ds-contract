@@ -842,6 +842,9 @@ export const ContractSchema = z.strictObject({
     elementByProp: z
       .object({ prop: z.string(), map: z.record(z.string(), z.string()) })
       .optional(),
+    /** v16: origin of these semantics (see a11y.provenance). "authored" =
+     *  hand-written, not canvas-extracted. */
+    provenance: z.enum(['authored', 'extracted']).optional(),
   }),
   props: z.array(PropSchema),
   events: z.array(EventSchema).optional(),
@@ -875,6 +878,10 @@ export const ContractSchema = z.strictObject({
       focusVisible: z.boolean().optional(),
       minHitArea: z.number().optional(),
       contrast: z.enum(['AA', 'AAA']).optional(),
+      /** v16: origin of this a11y baseline. "authored" = hand-written, NOT
+       *  extracted from the canvas (Figma does not encode a11y semantics).
+       *  Preserves the no-invented-values rule; machine-checkable honesty. */
+      provenance: z.enum(['authored', 'extracted']).optional(),
     })
     .optional(),
   /** Per-side identity anchors. Written back after first generation on each
@@ -884,6 +891,10 @@ export const ContractSchema = z.strictObject({
       fileKey: z.string().nullable(),
       componentSetKey: z.string().nullable(),
       nodeId: z.string().nullable().optional(),
+      /** v16: ISO-8601 timestamp of the Figma dump this contract was derived
+       *  from. Populated from the dump's _provenance.extractedAt — a photo at
+       *  instant-T, not a live sync. */
+      dumpedAt: z.string().optional(),
     }),
     code: z.strictObject({
       importPath: z.string(),

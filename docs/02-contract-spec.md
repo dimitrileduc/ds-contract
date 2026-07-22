@@ -11,11 +11,11 @@ One contract per component, at `contracts/<component>.contract.json`. The author
 | `version` | semver string | Bumped when the contract changes. The unit of change management. |
 | `status` | `draft` \| `stable` \| `deprecated` | Governance lifecycle. |
 | `description` | string | Usage intent. Flows into Storybook autodocs and (phase 2) the canvas component description — the same sentence in both surfaces, from one source. |
-| `semantics` | `{ element, role? }` | The HTML element the code renderer uses, and the ARIA role if it differs. |
+| `semantics` | `{ element, role?, provenance? }` | The HTML element the code renderer uses, the ARIA role if it differs, and (v16) an optional `authored`/`extracted` provenance marker. |
 | `props` | `Prop[]` | The canonical API. See below. |
 | `states` | `("hover" \| "focus-visible" \| "disabled")[]` | Interaction states the component must support. Drives CSS pseudo-class rules (code) and, in phase 2, variant pseudo-state frames (canvas). |
 | `anatomy` | `Record<partName, Part>` | Named internal parts with **token bindings** — where all styling decisions live. |
-| `a11y` | object | Executable accessibility requirements (`focusVisible`, `minHitArea`, `contrast`). Phase 1 records them; later phases enforce them. |
+| `a11y` | object | Executable accessibility requirements (`focusVisible`, `minHitArea`, `contrast`) plus (v16) an optional `authored`/`extracted` provenance marker. Phase 1 records them; later phases enforce them. |
 | `anchors` | object | Per-side identity anchors. See below. |
 
 ## Props
@@ -135,6 +135,10 @@ Bounds and refusals: previews multiply only the *primary* enum axis (the one the
 ```
 
 This is the DTCG `$extensions` dual-ID pattern applied to components. After phase 2 first generates the canvas component set, its stable identifiers are written back here. From then on, renames on either side never fork identity — parity checks match by anchor, not by name. (In the reference implementation the design-side keys — here and in prop bindings — are namespaced after the bound commercial design tool; the concrete key shapes are documented in docs/internal/figma-sync.md.)
+
+**Dump provenance (v16).** `anchors.figma.dumpedAt` is an optional ISO-8601 string recording *when* the Figma dump this contract was extracted from was taken — a photo at instant-T, not a live sync (populated from the dump's `_provenance.extractedAt`). It lets the differ report contract↔Figma drift against a named baseline instead of an unmarked "sometime".
+
+**Authored-vs-extracted markers (v16).** `a11y.provenance` and `semantics.provenance` are optional `"authored" | "extracted"` enums. Figma does not encode accessibility or element semantics, so a Button's `a11y`/`semantics` baseline is **authored**, never canvas-recovered — the marker makes that a machine-checkable fact on the artifact rather than an implied one (Honesty: no invented value passes unlabelled). Both are additive-optional; an absent marker means unmarked (legacy), and every existing contract still validates.
 
 ## Versioning & change policy
 

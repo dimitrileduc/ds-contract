@@ -1,0 +1,459 @@
+{
+  "_provenance": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "extractedAt": "2026-07-22",
+    "note": "Node-tree dump from the Figma REST API (extract/figma/rest/map.ts, dump v1.5); _variables augmented from the desktop plugin bridge (Figma Console MCP) because the REST variables endpoint is Enterprise-gated. For design→contract proposal.",
+    "dumpVersion": "1.5",
+    "variablesSource": "figma-console-mcp (desktop WebSocket bridge)"
+  },
+  "_variables": {
+    "Bleu": {
+      "type": "COLOR",
+      "value": "#143a84"
+    },
+    "Orange": {
+      "type": "COLOR",
+      "value": "#f98a0b"
+    },
+    "Blanc": {
+      "type": "COLOR",
+      "value": "#ffffff"
+    },
+    "Noir bleuté": {
+      "type": "COLOR",
+      "value": "#26282c"
+    },
+    "Beige": {
+      "type": "COLOR",
+      "value": "#f6d49f"
+    },
+    "Beige clair": {
+      "type": "COLOR",
+      "value": "#fff3e2"
+    },
+    "Bleu gris": {
+      "type": "COLOR",
+      "value": "#9ba4b5"
+    },
+    "Bleu clair": {
+      "type": "COLOR",
+      "value": "#f4f6fa"
+    },
+    "Beige clair 80%": {
+      "type": "COLOR",
+      "value": "#fff3e2cc"
+    },
+    "Noir": {
+      "type": "COLOR",
+      "value": "#37373b"
+    },
+    "Orange 12%": {
+      "type": "COLOR",
+      "value": "#f494001f"
+    },
+    "Orange 42%": {
+      "type": "COLOR",
+      "value": "#f494006b"
+    },
+    "NavState": {
+      "type": "STRING",
+      "value": "Transparent"
+    },
+    "Opacity": {
+      "type": "FLOAT",
+      "value": 100
+    }
+  },
+  "_degradations": [
+    {
+      "code": "variables-endpoint-unavailable",
+      "scope": "_variables",
+      "message": "Figma REST /v1/files/:key/variables/local is Enterprise-only and 403s on this (pro) plan; the 14 variable names+values were recovered from the desktop plugin bridge (Figma Console MCP, WebSocket) against the live file — captured, not invented."
+    },
+    {
+      "code": "text-channel-unsupported",
+      "scope": "Bouton/Contactez-nous",
+      "field": "textCase",
+      "message": "textCase UPPER has no dump v1 projection; the label renders uppercase on canvas. Typography carries (fontSize, fontStyle, style identity) only."
+    }
+  ],
+  "Bouton": {
+    "setName": "Bouton",
+    "type": "COMPONENT_SET",
+    "nodeId": "6:122",
+    "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
+    "variants": [
+      {
+        "name": "Property 1=Default",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 220,
+          "height": 54
+        },
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primary": "CENTER",
+          "counter": "CENTER",
+          "spacing": 10,
+          "padding": [
+            16,
+            32,
+            16,
+            32
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "AUTO"
+        },
+        "fill": {
+          "hex": "26282c"
+        },
+        "children": [
+          {
+            "name": "cil:arrow-left",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-left",
+            "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          },
+          {
+            "name": "Contactez-nous",
+            "type": "TEXT",
+            "text": {
+              "characters": "Contactez-nous",
+              "fontSize": 16,
+              "fontStyle": "Medium",
+              "lineHeight": 22
+            },
+            "fill": {
+              "hex": "ffffff"
+            }
+          },
+          {
+            "name": "cil:arrow-right",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-right",
+            "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          }
+        ]
+      },
+      {
+        "name": "Property 1=Orange",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 220,
+          "height": 54
+        },
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primary": "CENTER",
+          "counter": "CENTER",
+          "spacing": 10,
+          "padding": [
+            16,
+            32,
+            16,
+            32
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "AUTO"
+        },
+        "fill": {
+          "hex": "f98a0b"
+        },
+        "children": [
+          {
+            "name": "cil:arrow-left",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-left",
+            "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          },
+          {
+            "name": "Contactez-nous",
+            "type": "TEXT",
+            "text": {
+              "characters": "Contactez-nous",
+              "fontSize": 16,
+              "fontStyle": "Medium",
+              "lineHeight": 22
+            },
+            "fill": {
+              "hex": "ffffff"
+            }
+          },
+          {
+            "name": "cil:arrow-right",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-right",
+            "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          }
+        ]
+      },
+      {
+        "name": "Property 1=Blanc",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 220,
+          "height": 54
+        },
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primary": "CENTER",
+          "counter": "CENTER",
+          "spacing": 10,
+          "padding": [
+            16,
+            32,
+            16,
+            32
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "AUTO"
+        },
+        "fill": {
+          "hex": "ffffff"
+        },
+        "children": [
+          {
+            "name": "cil:arrow-left",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-left",
+            "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          },
+          {
+            "name": "Contactez-nous",
+            "type": "TEXT",
+            "text": {
+              "characters": "Contactez-nous",
+              "fontSize": 16,
+              "fontStyle": "Medium",
+              "lineHeight": 22
+            },
+            "fill": {
+              "hex": "26282c"
+            }
+          },
+          {
+            "name": "cil:arrow-right",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-right",
+            "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          }
+        ]
+      },
+      {
+        "name": "Property 1=Outline blanc",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 220,
+          "height": 54
+        },
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primary": "CENTER",
+          "counter": "CENTER",
+          "spacing": 10,
+          "padding": [
+            16,
+            32,
+            16,
+            32
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "AUTO"
+        },
+        "stroke": {
+          "hex": "ffffff"
+        },
+        "strokeWeight": 2,
+        "children": [
+          {
+            "name": "cil:arrow-left",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-left",
+            "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          },
+          {
+            "name": "Contactez-nous",
+            "type": "TEXT",
+            "text": {
+              "characters": "Contactez-nous",
+              "fontSize": 16,
+              "fontStyle": "Medium",
+              "lineHeight": 22
+            },
+            "fill": {
+              "hex": "ffffff"
+            }
+          },
+          {
+            "name": "cil:arrow-right",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-right",
+            "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          }
+        ]
+      },
+      {
+        "name": "Property 1=Link",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 186,
+          "height": 30
+        },
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primary": "CENTER",
+          "counter": "CENTER",
+          "spacing": 10,
+          "padding": [
+            4,
+            0,
+            4,
+            0
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "AUTO"
+        },
+        "cornerRadius": 32,
+        "children": [
+          {
+            "name": "cil:arrow-left",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-left",
+            "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          },
+          {
+            "name": "Contactez-nous",
+            "type": "TEXT",
+            "text": {
+              "characters": "Contactez-nous",
+              "fontSize": 16,
+              "fontStyle": "Medium",
+              "lineHeight": 22
+            },
+            "fill": {
+              "hex": "26282c"
+            }
+          },
+          {
+            "name": "cil:arrow-right",
+            "type": "INSTANCE",
+            "instanceOf": "cil:arrow-right",
+            "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          }
+        ]
+      },
+      {
+        "name": "Property 1=Outilne noir",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 220,
+          "height": 54
+        },
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primary": "CENTER",
+          "counter": "CENTER",
+          "spacing": 10,
+          "padding": [
+            16,
+            32,
+            16,
+            32
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "AUTO"
+        },
+        "stroke": {
+          "hex": "26282c"
+        },
+        "strokeWeight": 2,
+        "children": [
+          {
+            "name": "cil:arrow-left",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-left",
+            "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          },
+          {
+            "name": "Contactez-nous",
+            "type": "TEXT",
+            "text": {
+              "characters": "Contactez-nous",
+              "fontSize": 16,
+              "fontStyle": "Medium",
+              "lineHeight": 22
+            },
+            "fill": {
+              "hex": "26282c"
+            }
+          },
+          {
+            "name": "cil:arrow-right",
+            "type": "INSTANCE",
+            "hidden": true,
+            "instanceOf": "cil:arrow-right",
+            "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+            "bbox": {
+              "width": 20,
+              "height": 20
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

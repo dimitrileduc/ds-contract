@@ -216,6 +216,48 @@ const cases: Case[] = [
     },
   },
   {
+    // v16 additive-optional provenance (research D4/D5): anchors.figma.dumpedAt
+    // + a11y/semantics.provenance must ride the contract as first-class schema
+    // vocabulary — surviving a schema parse, a JSON round-trip, AND the
+    // generator's own shared refusal gate (validateContract) without error or
+    // loss. Deliberately Button-independent so it stays green across (and
+    // after) the Piqueray reconversion — fixture → eval → claim for the two
+    // fields BEFORE any doc/contract relies on them (Principle II).
+    id: 'provenance-fields-survive-roundtrip',
+    claim: 'C1-determinism',
+    run: () => {
+      const fixture = {
+        id: 'ds.provenancefixture',
+        name: 'ProvenanceFixture',
+        version: '1.0.0',
+        description: 'Eval fixture: v16 provenance + dumpedAt round-trip.',
+        semantics: { element: 'button', role: 'button', provenance: 'authored' },
+        props: [],
+        anatomy: { root: { tokens: {} } },
+        a11y: { focusVisible: true, minHitArea: 44, contrast: 'AA', provenance: 'authored' },
+        anchors: {
+          figma: { fileKey: 'FILE', componentSetKey: 'SET', nodeId: '6:122', dumpedAt: '2026-07-22' },
+          code: { importPath: 'src/components/ProvenanceFixture', export: 'ProvenanceFixture' },
+        },
+      };
+      const preserved = (c: SchemaContract, where: string) => {
+        if (c.semantics.provenance !== 'authored') throw new Error(`semantics.provenance dropped (${where})`);
+        if (c.a11y?.provenance !== 'authored') throw new Error(`a11y.provenance dropped (${where})`);
+        if (c.anchors.figma.dumpedAt !== '2026-07-22') throw new Error(`anchors.figma.dumpedAt dropped (${where})`);
+      };
+      // Round-trip #1: the schema gate parses and preserves all three fields.
+      const parsed = ContractSchema.parse(fixture);
+      preserved(parsed, 'schema parse');
+      // Round-trip #2: serialize → re-parse is idempotent on the fields.
+      preserved(ContractSchema.parse(JSON.parse(JSON.stringify(parsed))), 'json round-trip');
+      // "Survive generate": the generator's shared refusal gate accepts a
+      // contract carrying the additive fields (they never fail it by name).
+      const errs: string[] = [];
+      coreValidateContract(parsed, new Map([[parsed.id, parsed]]), errs, new Map());
+      if (errs.length > 0) throw new Error(`validateContract rejected provenance-carrying contract: ${errs.join('; ')}`);
+    },
+  },
+  {
     id: 'refuse-schema-invalid-contract',
     claim: 'C2-refusal',
     run: () => {
