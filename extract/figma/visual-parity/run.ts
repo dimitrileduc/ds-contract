@@ -45,15 +45,13 @@ import { planVariant, variantSlug } from './match.js';
 import { launchBrowser, renderVariant } from './render.js';
 import { PARITY_SUBJECTS, type ParitySubject } from './subjects.js';
 import { triageFor, type TriageRule } from './triage.js';
+import { THRESHOLD_PCT } from './tolerance.js';
 
 const HERE = path.resolve(new URL('.', import.meta.url).pathname);
 const OUT = path.join(HERE, 'out');
 const CACHE = path.join(OUT, '_cache');
 const ASSETS = path.join(HERE, 'report-assets');
 const BASELINE = path.join(HERE, 'baseline.json');
-
-/** Provisional gate line — printed next to every score, never applied silently. */
-const THRESHOLD_PCT = 2.0;
 /** Over this masked score a row must carry a triage.ts named cause. */
 const TRIAGE_LINE_PCT = 3.0;
 /** Summary mode: allowed per-row masked-score drift vs baseline.json, in

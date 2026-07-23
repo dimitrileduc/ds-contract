@@ -81,7 +81,7 @@ _none_
 
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
-| button (contract) | v2379385386883800697 | repo tokens only | Montserrat |
+| button (contract) | v2379505070969352166 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

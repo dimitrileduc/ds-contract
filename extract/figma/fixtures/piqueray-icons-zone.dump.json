@@ -1,0 +1,47 @@
+{
+  "_provenance": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "zoneNodeId": "6:111",
+    "dumpedAt": "2026-07-23",
+    "note": "Post-Step-0-cleanup structural snapshot of the icons zone (SECTION 6:111 \"Icônes\" > FRAME 27:67 \"Icones\" > 15 icon COMPONENT masters), captured via the Desktop Bridge plugin (figma_get_component_for_development_deep, depth 4) — resolves boundVariables to token names natively, no REST variable-endpoint degradation. Taken after: 15 masters renamed to clean canonical ids, 15 descriptions added, mail icon's 2 fills rebound to color/noir-bleute (VariableID:5:40). This is NOT a contract dump (mapRestToDump refuses non-COMPONENT_SET/COMPONENT nodes by name — the zone is a SECTION) — it is the icons-zone equivalent, feeding the Step 1 registry proposal (T021) alongside the REST SVG export (T019/T020) and the REST components inventory."
+  },
+  "zone": {
+    "id": "6:111",
+    "name": "Icônes",
+    "type": "SECTION",
+    "width": 232,
+    "height": 832
+  },
+  "frame": {
+    "id": "27:67",
+    "name": "Icones",
+    "type": "FRAME"
+  },
+  "icons": [
+    { "id": "274:2934", "name": "piqueray", "size": 32, "description": "Piqueray brand mark, used as a decorative icon." },
+    { "id": "263:2125", "name": "mail", "size": 32, "description": "Envelope icon — email / contact actions." },
+    { "id": "263:2120", "name": "phone", "size": 32, "description": "Phone handset icon — call / contact actions." },
+    { "id": "230:599", "name": "download", "size": 32, "description": "Downward arrow into a tray — download actions." },
+    { "id": "230:585", "name": "pdf", "size": 32, "description": "Document icon marked PDF — file download / document links." },
+    { "id": "95:252", "name": "search", "size": 32, "description": "Magnifying glass — search actions." },
+    { "id": "95:216", "name": "user", "size": 32, "description": "Person silhouette — account / profile actions." },
+    { "id": "27:86", "name": "chevron-right", "size": 32, "description": "Chevron pointing right — forward navigation, expand." },
+    { "id": "27:83", "name": "chevron-left", "size": 32, "description": "Chevron pointing left — back navigation." },
+    { "id": "226:373", "name": "chevron-down", "size": 32, "description": "Chevron pointing down — expand / dropdown indicator." },
+    { "id": "226:374", "name": "chevron-up", "size": 32, "description": "Chevron pointing up — collapse indicator." },
+    { "id": "27:70", "name": "cart", "size": 32, "description": "Shopping cart — add-to-cart / e-commerce actions." },
+    { "id": "6:104", "name": "arrow-right", "size": 20, "description": "Arrow pointing right — the Button's trailing icon default." },
+    { "id": "6:99", "name": "arrow-left", "size": 20, "description": "Arrow pointing left — the Button's leading icon default." },
+    { "id": "9:185", "name": "external-link", "size": 32, "description": "Arrow exiting a box — external link / opens in a new tab." }
+  ],
+  "fillVariable": {
+    "id": "VariableID:5:40",
+    "name": "color/noir-bleute",
+    "collection": "Primitives",
+    "resolvedType": "COLOR",
+    "codeSyntax": { "WEB": "var(--color-noir-bleute)" }
+  },
+  "constraints": { "horizontal": "MIN", "vertical": "MIN" },
+  "remote": false
+}
