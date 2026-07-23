@@ -13,9 +13,9 @@ css-module anatomy adapter: **round-trip identity**. Verdicts:
   text props, slot constraints, prose); listed by name, never silently waved through
 - **MISMATCH** — extraction failure. **The bar is zero.**
 
-## Verdict: ✅ ZERO MISMATCH — 5 matched, 7 code-absent (listed), 0 mismatched
+## Verdict: ✅ ZERO MISMATCH — 6 matched, 8 code-absent (listed), 0 mismatched
 
-## Button — 5 matched · 7 code-absent · 0 mismatched
+## Button — 6 matched · 8 code-absent · 0 mismatched
 
 | subject | verdict | detail |
 |---|---|---|
@@ -31,4 +31,6 @@ css-module anatomy adapter: **round-trip identity**. Verdicts:
 | `anatomy.root` | MATCHED | 9 token binding(s) |
 | `anatomy.root.label.{content|slot}` | CODE-ABSENT | both spellings emit exactly {children} — the channel (content-bound text prop vs slot) is not decidable from code (N7) |
 | `anatomy.root.label` | MATCHED | structure + layout |
+| `anatomy.root.arrow.icon` | CODE-ABSENT | icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8) |
+| `anatomy.root.arrow` | MATCHED | visibleWhen {"prop":"variant","equals":"link"} |
 

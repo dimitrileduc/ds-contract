@@ -50,12 +50,12 @@ moves the gate, explicitly, after review.
 
 | subject | variant | masked | unmasked | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
 |---|---|---|---|---|---|---|---|
-| button | Property 1=Outilne noir | 21.32% | 17.25% | 444×116 vs 440×108 | size ours 444×116 vs figma 440×108 (Δ4, Δ8 device px); overall ink differs (ours #d4d4d5 vs figma #3c3e41) | renderer: text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked) | report-assets/button--property-1-outilne-noir.triptych.png |
-| button | Property 1=Link | 2.73% | 10.87% | 308×60 vs 370×24 | size ours 308×60 vs figma 370×24 (Δ-62, Δ36 device px); text raster/family delta dominates; overall ink differs (ours #d3d3d4 vs figma #5e6063) | renderer: text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked) | report-assets/button--property-1-link.triptych.png |
-| button | Property 1=Default | 1.31% | 3.03% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked) | report-assets/button--property-1-default.triptych.png |
-| button | Property 1=Orange | 1.31% | 3.02% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked) | report-assets/button--property-1-orange.triptych.png |
-| button | Property 1=Blanc | 0.00% | 2.13% | 436×108 vs 440×108 | text raster/family delta dominates; diff localized middle-center (307×25px) | renderer: text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked) | report-assets/button--property-1-blanc.triptych.png |
-| button | Property 1=Outline blanc | 0.00% | 0.00% | 444×116 vs 440×108 | size ours 444×116 vs figma 440×108 (Δ4, Δ8 device px) | renderer: text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked) | report-assets/button--property-1-outline-blanc.triptych.png |
+| button | Property 1=Link | 8.25% | 2.89% | 366×24 vs 370×24 | diffuse delta — see triptych | renderer: kerning-driven trailing-arrow misregistration: Chromium kerns Montserrat (CONTACTEZ-NOUS runs 366 vs Figma 370 device px) and the flex row seats the arrow right after the text, so the two chevrons barely overlap — a thin diagonal stroke has near-zero self-overlap under a ~4px shift (triptych: red-core arrow vs yellow AA-fringe glyphs); vertical seat is exact (4/5px margins both sides) | report-assets/button--property-1-link.triptych.png |
+| button | Property 1=Outilne noir | 2.53% | 3.88% | 436×108 vs 440×108 | diffuse delta — see triptych | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-outilne-noir.triptych.png |
+| button | Property 1=Default | 1.31% | 3.03% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-default.triptych.png |
+| button | Property 1=Orange | 1.31% | 3.02% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-orange.triptych.png |
+| button | Property 1=Blanc | 0.00% | 2.13% | 436×108 vs 440×108 | text raster/family delta dominates; diff localized middle-center (307×25px) | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-blanc.triptych.png |
+| button | Property 1=Outline blanc | 0.00% | 0.00% | 436×108 vs 440×108 | near-identical | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-outline-blanc.triptych.png |
 
 ## Not diffed (named, never dropped)
 
@@ -65,16 +65,16 @@ _none_
 
 - ≤ 1%: 2 variant(s)
 - 1–3%: 3 variant(s)
-- 3–10%: 0 variant(s)
-- > 10%: 1 variant(s)
+- 3–10%: 1 variant(s)
+- > 10%: 0 variant(s)
 
 - diffed: 6 · skipped/refused/declined: 0
 
 ## Gate read (triage classes)
 
 - **UNTRIAGED over 3%: 0** — the queue is empty
-- > 10% by class: renderer ×1
-- 3–10% by class: (empty)
+- > 10% by class: (empty)
+- 3–10% by class: renderer ×1
 - open `engine`-class causes: 0 (an engine row is a tracked defect, not an accepted delta)
 
 ## Subjects

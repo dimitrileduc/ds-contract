@@ -41,26 +41,24 @@ export interface TriageRule {
 }
 
 export const TRIAGE: TriageRule[] = [
-  // ---- button (catalog contract vs generated main-file set) ---------------
+  // ---- button (Piqueray ds.button vs the owner file's « Bouton » set) ------
+  // (Two demo-era rules removed 2026-07-23: State=Disabled / State=Focus
+  //  Visible matched variants of the DELETED demo Button — the Piqueray axis
+  //  is `Property 1=…`, so they could never fire again. The old catch-all
+  //  cause described the demo's Inter label (19.36px) — wrong file, wrong
+  //  font; replaced by the measured Piqueray causes below.)
   {
     subject: 'button',
-    variant: /State=Disabled/,
-    class: 'design',
+    variant: /Property 1=Link/,
+    class: 'renderer',
     cause:
-      'Figma set predates the literal-opacity engine fix (5ebb58e): the synced Disabled preview still binds the 0–1 opacity token into Figma\'s percent-scaled field and washes to near-white — main file awaits re-sync; our render is the contract truth (opacity 0.5)',
-  },
-  {
-    subject: 'button',
-    variant: /State=Focus Visible/,
-    class: 'design',
-    cause:
-      'our row is a REAL keyboard-focus screenshot whose outline (2px, offset 2px) extends the painted box; the generated Figma State=Focus Visible preview paints no ring outside the component bounds (content boxes 180×88 vs 166×70 by construction)',
+      'kerning-driven trailing-arrow misregistration: Chromium kerns Montserrat (CONTACTEZ-NOUS runs 366 vs Figma 370 device px) and the flex row seats the arrow right after the text, so the two chevrons barely overlap — a thin diagonal stroke has near-zero self-overlap under a ~4px shift (triptych: red-core arrow vs yellow AA-fringe glyphs); vertical seat is exact (4/5px margins both sides)',
   },
   {
     subject: 'button',
     class: 'renderer',
     cause:
-      'text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked)',
+      'Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header)',
   },
 
   // ---- heading (all-text subject: masked score undefined by construction) --

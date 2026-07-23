@@ -30,6 +30,10 @@
  *       `slot: {name: C}` (C = P's code binding) emit the SAME `{C}` — the
  *       channel is not decidable from code (the undecidability
  *       core/extract-css-module.ts already names for a {children} root)
+ *   N8  a contract `icon` part ≡ CODE-ABSENT (no icon-asset matching pass
+ *       exists yet — extraction cannot tell an inlined glyph SVG apart from
+ *       a foreign one); its generator chrome (element defaults to span,
+ *       `display:inline-flex` CSS) is folded, not read as a mismatch
  *
  * Output: verdict table on stdout + extract/ROUNDTRIP-CODE.md (committed).
  * Exit 1 on any MISMATCH.
@@ -99,6 +103,7 @@ const canonText = (t: string | undefined): string | undefined => (t === '' ? und
 function canonElement(part: Json, isRoot: boolean): string | undefined {
   if (isRoot) return undefined; // root element lives in semantics
   if (part.component) return undefined;
+  if (part.icon) return part.element ?? 'span'; // N8 — a bare icon renders <span aria-hidden>
   return part.element ?? (part.content || part.text !== undefined ? 'span' : 'div'); // N5
 }
 
@@ -160,9 +165,22 @@ function compareParts(component: string, partPath: string, contract: Json, propo
   // Under N7 the part's STRUCTURAL verdict is a function of the same
   // undecidable channel (isStructural keys off slot vs content), so the layout
   // comparison canonicalizes the proposal as the content part it may equally be.
-  const proposedCanon: Json = undecidableChannel
+  const proposedCanonN7: Json = undecidableChannel
     ? { ...proposed, content: contract.content, slot: undefined }
     : proposed;
+  // N8 — no icon-asset matching pass exists in extraction yet, so a contract
+  // icon part is systematically CODE-ABSENT on the proposed side. Its
+  // generator chrome (display:inline-flex CSS, element defaulting to span)
+  // is folded into the canonical proposal rather than read as a mismatch.
+  const iconRendering =
+    !!contract.icon && !proposed.icon && !proposed.component && !proposed.slot && !proposed.content;
+  if (iconRendering) {
+    add(component, `${subject}.icon`, 'CODE-ABSENT',
+      'icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8)');
+  }
+  const proposedCanon: Json = iconRendering
+    ? { ...proposedCanonN7, icon: contract.icon, layout: undefined }
+    : proposedCanonN7;
   if (undecidableChannel) {
     add(component, `${subject}.{content|slot}`, 'CODE-ABSENT',
       `both spellings emit exactly {${proposed.slot.name}} — the channel (content-bound text prop vs slot) is not decidable from code (N7)`);

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.0.0)
+ * Source of truth: contracts/button.contract.json (ds.button v1.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -12,6 +12,10 @@
  */
 import { forwardRef } from 'react';
 import type { CSSProperties, ButtonHTMLAttributes } from 'react';
+
+const ICONS: Record<string, string> = {
+  "arrow-right": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"currentColor\"/></svg>",
+};
 
 const S: Record<string, CSSProperties> = {
   "root": {
@@ -28,9 +32,14 @@ const S: Record<string, CSSProperties> = {
     "gap": "10px",
     "paddingBlock": "16px",
     "paddingInline": "32px",
-    "borderWidth": "0px"
+    "borderWidth": "0px",
+    "textTransform": "uppercase"
   },
-  "label": {}
+  "label": {},
+  "arrow": {
+    "display": "inline-flex",
+    "flexShrink": 0
+  }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
@@ -75,6 +84,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <button ref={ref} style={{ ...S.root, ...(V[`variant-${variant}:root`] ?? {}), ...style }} {...rest}>
       <span style={{ ...S.label }}>{children}</span>
+{variant === 'link' ? (<span style={{ ...S.arrow }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["arrow-right"] }} />) : null}
     </button>
   );
 });

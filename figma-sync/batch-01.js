@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v1.0.0",
+    "description": "Button — generated from contract ds.button v1.1.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -197,6 +197,13 @@ const COMPONENTS = [
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Contactez-nous"
+            },
+            {
+              "type": "svg",
+              "name": "arrow",
+              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"#26282C\"/></svg>",
+              "svgPaintVar": "color/noir-bleute",
+              "iconSize": 20
             }
           ]
         }
@@ -431,6 +438,15 @@ async function buildNode(spec, registry) {
     node.fills = [];
     node.clipsContent = false;
     if (spec.iconSize) node.resize(spec.iconSize, spec.iconSize);
+    if (spec.svgPaintVar) {
+      const glyphPaint = boundPaint(spec.svgPaintVar, node);
+      const rebind = (n) => {
+        if (Array.isArray(n.fills) && n.fills.length > 0) n.fills = [glyphPaint];
+        if (Array.isArray(n.strokes) && n.strokes.length > 0) n.strokes = [glyphPaint];
+        if (n.children) for (const c of n.children) rebind(c);
+      };
+      for (const c of node.children) rebind(c);
+    }
   } else if (spec.type === 'text') {
     node = figma.createText();
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };

@@ -47,6 +47,15 @@ try {
       .filter((f) => /^brand\.[a-z][a-z0-9-]*\.tokens\.json$/.test(f))
       .map((f) => [f.replace(/^brand\.|\.tokens\.json$/g, ''), read(`tokens/modes/${f}`)]),
   );
+  // Icon assets (assets/icons/*.svg) — same source scripts/generate-components.ts
+  // inlines. A contract with an icon part (e.g. Button's arrow) needs a REAL
+  // asset here; an empty Map made validateContract refuse by name the moment
+  // the first icon-bearing contract landed (Map isn't JSON-able — round-trip
+  // as [name, svg] pairs, rebuilt inside the sandboxed probe below).
+  const iconsDir = path.join(ROOT, 'assets', 'icons');
+  const icons = readdirSync(iconsDir)
+    .filter((f) => f.endsWith('.svg'))
+    .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(iconsDir, f), 'utf8').trim()]);
   const data = JSON.stringify({
     contract: read(path.join('contracts', readdirSync(path.join(ROOT, 'contracts')).filter((f) => f.endsWith('.contract.json')).sort()[0])),
     tokens: {
@@ -57,14 +66,15 @@ try {
       dark: existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json')) ? read('tokens/modes/semantic.dark.tokens.json') : {},
       brands,
     },
+    icons,
   });
   const probe = await build({
     stdin: {
       contents: `
         import { ContractSchema, emitters } from ${JSON.stringify(path.join(ROOT, 'core', 'index.ts'))};
-        const { contract: raw, tokens } = INPUT;
+        const { contract: raw, tokens, icons } = INPUT;
         const contract = ContractSchema.parse(raw);
-        const ctx = { tokens, icons: new Map(), contracts: new Map([[contract.id, contract]]) };
+        const ctx = { tokens, icons: new Map(icons), contracts: new Map([[contract.id, contract]]) };
         const out = {};
         for (const e of emitters) out[e.name] = e.emit(contract, ctx).map((f) => f.contents.length);
         RESULT.value = out;

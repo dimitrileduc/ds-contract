@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.button",
   "name": "Button",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "draft",
   "description": "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label is a reusable prop.",
   "semantics": {
@@ -96,6 +96,10 @@
         "label": {
           "element": "span",
           "content": { "prop": "children" }
+        },
+        "arrow": {
+          "icon": { "asset": "arrow-right", "size": 20 },
+          "visibleWhen": { "prop": "variant", "equals": "link" }
         }
       }
     }

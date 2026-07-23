@@ -40,9 +40,12 @@ import {
 import { kebab } from '../extract/types.js';
 import {
   boolProps,
+  DSC_BORDER_VARS,
   enumProps,
+  INSET_BORDER_SHADOW,
   isEnum,
   isMultiRoot,
+  rootBorderPlan,
   rootElementsOf,
   textProps,
   topRoots,
@@ -190,8 +193,12 @@ function componentCss(contract: Contract): string[] {
   if (rootElementsOf(contract).some((el) => UA_MARGIN_ELEMENTS.has(el))) {
     rootDecls.push('margin: 0');
   }
-  if ('border-width' in rootTokens || 'border-color' in rootTokens) rootDecls.push('border-style: solid');
-  else rootDecls.push('border: 0');
+  const borderPlan = rootBorderPlan(root);
+  rootDecls.push('border: 0'); // always: kills the UA <button> 2px outset border
+  if (borderPlan.inset) rootDecls.push(INSET_BORDER_SHADOW); // drawn INSIDE — Figma parity
+  else if (borderPlan.hasBorder) rootDecls.push('border-style: solid'); // legacy path (non-uniform / shadowed root)
+  if (contract.semantics.element === 'button') rootDecls.push('background-color: transparent'); // UA ButtonFace reset — before any token/literal push below
+  const route = (cssProp: string): string => (borderPlan.inset && DSC_BORDER_VARS[cssProp]) || cssProp;
   // Live-gauntlet class ⑤ (linked-icon-wrapper-collapses): a SLOT-ONLY root
   // that carries BOTH height and max-width is a drawn FIXED wrapper (CBDS
   // Icon — an INSTANCE_SWAP shell whose bound width the fluid convention
@@ -252,14 +259,14 @@ function componentCss(contract: Contract): string[] {
     // min-width — the drawn fixed box is the empty slot's content floor.
     const floorMirror = slotWrapperFloor && cssProp === 'max-width';
     if (phs.length === 0) {
-      rootDecls.push(`${cssProp}: ${cssVar(refPath)}`);
+      rootDecls.push(`${route(cssProp)}: ${cssVar(refPath)}`);
       if (floorMirror) rootDecls.push(`min-width: ${cssVar(refPath)}`);
     } else if (phs.length === 1) {
       for (const value of enums.get(phs[0]) ?? []) {
         const resolved = refPath.replaceAll(`{${phs[0]}}`, value);
         const key = `${phs[0]} ${value}`;
         const entry = enumRules.get(key) ?? { prop: phs[0], value, decls: [] };
-        entry.decls.push(`${cssProp}: ${cssVar(resolved)}`);
+        entry.decls.push(`${route(cssProp)}: ${cssVar(resolved)}`);
         if (floorMirror) entry.decls.push(`min-width: ${cssVar(resolved)}`);
         enumRules.set(key, entry);
       }
@@ -270,7 +277,7 @@ function componentCss(contract: Contract): string[] {
           const resolved = refPath.replaceAll(`{${pa}}`, a).replaceAll(`{${pb}}`, b);
           pairRules.push({
             selector: `${enumCls(pa, a)}${enumCls(pb, b)}`,
-            decls: [`${cssProp}: ${cssVar(resolved)}`],
+            decls: [`${route(cssProp)}: ${cssVar(resolved)}`],
           });
         }
       }
@@ -288,7 +295,7 @@ function componentCss(contract: Contract): string[] {
               .replaceAll(`{${pc}}`, c);
             pairRules.push({
               selector: `${enumCls(pa, a)}${enumCls(pb, b)}${enumCls(pc, c)}`,
-              decls: [`${cssProp}: ${cssVar(resolved)}`],
+              decls: [`${route(cssProp)}: ${cssVar(resolved)}`],
             });
           }
         }
@@ -317,15 +324,15 @@ function componentCss(contract: Contract): string[] {
             pairRules.push({
               selector: `${enumCls(tbpProp, value)}${enumCls(phs[0], phValue)}`,
               decls: floorMirror
-                ? [`${cssProp}: ${cssVar(resolved)}`, `min-width: ${cssVar(resolved)}`]
-                : [`${cssProp}: ${cssVar(resolved)}`],
+                ? [`${route(cssProp)}: ${cssVar(resolved)}`, `min-width: ${cssVar(resolved)}`]
+                : [`${route(cssProp)}: ${cssVar(resolved)}`],
             });
           }
           continue;
         }
         const key = `${tbpProp} ${value}`;
         const entry = enumRules.get(key) ?? { prop: tbpProp, value, decls: [] };
-        entry.decls.push(`${cssProp}: ${cssVar(refPath)}`);
+        entry.decls.push(`${route(cssProp)}: ${cssVar(refPath)}`);
         if (floorMirror) entry.decls.push(`min-width: ${cssVar(refPath)}`);
         enumRules.set(key, entry);
       }
@@ -333,7 +340,7 @@ function componentCss(contract: Contract): string[] {
   }
   // v14 literals on the root: base decls + per-value enum-modifier rules.
   for (const [cssProp, lit] of Object.entries(root.literals ?? {})) {
-    rootDecls.push(`${cssProp}: ${lit}`);
+    rootDecls.push(`${route(cssProp)}: ${lit}`);
   }
   // v15 declared facts on the root: verbatim base decls (registry-validated
   // in validateContract). A declared `position` supersedes the emitter's own
@@ -350,7 +357,7 @@ function componentCss(contract: Contract): string[] {
       for (const [cssProp, lit] of Object.entries(overrides)) {
         const key = `${lbpProp} ${value}`;
         const entry = enumRules.get(key) ?? { prop: lbpProp, value, decls: [] };
-        entry.decls.push(`${cssProp}: ${lit}`);
+        entry.decls.push(`${route(cssProp)}: ${lit}`);
         enumRules.set(key, entry);
       }
     }
@@ -406,11 +413,11 @@ function componentCss(contract: Contract): string[] {
       const refPath = stripBraces(ref);
       const phs = placeholdersIn(refPath);
       if (phs.length === 0) {
-        rule(`${rootCls}${sel}`, [`${cssProp}: ${cssVar(refPath)}`]);
+        rule(`${rootCls}${sel}`, [`${route(cssProp)}: ${cssVar(refPath)}`]);
       } else if (phs.length === 1) {
         for (const value of enums.get(phs[0]) ?? []) {
           const resolved = refPath.replaceAll(`{${phs[0]}}`, value);
-          rule(`${enumCls(phs[0], value)}${sel}`, [`${cssProp}: ${cssVar(resolved)}`]);
+          rule(`${enumCls(phs[0], value)}${sel}`, [`${route(cssProp)}: ${cssVar(resolved)}`]);
         }
       }
     }
