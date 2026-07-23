@@ -2,8 +2,8 @@
   "_provenance": {
     "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
     "extractedAt": "2026-07-22",
-    "dumpVersion": "1.5",
-    "note": "Node-tree structure via the Figma REST API (extract/figma/rest/map.ts, dump v1.5); per-fill/stroke variable bindings + names captured NATIVELY via the plugin bridge (Figma Console MCP), post-rename to token-legal slash names (color/noir-bleute, color/orange, …). Values full-fidelity. For design→contract proposal.",
+    "dumpVersion": "1.6",
+    "note": "Node-tree structure via the Figma REST API (extract/figma/rest/map.ts, dump v1.5); per-fill/stroke variable bindings + names captured NATIVELY via the plugin bridge (Figma Console MCP), post-rename to token-legal slash names (color/noir-bleute, color/orange, …). Values full-fidelity. dump v1.6: textCase (per text node) + strokeAlign (per stroked variant) captured — values from the live Figma file, producer rest/map.ts now captures them natively. For design→contract proposal.",
     "variablesSource": "figma-console-mcp (desktop plugin bridge); variables renamed token-legal"
   },
   "_variables": {
@@ -121,7 +121,8 @@
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
-              "lineHeight": 22
+              "lineHeight": 22,
+              "textCase": "UPPER"
             },
             "fill": {
               "var": "color/blanc"
@@ -183,7 +184,8 @@
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
-              "lineHeight": 22
+              "lineHeight": 22,
+              "textCase": "UPPER"
             },
             "fill": {
               "var": "color/blanc"
@@ -245,7 +247,8 @@
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
-              "lineHeight": 22
+              "lineHeight": 22,
+              "textCase": "UPPER"
             },
             "fill": {
               "var": "color/noir-bleute"
@@ -308,7 +311,8 @@
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
-              "lineHeight": 22
+              "lineHeight": 22,
+              "textCase": "UPPER"
             },
             "fill": {
               "var": "color/blanc"
@@ -325,7 +329,8 @@
               "height": 20
             }
           }
-        ]
+        ],
+        "strokeAlign": "INSIDE"
       },
       {
         "name": "Property 1=Link",
@@ -368,7 +373,8 @@
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
-              "lineHeight": 22
+              "lineHeight": 22,
+              "textCase": "UPPER"
             },
             "fill": {
               "var": "color/noir-bleute"
@@ -430,7 +436,8 @@
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
-              "lineHeight": 22
+              "lineHeight": 22,
+              "textCase": "UPPER"
             },
             "fill": {
               "var": "color/noir-bleute"
@@ -447,7 +454,8 @@
               "height": 20
             }
           }
-        ]
+        ],
+        "strokeAlign": "INSIDE"
       }
     ]
   }

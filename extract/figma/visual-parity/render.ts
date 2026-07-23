@@ -7,22 +7,68 @@
  * TRANSPARENT body (so content-box cropping is honest on both sides of the
  * diff).
  *
- * Font honesty: when the Figma set names a font family, the harness checks
- * availability in-page (document.fonts.check) and — if the family resolves
- * locally — sets it as the showcase's inherited family so both renderers
- * rasterize the same face. Availability is REPORTED either way; text-region
- * masking (see img.ts) covers the miss, never a fatter threshold.
+ * Font honesty: the design-system font (Montserrat) is EMBEDDED as base64
+ * @font-face (see embeddedFontFaces), so Chromium rasterizes the true face
+ * instead of silently substituting a system font. This replaced a real bug
+ * (2026-07-23): the harness trusted `document.fonts.check`, which reports a
+ * registered family NAME as "available" even when no glyphs exist, so every
+ * Montserrat score compared code-in-fallback against Figma-in-Montserrat.
+ * `document.fonts.check` is still reported, but it is NOT trusted to gate.
  *
  * Browser: playwright-core over an already-installed Chromium (ms-playwright
  * cache, or PLAYWRIGHT_CHROMIUM_PATH, or system Chrome) — no download step.
  */
-import { existsSync, readdirSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import path from 'node:path';
 import { chromium, type Browser, type Page } from 'playwright-core';
 import { emitHtml, type Contract } from '../../../core/index.js';
 import type { Interaction } from './match.js';
 import type { RenderablePackage } from './compose.js';
+
+// ---------------------------------------------------------------------------
+// Embedded webfonts — the fix for the silent-fallback bug (2026-07-23).
+//
+// The harness renders via page.setContent (no server, no network) and used to
+// rely on the font being installed on the machine. Montserrat is NOT a system
+// font, so Chromium silently substituted sans-serif while `document.fonts.check`
+// reported "available" (it validates the registered NAME, not that glyphs
+// exist). Every Montserrat parity score was therefore code-in-a-fallback vs
+// Figma-in-real-Montserrat — a false comparison that inflated width/raster
+// deltas. We now EMBED the real faces as base64 @font-face so the render is
+// deterministic and machine-independent. Fail loudly if the package is missing
+// rather than fall back to the very bug this replaces.
+// ---------------------------------------------------------------------------
+const require = createRequire(import.meta.url);
+/** Design-system Montserrat weights (tokens/primitives font/weight/*). */
+const MONTSERRAT_WEIGHTS = [400, 500, 600] as const;
+
+let embeddedFontFacesCache: string | null = null;
+function embeddedFontFaces(): string {
+  if (embeddedFontFacesCache !== null) return embeddedFontFacesCache;
+  const faces: string[] = [];
+  for (const w of MONTSERRAT_WEIGHTS) {
+    const spec = `@fontsource/montserrat/files/montserrat-latin-${w}-normal.woff2`;
+    let file: string;
+    try {
+      file = require.resolve(spec);
+    } catch {
+      throw new Error(
+        `Visual-parity render needs the real Montserrat face "${spec}" but it is not installed. ` +
+          `Run: npm install --save-dev @fontsource/montserrat  (the harness embeds the woff2 so the ` +
+          `render never silently falls back to a system font again).`,
+      );
+    }
+    const b64 = readFileSync(file).toString('base64');
+    faces.push(
+      `@font-face{font-family:"Montserrat";font-style:normal;font-weight:${w};font-display:block;` +
+        `src:url(data:font/woff2;base64,${b64}) format("woff2");}`,
+    );
+  }
+  embeddedFontFacesCache = `<style>${faces.join('')}</style>`;
+  return embeddedFontFacesCache;
+}
 
 export interface Rect {
   x: number;
@@ -130,6 +176,9 @@ export function previewDoc(
   return [
     '<!doctype html>',
     '<html><head><meta charset="utf-8">',
+    // Embedded real Montserrat FIRST, so the design-system CSS below resolves
+    // "Montserrat" to the true face instead of Chromium's silent fallback.
+    embeddedFontFaces(),
     `<style>${pkg.tokensCss}</style>`,
     `<style>${FRAME_CSS}</style>`,
     `<style>${emitted.css}</style>`,
