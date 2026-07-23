@@ -1,7 +1,7 @@
 {
  "fileName": "Piqueray (Copy)",
  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
- "extractedAt": 1784810485982,
+ "extractedAt": 1784819092095,
  "collections": [
   {
    "name": "Primitives",
@@ -13,9 +13,10 @@
      "name": "color/bleu",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-bleu)",
      "values": {
       "Value": "#143A84"
      }
@@ -24,9 +25,10 @@
      "name": "color/orange",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-orange)",
      "values": {
       "Value": "#F98A0B"
      }
@@ -35,9 +37,10 @@
      "name": "color/blanc",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-blanc)",
      "values": {
       "Value": "#FFFFFF"
      }
@@ -46,9 +49,10 @@
      "name": "color/noir-bleute",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-noir-bleute)",
      "values": {
       "Value": "#26282C"
      }
@@ -57,9 +61,10 @@
      "name": "color/beige",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-beige)",
      "values": {
       "Value": "#F6D49F"
      }
@@ -68,9 +73,10 @@
      "name": "color/beige-clair",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-beige-clair)",
      "values": {
       "Value": "#FFF3E2"
      }
@@ -79,9 +85,10 @@
      "name": "color/bleu-gris",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-bleu-gris)",
      "values": {
       "Value": "#9BA4B5"
      }
@@ -90,9 +97,10 @@
      "name": "color/bleu-clair",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-bleu-clair)",
      "values": {
       "Value": "#F4F6FA"
      }
@@ -101,9 +109,10 @@
      "name": "color/beige-clair-80",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-beige-clair-80)",
      "values": {
       "Value": "#FFF3E2CC"
      }
@@ -112,9 +121,10 @@
      "name": "color/noir",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-noir)",
      "values": {
       "Value": "#37373B"
      }
@@ -123,9 +133,10 @@
      "name": "color/orange-12",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-orange-12)",
      "values": {
       "Value": "#F494001F"
      }
@@ -134,9 +145,10 @@
      "name": "color/orange-42",
      "type": "COLOR",
      "scopes": [
-      "ALL_SCOPES"
+      "ALL_FILLS",
+      "STROKE_COLOR"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--color-orange-42)",
      "values": {
       "Value": "#F494006B"
      }
@@ -147,7 +159,7 @@
      "scopes": [
       "ALL_SCOPES"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--nav-state)",
      "values": {
       "Value": "Transparent"
      }
@@ -156,11 +168,519 @@
      "name": "opacity/base",
      "type": "FLOAT",
      "scopes": [
-      "ALL_SCOPES"
+      "OPACITY"
      ],
-     "codeSyntax": null,
+     "codeSyntax": "var(--opacity-base)",
      "values": {
       "Value": 100
+     }
+    },
+    {
+     "name": "font/family/montserrat",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--font-family-montserrat)",
+     "values": {
+      "Value": "Montserrat, sans-serif"
+     }
+    },
+    {
+     "name": "font/size/14",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-14)",
+     "values": {
+      "Value": 14
+     }
+    },
+    {
+     "name": "font/size/16",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-16)",
+     "values": {
+      "Value": 16
+     }
+    },
+    {
+     "name": "font/size/18",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-18)",
+     "values": {
+      "Value": 18
+     }
+    },
+    {
+     "name": "font/size/20",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-20)",
+     "values": {
+      "Value": 20
+     }
+    },
+    {
+     "name": "font/size/24",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-24)",
+     "values": {
+      "Value": 24
+     }
+    },
+    {
+     "name": "font/size/32",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-32)",
+     "values": {
+      "Value": 32
+     }
+    },
+    {
+     "name": "font/size/40",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-40)",
+     "values": {
+      "Value": 40
+     }
+    },
+    {
+     "name": "font/size/48",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "codeSyntax": "var(--font-size-48)",
+     "values": {
+      "Value": 48
+     }
+    },
+    {
+     "name": "font/weight/regular",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--font-weight-regular)",
+     "values": {
+      "Value": 400
+     }
+    },
+    {
+     "name": "font/weight/medium",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--font-weight-medium)",
+     "values": {
+      "Value": 500
+     }
+    },
+    {
+     "name": "font/weight/semibold",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--font-weight-semibold)",
+     "values": {
+      "Value": 600
+     }
+    },
+    {
+     "name": "font/line-height/22",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--font-line-height-22)",
+     "values": {
+      "Value": 22
+     }
+    },
+    {
+     "name": "space/0",
+     "type": "FLOAT",
+     "scopes": [
+      "WIDTH_HEIGHT",
+      "GAP"
+     ],
+     "codeSyntax": "var(--space-0)",
+     "values": {
+      "Value": 0
+     }
+    },
+    {
+     "name": "space/4",
+     "type": "FLOAT",
+     "scopes": [
+      "WIDTH_HEIGHT",
+      "GAP"
+     ],
+     "codeSyntax": "var(--space-4)",
+     "values": {
+      "Value": 4
+     }
+    },
+    {
+     "name": "space/10",
+     "type": "FLOAT",
+     "scopes": [
+      "WIDTH_HEIGHT",
+      "GAP"
+     ],
+     "codeSyntax": "var(--space-10)",
+     "values": {
+      "Value": 10
+     }
+    },
+    {
+     "name": "space/16",
+     "type": "FLOAT",
+     "scopes": [
+      "WIDTH_HEIGHT",
+      "GAP"
+     ],
+     "codeSyntax": "var(--space-16)",
+     "values": {
+      "Value": 16
+     }
+    },
+    {
+     "name": "space/32",
+     "type": "FLOAT",
+     "scopes": [
+      "WIDTH_HEIGHT",
+      "GAP"
+     ],
+     "codeSyntax": "var(--space-32)",
+     "values": {
+      "Value": 32
+     }
+    },
+    {
+     "name": "radius/32",
+     "type": "FLOAT",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "codeSyntax": "var(--radius-32)",
+     "values": {
+      "Value": 32
+     }
+    },
+    {
+     "name": "border-width/0",
+     "type": "FLOAT",
+     "scopes": [
+      "STROKE_FLOAT"
+     ],
+     "codeSyntax": "var(--border-width-0)",
+     "values": {
+      "Value": 0
+     }
+    },
+    {
+     "name": "border-width/2",
+     "type": "FLOAT",
+     "scopes": [
+      "STROKE_FLOAT"
+     ],
+     "codeSyntax": "var(--border-width-2)",
+     "values": {
+      "Value": 2
+     }
+    }
+   ]
+  },
+  {
+   "name": "Semantic",
+   "modes": [
+    "Light"
+   ],
+   "variables": [
+    {
+     "name": "typography/titre-1/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-titre-1-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/titre-1/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-titre-1-size)",
+     "values": {
+      "Light": "{font/size/48}"
+     }
+    },
+    {
+     "name": "typography/titre-1/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-titre-1-weight)",
+     "values": {
+      "Light": "{font/weight/medium}"
+     }
+    },
+    {
+     "name": "typography/titre-2/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-titre-2-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/titre-2/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-titre-2-size)",
+     "values": {
+      "Light": "{font/size/40}"
+     }
+    },
+    {
+     "name": "typography/titre-2/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-titre-2-weight)",
+     "values": {
+      "Light": "{font/weight/regular}"
+     }
+    },
+    {
+     "name": "typography/titre-3/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-titre-3-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/titre-3/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-titre-3-size)",
+     "values": {
+      "Light": "{font/size/32}"
+     }
+    },
+    {
+     "name": "typography/titre-3/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-titre-3-weight)",
+     "values": {
+      "Light": "{font/weight/regular}"
+     }
+    },
+    {
+     "name": "typography/titre-4/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-titre-4-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/titre-4/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-titre-4-size)",
+     "values": {
+      "Light": "{font/size/24}"
+     }
+    },
+    {
+     "name": "typography/titre-4/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-titre-4-weight)",
+     "values": {
+      "Light": "{font/weight/regular}"
+     }
+    },
+    {
+     "name": "typography/titre-5/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-titre-5-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/titre-5/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-titre-5-size)",
+     "values": {
+      "Light": "{font/size/20}"
+     }
+    },
+    {
+     "name": "typography/titre-5/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-titre-5-weight)",
+     "values": {
+      "Light": "{font/weight/semibold}"
+     }
+    },
+    {
+     "name": "typography/titre-6/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-titre-6-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/titre-6/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-titre-6-size)",
+     "values": {
+      "Light": "{font/size/16}"
+     }
+    },
+    {
+     "name": "typography/titre-6/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-titre-6-weight)",
+     "values": {
+      "Light": "{font/weight/semibold}"
+     }
+    },
+    {
+     "name": "typography/paragraphe/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-paragraphe-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/paragraphe/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-paragraphe-size)",
+     "values": {
+      "Light": "{font/size/14}"
+     }
+    },
+    {
+     "name": "typography/paragraphe/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-paragraphe-weight)",
+     "values": {
+      "Light": "{font/weight/regular}"
+     }
+    },
+    {
+     "name": "typography/lead/family",
+     "type": "STRING",
+     "scopes": [
+      "FONT_FAMILY"
+     ],
+     "codeSyntax": "var(--typography-lead-family)",
+     "values": {
+      "Light": "{font/family/montserrat}"
+     }
+    },
+    {
+     "name": "typography/lead/size",
+     "type": "FLOAT",
+     "scopes": [
+      "ALL_SCOPES"
+     ],
+     "codeSyntax": "var(--typography-lead-size)",
+     "values": {
+      "Light": "{font/size/18}"
+     }
+    },
+    {
+     "name": "typography/lead/weight",
+     "type": "FLOAT",
+     "scopes": [
+      "FONT_WEIGHT"
+     ],
+     "codeSyntax": "var(--typography-lead-weight)",
+     "values": {
+      "Light": "{font/weight/regular}"
      }
     }
    ]

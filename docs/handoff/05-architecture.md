@@ -31,7 +31,7 @@ All facts below were verified against the codebase on 2026-07-21.
 - `tokens/` — DTCG tokens: `primitives.tokens.json`, `semantic.tokens.json`, and
   `tokens/modes/` (`semantic.light`, `semantic.dark`, `brand.default`,
   `brand.aurora`).
-- `evals/` — the 146-check suite (`run.ts`) + golden manifest (`golden.json`).
+- `evals/` — the eval suite (`run.ts`, live `N/N` via `npm run eval` — currently 94/97, 3 intentional) + golden manifest (`golden.json`).
 - `examples/depth-composite/` — the advanced composite exhibit + its harness.
 - `docs/handoff/` — this package.
 

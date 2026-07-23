@@ -26,7 +26,7 @@ npm run playground         # the browser playground (imports core/ unmodified)
 ```bash
 npm run build                              # tokens -> schema -> components, contract-validated
 npm run parity                             # three-way differ: code, canvas, tokens vs contracts (clean = in sync)
-npm run eval                               # the deterministic suite — 146 checks (see below)
+npm run eval                               # the deterministic suite — 97 checks, 94/97 passing (see below)
 npm run plugin:check                       # window.DSC builds correct anatomy; specHash mirror; drift refusal
 node scripts/deterministic-roundtrip.mjs   # contract->canvas byte-identical x2; loop closes ("ZERO AI")
 node scripts/core-browser-check.mjs        # core/ barrel bundles browser-pure; 4 emitters run in a no-node VM
@@ -37,7 +37,7 @@ npx tsc --noEmit && tsc -p tsconfig.build.json   # types (src, scripts, core, ex
 
 Eval gotcha: `npm run eval` symlinks `ROOT/node_modules` into its scratch dir, so it **cannot run inside a git worktree** (worktrees have no `node_modules`) — run it on the main checkout. Two checks (one eval + the visual-parity instrument) drive real Chromium; if missing, the error names the fix (`npx playwright install chromium` or set `PLAYWRIGHT_CHROMIUM_PATH`).
 
-Eval-count note: the current suite is **146** checks (git history + `docs/handoff/` agree). The **README still says 129** — it lags. `npm run eval` prints the live `N/N`; keep quoted counts in sync when you add/remove a case (`grep -rn` the number).
+Eval-count note: the current suite is **97** checks — **94/97 pass**; the 3 red ones are an *intentional* block (baseline-parity-clean, baseline-acknowledges-without-failing, promotion-converges) that need the Piqueray token set pushed to Figma, not a regression. The count dropped from 146 during the Piqueray reconversion (2026-07-22/23) under the hybrid rule: demo-only cases with no Button equivalent were removed (named by id in the commit body, see `evals/REMOVED-CASES.md`); 51 are quarantined pending Piqueray features (slots, composites, dark theme, a second brand), not deleted. `npm run eval` prints the live `N/N` — trust that over this note; keep quoted counts in sync when you add/remove a case (`grep -rn` the number).
 
 ## Architecture
 
