@@ -1,6 +1,6 @@
 {
   "summary": {
-    "total": 47,
+    "total": 46,
     "acknowledged": 0,
     "pending": 0,
     "bySurface": {
@@ -8,7 +8,6 @@
         "behind": 1
       },
       "figma-tokens": {
-        "mismatch": 1,
         "behind": 45
       }
     }
@@ -20,18 +19,6 @@
       "subject": "Button.Contactez-nous",
       "detail": "Contract prop \"children\" has no TEXT property on the Figma set",
       "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
-    },
-    {
-      "surface": "figma-tokens",
-      "classification": "mismatch",
-      "subject": "Primitives/color/nav-state [Value]",
-      "detail": "tokens/ says #00000000, Figma says Transparent",
-      "proposedPatch": {
-        "tokenPath": "color.nav-state",
-        "mode": "Value",
-        "adoptFigmaValue": "Transparent"
-      },
-      "remedy": "Adopt into tokens/ (promotion) then npm run tokens — or push tokens/ to Figma via figma_import_tokens"
     },
     {
       "surface": "figma-tokens",

@@ -376,12 +376,12 @@ const FONT_STYLE_BY_WEIGHT: Record<number, string> = {
 
 function figmaType(entry: TokenEntry): 'COLOR' | 'FLOAT' | 'STRING' {
   if (entry.type === 'color') return 'COLOR';
-  if (entry.type === 'fontFamily') return 'STRING';
+  if (entry.type === 'fontFamily' || entry.type === 'string') return 'STRING';
   return 'FLOAT';
 }
 
 function figmaValue(entry: TokenEntry): unknown {
-  if (entry.type === 'color' || entry.type === 'fontFamily') return entry.value;
+  if (entry.type === 'color' || entry.type === 'fontFamily' || entry.type === 'string') return entry.value;
   return px(entry.value);
 }
 

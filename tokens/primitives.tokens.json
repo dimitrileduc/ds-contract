@@ -12,10 +12,13 @@
     "beige-clair-80": { "$value": "#FFF3E2CC" },
     "noir": { "$value": "#37373B" },
     "orange-12": { "$value": "#F494001F" },
-    "orange-42": { "$value": "#F494006B" },
-    "nav-state": {
-      "$value": "#00000000",
-      "$description": "Piqueray Figma variable 'NavState' — a STRING whose only value is 'Transparent'. Projected to the transparent color #00000000 (alpha 0): the token / Figma-variable pipeline has no string channel and NavState denotes transparency. From-dump semantics; the hex is the faithful color projection."
+    "orange-42": { "$value": "#F494006B" }
+  },
+  "nav": {
+    "state": {
+      "$type": "string",
+      "$value": "Transparent",
+      "$description": "Figma STRING variable 'nav/state' (renamed 2026-07-23 from 'color/nav-state') — the designers' one-switch Header nav mechanism: every page's Header nav binds its variant property to this variable ('Transparent' | 'Solid'). Previously projected to the color #00000000 because the pipeline had no string channel; that projection would have CRASHED the first sync (writing COLOR into a STRING variable). The pipeline now carries strings natively."
     }
   },
   "opacity": {

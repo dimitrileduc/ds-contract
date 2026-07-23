@@ -2239,8 +2239,12 @@ const cases: Case[] = [
           const browser = await chromium.launch({ executablePath: chromiumExecutable(), headless: true });
           try {
             const page = await browser.newPage();
-            await page.goto('file://' + path.resolve(tmp));
-            await page.waitForFunction('window.__READY === true');
+            // The replay document is ~171 MB (4.06M computed cells inlined) and
+            // measures ~12s to load on an IDLE machine — the 30s playwright
+            // default flaked twice under full-suite load (2026-07-23). Timeout
+            // sized to the measured fact, not to hope.
+            await page.goto('file://' + path.resolve(tmp), { timeout: 120000 });
+            await page.waitForFunction('window.__READY === true', undefined, { timeout: 120000 });
             await page.evaluate('document.fonts.ready');
             const reread = await rereadEquality((js) => page.evaluate(js), specs, truth._provenance.channels);
             if (reread.pct < 99.9) throw new Error('replay computed equality ' + reread.pct.toFixed(3) + '% below the 99.9% floor');

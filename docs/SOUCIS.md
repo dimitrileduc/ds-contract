@@ -77,7 +77,14 @@ Image de diff : `extract/figma/visual-parity/report-assets/button--property-1-*.
 se réduisent à **une seule cause** : le rendu du texte diffère entre Chromium et
 Figma (kerning/raster), et ces deux variantes y sont géométriquement plus
 sensibles. C'est la limite « deux moteurs, un texte » — réelle, mesurée, nommée
-dans `REPORT.md`. **Deux décisions restent à acter explicitement** (jamais en
-relâchant le seuil en douce) : (1) accepter ces deux lignes comme deltas
-documentés ; (2) remettre le rendu des icônes sous preuve pixel via un
-préréglage de sujet (trou de couverture nommé au triage).
+dans `REPORT.md`.
+
+**Décisions actées par l'owner le 2026-07-23** (le seuil de 2 % n'a pas bougé) :
+1. **Les deux lignes (Link, Outilne noir) sont acceptées comme deltas
+   documentés** — même statut que le kerning de Default/Orange, causes nommées
+   au triage.
+2. **La preuve pixel des icônes est reportée au chantier icônes / Button v1.3**
+   (préréglage de sujet + cadre d'exemples dans Figma, qui servira aussi aux
+   échanges d'icônes) — le trou de couverture reste nommé au triage d'ici là ;
+   rien de construit aujourd'hui ne sera jeté (les interrupteurs sont un
+   sous-ensemble du modèle slot).
