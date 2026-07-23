@@ -851,6 +851,20 @@ and svgPaintVar fixes become visible at the next bridge re-amend, and
 
 ---
 
+## 2026-07-23 — Piqueray: the first real client file, proven end to end
+
+The reconversion off the 51-component demo lands on a real client's live Figma
+file. The Button's pixel defects are fixed at source (border drawn INSIDE,
+UA `<button>` chrome reset — `09d7ad4`); its icon toggles are **born in Figma**
+and extracted (`ds.button@1.2.0`, `2287746`) — 158/158 page instance states
+preserved, measured twice; a live landmine (`nav-state`, a designer's STRING
+switch mis-typed as a color) is found and fixed before it could crash a push
+(`38aee13`); and the **first real push** lands 45 token variables in the
+owner's file — parity's token axis collapses from 45 findings to zero. Suite:
+94/97 (3 intentional, awaiting the master rebuild in spec 002).
+
+---
+
 **Standing scoreboard** (updated with each milestone):
 
 | Claim | Mechanism | Receipt |

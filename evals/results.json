@@ -1,10 +1,34 @@
 {
-  "passed": 146,
-  "total": 146,
+  "passed": 94,
+  "total": 97,
+  "quarantined": 51,
   "results": [
+    {
+      "id": "baseline-parity-clean",
+      "claim": "C3-detection",
+      "pass": false,
+      "error": "Error: Baseline not clean:\n⚠ Figma naming bridged (the file does not use this repo's collection/mode names):\n    · mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\"\n\n✖ 1 drift finding(s):\n    figma — behind: 1\n\n  [figma BEHIND] Button.Contactez-nous\n    Contract prop \"children\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n"
+    },
+    {
+      "id": "baseline-acknowledges-without-failing",
+      "claim": "C3-detection",
+      "pass": false,
+      "error": "Error: Baselined finding still failed the exit code"
+    },
+    {
+      "id": "promotion-converges",
+      "claim": "C4-convergence",
+      "pass": false,
+      "error": "Error: Unexpected extra findings: [{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.Contactez-nous\",\"detail\":\"Contract prop \\\"children\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.IconOnly\",\"detail\":\"Contract prop \\\"iconOnly\\\" has no BOOLEAN property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"}]"
+    },
     {
       "id": "refuse-unknown-token-reference",
       "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "provenance-fields-survive-roundtrip",
+      "claim": "C1-determinism",
       "pass": true
     },
     {
@@ -13,18 +37,8 @@
       "pass": true
     },
     {
-      "id": "refuse-incomplete-mode-set",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
       "id": "deterministic-regeneration",
       "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "baseline-parity-clean",
-      "claim": "C3-detection",
       "pass": true
     },
     {
@@ -85,31 +99,6 @@
     {
       "id": "refuse-unknown-component-ref",
       "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "detect-figma-missing-slot-property",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "detect-figma-missing-nested-instance",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "detect-figma-accepts-drift",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "detect-code-removed-slot-prop",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "brand-added-token-layer-only",
-      "claim": "C6-theming",
       "pass": true
     },
     {
@@ -193,17 +182,7 @@
       "pass": true
     },
     {
-      "id": "detect-default-and-kind-drift",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
       "id": "golden-generated-output",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "naxis-full-cartesian-product",
       "claim": "C1-determinism",
       "pass": true
     },
@@ -218,91 +197,6 @@
       "pass": true
     },
     {
-      "id": "baseline-acknowledges-without-failing",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "detect-code-removed-event",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "refuse-defaultContent-outside-accepts",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "detect-figma-missing-multislot-content",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "judge-passes-canonical-screen",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "judge-catches-all-violation-classes",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "promotion-converges",
-      "claim": "C4-convergence",
-      "pass": true
-    },
-    {
-      "id": "refuse-elementByProp-gaps",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "layoutByProp-flip-both-surfaces",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "refuse-stylesWhen-outside-whitelist",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "refuse-overlay-inflow-conflicts",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "array-prop-code-only-skipped-everywhere",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "pending-first-sync-not-drift",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "refuse-hollow-state-previews",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "state-previews-bounded-canvas-only",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "state-axis-drift-both-directions",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "text-styles-from-typography-tokens",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
       "id": "extract-code-roundtrip-identity",
       "claim": "C5-extraction",
       "pass": true
@@ -313,27 +207,7 @@
       "pass": true
     },
     {
-      "id": "design-roundtrip-anatomy-zero-mismatch",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
       "id": "design-propose-unbound-fill-named-never-invented",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "design-roundtrip-uncorrelated-binding-is-mismatch-not-guess",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "design-rest-roundtrip-zero-mismatch",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "design-rest-degraded-variables-never-fabricates",
       "claim": "C5-extraction",
       "pass": true
     },
@@ -345,16 +219,6 @@
     {
       "id": "core-browser-importable",
       "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "design-rest-degraded-minting-binds-styles",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "design-mcp-roundtrip-fixture-replay",
-      "claim": "C5-extraction",
       "pass": true
     },
     {
@@ -383,11 +247,6 @@
       "pass": true
     },
     {
-      "id": "key-based-linking",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
       "id": "cross-import-token-scope",
       "claim": "C5-extraction",
       "pass": true
@@ -400,16 +259,6 @@
     {
       "id": "part-state-disabled-label-browser-probe",
       "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "stub-geometry-render",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "preferred-values-accepts",
-      "claim": "C5-extraction",
       "pass": true
     },
     {
@@ -473,77 +322,17 @@
       "pass": true
     },
     {
-      "id": "design-census-unmappable-child-props-dropped",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "design-census-boolean-visiblewhen-truthy-form",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "design-census-digit-led-prop-binding-prefixed",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "figma-script-referees-invalid-contracts",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "checkbox-native-input",
-      "claim": "C4-convergence",
-      "pass": true
-    },
-    {
-      "id": "refuse-role-recreating-native-control",
-      "claim": "C2-refusal",
-      "pass": true
-    },
-    {
-      "id": "playground-caption-consistency",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "switch-canvas-thumb",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "focus-not-pressed-browser-probe",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "slot-empty-not-placeholder",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "heading-margin-reset",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
       "id": "hit-area-enforced",
       "claim": "C1-determinism",
       "pass": true
     },
     {
-      "id": "token-size-live",
+      "id": "a11y-role-and-accessible-name",
       "claim": "C1-determinism",
       "pass": true
     },
     {
       "id": "theme-axis-promotion",
-      "claim": "C5-extraction",
-      "pass": true
-    },
-    {
-      "id": "repeated-children-collection",
       "claim": "C5-extraction",
       "pass": true
     },
@@ -638,32 +427,7 @@
       "pass": true
     },
     {
-      "id": "plugin-engine-bundle",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
       "id": "deterministic-roundtrip",
-      "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "plugin-update-report",
-      "claim": "C3-detection",
-      "pass": true
-    },
-    {
-      "id": "plugin-propose-dry-run",
-      "claim": "C4-convergence",
-      "pass": true
-    },
-    {
-      "id": "wc-emitter-roundtrip",
-      "claim": "C7-cli",
-      "pass": true
-    },
-    {
-      "id": "wc-emitter-css-parity",
       "claim": "C1-determinism",
       "pass": true
     },
@@ -720,11 +484,6 @@
     {
       "id": "single-root-golden-invariant",
       "claim": "C1-determinism",
-      "pass": true
-    },
-    {
-      "id": "depth-composite-child-collection",
-      "claim": "C8-journey",
       "pass": true
     },
     {

@@ -1,51 +1,31 @@
 {
   "id": "ds.button",
   "name": "Button",
-  "version": "1.5.0",
+  "version": "1.1.0",
   "status": "draft",
-  "description": "Triggers an action or event. Use one primary button per context.",
+  "description": "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label is a reusable prop.",
   "figma": {
     "representation": "component",
-    "componentSetKey": "1b5d2a573f3f39404af396bdbe944a30ca0eaec3"
+    "componentSetKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6"
   },
   "props": [
     {
       "name": "variant",
       "type": [
-        "primary",
-        "secondary",
-        "danger",
-        "ghost"
+        "default",
+        "orange",
+        "blanc",
+        "outlineBlanc",
+        "link",
+        "outilneNoir"
       ],
-      "default": "primary",
-      "description": "Visual prominence of the action."
-    },
-    {
-      "name": "size",
-      "type": [
-        "sm",
-        "md",
-        "lg"
-      ],
-      "default": "md",
-      "description": "Control density."
-    },
-    {
-      "name": "disabled",
-      "type": "boolean",
-      "default": false,
-      "description": "Prevents interaction and communicates unavailability."
-    },
-    {
-      "name": "loading",
-      "type": "boolean",
-      "default": false,
-      "description": "Shows a spinning busy indicator beside the label while an async action resolves."
+      "default": "default",
+      "description": "Visual style of the button."
     }
   ],
   "children": {
     "kind": "text",
-    "description": "Button label."
+    "description": "Button label. Authored: promoted to a reusable prop — in the Figma source the text « Contactez-nous » is static (not a component property), so contract↔Figma parity will list this as authored drift."
   },
   "slots": []
 }

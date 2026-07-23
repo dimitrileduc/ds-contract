@@ -7,15 +7,15 @@ out of the generated Badge, Switch, and Card and comparing the proposals to
 `contracts/{badge,switch,card}.contract.json` is an executable ground truth for the
 css-module anatomy adapter: **round-trip identity**. Verdicts:
 
-- **MATCHED** — the proposal recovered the contract field (after the normalizations N1–N5
+- **MATCHED** — the proposal recovered the contract field (after the normalizations N1–N7
   documented in `extract/roundtrip-code.ts`, each the inversion of a deterministic generator rule)
 - **CODE-ABSENT** — genuinely not present in code (figma bindings, canvas defaults of required
   text props, slot constraints, prose); listed by name, never silently waved through
 - **MISMATCH** — extraction failure. **The bar is zero.**
 
-## Verdict: ✅ ZERO MISMATCH — 29 matched, 22 code-absent (listed), 0 mismatched
+## Verdict: ✅ ZERO MISMATCH — 6 matched, 8 code-absent (listed), 0 mismatched
 
-## Badge — 5 matched · 5 code-absent · 0 mismatched
+## Button — 6 matched · 8 code-absent · 0 mismatched
 
 | subject | verdict | detail |
 |---|---|---|
@@ -23,61 +23,14 @@ css-module anatomy adapter: **round-trip identity**. Verdicts:
 | `anchors.figma` | CODE-ABSENT | design-side identity anchors — written back by the Figma generator |
 | `a11y` | CODE-ABSENT | declared a11y budget — a contract commitment, not code syntax |
 | `props.*.bindings.figma` | CODE-ABSENT | design-side spellings — extraction infers TitleCase, reconcile confirms |
-| `semantics.element` | MATCHED | span |
-| `semantics.role` | MATCHED | status |
+| `semantics.element` | MATCHED | button |
+| `semantics.role` | CODE-ABSENT | role "button" equals the host element — the generator omits the redundant attribute (N6) |
 | `states` | MATCHED | [] |
 | `props.variant` | MATCHED | type + default |
 | `props.children` | CODE-ABSENT | children-bound text prop — code renders {children}; the TEXT property spelling and canvas default live in the contract |
-| `anatomy.root` | MATCHED | 8 token binding(s) |
-
-## Switch — 15 matched · 7 code-absent · 0 mismatched
-
-| subject | verdict | detail |
-|---|---|---|
-| `version, status, description` | CODE-ABSENT | contract governance prose — extraction proposes 0.1.0 draft |
-| `anchors.figma` | CODE-ABSENT | design-side identity anchors — written back by the Figma generator |
-| `a11y` | CODE-ABSENT | declared a11y budget — a contract commitment, not code syntax |
-| `props.*.bindings.figma` | CODE-ABSENT | design-side spellings — extraction infers TitleCase, reconcile confirms |
-| `semantics.element` | MATCHED | label |
-| `states` | MATCHED | [] |
-| `props.value` | MATCHED | type + default |
-| `props.label.default` | CODE-ABSENT | required text default "Enable notifications" is the canvas default + story sample — code has no destructure default for a required prop |
-| `props.label` | MATCHED | type + required |
-| `props.description` | MATCHED | type + default |
-| `events.toggle` | MATCHED | trigger "input", toggles value [off, on], aria-checked |
-| `anatomy.root` | MATCHED | 3 token binding(s) |
-| `anatomy.root.track.description` | CODE-ABSENT | part description is contract prose — nothing in code carries it |
-| `anatomy.root.track` | MATCHED | 6 token binding(s) |
-| `anatomy.root.track.input.description` | CODE-ABSENT | part description is contract prose — nothing in code carries it |
-| `anatomy.root.track.input` | MATCHED | attrs {"type":"checkbox","role":"switch"} |
-| `anatomy.root.track.spacerStart` | MATCHED | visibleWhen {"prop":"value","equals":"on"} |
-| `anatomy.root.track.thumb` | MATCHED | 4 token binding(s) |
-| `anatomy.root.track.spacerEnd` | MATCHED | visibleWhen {"prop":"value","equals":"off"} |
-| `anatomy.root.textCol` | MATCHED | 1 token binding(s) |
-| `anatomy.root.textCol.labelText` | MATCHED | content ← label, 2 token binding(s) |
-| `anatomy.root.textCol.descriptionText` | MATCHED | content ← description, 2 token binding(s) |
-
-## Card — 9 matched · 10 code-absent · 0 mismatched
-
-| subject | verdict | detail |
-|---|---|---|
-| `version, status, description` | CODE-ABSENT | contract governance prose — extraction proposes 0.1.0 draft |
-| `anchors.figma` | CODE-ABSENT | design-side identity anchors — written back by the Figma generator |
-| `a11y` | CODE-ABSENT | declared a11y budget — a contract commitment, not code syntax |
-| `props.*.bindings.figma` | CODE-ABSENT | design-side spellings — extraction infers TitleCase, reconcile confirms |
-| `semantics.element` | MATCHED | article |
-| `states` | MATCHED | [] |
-| `props.title.default` | CODE-ABSENT | required text default "Card title" is the canvas default + story sample — code has no destructure default for a required prop |
-| `props.title` | MATCHED | type + required |
-| `anatomy.root` | MATCHED | 5 token binding(s) |
-| `anatomy.root.header` | MATCHED | 3 token binding(s) |
-| `anatomy.root.header.avatar.description` | CODE-ABSENT | part description is contract prose — nothing in code carries it |
-| `anatomy.root.header.avatar` | MATCHED | component ref ds.avatar, text ≡ child children-default (N4) |
-| `anatomy.root.header.title` | MATCHED | content ← title, 4 token binding(s) |
-| `anatomy.root.body.description` | CODE-ABSENT | part description is contract prose — nothing in code carries it |
-| `anatomy.root.body.slot.{required,figmaProperty}` | CODE-ABSENT | slot constraints and canvas property names are design-side declarations — not recoverable from {prop} in JSX |
-| `anatomy.root.body` | MATCHED | slot "children", 6 token binding(s) |
-| `anatomy.root.footer.description` | CODE-ABSENT | part description is contract prose — nothing in code carries it |
-| `anatomy.root.footer.slot.{accepts}` | CODE-ABSENT | slot constraints and canvas property names are design-side declarations — not recoverable from {prop} in JSX |
-| `anatomy.root.footer` | MATCHED | slot "actions", 3 token binding(s), optional |
+| `anatomy.root` | MATCHED | 9 token binding(s) |
+| `anatomy.root.label.{content|slot}` | CODE-ABSENT | both spellings emit exactly {children} — the channel (content-bound text prop vs slot) is not decidable from code (N7) |
+| `anatomy.root.label` | MATCHED | structure + layout |
+| `anatomy.root.arrow.icon` | CODE-ABSENT | icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8) |
+| `anatomy.root.arrow` | MATCHED | visibleWhen {"prop":"variant","equals":"link"} |
 

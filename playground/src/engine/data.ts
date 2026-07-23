@@ -15,9 +15,7 @@ import {
 import primitives from '../../../tokens/primitives.tokens.json';
 import semantic from '../../../tokens/semantic.tokens.json';
 import light from '../../../tokens/modes/semantic.light.tokens.json';
-import dark from '../../../tokens/modes/semantic.dark.tokens.json';
 import brandDefault from '../../../tokens/modes/brand.default.tokens.json';
-import brandAurora from '../../../tokens/modes/brand.aurora.tokens.json';
 
 // The generated token custom-property stylesheets (src/styles/tokens*.css) —
 // injected into the preview iframe so var(--…) references resolve, exactly
@@ -31,19 +29,20 @@ export const tokenTree: TokenTreeInput = {
   primitives,
   semantic,
   light,
-  dark,
-  brands: { default: brandDefault, aurora: brandAurora },
+  // Mono-theme (Piqueray): no dark mode, a single brand.
+  dark: {},
+  brands: { default: brandDefault },
 };
 
 /** Token path inventory — EmitCtx.tokens for the react/html emitters. */
-export const tokenInventory: Set<string> = tokenInventoryFromJson([primitives, semantic, light, dark]);
+export const tokenInventory: Set<string> = tokenInventoryFromJson([primitives, semantic, light]);
 
 /** Corpus for design→contract proposals (same trees the CLI corpus loads). */
 export const corpus = tokenCorpusFromJson({ primitives, semantic, light, brandDefault });
 
-/** Trees for the code→contract token index ([primitives, semantic, light, dark],
- *  mirroring extract/adapters/css-module.ts DEFAULT_TOKEN_SOURCES). */
-export const tokenTreesForCode: unknown[] = [primitives, semantic, light, dark];
+/** Trees for the code→contract token index (mono-theme: primitives, semantic,
+ *  light — no dark mode), mirroring extract/adapters/css-module.ts. */
+export const tokenTreesForCode: unknown[] = [primitives, semantic, light];
 
 export const tokenStylesheets = { base: tokensCss, dark: tokensDarkCss, brands: tokensBrandsCss };
 

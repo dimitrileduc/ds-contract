@@ -47,7 +47,7 @@
  * Node script over pure functions — the same shell/core split as
  * extract/figma/cbds-check.ts.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../../scripts/contract-schema.js';
 import { loadTokenCorpus } from './tokens.js';
@@ -60,6 +60,9 @@ import { flattenTokens, tokenInventoryFromJson } from '../../core/tokens.js';
 
 const ROOT = process.cwd();
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? read(p) : ({} as ReturnType<typeof read>));
 
 const failures: string[] = [];
 const check = (label: string, cond: boolean) => {
@@ -125,7 +128,7 @@ const repoInventory = tokenInventoryFromJson([
   read('tokens/primitives.tokens.json'),
   read('tokens/semantic.tokens.json'),
   read('tokens/modes/semantic.light.tokens.json'),
-  read('tokens/modes/semantic.dark.tokens.json'),
+  readOptional('tokens/modes/semantic.dark.tokens.json'),
 ]);
 const shadowed = (captured?.entries ?? []).filter((e) => repoInventory.has(e.path));
 check('zero captured names shadow repo tokens — all 18 register', shadowed.length === 0);

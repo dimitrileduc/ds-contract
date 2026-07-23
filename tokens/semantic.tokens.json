@@ -1,373 +1,44 @@
 {
-  "space": {
-    "inset-x": {
-      "$type": "dimension",
-      "sm": {
-        "$value": "{space.150}"
-      },
-      "md": {
-        "$value": "{space.200}"
-      },
-      "lg": {
-        "$value": "{space.300}"
-      },
-      "xs": {
-        "$type": "dimension",
-        "$value": "{space.100}"
-      }
+  "typography": {
+    "titre-1": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.48}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.medium}" }
     },
-    "inset-y": {
-      "$type": "dimension",
-      "sm": {
-        "$value": "{space.50}"
-      },
-      "md": {
-        "$value": "{space.100}"
-      },
-      "lg": {
-        "$value": "{space.150}"
-      },
-      "xs": {
-        "$type": "dimension",
-        "$value": "{space.25}"
-      }
+    "titre-2": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.40}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
     },
-    "gap": {
-      "$type": "dimension",
-      "control": {
-        "$value": "{space.100}"
-      },
-      "sm": {
-        "$value": "{space.100}"
-      },
-      "md": {
-        "$value": "{space.200}"
-      },
-      "lg": {
-        "$value": "{space.300}"
-      }
+    "titre-3": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.32}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
     },
-    "table": {
-      "cell-y": {
-        "$type": "dimension",
-        "comfortable": {
-          "$value": "{space.150}"
-        },
-        "compact": {
-          "$value": "{space.50}"
-        }
-      }
+    "titre-4": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.24}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
     },
-    "list": {
-      "compact": {
-        "$type": "dimension",
-        "$value": "{space.50}"
-      },
-      "balanced": {
-        "$type": "dimension",
-        "$value": "{space.100}"
-      },
-      "spacious": {
-        "$type": "dimension",
-        "$value": "{space.150}"
-      }
+    "titre-5": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.20}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}" }
     },
-    "avatarGroup": {
-      "overlap": {
-        "$type": "dimension",
-        "$value": "{space.overlap}"
-      }
-    }
-  },
-  "radius": {
-    "control": {
-      "$type": "dimension",
-      "$value": "{brand.radius.control}"
+    "titre-6": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.16}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}" }
     },
-    "badge": {
-      "$type": "dimension",
-      "$value": "{radius.pill}"
+    "paragraphe": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.14}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
     },
-    "card": {
-      "$type": "dimension",
-      "$value": "{radius.200}"
-    },
-    "avatar": {
-      "$type": "dimension",
-      "$value": "{radius.pill}"
-    },
-    "banner": {
-      "card": {
-        "$type": "dimension",
-        "$value": "{radius.200}"
-      },
-      "section": {
-        "$type": "dimension",
-        "$value": "{radius.none}"
-      }
-    },
-    "skeleton": {
-      "text": {
-        "$value": "{radius.100}"
-      },
-      "rect": {
-        "$value": "{radius.200}"
-      },
-      "circle": {
-        "$value": "{radius.pill}"
-      }
-    }
-  },
-  "size": {
-    "avatar": {
-      "$type": "dimension",
-      "sm": {
-        "$value": "{space.300}"
-      },
-      "md": {
-        "$value": "{space.400}"
-      }
-    },
-    "card": {
-      "width": {
-        "$type": "dimension",
-        "$value": "{container.sm}"
-      }
-    },
-    "table": {
-      "width": {
-        "$type": "dimension",
-        "$value": "{container.md}"
-      },
-      "cell-width": {
-        "$type": "dimension",
-        "$value": "{container.xs}"
-      }
-    },
-    "banner": {
-      "width": {
-        "$type": "dimension",
-        "$value": "{container.lg}"
-      }
-    },
-    "icon-button": {
-      "sm": {
-        "$type": "dimension",
-        "$value": "{control.sm}"
-      },
-      "md": {
-        "$type": "dimension",
-        "$value": "{control.md}"
-      },
-      "lg": {
-        "$type": "dimension",
-        "$value": "{control.lg}"
-      }
-    },
-    "checkbox": {
-      "sm": {
-        "$type": "dimension",
-        "$value": "{space.200}"
-      },
-      "md": {
-        "$type": "dimension",
-        "$value": "{space.250}"
-      }
-    },
-    "dot": {
-      "$type": "dimension",
-      "$value": "{space.100}"
-    },
-    "divider": {
-      "length": {
-        "$type": "dimension",
-        "$value": "{container.sm}"
-      }
-    },
-    "toolbar": {
-      "sm": {
-        "$type": "dimension",
-        "$value": "{control.sm}"
-      },
-      "md": {
-        "$type": "dimension",
-        "$value": "{control.md}"
-      },
-      "lg": {
-        "$type": "dimension",
-        "$value": "{control.lg}"
-      }
-    },
-    "progress": {
-      "width": {
-        "$type": "dimension",
-        "$value": "{container.sm}"
-      },
-      "height": {
-        "$type": "dimension",
-        "$value": "{space.100}"
-      }
-    },
-    "slider": {
-      "width": {
-        "$type": "dimension",
-        "$value": "{container.sm}"
-      },
-      "track": {
-        "$type": "dimension",
-        "$value": "{space.50}"
-      },
-      "thumb": {
-        "$type": "dimension",
-        "$value": "{space.200}"
-      }
-    },
-    "switch": {
-      "width": {
-        "$type": "dimension",
-        "$value": "{space.400}"
-      },
-      "height": {
-        "$type": "dimension",
-        "$value": "{space.250}"
-      },
-      "thumb": {
-        "$type": "dimension",
-        "$value": "{space.200}"
-      }
-    },
-    "spinner": {
-      "sm": {
-        "$type": "dimension",
-        "$value": "{space.150}"
-      },
-      "md": {
-        "$type": "dimension",
-        "$value": "{space.200}"
-      },
-      "lg": {
-        "$type": "dimension",
-        "$value": "{space.300}"
-      }
-    },
-    "skeleton": {
-      "text": {
-        "width": {
-          "$type": "dimension",
-          "$value": "{container.xs}"
-        },
-        "height": {
-          "$type": "dimension",
-          "$value": "{space.150}"
-        }
-      },
-      "rect": {
-        "width": {
-          "$type": "dimension",
-          "$value": "{container.sm}"
-        },
-        "height": {
-          "$type": "dimension",
-          "$value": "{space.400}"
-        }
-      },
-      "circle": {
-        "width": {
-          "$type": "dimension",
-          "$value": "{space.400}"
-        },
-        "height": {
-          "$type": "dimension",
-          "$value": "{space.400}"
-        }
-      }
-    }
-  },
-  "border": {
-    "width": {
-      "$type": "dimension",
-      "focus": {
-        "$value": "{border-width.200}"
-      },
-      "divider": {
-        "subtle": {
-          "$value": "{border-width.100}"
-        },
-        "strong": {
-          "$value": "{border-width.200}"
-        }
-      }
-    }
-  },
-  "font": {
-    "control": {
-      "family": {
-        "$type": "fontFamily",
-        "$value": "{brand.font.control-family}"
-      },
-      "weight": {
-        "$type": "fontWeight",
-        "$value": "{brand.font.control-weight}"
-      },
-      "size": {
-        "$type": "dimension",
-        "sm": {
-          "$value": "{font.size.200}"
-        },
-        "md": {
-          "$value": "{font.size.300}"
-        },
-        "lg": {
-          "$value": "{font.size.400}"
-        }
-      }
-    },
-    "badge": {
-      "size": {
-        "$type": "dimension",
-        "$value": "{font.size.100}"
-      }
-    },
-    "title": {
-      "size": {
-        "$type": "dimension",
-        "$value": "{font.size.300}"
-      },
-      "weight": {
-        "$type": "fontWeight",
-        "$value": "{font.weight.semibold}"
-      }
-    },
-    "avatar": {
-      "size": {
-        "$type": "dimension",
-        "sm": {
-          "$value": "{font.size.100}"
-        },
-        "md": {
-          "$value": "{font.size.200}"
-        }
-      }
-    },
-    "code": {
-      "family": {
-        "$type": "fontFamily",
-        "$value": "{font.family.mono}"
-      }
-    },
-    "tab": {
-      "default": {
-        "weight": {
-          "$type": "fontWeight",
-          "$value": "{font.weight.medium}"
-        }
-      },
-      "selected": {
-        "weight": {
-          "$type": "fontWeight",
-          "$value": "{font.weight.semibold}"
-        }
-      }
+    "lead": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.18}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
     }
   }
 }

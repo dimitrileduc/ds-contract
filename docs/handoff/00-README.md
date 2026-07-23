@@ -44,9 +44,10 @@ misunderstood the project — stop and re-read `03-determinism.md`.
   - *Engineer on a design-led team:* Figma is truth → a contract is extracted →
     the CLI generates React + a story into his repo. He never opens Figma.
 - **Status in one line:** the deterministic pipeline is proven and gated at
-  **146/146** headless checks; individual components are **live-validated on a
-  real Figma canvas**; the one advanced exhibit (a composite Modal) has known,
-  documented rendering failures. See `07` and `08`.
+  **94/97** headless checks (3 intentional, pending the Piqueray Figma push —
+  `npm run eval` prints the live count); individual components are
+  **live-validated on a real Figma canvas**; the one advanced exhibit (a
+  composite Modal) has known, documented rendering failures. See `07` and `08`.
 
 ## Reading order
 
@@ -61,7 +62,7 @@ misunderstood the project — stop and re-read `03-determinism.md`.
 | 06 | `06-tooling.md` | Concrete tools + commands for each hop |
 | 07 | `07-status-what-works.md` | Proven / gated / live-validated capabilities |
 | 08 | `08-status-what-doesnt-work.md` | Honest failures, the frontier, blind spots |
-| 09 | `09-testing-and-gates.md` | The 146-check suite; how to verify from a clean clone |
+| 09 | `09-testing-and-gates.md` | The eval suite (live `N/N` via `npm run eval`); how to verify from a clean clone |
 | 10 | `10-history.md` | How we got here; the pivots; receipts culture |
 | 11 | `11-roadmap.md` | What's left, prioritized |
 | 12 | `12-reference.md` | Glossary, file map, command cheat-sheet |

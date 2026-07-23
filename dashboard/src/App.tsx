@@ -41,18 +41,19 @@ function useHashRoute(): string {
 export function App() {
   const hash = useHashRoute();
   const [theme, setTheme] = useState<Theme>('light');
-  const [brand, setBrand] = useState<Brand>('default');
+  // Piqueray is single-brand since the reconversion; the switcher is gone but
+  // the [data-brand] plumbing stays so a second brand needs no rewiring.
+  const brand: Brand = 'default';
 
   useEffect(() => {
-    // Chrome (shadcn) keys off .dark; the design-system samples key off
-    // [data-theme] — one toggle drives both worlds.
+    // Chrome (shadcn) keys off .dark. The toggle is the HUB's own appearance —
+    // it no longer switches a design-system theme: Piqueray is mono-theme, so
+    // [data-theme] has a single :root block behind it and dark is a no-op there.
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   useEffect(() => {
-    // Brand mode drives only the generated token layer ([data-brand]) —
-    // the Hub chrome deliberately does NOT rebrand; only the samples do.
     document.documentElement.dataset.brand = brand;
   }, [brand]);
 
@@ -205,19 +206,13 @@ export function App() {
             <span className="text-muted-foreground hidden font-mono text-xs sm:inline">
               catalog v{catalog.system.catalogVersion} · {catalog.system.gitCommit}
             </span>
-            <Button
-              variant="outline"
-              size="sm"
-              aria-label={`Switch brand mode (current: ${brand})`}
-              onClick={() => setBrand(brand === 'default' ? 'aurora' : 'default')}
-            >
-              <span
-                aria-hidden
-                className="inline-block size-3 rounded-full"
-                style={{ background: 'var(--color-action-primary-background)' }}
-              />
-              <span className="hidden capitalize sm:inline">{brand}</span>
-            </Button>
+            {/* REMOVED 2026-07-22 — the brand switcher toggled default ⇄ aurora.
+                `aurora` was deleted with the demo token set (Piqueray is
+                single-brand), so the control swapped to a mode that no longer
+                exists, and its colour dot read `--color-action-primary-background`,
+                a custom property the reconversion also removed — it rendered
+                blank. Restore a switcher when Piqueray gains a second brand;
+                the [data-brand] plumbing below is untouched and still works. */}
             <Button
               variant="outline"
               size="sm"

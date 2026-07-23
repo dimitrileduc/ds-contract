@@ -500,10 +500,23 @@ function mapText(node: RestNode, ctx: Ctx, nodePath: string): DumpText {
   if (s.lineHeightUnit === 'PIXELS' && typeof s.lineHeightPx === 'number') {
     text.lineHeight = s.lineHeightPx;
   }
+  // dump v1.6: textCase with a CSS text-transform projection is CAPTURED
+  // (UPPER/LOWER/TITLE → text.textCase), not dropped. The rest (SMALL_CAPS…)
+  // has no text-transform equivalent and stays a named degradation below.
+  const TEXT_CASE_CSS: Record<string, DumpText['textCase']> = {
+    UPPER: 'UPPER',
+    LOWER: 'LOWER',
+    TITLE: 'TITLE',
+  };
+  if (s.textCase !== undefined && TEXT_CASE_CSS[s.textCase]) {
+    text.textCase = TEXT_CASE_CSS[s.textCase];
+  }
   // dump v1.2: text channels with no dump projection are NAMED per node.
   const channels: string[] = [];
   if (typeof s.letterSpacing === 'number' && s.letterSpacing !== 0) channels.push(`letterSpacing ${s.letterSpacing}`);
-  if (s.textCase !== undefined && s.textCase !== 'ORIGINAL') channels.push(`textCase ${s.textCase}`);
+  if (s.textCase !== undefined && s.textCase !== 'ORIGINAL' && !TEXT_CASE_CSS[s.textCase]) {
+    channels.push(`textCase ${s.textCase} (no text-transform projection)`);
+  }
   if (s.textDecoration !== undefined && s.textDecoration !== 'NONE') channels.push(`textDecoration ${s.textDecoration}`);
   if (s.lineHeightUnit !== undefined && s.lineHeightUnit !== 'INTRINSIC_%' && s.lineHeightUnit !== 'PIXELS') {
     channels.push(`lineHeight ${s.lineHeightPx ?? '?'}px (${s.lineHeightUnit} — only PIXELS carries, dump v1.3)`);
@@ -671,13 +684,9 @@ function nameUnsupportedChannels(node: RestNode, ctx: Ctx, nodePath: string, str
       message: `strokeDashes [${node.strokeDashes.join(', ')}] — dashed strokes have no dump v1 projection; stroke renders solid`,
     });
   }
-  if (strokeDetail && node.strokeAlign !== undefined && node.strokeAlign !== 'INSIDE') {
-    ctx.report.degradations.push({
-      code: 'stroke-style-unsupported',
-      nodePath,
-      message: `strokeAlign ${node.strokeAlign} — dump consumers render INSIDE strokes (CSS borders); alignment dropped`,
-    });
-  }
+  // dump v1.6: strokeAlign is now CAPTURED (mapNode → out.strokeAlign), not
+  // dropped — no degradation receipt. The emitter renders INSIDE as an inset
+  // box-shadow border and CENTER/OUTSIDE as their own models.
   // Literal min/max sizing is CARRIED since dump v1.4 (mapNode) — no receipt.
 }
 
@@ -708,6 +717,11 @@ function mapNode(
   if (stroke) {
     out.stroke = stroke;
     if (typeof node.strokeWeight === 'number') out.strokeWeight = node.strokeWeight;
+    // dump v1.6: capture the alignment (was assumed INSIDE + dropped). CENTER/
+    // OUTSIDE now travel so the emitter renders the right border model.
+    if (node.strokeAlign === 'CENTER' || node.strokeAlign === 'OUTSIDE' || node.strokeAlign === 'INSIDE') {
+      out.strokeAlign = node.strokeAlign;
+    }
   }
   const shape = mapShape(node, ctx, nodePath, parentBox);
   if (shape) out.shape = shape;
@@ -818,7 +832,7 @@ export function mapRestToDump(nodesResponse: RestNodesResponse, options: MapOpti
       fileKey: options.fileKey ?? null,
       extractedAt: new Date().toISOString().slice(0, 10),
       note: 'Node-tree dump mapped from the Figma REST API (extract/figma/rest/map.ts, dump v1.5) for design→contract proposal.',
-      dumpVersion: '1.5',
+      dumpVersion: '1.6',
     },
   };
 

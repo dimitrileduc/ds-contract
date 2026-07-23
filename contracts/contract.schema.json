@@ -110,6 +110,13 @@
             "prop",
             "map"
           ]
+        },
+        "provenance": {
+          "type": "string",
+          "enum": [
+            "authored",
+            "extracted"
+          ]
         }
       },
       "required": [
@@ -392,6 +399,13 @@
             "AA",
             "AAA"
           ]
+        },
+        "provenance": {
+          "type": "string",
+          "enum": [
+            "authored",
+            "extracted"
+          ]
         }
       }
     },
@@ -430,6 +444,9 @@
                   "type": "null"
                 }
               ]
+            },
+            "dumpedAt": {
+              "type": "string"
             }
           },
           "required": [

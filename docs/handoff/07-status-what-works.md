@@ -18,10 +18,14 @@ level: **[gated headless]** (an eval/gate proves it in Node against the mock),
 
 ## The suite
 
-- **146/146 evals pass** (`npm run eval`). Claim families (indicative counts by
-  `claim:` occurrence): `C1-determinism`, `C2-refusal`, `C3-detection` (the
-  largest), `C4-convergence`, `C5-extraction` (the largest), `C6-theming`,
-  `C7-cli`, `C8-journey`. See `09-testing-and-gates.md` for the breakdown.
+- **94/97 evals pass** (`npm run eval`; live `N/N` — this lags the command).
+  3 are an intentional red block awaiting the Piqueray token-set push to
+  Figma. 51 further cases are quarantined (not run) under the reconversion's
+  hybrid rule — Piqueray has no slots/composites/dark-theme/second-brand yet.
+  Claim families: `C1-determinism`, `C2-refusal`, `C3-detection`,
+  `C4-convergence`, `C5-extraction` (the largest), `C7-cli`, `C8-journey`
+  (`C6-theming` is at 0 — quarantined, one brand/one theme today). See
+  `09-testing-and-gates.md` for the live breakdown.
 - Standing gates: `golden-generated-output` (byte hash of `src/` + `figma-sync/`,
   265 files), the 1,618-set census, `plugin-engine-bundle`, both `tsc`
   (root + `tsconfig.build.json`), `core:browser-check`, `emitters:check`,

@@ -26,7 +26,7 @@
  *
  * Exits non-zero with a named failure on any violated expectation.
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, componentRefsOf, type Contract } from '../../scripts/contract-schema.js';
 import { capturedTokensFromDump } from '../../core/captured-tokens.js';
@@ -47,6 +47,9 @@ const fail = (msg: string): never => {
 
 const ROOT = process.cwd();
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? read(p) : ({} as ReturnType<typeof read>));
 const dump = read('extract/figma/gauntlet/live/fixtures/session-id-collision-false-cycle-radio-button.dump.json');
 const corpus = loadTokenCorpus(ROOT);
 const loaded = loadContracts(path.resolve(ROOT, 'contracts'));
@@ -127,7 +130,7 @@ if (!parent.proposal.notes.some((n) => n.includes('already claimed in this sessi
     const s = ContractSchema.safeParse(raw);
     if (s.success && !contracts.has(s.data.id)) contracts.set(s.data.id, s.data);
   }
-  const repoTrees = [read('tokens/primitives.tokens.json'), read('tokens/semantic.tokens.json'), read('tokens/modes/semantic.light.tokens.json'), read('tokens/modes/semantic.dark.tokens.json')];
+  const repoTrees = [read('tokens/primitives.tokens.json'), read('tokens/semantic.tokens.json'), read('tokens/modes/semantic.light.tokens.json'), readOptional('tokens/modes/semantic.dark.tokens.json')];
   const inventory = new Set<string>([...tokenInventoryFromJson(repoTrees)]);
   for (const e of capturedTokensFromDump(dump)?.entries ?? []) inventory.add(e.path);
   for (const p of [icon.proposal, parent.proposal]) {

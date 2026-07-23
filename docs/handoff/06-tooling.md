@@ -55,7 +55,7 @@ baked in, so you feed it a small contract and it emits + builds locally.
 |--------|--------------|
 | `npm run build` | `tokens` → `schema` → `generate` (the full deterministic build) |
 | `npm run figma:plan` | emit all `figma-sync/*.js` scripts (contract → canvas scripts) |
-| `npm run eval` | run the 146-check suite (`evals/run.ts`) |
+| `npm run eval` | run the eval suite (`evals/run.ts`) — live `N/N`, currently 94/97 (3 intentional) |
 | `npm run plugin:check` | headless plugin-engine gate (`plugin-engine-check.mjs`) |
 | `npm run plugin:zip` | build the plugin package |
 | `npm run golden:update` | regenerate the golden manifest (reviewed changes only) |

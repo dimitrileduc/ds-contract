@@ -33,7 +33,7 @@
  * Node script over pure functions (core/propose-figma.ts) — the same
  * shell/core split as extract/figma/base-instance-check.ts.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../../scripts/contract-schema.js';
 import type { DumpNode, DumpSet } from './types.js';
@@ -46,6 +46,9 @@ import { flattenTokens, tokenInventoryFromJson, type TokenTreeInput } from '../.
 
 const ROOT = process.cwd();
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? read(p) : ({} as ReturnType<typeof read>));
 
 const failures: string[] = [];
 const check = (label: string, cond: boolean) => {
@@ -198,7 +201,7 @@ const inventory = tokenInventoryFromJson([
   read('tokens/primitives.tokens.json'),
   read('tokens/semantic.tokens.json'),
   read('tokens/modes/semantic.light.tokens.json'),
-  read('tokens/modes/semantic.dark.tokens.json'),
+  readOptional('tokens/modes/semantic.dark.tokens.json'),
   real.mintedTokens?.tree ?? {},
 ]);
 const icons = new Map<string, string>();
@@ -262,11 +265,10 @@ try {
     // playground (token-source.ts) and the fidelity harness apply.
     semantic: { ...read('tokens/semantic.tokens.json'), ...((real.mintedTokens?.tree ?? {}) as Record<string, unknown>) },
     light: read('tokens/modes/semantic.light.tokens.json'),
-    dark: read('tokens/modes/semantic.dark.tokens.json'),
-    brands: {
-      default: read('tokens/modes/brand.default.tokens.json'),
-      aurora: read('tokens/modes/brand.aurora.tokens.json'),
-    },
+    dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
+    // Mono-brand (Piqueray): `tokens/modes/brand.aurora.tokens.json` was
+    // removed in the reconversion — the corpus carries the default brand only.
+    brands: { default: read('tokens/modes/brand.default.tokens.json') },
   };
   script = emitFigmaScript(contract, {
     tokens: tokenTree,

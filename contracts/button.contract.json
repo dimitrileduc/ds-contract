@@ -2,35 +2,40 @@
   "$schema": "./contract.schema.json",
   "id": "ds.button",
   "name": "Button",
-  "version": "1.5.0",
+  "version": "1.2.0",
   "status": "draft",
-  "description": "Triggers an action or event. Use one primary button per context.",
+  "description": "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label is a reusable prop. The two nested icons are leading/trailing SLOTS: since 2026-07-23 the Figma masters bind their visibility to the BOOLEAN properties « Icône gauche »/« Icône droite » (promotion from observed usage — 21/79 page instances show a left icon, 59/79 a right one), modeled here as the iconLeft/iconRight boolean props with the file's own cil:arrow-* glyphs as default content. Page-level INSTANCE SWAPS of those glyphs (pdf, download, cart, …) stay designer-side instance overrides — an INSTANCE_SWAP slot model is deliberately deferred until the icon masters get contracts. Known extraction gap, named: propose-figma does not yet lower the dump's boolDefaults/propRefs into props, so this promotion is authored and reviewed against the 2026-07-23 dump.",
   "semantics": {
     "element": "button",
-    "role": "button"
+    "role": "button",
+    "provenance": "authored"
   },
   "props": [
     {
       "name": "variant",
-      "description": "Visual prominence of the action.",
+      "description": "Visual style of the button.",
       "type": {
         "enum": [
-          "primary",
-          "secondary",
-          "danger",
-          "ghost"
+          "default",
+          "orange",
+          "blanc",
+          "outlineBlanc",
+          "link",
+          "outilneNoir"
         ]
       },
-      "default": "primary",
+      "default": "default",
       "bindings": {
         "figma": {
           "kind": "VARIANT",
-          "property": "Variant",
+          "property": "Property 1",
           "values": {
-            "primary": "Primary",
-            "secondary": "Secondary",
-            "danger": "Danger",
-            "ghost": "Ghost"
+            "default": "Default",
+            "orange": "Orange",
+            "blanc": "Blanc",
+            "outlineBlanc": "Outline blanc",
+            "link": "Link",
+            "outilneNoir": "Outilne noir"
           }
         },
         "code": {
@@ -39,130 +44,121 @@
       }
     },
     {
-      "name": "size",
-      "description": "Control density.",
-      "type": {
-        "enum": [
-          "sm",
-          "md",
-          "lg"
-        ]
-      },
-      "default": "md",
-      "bindings": {
-        "figma": {
-          "kind": "VARIANT",
-          "property": "Size",
-          "values": {
-            "sm": "Small",
-            "md": "Medium",
-            "lg": "Large"
-          }
-        },
-        "code": {
-          "prop": "size"
-        }
-      }
-    },
-    {
-      "name": "disabled",
-      "description": "Prevents interaction and communicates unavailability.",
-      "type": "boolean",
-      "default": false,
-      "bindings": {
-        "figma": {
-          "kind": "BOOLEAN",
-          "property": "Disabled"
-        },
-        "code": {
-          "prop": "disabled"
-        }
-      }
-    },
-    {
-      "name": "loading",
-      "description": "Shows a spinning busy indicator beside the label while an async action resolves.",
-      "type": "boolean",
-      "default": false,
-      "bindings": {
-        "figma": {
-          "kind": "BOOLEAN",
-          "property": "Loading"
-        },
-        "code": {
-          "prop": "loading"
-        }
-      }
-    },
-    {
       "name": "children",
-      "description": "Button label.",
+      "description": "Button label. Authored: promoted to a reusable prop — in the Figma source the text « Contactez-nous » is static (not a component property), so contract↔Figma parity will list this as authored drift.",
       "type": "text",
-      "default": "Button",
+      "default": "Contactez-nous",
       "bindings": {
         "figma": {
           "kind": "TEXT",
-          "property": "Label"
+          "property": "Contactez-nous"
         },
         "code": {
           "prop": "children"
         }
       }
+    },
+    {
+      "name": "iconLeft",
+      "description": "Shows the leading icon slot (default glyph: the file's cil:arrow-left). Extracted from the BOOLEAN property « Icône gauche » added to the Figma masters on 2026-07-23; on pages the glyph is often instance-swapped (pdf, cart, phone, …) — swaps stay designer-side overrides.",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Icône gauche"
+        },
+        "code": {
+          "prop": "iconLeft"
+        }
+      }
+    },
+    {
+      "name": "iconRight",
+      "description": "Shows the trailing icon slot (default glyph: the file's cil:arrow-right — the « → » of Link buttons). Extracted from the BOOLEAN property « Icône droite » added to the Figma masters on 2026-07-23; on pages the glyph is sometimes instance-swapped (download, chevron, …).",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Icône droite"
+        },
+        "code": {
+          "prop": "iconRight"
+        }
+      }
     }
   ],
-  "states": [
-    "hover",
-    "focus-visible",
-    "disabled"
-  ],
-  "figmaStatePreviews": true,
+  "states": [],
   "anatomy": {
     "root": {
       "tokens": {
-        "background-color": "{color.action.{variant}.background}",
-        "color": "{color.action.{variant}.foreground}",
-        "padding-inline": "{space.inset-x.{size}}",
-        "padding-block": "{space.inset-y.{size}}",
-        "border-radius": "{radius.control}",
-        "gap": "{space.gap.control}",
-        "font-family": "{font.control.family}",
-        "font-weight": "{font.control.weight}",
-        "font-size": "{font.control.size.{size}}"
+        "font-family": "{font.family.montserrat}",
+        "font-size": "{font.size.16}",
+        "font-weight": "{font.weight.medium}",
+        "line-height": "{font.line-height.22}",
+        "color": "{color.blanc}",
+        "gap": "{space.10}",
+        "padding-block": "{space.16}",
+        "padding-inline": "{space.32}",
+        "border-width": "{border-width.0}"
       },
-      "states": {
-        "hover": {
-          "background-color": "{color.action.{variant}.background-hover}"
-        },
-        "focus-visible": {
-          "outline-color": "{color.border.focus}",
-          "outline-width": "{border.width.focus}"
-        },
-        "disabled": {
-          "opacity": "{opacity.disabled}"
+      "declared": {
+        "text-transform": "uppercase"
+      },
+      "tokensByProp": {
+        "prop": "variant",
+        "map": {
+          "default": {
+            "background-color": "{color.noir-bleute}"
+          },
+          "orange": {
+            "background-color": "{color.orange}"
+          },
+          "blanc": {
+            "background-color": "{color.blanc}",
+            "color": "{color.noir-bleute}"
+          },
+          "outlineBlanc": {
+            "border-width": "{border-width.2}",
+            "border-color": "{color.blanc}"
+          },
+          "link": {
+            "color": "{color.noir-bleute}",
+            "border-radius": "{radius.32}",
+            "padding-block": "{space.4}",
+            "padding-inline": "{space.0}"
+          },
+          "outilneNoir": {
+            "border-width": "{border-width.2}",
+            "border-color": "{color.noir-bleute}",
+            "color": "{color.noir-bleute}"
+          }
         }
       },
-      "layout": {
-        "display": "inline-flex",
-        "direction": "row",
-        "align": "center",
-        "justify": "center"
-      },
       "parts": {
-        "loadingSpinner": {
-          "description": "Busy indicator, shown while loading.",
+        "iconLeft": {
           "icon": {
-            "asset": "spinner",
-            "size": 14
+            "asset": "arrow-left",
+            "size": 20
           },
-          "animation": "spin",
           "visibleWhen": {
-            "prop": "loading"
+            "prop": "iconLeft"
           }
         },
         "label": {
           "element": "span",
           "content": {
             "prop": "children"
+          }
+        },
+        "iconRight": {
+          "icon": {
+            "asset": "arrow-right",
+            "size": 20
+          },
+          "visibleWhen": {
+            "prop": "iconRight"
           }
         }
       }
@@ -171,13 +167,15 @@
   "a11y": {
     "focusVisible": true,
     "minHitArea": 44,
-    "contrast": "AA"
+    "contrast": "AA",
+    "provenance": "authored"
   },
   "anchors": {
     "figma": {
-      "fileKey": "8nim1d0IPnehMxA7B7SYxC",
-      "componentSetKey": "1b5d2a573f3f39404af396bdbe944a30ca0eaec3",
-      "nodeId": "5:21"
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
+      "nodeId": "6:122",
+      "dumpedAt": "2026-07-23"
     },
     "code": {
       "importPath": "src/components/Button",

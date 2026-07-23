@@ -14,7 +14,7 @@
  * number, not a vibe.
  */
 import { build } from 'esbuild';
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -40,30 +40,41 @@ try {
   const minSize = readFileSync(path.join(out, 'core.esm.min.js')).length;
 
   // Gate 2 — execute with zero node globals: bundle an iife probe that runs
-  // the real emitters over the real Badge contract + tokens.
+  // the real emitters over a real shipping contract + tokens.
   const read = (p) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
   const brands = Object.fromEntries(
     readdirSync(path.join(ROOT, 'tokens', 'modes'))
       .filter((f) => /^brand\.[a-z][a-z0-9-]*\.tokens\.json$/.test(f))
       .map((f) => [f.replace(/^brand\.|\.tokens\.json$/g, ''), read(`tokens/modes/${f}`)]),
   );
+  // Icon assets (assets/icons/*.svg) — same source scripts/generate-components.ts
+  // inlines. A contract with an icon part (e.g. Button's arrow) needs a REAL
+  // asset here; an empty Map made validateContract refuse by name the moment
+  // the first icon-bearing contract landed (Map isn't JSON-able — round-trip
+  // as [name, svg] pairs, rebuilt inside the sandboxed probe below).
+  const iconsDir = path.join(ROOT, 'assets', 'icons');
+  const icons = readdirSync(iconsDir)
+    .filter((f) => f.endsWith('.svg'))
+    .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(iconsDir, f), 'utf8').trim()]);
   const data = JSON.stringify({
-    contract: read('contracts/badge.contract.json'),
+    contract: read(path.join('contracts', readdirSync(path.join(ROOT, 'contracts')).filter((f) => f.endsWith('.contract.json')).sort()[0])),
     tokens: {
       primitives: read('tokens/primitives.tokens.json'),
       semantic: read('tokens/semantic.tokens.json'),
       light: read('tokens/modes/semantic.light.tokens.json'),
-      dark: read('tokens/modes/semantic.dark.tokens.json'),
+      // Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+      dark: existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json')) ? read('tokens/modes/semantic.dark.tokens.json') : {},
       brands,
     },
+    icons,
   });
   const probe = await build({
     stdin: {
       contents: `
         import { ContractSchema, emitters } from ${JSON.stringify(path.join(ROOT, 'core', 'index.ts'))};
-        const { contract: raw, tokens } = INPUT;
+        const { contract: raw, tokens, icons } = INPUT;
         const contract = ContractSchema.parse(raw);
-        const ctx = { tokens, icons: new Map(), contracts: new Map([[contract.id, contract]]) };
+        const ctx = { tokens, icons: new Map(icons), contracts: new Map([[contract.id, contract]]) };
         const out = {};
         for (const e of emitters) out[e.name] = e.emit(contract, ctx).map((f) => f.contents.length);
         RESULT.value = out;
@@ -83,7 +94,7 @@ try {
   }
 
   console.log(`✔ core barrel bundles for platform=browser: ${fmt(rawSize)} raw, ${fmt(minSize)} minified`);
-  console.log(`✔ all 4 emitters ran in a VM with no node globals (Badge): ${names.map((n) => `${n}=${result[n].join('+')}B`).join(', ')}`);
+  console.log(`✔ all 4 emitters ran in a VM with no node globals (${JSON.parse(data).contract.name}): ${names.map((n) => `${n}=${result[n].join('+')}B`).join(', ')}`);
 } catch (err) {
   console.error(`✖ core:browser-check failed — the core is not browser-importable:\n${err?.message ?? err}`);
   process.exitCode = 1;

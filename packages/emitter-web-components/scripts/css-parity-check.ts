@@ -19,7 +19,7 @@
  *
  * Run: npx tsx packages/emitter-web-components/scripts/css-parity-check.ts
  */
-import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
@@ -46,6 +46,9 @@ const CHANNELS = [
 ] as const;
 
 const readJson = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readJsonOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? readJson(p) : ({} as ReturnType<typeof readJson>));
 const contracts = new Map<string, Contract>(
   readdirSync(path.join(ROOT, 'contracts'))
     .filter((f) => f.endsWith('.contract.json'))
@@ -61,7 +64,7 @@ const tokenInventory = tokenInventoryFromJson([
   readJson('tokens/primitives.tokens.json'),
   readJson('tokens/semantic.tokens.json'),
   readJson('tokens/modes/semantic.light.tokens.json'),
-  readJson('tokens/modes/semantic.dark.tokens.json'),
+  readJsonOptional('tokens/modes/semantic.dark.tokens.json'),
 ]);
 const tokensCss = readFileSync(path.join(ROOT, 'src', 'styles', 'tokens.css'), 'utf8');
 

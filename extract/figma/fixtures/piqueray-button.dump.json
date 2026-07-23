@@ -1,0 +1,502 @@
+{
+ "_provenance": {
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "extractedAt": "2026-07-23",
+  "dumpVersion": "1.6",
+  "note": "Node-tree structure via the Figma REST API (extract/figma/rest/map.ts, dump v1.6: textCase + strokeAlign captured natively); variable id→name table captured via the plugin bridge (Figma Console MCP) and injected into the mapper — zero variable-unresolved degradations. NEW in this dump: the Bouton set carries the BOOLEAN properties « Icône gauche »/« Icône droite » (set.boolDefaults) added to the masters on 2026-07-23, and each icon layer carries propRefs {visible: <property>} — both icons are hidden by default in every variant (page instances override per-use). For design→contract proposal.",
+  "variablesSource": "figma-console-mcp (desktop plugin bridge), id→name injected into rest/map.ts"
+ },
+ "_variables": {
+  "color/bleu": {
+   "type": "COLOR",
+   "value": "#143a84"
+  },
+  "color/orange": {
+   "type": "COLOR",
+   "value": "#f98a0b"
+  },
+  "color/blanc": {
+   "type": "COLOR",
+   "value": "#ffffff"
+  },
+  "color/noir-bleute": {
+   "type": "COLOR",
+   "value": "#26282c"
+  },
+  "color/beige": {
+   "type": "COLOR",
+   "value": "#f6d49f"
+  },
+  "color/beige-clair": {
+   "type": "COLOR",
+   "value": "#fff3e2"
+  },
+  "color/bleu-gris": {
+   "type": "COLOR",
+   "value": "#9ba4b5"
+  },
+  "color/bleu-clair": {
+   "type": "COLOR",
+   "value": "#f4f6fa"
+  },
+  "color/beige-clair-80": {
+   "type": "COLOR",
+   "value": "#fff3e2cc"
+  },
+  "color/noir": {
+   "type": "COLOR",
+   "value": "#37373b"
+  },
+  "color/orange-12": {
+   "type": "COLOR",
+   "value": "#f494001f"
+  },
+  "color/orange-42": {
+   "type": "COLOR",
+   "value": "#f494006b"
+  },
+  "color/nav-state": {
+   "type": "STRING",
+   "value": "Transparent"
+  },
+  "opacity/base": {
+   "type": "FLOAT",
+   "value": 100
+  }
+ },
+ "_degradations": [],
+ "Bouton": {
+  "setName": "Bouton",
+  "type": "COMPONENT_SET",
+  "nodeId": "6:122",
+  "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
+  "boolDefaults": {
+   "Icône gauche": false,
+   "Icône droite": false
+  },
+  "variants": [
+   {
+    "name": "Property 1=Default",
+    "type": "COMPONENT",
+    "bbox": {
+     "width": 220,
+     "height": 54
+    },
+    "layout": {
+     "mode": "HORIZONTAL",
+     "primary": "CENTER",
+     "counter": "CENTER",
+     "spacing": 10,
+     "padding": [
+      16,
+      32,
+      16,
+      32
+     ],
+     "primarySizing": "AUTO",
+     "counterSizing": "AUTO"
+    },
+    "fill": {
+     "var": "color/noir-bleute"
+    },
+    "children": [
+     {
+      "name": "cil:arrow-left",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône gauche"
+      },
+      "instanceOf": "cil:arrow-left",
+      "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     },
+     {
+      "name": "Contactez-nous",
+      "type": "TEXT",
+      "text": {
+       "characters": "Contactez-nous",
+       "fontSize": 16,
+       "fontStyle": "Medium",
+       "lineHeight": 22,
+       "textCase": "UPPER",
+       "fillVar": "color/blanc"
+      },
+      "fill": {
+       "var": "color/blanc"
+      }
+     },
+     {
+      "name": "cil:arrow-right",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône droite"
+      },
+      "instanceOf": "cil:arrow-right",
+      "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     }
+    ]
+   },
+   {
+    "name": "Property 1=Orange",
+    "type": "COMPONENT",
+    "bbox": {
+     "width": 220,
+     "height": 54
+    },
+    "layout": {
+     "mode": "HORIZONTAL",
+     "primary": "CENTER",
+     "counter": "CENTER",
+     "spacing": 10,
+     "padding": [
+      16,
+      32,
+      16,
+      32
+     ],
+     "primarySizing": "AUTO",
+     "counterSizing": "AUTO"
+    },
+    "fill": {
+     "var": "color/orange"
+    },
+    "children": [
+     {
+      "name": "cil:arrow-left",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône gauche"
+      },
+      "instanceOf": "cil:arrow-left",
+      "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     },
+     {
+      "name": "Contactez-nous",
+      "type": "TEXT",
+      "text": {
+       "characters": "Contactez-nous",
+       "fontSize": 16,
+       "fontStyle": "Medium",
+       "lineHeight": 22,
+       "textCase": "UPPER",
+       "fillVar": "color/blanc"
+      },
+      "fill": {
+       "var": "color/blanc"
+      }
+     },
+     {
+      "name": "cil:arrow-right",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône droite"
+      },
+      "instanceOf": "cil:arrow-right",
+      "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     }
+    ]
+   },
+   {
+    "name": "Property 1=Blanc",
+    "type": "COMPONENT",
+    "bbox": {
+     "width": 220,
+     "height": 54
+    },
+    "layout": {
+     "mode": "HORIZONTAL",
+     "primary": "CENTER",
+     "counter": "CENTER",
+     "spacing": 10,
+     "padding": [
+      16,
+      32,
+      16,
+      32
+     ],
+     "primarySizing": "AUTO",
+     "counterSizing": "AUTO"
+    },
+    "fill": {
+     "var": "color/blanc"
+    },
+    "children": [
+     {
+      "name": "cil:arrow-left",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône gauche"
+      },
+      "instanceOf": "cil:arrow-left",
+      "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     },
+     {
+      "name": "Contactez-nous",
+      "type": "TEXT",
+      "text": {
+       "characters": "Contactez-nous",
+       "fontSize": 16,
+       "fontStyle": "Medium",
+       "lineHeight": 22,
+       "textCase": "UPPER",
+       "fillVar": "color/noir-bleute"
+      },
+      "fill": {
+       "var": "color/noir-bleute"
+      }
+     },
+     {
+      "name": "cil:arrow-right",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône droite"
+      },
+      "instanceOf": "cil:arrow-right",
+      "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     }
+    ]
+   },
+   {
+    "name": "Property 1=Outline blanc",
+    "type": "COMPONENT",
+    "bbox": {
+     "width": 220,
+     "height": 54
+    },
+    "layout": {
+     "mode": "HORIZONTAL",
+     "primary": "CENTER",
+     "counter": "CENTER",
+     "spacing": 10,
+     "padding": [
+      16,
+      32,
+      16,
+      32
+     ],
+     "primarySizing": "AUTO",
+     "counterSizing": "AUTO"
+    },
+    "stroke": {
+     "var": "color/blanc"
+    },
+    "strokeWeight": 2,
+    "strokeAlign": "INSIDE",
+    "children": [
+     {
+      "name": "cil:arrow-left",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône gauche"
+      },
+      "instanceOf": "cil:arrow-left",
+      "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     },
+     {
+      "name": "Contactez-nous",
+      "type": "TEXT",
+      "text": {
+       "characters": "Contactez-nous",
+       "fontSize": 16,
+       "fontStyle": "Medium",
+       "lineHeight": 22,
+       "textCase": "UPPER",
+       "fillVar": "color/blanc"
+      },
+      "fill": {
+       "var": "color/blanc"
+      }
+     },
+     {
+      "name": "cil:arrow-right",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône droite"
+      },
+      "instanceOf": "cil:arrow-right",
+      "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     }
+    ]
+   },
+   {
+    "name": "Property 1=Link",
+    "type": "COMPONENT",
+    "bbox": {
+     "width": 156,
+     "height": 30
+    },
+    "layout": {
+     "mode": "HORIZONTAL",
+     "primary": "CENTER",
+     "counter": "CENTER",
+     "spacing": 10,
+     "padding": [
+      4,
+      0,
+      4,
+      0
+     ],
+     "primarySizing": "AUTO",
+     "counterSizing": "AUTO"
+    },
+    "cornerRadius": 32,
+    "children": [
+     {
+      "name": "cil:arrow-left",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône gauche"
+      },
+      "instanceOf": "cil:arrow-left",
+      "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     },
+     {
+      "name": "Contactez-nous",
+      "type": "TEXT",
+      "text": {
+       "characters": "Contactez-nous",
+       "fontSize": 16,
+       "fontStyle": "Medium",
+       "lineHeight": 22,
+       "textCase": "UPPER",
+       "fillVar": "color/noir-bleute"
+      },
+      "fill": {
+       "var": "color/noir-bleute"
+      }
+     },
+     {
+      "name": "cil:arrow-right",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône droite"
+      },
+      "instanceOf": "cil:arrow-right",
+      "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     }
+    ]
+   },
+   {
+    "name": "Property 1=Outilne noir",
+    "type": "COMPONENT",
+    "bbox": {
+     "width": 220,
+     "height": 54
+    },
+    "layout": {
+     "mode": "HORIZONTAL",
+     "primary": "CENTER",
+     "counter": "CENTER",
+     "spacing": 10,
+     "padding": [
+      16,
+      32,
+      16,
+      32
+     ],
+     "primarySizing": "AUTO",
+     "counterSizing": "AUTO"
+    },
+    "stroke": {
+     "var": "color/noir-bleute"
+    },
+    "strokeWeight": 2,
+    "strokeAlign": "INSIDE",
+    "children": [
+     {
+      "name": "cil:arrow-left",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône gauche"
+      },
+      "instanceOf": "cil:arrow-left",
+      "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     },
+     {
+      "name": "Contactez-nous",
+      "type": "TEXT",
+      "text": {
+       "characters": "Contactez-nous",
+       "fontSize": 16,
+       "fontStyle": "Medium",
+       "lineHeight": 22,
+       "textCase": "UPPER",
+       "fillVar": "color/noir-bleute"
+      },
+      "fill": {
+       "var": "color/noir-bleute"
+      }
+     },
+     {
+      "name": "cil:arrow-right",
+      "type": "INSTANCE",
+      "hidden": true,
+      "propRefs": {
+       "visible": "Icône droite"
+      },
+      "instanceOf": "cil:arrow-right",
+      "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "bbox": {
+       "width": 20,
+       "height": 20
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

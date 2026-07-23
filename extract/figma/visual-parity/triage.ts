@@ -41,26 +41,24 @@ export interface TriageRule {
 }
 
 export const TRIAGE: TriageRule[] = [
-  // ---- button (catalog contract vs generated main-file set) ---------------
+  // ---- button (Piqueray ds.button vs the owner file's « Bouton » set) ------
+  // (Two demo-era rules removed 2026-07-23: State=Disabled / State=Focus
+  //  Visible matched variants of the DELETED demo Button — the Piqueray axis
+  //  is `Property 1=…`, so they could never fire again. The old catch-all
+  //  cause described the demo's Inter label (19.36px) — wrong file, wrong
+  //  font; replaced by the measured Piqueray causes below.)
   {
     subject: 'button',
-    variant: /State=Disabled/,
-    class: 'design',
+    variant: /Property 1=Link/,
+    class: 'renderer',
     cause:
-      'Figma set predates the literal-opacity engine fix (5ebb58e): the synced Disabled preview still binds the 0–1 opacity token into Figma\'s percent-scaled field and washes to near-white — main file awaits re-sync; our render is the contract truth (opacity 0.5)',
-  },
-  {
-    subject: 'button',
-    variant: /State=Focus Visible/,
-    class: 'design',
-    cause:
-      'our row is a REAL keyboard-focus screenshot whose outline (2px, offset 2px) extends the painted box; the generated Figma State=Focus Visible preview paints no ring outside the component bounds (content boxes 180×88 vs 166×70 by construction)',
+      'all-text row since the 2026-07-23 icon toggles (« Icône gauche/droite » BOOLEAN default off): neither side draws an icon at defaults, the DOM-derived text mask covers everything → masked score null BY CONSTRUCTION; ranks by its unmasked glyph-raster delta, proportionally large on a ~370×24 canvas (same class as Default/Orange, smaller denominator). NAMED COVERAGE GAP: icon rendering is no longer exercised by this gate — needs a subject prop-preset (iconRight=true vs a property-set Figma render) to come back under pixel proof.',
   },
   {
     subject: 'button',
     class: 'renderer',
     cause:
-      'text-hug metrics: Figma hugs the Inter label at lineHeightPx 19.36 (node 83×35) while the CSS line box is 20px (ours 82×36) — the ±1–2 CSS px hug delta rings the filled surface after center-padding; glyph raster differs on top (masked)',
+      'Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header)',
   },
 
   // ---- heading (all-text subject: masked score undefined by construction) --

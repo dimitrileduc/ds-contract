@@ -50,7 +50,9 @@ export interface ContractSubject {
 export type ParitySubject = DumpSubject | ContractSubject;
 
 const CBDS = 'WofZT8xaxXuc2Q6Je9S4XE';
-const MAIN = '8nim1d0IPnehMxA7B7SYxC';
+/** Piqueray — the repo's own design system since the reconversion (was the
+ *  51-component demo file `8nim1d0IPnehMxA7B7SYxC`, now deleted). */
+const PIQUERAY = 'd9FYAUcqdcNtsuaMgLefvJ';
 
 export const PARITY_SUBJECTS: ParitySubject[] = [
   // ---- CBDS fixtures (the owner's file) -----------------------------------
@@ -110,10 +112,11 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     setNodeId: '2313:42',
   },
 
-  // ---- catalog contracts anchored in the main POC file ---------------------
-  { id: 'badge', label: 'Badge (catalog)', kind: 'contract', contractId: 'ds.badge', fileKey: MAIN, setNodeId: '6:10' },
-  { id: 'button', label: 'Button (catalog)', kind: 'contract', contractId: 'ds.button', fileKey: MAIN, setNodeId: '5:21' },
-  { id: 'checkbox', label: 'Checkbox (catalog)', kind: 'contract', contractId: 'ds.checkbox', fileKey: MAIN, setNodeId: '11:315' },
-  { id: 'switch', label: 'Switch (catalog)', kind: 'contract', contractId: 'ds.switch', fileKey: MAIN, setNodeId: '11:1286' },
-  { id: 'heading', label: 'Heading (catalog)', kind: 'contract', contractId: 'ds.heading', fileKey: MAIN, setNodeId: '32:1862' },
+  // ---- catalog contracts anchored in the Piqueray file ---------------------
+  // The four demo subjects (badge, checkbox, switch, heading) were REMOVED with
+  // their contracts in US1 — the catalog holds the Button only. `button` keeps
+  // its id but is repointed onto Piqueray: same `ds.button` contract id, an
+  // entirely different canvas. Anchors mirror contracts/button.contract.json
+  // `anchors.figma` (fileKey + nodeId of the « Bouton » COMPONENT_SET).
+  { id: 'button', label: 'Button (Piqueray)', kind: 'contract', contractId: 'ds.button', fileKey: PIQUERAY, setNodeId: '6:122' },
 ];

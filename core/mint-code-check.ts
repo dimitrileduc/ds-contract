@@ -23,7 +23,7 @@
  *
  * Node script over pure functions — the same shell/core split as mint-check.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import {
   collectRootCustomProps,
@@ -347,7 +347,8 @@ try {
     read('tokens/primitives.tokens.json'),
     read('tokens/semantic.tokens.json'),
     read('tokens/modes/semantic.light.tokens.json'),
-    read('tokens/modes/semantic.dark.tokens.json'),
+    // Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+    existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json')) ? read('tokens/modes/semantic.dark.tokens.json') : {},
     proposal?.mintedTokens?.tree ?? {},
   ]);
   const emitCtx = { tokens: inventory, icons: new Map<string, string>(), contracts: new Map([[parsed.id, parsed]]) };

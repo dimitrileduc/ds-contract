@@ -4,7 +4,7 @@
  * from disk; plus the minted-layer composition token-source.ts performs
  * (minted tree deep-merged into the semantic slot, inventory extended).
  */
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import {
   ContractSchema,
@@ -45,7 +45,10 @@ export function loadRepoData(): RepoData {
   const primitives = t('primitives.tokens.json');
   const semantic = t('semantic.tokens.json');
   const light = t('modes/semantic.light.tokens.json');
-  const dark = t('modes/semantic.dark.tokens.json');
+  // Mono-theme (Piqueray): the dark-mode overrides file was removed — absent means none.
+  const dark = existsSync(path.join(REPO, 'tokens', 'modes/semantic.dark.tokens.json'))
+    ? t('modes/semantic.dark.tokens.json')
+    : ({} as Record<string, unknown>);
   const brands = Object.fromEntries(
     readdirSync(path.join(REPO, 'tokens', 'modes'))
       .filter((f) => /^brand\.[a-z][a-z0-9-]*\.tokens\.json$/.test(f))

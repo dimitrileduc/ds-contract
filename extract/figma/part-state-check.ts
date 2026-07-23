@@ -29,7 +29,7 @@
  *
  * Node script over pure functions — the cbds-bridge-check pattern.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../../scripts/contract-schema.js';
 import { loadTokenCorpus } from './tokens.js';
@@ -44,6 +44,9 @@ import { tokenInventoryFromJson } from '../../core/tokens.js';
 
 const ROOT = process.cwd();
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
+/** Mono-theme (Piqueray): `tokens/modes/semantic.dark.tokens.json` was removed in the reconversion —
+ *  absent means "no dark overrides", not a broken read. */
+const readOptional = (p: string) => (existsSync(path.join(ROOT, p)) ? read(p) : ({} as ReturnType<typeof read>));
 
 const failures: string[] = [];
 const check = (label: string, cond: boolean) => {
@@ -166,7 +169,7 @@ const inventory = tokenInventoryFromJson([
   read('tokens/primitives.tokens.json'),
   semantic,
   read('tokens/modes/semantic.light.tokens.json'),
-  read('tokens/modes/semantic.dark.tokens.json'),
+  readOptional('tokens/modes/semantic.dark.tokens.json'),
 ]);
 const cssErrors: string[] = [];
 const css = generateCss(contract, inventory, cssErrors);
@@ -187,7 +190,7 @@ const { tsx: inlineTsx } = emitReactInline(contract, {
     primitives: read('tokens/primitives.tokens.json'),
     semantic,
     light: read('tokens/modes/semantic.light.tokens.json'),
-    dark: read('tokens/modes/semantic.dark.tokens.json'),
+    dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
     brands: { default: read('tokens/modes/brand.default.tokens.json') },
   },
   icons: new Map(),
@@ -204,7 +207,7 @@ const engine = createFigmaEngine({
     primitives: read('tokens/primitives.tokens.json'),
     semantic,
     light: read('tokens/modes/semantic.light.tokens.json'),
-    dark: read('tokens/modes/semantic.dark.tokens.json'),
+    dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
     brands: { default: read('tokens/modes/brand.default.tokens.json') },
   },
   icons: new Map(),

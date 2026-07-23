@@ -12,7 +12,7 @@
  * Aliases are preserved as var() references so the CSS reads like the token
  * architecture. Unresolvable aliases fail the build.
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 
 const read = (p) => JSON.parse(readFileSync(p, 'utf8'));
 
@@ -64,7 +64,11 @@ function emit(selector, tokens, resolvable) {
 const primitives = flatten(read('tokens/primitives.tokens.json'));
 const semantic = flatten(read('tokens/semantic.tokens.json'));
 const light = flatten(read('tokens/modes/semantic.light.tokens.json'));
-const dark = flatten(read('tokens/modes/semantic.dark.tokens.json'));
+// Mono-theme (Piqueray): the dark-mode file is intentionally absent. A missing
+// dark file is treated as an EMPTY mode, so the light/dark parity check below
+// no-ops (dark.size === 0) and a single :root block is emitted.
+const darkPath = 'tokens/modes/semantic.dark.tokens.json';
+const dark = existsSync(darkPath) ? flatten(read(darkPath)) : new Map();
 
 // Brand dimension — tokens/modes/brand.<name>.tokens.json, discovered
 // dynamically so ADDING A BRAND IS A TOKEN-LAYER-ONLY OPERATION: no import
@@ -80,12 +84,15 @@ if (!brands.has('default')) throw new Error('tokens/modes/brand.default.tokens.j
 const brandDefault = brands.get('default');
 
 // Mode-set completeness is drift inside the source of truth itself: light and
-// dark must define the same tokens, and so must every brand file.
-for (const path of light.keys()) {
-  if (!dark.has(path)) throw new Error(`Token "${path}" exists in light mode but not dark`);
-}
-for (const path of dark.keys()) {
-  if (!light.has(path)) throw new Error(`Token "${path}" exists in dark mode but not light`);
+// dark must define the same tokens, and so must every brand file. Skipped under
+// mono-theme (no dark file ⇒ dark.size === 0): there is nothing to match.
+if (dark.size > 0) {
+  for (const path of light.keys()) {
+    if (!dark.has(path)) throw new Error(`Token "${path}" exists in light mode but not dark`);
+  }
+  for (const path of dark.keys()) {
+    if (!light.has(path)) throw new Error(`Token "${path}" exists in dark mode but not light`);
+  }
 }
 for (const [name, tokens] of brands) {
   for (const path of brandDefault.keys()) {

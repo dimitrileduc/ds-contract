@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.5.0)
+ * Source of truth: contracts/button.contract.json (ds.button v1.2.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -13,34 +13,38 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Triggers an action or event. Use one primary button per context.',
+        component:
+          "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label is a reusable prop. The two nested icons are leading/trailing SLOTS: since 2026-07-23 the Figma masters bind their visibility to the BOOLEAN properties « Icône gauche »/« Icône droite » (promotion from observed usage — 21/79 page instances show a left icon, 59/79 a right one), modeled here as the iconLeft/iconRight boolean props with the file's own cil:arrow-* glyphs as default content. Page-level INSTANCE SWAPS of those glyphs (pdf, download, cart, …) stay designer-side instance overrides — an INSTANCE_SWAP slot model is deliberately deferred until the icon masters get contracts. Known extraction gap, named: propose-figma does not yet lower the dump's boolDefaults/propRefs into props, so this promotion is authored and reviewed against the 2026-07-23 dump.",
       },
     },
   },
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'danger', 'ghost'],
-      description: 'Visual prominence of the action.',
+      options: ['default', 'orange', 'blanc', 'outlineBlanc', 'link', 'outilneNoir'],
+      description: 'Visual style of the button.',
     },
-    size: { control: 'select', options: ['sm', 'md', 'lg'], description: 'Control density.' },
-    disabled: {
-      control: 'boolean',
-      description: 'Prevents interaction and communicates unavailability.',
+    children: {
+      control: 'text',
+      description:
+        'Button label. Authored: promoted to a reusable prop — in the Figma source the text « Contactez-nous » is static (not a component property), so contract↔Figma parity will list this as authored drift.',
     },
-    loading: {
+    iconLeft: {
       control: 'boolean',
       description:
-        'Shows a spinning busy indicator beside the label while an async action resolves.',
+        "Shows the leading icon slot (default glyph: the file's cil:arrow-left). Extracted from the BOOLEAN property « Icône gauche » added to the Figma masters on 2026-07-23; on pages the glyph is often instance-swapped (pdf, cart, phone, …) — swaps stay designer-side overrides.",
     },
-    children: { control: 'text', description: 'Button label.' },
+    iconRight: {
+      control: 'boolean',
+      description:
+        "Shows the trailing icon slot (default glyph: the file's cil:arrow-right — the « → » of Link buttons). Extracted from the BOOLEAN property « Icône droite » added to the Figma masters on 2026-07-23; on pages the glyph is sometimes instance-swapped (download, chevron, …).",
+    },
   },
   args: {
-    variant: 'primary',
-    size: 'md',
-    disabled: false,
-    loading: false,
-    children: 'Button',
+    variant: 'default',
+    children: 'Contactez-nous',
+    iconLeft: false,
+    iconRight: false,
   },
 } satisfies Meta<typeof Button>;
 
@@ -49,25 +53,30 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
-export const Primary: Story = {
-  args: { variant: 'primary' },
+export const Default: Story = {
+  args: { variant: 'default' },
 };
 
-export const Secondary: Story = {
-  args: { variant: 'secondary' },
+export const Orange: Story = {
+  args: { variant: 'orange' },
 };
 
-export const Danger: Story = {
-  args: { variant: 'danger' },
+export const Blanc: Story = {
+  args: { variant: 'blanc' },
 };
 
-export const Ghost: Story = {
-  args: { variant: 'ghost' },
+export const OutlineBlanc: Story = {
+  args: { variant: 'outlineBlanc' },
 };
-export const Disabled: Story = {
-  args: { disabled: true },
+
+export const Link: Story = {
+  args: { variant: 'link' },
 };
-/** Every legal combination the contract defines (variant × size). */
+
+export const OutilneNoir: Story = {
+  args: { variant: 'outilneNoir' },
+};
+/** Every legal combination the contract defines. */
 export const Matrix: Story = {
   parameters: { controls: { disable: true } },
   render: () => (
@@ -75,47 +84,17 @@ export const Matrix: Story = {
       style={{
         display: 'grid',
         gap: 16,
-        gridTemplateColumns: 'repeat(3, max-content)',
+        gridTemplateColumns: 'repeat(1, max-content)',
         alignItems: 'center',
         justifyItems: 'start',
       }}
     >
-      <Button variant="primary" size="sm">
-        Button
-      </Button>
-      <Button variant="primary" size="md">
-        Button
-      </Button>
-      <Button variant="primary" size="lg">
-        Button
-      </Button>
-      <Button variant="secondary" size="sm">
-        Button
-      </Button>
-      <Button variant="secondary" size="md">
-        Button
-      </Button>
-      <Button variant="secondary" size="lg">
-        Button
-      </Button>
-      <Button variant="danger" size="sm">
-        Button
-      </Button>
-      <Button variant="danger" size="md">
-        Button
-      </Button>
-      <Button variant="danger" size="lg">
-        Button
-      </Button>
-      <Button variant="ghost" size="sm">
-        Button
-      </Button>
-      <Button variant="ghost" size="md">
-        Button
-      </Button>
-      <Button variant="ghost" size="lg">
-        Button
-      </Button>
+      <Button variant="default">Contactez-nous</Button>
+      <Button variant="orange">Contactez-nous</Button>
+      <Button variant="blanc">Contactez-nous</Button>
+      <Button variant="outlineBlanc">Contactez-nous</Button>
+      <Button variant="link">Contactez-nous</Button>
+      <Button variant="outilneNoir">Contactez-nous</Button>
     </div>
   ),
 };

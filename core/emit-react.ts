@@ -88,6 +88,48 @@ export const UA_MARGIN_ELEMENTS = new Set([
   'p', 'blockquote', 'figure', 'hr', 'ul', 'ol', 'dl', 'dd', 'pre', 'fieldset',
 ]);
 
+/** A CSS `border` always grows an auto-sized box outward; Figma strokes draw
+ *  INSIDE the frame (its own bbox never changes). `--dsc-*` custom properties
+ *  let a `box-shadow: inset` stand in for the border without growing the box
+ *  — same paint, matching geometry. Root-only: a nested part's own border
+ *  never grows the ROOT's box, so it keeps the plain `border-style` path. */
+export const DSC_BORDER_VARS: Record<string, string> = {
+  'border-width': '--dsc-border-width',
+  'border-color': '--dsc-border-color',
+};
+export interface RootBorderPlan {
+  hasBorder: boolean;
+  /** False disengages the inset rewrite (kept on the legacy `border-style`
+   *  path) whenever the uniform inset spread cannot express what the root
+   *  is doing: per-side widths, a root box-shadow of its own (which would
+   *  overwrite the inset — box-shadow is not additive across declarations),
+   *  or a declared non-solid border-style (dashed/dotted). Named limit: the
+   *  inset box-shadow disappears under `forced-colors` — no fallback yet. */
+  inset: boolean;
+}
+export function rootBorderPlan(root: Part): RootBorderPlan {
+  const chans = new Set<string>();
+  const collect = (o?: Record<string, unknown>) => {
+    for (const k of Object.keys(o ?? {})) chans.add(k);
+  };
+  collect(root.tokens);
+  collect(root.literals);
+  for (const e of tokensByPropEntries(root)) for (const m of Object.values(e.map)) collect(m);
+  for (const e of root.literalsByProp ?? []) for (const m of Object.values(e.map)) collect(m);
+  for (const s of Object.values(root.states ?? {})) collect(s);
+  const hasBorder =
+    'border-width' in (root.tokens ?? {}) ||
+    'border-color' in (root.tokens ?? {}) ||
+    'border-width' in (root.literals ?? {});
+  const perSide = [...chans].some((c) => /^border-(top|right|bottom|left)-width$/.test(c));
+  const declaredStyle =
+    Boolean(root.declared?.['border-style']) ||
+    Object.values(root.declaredStates ?? {}).some((o) => 'border-style' in o);
+  return { hasBorder, inset: hasBorder && !perSide && !chans.has('box-shadow') && !declaredStyle };
+}
+export const INSET_BORDER_SHADOW =
+  'box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent)';
+
 /** Every element the contract's root can render as. */
 export function rootElementsOf(contract: Contract): string[] {
   const ebp = contract.semantics.elementByProp;
@@ -1102,11 +1144,12 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
   if (rootElementsOf(contract).some((el) => UA_MARGIN_ELEMENTS.has(el))) {
     rootDecls.push('margin: 0');
   }
-  const hasBorder =
-    'border-width' in rootTokens || 'border-color' in rootTokens ||
-    'border-width' in (root.literals ?? {});
-  if (hasBorder) rootDecls.push('border-style: solid');
-  else rootDecls.push('border: 0');
+  const borderPlan = rootBorderPlan(root);
+  rootDecls.push('border: 0'); // always: kills the UA <button> 2px outset border
+  if (borderPlan.inset) rootDecls.push(INSET_BORDER_SHADOW); // drawn INSIDE — Figma parity
+  else if (borderPlan.hasBorder) rootDecls.push('border-style: solid'); // legacy path (non-uniform / shadowed root)
+  if (contract.semantics.element === 'button') rootDecls.push('background-color: transparent'); // UA ButtonFace reset — before any token/literal push below
+  const route = (cssProp: string): string => (borderPlan.inset && DSC_BORDER_VARS[cssProp]) || cssProp;
   // Fluid components: a max-width binding means "fill available space up to
   // the token" — components are never rigid (fixed `width` is reserved for
   // genuinely fixed shapes like Avatar). min-width: fit-content keeps the
@@ -1172,7 +1215,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     const phs = placeholdersIn(refPath);
     if (phs.length === 0) {
       if (checkToken(refPath, `anatomy.root.tokens.${cssProp}`)) {
-        rootDecls.push(`${cssProp}: ${cssVar(refPath)}`);
+        rootDecls.push(`${route(cssProp)}: ${cssVar(refPath)}`);
         if (floorMirror) rootDecls.push(`min-width: ${cssVar(refPath)}`);
       }
     } else if (phs.length === 1) {
@@ -1186,7 +1229,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         if (!checkToken(resolved, `anatomy.root.tokens.${cssProp}`)) continue;
         const cls = `${phs[0]}-${value}`;
         if (!enumRules.has(cls)) enumRules.set(cls, new Map());
-        enumRules.get(cls)!.set(cssProp, cssVar(resolved));
+        enumRules.get(cls)!.set(route(cssProp), cssVar(resolved));
         if (floorMirror) enumRules.get(cls)!.set('min-width', cssVar(resolved));
       }
     } else if (phs.length === 2) {
@@ -1216,7 +1259,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
           }
           const cls = `${pa}-${a}.${pb}-${b}`;
           if (!enumRules.has(cls)) enumRules.set(cls, new Map());
-          enumRules.get(cls)!.set(cssProp, cssVar(resolved));
+          enumRules.get(cls)!.set(route(cssProp), cssVar(resolved));
         }
       }
     } else if (phs.length === 3) {
@@ -1246,7 +1289,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
             }
             const cls = `${pa}-${a}.${pb}-${b}.${pc}-${c}`;
             if (!enumRules.has(cls)) enumRules.set(cls, new Map());
-            enumRules.get(cls)!.set(cssProp, cssVar(resolved));
+            enumRules.get(cls)!.set(route(cssProp), cssVar(resolved));
           }
         }
       }
@@ -1281,7 +1324,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
             }
             const cls = `${tbpProp}-${value}.${phs[0]}-${phValue}`;
             if (!enumRules.has(cls)) enumRules.set(cls, new Map());
-            enumRules.get(cls)!.set(cssProp, cssVar(resolved));
+            enumRules.get(cls)!.set(route(cssProp), cssVar(resolved));
             if (floorMirror) enumRules.get(cls)!.set('min-width', cssVar(resolved));
           }
           continue;
@@ -1289,7 +1332,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         if (!checkToken(refPath, `anatomy.root.tokensByProp.${value}.${cssProp}`)) continue;
         const cls = `${tbpProp}-${value}`;
         if (!enumRules.has(cls)) enumRules.set(cls, new Map());
-        enumRules.get(cls)!.set(cssProp, cssVar(refPath));
+        enumRules.get(cls)!.set(route(cssProp), cssVar(refPath));
         if (floorMirror) enumRules.get(cls)!.set('min-width', cssVar(refPath));
       }
     }
@@ -1299,14 +1342,14 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
   // token bindings — base decls on .root, per-value overrides as enum-class
   // rules (validated in validateContract; refused channels never reach here).
   for (const [cssProp, lit] of Object.entries(root.literals ?? {})) {
-    rootDecls.push(`${cssProp}: ${lit}`);
+    rootDecls.push(`${route(cssProp)}: ${lit}`);
   }
   for (const { prop: lbpProp, map } of root.literalsByProp ?? []) {
     for (const [value, overrides] of Object.entries(map)) {
       for (const [cssProp, lit] of Object.entries(overrides)) {
         const cls = `${lbpProp}-${value}`;
         if (!enumRules.has(cls)) enumRules.set(cls, new Map());
-        enumRules.get(cls)!.set(cssProp, lit);
+        enumRules.get(cls)!.set(route(cssProp), lit);
       }
     }
   }
@@ -1391,14 +1434,14 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       const phs = placeholdersIn(refPath);
       if (phs.length === 0) {
         if (checkToken(refPath, `anatomy.root.states.${state}.${cssProp}`)) {
-          stateRules.push(`\n.root${sel} {\n  ${cssProp}: ${cssVar(refPath)};\n}`);
+          stateRules.push(`\n.root${sel} {\n  ${route(cssProp)}: ${cssVar(refPath)};\n}`);
         }
       } else if (phs.length === 1) {
         const values = enums.get(phs[0]) ?? [];
         for (const value of values) {
           const resolved = refPath.replaceAll(`{${phs[0]}}`, value);
           if (!checkToken(resolved, `anatomy.root.states.${state}.${cssProp}`)) continue;
-          stateRules.push(`\n.${phs[0]}-${value}${sel} {\n  ${cssProp}: ${cssVar(resolved)};\n}`);
+          stateRules.push(`\n.${phs[0]}-${value}${sel} {\n  ${route(cssProp)}: ${cssVar(resolved)};\n}`);
         }
       }
     }

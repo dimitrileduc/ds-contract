@@ -248,6 +248,13 @@ const GENERATOR_ARTIFACTS = new Set([
   'outline-style:solid',
   'outline-offset:2px',
   'position:relative',
+  // Inset-border chrome (the root border draws INSIDE, matching Figma's
+  // stroke — a CSS border always grows an auto-sized box outward instead)
+  // + the UA <button> background reset. Trade-off, named: a genuine foreign
+  // `background-color: transparent` is now indistinguishable from this
+  // chrome and silently skipped too.
+  'box-shadow:inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent)',
+  'background-color:transparent',
 ]);
 
 /** Properties whose literal values belong in the token vocabulary — a raw
@@ -379,7 +386,17 @@ function invertDecls(
   const insets = new Map<string, string>();
   let absolute = false;
 
-  for (const { prop, value } of decls) {
+  for (const decl of decls) {
+    // Inset-border idiom (emit-react/emit-html rootBorderPlan): the root
+    // reroutes border-width/border-color through --dsc-* custom properties
+    // so a box-shadow can draw the stroke INSIDE without growing the box.
+    // Canonicalize back to the contract vocabulary before anything below
+    // reads `prop` — a real token binding, not a generator artifact.
+    const prop =
+      decl.prop === '--dsc-border-width' ? 'border-width'
+      : decl.prop === '--dsc-border-color' ? 'border-color'
+      : decl.prop;
+    const { value } = decl;
     if (GENERATOR_ARTIFACTS.has(`${prop}:${value}`)) continue;
     if (prop === 'width' && value === '100%' && hasMaxWidthVar) continue; // fluid-root artifact of the max-width binding
     if (prop === 'display' && (value === 'flex' || value === 'inline-flex')) {

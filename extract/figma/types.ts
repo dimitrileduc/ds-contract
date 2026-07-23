@@ -56,6 +56,14 @@ export interface DumpText {
   style?: string;
   /** Variable behind the text fill (slash-form), when bound. */
   fillVar?: string;
+  /** Text-case transform (dump v1.6, additive) — Figma `textCase`, captured
+   *  ONLY for the values with a CSS text-transform projection: UPPER →
+   *  uppercase, LOWER → lowercase, TITLE → capitalize. ORIGINAL is the default
+   *  (not captured). SMALL_CAPS and friends have no text-transform equivalent
+   *  and stay named degradation receipts. propose.ts lowers this to a
+   *  `text-transform` declared fact on the text's OWN part (never the root, so
+   *  a multi-text component keeps per-node casing). Absence = ORIGINAL. */
+  textCase?: 'UPPER' | 'LOWER' | 'TITLE';
 }
 
 /** One visible effect (dump v1.2, additive). Shadows carry their full
@@ -127,6 +135,13 @@ export interface DumpNode {
   fill?: DumpPaint;
   stroke?: DumpPaint;
   strokeWeight?: number;
+  /** Stroke alignment (dump v1.6, additive) — Figma `strokeAlign`, captured
+   *  ONLY when a stroke is emitted. INSIDE strokes lower to a `box-shadow:
+   *  inset` border (no layout growth, mirroring Figma); the DEFAULT the dump
+   *  consumers historically assumed was INSIDE, so absence = INSIDE for back
+   *  compat. CENTER/OUTSIDE are captured verbatim so propose.ts can emit the
+   *  matching model instead of silently rendering them as INSIDE. */
+  strokeAlign?: 'INSIDE' | 'CENTER' | 'OUTSIDE';
   /** Literal min/max sizing in px (dump v1.4, additive) — carried as
    *  min-width/min-height/max-width/max-height style facts (a drawn
    *  minHeight 44 is a tap-target fact). Bound min/max variables ride

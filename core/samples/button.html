@@ -1,5 +1,5 @@
 <!--
-  Button — static HTML+CSS emitted from contract ds.button v1.5.0 by core/emit-html.ts.
+  Button — static HTML+CSS emitted from contract ds.button v1.2.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,51 +9,52 @@
 <section class="showcase showcase--button">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <button class="button button--variant-primary button--size-md">
-      <span class="button__label">Button</span>
+    <button class="button button--variant-default">
+      <span class="button__label">Contactez-nous</span>
     </button>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">variant=secondary</p>
-    <button class="button button--variant-secondary button--size-md">
-      <span class="button__label">Button</span>
+    <p class="showcase__label">variant=orange</p>
+    <button class="button button--variant-orange">
+      <span class="button__label">Contactez-nous</span>
     </button>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">variant=danger</p>
-    <button class="button button--variant-danger button--size-md">
-      <span class="button__label">Button</span>
+    <p class="showcase__label">variant=blanc</p>
+    <button class="button button--variant-blanc">
+      <span class="button__label">Contactez-nous</span>
     </button>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">variant=ghost</p>
-    <button class="button button--variant-ghost button--size-md">
-      <span class="button__label">Button</span>
+    <p class="showcase__label">variant=outlineBlanc</p>
+    <button class="button button--variant-outlineBlanc">
+      <span class="button__label">Contactez-nous</span>
     </button>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">size=sm</p>
-    <button class="button button--variant-primary button--size-sm">
-      <span class="button__label">Button</span>
+    <p class="showcase__label">variant=link</p>
+    <button class="button button--variant-link">
+      <span class="button__label">Contactez-nous</span>
     </button>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">size=lg</p>
-    <button class="button button--variant-primary button--size-lg">
-      <span class="button__label">Button</span>
+    <p class="showcase__label">variant=outilneNoir</p>
+    <button class="button button--variant-outilneNoir">
+      <span class="button__label">Contactez-nous</span>
     </button>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">disabled=true</p>
-    <button class="button button--variant-primary button--size-md" disabled>
-      <span class="button__label">Button</span>
+    <p class="showcase__label">iconLeft=true</p>
+    <button class="button button--variant-default" data-icon-left="true">
+      <span class="button__iconLeft" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="none"><path d="M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z" fill="currentColor"/></svg></span>
+      <span class="button__label">Contactez-nous</span>
     </button>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">loading=true</p>
-    <button class="button button--variant-primary button--size-md" data-loading="true">
-      <span class="button__loadingSpinner" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M 10 2.5 A 7.5 7.5 0 0 1 17.5 10" stroke-linecap="round"/></svg></span>
-      <span class="button__label">Button</span>
+    <p class="showcase__label">iconRight=true</p>
+    <button class="button button--variant-default" data-icon-right="true">
+      <span class="button__label">Contactez-nous</span>
+      <span class="button__iconRight" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="none"><path d="M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z" transform="translate(0.626 4.742)" fill="currentColor"/></svg></span>
     </button>
   </div>
 </section>

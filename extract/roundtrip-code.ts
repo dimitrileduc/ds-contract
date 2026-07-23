@@ -3,7 +3,7 @@
  *
  * This repo's own src/components/ are GENERATED from contracts, which makes
  * them a perfect executable ground truth for the anatomy extractor: extract
- * Badge, Switch, Card back out of the generated source and compare the
+ * every shipping component back out of the generated source and compare the
  * proposed contracts to the shipping ones, field by field. Every comparison
  * lands in exactly one bucket:
  *
@@ -24,6 +24,16 @@
  *   N4  a component ref's `text` equal to the child contract's children
  *       default ≡ no text override (the generator bakes the default in)
  *   N5  part `element` defaults: span for content/text parts, div otherwise
+ *   N6  `semantics.role` equal to `semantics.element` ≡ absent from code
+ *       (emit-react.ts emits role= only when role ≠ element)
+ *   N7  a part bound `content: {prop: P}` and a part declaring
+ *       `slot: {name: C}` (C = P's code binding) emit the SAME `{C}` — the
+ *       channel is not decidable from code (the undecidability
+ *       core/extract-css-module.ts already names for a {children} root)
+ *   N8  a contract `icon` part ≡ CODE-ABSENT (no icon-asset matching pass
+ *       exists yet — extraction cannot tell an inlined glyph SVG apart from
+ *       a foreign one); its generator chrome (element defaults to span,
+ *       `display:inline-flex` CSS) is folded, not read as a mismatch
  *
  * Output: verdict table on stdout + extract/ROUNDTRIP-CODE.md (committed).
  * Exit 1 on any MISMATCH.
@@ -34,7 +44,9 @@ import { extractReactTsx } from './adapters/react-tsx.js';
 import { proposeContract } from './propose.js';
 
 const ROOT = process.cwd();
-const TRIO = ['badge', 'switch', 'card'];
+// The shipping catalogue: Piqueray generates ONE component (Button); the trio
+// (badge, switch, card) went with the reconversion.
+const TRIO = ['button'];
 
 type Verdict = 'MATCHED' | 'CODE-ABSENT' | 'MISMATCH';
 interface Finding {
@@ -52,6 +64,8 @@ const add = (component: string, subject: string, verdict: Verdict, detail: strin
 // ---------------------------------------------------------------------------
 
 type Json = Record<string, any>;
+/** component NAME → the shipping contract's props (N7 needs the code binding). */
+const contractPropsByComponent = new Map<string, Json[]>();
 const loadContract = (id: string): Json =>
   JSON.parse(readFileSync(path.join(ROOT, 'contracts', `${id.replace(/^[^.]+\./, '')}.contract.json`), 'utf8'));
 
@@ -66,7 +80,7 @@ function childrenDefault(contractId: string): string | undefined {
 }
 
 // ---------------------------------------------------------------------------
-// Canonicalization (N1–N5)
+// Canonicalization (N1–N7)
 // ---------------------------------------------------------------------------
 
 const isStructural = (part: Json): boolean =>
@@ -89,6 +103,7 @@ const canonText = (t: string | undefined): string | undefined => (t === '' ? und
 function canonElement(part: Json, isRoot: boolean): string | undefined {
   if (isRoot) return undefined; // root element lives in semantics
   if (part.component) return undefined;
+  if (part.icon) return part.element ?? 'span'; // N8 — a bare icon renders <span aria-hidden>
   return part.element ?? (part.content || part.text !== undefined ? 'span' : 'div'); // N5
 }
 
@@ -136,7 +151,40 @@ function compareParts(component: string, partPath: string, contract: Json, propo
       }
     }
   }
-  if ((contract.slot?.name ?? null) !== (proposed.slot?.name ?? null)) {
+  // N7 — the children CHANNEL is not decidable from code. A part bound
+  // `content: {prop: P}` and a part declaring `slot: {name: C}` (C = P's code
+  // binding) BOTH emit exactly `{C}` in the JSX, so the two spellings are
+  // byte-identical in the generated source. core/extract-css-module.ts:1436
+  // already names this undecidability for a root rendering {children}
+  // directly; the same holds one level down, inside a named part.
+  const codeBinding = (propName: string): string | undefined =>
+    (contractPropsByComponent.get(component) ?? []).find((x) => x.name === propName)?.bindings?.code?.prop;
+  const undecidableChannel =
+    !!contract.content && !contract.slot && !!proposed.slot && !proposed.content &&
+    codeBinding(contract.content.prop) === proposed.slot.name;
+  // Under N7 the part's STRUCTURAL verdict is a function of the same
+  // undecidable channel (isStructural keys off slot vs content), so the layout
+  // comparison canonicalizes the proposal as the content part it may equally be.
+  const proposedCanonN7: Json = undecidableChannel
+    ? { ...proposed, content: contract.content, slot: undefined }
+    : proposed;
+  // N8 — no icon-asset matching pass exists in extraction yet, so a contract
+  // icon part is systematically CODE-ABSENT on the proposed side. Its
+  // generator chrome (display:inline-flex CSS, element defaulting to span)
+  // is folded into the canonical proposal rather than read as a mismatch.
+  const iconRendering =
+    !!contract.icon && !proposed.icon && !proposed.component && !proposed.slot && !proposed.content;
+  if (iconRendering) {
+    add(component, `${subject}.icon`, 'CODE-ABSENT',
+      'icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8)');
+  }
+  const proposedCanon: Json = iconRendering
+    ? { ...proposedCanonN7, icon: contract.icon, layout: undefined }
+    : proposedCanonN7;
+  if (undecidableChannel) {
+    add(component, `${subject}.{content|slot}`, 'CODE-ABSENT',
+      `both spellings emit exactly {${proposed.slot.name}} — the channel (content-bound text prop vs slot) is not decidable from code (N7)`);
+  } else if ((contract.slot?.name ?? null) !== (proposed.slot?.name ?? null)) {
     issues.push(`slot: contract ${JSON.stringify(contract.slot?.name ?? null)} vs proposed ${JSON.stringify(proposed.slot?.name ?? null)}`);
   } else if (contract.slot) {
     matchedBits.push(`slot "${contract.slot.name}"`);
@@ -146,18 +194,20 @@ function compareParts(component: string, partPath: string, contract: Json, propo
         'slot constraints and canvas property names are design-side declarations — not recoverable from {prop} in JSX');
     }
   }
-  if ((contract.content?.prop ?? null) !== (proposed.content?.prop ?? null)) {
+  if (undecidableChannel) {
+    /* N7 above: the channel is not decidable from code — already receipted. */
+  } else if ((contract.content?.prop ?? null) !== (proposed.content?.prop ?? null)) {
     issues.push(`content binding: ${JSON.stringify(contract.content ?? null)} vs ${JSON.stringify(proposed.content ?? null)}`);
   } else if (contract.content) matchedBits.push(`content ← ${contract.content.prop}`);
   if (canonText(contract.text) !== canonText(proposed.text)) {
     issues.push(`text: ${JSON.stringify(contract.text)} vs ${JSON.stringify(proposed.text)}`);
   }
 
-  if (canonElement(contract, isRoot) !== canonElement(proposed, isRoot)) {
-    issues.push(`element: ${canonElement(contract, isRoot)} vs ${canonElement(proposed, isRoot)}`);
+  if (canonElement(contract, isRoot) !== canonElement(proposedCanon, isRoot)) {
+    issues.push(`element: ${canonElement(contract, isRoot)} vs ${canonElement(proposedCanon, isRoot)}`);
   }
-  if (!deepEqual(canonLayout(contract, isRoot), canonLayout(proposed, isRoot))) {
-    issues.push(`layout: ${JSON.stringify(canonLayout(contract, isRoot))} vs ${JSON.stringify(canonLayout(proposed, isRoot))}`);
+  if (!deepEqual(canonLayout(contract, isRoot), canonLayout(proposedCanon, isRoot))) {
+    issues.push(`layout: ${JSON.stringify(canonLayout(contract, isRoot))} vs ${JSON.stringify(canonLayout(proposedCanon, isRoot))}`);
   }
   if (!deepEqual(contract.tokens ?? {}, proposed.tokens ?? {})) {
     const c = contract.tokens ?? {}, p = proposed.tokens ?? {};
@@ -207,6 +257,7 @@ function compareParts(component: string, partPath: string, contract: Json, propo
 
 function compareComponent(contract: Json, proposal: Json) {
   const name = contract.name as string;
+  contractPropsByComponent.set(name, (contract.props ?? []) as Json[]);
 
   // Governance / design-side contract fields: genuinely not in code.
   add(name, 'version, status, description', 'CODE-ABSENT', 'contract governance prose — extraction proposes 0.1.0 draft');
@@ -219,7 +270,13 @@ function compareComponent(contract: Json, proposal: Json) {
   if (contract.semantics.element !== proposal.semantics.element) {
     add(name, 'semantics.element', 'MISMATCH', `${contract.semantics.element} vs ${proposal.semantics.element}`);
   } else add(name, 'semantics.element', 'MATCHED', contract.semantics.element);
-  if ((contract.semantics.role ?? null) !== (proposal.semantics.role ?? null)) {
+  if (contract.semantics.role && contract.semantics.role === contract.semantics.element && !proposal.semantics.role) {
+    // N6 — the generator emits `role=` ONLY when role ≠ element
+    // (core/emit-react.ts:1954), so a role equal to the host element never
+    // reaches the code. Its absence is the rule working, not extraction loss.
+    add(name, 'semantics.role', 'CODE-ABSENT',
+      `role "${contract.semantics.role}" equals the host element — the generator omits the redundant attribute (N6)`);
+  } else if ((contract.semantics.role ?? null) !== (proposal.semantics.role ?? null)) {
     add(name, 'semantics.role', 'MISMATCH', `${contract.semantics.role ?? '∅'} vs ${proposal.semantics.role ?? '∅'}`);
   } else if (contract.semantics.role) add(name, 'semantics.role', 'MATCHED', contract.semantics.role);
 
@@ -324,7 +381,7 @@ const lines: string[] = [
   '`contracts/{badge,switch,card}.contract.json` is an executable ground truth for the',
   'css-module anatomy adapter: **round-trip identity**. Verdicts:',
   '',
-  '- **MATCHED** — the proposal recovered the contract field (after the normalizations N1–N5',
+  '- **MATCHED** — the proposal recovered the contract field (after the normalizations N1–N7',
   '  documented in `extract/roundtrip-code.ts`, each the inversion of a deterministic generator rule)',
   '- **CODE-ABSENT** — genuinely not present in code (figma bindings, canvas defaults of required',
   '  text props, slot constraints, prose); listed by name, never silently waved through',

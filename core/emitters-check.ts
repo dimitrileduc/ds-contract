@@ -3,7 +3,7 @@
  *
  * The shipping react emitter is byte-guarded by evals/golden.json; these two
  * are not wired into the CLI, so this script asserts their schema-driven
- * invariants over Badge / Switch / Card / Button and writes eyeball samples
+ * invariants over every shipping contract and writes eyeball samples
  * to core/samples/:
  *
  *   1. Every enum value produces a class (html) / a variant-styles branch or
@@ -17,7 +17,7 @@
  * This is a node script (it writes samples) over pure functions — the same
  * split as every other shell in the repo.
  */
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../scripts/contract-schema.js';
 import { importFromUrl } from '../extract/figma/rest/fetch.js';
@@ -55,14 +55,20 @@ const ctx: EmitterCtx = {
     primitives: read('tokens/primitives.tokens.json'),
     semantic: read('tokens/semantic.tokens.json'),
     light: read('tokens/modes/semantic.light.tokens.json'),
-    dark: read('tokens/modes/semantic.dark.tokens.json'),
+    // Mono-theme (Piqueray): the dark-mode file is optional — absent means no overrides.
+    dark: existsSync(path.join(ROOT, 'tokens/modes/semantic.dark.tokens.json')) ? read('tokens/modes/semantic.dark.tokens.json') : {},
     brands,
   },
   icons,
   contracts,
 };
 
-const SUBJECTS = ['ds.badge', 'ds.switch', 'ds.card', 'ds.button'];
+// Piqueray ships ONE component. The invariants below are per-contract, so the
+// suite is the shipping catalogue — every contract in contracts/, currently
+// ds.button. (The demo Badge/Switch/Card subjects went with the reconversion;
+// the showcase library is not an anchor here — its contracts bind the Polaris
+// token corpus, not this repo's.)
+const SUBJECTS = [...contracts.keys()].sort();
 const failures: string[] = [];
 const check = (label: string, cond: boolean) => {
   if (!cond) failures.push(label);
@@ -121,10 +127,10 @@ for (const id of SUBJECTS) {
 console.log('\nRegistry');
 check('registry: react, html, react-inline, figma-script all registered',
   ['react', 'html', 'react-inline', 'figma-script'].every((n) => emitters.some((e) => e.name === n)));
-const badge = contracts.get('ds.badge')!;
+const registrySubject = contracts.get(SUBJECTS[0])!;
 for (const e of emitters) {
-  const files = e.emit(badge, ctx);
-  check(`registry: ${e.name} emits ${files.length} file(s) for Badge, all non-empty`,
+  const files = e.emit(registrySubject, ctx);
+  check(`registry: ${e.name} emits ${files.length} file(s) for ${registrySubject.name}, all non-empty`,
     files.length > 0 && files.every((f) => f.contents.length > 0));
 }
 
@@ -204,12 +210,12 @@ console.log('\nFigma script — minted-variable preamble (degraded Badge demo im
   })());
   const withoutMint = emitFigmaScript(contract, scriptCtx);
   check('same contract, no minted layer: NO preamble', !withoutMint.includes('Imported (provisional)'));
-  const repoBadge = emitFigmaScript(contracts.get('ds.badge')!, {
+  const repoShipping = emitFigmaScript(registrySubject, {
     tokens: ctx.tokens,
     icons,
     contracts,
   });
-  check('repo Badge (mints nothing): NO preamble — golden byte-invariant', !repoBadge.includes('Imported (provisional)'));
+  check('repo contract (mints nothing): NO preamble — golden byte-invariant', !repoShipping.includes('Imported (provisional)'));
 }
 
 console.log(`\nsamples → core/samples/`);
