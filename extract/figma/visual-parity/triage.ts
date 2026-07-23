@@ -52,7 +52,7 @@ export const TRIAGE: TriageRule[] = [
     variant: /Property 1=Link/,
     class: 'renderer',
     cause:
-      'kerning-driven trailing-arrow misregistration: Chromium kerns Montserrat (CONTACTEZ-NOUS runs 366 vs Figma 370 device px) and the flex row seats the arrow right after the text, so the two chevrons barely overlap — a thin diagonal stroke has near-zero self-overlap under a ~4px shift (triptych: red-core arrow vs yellow AA-fringe glyphs); vertical seat is exact (4/5px margins both sides)',
+      'all-text row since the 2026-07-23 icon toggles (« Icône gauche/droite » BOOLEAN default off): neither side draws an icon at defaults, the DOM-derived text mask covers everything → masked score null BY CONSTRUCTION; ranks by its unmasked glyph-raster delta, proportionally large on a ~370×24 canvas (same class as Default/Orange, smaller denominator). NAMED COVERAGE GAP: icon rendering is no longer exercised by this gate — needs a subject prop-preset (iconRight=true vs a property-set Figma render) to come back under pixel proof.',
   },
   {
     subject: 'button',

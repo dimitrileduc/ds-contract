@@ -50,7 +50,7 @@ moves the gate, explicitly, after review.
 
 | subject | variant | masked | unmasked | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
 |---|---|---|---|---|---|---|---|
-| button | Property 1=Link | 8.25% | 2.89% | 366×24 vs 370×24 | diffuse delta — see triptych | renderer: kerning-driven trailing-arrow misregistration: Chromium kerns Montserrat (CONTACTEZ-NOUS runs 366 vs Figma 370 device px) and the flex row seats the arrow right after the text, so the two chevrons barely overlap — a thin diagonal stroke has near-zero self-overlap under a ~4px shift (triptych: red-core arrow vs yellow AA-fringe glyphs); vertical seat is exact (4/5px margins both sides) | report-assets/button--property-1-link.triptych.png |
+| button | Property 1=Link | — | 4.83% | 307×24 vs 308×24 | diffuse delta — see triptych | renderer: all-text row since the 2026-07-23 icon toggles (« Icône gauche/droite » BOOLEAN default off): neither side draws an icon at defaults, the DOM-derived text mask covers everything → masked score null BY CONSTRUCTION; ranks by its unmasked glyph-raster delta, proportionally large on a ~370×24 canvas (same class as Default/Orange, smaller denominator). NAMED COVERAGE GAP: icon rendering is no longer exercised by this gate — needs a subject prop-preset (iconRight=true vs a property-set Figma render) to come back under pixel proof. | report-assets/button--property-1-link.triptych.png |
 | button | Property 1=Outilne noir | 2.53% | 3.88% | 436×108 vs 440×108 | diffuse delta — see triptych | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-outilne-noir.triptych.png |
 | button | Property 1=Default | 1.31% | 3.03% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-default.triptych.png |
 | button | Property 1=Orange | 1.31% | 3.02% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-orange.triptych.png |
@@ -81,7 +81,7 @@ _none_
 
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
-| button (contract) | v2379126764884019567 | repo tokens only | Montserrat |
+| button (contract) | v2379385386883800697 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

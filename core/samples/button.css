@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.1.0 (core/emit-html.ts) */
+/* Button — from ds.button v1.2.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -66,13 +66,24 @@
   color: var(--color-noir-bleute);
 }
 
-.button__arrow svg {
+.button__iconLeft svg {
   display: block;
   width: 20px;
   height: 20px;
 }
 
-.button__arrow {
+.button__iconLeft {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button__iconRight svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconRight {
   display: inline-flex;
   flex-shrink: 0;
 }

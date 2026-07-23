@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.1.0)
+ * Source of truth: contracts/button.contract.json (ds.button v1.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -66,12 +66,22 @@
   color: var(--color-noir-bleute);
 }
 
-.arrow svg {
+.iconLeft svg {
   width: 20px;
   height: 20px;
 }
 
-.arrow {
+.iconLeft {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.iconRight svg {
+  width: 20px;
+  height: 20px;
+}
+
+.iconRight {
   display: inline-flex;
   flex-shrink: 0;
 }
