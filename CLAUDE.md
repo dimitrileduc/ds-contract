@@ -90,6 +90,8 @@ Degradation is named, never silent. Extraction marks every heuristic (`confidenc
 - TypeScript 5.x, Node ≥ 20, ESM (run via `tsx`) (001-piqueray-button)
 - Zod (`@ds-contracts/schema`), React 18 + CSS Modules (the `react` emitter), Vite, Storybook, `playwright-core` (visual parity), Figma Plugin API (001-piqueray-button)
 - JSON on disk — `contracts/*.contract.json` (SSoT), DTCG `tokens/*.tokens.json`, `catalog/`, byte-pinned `evals/golden.json` (001-piqueray-button)
+- TypeScript 5.x / Node ≥ 20, ESM via `tsx` (instrument Node) ; JavaScript Figma Plugin API (scripts bridge exécutés via le pont) + pont desktop figma-console (`figma_execute` + `loadAllPagesAsync` — seule route vers la page `Pages` `210:325`) ; `pixelmatch` + `pngjs` (déjà en devDependencies) ; réutilisation de `readPng`/`writeTriptych` de `extract/figma/visual-parity/img.ts` ; historique de versions natif Figma (`saveVersionHistoryAsync`) (003-externalize-figma-components)
+- artefacts fichiers committés sous `specs/003-externalize-figma-components/` (decisions.md, inventory/, audits/, ledger/, proofs/) ; PNG de travail gitignorés (`extract/figma/page-parity/out/`, `.page-parity/`) ; `COMPONENT-INVENTORY.md` commité en baseline (T0) (003-externalize-figma-components)
 
 ## Recent Changes
 - 001-piqueray-button: Reconversion to Piqueray — remove 51 demo contracts + multi-brand/dual-theme tokens; single-mode Piqueray foundation (14 vars + 8 Montserrat styles); Button contract extracted from a Figma dump; +2 additive-optional schema fields (`anchors.figma.dumpedAt`, a11y/semantics `provenance`); eval suite re-pointed via the hybrid rule; fidelity proven by determinism + parity + visual (≤2%) gates.

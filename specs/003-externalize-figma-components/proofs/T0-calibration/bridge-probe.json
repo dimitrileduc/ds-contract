@@ -1,0 +1,44 @@
+{
+  "tache": "T007 — sonde de connectivité du pont desktop figma-console",
+  "date": "2026-07-23",
+  "epochMs": 1784840414676,
+  "connectivite": {
+    "transport": "websocket",
+    "port": 9224,
+    "portFallbackUsed": true,
+    "pluginVersion": "1.35.0",
+    "probeLatencyMs": 6,
+    "route": "figma_execute + figma.loadAllPagesAsync() — seule route qui voit la page locale Pages (R1)"
+  },
+  "fichier": {
+    "fileName": "Piqueray (Copy)",
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "pages": [
+      { "id": "0:1", "name": "Assets" },
+      { "id": "210:325", "name": "Pages" }
+    ]
+  },
+  "pageId": "210:325",
+  "pageName": "Pages",
+  "frameCount": 9,
+  "attendu": 9,
+  "verdict": "9/9 frames maquettes énumérées — pont opérationnel, page Pages lisible",
+  "maquettes": [
+    { "nom": "Accueil", "nodeId": "210:326", "bounds": { "x": 301, "y": 0, "w": 1728, "h": 5430 } },
+    { "nom": "Portes de garage", "nodeId": "226:112", "bounds": { "x": 2229, "y": 0, "w": 1728, "h": 4372 } },
+    { "nom": "Portes de garage résidentielles", "nodeId": "230:376", "bounds": { "x": 4157, "y": 0, "w": 1728, "h": 6574 } },
+    { "nom": "Portes de garage industrielles", "nodeId": "387:720", "bounds": { "x": 6085, "y": 0, "w": 1728, "h": 6761 } },
+    { "nom": "Motorisation", "nodeId": "237:705", "bounds": { "x": 8013, "y": 0, "w": 1728, "h": 3334 } },
+    { "nom": "Portes d’entrée", "nodeId": "237:969", "bounds": { "x": 9941, "y": 0, "w": 1728, "h": 6533 } },
+    { "nom": "Dépannage/SAV", "nodeId": "249:1510", "bounds": { "x": 11869, "y": 0, "w": 1728, "h": 4242 } },
+    { "nom": "À Propos", "nodeId": "258:1887", "bounds": { "x": 13797, "y": 0, "w": 1728, "h": 5928 } },
+    { "nom": "Contactez-nous", "nodeId": "274:2464", "bounds": { "x": 15725, "y": 0, "w": 1728, "h": 3901 } }
+  ],
+  "nonFrameChildren": [],
+  "notes": [
+    "Maquettes triées par x croissant (ordre visuel gauche→droite du canevas).",
+    "Toutes les frames font exactement 1728px de large ; hauteurs 3334–6761px.",
+    "totalChildren = 9 : la page ne contient rien d'autre que les 9 maquettes.",
+    "nodeIds valables pour cette session — la re-mesure par position fait foi (FR-002)."
+  ]
+}
