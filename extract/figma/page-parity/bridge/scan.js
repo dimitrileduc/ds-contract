@@ -20,33 +20,36 @@
 //   3. Everything seen but not classified lands in nonClasses[] — NEVER
 //      silently dropped (principle V).
 //
-// Two modes (input.mode), because honest matchers are grown from measured
-// signatures, not invented ones:
-//   "recon" — facts only: direct children of the maquette (section candidates),
-//             repeated-sibling groups (molecule candidates), resolved
-//             instances. No block classification at all. Used once at T0 to
-//             see the real structural signatures before pinning MATCHERS.
-//   "full"  — recon facts + classification through the MATCHERS table below.
-//             Unmatched candidates → nonClasses[].
-// The MATCHERS table is versioned here so every refinement is a reviewable
-// diff; seeds derive from COMPONENT-INVENTORY.md (2026-07-23 measurements) —
-// the fresh scan always wins over the MD (règle de foi).
+// Division of labor (decided at T0, after the first recon run): the SANDBOX
+// MEASURES, the NODE SIDE CLASSIFIES. This script collects facts only —
+// section candidates (direct children), repeated-sibling groups with per-item
+// deep facts (governed-instance content, text counts, max font), resolved
+// instances. The block classification (MATCHERS) lives in
+// extract/figma/page-parity/assemble-scan.mjs: versioned, re-runnable on the
+// same measured data WITHOUT the bridge, every refinement a reviewable diff.
+// An earlier revision carried an in-sandbox "full" classification mode; it was
+// removed because its re-fetch loops were slow and, worse, not re-runnable —
+// refining a matcher meant re-scanning the live file instead of re-assembling
+// measured facts. Seeds derive from COMPONENT-INVENTORY.md (2026-07-23) — the
+// fresh scan always wins over the MD (règle de foi).
 //
 // Invocation (per maquette — a full-subtree walk + N getMainComponentAsync
 // awaits fits the 30s call budget per maquette, not for all 9):
 //   1. Prior figma_execute:  globalThis.__dsc003_input =
-//        { maquette, nodeId, mode: "recon" | "full" }
-//   2. figma_execute this file's text → compact per-maquette report (also
-//      stashed on globalThis.__dsc003.scan[maquette]).
-// The 9 per-maquette reports are assembled Node-side into
-// inventory/scan-<date>.json (schema of the contract), where cross-maquette
-// totals and introuvables[] are computed.
+//        { maquette, nodeId, post?: true, port?: 9227 }
+//   2. figma_execute this file's text → tiny summary; the FULL report is
+//      stashed on globalThis.__dsc003.scan[maquette] and, when input.post is
+//      true, POSTed verbatim to the page-parity receiver
+//      (POST /json?name=scan-<maquette>) so it lands on disk without ever
+//      transiting a tool result.
+// The 9 per-maquette reports are assembled Node-side by assemble-scan.mjs into
+// inventory/scan-<date>.json (schema of the contract), where classification,
+// cross-maquette totals and introuvables[] are computed.
 (async () => {
   const input = globalThis.__dsc003_input || {};
   const nom = input.maquette;
   const nodeId = input.nodeId;
-  const mode = input.mode || 'recon';
-  if (!nom || !nodeId) throw new Error('scan.js: input requis — { maquette, nodeId, mode? }');
+  if (!nom || !nodeId) throw new Error('scan.js: input requis — { maquette, nodeId, post?, port? }');
 
   await figma.loadAllPagesAsync();
   const frame = await figma.getNodeByIdAsync(nodeId);
@@ -146,42 +149,85 @@
     maxFont: n.type !== 'INSTANCE' ? maxTextSize(n) : 0,
   }));
 
-  // Molecule candidates = groups of >=2 same-signature siblings anywhere in
-  // the subtree (repetition is structure, not naming), above a noise floor.
+  // Molecule candidates = groups of >=2 sibling nodes anywhere in the subtree
+  // (repetition is structure, not naming), above a noise floor. Two groupers,
+  // both measured lessons from the first T0 recon run:
+  //   bySig  — exact structural signature (homogeneous repeats);
+  //   byDims — rounded w×h (heterogeneous repeats: reassurance items whose
+  //            icon node differs, accordion rows open vs closed — same block,
+  //            different signature).
+  // Nodes INSIDE an instance are master content, not copies: flagged
+  // dansInstance and never counted as copie-brute (first recon run counted
+  // the Header nav's own menu items as copies — a correctness bug).
   const collections = [];
-  const visit = (n, depth) => {
+  const itemFacts = (k, inInstance) => ({
+    nodeId: k.id,
+    nomFigma: k.name,
+    bounds: abs(k),
+    signature: sig(k),
+    etat: inInstance ? 'contenu-instance' : etatOf(k),
+    aBouton: hasInstanceOf(k, /^Bouton$/, true),
+    aChevron: hasInstanceOf(k, /chevron/i, true),
+    aMemberPicture: hasInstanceOf(k, /member-picture/i, true),
+    nTextes: 'findAll' in k ? k.findAll((d) => d.type === 'TEXT').length : 0,
+    maxFont: maxTextSize(k),
+  });
+  const visit = (n, depth, inInstance) => {
     const kids = kidsOf(n);
     if (kids.length >= 2) {
       const bySig = {};
+      const byDims = {};
       for (const k of kids) {
         const b = abs(k);
         if (b.w < 120 || b.h < 24) continue; // noise floor: below any block size
-        const s = sig(k);
-        (bySig[s] = bySig[s] || []).push(k);
+        (bySig[sig(k)] = bySig[sig(k)] || []).push(k);
+        const d = Math.round(b.w / 4) * 4 + 'x' + Math.round(b.h / 4) * 4;
+        (byDims[d] = byDims[d] || []).push(k);
       }
+      const emitted = {};
       for (const s in bySig) {
         if (bySig[s].length >= 2) {
+          for (const k of bySig[s]) emitted[k.id] = true;
           collections.push({
+            groupement: 'signature',
             parentNodeId: n.id,
             parentNomFigma: n.name,
             parentBounds: abs(n),
             profondeur: depth,
+            dansInstance: inInstance,
             signatureItem: s,
             count: bySig[s].length,
-            items: bySig[s].map((k) => ({ nodeId: k.id, nomFigma: k.name, bounds: abs(k), etat: etatOf(k) })),
+            items: bySig[s].map((k) => itemFacts(k, inInstance)),
+          });
+        }
+      }
+      for (const d in byDims) {
+        // Only emit a dims-group when it adds members the signature groups
+        // did not already cover (pure supersets are noise).
+        const extra = byDims[d].filter((k) => !emitted[k.id]);
+        if (byDims[d].length >= 2 && extra.length >= 1) {
+          collections.push({
+            groupement: 'dims',
+            parentNodeId: n.id,
+            parentNomFigma: n.name,
+            parentBounds: abs(n),
+            profondeur: depth,
+            dansInstance: inInstance,
+            signatureItem: 'dims:' + d,
+            count: byDims[d].length,
+            items: byDims[d].map((k) => itemFacts(k, inInstance)),
           });
         }
       }
     }
-    for (const k of kids) visit(k, depth + 1);
+    for (const k of kids) visit(k, depth + 1, inInstance || k.type === 'INSTANCE');
   };
-  visit(frame, 1);
+  visit(frame, 1, false);
 
   const report = {
     maquette: nom,
     nodeId: nodeId,
     bounds: abs(frame),
-    mode: mode,
     sectionCandidates: sectionCandidates,
     collections: collections,
     dejaInstancie: dejaInstancie,
@@ -189,83 +235,31 @@
     instancesIllisibles: instancesIllisibles,
   };
 
-  // ------------------------------------------------- classification ("full")
-  if (mode === 'full') {
-    // MATCHERS — structural seeds, refined from the T0 recon run's measured
-    // signatures. Each matcher sees a candidate node + helpers; layer names
-    // are NOT consulted (resolved master names of nested instances are).
-    const item = (k) => ({ node: k, b: abs(k), c: countTypes(k) });
-    const MATCHERS_ITEM = [
-      { cle: 'accordion-row', niveau: 'molecule',
-        test: (x) => x.b.w >= 500 && x.b.h >= 36 && x.b.h <= 220 && hasInstanceOf(x.node, /chevron/i, true) && x.c.text >= 1 },
-      { cle: 'member-card', niveau: 'molecule',
-        test: (x) => hasInstanceOf(x.node, /member-picture/i, true) && x.c.text >= 1 },
-      { cle: 'product-card', niveau: 'molecule',
-        test: (x) => x.b.h >= 220 && hasInstanceOf(x.node, /^Bouton$/, true) && maxTextSize(x.node) <= 30 && x.b.w >= 200 && x.b.w <= 520 },
-      { cle: 'category-card', niveau: 'molecule',
-        test: (x) => x.b.h >= 220 && x.b.w >= 300 && (hasInstanceOf(x.node, /^Bouton$/, true) || x.c.rectangle + x.c.frame >= 1) && x.c.text >= 1 && x.b.h <= 900 },
-      { cle: 'reassurance-item', niveau: 'molecule',
-        test: (x) => x.b.h >= 40 && x.b.h <= 200 && x.b.w >= 150 && x.b.w <= 600 && x.c.text >= 1 && (x.c.vector + x.c.instance + x.c.frame >= 1) },
-      { cle: 'tab', niveau: 'molecule',
-        test: (x) => x.b.h >= 28 && x.b.h <= 80 && x.b.w >= 60 && x.b.w <= 420 && x.c.text === 1 && x.c.total <= 2 },
-      { cle: 'footer-column', niveau: 'molecule',
-        test: (x) => x.b.y >= H * 0.72 && x.c.text >= 2 && x.b.w <= 500 },
-      { cle: 'contact-info-row', niveau: 'molecule',
-        test: (x) => x.b.h <= 140 && x.b.w >= 250 && x.c.text >= 2 && x.c.total <= 4 },
-      { cle: 'gallery-item', niveau: 'molecule',
-        test: (x) => x.b.w >= 250 && x.b.h >= 200 && x.c.total <= 2 && x.c.text === 0 },
-    ];
-    const blocs = {};
-    const nonClasses = [];
-    const push = (cle, niveau, k) => {
-      (blocs[cle] = blocs[cle] || { cle: cle, niveau: niveau, occurrences: [] }).occurrences.push({
-        maquette: nom,
-        nodeId: k.id,
-        bounds: abs(k),
-        signature: sig(k),
-        nomFigma: k.name,
-        etat: etatOf(k),
-      });
-    };
-    // Collections first: an item classified through its repeated group.
-    const claimed = {};
-    for (const col of collections) {
-      for (const it of col.items) if (it.etat !== 'copie-brute') claimed[it.nodeId] = 'instance'; // instances are not copies to classify
-      const sample = col.items.filter((it) => !claimed[it.nodeId]);
-      if (sample.length === 0) continue;
-      let matched = null;
-      for (const M of MATCHERS_ITEM) {
-        const nodes = [];
-        for (const it of sample) {
-          const n = await figma.getNodeByIdAsync(it.nodeId);
-          if (n) nodes.push(n);
-        }
-        if (nodes.length >= 2 && nodes.every((n) => M.test(item(n)))) { matched = M; break; }
-      }
-      if (matched) {
-        for (const it of sample) {
-          const n = await figma.getNodeByIdAsync(it.nodeId);
-          if (n && !claimed[it.nodeId]) { push(matched.cle, matched.niveau, n); claimed[it.nodeId] = matched.cle; }
-        }
-      } else {
-        nonClasses.push({ genre: 'collection', maquette: nom, parentNomFigma: col.parentNomFigma, parentNodeId: col.parentNodeId, signatureItem: col.signatureItem, count: col.count, bounds: col.parentBounds });
-      }
-    }
-    // Section-level candidates: report classified state only as facts here;
-    // section↔cle mapping is assembled Node-side at T010 (position + already-
-    // classified molecule content give the evidence) — an unmatched section
-    // candidate is still surfaced, never dropped.
-    for (const s of sectionCandidates) {
-      if (s.etat === 'copie-brute') {
-        nonClasses.push({ genre: 'section-candidate', maquette: nom, nomFigma: s.nomFigma, nodeId: s.nodeId, signature: s.signature, bounds: s.bounds, aBouton: s.aBouton, maxFont: s.maxFont });
-      }
-    }
-    report.blocs = blocs;
-    report.nonClasses = nonClasses;
-  }
-
   globalThis.__dsc003 = globalThis.__dsc003 || {};
   globalThis.__dsc003.scan = globalThis.__dsc003.scan || {};
   globalThis.__dsc003.scan[nom] = report;
-  return report;
+
+  // Ship the full report to disk through the receiver (POST /json) so the
+  // tool result stays a tiny summary regardless of maquette complexity.
+  let posted = null;
+  if (input.post) {
+    const port = input.port || 9227;
+    const resp = await fetch('http://localhost:' + port + '/json?name=' + encodeURIComponent('scan-' + nom), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(report),
+    });
+    posted = await resp.json();
+    if (!resp.ok || posted.ok !== true) throw new Error('scan.js: POST /json refuse — ' + JSON.stringify(posted));
+  }
+
+  return {
+    maquette: nom,
+    sections: sectionCandidates.length,
+    collections: collections.length,
+    instancesResolues: Object.keys(dejaInstancie).reduce((a, k) => a + dejaInstancie[k], 0),
+    tierces: dependancesTierces.length,
+    illisibles: instancesIllisibles.length,
+    posted: posted,
+  };
 })()

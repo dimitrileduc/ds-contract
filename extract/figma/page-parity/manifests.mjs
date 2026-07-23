@@ -41,9 +41,14 @@ if (!Array.isArray(summaries) || summaries.length === 0) {
   process.exit(2);
 }
 
+// Same filename sanitization as receiver.mjs — "Dépannage/SAV" must resolve
+// to the file the receiver actually wrote (Dépannage_SAV.png), while the
+// manifest's `maquette` field keeps the REAL name.
+const fsName = (name) => name.replace(/[^A-Za-z0-9À-ÿ ._'-]/g, '_');
+
 let refusals = 0;
 for (const s of summaries) {
-  const pngPath = path.join(captureDir, `${s.maquette}.png`);
+  const pngPath = path.join(captureDir, `${fsName(s.maquette)}.png`);
   const manifest = {
     maquette: s.maquette,
     nodeId: s.nodeId,
@@ -80,7 +85,7 @@ for (const s of summaries) {
     }
   }
 
-  writeFileSync(path.join(captureDir, `${s.maquette}.manifest.json`), JSON.stringify(manifest, null, 2) + '\n');
+  writeFileSync(path.join(captureDir, `${fsName(s.maquette)}.manifest.json`), JSON.stringify(manifest, null, 2) + '\n');
   if (manifest.statut !== 'ok') {
     refusals++;
     console.error(`✖ ${s.maquette}: ${manifest.statut} — ${manifest.refus ?? 'sans raison (bug)'}`);

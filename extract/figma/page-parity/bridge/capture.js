@@ -57,6 +57,17 @@
   if (!health || health.instrument !== 'page-parity') {
     throw new Error('capture.js: le process sur :' + port + ' n\'est PAS le receveur page-parity (identite: ' + JSON.stringify(health) + ') — octets NON envoyes');
   }
+  // SESSION identity, not just instrument identity (lesson of the T018
+  // calibration incident: a still-running receiver from the PREVIOUS capture
+  // set answered /health as "page-parity" and silently swallowed 3 captures
+  // of the wrong set). The driver reads the receiver's nonce at startup and
+  // pins it here — a nonce mismatch is a refusal BEFORE any byte moves.
+  if (input.expectNonce && health.nonce !== input.expectNonce) {
+    throw new Error('capture.js: nonce du receveur ' + health.nonce + ' != attendu ' + input.expectNonce + ' (outDir servi: ' + health.outDir + ') — mauvaise session de capture, octets NON envoyes');
+  }
+  if (!input.expectNonce) {
+    throw new Error('capture.js: input.expectNonce requis — lire le nonce imprime par receiver.mjs au demarrage du jeu de capture (un jeu = un receveur = un nonce)');
+  }
 
   let bytes = null;
   let statut = 'ok';

@@ -20,12 +20,18 @@
 //   POST /png?name=<Maquette>   PNG body → <outDir>/<Maquette>.png (magic-checked)
 //   GET  /health                { instrument, outDir, nonce, startedAt }
 //   GET  /list                  [{ name, bytes }] of received PNGs
+//   GET  /file?name=<rel>       serve a file from the INSTRUMENT dir (read-only,
+//                               path-jailed) — the gauntlet's trick: bridge
+//                               scripts are fetched+eval'd from here so their
+//                               12KB source rides ONE http GET per call instead
+//                               of every figma_execute payload
 //
 // Default port 9227 — deliberately NOT 9226 (the gauntlet receiver's port),
 // so the two tools can never squat each other again.
 import { createServer } from 'node:http';
-import { writeFileSync, readdirSync, statSync, mkdirSync } from 'node:fs';
+import { writeFileSync, readFileSync, readdirSync, statSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { randomBytes } from 'node:crypto';
 
 const outDir = process.argv[2];
@@ -60,6 +66,30 @@ const server = createServer((req, res) => {
     res.end(JSON.stringify(identity));
     return;
   }
+  if (req.method === 'POST' && url.pathname === '/json') {
+    // Verbatim JSON sink for bridge reports (scan results, capture summaries):
+    // the full payload lands on disk, the figma_execute result stays tiny.
+    const name = (url.searchParams.get('name') ?? 'unnamed').replace(/[^A-Za-z0-9À-ÿ ._'-]/g, '_');
+    const parts = [];
+    req.on('data', (d) => parts.push(d));
+    req.on('end', () => {
+      const body = Buffer.concat(parts);
+      try {
+        JSON.parse(body.toString('utf8'));
+      } catch (e) {
+        console.error(`REFUS ${name}: body is not JSON (${body.length} bytes) — nothing written`);
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: false, name, refus: 'not-json', bytes: body.length }));
+        return;
+      }
+      const file = path.join(outDir, `${name}.json`);
+      writeFileSync(file, body);
+      console.log(`received ${name}.json (${body.length} bytes)`);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true, name, bytes: body.length }));
+    });
+    return;
+  }
   if (req.method === 'POST' && url.pathname === '/png') {
     const name = (url.searchParams.get('name') ?? 'unnamed').replace(/[^A-Za-z0-9À-ÿ ._'-]/g, '_');
     const parts = [];
@@ -78,6 +108,27 @@ const server = createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true, name, bytes: body.length }));
     });
+    return;
+  }
+  if (req.method === 'GET' && url.pathname === '/file') {
+    // Read-only, jailed to the instrument's own directory: the only intended
+    // payloads are the bridge/*.js sources.
+    const instrumentDir = path.dirname(fileURLToPath(import.meta.url));
+    const rel = url.searchParams.get('name') ?? '';
+    const resolved = path.resolve(instrumentDir, rel);
+    if (!resolved.startsWith(instrumentDir + path.sep)) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, refus: 'chemin hors du dossier instrument' }));
+      return;
+    }
+    try {
+      const data = readFileSync(resolved);
+      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end(data);
+    } catch {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, refus: 'fichier introuvable: ' + rel }));
+    }
     return;
   }
   if (req.method === 'GET' && url.pathname === '/list') {

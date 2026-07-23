@@ -2,6 +2,16 @@
 
 **But** : la liste complète des composants à externaliser depuis les maquettes, atome → molécule → section, **avec leurs dépendances**, pour cadrer les prochaines specs. Environ **5 composants existent, ~34 sont à faire.**
 
+> **⚠️ Re-mesure T0 (2026-07-23, scan par position — le dernier scan fait foi)** :
+> voir `specs/003-externalize-figma-components/inventory/scan-2026-07-23.json` et le
+> tableau des divergences dans [`inventory/dag.md`](specs/003-externalize-figma-components/inventory/dag.md).
+> Corrections principales : **category-card 41** (pas ~15 — 3 formes de layout, une seule cle),
+> **footer-column 27** (3 colonnes × 9 pages, pas 9), **gallery-item CONFIRMÉ** (27 tuiles
+> mosaïque sur 3 pages), Hero solo ×2 seulement (le reste vit dans des composites, dont
+> « Hero et FAQ » sur Dépannage/SAV et un GROUP « Header + Hero + Cat » sur Portes d'entrée),
+> jeu d'icônes réel plus riche (cart, search, user, arrow-left, chevron-left/right,
+> octicon:chevron-down-12). **dependancesTierces = 0 sur les 9 maquettes.**
+
 ## Source & méthode (à re-mesurer avant contractualisation)
 
 - **Fichier** : `Piqueray (Copy)` — fileKey `d9FYAUcqdcNtsuaMgLefvJ`.
