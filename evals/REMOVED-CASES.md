@@ -21,13 +21,13 @@ them, and the runner prints the quarantine count on every run so it can never
 go quiet:
 
 ```
-N/96 evals passed — evals/results.json
+N/99 evals passed — evals/results.json
 51 legacy cases quarantined (not run) — …
 ```
 
-The live `N/N` counts executed cases only, so the pass rate stays honest.
+The live `N/N` counts executed cases only, so the pass rate stays honest. **Trust the live `npm run eval` output over this file** — it prints the count on every run; update this note when it drifts (`grep -rn` the number, per CLAUDE.md).
 
-**Counts:** 147 cases before the reconversion → **96 executed**, **51 quarantined**.
+**Counts:** 147 cases before the reconversion → 96 executed at the reconversion, **99 executed** as of 002-governed-icons-button (+2: `detect-icon-registry-divergence`, `refuse-unregistered-icon-enum`), **51 quarantined**.
 
 ## What quarantine does NOT mean
 

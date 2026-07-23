@@ -1,11 +1,15 @@
 {
   "summary": {
-    "total": 1,
+    "total": 6,
     "acknowledged": 0,
     "pending": 0,
     "bySurface": {
       "figma": {
-        "behind": 1
+        "behind": 1,
+        "ahead": 2
+      },
+      "icons": {
+        "ahead": 3
       }
     }
   },
@@ -16,6 +20,71 @@
       "subject": "Button.Contactez-nous",
       "detail": "Contract prop \"children\" has no TEXT property on the Figma set",
       "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Glyphe gauche",
+      "detail": "Figma set declares INSTANCE_SWAP property \"Glyphe gauche\" the contract does not define",
+      "proposedPatch": {
+        "name": "glyphe gauche",
+        "type": {
+          "enum": null
+        },
+        "bindings": {
+          "figma": {
+            "kind": "INSTANCE_SWAP",
+            "property": "Glyphe gauche"
+          },
+          "code": {
+            "prop": "glyphe gauche"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Glyphe droite",
+      "detail": "Figma set declares INSTANCE_SWAP property \"Glyphe droite\" the contract does not define",
+      "proposedPatch": {
+        "name": "glyphe droite",
+        "type": {
+          "enum": null
+        },
+        "bindings": {
+          "figma": {
+            "kind": "INSTANCE_SWAP",
+            "property": "Glyphe droite"
+          },
+          "code": {
+            "prop": "glyphe droite"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "icons",
+      "classification": "ahead",
+      "subject": "assets/icons/close.svg",
+      "detail": "code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)",
+      "remedy": "Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset"
+    },
+    {
+      "surface": "icons",
+      "classification": "ahead",
+      "subject": "figma/mail",
+      "detail": "canvas offers this icon in the Button's swap menu but ds.icons has no entry for it",
+      "remedy": "Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional"
+    },
+    {
+      "surface": "icons",
+      "classification": "ahead",
+      "subject": "figma/external-link",
+      "detail": "canvas offers this icon in the Button's swap menu but ds.icons has no entry for it",
+      "remedy": "Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional"
     }
   ],
   "acknowledged": [],

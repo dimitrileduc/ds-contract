@@ -40,15 +40,18 @@ import { legacyCases } from './legacy-cases.js';
 
 const cases: Case[] = [
   // ---------------------------------------------------------------------------
-  // FAILING ON PURPOSE — blocked on the first Figma sync, not on eval wiring.
+  // FAILING ON PURPOSE — blocked on the Button master rebuild, not on eval wiring.
   //
   // These three need a CLEAN parity baseline. `npm run parity` is red because
-  // the Piqueray token set has not been pushed to Figma yet (45 tokens exist in
-  // tokens/ with no Figma variable, 1 value mismatch, 1 authored text-prop
-  // drift). That is a live, temporary state we intend to resolve — NOT an
-  // absent capability — so these cases are neither quarantined (which would
-  // claim Piqueray structurally cannot run them) nor baselined (which would
-  // turn a real pending gap into a green tick). They stay red and named.
+  // the Button's Figma set has no TEXT property for the `children` prop yet
+  // (`Contract prop "children" has no TEXT property on the Figma set`) —
+  // closed by the single targeted master update (002-governed-icons-button,
+  // Step 3), not by a token-set push (the token axis is already clean — an
+  // earlier attribution here was stale; honesty fix, D9). That is a live,
+  // temporary state we intend to resolve — NOT an absent capability — so
+  // these cases are neither quarantined (which would claim Piqueray
+  // structurally cannot run them) nor baselined (which would turn a real
+  // pending gap into a green tick). They stay red and named.
   // ---------------------------------------------------------------------------
   {
     id: 'baseline-parity-clean',
@@ -102,6 +105,51 @@ const cases: Case[] = [
         throw new Error(`Code findings remain: ${JSON.stringify(after)}`);
       expectFinding(after, 'figma', 'behind', 'Button.IconOnly');
       if (after.length !== 1) throw new Error(`Unexpected extra findings: ${JSON.stringify(after)}`);
+    },
+  },
+  // ---------------------------------------------------------------------------
+  // 002-governed-icons-button — the icon registry's three-way guarantee (C3)
+  // and its build-time refusal (C2).
+  // ---------------------------------------------------------------------------
+  {
+    id: 'detect-icon-registry-divergence',
+    claim: 'C3-detection',
+    run: () => {
+      // Seed a divergence on ONE side only (remove "cart" from the registry;
+      // its code asset and its canvas swap-menu presence are untouched) — the
+      // icons axis must catch it from BOTH directions at once (FR-007: never
+      // silent, whichever side actually diverged).
+      editJson('contracts/icons.registry.json', (r) => {
+        r.icons = r.icons.filter((i: { name: string }) => i.name !== 'cart');
+      });
+      if (parity().status === 0) throw new Error('Seeded icon-registry divergence not detected');
+      const report = readReport();
+      expectFinding(report, 'icons', 'ahead', 'assets/icons/cart.svg');
+      expectFinding(report, 'icons', 'ahead', 'figma/cart');
+    },
+  },
+  {
+    id: 'refuse-unregistered-icon-enum',
+    claim: 'C2-refusal',
+    run: () => {
+      // An INSTANCE_SWAP-bound enum that overlaps the registry (so it reads as
+      // an icon-choice prop) but names a value the registry doesn't have —
+      // refused BY NAME (FR-008 edge), never silently generated.
+      editJson(CONTRACT, (c) => {
+        c.props.push({
+          name: 'testGlyph',
+          description: 'Eval fixture — an icon-choice prop with an out-of-registry value.',
+          type: { enum: ['arrow-left', 'not-a-real-icon'] },
+          default: 'arrow-left',
+          bindings: {
+            figma: { kind: 'INSTANCE_SWAP', property: 'Test Glyph', values: { 'arrow-left': 'arrow-left', 'not-a-real-icon': 'not-a-real-icon' } },
+            code: { prop: 'testGlyph' },
+          },
+        });
+      });
+      const r = generate();
+      if (r.status === 0) throw new Error('Generator accepted an INSTANCE_SWAP enum value outside the icon registry');
+      if (!r.out.includes('not-a-real-icon')) throw new Error(`Refusal did not name the offending value: ${r.out}`);
     },
   },
   {
@@ -3695,7 +3743,7 @@ const parityBlocked = results.filter(
 );
 if (parityBlocked.length > 0) {
   console.log(
-    `${parityBlocked.length} of the ${results.length - passed} failure(s) are the INTENTIONAL parity-baseline block (${parityBlocked.map((r) => r.id).join(', ')}) — they need a clean \`npm run parity\`, which needs the Piqueray token set pushed to Figma.`,
+    `${parityBlocked.length} of the ${results.length - passed} failure(s) are the INTENTIONAL parity-baseline block (${parityBlocked.map((r) => r.id).join(', ')}) — they need a clean \`npm run parity\`, which needs the Button master rebuild (the missing label TEXT property — 002-governed-icons-button Step 3), not the token push (already done).`,
   );
 }
 process.exit(passed === results.length ? 0 : 1);

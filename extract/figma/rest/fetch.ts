@@ -147,6 +147,40 @@ export async function fetchFile(fileKey: string, token: string, opts: ClientOpti
   return (await get(`/v1/files/${fileKey}`, token, opts)) as RestFileResponse;
 }
 
+/**
+ * SVG export via the images API (`format=svg`) — deterministic acquisition,
+ * the same source-refresh class as dumping (never model-produced, D3). One
+ * images call for the given node ids (Figma batches internally), then one
+ * fetch per returned URL for the SVG text body. A null entry means the
+ * images API declined to render that node — reported, never guessed at.
+ */
+export async function fetchSvgs(
+  fileKey: string,
+  nodeIds: string[],
+  token: string,
+  opts: ClientOptions = {},
+): Promise<Record<string, string | null>> {
+  const fetchImpl = opts.fetchImpl ?? (fetch as unknown as FetchLike);
+  const ids = encodeURIComponent(nodeIds.join(','));
+  const body = (await get(`/v1/images/${fileKey}?ids=${ids}&format=svg`, token, opts)) as {
+    err: string | null;
+    images: Record<string, string | null>;
+  };
+  if (body.err) throw new Error(`images API (format=svg) error: ${body.err}`);
+  const out: Record<string, string | null> = {};
+  for (const nodeId of nodeIds) {
+    const url = body.images[nodeId];
+    if (!url) {
+      out[nodeId] = null;
+      continue;
+    }
+    const res = await fetchImpl(url);
+    if (!res.ok) throw new Error(`SVG download ${res.status} for ${fileKey} ${nodeId}`);
+    out[nodeId] = await res.text();
+  }
+  return out;
+}
+
 // ---------------------------------------------------------------------------
 // URL → dump
 // ---------------------------------------------------------------------------
