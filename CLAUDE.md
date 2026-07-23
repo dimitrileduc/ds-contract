@@ -10,6 +10,7 @@ Two non-negotiable principles govern every change here:
 
 - **Determinism — no AI in the conversion.** The contract→surface pipeline is pure functions, byte-pinned against golden manifests. AI may *assist* (propose a contract, help author an emitter) but is **never** in the generation path. The guarantee is "byte-identical across two runs," which an AI-in-the-loop cannot make.
 - **The claims rule — no capability claim without an eval behind it.** Order is always: fixture → eval → claim. Never add a capability sentence to README/docs before an adversarial check backs it in `npm run eval`. See `CONTRIBUTING.md`.
+- **The source-cleanliness rule — clean the Figma BEFORE contracting it (owner rule, the Button lesson, 2026-07-23).** Step 0 of any component spec is an audit + cleanup of its Figma source: unofficial affordances made official (properties, not hidden-layer hacks), names telling the truth, structure consistent — THEN extract. Never model around a dirty source. Receipts: the Button shipped from an unclean set (icon visibility bricolée via hidden layers ×42, a STRING variable named `color/nav-state`) and it cost a full day of rework and nearly crashed the first push. Audit = source (masters: structure, constraints, variable bindings, sizes, descriptions) AND usage (every instance across every page, scanned by POSITION never by name).
 
 ## Commands
 
