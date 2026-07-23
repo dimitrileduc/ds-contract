@@ -45,6 +45,7 @@ const COMPONENTS = [
               "fontStyle": "Medium",
               "textFill": "color/blanc",
               "lineHeight": 22,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Contactez-nous"
             }
@@ -81,6 +82,7 @@ const COMPONENTS = [
               "fontStyle": "Medium",
               "textFill": "color/blanc",
               "lineHeight": 22,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Contactez-nous"
             }
@@ -117,6 +119,7 @@ const COMPONENTS = [
               "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Contactez-nous"
             }
@@ -153,6 +156,7 @@ const COMPONENTS = [
               "fontStyle": "Medium",
               "textFill": "color/blanc",
               "lineHeight": 22,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Contactez-nous"
             }
@@ -192,6 +196,7 @@ const COMPONENTS = [
               "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Contactez-nous"
             }
@@ -228,6 +233,7 @@ const COMPONENTS = [
               "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Contactez-nous"
             }

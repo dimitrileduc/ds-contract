@@ -1528,6 +1528,34 @@ const cases: Case[] = [
     },
   },
   {
+    // T035a (FR-017): the generated Button is ACCESSIBLE — it exposes an
+    // implicit role="button" (a native <button> host) and a non-empty
+    // accessible name flowing from the TEXT `children` binding. Fixture → eval
+    // → claim: no doc may state "the Button is accessible" without this.
+    id: 'a11y-role-and-accessible-name',
+    claim: 'C1-determinism',
+    run: () => {
+      if (generate().status !== 0) throw new Error('generate failed');
+      const tsx = readFileSync(path.join(SCRATCH, BTN_TSX), 'utf8');
+      // role: a native <button> host carries the button role implicitly.
+      if (!/<button[\s>]/.test(tsx) && !/role=["']button["']/.test(tsx)) {
+        throw new Error('generated Button exposes neither a native <button> host nor role="button"');
+      }
+      // accessible name: the children binding renders as the host's text
+      // content (here inside the label span), so a passed label names the button.
+      if (!tsx.includes('{children}')) {
+        throw new Error('children (accessible-name source) is not rendered into the Button');
+      }
+      // the name flows from the contract's TEXT binding, not hardcoded: the
+      // label part binds content to the children prop.
+      const contract = JSON.parse(readFileSync(path.join(SCRATCH, CONTRACT), 'utf8'));
+      const label = contract.anatomy.root.parts?.label;
+      if (label?.content?.prop !== 'children') {
+        throw new Error('label content is not bound to the children prop — accessible name would not flow from the contract');
+      }
+    },
+  },
+  {
     // §3 (theme/mode-axis promotion, P17): a drawn Theme=Light|Dark variant
     // axis is a TOKEN MODE, never a component prop — the mirror image of
     // state promotion. Promotion requires the bounded name table AND
