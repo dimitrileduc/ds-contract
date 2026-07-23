@@ -116,7 +116,14 @@ import { fileURLToPath } from 'node:url';
 import type { DumpFile } from './types.js';
 import { isDumpSet } from './types.js';
 import { loadTokenCorpus } from './tokens.js';
-import { componentIdSlug, dumpCapturesHidden, figmaProposalsReport, proposeFromDump, type FigmaProposalResult } from '../../core/propose-figma.js';
+import {
+  componentIdSlug,
+  dumpCapturesHidden,
+  figmaProposalsReport,
+  proposeFromDump,
+  type FigmaProposalResult,
+  type IconRegistryLike,
+} from '../../core/propose-figma.js';
 
 // The inversion engine itself is the pure core module — re-exported here so
 // existing importers (extract/figma/roundtrip.ts) keep their import path.
@@ -174,6 +181,18 @@ export function loadContracts(dir: string): {
 }
 
 
+/** `contracts/icons.registry.json`, when present (002-governed-icons-button,
+ *  D5) — optional, same discipline as loadContracts: a repo with no registry
+ *  (or a malformed one) proposes exactly as before, every swap-bound
+ *  instance falling back to a slot; never a hard failure at extraction. */
+function loadIconRegistry(root: string): IconRegistryLike | undefined {
+  try {
+    return JSON.parse(readFileSync(path.join(root, 'contracts', 'icons.registry.json'), 'utf8')) as IconRegistryLike;
+  } catch {
+    return undefined;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // CLI: npm run extract:figma -- <dump.json> [--out dir] [--contracts dir]
 // ---------------------------------------------------------------------------
@@ -197,6 +216,7 @@ function main() {
   const loaded = loadContracts(path.resolve(root, contractsDir));
   const contractIdByName = loaded.byName;
   const fileKey = dump._provenance?.fileKey ?? null;
+  const iconRegistry = loadIconRegistry(root);
 
   const results: Array<{ setName: string; proposal: FigmaProposalResult }> = [];
   mkdirSync(path.resolve(root, outDir), { recursive: true });
@@ -209,6 +229,7 @@ function main() {
       contractIdByKey: loaded.byKey,
       fileKey,
       hiddenCaptured: dumpCapturesHidden(dump._provenance),
+      iconRegistry,
     });
     results.push({ setName: name, proposal });
     // componentIdSlug, not raw kebab: a set name like "Button / Primary /

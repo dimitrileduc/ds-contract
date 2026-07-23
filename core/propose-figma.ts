@@ -148,6 +148,19 @@ export interface MinimalChildContract {
   anchors?: { figma?: { componentSetKey?: string | null } };
 }
 
+/** The slice of `contracts/icons.registry.json` D5 needs (002-governed-icons-
+ *  button) — kept minimal, same discipline as MinimalChildContract, so core
+ *  never imports the Zod registry type. Passed as DATA by the caller (the
+ *  CLI shell / a browser playground), never a file path — core stays
+ *  browser-pure (core-browser-check.mjs). */
+export interface IconRegistryEntry {
+  name: string;
+  figma: { componentName: string; key: string };
+}
+export interface IconRegistryLike {
+  icons: IconRegistryEntry[];
+}
+
 // ---------------------------------------------------------------------------
 // Variant axes
 // ---------------------------------------------------------------------------
@@ -812,6 +825,11 @@ interface Ctx {
   swapPreferredValues?: Record<string, DumpPreferredValue[]>;
   /** Set-level BOOLEAN property defaults (dump v1.5). */
   boolDefaults?: Record<string, boolean>;
+  /** Governed icon registry (002-governed-icons-button, D5) — see
+   *  IconRegistryLike. Absent by default: every swap-bound instance falls
+   *  back to the classic slot proposal (nothing changes for callers that
+   *  don't pass one). */
+  iconRegistry?: IconRegistryLike;
   /** The dump's producer captures `hidden` (dump v1.1+) — see
    *  dumpCapturesHidden; callers derive it from the dump's _provenance. */
   hiddenCaptured?: boolean;
@@ -837,6 +855,10 @@ interface Ctx {
   unbound: UnboundValue[];
   textProps: Array<{ name: string; property: string; default: string }>;
   boolProps: Array<{ name: string; property: string; default?: boolean }>;
+  /** INSTANCE_SWAP enum props resolved through the icon registry (D5),
+   *  emitted after boolProps, before arrayProps — one per governed swap
+   *  property, discovery order. */
+  iconSwapProps: Array<{ name: string; property: string; values: Record<string, string>; default?: string }>;
   /** P9 repeated-children collections: one arrayOf prop per repeat part,
    *  emitted after text/bool props (code-only, bindings.figma.kind NONE). */
   arrayProps: Array<{ name: string; fields: Record<string, 'text' | 'boolean'>; instanceOf: string }>;
@@ -2267,6 +2289,63 @@ function threadInstanceProps(
   }
 }
 
+/** INSTANCE_SWAP → a governed-icon enum prop (002-governed-icons-button, D5)
+ *  — the icon-registry sibling of applySlotAccepts. A `slot`'s `accepts`
+ *  resolves preferredValues keys against IN-SCOPE CONTRACTS (one per
+ *  component); an icon-registry-governed swap has no per-icon contract by
+ *  design (D1: one governed list, not 15 mini-contracts) — so its
+ *  preferredValues resolve against `ctx.iconRegistry` instead, and the
+ *  result is an enum PROP (`kind: INSTANCE_SWAP`, the existing generic
+ *  canonical→Figma `values` map), never a slot.
+ *
+ *  Returns the already-claimed prop when `property` was seen before (mirrors
+ *  applyVisibleBinding's dedup-by-property); returns null when no registry
+ *  is available or NONE of the preferredValues keys resolve against it — the
+ *  caller falls back to the classic slot proposal, so an ungoverned swap
+ *  (or a repo with no registry at all) behaves exactly as before. A key that
+ *  fails to resolve while OTHERS on the same property succeed is a named,
+ *  excluded gap (e.g. an owner-excluded icon) — never silently dropped, and
+ *  never silently widening the enum either. */
+function proposeIconEnum(swapProperty: string, m: Merged, ctx: Ctx, where: string): { name: string } | null {
+  const already = ctx.iconSwapProps.find((s) => s.property === swapProperty);
+  if (already) return { name: already.name };
+  const registry = ctx.iconRegistry;
+  const prefs = ctx.swapPreferredValues?.[swapProperty];
+  if (!registry || !prefs || prefs.length === 0) return null;
+  const byKey = new Map(registry.icons.map((i) => [i.figma.key, i]));
+  const values: Record<string, string> = {};
+  const unresolved: string[] = [];
+  for (const p of prefs) {
+    const icon = byKey.get(p.key);
+    if (icon) values[icon.name] = icon.figma.componentName;
+    else unresolved.push(p.key);
+  }
+  if (Object.keys(values).length === 0) return null; // not registry-shaped — the caller falls back to a slot
+  const name = canonicalPropName(swapProperty);
+  // Default: the OBSERVED instance in the default (first) variant, resolved
+  // through the registry by ITS OWN instanceKey — the same observed-default-
+  // variant convention every other prop kind uses here (never preferredValues'
+  // arrival order, which is a design-time MENU order, not a rendered state).
+  const defaultOcc = m.occ.find((o) => o.variant === ctx.totalVariants[0]);
+  const defaultKey = defaultOcc?.node.instanceKey;
+  const defaultIcon = defaultKey ? byKey.get(defaultKey) : undefined;
+  const prop = { name, property: swapProperty, values, ...(defaultIcon ? { default: defaultIcon.name } : {}) };
+  ctx.iconSwapProps.push(prop);
+  ctx.notes.push(
+    `${where}: INSTANCE_SWAP-bound instance "${swapProperty}" preferredValues resolve against the icon registry (${Object.keys(values).length}/${prefs.length} key(s)) — proposed as enum prop \`${name}\` (values: ${Object.keys(values).join(', ')}${
+      defaultIcon
+        ? `; default "${defaultIcon.name}", the observed default-variant instance`
+        : '; default not recoverable — the default-variant instance key is outside the registry, review'
+    })`,
+  );
+  if (unresolved.length > 0) {
+    ctx.notes.push(
+      `${where}: INSTANCE_SWAP-bound instance "${swapProperty}" preferredValues name ${unresolved.length} component key(s) outside the icon registry (${unresolved.join(', ')}) — excluded from enum \`${name}\` (owner-governed set, never silently widened; import an icon into the registry to include it)`,
+    );
+  }
+  return { name };
+}
+
 /** Slot `accepts` from captured INSTANCE_SWAP preferredValues (dump v1.5):
  *  keys that resolve through the session-linking index become accepts ids
  *  (acceptsMode 'prefer' — Figma's own preferredValues tier); unresolved
@@ -2780,8 +2859,24 @@ function buildPart(
     }
     const swapProperty = unifiedPropRef(m, 'mainComponent', ctx, where);
     if (swapProperty) {
-      // A swap-bound instance outside a dedicated wrapper: still a slot part,
-      // just without wrapper geometry (not the generator's shape — note it).
+      const iconEnum = proposeIconEnum(swapProperty, m, ctx, where);
+      if (iconEnum) {
+        // Governed-icon swap (002-governed-icons-button, D5): an `icon` part
+        // templated over the registry-backed enum prop — the SAME asset-ref
+        // convention a fixed icon uses (emit-react.ts's "{prop}" enum
+        // expansion), never a slot (a slot's `accepts` resolves per-icon
+        // contract ids; there is no per-icon contract by design — the
+        // registry is the single governed list, D1).
+        const size = first(m.occ, (n) => n.bbox)?.width;
+        part.icon = { asset: `{${iconEnum.name}}`, ...(size !== undefined ? { size } : {}) };
+        const visibleRef = unifiedPropRef(m, 'visible', ctx, where);
+        if (visibleRef) applyVisibleBinding(part, visibleRef, ctx, where, m);
+        if (visibleWhen && !part.visibleWhen) part.visibleWhen = visibleWhen;
+        return part;
+      }
+      // A swap-bound instance outside a dedicated wrapper, NOT registry-
+      // backed: still a slot part, just without wrapper geometry (not the
+      // generator's shape — note it).
       ctx.notes.push(`${where}: INSTANCE_SWAP-bound instance without a dedicated wrapper frame — slot proposed without layout, review`);
       const bareSlot: Record<string, unknown> = { name: canonicalPropName(swapProperty) };
       applySlotAccepts(bareSlot, swapProperty, ctx, where);
@@ -2907,6 +3002,25 @@ function buildPart(
   const soleChild = m.children.length === 1 ? m.children[0] : undefined;
   const soleSwap = soleChild?.type === 'INSTANCE' ? unifiedPropRef(soleChild, 'mainComponent', ctx, `${where}/${soleChild.name}`) : undefined;
   if (soleChild && soleSwap) {
+    const wrapperIconEnum = proposeIconEnum(soleSwap, soleChild, ctx, `${where}/${soleChild.name}`);
+    if (wrapperIconEnum) {
+      // Governed-icon swap under a wrapper frame (D5) — the wrapper's own
+      // layout/tokens still carry (a real frame, unlike the bare-instance
+      // path), but the child becomes an `icon` part, never a slot.
+      const layout = invertLayout(m, false, parentMode, ctx, where);
+      if (layout) part.layout = layout;
+      const byProp = invertLayoutByProp(m, ctx, where);
+      if (byProp) part.layoutByProp = byProp;
+      invertNodeOpacity(m, part, tokens, ctx, where);
+      invertNodeEffects(m, tokens, ctx, where);
+      attachTokens(ctx, part, tokens);
+      const size = first(soleChild.occ, (n) => n.bbox)?.width;
+      part.icon = { asset: `{${wrapperIconEnum.name}}`, ...(size !== undefined ? { size } : {}) };
+      const visibleRef = unifiedPropRef(m, 'visible', ctx, where);
+      if (visibleRef) applyVisibleBinding(part, visibleRef, ctx, where, m);
+      if (visibleWhen && !part.visibleWhen) part.visibleWhen = visibleWhen;
+      return part;
+    }
     const layout = invertLayout(m, false, parentMode, ctx, where);
     if (layout) part.layout = layout;
     const byProp = invertLayoutByProp(m, ctx, where);
@@ -3914,6 +4028,13 @@ export function proposeFromDump(
      *  legitimate re-import / stub-heal path). Repo contracts NEVER join
      *  this set: a repo-name landing stays the workspace re-import rule. */
     sessionClaimedIds?: ReadonlySet<string>;
+    /** Governed icon registry (002-governed-icons-button, D5) — passed as
+     *  DATA (core stays browser-pure, never reads a file path). When a
+     *  swap-bound instance's preferredValues resolve against it, that swap
+     *  proposes an INSTANCE_SWAP-bound enum prop + an `icon` part instead of
+     *  a slot (see proposeIconEnum). Absent → the classic slot proposal,
+     *  unchanged for every existing caller. */
+    iconRegistry?: IconRegistryLike;
   },
 ): FigmaProposalResult {
   const prefix = opts.prefix ?? 'ds';
@@ -4011,6 +4132,7 @@ export function proposeFromDump(
     contractIdByKey: opts.contractIdByKey,
     swapPreferredValues: set.swapPreferredValues,
     boolDefaults: set.boolDefaults,
+    iconRegistry: opts.iconRegistry,
     hiddenCaptured: opts.hiddenCaptured,
     capturedValues: opts.capturedValues,
     prefix,
@@ -4019,6 +4141,7 @@ export function proposeFromDump(
     unbound: [],
     textProps: [],
     boolProps: [],
+    iconSwapProps: [],
     arrayProps: [],
     slots: [],
     flattenedVariants: new Set(),
@@ -4257,6 +4380,21 @@ export function proposeFromDump(
       bindings: {
         figma: { kind: 'BOOLEAN', property: b.property },
         code: { prop: b.name },
+      },
+    });
+  }
+  // Governed-icon INSTANCE_SWAP enum props (D5, 002-governed-icons-button):
+  // registry-resolved swaps, in discovery order. `values` reuses the
+  // existing generic canonical→Figma map (contract-schema.ts) — no schema
+  // change; enum order mirrors the registry-resolved preferredValues order.
+  for (const s of ctx.iconSwapProps) {
+    props.push({
+      name: s.name,
+      type: { enum: Object.keys(s.values) },
+      ...(s.default !== undefined ? { default: s.default } : {}),
+      bindings: {
+        figma: { kind: 'INSTANCE_SWAP', property: s.property, values: s.values },
+        code: { prop: s.name },
       },
     });
   }

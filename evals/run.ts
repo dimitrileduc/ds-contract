@@ -86,14 +86,17 @@ const cases: Case[] = [
     run: () => {
       // 1. Code drifts ahead.
       replaceInFile(BTN_TSX, VARIANT_DECL, `${VARIANT_DECL}\n  iconOnly?: boolean;`);
-      replaceInFile(BTN_TSX, "{ variant = 'default',", "{ variant = 'default',\n    iconOnly = false,");
+      // 002-governed-icons-button: v1.3's extra destructured props push the
+      // generator's param block onto multiple lines — anchor on the stable
+      // `variant = 'default',` line itself, not the preceding brace.
+      replaceInFile(BTN_TSX, "    variant = 'default',", "    variant = 'default',\n    iconOnly = false,");
       if (parity().status === 0) throw new Error('Drift not detected');
       const patch = expectFinding(readReport(), 'code', 'ahead', 'Button.iconOnly').proposedPatch;
       if (!patch) throw new Error('No promotion patch proposed');
       // 2. Promote: apply the differ's own patch to the contract.
       editJson(CONTRACT, (c) => {
         c.props.push(patch);
-        c.version = '1.2.0';
+        c.version = '1.4.0';
       });
       // 3. Regenerate code from the amended contract.
       if (generate().status !== 0) throw new Error('Regeneration after promotion failed');
@@ -150,6 +153,139 @@ const cases: Case[] = [
       const r = generate();
       if (r.status === 0) throw new Error('Generator accepted an INSTANCE_SWAP enum value outside the icon registry');
       if (!r.out.includes('not-a-real-icon')) throw new Error(`Refusal did not name the offending value: ${r.out}`);
+    },
+  },
+  {
+    id: 'lower-icon-swap-and-visibility-into-props',
+    claim: 'C5-extraction',
+    run: () => {
+      // D5: propose-figma.ts's own extraction gap, closed — boolDefaults +
+      // propRefs.visible recover boolean props, and swapPreferredValues +
+      // the icon registry recover INSTANCE_SWAP enum props (never a slot —
+      // there is no per-icon contract by design, D1). Runs the REAL CLI over
+      // the REAL committed post-cleanup dump — rides the same fixture as D9.
+      const r = run(TSX, ['extract/figma/propose.ts', 'extract/figma/fixtures/piqueray-button.dump.json']);
+      if (r.status !== 0) throw new Error(`extract:figma failed:\n${r.out}`);
+      const proposed = JSON.parse(
+        readFileSync(path.join(SCRATCH, 'extract', 'out', 'figma', 'bouton.contract.proposed.json'), 'utf8'),
+      );
+      const props = proposed.props as Array<{
+        name: string;
+        type?: unknown;
+        default?: unknown;
+        bindings: { figma: { kind: string; property: string; values?: Record<string, string> } };
+      }>;
+
+      const boolLeft = props.find((p) => p.bindings.figma.kind === 'BOOLEAN' && p.bindings.figma.property === 'Icône gauche');
+      if (!boolLeft || boolLeft.default !== false) {
+        throw new Error(`expected a BOOLEAN prop for "Icône gauche" defaulting false (dump v1.5 boolDefaults) — got ${JSON.stringify(boolLeft)}`);
+      }
+
+      const swapLeft = props.find((p) => p.bindings.figma.kind === 'INSTANCE_SWAP' && p.bindings.figma.property === 'Glyphe gauche');
+      if (!swapLeft) throw new Error(`expected an INSTANCE_SWAP enum prop bound to "Glyphe gauche" — props: ${props.map((p) => p.name).join(', ')}`);
+      if (swapLeft.default !== 'arrow-left') {
+        throw new Error(`expected default "arrow-left" (the observed default-variant instance) — got ${JSON.stringify(swapLeft.default)}`);
+      }
+      const enumValues = (swapLeft.type as { enum: string[] }).enum;
+      if (enumValues.length !== 13 || !enumValues.includes('cart') || enumValues.includes('mail') || enumValues.includes('external-link')) {
+        throw new Error(`expected the enum to equal the 13-icon registry exactly (no mail/external-link) — got: ${enumValues.join(', ')}`);
+      }
+      if (swapLeft.bindings.figma.values?.['arrow-left'] !== 'arrow-left') {
+        throw new Error(`expected bindings.figma.values to map canonical "arrow-left" → figma.componentName "arrow-left" — got ${JSON.stringify(swapLeft.bindings.figma.values)}`);
+      }
+
+      const iconPart = Object.values(proposed.anatomy.root.parts as Record<string, { icon?: { asset?: string; size?: number } }>).find(
+        (p) => p.icon?.asset === `{${swapLeft.name}}`,
+      );
+      if (!iconPart) throw new Error(`expected an anatomy part with icon.asset "{${swapLeft.name}}" (the enum-substitution convention) — never a slot`);
+      if (iconPart.icon?.size !== 20) throw new Error(`expected icon.size 20 (the observed instance bbox) — got ${iconPart.icon?.size}`);
+    },
+  },
+  {
+    // Revived from evals/legacy-cases.ts (D9.4): census guard 4 — the census
+    // found the canvas surface was the one emitter that never called
+    // validateContract, so every referee-violating set still emitted a sync
+    // script. Extracted to its own standalone script (figma-script-referee-
+    // check.ts) and re-homed onto ds.button — the claim itself was never
+    // demo-specific (ds.badge no longer exists post-reconversion); it was
+    // quarantined only because the receipt it rode also needed ds.avatar for
+    // an unrelated section (still blocked — the rest of that receipt stays
+    // quarantined in legacy-cases.ts, updated reason).
+    id: 'figma-script-referees-invalid-contracts',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['extract/figma/gauntlet/figma-script-referee-check.ts']);
+      if (r.status !== 0) throw new Error(`figma-script referee receipt failed:\n${r.out}`);
+      for (const line of [
+        '✔ emitFigmaScript REFUSES the invalid contract (no sync script emitted)',
+        '✔ the refusal is NAMED with the emitReact wording ("Refused — 1 contract violation(s)")',
+        '✔ the violation names the part and prop (visibleWhen references unknown prop "nonexistent")',
+        '✔ the VALID repo contract still emits its sync script (golden untouched)',
+      ]) {
+        if (!r.out.includes(line)) throw new Error(`missing check: ${line}`);
+      }
+    },
+  },
+  {
+    // Revived from evals/legacy-cases.ts (D9.4), re-pointed to real Piqueray
+    // facts instead of the deleted demo's Button.Loading/Label/size and
+    // Slider.value: 3 of the original 5 drift classes are testable today
+    // against ds.button's own BOOLEAN prop (iconLeft ↔ "Icône gauche") and
+    // its own generated code. 2 stay out: "figma text default change" needs
+    // an EXISTING TEXT property on the committed canvas snapshot, and
+    // ds.button has none yet (the 001 finding — closes at Step 3, not a
+    // structural gap); "numeric code default drift" needs a numeric prop,
+    // which no Piqueray contract declares (a genuine, not temporary, gap —
+    // inventing one just for this eval would misrepresent the component).
+    id: 'detect-default-and-kind-drift',
+    claim: 'C3-detection',
+    run: () => {
+      const check = (label: string, surface: string, cls: string, subject: string, mutate: () => void, restore: () => void) => {
+        mutate();
+        const r = parity();
+        try {
+          if (r.status === 0) throw new Error(`${label}: NOT detected`);
+          expectFinding(readReport(), surface, cls, subject);
+        } finally {
+          restore();
+        }
+      };
+      const figmaSnap = readFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), 'utf8');
+      check(
+        'figma boolean default flip',
+        'figma',
+        'mismatch',
+        'Button.Icône gauche (default)',
+        () =>
+          editJson(FIGMA_COMPONENTS, (snap) => {
+            const btn = snap.sets.find((x: any) => x.name === FIGMA_SET);
+            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icône gauche'))!;
+            btn.properties[key].defaultValue = true;
+          }),
+        () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap),
+      );
+      check(
+        'figma property kind change',
+        'figma',
+        'mismatch',
+        'Button.Icône gauche (kind)',
+        () =>
+          editJson(FIGMA_COMPONENTS, (snap) => {
+            const btn = snap.sets.find((x: any) => x.name === FIGMA_SET);
+            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icône gauche'))!;
+            btn.properties[key].type = 'TEXT';
+          }),
+        () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap),
+      );
+      const btnSrc = readFileSync(path.join(SCRATCH, BTN_TSX), 'utf8');
+      check(
+        'deleted code default',
+        'code',
+        'mismatch',
+        'Button.variant (default)',
+        () => replaceInFile(BTN_TSX, "variant = 'default',", 'variant,'),
+        () => writeFileSync(path.join(SCRATCH, BTN_TSX), btnSrc),
+      );
     },
   },
   {
@@ -228,7 +364,10 @@ const cases: Case[] = [
     claim: 'C3-detection',
     run: () => {
       replaceInFile(BTN_TSX, VARIANT_DECL, `${VARIANT_DECL}\n  iconOnly?: boolean;`);
-      replaceInFile(BTN_TSX, "{ variant = 'default',", "{ variant = 'default',\n    iconOnly = false,");
+      // 002-governed-icons-button: v1.3's extra destructured props push the
+      // generator's param block onto multiple lines — anchor on the stable
+      // `variant = 'default',` line itself, not the preceding brace.
+      replaceInFile(BTN_TSX, "    variant = 'default',", "    variant = 'default',\n    iconOnly = false,");
       if (parity().status === 0) throw new Error('Drift not detected');
       const f = expectFinding(readReport(), 'code', 'ahead', 'Button.iconOnly');
       if ((f.proposedPatch as any)?.name !== 'iconOnly') throw new Error('Patch missing/incorrect');

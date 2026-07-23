@@ -2443,6 +2443,27 @@ export const Disabled: Story = {
 };`
     : '';
 
+  // One story revealing every templated-icon part at once (icon.asset
+  // "{prop}" gated by visibleWhen) — the Matrix story only varies WHICH
+  // glyph an enum picks, never the guarding boolean, so a governed-icon
+  // component's Matrix renders icons hidden in every cell (002-governed-
+  // icons-button finding). Generic: keys off the anatomy shape, not any
+  // component-specific name — booleans forced true, enums render their own
+  // defaults (FR-020: an example with icons visible, no hand-authored fixture).
+  const gatedIconBools = new Set<string>();
+  for (const { part } of walkAnatomy(contract)) {
+    if (part.icon && part.visibleWhen && /^\{[a-z][\w-]*\}$/.test(part.icon.asset)) {
+      gatedIconBools.add(part.visibleWhen.prop);
+    }
+  }
+  const withIconsStory =
+    gatedIconBools.size > 0
+      ? `
+export const WithIcons: Story = {
+  args: { ${[...gatedIconBools].map((p) => `${p}: true`).join(', ')} },
+};`
+      : '';
+
   const sampleImports = [...slotSampleImports]
     .map((depName) => `import { ${depName} } from '../${depName}';`)
     .join('\n');
@@ -2474,7 +2495,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
-${variantStories}${disabledStory}${slotStories}${matrixStory}
+${variantStories}${disabledStory}${withIconsStory}${slotStories}${matrixStory}
 `;
 }
 

@@ -362,7 +362,15 @@ for (const contract of contracts) {
         });
       }
     }
-    if (isEnum(p)) {
+    // variantOptions/defaultValue below describe a VARIANT property's axis
+    // values and canvas-positional default — they simply don't exist for an
+    // INSTANCE_SWAP property (whose canvas menu is `preferredValues`, keyed
+    // by component id, and whose "default" is a node id, not an option
+    // name). An icon-registry-governed swap (002-governed-icons-button, D5)
+    // already gets the CORRECT, purpose-built three-way comparison from the
+    // icons axis (registry ↔ code ↔ canvas by key) — this generic check
+    // would just compare the wrong fields and false-positive.
+    if (isEnum(p) && p.bindings.figma.kind !== 'INSTANCE_SWAP') {
       const want = p.type.enum.map((v) => p.bindings.figma.values?.[v] ?? v);
       const got = def.variantOptions ?? [];
       // Order-insensitive: the canvas presents the default variant first;

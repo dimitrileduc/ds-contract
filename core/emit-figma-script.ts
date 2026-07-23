@@ -2099,6 +2099,19 @@ function refuseUnresolvableRefs(contract: Contract, byId: Map<string, Contract>)
 function compileComponentData(contract: Contract, byId: Map<string, Contract>): ComponentData {
   refuseUnresolvableRefs(contract, byId);
   const enums = contract.props.filter(isEnum);
+  // INSTANCE_SWAP-bound enums (002-governed-icons-button, D2/D5) pick a
+  // swappable CHILD instance — never a new Figma component VARIANT, unlike a
+  // VARIANT-bound enum, which IS the axis mechanism (exactly why a slot's
+  // INSTANCE_SWAP property never entered this loop either: slots live in
+  // anatomy, not contract.props, and are wired via the SEPARATE
+  // addComponentProperty('INSTANCE_SWAP', …) pass near `registry.slots`).
+  // Only VARIANT-kind enums multiply into the cartesian product; a swap enum
+  // stays at its DEFAULT value across every variant (D8, named + deferred:
+  // the canvas emitter bakes icon glyphs as vectors, not swappable
+  // instances — it keeps the canvas honestly showing the default glyph
+  // rather than fabricating one variant per icon choice).
+  const variantEnums = enums.filter((p) => p.bindings.figma.kind === 'VARIANT');
+  const swapEnums = enums.filter((p) => p.bindings.figma.kind === 'INSTANCE_SWAP');
   const textProp = contract.props.find(
     (p) => p.type === 'text' && p.bindings.code.prop === 'children',
   );
@@ -2127,7 +2140,13 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   // amend paths both rely on that ordering invariant.
   // Grid mapping: rows = axis 0's values; columns = the ordered cartesian
   // product of axes 1..n (a 5×3×2 component renders 5 rows × 6 columns).
-  const axes = enums.map((p) => ({ prop: p, values: orderedValues(p) }));
+  const axes = variantEnums.map((p) => ({ prop: p, values: orderedValues(p) }));
+  // A swap enum never becomes an axis (above) — it stays constant at its
+  // DEFAULT value in every variant's `subst`, so a templated icon.asset
+  // "{prop}" (or any other {prop} substitution) still resolves.
+  const swapDefaults = Object.fromEntries(
+    swapEnums.filter((p) => p.default !== undefined).map((p) => [p.name, String(p.default)]),
+  );
   let combos: number[][] = [[]];
   for (const axis of axes) {
     const next: number[][] = [];
@@ -2141,7 +2160,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   for (const combo of combos) {
     // Every axis's value for this combo feeds BOTH the `{prop}` token
     // substitutions and the visibleWhen part filtering (variantParts).
-    const subst: Record<string, string> = {};
+    const subst: Record<string, string> = { ...swapDefaults };
     const nameParts: string[] = [];
     let col = 0;
     for (let a = 0; a < axes.length; a++) {
@@ -2250,7 +2269,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     for (let si = 0; si < contract.states.length; si++) {
       const stateName = contract.states[si];
       for (let pi = 0; pi < primaryValues.length; pi++) {
-        const subst: Record<string, string> = {};
+        const subst: Record<string, string> = { ...swapDefaults };
         const nameParts: string[] = [];
         for (let a = 0; a < axes.length; a++) {
           const { prop, values } = axes[a];

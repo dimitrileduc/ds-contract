@@ -21,13 +21,13 @@ them, and the runner prints the quarantine count on every run so it can never
 go quiet:
 
 ```
-N/99 evals passed — evals/results.json
-51 legacy cases quarantined (not run) — …
+N/101 evals passed — evals/results.json
+50 legacy cases quarantined (not run) — …
 ```
 
 The live `N/N` counts executed cases only, so the pass rate stays honest. **Trust the live `npm run eval` output over this file** — it prints the count on every run; update this note when it drifts (`grep -rn` the number, per CLAUDE.md).
 
-**Counts:** 147 cases before the reconversion → 96 executed at the reconversion, **99 executed** as of 002-governed-icons-button (+2: `detect-icon-registry-divergence`, `refuse-unregistered-icon-enum`), **51 quarantined**.
+**Counts:** 147 cases before the reconversion → 96 executed at the reconversion, **101 executed** as of 002-governed-icons-button (+2 new: `detect-icon-registry-divergence`, `refuse-unregistered-icon-enum`; +1 new: `lower-icon-swap-and-visibility-into-props`; +1 revived: `figma-script-referees-invalid-contracts`, re-homed onto `ds.button` in its own standalone script — see `extract/figma/gauntlet/figma-script-referee-check.ts`), **50 quarantined**.
 
 ## What quarantine does NOT mean
 
@@ -61,7 +61,7 @@ restore is a move, not a rewrite.
 | `refuse-incomplete-mode-set` | C2-refusal | the token build refuses a light/dark mode gap by name | Piqueray is mono-theme: tokens/modes/semantic.dark.tokens.json does not exist, so there is no mode set to leave incomplete | a second token mode (a real dark theme in tokens/modes/) |
 | `detect-figma-missing-slot-property` | C3-detection | a slot's INSTANCE_SWAP property missing from the canvas surfaces as figma BEHIND | Piqueray has no component with a slot | a Piqueray component with a slot (INSTANCE_SWAP) drawn on its Figma set |
 | `detect-figma-missing-nested-instance` | C3-detection | a nested instance missing from the canvas surfaces as figma BEHIND | Piqueray has no component that nests another component | a Piqueray component with a nested instance (component ref in its anatomy) |
-| `detect-figma-accepts-drift` | C3-detection | a slot's `accepts` set narrowing on the canvas (preferredValues) surfaces as figma MISMATCH | Piqueray has no slot, so there is no accepts set to drift | a Piqueray component with a slot carrying `accepts` |
+| `detect-figma-accepts-drift` | C3-detection | a slot's `accepts` set narrowing on the canvas (preferredValues) surfaces as figma MISMATCH | Piqueray has no slot, so there is no accepts set to drift — confirmed still true post-002-governed-icons-button: that spec's own INSTANCE_SWAP preferredValues (Button's icon choice) deliberately resolve through the new icon registry as a plain enum prop, never `slot.accepts` (D2: no per-icon contract to resolve `accepts` ids against, by design) | a Piqueray component with a slot carrying `accepts` |
 | `detect-code-removed-slot-prop` | C3-detection | deleting a slot's ReactNode prop from the generated code surfaces as code BEHIND | Piqueray has no slot-bearing component | a Piqueray component with a slot |
 | `brand-added-token-layer-only` | C6-theming | adding a brand is a TOKEN-LAYER-ONLY operation: generated components stay byte-identical, a [data-brand] block is emitted, a Brand mode reaches the canvas, and an incomplete brand file is refused by name | Piqueray is mono-brand: brand.default.tokens.json is empty and there is no second brand to add alongside it | a second brand file in tokens/modes/ (brand.<name>.tokens.json) with real brand-layer tokens |
 | `detect-default-and-kind-drift` | C3-detection | boolean/text canvas defaults, numeric code defaults, a DELETED code default, and property KIND changes on either surface are all caught | needs a Figma set with BOOLEAN and TEXT properties and a component with a numeric prop default (the demo Button.Loading/Label and Slider.value); the Piqueray Bouton set has one VARIANT property and the Button has no numeric or boolean prop | a Piqueray component with a boolean and/or numeric prop, drawn as BOOLEAN/TEXT properties on its Figma set |
@@ -89,11 +89,10 @@ restore is a move, not a rewrite.
 | `design-mcp-roundtrip-fixture-replay` | C5-extraction | recorded live desktop-MCP responses replay to plugin-dump name fidelity: Badge zero-mismatch against its shipping contract, Eventz foreign names, and the U+2024 token-ref refusal | the Badge half compares against contracts/badge.contract.json (gone) and its 12px "badge" text style has no counterpart in Piqueray's typography scale | a Piqueray component recorded through the desktop-MCP path with its own shipping contract |
 | `key-based-linking` | C5-extraction | nested instances resolve by componentSetKey FIRST (rename-safe), and a NAME match whose keys contradict is refused by name with a suffixed stub id | the receipt needs two in-scope contracts (button + badge) to argue key-vs-name linking against, and the whole claim is about nested instances | a Piqueray component that nests another, plus a second contract to collide names against |
 | `stub-geometry-render` | C5-extraction | a nested child with no contract in scope renders its OBSERVED bounding box and primary paint as minted imported.stub-* tokens, never a hollow nothing and never invented anatomy | child stubs only arise for nested instances; Piqueray has none | a Piqueray component with a nested instance |
-| `preferred-values-accepts` | C5-extraction | INSTANCE_SWAP preferredValues resolve through the session key index into slot `accepts` (acceptsMode prefer); unresolvable keys stay a NAMED note | needs a slot with preferredValues and a second in-scope contract to resolve the key against | a Piqueray component with an INSTANCE_SWAP slot |
+| `preferred-values-accepts` | C5-extraction | INSTANCE_SWAP preferredValues resolve through the session key index into slot `accepts` (acceptsMode prefer); unresolvable keys stay a NAMED note | needs a slot with preferredValues and a second in-scope contract to resolve the key against — confirmed still true post-002-governed-icons-button: that spec DID land INSTANCE_SWAP preferredValues resolution (Button's icon choice), but through a NEW, separate path (`proposeIconEnum` in core/propose-figma.ts, resolving against the icon registry into a plain enum prop) that this case's assertions don't exercise at all — the slot/`contractIdByKey` path this case pins remains genuinely untested by Piqueray | a Piqueray component with an INSTANCE_SWAP slot |
 | `design-census-unmappable-child-props-dropped` | C5-extraction | an applied Figma prop on a nested instance that does not map through the child contract's bindings.figma is DROPPED with a named note, never guessed | the fixture nests an Avatar instance and needs ds.avatar in scope; that contract went with the reconversion | a Piqueray component with a nested instance whose child contract ships here |
 | `design-census-boolean-visiblewhen-truthy-form` | C5-extraction | presence riding a true/false axis spells the TRUTHY visibleWhen form (never equals:"true"), and the inexpressible false side is a NAMED note kept unconditional | rides the same class-fix receipt, whose first section needs a nested-instance child contract in scope | the class-fix receipt runnable again (see design-census-unmappable-child-props-dropped) |
 | `design-census-digit-led-prop-binding-prefixed` | C5-extraction | a digit-led Figma property spelling gets the deterministic "p" prefix on its code binding with a named note, while the figma binding keeps the original spelling | rides the same class-fix receipt (see above) | the class-fix receipt runnable again |
-| `figma-script-referees-invalid-contracts` | C2-refusal | emit-figma-script calls validateContract like the other three emitters: an invalid contract refuses BY NAME on the canvas surface, and valid contracts still emit | rides the same class-fix receipt, whose earlier sections need nested-instance child contracts; the CLAIM ITSELF is Piqueray-testable and could be re-homed onto the Button | nothing Piqueray-specific — re-home this one onto contracts/button.contract.json and it can come back immediately |
 | `checkbox-native-input` | C4-convergence | the checkbox renders a real focusable <input type=checkbox>, checked rides the DOM, indeterminate is the DOM PROPERTY via a ref, and the Switch is input[type=checkbox][role=switch] | Piqueray ships no checkbox or switch | a Piqueray checkbox and switch |
 | `refuse-role-recreating-native-control` | C2-refusal | a role that re-creates a control the platform ships (<button role=checkbox>) refuses BY NAME at generation, a DECLARED exception passes, and a dangling exception refuses too | needs the checkbox contract to reintroduce the shape on, and ds.progress-bar to carry the declared exception | a Piqueray component whose role claim could shadow a native control, plus one with a declared roleException |
 | `playground-caption-consistency` | C3-detection | every countable claim in the Examples gallery captions is DERIVED from a real contract, and reintroduced hardcoded counts are refused | playground/src/engine/examples.ts still references ds.badge, ds.switch and other deleted demo contracts | the playground examples re-authored against the Piqueray catalogue |
@@ -151,7 +150,7 @@ these capabilities back by gaining:
 - **repeat collections / multi-root anatomy** — `repeated-children-collection`,
   `depth-composite-child-collection`
 
-Two entries are **not** waiting on a Piqueray feature and are worth reading
+One entry is **not** waiting on a Piqueray feature and is worth reading
 separately:
 
 - `text-styles-from-typography-tokens` — blocked on a **live gap**:
@@ -159,8 +158,3 @@ separately:
   matching `font.<group>.size`, and Piqueray's typography lives at
   `typography.<role>.{family,size,weight}`. Zero text styles are derived, so
   Piqueray's 8 Montserrat styles currently reach no surface.
-- `figma-script-referees-invalid-contracts` — its claim (the canvas emitter
-  referees invalid contracts like the other three) is **fully Piqueray-testable
-  today**; it is quarantined only because it rides a receipt whose earlier
-  sections need a nested-instance child contract. Re-homing it onto
-  `contracts/button.contract.json` would bring it back immediately.
