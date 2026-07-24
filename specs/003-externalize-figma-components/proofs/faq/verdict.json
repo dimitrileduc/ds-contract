@@ -1,0 +1,54 @@
+{
+  "statutGlobal": "diff",
+  "exitCode": 1,
+  "totaux": {
+    "identical": 2,
+    "diff": 2,
+    "captureFailed": 0,
+    "dimensionMismatch": 0
+  },
+  "maquettes": [
+    {
+      "maquette": "Dépannage_SAV",
+      "status": "identical",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": null
+    },
+    {
+      "maquette": "Portes d'entrée",
+      "status": "diff",
+      "diffCount": 69,
+      "diffBox": {
+        "x": 772,
+        "y": 4841,
+        "w": 182,
+        "h": 10
+      },
+      "cropTriptyque": "crops/Portes d'entrée.png",
+      "refus": null
+    },
+    {
+      "maquette": "Portes de garage industrielles",
+      "status": "identical",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": null
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "status": "diff",
+      "diffCount": 69,
+      "diffBox": {
+        "x": 772,
+        "y": 4858,
+        "w": 182,
+        "h": 10
+      },
+      "cropTriptyque": "crops/Portes de garage résidentielles.png",
+      "refus": null
+    }
+  ]
+}

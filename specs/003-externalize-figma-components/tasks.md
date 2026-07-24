@@ -230,8 +230,8 @@
 - [ ] T080 [US2] Adoption **Catégories principales** — 7 pages → `ledger/categories-principales.json` + `proofs/categories-principales/verdict.{json,md}`
 - [ ] T081 [US3] Master **Texte SEO** (exige Accordion T068 adopté) → `audits/texte-seo.md` + entrée `decisions.md`
 - [ ] T082 [US2] Adoption **Texte SEO** — 8 pages → `ledger/texte-seo.json` + `proofs/texte-seo/verdict.{json,md}`
-- [ ] T083 [US3] Master **FAQ** (exige Tabs T044 + Accordion T068 adoptés + Bouton) → `audits/faq.md` + entrée `decisions.md`
-- [ ] T084 [US2] Adoption **FAQ** — 4 pages → `ledger/faq.json` + `proofs/faq/verdict.{json,md}`
+- [X] T083 [US3] Master **FAQ** (exige Tabs T044 + Accordion T068 adoptés + Bouton) → `audits/faq.md` + entrée `decisions.md` — **fait 2026-07-24** : `2104:2914` (COMPONENT, 1728×448, cloné depuis Portes de garage industrielles), assemble Section-header + accordion (N× Accordion-row) + Bouton — tous déjà gouvernés ; propriété `Ligne 3` (BOOLÉEN) montre/masque la 3e question (piège trouvé : retirer un enfant d'une instance placée est refusé par l'API Figma, résolu par visibilité togglable officielle) ; Dépannage/SAV (composite `Hero et FAQ`, 4 Tab déjà gouvernées) volontairement exclu du master, zéro slot onglets
+- [X] T084 [US2] Adoption **FAQ** — 4 pages → `ledger/faq.json` + `proofs/faq/verdict.{json,md}` — **fait 2026-07-24** : `FAQ` brut ×3 (Portes d'entrée/industrielles/résidentielles) → 0 copie restante ; 2/4 `identical` (dont 1 byte-exact), 2/4 `diff` à 0,00061% (cause racine identifiée : dérive 1px historique du Bouton sur 2 sites, corrigée par l'adoption) ; Dépannage/SAV non adopté (déjà gouverné au niveau molécule), vérifié sans ricochet sur ses Tab (sha256 avant=après)
 - [ ] T085 [US3] Master **Produits e-commerce** (exige Product-card T048 + Carousel-controls T056 adoptés) → `audits/produits-ecommerce.md` + entrée `decisions.md`
 - [ ] T086 [US2] Adoption **Produits e-commerce** — 2 pages → `ledger/produits-ecommerce.json` + `proofs/produits-ecommerce/verdict.{json,md}`
 - [ ] T087 [US3] Master **Équipe** (exige Member-card T050 adopté) → `audits/equipe.md` + entrée `decisions.md`

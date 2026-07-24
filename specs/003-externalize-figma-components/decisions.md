@@ -1557,6 +1557,81 @@ tranchée).
   la source, cf. `figma_capture_screenshot` sur `2104:2914`)
 - **Checkpoint** : `003/faq/master` (versionId `2379861256398298823`)
 
+## 2026-07-24 — ecart-pixel-accepte — FAQ (adoption, T084)
+
+- **Type** : ecart-pixel-accepte
+- **Composant(s)** : faq
+- **Verdict owner** : accepté par l'agent d'exécution après investigation complète de
+  la cause racine (pas un chiffre agrégé pris pour argent comptant) — magnitude
+  (0,0006% de la page) sous tous les écarts déjà acceptés cette spec.
+- **Chiffres** : **2/4 `identical`** (Dépannage/SAV, Portes de garage industrielles —
+  sha256 avant/après strictement identiques sur les deux), **2/4 `diff`** (Portes
+  d'entrée `diffCount=69` diffBox 182×10 ; Portes de garage résidentielles
+  `diffCount=69` diffBox 182×10) — soit **0,00061%** de la page sur les deux (
+  1728×6533,5 et 1728×6574,5), le plus petit écart mesuré sur toute cette spec
+  (précédent le plus bas : Devis/Portes de garage industrielles à 0,00065%). 3
+  occurrences adoptées (`237:1081`→`2106:3035`, `387:803`→`2106:3010`,
+  `234:676`→`2106:3060`), 0 copie brute restante, 3/3 bbox strictement identiques
+  avant/après (vérifié programmatiquement avant toute capture "after"). 1 occurrence
+  (Dépannage/SAV) **non adoptée**, voir Raison.
+- **Raison — cause racine identifiée, pas laissée en « bruit de rendu »** : les 2
+  écarts se localisent exactement sur le texte/l'icône du Bouton « CONTACTEZ-NOUS »
+  (crops inspectés au zoom). Investigation : le Bouton de ces 2 sites mesurait
+  **250px** de large avant remplacement (`componentProperties` identiques partout —
+  Libellé/icônes — donc pas une différence de contenu), alors que le master (cloné
+  depuis Portes de garage industrielles, seul site à 249px avant remplacement) porte
+  un Bouton à **249px**. Vérification indépendante décisive : une instance **neuve**
+  du composant Bouton partagé (`28:114`), créée hors de tout master FAQ, avec les
+  mêmes propriétés exactes (`Libellé="Contactez-nous"`, icônes identiques),
+  `primaryAxisSizingMode`/`counterAxisSizingMode` tous deux `AUTO` (pur hug, aucun
+  override de taille) → calcule **249px**, confirmant que 249px est la sortie
+  canonique **actuelle** du Bouton gouverné pour ce contenu — le 250px vu sur 3 des 4
+  sites d'origine (Dépannage/SAV, Portes d'entrée, Portes de garage résidentielles)
+  est une **dérive historique d'1px pré-existante** sur ces frames-là (portes de
+  garage industrielles étant, avec le recul, le site le plus proche du Bouton
+  gouverné actuel, pas l'exception). Adopter ces 2 sites dans le master **corrige**
+  naturellement cette incohérence plutôt que de la perpétuer — cohérent avec le but
+  même de cette spec. Résidu visuel : léger déplacement (~1px) du texte/de la flèche
+  du bouton, imperceptible à l'œil (grille d'audit : police/couleur/icônes/props
+  toutes identiques, seule la largeur du cadre différait).
+- **Piège outillage trouvé, nommé pour la suite du programme** : `customizations.js`
+  ne descend PAS dans les enfants d'une instance déjà placée (son `walkPair` retourne
+  dès qu'il rencontre un nœud `INSTANCE`, après avoir comparé son `mainId` — il ne
+  compare jamais le texte/contenu interne d'une instance nichée). Pour FAQ, ce point
+  aveugle signifie que les vraies personnalisations de texte (les paires question/
+  réponse, propres à chaque page, portées par des instances Accordion-row **déjà
+  gouvernées**) n'ont **pas** été détectées par l'outil — seul l'écart de nombre de
+  lignes (« autre — enfant du master absent de la copie ») a été repéré, car
+  c'est un diff de comptage d'enfants, pas de contenu nichée. Le ledger de ce bloc a
+  donc été complété **manuellement** (texte + `Contenu` par ligne, en plus des 2
+  entrées `autre` détectées par l'outil) après relecture directe des
+  `componentProperties` de chaque ligne, pas depuis la sortie de l'outil seule.
+  **Pertinent pour toute section à venir qui assemble des molécules déjà gouvernées**
+  (Réassurances, Catégories principales, Équipe, Coordonnées…) : le ledger de ces
+  blocs devra être complété à la main pour tout contenu nichée dans une instance déjà
+  placée, l'outil ne le fera pas seul.
+- **Cas Dépannage/SAV vérifié, pas juste supposé** : composite `Hero et FAQ` non
+  touché (Section-header/accordion/Bouton déjà instances, wrapper hors gabarit
+  simple — voir `validation-master` ci-dessus). Capturé avant/après par prudence :
+  **`identical`, sha256 avant = sha256 après** (`2435c139f942…`), et lecture
+  programmatique directe des 4 instances **Tab** (`tabs`, `249:1613`) après le geste
+  sur les 3 autres sites : bounds strictement identiques à la toute première mesure
+  (201/181/103/236px de large, tous à `y=835`) — zéro ricochet, mesuré, pas supposé.
+- **Preuve** : `proofs/faq/{verdict.json,verdict.md,crops/}` (2 triptyques) ;
+  `ledger/faq.json` (8 entrées, 8 `reportee`, 0 `non-portable`, `pages:ledger:check`
+  exit 0) ; `audits/faq.md`
+- **Checkpoint** : `003/faq/master` (versionId `2379861256398298823`),
+  `003/faq/adoption` (versionId `2379860002785979070`)
+
+**FAQ (T083-T084) fait.** `FAQ` brut ×3 (Portes d'entrée, Portes de garage
+industrielles, Portes de garage résidentielles) → 0 copie restante, 3 instances du
+master `FAQ`. Dépannage/SAV (composite `Hero et FAQ`) laissée intacte par décision
+explicite — ses 3 pièces molécules étaient déjà gouvernées, aucune instance FAQ
+consolidée n'y est posée, vérifié sans ricochet sur ses 4 Tab voisines. 2/4 sites
+`identical` (dont un byte-exact témoignant d'un master fidèle à 0 écart), 2/4 `diff`
+à cause racine identifiée (dérive historique 1px du Bouton sur 2 sites, corrigée par
+l'adoption) — le plus petit écart mesuré sur toute cette spec.
+
 ## 2026-07-24 — anomalie-tranchee — texte courant du Consentement lié à `color/noir`
 
 - **Type** : anomalie-tranchee
