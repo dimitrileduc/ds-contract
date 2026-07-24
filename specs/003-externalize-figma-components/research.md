@@ -169,6 +169,12 @@ masters sont rangés sur **3 nouvelles pages de niveau** : `DS · Atomes`,
 `DS · Molécules`, `DS · Sections` (noms proposés ; l'owner peut amender — consigné au
 journal).
 
+**Amendement 2026-07-24 (journal : amendement-orga)** : une **4e page** `DS · Tokens`
+s'ajoute au rangement — référence visuelle des 14 variables + 8 styles Montserrat,
+peuplée en Phase T (tâches T029a/T029b) avec les noms **finaux** (après les renames
+R10). Ne change rien au reste de R9 : `Assets` et ses 5 masters existants restent
+non déplacés, confirmé sans changement par l'owner à la même session.
+
 **Rationale** : déplacer les masters existants = zéro valeur pour le livrable de cette
 spec ; sur un vrai fichier client, le périmètre minimal gagne. Housekeeping possible
 post-034, avec l'owner.
