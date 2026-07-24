@@ -606,3 +606,44 @@ triptyques avant d'accepter un écart** — 2 des 4 vraies causes de cette
 adoption n'ont été trouvées qu'en regardant l'image de près, pas en faisant
 confiance à un chiffre agrégé ou à une explication plausible non vérifiée.
 **Prochain : T043 (Master Tabs/Tab).**
+
+## 2026-07-24 — validation-master + ecart-pixel-accepte — Tab (T043-T044)
+
+- **Type** : validation-master (T043) puis mesure automatique (T044, rien à
+  trancher — résultat 9/9 identical)
+- **Composant(s)** : tab
+- **Verdict owner** : validé après investigation conjointe d'une fausse piste
+  (voir Raison) — construit et adopté en une seule session.
+- **Chiffres** : `DS · Molécules` → `COMPONENT_SET` **Tab** (`2061:1588`),
+  variant `État` (Défaut/Sélectionné — soulignement 2px `color/noir-bleute`
+  visible seulement si sélectionné), propriété `Libellé` (texte). 4
+  occurrences adoptées (page `Dépannage/SAV`, conteneur `tabs` non gouverné
+  — zéro identité visuelle propre, reconstruit tel quel à l'adoption).
+  **Preuve pixel : 9/9 `identical`, 0 diff, exit 0** — le premier score
+  parfait de la Phase 7 (Field et Accordion-row avaient tous deux un écart
+  résiduel accepté).
+- **Raison — fausse piste puis vraie cause** : l'audit initial (post-Field/
+  Accordion-row, donc déjà attentif aux bordures/gras/espacement) donnait
+  des largeurs d'onglet ~10-24% plus étroites que la source (ex. "Porte de
+  garage" 166px reconstruit contre 201px source). Hypothèse initiale
+  (fausse) : version de police différente. **L'owner a fait remarquer
+  que ça n'avait pas de sens vu qu'on est sur la même session Figma** —
+  correct : en comparant l'avant/après capturé (pas une image isolée), la
+  vraie cause était visible à l'œil nu — l'original est en **MAJUSCULES**
+  (`textCase: UPPER`, une transformation d'affichage, pas le texte réel
+  saisi en capitales) et ma reconstruction ne l'appliquait pas. Propriété
+  texte de plus jamais vérifiée avant cette spec (`textCase` n'était pas
+  dans ma grille d'audit). Une fois appliqué : les 4 largeurs collent
+  **exactement** (201/181/103/236px, zéro écart) et la preuve pixel passe à
+  9/9 identical.
+- **Preuve** : `proofs/tabs/{verdict.json,verdict.md}` ; `ledger/tabs.json`
+  (5 entrées : 4 `Libellé` + 1 `autre` pour l'état sélectionné, 5
+  `reportee`, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/tab/master` (versionId `2379770585322586023`),
+  `003/tab/adoption` (versionId `2379761866005362687`)
+
+**Tab (T043-T044) fait — 9/9 identical.** Grille d'audit texte élargie pour
+la suite (leçon cumulée cette spec) : toujours vérifier — police/taille,
+couleur, `lineHeight`, `letterSpacing`, `paragraphSpacing`, **`textCase`**,
+bordures (`strokes`/`strokeXWeight` par côté), avant de construire un
+master, jamais après coup. **Prochain : T045 (Master Category-card).**
