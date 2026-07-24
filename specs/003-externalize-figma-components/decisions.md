@@ -497,3 +497,26 @@ pour qu'il s'étire dans la nouvelle taille. Pertinent pour toute future
 molécule avec un slot instance-swap dont les options ont des tailles
 différentes (aucune connue à ce stade dans les 14 molécules restantes, mais
 nommé au cas où). **Prochain : T041 (Master Accordion-row).**
+
+## 2026-07-24 — validation-master — Accordion-row (molécule)
+
+- **Type** : validation-master
+- **Composant(s)** : accordion-row
+- **Verdict owner** : validé sur capture (4 variants) — go adoption. Décision
+  associée : un seul master (pas deux), variant `Taille`.
+- **Chiffres** : `DS · Molécules` → `COMPONENT_SET` **Accordion-row**
+  (`2059:1417`), 4 variants (`Taille` Grand/Petit × `État` Fermé/Ouvert), 4
+  propriétés (`Titre`, `Contenu`, + les 2 variants). Dimensions vérifiées
+  exactes vs 4 échantillons source : 1550×64 / 1550×120 / 1550×40 / 1550×80.
+  Chevrons = instances `chevron-down`/`chevron-up` (`226:373`/`226:374`),
+  locaux, zéro tierce. `figma_analyze_component_set` : zéro erreur.
+- **Raison** : trouvaille d'audit — l'inventaire ne nommait qu'un style
+  (« ligne FAQ ») mais la mesure par position a trouvé 2 tailles réelles
+  (Grand=FAQ 20px, Petit=Texte SEO 14px), 34 lignes au total (10 Grand + 24
+  Petit) — compte reconcilié exactement avec l'inventaire initial.
+- **Preuve** : `audits/accordion-row.md` ; capture de session (4 variants)
+- **Checkpoint** : `003/accordion-row/master` (versionId `2379739404409995287`)
+
+**Accordion-row (T041) fait.** Prochain : T042 (adoption, 34 occurrences/8
+pages), puis passage en exécution multi-agent (owner directive, contrainte
+de timing) pour le reste de la Phase 7 — voir entrée suivante.
