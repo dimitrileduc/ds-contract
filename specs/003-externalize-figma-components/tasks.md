@@ -179,8 +179,8 @@
 - [X] T052 [US2] Adoption **Réassurance** (disposition Carte) — `item` 26 → `ledger/carte.json` + `proofs/carte/verdict.{json,md}` (même limite de preuve que T046, voir `decisions.md`)
 - [ ] T053 [US3] Master **Review-card** (avatar + étoiles + texte ; dépend de l'icône étoile T038) — bloc **inféré** → validation owner **par composant** ; introuvable → `report-bloc` → `audits/review-card.md` + entrée `decisions.md`
 - [ ] T054 [US2] Adoption **Review-card** — occurrences Avis Google localisées par position → `ledger/review-card.json` + `proofs/review-card/verdict.{json,md}`
-- [ ] T055 [US3] Master **Carousel-controls** (prev / next ; instances Bouton) → `audits/carousel-controls.md` + entrée `decisions.md`
-- [ ] T056 [US2] Adoption **Carousel-controls** — `Controls` brut ×2 → `ledger/carousel-controls.json` + `proofs/carousel-controls/verdict.{json,md}`
+- [X] T055 [US3] Master **Carousel-controls** (prev / next ; instances Bouton `Outilne noir`, libellé invisible) → `audits/carousel-controls.md` + entrée `decisions.md`
+- [X] T056 [US2] Adoption **Carousel-controls** — `Controls` brut ×2 → `ledger/carousel-controls.json` (vide) + `proofs/carousel-controls/verdict.{json,md}` (byte-exact sur Motorisation)
 - [ ] T057 [US3] Master **Footer-column** → `audits/footer-column.md` + entrée `decisions.md`
 - [ ] T058 [US2] Adoption **Footer-column** — brut ×9 → `ledger/footer-column.json` + `proofs/footer-column/verdict.{json,md}`
 - [ ] T059 [US3] Master **Copyright** → `audits/copyright.md` + entrée `decisions.md`

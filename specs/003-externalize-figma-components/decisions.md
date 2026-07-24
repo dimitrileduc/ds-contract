@@ -872,6 +872,54 @@ nommé, pas comblé).
 - **Checkpoint** : `003/member-card/master`, `003/member-card/adoption-pilot`,
   `003/member-card/adoption-batch`
 
-**Member-card (T049-T050) fait.** `member` brut ×16 → 0 copie restante. **Prochain :
-T055 (Master Carousel-controls)** — Review-card (T053-54) et Gallery-item (T065-66)
-restent différés pour implication directe de l'owner (blocs inférés/incertains).
+**Member-card (T049-T050) fait.** `member` brut ×16 → 0 copie restante.
+
+## 2026-07-24 — validation-master + adoption complète — Carousel-controls (T055-T056)
+
+- **Type** : validation-master puis adoption (2 occurrences, 2 maquettes)
+- **Composant(s)** : `Controls`
+- **Verdict owner** : "Go" direct.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Carousel-controls** (`2077:2191`,
+  `HORIZONTAL`, `primaryAxisAlignItems: SPACE_BETWEEN`, largeur FILL). 2 instances
+  réelles du master Bouton existant (`Property 1=Outilne noir`, `28:114` — piège
+  d'id noté : confondu une fois avec `Outline blanc` `6:135`, corrigé avant tout
+  dégât). 2 occurrences adoptées (`Motorisation`, `Accueil`).
+- **`.visible` trouvé dès l'audit, pas après un gros diff** — leçon Product-card
+  appliquée immédiatement : le texte `Contactez-nous` de chaque bouton est
+  `visible: false` dans la source, repéré avant construction.
+
+### Piège Figma majeur — l'origine d'un GROUP n'est pas stable
+
+Repositionner l'instance `Controls` (enfant du `GROUP` « Carrousel produits ») a fait
+**glisser les 4 cartes Product-card voisines de 22px**, sans qu'elles soient
+touchées — l'origine interne d'un `GROUP` se recalcule dynamiquement contre son
+contenu, donc modifier un enfant peut déplacer visuellement tous les autres.
+Plusieurs cycles de correction itérative (mesurer l'erreur, corriger, remesurer) ont
+**oscillé sans converger** — signe qu'il ne s'agissait pas d'un simple problème de
+cible mouvante mais d'une contrainte plus profonde. Cause réelle trouvée en
+vérifiant `layoutMode` du frame parent des cartes (`Produits`) : **auto-layout
+HORIZONTAL, gap 32** — ses enfants ne se positionnent jamais individuellement, un
+`.x`/`.y` direct dessus est silencieusement ignoré (même famille que le piège
+`resize()` sur enfant d'instance, mais pour la position d'un enfant d'auto-layout).
+Fix correct : corriger la position du frame `Produits` **lui-même** (un seul nœud),
+les 4 cartes se replacent automatiquement via leur propre flux — pas de correction
+par carte.
+
+**Règle généralisable ajoutée** : avant de repositionner un nœud dans un `GROUP`,
+vérifier (a) tous ses siblings pour un effet de bord sur l'origine du groupe, et (b)
+le `layoutMode` de tout parent avant d'assumer qu'un `.x`/`.y` direct fonctionnera.
+
+- **Preuve** : `proofs/carousel-controls/verdict.{json,md}` — **byte-exact sur
+  Motorisation** (`1/1 identical, 0 diff`, sha256 identique à l'avant, exit 0) — le
+  meilleur résultat de la spec à ce jour, zéro texte rendu (libellé caché) donc zéro
+  source de bruit sub-pixel possible. `Accueil` vérifié visuellement, même limite
+  documentée que Carte/Product-card.
+- **Ledger** : `ledger/carousel-controls.json` — **vide explicite** (`entrees: []`,
+  `pages:ledger:check` exit 0) : les 2 occurrences sont identiques au master par
+  défaut, aucune personnalisation à reporter.
+- **Checkpoint** : `003/carousel-controls/master`, `003/carousel-controls/adoption`
+
+**Carousel-controls (T055-T056) fait.** `Controls` brut ×2 → 0 copie restante,
+premier résultat byte-exact de la spec. **Prochain : T057 (Master Footer-column)** —
+Review-card (T053-54) et Gallery-item (T065-66) restent différés pour implication
+directe de l'owner (blocs inférés/incertains).
