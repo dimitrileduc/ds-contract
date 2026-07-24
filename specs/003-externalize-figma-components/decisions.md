@@ -1098,6 +1098,33 @@ batch GROUP). Repéré en recomptant le ledger généré (20 au lieu de 21 atten
   `003/section-header/adoption-batch1`, `003/section-header/adoption-batch2`,
   `003/section-header/adoption-batch3`
 
-**Section-header (T063-T064) fait.** `Title` brut ×21 → 0 copie restante. **Prochain :
-T067 (Master Accordion)** — Review-card (T053-54) et Gallery-item (T065-66) restent
-différés pour implication directe de l'owner (blocs inférés/incertains).
+**Section-header (T063-T064) fait.** `Title` brut ×21 → 0 copie restante.
+
+## 2026-07-24 — décision documentée, zéro mutation (autonome) — Accordion (T067-T068)
+
+- **Type** : audit puis décision de ne pas construire — pas d'adoption
+- **Composant(s)** : `accordion` (wrapper de `Accordion-row`)
+- **Constat** : `accordion` est un `FRAME` `VERTICAL` sans fill/bordure/effet/
+  padding — vérifié sur 4 échantillons (FAQ ×3 pages + Texte SEO). Ses enfants sont
+  **déjà** des instances du master `Accordion-row` (`setId 2059:1417`), adopté
+  depuis T041-T042 plus tôt cette session.
+- **Décision** : même traitement que le wrapper `tabs` de Tab (T043-T044) et le
+  `row` de Field (T039-T040) — un conteneur de pure disposition sans identité
+  visuelle ne justifie pas un master séparé. La dépendance du DAG (« T067 exige
+  T042 Accordion-row adopté-prouvé ») est satisfaite par construction : il n'y a
+  rien de nouveau à bâtir ni à remplacer. Documenté explicitement (constitution :
+  jamais de silence sur une non-action) plutôt que laissé sans trace.
+- **Preuve** : aucune — zéro mutation Figma pour cette tâche. La preuve pixel et le
+  ledger de T041-T042 (`ledger/accordion-row.json`, `proofs/accordion-row/`)
+  couvrent déjà tout le contenu réellement gouverné.
+- **Checkpoint** : aucun (rien touché)
+
+**Accordion (T067-T068) fait — sans construction.** Phase 7 (Molécules) close pour
+tout ce qui est bien défini. **Review-card (T053-54) et Gallery-item (T065-66)
+restent différés pour implication directe de l'owner** (blocs inférés/incertains,
+exclusion maintenue depuis le début de la session malgré l'autonomie accordée pour
+le reste). Session autonome ("Go tu peux finir les molécules et me prévenir
+après") : Footer-column, Copyright, Contact-info-row, Section-header, Accordion
+faits et committés sans interruption ; 1 incident sérieux (Section-header, page
+doublée de taille) détecté et résolu dans le même tour, jamais laissé en état
+cassé entre deux commits.

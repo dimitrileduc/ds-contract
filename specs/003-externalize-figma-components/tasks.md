@@ -191,8 +191,8 @@
 - [X] T064 [US2] Adoption **Section-header** — `Title` brut ×21 (8 pages) → `ledger/section-header.json` + `proofs/section-header/verdict.{json,md}` (preuve pixel pilote + incident GROUP résolu en direct, voir decisions.md)
 - [ ] T065 [US3] Master **Gallery-item** (bloc **inféré**, attendu dans Réalisations) → validation owner **par composant** ; si non localisé au scan → entrée `report-bloc` + `introuvables[]`, l'adoption T066 est alors annulée explicitement → `audits/gallery-item.md`
 - [ ] T066 [US2] Adoption **Gallery-item** — occurrences Réalisations localisées par position → `ledger/gallery-item.json` + `proofs/gallery-item/verdict.{json,md}`
-- [ ] T067 [US3] Master **Accordion** (groupe de lignes ; **exige T042 adopté-prouvé** — invariant DAG) → `audits/accordion.md` + entrée `decisions.md`
-- [ ] T068 [US2] Adoption **Accordion** — `accordion` brut ×12 → `ledger/accordion.json` + `proofs/accordion/verdict.{json,md}`
+- [X] T067 [US3] Master **Accordion** — **pas de master séparé** : wrapper sans identité visuelle propre (même décision que `tabs`/Tab et `row`/Field), vérifié sur 4 échantillons (FAQ×3 + Texte SEO) → `audits/accordion.md` + entrée `decisions.md`
+- [X] T068 [US2] Adoption **Accordion** — déjà couvert par T042 (les enfants `accordion` sont déjà des instances Accordion-row adoptées) ; aucune mutation Figma pour cette tâche, `ledger/accordion-row.json` fait foi
 
 **Checkpoint**: toutes les molécules sont des masters adoptés et prouvés. Les sections peuvent les composer.
 
