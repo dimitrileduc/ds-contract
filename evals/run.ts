@@ -428,6 +428,116 @@ const cases: Case[] = [
     },
   },
   {
+    // v17 native form control (spec 004, US1): a root whose element is an HTML
+    // VOID element (input) must render SELF-CLOSING with (a) its root `attrs`
+    // and (b) its text prop wired through `defaultValue` — never
+    // `<input>{children}</input>` (invalid React) and never a dropped value.
+    // The canvas draws that value as a text child (bound to the property,
+    // exactly like the Button label); code collapses it onto the native input.
+    // Regression guard: the demo-era generator rendered nested input PARTS
+    // with attrs, but the ROOT path emitted `{children}` and ignored root
+    // attrs. Fixture → eval → claim.
+    id: 'native-input-root-void-self-closes-with-attrs',
+    claim: 'C1-determinism',
+    run: () => {
+      const fixture = ContractSchema.parse({
+        id: 'ds.inputfixture', name: 'InputFixture', version: '1.0.0',
+        description: 'Eval fixture: native <input> root (void element).',
+        semantics: { element: 'input' },
+        props: [{
+          name: 'value', type: 'text', default: 'x',
+          bindings: { figma: { kind: 'TEXT', property: 'Valeur' }, code: { prop: 'value' } },
+        }],
+        // box root + a content-only text child (canvas draws it); the void
+        // React element drops the child and carries the value via defaultValue.
+        anatomy: { root: { attrs: { type: 'text' }, parts: { text: { element: 'span', content: { prop: 'value' } } } } },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/InputFixture', export: 'InputFixture' },
+        },
+      });
+      const { tsx } = coreEmitReact(fixture, { tokens: new Set(), icons: new Map(), contracts: new Map() });
+      if (tsx.includes('{children}')) throw new Error('void <input> root still renders {children} — invalid for a void element');
+      if (!/<input\b[^>]*\/>/.test(tsx)) throw new Error('void <input> root is not self-closing');
+      if (!tsx.includes('type="text"')) throw new Error('root attrs not rendered into JSX (type="text" missing)');
+      if (!tsx.includes('defaultValue={String(value)}')) throw new Error('the text prop is not wired through defaultValue on the void element');
+    },
+  },
+  {
+    // v17 native form controls (spec 004, US1): the checkbox and select
+    // patterns. A native checkable input reflects its state through
+    // `defaultChecked` even with no declared event (the real DOM checked state
+    // matches the drawn box — never a visual-only fake). A native <select>
+    // wraps its shown value in an <option> (never a raw text child, invalid
+    // HTML). Fixture → eval → claim for the two US1 generator additions.
+    id: 'native-checkbox-and-select-render-correctly',
+    claim: 'C1-determinism',
+    run: () => {
+      const icons = new Map([['check', '<svg/>'], ['chevron-down', '<svg/>']]);
+      // Checkbox: box span + real <input type=checkbox> + custom check glyph.
+      const checkbox = ContractSchema.parse({
+        id: 'ds.checkboxfixture', name: 'CheckboxFixture', version: '1.0.0',
+        description: 'Eval fixture: accessible custom checkbox.',
+        semantics: { element: 'span' },
+        props: [{
+          name: 'checked', type: { enum: ['non', 'oui'] }, default: 'non',
+          bindings: { figma: { kind: 'VARIANT', property: 'Coché', values: { non: 'Non', oui: 'Oui' } }, code: { prop: 'checked' } },
+        }],
+        anatomy: { root: { parts: {
+          input: { element: 'input', attrs: { type: 'checkbox' } },
+          checkGlyph: { icon: { asset: 'check', size: 12 }, visibleWhen: { prop: 'checked', equals: 'oui' } },
+        } } },
+        anchors: { figma: { fileKey: null, componentSetKey: null }, code: { importPath: 'x', export: 'CheckboxFixture' } },
+      });
+      const cbx = coreEmitReact(checkbox, { tokens: new Set(), icons, contracts: new Map() }).tsx;
+      if (!/type="checkbox"/.test(cbx)) throw new Error('checkbox: native input missing');
+      if (!cbx.includes("defaultChecked={checked === 'oui'}")) throw new Error('checkbox: DOM checked not wired from state (a11y fake)');
+      // Select: box div + native <select> (value as option) + chevron sibling.
+      const select = ContractSchema.parse({
+        id: 'ds.selectfixture', name: 'SelectFixture', version: '1.0.0',
+        description: 'Eval fixture: native select in a wrapper.',
+        semantics: { element: 'div' },
+        props: [{
+          name: 'value', type: 'text', default: 'x',
+          bindings: { figma: { kind: 'TEXT', property: 'Valeur' }, code: { prop: 'value' } },
+        }],
+        anatomy: { root: { parts: {
+          valeur: { element: 'select', content: { prop: 'value' } },
+          chevron: { icon: { asset: 'chevron-down', size: 24 } },
+        } } },
+        anchors: { figma: { fileKey: null, componentSetKey: null }, code: { importPath: 'x', export: 'SelectFixture' } },
+      });
+      const sel = coreEmitReact(select, { tokens: new Set(), icons, contracts: new Map() }).tsx;
+      if (!/<option>\{value\}<\/option>/.test(sel)) throw new Error('select: value not wrapped in an <option> (invalid <select> child)');
+      if (/<select[^>]*>\{value\}/.test(sel)) throw new Error('select: raw text child under <select> — invalid HTML');
+    },
+  },
+  {
+    // v17 internal glyph (spec 004, D7): an icon asset a contract consumes
+    // through a FIXED icon.asset (the Checkbox's « check ») is NOT an orphan,
+    // even without a registry entry — it is still Figma-born (exported from the
+    // master's own Vector) and deliberately outside the governed registry. An
+    // asset that is NEITHER registry-listed NOR consumed stays a finding.
+    // Fixture → eval → claim, before any doc calls check an internal glyph.
+    id: 'internal-glyph-consumed-not-orphan',
+    claim: 'C3-detection',
+    run: () => {
+      // The repo ships ds.checkbox consuming assets/icons/check.svg (fixed).
+      if (parity().status === undefined) throw new Error('parity did not run');
+      const findings = readReport();
+      if (findings.some((f) => f.surface === 'icons' && /check\.svg/.test(f.subject))) {
+        throw new Error('check.svg flagged as an orphan despite being consumed by ds.checkbox');
+      }
+      // A genuine orphan (neither registry nor consumed) MUST still be flagged.
+      writeFileSync(path.join(SCRATCH, 'assets', 'icons', 'zzz-orphan-fixture.svg'), '<svg/>\n');
+      parity();
+      const after = readReport();
+      if (!after.some((f) => /zzz-orphan-fixture\.svg/.test(f.subject))) {
+        throw new Error('a genuine orphan asset (not registry, not consumed) is not flagged — the class is too wide');
+      }
+    },
+  },
+  {
     id: 'deterministic-regeneration',
     claim: 'C1-determinism',
     run: () => {

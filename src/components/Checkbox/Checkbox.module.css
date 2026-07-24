@@ -1,0 +1,48 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/checkbox.contract.json (ds.checkbox v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  --dsc-border-width: var(--border-width-2);
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
+}
+
+.checked-non {
+  background-color: var(--color-blanc);
+  --dsc-border-color: var(--color-bleu-gris);
+}
+
+.checked-oui {
+  background-color: var(--color-bleu);
+  --dsc-border-color: var(--color-bleu);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkGlyph svg {
+  width: 13px;
+  height: 13px;
+}
+
+.checkGlyph {
+  display: inline-flex;
+  flex-shrink: 0;
+}

@@ -1750,6 +1750,23 @@ export const ELEMENT_META: Record<string, { attrs: string; el: string; supportsD
   h6: { attrs: 'HTMLAttributes', el: 'HTMLHeadingElement', supportsDisabled: false },
 };
 
+/** HTML void elements in the schema's element vocabulary: they take NO children
+ *  and render self-closing. A root of one of these (e.g. a native `<input>`
+ *  atom) carries its shown value through `defaultValue`, never a text child —
+ *  putting `{children}` inside a void element is invalid React. Nested void
+ *  parts already render correctly (partAttrString); this set extends the same
+ *  rule to the root. */
+export const VOID_ELEMENTS = new Set(['input', 'hr']);
+
+/** Native text form controls: the shown text rides `defaultValue` and the
+ *  element renders self-closing (a child text node is invalid for `<input>`
+ *  and a controlled/children anti-pattern for `<textarea>` in React). The
+ *  canvas draws that value as a text child bound to the same property — exactly
+ *  as the Button's label binds to « Libellé » — and code collapses it onto the
+ *  native control. `<select>` is deliberately absent: its value is one of its
+ *  `<option>` children, a different shape. */
+export const NATIVE_TEXT_CONTROLS = new Set(['input', 'textarea']);
+
 const PARENT_PROP_REF = /^\{([a-z][\w-]*)\}$/;
 
 function depAttrString(
@@ -1974,6 +1991,26 @@ export function generateTsx(
     return s;
   };
 
+  /** A native checkable input (checkbox/radio) that no event drives still
+   *  reflects its contract state: wire `defaultChecked` from the binary enum
+   *  prop bound to the control's VARIANT (the default value is unchecked, the
+   *  other is checked). Uncontrolled (defaultChecked, no onChange required) so
+   *  the real DOM checked state matches the drawn box — never a visual-only
+   *  fake. Event-driven checkables keep the controlled `checked` path
+   *  (eventAttrsFor); this only fills the no-event case (Piqueray declares no
+   *  events). */
+  const nativeCheckedAttr = (partName: string, part: Part): string => {
+    if (!isNativeCheckablePart(part)) return '';
+    if (events.some((e) => e.trigger === partName)) return '';
+    const enumProp = contract.props.find(
+      (p) => isEnum(p) && p.bindings.figma.kind === 'VARIANT' && (p.type as { enum: string[] }).enum.length === 2,
+    );
+    if (!enumProp) return '';
+    const values = (enumProp.type as { enum: string[] }).enum;
+    const onValue = values.find((v) => v !== enumProp.default) ?? values[1];
+    return ` defaultChecked={${enumProp.bindings.code.prop} === '${onValue}'}`;
+  };
+
   const classParts = [
     'styles.root',
     ...enums.map((p) => `styles[\`${p.name}-\${${p.bindings.code.prop}}\`]`),
@@ -2123,9 +2160,16 @@ export function generateTsx(
       const prop = contract.props.find(
         (p) => p.type === 'text' && p.bindings.code.prop === part.content!.prop,
       )!;
+      // A native <select> shows one of its <option> children, never a raw text
+      // node — the shown value is the (placeholder) selected option. The
+      // consumer/Field molecule supplies the real options.
+      const inner =
+        el === 'select'
+          ? `<option>{${prop.bindings.code.prop}}</option>`
+          : `{${prop.bindings.code.prop}}`;
       return wrapVisibleWhen(
         part,
-        `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>{${prop.bindings.code.prop}}</${el}>`,
+        `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
       );
     }
     if (part.text !== undefined) {
@@ -2149,7 +2193,7 @@ export function generateTsx(
       .join('\n');
     return wrapVisibleWhen(
       part,
-      `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
+      `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${nativeCheckedAttr(partName, part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
     );
   };
 
@@ -2194,6 +2238,34 @@ export function ${name}({ ${destructured.join(', ')} }: ${name}Props) {
   }
 
   const root = contract.anatomy.root;
+  // v17 (spec 004): the root element renders its own `attrs` — the same
+  // mechanism nested parts use (partAttrString) — so a native form control at
+  // the root (e.g. `<input type="text" defaultValue={String(value)}>`) carries
+  // its attributes. Inserted before `{...rest}` so consumer props still win.
+  const rootAttrStr = partAttrString(root).trim();
+  if (rootAttrStr) {
+    const restIdx = elementAttrs.indexOf('{...rest}');
+    if (restIdx >= 0) elementAttrs.splice(restIdx, 0, rootAttrStr);
+    else elementAttrs.push(rootAttrStr);
+  }
+  const rootElement = contract.semantics.element;
+  // A native text control (`<input>`, `<textarea>`) cannot host its value as a
+  // child text node: the canvas draws that text child, but code renders the
+  // value through the native `defaultValue` attribute on a self-closing element.
+  // Wire the single text prop through — the same prop the canvas text child
+  // binds to (Bouton ↔ Button: the label is `children`; a bare input's is its
+  // own `value`). No text prop (e.g. a checkbox) → nothing to wire.
+  const isNativeTextControl = NATIVE_TEXT_CONTROLS.has(rootElement);
+  const isSelfClosingRoot = VOID_ELEMENTS.has(rootElement) || isNativeTextControl;
+  if (isNativeTextControl) {
+    const valueProp = textProps(contract)[0];
+    if (valueProp) {
+      const dv = `defaultValue={String(${valueProp.bindings.code.prop})}`;
+      const restIdx = elementAttrs.indexOf('{...rest}');
+      if (restIdx >= 0) elementAttrs.splice(restIdx, 0, dv);
+      else elementAttrs.push(dv);
+    }
+  }
   const rootInner = root.parts
     ? Object.entries(root.parts)
         .map(([childName, child]) => renderPart(childName, child))
@@ -2235,9 +2307,7 @@ export const ${name} = forwardRef<${meta.el}, ${name}Props>(function ${name}(
 ) {
 ${prelude.length > 0 ? prelude.join('\n') + '\n' : ''}  const classes = [${classParts.join(', ')}].filter(Boolean).join(' ');
   return (
-    <${el} ${elementAttrs.join(' ')}>
-      ${rootInner}
-    </${el}>
+    ${isSelfClosingRoot ? `<${el} ${elementAttrs.join(' ')} />` : `<${el} ${elementAttrs.join(' ')}>\n      ${rootInner}\n    </${el}>`}
   );
 });
 `;

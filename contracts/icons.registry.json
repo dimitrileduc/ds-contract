@@ -1,10 +1,10 @@
 {
   "id": "ds.icons",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "source": {
     "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
     "zoneNodeId": "6:111",
-    "dumpedAt": "2026-07-23"
+    "dumpedAt": "2026-07-24"
   },
   "icons": [
     {
@@ -97,6 +97,27 @@
       "asset": "arrow-left",
       "size": 20,
       "description": "Arrow pointing left — the Button's leading icon default."
+    },
+    {
+      "name": "facebook",
+      "figma": { "componentName": "Facebook", "key": "b93576522d25e558dee053c6f0b517f43e683fef", "nodeId": "2053:1259" },
+      "asset": "facebook",
+      "size": 32,
+      "description": "Facebook logo — social links. Fill bound to color/noir-bleute → recolors via currentColor."
+    },
+    {
+      "name": "instagram",
+      "figma": { "componentName": "Instagram", "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd", "nodeId": "2053:1261" },
+      "asset": "instagram",
+      "size": 32,
+      "description": "Instagram logo — social links. Fill bound to color/noir-bleute → recolors via currentColor."
+    },
+    {
+      "name": "star",
+      "figma": { "componentName": "Étoile", "key": "db3d036dbc1284c356fef54113b29afab9d6580a", "nodeId": "2053:1263" },
+      "asset": "star",
+      "size": 20,
+      "description": "Star — ratings. Intrinsically orange (color/orange): does NOT recolor via currentColor, unlike the other governed icons."
     }
   ]
 }
