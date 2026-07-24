@@ -1128,3 +1128,122 @@ après") : Footer-column, Copyright, Contact-info-row, Section-header, Accordion
 faits et committés sans interruption ; 1 incident sérieux (Section-header, page
 doublée de taille) détecté et résolu dans le même tour, jamais laissé en état
 cassé entre deux commits.
+
+## 2026-07-24 — audit de couverture + décision owner — preuve pixel Phase 7
+
+- **Type** : audit transverse (pas de mutation Figma) puis décision owner
+- **Question posée** : « tout a bien été pixel-diffé ? on doit avoir un % pour
+  chaque cas non ? »
+- **Constat mesuré** : sur les 51 couples molécule × maquette où une molécule
+  Phase 7 a une occurrence, **19 ont une preuve pixel réelle** (`pages:compare`,
+  sha256/pixelmatch) — **32 sont vérifiés structure (zéro copie brute) + visuel
+  seulement**, limite déjà posée dans chaque entrée ci-dessus au moment de
+  l'adoption (cadence hybride FR-013). Détail par molécule : Field, Accordion-row,
+  Tab, Member-card, Avantage — complets (preuve sur 100% de leurs maquettes,
+  parce qu'elles n'occupent qu'1 seule maquette chacune, sauf Accordion-row qui a
+  eu ses 8/8). Carte 2/8, Product-card 1/2, Carousel-controls 1/2, Footer-column
+  1/9, Copyright 1/9, Section-header 1/9 — pilote(s) prouvé(s), reste non mesuré
+  en pixel.
+- **Question posée ensuite** : peut-on combler rétroactivement les 32 restants ?
+- **Investigation** : la copie brute remplacée n'existe plus nulle part sur le
+  canevas actuel — il n'y a plus d'« avant » ambiant à comparer. Les outils
+  d'historique Figma disponibles ne comblent pas ce trou :
+  `figma_get_file_at_version` renvoie de la donnée structurelle (JSON), pas une
+  image ; `figma_diff_versions` déclare explicitement ne PAS suivre les
+  instances de composants sur le canevas — exactement la catégorie de changement
+  qu'est une adoption. Le seul vrai « avant » serait un retour arrière
+  **temporaire** via l'historique de versions (même geste que le drill T021),
+  capture, puis retour en avant — et pour une page touchée par plusieurs
+  molécules d'affilée (ex. Accueil : Carte→Product-card→Carousel-controls→
+  Footer-column→Copyright→Section-header, 6 en cascade), isoler UNE seule
+  molécule demanderait de rejouer précisément checkpoint par checkpoint, pas
+  juste avant/actuel. Token REST expiré (401) au moment de l'audit, bloquant
+  même la lecture d'historique en plus du problème de fond.
+- **Décision owner** : **déclinée** — "Non c c encore plus dangereux". Un geste
+  de retour-arrière-puis-avant répété sur un fichier live, même contrôlé et déjà
+  prouvé sûr en isolation (T021), reste un risque net supérieur au bénéfice pour
+  combler ces 32 couples. Le plafond 19/51 est accepté comme définitif pour la
+  Phase 7 — **ne pas re-proposer un comblement rétroactif par rollback sans fait
+  nouveau** (ex. un vrai outil d'export d'image à une version historique qui
+  n'existe pas aujourd'hui).
+- **Portée** : cette même situation va se reproduire en Phase 8 (Sections) sous
+  la même cadence FR-013 — traiter le plafond structurel+visuel comme la preuve
+  finale pour les maquettes non-pilotes, pas comme un trou à combler après coup.
+- **Preuve** : aucune mutation, audit lecture-seule uniquement. Chiffres exacts
+  dans l'artifact `pixel-proof-coverage` généré pour l'owner (session, non
+  committé — les chiffres sources sont les `proofs/*/verdict.json` déjà commités).
+- **Checkpoint** : aucun (rien touché sur le canevas)
+
+## 2026-07-24 — report-bloc — Review-card (T053-T054)
+
+- **Type** : report-bloc
+- **Composant(s)** : `review-card` (bloc inféré, section « Avis Google »)
+- **Verdict owner** : « on le fait pas si c'est un screenshot, en tout cas pas
+  maintenant » — reporté, pas construit.
+- **Raison** : la section « Avis Google » (8/9 maquettes) est un `RECTANGLE` fill
+  `IMAGE` nommé `trustindex-google-reviews-widget` (même `imageHash` vérifié sur
+  2 pages) — un screenshot aplati d'un widget tiers, zéro calque récupérable pour
+  avatar/nom/étoiles/texte. Constat déjà nommé à T036 (Phase A) comme risque pour
+  T053, reconfirmé sans changement. Contrairement à l'icône Étoile (T038, même
+  source cassée mais net-new choisi côté owner — un glyphe simple se reconstruit
+  à l'oeil avec confiance raisonnable), reconstruire une **carte entière** à
+  l'aveugle depuis un rendu aplati porterait un risque de fidélité bien plus
+  élevé, sans vérité terrain pour la valider pixel par pixel — d'où le choix de
+  reporter plutôt que de forcer un net-new comme pour l'icône.
+- **Condition de reprise** : soit une vraie source en calques apparaît un jour
+  (nouveau widget d'avis, ou export propre du contenu Trustindex), soit l'owner
+  décide explicitement d'assumer le risque d'un net-new complet (comme pour
+  l'Étoile) — ne pas re-proposer la construction sans l'un des deux.
+- **Preuve** : `audits/review-card.md` (constat + décision détaillés)
+- **Checkpoint** : aucun (aucune mutation Figma)
+
+**Review-card (T053-T054) reporté.** La section Phase 8 **Avis Google
+(T089-T090)** hérite de la même dépendance bloquée et reste reportée avec sa
+raison — jamais externalisée à moitié.
+
+## 2026-07-24 — validation-master + adoption complète — Gallery-item (T065-T066)
+
+- **Type** : validation-master (bloc **inféré**, cadence par composant — FR-013) puis
+  adoption complète (27 occurrences, 3 maquettes) — go explicite de l'owner pour ce
+  bloc spécifiquement (« ok go »), Review-card restant seul exclu.
+- **Composant(s)** : `gallery-item` (master réel : **`Réalisation`**)
+- **Verdict owner** : « ok go » — construction et adoption autorisées directement pour
+  ce bloc, documentées comme les autres incréments autonomes de cette session.
+- **Chiffres** : `DS · Molécules` → `COMPONENT_SET` **Réalisation** (`2095:2484`),
+  variant `Taille` (`Grand` 743×743 / `Petit` 339,5×339,5 — mesure réelle, la tâche
+  arrondissait à 340). 27 occurrences adoptées (9 par grille × 3 maquettes :
+  `Portes d'entrée`, `Portes de garage industrielles`, `Portes de garage
+  résidentielles`), toutes vérifiées 27 `imageHash` distincts (vraies photos, pas un
+  widget aplati comme Avis Google). **Preuve pixel byte-exacte sur 3/3 maquettes** —
+  `identical`, 0 diff, sha256 strictement identiques avant/après sur les 3
+  (`ef2f435499f5…`, `1b5cb7b16ede…`, `9fdb57d22ffc…`), exit 0. Aucune limite de preuve
+  à documenter — contrairement aux molécules à 8-9 maquettes de cette phase, les 3
+  seules maquettes concernées ont chacune une preuve avant/après complète.
+- **Piège Figma trouvé et corrigé avant toute capture** (nouvelle famille cette spec) :
+  le frame `grid` est en `layoutMode: 'GRID'` natif (4 colonnes, 3 lignes, gap 64) —
+  chaque enfant y porte un ancrage ligne/colonne **calculé par un auto-flow au moment
+  de l'insertion** (jamais recalculé après coup) et un span réglable **seulement une
+  fois déjà enfant de la grille, à un ancrage qui le permet**. Un remplacement
+  tuile-par-tuile (garder les 8 autres en place pendant qu'on insère la neuve) a fait
+  atterrir la tuile vedette hors de sa place (span 2×2 refusé faute de place à son
+  ancrage auto-assigné) et le compteur de lignes du frame est passé silencieusement de
+  3 à 4 — repéré en comparant les bbox avant/après, jamais supposé correct sur un
+  retour "succès". Diagnostiqué en lisant les 2 grilles encore vierges comme référence
+  vivante ; corrigé en vidant chaque grille entièrement puis en reconstruisant dans
+  l'ordre (tuile vedette seule d'abord, span posé pendant qu'elle est seule occupante,
+  puis les 8 petites tuiles qui contournent automatiquement le bloc réservé) — vérifié
+  programmatiquement (bbox + ancrage + span des 27 nouvelles instances comparés un par
+  un aux 27 originales, zéro écart) avant la moindre capture. Détail complet :
+  `audits/gallery-item.md` § Piège Figma majeur.
+- **Preuve** : `proofs/gallery-item/{verdict.json,verdict.md}` ;
+  `ledger/gallery-item.json` (27 entrées, 27 `reportee`, 0 `non-portable`,
+  `pages:ledger:check` exit 0) ; `audits/gallery-item.md`
+- **Checkpoint** : `003/gallery-item/master` (versionId `2379806336642716514`),
+  `003/gallery-item/adoption` (versionId `2379821356657081419`)
+
+**Gallery-item (T065-T066) fait.** `portes_habitat_6 N` brut ×27 → 0 copie
+restante, 27 instances du master `Réalisation` (3 Grand + 24 Petit). Deuxième
+résultat byte-exact de la spec (après Carousel-controls), cette fois sur 3
+maquettes entières plutôt qu'une seule. Le seul bloc inféré encore non traité est
+**Review-card (T053-T054, reporté)** — sa section Phase 8 (Avis Google) reste
+bloquée avec elle.

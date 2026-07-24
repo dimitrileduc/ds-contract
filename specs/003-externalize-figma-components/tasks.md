@@ -160,8 +160,16 @@
 
 **Cadence de validation (FR-013, arbitrage owner 2026-07-23 — valable Phases 7–8)**: **petits lots** pour les extractions simples — 2 à 3 tâches « Master » consécutives PEUVENT être exécutées d'affilée, une session owner valide le petit lot (une entrée `validation-master` le couvre, chaque master nommé), puis leurs adoptions se déroulent **une par une** (checkpoint + preuve pixel par adoption, inchangés, DAG respecté) ; **par composant** pour les inférés (review-card, gallery-item).
 
+**Méthode d'exécution (arbitrage owner 2026-07-24, valable pour tout le reste du programme — Phase 8 incluse)** : par bloc, dans cet ordre —
+1. **Scoper à fond d'abord** (moi, dans la conversation) : audit live du bloc (structure ET usage par position, comme toujours), pièges Figma déjà connus recensés, nom français du master décidé, rapporté à l'owner avant toute construction.
+2. **Une fois le go donné, déléguer l'exécution à un seul agent Sonnet** avec un brief autonome (contexte fichier/pont/pièges/conventions/gabarits à imiter — pas juste la tâche) plutôt que de tout construire en direct dans la conversation principale.
+3. **Un seul opérateur sur le canevas live à la fois** — jamais deux agents Figma en parallèle (règle déjà posée cette session). Le scoping du bloc suivant (lecture seule) peut se faire pendant qu'un agent exécute, mais son exécution attend que le précédent ait fini.
+4. **Capture avant obligatoire sur TOUTES les maquettes concernées par le bloc, avant tout remplacement — jamais une pilote d'abord** (voir la règle équivalente dans `CLAUDE.md`, tirée de l'incident Gallery-item 2026-07-24 : la copie brute une fois remplacée, son état d'avant est perdu pour de bon, aucun outil ne peut le reconstruire après coup). Vérifier que chaque capture est bien non-vide et aux bonnes dimensions avant de continuer.
+5. **Vérifier la progression par preuve réelle** (fichiers sur disque, captures, git status) plutôt que de faire confiance au rapport de l'agent seul.
+6. **Une fois le bloc vérifié bon, on rebrainstorme et on scope le suivant** — pas de scoping-délégation en avance sur un bloc pas encore clos.
+
 **Chaque tâche « Master »** = re-mesure + audit (structure ET usage par position) + checkpoint + construction propre + validation owner.
-**Chaque tâche « Adoption »** = ledger AVANT remplacement + checkpoint + capture before + copies→instances + overrides + capture after + `pages:compare` + commit conjoint (verdict + ledger + entrée journal + inventaire).
+**Chaque tâche « Adoption »** = ledger AVANT remplacement + checkpoint + capture before **(toutes les maquettes concernées, jamais une pilote seule)** + copies→instances + overrides + capture after + `pages:compare` **(preuve complète sur toutes les maquettes concernées quand c'est raisonnable — pas de repli 1-pilote-plus-structurel par défaut)** + commit conjoint (verdict + ledger + entrée journal + inventaire).
 
 - [X] T039 [US3] Master **Field** (label + saisie + erreur ; dépend d'Input/Select/Textarea) → `audits/field.md` + entrée `decisions.md`
 - [X] T040 [US2] Adoption **Field** — `field` brut ×7 → `ledger/field.json` + `proofs/field/verdict.{json,md}`
@@ -177,8 +185,8 @@
 - [X] T050 [US2] Adoption **Member-card** — `member` brut ×16 → `ledger/member-card.json` + `proofs/member-card/verdict.{json,md}` (preuve pixel complète 16/16, seule maquette concernée)
 - [X] T051 [US3] Master **Reassurance-item** — couvert par T045 (même master **Carte**, disposition `Réassurance`) → voir `audits/carte.md`
 - [X] T052 [US2] Adoption **Réassurance** (disposition Carte) — `item` 26 → `ledger/carte.json` + `proofs/carte/verdict.{json,md}` (même limite de preuve que T046, voir `decisions.md`)
-- [ ] T053 [US3] Master **Review-card** (avatar + étoiles + texte ; dépend de l'icône étoile T038) — bloc **inféré** → validation owner **par composant** ; introuvable → `report-bloc` → `audits/review-card.md` + entrée `decisions.md`
-- [ ] T054 [US2] Adoption **Review-card** — occurrences Avis Google localisées par position → `ledger/review-card.json` + `proofs/review-card/verdict.{json,md}`
+- [ ] T053 [US3] Master **Review-card** (avatar + étoiles + texte ; dépend de l'icône étoile T038) — bloc **inféré** → validation owner **par composant** ; introuvable → `report-bloc` → `audits/review-card.md` + entrée `decisions.md` — **`report-bloc` posé 2026-07-24** : source = screenshot aplati (widget Trustindex), owner décline le net-new pour l'instant (« pas si c'est un screenshot, en tout cas pas maintenant ») → `audits/review-card.md` + `decisions.md`, condition de reprise notée
+- [ ] T054 [US2] Adoption **Review-card** — occurrences Avis Google localisées par position → `ledger/review-card.json` + `proofs/review-card/verdict.{json,md}` — **bloquée par T053 (reporté)**
 - [X] T055 [US3] Master **Carousel-controls** (prev / next ; instances Bouton `Outilne noir`, libellé invisible) → `audits/carousel-controls.md` + entrée `decisions.md`
 - [X] T056 [US2] Adoption **Carousel-controls** — `Controls` brut ×2 → `ledger/carousel-controls.json` (vide) + `proofs/carousel-controls/verdict.{json,md}` (byte-exact sur Motorisation)
 - [X] T057 [US3] Master **Footer-column** (Col 2/3/4 seulement — Col 1/5 hors périmètre, tranché au scan T0) → `audits/footer-column.md` + entrée `decisions.md`
@@ -189,8 +197,8 @@
 - [X] T062 [US2] Adoption **Contact-info-row** (`Avantage`) — brut ×4 → `ledger/contact-info-row.json` + `proofs/contact-info-row/verdict.{json,md}` (preuve pixel complète 4/4)
 - [X] T063 [US3] Master **Section-header** (Disposition Standard=accroche+titre / Avec CTA=titre+Bouton ; instance Bouton existant) → `audits/section-header.md` + entrée `decisions.md`
 - [X] T064 [US2] Adoption **Section-header** — `Title` brut ×21 (8 pages) → `ledger/section-header.json` + `proofs/section-header/verdict.{json,md}` (preuve pixel pilote + incident GROUP résolu en direct, voir decisions.md)
-- [ ] T065 [US3] Master **Gallery-item** (bloc **inféré**, attendu dans Réalisations) → validation owner **par composant** ; si non localisé au scan → entrée `report-bloc` + `introuvables[]`, l'adoption T066 est alors annulée explicitement → `audits/gallery-item.md`
-- [ ] T066 [US2] Adoption **Gallery-item** — occurrences Réalisations localisées par position → `ledger/gallery-item.json` + `proofs/gallery-item/verdict.{json,md}`
+- [X] T065 [US3] Master **Gallery-item** (bloc **inféré**, attendu dans Réalisations) → validation owner **par composant** ; si non localisé au scan → entrée `report-bloc` + `introuvables[]`, l'adoption T066 est alors annulée explicitement → `audits/gallery-item.md` — **fait 2026-07-24** : confirmé au scan (27 occurrences, 3 maquettes, 27 `imageHash` distincts), master `Réalisation` construit (`COMPONENT_SET` `2095:2484`, variant `Taille` Grand 743×743/Petit 339,5×339,5), owner go direct
+- [X] T066 [US2] Adoption **Gallery-item** — occurrences Réalisations localisées par position → `ledger/gallery-item.json` + `proofs/gallery-item/verdict.{json,md}` — **fait 2026-07-24** : `portes_habitat_6 N` brut ×27 (3 maquettes) → 0 copie restante, preuve pixel byte-exacte 3/3 (identical, sha256 égaux avant/après), piège layout `GRID` natif (ancrage auto-flow non hérité par une instance neuve) trouvé et corrigé avant toute capture — voir decisions.md
 - [X] T067 [US3] Master **Accordion** — **pas de master séparé** : wrapper sans identité visuelle propre (même décision que `tabs`/Tab et `row`/Field), vérifié sur 4 échantillons (FAQ×3 + Texte SEO) → `audits/accordion.md` + entrée `decisions.md`
 - [X] T068 [US2] Adoption **Accordion** — déjà couvert par T042 (les enfants `accordion` sont déjà des instances Accordion-row adoptées) ; aucune mutation Figma pour cette tâche, `ledger/accordion-row.json` fait foi
 
@@ -228,8 +236,8 @@
 - [ ] T086 [US2] Adoption **Produits e-commerce** — 2 pages → `ledger/produits-ecommerce.json` + `proofs/produits-ecommerce/verdict.{json,md}`
 - [ ] T087 [US3] Master **Équipe** (exige Member-card T050 adopté) → `audits/equipe.md` + entrée `decisions.md`
 - [ ] T088 [US2] Adoption **Équipe** — 1 page → `ledger/equipe.json` + `proofs/equipe/verdict.{json,md}`
-- [ ] T089 [US3] Master **Avis Google** (exige Review-card T054 adopté) → `audits/avis-google.md` + entrée `decisions.md`
-- [ ] T090 [US2] Adoption **Avis Google** — 8 pages → `ledger/avis-google.json` + `proofs/avis-google/verdict.{json,md}`
+- [ ] T089 [US3] Master **Avis Google** (exige Review-card T054 adopté) → `audits/avis-google.md` + entrée `decisions.md` — **bloquée : Review-card `report-bloc` 2026-07-24** (source screenshot aplati, owner décline le net-new pour l'instant) → reportée avec sa raison, jamais externalisée à moitié
+- [ ] T090 [US2] Adoption **Avis Google** — 8 pages → `ledger/avis-google.json` + `proofs/avis-google/verdict.{json,md}` — **bloquée par T089**
 - [ ] T091 [US3] Master **Formulaire** (exige Field T040 adopté + Checkbox T035 validé + Bouton) → `audits/formulaire.md` + entrée `decisions.md`
 - [ ] T092 [US2] Adoption **Formulaire** — 1 page → `ledger/formulaire.json` + `proofs/formulaire/verdict.{json,md}`
 - [ ] T093 [US3] Master **Coordonnées** (exige Contact-info-row T062 adopté + icônes sociales ; la carte reste une image, zéro dépendance tierce FR-019) → `audits/coordonnees.md` + entrée `decisions.md`
