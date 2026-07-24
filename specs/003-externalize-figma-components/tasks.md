@@ -173,8 +173,8 @@
 - [X] T046 [US2] Adoption **Catégorie** (disposition Carte) — `item` 10 → `ledger/carte.json` + `proofs/carte/verdict.{json,md}` (preuve pixel complète sur 2/9 maquettes pilotes ; 7 maquettes batchées en vérification structurelle+visuelle, limite documentée dans `decisions.md`)
 - [X] T047 [US3] Master **Product-card** (`Thumbnail produit` ; instance Bouton **invisible par défaut** — le CTA e-commerce n'est jamais rendu dans la source, voir `decisions.md`) → `audits/product-card.md` + entrée `decisions.md`
 - [X] T048 [US2] Adoption **Product-card** — brut ×8 (4 Motorisation + 4 Accueil) → `ledger/product-card.json` + `proofs/product-card/verdict.{json,md}` (preuve pixel complète sur Motorisation 4/4 ; Accueil vérifié structurellement+visuellement, limite documentée)
-- [ ] T049 [US3] Master **Member-card** (photo + nom + rôle ; instance `member-picture` existant) → `audits/member-card.md` + entrée `decisions.md`
-- [ ] T050 [US2] Adoption **Member-card** — `member` brut ×16 → `ledger/member-card.json` + `proofs/member-card/verdict.{json,md}`
+- [X] T049 [US3] Master **Member-card** (photo + nom + rôle ; instance `member-picture` existant) → `audits/member-card.md` + entrée `decisions.md`
+- [X] T050 [US2] Adoption **Member-card** — `member` brut ×16 → `ledger/member-card.json` + `proofs/member-card/verdict.{json,md}` (preuve pixel complète 16/16, seule maquette concernée)
 - [X] T051 [US3] Master **Reassurance-item** — couvert par T045 (même master **Carte**, disposition `Réassurance`) → voir `audits/carte.md`
 - [X] T052 [US2] Adoption **Réassurance** (disposition Carte) — `item` 26 → `ledger/carte.json` + `proofs/carte/verdict.{json,md}` (même limite de preuve que T046, voir `decisions.md`)
 - [ ] T053 [US3] Master **Review-card** (avatar + étoiles + texte ; dépend de l'icône étoile T038) — bloc **inféré** → validation owner **par composant** ; introuvable → `report-bloc` → `audits/review-card.md` + entrée `decisions.md`

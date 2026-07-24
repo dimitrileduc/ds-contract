@@ -840,4 +840,38 @@ rendu réel, et seul un crop **large** de la vraie page (pas un crop serré auto
 ce qu'on pense être le problème) le révèle. Recherche legacy déléguée à un agent en
 arrière-plan pendant cet audit (7 molécules à venir : Product-card confirmé card+badge
 comme précédent partiel, zéro précédent legacy pour l'image produit elle-même — gap
-nommé, pas comblé). **Prochain : T049 (Master Member-card).**
+nommé, pas comblé).
+
+## 2026-07-24 — validation-master + adoption complète — Member-card (T049-T050)
+
+- **Type** : validation-master puis adoption (16 occurrences, 1 seule maquette)
+- **Composant(s)** : `member`
+- **Verdict owner** : "Go" direct sur l'audit livré (photo déjà gouvernée, contenu
+  cohérent) — pas d'itération de correction cette fois.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Member-card** (`2074:2072`, pas de
+  variante). Propriétés `Nom`, `Poste` (TEXTE). 16 occurrences adoptées (grille
+  « Équipe », page `À Propos`, seule maquette concernée).
+- **Trouvaille** : `member-picture` est un **composant déjà gouverné** dans le fichier
+  (2 variantes Default/hover) — réutilisé tel quel comme instance imbriquée, comme le
+  Bouton pour Carte/Product-card. Calque `fun-ia` (essai IA abandonné, empilé sous la
+  vraie photo, invisible au rendu) repéré et laissé tel quel — hérité automatiquement
+  en instanciant le composant existant, aucune action requise. 3 occurrences sur 16
+  sont des placeholders `Prénom`/`Poste` (vrai trou de contenu source), reproduits
+  fidèlement.
+- **Premier master sans écart réel à corriger après le pilote** — grille d'audit
+  (centrage `counterAxisAlignItems` posé d'emblée sur le parent, pas par enfant ;
+  `.visible` vérifié dès l'audit initial) appliquée dès la construction, pas découverte
+  après coup. Résidu pilote 299px, résidu final 4163px sur 16/16 occurrences
+  (0,041% de la page) — bruit habituel, homogène, aucune occurrence anormale
+  (vérifié visuellement sur la grille complète).
+- **Preuve** : `proofs/member-card/{verdict.json,verdict.md,crops/}` — **preuve pixel
+  complète, pas de limite à documenter** (une seule maquette concernée, toutes ses
+  occurrences dans le même before/after).
+- **Ledger** : `ledger/member-card.json` (48 entrées : 16×Nom + 16×Poste + 16×image,
+  48 `reportee`, 0 `non-portable`, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/member-card/master`, `003/member-card/adoption-pilot`,
+  `003/member-card/adoption-batch`
+
+**Member-card (T049-T050) fait.** `member` brut ×16 → 0 copie restante. **Prochain :
+T055 (Master Carousel-controls)** — Review-card (T053-54) et Gallery-item (T065-66)
+restent différés pour implication directe de l'owner (blocs inférés/incertains).
