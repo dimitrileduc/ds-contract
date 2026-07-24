@@ -259,7 +259,16 @@ function Playground({ entry }: { entry: ComponentEntry }) {
           </div>
         ) : null}
       </div>
-      <div className="bg-background overflow-x-auto rounded-lg border border-dashed p-6">
+      {/* key = props+childText forces a REMOUNT on any control change. The
+          generated atoms are uncontrolled (native <input defaultValue> — no
+          onChange, faithful to a master that declares no event), so a changed
+          prop alone would not update the DOM (defaultValue is read once at
+          mount). Remounting re-applies it, so the value/checked controls
+          actually drive the preview. */}
+      <div
+        key={JSON.stringify(props) + '|' + (childText ?? '')}
+        className="bg-background overflow-x-auto rounded-lg border border-dashed p-6"
+      >
         {renderSample(entry.name, props, childText || undefined)}
       </div>
       <p className="text-muted-foreground text-xs">
