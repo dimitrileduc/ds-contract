@@ -187,8 +187,8 @@
 - [X] T060 [US2] Adoption **Copyright** — brut ×9 → `ledger/copyright.json` + `proofs/copyright/verdict.{json,md}`
 - [X] T061 [US3] Master **Contact-info-row** — nommé `Avantage` à la construction : le contenu réel est un argument de vente (icône marque `piqueray` + titre + texte gras multi-segments), pas des coordonnées ; ne dépend PAS des icônes sociales T037 (supposition de l'inventaire invalidée à l'audit, le compte ×4 sur `features`/Contactez-nous restait exact) → `audits/contact-info-row.md` + entrée `decisions.md`
 - [X] T062 [US2] Adoption **Contact-info-row** (`Avantage`) — brut ×4 → `ledger/contact-info-row.json` + `proofs/contact-info-row/verdict.{json,md}` (preuve pixel complète 4/4)
-- [ ] T063 [US3] Master **Section-header** (surtitre + titre + CTA ; instance Bouton) → `audits/section-header.md` + entrée `decisions.md`
-- [ ] T064 [US2] Adoption **Section-header** — `Titres` brut ×9 → `ledger/section-header.json` + `proofs/section-header/verdict.{json,md}`
+- [X] T063 [US3] Master **Section-header** (Disposition Standard=accroche+titre / Avec CTA=titre+Bouton ; instance Bouton existant) → `audits/section-header.md` + entrée `decisions.md`
+- [X] T064 [US2] Adoption **Section-header** — `Title` brut ×21 (8 pages) → `ledger/section-header.json` + `proofs/section-header/verdict.{json,md}` (preuve pixel pilote + incident GROUP résolu en direct, voir decisions.md)
 - [ ] T065 [US3] Master **Gallery-item** (bloc **inféré**, attendu dans Réalisations) → validation owner **par composant** ; si non localisé au scan → entrée `report-bloc` + `introuvables[]`, l'adoption T066 est alors annulée explicitement → `audits/gallery-item.md`
 - [ ] T066 [US2] Adoption **Gallery-item** — occurrences Réalisations localisées par position → `ledger/gallery-item.json` + `proofs/gallery-item/verdict.{json,md}`
 - [ ] T067 [US3] Master **Accordion** (groupe de lignes ; **exige T042 adopté-prouvé** — invariant DAG) → `audits/accordion.md` + entrée `decisions.md`

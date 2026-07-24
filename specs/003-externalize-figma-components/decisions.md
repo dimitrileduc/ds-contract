@@ -1036,6 +1036,68 @@ précédente a évité de perdre du temps à re-découvrir le même problème.
 - **Checkpoint** : `003/contact-info-row/master`, `003/contact-info-row/adoption`
 
 **Contact-info-row (T061-T062) fait** (master réel : `Avantage`). `Frame 6-9` brut
-×4 → 0 copie restante. **Prochain : T063 (Master Section-header)** — Review-card
-(T053-54) et Gallery-item (T065-66) restent différés pour implication directe de
-l'owner (blocs inférés/incertains).
+×4 → 0 copie restante.
+
+## 2026-07-24 — validation-master + adoption complète (autonome) — Section-header (T063-T064)
+
+- **Type** : validation-master puis adoption (21 occurrences, 8 maquettes)
+- **Composant(s)** : `Title` (2 dispositions réelles : accroche+titre centré /
+  titre+CTA aligné gauche)
+- **Chiffres** : `DS · Molécules` → `COMPONENT_SET` **Section-header** (`2090:2397`,
+  variant `Disposition`: Standard/Avec CTA). Propriétés `Accroche` (TEXTE, Standard
+  seulement), `Titre` (TEXTE, partagé). 21 occurrences adoptées (19 Standard + 2
+  Avec CTA).
+
+### Incident sérieux — résolu en direct, documenté en détail (pas minimisé)
+
+Après le pilote (2 occurrences sur `À Propos`), **la page a presque doublé de
+hauteur** (5928→10168px) — un signal de rupture immédiatement visible, pas une
+preuve pixel à ignorer. Cause : la section « Avis Google » est un `GROUP` (le
+screenshot tiers aplati déjà noté au Phase A, + le titre). Une correction de
+position appliquée sur le titre **seul**, sans traiter le widget en même temps,
+a fait exploser l'écart entre les deux à ~4288px (l'origine du `GROUP` se recalcule
+dynamiquement, et un correctif partiel peut désynchroniser des enfants non touchés
+directement). Diagnostiqué en comparant contre une page « Avis Google » encore
+intacte (écart réel : 48px), corrigé par lecture-tout/écriture-tout sur les 2
+enfants ensemble, **re-vérifié par pixel-diff complet après coup** (résidu final
+567px, propre — l'incident n'a laissé aucune trace dans le rendu final). Pour les 7
+autres occurrences « Avis Google » (dont une manquée au premier passage, voir plus
+bas), la technique complète a été appliquée **préventivement dès le départ** sur les
+2 enfants — zéro nouvel incident.
+
+**Prise de conscience** : ce type d'incident (une page qui double de taille) est
+exactement le genre de rupture nette qu'il faut repérer tout de suite — la hauteur
+de page était vérifiable en un coup d'œil sur le retour de `exportAsync`, avant même
+de lancer un pixel-diff. Réflexe ajouté : après toute adoption dans un contexte
+`GROUP`, comparer la hauteur totale de la page/section avant de continuer.
+
+### Piège trouvé — hauteur figée sur les 3 occurrences « FAQ »
+
+Les 3 titres `FAQ`/`Questions fréquentes` ont une **hauteur de cadre figée à 50px**
+dans la source, alors que l'accroche+titre standard mesure 83px — le titre déborde
+visuellement sous le cadre (même mécanisme que le CTA débordant de Product-card).
+Les siblings d'un parent en auto-layout dépendent de cette hauteur **nominale**, pas
+du rendu visuel — une première adoption au hug naturel (83px) a poussé les
+accordéons FAQ de 33px vers le bas. Fix : `primaryAxisSizingMode: FIXED` + hauteur
+50 explicite sur ces 3 instances seulement.
+
+### Complétude — 1 occurrence manquée au premier passage, retrouvée avant de clore
+
+Le premier passage de scan comptait 21 occurrences ; l'adoption batch n'en a traité
+que 20 (« Nos avis Google vérifiés » sur `Contactez-nous`, `280:3793`, oubliée du
+batch GROUP). Repéré en recomptant le ledger généré (20 au lieu de 21 attendus)
+**avant de le committer**, pas après — corrigé, ledger régénéré à 21/21.
+
+- **Preuve** : `proofs/section-header/{verdict.json,verdict.md,crops/}` — pilote
+  `À Propos` : résidu 567px/(1728×5928)=0,0055%. 20 occurrences restantes :
+  positions convergées exactement, spot-check visuel complet sur `Portes d'entrée`
+  (cumul FAQ+Avis Google, cas le plus à risque) — pas de preuve pixel avant/après
+  formelle sur ces 20, même limite documentée.
+- **Ledger** : `ledger/section-header.json` (42 entrées, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/section-header/master`, `003/section-header/adoption-pilot`,
+  `003/section-header/adoption-batch1`, `003/section-header/adoption-batch2`,
+  `003/section-header/adoption-batch3`
+
+**Section-header (T063-T064) fait.** `Title` brut ×21 → 0 copie restante. **Prochain :
+T067 (Master Accordion)** — Review-card (T053-54) et Gallery-item (T065-66) restent
+différés pour implication directe de l'owner (blocs inférés/incertains).
