@@ -163,8 +163,8 @@
 **Chaque tâche « Master »** = re-mesure + audit (structure ET usage par position) + checkpoint + construction propre + validation owner.
 **Chaque tâche « Adoption »** = ledger AVANT remplacement + checkpoint + capture before + copies→instances + overrides + capture after + `pages:compare` + commit conjoint (verdict + ledger + entrée journal + inventaire).
 
-- [ ] T039 [US3] Master **Field** (label + saisie + erreur ; dépend d'Input/Select/Textarea) → `audits/field.md` + entrée `decisions.md`
-- [ ] T040 [US2] Adoption **Field** — `field` brut ×7 → `ledger/field.json` + `proofs/field/verdict.{json,md}`
+- [X] T039 [US3] Master **Field** (label + saisie + erreur ; dépend d'Input/Select/Textarea) → `audits/field.md` + entrée `decisions.md`
+- [X] T040 [US2] Adoption **Field** — `field` brut ×7 → `ledger/field.json` + `proofs/field/verdict.{json,md}`
 - [ ] T041 [US3] Master **Accordion-row** (ligne FAQ, états ouvert/fermé en propriété officielle ; instance des chevrons existants) → `audits/accordion-row.md` + entrée `decisions.md`
 - [ ] T042 [US2] Adoption **Accordion-row** — `item` / `item open` ~34 → `ledger/accordion-row.json` + `proofs/accordion-row/verdict.{json,md}`
 - [ ] T043 [US3] Master **Tabs / Tab** → `audits/tabs.md` + entrée `decisions.md`

@@ -1,0 +1,161 @@
+{
+  "bloc": "field",
+  "date": "2026-07-24",
+  "masterNodeId": "2056:1278",
+  "entrees": [
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 800, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[0]/label",
+      "valeur": "Prénom",
+      "portePar": "propriété TEXTE `Label` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 800, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[0]/input/valeur",
+      "valeur": "Prénom",
+      "portePar": "propriété TEXTE `Valeur` de l'instance Input (via `Saisie`)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16993, "y": 800, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[1]/label",
+      "valeur": "Nom",
+      "portePar": "propriété TEXTE `Label` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16993, "y": 800, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[1]/input/valeur",
+      "valeur": "Nom",
+      "portePar": "propriété TEXTE `Valeur` de l'instance Input (via `Saisie`)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 897, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[2]/label",
+      "valeur": "Email",
+      "portePar": "propriété TEXTE `Label` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 897, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[2]/input/valeur",
+      "valeur": "nom@entreprise.com",
+      "portePar": "propriété TEXTE `Valeur` de l'instance Input (via `Saisie`)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16993, "y": 897, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[3]/label",
+      "valeur": "Téléphone",
+      "portePar": "propriété TEXTE `Label` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16993, "y": 897, "w": 340, "h": 81 },
+      "type": "visibilite",
+      "chemin": "field[3]/label/(optionnel)",
+      "valeur": "visible",
+      "portePar": "propriété BOOLÉEN `Optionnel` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16993, "y": 897, "w": 340, "h": 81 },
+      "type": "texte",
+      "chemin": "field[3]/input/valeur",
+      "valeur": "+32 4 234 56 78",
+      "portePar": "propriété TEXTE `Valeur` de l'instance Input (via `Saisie`)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 994, "w": 695, "h": 81 },
+      "type": "texte",
+      "chemin": "field[4]/label",
+      "valeur": "Adresse",
+      "portePar": "propriété TEXTE `Label` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 994, "w": 695, "h": 81 },
+      "type": "texte",
+      "chemin": "field[4]/input/valeur",
+      "valeur": "Rue n°, CP Ville",
+      "portePar": "propriété TEXTE `Valeur` de l'instance Input (via `Saisie`)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 1091, "w": 695, "h": 81 },
+      "type": "texte",
+      "chemin": "field[5]/label",
+      "valeur": "Sujet",
+      "portePar": "propriété TEXTE `Label` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 1091, "w": 695, "h": 81 },
+      "type": "autre",
+      "chemin": "field[5]/input (type de saisie)",
+      "valeur": "select (chevron-down présent, main component 226:373)",
+      "portePar": "propriété INSTANCE-SWAP `Saisie` du master Field, réglée sur Select (2053:1249)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 1091, "w": 695, "h": 81 },
+      "type": "texte",
+      "chemin": "field[5]/input/valeur",
+      "valeur": "Demande de devis",
+      "portePar": "propriété TEXTE `Valeur` de l'instance Select (via `Saisie`)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 1188, "w": 695, "h": 161 },
+      "type": "texte",
+      "chemin": "field[6]/label",
+      "valeur": "Message",
+      "portePar": "propriété TEXTE `Label` du master Field",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 1188, "w": 695, "h": 161 },
+      "type": "autre",
+      "chemin": "field[6]/input (type de saisie + hauteur)",
+      "valeur": "textarea (128px, hauteur totale du champ 161px)",
+      "portePar": "propriété INSTANCE-SWAP `Saisie` du master Field, réglée sur Textarea (2053:1247) ; hauteur portée par un redimensionnement explicite de l'instance Field (limite Figma : resize() sur une instance imbriquée liée par instance-swap n'a aucun effet — contournement documenté dans audits/field.md, redimensionner l'instance TOP-LEVEL puis `layoutSizingVertical: FILL` sur la Saisie)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": { "x": 16637, "y": 1188, "w": 695, "h": 161 },
+      "type": "texte",
+      "chemin": "field[6]/input/valeur",
+      "valeur": "Écrivez votre message ici...",
+      "portePar": "propriété TEXTE `Valeur` de l'instance Textarea (via `Saisie`)",
+      "statut": "reportee"
+    }
+  ],
+  "totaux": { "reportees": 17, "nonPortables": 0 }
+}

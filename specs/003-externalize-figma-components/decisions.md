@@ -390,3 +390,110 @@ Select, Checkbox, Facebook, Instagram, Étoile), tous validés owner, zéro
 copie brute remplacée (rien à adopter à ce stade), zéro pixel perdu sur les
 9 maquettes (mesuré, pas supposé). **Prochain : Phase M (Molécules,
 T039+, en commençant par Field qui dépend d'Input/Select/Textarea).**
+
+## 2026-07-24 — amendement-orga — convention de nommage des propriétés Figma
+
+- **Type** : amendement-orga
+- **Composant(s)** : programme (applicable à Field et toutes les molécules/
+  sections à venir, Phases 7-8)
+- **Verdict owner** : **français partout**, cohérent avec l'existant —
+  propriétés et valeurs de variant restent en français (comme Checkbox,
+  Phase A : `Coché` / `Non` / `Oui`), jamais retouché rétroactivement.
+- **Chiffres** : n/a — décision de convention, pas une mesure.
+- **Raison** : sur suggestion owner, consultation de l'archive des contrats
+  legacy pré-reconversion (tag git `demo-51`, historique seul — pas
+  matérialisée sur ce worktree, lue via `git show demo-51:contracts/…`) comme
+  inspiration pour faciliter un futur design-to-code. Constat : la
+  palette legacy est en anglais (`field.contract.json` : `Label`/`Required`/
+  `Description` ; `checkbox.contract.json` : `Value` Unchecked/Checked/
+  Indeterminate) — alors que le Checkbox déjà livré ici est en français
+  (`Coché`). Owner a tranché : rester cohérent avec ce qui est déjà validé et
+  committé plutôt que fracturer le nommage au milieu du programme ; les
+  contrats legacy restent une inspiration de **structure/anatomie**
+  uniquement (ex. Field = wrapper générique via slot, confirmé par
+  `field.contract.json`), jamais de nommage. Pas une vérité absolue, nommé
+  comme tel par l'owner.
+- **Preuve** : `audits/field.md` § Décision owner — état erreur
+- **Checkpoint** : n/a (décision de convention seule)
+
+## 2026-07-24 — anomalie-tranchee — état erreur de Field, nouveau token color/rouge
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : field
+- **Verdict owner** : **construire maintenant** l'état erreur complet (pas
+  différé, pas de placeholder sans couleur).
+- **Chiffres** : palette de 12 couleurs vérifiée live avant proposition
+  (`figma.variables.getLocalVariableCollectionsAsync()`) — aucune couleur
+  rouge/danger existante ; recherche exhaustive `error|erreur|invalid|warning`
+  sur les 2 pages du fichier → 0 résultat. Nouveau token miné :
+  `color/rouge` = `#D32F2F` (Primitives, mode Value,
+  `VariableID:2056:1264`) — contraste ~4.8:1 sur blanc (AA), nettement
+  distinct de `color/orange` (#F98A0B, le CTA) pour éviter toute confusion
+  de sens.
+- **Raison** : aucune preuve source pour l'état erreur nulle part dans le
+  fichier (ni couleur, ni forme, ni texte-type) — situation nommée avant
+  construction (`audits/field.md` § Anomalie), corroborée par un second
+  point de données indépendant : les contrats legacy `field`/`text-field`
+  (tag `demo-51`) ne modélisent eux non plus aucun état erreur
+  (`"states": []`). Owner a tranché de construire quand même — decision
+  humaine consignée, pas une correction silencieuse (FR-010).
+- **Preuve** : `audits/field.md` § Anomalie + § Décision owner + § Construction
+- **Checkpoint** : `003/field/master` (versionId `2379728271305056286`)
+
+## 2026-07-24 — validation-master — Field (molécule)
+
+- **Type** : validation-master
+- **Composant(s)** : field
+- **Verdict owner** : validé sur capture (2 variants côte à côte, `État=Normal` /
+  `État=Erreur`) — go adoption.
+- **Chiffres** : `DS · Molécules` → `COMPONENT_SET` **Field** (`2056:1278`), 2
+  variants, 4 propriétés officielles (`État` variant Normal/Erreur ; `Label`
+  texte ; `Optionnel` booléen ; `Saisie` instance-swap Input/Select/Textarea).
+  Testé bout en bout avec les 4 propriétés poussées simultanément à leur
+  valeur non-défaut avant validation (instance de test supprimée après
+  vérif). Zéro dépendance tierce.
+- **Raison** : n/a (validation directe)
+- **Preuve** : `audits/field.md` § Construction ; capture de session (2
+  variants)
+- **Checkpoint** : `003/field/master` (versionId `2379728271305056286`)
+
+## 2026-07-24 — ecart-pixel-accepte — Field (adoption, T040)
+
+- **Type** : ecart-pixel-accepte
+- **Composant(s)** : field
+- **Verdict owner** : accepté sur triptyque (avant | après | diff) — écart
+  confirmé comme le changement de couleur de texte déjà décidé en Phase A,
+  rien d'autre.
+- **Chiffres** : **8/9 `identical`, 1 `diff`** (Contactez-nous — seule
+  maquette porteuse de `field`), `diffCount=3902`, `diffBox={x:925, y:833,
+  w:682, h:420}` (repère local à l'export de la maquette). Diff localisé
+  exclusivement sur les caractères de texte des 7 champs (`#000000` →
+  `color/noir` `#37373B`, décision `anomalie-tranchee` du 2026-07-24, Phase
+  A) — aucun décalage, aucune dimension changée, aucun contenu manquant.
+  8 autres maquettes : sha256 strictement identiques avant/après (0 pixel,
+  0 octet de différence). Note collatérale : une divergence de hauteur de
+  label (24px construit vs 25px source, style texte `Titre 5` Montserrat
+  SemiBold 20/25 non répliqué initialement) a été détectée ET corrigée
+  **avant** cette mesure (cf. `audits/field.md` § Construction) — la mesure
+  ci-dessus est donc post-correction, dimensions before/after strictement
+  égales (1728×3901 les deux fois).
+- **Raison** : écart pré-annoncé et déjà accepté en principe lors de la
+  construction d'Input/Select/Textarea (Phase A) ; se matérialise seulement
+  maintenant, à la première adoption qui utilise réellement ces atomes.
+- **Preuve** : `proofs/field/{verdict.json,verdict.md,crops/Contactez-nous.png}` ;
+  `ledger/field.json` (17 entrées, 17 `reportee`, 0 `non-portable`,
+  `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/field/adoption` (versionId `2379725866106096972`)
+
+**Field (T039-T040) close.** `field` brut ×7 (Contactez-nous) → 0 copie
+restante, 7 instances du master `Field`. Zéro copie brute, ledger complet,
+preuve pixel acceptée. **Découverte de session, nommée pour les molécules
+suivantes** : `resize()` sur une instance **imbriquée** liée par une
+propriété `INSTANCE_SWAP` ne fait jamais rien (silencieux, testé ~6
+approches) — contournement qui marche : redimensionner l'instance
+**top-level** (celle posée directement sur une frame, pas nichée dans une
+autre instance) puis donner à l'enfant swappé `layoutSizingVertical: FILL`
+pour qu'il s'étire dans la nouvelle taille. Pertinent pour toute future
+molécule avec un slot instance-swap dont les options ont des tailles
+différentes (aucune connue à ce stade dans les 14 molécules restantes, mais
+nommé au cas où). **Prochain : T041 (Master Accordion-row).**
