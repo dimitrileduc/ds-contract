@@ -2097,3 +2097,67 @@ copie restante, 8 instances du master `Texte SEO` (`2108:3123`). Hauteur HUG var
 (359→503px) préservée par construction, jamais bakée. 8/9 `diff` acceptés (bruit AA
 sub-pixel pur, `segMatch` byte-identique + test de décalage + crops), Accueil `identical`
 (contrôle). Non committé — revue visuelle Fable avant commit (handoff SAV/Coordonnées).
+
+## 2026-07-24 — anomalie-tranchee — reflow réel sur À Propos, non corrigeable, accepté et documenté
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : Texte SEO (T081-T082), maquette À Propos spécifiquement
+- **Anomalie** : le paragraphe `p` du master fait 1550px de large (hérité du clone
+  source, Contactez-nous), mais la copie brute d'origine sur À Propos avait une
+  boîte plus étroite (~1515px, mesurée par déduction du point de césure réel, pas
+  retrouvée telle quelle — la copie brute n'existe plus). Conséquence RÉELLE, pas
+  du bruit : le mot **« tant »** est passé de la fin de la ligne 1 à la fin de la
+  ligne 2 du paragraphe (« …partenariat historique en » → « …partenariat
+  historique en tant » / « tant que distributeur… » → « que distributeur… »),
+  décalant toute la ligne 2 de ~35px. Confirmé par 2 vérifications indépendantes
+  (une automatisée par mesure de bande de ligne + une inspection visuelle directe
+  au zoom ×3 sur les vrais crops avant/après, par moi-même) — **pas une
+  supposition, un mot qui a visiblement changé de ligne**. Une première commit
+  (`0a58f37`) avait accepté ce diff à tort comme « bruit AA pur » sur la base
+  d'un `segMatch` qui prouve l'identité du CONTENU texte, pas de son
+  HABILLAGE rendu — l'écart méthodologique est nommé pour ne pas se reproduire :
+  un `segMatch` byte-identique ne suffit jamais à accepter un diff, il faut
+  regarder le rendu.
+- **Cause racine** : le master a été construit en clonant UNE SEULE occurrence
+  (Contactez-nous) sans mesurer la largeur des 7 autres AVANT construction — la
+  même classe d'angle mort que Formulaire (Checkbox supposée) et Coordonnées
+  (Avantage supposé) : une hypothèse d'uniformité entre occurrences jamais
+  vérifiée.
+- **Tentatives de correction, toutes documentées pour ne pas les rejouer** :
+  1. `resize()`/`resizeWithoutConstraints()` direct sur le nœud TEXTE override —
+     silencieusement ignoré (aucune erreur, largeur inchangée).
+  2. Bascule explicite `layoutSizingHorizontal` FILL→FIXED puis resize — la
+     bascule de mode tient, mais `resize()` reste silencieusement ignoré ensuite.
+     **Confirmé que ce n'est PAS un problème FILL-vs-FIXED** — le blocage
+     persiste même en mode FIXED confirmé.
+  3. `figma.group()` pour recréer proprement le nœud à la bonne largeur — refusé
+     avec une erreur explicite de l'API : *« Cannot move node. New parent is an
+     instance or is inside of an instance »*.
+  4. `instance.insertChild()` direct (sans passer par `group()`) — même refus,
+     même message.
+  - **Constat définitif** : l'API Plugin Figma interdit à la fois (a) de
+    redimensionner par script un override de géométrie non lié à une propriété
+    officielle de composant à l'intérieur d'une instance, et (b) de restructurer
+    l'arbre d'une instance (ajouter/déplacer un nœud). Seul un geste interactif
+    humain dans l'éditeur (ou un détachement d'instance) peut le faire — aucun
+    script ne peut reproduire fidèlement cette largeur d'origine sans casser la
+    gouvernance de cette occurrence.
+- **Options réelles présentées à l'owner** : (1) détacher cette instance de son
+  master (gouvernance perdue pour cette seule occurrence) ; (2) rétrécir le `p`
+  du master lui-même à 1515px (risque de casser le texte des 7 autres pages,
+  jamais vérifié) ; (3) accepter le rewrap tel quel, documenté explicitement.
+- **Décision owner** : **option 3 — accepté, documenté en détail** (cette
+  entrée). Aucune correction supplémentaire tentée. L'état déjà committé dans
+  `0a58f37` (diffCount=8942 sur À Propos) reste la source de vérité — cette
+  entrée corrige uniquement la JUSTIFICATION (reflow réel accepté sciemment,
+  pas du bruit méconnu) et documente pourquoi aucun fix n'a suivi.
+- **Preuve** : `proofs/texte-seo/crops/À Propos.png` (le triptyque montre le mot
+  « tant » sur des lignes différentes, vérifiable à l'œil au zoom) ;
+  `.page-parity/texte-seo/{before,after}/À Propos.png` (captures pleine page,
+  gitignorées).
+- **Checkpoint** : `003/texte-seo/apropos-width-fix` (tentative de correction,
+  annulée — canevas revérifié intact après, contenu et largeur inchangés par
+  rapport à l'état committé `0a58f37`).
+
+**Texte SEO définitivement clos.** 8/8 maquettes adoptées, 1 écart réel (pas du
+bruit) accepté en connaissance de cause sur À Propos — jamais silencieux.
