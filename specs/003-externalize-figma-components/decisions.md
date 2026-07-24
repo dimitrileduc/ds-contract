@@ -1247,3 +1247,60 @@ résultat byte-exact de la spec (après Carousel-controls), cette fois sur 3
 maquettes entières plutôt qu'une seule. Le seul bloc inféré encore non traité est
 **Review-card (T053-T054, reporté)** — sa section Phase 8 (Avis Google) reste
 bloquée avec elle.
+## 2026-07-24 — validation-master + ecart-pixel-accepte — Devis / CTA (T069-T070)
+
+- **Type** : validation-master (T069, cadence extraction simple — FR-013) puis
+  adoption complète (T070, 8 occurrences/8 maquettes) — exécuté en une session
+  déléguée, scoping fait en amont (brief autonome) avec go explicite pour Master +
+  Adoption.
+- **Composant(s)** : `devis-cta` (master réel : **`Devis`**, nom natif du layer
+  source, pas de renommage)
+- **Verdict owner** : implicite (aligné sur le brief de délégation, structure
+  entièrement pré-scopée et confirmée à l'audit avant construction) — écart pixel
+  accepté sur la base du chiffrage + de la grille d'audit texte établie par
+  Tab/Accordion-row le même jour (voir Raison), à re-confirmer si l'owner souhaite
+  inspecter les triptyques lui-même.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Devis** (`2096:2524`), propriété
+  TEXTE `Titre` (`Titre#2096:49`), section `2096:2535`. 8 occurrences adoptées (toutes
+  les maquettes sauf Contactez-nous, qui a `Footer + Devis` composite, hors
+  périmètre de ce bloc). Structure : **0 copie brute restante**, 8/8 instances
+  résolvent au nouveau master, **8/8 bbox strictement identiques** avant/après
+  (vérifié programmatiquement avant toute capture "after"). Pixel : **0/8
+  `identical`, 8/8 `diff`**, moyenne **0.013%** de la page, max **0.0216%**
+  (Motorisation) — sous la moyenne (0.032%) et le max (0.050%) déjà acceptés pour
+  Accordion-row le même jour. Détail par maquette dans `audits/devis-cta.md` §Preuve.
+- **Raison** : deux vraies variations trouvées et préservées — (1) texte titre
+  (« chez vous » vs « dans vos locaux », anticipée dans le brief), devenue
+  propriété TEXTE officielle du master ; (2) **fond photo différent sur la même
+  maquette** (`Portes de garage industrielles`, `imageHash` distinct des 7 autres —
+  **non anticipée, trouvée à l'audit live**), traitée en override d'instance comme
+  gallery-item (pas de type de propriété « image » natif côté Figma). L'écart pixel
+  résiduel (8/8 `diff`, jamais `identical`) a été **investigué avant d'être
+  accepté**, pas supposé : grille d'audit texte complète vérifiée (police, taille,
+  couleur, `lineHeight`, `letterSpacing`, `textCase`, `paragraphSpacing`, gras par
+  plage — aucun trouvé, `segCount:1` sur les 2 variantes de texte, bordures non
+  applicables) ; triptyques inspectés au zoom ×5 sur 3/8 maquettes choisies pour
+  couvrir les cas extrêmes (plus petit diff, plus grand diff, texte+image
+  différents) — aucune différence perceptible à l'œil. Signal fort retenu : 6 des 7
+  maquettes au texte par défaut montrent le **même diffCount exact (1244)** malgré
+  des pages totalement différentes autour, signature d'un écart déterministe
+  intrinsèque au contenu texte+bouton (bruit de rendu sub-pixel d'un nœud texte
+  neuf face à l'original) et non d'un contexte de page — cause déjà nommée pour
+  Accordion-row le même jour, magnitude ici inférieure. Anomalie de métadonnée
+  notée en cours de route (non bloquante) : le texte titre source rapporte
+  `layoutSizingHorizontal: FILL` mais rend à une largeur fixe 900px réelle
+  (confirmé par test isolé sur un scratch-node dédié, supprimé aussitôt) — le
+  master reproduit le pixel observé (900px fixe), pas la métadonnée incohérente ;
+  détail dans `audits/devis-cta.md` §Anomalie.
+- **Preuve** : `audits/devis-cta.md` ; `proofs/devis-cta/{verdict.json,verdict.md,crops/}`
+  (8 triptyques avant\|après\|diff) ; `ledger/devis-cta.json` (2 entrées : 1 texte +
+  1 image, toutes `reportee`, 0 `non-portable`, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/devis-cta/master` (versionId `2379844462535398782`),
+  `003/devis-cta/adoption` (versionId `2379852250406545010`)
+
+**Devis / CTA (T069-T070) fait.** `Devis` brut ×8 (toutes maquettes sauf
+Contactez-nous) → 0 copie restante, 8 instances du master `Devis`. Deuxième bloc de
+la Phase 8 avec un écart pixel mesuré et accepté (après Accordion-row en Phase 7) —
+même classe de cause, magnitude plus faible. **Prochain : T071 (Master
+Présentation).**
+

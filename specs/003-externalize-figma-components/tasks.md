@@ -216,8 +216,8 @@
 
 **Cadence de validation (FR-013)** : comme en Phase 7 — petits lots de 2-3 masters simples possibles avant leurs adoptions ; preuve pixel par adoption inchangée.
 
-- [ ] T069 [US3] Master **Devis / CTA** (trivial : instance Bouton) → `audits/devis-cta.md` + entrée `decisions.md`
-- [ ] T070 [US2] Adoption **Devis / CTA** — 8 pages → `ledger/devis-cta.json` + `proofs/devis-cta/verdict.{json,md}`
+- [X] T069 [US3] Master **Devis / CTA** — nommé `Devis` (nom natif du layer) ; instance Bouton baked (déjà gouverné) + propriété TEXTE `Titre` (vraie variation « chez vous »/« dans vos locaux » sur Portes de garage industrielles) ; 2e variation trouvée à l'audit live, non prévue au brief : fond photo différent sur la même page (override d'instance, comme gallery-item) → `audits/devis-cta.md` + entrée `decisions.md`
+- [X] T070 [US2] Adoption **Devis / CTA** — 8 pages → `ledger/devis-cta.json` + `proofs/devis-cta/verdict.{json,md}` (0 copie brute restante, 8/8 bbox identiques avant/après ; écart pixel accepté 8/8 `diff`, moyenne 0.013%/max 0.0216% de la page — sous le précédent Accordion-row 0.032%/0.050%, cause = bruit de rendu sub-pixel d'un texte neuf, grille d'audit texte complète vérifiée avant acceptation, voir `decisions.md`)
 - [ ] T071 [US3] Master **Présentation** (trivial : instance Bouton) → `audits/presentation.md` + entrée `decisions.md`
 - [ ] T072 [US2] Adoption **Présentation** — 5 pages → `ledger/presentation.json` + `proofs/presentation/verdict.{json,md}`
 - [ ] T073 [US3] Master **SAV** (trivial : Bouton + image) → `audits/sav.md` + entrée `decisions.md`
