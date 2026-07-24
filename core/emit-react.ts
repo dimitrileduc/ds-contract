@@ -2441,15 +2441,24 @@ export const With${pascal(slot.name)}: Story = {
   }
 
   // A shared render fills the default slot with its declared sample content
-  // for every args-only story (Playground, per-variant, Disabled).
+  // for every args-only story (Playground, per-variant, Disabled), and is keyed
+  // on args so the Playground REMOUNTS on any control change. Native-form-control
+  // atoms are uncontrolled (native defaultValue/defaultChecked — their masters
+  // declare no event), so without a remount a changed value/checked control would
+  // re-render but never update the mounted DOM (defaultValue is read once at
+  // mount). Keying forces a fresh mount, so the controls actually drive the
+  // canvas — matching the Contract Hub playground. Harmless for controlled props
+  // (Button's label re-renders either way); functions in args (action spies) are
+  // dropped by JSON.stringify, so only real value changes re-key.
   const metaRender = defaultSample
     ? `
   render: (args) => (
-    <${name} {...args}>
+    <${name} key={JSON.stringify(args)} {...args}>
       ${defaultSample.split('\n').join('\n      ')}
     </${name}>
   ),`
-    : '';
+    : `
+  render: (args) => <${name} key={JSON.stringify(args)} {...args} />,`;
 
   let matrixStory = '';
   if (enums.length > 0 && !defaultSample) {

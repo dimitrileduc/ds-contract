@@ -18,6 +18,7 @@ const meta = {
       },
     },
   },
+  render: (args) => <Input key={JSON.stringify(args)} {...args} />,
   argTypes: {
     value: { control: 'text' },
   },

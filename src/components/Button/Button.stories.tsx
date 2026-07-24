@@ -18,6 +18,7 @@ const meta = {
       },
     },
   },
+  render: (args) => <Button key={JSON.stringify(args)} {...args} />,
   argTypes: {
     variant: {
       control: 'select',

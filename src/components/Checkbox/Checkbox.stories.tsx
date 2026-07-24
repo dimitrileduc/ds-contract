@@ -18,6 +18,7 @@ const meta = {
       },
     },
   },
+  render: (args) => <Checkbox key={JSON.stringify(args)} {...args} />,
   argTypes: {
     checked: { control: 'select', options: ['non', 'oui'] },
   },
