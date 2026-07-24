@@ -73,3 +73,55 @@ réellement indisponible ici à cause de la collision — dit tel quel.
 - Checkpoints : `003/reassurances/master`, `003/reassurances/adoption`, `003/reassurances/finalize`
 - Pas de crops de diff (0 diff) — la revue visuelle repose sur les captures master + instance
   ci-dessus, pas sur des triptyques de diff (inexistants ici).
+
+## Vérification indépendante (2026-07-25, post-commit `09b1d88`) — le trou pixel est COMBLÉ par capture archivée
+
+Le raw-avant n'était pas totalement irrécupérable : chaque run de l'instrument capture toutes les
+maquettes, ce qui laisse des baselines archivées. `.page-parity/devis-fix/after/` (24 juil. 23:09,
+preuve finale du fix Devis, commit `5efea53`) est la **dernière capture pré-adoption** couvrant les
+6 pages — l'audit live (~00:44) lisait encore les 6 blocs en `FRAME` copie-brute, l'adoption du fork
+est postérieure.
+
+**Méthode** : pixelmatch 7.2.0, `threshold 0.1` (le seuil de l'instrument), `includeAA` défaut
+(rouge = vrai diff, jaune = AA) ; `devis-fix/after` vs `reassurances/after-final`, les 6 pages
+**entières**. Triptyques (avant | après | diff, empilés verticalement) + `contre-preuve-summary.json`
+sous `crops/`.
+
+| Maquette | px rouges | px AA | zone |
+|---|---|---|---|
+| Portes de garage industrielles | **0** | **0** | — (**byte-identique**, sha256 égal) |
+| Portes de garage | **0** | **0** | — (**byte-identique**, sha256 égal ; espace final porté inclus) |
+| À Propos | 76 | 479 | 1 bande de 11px : la ligne du label CTA (y4211, x772-953) |
+| Accueil | 76 | 479 | idem (y4224) |
+| Portes de garage résidentielles | 76 | 479 | idem (y2667) |
+| Portes d'entrée | 305 | 1490 | 1 bande de 15px : les 2 labels CTA + icône PDF (y2664, x613-1113) |
+
+**Zéro pixel rouge ailleurs sur les 6 pages entières** : aucun déplacement de bloc (pas de fantôme
+rouge plein), aucun ricochet hors CTA, cartes/headers/images raster-identiques — y compris les 13
+overrides d'À Propos et de résidentielles.
+
+**Attribution de l'écart résiduel — mesurée live, pas supposée** : tous les Boutons
+« Contactez-nous » adoptés rendent à leur largeur hug vraie **249px** (label 155 + 2×47 padding).
+Les 4 pages qui diffèrent sont exactement celles dont la copie brute portait un **250px** figé
+(À Propos, Accueil, résidentielles, Portes d'entrée) ; les 2 pages à zéro avaient déjà 249
+(industrielles = ancre clonée, Portes de garage). Sur Portes d'entrée, la frame `Boutons` passe
+571→570px → recentrage ~0.5px des 2 boutons (re-raster des 2 labels + icône PDF). **Écart accepté =
+normalisation −1px de largeur CTA sur 4 pages** — pas du « bruit AA » pur (le bord droit bouge
+réellement d'1px, liseré jaune visible dans les crops), pas une régression.
+
+**Classes de bugs de la nuit re-vérifiées à frais (pièges 5/6)** : lecture live **séparée** des
+fills de chaque vecteur de glyphe des 6 instances + des 3 variantes du master — 100 % liés
+`color/noir-bleute`, résolu (0.149, 0.157, 0.173) sombre ; **zéro flip de couleur**. bbox live vs
+audit : delta 0 (PdG dy −0.037px = arrondi de la référence, pas une dérive). Variante correcte 6/6,
+comptes de cartes exacts, 0 copie brute restante, set 3 variantes en section.
+
+**Limites nommées** : la fenêtre archivée (23:09→01:17) inclurait tout geste canvas tiers de
+l'intervalle — attribution faite : 100 % des rouges tombent dans les 4 bandes CTA expliquées
+ci-dessus, et industrielles + Portes de garage sont **byte-identiques page entière** — zéro geste
+tiers sur ces pages. Les baselines archivées sont gitignorées (`.page-parity/`) ; sha256 des 6 PNG
+baseline : À Propos `480e27d1af42…`, Accueil `7bfbc2066d62…`, Portes d'entrée `a331ac59c4a3…`,
+industrielles `2dbf35762826…`, résidentielles `c7d91ad28fdb…`, Portes de garage `1271624a87c8…`.
+
+**Verdict** : l'adoption Réassurances est **prouvée pixel au standard de la spec** (raw→adopté),
+avec un seul écart, nommé et attribué. Les sections ci-dessus (« trou irrécupérable ») décrivent
+l'état au moment du build ; cette section le met à jour — append, jamais réécrit.

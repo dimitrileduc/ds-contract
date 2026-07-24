@@ -2435,3 +2435,35 @@ peut pas : son receiver a été tué).
 pixel nommé.** Non committé (brief) — laissé sur disque pour revue/commit par l'owner. La
 gouvernance concurrente à deux branches a été résolue sans corruption : un seul master, 6
 instances correctes, zéro perte de contenu.
+
+## 2026-07-25 — vérification-indépendante + écart-pixel-accepté — Réassurances (T077-T078) : le trou de preuve est comblé par capture archivée
+
+- **Type** : vérification-indépendante (visuelle + live) du travail committé en `09b1d88`,
+  concluant par un **écart-pixel-accepté** nommé. Le build avait été committé entre la fin du
+  builder et cette vérification ; les fichiers du commit couvrent exactement le périmètre (audit,
+  ledger, proofs, decisions, tasks — ni CLAUDE.md ni fichier étranger).
+- **Contre-preuve pixel** : le raw-avant « irrécupérable » a été **reconstruit** depuis
+  `.page-parity/devis-fix/after/` (24 juil. 23:09, dernière capture pré-adoption couvrant les
+  6 pages ; l'audit live ~00:44 lisait encore les 6 copies brutes). pixelmatch au seuil de
+  l'instrument (0.1), pages **entières** : **industrielles + Portes de garage byte-identiques**
+  (sha256 égaux 23:09 ↔ 01:17) ; À Propos / Accueil / résidentielles **76 px rouges** chacune,
+  Portes d'entrée **305** — tous confinés à UNE bande de 11-15px = la ligne des labels CTA ;
+  **zéro rouge ailleurs** (pas de fantôme de bloc, pas de ricochet ; les 13 overrides d'À Propos
+  et de résidentielles raster-exacts).
+- **Écart accepté — regardé dans les crops, pas arrondi en « bruit AA »** : normalisation de
+  largeur CTA **250→249px** (largeur hug vraie du Bouton du master, label 155) sur exactement les
+  4 pages dont la copie brute portait 250 ; bord droit décalé d'1px (liseré AA), label re-rastérisé
+  sub-pixel ; sur Portes d'entrée la frame `Boutons` 571→570 recentre les 2 boutons (~0.5px, re-raster
+  des 2 labels + icône PDF). Mesuré live : 6/6 boutons « Contactez-nous » à 249.
+- **Classes de bugs de la nuit re-vérifiées à frais (pièges 5/6)** : fills des glyphes des
+  6 instances + 3 variantes master lus dans un appel séparé — 100 % liés `color/noir-bleute`
+  résolu sombre (0.149, 0.157, 0.173), **zéro flip** ; bbox delta 0 (PdG dy −0.037px = arrondi de
+  la référence README, pas une dérive) ; variante correcte 6/6, comptes de cartes exacts, 0 copie
+  brute restante.
+- **Gates** : `pages:ledger:check` exit 0 re-passé.
+- **Preuve** : `proofs/reassurances/crops/` (4 triptyques + `contre-preuve-summary.json`) +
+  section « Vérification indépendante » ajoutée au `README.md` de la preuve (append ; le récit du
+  trou au moment du build reste tel quel).
+
+**Réassurances vérifié : preuve pixel raw→adopté rétablie au standard de la spec, un seul écart,
+nommé et attribué ; aucune des deux classes de bugs de la nuit n'est présente.**
