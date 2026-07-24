@@ -781,4 +781,63 @@ de haut niveau est le contournement robuste ; (3) `setProperties()` sur une prop
 aplatit les styles mixtes (gras) — toujours réappliquer après ; (4) grille d'audit
 texte élargie encore une fois : `effects` (ombres) n'y était pas, `textAlignHorizontal`
 non plus, malgré 3 molécules précédentes de leçons accumulées — la grille n'est
-probablement toujours pas complète. **Prochain : T047 (Master Product-card).**
+probablement toujours pas complète.
+
+## 2026-07-24 — validation-master + adoption complète — Product-card (T047-T048)
+
+- **Type** : validation-master puis adoption (8 occurrences, 2 maquettes)
+- **Composant(s)** : `Thumbnail produit`
+- **Verdict owner** : owner a directement orienté vers le pixel-diff avant même de
+  voir le résultat ("tu peux déjà pixel diff pck y'a des soucis") — investigation
+  guidée par cette alerte, pas par ma propre relecture.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Product-card** (`2068:1972`, pas de
+  variante — structure 100% identique sur les 8 occurrences). Propriétés `Titre`,
+  `Prix` (TEXTE). 8 occurrences adoptées (4 `Motorisation` + 4 `Accueil`).
+
+### Découverte — le vrai bug était bien plus gros que ce que je chassais
+
+Première reconstruction (bouton "Ajouter au panier" visible, aligné, bien positionné) :
+diff pixel énorme (37921px sur une seule occurrence). Deux vrais bugs trouvés et
+corrigés en creusant (dans l'ordre) :
+1. **Image et Bouton collés à gauche au lieu de centrés** — `layoutAlign = 'CENTER'`
+   posé sur les enfants individuellement ne prenait pas (repassait à `INHERIT`) ; la
+   vraie propriété à régler est `counterAxisAlignItems: 'CENTER'` sur le **parent**.
+2. **26px d'écart avant le bouton au lieu de 16px uniforme** — corrigé via 3
+   espaceurs explicites (`itemSpacing: 0` + cadres vides 16/16/26px), après avoir
+   d'abord mal calculé un espaceur unique (qui ajoute SES DEUX gaps `itemSpacing`
+   autour de lui : 16+10+16=42, pas les 26 voulus).
+
+Diff toujours élevé après ces deux corrections (13538px, inchangé). Un crop **large**
+(pas juste autour du bouton) de la vraie page capturée a montré : **rien ne s'affiche
+sous le prix, aucune trace du bouton**. Vérification directe de la propriété
+`.visible` du nœud `Bouton` (jamais checkée jusqu'ici, absente de toute grille
+d'audit des 4 molécules précédentes) : **`false`**, confirmé sur **7 des 8
+occurrences**. Le CTA e-commerce existe dans l'arbre (propriétés bien formées) mais
+n'a **jamais été rendu visible** sur aucune maquette — probablement une
+infrastructure préparée puis désactivée. Les deux corrections d'alignement/espacement
+étaient réelles mais **hors-sujet** : elles amélioraient la position d'un élément qui
+ne devait pas être visible du tout. Une fois `Bouton.visible = false` réglé sur le
+master (et les espaceurs devenus inutiles retirés — `240+16+20+16+20=312` correspond
+exactement au hug naturel sans le bouton) : diff tombé à **11px** (pilote) puis
+**98px** sur les 4 occurrences complètes de `Motorisation` — bruit de rasterisation
+texte habituel, rien de structurel.
+
+- **Preuve** : `proofs/product-card/{verdict.json,verdict.md,crops/}` (preuve
+  complète sur `Motorisation`, 4/4 occurrences, before/after réel — 98px résiduel,
+  98/(1728×3334)=0,0017%) ; `Accueil` (4/4) vérifié structurellement (dimensions,
+  `visible:false` conforme) + visuellement (spot-check), même limite de preuve que
+  Carte (batch sans before pré-capturé), documentée pas cachée.
+- **Ledger** : `ledger/product-card.json` (24 entrées : 8×Titre + 8×Prix + 8×image,
+  24 `reportee`, 0 `non-portable`, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/product-card/master`, `003/product-card/adoption-pilot`,
+  `003/product-card/adoption-batch`
+
+**Product-card (T047-T048) fait.** `Thumbnail produit` brut ×8 → 0 copie restante.
+Leçon ajoutée à la grille d'audit (5e fois qu'elle s'élargit cette spec) : **`.visible`
+sur les parts optionnelles/CTA, jamais supposé depuis la présence dans l'arbre de
+layers** — un nœud bien formé structurellement peut être totalement invisible dans le
+rendu réel, et seul un crop **large** de la vraie page (pas un crop serré autour de
+ce qu'on pense être le problème) le révèle. Recherche legacy déléguée à un agent en
+arrière-plan pendant cet audit (7 molécules à venir : Product-card confirmé card+badge
+comme précédent partiel, zéro précédent legacy pour l'image produit elle-même — gap
+nommé, pas comblé). **Prochain : T049 (Master Member-card).**
