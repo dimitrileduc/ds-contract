@@ -1,69 +1,19 @@
 {
   "summary": {
-    "total": 7,
-    "acknowledged": 1,
+    "total": 0,
+    "acknowledged": 2,
     "pending": 0,
-    "bySurface": {
-      "figma": {
-        "behind": 4
-      },
-      "icons": {
-        "behind": 3
-      }
-    }
+    "bySurface": {}
   },
-  "findings": [
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Checkbox",
-      "detail": "Component set missing from Figma file",
-      "remedy": "Run figma-sync scripts (npm run figma:plan, execute in Figma)"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Input",
-      "detail": "Component set missing from Figma file",
-      "remedy": "Run figma-sync scripts (npm run figma:plan, execute in Figma)"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Select",
-      "detail": "Component set missing from Figma file",
-      "remedy": "Run figma-sync scripts (npm run figma:plan, execute in Figma)"
-    },
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Textarea",
-      "detail": "Component set missing from Figma file",
-      "remedy": "Run figma-sync scripts (npm run figma:plan, execute in Figma)"
-    },
-    {
-      "surface": "icons",
-      "classification": "behind",
-      "subject": "ds.icons/facebook",
-      "detail": "registry entry (key b93576522d25e558dee053c6f0b517f43e683fef) has no matching master in the committed canvas snapshot",
-      "remedy": "Re-run the parity Figma extraction (parity/extract-figma.plugin.js) and re-check"
-    },
-    {
-      "surface": "icons",
-      "classification": "behind",
-      "subject": "ds.icons/instagram",
-      "detail": "registry entry (key ca491cca315a8c97b372b53f3e1532d4771cacdd) has no matching master in the committed canvas snapshot",
-      "remedy": "Re-run the parity Figma extraction (parity/extract-figma.plugin.js) and re-check"
-    },
-    {
-      "surface": "icons",
-      "classification": "behind",
-      "subject": "ds.icons/star",
-      "detail": "registry entry (key db3d036dbc1284c356fef54113b29afab9d6580a) has no matching master in the committed canvas snapshot",
-      "remedy": "Re-run the parity Figma extraction (parity/extract-figma.plugin.js) and re-check"
-    }
-  ],
+  "findings": [],
   "acknowledged": [
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/rouge",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
     {
       "surface": "icons",
       "classification": "ahead",

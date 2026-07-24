@@ -1,25 +1,22 @@
 {
-  "passed": 103,
-  "total": 107,
+  "passed": 107,
+  "total": 108,
   "quarantined": 49,
   "results": [
     {
       "id": "baseline-parity-clean",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baseline not clean:\n⚠ Figma naming bridged (the file does not use this repo's collection/mode names):\n    · mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\"\n\n✖ 5 drift finding(s) (+1 acknowledged in parity/baseline.json):\n    figma — behind: 4\n    icons — ahead: 1\n\n  [figma BEHIND] Checkbox\n    Component set missing from Figma file\n    → Run figma-sync scripts (npm run figma:plan, execute in Figma)\n\n  [figma BEHIND] Input\n    Component set missing from Figma file\n    → Run figma-sync scripts (npm run figma:plan, execute in Figma)\n\n  [figma BEHIND] Select\n    Component set missing from Figma file\n    → Run figma-sync scripts (npm run figma:plan, execute in Figma)\n\n  [figma BEHIND] Textarea\n    Component set missing from Figma file\n    → Run figma-sync scripts (npm run figma:plan, execute in Figma)\n\n  [icons AHEAD] assets/icons/check.svg\n    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\n    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\n\n  — acknowledged (baselined, does not fail the check) —\n\n  [icons AHEAD] assets/icons/close.svg\n    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\n    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\n\n"
+      "pass": true
     },
     {
       "id": "baseline-acknowledges-without-failing",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baselined finding still failed the exit code"
+      "pass": true
     },
     {
       "id": "promotion-converges",
       "claim": "C4-convergence",
-      "pass": false,
-      "error": "Error: Unexpected extra findings: [{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.IconOnly\",\"detail\":\"Contract prop \\\"iconOnly\\\" has no BOOLEAN property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Checkbox\",\"detail\":\"Component set missing from Figma file\",\"remedy\":\"Run figma-sync scripts (npm run figma:plan, execute in Figma)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Input\",\"detail\":\"Component set missing from Figma file\",\"remedy\":\"Run figma-sync scripts (npm run figma:plan, execute in Figma)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Select\",\"detail\":\"Component set missing from Figma file\",\"remedy\":\"Run figma-sync scripts (npm run figma:plan, execute in Figma)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Textarea\",\"detail\":\"Component set missing from Figma file\",\"remedy\":\"Run figma-sync scripts (npm run figma:plan, execute in Figma)\"},{\"surface\":\"icons\",\"classification\":\"ahead\",\"subject\":\"assets/icons/check.svg\",\"detail\":\"code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\",\"remedy\":\"Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\"}]"
+      "pass": true
     },
     {
       "id": "detect-icon-registry-divergence",
@@ -84,6 +81,11 @@
     {
       "id": "native-checkbox-and-select-render-correctly",
       "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "internal-glyph-consumed-not-orphan",
+      "claim": "C3-detection",
       "pass": true
     },
     {
