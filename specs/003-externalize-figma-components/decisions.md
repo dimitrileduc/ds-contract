@@ -1697,3 +1697,127 @@ aucune coordonnée manuelle). Parent du bloc source confirmé être une `FRAME`
 (pas un `GROUP`) — adoption sans le risque d'origine-instable déjà rencontré
 sur d'autres blocs. Prochain bloc de la Phase 8 à scoper par l'owner/l'agent
 principal.
+
+## 2026-07-24 — validation-master + ecart-pixel-accepte — Présentation (T071-T072)
+
+- **Type** : validation-master puis adoption (3 occurrences, 3 maquettes) —
+  exécuté par un agent Sonnet délégué (méthode d'exécution actée dans
+  `tasks.md` Phase 7/8 : scoping en conversation principale, construction
+  déléguée à un seul opérateur canvas). **Verdict owner** ci-dessous =
+  auto-validation par l'agent délégué contre la mesure (grille d'audit
+  complète, tests bout en bout) — nommé honnêtement comme tel plutôt que de
+  prêter une citation owner qui n'a pas eu lieu ; capture et receipts livrés
+  pour revue.
+- **Composant(s)** : presentation
+- **Verdict owner** : construit et vérifié par l'agent délégué — 3
+  propriétés testées bout en bout à leur valeur non-défaut avant validation
+  (instance de test supprimée après, précédent Field), grille d'audit texte
+  complète (police/taille/casse/décoration/lineHeight/letterSpacing/
+  paragraphSpacing/couleur/effects/align H-V) re-vérifiée nœud par nœud
+  post-adoption contre les valeurs mesurées avant remplacement — zéro écart
+  structurel trouvé. En attente de revue owner sur la capture, comme tout
+  travail de cette session.
+
+### Correction du compte annoncé — 3 occurrences réelles, pas 5
+
+`tasks.md` annonçait 5 pages. La re-mesure live (`findAll` par nom **puis**
+vérification structurelle par position, jamais par confiance dans le nom
+seul) donne **3 occurrences réelles** : À Propos (`263:2104`), Portes de
+garage (`226:150`), Accueil (`210:364`, seule à 230px de haut — CTA visible
+en plus). Les 2 autres endroits portant le nom « Présentation » (Portes de
+garage industrielles `387:788`, Portes de garage résidentielles `370:2765`)
+sont le **titre interne de la section Réalisations** sur ces pages — même
+collision de nom que celle déjà documentée pour `gallery-item` ; confirmés
+hors périmètre par structure (ancêtre `Réalisations`, texte de titre et
+wrapper différents), non touchés, intacts après l'adoption (même nodeId,
+même type `FRAME`, revérifié).
+
+### Trouvaille — le CTA est une vraie variance mesurée, pas un "toujours présent"
+
+Sur les 3 occurrences réelles, seule **Accueil** rend le CTA « En savoir
+plus » (`.visible: true`). À Propos porte le calque Bouton mais **masqué**
+(`.visible: false`, même famille que le CTA jamais rendu de Product-card,
+T047) ; Portes de garage n'a **même pas le calque** dans son arbre. Vérifié
+`.visible` explicitement dès l'audit (leçon Product-card appliquée d'emblée,
+pas redécouverte après un gros diff). Résolu par une propriété **BOOLEAN
+officielle `Bouton`** (défaut `false`, majorité mesurée 2/3 masqué — même
+convention « majorité = défaut » que Field/État et Section-header/
+Disposition) plutôt qu'un hack de visibilité caché — cohérent
+`CLAUDE.md` (« affordances non officielles rendues officielles ») et avec le
+vocabulaire déjà établi (`Icône gauche`/`Icône droite` sur Bouton,
+`Optionnel` sur Field). Entièrement précédenté, résolu par construction
+directe (aucune décision de contenu/design à arbitrer, contrairement à
+l'état erreur de Field ou au nom Contact-info-row/Avantage).
+
+### Piège anticipé, pas re-découvert — flattening du gras au binding
+
+Titre et Texte portent des spans **Bold** par plage sur les 3 occurrences
+(ex. Accueil : `"en Province de Liège"` bold dans le titre ; 4 segments bold
+dans le texte). Lier `Titre`/`Texte` comme propriétés TEXTE officielles a
+**aplati le style mixte du master lui-même** (leçon Formulaire T092
+appliquée d'emblée, vérifié avant/après liaison plutôt que découvert après
+coup) — réappliqué immédiatement via `setRangeFontName` sur le master, puis
+sur **chaque instance** après chaque `setProperties()` (le flattening se
+reproduit à chaque override, pas seulement sur le master — confirmé une 2e
+fois sur un bloc différent).
+
+### Trouvaille — un hyperlink réel et légitime (contrairement à Formulaire)
+
+Le mot « Hörmann » dans le Texte d'Accueil porte un hyperlink réel
+(`https://www.hormann.be/`, souligné, gras), vérifié par
+`getStyledTextSegments`. **Contrairement au lien `jonckers-clabots.be` de
+Formulaire**, celui-ci est légitime — Hörmann est la marque partenaire
+officielle de Piqueray, citée dans plusieurs autres blocs déjà adoptés cette
+spec. Reproduit fidèlement (`setRangeTextDecoration` + `setRangeHyperlink`
+après binding, sur l'instance Accueil uniquement — absent sur les 2 autres,
+confirmé pas supposé). Aucun signalement owner nécessaire, contenu correct.
+
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Présentation** (`2103:2824`,
+  pas de variante — structure 100% identique sur les 3, seuls contenu/CTA
+  diffèrent par propriété). Propriétés `Titre`/`Texte` (TEXTE),
+  `Bouton` (BOOLEAN, défaut `false`). 3 occurrences adoptées, 0 copie brute
+  restante. **Preuve pixel : 5/9 identical, 3/9 diff sur les pages réelles**
+  (un 4e diff, Contactez-nous, est hors périmètre — voir note ci-dessous),
+  mesurés en % de la page :
+
+  | Maquette | diffCount | % de la page |
+  |---|---|---|
+  | Accueil | 13 | 0.00014% |
+  | À Propos | 2439 | 0.02381% |
+  | Portes de garage | 3543 | 0.04691% |
+
+  Moyenne **0.024%**, max **0.047%** (Portes de garage) — sous le max déjà
+  accepté pour Accordion-row (0.050%), dans l'enveloppe de bruit de rendu
+  sub-pixel déjà établie cette spec pour du texte fraîchement reconstruit.
+- **Raison** : grille d'audit texte complète re-vérifiée post-adoption sur
+  les 6 nœuds texte (fontSize/lineHeight/letterSpacing/textCase/align H-V/
+  paragraphSpacing/fills-bindings/effects) contre les valeurs mesurées avant
+  remplacement — zéro écart structurel nulle part ; triptyques inspectés,
+  signature de bruit identique à celle déjà acceptée (Devis-cta,
+  Accordion-row, Carte, Formulaire).
+- **Note — 4e diff hors périmètre (Contactez-nous, 816px)** : cette page n'a
+  jamais été touchée par cet incrément (0 occurrence de Présentation,
+  confirmé au scan avant ET après). Investigation avant conclusion (jamais
+  un diff accepté sans regarder) : le diff correspond exactement à
+  l'adoption **Coordonnées (T093-T094, ci-dessus)**, construite par un autre
+  agent pendant la fenêtre de capture before/after de cet incrément — les
+  nodeIds en jeu (`2104:2882-2887`/`2105:2968`) sont confirmés par l'entrée
+  Coordonnées elle-même, juste au-dessus dans ce journal. N'est ni chiffré
+  ni accepté comme un écart de CET incrément : il n'en est structurellement
+  pas un. Détail complet : `proofs/presentation/README.md`.
+- **Preuve** : `proofs/presentation/{verdict.json,verdict.md,crops/,README.md}` ;
+  `ledger/presentation.json` (5 entrées : 2×Portes de garage [Titre+Texte] +
+  3×Accueil [Titre+Texte+Bouton] ; 0 entrée À Propos — son contenu EST le
+  défaut du master par construction, même convention que Devis-cta pour les
+  occurrences au défaut ; `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/presentation/master` (versionId `2379860444617957744`),
+  `003/presentation/adoption` (versionId `2379859087423730721`)
+
+**Présentation (T071-T072) fait.** `Présentation` brut ×3 (À Propos, Portes
+de garage, Accueil) → 0 copie restante, 3 instances du master. Les 2 décoys
+« Présentation » de Réalisations confirmés intacts. Leçon méthodologique
+nommée pour la suite (détail `proofs/presentation/README.md`) : un
+`pages:compare` plein-9-pages en session multi-agent peut légitimement
+capturer le travail en cours d'un AUTRE agent sur une page non ciblée par
+son propre incrément — pas un défaut de l'instrument, un rappel d'investiguer
+avant de conclure, jamais de supposer la cause ni de balayer comme du bruit.

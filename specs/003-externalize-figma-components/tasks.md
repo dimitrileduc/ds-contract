@@ -218,8 +218,8 @@
 
 - [X] T069 [US3] Master **Devis / CTA** — nommé `Devis` (nom natif du layer) ; instance Bouton baked (déjà gouverné) + propriété TEXTE `Titre` (vraie variation « chez vous »/« dans vos locaux » sur Portes de garage industrielles) ; 2e variation trouvée à l'audit live, non prévue au brief : fond photo différent sur la même page (override d'instance, comme gallery-item) → `audits/devis-cta.md` + entrée `decisions.md`
 - [X] T070 [US2] Adoption **Devis / CTA** — 8 pages → `ledger/devis-cta.json` + `proofs/devis-cta/verdict.{json,md}` (0 copie brute restante, 8/8 bbox identiques avant/après ; écart pixel accepté 8/8 `diff`, moyenne 0.013%/max 0.0216% de la page — sous le précédent Accordion-row 0.032%/0.050%, cause = bruit de rendu sub-pixel d'un texte neuf, grille d'audit texte complète vérifiée avant acceptation, voir `decisions.md`)
-- [ ] T071 [US3] Master **Présentation** (trivial : instance Bouton) → `audits/presentation.md` + entrée `decisions.md`
-- [ ] T072 [US2] Adoption **Présentation** — 5 pages → `ledger/presentation.json` + `proofs/presentation/verdict.{json,md}`
+- [X] T071 [US3] Master **Présentation** (trivial : instance Bouton) → `audits/presentation.md` + entrée `decisions.md` — **fait 2026-07-24** : `2103:2824` (COMPONENT, 3 occurrences réelles re-mesurées, pas 5 — les 2 autres sont le titre interne de Réalisations, même collision que gallery-item), propriétés Titre/Texte (TEXTE) + Bouton (BOOLEAN, défaut masqué — CTA réellement visible sur 1/3 seulement, mesuré)
+- [X] T072 [US2] Adoption **Présentation** — 3 pages → `ledger/presentation.json` + `proofs/presentation/verdict.{json,md}` — **fait 2026-07-24** : `Présentation` brut ×3 → 0 copie restante, 5/9 identical + 3/9 diff acceptés (0.024% moy/0.047% max, sous le précédent Accordion-row) ; 4e diff (Contactez-nous) hors périmètre, cf. decisions.md
 - [ ] T073 [US3] Master **SAV** (trivial : Bouton + image) → `audits/sav.md` + entrée `decisions.md`
 - [ ] T074 [US2] Adoption **SAV** — 1 page → `ledger/sav.json` + `proofs/sav/verdict.{json,md}`
 - [ ] T075 [US3] Master **Hero** (exige Section-header T064 adopté) → `audits/hero.md` + entrée `decisions.md`
