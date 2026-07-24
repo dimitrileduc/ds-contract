@@ -910,6 +910,40 @@ instrument deliberately never resamples, so a fluid atom's size delta against a
 fixed-frame master is a REAL mismatch — the fluid atoms are (rightly) not pixel
 subjects; only the fixed Checkbox is. Suite **108/108**, 8/8 gates green.
 
+## 2026-07-24 — Spec 004 post-close: the QA pass
+
+An owner review after close surfaced real defects the gates hadn't caught — each
+fixed at the source, each re-verified against the full suite before landing, all on
+**PR #3**.
+
+- **The playground controls were dead** (`1e1eb99` Contract Hub, `1bb3abd`
+  Storybook). The atoms are uncontrolled (native `defaultValue`/`defaultChecked`,
+  faithful to eventless masters), so a changed value/checked control never updated
+  the mounted DOM. Fixed by REMOUNTING the preview on any control change — the
+  dashboard keys its preview wrapper on the args; `generateStories` emits a `render`
+  keyed on `JSON.stringify(args)` (Polaris example regenerated to match, `c26c0a7`).
+- **The Checkbox "froze" the browser** (`963d74e`) — not a JS loop. The generator
+  overlays a native `<input type=checkbox>` absolutely (`inset:0; opacity:0`) but
+  left the root `position:static`, so the invisible input escaped to `<body>` and
+  covered the whole page (measured 2043×1110 via `getBoundingClientRect`), eating
+  every click. The generator already promoted the root to `position:relative` for
+  out-of-flow parts — it just missed the native-checkable case; one condition
+  (`isNativeCheckablePart`) closed it.
+- **Fluid atoms DO get pixel coverage after all** (`7ddca00`, `ceb7882`) — this
+  supersedes the "not pixel subjects" call above. An optional, additive `renderWidth`
+  renders the code side at the master's fixed 280px frame, so the diff judges box
+  styling at a shared size. **Input and Textarea match at 0.00%** (an `<input>`/
+  `<textarea>` renders its text in headless Chromium). **Select is excluded** with a
+  named reason: a native `<select>` does NOT render its selected-option text headless
+  (the code is correct — `<select><option>{value}` — and the dashboard's real browser
+  shows it), so its triptych reads as a false failure; its text fidelity rides
+  build + eval, its box the figma-script canvas render. Visual subjects: **5**
+  (button, checkbox, input, textarea, button-with-icons).
+
+The pattern that held: the owner's eye caught what masked scores and headless
+renders hid — twice (the freeze via a `getBoundingClientRect` measurement, the
+Select via reading the triptych's `code | figma | diff` panel order).
+
 ---
 
 **Standing scoreboard** (updated with each milestone):
