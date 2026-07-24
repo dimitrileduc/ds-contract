@@ -520,3 +520,89 @@ nommé au cas où). **Prochain : T041 (Master Accordion-row).**
 **Accordion-row (T041) fait.** Prochain : T042 (adoption, 34 occurrences/8
 pages), puis passage en exécution multi-agent (owner directive, contrainte
 de timing) pour le reste de la Phase 7 — voir entrée suivante.
+
+## 2026-07-24 — amendement-orga — tentative multi-agent abandonnée pour T042+
+
+- **Type** : amendement-orga
+- **Composant(s)** : programme
+- **Verdict owner** : workflow multi-agent (Sonnet 5 séquentiel + vérif Fable 5)
+  lancé pour T042 et les molécules suivantes, puis **arrêté par l'owner**
+  après constat que la contrainte « un seul opérateur sur le canevas »
+  (déjà actée dans tasks.md) élimine le gain de parallélisme réel — le
+  premier agent (T042) avait déjà exécuté le remplacement des 34 occurrences
+  sur le canevas avant l'arrêt ; repris et terminé en direct plutôt que
+  redémarré, après vérification que son travail Figma était structurellement
+  correct (34/34 bonnes propriétés, zéro copie restante).
+- **Raison** : séquentiel + réexpliquer tout le contexte à chaque agent frais
+  coûte plus cher que ça ne rapporte, vu la contrainte. Le reste de la Phase 7
+  continue en direct.
+- **Preuve** : n/a (décision de processus)
+- **Checkpoint** : n/a
+
+## 2026-07-24 — ecart-pixel-accepte — Accordion-row (adoption, T042)
+
+- **Type** : ecart-pixel-accepte
+- **Composant(s)** : accordion-row
+- **Verdict owner** : accepté après investigation conjointe (owner a
+  identifié 2 des 4 causes par inspection visuelle directe des triptyques —
+  voir Raison) et validation de l'image finale.
+- **Chiffres** : **8/9 `identical`... non — 1/9 `identical` (Accueil, sans
+  accordéon), 8/9 `diff`**, mesurés en % de la page (jamais accepté sur un
+  compte brut seul) :
+
+  | Page | diffCount | % |
+  |---|---|---|
+  | Motorisation | 870 | 0.015% |
+  | À Propos | 1856 | 0.018% |
+  | Portes de garage résidentielles | 3070 | 0.027% |
+  | Portes d'entrée | 3218 | 0.029% |
+  | Contactez-nous | 2371 | 0.035% |
+  | Portes de garage | 2818 | 0.037% |
+  | Dépannage/SAV | 3687 | 0.050% |
+  | Portes de garage industrielles | 5128 | 0.044% |
+
+  Moyenne globale **0.032%** (~1 pixel sur 3000). Triptyques complets :
+  `proofs/accordion-row/crops/`.
+- **Raison — 4 causes réelles trouvées et corrigées avant acceptation** (pas
+  un écart accepté à l'aveugle) :
+  1. **Bordure basse 1px manquante** sur chaque ligne — trouvée par
+     comparaison pixel directe avant/après (absente de l'audit initial,
+     jamais vérifiée). Noir pur (Grand) / noir-bleuté ~19% opacité (Petit).
+     A fait chuter le diff de ~65% à elle seule.
+  2. **Hauteur de `Contenu` figée par construction** ne réagissant pas à un
+     texte plus long — corrigée sur l'occurrence à réponse longue
+     (Portes de garage industrielles).
+  3. **Texte riche (gras dans du texte normal) perdu** — les 8 réponses
+     Texte SEO ont des mots-clés en gras dans le texte source (probablement
+     voulu pour le référencement), ma reconstruction avait tout mis en
+     `Regular` uniforme. **Trouvé par l'owner** en inspectant les triptyques
+     lui-même (« ça ressemble à du texte gras dans du texte normal »),
+     confirmé par lecture directe des pixels puis corrigé (8 occurrences,
+     `setRangeFontName` sur les plages exactes).
+  4. **Espacement de paragraphe manquant** — la seule réponse à 2
+     paragraphes (Portes de garage industrielles) avait un saut de ligne
+     entre paragraphes mesuré à 32px contre 23px entre deux lignes d'un même
+     paragraphe (soit ~8px d'espacement propre au paragraphe), laissé à 0
+     par défaut. **Trouvé par l'owner** (« souci d'espacement texte »),
+     vérifié par mesure de pixels précise puis corrigé
+     (`paragraphSpacing: 8`) — a fait chuter le diff de cette page de 12403
+     à 5128 (-59%), la sortant de son statut de point noir isolé.
+  Le résiduel final (0.015%-0.050%, homogène sur les 8 pages) n'a pas de
+  cause supplémentaire identifiée malgré investigation — hypothèse la plus
+  probable : bruit de rendu sub-pixel inhérent à la reconstruction d'un
+  nœud texte neuf face à l'original, concentré exclusivement sur les lignes
+  `État=Ouvert` (jamais sur les lignes fermées).
+- **Preuve** : `proofs/accordion-row/{verdict.json,verdict.md,crops/}` ;
+  `ledger/accordion-row.json` (46 entrées : 34 `Titre` + 12 `Contenu`, 46
+  `reportee`, 0 `non-portable`, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/accordion-row/adoption` (pris par l'agent avant
+  l'arrêt du workflow — le remplacement des 34 occurrences avait déjà eu
+  lieu à ce moment)
+
+**Accordion-row (T041-T042) fait.** `accordion-row`/`item`/`item open` brut
+×34 (8 pages) → 0 copie restante, 34 instances du master (10 Grand + 24
+Petit). Leçon méthodologique pour la suite : **toujours zoomer sur les
+triptyques avant d'accepter un écart** — 2 des 4 vraies causes de cette
+adoption n'ont été trouvées qu'en regardant l'image de près, pas en faisant
+confiance à un chiffre agrégé ou à une explication plausible non vérifiée.
+**Prochain : T043 (Master Tabs/Tab).**

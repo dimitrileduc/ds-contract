@@ -166,7 +166,7 @@
 - [X] T039 [US3] Master **Field** (label + saisie + erreur ; dépend d'Input/Select/Textarea) → `audits/field.md` + entrée `decisions.md`
 - [X] T040 [US2] Adoption **Field** — `field` brut ×7 → `ledger/field.json` + `proofs/field/verdict.{json,md}`
 - [X] T041 [US3] Master **Accordion-row** (ligne FAQ, états ouvert/fermé en propriété officielle ; instance des chevrons existants) → `audits/accordion-row.md` + entrée `decisions.md`
-- [ ] T042 [US2] Adoption **Accordion-row** — `item` / `item open` ~34 → `ledger/accordion-row.json` + `proofs/accordion-row/verdict.{json,md}`
+- [X] T042 [US2] Adoption **Accordion-row** — `item` / `item open` ~34 → `ledger/accordion-row.json` + `proofs/accordion-row/verdict.{json,md}`
 - [ ] T043 [US3] Master **Tabs / Tab** → `audits/tabs.md` + entrée `decisions.md`
 - [ ] T044 [US2] Adoption **Tabs** — `tab` brut ×4 → `ledger/tabs.json` + `proofs/tabs/verdict.{json,md}`
 - [ ] T045 [US3] Master **Category-card** (image + titre + CTA ; instance Bouton existant) — un des 3 blocs cachés sous le nom `item`, nom vrai obligatoire (FR-008) → `audits/category-card.md` + entrée `decisions.md`
