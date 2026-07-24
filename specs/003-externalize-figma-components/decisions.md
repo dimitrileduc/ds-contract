@@ -2370,3 +2370,68 @@ nommé plutôt que silencieux.
 
 **Devis / CTA — correction faite et vérifiée, committée.** Contrairement à Hero, aucun
 second problème resté ouvert sur ce bloc.
+
+## 2026-07-25 — validation-master + adoption + incident-concurrent + trou-de-preuve-nommé — Réassurances (T077-T078)
+
+- **Type** : validation-master (T077) + adoption (T078, 6 pages) — mais exécution **partagée
+  avec un fork concurrent de la même tâche** (mécanisme suspecté SAV/Texte-SEO, ici
+  **confirmé**). Auto-validation de cette branche contre la mesure, **plus 3 vérifications
+  indépendantes de l'état canvas** (cette branche + l'audit du fork + la vérification live de
+  l'orchestrateur). **Non committé** (règle du brief : construction seulement).
+- **Composant** : `réassurances` (master réel : `Réassurances`, `COMPONENT_SET` `2114:3721`).
+
+### Prémisse invalidée → Option A (COMPONENT_SET), validée par l'orchestrateur
+
+Le brief (« 4 cartes + 1 Bouton, structure identique sur 6 pages ») était dérivé de À Propos
+seule. **Faux à la mesure** : 3 structures réelles — `4 cartes + 1 CTA` (À Propos,
+industrielles, résidentielles), `4 cartes + 2 CTA` (Portes d'entrée, frame `Boutons`),
+`5 cartes + 1 CTA` (Portes de garage, Accueil). Un master plain aurait **perdu en silence**
+1 carte (×2 pages) + 1 bouton (Portes d'entrée) — impossible d'ajouter un enfant à une
+instance (piège API). Trouvaille **remontée avant toute mutation** ; décision (alignée T079
+« variante par propriété officielle » + précédent Carte) : **un `COMPONENT_SET`** à propriété
+`Disposition` (3 variantes), **chaque variante clonée d'une occurrence réelle** (`clone` +
+`createComponentFromNode` + `combineAsVariants`, zéro reconstruction). Défauts de variante =
+pages réelles → 3 pages adoptent à 0 override, seules À Propos + résidentielles (13 chacune) +
+Portes de garage (1) en portent. Détail : `audits/reassurances.md`.
+
+### Incident concurrent — fork confirmé, arbitré par l'orchestrateur
+
+`EADDRINUSE` sur mon port de capture non-défaut (9231) : un process exécutait ma commande
+EXACTE avec mon dossier + un before déjà capturé, alors que je n'avais jamais lancé
+capture.js ; le fork avait aussi écrit un audit. **Les deux branches ont convergé sur le même
+master `2114:3721` et le même plan** (validation croisée), et **les deux ont détecté le
+conflit et suspendu** au lieu de courir. Arbitrage orchestrateur : receiver rogue tué, before
+recapturé sous mon nonce. Puis, entre deux de mes lectures, **le fork a adopté les 6 pages** —
+signal remonté immédiatement (consigne : ne jamais ré-arbitrer seul). Vérifié : les 6 sont des
+instances de MON master, **bonne variante, bbox `{0,0,0,0}`, contenu byte-exact**, un seul
+master, zéro copie brute, zéro tierce — le fork a exécuté mon plan correctement. J'ai porté le
+seul override manquant (espace final Portes de garage carte0) et finalisé la preuve (le fork ne
+peut pas : son receiver a été tué).
+
+### Preuve — STRUCTURELLE (réelle) + trou pixel NOMMÉ
+
+- **Preuve réelle** : bbox `{0,0,0,0}` sur les 6 (position+taille = copie brute mesurée) ;
+  **contenu byte-exact sur les 6** (~100 champs Section-header/cartes/boutons == source live
+  pré-adoption, **0 mismatch**) ; bonne variante ; un seul master ; 0 copie brute ; 0 tierce ;
+  3 vérifs indépendantes ; confirmation visuelle (master 3 variantes + instance À Propos).
+- **Trou pixel nommé (jamais maquillé)** : `pages:compare` = **6/6 identical (exit 0)** mais
+  **dégénéré** — le fork a adopté AVANT ma capture `before`, donc mon `before` a capturé
+  l'état **déjà adopté** (sha256 `before == after` sur les 6, y compris À Propos à 13 overrides
+  où un vrai raw→adopté produirait du bruit AA). Le raw-avant propre a été détruit par la
+  collision (kills de receiver multi-acteurs) et est **irrécupérable** (R5 : aucun rendu d'une
+  version passée). Donc **pas la preuve pixel standard de la spec** — dit tel quel, pas arrondi.
+- **Note (demandée par l'orchestrateur)** : la preuve **byte-exact est plus forte** qu'un
+  simple diff pixel pour prouver « zéro perte de contenu/layout » (elle prouve que chaque
+  valeur texte/image/variante est exactement la source + zéro décalage bbox, sans le bruit AA
+  qui oblige à « accepter » un seuil ailleurs) — **mais** ce n'est **pas** la preuve pixel
+  standard raw→adopté, réellement indisponible ici.
+- **Preuve** : `audits/reassurances.md` ; `proofs/reassurances/{verdict.json,verdict.md,README.md}`
+  (README = récit honnête du trou) ; `ledger/reassurances.json` (27 reportee / 0 non-portable,
+  `pages:ledger:check` exit 0).
+- **Checkpoints** : `003/reassurances/master` (`2379909218283682275`), `003/reassurances/adoption`
+  (`2379927008572226336`), `003/reassurances/finalize` (`2379926247378342357`).
+
+**Réassurances (T077-T078) — master + adoption faits, preuve structurelle + byte-exact, trou
+pixel nommé.** Non committé (brief) — laissé sur disque pour revue/commit par l'owner. La
+gouvernance concurrente à deux branches a été résolue sans corruption : un seul master, 6
+instances correctes, zéro perte de contenu.
