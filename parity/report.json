@@ -1,51 +1,23 @@
 {
   "summary": {
-    "total": 4,
-    "acknowledged": 0,
+    "total": 0,
+    "acknowledged": 1,
     "pending": 0,
-    "bySurface": {
-      "figma": {
-        "behind": 1
-      },
-      "icons": {
-        "ahead": 3
-      }
-    }
+    "bySurface": {}
   },
-  "findings": [
-    {
-      "surface": "figma",
-      "classification": "behind",
-      "subject": "Button.Contactez-nous",
-      "detail": "Contract prop \"children\" has no TEXT property on the Figma set",
-      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
-    },
+  "findings": [],
+  "acknowledged": [
     {
       "surface": "icons",
       "classification": "ahead",
       "subject": "assets/icons/close.svg",
       "detail": "code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)",
       "remedy": "Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset"
-    },
-    {
-      "surface": "icons",
-      "classification": "ahead",
-      "subject": "figma/mail",
-      "detail": "canvas offers this icon in the Button's swap menu but ds.icons has no entry for it",
-      "remedy": "Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional"
-    },
-    {
-      "surface": "icons",
-      "classification": "ahead",
-      "subject": "figma/external-link",
-      "detail": "canvas offers this icon in the Button's swap menu but ds.icons has no entry for it",
-      "remedy": "Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional"
     }
   ],
-  "acknowledged": [],
   "pending": [],
   "checkedContracts": [
-    "ds.button@1.3.0"
+    "ds.button@1.4.0"
   ],
   "namingBridges": [
     "mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\""

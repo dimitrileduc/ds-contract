@@ -1,25 +1,22 @@
 {
-  "passed": 99,
+  "passed": 102,
   "total": 102,
   "quarantined": 49,
   "results": [
     {
       "id": "baseline-parity-clean",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baseline not clean:\n⚠ Figma naming bridged (the file does not use this repo's collection/mode names):\n    · mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\"\n\n✖ 4 drift finding(s):\n    figma — behind: 1\n    icons — ahead: 3\n\n  [figma BEHIND] Button.Contactez-nous\n    Contract prop \"children\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n  [icons AHEAD] assets/icons/close.svg\n    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\n    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\n\n  [icons AHEAD] figma/mail\n    canvas offers this icon in the Button's swap menu but ds.icons has no entry for it\n    → Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional\n\n  [icons AHEAD] figma/external-link\n    canvas offers this icon in the Button's swap menu but ds.icons has no entry for it\n    → Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional\n\n"
+      "pass": true
     },
     {
       "id": "baseline-acknowledges-without-failing",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baselined finding still failed the exit code"
+      "pass": true
     },
     {
       "id": "promotion-converges",
       "claim": "C4-convergence",
-      "pass": false,
-      "error": "Error: Unexpected extra findings: [{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.Contactez-nous\",\"detail\":\"Contract prop \\\"children\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.IconOnly\",\"detail\":\"Contract prop \\\"iconOnly\\\" has no BOOLEAN property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"icons\",\"classification\":\"ahead\",\"subject\":\"assets/icons/close.svg\",\"detail\":\"code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\",\"remedy\":\"Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\"},{\"surface\":\"icons\",\"classification\":\"ahead\",\"subject\":\"figma/mail\",\"detail\":\"canvas offers this icon in the Button's swap menu but ds.icons has no entry for it\",\"remedy\":\"Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional\"},{\"surface\":\"icons\",\"classification\":\"ahead\",\"subject\":\"figma/external-link\",\"detail\":\"canvas offers this icon in the Button's swap menu but ds.icons has no entry for it\",\"remedy\":\"Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional\"}]"
+      "pass": true
     },
     {
       "id": "detect-icon-registry-divergence",

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.3.0)
+ * Source of truth: contracts/button.contract.json (ds.button v1.4.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -72,7 +72,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'arrow-left';
 }
 
-/** Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label is a reusable prop. The two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icône gauche »/« Icône droite » (iconLeft/iconRight boolean props) and, since v1.3, steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite »), defaulting to the file's own arrow-left/arrow-right glyphs. Extracted by propose-figma's D5 lowering pass (002-governed-icons-button) from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. */
+/** Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives. The label (children) is bound to the « Libellé » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property). The two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icône gauche »/« Icône droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to exactly the 13-icon registry in the same Step 3 update), defaulting to the file's own arrow-left/arrow-right glyphs. Extracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     variant = 'default',
