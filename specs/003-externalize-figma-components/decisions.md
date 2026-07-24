@@ -1247,6 +1247,72 @@ résultat byte-exact de la spec (après Carousel-controls), cette fois sur 3
 maquettes entières plutôt qu'une seule. Le seul bloc inféré encore non traité est
 **Review-card (T053-T054, reporté)** — sa section Phase 8 (Avis Google) reste
 bloquée avec elle.
+
+## 2026-07-24 — clôture — Phase 7 (Molécules)
+
+- **Type** : amendement-orga (clôture de phase, pas une décision de composant)
+- **Composant(s)** : programme
+- **Verdict owner** : implicite — dernier bloc (Gallery-item) accepté au verdict
+  byte-exact, aucune objection, phase considérée close.
+- **Chiffres** : **11/12 blocs construits et adoptés** (Field, Accordion-row, Tab,
+  Carte, Product-card, Member-card, Carousel-controls, Footer-column, Copyright,
+  Avantage/Contact-info-row, Réalisation/Gallery-item) ; **1/12 reporté**
+  (Review-card, `report-bloc` daté plus haut). Preuve pixel réelle mesurée sur
+  **22 des 54 couples molécule × maquette** possibles (41%) — le reste (32
+  couples, 59%) vérifié structure (zéro copie brute) + visuel uniquement, chaque
+  fois documenté au moment de l'adoption, jamais après coup. **6 molécules à
+  couverture pixel complète** (100% de leurs maquettes) : Field, Accordion-row
+  (8/8), Tab, Member-card, Avantage, Réalisation (3/3, byte-exact). **5 à
+  couverture partielle** (1-2 maquettes pilotes prouvées, reste structure+visuel) :
+  Carte (2/8), Product-card (1/2), Carousel-controls (1/2), Footer-column (1/9),
+  Copyright (1/9), Section-header (1/9).
+- **Raison** : le compte 22/54 n'est pas un objectif atteint à combler — c'est la
+  mesure réelle sous la cadence hybride FR-013 (owner, 2026-07-23), acceptée bloc
+  par bloc dans les entrées ci-dessus. Investigué et refusé de combler
+  rétroactivement (voir entrée « audit de couverture + décision owner » plus
+  haut) : impossible sans risque disproportionné sur un fichier live. Depuis
+  Gallery-item, la règle before-capture (voir `CLAUDE.md` et la « Méthode
+  d'exécution » de ce fichier) impose la capture avant sur TOUTES les maquettes
+  concernées, systématiquement — les 32 couples non mesurés datent tous d'AVANT
+  cette règle ; aucun nouveau bloc ne devrait plus créer ce type de trou.
+- **Preuve** : chaque bloc a sa propre entrée datée ci-dessus, avec `Preuve` +
+  `Ledger` + `Checkpoint`. Récapitulatif visuel construit pour l'owner (artifact
+  session, non versionné — ces chiffres-ci en sont la source de vérité committée).
+- **Checkpoint** : voir `tasks.md` § Phase 7, ligne de clôture.
+
+**Phase 7 close.** Phase 8 (Sections) peut démarrer pour tout ce qui ne dépend
+pas de Review-card ; Avis Google (T089-T090) reste bloquée avec sa raison.
+
+## 2026-07-24 — anomalie-tranchee — Réalisations utilise un `GRID` natif non contractable
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : Réalisations (section, T095-T096), programme (contract-schema)
+- **Anomalie** : le conteneur `grid` de la section Réalisations (3 occurrences,
+  `237:1066`/`387:787`/`230:614`) utilise le mode `layoutMode: 'GRID'` natif de
+  Figma. Vérifié dans `packages/schema/src/contract-schema.ts:96`
+  (`LayoutSchema.display: z.enum(['flex', 'inline-flex'])`) et
+  `core/emit-figma-script.ts:55` (`LayoutSpec.mode: 'HORIZONTAL' | 'VERTICAL'`) :
+  **aucune des deux n'a de concept de grille** — ni le schéma de contrat ni
+  l'émetteur Figma. `docs/FIGMA-CAPABILITY-MATRIX.md` ne documente pas non plus
+  `display: grid`. Vérifié dans le legacy : zéro contrat `grid`/`gallery` et zéro
+  occurrence de `"display": "grid"` dans les 51 contrats démo (tag `demo-51`) —
+  ce n'est pas une régression de la reconversion, grid n'a **jamais** été
+  supporté par ce système.
+- **Proposition** : construire Réalisations directement dans Figma (comme tous
+  les autres masters de cette spec), sans tenter d'approximer grid en flex. Zéro
+  hack du système de contrats.
+- **Décision owner** : tranché — c'est cohérent avec le périmètre déjà écrit
+  dans `spec.md` (« Out of Scope : le figma → code... phase ultérieure,
+  séparée. Cette itération est du nettoyage Figma pur »). Aucun master de cette
+  spec n'a de contrat aujourd'hui ; Réalisations n'est pas un cas différent des
+  autres sur ce plan précis — c'est juste le seul qui, **le jour où** la phase
+  figma→code arrivera, exigera une extension de schéma (`display: 'grid'` +
+  propriétés associées) avant de pouvoir être contractualisé. Noté ici pour ne
+  pas être redécouvert à zéro à ce moment-là.
+- **Preuve** : lignes de code citées ci-dessus, recherche legacy documentée dans
+  cette entrée.
+- **Checkpoint** : aucun (constat, pas de mutation)
+
 ## 2026-07-24 — validation-master + ecart-pixel-accepte — Devis / CTA (T069-T070)
 
 - **Type** : validation-master (T069, cadence extraction simple — FR-013) puis
@@ -1304,3 +1370,139 @@ la Phase 8 avec un écart pixel mesuré et accepté (après Accordion-row en Pha
 même classe de cause, magnitude plus faible. **Prochain : T071 (Master
 Présentation).**
 
+## 2026-07-24 — anomalie-tranchee — Formulaire, prémisse Checkbox invalidée
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : formulaire, checkbox
+- **Verdict owner** : n/a côté owner en direct — corrigé selon le même principe déjà
+  appliqué à Contact-info-row (T061) : quand l'audit contredit la prémisse de
+  `tasks.md`, on suit la source mesurée, on documente l'écart, on ne s'arrête pas pour
+  une hypothèse de planification qui s'avère fausse à l'audit.
+- **Raison** : `tasks.md` (T091) suppose « exige Field T040 adopté + Checkbox T035
+  validé + Bouton ». Lecture complète de l'arbre `form` (274:3682) : **aucune trace de
+  Checkbox** — le consentement RGPD est un `TEXT` unique, rédigé comme un consentement
+  implicite par action (« En cliquant sur Envoyer, je confirme... »), pas une case à
+  cocher. Confirme (ne découvre pas) le constat déjà posé à l'audit T031
+  (`audits/atomes-formulaire.md` : « consentement RGPD en simple texte »). Introduire
+  une Checkbox ici changerait le comportement du formulaire (consentement implicite →
+  explicite) — hors périmètre de cette spec (nettoyage Figma pur, `spec.md` § Out of
+  Scope). Le master **Formulaire** est donc construit fidèle à la source, sans
+  Checkbox ; le master **Checkbox** (T035) reste construit et validé, simplement sans
+  consommateur dans ce fichier à ce jour.
+- **Preuve** : `audits/formulaire.md` § Trouvaille — la tâche source suppose une
+  Checkbox qui n'existe pas
+- **Checkpoint** : n/a (constat — le geste de construction est celui du checkpoint
+  `003/formulaire/master` ci-dessous)
+
+## 2026-07-24 — anomalie-tranchee — lien tiers dans Formulaire (T091)
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : Formulaire (T091-T092)
+- **Anomalie** : le texte « la politique de confidentialité » du master Formulaire
+  porte un lien hypertexte vivant vers `jonckers-clabots.be` (un concurrent belge
+  de portes de garage) — pas Piqueray. Résidu quasi certain du template dont ce
+  fichier a été cloné avant le rebrand Piqueray. Trouvé par l'agent Sonnet
+  pendant l'audit T091 (Phase 8, Vague 1), avant toute construction.
+- **Proposition** : reproduire fidèlement (le périmètre de cette spec est le
+  nettoyage Figma, pas la correction de contenu) et signaler clairement plutôt
+  que d'inventer une URL Piqueray de remplacement sans preuve source.
+- **Décision owner** : **corriger plus tard** — reproduit fidèlement pour
+  l'instant (fait), correction du lien reportée à un geste futur explicite, pas
+  dans cette adoption. Ne pas re-corriger sans un nouveau geste owner nommé.
+- **Preuve** : `audits/formulaire.md`, description du node master `2096:2564`
+  (`DS · Molécules`) porte le même signalement.
+- **Checkpoint** : `003/formulaire/master`
+
+## 2026-07-24 — validation-master — Formulaire (T091)
+
+- **Type** : validation-master
+- **Composant(s)** : formulaire
+- **Verdict owner** : n/a à ce stade — scoping du bloc et go d'exécution donnés en
+  amont (méthode d'exécution, `tasks.md`) ; construction déléguée à un agent Sonnet
+  autonome pour l'audit détaillé et la construction, les 2 anomalies remontées en
+  cours de route (lien tiers → tranché par l'owner ci-dessus ; absence de Checkbox
+  → corrigé par l'agent, documenté ci-dessus, pas un vrai blocage).
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Formulaire** (`2096:2564`,
+  1550×723, pas de variante — bloc unique). 3 propriétés TEXTE officielles
+  (`Accroche`, `Titre`, `Consentement`). Construit par `clone()` de la frame `row`
+  (`274:2874` — pas le `GROUP` parent `274:2670`, éliminant son origine instable
+  par construction) puis `figma.createComponentFromNode()` : conversion en place,
+  zéro reconstruction manuelle des styles/instances imbriquées, donc zéro risque de
+  détail perdu (classe de bug qui a coûté du temps sur Accordion-row/Tab/Carte).
+  Dépendances : Avantage (T061-T062, ×4), Field (T039-T040, ×7), Bouton existant
+  (×3 — « Appeler pour une urgence » = `Default` plein, « Voir la FAQ » et
+  « Envoyer » = `Outilne noir` contour, vérifié programmatiquement, pas assumé).
+  **32 instances descendantes vérifiées une à une** : `getMainComponentAsync().
+  remote === false` partout, zéro dépendance tierce.
+- **Raison** : n/a (validation directe sur audit + capture)
+- **Preuve** : `audits/formulaire.md` ; capture de session (composant conforme à
+  la source, cf. screenshot)
+- **Checkpoint** : `003/formulaire/master` (versionId `2379844914573460273`)
+
+## 2026-07-24 — ecart-pixel-accepte — Formulaire (adoption, T092)
+
+- **Type** : ecart-pixel-accepte
+- **Composant(s)** : formulaire
+- **Verdict owner** : accepté par l'agent d'exécution après investigation complète
+  (2 vrais bugs trouvés et corrigés avant d'accepter quoi que ce soit — jamais un
+  chiffre agrégé pris pour argent comptant) ; résidu final homogène, même signature
+  que les résidus déjà acceptés par l'owner sur 6+ molécules précédentes de cette
+  spec (Accordion-row, Carte, Footer-column, Copyright, Contact-info-row,
+  Section-header) — pas une nouvelle catégorie d'écart à faire trancher.
+- **Chiffres** : **1/1 `diff`** (seule maquette concernée : `Contactez-nous`),
+  `diffCount=1581`, `diffBox={x:289, y:811, w:1231, h:574}`, soit **0,023 %** de la
+  page (1728×3901 = 6 742 128 px) — dans la fourchette déjà acceptée cette session
+  (0,015 %-0,09 %). `before`/`after` : dimensions strictement égales (1728×3901 ×2),
+  sha256 `before` `223f296384…`, `after` (final) `a73fc90e60…`. Ledger :
+  `ledger/formulaire.json` — **vide explicite** (`entrees: []`), `pages:ledger:check`
+  exit 0 : l'unique instance porte déjà, par construction du master (cloné depuis
+  cette occurrence précise), le contenu exact de la source — rien à reporter, même
+  logique que Carousel-controls.
+- **Raison — 2 vrais bugs trouvés et corrigés, détail complet dans
+  `audits/formulaire.md` § Post-scriptum (T092)** :
+  1. **Soulignement + hyperlink aplatis par le binding de propriété** — lier
+     `Consentement` comme propriété TEXTE officielle
+     (`componentPropertyReferences`) a effacé le style mixte du segment « la
+     politique de confidentialité » (perdait son soulignement ET son hyperlink),
+     sur le **master lui-même**, pas seulement l'instance — nouvelle famille de
+     piège (même symptôme que `setProperties()` sur une prop TEXT, déjà connu,
+     mais déclenché ici par le binding de propriété). Réappliqué par plage exacte.
+  2. **Couleur du segment lien faussement rendue noire, puis 2 tentatives de
+     correction du texte courant sur le mauvais token avant la bonne réponse** —
+     échantillonnage direct des pixels du PNG source (avant toute mutation) a
+     confirmé `rgb(249,138,11)` exact = `color/orange` (`VariableID:4:28`, le même
+     token que le CTA du Bouton) sur le lien ; puis, pour le texte courant
+     environnant, deux hypothèses par analogie (`color/noir-bleute` puis
+     `color/noir`, cette dernière empruntée — à tort — à la décision déjà actée
+     pour les placeholders Input/Textarea/Select) ont chacune été **testées et
+     mesurées**, la seconde faisant même **remonter** le diffCount (1726→1793) —
+     signal que l'analogie ne tenait pas. Résolu par échantillonnage pixel direct
+     du texte courant : `rgb(30,31,31)`, plus sombre que les deux tokens candidats,
+     cohérent avec un **noir brut `#000000` non bindé** — exactement la première
+     mesure faite sur la source pristine avant toute construction. Reverti au brut
+     → `diffCount` 1793→1581 (baisse franche). **Leçon** : une baisse de
+     `diffCount` après un correctif ne prouve pas que le correctif est correct —
+     vérifier une couleur par échantillonnage pixel direct, pas seulement par
+     analogie avec un cas typographique voisin.
+  Après ces 2 corrections, résidu homogène (léger contour d'anti-aliasing sur tous
+  les caractères, aucune tache/bloc localisé), revérifié visuellement à 3 reprises
+  (crops serrés avant/après sur le titre et le consentement) avant acceptation.
+- **Anomalie non résolue, laissée nommée** : le texte courant du consentement
+  reste en `#000000` brut non bindé (fidèle à la source — ne PAS le lier à
+  `color/noir` sans nouvelle mesure, l'essai a été fait et remesuré comme faux
+  pour ce texte précis, voir ci-dessus). Distinct de l'anomalie déjà tranchée pour
+  les placeholders de formulaire (Input/Textarea/Select) — ce texte-ci n'a pas
+  encore de décision owner dédiée.
+- **Preuve** : `proofs/formulaire/{verdict.json,verdict.md,crops/Contactez-nous.png}` ;
+  `audits/formulaire.md` § Post-scriptum (T092) (détail complet des 2 bugs) ;
+  `ledger/formulaire.json` (vide explicite)
+- **Checkpoint** : `003/formulaire/adoption`
+
+**Formulaire (T091-T092) fait.** `Formulaire` (GROUP) brut ×1 (Contactez-nous) → 0
+copie restante, 1 instance du master `Formulaire` (`2096:2714`). 2 bugs réels trouvés
+et corrigés avant acceptation (soulignement/hyperlink aplatis par binding de
+propriété ; couleur du lien + 2 fausses pistes de token avant le bon diagnostic sur
+le texte courant) — aucun accepté à l'aveugle sur un chiffre agrégé. 2 anomalies de
+contenu restent ouvertes pour arbitrage owner futur : lien tiers `jonckers-clabots.be`
+(owner : corriger plus tard) et couleur brute du texte courant du consentement (non
+tranchée).
