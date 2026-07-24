@@ -2161,3 +2161,212 @@ sub-pixel pur, `segMatch` byte-identique + test de décalage + crops), Accueil `
 
 **Texte SEO définitivement clos.** 8/8 maquettes adoptées, 1 écart réel (pas du
 bruit) accepté en connaissance de cause sur À Propos — jamais silencieux.
+
+## 2026-07-24 — validation-master + ecart-pixel-accepte — Hero (T075-T076)
+
+- **Type** : validation-master (T075) puis adoption (T076, 8 occurrences/8 maquettes) —
+  exécuté par un agent délégué (méthode d'exécution `tasks.md` Phase 7/8). **Verdict
+  ci-dessous = auto-validation de l'agent contre la mesure** (grille d'audit texte
+  complète, read-back par plage à l'écriture, **largeur FILL du sous-titre relue par
+  page**, test de reflow, crops inspectés), nommée honnêtement comme telle (précédent
+  SAV/Texte SEO/Présentation) ; capture + receipts + crops livrés pour la revue visuelle
+  Fable dédiée — **non committé**.
+- **Composant(s)** : `hero` (master réel : **`Hero`**, nom natif du layer)
+
+### Anatomie et la leçon Texte SEO traitée à la source (pas de reflow)
+
+Master `Hero` (`2111:3382`, 1728×640, **hauteur externe FIXE** → les voisins ne bougent
+jamais), section `Hero` (`2111:3374`, à `0,8872`), cloné de **Portes de garage
+industrielles** (`387:724`) + `createComponentFromNode` (zéro reconstruction : image, 2
+dégradés, Bouton gouverné imbriqué, gras riche survivent). Aucune propriété TEXTE
+formelle (le binding aplatirait le gras — précédent Texte SEO/Présentation) : titre +
+sous-titre portés par override de sous-calque (`setCharacters` + `setRangeFontName` par
+plage). **La leçon Texte SEO (un master cloné d'UNE occurrence hérite une largeur qui ne
+matche aucune autre → un mot change de ligne) a été traitée en mesurant les 8 AVANT de
+construire** : le **titre** est à largeur **1550 invariante** sur les 8 (1728 − 2×89 de
+padding), et le **sous-titre est FILL** = `1550 − gap − largeurBouton`, **recalculé par
+instance** (pas de largeur bakée, contrairement au `p` de Texte SEO). Variations par
+page portées à l'adoption : image de fond (8 hash), titre + sous-titre (gras riche),
+libellé Bouton (5 libellés), glyphe droit (chevron ×3 / flèche ×5), gap rangée (16 ×3 /
+32 ×5, corrélé au glyphe), + caractères invisibles (`U+2028` titre Portes de garage,
+`U+00A0` sous-titres Motorisation/résidentielles) — préservés par lecture `.characters`
+en direct de chaque copie, jamais re-tapés.
+
+### Prémisse du brief corrigée (nommée) + piège vérifié sur scratch
+
+- Le brief disait « un Bouton que les 8 autres n'ont pas » : **faux à la mesure** — les 8
+  Hero ont chacun un Bouton CTA visible. `Hero video` (`210:330`, Accueil) est distinct
+  (720px, enfants directs `Text`+`Bouton`), **pas une 9e occurrence** — hors périmètre,
+  vérifié intact (FRAME 1728×720) après adoption.
+- **Piège Figma testé sur scratch AVANT tout geste** : `itemSpacing` **est** overridable
+  sur un sous-cadre d'instance (gap 32→16 tenu, l'enfant FILL a grandi de +16) — c'est le
+  mécanisme qui reproduit la largeur du sous-titre par page (cousine inverse positive du
+  piège « `resize()` sur enfant d'instance ignoré » ; le mode de layout se modifie, la
+  géométrie directe non). Le Bouton re-hugge sur `setProperties`, à condition de rejouer
+  **tous** les props (dont `Icône droite=true`, sinon −30px). Parents tous FRAME
+  auto-layout VERTICAL → `insertChild(0)`, **zéro coordonnée, zéro resize, zéro
+  restructuration** (trappes contournées d'emblée). `customizations.js` a 2 angles morts
+  (précédent FAQ) — ne descend pas dans le Bouton imbriqué, ne suit pas `itemSpacing` :
+  **ledger relevé par lecture directe** des 8 copies avant remplacement (superset).
+
+- **Verdict owner** : auto-validation agent (voir en-tête) ; écart pixel accepté sur la
+  base de l'investigation ci-dessous, à re-confirmer par la revue visuelle Fable.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Hero** (`2111:3382`). 8 occurrences
+  adoptées, **0 copie brute restante**, 8/8 instances résolvent au master, 8/8 bbox
+  strictement identiques (1728×640, `x` inchangé, `y=0`). **Preuve pixel : 1/9
+  `identical` (Accueil contrôle, sha256 avant = après), 8/9 `diff`** — tous confinés à la
+  bande y≈457–563 (titre/sous-titre/Bouton), aucun ricochet ailleurs :
+
+  | Maquette | diffCount | % de la page |
+  |---|---|---|
+  | Portes de garage résidentielles | 39 | 0.00034 % |
+  | Portes de garage industrielles (ancre) | 57 | 0.00049 % |
+  | Portes de garage | 39 | 0.00052 % |
+  | Portes d'entrée | 97 | 0.00086 % |
+  | Dépannage/SAV | 68 | 0.00093 % |
+  | Motorisation | 97 | 0.00168 % |
+  | Contactez-nous | 627 | 0.0093 % |
+  | À Propos | 2101 | 0.0205 % |
+
+  Moyenne ≈0.0044 %, max **0.0205 %** (À Propos) — très en-dessous de l'enveloppe déjà
+  acceptée (Texte SEO 0.123 %, Accordion-row 0.050 %).
+- **Raison — investigué avant acceptation (jamais un chiffre agrégé, leçon « regarder les
+  diffs »)** : (1) **largeur FILL du sous-titre relue = source sur 7/8** (1164/1239/1302…
+  exacts) et **hauteur titre = source sur 8/8** (dont 136=136 sur Portes de garage,
+  prouvant le `U+2028` 2-lignes voyagé) — preuve de construction, avant le pixel ; (2)
+  **crops inspectés** (À Propos, Contactez-nous, Motorisation) : avant == après à l'œil,
+  mêmes mots/retours-ligne/gras/position Bouton, panneau diff = shimmer d'arêtes AA, aucun
+  bloc structurel ; (3) magnitude expliquée par le **fond** — les 2 pages élevées (À
+  Propos 2101, Contactez-nous 627) ont un texte blanc sur photo claire/chargée (équipe /
+  bureau) → plus d'arêtes AA que le texte blanc sur ciels sombres (39–97). Même classe de
+  bruit sous-pixel que Devis/Accordion-row/Texte SEO, pas une nouvelle catégorie.
+- **Seul écart non-AA, nommé** : sur Contactez-nous la largeur FILL du sous-titre est 1285
+  vs 1284 (+1px) — le Bouton « Contactez-nous » source faisait **250px**, le Bouton
+  gouverné re-hugge à **249px** (mesuré). Le sous-titre **ne reflow pas** (relu : toujours
+  2 lignes, h64, mêmes mots) ; l'écart = décalage ~1px du bord du Bouton. **Exactement la
+  « dérive historique 1px du Bouton » déjà documentée à FAQ (T084)** : l'adoption corrige
+  l'incohérence (250 → canonique 249), cohérent avec le but de la spec.
+- **Preuve** : `audits/hero.md` ; `proofs/hero/{verdict.json,verdict.md,README.md,crops/}`
+  (8 triptyques avant|après|diff) ; `ledger/hero.json` (31 entrées, **31 reportee, 0
+  non-portable**, `pages:ledger:check` exit 0 — industrielles = 0 entrée car son contenu
+  EST le défaut du master, même convention que Texte SEO/Présentation/Devis)
+- **Checkpoint** : `003/hero/master` (versionId `2379887695720285832`), `003/hero/adoption`
+  (versionId `2379891566495618289`)
+
+**Hero (T075-T076) fait.** `Hero` brut ×8 (toutes maquettes sauf Accueil) → 0 copie
+restante, 8 instances du master `Hero` (`2111:3382`). Hauteur externe 640 fixe préservée
+sur les 8 ; largeur du sous-titre FILL dérivée reproduite exactement (7/8) ou corrigée de
+la dérive Bouton 1px (Contactez-nous). 8/9 `diff` = bruit AA sous-pixel pur (largeur FILL
++ hauteur titre relues, crops inspectés, aucun reflow), Accueil `identical` (contrôle).
+**Non committé — revue visuelle Fable avant commit (handoff SAV/Coordonnées/Texte SEO).**
+
+## 2026-07-24 — régression réelle trouvée + corrigée, second écart nommé non résolu — Hero, correction (T075-T076)
+
+- **Type** : correction d'une revue de commit — l'entrée ci-dessus (auto-validation de
+  l'agent de construction) affirmait « 8/9 diff = bruit AA sous-pixel pur ». **Faux**,
+  trouvé par la revue visuelle indépendante Fable (précédent : segMatch/À Propos, même
+  discipline — ne jamais committer sur auto-validation seule). Exécuté en autonome
+  pendant que l'owner dormait (« continue, notifie bien tous les soucis »).
+- **Régression 1 — couleur d'icône, RÉELLE, CORRIGÉE** : le glyphe droit du Bouton
+  (chevron/flèche) passait de **blanc à sombre** sur les 8 instances adoptées —
+  quasi invisible sur fond photo sombre. Master (`2111:3382`) vérifié correct (blanc,
+  `color/blanc`) ; seules les 8 instances étaient affectées. **Root cause** : le rejeu
+  des props du Bouton (libellé + `Icône droite=true`, nécessaire pour le re-hug à la
+  bonne largeur — piège déjà noté dans `audits/hero.md` §Pièges) réinitialise un override
+  de couleur hérité sur le vecteur du glyphe nouvellement swappé. **Fix** : re-liaison de
+  `color/blanc` sur le vecteur du glyphe des 8 instances, APRÈS le rejeu des props (l'ordre
+  compte — nouveau piège, documenté dans `audits/hero.md`). Vérifié par lecture **fraîche
+  et séparée** après chaque mutation (piège trouvé en cours de route : la valeur de
+  retour d'un appel `setBoundVariableForPaint` peut ne pas refléter la couleur résolue —
+  seule une lecture séparée ultérieure fait foi). Recapturé + recomparé contre la même
+  baseline pré-adoption : chaque page a baissé ou atteint 0 (jamais dégradée) — Portes de
+  garage et Portes de garage résidentielles passent `diff`→`identical`. Confirmé par un
+  second agent indépendant (Fable) sur les crops réels.
+- **Régression 2 — déplacement horizontal, RÉELLE, NON RÉSOLUE, nommée** : la même revue
+  Fable a mesuré (corrélation croisée de masques de glyphes, pas à l'œil) un déplacement
+  de **+3 à +5px du bloc titre/Bouton** sur **6 des 8 pages** (Contactez-nous, À Propos,
+  Motorisation, Portes d'entrée, Dépannage/SAV, Portes de garage industrielles) —
+  **absent** sur les 2 pages tombées `identical` après le fix couleur. Établi : antérieur
+  à ce fix (mesuré aussi sur l'ancien triptyque) ; pas une incohérence de frame (vérif
+  directe des propriétés de nœud : `Hero.x`, `Titres.paddingLeft=89`,
+  `Titres.absoluteX===Hero.absoluteX` strictement identiques sur les 8 pages — la cause
+  n'est PAS là) ; le master peut tomber pixel-parfait (2/8 le prouvent), donc pas une
+  limite inhérente. Hypothèse non confirmée : arrondi de largeur du sous-titre FILL
+  (contenu différent par page) décalant le Bouton positionné après lui dans la rangée —
+  même famille que la dérive Bouton 1px déjà acceptée (FAQ T084), mais magnitude plus
+  grande (3-5px) et 6 pages, pas 1. Re-vérifié à l'œil sur `crops/Contactez-nous.png` :
+  le panneau diff montre un **fantôme rouge plein du libellé**, pas un liseré jaune
+  d'arêtes — signature de décalage, pas de bruit AA. **Explicitement laissé ouvert** —
+  ne pas re-catégoriser en « bruit AA » sans investigation réelle (leçon déjà payée deux
+  fois : Texte SEO/À Propos, puis Hero couleur d'icône ci-dessus).
+- **Ce qui reste vrai, inchangé** : la dérive Bouton 1px sur Contactez-nous (250→249,
+  précédent FAQ) — distincte du déplacement +3-5px, magnitude et mécanisme différents.
+- **Preuve** : `proofs/hero/{verdict.json,verdict.md,README.md,crops/}` remplacés par
+  l'état post-fix (chiffres avant/après dans le README) ; `audits/hero.md` §Pièges
+  complété (rejeu de props peut aussi réinitialiser une couleur, pas seulement la
+  largeur).
+- **Committé** cette fois (contrairement à l'entrée ci-dessus) — la couleur est prouvée
+  et vérifiée indépendamment deux fois ; le déplacement est nommé honnêtement comme non
+  résolu plutôt que de bloquer indéfiniment la correction prouvée derrière un problème
+  distinct et pré-existant.
+
+**Hero (T075-T076) — statut final de cette nuit.** Régression de couleur corrigée et
+vérifiée. Déplacement +3-5px sur 6/8 pages **resté ouvert**, remonté à l'owner, pas de
+tentative de fix sans comprendre le mécanisme avec confiance suffisante.
+
+**Gap de process nommé** : `bridge/checkpoint.js` (`saveVersionHistoryAsync`) aurait dû
+être appelé AVANT la mutation live (règle établie, page-parity README §7) ; il a été
+appelé APRÈS coup ici (`003/hero/icon-fix`, versionId `2379901302644617948`) — un vrai
+rollback n'aurait pas eu de point de restauration nommé entre l'état buggé et le fix.
+Sans conséquence cette fois (le fix a été vérifié bon avant commit), mais le trou est
+nommé plutôt que silencieux.
+
+## 2026-07-24 — régression pré-existante trouvée + corrigée sur un master déjà committé — Devis / CTA, correction (T069-T070)
+
+- **Type** : trouvaille proactive, pas une reprise de tâche planifiée — déclenchée par
+  la régression Hero (ci-dessus) : Fable avait nommé le risque « le même mécanisme
+  aurait pu toucher des adoptions antérieures à Bouton imbriqué » comme hors de son
+  périmètre. Vérifié en autonome (« continue, notifie bien tous les soucis ») en
+  balayant TOUTES les instances de Bouton sur les 9 maquettes pour la même classe de
+  défaut (variante « Outline blanc » montrant une couleur sombre).
+- **Trouvé** : le master **Devis** (`2096:2524`), déjà committé et livré (`490899e`,
+  Wave 1), a son Bouton imbriqué (`2096:2527`, variante « Outline blanc ») avec le
+  glyphe droit lié à **`color/noir-bleuté`** (sombre) au lieu de `color/blanc` — sur le
+  **master lui-même**, pas sur une instance. Affecte les 8 pages adoptées (toutes sauf
+  Contactez-nous, qui utilise une autre variante de Bouton pour ce bloc).
+- **Root cause — différente de Hero** : ce n'est **pas** une régression du rejeu de
+  props de cette spec — c'est bakée dans le master depuis sa construction (clone +
+  `createComponentFromNode`, zéro reconstruction = les défauts du contenu source
+  survivent aussi). Quasi certainement un override pré-existant sur l'occurrence brute
+  utilisée comme source du clone, jamais corrigé avant l'extraction — exactement la
+  classe de problème que **CLAUDE.md** nomme déjà (« la leçon Button », audit de source
+  avant contraction). L'audit T069 avait vérifié la fidélité pixel à la source (correcte
+  — le master reproduit fidèlement ce qui était là), pas la cohérence sémantique
+  nom-de-variante/couleur-rendue — un angle mort de check différent, pas une erreur de
+  l'audit original.
+- **Fix** : re-liaison de `color/blanc` sur les 2 vecteurs de glyphe du Bouton du
+  **master** (pas par instance — aucune des 8 instances n'avait d'override sur ce fill,
+  propagation automatique confirmée après coup par lecture fraîche séparée).
+- **Preuve d'isolation** : master temporairement remis à l'état sombre, 8 pages
+  recapturées, fix ré-appliqué, comparé contre l'état déjà capturé post-fix — isole
+  exactement le delta de ce geste sans contamination par les 6 vagues de travail
+  légitime survenues depuis la preuve pixel originale de Devis (T069, qui reste
+  correcte pour ce qu'elle a mesuré — non remplacée). Résultat : 8/8 pages, diffCount
+  55-61, diffBox ~19×10-11px — un petit glyphe plein, rien d'autre. Confirmé par un
+  second agent indépendant (Fable) via comparaison **octet-brut** panneau-à-panneau
+  (au-delà du seuil pixelmatch) : zéro octet différent hors de la boîte du glyphe sur
+  les 8 pages — déplacement explicitement exclu, pas juste non visible.
+- **Recommandation** : le même balayage (variante nommée « blanc »/« noir » vs couleur
+  réellement rendue, sur toute instance de Bouton) devrait faire partie de l'audit
+  Step-0 standard de tout futur composant qui imbrique un Bouton — l'audit de fidélité
+  pixel à la source ne peut structurellement pas attraper ce cas (il prouve que le
+  master == la source, pas que la source elle-même était cohérente).
+- **Preuve** : `proofs/devis-cta/icon-fix/{verdict.json,verdict.md,README.md,crops/}`
+  (addendum — la preuve originale `proofs/devis-cta/{verdict.json,verdict.md,crops/}`
+  reste inchangée, toujours valide pour T069-T070).
+- **Checkpoint** : `003/devis-cta/icon-fix` (versionId `2379909698790935479`) — pris
+  après coup, même gap de process que Hero ci-dessus, nommé une seule fois pour les
+  deux (pas la peine de répéter l'explication).
+
+**Devis / CTA — correction faite et vérifiée, committée.** Contrairement à Hero, aucun
+second problème resté ouvert sur ce bloc.
