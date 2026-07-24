@@ -45,6 +45,13 @@ export interface ContractSubject {
   contractId: string;
   fileKey: string;
   setNodeId: string;
+  /** The fixed px width to render the code side at, before screenshot + box
+   *  measurement — matching a FIXED-width master frame (e.g. a content-width
+   *  atom whose master is a 280px design-time frame). Omit for hug/
+   *  content-width subjects, whose code side renders at its natural width
+   *  (unchanged default — the master IS content-width too, so no container
+   *  is needed for an honest size match). */
+  renderWidth?: number;
   /** Compare against a REAL page instance instead of the set's default-
    *  variant render (002-governed-icons-button, D10/T048). A component
    *  SET's variant node always renders its component properties' DEFAULT
@@ -171,15 +178,45 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // FIXED 20×20, so its preview render and the master render are the same size:
   // a meaningful pixel comparison (Coché=Non matches at 0.00%).
   { id: 'checkbox', label: 'Checkbox (Piqueray)', kind: 'contract', contractId: 'ds.checkbox', fileKey: PIQUERAY, setNodeId: '2053:1256' },
-  // Input / Textarea / Select are DELIBERATELY NOT visual subjects (004, named
-  // exclusion — honesty rule). They are content-width bricks: the master is a
-  // FIXED-width frame (280px) but the real usage is layoutSizingHorizontal:FILL
-  // (the Field molecule stretches them, audit 003), so a bare atom's render is
-  // its narrow content width — a pure-width mismatch against the 280px master
-  // frame, not a styling defect. The demo-51 baseline made the SAME choice:
-  // its checkbox (fixed) was a subject; its text-field / text-area (fluid) were
-  // NOT. Their box/border/text/value fidelity is covered by build + eval +
-  // deterministic-roundtrip + the figma-script canvas render, not by pixels.
+  // Input / Textarea / Select (004) — content-width bricks: the master is a
+  // FIXED-width frame (280px) but real usage is layoutSizingHorizontal:FILL
+  // (the Field molecule stretches them, audit 003), so a bare atom's NATURAL
+  // render is narrower than the master — a pure-width mismatch img.ts (by
+  // design) never resamples away, not a styling defect. Rather than exclude
+  // them (the ORIGINAL 004 call — see git history), `renderWidth: 280` renders
+  // the code side inside a fixed-280px container: the same width a FILL atom
+  // actually takes under a Field molecule, so the diff judges box styling
+  // (border/padding/color/font) at a shared size instead of comparing two
+  // different boxes. Height is untouched by renderWidth — Input/Select already
+  // HUG to 48px and Textarea already carries a literal 128px height, both
+  // already matching the master without help; only width needed the fix.
+  {
+    id: 'input',
+    label: 'Input (Piqueray)',
+    kind: 'contract',
+    contractId: 'ds.input',
+    fileKey: PIQUERAY,
+    setNodeId: '2053:1245',
+    renderWidth: 280, // master absoluteBoundingBox 280×48 (REST nodes, read-only)
+  },
+  {
+    id: 'textarea',
+    label: 'Textarea (Piqueray)',
+    kind: 'contract',
+    contractId: 'ds.textarea',
+    fileKey: PIQUERAY,
+    setNodeId: '2053:1247',
+    renderWidth: 280, // master absoluteBoundingBox 280×128 — height already literal-pinned
+  },
+  {
+    id: 'select',
+    label: 'Select (Piqueray)',
+    kind: 'contract',
+    contractId: 'ds.select',
+    fileKey: PIQUERAY,
+    setNodeId: '2053:1249',
+    renderWidth: 280, // master absoluteBoundingBox 280×48 (REST nodes, read-only)
+  },
   // Icon visual coverage (002-governed-icons-button, D10/T048 — the proof
   // 001 deferred to v1.3, commit 38aee13). NOT one subject per icon: a bare
   // icon master has no contract of its own (D1 — the registry is the only
