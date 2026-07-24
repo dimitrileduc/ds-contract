@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-07-24T08:49:55.940Z",
- "headCommit": "8d33ea239a84a3dbb5ee95039e319fa23a934257",
+ "generatedAt": "2026-07-24T16:45:09.454Z",
+ "headCommit": "5ae47ea93092c43d465ecfd4a0f31e81885658cb",
  "epsilonPp": 0.1,
  "subjects": {
   "button": {
-   "version": "2379664805104925610",
+   "version": "2379806336642716514",
    "fontFamilies": [
     "Montserrat"
    ],
@@ -13,14 +13,22 @@
     "sizeOurs": "436×108"
    }
   },
+  "checkbox": {
+   "version": "2379806336642716514",
+   "fontFamilies": [],
+   "pinned": {
+    "variant": "Coché=Non",
+    "sizeOurs": "40×40"
+   }
+  },
   "button-with-icons": {
-   "version": "2379664805104925610",
+   "version": "2379806336642716514",
    "fontFamilies": [
     "Montserrat"
    ],
    "pinned": {
-    "variant": "Property 1=Link",
-    "sizeOurs": "728×36"
+    "variant": "Property 1=Outilne noir",
+    "sizeOurs": "610×108"
    }
   }
  },
@@ -67,11 +75,25 @@
    "sizeOurs": "436×108",
    "causeClass": "renderer"
   },
-  "button-with-icons :: Property 1=Link": {
+  "checkbox :: Coché=Non": {
    "status": "diffed",
-   "masked": 0.9081196581196582,
-   "unmasked": 7.825854700854701,
-   "sizeOurs": "728×36",
+   "masked": 0,
+   "unmasked": 0,
+   "sizeOurs": "40×40",
+   "causeClass": "renderer"
+  },
+  "checkbox :: Coché=Oui": {
+   "status": "diffed",
+   "masked": 2.5625,
+   "unmasked": 2.5625,
+   "sizeOurs": "40×40",
+   "causeClass": "renderer"
+  },
+  "button-with-icons :: Property 1=Outilne noir": {
+   "status": "diffed",
+   "masked": 0.008186655751125664,
+   "unmasked": 1.621129326047359,
+   "sizeOurs": "610×108",
    "causeClass": null
   }
  }

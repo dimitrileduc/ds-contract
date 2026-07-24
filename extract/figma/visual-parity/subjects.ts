@@ -167,6 +167,19 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // entirely different canvas. Anchors mirror contracts/button.contract.json
   // `anchors.figma` (fileKey + nodeId of the « Bouton » COMPONENT_SET).
   { id: 'button', label: 'Button (Piqueray)', kind: 'contract', contractId: 'ds.button', fileKey: PIQUERAY, setNodeId: '6:122' },
+  // Checkbox (004-input-atoms-categories) — a COMPONENT_SET (Coché=Non/Oui) at a
+  // FIXED 20×20, so its preview render and the master render are the same size:
+  // a meaningful pixel comparison (Coché=Non matches at 0.00%).
+  { id: 'checkbox', label: 'Checkbox (Piqueray)', kind: 'contract', contractId: 'ds.checkbox', fileKey: PIQUERAY, setNodeId: '2053:1256' },
+  // Input / Textarea / Select are DELIBERATELY NOT visual subjects (004, named
+  // exclusion — honesty rule). They are content-width bricks: the master is a
+  // FIXED-width frame (280px) but the real usage is layoutSizingHorizontal:FILL
+  // (the Field molecule stretches them, audit 003), so a bare atom's render is
+  // its narrow content width — a pure-width mismatch against the 280px master
+  // frame, not a styling defect. The demo-51 baseline made the SAME choice:
+  // its checkbox (fixed) was a subject; its text-field / text-area (fluid) were
+  // NOT. Their box/border/text/value fidelity is covered by build + eval +
+  // deterministic-roundtrip + the figma-script canvas render, not by pixels.
   // Icon visual coverage (002-governed-icons-button, D10/T048 — the proof
   // 001 deferred to v1.3, commit 38aee13). NOT one subject per icon: a bare
   // icon master has no contract of its own (D1 — the registry is the only
@@ -180,9 +193,13 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // only ever renders its properties' DEFAULTS via the images API, so a
   // real customized instance is the only honest Figma-side reference for a
   // non-default combination (instanceOverride, see subjects.ts doc).
-  // Instance: "Portes de garage résidentielles" page, position [0,1,0,2],
-  // scanned live in step-3-postflight-scan.json — pdf + download, the SAME
-  // pairing on all 10 real "both icons shown" instances found file-wide.
+  // Re-pointed (004): the original instance (230:573) was removed from the live
+  // file by spec 003's work — a coexistence break, not a size issue. Re-scanned
+  // live (read-only) for a current STANDALONE page instance showing both icons:
+  // 237:1500 on the "Pages" page — variant « Outilne noir », « Motifs
+  // disponibles », Glyphe gauche 230:585 = pdf, Glyphe droite 230:599 =
+  // download (all read from the instance, never invented). pdf+download is the
+  // same pairing every real "both icons shown" instance carries file-wide.
   {
     id: 'button-with-icons',
     label: 'Button with icons (Piqueray, both placements)',
@@ -191,14 +208,14 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     fileKey: PIQUERAY,
     setNodeId: '6:122',
     instanceOverride: {
-      nodeId: '230:573',
-      variantName: 'Property 1=Link',
+      nodeId: '237:1500',
+      variantName: 'Property 1=Outilne noir',
       // children matches the instance's OWN scanned text override — without
       // it the two sides render different widths for a reason that has
       // nothing to do with icon coverage (our default "Contactez-nous" vs
-      // the instance's real, longer label).
+      // the instance's real label).
       propPreset: {
-        children: 'Brochure portes sectionnelles',
+        children: 'Motifs disponibles',
         iconLeft: true,
         iconRight: true,
         iconLeftGlyph: 'pdf',
