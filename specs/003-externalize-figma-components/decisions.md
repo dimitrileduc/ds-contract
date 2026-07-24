@@ -177,3 +177,216 @@ Phase T se clôt sur ce statut nommé, pas sur un rename.
 - **Preuve** : `audits/tokens.md` §3 ; `tokens/primitives.tokens.json`
   (`nav.state`) ; commit `38aee13`
 - **Checkpoint** : n/a (rien exécuté par cette spec)
+
+## 2026-07-24 — anomalie-tranchee — texte de saisie formulaire (couleur brute)
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : input, textarea, select (atomes Phase A)
+- **Verdict owner** : **lier à `color/noir`** (`VariableID:24:52`, `#37373B`) —
+  le texte de contenu des 7 occurrences (`input`/`select`/`textarea` bruts,
+  `Contactez-nous`) était en noir pur `#000000`, non bindé à aucun token.
+- **Chiffres** : usage mesuré avant proposition — `color/noir` : 40 usages
+  existants, profil texte de paragraphe 14px Regular (même gabarit que ces
+  placeholders) ; `color/noir-bleute` (alternative écartée) : 426 usages,
+  profil titres 18-40px — pas le bon gabarit. `#000000` → `#37373B` est un
+  changement de pixel réel (contrairement aux renames space/radius,
+  0-pixel par construction), mais sans conséquence immédiate : Input est
+  net-new, aucune adoption ne remplace de copie aujourd'hui.
+- **Raison** : cohérence avec l'usage déjà établi du fichier pour ce gabarit
+  typographique (14px Regular) ; zéro nouveau token miné (le même réflexe
+  que les refus space/radius et orange-12/42 — ne pas empiler des tokens
+  quasi-doublons).
+- **Preuve** : `audits/atomes-formulaire.md` § Anomalie
+- **Checkpoint** : n/a (décision seule — le geste s'exécute à la construction
+  des masters T032/T033/T034, checkpoints dédiés)
+
+*Conséquence prospective, nommée à l'avance* : quand Field (T039/T040) puis
+Formulaire (T091/T092) adopteront ces 7 occurrences, le verdict pixel portera
+un écart chiffré et localisé sur ce changement de couleur — à présenter comme
+`ecart-pixel-accepte` à ce moment, pas une surprise.
+
+## 2026-07-24 — validation-master — Input (atome)
+
+- **Type** : validation-master
+- **Composant(s)** : input
+- **Verdict owner** : validé sur capture (« oui tu vas tt verif ap tte facon »
+  — confirmation explicite, owner note que la preuve pixel formelle viendra
+  aux adoptions futures, pas maintenant).
+- **Chiffres** : `DS · Atomes` → section « Formulaire » → composant `Input`
+  (`2053:1245`, après reconstruction — un premier build `2053:1148` a été
+  perdu par un undo pendant la revue, receipt ci-dessous). 280×48, fond
+  `color/blanc`, bordure 1px `color/bleu-gris` (INSIDE), coins droits (0),
+  texte `Montserrat Regular 14px` lié à `color/noir` (décision ci-dessus),
+  `lineHeight` 24px fixe (matché à la source). Propriété **TEXTE** officielle
+  « Valeur » liée au calque texte. Zéro dépendance tierce.
+- **Raison** : n/a (validation directe)
+- **Preuve** : `audits/atomes-formulaire.md` ; captures de session (avant/après
+  reconstruction)
+- **Checkpoint** : `003/input/master` (versionId `2379706504518730709` —
+  reconstruction ; premier essai `2379710889588020661` avant l'undo)
+
+*Incident mineur consigné* : le premier build (`2053:1148` dans une section
+`2053:1147`) a disparu de `DS · Atomes` entre la construction et la revue —
+page retrouvée à 0 enfant sur les 6 pages du fichier (rien d'orphelin
+ailleurs), cohérent avec un undo pendant que l'owner cherchait où le
+composant était affiché. Aucun impact sur les 9 maquettes (page neuve et
+vide, aucune référence croisée). Reconstruit à l'identique ; vue + sélection
+pointées sur le nouveau composant pour éviter la récidive.
+
+## 2026-07-24 — validation-master — Textarea (atome)
+
+- **Type** : validation-master
+- **Composant(s)** : textarea
+- **Verdict owner** : validation par lot (cadence confirmée à l'entrée
+  précédente — l'owner s'appuie sur la preuve pixel des adoptions futures
+  plutôt qu'une revue owner à chaque atome individuel de ce lot).
+- **Chiffres** : `DS · Atomes` → section « Formulaire » → composant
+  `Textarea` (`2053:1247`), 280×128, même style qu'Input (fond `color/blanc`,
+  bordure 1px `color/bleu-gris`, coins droits 0), texte aligné en haut
+  (`counterAxisAlignItems: MIN`), hauteur **portée par le container**
+  (`counterAxisSizingMode: FIXED`, 128px) — pas par un texte surdimensionné
+  comme dans la source (`audits/atomes-formulaire.md` § construction à ne pas
+  reproduire). Texte lié à `color/noir`. Propriété TEXTE « Valeur ». Zéro
+  dépendance tierce.
+- **Raison** : n/a
+- **Preuve** : `audits/atomes-formulaire.md` ; capture de session (Input +
+  Textarea empilés dans la section Formulaire)
+- **Checkpoint** : `003/textarea/master` (versionId `2379719371578197819`)
+
+## 2026-07-24 — validation-master — Select (atome)
+
+- **Type** : validation-master
+- **Composant(s)** : select
+- **Verdict owner** : validation par lot (cadence inchangée — cf. entrée
+  Textarea)
+- **Chiffres** : `DS · Atomes` → section « Formulaire » → composant `Select`
+  (`2053:1249`), 280×48, même boîte qu'Input, `primaryAxisAlignItems:
+  SPACE_BETWEEN` pour pousser le chevron à droite. Chevron = **instance** du
+  composant local `chevron-down` (`226:373`, `remote: false`, redimensionnée
+  24×24 pour matcher l'usage source — le main component par défaut fait
+  32×32), jamais une copie. Texte lié à `color/noir`. Propriété TEXTE
+  « Valeur ». Zéro dépendance tierce (confirmé programmatiquement :
+  `chevron.getMainComponentAsync().remote === false`).
+- **Raison** : n/a
+- **Preuve** : `audits/atomes-formulaire.md` ; capture de session (3 atomes
+  empilés, Select en bas avec chevron visible à droite)
+- **Checkpoint** : `003/select/master` (versionId `2379709356261804859`)
+
+## 2026-07-24 — validation-master — Checkbox (atome, net-new intégral)
+
+- **Type** : validation-master
+- **Composant(s)** : checkbox
+- **Verdict owner** : validation par lot (cadence inchangée)
+- **Chiffres** : `DS · Atomes` → section « Formulaire » → `COMPONENT_SET`
+  `Checkbox` (`2053:1256`), **propriété variant officielle** `Coché` (valeurs
+  `Non`/`Oui` — deux composants distincts combinés via
+  `figma.combineAsVariants`, pas un booléen de visibilité sur calque caché).
+  Décoché : 20×20, fond `color/blanc`, bordure 2px `color/bleu-gris`, coins
+  droits (0). Coché : fond `color/bleu` plein (couleur mesurée comme le rôle
+  « primaire/actif » du fichier — 59 usages, essentiellement le variant
+  rempli du Bouton — préférée à `color/orange`, 84 usages mais rôle
+  décoratif/accent sur icônes et libellés, pas un signal de sélection),
+  coche vectorielle blanche (`strokeWeight` 2, `strokeCap`/`strokeJoin`
+  `ROUND`). Aucune référence source (RGPD = texte seul) — net-new intégral,
+  zéro dépendance tierce.
+- **Raison** : n/a
+- **Preuve** : `audits/atomes-formulaire.md` ; captures de session (variant
+  seul + les 4 atomes ensemble dans la section Formulaire)
+- **Checkpoint** : `003/checkbox/master` (versionId `2379715545325265698`)
+
+**Clôture lot 1 (atomes de formulaire)** : Input, Textarea, Select, Checkbox
+— les 4 masters de `audits/atomes-formulaire.md` sont construits et validés.
+Aucune adoption à cette phase (rien à remplacer pour Checkbox ; les 7 copies
+brutes d'Input/Textarea/Select seront adoptées via Field, T039-T040).
+
+## 2026-07-24 — anomalie-tranchee — icône étoile (Avis Google = embed tiers aplati)
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : icone-etoile, (constat transverse : review-card)
+- **Verdict owner** : **construire net-new** (comme Checkbox) — pictogramme
+  étoile générique, `color/orange`.
+- **Chiffres** : la section « Avis Google » (8/9 pages — absente sur
+  `Motorisation`, cohérent avec `dag.md`) est un `RECTANGLE` à fill `IMAGE`
+  nommé `trustindex-google-reviews-widget`, **même `imageHash`
+  `ea17d86d938c8ea316f6e9a2f2e12ae3cb90cff2`** vérifié identique sur 2 pages
+  (`Accueil`, `Contactez-nous`) — un unique screenshot d'un widget tiers
+  (agrégateur d'avis Google), recopié, pas 8 rendus indépendants. Zéro
+  vecteur étoile extractible nulle part dans le fichier.
+- **Raison** : une étoile de notation est un glyphe standard sans ambiguïté
+  de design — construire à neuf ne « invente » rien qui puisse trahir
+  l'intention visuelle observée (couleur dorée/orange confirmée à l'œil sur
+  la capture).
+- **Preuve** : `audits/atomes-icones.md` §2
+- **Checkpoint** : n/a (décision seule — geste à T038)
+
+*Conséquence prospective, nommée à l'avance* : **Review-card (T053, Phase 7)**
+fera face au même problème à plus grande échelle — toute la carte (avatar,
+nom, texte, badge Google) vit dans ce même raster, pas dans des calques
+composables. Le master Review-card ne pourra pas être « nettoyé depuis la
+source » comme les autres molécules ; il devra être conçu net-new à partir
+du rendu visuel observé, décision à formaliser explicitement à T053 — pas
+une surprise si nommé maintenant.
+
+## 2026-07-24 — validation-master — Facebook, Instagram (icônes sociales)
+
+- **Type** : validation-master *(lot — 2 masters de `audits/atomes-icones.md`)*
+- **Composant(s)** : Facebook, Instagram
+- **Verdict owner** : validation par lot (cadence inchangée depuis le lot 1)
+- **Chiffres** : `DS · Atomes` → section « Icônes » → `Facebook` (`2053:1259`,
+  32×31.86) et `Instagram` (`2053:1261`, 32×32) — **clonées** (pas
+  recréées à main levée) depuis les vecteurs source `280:3801`/`280:3803`
+  via `node.clone()` + `figma.createComponentFromNode()`, géométrie
+  identique à l'octet. Fill déjà lié à `color/noir-bleute`
+  (`VariableID:5:40`) — hérité du clone, vérifié. Noms vrais (au lieu de
+  « Group 6/7 »). Zéro dépendance tierce.
+- **Raison** : n/a
+- **Preuve** : `audits/atomes-icones.md` §1 ; capture de session
+- **Checkpoint** : `003/icones-sociales/master` (versionId
+  `2379716549790402627`)
+
+## 2026-07-24 — validation-master — Étoile (icône, net-new)
+
+- **Type** : validation-master
+- **Composant(s)** : icone-etoile
+- **Verdict owner** : validation par lot (cadence inchangée)
+- **Chiffres** : `DS · Atomes` → section « Icônes » → `Étoile` (`2053:1263`),
+  20×20, `figma.createStar()` (5 branches, `innerRadius` 0.45 — proportion
+  standard), fill lié à `color/orange` (décision ci-dessus). Zéro dépendance
+  tierce.
+- **Raison** : n/a
+- **Preuve** : `audits/atomes-icones.md` §2 ; capture de session (3 icônes
+  côte à côte : Facebook, Instagram, Étoile)
+- **Checkpoint** : `003/icone-etoile/master` (versionId
+  `2379715506669168790`)
+
+**Clôture lot 2 (icônes)** : Facebook, Instagram, Étoile — les 3 masters de
+`audits/atomes-icones.md` sont construits et validés. Aucune adoption à cette
+phase (les 10 occurrences sociales brutes seront adoptées via Footer-column/
+Coordonnées ; l'étoile sera consommée par Review-card, T053, dont la
+construction net-new est déjà anticipée ci-dessus).
+
+## 2026-07-24 — validation-master — clôture Phase A (preuve pixel collatérale)
+
+- **Type** : validation-master *(clôture de phase, pas un composant — même
+  nomenclature élargie que la clôture Phase T)*
+- **Composant(s)** : programme (Phase A entière — T030, T032–T035, T037–T038)
+- **Verdict owner** : n/a — mesure automatique, pas un arbitrage (résultat
+  9/9 identical, rien à trancher)
+- **Chiffres** : **9/9 `identical`, 0 diff, exit 0** — `before`
+  `.page-parity/tokens-page-after` (fin Phase T) vs `after`
+  `.page-parity/phase-a-after` (frais, transport b-fetch, nonce
+  `e0f7485edd46f003`). sha256 `Accueil` (`55a9c4085d2d…`) identique à la
+  mesure T029c — troisième point de données consécutif sans dérive.
+- **Raison** : preuve collatérale unique pour toute la phase plutôt que 9
+  micro-preuves — décision nommée à l'avance (`proofs/pages-ds/page-creation.md`,
+  T030), pas une omission après coup : les 9 gestes de Phase A vivent sur des
+  pages neuves sans référence croisée vers `Pages`.
+- **Preuve** : `proofs/phase-a-close/{verdict.json,verdict.md,README.md}`
+- **Checkpoint** : n/a (couvre les 9 checkpoints déjà pris individuellement
+  par chaque tâche T030-T038)
+
+**Phase A (T030-T038) close.** 7 masters + 3 pages livrés (Input, Textarea,
+Select, Checkbox, Facebook, Instagram, Étoile), tous validés owner, zéro
+copie brute remplacée (rien à adopter à ce stade), zéro pixel perdu sur les
+9 maquettes (mesuré, pas supposé). **Prochain : Phase M (Molécules,
+T039+, en commençant par Field qui dépend d'Input/Select/Textarea).**
