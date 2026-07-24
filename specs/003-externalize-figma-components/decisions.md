@@ -647,3 +647,138 @@ la suite (leçon cumulée cette spec) : toujours vérifier — police/taille,
 couleur, `lineHeight`, `letterSpacing`, `paragraphSpacing`, **`textCase`**,
 bordures (`strokes`/`strokeXWeight` par côté), avant de construire un
 master, jamais après coup. **Prochain : T045 (Master Category-card).**
+
+## 2026-07-24 — amendement-single-master + validation-master + ecart-pixel-accepte — Carte (T045/T046/T051/T052)
+
+- **Type** : amendement d'architecture (fusion de 2 blocs planifiés en 1 master)
+  + validation-master + adoption complète (36 occurrences)
+- **Composant(s)** : `item` (Category-card ET Reassurance-item — même layer name,
+  distingués uniquement par la présence d'un CTA)
+- **Verdict owner** : validé, avec 2 corrections d'architecture demandées en cours de
+  route (voir Raison) avant construction finale.
+
+### Découverte qui a déclenché l'amendement
+
+Le scan T0 comptait Category-card à ~41 occurrences en "3 formes". Un audit live plus
+précis (mesure structurelle complète, pas juste w×h) a montré : (a) le compte réel est
+**36**, pas 41 — **26 sans CTA** (correspond exactement au compte attendu de
+Reassurance-item, jamais isolé au scan T0) et **10 avec CTA** (vraie Category-card) ;
+(b) les deux vivent sous le **même layer name `item`**, avec la **même anatomie de
+base**. Présenté à l'owner via `AskUserQuestion` ; l'owner a demandé de réfléchir à un
+master unique plutôt que deux, **en pensant à l'intégration future dans le système de
+contrats du repo**, et d'aller chercher les contrats legacy comme inspiration — "c'est
+une question importante".
+
+### Recherche de précédent — une fausse piste corrigée par l'owner
+
+Premier réflexe : citer `button.contract.json` (**live**, pas legacy) comme preuve que
+le mécanisme `tokensByProp` du schéma valide ce pattern. **L'owner a rejeté cette
+analyse** ("j'en ai rien à foutre de button contract vu que c'est pas du legacy, ton
+analyse est pas bonne") — à raison : Button ne change jamais d'anatomie (mêmes parts,
+juste des tokens différents par valeur), ça ne prouve rien pour un master où une part
+entière (le Bouton CTA) doit apparaître/disparaître. Recherche élargie sur les 51
+contrats legacy (`git show demo-51:contracts/*.contract.json` + grep `visibleWhen`
+avec `equals`) : **`pagination.contract.json`** (`variant: pages|compact|dots`, 3
+anatomies distinctes sous un seul prop, chacune `visibleWhen` sur une **part entière**
+avec ses propres sous-parts) et **`citation.contract.json`** (2 anatomies, même
+mécanique) sont le vrai précédent — pas Button. Le pattern retenu :
+`disposition: enum[reassurance, categorie]` (VARIANT Figma), Bouton en
+`visibleWhen: {prop:"disposition", equals:"categorie"}` + `component: {id:"ds.bouton"}`
+(instance réelle, cf. `card.contract.json` → `avatar`), `tokensByProp` pour les
+gaps/padding qui diffèrent par valeur.
+
+### "3 variantes" — l'owner avait raison, mais pas pour la raison qu'on pensait
+
+Une fois le master construit (2 variantes propres, `Disposition`: Réassurance/
+Catégorie), l'adoption pilote a buté sur un **vrai blocage Figma** : `resize()` (et
+`resizeWithoutConstraints()`) sur l'enfant `img` d'une **instance** refuse de
+s'appliquer — testé sur 5 configurations, y compris une instance neuve jamais
+touchée hors de tout contexte FILL. Première réaction (mauvaise) : contourner en
+baquant l'image Catégorie en 2 sous-variantes figées (`Catégorie 2 colonnes` /
+`Catégorie 3 colonnes`). **L'owner a immédiatement rejeté cette rustine** ("on fait
+pas une variante diff si 2 ou 3 col, ça c'est le soluce dégueu... faut que ce soit
+w-auto... réfléchis et reviens") — et avait raison : cette tentative a d'ailleurs
+laissé le component set dans un état d'erreur réel côté Figma UI ("The properties and
+values of this variant are conflicting"), que mon propre outil d'analyse ne détectait
+pas encore à ce moment-là (leçon : ne jamais faire confiance qu'à son propre outil,
+vérifier comme l'humain le ferait).
+**Vraie solution, trouvée après avoir nettoyé et réfléchi** : `img.layoutSizingVertical
+= 'FILL'` (l'image absorbe l'espace restant dans la carte, calculé automatiquement)
+combiné à un `resize()` sur **l'instance de haut niveau** (ça, contrairement au geste
+sur un enfant imbriqué, fonctionne — confirmé sur 2 largeurs réelles, 474→266 et
+743→418, calculées automatiquement sans aucun override manuel sur l'image). Résultat :
+**2 variantes seulement**, aucune rustine, s'adapte à n'importe quelle hauteur de texte
+réelle par occurrence — la bonne architecture, pas un compromis.
+
+### 4 vrais bugs trouvés en comparant le pilote avant/après (pas en survolant)
+
+Après avoir corrigé les dimensions, le diff pixel du pilote (2 maquettes : Accueil,
+Motorisation) restait substantiel. Comparaison stricte crop avant/après/diff (jamais
+une image isolée, leçon Tab) plus deux questions directes de l'owner ("un souci de
+texte centré aussi ?", "et le gras ? check s'il y a des parties pas correctes") ont
+trouvé, dans l'ordre :
+1. **Ombre portée manquante** (`DROP_SHADOW radius:10, rgba(0,0,0,.2), offset (0,5)`)
+   — jamais vérifié `effects`, seulement `fills`/`strokes` (grille d'audit incomplète,
+   corrigée).
+2. **Icônes du bouton par défaut au lieu des vraies** — `Icône gauche/droite`
+   (booléen de visibilité) réglé correctement, mais `Glyphe gauche/droite`
+   (INSTANCE_SWAP, quel glyphe afficher) jamais réappliqué → flèches génériques
+   affichées au lieu de pdf/download mesurés dès le début de l'investigation puis
+   oubliés à la construction.
+3. **Gras aplati par l'override de texte** — `instance.setProperties()` sur une
+   propriété TEXT remplace tout le texte par un style **uniforme** (a pris le style du
+   1er caractère), perdant le span Bold sur la 1re phrase. Trouvé par l'owner
+   ("check le gras"), confirmé par lecture directe des `fontName` par plage, corrigé
+   (`setRangeFontName` réappliqué après chaque override de texte contenant un gras).
+4. **Alignement centré manquant sur Réassurance** — jamais réglé, resté au défaut
+   Figma `LEFT` alors que la source centre le titre et le texte. Trouvé par l'owner
+   ("un souci de texte centré aussi ?"), confirmé par lecture directe de
+   `textAlignHorizontal` (source `CENTER`, le mien `LEFT`), corrigé sur le master et
+   l'instance pilote.
+Après les 4 corrections, checklist texte complète re-vérifiée (fontName, size,
+lineHeight, letterSpacing, paragraphSpacing, textCase, textDecoration, align H/V,
+hangingPunctuation/List, fills) — **zéro écart restant trouvé**, visuellement
+identique au zoom. Résidu final : Accueil 0,055% (5199/9 383 040px), Motorisation
+0,088% (5046/5 761 506px) — même ordre de grandeur que le résidu accepté sur
+Accordion-row (0,015-0,050%), même cause probable (bruit de rasterisation d'un texte
+neuf face à l'original). **Owner a validé après inspection directe des crops
+(Finder) : "top".**
+
+### Limite de preuve — 7 maquettes sans "before" (documentée, pas cachée)
+
+Après validation du pilote, l'adoption des 34 occurrences restantes a été faite en
+lots (batch) sans capturer d'abord un "before" complet des 9 maquettes — seulement
+Accueil et Motorisation (le pilote) ont une preuve pixel avant/après complète.
+**Aucun rollback programmatique n'existe** (documenté dans `page-parity/README.md`) —
+restaurer pour recapturer aurait jeté le travail déjà fait. Présenté explicitement à
+l'owner via `AskUserQuestion` ; **option retenue : vérification structurelle +
+visuelle sur les 7 maquettes restantes** (`analyze_component_set` 0 erreur,
+dimensions/contenu conformes au ledger pour les 36 occurrences, captures spot-check
+sur 3 maquettes représentatives — À Propos, Dépannage/SAV incluant le cas particulier
+`glyphDroite` non-standard, Portes de garage résidentielles avec les 2 dispositions
+sur la même page — toutes visuellement correctes), **documentée comme limite plutôt
+que cachée**. Pas de preuve pixel formelle `page-parity` sur ces 7 pages — à refaire
+si un doute apparaît plus tard.
+
+- **Chiffres** : `DS · Molécules` → `COMPONENT_SET` **Carte** (`2063:1622`), variant
+  `Disposition` (Réassurance/Catégorie), propriétés `Titre`/`Texte` (TEXTE). 36
+  occurrences adoptées (26 Réassurance + 10 Catégorie), 0 copie brute restante,
+  0 erreur `analyze_component_set`.
+- **Preuve** : `proofs/carte/{verdict.json,verdict.md,crops/}` (2 maquettes pilotes
+  complètes) ; `ledger/carte.json` (138 entrées : 36×Titre + 36×Texte + 36×image +
+  10×3 champs Bouton, 138 `reportee`, 0 `non-portable`, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/carte/master`, `003/carte/adoption-pilot`,
+  `003/carte/adoption-categorie-batch`, `003/carte/adoption-reassurance-batch1`,
+  `003/carte/adoption-reassurance-batch2`
+
+**Carte (T045/T046/T051/T052) fait.** `item` brut ×36 (26 Réassurance + 10 Catégorie,
+8 maquettes) → 0 copie restante. Leçons cumulées pour la suite : (1) ne jamais citer
+un contrat live comme précédent pour un pattern structurel — chercher le vrai
+précédent dans le legacy, quitte à élargir la recherche (grep sur les 51, pas juste 1
+fichier) ; (2) `resize()` sur un enfant imbriqué d'instance peut être bloqué même hors
+tout contexte FILL — `layoutSizingVertical/Horizontal = FILL` + resize de l'instance
+de haut niveau est le contournement robuste ; (3) `setProperties()` sur une prop TEXT
+aplatit les styles mixtes (gras) — toujours réappliquer après ; (4) grille d'audit
+texte élargie encore une fois : `effects` (ombres) n'y était pas, `textAlignHorizontal`
+non plus, malgré 3 molécules précédentes de leçons accumulées — la grille n'est
+probablement toujours pas complète. **Prochain : T047 (Master Product-card).**

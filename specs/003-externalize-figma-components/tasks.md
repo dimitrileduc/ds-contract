@@ -169,14 +169,14 @@
 - [X] T042 [US2] Adoption **Accordion-row** — `item` / `item open` ~34 → `ledger/accordion-row.json` + `proofs/accordion-row/verdict.{json,md}`
 - [X] T043 [US3] Master **Tabs / Tab** → `audits/tabs.md` + entrée `decisions.md`
 - [X] T044 [US2] Adoption **Tabs** — `tab` brut ×4 → `ledger/tabs.json` + `proofs/tabs/verdict.{json,md}`
-- [ ] T045 [US3] Master **Category-card** (image + titre + CTA ; instance Bouton existant) — un des 3 blocs cachés sous le nom `item`, nom vrai obligatoire (FR-008) → `audits/category-card.md` + entrée `decisions.md`
-- [ ] T046 [US2] Adoption **Category-card** — `item` ~15 → `ledger/category-card.json` + `proofs/category-card/verdict.{json,md}`
+- [X] T045 [US3] Master **Carte** (fusion Category-card + Reassurance-item — 1 master, propriété `Disposition`: Réassurance/Catégorie ; CTA = instance Bouton existant présente seulement en Catégorie ; voir `decisions.md`, amendement single-master) → `audits/carte.md` + entrée `decisions.md`
+- [X] T046 [US2] Adoption **Catégorie** (disposition Carte) — `item` 10 → `ledger/carte.json` + `proofs/carte/verdict.{json,md}` (preuve pixel complète sur 2/9 maquettes pilotes ; 7 maquettes batchées en vérification structurelle+visuelle, limite documentée dans `decisions.md`)
 - [ ] T047 [US3] Master **Product-card** (`Thumbnail produit` ; instance Bouton) → `audits/product-card.md` + entrée `decisions.md`
 - [ ] T048 [US2] Adoption **Product-card** — brut ×8 → `ledger/product-card.json` + `proofs/product-card/verdict.{json,md}`
 - [ ] T049 [US3] Master **Member-card** (photo + nom + rôle ; instance `member-picture` existant) → `audits/member-card.md` + entrée `decisions.md`
 - [ ] T050 [US2] Adoption **Member-card** — `member` brut ×16 → `ledger/member-card.json` + `proofs/member-card/verdict.{json,md}`
-- [ ] T051 [US3] Master **Reassurance-item** (icône + texte ; 3e bloc caché sous `item`) → `audits/reassurance-item.md` + entrée `decisions.md`
-- [ ] T052 [US2] Adoption **Reassurance-item** — `item` ~26 → `ledger/reassurance-item.json` + `proofs/reassurance-item/verdict.{json,md}`
+- [X] T051 [US3] Master **Reassurance-item** — couvert par T045 (même master **Carte**, disposition `Réassurance`) → voir `audits/carte.md`
+- [X] T052 [US2] Adoption **Réassurance** (disposition Carte) — `item` 26 → `ledger/carte.json` + `proofs/carte/verdict.{json,md}` (même limite de preuve que T046, voir `decisions.md`)
 - [ ] T053 [US3] Master **Review-card** (avatar + étoiles + texte ; dépend de l'icône étoile T038) — bloc **inféré** → validation owner **par composant** ; introuvable → `report-bloc` → `audits/review-card.md` + entrée `decisions.md`
 - [ ] T054 [US2] Adoption **Review-card** — occurrences Avis Google localisées par position → `ledger/review-card.json` + `proofs/review-card/verdict.{json,md}`
 - [ ] T055 [US3] Master **Carousel-controls** (prev / next ; instances Bouton) → `audits/carousel-controls.md` + entrée `decisions.md`
