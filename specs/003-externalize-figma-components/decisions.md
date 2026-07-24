@@ -1506,3 +1506,40 @@ le texte courant) — aucun accepté à l'aveugle sur un chiffre agrégé. 2 ano
 contenu restent ouvertes pour arbitrage owner futur : lien tiers `jonckers-clabots.be`
 (owner : corriger plus tard) et couleur brute du texte courant du consentement (non
 tranchée).
+
+## 2026-07-24 — anomalie-tranchee — texte courant du Consentement lié à `color/noir`
+
+- **Type** : anomalie-tranchee
+- **Composant(s)** : Formulaire (T091-T092)
+- **Anomalie** : le texte courant du consentement RGPD (« En cliquant sur
+  «Envoyer»… ») était en `#000000` brut non lié à un token, fidèle à la source
+  mesurée au pixel (voir entrée précédente). Même situation que le placeholder
+  Input/Textarea/Select (Phase 6/A), déjà tranchée en faveur d'une liaison à
+  `color/noir` plutôt qu'un brut non gouverné.
+- **Proposition** : lier ce segment (deux plages, `0-59` et `90-91` du nœud
+  texte, la plage `59-90` du lien reste `color/orange` inchangée) à
+  `color/noir` (`VariableID:24:52`, RGB `#37373B` — PAS un noir pur), sur le
+  master ET sur l'instance (l'instance n'hérite pas automatiquement d'un
+  changement de style de plage sur une propriété déjà instanciée — nouveau
+  piège Figma, cousin de ceux déjà documentés).
+- **Décision owner** : « Même chose » — confirmé, liaison appliquée sur le
+  master (`2096:2564`) et l'instance (`2096:2714`), vérifiée par lecture de
+  plage après écriture (les deux confirment `boundVariables` correct, segment
+  lien orange inchangé).
+- **Chiffres** : nouvelle mesure complète (avant = capture pré-adoption
+  d'origine, après = état post-liaison) — `diffCount` **1581 → 1793** (+212px
+  net, 0,0266 % de la page). Triptyque réinspecté : la zone rouge nouvelle
+  correspond exactement à la ligne de consentement, la zone jaune déjà
+  acceptée (titre, bruit de rendu) est inchangée — rien d'inattendu ailleurs.
+  Le chiffre 1793 avait déjà été vu une fois par l'agent Sonnet pendant son
+  enquête initiale (une de ses deux hypothèses par analogie, rejetée à
+  l'époque comme infidèle à la source) — cohérent : même changement, deux
+  contextes de décision différents (fidélité source vs cohérence design
+  system), le second l'emporte ici sur arbitrage owner explicite.
+- **Preuve** : `proofs/formulaire/{verdict.json,verdict.md,crops/Contactez-nous.png}`
+  mis à jour en place (pas de nouvelle entrée séparée — même bloc, même
+  adoption, verdict corrigé pour rester la source de vérité unique).
+- **Checkpoint** : `003/formulaire/consentement-color-noir`
+
+**Formulaire — dernière décision de contenu tranchée.** Seule anomalie encore
+ouverte : le lien `jonckers-clabots.be`, déjà acté « corriger plus tard ».
