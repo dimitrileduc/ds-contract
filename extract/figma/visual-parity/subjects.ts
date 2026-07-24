@@ -178,18 +178,18 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // FIXED 20×20, so its preview render and the master render are the same size:
   // a meaningful pixel comparison (Coché=Non matches at 0.00%).
   { id: 'checkbox', label: 'Checkbox (Piqueray)', kind: 'contract', contractId: 'ds.checkbox', fileKey: PIQUERAY, setNodeId: '2053:1256' },
-  // Input / Textarea / Select (004) — content-width bricks: the master is a
-  // FIXED-width frame (280px) but real usage is layoutSizingHorizontal:FILL
-  // (the Field molecule stretches them, audit 003), so a bare atom's NATURAL
-  // render is narrower than the master — a pure-width mismatch img.ts (by
-  // design) never resamples away, not a styling defect. Rather than exclude
-  // them (the ORIGINAL 004 call — see git history), `renderWidth: 280` renders
-  // the code side inside a fixed-280px container: the same width a FILL atom
-  // actually takes under a Field molecule, so the diff judges box styling
-  // (border/padding/color/font) at a shared size instead of comparing two
-  // different boxes. Height is untouched by renderWidth — Input/Select already
-  // HUG to 48px and Textarea already carries a literal 128px height, both
-  // already matching the master without help; only width needed the fix.
+  // Input / Textarea (004) — content-width bricks: the master is a FIXED-width
+  // frame (280px) but real usage is layoutSizingHorizontal:FILL (the Field
+  // molecule stretches them, audit 003), so a bare atom's NATURAL render is
+  // narrower than the master — a pure-width mismatch img.ts (by design) never
+  // resamples away, not a styling defect. `renderWidth: 280` renders the code
+  // side inside a fixed-280px container (the width a FILL atom takes under a
+  // Field), so the diff judges box styling (border/padding/color/font) at a
+  // shared size instead of two different boxes. Both match at 0.00%. Height is
+  // untouched — Input HUGs to 48px, Textarea carries a literal 128px height,
+  // both already master-height; only width needed the fix. (Select is a THIRD
+  // such brick but is NOT a subject — a native <select> drops its option text
+  // in headless Chromium; see its named-exclusion note just below.)
   {
     id: 'input',
     label: 'Input (Piqueray)',
@@ -208,15 +208,18 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     setNodeId: '2053:1247',
     renderWidth: 280, // master absoluteBoundingBox 280×128 — height already literal-pinned
   },
-  {
-    id: 'select',
-    label: 'Select (Piqueray)',
-    kind: 'contract',
-    contractId: 'ds.select',
-    fileKey: PIQUERAY,
-    setNodeId: '2053:1249',
-    renderWidth: 280, // master absoluteBoundingBox 280×48 (REST nodes, read-only)
-  },
+  // Select is DELIBERATELY NOT a pixel subject (004, named exclusion). At
+  // renderWidth 280px its box/border/chevron match, BUT a native <select> does
+  // NOT render its selected-option TEXT in headless Chromium (this harness's
+  // renderer) — the "ours"/code side comes up empty while Figma shows
+  // « Texte de saisie ». The code is correct (it emits <select><option>{value},
+  // and the dashboard's real-browser render shows the text); only headless
+  // drops the option display. The masked score hides the gap (text rects
+  // excluded), so a Select triptych would read as a false failure. Input and
+  // Textarea KEEP their pixel coverage — <input>/<textarea> DO render their text
+  // headless (both 0.00%). The Select's text fidelity is covered by build +
+  // eval + deterministic-roundtrip, its box/chevron by the figma-script canvas
+  // render — not by pixels.
   // Icon visual coverage (002-governed-icons-button, D10/T048 — the proof
   // 001 deferred to v1.3, commit 38aee13). NOT one subject per icon: a bare
   // icon master has no contract of its own (D1 — the registry is the only
