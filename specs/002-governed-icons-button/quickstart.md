@@ -95,7 +95,7 @@ git commit -am "step(1-registry): ds.icons v1.0.0 adopted — one governed list,
 **naming its icon** — no hand-made SVG; the typed enum in `Button.tsx` = the registry list.
 ```bash
 npm run build && npm run eval && npm run plugin:check \
-  && node scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
+  && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
   && npx tsc --noEmit && tsc -p tsconfig.build.json
 ```
 
@@ -147,7 +147,7 @@ git commit -am "step(3-master): the single master update — label settable in F
 visible), opens Storybook (icons example), runs the suite (fully green, live count).
 ```bash
 npm run build && npm run parity && npm run eval && npm run plugin:check \
-  && node scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
+  && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
   && npx tsc --noEmit && tsc -p tsconfig.build.json \
   && npm run extract:figma:visual:summary
 ```

@@ -60,7 +60,7 @@ scripts/plugin-engine-check.mjs           the plugin-engine gate
 scripts/deterministic-roundtrip.mjs       the determinism proof
 scripts/build-plugin-zip.mjs              plugin packager + engine drift guard
 scripts/generate-figma.ts                 emit all figma-sync/*.js
-evals/run.ts                              the eval suite (live N/N, currently 94/97)
+evals/run.ts                              the eval suite (live N/N, currently 102/102)
 evals/golden.json                         byte-hash manifest
 contracts/*.contract.json                 51 component contracts (the corpus)
 tokens/ (+ modes/)                         DTCG tokens
@@ -75,9 +75,9 @@ docs/DIFFICULTY-TIERS.md                  T0–T3 component difficulty tiers
 ```bash
 # Verify the whole pipeline (from a clean clone)
 npm install
-npm run eval                              # 94/97 (3 intentional — pending the Figma token push)
+npm run eval                              # 102/102
 npm run plugin:check                      # plugin engine green
-node scripts/deterministic-roundtrip.mjs  # determinism proof (no AI)
+npx tsx scripts/deterministic-roundtrip.mjs  # determinism proof (no AI)
 node scripts/core-browser-check.mjs       # core is browser-pure
 npx tsc --noEmit                          # types
 

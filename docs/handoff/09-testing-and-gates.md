@@ -17,36 +17,36 @@ related: [08-status-what-doesnt-work, 12-reference]
 gate. The eval suite is the spine; additional standing gates guard determinism,
 byte-stability, and the plugin engine.
 
-## The eval suite — `npm run eval` (`evals/run.ts`), 97 checks
+## The eval suite — `npm run eval` (`evals/run.ts`), 102 checks
 
 **This count moved (2026-07-22/23, the Piqueray reconversion's "hybrid rule"):**
 demo-Button-wired cases were re-pointed onto the real Piqueray Button; cases
 with no Button equivalent (Card slots, Table multi-slot, native-control
 components, brand/dark-theme cases…) were removed, each named by id in the
 commit body; content-agnostic engine cases (schema refusals, token validation,
-extraction) were left intact. 51 cases are quarantined, not deleted — restored
+extraction) were left intact. 49 cases are quarantined, not deleted — restored
 when Piqueray grows the features they exercise (slots, composites, dark theme,
 a second brand). See `evals/REMOVED-CASES.md`. **Always trust the live
 `npm run eval` output over any number quoted in prose** — it prints `N/N` and
 this doc can lag it.
 
 Each eval declares a `claim`. Live counts by `claim:` (computed from
-`evals/results.json`, 2026-07-23):
+`evals/results.json`, 2026-07-24):
 
 | Claim | Count | Meaning |
 |-------|-------|---------|
 | `C1-determinism` | 17 | byte-reproducibility, golden, determinism, plugin engine |
-| `C2-refusal` | 9 | invalid inputs refuse *by name* |
-| `C3-detection` | 26 | drift detection (code/design ahead/behind/mismatch, tokens) |
+| `C2-refusal` | 11 | invalid inputs refuse *by name* |
+| `C3-detection` | 28 | drift detection (code/design ahead/behind/mismatch, tokens) |
 | `C4-convergence` | 1 | iterative fix / convergence |
-| `C5-extraction` | 37 | code→contract and figma→contract extraction |
+| `C5-extraction` | 38 | code→contract and figma→contract extraction |
 | `C6-theming` | 0 | brand/token theming — quarantined (Piqueray has one brand, one theme) |
 | `C7-cli` | 3 | CLI smoke + emitter-plugin-loads + wc round-trip |
 | `C8-journey` | 4 | end-to-end journey pins (re-pointed onto the Piqueray Button) |
 
 The runner copies a scratch workspace, regenerates outputs, and byte-compares
 against the golden manifest. It writes `evals/results.json`. Exit 0 = all pass
-— except the 3 intentional failures (below), which need the Figma push first.
+— the 3 that were intentional failures went green once spec 002 pushed the master update to Figma.
 
 **Note for a fresh AI:** the eval runner symlinks `ROOT/node_modules` into its
 scratch dir, so it **cannot run inside a git worktree** (worktrees lack
@@ -56,14 +56,14 @@ scratch dir, so it **cannot run inside a git worktree** (worktrees lack
 
 | Gate | Command | Guards |
 |------|---------|--------|
-| eval suite | `npm run eval` | everything above (94/97 — 3 intentional, pending the Figma token push) |
+| eval suite | `npm run eval` | everything above (102/102) |
 | golden byte-hash | inside eval (`golden-generated-output`) | `src/` + `figma-sync/` are byte-stable; `npm run golden:update` on reviewed changes only |
 | plugin engine | `npm run plugin:check` | `window.DSC` builds correct anatomy from a bundle; specHash mirror; drift refusal |
-| determinism | `node scripts/deterministic-roundtrip.mjs` | contract→canvas byte-identical across two runs; loop closes |
+| determinism | `npx tsx scripts/deterministic-roundtrip.mjs` | contract→canvas byte-identical across two runs; loop closes (needs tsx — imports core/*.ts via .js specifiers) |
 | census | `extract:figma:gauntlet` | 1,618 sets propose with zero skips |
 | browser purity | `node scripts/core-browser-check.mjs` | core barrel bundles for browser; 4 emitters run in a no-node VM |
 | emitters | `npm run emitters:check` | registry invariants |
-| typecheck | `npx tsc --noEmit` + `tsc -p tsconfig.build.json` | types |
+| typecheck | `npx tsc --noEmit` + `npx tsc -p tsconfig.build.json` | types |
 | plugin drift | `node scripts/build-plugin-zip.mjs` | engine bundle matches `engine.receipt.json` (refuses stale by name) |
 
 ## Key gates by name (for continuation)
@@ -83,9 +83,9 @@ scratch dir, so it **cannot run inside a git worktree** (worktrees lack
 ```bash
 git clone github.com/southleft/ds-contracts-poc && cd ds-contracts-poc
 npm install
-npm run eval            # expect: 94/97 evals passed (3 intentional — pending the Figma token push)
+npm run eval            # expect: 102/102 evals passed
 npm run plugin:check    # expect: plugin-engine-check: all flows green
-node scripts/deterministic-roundtrip.mjs   # expect: THE FULL LOOP RAN WITH ZERO AI
+npx tsx scripts/deterministic-roundtrip.mjs   # expect: THE FULL LOOP RAN WITH ZERO AI
 npx tsc --noEmit        # expect: clean
 ```
 

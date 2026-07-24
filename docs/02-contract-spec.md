@@ -193,6 +193,8 @@ The anatomy side reuses the **existing** enum-substitution convention (`icon.ass
 
 `kind: "INSTANCE_SWAP"`, the generic `values` map, and `{prop}` asset-substitution all already existed before this document type — an icon-choice prop is that machinery used exactly as declared, never a new capability.
 
+**Named limitation — the icon byte-proof is headless.** On the *code* surface the enum resolves to a real asset and the choice is byte-guarded by the golden manifest. On the *canvas* surface the emitter **bakes each glyph as a vector** (SVG paint is not bindable at import), **not** as a swappable local-master `INSTANCE_SWAP` instance — so the contract→canvas determinism proof for icon choice runs **headless** (`deterministic-roundtrip` + the faithful mock), never against live swap instances. Live alignment between the contract's governed menu and the master's real `Glyphe gauche` / `Glyphe droite` swap properties is proven instead by the **re-pulled, committed parity snapshot** (`parity/snapshots/figma-components.json`, the differ's `icons` axis — D8), which the single master update refreshed to exactly the 13 governed keys.
+
 ## Versioning & change policy
 
 - Any change to `props`, `states`, `anatomy`, or `a11y` bumps `version` (semver semantics: added optional prop = minor; removed/renamed prop or value = major).

@@ -211,20 +211,40 @@ async function main(): Promise<void> {
     console.log(`  figma set "${info.setName}" v${info.version}: ${info.variants.length} variant(s); fonts: ${info.fontFamilies.join(', ') || '(none)'}`);
     subjectMeta.push({ subject, composition: receiptsLine(pkg), fonts: info.fontFamilies.join(', ') || '(none)', version: info.version });
 
+    // instanceOverride (D10/T048): compare against ONE real, already-
+    // customized page instance instead of enumerating the set's variants —
+    // a component SET's variant node only ever renders property DEFAULTS
+    // via the images API, so a non-default combination (icons shown) has
+    // no honest reference there. `variantNodes` — real set variants, or a
+    // single synthetic entry naming the override instance — drives both the
+    // PNG fetch (which node ids) and the render loop (which variant names).
+    const override = subject.kind === 'contract' ? subject.instanceOverride : undefined;
+    const variantNodes = override ? [{ name: override.variantName, nodeId: override.nodeId }] : info.variants;
+
     const pngs = await fetchNodePngs(
-      CACHE, subject.fileKey, subject.setNodeId, info.version,
-      info.variants.map((v) => v.nodeId),
+      CACHE, subject.fileKey, override ? override.nodeId : subject.setNodeId, info.version,
+      variantNodes.map((v) => v.nodeId),
     );
     const subjectOut = path.join(OUT, subject.id);
     mkdirSync(subjectOut, { recursive: true });
 
-    for (const variant of info.variants) {
+    for (const variant of variantNodes) {
       const slug = variantSlug(variant.name);
       const plan = planVariant(pkg.contract, variant.name);
       if (!plan.ok) {
         console.log(`  ✗ ${variant.name}: SKIPPED — ${plan.reason}`);
         rows.push({ subject: subject.id, variant: variant.name, status: 'skipped', diagnosis: plan.reason, notes: [], cause: null });
         continue;
+      }
+      // Merge the override's REAL, scanned prop values — a variant NAME
+      // alone cannot carry BOOLEAN visibility or INSTANCE_SWAP glyph state
+      // (neither is a variant axis), so plan.subst/plan.bools would
+      // otherwise stay at the contract's defaults (icons hidden).
+      if (override) {
+        for (const [k, v] of Object.entries(override.propPreset)) {
+          if (typeof v === 'boolean') plan.bools[k] = v;
+          else plan.subst[k] = v;
+        }
       }
       const figmaPngPath = pngs.get(variant.nodeId);
       if (!figmaPngPath) {

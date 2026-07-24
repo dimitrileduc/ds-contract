@@ -97,6 +97,11 @@ sessions.
 - The composite Modal building correctly on a real canvas (fails — see #1).
 - `canvas → contract` for advanced composition *on real Figma* (only mock-gated).
 - `code → contract` at scale on real, foreign codebases beyond the tested set.
+- The Button's governed **icon choice** rendered on a real canvas as swappable
+  `INSTANCE_SWAP` instances — the emitter bakes glyph vectors headlessly (SVG
+  paint is not bindable at import); live menu ↔ swap-property alignment is proven
+  by the re-pulled parity `icons` snapshot (D8), not the byte-roundtrip. See
+  `docs/02-contract-spec.md` (Icon Registry → named limitation).
 
 ## How to read this list
 

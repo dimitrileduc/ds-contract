@@ -39,20 +39,6 @@ import {
 import { legacyCases } from './legacy-cases.js';
 
 const cases: Case[] = [
-  // ---------------------------------------------------------------------------
-  // FAILING ON PURPOSE — blocked on the Button master rebuild, not on eval wiring.
-  //
-  // These three need a CLEAN parity baseline. `npm run parity` is red because
-  // the Button's Figma set has no TEXT property for the `children` prop yet
-  // (`Contract prop "children" has no TEXT property on the Figma set`) —
-  // closed by the single targeted master update (002-governed-icons-button,
-  // Step 3), not by a token-set push (the token axis is already clean — an
-  // earlier attribution here was stale; honesty fix, D9). That is a live,
-  // temporary state we intend to resolve — NOT an absent capability — so
-  // these cases are neither quarantined (which would claim Piqueray
-  // structurally cannot run them) nor baselined (which would turn a real
-  // pending gap into a green tick). They stay red and named.
-  // ---------------------------------------------------------------------------
   {
     id: 'baseline-parity-clean',
     claim: 'C3-detection',
@@ -3874,15 +3860,4 @@ console.log(`\n${passed}/${results.length} evals passed — evals/results.json`)
 console.log(
   `${legacyCases.length} legacy cases quarantined (not run) — Piqueray has no slots / nested instances / repeat collections / multi-root anatomy / dark theme / second brand yet. See evals/REMOVED-CASES.md.`,
 );
-// The three parity-baseline cases are red ON PURPOSE (see the banner above the
-// `cases` array): they are blocked on the first Figma sync, not on a missing
-// capability, so they are neither quarantined nor baselined.
-const parityBlocked = results.filter(
-  (r) => !r.pass && ['baseline-parity-clean', 'baseline-acknowledges-without-failing', 'promotion-converges'].includes(r.id),
-);
-if (parityBlocked.length > 0) {
-  console.log(
-    `${parityBlocked.length} of the ${results.length - passed} failure(s) are the INTENTIONAL parity-baseline block (${parityBlocked.map((r) => r.id).join(', ')}) — they need a clean \`npm run parity\`, which needs the Button master rebuild (the missing label TEXT property — 002-governed-icons-button Step 3), not the token push (already done).`,
-  );
-}
 process.exit(passed === results.length ? 0 : 1);

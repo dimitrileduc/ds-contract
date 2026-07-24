@@ -865,6 +865,31 @@ owner's file — parity's token axis collapses from 45 findings to zero. Suite:
 
 ---
 
+## 2026-07-24 — Spec 002: governed icons + the single master update, closed
+
+The governed icon registry (`contracts/icons.registry.json`, v1.0.0 — 13 icons)
+becomes the one source the designer's Figma menu and the developer's code list
+both derive from, verified by a new parity **icons** axis. The Button lowers icon
+choice into INSTANCE_SWAP-bound enum props (`ds.button@1.3.0`), then rebinds its
+label to a real Figma TEXT property (`ds.button@1.4.0`) — closing the last
+declared parity finding from spec 001. **The single master update** landed once
+on the real client file (`step(3-master)`, `c8512f7`): the label became a
+bindable « Libellé » TEXT property in all 6 variants and both icon menus were
+narrowed to exactly the 13 governed icons. Proven by a positional scan (77/77
+Button instances; 43 text + 29 glyph overrides byte-identical) and 9-page state
+photography (**0.000% on all 9 pages**, before/after) with owner restore points.
+`npm run parity` reaches zero active findings; the 3 evals intentionally red
+since before this feature are **green for the first time**. Suite: **102/102**
+(49 legacy quarantined). Closure (`step(4-closure)`): counts synced everywhere,
+the named headless-icon limitation written where the capability is claimed,
+visual icon coverage restored (a real page-instance `button-with-icons` subject;
+8 foreign brownfield subjects quarantined into `LEGACY_SUBJECTS` after an
+external file hit a real Figma image-rate-limit), and the Contract Hub binding
+map fixed to match the set by key (Button↔Bouton) so the icon governance shows
+verified per-glyph.
+
+---
+
 **Standing scoreboard** (updated with each milestone):
 
 | Claim | Mechanism | Receipt |

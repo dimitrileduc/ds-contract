@@ -128,7 +128,7 @@ L'owner veut voir la preuve finale dans le dashboard et Storybook : alignement c
 **Preuves finales**
 
 - **FR-018**: La comparaison contrat/code/Figma MUST afficher ZÉRO écart à la clôture — le dernier écart déclaré de la 001 disparaît.
-- **FR-019**: La suite de vérification MUST passer au complet — les 3 vérifications volontairement rouges de la 001 s'éteignent (97/97 au compte du 2026-07-23 ; le compte vivant affiché par la suite fait foi, et tout compte cité dans les documents MUST rester synchronisé).
+- **FR-019**: La suite de vérification MUST passer au complet — les 3 vérifications volontairement rouges de la 001 s'éteignent (102/102 au compte du 2026-07-24 ; le compte vivant affiché par la suite fait foi, et tout compte cité dans les documents MUST rester synchronisé).
 - **FR-020**: Un exemple de bouton avec icônes MUST être visible dans le dashboard et dans Storybook.
 - **FR-021**: La couverture visuelle des icônes MUST être rétablie : le jeu d'icônes est couvert par la comparaison visuelle du dépôt, dans la tolérance de l'instrument existant.
 
@@ -148,7 +148,7 @@ L'owner veut voir la preuve finale dans le dashboard et Storybook : alignement c
 ### Measurable Outcomes
 
 - **SC-001**: La comparaison contrat/code/Figma affiche ZÉRO écart — le dernier écart déclaré de la 001 (libellé non réglable côté Figma) a disparu.
-- **SC-002**: La suite de vérification passe au complet — les 3 rouges volontaires éteints (97/97 au compte du 2026-07-23 ; le compte vivant fait foi).
+- **SC-002**: La suite de vérification passe au complet — les 3 rouges volontaires éteints (102/102 au compte du 2026-07-24 ; le compte vivant fait foi).
 - **SC-003**: Les 9 pages sont visuellement identiques avant/après la mise à jour du master — mesuré par photographie d'état, pas à l'œil ; tout écart résiduel est expliqué et explicitement accepté par l'owner, sinon l'opération est un échec.
 - **SC-004**: Le designer choisit une icône dans son menu, le développeur a exactement le même choix — vérifié mécaniquement, pas sur parole.
 - **SC-005**: Un bouton avec icônes est visible dans le dashboard et dans Storybook.

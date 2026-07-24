@@ -116,7 +116,7 @@ Tracking entry needed.
 
 ```bash
 npm run build && npm run parity && npm run eval && npm run plugin:check \
-  && node scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
+  && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
   && npx tsc --noEmit && tsc -p tsconfig.build.json
 ```
 

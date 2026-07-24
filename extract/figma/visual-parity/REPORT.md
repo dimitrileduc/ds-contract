@@ -54,6 +54,7 @@ moves the gate, explicitly, after review.
 | button | Property 1=Outilne noir | 2.53% | 3.88% | 436×108 vs 440×108 | diffuse delta — see triptych | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-outilne-noir.triptych.png |
 | button | Property 1=Default | 1.31% | 3.03% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-default.triptych.png |
 | button | Property 1=Orange | 1.31% | 3.02% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-orange.triptych.png |
+| button-with-icons | Property 1=Link | 0.91% | 7.83% | 728×36 vs 728×36 | text raster/family delta dominates | — | report-assets/button-with-icons--property-1-link.triptych.png |
 | button | Property 1=Blanc | 0.00% | 2.13% | 436×108 vs 440×108 | text raster/family delta dominates; diff localized middle-center (307×25px) | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-blanc.triptych.png |
 | button | Property 1=Outline blanc | 0.00% | 0.00% | 436×108 vs 440×108 | near-identical | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-outline-blanc.triptych.png |
 
@@ -63,12 +64,12 @@ _none_
 
 ## Distribution (masked score)
 
-- ≤ 1%: 2 variant(s)
+- ≤ 1%: 3 variant(s)
 - 1–3%: 3 variant(s)
 - 3–10%: 1 variant(s)
 - > 10%: 0 variant(s)
 
-- diffed: 6 · skipped/refused/declined: 0
+- diffed: 7 · skipped/refused/declined: 0
 
 ## Gate read (triage classes)
 
@@ -82,6 +83,7 @@ _none_
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
 | button (contract) | v2379664805104925610 | repo tokens only | Montserrat |
+| button-with-icons (contract) | v2379664805104925610 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

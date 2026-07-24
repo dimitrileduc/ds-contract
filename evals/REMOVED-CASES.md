@@ -1,6 +1,6 @@
 # Quarantined eval cases
 
-These 51 cases were taken out of the live suite during the **Piqueray
+These 49 cases (51 at the reconversion, 2 since revived by spec 002 — see **Counts** below) were taken out of the live suite during the **Piqueray
 reconversion (2026-07-22)**, when the repo went from a 51-component demo design
 system with two themes and two brands to Piqueray: **one component (Button),
 one theme, one brand, no slots, no nested instances, no repeat collections, no
@@ -21,13 +21,13 @@ them, and the runner prints the quarantine count on every run so it can never
 go quiet:
 
 ```
-N/101 evals passed — evals/results.json
-50 legacy cases quarantined (not run) — …
+N/102 evals passed — evals/results.json
+49 legacy cases quarantined (not run) — …
 ```
 
 The live `N/N` counts executed cases only, so the pass rate stays honest. **Trust the live `npm run eval` output over this file** — it prints the count on every run; update this note when it drifts (`grep -rn` the number, per CLAUDE.md).
 
-**Counts:** 147 cases before the reconversion → 96 executed at the reconversion, **101 executed** as of 002-governed-icons-button (+2 new: `detect-icon-registry-divergence`, `refuse-unregistered-icon-enum`; +1 new: `lower-icon-swap-and-visibility-into-props`; +1 revived: `figma-script-referees-invalid-contracts`, re-homed onto `ds.button` in its own standalone script — see `extract/figma/gauntlet/figma-script-referee-check.ts`), **50 quarantined**.
+**Counts:** 147 cases before the reconversion → 96 executed at the reconversion, **102 executed** as of 002-governed-icons-button's close (+2 new: `detect-icon-registry-divergence`, `refuse-unregistered-icon-enum`; +1 new: `lower-icon-swap-and-visibility-into-props`; +2 revived: `figma-script-referees-invalid-contracts` (re-homed onto `ds.button` in its own standalone script — see `extract/figma/gauntlet/figma-script-referee-check.ts`) and `detect-default-and-kind-drift` (re-pointed 3 of 5 sub-checks to real `ds.button` facts)), **49 quarantined**. All 102 pass — the 3 that were intentionally red (`baseline-parity-clean`, `baseline-acknowledges-without-failing`, `promotion-converges`) turned green when Step 3 landed the master update (`step(3-master)`, `npm run parity` reaches zero active findings).
 
 ## What quarantine does NOT mean
 

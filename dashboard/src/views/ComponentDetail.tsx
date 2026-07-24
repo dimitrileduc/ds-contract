@@ -8,8 +8,8 @@ import {
 } from '../components/ui';
 import { addProp, UNAVAILABLE_NOTE, type AddPropResult, type ApiResponse } from '../api';
 import {
-  contractFilePath, figmaNodeUrl, figmaSetByName, figmaVariableNames, findingsForComponent,
-  getComponent, type AnatomyNode, type ComponentEntry, type RawProp,
+  contractFilePath, figmaNodeUrl, figmaSetForEntry, figmaVariableNames, findingsForComponent,
+  getComponent, iconRegistryKey, type AnatomyNode, type ComponentEntry, type RawProp,
 } from '../data';
 import { renderSample } from '../samples';
 import { resolveVar, useThemeVersion } from '../lib/use-theme-version';
@@ -25,12 +25,12 @@ interface BindingRow {
   okLabel: string;
 }
 
-function figmaPropsOf(entry: ComponentEntry): Map<string, { type: string; variantOptions: string[] | null }> {
-  const set = figmaSetByName(entry.name);
-  const map = new Map<string, { type: string; variantOptions: string[] | null }>();
+function figmaPropsOf(entry: ComponentEntry): Map<string, { type: string; variantOptions: string[] | null; preferredValues: { type: string; key: string }[] | null }> {
+  const set = figmaSetForEntry(entry);
+  const map = new Map<string, { type: string; variantOptions: string[] | null; preferredValues: { type: string; key: string }[] | null }>();
   if (!set) return map;
   for (const [key, def] of Object.entries(set.properties)) {
-    map.set(key.split('#')[0], { type: def.type, variantOptions: def.variantOptions ?? null });
+    map.set(key.split('#')[0], { type: def.type, variantOptions: def.variantOptions ?? null, preferredValues: def.preferredValues ?? null });
   }
   return map;
 }
@@ -52,6 +52,16 @@ function bindingRows(entry: ComponentEntry): BindingRow[] {
       if (!live) {
         ok = false;
         okLabel = `Figma property "${figmaBinding.property}" not found in the published set`;
+      } else if (isEnum && figmaBinding.kind === 'INSTANCE_SWAP') {
+        // Icon-glyph choice: valid values are the governed registry, exposed on
+        // the master as INSTANCE_SWAP preferredValues (by component KEY, not
+        // variant options). Match = present as INSTANCE_SWAP carrying the
+        // registry's full menu; each glyph's key is verified in the value rows.
+        const enumLen = (prop.type as { enum: string[] }).enum.length;
+        ok = live.type === 'INSTANCE_SWAP' && (live.preferredValues?.length ?? 0) === enumLen;
+        okLabel = ok
+          ? `present as INSTANCE_SWAP — ${live.preferredValues?.length} governed values (the icon registry)`
+          : `expected INSTANCE_SWAP with ${enumLen} governed values, Figma has ${live.type} / ${live.preferredValues?.length ?? 0}`;
       } else if (isEnum) {
         const want = (prop.type as { enum: string[] }).enum.map((v) => figmaBinding.values?.[v] ?? v);
         ok = want.every((v) => live.variantOptions?.includes(v));
@@ -82,16 +92,35 @@ function bindingRows(entry: ComponentEntry): BindingRow[] {
 
     // one row per enum VALUE — the spelling map is the contract's core trick
     if (isEnum && figmaBinding?.values) {
+      const liveProp = figmaProps.get(figmaBinding.property);
+      const swap = figmaBinding.kind === 'INSTANCE_SWAP';
+      const prefKeys = new Set((liveProp?.preferredValues ?? []).map((p) => p.key));
       for (const value of (prop.type as { enum: string[] }).enum) {
         const figmaValue = figmaBinding.values[value] ?? value;
-        const present = native ? null : (figmaProps.get(figmaBinding.property)?.variantOptions ?? []).includes(figmaValue);
+        let present: boolean | null;
+        let okLabel: string;
+        if (native) {
+          present = null;
+          okLabel = 'native representation';
+        } else if (swap) {
+          // Governed icon: match by the registry's component KEY against the
+          // master's preferredValues — the identity, not the spelling.
+          const key = iconRegistryKey(value);
+          present = key ? prefKeys.has(key) : false;
+          okLabel = present
+            ? 'governed icon present in the master INSTANCE_SWAP menu (matched by component key)'
+            : 'icon missing from the master menu (or absent from the registry)';
+        } else {
+          present = (liveProp?.variantOptions ?? []).includes(figmaValue);
+          okLabel = present ? 'variant option exists in Figma' : 'variant option missing in Figma';
+        }
         rows.push({
           kind: 'value',
           contract: <span className="text-muted-foreground pl-4 font-mono text-xs">· {value}</span>,
           code: <code className="text-xs">"{value}"</code>,
           figma: <span className="font-mono text-xs">{figmaValue}</span>,
           ok: present,
-          okLabel: present ? 'variant option exists in Figma' : 'variant option missing in Figma',
+          okLabel,
         });
       }
     }
@@ -102,7 +131,7 @@ function bindingRows(entry: ComponentEntry): BindingRow[] {
     ...(entry.children.kind === 'slot' ? [{ prop: 'children', accepts: entry.children.accepts ?? [], optional: false }] : []),
     ...entry.slots.map((s) => ({ prop: s.prop, accepts: s.accepts, optional: s.optional })),
   ];
-  const set = figmaSetByName(entry.name);
+  const set = figmaSetForEntry(entry);
   for (const slot of slotDefs) {
     const figmaProp = [...figmaPropsOf(entry).entries()].find(([, d]) => d.type === 'INSTANCE_SWAP');
     const multi = slot.accepts.length > 0 && (set?.nestedInstances ?? []).some((n) => slot.accepts.includes(n));
@@ -354,14 +383,18 @@ export function ComponentDetail({ id }: { id: string }) {
           <Badge variant="outline" className="font-mono">v{entry.version}</Badge>
           <Badge variant={entry.status === 'stable' ? 'success' : 'secondary'}>{entry.status}</Badge>
         </div>
-        <p className="text-muted-foreground max-w-3xl text-sm">{entry.description}</p>
+        <div className="text-muted-foreground max-w-3xl space-y-2 text-sm">
+          {(entry.description ?? '').split('\n\n').map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+        </div>
         <div className="flex flex-wrap items-center gap-3 pt-1">
           <code className="bg-muted rounded-md px-2 py-1 text-xs">
             import {'{'} {entry.name} {'}'} from '{entry.contract?.anchors.code.importPath}'
           </code>
           {!native && nodeId ? (
             <Button asChild variant="outline" size="sm">
-              <a href={figmaNodeUrl(nodeId)} target="_blank" rel="noreferrer">
+              <a href={figmaNodeUrl(entry.contract?.anchors.figma.fileKey ?? '', nodeId)} target="_blank" rel="noreferrer">
                 Open in Figma <ExternalLink aria-hidden />
               </a>
             </Button>
@@ -465,10 +498,10 @@ export function ComponentDetail({ id }: { id: string }) {
         >
           <Card className="max-w-xl gap-3">
             <CardHeader>
-              <CardTitle className="text-sm">{figmaSetByName(entry.name)?.variantCount ?? '?'} variants published</CardTitle>
+              <CardTitle className="text-sm">{figmaSetForEntry(entry)?.variantCount ?? '?'} variants published</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
-              {Object.entries(figmaSetByName(entry.name)?.properties ?? {}).map(([key, def]) => (
+              {Object.entries(figmaSetForEntry(entry)?.properties ?? {}).map(([key, def]) => (
                 <div key={key} className="flex flex-wrap items-center gap-2">
                   <span className="font-medium">{key.split('#')[0]}</span>
                   <Badge variant="outline" className="text-[10px]">{def.type}</Badge>

@@ -18,9 +18,9 @@ level: **[gated headless]** (an eval/gate proves it in Node against the mock),
 
 ## The suite
 
-- **94/97 evals pass** (`npm run eval`; live `N/N` — this lags the command).
-  3 are an intentional red block awaiting the Piqueray token-set push to
-  Figma. 51 further cases are quarantined (not run) under the reconversion's
+- **102/102 evals pass** (`npm run eval`; live `N/N` — this lags the command).
+  The 3 that were an intentional red block went green once spec 002 pushed the
+  master update to Figma. 49 further cases are quarantined (not run) under the reconversion's
   hybrid rule — Piqueray has no slots/composites/dark-theme/second-brand yet.
   Claim families: `C1-determinism`, `C2-refusal`, `C3-detection`,
   `C4-convergence`, `C5-extraction` (the largest), `C7-cli`, `C8-journey`
