@@ -1986,3 +1986,114 @@ instance du master `SAV` (`2108:3135`), bbox strictement inchangée (delta
 GROUP imbriqués) traité par clonage verbatim — le piège d'origine-instable des
 GROUP ne s'est jamais déclenché (seul le top-level déplacé, aucun enfant interne
 repositionné). Prochain bloc de la Phase 8 à scoper par l'owner/l'agent principal.
+
+## 2026-07-24 — validation-master + ecart-pixel-accepte — Texte SEO (T081-T082)
+
+- **Type** : validation-master (T081) puis adoption (T082, 8 occurrences/8 maquettes) —
+  exécuté par un agent délégué (méthode d'exécution `tasks.md` Phase 7/8). **Verdict
+  ci-dessous = auto-validation de l'agent contre la mesure** (grille d'audit texte
+  complète, `segMatch` par plage, tests bout en bout, test de décalage), nommée
+  honnêtement comme telle ; capture + receipts + crops livrés pour la revue visuelle
+  Fable dédiée (handoff identique à SAV/Coordonnées).
+- **Composant(s)** : `texte-seo` (master réel : **`Texte SEO`**, nom natif du layer)
+
+### Prémisses du brief affinées à l'audit
+
+- **`h3` n'est pas un « Infos pratiques » constant** — c'est un **sous-titre propre à
+  chaque page** (« Bien configurer votre porte industrielle », « Nos engagements »…).
+  Seule Contactez-nous dit « Infos pratiques », d'où la confusion. Porté par override
+  comme `h2`/`p`. (Même classe que la prémisse Contact-info-row/Coordonnées invalidée.)
+- **Motif accordion identique sur les 8 pages** : ligne 1 Fermé / ligne 2 **Ouvert** /
+  ligne 3 Fermé ; seule la ligne 2 porte un vrai `Contenu` (lignes fermées =
+  placeholder `Réponse` masqué). `État` = défaut du master, jamais overridé.
+- **Lignes d'accordion déjà gouvernées** (T042, instances `2059:1383`/`2059:1411`,
+  `remote: false`) — **réutilisées telles quelles**, aucune reconstruite.
+- **`\r` (U+000D) invisible dans `p` sur 3 pages** (résidentielles, Portes d'entrée,
+  À Propos) — même trappe que Footer-column/Coordonnées → `clone()` obligatoire.
+
+### Chiffres
+
+`DS · Molécules` → section `Texte SEO` (`2108:3111`, à `1692,8035`) → `COMPONENT`
+**Texte SEO** (`2108:3123`, à `1732,8095`, 1728×383, HUG), construit par `clone()` de
+Contactez-nous (`305:911`) + `figma.createComponentFromNode()` (zéro reconstruction
+manuelle). **Aucune propriété TEXTE formelle** sur `h2`/`p`/`h3` : les deux portent du
+gras riche par plage + `p` porte un `\r` → binding de propriété aplatirait/risquerait
+(trappe Formulaire T092/Coordonnées T093) ; contenu porté par **override direct de
+sous-calque** (`setCharacters` + `setRangeFontName` par plage, persistants). Les 3
+lignes gardent leurs propriétés gouvernées `Titre`/`Contenu`/`État`. Défaut = contenu
+de Contactez-nous (anchor + minimise les resize). 8 occurrences adoptées, **0 copie
+brute restante**, 8/8 instances résolvent au master, **8/8 bbox strictement identiques**
+avant/après (vérifié programmatiquement avant toute capture "after"). Fidélité de contenu
+**prouvée par mesure, pas supposée** : `charsMatch` + **`segMatch` (plages de gras
+byte-identiques) `true` sur h2/p/h3 des 8 pages** ; `\r` préservé (`charCodeAt`=13 sur
+les 3 pages) ; `Titre`/`Contenu` des lignes = source.
+
+Pixel : **1/9 `identical` (Accueil, contrôle non-touché, sha256 avant = après), 8/9
+`diff`** — tous localisés exactement au bloc SEO (aucun ricochet ailleurs) :
+
+| Maquette | diffCount | % de la page |
+|---|---|---|
+| Portes de garage industrielles | 2573 | 0.022% |
+| Portes d'entrée | 4987 | 0.044% |
+| Portes de garage résidentielles | 6156 | 0.054% |
+| Portes de garage | 4514 | 0.060% |
+| À Propos | 8942 | 0.087% |
+| Dépannage/SAV | 6543 | 0.089% |
+| Motorisation | 5707 | 0.099% |
+| Contactez-nous | 8303 | 0.123% |
+
+Moyenne **0.072%**, max **0.123%** (Contactez-nous), min **0.022%** (industrielles).
+
+- **Raison — bruit de rendu sub-pixel pur, investigué avant acceptation (jamais un
+  chiffre agrégé pris pour argent comptant, leçon owner « vérifier les diffs
+  visuellement »)** :
+  1. **`segMatch` par plage `true` sur h2/p/h3 des 8 pages** — les plages de gras sont
+     **byte-identiques** entre source (lue avant remplacement) et instance. Aucune perte
+     de gras possible (contrairement au bug « gras perdu » déjà attrapé par l'owner) —
+     preuve programmatique, plus forte que l'œil.
+  2. **Test de décalage** (offsets ±2px sur le diffBox de Contactez-nous) : le minimum
+     est **exactement à (0,0)**, tout décalage **augmente** le diff (0,1→+41%, 1,0→+42%).
+     Écarte un shift 1px du bloc (qui ferait chuter le diff près de zéro à un offset) —
+     le texte est à la **position identique**, différences = anti-aliasing sub-pixel aux
+     bords de glyphes.
+  3. **Crops zoomés inspectés** (Contactez-nous swap-only + industrielles riche) :
+     before == after à l'œil, mot gras « showroom à Pepinster » identique en poids/
+     position/lettres (zoom ×3), tous les gras du body d'industrielles présents et
+     identiques ; panneau diff = shimmer AA sur tous les glyphes (plus marqué sur les
+     gras, plus d'encre), pas une tache/bloc structurel.
+  4. **`Contactez-nous` (le plus gros diff, 0.123%) est un swap SANS override de contenu**
+     (son contenu EST le défaut du master) — son écart est **par définition 100 % un
+     artefact de rendu** (texte d'instance vs texte de frame brut se rasterisent
+     sub-pixel-différemment), zéro décision de contenu en jeu.
+  Magnitude supérieure aux précédents (jusqu'ici ≤0.09%) **uniquement** parce que le bloc
+  Texte SEO est très **dense en texte** (titre + paragraphe complet + sous-titre +
+  accordion) : plus de bords de glyphes = plus de pixels de shimmer AA, en absolu et en %.
+  Même classe de cause que Devis/Accordion-row/Coordonnées/Formulaire/Présentation, pas
+  une nouvelle catégorie.
+- **Piège Figma trouvé et corrigé avant acceptation** : `resize()` sur le sous-calque
+  `Contenu` d'une instance Accordion-row imbriquée est **silencieusement refusé** (même
+  avec `textAutoResize: NONE` + `layoutSizingVertical: FIXED`) → industrielles est
+  d'abord sortie à 447px au lieu de 503 (réponse 2-lignes tronquée à 24px). **Solution :
+  `textAutoResize = 'HEIGHT'`** sur le `Contenu` → box à sa hauteur naturelle (80px =
+  box source), ligne re-hugge (80→136), wrapper re-hugge (447→**503**, bbox source
+  exacte). Sortie nouvelle et réutilisable pour toute box de texte fixe imbriquée dans
+  une instance.
+- **Anomalie de session résolue (transparence)** : un composant `Texte SEO` **orphelin**
+  (`2108:3208`, sans parent, hors de l'arbre, **0 instance** — vestige d'un état
+  pré-compaction selon le coordinateur) trouvé et retiré de l'arbre. Walk complet depuis
+  `figma.root` **et** vérification indépendante du coordinateur confirment **un seul**
+  master dans l'arbre (`2108:3123`). Le handle orphelin persiste dans le registre (un
+  nœud sans parent n'est pas `.remove()`-able) mais est hors de tout export/scan — nommé,
+  pas passé sous silence.
+- **Preuve** : `audits/texte-seo.md` ; `proofs/texte-seo/{verdict.json,verdict.md,crops/}`
+  (8 triptyques avant\|après\|diff) ; `ledger/texte-seo.json` (49 entrées, 49 `reportee`,
+  0 `non-portable`, `pages:ledger:check` exit 0 — Contactez-nous = 0 entrée car son
+  contenu EST le défaut du master, même convention que Présentation/Devis)
+- **Checkpoint** : `003/texte-seo/master`, `003/texte-seo/adoption` (versionId
+  `2379877246034590288`)
+
+**Texte SEO (T081-T082) fait.** `Texte SEO` brut ×8 (toutes maquettes sauf Accueil) → 0
+copie restante, 8 instances du master `Texte SEO` (`2108:3123`). Hauteur HUG variable
+(359→503px) préservée par construction, jamais bakée. 8/9 `diff` acceptés (bruit AA
+sub-pixel pur, `segMatch` byte-identique + test de décalage + crops), Accueil `identical`
+(contrôle). Non committé — revue visuelle Fable avant commit (handoff SAV/Coordonnées).
