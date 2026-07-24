@@ -920,6 +920,59 @@ le `layoutMode` de tout parent avant d'assumer qu'un `.x`/`.y` direct fonctionne
 - **Checkpoint** : `003/carousel-controls/master`, `003/carousel-controls/adoption`
 
 **Carousel-controls (T055-T056) fait.** `Controls` brut ×2 → 0 copie restante,
-premier résultat byte-exact de la spec. **Prochain : T057 (Master Footer-column)** —
-Review-card (T053-54) et Gallery-item (T065-66) restent différés pour implication
-directe de l'owner (blocs inférés/incertains).
+premier résultat byte-exact de la spec.
+
+## 2026-07-24 — validation-master + adoption complète (autonome) — Footer-column (T057-T058)
+
+- **Type** : validation-master puis adoption (27 occurrences, les 9 maquettes) —
+  exécuté en autonomie ("Go tu peux finir les molécules et me prévenir après"),
+  Review-card et Gallery-item restant explicitement exclus de cette autonomie.
+- **Composant(s)** : `Col N` (Col 2 Adresse / Col 3 Horaires / Col 4 Contact — Col 1
+  logo/bouton et Col 5 réseaux sociaux hors périmètre, tranché au scan T0)
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Footer-column** (`2079:2246`, pas
+  de variante). Propriétés `Titre`, `Texte` (TEXTE, largeur FIXED 310 — pas FILL,
+  voir piège ci-dessous). 27 occurrences adoptées (3 par page × 9 pages), contenu
+  identique sur les 9 pages (vérifié avant remplacement, pas supposé).
+
+### 3 pièges trouvés en comparant le pilote (`Contactez-nous`) avant/après
+
+1. **`FILL` vs `FIXED` change le point de wrap à largeur égale** — un texte réglé en
+   `layoutSizingHorizontal: FILL` et un texte en `FIXED`, tous deux mesurés à
+   exactement 310px de large, **ne cassent pas au même endroit**. Trouvé en
+   comparant les hauteurs réelles (Horaires : 54px reconstruit contre 127px source,
+   soit 2 lignes contre 3 attendues). Fix : toujours `FIXED` + `resize()` explicite
+   pour du texte à largeur contrainte, jamais `FILL` même quand la largeur finale
+   semble identique.
+2. **Sauts de ligne manuels invisibles à `JSON.stringify`** — deux colonnes/trois
+   ont un caractère **`U+2028`** (line separator) entre des mots, que
+   `JSON.stringify` affiche comme un espace ordinaire (ex. "vendredi␣␣de" ressemble
+   à un double-espace, c'est en réalité "vendredi" + espace + `U+2028` + "de").
+   Repéré uniquement en lisant `charCodeAt()` caractère par caractère. Pour
+   `Contact`, le vrai saut est **`\r` suivi de `U+2028`** — les deux ensemble, une
+   première correction avec `\r` seul n'a pas suffi (le wrap restait faux).
+3. **Soulignement partiel perdu par `setProperties()`** — même trap que le gras de
+   Carte : `Adresse` = souligné en entier, `Horaires` = pas de soulignement,
+   `Contact` = seuls le téléphone et l'email soulignés (pas les labels). Réappliqué
+   par plage exacte (`setRangeTextDecoration`) après chaque override de contenu.
+
+**Piège récurrent (Carousel-controls) anticipé, pas re-découvert** : `Col N` vit
+dans un `GROUP` « Row » avec Col 1/Col 5 en siblings — la technique lecture-tout/
+écriture-tout-en-une-passe a été appliquée **dès la construction du pilote**, avec
+succès immédiat (`maxErr: 0`, 1 passe, sur les 9 pages) — la leçon de la molécule
+précédente a évité de perdre du temps à re-découvrir le même problème.
+
+- **Preuve** : `proofs/footer-column/{verdict.json,verdict.md,crops/}` — pilote
+  `Contactez-nous` : résidu final 1524px/(1728×3901)=0,023% après les 3 corrections
+  (bruit habituel). 8 pages restantes : positions vérifiées convergées exactement
+  (`maxErr: 0`, pas juste proche), contenu vérifié identique aux 3 recettes avant
+  remplacement, spot-check visuel sur `Motorisation` (groupe `Footer` complet) —
+  pas de preuve pixel avant/après formelle sur ces 8, même limite documentée que
+  Carte/Product-card.
+- **Ledger** : `ledger/footer-column.json` (54 entrées : 27×Titre + 27×Texte, 54
+  `reportee`, 0 `non-portable`, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/footer-column/master`, `003/footer-column/adoption-pilot`,
+  `003/footer-column/adoption-batch`
+
+**Footer-column (T057-T058) fait.** `Col N` brut ×27 → 0 copie restante. **Prochain :
+T059 (Master Copyright)** — Review-card (T053-54) et Gallery-item (T065-66)
+restent différés pour implication directe de l'owner (blocs inférés/incertains).

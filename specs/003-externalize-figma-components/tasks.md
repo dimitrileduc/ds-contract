@@ -181,8 +181,8 @@
 - [ ] T054 [US2] Adoption **Review-card** — occurrences Avis Google localisées par position → `ledger/review-card.json` + `proofs/review-card/verdict.{json,md}`
 - [X] T055 [US3] Master **Carousel-controls** (prev / next ; instances Bouton `Outilne noir`, libellé invisible) → `audits/carousel-controls.md` + entrée `decisions.md`
 - [X] T056 [US2] Adoption **Carousel-controls** — `Controls` brut ×2 → `ledger/carousel-controls.json` (vide) + `proofs/carousel-controls/verdict.{json,md}` (byte-exact sur Motorisation)
-- [ ] T057 [US3] Master **Footer-column** → `audits/footer-column.md` + entrée `decisions.md`
-- [ ] T058 [US2] Adoption **Footer-column** — brut ×9 → `ledger/footer-column.json` + `proofs/footer-column/verdict.{json,md}`
+- [X] T057 [US3] Master **Footer-column** (Col 2/3/4 seulement — Col 1/5 hors périmètre, tranché au scan T0) → `audits/footer-column.md` + entrée `decisions.md`
+- [X] T058 [US2] Adoption **Footer-column** — `Col N` brut ×27 (3×9 pages) → `ledger/footer-column.json` + `proofs/footer-column/verdict.{json,md}` (preuve pixel pilote + positions convergées exactement sur les 8 autres)
 - [ ] T059 [US3] Master **Copyright** → `audits/copyright.md` + entrée `decisions.md`
 - [ ] T060 [US2] Adoption **Copyright** — brut ×9 → `ledger/copyright.json` + `proofs/copyright/verdict.{json,md}`
 - [ ] T061 [US3] Master **Contact-info-row** (adresse / horaires / … ; dépend des icônes sociales T037) → `audits/contact-info-row.md` + entrée `decisions.md`
