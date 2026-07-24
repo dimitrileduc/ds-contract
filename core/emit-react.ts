@@ -1177,12 +1177,20 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
   const rootDeclaresCursor =
     Boolean(root.declared?.['cursor']) || Boolean(root.declaredStates?.['disabled']?.['cursor']);
   if (contract.semantics.element === 'button' && !rootDeclaresCursor) rootDecls.push('cursor: pointer');
-  // v7 overlay / v9 shape placement: any out-of-flow part (an overlay, or a
-  // part whose stylesWhen carries position: absolute — the shape-placement
-  // spelling) positions against the root.
+  // v7 overlay / v9 shape placement: any out-of-flow part positions against the
+  // root, so the root must be the positioned containing block — an overlay part,
+  // a part whose stylesWhen carries position: absolute (the shape-placement
+  // spelling), OR a native checkable <input> which the emitter overlays
+  // absolutely to cover its presentational box (isNativeCheckablePart, ~L1512).
+  // Without the last case the invisible <input> escaped to the nearest
+  // positioned ancestor (often <body>) and covered the whole page, eating every
+  // click — the Checkbox "freeze" (an invisible full-page overlay, not a JS loop).
   if (
     walkAnatomy(contract).some(
-      (w) => w.part.overlay || (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute'),
+      (w) =>
+        w.part.overlay ||
+        (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute') ||
+        isNativeCheckablePart(w.part),
     )
   ) {
     rootDecls.push('position: relative');
