@@ -1507,6 +1507,56 @@ contenu restent ouvertes pour arbitrage owner futur : lien tiers `jonckers-clabo
 (owner : corriger plus tard) et couleur brute du texte courant du consentement (non
 tranchée).
 
+## 2026-07-24 — validation-master — FAQ (T083)
+
+- **Type** : validation-master
+- **Composant(s)** : faq
+- **Verdict owner** : décision d'architecture déjà tranchée en amont (relayée dans le
+  brief de délégation) — master **simple**, `Section-header + accordion + Bouton`,
+  matching 3/4 occurrences exactement (Portes d'entrée, Portes de garage industrielles,
+  Portes de garage résidentielles), **aucun slot onglets/tabs** dans le master.
+  Construction déléguée à un agent Sonnet autonome sur cette base, sans nouvelle
+  interruption owner (audit + construction alignés sur le brief pré-validé).
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **FAQ** (`2104:2914`, 1728×448,
+  cloné depuis Portes de garage industrielles), section `2104:2913`. Propriété
+  `Ligne 3` (BOOLÉEN, défaut `true`). 10 instances descendantes vérifiées une à une,
+  `remote: false` partout — zéro dépendance tierce.
+- **Raison** : les 3 occurrences « matching » sont déjà **100% instances** au niveau
+  molécule (Section-header T063-T064, Accordion-row T041-T042, Bouton — tous déjà
+  gouvernés) ; seul le wrapper `FAQ` lui-même restait brut. Contenu Section-header/
+  Bouton identique sur les 3 sites (aucune personnalisation à porter) ; seules les
+  paires question/réponse de l'accordion diffèrent par page (contenu réel, jamais un
+  placeholder) et leur nombre varie 2 ou 3 (jamais plus, mesuré sur les 3 sites).
+- **Piège Figma trouvé et documenté** (nouvelle famille, testée sur un composant
+  jetable avant tout geste réel) : retirer un enfant hérité du master sur une
+  **instance déjà placée** est refusé par l'API (`"Removing this node is not
+  allowed"`) — invalidant l'approche initiale « master à 3 lignes, retirer la 3e sur
+  les instances à 2 ». Résolu par une propriété **BOOLÉENNE officielle** (`Ligne 3`)
+  liée à la visibilité de la 3e ligne (même mécanisme déjà établi pour les icônes du
+  Bouton/le CTA de Product-card, appliqué ici à un enfant entier) — vérifié bout en
+  bout : `Ligne 3=false` fait recalculer la hauteur du wrapper (`HUG` vertical)
+  exactement à la hauteur des sites à 2 lignes (448→384px), `Ligne 3=true` restaure
+  448px. Utile pour toute section à venir avec un nombre de lignes/cartes variable.
+- **Cas Dépannage/SAV (composite `Hero et FAQ`)** : ses 3 pièces (Section-header,
+  accordion, Bouton) sont déjà des instances gouvernées, comme les 3 autres sites —
+  mais son wrapper ne correspond pas au gabarit simple (nesting supplémentaire pour
+  loger 4 instances **Tab** déjà gouvernées T043-T044 dans un frame `tabs` séparé,
+  gap différent 64 vs 48). Conformément au brief (« ne pas recomposer/fusionner les
+  Tab dans FAQ, pas de slot onglets »), **cette occurrence ne reçoit pas d'instance du
+  master** — rien de brut n'y serait gouverné de plus, et la chirurgie d'extraction
+  des Tab hors de leur wrapper porterait un risque de ricochet non justifié par un
+  gain nul. Capturée avant/après par prudence (avant-capture rule) pour prouver
+  qu'aucun ricochet n'affecte les Tab voisins, sans mutation prévue.
+- **Point de vigilance noté, pas tranché** : le Bouton source mesure 249px sur le
+  site cloné (Portes de garage industrielles) contre 250px sur les 3 autres sites,
+  même configuration — écart d'1px non investigué à ce stade (mesuré avant tout
+  geste, pas un effet de la construction). Si la preuve pixel de l'adoption le
+  révèle localisé sur le Bouton, investigation à ce moment, jamais accepté sur un
+  chiffre agrégé seul.
+- **Preuve** : `audits/faq.md` ; capture de session (structure + rendu conformes à
+  la source, cf. `figma_capture_screenshot` sur `2104:2914`)
+- **Checkpoint** : `003/faq/master` (versionId `2379861256398298823`)
+
 ## 2026-07-24 — anomalie-tranchee — texte courant du Consentement lié à `color/noir`
 
 - **Type** : anomalie-tranchee
@@ -1543,3 +1593,107 @@ tranchée).
 
 **Formulaire — dernière décision de contenu tranchée.** Seule anomalie encore
 ouverte : le lien `jonckers-clabots.be`, déjà acté « corriger plus tard ».
+
+## 2026-07-24 — validation-master — Coordonnées (molécule, T093)
+
+- **Type** : validation-master
+- **Composant(s)** : coordonnees
+- **Verdict owner** : n/a à ce stade — scoping du bloc fait en amont (audit live
+  confirmant la structure réelle, prémisse `tasks.md` invalidée), construction
+  déléguée à un agent Sonnet autonome avec brief complet (fichier/pont/pièges/
+  gabarits) ; validée par inspection directe (structure + capture + audit texte
+  exhaustif) avant adoption — cadence « extraction simple », FR-013.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Coordonnées** (`2104:2904`),
+  1728×597, construit par `clone()` **direct du nœud live** (`274:2869`) →
+  `figma.createComponentFromNode()` — zéro reconstruction manuelle, donc zéro
+  risque de mal-saisir les caractères invisibles trouvés à l'audit. 2 propriétés
+  TEXTE (`Accroche`, `Titre`) sur les 2 seuls textes à style **uniforme** ;
+  `Adresse`/`Horaires`/`Contact`/`Suivez-nous` restent du texte fixe (décision
+  motivée dans `audits/coordonnees.md` — 2 des 3 valeurs portent des caractères
+  invisibles réels, éviter le chemin `componentPropertyReferences` qui les met en
+  risque, cf. l'incident Formulaire ci-dessus). Icônes `Suivez-nous` : 2 vecteurs
+  bruts (`Group 7`/`Group 6` — confirmés être les **sources exactes** déjà
+  clonées pour bâtir les masters T037) remplacés par des instances `Facebook`
+  (`2053:1259`) et `Instagram` (`2053:1261`), tailles identiques au pixel
+  (32×31.857 / 32×32), aucun `resize()` nécessaire. `google-map` référencé tel
+  quel (image statique, zéro dépendance tierce, confirmé indépendamment de
+  l'audit reçu). Post-binding : `accrocheSegCount`/`titreSegCount` = 1 chacun —
+  confirme qu'aucun style mixte n'a été aplati par le binding des propriétés.
+- **Raison** : n/a (construction directe) ; **prémisse de `tasks.md` invalidée
+  à l'audit, comme Contact-info-row (T061)** — la tâche annonçait « exige
+  Contact-info-row (Avantage) T062 adopté + icônes sociales », mais la structure
+  réelle est une liste simple à 5 blocs (`Titres`/`Adresse`/`Horaires`/`Contact`/
+  `Suivez-nous`), aucune trace d'Avantage. **2 caractères invisibles trouvés**
+  (au-delà du `\r` déjà signalé en amont) : `U+2028` seul entre « 7, » et
+  « 4860 » sur `Adresse` (non anticipé) ; `\r`+`U+2028` (les deux, jamais un
+  seul) entre « 66 » et « Email » sur `Contact` — **signature identique** au
+  piège déjà documenté sur `Col 4 Contact` de Footer-column, même contenu
+  dupliqué entre Footer et Coordonnées.
+- **Preuve** : `audits/coordonnees.md` ; capture de session (composant conforme
+  à la source)
+- **Checkpoint** : `003/coordonnees/master` (versionId `2379858155942388205`)
+
+## 2026-07-24 — ecart-pixel-accepte — Coordonnées (adoption, T094)
+
+- **Type** : ecart-pixel-accepte
+- **Composant(s)** : coordonnees
+- **Verdict owner** : accepté par l'agent d'exécution après investigation
+  complète en 4 temps (jamais un chiffre agrégé pris pour argent comptant) —
+  audit texte exhaustif post-adoption confirmant une correspondance à 100 %,
+  propriété par propriété, entre le live avant remplacement et l'instance
+  finale.
+- **Chiffres** : **1/1 `diff`** (seule maquette concernée : `Contactez-nous`),
+  `diffCount=816`, `diffBox={x:1209, y:1674, w:431, h:396}`, soit **0,0121 %**
+  de la page (1728×3901 = 6 742 128 px) — dans la fourchette déjà acceptée
+  cette session (0,0055 %–0,09 %), proche du bas. `before`/`after` : dimensions
+  strictement égales (1728×3901 ×2). Ledger : `ledger/coordonnees.json` —
+  **vide explicite** (`entrees: []`, `pages:ledger:check` exit 0) : l'unique
+  instance porte, par construction du master (cloné depuis cette occurrence
+  précise), le contenu exact de la source — rien à reporter, même logique que
+  Carousel-controls/Formulaire.
+- **Raison — investigation en 4 temps avant acceptation, détaillée** :
+  1. **Crops avant/après/diff zoomés ×2 à ×5** sur toute la `diffBox` et sur
+     les 2 lignes les plus chargées (`Adresse` L1, `Contact` L1+L2) : aucune
+     différence perceptible à l'œil entre avant et après.
+  2. **Test de corrélation par décalage** (±1/±2 px horizontal et vertical) sur
+     la ligne la plus chargée (`Adresse` L1, 449px de diff à décalage nul) : le
+     `diffCount` minimal reste à l'offset (0,0)/(-1,0) et ne s'effondre à aucun
+     décalage testé — écarte l'hypothèse d'un simple décalage de pixel entier
+     (qui aurait dû faire chuter le diff près de zéro à un offset précis).
+  3. **Échantillonnage RGB direct** des pixels à écart significatif
+     (magnitude > 30 sur 857 pixels) : bascules franches texte↔fond (ex.
+     `[38,40,44]` noir-bleute ↔ `[244,246,250]` fond, jamais un dégradé
+     intermédiaire), concentrées sur les bords de glyphes — signature d'un
+     ré-hinting sub-pixel d'un nœud texte neuf face à l'original, pas d'une
+     perte de contenu ou de style (qui produirait un bloc structurel manquant,
+     pas des bascules ponctuelles réparties).
+  4. **Audit texte exhaustif re-mesuré sur l'instance finale** (post-adoption,
+     8 textes) et comparé champ par champ à l'audit pré-construction : police,
+     taille, casse, décoration, `lineHeight`, `letterSpacing`,
+     `paragraphSpacing`, couleur (`boundVariables`), et **`charCodeAt`
+     caractère par caractère** — correspondance exacte partout, y compris les
+     2 caractères invisibles (`U+2028` sur `Adresse` à l'index 19, `\r`+`U+2028`
+     sur `Contact` aux index 24-25) et les 4 plages de style de `Contact`
+     (plate/soulignée/plate/soulignée) — **zéro perte détectée**.
+  Le diff est réparti à un niveau faible sur presque chaque ligne de texte
+  (0 à 449 px par ligne selon une mesure ligne-par-ligne), y compris des
+  lignes **non soulignées** (`Titre`=1px, `Horaires` label=61px) — écarte
+  l'hypothèse d'un bug spécifique au soulignement malgré sa présence sur les 2
+  lignes les plus touchées. Cohérent avec le bruit de rendu sub-pixel déjà
+  nommé pour 6+ molécules cette spec (Devis, Accordion-row, Carte,
+  Footer-column, Copyright, Section-header, Formulaire), jamais une nouvelle
+  classe de bug. Le remplacement des icônes (`Group 7`/`Group 6` → instances
+  `Facebook`/`Instagram`) tombe **hors de la `diffBox`** (`diffBox` s'arrête à
+  y=2070 ; `Suivez-nous` commence à y≈2090) : **zéro diff mesurable** sur cette
+  partie de l'adoption — remplacement byte-parfait, confirmé par la mesure.
+- **Preuve** : `proofs/coordonnees/{verdict.json,verdict.md,crops/Contactez-nous.png}` ;
+  `ledger/coordonnees.json` (vide explicite)
+- **Checkpoint** : `003/coordonnees/adoption` (versionId `2379861200541938732`)
+
+**Coordonnées (T093-T094) fait.** `Coordonnées` (FRAME) brut ×1
+(Contactez-nous) → 0 copie restante, 1 instance du master `Coordonnées`
+(`2105:2968`), bbox strictement inchangée (auto-layout `VERTICAL` du parent,
+aucune coordonnée manuelle). Parent du bloc source confirmé être une `FRAME`
+(pas un `GROUP`) — adoption sans le risque d'origine-instable déjà rencontré
+sur d'autres blocs. Prochain bloc de la Phase 8 à scoper par l'owner/l'agent
+principal.
