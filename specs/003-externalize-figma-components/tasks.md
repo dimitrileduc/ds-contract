@@ -185,8 +185,8 @@
 - [X] T058 [US2] Adoption **Footer-column** — `Col N` brut ×27 (3×9 pages) → `ledger/footer-column.json` + `proofs/footer-column/verdict.{json,md}` (preuve pixel pilote + positions convergées exactement sur les 8 autres)
 - [X] T059 [US3] Master **Copyright** → `audits/copyright.md` + entrée `decisions.md`
 - [X] T060 [US2] Adoption **Copyright** — brut ×9 → `ledger/copyright.json` + `proofs/copyright/verdict.{json,md}`
-- [ ] T061 [US3] Master **Contact-info-row** (adresse / horaires / … ; dépend des icônes sociales T037) → `audits/contact-info-row.md` + entrée `decisions.md`
-- [ ] T062 [US2] Adoption **Contact-info-row** — brut ×4 → `ledger/contact-info-row.json` + `proofs/contact-info-row/verdict.{json,md}`
+- [X] T061 [US3] Master **Contact-info-row** — nommé `Avantage` à la construction : le contenu réel est un argument de vente (icône marque `piqueray` + titre + texte gras multi-segments), pas des coordonnées ; ne dépend PAS des icônes sociales T037 (supposition de l'inventaire invalidée à l'audit, le compte ×4 sur `features`/Contactez-nous restait exact) → `audits/contact-info-row.md` + entrée `decisions.md`
+- [X] T062 [US2] Adoption **Contact-info-row** (`Avantage`) — brut ×4 → `ledger/contact-info-row.json` + `proofs/contact-info-row/verdict.{json,md}` (preuve pixel complète 4/4)
 - [ ] T063 [US3] Master **Section-header** (surtitre + titre + CTA ; instance Bouton) → `audits/section-header.md` + entrée `decisions.md`
 - [ ] T064 [US2] Adoption **Section-header** — `Titres` brut ×9 → `ledger/section-header.json` + `proofs/section-header/verdict.{json,md}`
 - [ ] T065 [US3] Master **Gallery-item** (bloc **inféré**, attendu dans Réalisations) → validation owner **par composant** ; si non localisé au scan → entrée `report-bloc` + `introuvables[]`, l'adoption T066 est alors annulée explicitement → `audits/gallery-item.md`
@@ -278,7 +278,7 @@
 - T067 (Master Accordion) **exige** T042 (Accordion-row adopté-prouvé) — invariant 1 du data-model
 - T053/T054 (Review-card) **exigent** T038 (icône étoile)
 - T039/T040 (Field) **exigent** T032–T034 (Input / Textarea / Select)
-- T061/T062 (Contact-info-row) **exigent** T037 (icônes sociales)
+- ~~T061/T062 (Contact-info-row) exigent T037 (icônes sociales)~~ — invalidé à l'audit T061 : le bloc réel (`features`/Contactez-nous) utilise l'icône marque `piqueray`, aucune icône sociale ; renommé `Avantage`, zéro dépendance
 - T075 (Hero) → T064 ; T081 (Texte SEO) → T068 ; T083 (FAQ) → T044 + T068 ; T091 (Formulaire) → T040 + T035
 - T097 (Hero et catégories) → T076 + T080 ; T099 (Footer + Devis) → T058 + T060
 - T095/T096 (Réalisations) → T066 ; si gallery-item est reporté en T065, la section est reportée **avec sa raison**

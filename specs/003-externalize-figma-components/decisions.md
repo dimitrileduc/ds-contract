@@ -1001,6 +1001,41 @@ précédente a évité de perdre du temps à re-découvrir le même problème.
 - **Checkpoint** : `003/copyright/master`, `003/copyright/adoption-pilot`,
   `003/copyright/adoption-batch`
 
-**Copyright (T059-T060) fait.** `Copyright` brut ×9 → 0 copie restante. **Prochain :
-T061 (Master Contact-info-row)** — Review-card (T053-54) et Gallery-item (T065-66)
-restent différés pour implication directe de l'owner (blocs inférés/incertains).
+**Copyright (T059-T060) fait.** `Copyright` brut ×9 → 0 copie restante.
+
+## 2026-07-24 — validation-master + adoption complète (autonome) — Contact-info-row (T061-T062)
+
+- **Type** : validation-master puis adoption (4 occurrences, 1 maquette)
+- **Composant(s)** : `features` (bloc `Contactez-nous`, `Frame 6/7/8/9`)
+- **Découverte — le nom de tâche est trompeur** : malgré « Contact-info-row »,
+  le contenu réel n'est pas des coordonnées (ça, c'est Footer-column) mais un
+  **argument de vente** (icône marque + titre + texte), même famille que
+  Réassurance-item : « Conseils personnalisés / Devis gratuits... », « Produits de
+  qualité / Marque Hormann... », etc. Le **compte** de l'inventaire (×4, bloc
+  `features` sur Contactez-nous) restait exact — seule la nature du contenu supposée
+  était fausse. Master nommé **`Avantage`** en conséquence. La dépendance supposée
+  aux icônes sociales (T037) était également fausse : l'icône utilisée est la marque
+  `piqueray` (set `Icones`), répétée à l'identique sur les 4 — zéro dépendance
+  réelle, `tasks.md` corrigé en conséquence.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Avantage** (`2088:2350`, pas de
+  variante). Propriétés `Titre`, `Texte` (TEXTE). 4 occurrences adoptées.
+- **Piège trouvé** : l'icône `piqueray` a une taille native **32×32** — toutes les
+  occurrences source l'utilisent à **64×64** (resize manuel côté design). Une
+  instance fraîche (`createInstance()`) reprend la taille native par défaut, jamais
+  la taille d'usage réel — toujours vérifier/mesurer la taille effective d'une
+  instance existante avant de considérer une instance neuve "prête à l'emploi".
+- **Texte riche — gras multi-segments, pattern différent par occurrence** (pas une
+  règle générale comme "1re phrase en gras") : 3 segments dispersés sur la 1re
+  occurrence, 1 seul mot sur la 2e, fin de phrase sur la 3e, milieu de phrase sur
+  la 4e. Capturé et réappliqué par plage exacte, occurrence par occurrence.
+- **Preuve** : `proofs/contact-info-row/{verdict.json,verdict.md,crops/}` — preuve
+  pixel **complète sur les 4/4** (seule maquette concernée) : résidu
+  4014px/(1728×3901)=0,059%, bruit habituel, vérifié au crop (icônes, titres, gras
+  multi-segments tous visuellement identiques).
+- **Ledger** : `ledger/contact-info-row.json` (8 entrées, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/contact-info-row/master`, `003/contact-info-row/adoption`
+
+**Contact-info-row (T061-T062) fait** (master réel : `Avantage`). `Frame 6-9` brut
+×4 → 0 copie restante. **Prochain : T063 (Master Section-header)** — Review-card
+(T053-54) et Gallery-item (T065-66) restent différés pour implication directe de
+l'owner (blocs inférés/incertains).
