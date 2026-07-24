@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v1.4.0",
+    "description": "Button — generated from contract ds.button v1.5.0",
     "isSet": true,
     "boolProps": [
       {

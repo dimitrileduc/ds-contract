@@ -336,6 +336,98 @@ const cases: Case[] = [
     },
   },
   {
+    // v17 category (spec 004): an unknown category value is refused BY NAME —
+    // the Zod enum names the field at the schema layer, and the generator
+    // fails loudly (never silently generates a mis-categorized surface).
+    // Fixture → eval → claim: proven BEFORE any doc/surface relies on category.
+    id: 'refuse-unknown-category',
+    claim: 'C2-refusal',
+    run: () => {
+      let named = false;
+      try {
+        ContractSchema.parse({
+          id: 'ds.categoryfixture', name: 'CategoryFixture', version: '1.0.0',
+          category: 'atome', // out of enum ('atom' | 'molecule' | 'section')
+          description: 'Eval fixture: v17 category refusal.',
+          semantics: { element: 'div' }, props: [],
+          anatomy: { root: { tokens: {} } },
+          anchors: {
+            figma: { fileKey: null, componentSetKey: null },
+            code: { importPath: 'src/components/CategoryFixture', export: 'CategoryFixture' },
+          },
+        });
+      } catch (e) {
+        named = /category/.test(String(e));
+      }
+      if (!named) throw new Error('Unknown category not refused by name at the schema layer');
+      // Build layer: mutating a real contract to a bad category fails the build.
+      editJson(CONTRACT, (c) => { c.category = 'atome'; });
+      if (generate().status === 0) throw new Error('Generator accepted an unknown category value');
+    },
+  },
+  {
+    // v17 category tolerance (spec 004, FR-013): a contract WITHOUT a category
+    // stays valid (category is additive-optional) and its story falls back to
+    // the `Components/` group — the pre-004 behavior, preserved. Backward
+    // compatibility proven as a first-class check, not assumed.
+    id: 'tolerate-contract-without-category',
+    claim: 'C1-determinism',
+    run: () => {
+      const fixture = {
+        id: 'ds.categoryfixture', name: 'CategoryFixture', version: '1.0.0',
+        description: 'Eval fixture: v17 category tolerance.',
+        semantics: { element: 'div' }, props: [],
+        anatomy: { root: { tokens: {} } },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/CategoryFixture', export: 'CategoryFixture' },
+        },
+      };
+      const parsed = ContractSchema.parse(fixture);
+      if (parsed.category !== undefined) throw new Error('absent category must stay undefined (no default)');
+      const { stories } = coreEmitReact(parsed, { tokens: new Set(), icons: new Map(), contracts: new Map() });
+      if (!stories.includes("title: 'Components/CategoryFixture'")) {
+        throw new Error(`no-category contract did not fall back to the Components/ group:\n${stories.slice(0, 400)}`);
+      }
+    },
+  },
+  {
+    // v17 category grouping (spec 004, FR-012/015, SC-002/005): a categorized
+    // contract drives BOTH generated surfaces from the single source —
+    // (1) the Storybook story title is grouped under the category's label, and
+    // (2) the catalog entry carries `category`. Fixture → eval → claim, proven
+    // BEFORE any surface doc relies on the grouping.
+    id: 'category-groups-story-and-catalog',
+    claim: 'C6-theming',
+    run: () => {
+      // (1) Story title mirrors the category via the single label source.
+      const atom = ContractSchema.parse({
+        id: 'ds.categoryfixture', name: 'CategoryFixture', version: '1.0.0', category: 'atom',
+        description: 'Eval fixture: v17 category grouping.',
+        semantics: { element: 'div' }, props: [],
+        anatomy: { root: { tokens: {} } },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/CategoryFixture', export: 'CategoryFixture' },
+        },
+      });
+      const { stories } = coreEmitReact(atom, { tokens: new Set(), icons: new Map(), contracts: new Map() });
+      if (!stories.includes("title: 'Atoms/CategoryFixture'")) {
+        throw new Error(`atom contract did not emit the Atoms/ story group:\n${stories.slice(0, 400)}`);
+      }
+      // (2) The real catalog generator surfaces `category` for a categorized
+      //     contract — Button carries category: "atom".
+      const r = run(TSX, ['scripts/generate-catalog.ts']);
+      if (r.status !== 0) throw new Error(`catalog generation failed:\n${r.out.slice(0, 600)}`);
+      const cat = JSON.parse(readFileSync(path.join(SCRATCH, 'catalog', 'catalog.json'), 'utf8'));
+      const btn = cat.components.find((c: { id: string; category?: string }) => c.id === 'ds.button');
+      if (!btn) throw new Error('Button missing from the generated catalog');
+      if (btn.category !== 'atom') {
+        throw new Error(`catalog dropped the Button category: got ${JSON.stringify(btn.category)}`);
+      }
+    },
+  },
+  {
     id: 'deterministic-regeneration',
     claim: 'C1-determinism',
     run: () => {

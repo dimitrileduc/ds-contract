@@ -27,10 +27,10 @@ d'extraction, les décisions (D1–D12) et les FR/SC sont cités pour la traçab
 
 **But** : rendre le worktree exécutable et amorcer les preuves d'itération. Aucune lecture Figma ici.
 
-- [ ] T001 [P] `npm install` **dans ce worktree** (`/Users/dlstudio/.superset/worktrees/ds-contracts-poc/004`) — sinon `npm run eval` refuse (symlink `ROOT/node_modules`, D11) ; confirmer `FIGMA_TOKEN` (lecture seule suffit) présent dans l'environnement.
-- [ ] T002 [P] `npx playwright install chromium` — requis par les 2 checks visuels (instrument existant, D9).
-- [ ] T003 [P] Créer l'arborescence de preuves : `specs/004-input-atoms-categories/proofs/read-only/` (dossier) + squelette `specs/004-input-atoms-categories/proofs/audits-003.md` (à remplir en T008).
-- [ ] T004 Relever l'état « avant » VERT et le compte d'évals de départ : `npm run build` puis `npm run eval` **sur le checkout principal** (`~/.superset/projects/ds-contracts-poc`, sur `main` = l'état « avant » exact, `node_modules` déjà en place) ; noter le `N/N` vivant affiché (sert au re-sync des compteurs, T042). Aucune modification — mesure seulement.
+- [X] T001 [P] `npm install` **dans ce worktree** (`/Users/dlstudio/.superset/worktrees/ds-contracts-poc/004`) — sinon `npm run eval` refuse (symlink `ROOT/node_modules`, D11) ; confirmer `FIGMA_TOKEN` (lecture seule suffit) présent dans l'environnement.
+- [X] T002 [P] `npx playwright install chromium` — requis par les 2 checks visuels (instrument existant, D9).
+- [X] T003 [P] Créer l'arborescence de preuves : `specs/004-input-atoms-categories/proofs/read-only/` (dossier) + squelette `specs/004-input-atoms-categories/proofs/audits-003.md` (à remplir en T008).
+- [X] T004 Relever l'état « avant » VERT et le compte d'évals de départ : `npm run build` puis `npm run eval` **sur le checkout principal** (`~/.superset/projects/ds-contracts-poc`, sur `main` = l'état « avant » exact, `node_modules` déjà en place) ; noter le `N/N` vivant affiché (sert au re-sync des compteurs, T042). Aucune modification — mesure seulement.
 
 ---
 
@@ -40,10 +40,10 @@ d'extraction, les décisions (D1–D12) et les FR/SC sont cités pour la traçab
 et US3 (surfaces).** Aucune lecture Figma (pur code + fichiers 003 lus via git). ⚠️ À terminer
 avant toute phase de user story.
 
-- [ ] T005 Schéma : ajouter `category: z.enum(['atom','molecule','section']).optional()` (voisin de `status`) + export `CATEGORY_LABELS = { atom:'Atoms', molecule:'Molecules', section:'Sections' }` dans `packages/schema/src/contract-schema.ts` — **additif-optionnel, zéro repurposing** (Constitution VI, D3) ; bumper `docs/02-contract-spec.md` avec le champ.
-- [ ] T006 Éval **C2** (refus par nom) : `category: "atome"` (ou toute valeur hors enum) → erreur Zod nommée au build, dans `evals/run.ts` (+ fixture). Fixture → eval → claim, AVANT toute mention doc de la catégorie.
-- [ ] T007 Éval **tolérance** (FR-013) : un contrat SANS `category` build OK et retombe sur le groupe `Components/` — cas ajouté à `evals/run.ts` (+ fixture). (Séquentiel après T006 : même fichier d'évals.)
-- [ ] T008 Remplir `specs/004-input-atoms-categories/proofs/audits-003.md` : pointeurs (branche `003-…` + chemins, JAMAIS recopiés) vers `specs/003-…/audits/atomes-formulaire.md` (003-T031) + validations owner 003-T032–T035 (Input `2053:1245`, Textarea `2053:1247`, Select `2053:1249`, Checkbox `2053:1256`) et `atomes-icones.md` (003-T036) + 003-T037–T038 (Facebook `2053:1259`, Instagram `2053:1261`, Étoile `2053:1263`). **Un atome sans pointeur d'audit validé n'est pas contractualisé** (FR-005/006).
+- [X] T005 Schéma : ajouter `category: z.enum(['atom','molecule','section']).optional()` (voisin de `status`) + export `CATEGORY_LABELS = { atom:'Atoms', molecule:'Molecules', section:'Sections' }` dans `packages/schema/src/contract-schema.ts` — **additif-optionnel, zéro repurposing** (Constitution VI, D3) ; bumper `docs/02-contract-spec.md` avec le champ.
+- [X] T006 Éval **C2** (refus par nom) : `category: "atome"` (ou toute valeur hors enum) → erreur Zod nommée au build, dans `evals/run.ts` (+ fixture). Fixture → eval → claim, AVANT toute mention doc de la catégorie.
+- [X] T007 Éval **tolérance** (FR-013) : un contrat SANS `category` build OK et retombe sur le groupe `Components/` — cas ajouté à `evals/run.ts` (+ fixture). (Séquentiel après T006 : même fichier d'évals.)
+- [X] T008 Remplir `specs/004-input-atoms-categories/proofs/audits-003.md` : pointeurs (branche `003-…` + chemins, JAMAIS recopiés) vers `specs/003-…/audits/atomes-formulaire.md` (003-T031) + validations owner 003-T032–T035 (Input `2053:1245`, Textarea `2053:1247`, Select `2053:1249`, Checkbox `2053:1256`) et `atomes-icones.md` (003-T036) + 003-T037–T038 (Facebook `2053:1259`, Instagram `2053:1261`, Étoile `2053:1263`). **Un atome sans pointeur d'audit validé n'est pas contractualisé** (FR-005/006).
 
 **Checkpoint** : schéma porte `category` (refus + tolérance éval-couverts), audits 003 confirmés → US1/US3 débloqués.
 
@@ -114,12 +114,12 @@ STRUCTUREL des pages DS Figma (Atomes/Molécules/Sections), libellés anglais vi
 groupe résiduel incohérent, aucun orphelin sous un groupe « à plat » par défaut. **Testable sur le
 Button seul** (le mécanisme se démontre même sans les atomes).
 
-- [ ] T025 [US3] `core/emit-react.ts` (generateStories) : `title: '${CATEGORY_LABELS[category] ?? 'Components'}/${name}'` — fallback tolérant `Components/` conservé (D3, category.interface §2). Fonction pure string-out (Constitution VII).
-- [ ] T026 [US3] `scripts/generate-catalog.ts` : ajouter `category` (présent seulement si porté) au monolithe + shards + `index.json` ; `npm run verify:catalog` reste vert.
-- [ ] T027 [US3] Contract Hub : `dashboard/src/data.ts` (`RawContract.category?`) + `dashboard/src/views/ComponentsList.tsx` — sections ordonnées `Atoms → Molecules → Sections` (libellés via `CATEGORY_LABELS`) ; les sans-catégorie sous un **groupe résiduel rendu seulement s'il est non vide** (un composant sans catégorie n'est jamais caché ; un groupe vide ne se rend pas — SC-002 net) — absent cette itération (usage exhaustif).
-- [ ] T028 [US3] `contracts/button.contract.json` : `+ category: "atom"` (FR-015), **sans aucune modification du master Figma** → bump **v1.4.0 → v1.5.0** (minor). Note : v1.5.0 **accrète** l'élargissement d'enum de US4 (T034) sous la même release non publiée (D4, un seul bump pour les deux ajouts additifs).
-- [ ] T029 [US3] Éval **C6** (fixture → eval → claim) : un contrat `category: 'atom'` produit `title: 'Atoms/<Name>'` + `category` au catalog (`evals/run.ts`).
-- [ ] T030 [US3] Re-pin golden revu : `npm run golden:update` (titres de stories regroupés + `category` au catalog) — `evals/golden.json`.
+- [X] T025 [US3] `core/emit-react.ts` (generateStories) : `title: '${CATEGORY_LABELS[category] ?? 'Components'}/${name}'` — fallback tolérant `Components/` conservé (D3, category.interface §2). Fonction pure string-out (Constitution VII).
+- [X] T026 [US3] `scripts/generate-catalog.ts` : ajouter `category` (présent seulement si porté) au monolithe + shards + `index.json` ; `npm run verify:catalog` reste vert.
+- [X] T027 [US3] Contract Hub : `dashboard/src/data.ts` (`RawContract.category?`) + `dashboard/src/views/ComponentsList.tsx` — sections ordonnées `Atoms → Molecules → Sections` (libellés via `CATEGORY_LABELS`) ; les sans-catégorie sous un **groupe résiduel rendu seulement s'il est non vide** (un composant sans catégorie n'est jamais caché ; un groupe vide ne se rend pas — SC-002 net) — absent cette itération (usage exhaustif).
+- [X] T028 [US3] `contracts/button.contract.json` : `+ category: "atom"` (FR-015), **sans aucune modification du master Figma** → bump **v1.4.0 → v1.5.0** (minor). Note : v1.5.0 **accrète** l'élargissement d'enum de US4 (T034) sous la même release non publiée (D4, un seul bump pour les deux ajouts additifs).
+- [X] T029 [US3] Éval **C6** (fixture → eval → claim) : un contrat `category: 'atom'` produit `title: 'Atoms/<Name>'` + `category` au catalog (`evals/run.ts`).
+- [X] T030 [US3] Re-pin golden revu : `npm run golden:update` (titres de stories regroupés + `category` au catalog) — `evals/golden.json`.
 - [ ] T031 [US3] **Checkpoint US3** (SC-002/005) : `npm run storybook` → 5 composants sous **Atoms**, zéro groupe à plat résiduel ; `npm run dashboard` → groupé par catégorie ; Button porte `atom` sans édition de master ; aucun composant existant sans catégorie.
 
 ---

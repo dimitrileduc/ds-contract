@@ -27,6 +27,7 @@ import {
   statePreviewSubstProps,
   tokensByPropEntries,
   walkAnatomy,
+  CATEGORY_LABELS,
   type Contract,
   type Part,
   type Prop,
@@ -2248,6 +2249,10 @@ ${prelude.length > 0 ? prelude.join('\n') + '\n' : ''}  const classes = [${class
 
 export function generateStories(contract: Contract, byId: Map<string, Contract>): string {
   const name = contract.name;
+  // v17 (spec 004): the Storybook group mirrors the contract's category via the
+  // single label source; a contract without one keeps the pre-004 'Components/'
+  // group (tolerant fallback, FR-013).
+  const group = contract.category ? CATEGORY_LABELS[contract.category] : 'Components';
   const enums = enumProps(contract);
   const bools = boolProps(contract);
   const slots = namedSlots(contract);
@@ -2477,7 +2482,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 ${sampleImports}${sampleImports ? '\n' : ''}import { ${name} } from './${name}';
 
 const meta = {
-  title: 'Components/${name}',
+  title: '${group}/${name}',
   component: ${name},
   tags: ['autodocs'],
   parameters: {
