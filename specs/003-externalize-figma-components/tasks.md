@@ -183,8 +183,8 @@
 - [X] T056 [US2] Adoption **Carousel-controls** — `Controls` brut ×2 → `ledger/carousel-controls.json` (vide) + `proofs/carousel-controls/verdict.{json,md}` (byte-exact sur Motorisation)
 - [X] T057 [US3] Master **Footer-column** (Col 2/3/4 seulement — Col 1/5 hors périmètre, tranché au scan T0) → `audits/footer-column.md` + entrée `decisions.md`
 - [X] T058 [US2] Adoption **Footer-column** — `Col N` brut ×27 (3×9 pages) → `ledger/footer-column.json` + `proofs/footer-column/verdict.{json,md}` (preuve pixel pilote + positions convergées exactement sur les 8 autres)
-- [ ] T059 [US3] Master **Copyright** → `audits/copyright.md` + entrée `decisions.md`
-- [ ] T060 [US2] Adoption **Copyright** — brut ×9 → `ledger/copyright.json` + `proofs/copyright/verdict.{json,md}`
+- [X] T059 [US3] Master **Copyright** → `audits/copyright.md` + entrée `decisions.md`
+- [X] T060 [US2] Adoption **Copyright** — brut ×9 → `ledger/copyright.json` + `proofs/copyright/verdict.{json,md}`
 - [ ] T061 [US3] Master **Contact-info-row** (adresse / horaires / … ; dépend des icônes sociales T037) → `audits/contact-info-row.md` + entrée `decisions.md`
 - [ ] T062 [US2] Adoption **Contact-info-row** — brut ×4 → `ledger/contact-info-row.json` + `proofs/contact-info-row/verdict.{json,md}`
 - [ ] T063 [US3] Master **Section-header** (surtitre + titre + CTA ; instance Bouton) → `audits/section-header.md` + entrée `decisions.md`

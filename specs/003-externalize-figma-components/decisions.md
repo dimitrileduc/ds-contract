@@ -973,6 +973,34 @@ précédente a évité de perdre du temps à re-découvrir le même problème.
 - **Checkpoint** : `003/footer-column/master`, `003/footer-column/adoption-pilot`,
   `003/footer-column/adoption-batch`
 
-**Footer-column (T057-T058) fait.** `Col N` brut ×27 → 0 copie restante. **Prochain :
-T059 (Master Copyright)** — Review-card (T053-54) et Gallery-item (T065-66)
+**Footer-column (T057-T058) fait.** `Col N` brut ×27 → 0 copie restante.
+
+## 2026-07-24 — validation-master + adoption complète (autonome) — Copyright (T059-T060)
+
+- **Type** : validation-master puis adoption (9 occurrences, les 9 maquettes)
+- **Composant(s)** : `Copyright` (sibling de `Row`/Footer-column dans `Footer`)
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **Copyright** (`2086:2330`, pas de
+  variante). Propriété `Texte` (TEXTE). 9 occurrences adoptées, contenu identique
+  sur les 9 pages.
+- **Recherche legacy** : aucun bon précédent dans les 51 contrats — l'agent l'a dit
+  franchement plutôt que d'étirer une analogie (`breadcrumb-item` le plus proche,
+  non pertinent). Confirmé à l'audit : molécule plus simple que prévu, une seule
+  chaîne plate, pas de liens réellement interactifs.
+- **Détail trouvé par lecture caractère par caractère** (leçon Footer-column
+  appliquée immédiatement) : espace **insécable `U+00A0`** entre « © » et « 2025 »,
+  pas un espace ordinaire.
+- **Piège GROUP anticipé, pas re-découvert** : `Copyright` est sibling de
+  `Background`/`Separator`/`Row` dans le `GROUP` « Footer » — technique
+  lecture-tout/écriture-tout appliquée dès le pilote, `maxErr: 0` en 1 passe sur
+  les 9 pages.
+- **Preuve** : `proofs/copyright/{verdict.json,verdict.md,crops/}` — pilote
+  `Motorisation` : résidu 1680px/(1728×3334)=0,029%, bruit habituel. 8 pages
+  restantes : positions convergées exactement, contenu vérifié identique — pas de
+  preuve pixel avant/après formelle sur ces 8, même limite documentée.
+- **Ledger** : `ledger/copyright.json` (9 entrées, `pages:ledger:check` exit 0)
+- **Checkpoint** : `003/copyright/master`, `003/copyright/adoption-pilot`,
+  `003/copyright/adoption-batch`
+
+**Copyright (T059-T060) fait.** `Copyright` brut ×9 → 0 copie restante. **Prochain :
+T061 (Master Contact-info-row)** — Review-card (T053-54) et Gallery-item (T065-66)
 restent différés pour implication directe de l'owner (blocs inférés/incertains).
