@@ -888,6 +888,28 @@ external file hit a real Figma image-rate-limit), and the Contract Hub binding
 map fixed to match the set by key (Button↔Bouton) so the icon governance shows
 verified per-glyph.
 
+## 2026-07-24 — Spec 004: the input atoms, native controls, and a category, closed
+
+The four form atoms become governed. **Input, Textarea, Select, Checkbox** are
+extracted from the owner-validated 003 masters (read-only REST dumps → propose →
+reviewed & adopted), generated to code **and** canvas at the Button's level of
+proof, and — the load-bearing part — **accessible native controls**: real
+`<input>` / `<textarea>` / `<select>` / `<input type=checkbox>`, not styled divs.
+That took extending the generator for **native form controls at the root** (the
+demo only ever nested them inside molecules): a void/native-text root self-closes
+and carries its value through `defaultValue`; a native checkable wires
+`defaultChecked` from its VARIANT even with no declared event; a `<select>`'s
+value is wrapped in an `<option>`. A **`category`** schema field (atom/molecule/
+section, additive-optional) groups all three generated surfaces from one label
+source. The icon registry reaches **16** (facebook/instagram/star; star stays
+orange, D6) and `check.svg` enters as an **internal glyph** parity learns to tell
+from an orphan. The whole iteration is **read-only on the live Figma file** —
+proven by a `/versions` before/after with full attribution: 25 new versions, all
+spec 003's, **zero** spec 004's. A lesson banked in the process: `img.ts`'s visual
+instrument deliberately never resamples, so a fluid atom's size delta against a
+fixed-frame master is a REAL mismatch — the fluid atoms are (rightly) not pixel
+subjects; only the fixed Checkbox is. Suite **108/108**, 8/8 gates green.
+
 ---
 
 **Standing scoreboard** (updated with each milestone):
