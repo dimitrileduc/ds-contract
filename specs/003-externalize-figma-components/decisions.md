@@ -2467,3 +2467,113 @@ instances correctes, zéro perte de contenu.
 
 **Réassurances vérifié : preuve pixel raw→adopté rétablie au standard de la spec, un seul écart,
 nommé et attribué ; aucune des deux classes de bugs de la nuit n'est présente.**
+
+## 2026-07-25 — validation-master + adoption + preuve-byte-identique-légitime — Équipe (T087-T088)
+
+- **Type** : validation-master + adoption — exécuté par un agent délégué (construction
+  seulement, non committé). Le **Verdict** ci-dessous = auto-validation de l'agent contre la
+  mesure (fidélité clone vérifiée nœud par nœud + revue visuelle du master + preuve pixel
+  raw→adopté), nommée honnêtement comme telle plutôt qu'une citation owner qui n'a pas eu lieu.
+- **Composant(s)** : equipe (master réel : `Équipe`, `COMPONENT` `2115:3947`)
+- **Verdict** : master `Équipe` construit et adopté — **1 occurrence** confirmée exhaustivement
+  (À Propos `258:1928`, idx 2 ; absente des 8 autres maquettes) ⇒ **plain COMPONENT sans
+  variante** (précédent SAV/Coordonnées, pas un COMPONENT_SET faute de variance). Clone verbatim
+  de la source (`clone` + `createComponentFromNode`, zéro reconstruction) : wrapper HORIZONTAL
+  padding 89 + `grid` **layout GRID 4×4** (survécu au componentize, vérifié) + **16 Member-cards
+  déjà gouvernées** (`remote:false`, master `2074:2072`). 13 membres réels + **3 placeholders**
+  `Prénom/Poste` (trou de source reproduit, jamais inventé). Contenu baké dans le master
+  (occurrence unique) ⇒ adoption **0 override**, ledger vide explicite.
+- **Complétude — le describe profondeur-3 n'a rien raté** : sous-arbre décomposé intégralement
+  (FRAME 17 = grid + 16 `text` ; INSTANCE 32 = 16 cartes + 16 `member-picture` ; RECT 32 ; TEXT
+  32), `rawTextsOutsideInstances=[]` ⇒ **aucun Section-header, aucun titre, aucun Bouton**
+  (prémisse « pas de Bouton » confirmée par mesure). `nonMemberInstances=[]`, **0 remote / 0
+  tierce / 0 nouvel asset** (SC-008). Calque mort `fun-ia` (idem audit Member-card, occulté par
+  `normal`, sans impact) reproduit par le clone.
+- **Chiffres** : `DS · Molécules` → section `Équipe` (`2115:3928`, à `1900,12350` — zone
+  pré-calculée vérifiée vide, hors Réassurances qui finit à y≈12271 et hors le master
+  Categories-principales bâti en parallèle) → `COMPONENT` `Équipe` (`2115:3947`, 1728×1886, à
+  `40,60`). Adoption : instance `2115:4044` (À Propos idx 2), bbox delta **`{0,0,0,0}`**
+  (`{x:13797,y:992,w:1728,h:1886}` = raw mesuré), FILL/HUG, 16 `Nom`/`Poste` **byte-exact** vs
+  source pré-adoption (0 mismatch), 0 copie brute, master unique.
+- **Preuve pixel — byte-identique LÉGITIME (pas dégénéré)** : `pages:compare` À Propos (seule
+  maquette concernée) = **1/1 identical, 0 diff, exit 0** ; **sha256 `before == after`
+  `fcce5272417a…`**. Contrairement à Réassurances, le `before` a été capturé **raw présent**
+  (vérifié idx 2 avant toute mutation) — timeline before < build < adoption < after. C'est 0 diff
+  (et non du bruit AA comme Member-card 4163px sur la même page) parce que le raw était **déjà**
+  un wrapper de 16 Member-cards **gouvernées** (T050) : remplacer `[wrapper+grid]` par
+  `[instance]` au **même bbox** avec les **mêmes instances aux mêmes positions GRID** est un swap
+  renderable-invariant ⇒ export déterministe byte-identique. Corroboré : le sha `fcce5272417a`
+  d'À Propos est stable depuis le travail Réassurances — **zéro pixel bougé**.
+- **Observation multi-agent — parallèle sain, PAS un fork de T087/T088** : un receiver page-parity
+  tiers tourne sur port **9228** → `categories-principales/before` (agent voisin annoncé par le
+  brief). Tâche/port/dossier/master différents, aucun EADDRINUSE sur mon port 9229, ma zone et mon
+  master uniques ⇒ rien à arbitrer (contraste net avec l'incident Réassurances où un process
+  exécutait *ma commande exacte*).
+- **Preuve** : `audits/equipe.md` ; `proofs/equipe/{verdict.json,verdict.md,README.md}` ;
+  `ledger/equipe.json` (vide explicite 0/0, `pages:ledger:check` exit 0)
+- **Checkpoints** : `003/equipe/pre-master` (`2379927240486025877`), `003/equipe/pre-adoption`
+  (`2379926917866820646`), `003/equipe/adoption` (`2379926269825387412`)
+
+**Équipe (T087-T088) — master + adoption faits, preuve pixel raw→adopté byte-identique légitime
+(mécanisme expliqué, pas arrondi), ledger vide explicite, zéro dépendance tierce.** Non committé
+(règle du brief) — laissé sur disque pour revue/commit par l'owner.
+
+## 2026-07-25 — audit + before-captures + escalade (build EN ATTENTE) — Catégories principales (T079-T080)
+
+- **Type** : audit live exhaustif + before-captures (read-only) + **escalade d'une prémisse
+  invalidée** — exécuté par un agent délégué (construction seulement, non committé). **Aucune
+  mutation Figma.** Le master et l'adoption sont **suspendus** en attente d'une décision
+  orchestrateur, même discipline que Réassurances T077 (« trouvaille remontée AVANT toute
+  mutation »).
+- **Composant(s)** : categories-principales (aucun master créé — décision de design ouverte)
+- **Prémisse briefée** : « 2 noms (`Catégories principales` / `… alt`), MÊME famille de contenu,
+  1 seul master + variante `alt` officielle, jamais un 2e master ». **Invalidée à la mesure par
+  position des 7 occurrences.**
+- **Ce qui a été mesuré (≥ 3 anatomies distinctes, pas 1 famille + toggle)** :
+  1. **NON-ALT** (Portes de garage `226:121`, Accueil `210:335`) : les 2 « cartes » sont des
+     **tuiles-nav RAW** — FRAME `item`, image plein-cadre en FOND + `Vector` overlay + titre
+     **fs40** (= nom de la page cible) + sous-titre + `arrow-right` nu. **Pas de child `img`, pas
+     de Bouton.** Anatomie totalement autre qu'une Carte-Catégorie, et **aucun master gouverné**
+     n'existe pour cette tuile (recensement complet des masters top-level fait).
+  2. **ALT gouverné** (entrée `237:981` = 2 Carte ; industrielles `387:732` = 2 ; résidentielles
+     `230:387` = 2 ; **Motorisation `237:717` = 3 cartes**, variance non annoncée) : vraies
+     instances Carte `disposition=Catégorie`, `remote:false`.
+  3. **SAV `249:1522` = MIXTE** : 1 Carte gouvernée + 1 carte **RAW** `249:1529` (Carte-forme mais
+     Bouton **SOLIDE** « Outilne noir » / libellé « **Prendre rendez-vous** » 304×54 + un
+     `wrapper` de plus). Pas une Carte-Catégorie standard (Bouton Link « Contactez-nous »).
+- **Croisement T046** : les cartes alt gouvernées = 1+2+2+2+3 = **10** = exactement les 10
+  Catégorie adoptées par T046. Les **5 RAW** (2 tuiles PdG + 2 tuiles Accueil + 1 carte SAV) n'ont
+  **jamais** été adoptées ⇒ la dépendance « Category-card T046 adopté » n'est vraie que pour l'alt.
+- **Pourquoi je bloque** : bâtir « 1 toggle alt » swappé sur 7 pages baker­ait la tuile-nav RAW
+  (ingouvernée) dans une variante et/ou collapserait la carte RDV de SAV (« Prendre rendez-vous »)
+  sur le défaut Link ⇒ **perte silencieuse** (principe V) + **modeler autour d'une source sale**
+  (règle source-cleanliness, décision owner requise). Le design fidèle a des conséquences de
+  gouvernance/périmètre (tuile ingouvernée, carte SAV distincte) qui dépassent un simple « feu
+  vert clone » — d'où l'escalade, contrairement à Réassurances où « clone fidèle par structure »
+  était trivialement zéro-perte.
+- **Reco escalade (respecte « 1 seul master »)** : `COMPONENT_SET` `Catégories principales`,
+  propriété `Disposition` ×4, chaque variante **clonée verbatim** d'une occurrence réelle
+  (`clone` → `createComponentFromNode` sur le clone, `combineAsVariants`) : `Standard` (tuiles,
+  clone `226:121`) / `Pleine largeur` (2 Carte, clone `387:732`) / `Pleine largeur · 3 cartes`
+  (clone `237:717`) / `Pleine largeur · RDV` (SAV mixte, clone `249:1522`). Tuiles + carte RDV =
+  contenu **natif** dans leur variante (cohérent Hero/Devis) ; master « tuile » gouverné = nettoyage
+  futur hors T079 ; bouton solide SAV préservé. **Question posée à `main`** : ce build 4-variantes,
+  ou (a) gouverner d'abord la tuile, (b) adopter la carte SAV en Carte + override bouton, (c) autre.
+- **Before-captures banquées** (règle before-capture + risque multi-agent) : 7/7 maquettes ok,
+  nonce receveur `461400ba33c31f64`, sha256 receiptés (`.page-parity/categories-principales/before/`,
+  manifests `pages` complets). 5 des 6 sha256 (Accueil `fb26798f`, entrée `ed5f4800`, industrielles
+  `2dbf3576`, résidentielles `4675c795`, PdG `1271624a`) **byte-identiques** aux after-final de
+  Réassurances (~01:18) ⇒ pages stables, capture byte-reproductible, non mutées.
+- **Fork / concurrence** : rien de vif sur T079 (aucun process figma-driving concurrent, seul mon
+  receiver `9228` PID 24991 tourne, aucun artefact categories-principales sur disque). Le
+  `before-summary.json` du scratchpad **partagé** (spec-003) était **périmé** (~21:15, nonce
+  `d08a6121`, nom générique d'un bloc antérieur, 9 maquettes) — **pas** un jumeau. Seul voisin
+  récent = **Équipe** T087-T088 (À Propos, zone `(1900,12350)` choisie pour éviter ma zone
+  `(0,12350)`, receiver `9229` PID 16650 mort) — pages non chevauchantes, parallèle sain.
+- **Preuve** : `audits/categories-principales.md` (mesure figée) ; before-captures +
+  manifests sur disque. **Aucun** ledger/proof/verdict encore (rien à prouver tant que non bâti).
+- **Checkpoint** : aucun (aucune mutation).
+
+**Catégories principales (T079-T080) — audit fait, prémisse « 1 master + toggle alt » invalidée
+(tuiles-nav RAW ingouvernées + SAV mixte), before-captures banquées, escalade envoyée à `main` ;
+master + adoption SUSPENDUS en attente de décision. Rien muté, rien committé.**
