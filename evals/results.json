@@ -1,25 +1,47 @@
 {
-  "passed": 94,
-  "total": 97,
-  "quarantined": 51,
+  "passed": 102,
+  "total": 102,
+  "quarantined": 49,
   "results": [
     {
       "id": "baseline-parity-clean",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baseline not clean:\n⚠ Figma naming bridged (the file does not use this repo's collection/mode names):\n    · mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\"\n\n✖ 1 drift finding(s):\n    figma — behind: 1\n\n  [figma BEHIND] Button.Contactez-nous\n    Contract prop \"children\" has no TEXT property on the Figma set\n    → Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\n\n"
+      "pass": true
     },
     {
       "id": "baseline-acknowledges-without-failing",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: Baselined finding still failed the exit code"
+      "pass": true
     },
     {
       "id": "promotion-converges",
       "claim": "C4-convergence",
-      "pass": false,
-      "error": "Error: Unexpected extra findings: [{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.Contactez-nous\",\"detail\":\"Contract prop \\\"children\\\" has no TEXT property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.IconOnly\",\"detail\":\"Contract prop \\\"iconOnly\\\" has no BOOLEAN property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"}]"
+      "pass": true
+    },
+    {
+      "id": "detect-icon-registry-divergence",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "refuse-unregistered-icon-enum",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "lower-icon-swap-and-visibility-into-props",
+      "claim": "C5-extraction",
+      "pass": true
+    },
+    {
+      "id": "figma-script-referees-invalid-contracts",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "detect-default-and-kind-drift",
+      "claim": "C3-detection",
+      "pass": true
     },
     {
       "id": "refuse-unknown-token-reference",

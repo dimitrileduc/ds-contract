@@ -140,6 +140,61 @@ This is the DTCG `$extensions` dual-ID pattern applied to components. After phas
 
 **Authored-vs-extracted markers (v16).** `a11y.provenance` and `semantics.provenance` are optional `"authored" | "extracted"` enums. Figma does not encode accessibility or element semantics, so a Button's `a11y`/`semantics` baseline is **authored**, never canvas-recovered — the marker makes that a machine-checkable fact on the artifact rather than an implied one (Honesty: no invented value passes unlabelled). Both are additive-optional; an absent marker means unmarked (legacy), and every existing contract still validates.
 
+## Icon Registry (`contracts/icons.registry.json`, v1.0.0+)
+
+A **separate, additive document type** (`IconRegistrySchema`, `packages/schema/src/contract-schema.ts`) — not a Contract, and no existing Contract field is touched or repurposed to make room for it. One versioned document the designer's Figma menu and the developer's code list both derive from and are mechanically verified against (the parity differ's `icons` axis: registry ↔ `assets/icons/` inventory ↔ the committed canvas snapshot).
+
+```jsonc
+{
+  "id": "ds.icons",
+  "version": "1.0.0",
+  "source": { "fileKey": "d9FYAUcqdcNtsuaMgLefvJ", "zoneNodeId": "6:111", "dumpedAt": "2026-07-23" },
+  "icons": [
+    {
+      "name": "arrow-left",                             // canonical kebab id — shared by designer + developer
+      "figma": { "componentName": "arrow-left", "key": "8a405ce4…", "nodeId": "6:99" },
+      "asset": "arrow-left",                             // assets/icons/<asset>.svg
+      "size": 20,
+      "description": "Arrow pointing left — the Button's leading icon default."
+    }
+  ]
+}
+```
+
+Evolution follows Contract's own semver discipline: widening `icons[]` = minor, narrowing or renaming a `name` = major.
+
+### The INSTANCE_SWAP enum-binding convention
+
+A prop that lets a component's user choose **which** governed icon fills a slot (as opposed to a `boolean` prop answering "shown or not") uses the **existing** generic binding shape — no schema change:
+
+```jsonc
+{
+  "name": "iconLeftGlyph",
+  "type": { "enum": ["arrow-left", "cart", "chevron-down", "…"] },   // = the registry's names, exactly (FR-011)
+  "default": "arrow-left",
+  "bindings": {
+    "figma": {
+      "kind": "INSTANCE_SWAP",
+      "property": "Glyphe gauche",                       // the master's real swap-property name, from-dump
+      "values": { "arrow-left": "arrow-left", "cart": "cart" }   // canonical name → figma.componentName, per the registry
+    },
+    "code": { "prop": "iconLeftGlyph" }
+  }
+}
+```
+
+The anatomy side reuses the **existing** enum-substitution convention (`icon.asset: "{prop}"`) — no new machinery: `"{iconLeftGlyph}"` pulls *every* enum value into the generated `ICONS` map, and the emitter's existing missing-asset refusal enforces "every enum value has a code asset" for free.
+
+```jsonc
+"anatomy": { "root": { "parts": {
+  "iconLeft": { "icon": { "asset": "{iconLeftGlyph}", "size": 20 }, "visibleWhen": { "prop": "iconLeft" } }
+} } }
+```
+
+`kind: "INSTANCE_SWAP"`, the generic `values` map, and `{prop}` asset-substitution all already existed before this document type — an icon-choice prop is that machinery used exactly as declared, never a new capability.
+
+**Named limitation — the icon byte-proof is headless.** On the *code* surface the enum resolves to a real asset and the choice is byte-guarded by the golden manifest. On the *canvas* surface the emitter **bakes each glyph as a vector** (SVG paint is not bindable at import), **not** as a swappable local-master `INSTANCE_SWAP` instance — so the contract→canvas determinism proof for icon choice runs **headless** (`deterministic-roundtrip` + the faithful mock), never against live swap instances. Live alignment between the contract's governed menu and the master's real `Glyphe gauche` / `Glyphe droite` swap properties is proven instead by the **re-pulled, committed parity snapshot** (`parity/snapshots/figma-components.json`, the differ's `icons` axis — D8), which the single master update refreshed to exactly the 13 governed keys.
+
 ## Versioning & change policy
 
 - Any change to `props`, `states`, `anatomy`, or `a11y` bumps `version` (semver semantics: added optional prop = minor; removed/renamed prop or value = major).

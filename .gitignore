@@ -27,6 +27,14 @@ playground/public/ds-contracts-sync-runner-plugin.zip
 extract/figma/gauntlet/live/out/
 .gauntlet-live-cache/
 
+# state-photo artifacts: cached Figma PNGs + labeled snapshot manifests
+# (committed: reports/ + report-assets/ — the before/after score proof, 002)
+extract/figma/state-photo/out/
+
+# positional-scan capture session (raw per-page chunks) — the assembled E5
+# JSON the session writes explicitly is committed, this staging dir is not (002)
+extract/figma/audit/out/
+
 # computed-capture floor: transient render surfaces + per-pair screenshots
 # (the committed artifacts are the JSON receipts + a few paired receipts)
 extract/computed/out/.orig-shots/

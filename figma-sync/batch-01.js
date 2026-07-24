@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v1.2.0",
+    "description": "Button — generated from contract ds.button v1.4.0",
     "isSet": true,
     "boolProps": [
       {
@@ -47,7 +47,7 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "iconLeft",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
               "visibleProp": "Icône gauche",
@@ -63,12 +63,12 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Contactez-nous"
+              "contentProp": "Libellé"
             },
             {
               "type": "svg",
               "name": "iconRight",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"#FFFFFF\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
               "visibleProp": "Icône droite",
@@ -102,7 +102,7 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "iconLeft",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
               "visibleProp": "Icône gauche",
@@ -118,12 +118,12 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Contactez-nous"
+              "contentProp": "Libellé"
             },
             {
               "type": "svg",
               "name": "iconRight",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"#FFFFFF\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
               "visibleProp": "Icône droite",
@@ -157,7 +157,7 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "iconLeft",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
               "visibleProp": "Icône gauche",
@@ -173,12 +173,12 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Contactez-nous"
+              "contentProp": "Libellé"
             },
             {
               "type": "svg",
               "name": "iconRight",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"#26282C\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
               "visibleProp": "Icône droite",
@@ -212,7 +212,7 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "iconLeft",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
               "visibleProp": "Icône gauche",
@@ -228,12 +228,12 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Contactez-nous"
+              "contentProp": "Libellé"
             },
             {
               "type": "svg",
               "name": "iconRight",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"#FFFFFF\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
               "visibleProp": "Icône droite",
@@ -270,7 +270,7 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "iconLeft",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
               "visibleProp": "Icône gauche",
@@ -286,12 +286,12 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Contactez-nous"
+              "contentProp": "Libellé"
             },
             {
               "type": "svg",
               "name": "iconRight",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"#26282C\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
               "visibleProp": "Icône droite",
@@ -325,7 +325,7 @@ const COMPONENTS = [
             {
               "type": "svg",
               "name": "iconLeft",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
               "visibleProp": "Icône gauche",
@@ -341,12 +341,12 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Contactez-nous"
+              "contentProp": "Libellé"
             },
             {
               "type": "svg",
               "name": "iconRight",
-              "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\"><path d=\"M13.4325 0L12.5487 0.883867L16.2986 4.63375H0V5.88379H16.2984L12.5487 9.63355L13.4325 10.5174L18.6913 5.25871L13.4325 0Z\" transform=\"translate(0.626 4.742)\" fill=\"#26282C\"/></svg>",
+              "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
               "visibleProp": "Icône droite",

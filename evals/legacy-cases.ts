@@ -154,56 +154,6 @@ export const legacyCases: Case[] = [
       if (!r.out.includes('brand "nocturne"')) throw new Error(`Refusal did not name the brand:\n${r.out.slice(0, 300)}`);
     },
   },
-  // RE-ENABLE WHEN: a Piqueray component with a boolean and/or numeric prop, drawn as BOOLEAN/TEXT properties on its Figma set.
-  {
-    // Red-team (2026-07-08): these five drift classes previously passed
-    // "parity clean" — boolean/text defaults on the canvas were
-    // presence-only, numeric code defaults were invisible to extraction,
-    // a DELETED code default was accepted, and property KIND changes on
-    // either surface were never compared.
-    id: 'detect-default-and-kind-drift',
-    claim: 'C3-detection',
-    run: () => {
-      const check = (label: string, surface: string, cls: string, subject: string, mutate: () => void, restore: () => void) => {
-        mutate();
-        const r = parity();
-        try {
-          if (r.status === 0) throw new Error(`${label}: NOT detected`);
-          expectFinding(readReport(), surface, cls, subject);
-        } finally { restore(); }
-      };
-      const figmaSnap = readFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), 'utf8');
-      check('figma boolean default flip', 'figma', 'mismatch', 'Button.Loading (default)',
-        () => editJson(FIGMA_COMPONENTS, (snap) => {
-          const btn = snap.sets.find((x: any) => x.name === 'Button');
-          const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Loading'))!;
-          btn.properties[key].defaultValue = true;
-        }),
-        () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap));
-      check('figma text default change', 'figma', 'mismatch', 'Button.Label (default)',
-        () => editJson(FIGMA_COMPONENTS, (snap) => {
-          const btn = snap.sets.find((x: any) => x.name === 'Button');
-          const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Label'))!;
-          btn.properties[key].defaultValue = 'TOTALLY DIFFERENT';
-        }),
-        () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap));
-      check('figma property kind change', 'figma', 'mismatch', 'Button.Loading (kind)',
-        () => editJson(FIGMA_COMPONENTS, (snap) => {
-          const btn = snap.sets.find((x: any) => x.name === 'Button');
-          const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Loading'))!;
-          btn.properties[key].type = 'TEXT';
-        }),
-        () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap));
-      const sliderSrc = readFileSync(path.join(SCRATCH, 'src/components/Slider/Slider.tsx'), 'utf8');
-      check('numeric code default drift', 'code', 'mismatch', 'Slider.value (default)',
-        () => replaceInFile('src/components/Slider/Slider.tsx', 'value = 40,', 'value = 99,'),
-        () => writeFileSync(path.join(SCRATCH, 'src/components/Slider/Slider.tsx'), sliderSrc));
-      const btnSrc = readFileSync(path.join(SCRATCH, BTN_TSX), 'utf8');
-      check('deleted code default', 'code', 'mismatch', 'Button.size (default)',
-        () => replaceInFile(BTN_TSX, "size = 'md',", 'size,'),
-        () => writeFileSync(path.join(SCRATCH, BTN_TSX), btnSrc));
-    },
-  },
   // RE-ENABLE WHEN: a Piqueray component with two or more enum axes (and the fixture re-authored against Piqueray tokens).
   {
     // N-axis variant support (2026-07-08): every enum prop is a variant axis.
@@ -753,28 +703,6 @@ export const legacyCases: Case[] = [
         '✔ the figma binding keeps the ORIGINAL spelling "2nd paragraph"',
         '✔ no "is not a legal camelCase identifier" violation anywhere',
         '✔ ALL FOUR surfaces emit (react, html, react-inline, figma-script)',
-      ]) {
-        if (!r.out.includes(line)) throw new Error(`missing check: ${line}`);
-      }
-    },
-  },
-  // RE-ENABLE WHEN: nothing Piqueray-specific — re-home this one onto contracts/button.contract.json and it can come back immediately.
-  {
-    // Census guard 4: emit-figma-script referees. The census found the
-    // canvas surface was the one emitter that never called validateContract
-    // — every referee-violating set still emitted a sync script. An invalid
-    // contract must refuse BY NAME on the canvas surface like the other
-    // three, and valid repo contracts must emit unchanged (golden safety).
-    id: 'figma-script-referees-invalid-contracts',
-    claim: 'C2-refusal',
-    run: () => {
-      const r = run(TSX, ['extract/figma/gauntlet/class-fix-check.ts']);
-      if (r.status !== 0) throw new Error(`class-fix receipt failed:\n${r.out}`);
-      for (const line of [
-        '✔ emitFigmaScript REFUSES the invalid contract (no sync script emitted)',
-        '✔ the refusal is NAMED with the emitReact wording ("Refused — 1 contract violation(s)")',
-        '✔ the violation names the part and prop (visibleWhen references unknown prop "nonexistent")',
-        '✔ the VALID repo contract still emits its sync script (golden untouched)',
       ]) {
         if (!r.out.includes(line)) throw new Error(`missing check: ${line}`);
       }

@@ -55,7 +55,7 @@ baked in, so you feed it a small contract and it emits + builds locally.
 |--------|--------------|
 | `npm run build` | `tokens` → `schema` → `generate` (the full deterministic build) |
 | `npm run figma:plan` | emit all `figma-sync/*.js` scripts (contract → canvas scripts) |
-| `npm run eval` | run the eval suite (`evals/run.ts`) — live `N/N`, currently 94/97 (3 intentional) |
+| `npm run eval` | run the eval suite (`evals/run.ts`) — live `N/N`, currently 102/102 |
 | `npm run plugin:check` | headless plugin-engine gate (`plugin-engine-check.mjs`) |
 | `npm run plugin:zip` | build the plugin package |
 | `npm run golden:update` | regenerate the golden manifest (reviewed changes only) |
@@ -63,7 +63,7 @@ baked in, so you feed it a small contract and it emits + builds locally.
 | `npm run extract:code` / `roundtrip:code` | code → contract (+ round-trip) |
 | `npm run extract:figma` / `extract:figma:roundtrip` | Figma dump → contract |
 | `npm run extract:figma:gauntlet` | the 1,618-set census through the receive pipeline |
-| `node scripts/deterministic-roundtrip.mjs` | the determinism proof (run twice → byte-identical) |
+| `npx tsx scripts/deterministic-roundtrip.mjs` | the determinism proof (run twice → byte-identical; needs tsx) |
 | `node scripts/core-browser-check.mjs` | proves the core barrel is browser-pure/bundleable |
 
 There are many more `extract:figma:*:check` scripts — each is a receipt for a
