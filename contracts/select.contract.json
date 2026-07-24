@@ -1,0 +1,81 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.select",
+  "name": "Select",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "atom",
+  "description": "Piqueray select. Extracted from the owner-validated Figma master « Select » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nWrapper pattern (same spirit as Checkbox): the box is presentational, a REAL native <select> inside carries the value and the accessibility, and the Piqueray chevron is a sibling icon — a native <select> cannot hold a custom chevron, so the wrapper gives the exact look AND native semantics. The consumer (Field molecule / form) supplies the real options; the atom shows « Valeur » as the placeholder.\n\nThe chevron is the governed registry icon `chevron-down` (size 24, an instance in the master — reused, never copied). Box styling binds to Piqueray primitives where a token exists; off-scale values (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel. Atom scope only — no label, no state axes (the Field molecule owns them).",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "text",
+      "default": "Texte de saisie",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Valeur"
+        },
+        "code": {
+          "prop": "value"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "space-between",
+        "align": "center"
+      },
+      "tokens": {
+        "background-color": "{color.blanc}",
+        "border-color": "{color.bleu-gris}",
+        "color": "{color.noir}",
+        "font-family": "{font.family.montserrat}",
+        "font-size": "{font.size.14}",
+        "font-weight": "{font.weight.regular}"
+      },
+      "literals": {
+        "padding-block": "12px",
+        "padding-inline": "12px",
+        "border-width": "1px",
+        "border-radius": "0px",
+        "line-height": "24px"
+      },
+      "parts": {
+        "valeur": {
+          "element": "select",
+          "content": {
+            "prop": "value"
+          }
+        },
+        "chevron": {
+          "icon": {
+            "asset": "chevron-down",
+            "size": 24
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "3063f8a5ed587927ede2ae021433c705656acff5",
+      "nodeId": "2053:1249",
+      "dumpedAt": "2026-07-24"
+    },
+    "code": {
+      "importPath": "src/components/Select",
+      "export": "Select"
+    }
+  }
+}

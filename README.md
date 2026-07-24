@@ -104,7 +104,7 @@ npm run parity   # ① clean — code, canvas, and tokens all match the contract
 # ② edit any contract in contracts/ — add an enum value, change a token binding
 npm run build && npm run parity
 #    ③ the differ reports exactly what is now behind, and how to fix it
-npm run eval     # ④ 102 checks that detection, refusal, and convergence still hold (102/102)
+npm run eval     # ④ 108 checks that detection, refusal, and convergence still hold (108/108)
 ```
 
 That honest red state in step ③ is the product. Most design-system tooling shows you the happy path; this one is built to tell you precisely when and where the surfaces have stopped agreeing. (Point a token binding at a token that doesn't exist and the *build itself* fails — the contract↔token integrity gate.)
@@ -184,7 +184,7 @@ Not everything is expressible yet, and nothing here pretends otherwise:
 
 ## Status
 
-The model is validated end-to-end and running in public: generation into both surfaces, the parity loop executed in both directions with receipts, 102/102 evals (see [MILESTONES.md](MILESTONES.md)), the schema and CLI published to the public npm registry (`@ds-contracts/schema`, `@ds-contracts/cli` — stranger-verified from a clean directory), a measured 100-vs-69 governed-generation result, bidirectional anatomy extraction with zero-mismatch round-trip receipts, four brownfield pilots plus an enterprise code gauntlet (Carbon, Fluent 2, Spectrum, Polaris) on systems this project doesn't own, a live enterprise Figma kit censused to 100.0% clean (1,618 sets), a standing pixel-level visual-parity instrument, in-place amend proven forensically on live files, and a launched browser playground running the same engine — with a companion Figma plugin bridging live selections into it. The reference design-tool integration lives behind a transport-agnostic script boundary (`docs/internal/`) — the contract format itself is tool-agnostic.
+The model is validated end-to-end and running in public: generation into both surfaces, the parity loop executed in both directions with receipts, 108/108 evals (see [MILESTONES.md](MILESTONES.md)), the schema and CLI published to the public npm registry (`@ds-contracts/schema`, `@ds-contracts/cli` — stranger-verified from a clean directory), a measured 100-vs-69 governed-generation result, bidirectional anatomy extraction with zero-mismatch round-trip receipts, four brownfield pilots plus an enterprise code gauntlet (Carbon, Fluent 2, Spectrum, Polaris) on systems this project doesn't own, a live enterprise Figma kit censused to 100.0% clean (1,618 sets), a standing pixel-level visual-parity instrument, in-place amend proven forensically on live files, and a launched browser playground running the same engine — with a companion Figma plugin bridging live selections into it. The reference design-tool integration lives behind a transport-agnostic script boundary (`docs/internal/`) — the contract format itself is tool-agnostic.
 
 - **What has been proven, dated, with receipts:** [MILESTONES.md](MILESTONES.md)
 - **Release history:** [CHANGELOG.md](CHANGELOG.md)

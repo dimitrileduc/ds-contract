@@ -1,370 +1,775 @@
 {
- "fileName": "Piqueray (Copy)",
- "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
- "extractedAt": 1784837015644,
- "sets": [
-  {
-   "name": "piqueray_logo",
-   "nodeId": "4:14",
-   "key": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
-   "description": "",
-   "variantCount": 2,
-   "properties": {
-    "Property 1": {
-     "type": "VARIANT",
-     "defaultValue": "Default",
-     "variantOptions": [
-      "Default",
-      "Blanc"
-     ],
-     "preferredValues": null
+  "fileName": "Piqueray (Copy)",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "extractedAt": 1784908011977,
+  "sets": [
+    {
+      "name": "piqueray_logo",
+      "nodeId": "4:14",
+      "key": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Blanc"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Bouton",
+      "nodeId": "6:122",
+      "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
+      "description": "",
+      "variantCount": 6,
+      "properties": {
+        "Icône gauche#2024:0": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Icône droite#2024:7": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Glyphe gauche#2028:14": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "6:99",
+          "variantOptions": null,
+          "preferredValues": [
+            {
+              "type": "COMPONENT",
+              "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "260b884e25dbeb857d92c788868f075448c25d16"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "4583f5973482fbd560e3a81035d3225b04410045"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+            }
+          ]
+        },
+        "Glyphe droite#2028:21": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "6:104",
+          "variantOptions": null,
+          "preferredValues": [
+            {
+              "type": "COMPONENT",
+              "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "260b884e25dbeb857d92c788868f075448c25d16"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "4583f5973482fbd560e3a81035d3225b04410045"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+            }
+          ]
+        },
+        "Libellé#2044:28": {
+          "type": "TEXT",
+          "defaultValue": "Contactez-nous",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "Orange",
+            "Blanc",
+            "Outline blanc",
+            "Link",
+            "Outilne noir"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "arrow-left",
+        "arrow-right"
+      ]
+    },
+    {
+      "name": "piqueray",
+      "nodeId": "274:2934",
+      "key": "ace5d8b67130291fbd265415134c45599d294b6a",
+      "description": "Piqueray brand mark, used as a decorative icon.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "mail",
+      "nodeId": "263:2125",
+      "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e",
+      "description": "Envelope icon — email / contact actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "phone",
+      "nodeId": "263:2120",
+      "key": "20efe0347620fd90d43a5f156fe743d0b015f16b",
+      "description": "Phone handset icon — call / contact actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "download",
+      "nodeId": "230:599",
+      "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697",
+      "description": "Downward arrow into a tray — download actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "pdf",
+      "nodeId": "230:585",
+      "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60",
+      "description": "Document icon marked PDF — file download / document links.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "search",
+      "nodeId": "95:252",
+      "key": "260b884e25dbeb857d92c788868f075448c25d16",
+      "description": "Magnifying glass — search actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "user",
+      "nodeId": "95:216",
+      "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781",
+      "description": "Person silhouette — account / profile actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "chevron-right",
+      "nodeId": "27:86",
+      "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
+      "description": "Chevron pointing right — forward navigation, expand.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "chevron-left",
+      "nodeId": "27:83",
+      "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47",
+      "description": "Chevron pointing left — back navigation.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "chevron-down",
+      "nodeId": "226:373",
+      "key": "8825e487906a06701e6e87987c10bb1e4195bb1b",
+      "description": "Chevron pointing down — expand / dropdown indicator.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "chevron-up",
+      "nodeId": "226:374",
+      "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d",
+      "description": "Chevron pointing up — collapse indicator.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "cart",
+      "nodeId": "27:70",
+      "key": "4583f5973482fbd560e3a81035d3225b04410045",
+      "description": "Shopping cart — add-to-cart / e-commerce actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "arrow-right",
+      "nodeId": "6:104",
+      "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "description": "Arrow pointing right — the Button's trailing icon default.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "arrow-left",
+      "nodeId": "6:99",
+      "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "description": "Arrow pointing left — the Button's leading icon default.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "external-link",
+      "nodeId": "9:185",
+      "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c",
+      "description": "Arrow exiting a box — external link / opens in a new tab.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Header nav",
+      "nodeId": "84:285",
+      "key": "4165b8449f68916cca476b62454ede85eea13420",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Solid",
+          "variantOptions": [
+            "Solid",
+            "Transparent"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "piqueray_logo",
+        "octicon:chevron-down-12",
+        "Bouton",
+        "arrow-left",
+        "arrow-right",
+        "search",
+        "user",
+        "cart"
+      ]
+    },
+    {
+      "name": "member-picture",
+      "nodeId": "274:2389",
+      "key": "70fdd040214e23fd7b5709b1009638a711b4080f",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Property 1": {
+          "type": "VARIANT",
+          "defaultValue": "Default",
+          "variantOptions": [
+            "Default",
+            "hover"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Input",
+      "nodeId": "2053:1245",
+      "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
+      "description": "Champ de saisie texte — atome de formulaire. Fond color/blanc, bordure 1px color/bleu-gris (INSIDE), coins droits (0). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur » liée au contenu affiché — pas de calque à éditer manuellement.",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2053:1": {
+          "type": "TEXT",
+          "defaultValue": "Texte de saisie",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Textarea",
+      "nodeId": "2053:1247",
+      "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
+      "description": "Zone de saisie multi-lignes — atome de formulaire. Même style que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), texte aligné en haut. Hauteur fixe 128px portée par le container (pas par un texte surdimensionné). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2053:2": {
+          "type": "TEXT",
+          "defaultValue": "Texte de saisie",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Select",
+      "nodeId": "2053:1249",
+      "key": "3063f8a5ed587927ede2ae021433c705656acff5",
+      "description": "Liste déroulante — atome de formulaire. Même boîte que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), disposition SPACE_BETWEEN pour pousser le chevron à droite. Chevron = INSTANCE du composant local chevron-down (226:373, zéro dépendance tierce), jamais une copie. Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2053:3": {
+          "type": "TEXT",
+          "defaultValue": "Texte de saisie",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "chevron-down"
+      ]
+    },
+    {
+      "name": "Checkbox",
+      "nodeId": "2053:1256",
+      "key": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
+      "description": "Case à cocher — atome net-new intégral (aucune référence dans les 9 maquettes, consentement RGPD en simple texte). Variant officiel « Coché » (Non/Oui) : décoché = fond color/blanc, bordure 2px color/bleu-gris ; coché = fond color/bleu plein, coche blanche. Coins droits (0), cohérent avec la famille Input/Textarea/Select. 20×20.",
+      "variantCount": 2,
+      "properties": {
+        "Coché": {
+          "type": "VARIANT",
+          "defaultValue": "Non",
+          "variantOptions": [
+            "Non",
+            "Oui"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Facebook",
+      "nodeId": "2053:1259",
+      "key": "b93576522d25e558dee053c6f0b517f43e683fef",
+      "description": "Icône sociale — logo Facebook. Clonée à l'identique depuis l'occurrence source (280:3801), fill déjà lié à color/noir-bleute. Zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Instagram",
+      "nodeId": "2053:1261",
+      "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd",
+      "description": "Icône sociale — logo Instagram. Clonée à l'identique depuis l'occurrence source (280:3803), fill déjà lié à color/noir-bleute. Zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Étoile",
+      "nodeId": "2053:1263",
+      "key": "db3d036dbc1284c356fef54113b29afab9d6580a",
+      "description": "Icône étoile de notation — atome net-new (aucun vecteur source : la section Avis Google est un screenshot aplati d'un widget tiers, cf. audits/atomes-icones.md §2). Pictogramme standard 5 branches, fill color/orange. Zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Field",
+      "nodeId": "2056:1278",
+      "key": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
+      "description": "Molécule Field (label + saisie + erreur) — propriétés : État (variant Normal/Erreur), Optionnel (booléen, affiche \"(optionnel)\"), Label (texte), Saisie (instance-swap Input/Select/Textarea). Erreur = bordure + message color/rouge (nouveau token, T039).",
+      "variantCount": 2,
+      "properties": {
+        "Label#2056:4": {
+          "type": "TEXT",
+          "defaultValue": "Libellé",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Optionnel#2056:7": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Saisie#2056:10": {
+          "type": "INSTANCE_SWAP",
+          "defaultValue": "2053:1245",
+          "variantOptions": null,
+          "preferredValues": [
+            {
+              "type": "COMPONENT",
+              "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "3063f8a5ed587927ede2ae021433c705656acff5"
+            },
+            {
+              "type": "COMPONENT",
+              "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd"
+            }
+          ]
+        },
+        "État": {
+          "type": "VARIANT",
+          "defaultValue": "Normal",
+          "variantOptions": [
+            "Erreur",
+            "Normal"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "Input"
+      ]
+    },
+    {
+      "name": "Accordion-row",
+      "nodeId": "2059:1417",
+      "key": "6b15207fffd75082f1f8c423eab771aa6709179d",
+      "description": "Molécule Accordion-row (ligne repliable) — 2 tailles réelles trouvées à l'audit (Grand=sections FAQ 20px/32px chevron, Petit=sections Texte SEO 14px/24px chevron), même comportement. Propriétés : Taille (Grand/Petit), État (Fermé/Ouvert), Titre (texte), Contenu (texte, visible si Ouvert — limite: ne porte pas le texte riche multi-style, cf. audits/accordion-row.md).",
+      "variantCount": 4,
+      "properties": {
+        "Titre#2059:13": {
+          "type": "TEXT",
+          "defaultValue": "Question",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Contenu#2059:18": {
+          "type": "TEXT",
+          "defaultValue": "Réponse",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Taille": {
+          "type": "VARIANT",
+          "defaultValue": "Grand",
+          "variantOptions": [
+            "Grand",
+            "Petit"
+          ],
+          "preferredValues": null
+        },
+        "État": {
+          "type": "VARIANT",
+          "defaultValue": "Fermé",
+          "variantOptions": [
+            "Fermé",
+            "Ouvert"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "chevron-down"
+      ]
+    },
+    {
+      "name": "Tab",
+      "nodeId": "2061:1588",
+      "key": "c5fa537d17c544114dc780ba11bbf1157fedba37",
+      "description": "Molécule Tab (onglet de navigation) — propriété État (Défaut/Sélectionné, l'état sélectionné affiche un soulignement 2px) + Libellé (texte). Utilisé en rangée (plusieurs instances) pour former une barre d'onglets — le conteneur lui-même n'a aucune identité visuelle propre, non gouverné séparément.",
+      "variantCount": 3,
+      "properties": {
+        "Libellé#2061:23": {
+          "type": "TEXT",
+          "defaultValue": "Onglet",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "État": {
+          "type": "VARIANT",
+          "defaultValue": "Défaut",
+          "variantOptions": [
+            "Défaut",
+            "Sélectionné",
+            "État3"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Carte",
+      "nodeId": "2063:1622",
+      "key": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Titre#2063:26": {
+          "type": "TEXT",
+          "defaultValue": "Pour portes de garage",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2063:29": {
+          "type": "TEXT",
+          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Disposition": {
+          "type": "VARIANT",
+          "defaultValue": "Réassurance",
+          "variantOptions": [
+            "Réassurance",
+            "Catégorie"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Product-card",
+      "nodeId": "2068:1972",
+      "key": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
+      "description": "",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2068:34": {
+          "type": "TEXT",
+          "defaultValue": "Télécommande Hörmann HSE4-868BS",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Prix#2068:35": {
+          "type": "TEXT",
+          "defaultValue": "74,99€",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "Bouton",
+        "cart",
+        "arrow-right"
+      ]
+    },
+    {
+      "name": "Member-card",
+      "nodeId": "2074:2072",
+      "key": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
+      "description": "",
+      "variantCount": 1,
+      "properties": {
+        "Nom#2074:36": {
+          "type": "TEXT",
+          "defaultValue": "Cécilia Piqueray",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Poste#2074:37": {
+          "type": "TEXT",
+          "defaultValue": "Gérante",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "member-picture"
+      ]
+    },
+    {
+      "name": "Carousel-controls",
+      "nodeId": "2077:2191",
+      "key": "f9cf66306491d239164a61b8a0ac6ba8d0de0238",
+      "description": "",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "Bouton",
+        "chevron-left",
+        "arrow-right",
+        "arrow-left",
+        "chevron-right"
+      ]
+    },
+    {
+      "name": "Footer-column",
+      "nodeId": "2079:2246",
+      "key": "1de5585bfa55ff9e973748a4b2b99ef4b0a88cef",
+      "description": "",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2079:38": {
+          "type": "TEXT",
+          "defaultValue": "Adresse",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2079:39": {
+          "type": "TEXT",
+          "defaultValue": "Rue Alfred Drèze 7,  4860 Pepinster",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Copyright",
+      "nodeId": "2086:2330",
+      "key": "314cd2368d8d019fec33b60eb8995fac453d0e9f",
+      "description": "",
+      "variantCount": 1,
+      "properties": {
+        "Texte#2086:40": {
+          "type": "TEXT",
+          "defaultValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Avantage",
+      "nodeId": "2088:2350",
+      "key": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
+      "description": "",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2088:41": {
+          "type": "TEXT",
+          "defaultValue": "Conseils personnalisés",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2088:42": {
+          "type": "TEXT",
+          "defaultValue": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "piqueray"
+      ]
+    },
+    {
+      "name": "Section-header",
+      "nodeId": "2090:2397",
+      "key": "770d5801af6e899b9547461ea2c714a66e0fa356",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Accroche#2090:46": {
+          "type": "TEXT",
+          "defaultValue": "Plus de 50 ans d’expérience",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Titre#2090:47": {
+          "type": "TEXT",
+          "defaultValue": "Pourquoi choisir Piqueray ?",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Disposition": {
+          "type": "VARIANT",
+          "defaultValue": "Standard",
+          "variantOptions": [
+            "Standard",
+            "Avec CTA"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
     }
-   },
-   "nestedInstances": []
-  },
-  {
-   "name": "Bouton",
-   "nodeId": "6:122",
-   "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-   "description": "",
-   "variantCount": 6,
-   "properties": {
-    "Icône gauche#2024:0": {
-     "type": "BOOLEAN",
-     "defaultValue": false,
-     "variantOptions": null,
-     "preferredValues": null
-    },
-    "Icône droite#2024:7": {
-     "type": "BOOLEAN",
-     "defaultValue": false,
-     "variantOptions": null,
-     "preferredValues": null
-    },
-    "Glyphe gauche#2028:14": {
-     "type": "INSTANCE_SWAP",
-     "defaultValue": "6:99",
-     "variantOptions": null,
-     "preferredValues": [
-      {
-       "type": "COMPONENT",
-       "key": "ace5d8b67130291fbd265415134c45599d294b6a"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "260b884e25dbeb857d92c788868f075448c25d16"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "4583f5973482fbd560e3a81035d3225b04410045"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
-      }
-     ]
-    },
-    "Glyphe droite#2028:21": {
-     "type": "INSTANCE_SWAP",
-     "defaultValue": "6:104",
-     "variantOptions": null,
-     "preferredValues": [
-      {
-       "type": "COMPONENT",
-       "key": "ace5d8b67130291fbd265415134c45599d294b6a"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "260b884e25dbeb857d92c788868f075448c25d16"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "4583f5973482fbd560e3a81035d3225b04410045"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
-      },
-      {
-       "type": "COMPONENT",
-       "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
-      }
-     ]
-    },
-    "Libellé#2044:28": {
-     "type": "TEXT",
-     "defaultValue": "Contactez-nous",
-     "variantOptions": null,
-     "preferredValues": null
-    },
-    "Property 1": {
-     "type": "VARIANT",
-     "defaultValue": "Default",
-     "variantOptions": [
-      "Default",
-      "Orange",
-      "Blanc",
-      "Outline blanc",
-      "Link",
-      "Outilne noir"
-     ],
-     "preferredValues": null
-    }
-   },
-   "nestedInstances": [
-    "arrow-left",
-    "arrow-right"
-   ]
-  },
-  {
-   "name": "piqueray",
-   "nodeId": "274:2934",
-   "key": "ace5d8b67130291fbd265415134c45599d294b6a",
-   "description": "Piqueray brand mark, used as a decorative icon.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "mail",
-   "nodeId": "263:2125",
-   "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e",
-   "description": "Envelope icon — email / contact actions.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "phone",
-   "nodeId": "263:2120",
-   "key": "20efe0347620fd90d43a5f156fe743d0b015f16b",
-   "description": "Phone handset icon — call / contact actions.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "download",
-   "nodeId": "230:599",
-   "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697",
-   "description": "Downward arrow into a tray — download actions.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "pdf",
-   "nodeId": "230:585",
-   "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60",
-   "description": "Document icon marked PDF — file download / document links.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "search",
-   "nodeId": "95:252",
-   "key": "260b884e25dbeb857d92c788868f075448c25d16",
-   "description": "Magnifying glass — search actions.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "user",
-   "nodeId": "95:216",
-   "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781",
-   "description": "Person silhouette — account / profile actions.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "chevron-right",
-   "nodeId": "27:86",
-   "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
-   "description": "Chevron pointing right — forward navigation, expand.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "chevron-left",
-   "nodeId": "27:83",
-   "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47",
-   "description": "Chevron pointing left — back navigation.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "chevron-down",
-   "nodeId": "226:373",
-   "key": "8825e487906a06701e6e87987c10bb1e4195bb1b",
-   "description": "Chevron pointing down — expand / dropdown indicator.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "chevron-up",
-   "nodeId": "226:374",
-   "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d",
-   "description": "Chevron pointing up — collapse indicator.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "cart",
-   "nodeId": "27:70",
-   "key": "4583f5973482fbd560e3a81035d3225b04410045",
-   "description": "Shopping cart — add-to-cart / e-commerce actions.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "arrow-right",
-   "nodeId": "6:104",
-   "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
-   "description": "Arrow pointing right — the Button's trailing icon default.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "arrow-left",
-   "nodeId": "6:99",
-   "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
-   "description": "Arrow pointing left — the Button's leading icon default.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "external-link",
-   "nodeId": "9:185",
-   "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c",
-   "description": "Arrow exiting a box — external link / opens in a new tab.",
-   "variantCount": 1,
-   "properties": {},
-   "nestedInstances": []
-  },
-  {
-   "name": "Header nav",
-   "nodeId": "84:285",
-   "key": "4165b8449f68916cca476b62454ede85eea13420",
-   "description": "",
-   "variantCount": 2,
-   "properties": {
-    "Property 1": {
-     "type": "VARIANT",
-     "defaultValue": "Solid",
-     "variantOptions": [
-      "Solid",
-      "Transparent"
-     ],
-     "preferredValues": null
-    }
-   },
-   "nestedInstances": [
-    "piqueray_logo",
-    "octicon:chevron-down-12",
-    "Bouton",
-    "arrow-left",
-    "arrow-right",
-    "search",
-    "user",
-    "cart"
-   ]
-  },
-  {
-   "name": "member-picture",
-   "nodeId": "274:2389",
-   "key": "70fdd040214e23fd7b5709b1009638a711b4080f",
-   "description": "",
-   "variantCount": 2,
-   "properties": {
-    "Property 1": {
-     "type": "VARIANT",
-     "defaultValue": "Default",
-     "variantOptions": [
-      "Default",
-      "hover"
-     ],
-     "preferredValues": null
-    }
-   },
-   "nestedInstances": []
-  }
- ]
+  ]
 }

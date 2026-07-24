@@ -1,0 +1,75 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.textarea",
+  "name": "Textarea",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "atom",
+  "description": "Piqueray multi-line text input. Extracted from the owner-validated Figma master « Textarea » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nSame native-control bridge as Input: the « Valeur » TEXT property drives the shown text, drawn on the canvas as a text child and carried in code through defaultValue on the native <textarea>. Differs from Input only in shape: a fixed 128px height and top-aligned text (the canvas frame's counter axis is MIN, not CENTER).\n\nBox styling binds to Piqueray primitives where a token exists; the values the token scale does not carry (12px padding, 1px border, 24px line-height, square 0 radius, 128px height) ride the honest `literals` channel, named. Atom scope only: no label, no state axes — the Field molecule owns them.",
+  "semantics": {
+    "element": "textarea",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "text",
+      "default": "Texte de saisie",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Valeur"
+        },
+        "code": {
+          "prop": "value"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "align": "start"
+      },
+      "tokens": {
+        "background-color": "{color.blanc}",
+        "border-color": "{color.bleu-gris}",
+        "color": "{color.noir}",
+        "font-family": "{font.family.montserrat}",
+        "font-size": "{font.size.14}",
+        "font-weight": "{font.weight.regular}"
+      },
+      "literals": {
+        "padding-block": "12px",
+        "padding-inline": "12px",
+        "border-width": "1px",
+        "border-radius": "0px",
+        "line-height": "24px",
+        "height": "128px"
+      },
+      "parts": {
+        "texteDeSaisie": {
+          "element": "span",
+          "content": {
+            "prop": "value"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
+      "nodeId": "2053:1247",
+      "dumpedAt": "2026-07-24"
+    },
+    "code": {
+      "importPath": "src/components/Textarea",
+      "export": "Textarea"
+    }
+  }
+}

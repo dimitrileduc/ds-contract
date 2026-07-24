@@ -164,6 +164,31 @@ const FRAME_CSS = `
   *, *::before, *::after { animation-play-state: paused !important; transition: none !important; }
 `;
 
+const ROOT_SELECTOR = '.showcase > .showcase__item:first-child > :nth-child(2)';
+const FIRST_ITEM_SELECTOR = '.showcase > .showcase__item:first-child';
+
+/** subjects.ts ContractSubject.renderWidth override, scoped to a CSS block:
+ *  the showcase's first item gets a definite width (overriding its default
+ *  flex-item shrink-to-fit — .showcase's `align-items: flex-start` — with an
+ *  explicit size), and the component root fills it. `width: 100%` (not the
+ *  raw px) plus `box-sizing: border-box` on the root matters for the native
+ *  form controls (input/textarea are replaced elements — an 'auto' width
+ *  does NOT stretch to a definite containing block, but an explicit
+ *  percentage width DOES, per the CSS2.1 replaced-element width algorithm);
+ *  a plain box (e.g. Select's wrapper <div>) would already fill from the
+ *  container fix alone, so this is one rule that is correct for both DOM
+ *  shapes rather than branching per subject. Height is untouched — only the
+ *  content-width mismatch (never resampled away by img.ts, by design) needed
+ *  a fix; see subjects.ts PARITY_SUBJECTS for the per-subject rationale.
+ */
+function renderWidthCss(renderWidth: number | undefined): string {
+  if (!renderWidth) return '';
+  return `<style>
+    ${FIRST_ITEM_SELECTOR} { width: ${renderWidth}px; }
+    ${ROOT_SELECTOR} { width: 100%; box-sizing: border-box; }
+  </style>`;
+}
+
 export function previewDoc(
   pkg: RenderablePackage,
   contract: Contract,
@@ -173,6 +198,7 @@ export function previewDoc(
   const fontOverride = figmaFontFamily
     ? `<style>.showcase { font-family: "${figmaFontFamily}", var(--font-family-sans, system-ui, sans-serif); }</style>`
     : '';
+  const widthOverride = renderWidthCss(pkg.subject.kind === 'contract' ? pkg.subject.renderWidth : undefined);
   return [
     '<!doctype html>',
     '<html><head><meta charset="utf-8">',
@@ -183,6 +209,7 @@ export function previewDoc(
     `<style>${FRAME_CSS}</style>`,
     `<style>${emitted.css}</style>`,
     fontOverride,
+    widthOverride,
     '</head><body>',
     emitted.html,
     '</body></html>',
@@ -190,8 +217,6 @@ export function previewDoc(
     .filter(Boolean)
     .join('\n');
 }
-
-const ROOT_SELECTOR = '.showcase > .showcase__item:first-child > :nth-child(2)';
 
 interface PageMeasurement {
   clip: Rect;

@@ -1,6 +1,6 @@
 {
-  "passed": 102,
-  "total": 102,
+  "passed": 108,
+  "total": 108,
   "quarantined": 49,
   "results": [
     {
@@ -56,6 +56,36 @@
     {
       "id": "refuse-schema-invalid-contract",
       "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "refuse-unknown-category",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "tolerate-contract-without-category",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "category-groups-story-and-catalog",
+      "claim": "C6-theming",
+      "pass": true
+    },
+    {
+      "id": "native-input-root-void-self-closes-with-attrs",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "native-checkbox-and-select-render-correctly",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "internal-glyph-consumed-not-orphan",
+      "claim": "C3-detection",
       "pass": true
     },
     {

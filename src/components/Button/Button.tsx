@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.4.0)
+ * Source of truth: contracts/button.contract.json (ds.button v1.5.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -31,6 +31,11 @@ const ICONS: Record<string, string> = {
     '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>\n</svg>',
   'arrow-left':
     '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z" fill="currentColor"/>\n</svg>',
+  facebook:
+    '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M15.9889 2.80987e-06C20.0465 -0.00240035 23.9535 1.53676 26.9192 4.30601C29.8849 7.07525 31.6878 10.8678 31.9631 14.916C32.2384 18.9643 30.9654 22.9659 28.4019 26.1111C25.8384 29.2563 22.1757 31.3102 18.1551 31.8571V20.346H22.2955L22.9476 16.1196H18.1551V13.8074C18.1551 12.1492 18.6652 10.667 20.0973 10.507L20.3614 10.493H22.9876V6.80267L22.4056 6.73066C21.8455 6.67066 20.9834 6.60265 19.7053 6.60265C15.9849 6.60265 13.7487 8.51484 13.6047 12.8493L13.5967 13.3053V16.1216H9.6383V20.348H13.5987V31.8291C9.60999 31.2224 5.99756 29.1317 3.48442 25.9754C0.971278 22.8192 -0.257161 18.8302 0.0449689 14.807C0.347098 10.7837 2.15751 7.023 5.11385 4.27748C8.07019 1.53195 11.9543 0.00420512 15.9889 2.80987e-06Z" fill="currentColor"/>\n</svg>',
+  instagram:
+    '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M9.28 0H22.72C27.84 0 32 4.16 32 9.28V22.72C32 25.1812 31.0223 27.5416 29.282 29.282C27.5416 31.0223 25.1812 32 22.72 32H9.28C4.16 32 0 27.84 0 22.72V9.28C0 6.81879 0.977712 4.45839 2.71805 2.71805C4.45839 0.977712 6.81879 0 9.28 0ZM8.96 3.2C7.43235 3.2 5.96727 3.80686 4.88707 4.88707C3.80686 5.96727 3.2 7.43235 3.2 8.96V23.04C3.2 26.224 5.776 28.8 8.96 28.8H23.04C24.5676 28.8 26.0327 28.1931 27.1129 27.1129C28.1931 26.0327 28.8 24.5676 28.8 23.04V8.96C28.8 5.776 26.224 3.2 23.04 3.2H8.96ZM24.4 5.6C24.9304 5.6 25.4391 5.81071 25.8142 6.18579C26.1893 6.56086 26.4 7.06957 26.4 7.6C26.4 8.13043 26.1893 8.63914 25.8142 9.01421C25.4391 9.38929 24.9304 9.6 24.4 9.6C23.8696 9.6 23.3609 9.38929 22.9858 9.01421C22.6107 8.63914 22.4 8.13043 22.4 7.6C22.4 7.06957 22.6107 6.56086 22.9858 6.18579C23.3609 5.81071 23.8696 5.6 24.4 5.6ZM16 8C18.1217 8 20.1566 8.84285 21.6569 10.3431C23.1571 11.8434 24 13.8783 24 16C24 18.1217 23.1571 20.1566 21.6569 21.6569C20.1566 23.1571 18.1217 24 16 24C13.8783 24 11.8434 23.1571 10.3431 21.6569C8.84285 20.1566 8 18.1217 8 16C8 13.8783 8.84285 11.8434 10.3431 10.3431C11.8434 8.84285 13.8783 8 16 8ZM16 11.2C14.727 11.2 13.5061 11.7057 12.6059 12.6059C11.7057 13.5061 11.2 14.727 11.2 16C11.2 17.273 11.7057 18.4939 12.6059 19.3941C13.5061 20.2943 14.727 20.8 16 20.8C17.273 20.8 18.4939 20.2943 19.3941 19.3941C20.2943 18.4939 20.8 17.273 20.8 16C20.8 14.727 20.2943 13.5061 19.3941 12.6059C18.4939 11.7057 17.273 11.2 16 11.2Z" fill="currentColor"/>\n</svg>',
+  star: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>\n</svg>',
 };
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -54,7 +59,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'chevron-up'
     | 'cart'
     | 'arrow-right'
-    | 'arrow-left';
+    | 'arrow-left'
+    | 'facebook'
+    | 'instagram'
+    | 'star';
   /** Which governed icon (ds.icons registry) fills the trailing icon slot, when shown (iconRight). */
   iconRightGlyph?:
     | 'piqueray'
@@ -69,14 +77,17 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'chevron-up'
     | 'cart'
     | 'arrow-right'
-    | 'arrow-left';
+    | 'arrow-left'
+    | 'facebook'
+    | 'instagram'
+    | 'star';
 }
 
 /** Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives.
 
 The label (children) is bound to the « Libellé » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).
 
-The two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icône gauche »/« Icône droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to exactly the 13-icon registry in the same Step 3 update), defaulting to the file's own arrow-left/arrow-right glyphs.
+The two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icône gauche »/« Icône droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.
 
 Extracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry. */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(

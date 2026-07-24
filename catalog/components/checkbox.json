@@ -1,0 +1,26 @@
+{
+  "id": "ds.checkbox",
+  "name": "Checkbox",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "atom",
+  "description": "Piqueray checkbox. Extracted from the owner-validated Figma COMPONENT_SET « Checkbox » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nAccessible custom control (the demo-51 pattern, adapted): the visual box is presentational (border/fill follow the « Coché » variant), a REAL native <input type=\"checkbox\"> sits inside for accessibility (« Canvas: not drawn » — semantics don't draw), and the custom check glyph is a sibling shown only when checked. This keeps the exact Piqueray look AND native semantics; the wrapping label is the Field molecule's job.\n\nThe check glyph is check.svg, exported from the master's real Vector node (2053:1255) — an internal glyph consumed by this contract, deliberately OUTSIDE the governed icon registry (which stays at its governed count). Modeled ONLY as the master exposes it: a Non/Oui variant, no label, no size axis, no indeterminate state, no declared event — the Field molecule owns those.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "d1b5e763513013c8d216d840c4f95f22f0e3c909"
+  },
+  "props": [
+    {
+      "name": "checked",
+      "type": [
+        "non",
+        "oui"
+      ],
+      "default": "non"
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

@@ -51,12 +51,16 @@ moves the gate, explicitly, after review.
 | subject | variant | masked | unmasked | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
 |---|---|---|---|---|---|---|---|
 | button | Property 1=Link | — | 4.83% | 307×24 vs 308×24 | diffuse delta — see triptych | renderer: all-text row since the 2026-07-23 icon toggles (« Icône gauche/droite » BOOLEAN default off): neither side draws an icon at defaults, the DOM-derived text mask covers everything → masked score null BY CONSTRUCTION; ranks by its unmasked glyph-raster delta, proportionally large on a ~370×24 canvas (same class as Default/Orange, smaller denominator). NAMED COVERAGE GAP: icon rendering is no longer exercised by this gate — needs a subject prop-preset (iconRight=true vs a property-set Figma render) to come back under pixel proof. | report-assets/button--property-1-link.triptych.png |
+| checkbox | Coché=Oui | 2.56% | 2.56% | 40×40 vs 40×40 | diffuse delta — see triptych | renderer: label advance-width hug (ours Δ-7 device px) shifts the center-padded pair; residual masked ink is the control-box edge ring + Figma label pixels escaping the DOM-derived text mask | report-assets/checkbox--coch-oui.triptych.png |
 | button | Property 1=Outilne noir | 2.53% | 3.88% | 436×108 vs 440×108 | diffuse delta — see triptych | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-outilne-noir.triptych.png |
 | button | Property 1=Default | 1.31% | 3.03% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-default.triptych.png |
 | button | Property 1=Orange | 1.31% | 3.02% | 436×108 vs 440×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-orange.triptych.png |
-| button-with-icons | Property 1=Link | 0.91% | 7.83% | 728×36 vs 728×36 | text raster/family delta dominates | — | report-assets/button-with-icons--property-1-link.triptych.png |
+| button-with-icons | Property 1=Outilne noir | 0.01% | 1.62% | 610×108 vs 610×108 | text raster/family delta dominates; diff localized middle-center (408×25px) | — | report-assets/button-with-icons--property-1-outilne-noir.triptych.png |
 | button | Property 1=Blanc | 0.00% | 2.13% | 436×108 vs 440×108 | text raster/family delta dominates; diff localized middle-center (307×25px) | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-blanc.triptych.png |
 | button | Property 1=Outline blanc | 0.00% | 0.00% | 436×108 vs 440×108 | near-identical | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | report-assets/button--property-1-outline-blanc.triptych.png |
+| checkbox | Coché=Non | 0.00% | 0.00% | 40×40 vs 40×40 | near-identical | renderer: label advance-width hug (ours Δ-7 device px) shifts the center-padded pair; residual masked ink is the control-box edge ring + Figma label pixels escaping the DOM-derived text mask | report-assets/checkbox--coch-non.triptych.png |
+| input | Input | 0.00% | 0.17% | 560×96 vs 560×96 | diff localized middle-left (179×20px) | — | report-assets/input--input.triptych.png |
+| textarea | Textarea | 0.00% | 0.06% | 560×256 vs 560×256 | diff localized top-left (179×20px) | — | out/textarea/textarea.triptych.png |
 
 ## Not diffed (named, never dropped)
 
@@ -64,12 +68,12 @@ _none_
 
 ## Distribution (masked score)
 
-- ≤ 1%: 3 variant(s)
-- 1–3%: 3 variant(s)
+- ≤ 1%: 6 variant(s)
+- 1–3%: 4 variant(s)
 - 3–10%: 1 variant(s)
 - > 10%: 0 variant(s)
 
-- diffed: 7 · skipped/refused/declined: 0
+- diffed: 11 · skipped/refused/declined: 0
 
 ## Gate read (triage classes)
 
@@ -82,8 +86,11 @@ _none_
 
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
-| button (contract) | v2379664805104925610 | repo tokens only | Montserrat |
-| button-with-icons (contract) | v2379664805104925610 | repo tokens only | Montserrat |
+| button (contract) | v2379873028366184322 | repo tokens only | Montserrat |
+| checkbox (contract) | v2379873028366184322 | repo tokens only | (none) |
+| input (contract) | v2379873028366184322 | repo tokens only | Montserrat |
+| textarea (contract) | v2379873028366184322 | repo tokens only | Montserrat |
+| button-with-icons (contract) | v2379873028366184322 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

@@ -48,6 +48,9 @@ export interface CatalogComponent {
   name: string;
   version: string;
   status: string;
+  /** v17 (spec 004): organizational tier — present only when the contract
+   *  carries one; absent contracts render under a residual group. */
+  category?: 'atom' | 'molecule' | 'section';
   description: string;
   figma: { representation: 'component' | 'native'; componentSetKey?: string };
   props: CatalogProp[];
@@ -125,6 +128,8 @@ export interface RawContract {
   name: string;
   version: string;
   status: string;
+  /** v17 (spec 004): organizational tier — optional, mirrors the schema. */
+  category?: 'atom' | 'molecule' | 'section';
   description: string;
   semantics?: { element?: string; role?: string };
   props: RawProp[];

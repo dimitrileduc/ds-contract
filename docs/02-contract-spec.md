@@ -10,6 +10,7 @@ One contract per component, at `contracts/<component>.contract.json`. The author
 | `name` | string | Display/export name (`Button`). Drives the code export and the canvas component set name. |
 | `version` | semver string | Bumped when the contract changes. The unit of change management. |
 | `status` | `draft` \| `stable` \| `deprecated` | Governance lifecycle. |
+| `category` | `atom` \| `molecule` \| `section` — optional (v17) | Organizational tier mirrored **structurally** from the Figma DS pages. Optional: a contract without one stays valid and the surfaces fall back to a `Components/` group; an unknown value is refused by name at build. The three generated surfaces (Storybook titles, catalog, Contract Hub) derive their grouping from it, with English labels from the single source `CATEGORY_LABELS` (`atom → Atoms`, `molecule → Molecules`, `section → Sections`). |
 | `description` | string | Usage intent. Flows into Storybook autodocs and (phase 2) the canvas component description — the same sentence in both surfaces, from one source. |
 | `semantics` | `{ element, role?, provenance? }` | The HTML element the code renderer uses, the ARIA role if it differs, and (v16) an optional `authored`/`extracted` provenance marker. |
 | `props` | `Prop[]` | The canonical API. See below. |

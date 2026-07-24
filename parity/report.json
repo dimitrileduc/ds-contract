@@ -1,12 +1,19 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 1,
+    "acknowledged": 2,
     "pending": 0,
     "bySurface": {}
   },
   "findings": [],
   "acknowledged": [
+    {
+      "surface": "figma-tokens",
+      "classification": "ahead",
+      "subject": "Primitives/color/rouge",
+      "detail": "Figma variable has no counterpart in tokens/",
+      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
+    },
     {
       "surface": "icons",
       "classification": "ahead",
@@ -17,7 +24,11 @@
   ],
   "pending": [],
   "checkedContracts": [
-    "ds.button@1.4.0"
+    "ds.button@1.5.0",
+    "ds.checkbox@1.0.0",
+    "ds.input@1.0.0",
+    "ds.select@1.0.0",
+    "ds.textarea@1.0.0"
   ],
   "namingBridges": [
     "mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\""

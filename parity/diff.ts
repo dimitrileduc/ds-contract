@@ -28,6 +28,7 @@ import {
   slotVisibilityProperty,
   slotsOf,
   statePreviewLabel,
+  walkAnatomy,
   type Contract,
   type Prop,
 } from '../scripts/contract-schema.js';
@@ -806,8 +807,22 @@ if (existsSync(iconRegistryPath)) {
   }
 
   const registryAssetNames = new Set(registry.icons.map((i) => i.asset));
+  // v17 (spec 004, D7): an asset a catalog contract consumes through a FIXED
+  // (non-templated) icon.asset — a component-private glyph like the Checkbox's
+  // « check » — is not an orphan even without a registry entry. It is still
+  // Figma-born (exported read-only from the master's own Vector) and is
+  // deliberately outside the governed icon registry. Enum-templated icon
+  // assets ({glyph}) stay registry-governed and are NOT swept in here. An
+  // asset that is NEITHER registry-listed NOR consumed remains a finding.
+  const consumedAssets = new Set<string>();
+  for (const c of contracts) {
+    for (const { part } of walkAnatomy(c)) {
+      const asset = part.icon?.asset;
+      if (asset && !asset.includes('{')) consumedAssets.add(asset);
+    }
+  }
   for (const asset of codeAssets) {
-    if (!registryAssetNames.has(asset)) {
+    if (!registryAssetNames.has(asset) && !consumedAssets.has(asset)) {
       add({
         surface: 'icons',
         classification: 'ahead',

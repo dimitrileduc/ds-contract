@@ -802,6 +802,17 @@ export const EventSchema = z.strictObject({
     .optional(),
 });
 
+/** v17 (spec 004): the ONE definition of the English display labels for
+ *  `category`. Consumed by all three generated surfaces (Storybook story
+ *  titles, catalog, Contract Hub grouping) so the labels never drift between
+ *  them. Structure mirrored from the Figma DS pages; language stays English
+ *  on the code side (Bouton ↔ Button convention). */
+export const CATEGORY_LABELS: Record<'atom' | 'molecule' | 'section', string> = {
+  atom: 'Atoms',
+  molecule: 'Molecules',
+  section: 'Sections',
+};
+
 export const ContractSchema = z.strictObject({
   $schema: z.string().optional(),
   /** Stable canonical id, never renamed. e.g. "ds.button". The namespace
@@ -813,6 +824,13 @@ export const ContractSchema = z.strictObject({
   name: z.string(),
   version: z.string().regex(/^\d+\.\d+\.\d+$/, 'version must be semver (MAJOR.MINOR.PATCH)'),
   status: z.enum(['draft', 'stable', 'deprecated']).default('draft'),
+  /** v17 (spec 004): organizational tier mirrored STRUCTURALLY from the Figma
+   *  DS pages (DS · Atomes / Molécules / Sections) — not a language choice.
+   *  Optional: a contract without one stays valid and the generated surfaces
+   *  fall back to a `Components/` group (backward-compatible). An unknown value
+   *  is refused BY NAME at build (Zod enum). Display labels live in the single
+   *  source CATEGORY_LABELS (above); never repurpose an existing field. */
+  category: z.enum(['atom', 'molecule', 'section']).optional(),
   description: z.string(),
   semantics: z.strictObject({
     element: z.enum([

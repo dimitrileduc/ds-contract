@@ -12,16 +12,19 @@
  * normally — it simply renders "No sample available" instead of a preview.
  *
  * Piqueray reconversion: the 51 demo samples were removed with the demo
- * contracts (they imported components that no longer exist, which crashed the
- * dashboard at load). Only the Button remains.
+ * contracts. Button + the four spec-004 input atoms (Input/Textarea/Select/
+ * Checkbox) are the current governed set.
  */
 import type { ReactNode } from 'react';
-import { Button } from '../../src/components';
-import type { ButtonProps } from '../../src/components';
+import { Button, Input, Textarea, Select, Checkbox } from '../../src/components';
+import type { ButtonProps, InputProps, TextareaProps, SelectProps, CheckboxProps } from '../../src/components';
 
-/** Default text children per component, used when no override is supplied. */
+/** Default text children/value per component, used when no override is supplied. */
 export const SAMPLE_TEXT: Record<string, string> = {
   Button: 'Contactez-nous',
+  Input: 'Texte de saisie',
+  Textarea: 'Texte de saisie',
+  Select: 'Texte de saisie',
 };
 
 export function renderSample(
@@ -35,6 +38,25 @@ export function renderSample(
   switch (name) {
     case 'Button':
       return <Button {...(props as ButtonProps)}>{text('Contactez-nous')}</Button>;
+
+    // The atoms carry their text as the `value` PROP (not children), so the
+    // playground's `value` control drives them through {...props} — NOT the
+    // childText path (which is for text-children components like Button). No
+    // hardcoded value/checked override: that would shadow the control, and a
+    // fixed default would disagree with what the control shows. The component's
+    // own contract-default renders when props is empty (the list previews); the
+    // detail playground drives it live through props.
+    case 'Input':
+      return <Input {...(props as InputProps)} />;
+
+    case 'Textarea':
+      return <Textarea {...(props as TextareaProps)} />;
+
+    case 'Select':
+      return <Select {...(props as SelectProps)} />;
+
+    case 'Checkbox':
+      return <Checkbox {...(props as CheckboxProps)} />;
 
     default:
       return <span className="muted">No sample available.</span>;

@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-07-24T08:49:55.940Z",
- "headCommit": "8d33ea239a84a3dbb5ee95039e319fa23a934257",
+ "generatedAt": "2026-07-24T20:41:37.753Z",
+ "headCommit": "7ddca00fd333eb0794a2d726a4aa02698948ae08",
  "epsilonPp": 0.1,
  "subjects": {
   "button": {
-   "version": "2379664805104925610",
+   "version": "2379873028366184322",
    "fontFamilies": [
     "Montserrat"
    ],
@@ -13,14 +13,42 @@
     "sizeOurs": "436×108"
    }
   },
-  "button-with-icons": {
-   "version": "2379664805104925610",
+  "checkbox": {
+   "version": "2379873028366184322",
+   "fontFamilies": [],
+   "pinned": {
+    "variant": "Coché=Non",
+    "sizeOurs": "40×40"
+   }
+  },
+  "input": {
+   "version": "2379873028366184322",
    "fontFamilies": [
     "Montserrat"
    ],
    "pinned": {
-    "variant": "Property 1=Link",
-    "sizeOurs": "728×36"
+    "variant": "Input",
+    "sizeOurs": "560×96"
+   }
+  },
+  "textarea": {
+   "version": "2379873028366184322",
+   "fontFamilies": [
+    "Montserrat"
+   ],
+   "pinned": {
+    "variant": "Textarea",
+    "sizeOurs": "560×256"
+   }
+  },
+  "button-with-icons": {
+   "version": "2379873028366184322",
+   "fontFamilies": [
+    "Montserrat"
+   ],
+   "pinned": {
+    "variant": "Property 1=Outilne noir",
+    "sizeOurs": "610×108"
    }
   }
  },
@@ -67,11 +95,39 @@
    "sizeOurs": "436×108",
    "causeClass": "renderer"
   },
-  "button-with-icons :: Property 1=Link": {
+  "checkbox :: Coché=Non": {
    "status": "diffed",
-   "masked": 0.9081196581196582,
-   "unmasked": 7.825854700854701,
-   "sizeOurs": "728×36",
+   "masked": 0,
+   "unmasked": 0,
+   "sizeOurs": "40×40",
+   "causeClass": "renderer"
+  },
+  "checkbox :: Coché=Oui": {
+   "status": "diffed",
+   "masked": 2.5625,
+   "unmasked": 2.5625,
+   "sizeOurs": "40×40",
+   "causeClass": "renderer"
+  },
+  "input :: Input": {
+   "status": "diffed",
+   "masked": 0,
+   "unmasked": 0.16927083333333334,
+   "sizeOurs": "560×96",
+   "causeClass": null
+  },
+  "textarea :: Textarea": {
+   "status": "diffed",
+   "masked": 0,
+   "unmasked": 0.0634765625,
+   "sizeOurs": "560×256",
+   "causeClass": null
+  },
+  "button-with-icons :: Property 1=Outilne noir": {
+   "status": "diffed",
+   "masked": 0.008186655751125664,
+   "unmasked": 1.621129326047359,
+   "sizeOurs": "610×108",
    "causeClass": null
   }
  }
