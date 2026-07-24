@@ -1896,3 +1896,93 @@ nommée pour la suite (détail `proofs/presentation/README.md`) : un
 capturer le travail en cours d'un AUTRE agent sur une page non ciblée par
 son propre incrément — pas un défaut de l'instrument, un rappel d'investiguer
 avant de conclure, jamais de supposer la cause ni de balayer comme du bruit.
+
+## 2026-07-24 — validation-master — SAV (T073)
+
+- **Type** : validation-master — exécuté par un agent Opus délégué (méthode
+  d'exécution actée `tasks.md` Phase 7/8 : scoping en conversation principale,
+  construction déléguée à un seul opérateur canvas). Le **Verdict owner**
+  ci-dessous = auto-validation de l'agent délégué contre la mesure (fidélité
+  clone vérifiée nœud par nœud + revue visuelle du master), nommée honnêtement
+  comme telle plutôt que de prêter une citation owner qui n'a pas eu lieu ;
+  capture et receipts livrés pour revue (précédent Présentation T071).
+- **Composant(s)** : sav
+- **Verdict owner** : master `SAV` construit et vérifié — 1 occurrence confirmée
+  par **trois mesures indépendantes** (nom + bande de taille + empreinte image
+  unique), pas seulement le nom ; clone byte-exact de la source (12 points
+  re-vérifiés) ; propriété officielle TEXTE `Titre` liée sans aplatissement
+  (titre uniforme, `flattened:false` vérifié) ; corps riche (3 plages gras +
+  `\n`) gardé statique (occurrence unique, arbitrage Coordonnées) ; Bouton =
+  instance locale déjà gouvernée (`remote:false`). En attente de revue owner sur
+  la capture, comme tout travail de cette session.
+- **Chiffres** : `DS · Molécules` → `COMPONENT` **SAV** (`2108:3105`, 1552×677),
+  section `SAV` (`2108:3091`, à 0/8035, contenu à 40/8095 — position
+  précalculée), propriété `Titre#2108:60` (TEXTE, défaut « Dépannage / SAV »).
+  Dépendances : Bouton `6:122` (local), 2 fonds image bakés (illustration
+  `429c615c` + bandeau `3e173874`), 2 fonds SOLID bindés (`5:63`/`4:29`) — zéro
+  dépendance tierce, zéro nouvel asset.
+- **Structure — cas le plus profond de la spec (3 GROUP imbriqués)** : `section`
+  GROUP → `background`(image) + `row` GROUP → [`img-group` GROUP → [bg, img],
+  `wrapper` GROUP → [bg, `inner` FRAME → titre/corps/Bouton]]. **Nettoyage
+  retenu : clonage verbatim, groupes internes conservés** — l'élément source est
+  DÉJÀ une FRAME (`210:369`), la règle GROUP→FRAME de `CLAUDE.md` (conditionnée à
+  un source GROUP) est satisfaite au niveau du bloc ; re-modéliser les GROUP
+  internes imposerait de repositionner des enfants sur 3 niveaux = le piège
+  exact d'origine-instable que la spec interdit. Validé **par revue de
+  structure** (top-level = COMPONENT frame-like, pas un GROUP), pas par pixel,
+  conforme à la règle. Fidélité maximale, risque minimal (même arbitrage
+  Coordonnées).
+- **Preuve** : `audits/sav.md` ; capture de session (master conforme à la
+  source, 3 plages gras + saut de paragraphe rendus)
+- **Checkpoint** : `003/sav/master` (versionId `2379860732438734363`)
+
+## 2026-07-24 — ecart-pixel-accepte — SAV (adoption, T074)
+
+- **Type** : ecart-pixel-accepte — accepté par l'agent d'exécution après
+  investigation complète (triptyque zoomé + audit texte exhaustif post-adoption),
+  jamais un chiffre agrégé pris pour argent comptant.
+- **Composant(s)** : sav
+- **Verdict owner** : accepté par l'agent délégué contre la mesure — le plus
+  petit écart de toute la spec (3 px), tracé à un ré-hinting sub-pixel des seuls
+  contours du titre re-rastérisé, zéro perte de contenu/style/position démontrée.
+- **Chiffres** : **1/1 `diff`** (seule maquette concernée : `Accueil`),
+  `diffCount=3`, `diffBox={x:474, y:1842, w:56, h:30}`, soit **0,000032 %** de la
+  page (1728×5430 = 9 383 040 px) — de très loin le plus bas de la session (repères :
+  Coordonnées 816 px / 0,0121 %, FAQ ~40 px). `before`/`after` : dimensions
+  strictement égales (1728×5430 ×2). Ledger : `ledger/sav.json` — **vide explicite**
+  (`entrees: []`, `pages:ledger:check` exit 0) : l'unique instance porte, par
+  construction du master (cloné depuis cette occurrence), le contenu exact de la
+  source ; le diff structurel copie↔master exécuté AVANT remplacement retournait
+  déjà 0 entrée / 0 illisible.
+- **Raison — investigation avant acceptation** :
+  1. **Triptyque zoomé** (`crops/Accueil.png`) sur le `diffBox` (56×30, confiné à
+     la ligne du titre) : montre le fragment « ge / S » de « Dépannage / SAV » ;
+     avant et après visuellement identiques, le panneau diff ne surligne que les
+     **bords des glyphes** — aucun glyphe manquant/déplacé, aucune variation de
+     graisse, aucune bascule de couleur (jaune = surlignage du diff, pas un contenu).
+  2. **Audit texte exhaustif post-adoption** sur l'instance (`2108:3135`), champ
+     par champ contre la source : Titre (1 plage, Montserrat Regular 40, lh 50, ls
+     0%, `VariableID:5:40`) ; corps (7 plages, **3 gras aux indices exacts 33-52 /
+     101-122 / 252-299**, size 18, lh 27, paragraphSpacing 8, `VariableID:24:52`,
+     **`\n` toujours à 225**) ; Bouton (« Demander de l'aide », gauche `false` /
+     droite `true`, `remote:false`, set `6:122`) — **correspondance à 100 %**. Le
+     corps, le Bouton et l'illustration tombent hors du `diffBox` : **zéro diff**
+     mesuré dessus. Bruit de rendu sub-pixel de la même famille déjà acceptée
+     cette spec, à une magnitude sans précédent tant elle est faible.
+- **Périmètre de capture — Accueil seule** : SAV n'existe que sur Accueil
+  (confirmé 3 mesures). Capture before/after sur la seule maquette concernée
+  (précédent Coordonnées 1/1). Bénéfice collatéral : l'agent concurrent `Texte
+  SEO` opère sur les 8 maquettes non-Accueil + sa section DS à (1692, 8035) —
+  capturer Accueil seule exclut structurellement son travail de ma mesure (aucune
+  collision inter-agent possible, contrairement à la vague 2).
+- **Preuve** : `proofs/sav/{verdict.json,verdict.md,README.md,crops/Accueil.png}` ;
+  `ledger/sav.json` (vide explicite)
+- **Checkpoint** : `003/sav/adoption` (versionId `2379877353918470503`)
+
+**SAV (T073-T074) fait.** `SAV` (FRAME) brut ×1 (Accueil) → 0 copie restante, 1
+instance du master `SAV` (`2108:3135`), bbox strictement inchangée (delta
+`{0,0,0,0}` — 389/1672/1552×677 avant = après ; auto-layout `VERTICAL` d'Accueil,
+`insertChild(2)`, aucune coordonnée manuelle). Cas le plus profond de la spec (3
+GROUP imbriqués) traité par clonage verbatim — le piège d'origine-instable des
+GROUP ne s'est jamais déclenché (seul le top-level déplacé, aucun enfant interne
+repositionné). Prochain bloc de la Phase 8 à scoper par l'owner/l'agent principal.
