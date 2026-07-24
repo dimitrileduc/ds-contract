@@ -84,6 +84,7 @@ Degradation is named, never silent. Extraction marks every heuristic (`confidenc
 
 - `docs/handoff/` — a 13-file AI-to-AI onboarding package (concept, determinism, architecture, tooling, what-works / what-doesn't, testing-and-gates, history). **This is the most current and authoritative source** (verified against the codebase 2026-07-21) — prefer it over the README where they disagree (e.g. eval count).
 - `docs/00-getting-started.md` … `docs/15-engine-as-library.md` — the working documents.
+- `docs/reference/demo-archive/` — the 51 pre-reconversion demo contracts (tree `0e37de2`, tag `demo-51`; deleted at `8f462af`), materialized read-only. **Before modeling a new Piqueray component, read its INDEX.md row + file**: how did the demo model it — steal or reject with named reasons in the spec's research.md (002 precedent: reused the templated icon part, rejected the open slot). Only the contracts were deleted; the emitters/parity/schema machinery is the live code (dormant), and the demo's generated code/tokens/evals live at `demo-51` (recipes in the archive README). Never build input; demo-era schema+tokens — never copy into `contracts/` as-is.
 - `MILESTONES.md` (dated proof log), `CHANGELOG.md` (releases), `ROADMAP.md`.
 
 ## Active Technologies

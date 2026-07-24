@@ -1,0 +1,88 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.badge",
+  "name": "Badge",
+  "version": "1.1.0",
+  "status": "draft",
+  "description": "Communicates status or categorization at a glance. Non-interactive.",
+  "semantics": {
+    "element": "span",
+    "role": "status"
+  },
+  "props": [
+    {
+      "name": "variant",
+      "description": "The feedback tone being communicated.",
+      "type": {
+        "enum": [
+          "info",
+          "success",
+          "warning",
+          "danger",
+          "error"
+        ]
+      },
+      "default": "info",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Variant",
+          "values": {
+            "info": "Info",
+            "success": "Success",
+            "warning": "Warning",
+            "danger": "Danger",
+            "error": "Error"
+          }
+        },
+        "code": {
+          "prop": "variant"
+        }
+      }
+    },
+    {
+      "name": "children",
+      "description": "Badge label.",
+      "type": "text",
+      "default": "Badge",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Label"
+        },
+        "code": {
+          "prop": "children"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "tokens": {
+        "background-color": "{color.feedback.{variant}.background}",
+        "color": "{color.feedback.{variant}.foreground}",
+        "padding-inline": "{space.inset-x.sm}",
+        "padding-block": "{space.inset-y.sm}",
+        "border-radius": "{radius.badge}",
+        "font-family": "{font.control.family}",
+        "font-weight": "{font.control.weight}",
+        "font-size": "{font.badge.size}"
+      }
+    }
+  },
+  "a11y": {
+    "contrast": "AA"
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "8nim1d0IPnehMxA7B7SYxC",
+      "componentSetKey": "89f1fb2d4580116cea4be5d4ca340de216a27819",
+      "nodeId": "6:10"
+    },
+    "code": {
+      "importPath": "src/components/Badge",
+      "export": "Badge"
+    }
+  }
+}
