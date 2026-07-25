@@ -371,3 +371,55 @@ vérifié en direct ET via l'historique, aucun geste nécessaire.**
 - **Conclusion** : la prémisse de FR-015a ("le variant Défaut porte un soulignement de 2px qu'il ne devrait pas, l'axe État ne varie donc rien visuellement") **ne correspond pas à l'état réel du fichier**, ni aujourd'hui ni à aucun point de l'historique couvert par cette spec. Origine probable : une observation erronée ou périmée remontée dans un audit antérieur (`bonnes-pratiques-molecules.md`, spec 003) et jamais recroisée avec une lecture directe des propriétés avant d'écrire le brief. **Aucun geste exécuté** — forcer un changement sur un état déjà correct serait le contraire de la prudence que ce principe exige.
 - **Conséquence sur les critères de clôture** : US2 est **déjà pleinement satisfaite** (l'axe `État` varie le rendu, confirmé) — sans le geste "assumé, non-zéro-pixel" que la spec prévoyait comme unique exception. **Le compte de cycles consommés descend à 12 (É + L1-L5 + V1-V6 + L4 = 12), pas 13** — sous le budget de 12 annoncé par SC-009, pas au-dessus. La section "un fix design assumé" du rapport de clôture doit être corrigée en conséquence : il n'y en a **zéro**, pas un.
 - **Verdict** : ✅ **Vérifié, rien à corriger** — aucun commit de geste (aucune écriture), seule cette investigation est journalisée.
+
+## Phase 10 — Ménage final (cycle 13, ajouté par l'owner en clôture)
+
+- **Versions enregistrées** : `005/cloture/menage-final` — `2380243255616009478` ; `005/cloture/pre-fanout-styles` — `2380244710516711183` ; `005/cloture/rangement-organisms` — `2380214328453044585`. (Le checkpoint `005/cloture/archive-deletion` `2380240789750925578` posé plus tôt couvre le même état de départ.)
+- **Périmètre décidé par l'owner en session** (« fais simple, ≥2 → on externalise, kiss ») : styles de texte ≥2 occurrences, puis étendu aux **couleurs** ≥2 ; suppression du débris `Soulignement` ; page `Archive · Spec A` supprimée ; **copie Accueil** : d'abord « laisse-la », puis « supprime-la maintenant » ; enfin **rangement de DS · Organisms** (« ordre logique, bien présenté, save version avant »).
+- **Avant ×9** : `.page-parity/archive-deletion/before/` — 9/9 manifests ok, sha256 pinnés (complétés à 9 AVANT tout geste de ce lot).
+
+**Styles de texte (46 nœuds scannés dans les masters, compte de l'audit externe confirmé au nœud près)** :
+- **33 liés** : 21 aux styles existants (Paragraphe ×4, Titre 5 ×4, Titre 4 ×1, Titre 3 ×5, Lead ×2, Titre 2 ×5) + 12 aux 6 styles créés (`Libellé bouton` M16/22 UPPER ×6, `Paragraphe gras` B14/24 ×2, `Accroche` R20/25/ls15/UPPER ×3, puis `Onglet` SB20/25 UPPER ×2, `Titre 3 majuscules` ×2, `Titre 2 majuscules` ×2 — voir découverte ci-dessous).
+- **Découverte d'API majeure (explique un mystère de L2)** : `setRangeTextCase` sur un nœud fraîchement lié **DÉTACHE le style** (la casse fait partie de la définition du style). Les 7 nœuds « liés » en L2 puis corrigés en casse s'étaient donc silencieusement détachés — c'est pourquoi l'audit externe les retrouvait non liés. Réponse conforme à la règle ≥2 : **3 styles UPPER dédiés** créés (les 6 nœuds concernés forment 3 recettes ×2).
+- **Style fantôme supprimé** : `Titre Hero` Inter 12px (`S:70f57a68…`) — zéro consommateur vérifié fichier entier (plages comprises) avant `remove()`.
+- **11 non liés, tous déclarés** : 6 rich-text (gras par plages → B1), Hero vidéo R44 ×1 et Nav-item M16/lh16 ×1 (sous seuil), Field R14 lh AUTO ×3 (lier au style lh24 = geste visuel).
+
+**Couleurs (extension ≥2 décidée en session)** : scan complet des paints SOLID non liés dans les masters → **3 hex restants seulement**. `#000000` ×3 réels (Accordion Grand strokes ×2, Devis fill overlay — le T032 de L2 était coché mais jamais réellement exécuté, omission détectée) → nouvelle variable `color/noir-pur` ; `#E0E0E0` ×2 (Réalisation) → `color/gris-clair` ; `#9747FF` ×4 = le stroke pointillé par défaut des COMPONENT_SET (chrome d'éditeur Figma, jamais rendu dans les instances) → **exclu et déclaré**.
+
+**⚠️ INCIDENT MAJEUR — copie Accueil, diagnostic erroné hérité, réparation complète** :
+- L'audit externe décrivait `2121:5168` comme « copie complète de la maquette Accueil posée sur DS · Organisms, débris de chantier ». Après le premier refus de l'owner (« laisse-la ») puis sa décision inverse (« supprime-la maintenant »), je l'ai supprimée en vérifiant seulement qu'elle ne contenait **aucun master** (0 COMPONENT à l'intérieur — vrai) — **sans re-vérifier sa page ni son rôle réel**.
+- **Conséquence mesurée** : le bandeau Devis d'Accueil a perdu sa photo de fond (capture 4,33 Mo vs 5,17 Mo, diff 479 735 px). Diagnostic pixel : pas la copie elle-même — **ma liaison couleur sur l'overlay noir de Devis** : lier un paint à une variable dont l'**alpha vaut 1** fait dominer cet alpha sur l'opacité du paint (30% → 100%, noir opaque masquant la photo). Nouveau piège d'API documenté, cousin de T030. Le `opacityPreserved: true` de mon rebind lisait la propriété stockée, pas l'alpha effectif.
+- **Réparation, vérifiée** : opacité 77/255 (#0000004D du relevé T009) réécrite sur le master **et** sur les 8 instances de page (chacune portait un override de fills propre — le fix master seul ne se propageait pas). Note : l'instance de Portes de garage industrielles portait 0,3000 (vs 0,30196) — normalisée à 77/255, sous le seuil pixelmatch, nommé ici.
+- **2 régressions d'échos supplémentaires trouvées par le diff et corrigées** (même classe que L4 : le style pur écrase les transformations par plages des overrides d'instance) : (1) colonne **Contact** du Footer — le soulignement d'origine était **par plages** (« Tél : »/« Email: » non soulignés, numéros/adresse soulignés) ; pattern exact récupéré depuis l'écho intact du master Footer et réappliqué aux 9 échos de page ; la colonne **Horaires** (pas un lien) remise à NONE ×9 après une sur-application initiale ×27 ; (2) libellé du bouton outline de Dépannage/SAV — letterSpacing 1% d'origine restauré (largeur 157/251 revenue exacte).
+
+**Rangement DS · Organisms (demande owner)** : section `Header` créée (le COMPONENT_SET était nu — convention des 14 autres) ; **15 sections alignées en colonne x=0**, ordre de lecture d'une page type (Header → Hero → Catégories principales → Présentation → Réassurances → Produits e-commerce → Réalisations → Équipe → SAV → Texte SEO → FAQ → Devis → Formulaire → Coordonnées → Footer), gap 200px. Byte-prouvé zéro-pixel (sha256 identiques avant/après rangement sur les 9 pages).
+
+**Diff attendu** : 0 pixel. **Diff observé (final)** : **8/9 `identical`, 1/9 `diff`** — Dépannage/SAV, 171 px, `diffBox x=772,y=1242,w=182,h=11` = le libellé du bouton outline **translaté d'exactement 1px** (mesuré colonne de pixels par colonne de pixels : motif de glyphes identique, aucune perte ; propriétés live toutes identiques à l'avant — Medium 16, ls 1%, largeurs 157/251, x=739). Résidu sub-pixel du round-trip letterSpacing, même classe que le 1px chevron de L4 — **accepté et nommé, jamais requalifié en silence**. Contactez-nous est byte-identique au before (sha256 égal).
+- **Verdict** : ✅ **PASSÉ avec 1 résidu d'1px nommé** — [verdict](./proofs/menage-final/verdict.md). Le fichier finit à **5 pages** (Pages, DS · Tokens, DS · Atomes, DS · Molécules, DS · Organisms), 16 styles de texte, 15 variables couleur, zéro page de chantier.
+
+## Clôture — contrôle des 17 critères de succès (T115)
+
+| SC | Critère (résumé) | Verdict | Preuve |
+|---|---|---|---|
+| SC-001 | Étalonnage 9/9 identical avant tout geste | ✅ | proofs/00-etalonnage (sha256 byte-reproductibles) |
+| SC-002 | 0 nom par défaut dans le périmètre | ✅ | relevé T008 (dénominateur 63) → L1 65+3 renommages, re-scan propre |
+| SC-003 | 15 descriptions écrites | ✅ | T019-21 (15) + 3 à la naissance |
+| SC-004 | 0 calque masqué non piloté / variant non documenté | ✅ | L3 (Product-card BOOLEAN, État3 supprimé après archive) |
+| SC-005 | Valeurs ≥seuil gouvernées | ✅ dépassé | L2 (≥3) puis ménage-final (règle owner ≥2, styles ET couleurs) |
+| SC-006 | Géométrie 88→89 / 1552→1550 sur les masters D1 | ✅ | V1-V6 (Footer inclus, V6) |
+| SC-007 | Footer reconstruit (auto-layout + atomes sociaux) | ✅ | V6, 9/9 conforme à la bande annoncée |
+| SC-008 | Section-header ×6 adoption | ❌ honnête : **0/6** | limite API enfants FIXED, prouvée par exécution + repli byte-exact ; réparation nommée (006) |
+| SC-009 | ≤12 cycles | ⚠️ 13 (**+1 owner à la clôture**, nommé au moment décidé) | § Cadence du rapport |
+| SC-010 | Toute dégradation nommée | ✅ | § Dégradations & limites (3 déviations, 1 incident, 3 échecs de prédiction, résidus 1px) |
+| SC-011 | Valeurs <seuil listées avec compte | ✅ | § Valeurs laissées littérales (5 + 6 rich-text) |
+| SC-012 | Archive supprimée, vérifié par capture | ✅ | ménage-final (8/9 identical + résidu nommé, Contactez-nous byte-identique) |
+| SC-013 | Naming réglé, extraction Spec B débloquée | ✅ | L1 clos (Bouton inclus, FR-039 au rapport) |
+| SC-014 | 0 instance cassée après les déplacements | ✅ | releves/instances-l4-verification.json (157 re-résolues) |
+| SC-015 | 100% des gestes avec quadruplet | ✅ | RAPPORT-CLOTURE-quadruplets.md (contrôle de champs inclus) + ménage-final au journal |
+| SC-016 | Version enregistrée avant chaque grosse passe | ✅ (V3 tardif nommé) | table § Cadence (13 versionIds) |
+| SC-017 | Divergences ouvertes au rapport (les 2 obligatoires) | ✅ | § Divergences ouvertes (2 obligatoires + 4) |
+
+**Les 2 écarts assumés** : SC-008 (0/6, limite d'API réelle — la réparation est une
+ligne du backlog 006, pas un contournement silencieux) et SC-009 (+1 cycle décidé
+par l'owner en séance pour le ménage ≥2 + rangement — dépassement nommé à l'instant
+de la décision, jamais absorbé).
