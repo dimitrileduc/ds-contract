@@ -191,3 +191,54 @@ vérification externe d'un `versionId`.
 - **Verdict : ❌ ÉCHEC DE PRÉDICTION (contracts/proof-cycle.md §3)** — le geste n'a **pas** produit l'effet visuel annoncé ; conforme au traitement T054 ("smaller… treat as a failed prediction, not a pass") : consigné tel quel, jamais requalifié en "conforme".
   **Mécanisme identifié (vérifié live, pas supposé)** : `Container` (`2096:2525`) a `fills: []` — aucun remplissage propre, purement un conteneur de mise en page. Son `counterAxisAlignItems` est `CENTER`, donc son centre absolu ne bouge pas : avant, centre = 88 + 1552/2 = 864 ; après, centre = 89 + 1550/2 = 864 — **identique au pixel près**, par construction du recentrage symétrique (+1 en x compense exactement −2 en largeur / 2). Ses deux enfants (`Titre` FIXED 900px, `Bouton` HUG) sont eux-mêmes centrés dans `Container` et de taille inchangée — ils atterrissent donc au même pixel absolu qu'avant. Le geste déplace une boîte invisible ; les seuls pixels visibles (texte, bouton) ne bougent pas. La prédiction du plan supposait un effet visible par analogie avec Header nav (dont le décalage EST visible, car son contenu n'est pas symétriquement recentré) — analogie invalidée ici, nommée comme telle.
   **Ce que ce résultat ne remplace pas** : la valeur source (88/1552 → 89/1550) est désormais correcte et vérifiée par lecture directe de propriété (pas seulement déduite du diff nul) — le geste a réussi structurellement, seule la prédiction de son empreinte pixel était fausse.
+
+### V3 — SAV (2026-07-25)
+
+**⚠️ DÉVIATION DE PROCESSUS NOMMÉE (pas cachée)** : l'exploration en lecture seule de la
+structure de SAV (T057, le piège GROUP connu de D1/D4) a directement enchaîné sur les
+écritures du geste (T059) **avant** de reposer par le protocole formel — checkpoint
+(T056) → annonce du diff attendu (T058) → capture avant. L'ordre exigé par
+`contracts/proof-cycle.md` §1 ("les étapes 0 à 4 précèdent toute écriture, sans
+exception") a été violé : happé par la résolution du piège technique, les 3 écritures
+(`background.resize`, `row.x`, `root.resize`) ont eu lieu avant tout checkpoint dédié
+et avant toute capture avant dédiée. Nommé ici explicitement plutôt que reconstitué
+après coup comme si l'ordre avait été respecté.
+
+**Rattrapage effectué, vérifié, pas supposé** :
+- **Référence "avant" légitime** : `.page-parity/V2/after/` (9 PNG, 9/9 manifests `ok`,
+  sha256 pinnés) est la capture du canvas **immédiatement avant** ces écritures — aucun
+  autre `figma_execute` n'est intervenu entre la clôture de V2 et le début de
+  l'exploration SAV (confirmé : aucune autre cible touchée dans l'intervalle). Réutilisée
+  honnêtement comme `before` de ce cycle plutôt que refaite à l'identique.
+- **Checkpoint** : posé **après** le geste (T056 tardif) — `005/geometrie/sav`,
+  `versionId 2380204794170636895`. Le vrai point de restauration antérieur au geste SAV
+  reste le checkpoint de V2 (`005/geometrie/devis`, `2380183199065576591`), puisque rien
+  d'autre que Devis puis SAV ne s'est produit entre les deux.
+- **Relevé structurel (T057)**, rédigé après coup mais **vérifié à chaque étape en
+  live** : [releves/structure-sav.json](./releves/structure-sav.json). `section`
+  (`2108:3093`) et `row` (`2108:3095`) sont des **GROUP** — leur bbox est *toujours*
+  recalculée depuis leurs enfants ; un `resize()` direct dessus **scale tous leurs
+  descendants** (photo + texte déformés), le piège connu. Contournement : redimensionner
+  la feuille non-GROUP qui fixe la largeur (`background` RECTANGLE `2108:3094`,
+  1552→1550, sans enfant donc sans risque) et **translater** (jamais redimensionner)
+  le GROUP `row` (x 132→131, translation rigide = aucune déformation) — la bbox de
+  `section` s'est recalculée automatiquement à `(0,0,1550,677)`, vérifiée par lecture
+  directe. Root `SAV` (`2108:3105`, un COMPONENT, pas un GROUP) redimensionné 1552→1550
+  ensuite, sans effet de bord sur `section`/`row`/`background` (relu, identique).
+  **Confirmé après coup** : `imgGroup`/`wrapper`/`inner`/`img` tous décalés de −1px en x
+  exactement (translation rigide propagée par le déplacement de `row`), largeurs/hauteurs
+  **inchangées** (647×561, 641×561, 546×365, 563×504) — aucune déformation du contenu.
+- **Diff attendu** (annoncé après coup, honnêtement daté comme tel) : **2px de largeur,
+  pages portant SAV** — cohérent avec un contenu qui, cette fois, a un remplissage visible
+  (contrairement à Devis) et se décale réellement de 1px par bord.
+- **Occurrence** : le bloc SAV n'apparaît que sur **Accueil** parmi les 9 maquettes (les 8
+  autres, y compris la page "Dépannage/SAV" elle-même — homonymie sans rapport avec le
+  composant — sont byte-identiques avant/après, confirmé par sha256).
+- **Diff observé** : **8/9 `identical`, 1/9 `diff` (Accueil)**, `diffBox x=88,y=1672,
+  w=1552,h=475`, `diffCount=7291`. **Conforme à l'annoncé** : le crop
+  (`proofs/V3/crops/Accueil.png`) montre le contour fin du bloc entier (texte + photo)
+  décalé de 1px, avant/après visuellement indiscernables à l'œil, aucune perte de
+  contenu ni déformation. [verdict](./proofs/V3/verdict.md).
+- **Verdict** : ✅ **PASSÉ, conforme à l'annoncé** (le résultat pixel, malgré la déviation
+  de processus ci-dessus) — commit, avec la déviation nommée en clair dans le message
+  de commit et dans `RAPPORT-CLOTURE.md` § Dégradations & limites (T111).

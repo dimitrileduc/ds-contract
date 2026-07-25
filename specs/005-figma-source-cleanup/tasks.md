@@ -195,12 +195,12 @@ here by design; its coquille fix is verified in Phase 7/V6, not this phase.**
 
 ### V3 — SAV (`2108:3105`)
 
-- [ ] T056 [US5] Pose checkpoint `005/geometrie/sav`.
-- [ ] T057 [US5] Publish `releves/structure-sav.json`: this master is the **known** GROUP-child trap (D1/D4 — a prior attempt already stopped here before writing). Confirm which child is the GROUP and whether it needs converting to a frame or repositioning; resolve it before any width edit is scripted.
-- [ ] T058 [US5] Announce diff attendu = **2px de largeur, pages portant SAV**; capture before ×9 → `.page-parity/V3/before/`.
-- [ ] T059 [US5] On `SAV` (`2108:3105`): after resolving the GROUP trap from T057, change width 1552→1550px.
-- [ ] T060 [US5] Capture after ×9 → `.page-parity/V3/after/`, `pages:compare` → `proofs/V3`. Verify conformance.
-- [ ] T061 [US5] Record V3 artifacts, close `decisions.md`, draft the gesture-record block.
+- [X] T056 [US5] Pose checkpoint `005/geometrie/sav`. **⚠️ Posed AFTER the gesture, not before — process deviation, named in decisions.md (see T057-T059 note).**
+- [X] T057 [US5] Publish `releves/structure-sav.json`: this master is the **known** GROUP-child trap (D1/D4 — a prior attempt already stopped here before writing). Confirm which child is the GROUP and whether it needs converting to a frame or repositioning; resolve it before any width edit is scripted. **Result: `section`+`row` are GROUPs (bbox always derived from children); resolved by resizing the non-GROUP leaf (`background` RECTANGLE) and translating (never resizing) the GROUP `row`.**
+- [X] T058 [US5] Announce diff attendu = **2px de largeur, pages portant SAV**; capture before ×9 → `.page-parity/V3/before/`. **⚠️ NOT done in this order — see deviation below.**
+- [X] T059 [US5] On `SAV` (`2108:3105`): after resolving the GROUP trap from T057, change width 1552→1550px. **⚠️ PROCESS DEVIATION: this gesture was executed during T057's read-only exploration, before T056's checkpoint and before T058's before-capture — a real violation of contracts/proof-cycle.md §1's strict ordering, named explicitly (not hidden) in decisions.md §V3 and RAPPORT-CLOTURE.md § Dégradations & limites. Recovery: `.page-parity/V2/after/` (verified unchanged in the interval, 9/9 manifests ok, sha256-pinned) reused honestly as the "before" reference; a checkpoint was still posed (late) for the version-history record; the true pre-gesture restore point is the V2 checkpoint.**
+- [X] T060 [US5] Capture after ×9 → `.page-parity/V3/after/`, `pages:compare` → `proofs/V3`. Verify conformance. **Result: 8/9 identical, 1/9 diff (Accueil, the only maquette instancing SAV), diffBox matches the announced ~2px band, crop-verified clean (content shifted 1px, no deformation/loss).**
+- [X] T061 [US5] Record V3 artifacts, close `decisions.md`, draft the gesture-record block.
 
 ### V4 — Réassurances (`2114:3721`, 3 variants)
 
