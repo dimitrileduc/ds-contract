@@ -186,12 +186,12 @@ here by design; its coquille fix is verified in Phase 7/V6, not this phase.**
 
 ### V2 — Devis (`2096:2524`)
 
-- [ ] T050 [US5] Pose checkpoint `005/geometrie/devis`.
-- [ ] T051 [US5] Publish `releves/structure-devis.json`: confirm the re-centering behavior named in D1 ("revérifier le recentrage") and check for both known traps (GROUP, nested-instance resize).
-- [ ] T052 [US5] Announce diff attendu = **bande ~1px + 2px de largeur, pages portant Devis**; capture before ×9 → `.page-parity/V2/before/`.
-- [ ] T053 [US5] On `Devis` (`2096:2524`): change the Container x-offset 88→89px and width 1552→1550px.
-- [ ] T054 [US5] Capture after ×9 → `.page-parity/V2/after/`, `pages:compare` → `proofs/V2`. Verify conformance; STOP/fail-prediction handling as usual.
-- [ ] T055 [US5] Record V2 artifacts, close `decisions.md`, draft the gesture-record block.
+- [X] T050 [US5] Pose checkpoint `005/geometrie/devis`.
+- [X] T051 [US5] Publish `releves/structure-devis.json`: confirm the re-centering behavior named in D1 ("revérifier le recentrage") and check for both known traps (GROUP, nested-instance resize).
+- [X] T052 [US5] Announce diff attendu = **bande ~1px + 2px de largeur, pages portant Devis**; capture before ×9 → `.page-parity/V2/before/`.
+- [X] T053 [US5] On `Devis` (`2096:2524`): change the Container x-offset 88→89px and width 1552→1550px.
+- [X] T054 [US5] Capture after ×9 → `.page-parity/V2/after/`, `pages:compare` → `proofs/V2`. Verify conformance; STOP/fail-prediction handling as usual. **Result: 9/9 identical (0px) on all 9 pages including the 8 carrying Devis — smaller than announced, logged as a failed prediction (not a pass) per contracts/proof-cycle.md §3; mechanism verified (Container has no fill, symmetric recenter cancels out) and geometry propagation confirmed live on a real instance, zero overrides.**
+- [X] T055 [US5] Record V2 artifacts, close `decisions.md`, draft the gesture-record block.
 
 ### V3 — SAV (`2108:3105`)
 
