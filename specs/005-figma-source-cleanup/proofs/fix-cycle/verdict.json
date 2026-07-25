@@ -1,0 +1,109 @@
+{
+  "statutGlobal": "refus",
+  "exitCode": 2,
+  "totaux": {
+    "identical": 0,
+    "diff": 5,
+    "captureFailed": 0,
+    "dimensionMismatch": 4
+  },
+  "maquettes": [
+    {
+      "maquette": "Accueil",
+      "status": "diff",
+      "diffCount": 8466,
+      "diffBox": {
+        "x": 225,
+        "y": 1320,
+        "w": 589,
+        "h": 563
+      },
+      "cropTriptyque": "crops/Accueil.png",
+      "refus": null
+    },
+    {
+      "maquette": "Contactez-nous",
+      "status": "diff",
+      "diffCount": 26613,
+      "diffBox": {
+        "x": 90,
+        "y": 456,
+        "w": 1523,
+        "h": 2503
+      },
+      "cropTriptyque": "crops/Contactez-nous.png",
+      "refus": null
+    },
+    {
+      "maquette": "Dépannage_SAV",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x4242 != after 1728x4266"
+    },
+    {
+      "maquette": "Motorisation",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x3334 != after 1728x3358"
+    },
+    {
+      "maquette": "Portes d_entrée",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x6534 != after 1728x6558"
+    },
+    {
+      "maquette": "Portes de garage",
+      "status": "diff",
+      "diffCount": 35545,
+      "diffBox": {
+        "x": 92,
+        "y": 389,
+        "w": 1239,
+        "h": 3043
+      },
+      "cropTriptyque": "crops/Portes de garage.png",
+      "refus": null
+    },
+    {
+      "maquette": "Portes de garage industrielles",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x6762 != after 1728x6698"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "status": "diff",
+      "diffCount": 29600,
+      "diffBox": {
+        "x": 90,
+        "y": 456,
+        "w": 1262,
+        "h": 5177
+      },
+      "cropTriptyque": "crops/Portes de garage résidentielles.png",
+      "refus": null
+    },
+    {
+      "maquette": "À Propos",
+      "status": "diff",
+      "diffCount": 23442,
+      "diffBox": {
+        "x": 92,
+        "y": 454,
+        "w": 1253,
+        "h": 4532
+      },
+      "cropTriptyque": "crops/À Propos.png",
+      "refus": null
+    }
+  ]
+}

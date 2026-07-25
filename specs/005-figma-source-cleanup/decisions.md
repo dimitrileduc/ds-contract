@@ -423,3 +423,88 @@ vérifié en direct ET via l'historique, aucun geste nécessaire.**
 ligne du backlog 006, pas un contournement silencieux) et SC-009 (+1 cycle décidé
 par l'owner en séance pour le ménage ≥2 + rangement — dépassement nommé à l'instant
 de la décision, jamais absorbé).
+
+## Post-clôture — fixes owner du 25/07 soir (cycle 14, EN COURS)
+
+**Décisions owner actées avant ouverture** : Bouton → réglé plus tard côté code ;
+flèche hors registre → reportée (reste au backlog) ; les 4 sans-usage
+(Checkbox/Étoile/mail/external-link) → on garde tels quels, dossier clos.
+**Périmètre du cycle** : dé-GROUP ×11 (Footer, SAV, Texte SEO, Produits), adoption
+Section-header ×7 (via fix racine du master), déménagement Hero vidéo, 3 styles
+créés + 5 textes liés.
+
+**Nouvelle règle d'orchestration (owner, gravée dans CLAUDE.md, commit `7a6b160`)** :
+le pont accepte plusieurs écrivains sur plusieurs ports — multi-agent parallèle
+PERMIS en zones disjointes (« tant qu'ils ne se marchent pas dessus ») ; le cycle
+pixel global (avant/après ×9) reste unique et tenu par l'orchestrateur.
+
+- **Version enregistrée avant la passe** : `005/fix-post-cloture/ouverture` — `versionId 2380211837923138451`.
+- **Avant ×9** : `.page-parity/menage-final/after` réutilisé (état courant byte-vérifié au moment de l'ouverture, aucune écriture entre le verdict ménage-final et ce cycle — les vérifications nav intermédiaires étaient en lecture seule).
+- **Dispositif** : workflow `wf_c4ec941a-335` — 1 agent racine (Sonnet) puis 4 agents de zone (Sonnet) en parallèle : A=Footer+Produits, B=SAV, C=Texte SEO+styles, D=adoptions+Hero vidéo. Chaque agent : vérification structurelle geste par geste (bounds ±0.5), interdiction de capture et de sortie de zone.
+
+**Racine (Section-header, TERMINÉE — rapport agent vérifié puis contre-vérifié live)** :
+1. `Accroche`/`Titre` du variant Standard : FIXED→FILL, bounds du master inchangés (Δ=0 partout, mesuré par l'agent).
+2. Propriété BOOLEAN de visibilité d'accroche créée — **écart nommé** : le nom « Accroche » était déjà pris par une propriété TEXT préexistante (`Accroche#2090:46`, lie `.characters`) → Figma a renommé silencieusement la booléenne en **`Accroche2#2169:64`** (défaut `true`, binding `componentPropertyReferences.visible` relu et confirmé). Renommage cosmétique à envisager plus tard ; la propriété TEXT préexistante est intacte.
+3. **Régression détectée par l'agent (vérif b), réparée par l'orchestrateur** : les 3 instances de Réassurances portaient un override de cadre préexistant à 1552 (scorie du resize V4) — avec FILL, leurs textes remplissaient 1552 (absX 40→39). Fix hors-zones : `resize(1550)` sur les 3 cadres (`2114:3612/3644/3685`) → textes revenus **exactement** aux bounds d'origine (absX 40, w 1550, mesuré avant/après). La scorie V4 est purgée au passage.
+
+**Zones (4 agents Sonnet, tous terminés)** : A = Footer+Produits dé-GROUPés (l'agent a
+auto-détecté et réparé sa propre dérive de coordonnées carousel +89/+128 — piège
+« coords GROUP dans l'espace du parent » — vérifiée réparée au crop) ; B = SAV
+dé-GROUPé ; C = Texte SEO dé-GROUPé + 3 styles UPPER créés + 5 textes liés ;
+D = adoption Section-header ×7 + section Hero vidéo (rapport tronqué — vérifié
+après coup : master bien sur DS·Organisms, plus aucun master sur la maquette
+Accueil ; la section était posée HORS colonne à x=2055 → réinsérée sous Hero,
+colonne re-décalée de +1000, tout re-vérifié à x=0).
+
+**Premier verdict (2/9)** puis diagnostic-réparation en 4 vagues — TOUTES les
+régressions venaient du même mécanisme : **éditer la structure d'un master efface
+des overrides d'instance** (contenu ET taille). Détail :
+
+1. **Alignement** : les titres du modèle Section-header sont CENTER, tous les
+   originaux étaient LEFT → `textAlignHorizontal='LEFT'` sur 14 échos.
+2. **Contenus per-page écrasés** par le swap TEXT→INSTANCE : 8 titres hero,
+   7 h2 SEO, 2 Présentation, 1 Réalisations — restaurés texte + plages de gras
+   (transcrits depuis les captures avant, la seule source restante).
+3. **Hauteurs ±24/−64 (4 pages)** : le frame `p` du master Texte SEO est un frame
+   simple (mode NONE) FIXED 72 ; les hauteurs réelles par page (48 Moto/PdE/SAV,
+   136 ind) étaient des overrides d'instance, effacés par l'édition du master →
+   +24 (frame trop haut) et −64 (texte 136 clippé à 72). Tentative chirurgicale
+   `resize()` sur les frames d'instance : **no-op silencieux ×4** (piège connu,
+   re-confirmé, mesuré). Fix structurel : `p` du master → auto-layout VERTICAL
+   HUG (padding 0), TEXT FILL/HUG → les 4 pages retombent exactes, les 4 saines
+   inchangées (383), mesuré instance par instance.
+4. **Graisses des titres faits main : hétérogènes PAGE PAR PAGE**, retrouvées à
+   la mesure pixel pure (crops + extents de mots + pixelmatch itératif — le token
+   REST est mort, aucune lecture des plages d'époque possible) : Accueil/res/ind
+   base Light ✓ (posé juste du 1er coup) ; Moto Bold+Regular ; SAV Regular+Bold ;
+   PdG Bold + « Hörmann : » Regular + ligne 2 Light ; PdE/AP Bold + virgule Light
+   + **espace Medium** + Regular ; CN Regular + espace Medium + Bold + deux espaces
+   à letterSpacing custom (+1px interne au gras, +2px devant « projet »).
+   ind h2 : espace après la virgule dans le gras (Bold[0,22)) → page CLEAN.
+
+**Verdict final (`.page-parity/fix-final/verdict`, triptyques copiés dans
+`proofs/fix-post-cloture/`)** : **5/9 identical** (Accueil, résidentielles,
+industrielles, Motorisation, SAV) **+ 4 résidus sub-pixel nommés** :
+PdE **17 px**, PdG **20 px**, AP **99 px**, CN **469 px** (0.0003–0.007 % de leur
+page ; diff quasi tout jaune AA, formes indistinguables à l'œil sur les
+triptyques). Même classe que le résidu bouton SAV accepté à la clôture
+(letterSpacing/arrondi sub-pixel de rendu — nos leviers par plages sont des crans
+discrets, le rendu original tombe entre deux crans). Chaque cran voisin testé
+AGGRAVE (mesuré : PdG Light 545/Bold 855 vs Regular 20 ; CN SemiBold 4401/
+ExtraBold 2399 vs Bold 1596→469 après ls).
+
+- **Version de fin** : `005/fix-post-cloture/verdict-final` — `versionId 2380292543581472127`.
+
+**Soucis notés pour l'owner (au réveil)** :
+1. Les 4 résidus sub-pixel ci-dessus — acceptation à confirmer (images diff dans
+   `proofs/fix-post-cloture/`, quadruplets aussi dans le rapport artifact).
+2. **Token REST Figma expiré** (MCP figma-console ET aucun `FIGMA_TOKEN` local) —
+   à régénérer avant la 006 (figma.com → Settings → Security → PAT) : sans lui,
+   ni lecture d'époque (`get_file_at_version`), ni dumps REST.
+3. Renommage cosmétique `Accroche2#2169:64` → « Afficher accroche » (ou autre)
+   quand un batch d'édits master rouvrira.
+4. Question restée ouverte (posée, pas de réponse) : les 2 `item` bruts de
+   Catégories principales (`2115:4168`) — backlog 006 ou fix dédié.
+5. Leçon de pipeline consignée : **toute adoption/édition de master doit être
+   précédée d'un inventaire des overrides d'instance** (contenu, plages, tailles,
+   alignements) — c'est cet inventaire qui a manqué au plan des zones C/D.
