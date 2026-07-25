@@ -2577,3 +2577,98 @@ nommé et attribué ; aucune des deux classes de bugs de la nuit n'est présente
 **Catégories principales (T079-T080) — audit fait, prémisse « 1 master + toggle alt » invalidée
 (tuiles-nav RAW ingouvernées + SAV mixte), before-captures banquées, escalade envoyée à `main` ;
 master + adoption SUSPENDUS en attente de décision. Rien muté, rien committé.**
+
+---
+
+## 2026-07-25 — Catégories principales (T079-T080) : build 4-variantes livré + prouvé (post-décision)
+
+**Décision orchestrateur (GO)** : build fidèle à 4 variantes tel que proposé — (a) PAS de master
+« tuile » séparé (la tuile n'apparaît que dans cette section → pas le niveau de réutilisation qui
+justifie une gouvernance, comme Hero/Devis portent leur photo+texte en natif) ; (b) PAS d'adoption
+forcée de la carte RAW de SAV en Carte + override bouton (on ignore si le Bouton Carte expose
+Solid/Outline en propriété swappable → risque de piège rejeu-de-props Hero) → 4e variante par clone
+verbatim. « Vraie variété structurelle légitime (comme Réassurances), pas une source à nettoyer. »
+
+- **Master** : `COMPONENT_SET` `Catégories principales` `2115:4277` (section `2115:4158`,
+  `DS · Molécules` `(0,12350)`), propriété `Disposition` ×4 : `Standard` `2115:4273` (2 tuiles-nav
+  natives, clone PdG `226:121`) / `Pleine largeur` `2115:4274` (2 Carte, clone industrielles
+  `387:732`) / `Pleine largeur · 3 cartes` `2115:4275` (clone Motorisation `237:717`) /
+  `Pleine largeur · RDV` `2115:4276` (1 Carte + 1 carte RDV native, clone SAV `249:1522`). Chaque
+  variante **clonée verbatim** (`clone` → `createComponentFromNode` sur le clone → `combineAsVariants`) ;
+  sources vérifiées **inchangées** après clonage. 0 tierce (29 instances `remote:false`), glyphes
+  Carte `5:40` corrects (aucun reset — pas de rejeu de props).
+- **Adoption** : 7 instances, **bbox delta `{0,0,0,0}` sur les 7**, 0 copie brute restante. 4 ancres
+  0 override (PdG/Standard `2115:4278`, industrielles/PL `2115:4297`, Motorisation/3c `2115:4324`,
+  SAV/RDV `2115:4364`) ; 3 overrides (Accueil/Standard `2115:4392` = 2 tuiles texte+img ; entrée/PL
+  `2115:4411` + résidentielles/PL `2115:4438` = 2 Carte Titre+Texte[gras réappliqué]+libellé
+  Bouton+img). Ledger `categories-principales.json` : 23 reportee / 0 non-portable (`pages:ledger:check`
+  exit 0).
+- **Piège hauteur (trouvé + résolu)** : cartes alt FIXE (649 industrielles vs 622
+  entrée/résidentielles ; l'écart est **dans la hauteur d'image** 445 vs 418, pas le texte). Clone PL
+  bake 649 ; `resize()` sur la carte imbriquée dans l'instance = **NO-OP silencieux** (piège #1
+  confirmé). Fix : `Carte.lsV='HUG'` + `img.lsV='FIXED'` + `img.resizeWithoutConstraints(w,418)` → la
+  carte s'effondre à 622 (img 418 = hauteur brute exacte). Le resize de l'img fonctionne une fois
+  l'img explicitement FIXED.
+- **Preuve pixel** (`proofs/categories-principales/`) : `pages:compare` raw-avant vs adopté-après
+  (standard, NON dégénérée — vrais before + after) = **5/7 byte-identiques** (sha256 avant==après,
+  dont **entrée + résidentielles à override lourd** → adoption Carte pixel-parfaite), **2 écarts
+  sous-pixel** (PdG 2624 = 0,034 %, Accueil 2500 = 0,028 %) sur la bande sous-titre des pages à
+  tuiles, dont l'**ancre PdG** (0 override → écart = re-rendu clone→instance, pas un override).
+  Diagnostic exhaustif (règle owner : regarder, checker TOUTES les propriétés) : runs de police
+  (`Regular` unique, master==PdG==Accueil), propriétés texte (letterSpacing 0 / lineHeight 27 /
+  paragraphSpacing 8 / LEFT/TOP / autoResize HEIGHT / largeur 628,75 / position entière) et zoom 3×
+  **tous identiques** avant/après → **ni gras aplati, ni décalage, ni espacement** — AA sous-pixel
+  irréductible du texte natif de tuile cloné. 0,03 % ≪ ≤2 %, nommé, exit 1 conservé pour arbitrage.
+- **Incident concurrent — fork lockstep, doc-only, 0 dégât canvas** : au moment d'écrire l'audit +
+  cette entrée, les DEUX fichiers existaient déjà sur disque en version **pré-build** (« SUSPENDUS en
+  attente de décision »), avec **mes propres** nonce/sha256/PID — que ma branche n'a jamais écrits
+  (passée directement de l'escalade au build au GO). = branche jumelle divergée au point « j'écris
+  l'audit », qui a écrit les versions pré-build pendant que je construisais. **Vérif canvas live
+  décisive** : 1 seule section `2115:4158` + 1 seul COMPONENT_SET `2115:4277` du fichier, mes 7
+  instances intactes (`mainSet 2115:4277`), 1 par maquette, 0 copie brute, 0 second master → le
+  jumeau **n'a fait AUCUNE mutation canvas**. J'ai **remplacé** l'audit pré-build par la version
+  post-build (aucune conclusion perdue) et **appendé** ici (jamais réécrit l'entrée pré-build,
+  règle append-only). Remonté à `main` avec preuves. Aucune ré-adoption, canvas sain.
+- **Checkpoints** : `003/categories-principales/master` `2379926299894749252`,
+  `.../adoption` `2379927416113640765`, `.../finalize` `2379923559176343741`.
+- **Non committé** (revue Fable indépendante d'abord).
+
+## 2026-07-25 — ecart-pixel-accepte — Catégories principales (adoption, T080)
+
+- **Type** : ecart-pixel-accepte
+- **Composant(s)** : categories-principales
+- **Verdict owner** : accepté — même famille que tous les écarts déjà acceptés
+  cette nuit (Devis/Présentation/FAQ/SAV/Texte SEO/Hero). Owner note que ce
+  diagnostic-ci est **plus solide que la plupart des précédents** : PdG est
+  l'ancre à 0 override, donc l'écart ne PEUT PAS venir d'un contenu ou d'un
+  override, seulement du ré-rendu clone→instance — et l'investigation (polices,
+  toutes les propriétés texte, zoom 3×) a été faite **avant** d'accepter, pas
+  supposée.
+- **Chiffres** : **5/7 `identical`** (sha256 avant==après sur SAV, entrée,
+  Motorisation, industrielles, résidentielles — dont les 2 pages à override
+  LOURD, entrée + résidentielles, adoption Carte pixel-parfaite), **2 `diff`** :
+  Portes de garage `diffCount=2624` (0,034 % de 1728×4372), `diffBox={x:124,
+  y:1026, w:1344, h:43}` ; Accueil `diffCount=2500` (0,028 % de 1728×5430),
+  `diffBox={x:150, y:1133, w:1252, h:18}` — les deux confinés à la bande du
+  sous-titre de tuile (fs18, variante `Standard`). Portes de garage est
+  l'**ancre** (0 override) : l'écart ne peut donc structurellement pas venir
+  d'un contenu substitué. Diagnostic exhaustif avant acceptation : runs de
+  police (`Regular` unique, identique master/instance PdG/instance Accueil —
+  aucun gras aplati) ; propriétés texte (`letterSpacing` 0 %, `lineHeight`
+  27px, `paragraphSpacing` 8, `LEFT`/`TOP`, `textAutoResize` HEIGHT, largeur
+  628,75, position — toutes égales master vs instance, seul `absY` diffère
+  car page différente) ; zoom 3× de la première phrase du sous-titre —
+  pixels identiques avant/après à l'œil. Conclusion : AA sous-pixel
+  irréductible du texte natif de tuile cloné.
+- **Raison** : 0,03 % ≪ tolérance ≤2 % ; mécanisme identique aux écarts déjà
+  acceptés cette session (ré-rendu de texte natif cloné, pas une perte de
+  contenu/style/position) ; preuve la plus forte de la nuit sur ce point
+  précis grâce à l'ancre 0-override qui élimine structurellement l'hypothèse
+  override.
+- **Preuve** : `proofs/categories-principales/{verdict.json,verdict.md,
+  crops/Portes de garage.png,crops/Accueil.png}` — **`verdict.json` reste
+  `diff`/exit 1, jamais maquillé en `identical`** ; l'acceptation vit ici,
+  dans `decisions.md`, pas dans le verdict lui-même.
+- **Checkpoint** : aucun nouveau (pas de mutation canvas pour cette décision).
+
+**Catégories principales (T079-T080) — écart pixel arbitré et accepté par l'owner. Reste à faire avant commit : revue Fable indépendante (standing discipline de cette nuit sur tout bloc à écart), puis commit des fichiers pertinents (jamais `CLAUDE.md`).**
