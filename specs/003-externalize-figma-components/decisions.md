@@ -2851,3 +2851,63 @@ in-spec + le modèle d'assemblage convergent tous vers « pas de master ».
 **Hero et catégories (T097-T098) fait — par vérification, pas par construction.** Le composite
 était déjà gouverné ; le travail réel de ce bloc était de le prouver et de tracer pourquoi aucun
 master n'était nécessaire (ni souhaitable). Non committé.
+
+## 2026-07-25 — dernier bloc de construction de la Phase 8, exécuté directement — Footer + Devis (T099-T100)
+
+- **Type** : validation-master + adoption, **exécuté directement par l'orchestrateur**
+  (`main`), pas délégué à un agent de construction. Raison : c'est le 4e incident
+  d'infrastructure de la nuit (« Connection closed mid-response », déjà vu sur Produits
+  e-commerce et 2× sur Réalisations) — cette fois sur la tentative de capture `before`,
+  avant tout geste mutant (canvas resté intact). L'audit préalable (fait par l'agent
+  interrompu, relayé et re-vérifié en direct) avait déjà tranché la question structurelle
+  et trouvé le cas le plus simple de la spec, rendant le geste bien compris et à faible
+  risque d'exécuter directement plutôt que de re-tenter une délégation contre une infra
+  visiblement instable ce soir.
+- **Composant** : `footer-devis` (master réel : `Footer`, `COMPONENT` `2120:4785`).
+
+### La question « + Devis » tranchée par la mesure — artefact de nom
+
+Le nom du wrapper laissait penser à une CTA Devis fusionnée sur au moins une page
+(l'entrée Devis/CTA originale notait Contactez-nous comme ayant ce composite « hors
+périmètre »). **Mesure live sur les 9 pages : aucune section Devis distincte n'existe
+nulle part dans le wrapper** — chaque `Footer + Devis` ne contient qu'un GROUP `Footer`
+standard (avec son propre Bouton CTA « Contactez-nous », déjà présent dans tout footer,
+pas un Devis séparé). Le "+ Devis" du nom est un artefact, pas un contenu réel.
+
+### Contenu byte-identique sur les 9 — le cas le plus simple de la spec
+
+Comparaison directe des textes (Copyright, Suivez-nous, Contact/Horaires/Adresse,
+libellé Bouton) sur les 9 : **identiques mot pour mot**, y compris le `\r` invisible dans
+le bloc Contact. Master `COMPONENT` simple (pas de variante nécessaire), adoption à
+**0 override attendu et confirmé** sur les 9. Bouton variante « Outline blanc » vérifié
+**avant** construction (précédent Hero/Devis de cette même nuit) : glyphe déjà
+correctement blanc, aucun défaut ici.
+
+### Piège retrouvé (déjà documenté) + un nouveau piège de vérification
+
+`section.appendChild(node)` a rendu la position du master relative à la section — corrigé
+en repositionnant en coordonnées locales, revérifié par lecture séparée. **Nouveau piège
+mineur** : ma première passe de vérification comparait le contenu adopté à un tableau que
+j'avais retapé à la main depuis un résultat JSON affiché précédemment — a produit un faux
+« ne correspond pas » sur les 9 pages simultanément (signal fort que c'était MA
+retranscription en cause, pas un vrai défaut). Corrigé en comparant directement contre le
+master (lecture fraîche des deux côtés, jamais de valeur retapée à la main) — même famille
+que le piège de comptage manuel de caractères déjà documenté (Hero).
+
+- **Chiffres** : 9/9 pages adoptées, 0 copie brute restante, 0 override, 0 tierce. Pixel
+  final — 9/9 `diff` (jamais `identical`, cohérent avec tout texte neuf ré-instancié),
+  diffCount 61-151 px (≪ 0,01 % de chaque page), confiné à la même zone relative (libellé
+  du Bouton) sur les 9. Crops inspectés (Contactez-nous + industrielles, les 2 extrêmes) :
+  liseré jaune fin, aucun fantôme, aucun décalage, aucune couleur changée.
+- **Preuve** : `audits/footer-devis.md` ; `proofs/footer-devis/{verdict.json,verdict.md,README.md,crops/}`
+  (9 triptyques) ; `ledger/footer-devis.json` (0 entrée, explicite — contenu byte-identique,
+  `pages:ledger:check` exit 0).
+- **Checkpoint** : `003/footer-devis/master` (`2379977937746712738`),
+  `003/footer-devis/adoption` (`2380011855649520154`) — posés AVANT chaque geste mutant
+  cette fois (pas après-coup comme sur Hero/Devis plus tôt cette nuit).
+
+**Footer + Devis (T099-T100) fait — dernier bloc de construction de la Phase 8.** Le
+"+ Devis" du nom s'est révélé un artefact ; le vrai contenu est byte-identique sur les 9
+pages, adoption à 0 override, écart pixel résiduel uniquement du bruit AA sous-pixel déjà
+familier. Tous les blocs de construction actifs de la Phase 8 sont maintenant faits
+(restent Review-card et Avis Google, explicitement reportés, et la clôture T101-T107).
