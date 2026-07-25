@@ -1,0 +1,181 @@
+# Journal de décisions — Spec 005 (source Figma propre)
+
+Journal **append-only**, tenu par la session qui opère le pont `figma-console`
+contre `Piqueray (Copy)` (`d9FYAUcqdcNtsuaMgLefvJ`). Chaque entrée de cycle
+porte, dans l'ordre du contrat [`contracts/proof-cycle.md`](./contracts/proof-cycle.md) :
+version enregistrée (`versionId`) → diff attendu (annoncé **avant** tout geste)
+→ diff observé → verdict. Les décisions de nommage/axe prises « en live » à
+partir d'un relevé (T013, T014, T040, T094…) sont aussi consignées ici, au
+moment où elles sont prises, **avant** l'écriture qui les applique.
+
+Ne jamais éditer une entrée déjà écrite : une correction s'ajoute, elle ne
+réécrit pas.
+
+---
+
+## Log
+
+<!-- Chaque cycle ajoute son bloc ci-dessous, dans l'ordre chronologique. -->
+
+### É — Ouverture / étalonnage (2026-07-25)
+
+- **Version enregistrée avant la passe** : `005/ouverture/etalonnage` — `versionId 2380086734107230162` (T006).
+- **Neuf maquettes confirmées** sur la page `Pages` (`210:325`) via `loadAllPagesAsync()` (T002) :
+  Accueil `210:326`, Portes de garage `226:112`, Portes de garage résidentielles `230:376`,
+  Portes de garage industrielles `387:720`, Motorisation `237:705`, Portes d'entrée `237:969`,
+  Dépannage/SAV `249:1510`, À Propos `258:1887`, Contactez-nous `274:2464`.
+- **Diff attendu (T007, étalonnage)** : 0 pixel — double capture sans aucun geste entre les deux jeux.
+- **Diff observé** : 9/9 `identical`, exit 0 — et les 9 sha256 sont identiques deux à deux (byte-reproductible, pas seulement zéro-pixel). Voir [proofs/00-etalonnage/receipt.md](./proofs/00-etalonnage/receipt.md).
+- **Verdict** : ✅ **PASSÉ** — le plancher de bruit de l'instrument est 0. Le programme peut passer en Phase 3.
+
+### T008 — Relevé périmètre (2026-07-25)
+
+`releves/perimetre-2026-07-25.json` — scan position/structure des 53 cibles (52 masters + le fantôme `6:119`), publié via le receveur (`POST /json`). Confirme intégralement les 3 audits `bonnes-pratiques-*` du même jour (aucun `nameChangedSinceAudit`) :
+
+- **4 axes génériques `Property 1`** : Bouton (valeurs incl. la faute « Outilne noir »), piqueray_logo (`Default|Blanc`), Header nav (`Solid|Transparent`), member-picture (`Default|hover`).
+- **63 descendants à nom par défaut** (le compte mécanique qui remplace le « ≈69 » du lint — dénominateur de SC-002, `contracts/naming-conventions.md` §3).
+- **16 masters sans description** = les **15** gouvernés (T019/T020/T021) + le fantôme `octicon:chevron-down-12` (description écrite à part en Phase 8/T097).
+- **Collision de nom confirmée** : `Réalisations` (`2117:4691`) contient une **FRAME** (pas un écho d'instance) nommée `Présentation` (`2117:4676`) — collision réelle avec le master `Présentation`. Toutes les autres « collisions » détectées par le scan sont des instances portant le nom de leur master (normal, hors périmètre par construction, `naming-conventions.md` §3).
+- **Bouton caché non piloté confirmé** : `Product-card` → `Bouton` (`2068:1976`), `componentPropertyReferences` vide.
+
+**Décision de périmètre — noms tirés du contenu au-delà du Hero** : le scan flague ~9 masters de plus que le seul Hero (Field « (optionnel) », Formulaire, Présentation, Coordonnées, SAV, Texte SEO, Catégories principales, Réalisations, Footer « Suivez-nous », Bouton « Contactez-nous », Header nav ×8 libellés de nav-item). Le brief (`BACKLOG-SPEC-A-figma-propre.md` G2) ne nomme explicitement QUE le titre Hero comme exemple de cette classe de défaut — traité comme un choix de portée délibéré, pas un oubli. Décision :
+  - **Header nav** : se résout naturellement en Phase 8/T095 (les libellés de nav-item seront renommés en construisant `Nav-item` neuf).
+  - **Bouton** : **non touché** — le contrat `naming-conventions.md` §4 borne son geste à l'axe + la faute, « rien de plus » ; toucher le nom du calque `Libellé` interne serait un débordement du périmètre écrit.
+  - **Les 7 autres** (Field, Formulaire, Présentation, Coordonnées, SAV, Texte SEO, Catégories principales, Réalisations, Footer) : **hors de cette itération** — copie statique/légale, faible risque de dérive, non nommés par la spec. Consigné ici pour ne pas être une omission silencieuse ; reporté à `RAPPORT-CLOTURE.md` § Dégradations & limites (T111).
+
+### T009 — Relevé règle 3× (2026-07-25)
+
+`releves/regle-3x-2026-07-25.json` — comptage des valeurs typographiques/chromatiques littérales, **masters uniquement**, publié après **deux corrections en cours de route** (transparence, principe V) :
+
+1. **Bug trouvé et corrigé avant publication** : le premier passage enregistrait les fills/strokes d'un nœud AVANT de vérifier `type === 'INSTANCE'` — les bordures héritées des 3 instances Accordion-row imbriquées dans FAQ/Texte SEO étaient comptées comme appartenant à FAQ/Texte SEO (violation directe de R8 : « jamais dans les échos d'instances »). Corrigé (le check INSTANCE est maintenant la toute première ligne du walk) et rescanné avant toute publication — aucune version buggée n'a été committée.
+2. **Verdict corrigé après publication** : `data-model.md` distingue 3 verdicts, pas 2 — une valeur **strictement égale à une variable existante** se lie **sans condition de seuil** (FR-013) ; le seuil ≥3× ne gate que la **création** d'une variable neuve (FR-014). Mon calcul initial appliquait le seuil uniformément. Un seul row était mal étiqueté : `#FFFFFF` fill (2 occurrences non liées, `color/blanc` existe) était `laisser`, corrigé en `lier-existant` — exactement les 2 occurrences que T029 cible (Footer-column + Copyright, à reconfirmer live avant écriture). `verdictLegend` ajoutée en tête du fichier pour éviter la même confusion en Phase 4.
+
+**Confirmation D2** (tailles) : 16(17×)/14(16×)/20(11×)/18(10×)/24(9×)/40(8×)/32(6×) → toutes `gouverner`, style existant identifié pour chacune. **54 → 1× seulement** en comptage masters-only (le « 8× » du backlog compte l'usage sur les 8 pages, pas les occurrences dans les masters — R8 les distingue) ; `laisser` par le seuil général mais **FR-011 mandate le style quand même** (exception nommée, pas une lecture du seuil — T027). **44 et 48 : absents de ce relevé** (0 occurrence masters-only) — le « 44×1 » du backlog vient d'un scan fichier-entier (hors périmètre masters), cohérent avec la même logique que le lint des noms.
+
+**Confirmation D3/D5** (couleurs) : `#000000` stroke (Accordion-row Grand, 2×, `laisser` — sous le seuil, pas de variable noir-pur existante), `#26282C52` stroke (Accordion-row, une variante avec alpha ~32%, 2×, `laisser`), `#E0E0E0` fill (Réalisation, 2×, `laisser`), `#0000004D` fill (Devis, 1×, `laisser` — alpha ~30%, distinct du `#000000` pur mentionné au backlog, à confirmer visuellement en T032). Aucune de ces 4 valeurs n'atteint 3× dans les masters → **aucune variable neuve à créer cette itération**, toutes les 4 listées littérales et déclarées (SC-011).
+
+### L1 — Noms & descriptions (2026-07-25)
+
+- **Version enregistrée avant la passe** : `005/noms/lot-l1` — `versionId 2380151587589170820` (T010).
+- **Diff attendu (T011)** : **0 pixel** (9/9 `identical`) — renommages de calques/axes + descriptions, aucun ne peut déplacer un pixel par construction.
+- **Cibles du lot** (T012-T018) : enfants par défaut des 18 masters d'icônes + piqueray_logo (~20 nœuds) ; axes `Property 1` de piqueray_logo/Header nav/Bouton (+ faute « Outilne noir ») ; titre Hero (nom tiré du contenu) ; collision « Présentation » + faute « Presentation »→« Présentation » sur Réalisations ; `Frame 8`/`Text`/`Vector`×2 sur Coordonnées/Hero/Catégories principales/Footer.
+- **Décisions de nommage prises live** (avant écriture, par cohérence avec l'existant du fichier) :
+  - Enfants internes d'icône (`Vector`/`Vector (Stroke)` seul) → **`Tracé`** ; `Group N` (compound) → **`Tracé composé`** ; 2 `Vector (Stroke)` frères sous un même `Group` → **`Tracé 1`/`Tracé 2`** (différenciation délibérée, pas un défaut Figma généré).
+  - piqueray_logo : axe `Property 1` → **`Couleur`** (varie le traitement chromatique Default/Blanc) ; ses `Text` (GROUP, lettrage vectoriel) → **`Texte`**.
+  - Header nav : axe `Property 1` → **`Fond`** (varie le traitement de fond Solid/Transparent). Rien d'autre touché (géométrie = Phase 6/V1, split = Phase 8/L4).
+  - Bouton : axe `Property 1` → **`Style`** (traitement visuel couleur/style). Rien d'autre touché (FR-039 : axe + faute, pas le vocabulaire de valeurs ni le calque `Libellé` interne — trouvé lui aussi content-derived mais explicitement hors périmètre, voir note T008 ci-dessus).
+  - Hero : `Text` (FRAME) → **`Bloc texte`** ; titre → **`Titre`** ; sous-titre (même défaut, bonus zéro-coût) → **`Sous-titre`**.
+  - Réalisations : calque interne `Présentation` (`2117:4676`, confirmé live = enfant du variant `En-tête=Présentation`, wrappe le titre + un `wrapper`) → **`Bloc en-tête`** (évite la collision, décrit son rôle réel).
+  - Coordonnées + Footer : `Frame 8` (wrappe Facebook+Instagram, dims identiques aux deux endroits, confirmé live) → **`Réseaux sociaux`**. Footer `Group 7` (x=-682, dims 32×31.857 = Facebook) → **`Facebook`** ; `Group 6` (x=-634, dims 32×32 = Instagram) → **`Instagram`** — **ordre vérifié par géométrie live, pas supposé par le numéro Figma** (qui aurait donné l'inverse).
+  - Catégories principales : 2 `Vector` décoratifs → **`Décor`** ; **3** `text` (FRAME minuscule) trouvés par le relevé au-delà des 2 `Vector` cités par l'audit → **`Bloc texte`** (T018 couvre « les défauts confirmés par le relevé », pas une liste figée).
+- **Exécuté (T012-T018)** : 65 renommages + 3 renommages d'axe (`editComponentProperty`) + 2 corrections de valeur de variant (trouvées dynamiquement par `variantProperties`, jamais codées en dur) — **0 erreur**. Script complet : [proofs/L1/gestes.md](./proofs/L1/gestes.md).
+- **T022 — survie des instances** : spot-check 14 instances (Bouton ×6, arrow-right ×6+, page Accueil) via `getMainComponentAsync()` — 100 % résolvent, toutes les clés de propriété custom intactes, l'axe renommé (`Style`) et la valeur corrigée (`Outline noir`) se lisent correctement sur les instances live.
+- **T023 — diff observé** : 9/9 `identical`, exit 0 — capture après ×9, chaque octet identique à la capture avant (mêmes tailles de fichier par maquette). [proofs/L1/verdict.md](./proofs/L1/verdict.md).
+- **Verdict** : ✅ **PASSÉ, conforme à l'annoncé** — commit.
+- **Note T019-T021 (descriptions)** : écrites **après** ce verdict, dans le même lot L1, sans ré-ouvrir un cycle de capture dédié — une description est un champ de métadonnée Figma jamais inclus dans `exportAsync`, elle ne peut par construction déplacer aucun pixel (certitude définitionnelle, pas une approximation).
+
+### T019-T021 — les 15 descriptions (2026-07-25)
+
+Rédigées par un **workflow multi-agent en arrière-plan** (15 agents parallèles,
+un par master), pendant l'exécution live de T012-T023. Contexte factuel fourni
+à chaque agent (issu des 3 audits `bonnes-pratiques-*` + `releves/perimetre-2026-07-25.json`),
+consigne explicite « base-toi UNIQUEMENT là-dessus », style/longueur calqués
+sur les descriptions déjà bonnes du fichier.
+
+**Leçon de méthode (à corriger la prochaine fois qu'un workflow rédige du texte
+factuel sur ce fichier)** : malgré la consigne, **6 des 15 agents ont appelé
+`mcp__figma-console__figma_execute` de leur propre initiative** (lecture seule
+confirmée — inspection ligne à ligne de chaque appel dans les transcripts
+`subagents/workflows/.../agent-*.jsonl` : aucune écriture, aucun
+`saveVersionHistoryAsync`, aucun usage du namespace `globalThis.__dsc003_input`
+partagé avec mes propres captures/checkpoints). Zéro mutation constatée, zéro
+preuve de corruption (mes captures avant/après T011/T023 restent byte-identiques
+maquette par maquette), mais c'est une violation de fait de la règle « une
+seule session sur le pont à la fois » du plan — tolérable ici parce que
+strictement en lecture, **à ne pas refaire sciemment**. Prochaine consigne
+d'agent devra interdire explicitement tout outil `mcp__figma-console__*`, pas
+seulement demander de « se baser sur le contexte fourni ».
+
+**Vérification avant écriture (2 affirmations non tracées dans le contexte
+fourni, contrôlées live avant d'écrire quoi que ce soit)** :
+- **Avantage** — un agent a affirmé « le texte peut recevoir une emphase en
+  gras sur certains mots, appliquée à la main ». **Faux, vérifié** :
+  `getStyledTextSegments` sur les 2 textes (Titre + Texte) ne montre qu'**un
+  seul segment** chacun, `fontName: Regular` — aucune emphase. **Retiré** avant
+  écriture (hallucination, principe V : ne jamais écrire une affirmation non
+  vérifiée dans une description qui vivra sur le fichier client).
+- **Équipe** — un agent a affirmé « 3 des 16 fiches gardent un nom/poste
+  placeholder ». **Vrai, vérifié exactement** : les instances `2115:3936`,
+  `2115:3937`, `2115:3938` affichent littéralement `Nom: "Prénom"` /
+  `Poste: "Poste"`. Conservé, texte précisé avec les valeurs littérales.
+- **Catégories principales** — un agent a affirmé « seules les variantes
+  Pleine largeur instancient Carte, Standard reste natif ». **Vrai, vérifié
+  exactement** : `Disposition=Standard` a 0 instance Carte (2 `item` FRAME
+  natifs) ; les 3 variantes `Pleine largeur*` en ont 2/3/1 respectivement.
+  Conservé.
+- **Section-header** — un agent a affirmé « les deux variantes partagent la
+  même largeur ». **Faux à ce jour** (Standard=1550, Avec CTA=1552 — le fix
+  est en Phase 6/V5, pas encore fait). Reformulé sans cette affirmation
+  (propriétés pilotables seulement) plutôt que d'écrire un fait qui ne sera
+  vrai qu'après cette même passe.
+
+**Écrit** : les 15 descriptions, une par master (nœuds confirmés par nom live
+avant écriture, aucune dérive depuis le relevé T008). 0 erreur. `descLen` de
+92 (Copyright) à 527 (Bouton) caractères.
+
+### L2 — Variables & styles (2026-07-25)
+
+- **Version enregistrée avant la passe** : `005/variables/lot-l2` — `versionId 2380158790790581337` (T025).
+- **Diff attendu (T026)** : **0 pixel** (9/9 identical) — toutes les liaisons/styles ci-dessous sont des liaisons de VALEUR déjà identique, jamais un changement de rendu.
+- **Vérification live avant écriture (T029/T031)** : `Footer-column` (`2079:2248`, "Rue Alfred Drèze…") et `Copyright` (`2086:2331`, mention légale) portent `#FFFFFF` **non lié** — confirmés cibles. `Devis` (`2096:2526`, titre) est **déjà lié** à `color/blanc` (`VariableID:4:29`) — confirme D4, **aucune écriture nécessaire pour T031**.
+- Capture avant ×9 vérifiée (9/9 PNG non vides, byte-identiques à la baseline L1/après — aucune dérive du canvas entre les deux lots).
+
+**Exécuté** : T027 (style `Titre Hero` 54px créé et appliqué — fix range Bold+Light immédiat, voir plus bas), T028 (21 occurrences liées à leurs styles existants après vérification fontName/lineHeight/letterSpacing), T029 (Footer-column `2079:2248` + Copyright `2086:2331` → `color/blanc`), T030 (Accordion-row `2059:1383`/`2059:1411` → `color/noir-bleute`), T031 (Devis déjà lié, confirmé, aucune écriture).
+
+**T033 — diff observé (1ʳᵉ tentative) : 9/9 `diff` — STOP conforme FR-029.** Cause à identifier avant toute reprise (aucune écriture supplémentaire tant que non comprise).
+
+**Investigation (3 défauts distincts trouvés, chacun un effet de bord non documenté de l'API Figma sur des propriétés que je n'avais pas vérifiées avant liaison)** :
+
+1. **Casse (`textCase`)** — `setTextStyleIdAsync` réinitialise la casse du texte à celle du style cible (`ORIGINAL` pour les 8 styles existants), écrasant une transformation `UPPER` posée manuellement. Confirmé par crop pixel-exact (`PORTES DE GARAGE` → `Portes de garage`). **7 nœuds corrigés** via `setRangeTextCase(0, len, 'UPPER')` : `2061:1585`, `2061:1587`, `2063:1604` (variant fantôme non rendu, corrigé par prudence), `2115:4165`, `2115:4173`, `2063:1614`, `2115:4249`.
+2. **Graisse par override d'instance** — un master lié à un style ne force PAS ses instances à hériter la graisse : quand une instance porte son propre override de contenu (titre personnalisé), sa graisse reste indépendante et peut être écrasée par la liaison. Détecté uniquement en comparant les **117 occurrences réelles** (pas seulement les masters) des 21 nœuds liés sur les 9 pages — **15 occurrences** de `2115:4165`/`2115:4173`/`2063:1614`/`2115:4249` affectées (100 % des occurrences de « Titre 2 »/« Titre 3 », 0 % des autres tailles). Graisse d'origine mesurée par épaisseur de trait (~3px à 32px = Medium) puis confirmée par correspondance byte-exacte après correctif. **15 occurrences corrigées** via `setRangeFontName(0, len, {family:'Montserrat', style:'Medium'})` sur chaque **instance**, pas le master.
+3. **Opacité de bordure par override d'instance** — même mécanisme que 2 : la liaison de variable sur le master n'a pas propagé la bonne opacité (0x52/255 ≈ 32 %) aux instances Accordion-row de Texte SEO portant leur propre override. **26 instances corrigées** (3 sur Portes de garage industrielles trouvées en premier, puis 21 de plus balayées sur les 8 autres pages via un scan systématique `masterName === 'Accordion-row' && bound to color/noir-bleute && opacity !== 0.32`).
+
+**Méthode de diagnostic retenue** (utile pour la suite de l'itération) : comparaison **octet-exacte** de régions précises (avant/après recadrées via `pngjs`, pas de dépendance à `pixelmatch` pour le diagnostic fin) — bien plus fiable que l'inspection visuelle d'une vignette compressée, qui a fait manquer le premier indice (delta RGB mesuré jusqu'à 217/255 invisible à l'œil sur un crop réduit).
+
+**T033 — diff observé (tentative finale) : 9/9 `identical`, exit 0 — conforme.** [verdict](./proofs/L2-retest4/verdict.md).
+
+### L3 — Affordances zéro-pixel (2026-07-25)
+
+- **Version enregistrée avant la passe** : `005/affordances/lot-l3` — `versionId 2380204337834005784` (T035).
+- **Diff attendu (T036)** : **0 pixel** (9/9 identical) — nouvelle propriété BOOLEAN (défaut = état actuel), suppression d'un variant fantôme jamais rendu (aucune instance ne le sélectionne), renommage d'axe.
+- **Cibles** : Product-card (`2068:1972`, propriété `Bouton`), Tab (`2061:1588`, suppression `État3` après archive), member-picture (`274:2389`, axe `Property 1`→`État`, valeurs `Default|hover`→`Défaut|Survol`).
+- **T037** : propriété BOOLEAN `Bouton` (`Bouton#2136:61`, défaut `false`) créée sur Product-card ; visibilité de l'instance `Bouton` cachée (`2068:1976`) liée via `componentPropertyReferences.visible`. Erreur d'API en cours de route (tentative de `setProperties` sur l'enfant au lieu du parent — corrigée immédiatement, pas d'écriture erronée conservée).
+- **T038** : page `Archive · Spec A` créée (`2136:5428`) ; `Tab` (`2061:1588`) cloné intact (vecteurs, pas image) avant toute suppression (`2136:5429`).
+- **T039** : variant `État=État3` (`2063:1603`) supprimé — confirmé non instancié nulle part (0 instance le référençait) avant suppression.
+- **T040** : axe `Property 1`→`État` ; valeurs `Default`→`Défaut`, `hover`→`Survol` (renommage de l'axe ET des 2 valeurs).
+- **T041 — survie des instances** : Tab ×4 (Dépannage/SAV, aucune sur `État3`), Product-card ×8 (`Bouton#2136:61` présent sur toutes), member-picture ×16 (À Propos, axe `État` lu correctement) — 100 % résolvent.
+- **T042 — diff observé** : 9/9 `identical`, exit 0, **dès la première tentative** (leçon L2 appliquée : vérification de survie avant capture, gestes plus chirurgicaux). [verdict](./proofs/L3/verdict.md).
+- **Verdict** : ✅ PASSÉ, conforme — commit.
+
+**Note pour T030** : le suffixe alpha de `#26282C52`/`#0000004D` est l'opacité du *paint* (`paint.opacity`), pas le canal couleur (`paint.color`, toujours opaque en soi). `setBoundVariableForPaint(paint, 'color', id)` ne lie que le RGB — l'opacité reste inchangée, donc lier Accordion-row/Petit à `color/noir-bleute` reste zéro-pixel comme annoncé par T030 ; ne jamais « normaliser » l'opacité au passage (ce serait un geste visuel non annoncé).
+
+## Phase 6 — Géométrie 88→89 (V1–V5)
+
+**Note d'outillage (T044)** : le premier appel `figma_execute` de cette phase a été passé
+en recopiant `checkpoint.js` tel quel (IIFE sans `return` en tête) — le pont ne capture
+la valeur que si le code se termine par un `return` explicite au niveau racine (confirmé :
+le premier essai est revenu sans champ `result`, alors qu'un `saveVersionHistoryAsync`
+a probablement quand même eu lieu côté sandbox). Corrigé en préfixant `return` devant
+l'IIFE ; toutes les captures/checkpoints de cette phase utilisent désormais ce patron.
+Lecture de version-history REST (`figma_get_file_versions`) indisponible ce jour (token
+expiré, 401) — sans lien avec le pont desktop ; n'affecte aucun geste, seulement la
+vérification externe d'un `versionId`.
+
+### V1 — Header nav (2026-07-25)
+
+- **Version enregistrée avant la passe** : `005/geometrie/header-nav` — `versionId 2380206623813672482` (T044).
+- **Relevé structurel (T045)** : [releves/structure-header-nav.json](./releves/structure-header-nav.json) — confirme live, pas supposé : aucun GROUP parmi les enfants directs des deux variants (Fond=Solid `84:284`, Fond=Transparent `84:286`), aucun redimensionnement d'enfant requis par le geste (padding = propriété du parent en auto-layout FIXED, `piqueray_logo` reste FIXED 180px, `nav-wrapper` reste HUG). Master confirmé **trap-free**, conforme à D1.
+- **Diff attendu (T046)** : **bande ~1px aux bords, sur les 9/9 pages** (Header nav est instancié sur chaque maquette) — le padding gauche/droite passe de 88 à 89px sur les deux variants, largeur du parent inchangée (FIXED 1728).
+- **Geste (T047)** : `paddingLeft`/`paddingRight` 88→89 sur `Fond=Solid` (`84:284`) et `Fond=Transparent` (`84:286`), lu et vérifié après écriture (avant/après consignés dans le retour d'appel).
+- **Diff observé (T048)** : 9/9 `diff`, exit 1 — chaque page montre un `diffBox` démarrant à `x=88` (frontière du padding), large de `w=1550` (largeur de contenu du site), hauteur variable selon la ligne de nav visible sur la page (35–54px), `diffCount` ≈ 3600–4050 pixels. **Conforme à l'annoncé** : c'est le contour fin du contenu (logo, libellés, icônes, bouton) décalé de 1px, pas un fond plein (qui ne montrerait aucun diff). Crops zoomés (`proofs/V1/crops/Accueil.png`, `Dépannage_SAV.png`) confirmés à l'œil — avant/après visuellement indiscernables, le panneau diff ne montre que le contour du contenu, aucun élément manquant ni changement de couleur/taille. [verdict](./proofs/V1/verdict.md).
+- **Verdict** : ✅ **PASSÉ, conforme à l'annoncé** — commit.

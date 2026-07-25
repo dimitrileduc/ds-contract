@@ -1,0 +1,47 @@
+{
+  "cible": "Header nav (84:285)",
+  "date": "2026-07-25",
+  "geste_prevu": "paddingLeft/paddingRight 88 -> 89 sur les deux variants (Fond=Solid, Fond=Transparent)",
+  "verifie_live": {
+    "root": { "id": "84:285", "type": "COMPONENT_SET", "layoutMode": "NONE" },
+    "variants": [
+      {
+        "id": "84:284", "name": "Fond=Solid", "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FIXED", "width": 1728,
+        "paddingLeft": 88, "paddingRight": 88, "paddingTop": 16, "paddingBottom": 16,
+        "children_directs": [
+          { "id": "84:256", "name": "piqueray_logo", "type": "INSTANCE", "layoutSizingHorizontal": "FIXED", "width": 180 },
+          { "id": "95:224", "name": "nav-wrapper", "type": "FRAME", "layoutSizingHorizontal": "HUG", "layoutSizingVertical": "HUG" }
+        ]
+      },
+      {
+        "id": "84:286", "name": "Fond=Transparent", "layoutMode": "HORIZONTAL",
+        "layoutSizingHorizontal": "FIXED", "width": 1728,
+        "paddingLeft": 88, "paddingRight": 88, "paddingTop": 16, "paddingBottom": 16,
+        "children_directs": [
+          { "id": "84:287", "name": "piqueray_logo", "type": "INSTANCE", "layoutSizingHorizontal": "FIXED", "width": 180 },
+          { "id": "95:225", "name": "nav-wrapper", "type": "FRAME", "layoutSizingHorizontal": "HUG", "layoutSizingVertical": "HUG" }
+        ]
+      }
+    ],
+    "groupsFound_depth0-2": [],
+    "groupsFound_ailleurs": [
+      "I84:256;4:4 \"Texte\" (depth 3, contenu interne de piqueray_logo)",
+      "I95:243;95:213 \"Tracé composé\" (depth 5, contenu interne d'une icône)",
+      "I84:287;4:17 \"Texte\" (depth 3, idem variant Transparent)",
+      "I95:258;95:213 \"Tracé composé\" (depth 5, idem)"
+    ],
+    "nestedInstancesFound": [
+      "piqueray_logo (depth 2, x2 — un par variant)",
+      "octicon:chevron-down-12 (depth 5, x4)",
+      "Bouton (depth 4, x2)", "arrow-left/arrow-right (depth 5, x4 — contenu interne de Bouton)",
+      "search/user/cart (depth 4, x6)"
+    ]
+  },
+  "verdict": {
+    "piege_GROUP_resize": "ABSENT — aucun GROUP parmi les enfants directs des deux variants (les seuls GROUP du sous-arbre sont a profondeur 3+, contenu interne d'instances existantes, hors de la portee du geste de padding).",
+    "piege_nested_INSTANCE_SWAP_resize_noop": "NON APPLICABLE — le geste (paddingLeft/paddingRight 88->89) ne touche AUCUNE propriete de taille d'enfant ni aucun resize(); c'est une propriete d'auto-layout du parent (FIXED width 1728, inchangee), qui ne force aucun enfant a se redimensionner. piqueray_logo reste FIXED 180px, nav-wrapper reste HUG — les deux non affectes par le padding du parent.",
+    "confirme_trap_free": true,
+    "note": "D1 annoncait ce master trap-free — confirme live, pas suppose. Le seul effet attendu du geste est un decalage horizontal du contenu (bande ~1px par bord) puisque le parent garde sa largeur FIXED 1728 et que ses enfants ne se redimensionnent pas avec le padding."
+  }
+}
