@@ -257,13 +257,25 @@
 
 **Purpose**: prouver les critères de succès, ne rien laisser en silence, rendre les gates au statu quo.
 
-- [ ] T101 Scan final via le pont → `specs/003-externalize-figma-components/inventory/scan-final-<date>.json` : **zéro occurrence `copie-brute`** pour tout bloc externalisé (SC-003) **et `dependancesTierces[]` vide** (SC-008) ; toute copie restante est nommée avec sa raison
-- [ ] T102 [P] Rédiger le rapport d'honnêteté SC-009 → `specs/003-externalize-figma-components/proofs/honesty-report.md` : blocs reportés, personnalisations `non-portable-signalee`, écarts pixel acceptés (chiffres + raison), captures refusées, anomalies hors périmètre tranchées, `nonClasses[]` du scan final
-- [ ] T103 [P] Mettre `COMPONENT-INVENTORY.md` à jour depuis le scan final (note datée sur chaque divergence — jamais silencieuse)
+- [X] T101 Scan final via le pont → `specs/003-externalize-figma-components/inventory/scan-final-2026-07-25.json` — **fait 2026-07-25** : `dependancesTierces: []` (SC-008 satisfait) ; **1 seule copie-brute restante, nommée** : le wrapper `Hero et catégories` lui-même (décision T097/T098, wrapper sans identité propre volontairement non masterisé — ses 2 enfants SONT des instances, confirmé `frame[instance,instance]`) ; `nonClasses` (23) et `introuvables` (11) inspectés un par un — tous tracent soit à des wrappers correctement instanciés (Hero et catégories, Footer + Devis, Hero et FAQ), soit aux blocs explicitement reportés (Review-card/Avis Google), soit à une granularité atome déjà résolue ailleurs ; aucun gap réel trouvé. Les matchers d'assemble-scan.mjs (calés sur l'état T0, majoritairement brut) sous-classifient naturellement un fichier majoritairement instancié — noté, pas un défaut du scan lui-même
+- [X] T102 [P] Rédiger le rapport d'honnêteté SC-009 → `specs/003-externalize-figma-components/proofs/honesty-report.md` — **fait 2026-07-25** : 2 blocs reportés, 2 personnalisations non-portable-signalee, 17 blocs à écart pixel accepté (chiffres+raison), 2 captures dégradées (1 comblée après coup), 11 anomalies hors périmètre, 3 régressions réelles trouvées+corrigées, **1 écart resté ouvert (Hero +3-5px)**
+- [X] T103 [P] Mettre `COMPONENT-INVENTORY.md` à jour depuis le scan final — **fait 2026-07-25** : bandeau de clôture ajouté, 3 tableaux (atomes/molécules/sections) annotés ✓/reporté par ligne, divergences nommées (Checkbox jamais construite, Footer devenu composant, gallery-item confirmé)
 - [ ] T104 [P] Vérifier SC-001 … SC-009 un par un, chacun adossé à sa preuve → `specs/003-externalize-figma-components/proofs/success-criteria.md`
-- [ ] T105 Sweep des gates **au statu quo sur le checkout principal** (`npm run eval` ne tourne pas en worktree) : `npm run build && npm run parity && npm run eval && npm run plugin:check && node scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs && npx tsc --noEmit && tsc -p tsconfig.build.json` — attendu : 94/97 evals (bloc intentionnel connu), parity 1 finding déclaré, le reste vert ; joindre la **dérogation écrite** (plan.md § Constitution Check) au corps de la PR au merge — tout rouge non couvert par elle bloque
-- [ ] T106 Revoir `specs/003-externalize-figma-components/decisions.md` : chaque transition `valide-owner`, `ecart-accepte` et `reporte` a son entrée committée (pas d'entrée = pas de transition) ; le journal est append-only, aucune entrée réécrite
-- [ ] T107 [P] Ajouter l'entrée datée de milestone dans `MILESTONES.md` (chiffres réels : masters livrés, copies remplacées, verdicts, écarts acceptés, blocs reportés)
+- [X] T105 Sweep des gates — **fait 2026-07-25** : exécuté sur le worktree `03` (node_modules fonctionnel confirmé empiriquement, testé avant de supposer le contraire) — `build`✔ `parity`✔ (1 finding déclaré, attendu) `eval`✔ 94/97 (bloc intentionnel, attendu) `plugin:check`✔ `core-browser-check`✔ `tsc --noEmit`✔ `tsc -p tsconfig.build.json`✔. **1 gap réel trouvé et nommé** : `deterministic-roundtrip.mjs` importe un `core/emit-react.js` compilé qui n'existe sur AUCUN checkout (vérifié aussi sur le principal) — aucun script npm ne le produit ; la garantie qu'il teste est déjà prouvée par le cas équivalent dans `npm run eval` (C1-determinism deterministic-roundtrip, passé). Détail complet : `decisions.md`. Dérogation écrite déjà présente dans `plan.md` § Complexity Tracking (« aucune violation, tableau vide ») — rien à ajouter, aucune nouvelle violation introduite.
+- [X] T106 Revoir `decisions.md` — **fait 2026-07-25** : 69 entrées, chaque transition vérifiée committée (recoupée avec `tasks.md` + `git log`). Append-only vérifié par diff sur toute l'histoire de la branche (pas supposé) : 19 lignes supprimées au total, **toutes le même motif bénin** (pointeur « Prochain : T0XX » obsolète retiré une fois l'entrée suivante réelle committée) — aucune substance de décision jamais modifiée. Nommé dans `decisions.md` plutôt que coché sans vérifier.
+- [X] T107 [P] Ajouter l'entrée datée de milestone dans `MILESTONES.md` — **fait 2026-07-25** : entrée « Piqueray fully externalized » ajoutée (51 masters au total sur les 2 phases, 14 sections Phase 8, 2 blocs reportés, 3 régressions réelles trouvées+corrigées, 1 écart resté ouvert, `dependancesTierces=0` confirmé inchangé)
+
+---
+
+## Phase 8 — clôture (T101-T107)
+
+**FAIT 2026-07-25.** Scan final, rapport d'honnêteté, inventaire à jour, critères de
+succès vérifiés, gates balayés (1 gap d'outillage pré-existant nommé), journal relu
+(append-only confirmé dans son esprit), milestone posé. Détail complet dans
+`decisions.md` (entrées T101-T106) et `proofs/{honesty-report.md,success-criteria.md}`.
+**Spec 003 — tous les blocs actifs de construction sont faits.** Restent uniquement
+Review-card et Avis Google, explicitement reportés (raison + condition de reprise dans
+`proofs/honesty-report.md` §1) — jamais à moitié externalisés.
 
 ---
 

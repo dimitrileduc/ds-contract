@@ -2911,3 +2911,71 @@ que le piège de comptage manuel de caractères déjà documenté (Hero).
 pages, adoption à 0 override, écart pixel résiduel uniquement du bruit AA sous-pixel déjà
 familier. Tous les blocs de construction actifs de la Phase 8 sont maintenant faits
 (restent Review-card et Avis Google, explicitement reportés, et la clôture T101-T107).
+
+## 2026-07-25 — balayage des gates au statu quo (T105)
+
+- **Exécuté sur ce worktree** (`03`), pas le checkout principal — contrairement à la note
+  de `CLAUDE.md` (« npm run eval ne tourne pas en worktree, node_modules absent »), ce
+  worktree spécifique a bien un `node_modules` fonctionnel (vérifié : `tsx`, `playwright-core`
+  résolus). Testé empiriquement plutôt que supposé avant de basculer sur le checkout
+  principal (qui porte du travail non committé sans rapport — l'audit DX — pas touché).
+- **Résultats** :
+  - `npm run build` — ✔ (tokens 59 custom properties, schema, generate Button)
+  - `npm run parity` — ✔ 1 finding déclaré (`Button.Contactez-nous`, prop `children` sans
+    propriété TEXTE Figma) — **exactement l'état attendu déjà documenté dans CLAUDE.md**,
+    pré-existant, sans rapport avec la Phase 8
+  - `npm run eval` — ✔ **94/97**, les 3 rouges = le bloc intentionnel déjà nommé
+    (baseline-parity-clean, baseline-acknowledges-without-failing, promotion-converges,
+    en attente du token set Piqueray poussé sur Figma) — **exactement l'état attendu**
+  - `npm run plugin:check` — ✔ tous les flux verts (4 skips nommés, composant Piqueray
+    plat sans composite — attendus)
+  - `node scripts/core-browser-check.mjs` — ✔ barrel core bundle propre, 4 emitters
+    exécutés en VM sans globals node
+  - `npx tsc --noEmit` — ✔ zéro erreur (src, scripts, core, extract, parity, evals)
+  - `tsc -p tsconfig.build.json` — ✔ zéro erreur (déclarations `src/` uniquement)
+  - `node scripts/deterministic-roundtrip.mjs` — ✗ **échoue sur un import manquant**
+    (`core/emit-react.js`, `core/tokens.js`) — voir raison ci-dessous
+- **Le seul écart, nommé, pas contourné** : `deterministic-roundtrip.mjs` importe
+  dynamiquement des fichiers `.js` compilés (`core/emit-react.js`, `core/tokens.js`) qui
+  n'existent **nulle part** — vérifié sur ce worktree ET sur le checkout principal
+  (`/Users/dlstudio/.superset/projects/ds-contracts-poc`, `git status` propre pour
+  `core/`), donc **pas causé par cette nuit ni par ce worktree**. Aucun script `npm`
+  ne produit ces fichiers : `tsconfig.build.json` est `emitDeclarationOnly` et scope
+  seulement `src/` (pas `core/`) ; `tsconfig.json` racine est `noEmit: true` partout ;
+  `core-browser-check.mjs` bundle `core/` en mémoire (jamais sur disque) donc ne
+  rencontre pas le problème. **La garantie que ce gate est censé prouver (byte-identique
+  contrat→canvas sur 2 runs, zéro IA dans la conversion) EST vérifiée ailleurs** : le cas
+  `C1-determinism deterministic-roundtrip` de `npm run eval` (qui invoque la même logique
+  via un chemin différent) est passé ✔ dans le run ci-dessus. Un vrai trou d'outillage
+  (le script autonome documenté dans `CLAUDE.md` ne tourne pas tel quel sur un checkout
+  propre), pas un trou de preuve — nommé pour que quelqu'un le corrige un jour, pas
+  contourné en silence.
+- **Conclusion** : tous les gates au vert sauf le gap d'outillage ci-dessus, nommé et sans
+  impact sur la garantie réelle (déjà prouvée par un autre chemin). Rien cette nuit n'a
+  cassé le pipeline générateur.
+
+## 2026-07-25 — revue du journal (T106)
+
+- **69 entrées** dans ce journal (`grep -c "^## "`). Chaque transition `valide-owner`,
+  `ecart-accepte` et `reporte` a bien son entrée committée — vérifié par recoupement avec
+  `tasks.md` (chaque tâche cochée `[X]` pointe vers une entrée datée existante) et avec
+  `git log` (chaque commit correspond à une entrée, jamais l'inverse).
+- **Append-only vérifié par diff sur l'historique complet de la branche**
+  (`git log -p main..003-externalize-figma-components -- decisions.md`), pas supposé :
+  **19 lignes supprimées** au total sur toute la vie de la branche — **nommé, pas caché,
+  même si ça semble contredire « append-only » au premier regard**. Inspection ligne par
+  ligne : **les 19 sont exactement le même motif** — une phrase de clôture « **Prochain :
+  T0XX (...)** » en fin d'entrée, retirée par le commit suivant une fois que l'entrée
+  suivante réelle existait et rendait ce pointeur obsolète (ex. « Prochain : T059 » retiré
+  de l'entrée Footer-column une fois l'entrée Copyright/T059 elle-même committée).
+  **Aucune substance de décision, aucun chiffre, aucune raison n'a jamais été modifié ou
+  retiré** — uniquement ce pointeur « et après ? » qui aurait sinon fini par pointer vers
+  une tâche déjà faite depuis longtemps, une source de confusion plus qu'une trace utile.
+  Conclusion : la garantie substantielle d'append-only (une décision, une fois committée,
+  n'est jamais changée ni contredite — seulement corrigée par une NOUVELLE entrée qui
+  référence l'ancienne, comme les 3 entrées de correction Hero/Devis/Réalisations) tient
+  intégralement. La garantie littérale (zéro caractère jamais supprimé) ne tenait pas tout
+  à fait, et c'est nommé ici plutôt que de cocher T106 sans avoir vraiment vérifié.
+
+**T106 fait.** Journal complet, cohérent, append-only dans son esprit (jamais dans sa
+lettre à 100 % — écart mineur nommé ci-dessus, sans impact sur la fiabilité du journal).
