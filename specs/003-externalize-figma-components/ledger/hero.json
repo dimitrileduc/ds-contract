@@ -1,0 +1,445 @@
+{
+  "bloc": "hero",
+  "date": "2026-07-24",
+  "masterNodeId": "2111:3382",
+  "entrees": [
+    {
+      "maquette": "Contactez-nous",
+      "position": {
+        "x": 15725,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "image",
+      "chemin": "fond (Hero racine)",
+      "valeur": "imageHash: 3bd66aa5508dac55f962b2fc09a1c00b77f83b67",
+      "portePar": "override des fills sur l’instance racine (image de fond + 2 dégradés de lisibilité)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": {
+        "x": 15725,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/titre",
+      "valeur": "Discutons de votre projet",
+      "portePar": "override du sous-calque titre (plages de gras/light ré-appliquées à l’identique)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": {
+        "x": 15725,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/sous-titre",
+      "valeur": "Nous intervenons pour l'installation et le dépannage dans toute la province de Liège : Verviers, Liège, Eupen, Spa, Malmedy, Huy, Waremme...",
+      "portePar": "override du sous-calque sous-titre (FILL ; plages de gras ré-appliquées ; caractères invisibles préservés)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": {
+        "x": 15725,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/Bouton (Libellé)",
+      "valeur": "Contactez-nous",
+      "portePar": "propriété Libellé de l’instance Bouton imbriquée (gouvernée)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": {
+        "x": 15725,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "icone",
+      "chemin": "Titres/wrapper/Bouton (Glyphe droite)",
+      "valeur": "chevron-down (226:373) — défaut master arrow-right (6:104)",
+      "portePar": "propriété INSTANCE_SWAP « Glyphe droite » de l’instance Bouton imbriquée",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Contactez-nous",
+      "position": {
+        "x": 15725,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "autre",
+      "chemin": "Titres/wrapper (itemSpacing rangée sous-titre)",
+      "valeur": "itemSpacing 16 (défaut master 32) — corrèle avec le glyphe (chevron⇒gap 16, flèche⇒gap 32) ; pilote la largeur FILL du sous-titre",
+      "portePar": "override itemSpacing du sous-cadre « wrapper » (rangée sous-titre) sur l’instance",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "À Propos",
+      "position": {
+        "x": 13797,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "image",
+      "chemin": "fond (Hero racine)",
+      "valeur": "imageHash: fd708810aabb90d21a9b77bb6d130e247b46dd50",
+      "portePar": "override des fills sur l’instance racine (image de fond + 2 dégradés de lisibilité)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "À Propos",
+      "position": {
+        "x": 13797,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/titre",
+      "valeur": "Piqueray, vos experts à votre service",
+      "portePar": "override du sous-calque titre (plages de gras/light ré-appliquées à l’identique)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "À Propos",
+      "position": {
+        "x": 13797,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/sous-titre",
+      "valeur": "Proximité, expertise et service. Fondée il y a un demi-siècle, la société Piqueray est devenue une référence incontournable en Province de Liège.",
+      "portePar": "override du sous-calque sous-titre (FILL ; plages de gras ré-appliquées ; caractères invisibles préservés)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "À Propos",
+      "position": {
+        "x": 13797,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/Bouton (Libellé)",
+      "valeur": "En savoir plus",
+      "portePar": "propriété Libellé de l’instance Bouton imbriquée (gouvernée)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "À Propos",
+      "position": {
+        "x": 13797,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "icone",
+      "chemin": "Titres/wrapper/Bouton (Glyphe droite)",
+      "valeur": "chevron-down (226:373) — défaut master arrow-right (6:104)",
+      "portePar": "propriété INSTANCE_SWAP « Glyphe droite » de l’instance Bouton imbriquée",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "À Propos",
+      "position": {
+        "x": 13797,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "autre",
+      "chemin": "Titres/wrapper (itemSpacing rangée sous-titre)",
+      "valeur": "itemSpacing 16 (défaut master 32) — corrèle avec le glyphe (chevron⇒gap 16, flèche⇒gap 32) ; pilote la largeur FILL du sous-titre",
+      "portePar": "override itemSpacing du sous-cadre « wrapper » (rangée sous-titre) sur l’instance",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Dépannage/SAV",
+      "position": {
+        "x": 11869,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "image",
+      "chemin": "fond (Hero racine)",
+      "valeur": "imageHash: 89d8a1ace90f9f5d57dcd4ef96587280b0e447ad",
+      "portePar": "override des fills sur l’instance racine (image de fond + 2 dégradés de lisibilité)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Dépannage/SAV",
+      "position": {
+        "x": 11869,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/titre",
+      "valeur": "Besoin d'un dépannage ?",
+      "portePar": "override du sous-calque titre (plages de gras/light ré-appliquées à l’identique)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Dépannage/SAV",
+      "position": {
+        "x": 11869,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/sous-titre",
+      "valeur": "Notre équipe technique intervient partout en Province de Liège pour vos réparations.",
+      "portePar": "override du sous-calque sous-titre (FILL ; plages de gras ré-appliquées ; caractères invisibles préservés)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Dépannage/SAV",
+      "position": {
+        "x": 11869,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/Bouton (Libellé)",
+      "valeur": "Demander de l’aide",
+      "portePar": "propriété Libellé de l’instance Bouton imbriquée (gouvernée)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes d'entrée",
+      "position": {
+        "x": 9941,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "image",
+      "chemin": "fond (Hero racine)",
+      "valeur": "imageHash: 56e92f1df79c9bc82fc1faa2cce735fab9933d28",
+      "portePar": "override des fills sur l’instance racine (image de fond + 2 dégradés de lisibilité)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes d'entrée",
+      "position": {
+        "x": 9941,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/titre",
+      "valeur": "Portes d’entrée, l'accueil commence ici",
+      "portePar": "override du sous-calque titre (plages de gras/light ré-appliquées à l’identique)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes d'entrée",
+      "position": {
+        "x": 9941,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/sous-titre",
+      "valeur": "Design élégant, isolation thermique élevée et sécurité maximale.",
+      "portePar": "override du sous-calque sous-titre (FILL ; plages de gras ré-appliquées ; caractères invisibles préservés)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Motorisation",
+      "position": {
+        "x": 8013,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "image",
+      "chemin": "fond (Hero racine)",
+      "valeur": "imageHash: b62c1f727575a72027f3aa7c0aa8e0fd3d6977d5",
+      "portePar": "override des fills sur l’instance racine (image de fond + 2 dégradés de lisibilité)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Motorisation",
+      "position": {
+        "x": 8013,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/titre",
+      "valeur": "Motorisations intelligentes et sécurisées",
+      "portePar": "override du sous-calque titre (plages de gras/light ré-appliquées à l’identique)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Motorisation",
+      "position": {
+        "x": 8013,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/sous-titre",
+      "valeur": " Le confort de ne plus descendre de voiture, la sécurité Hörmann en plus.",
+      "portePar": "override du sous-calque sous-titre (FILL ; plages de gras ré-appliquées ; caractères invisibles préservés)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": {
+        "x": 4157,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "image",
+      "chemin": "fond (Hero racine)",
+      "valeur": "imageHash: 85a957c75f73152888102cd4e5f583164b634509",
+      "portePar": "override des fills sur l’instance racine (image de fond + 2 dégradés de lisibilité)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": {
+        "x": 4157,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/titre",
+      "valeur": "Portes de garage pour votre habitat",
+      "portePar": "override du sous-calque titre (plages de gras/light ré-appliquées à l’identique)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": {
+        "x": 4157,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/sous-titre",
+      "valeur": "Donnez du cachet à votre façade tout en sécurisant votre maison. Découvrez notre gamme de portes sectionnelles et basculantes Hörmann. ",
+      "portePar": "override du sous-calque sous-titre (FILL ; plages de gras ré-appliquées ; caractères invisibles préservés)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage",
+      "position": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "image",
+      "chemin": "fond (Hero racine)",
+      "valeur": "imageHash: dfaa8d2046343398e067aade577f177137d32cce",
+      "portePar": "override des fills sur l’instance racine (image de fond + 2 dégradés de lisibilité)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage",
+      "position": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/titre",
+      "valeur": "Les portes de garage Hörmann :  l'alliance de la sécurité et du design",
+      "portePar": "override du sous-calque titre (plages de gras/light ré-appliquées à l’identique)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage",
+      "position": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/sous-titre",
+      "valeur": "Que vous soyez un particulier ou un professionnel, Piqueray vous propose la gamme complète du leader européen en Province de Liège.",
+      "portePar": "override du sous-calque sous-titre (FILL ; plages de gras ré-appliquées ; caractères invisibles préservés)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage",
+      "position": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "texte",
+      "chemin": "Titres/wrapper/Bouton (Libellé)",
+      "valeur": "En savoir plus",
+      "portePar": "propriété Libellé de l’instance Bouton imbriquée (gouvernée)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage",
+      "position": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "icone",
+      "chemin": "Titres/wrapper/Bouton (Glyphe droite)",
+      "valeur": "chevron-down (226:373) — défaut master arrow-right (6:104)",
+      "portePar": "propriété INSTANCE_SWAP « Glyphe droite » de l’instance Bouton imbriquée",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage",
+      "position": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 640
+      },
+      "type": "autre",
+      "chemin": "Titres/wrapper (itemSpacing rangée sous-titre)",
+      "valeur": "itemSpacing 16 (défaut master 32) — corrèle avec le glyphe (chevron⇒gap 16, flèche⇒gap 32) ; pilote la largeur FILL du sous-titre",
+      "portePar": "override itemSpacing du sous-cadre « wrapper » (rangée sous-titre) sur l’instance",
+      "statut": "reportee"
+    }
+  ],
+  "totaux": {
+    "reportees": 31,
+    "nonPortables": 0
+  }
+}

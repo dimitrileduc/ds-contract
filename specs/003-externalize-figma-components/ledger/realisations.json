@@ -1,0 +1,49 @@
+{
+  "bloc": "realisations",
+  "date": "2026-07-25",
+  "masterNodeId": "2117:4691",
+  "entrees": [
+    {
+      "maquette": "Portes de garage industrielles",
+      "position": { "x": 6173, "y": 1971, "w": 1728, "h": 1551 },
+      "type": "image",
+      "chemin": "grid/Réalisation[0..8]/img (9 occurrences)",
+      "valeur": "imageHash: 24fff00273a5163dc90e923e21a617cb8b4c1262, 7d780cd42cb14b0d9e74fae457a26236d0d4d2dd, a938c8f9d391a53be193d47a2073125fc705724f, 6cbad5b8c3896ba1a5a376ade5a3afcabb3085b0, 36f30df06589f4d363d1144e7f4adb560c72631a, 1f17390f701368d3688b82981edc09b7f5de6435, 4a5cc1f43e4426d71cb3998df71fdb8c695827a2, af91a64c7ef0e893d25d963413861af524ad9423, 2dfc857bc9cc02205cd204b0c68728f83d07b5c9",
+      "portePar": "override des fills sur chacune des 9 instances Réalisation de la grille",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": { "x": 4245, "y": 1944, "w": 1728, "h": 1551 },
+      "type": "image",
+      "chemin": "grid/Réalisation[0..8]/img (9 occurrences)",
+      "valeur": "imageHash: 87cc512cbc9df9a96fae84e1a735264b1506fc0d, 88e05e9357ba8efae11612fb3b05c186570cfa37, 99c604ed40c3493c8045931d83764588b1ffe127, 6bee81232b362508152bee2604d78241c45d83fd, 7e1fbd52ad7212b72bc038e852cc4d71ec5425bb, 13c89545af32afc2234ae828cff599ae90a8c6df, 9a24696da4f94120fa1c0c0cb8635e429cc277e1, 97547478f453f17dfeb2676f18264cb9cad77ec4, 9eaa15d5e6f23c292b331a74a4858583ec3f3829",
+      "portePar": "override des fills sur chacune des 9 instances Réalisation de la grille",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": { "x": 4245, "y": 1944, "w": 1728, "h": 1551 },
+      "type": "texte",
+      "chemin": "En-tête/Titre",
+      "valeur": "Quelques réalisations et installations de qualité (gras : \"réalisations et installations\")",
+      "portePar": "override direct du sous-calque texte, restauré après une régression trouvée par revue indépendante (voir decisions.md et audits/realisations.md §Incident) — source: capture before (image), pas une relecture .characters live",
+      "statut": "non-portable-signalee",
+      "signalement": "Voir journal 2026-07-25 (decisions.md, entrée Réalisations incident) : le texte source original de résidentielles a été remplacé par la copie de l'instance avant lecture live ; restauré depuis la capture pixel before, fidélité visible confirmée par diff pixel (13860→70px) mais fidélité caractère-invisible-près non garantissable."
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": { "x": 4245, "y": 1944, "w": 1728, "h": 1551 },
+      "type": "texte",
+      "chemin": "En-tête/Texte",
+      "valeur": "Personnalisez votre porte grâce à un choix illimité de teintes RAL, parfaitement harmonisées avec la couleur de vos châssis. Appliquée dans notre cabine de peinture, la finition bi-composants garantit une excellente tenue dans le temps, avec 10 ans de garantie sur les panneaux. (gras : \"un choix illimité de teintes RAL\", \"10 ans de garantie sur les panneaux\")",
+      "portePar": "override direct du sous-calque texte, restauré après une régression trouvée par revue indépendante (voir decisions.md et audits/realisations.md §Incident) — source: capture before (image), pas une relecture .characters live",
+      "statut": "non-portable-signalee",
+      "signalement": "Voir journal 2026-07-25 (decisions.md, entrée Réalisations incident) : le texte source original de résidentielles a été remplacé par la copie de l'instance avant lecture live ; restauré depuis la capture pixel before, fidélité visible confirmée par diff pixel (13860→70px) mais fidélité caractère-invisible-près non garantissable."
+    }
+  ],
+  "totaux": {
+    "reportees": 2,
+    "nonPortables": 2
+  }
+}

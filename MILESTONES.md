@@ -865,6 +865,41 @@ owner's file — parity's token axis collapses from 45 findings to zero. Suite:
 
 ---
 
+## 2026-07-25 — Piqueray fully externalized: 9 live maquettes, one contract source of truth
+
+Spec 003 closes: every hand-copied section across Piqueray's 9 maquette pages is now
+a governed Figma instance, adopted onto the real client file with a zero-pixel-loss
+proof at each step — not a demo file, the one the agency actually ships from. 14
+sections + the earlier 14 molecules (51 masters total across the two phases), each
+with a live audit, a pixel or structural proof, and a customization ledger. Two
+blocks stayed explicitly deferred rather than forced (Review-card / Avis Google — the
+source is a flattened third-party screenshot, zero vector to extract).
+
+The zero-pixel discipline caught real bugs, not just measured noise: a shared Button
+glyph silently reverting from white to its dark native color on every re-adoption
+(found on Hero, then swept for and found a second time — pre-existing, baked into the
+already-shipped Devis master from its own clone source); an instance quietly showing
+a neighboring page's default text after nine correct photo overrides and two missed
+text ones (Réalisations). Each was caught by independent review before a commit, not
+after — the review model deliberately kept separate from the build model specifically
+so a self-report couldn't rubber-stamp its own work. One deviation stayed open at
+close rather than being written off as noise: a 3-5px sub-block drift on 6 of 8 Hero
+pages, real by cross-correlation but not yet root-caused with enough confidence to
+fix blind — named, not smoothed over.
+
+Running this overnight and autonomously surfaced its own failure mode: replying to a
+paused agent could occasionally resume it into two live executions of the same task
+rather than one — caught three times, resolved without data loss every time by
+verifying the shared canvas state directly rather than trusting either branch's
+self-report, and by letting whichever branch could prove a valid pre-mutation capture
+finish while the other stood down. `dependancesTierces = []` held throughout — the
+same zero found at T0 held at the final scan, unchanged by 14 sections' worth of live
+canvas surgery. Closure artifacts: `proofs/honesty-report.md` (every deferred block,
+accepted deviation and open issue in one place) and `proofs/success-criteria.md`
+(SC-001–009, each claim pointed at its receipt, including the one where autonomous
+execution means "owner-validated" is true in spirit — precedent-following — but not
+literally re-confirmed block-by-block in real time).
+
 ## 2026-07-24 — Spec 002: governed icons + the single master update, closed
 
 The governed icon registry (`contracts/icons.registry.json`, v1.0.0 — 13 icons)

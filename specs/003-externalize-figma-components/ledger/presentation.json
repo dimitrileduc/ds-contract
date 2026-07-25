@@ -1,0 +1,53 @@
+{
+  "bloc": "presentation",
+  "date": "2026-07-24",
+  "masterNodeId": "2103:2824",
+  "entrees": [
+    {
+      "maquette": "Portes de garage",
+      "position": { "x": 2449.5, "y": 1232.654296875, "w": 1287, "h": 96 },
+      "type": "texte",
+      "chemin": "Présentation/Titre",
+      "valeur": "L'excellence allemande chez Piqueray",
+      "portePar": "propriété TEXTE `Titre` du master Présentation",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage",
+      "position": { "x": 2449.5, "y": 1232.654296875, "w": 1287, "h": 96 },
+      "type": "texte",
+      "chemin": "Présentation/wrapper/Texte",
+      "valeur": "Depuis plus de 50 ans, nous installons des produits Hörmann. Choisir une porte Hörmann, c'est opter pour une longévité exceptionnelle, une isolation thermique de pointe (ThermoFrame) et des systèmes anti-effraction certifiés. En tant que partenaire officiel, nous vous garantissons une pose dans les règles de l'art.",
+      "portePar": "propriété TEXTE `Texte` du master Présentation",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Accueil",
+      "position": { "x": 521.5, "y": 1314, "w": 1287, "h": 230 },
+      "type": "texte",
+      "chemin": "Présentation/Titre",
+      "valeur": "Piqueray, votre distributeur de portes Hörmann en Province de Liège",
+      "portePar": "propriété TEXTE `Titre` du master Présentation",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Accueil",
+      "position": { "x": 521.5, "y": 1314, "w": 1287, "h": 230 },
+      "type": "texte",
+      "chemin": "Présentation/wrapper/Texte",
+      "valeur": "Depuis plus de 50 ans, PIQUERAY est dépositaire officiel de la marque Hörmann (segment souligné, hyperlink https://www.hormann.be/), fabricant connu pour ses produits de qualité et ses innovations.\nComposée d'une équipe d'une vingtaine de personnes de la région verviétoise et gérée par Florian et Cécilia Piqueray (frère et sœur), l'entreprise se démarque par son caractère familial et sa proximité.\nQue vous soyez particulier ou une entreprise, Piqueray vous accompagne de A à Z dans votre projet.",
+      "portePar": "propriété TEXTE `Texte` du master Présentation (segment Hörmann : hyperlink + soulignement réappliqués manuellement après binding, cf. audit)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Accueil",
+      "position": { "x": 521.5, "y": 1314, "w": 1287, "h": 230 },
+      "type": "visibilite",
+      "chemin": "Présentation/wrapper/Bouton",
+      "valeur": "CTA \"En savoir plus\" visible (seule occurrence des 3 où le Bouton est réellement rendu)",
+      "portePar": "propriété BOOLEAN `Bouton` du master Présentation (défaut false)",
+      "statut": "reportee"
+    }
+  ],
+  "totaux": { "reportees": 5, "nonPortables": 0 }
+}

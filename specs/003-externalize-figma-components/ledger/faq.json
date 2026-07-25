@@ -1,0 +1,80 @@
+{
+  "bloc": "faq",
+  "date": "2026-07-24",
+  "masterNodeId": "2104:2914",
+  "entrees": [
+    {
+      "maquette": "Portes d'entrée",
+      "position": { "x": 10030, "y": 4586, "w": 1550, "h": 64 },
+      "type": "texte",
+      "chemin": "accordion/0 (Titre)",
+      "valeur": "Quelle est la différence entre une porte en acier et en alluminium ?",
+      "portePar": "propriété TEXTE `Titre` de l'instance Accordion-row nichée (ligne 1 du master FAQ)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes d'entrée",
+      "position": { "x": 10030, "y": 4650, "w": 1550, "h": 120 },
+      "type": "texte",
+      "chemin": "accordion/1 (Titre)",
+      "valeur": "Peut-on motoriser une ancienne porte ? ",
+      "portePar": "propriété TEXTE `Titre` de l'instance Accordion-row nichée (ligne 2 du master FAQ) — espace final préservé fidèlement",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes d'entrée",
+      "position": { "x": 10030, "y": 4650, "w": 1550, "h": 120 },
+      "type": "texte",
+      "chemin": "accordion/1 (Contenu)",
+      "valeur": "Oui, nos moteurs Hörmann s'adaptent à la plupart des portes existantes.",
+      "portePar": "propriété TEXTE `Contenu` de l'instance Accordion-row nichée (ligne 2 du master FAQ)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes d'entrée",
+      "position": { "x": 10030, "y": 4586, "w": 1550, "h": 184 },
+      "type": "autre",
+      "chemin": "accordion/2 (absente de la copie)",
+      "valeur": "la copie n'a que 2 lignes de questions/réponses, contre 3 dans le contenu par défaut du master (cloné depuis Portes de garage industrielles)",
+      "portePar": "propriété BOOLÉENNE `Ligne 3` du master FAQ mise à `false` sur cette instance",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": { "x": 4246, "y": 4603, "w": 1550, "h": 64 },
+      "type": "texte",
+      "chemin": "accordion/0 (Titre)",
+      "valeur": "Quelle est la différence entre une porte sectionnelle et basculante ?",
+      "portePar": "propriété TEXTE `Titre` de l'instance Accordion-row nichée (ligne 1 du master FAQ)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": { "x": 4246, "y": 4667, "w": 1550, "h": 120 },
+      "type": "texte",
+      "chemin": "accordion/1 (Titre)",
+      "valeur": "Peut-on motoriser une ancienne porte ? ",
+      "portePar": "propriété TEXTE `Titre` de l'instance Accordion-row nichée (ligne 2 du master FAQ) — espace final préservé fidèlement",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": { "x": 4246, "y": 4667, "w": 1550, "h": 120 },
+      "type": "texte",
+      "chemin": "accordion/1 (Contenu)",
+      "valeur": "Oui, nos moteurs Hörmann s'adaptent à la plupart des portes existantes. Des solutions d’ouverture intelligentes et sécurisées : Wi-Fi, application, clavier à code et télécommandes, pour un confort optimal.",
+      "portePar": "propriété TEXTE `Contenu` de l'instance Accordion-row nichée (ligne 2 du master FAQ)",
+      "statut": "reportee"
+    },
+    {
+      "maquette": "Portes de garage résidentielles",
+      "position": { "x": 4246, "y": 4603, "w": 1550, "h": 184 },
+      "type": "autre",
+      "chemin": "accordion/2 (absente de la copie)",
+      "valeur": "la copie n'a que 2 lignes de questions/réponses, contre 3 dans le contenu par défaut du master (cloné depuis Portes de garage industrielles)",
+      "portePar": "propriété BOOLÉENNE `Ligne 3` du master FAQ mise à `false` sur cette instance",
+      "statut": "reportee"
+    }
+  ],
+  "totaux": { "reportees": 8, "nonPortables": 0 }
+}

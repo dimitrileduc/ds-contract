@@ -1,4 +1,11 @@
 <!--
+SYNC IMPACT REPORT — 1.0.1 (2026-07-23, PATCH)
+==============================================
+Quality Gates: removed the hardcoded eval-count annotation "(currently 146 checks)",
+stale since the Piqueray reconversion re-pointed the suite to 97 — it violated this
+document's own sync rule (the live `N/N` is authoritative, per the paragraph below
+the gate list and Principle II). No principle changed; no template impact.
+
 SYNC IMPACT REPORT
 ==================
 Version change: (none) → 1.0.0   (INITIAL RATIFICATION)
@@ -158,7 +165,7 @@ Governance-approved, time-boxed waiver recorded in the PR.
 ```bash
 npm run build                                    # tokens → schema → components, contract-validated
 npm run parity                                   # three-way differ: code, canvas, tokens vs contracts
-npm run eval                                     # the deterministic suite (currently 146 checks)
+npm run eval                                     # the deterministic suite (count = the live N/N it prints)
 npm run plugin:check                             # window.DSC anatomy; specHash mirror; drift refusal
 node scripts/deterministic-roundtrip.mjs         # contract→canvas byte-identical ×2; loop closes
 node scripts/core-browser-check.mjs              # core/ barrel bundles browser-pure
@@ -204,4 +211,4 @@ conflicts with it, the constitution wins and the conflicting artifact MUST be co
   guides and MUST stay consistent with this constitution; on conflict, this document is
   authoritative and they are updated to match.
 
-**Version**: 1.0.0 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-07-22
+**Version**: 1.0.1 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-07-23
