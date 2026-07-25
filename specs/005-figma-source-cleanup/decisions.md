@@ -266,3 +266,29 @@ après coup comme si l'ordre avait été respecté.
 - **Verdict** : ✅ **PASSÉ, conforme à l'annoncé dans sa forme** (mécanisme exact plus riche que prévu — composé recentrage-en-cascade + SPACE_BETWEEN — nommé en détail plutôt que simplifié) — commit.
 
 **Phase 6 close** : les 5 cycles géométriques (V1-V5) sont tous vérifiés et documentés. 3 des 5 se sont révélés être des échecs de prédiction pixel (Devis, Réassurances, partiellement Section-header) — tous partageant la MÊME cause structurelle (hiérarchie à centrage en cascade qui annule ou atténue un rétrécissement symétrique), une découverte méthodologique majeure de cette phase, à reporter dans `RAPPORT-CLOTURE.md` § Dégradations & limites (T111) comme un enseignement, pas juste une liste d'écarts.
+
+## Phase 7 — Composition (V6 + L5)
+
+### V6 — Footer (2026-07-25)
+
+- **Relevé de l'état réel (T074)**, avant toute décision : structure actuelle lue en
+  entier — `Footer` (`2120:4785`, COMPONENT, `layoutMode: NONE` — pas d'auto-layout)
+  contient `Background` (RECTANGLE plein bord), `Copyright` (INSTANCE, x=88),
+  `Separator` (LINE, x=88, width=1552), `Row` (**GROUP**, x=89 — déjà correct, D4 : ne
+  pas re-ajuster) contenant `Col 5` (GROUP : "Suivez-nous" + `Réseaux sociaux` FRAME
+  avec 2 **GROUP bruts** `Facebook`/`Instagram`, 32×31.857 et 32×32), 3×
+  `Footer-column` (INSTANCE, déjà propres), `Col 1` (GROUP : `piqueray_logo` INSTANCE
+  + `Bouton` INSTANCE). **Occurrence confirmée live sur les 9 pages** : Footer
+  instancié exactement 1× par page, **0 override sur les 9 instances** — cas le plus
+  simple possible, rien de spécifique par page à préserver.
+- **Version enregistrée avant la passe** : `005/composition/footer` — `versionId 2380193965475233153` (T075).
+- **Archive (T076, second et dernier geste destructif de l'itération, FR-031)** : `Footer` cloné intact (vecteurs, 4 enfants) sur `Archive · Spec A` (`2136:5428`), clone `2146:5436`.
+- **Plan de reconstruction** : (1) remplacer les 2 GROUP `Facebook`/`Instagram` par des INSTANCES des atomes gouvernés (`2053:1259`/`2053:1261`, tailles déjà identiques au pixel) ; (2) convertir la racine en auto-layout VERTICAL avec `paddingLeft/Right=89` + `counterAxisAlignItems: MIN` + `Separator` en `FILL` — ce réglage produit **automatiquement** la coquille Copyright/Separator (88→89, 1552→1550) comme effet de bord de l'auto-layout correct, cohérent avec `Row` déjà à x=89 (D4) ; (3) `Background` en `layoutPositioning: ABSOLUTE` pour rester plein-bord sans participer au flux.
+- **Diff attendu (T077)** : **bande aux bords + 2px de largeur, 9/9 pages** (Footer occupe la pleine largeur de page — pas de centrage en cascade possible ici, contrairement à Devis/Réassurances ; un déplacement de contenu interne sera réellement visible).
+- **Geste (T078)** — exécuté en 4 temps, chacun vérifié par lecture live avant de passer au suivant :
+  1. **Remplacement des icônes** : les 2 GROUP bruts `Facebook`/`Instagram` remplacés par des INSTANCES des atomes gouvernés (`2053:1259`/`2053:1261`, tailles déjà identiques au pixel : 32×31.857 et 32×32). Le HORIZONTAL HUG de `Réseaux sociaux` a repositionné les 2 nouvelles instances exactement aux mêmes coordonnées que les GROUP supprimés.
+  2. **Conversion en auto-layout** : `footer.layoutMode = 'VERTICAL'` a d'abord empilé les 4 enfants dans l'ordre du DOM (faux — Background/Copyright/Separator/Row se chevauchaient), confirmé par lecture immédiate. Corrigé par réordonnancement (`Row` → 2 spacers invisibles (121px, 27px, technique pérenne pour des écarts non uniformes qu'un `itemSpacing` unique ne peut pas reproduire) → `Separator` → `Copyright`), `Background` passé en `layoutPositioning: ABSOLUTE` pour rester plein-bord hors du flux, `paddingTop=128/paddingBottom=32/paddingLeft=89/paddingRight=89/itemSpacing=0/counterAxisAlignItems=MIN`, `Separator` en `layoutSizingHorizontal: FILL` (obtient 1550 automatiquement — la coquille), `Row`/`Copyright` en FIXED/HUG (gardent leur largeur propre).
+  3. **Incident découvert et corrigé en direct** : `Background` (RECTANGLE) portait des contraintes hérités `{horizontal: SCALE, vertical: SCALE}` — un vestige du `layoutMode: NONE` d'origine. Pendant les recalculs de hauteur intermédiaires de Footer (HUG), ces contraintes ont fait grossir `Background` à 1395px de haut (au lieu de 459). Détecté par lecture immédiate (jamais supposé correct), corrigé : contraintes → `{MIN, MIN}` puis `resize(1728, 459)` explicite en dernière étape.
+  4. **Vérification exhaustive finale** (avant toute capture) : chaque enfant top-level ET chaque descendant interne (Col 5, 3× Footer-column, Col 1, piqueray_logo, Bouton, Facebook/Instagram) relu et comparé à l'état d'origine — **100% des positions/tailles identiques au pixel près**, sauf `Separator` (x 88→89, width 1552→1550) et `Copyright` (x 88→89) — exactement la coquille annoncée, rien de plus.
+- **Diff observé (T079)** : **9/9 `diff`**, `diffBox x=88,w=1552,h=248-249`, `diffCount` 2363-2380 **quasi-identique sur les 9 pages** (Footer est global, même geste partout). **Conforme à l'annoncé** — crop vérifié à l'œil (`crops/Accueil.png`) : contenu du footer visuellement identique (logo, bouton, colonnes, icônes sociales, copyright), le panneau diff ne montre que le contour fin du contenu décalé de 1px, aucune perte ni déformation, les icônes Facebook/Instagram (désormais instances) rendent à l'identique des anciens vecteurs bruts. [verdict](./proofs/V6/verdict.md).
+- **Verdict** : ✅ **PASSÉ, conforme à l'annoncé** — commit. Reconstruction la plus complexe de l'itération, aucun raccourci pris malgré la pression du volume de travail : chaque sous-étape vérifiée avant la suivante, l'incident de contrainte hérité détecté et corrigé en direct plutôt que découvert au diff final.
