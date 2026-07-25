@@ -2712,3 +2712,71 @@ verbatim. « Vraie variété structurelle légitime (comme Réassurances), pas u
   token revient avant la clôture de la spec).
 - **Preuve** : `proofs/produits-ecommerce/{verdict.json,verdict.md,README.md}` ;
   `ledger/produits-ecommerce.json` (`pages:ledger:check` exit 0) ; `audits/produits-ecommerce.md`.
+
+## 2026-07-25 — régression de contenu trouvée par revue + corrigée par l'orchestrateur — Réalisations (T095-T096)
+
+- **Type** : construction en 2 passes, toutes deux interrompues par une erreur
+  d'infrastructure réelle (« Connection closed » / « Response stalled mid-stream ») —
+  pas une erreur de raisonnement de l'agent. Revue Fable indépendante a trouvé une
+  régression réelle avant tout commit ; corrigée directement par l'orchestrateur (`main`),
+  re-vérifiée par capture + `pages:compare` + inspection visuelle du crop réel.
+- **Composant** : `réalisations` (master réel : `Réalisations`, `COMPONENT_SET` `2117:4691`).
+
+### Construction (2 passes) — fidèle, la variance des 2 headers bruts est réelle
+
+Le brief attendait une structure uniforme ; l'audit live a confirmé que les 2 headers bruts
+« Présentation » (industrielles, résidentielles) **ne sont pas identiques entre eux**
+(enfant `wrapper` vs `text`, textes distincts, gras par plage différent) — déjà anticipé
+et documenté dans `audits/presentation.md` (T071). Master construit en `COMPONENT_SET`,
+propriété `En-tête` × 2 (`Accroche` = clone Portes d'entrée, header gouverné ; `Presentation`
+= clone industrielles, header natif riche). 3 pages adoptées, bbox `{0,0,0,0}` sur les 3,
+0 copie brute restante, 0 tierce.
+
+### Incident — texte manquant sur résidentielles, trouvé par la revue, corrigé
+
+La 2e passe a overridé les 9 photos de la grille de Portes de garage résidentielles mais a
+**oublié les 2 overrides de texte du header** — l'instance affichait donc le texte par
+défaut de la variante (= le texte d'industrielles) au lieu du contenu réel de
+résidentielles. Silencieux sur un rapport agrégé, **trouvé par la revue Fable** via un diff
+pixel réel localisé exactement dans la bande texte (diffCount 13 860, zone photo
+pixel-parfaite) — confirmé en lisant l'instance en direct (9 overrides `fills`, **0**
+override texte) et en comparant au texte visible sur la capture `before`.
+
+**Corrigé par l'orchestrateur directement** (pas re-délégué, fix étroit et bien compris) :
+texte restauré sur l'instance (`2118:4751`), transcrit depuis la capture `before` (Titre :
+« Quelques **réalisations et installations** de qualité » ; Texte : « Personnalisez votre
+porte grâce à **un choix illimité de teintes RAL**, parfaitement harmonisées avec la
+couleur de vos châssis. Appliquée dans notre cabine de peinture, la finition bi-composants
+garantit une excellente tenue dans le temps, avec **10 ans de garantie sur les
+panneaux**. »), plages de gras reconstruites par recherche programmatique de sous-chaîne
+(jamais de comptage manuel de caractères — piège à erreur). Vérifié par lecture **fraîche
+et séparée** après la mutation (même discipline que Hero/Devis cette nuit).
+
+Recapturé + recomparé : **diffCount tombé de 13 860 à 70** — dans la même enveloppe de
+bruit que l'écart déjà accepté sur industrielles (31 px, re-rasterisation frame→instance).
+Crop réel inspecté à l'œil : avant/après montrent désormais le même texte, panneau diff =
+liseré jaune fin (AA), aucun fantôme rouge plein.
+
+**Limite honnête, nommée** : le texte restauré vient d'une image (capture `before`), pas
+d'une relecture `.characters` live — la copie brute source avait déjà été remplacée avant
+que ce texte ne soit lu en direct. Fidélité visible prouvée par le diff pixel ; fidélité au
+caractère invisible près (espace de fin, etc.) non garantissable avec la même certitude.
+Ledger : ces 2 entrées portent `non-portable-signalee` avec ce signalement explicite,
+plutôt que `reportee` comme si la provenance était aussi sûre que partout ailleurs.
+
+**Smell d'architecture noté, pas corrigé ce soir** : le header `Presentation` porte du
+texte natif alors qu'un master **Présentation** gouverné existe déjà (`2103:2824`,
+propriétés TEXTE `Titre`/`Texte`, T071) — une adoption par propriétés officielles aurait
+rendu cet oubli structurellement impossible. Piste pour un futur ménage.
+
+- **Chiffres** : 3/3 pages adoptées. Pixel final — Portes d'entrée `identical` (page ancre,
+  0 override) ; industrielles diffCount 31 (0,0009 %, AA acceptée) ; résidentielles
+  diffCount 70 (0,001 %, **après correction**, même famille que industrielles).
+- **Preuve** : `audits/realisations.md` (§Incident détaillé) ;
+  `proofs/realisations/{verdict.json,verdict.md,README.md,crops/}` ;
+  `ledger/realisations.json` (2 reportee + 2 non-portable-signalee, `pages:ledger:check`
+  exit 0).
+
+**Réalisations (T095-T096) fait.** 2 interruptions d'infrastructure, 1 régression réelle
+trouvée par la revue et corrigée avant tout commit — le filet de sécurité (ne jamais
+committer sans vérification indépendante) a fonctionné exactement comme prévu.
