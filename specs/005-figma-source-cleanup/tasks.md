@@ -204,12 +204,12 @@ here by design; its coquille fix is verified in Phase 7/V6, not this phase.**
 
 ### V4 — Réassurances (`2114:3721`, 3 variants)
 
-- [ ] T062 [US5] Pose checkpoint `005/geometrie/reassurances`.
-- [ ] T063 [US5] Publish `releves/structure-reassurances.json`: check the GROUP-resize trap **independently per variant** (D1 — 3 variants, do not assume one variant's result for another).
-- [ ] T064 [US5] Announce diff attendu = **2px de largeur, pages portant Réassurances**; capture before ×9 → `.page-parity/V4/before/`.
-- [ ] T065 [US5] On `Réassurances` (`2114:3721`): change width 1552→1550px on all 3 variants, resolving any per-variant GROUP trap found in T063 first.
-- [ ] T066 [US5] Capture after ×9 → `.page-parity/V4/after/`, `pages:compare` → `proofs/V4`. Verify conformance.
-- [ ] T067 [US5] Record V4 artifacts, close `decisions.md`, draft the gesture-record block.
+- [X] T062 [US5] Pose checkpoint `005/geometrie/reassurances`. (Correctly posed BEFORE any read/write this time — process lesson from V3 applied.)
+- [X] T063 [US5] Publish `releves/structure-reassurances.json`: check the GROUP-resize trap **independently per variant** (D1 — 3 variants, do not assume one variant's result for another). **Result: no GROUP on any of the 3 variants' width path — all clean COMPONENTs; the one GROUP found is an unrelated internal icon vector.**
+- [X] T064 [US5] Announce diff attendu = **2px de largeur, pages portant Réassurances**; capture before ×9 → `.page-parity/V4/before/`.
+- [X] T065 [US5] On `Réassurances` (`2114:3721`): change width 1552→1550px on all 3 variants, resolving any per-variant GROUP trap found in T063 first.
+- [X] T066 [US5] Capture after ×9 → `.page-parity/V4/after/`, `pages:compare` → `proofs/V4`. Verify conformance. **Result: 9/9 identical (0px) on all 9 pages including the 6 carrying Réassurances instances — smaller than announced, logged as a failed prediction (not a pass); mechanism verified live on a real instance: cascading CENTER-alignment at every nesting level cancels the ±1/∓2 shifts exactly (same class as V2/Devis, one level deeper).**
+- [X] T067 [US5] Record V4 artifacts, close `decisions.md`, draft the gesture-record block.
 
 ### V5 — Section-header (`2090:2397`)
 
