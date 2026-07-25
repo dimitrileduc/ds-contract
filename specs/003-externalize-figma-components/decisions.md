@@ -2672,3 +2672,43 @@ verbatim. « Vraie variété structurelle légitime (comme Réassurances), pas u
 - **Checkpoint** : aucun nouveau (pas de mutation canvas pour cette décision).
 
 **Catégories principales (T079-T080) — écart pixel arbitré et accepté par l'owner. Reste à faire avant commit : revue Fable indépendante (standing discipline de cette nuit sur tout bloc à écart), puis commit des fichiers pertinents (jamais `CLAUDE.md`).**
+
+## 2026-07-25 — Produits e-commerce (T085-T086) : master + adoption, preuve reconstituée par vérification indépendante après rapport builder null
+
+- **Type** : master-plus-adoption (+ incident process : rapport constructeur null)
+- **Composant(s)** : produits-ecommerce (dépend de Product-card T048 + Carousel-controls T056, tous deux déjà gouvernés)
+- **Master** : `COMPONENT` `Produits e-commerce` `2116:4475` (section `2116:4465` à (0,15100) sur
+  `DS · Molécules` — sous Catégories qui finit à 14934, au-dessus de Réalisations à 16120, zéro
+  chevauchement). AL VERTICAL gap 48 ; Section-header `Disposition=Avec CTA` (`2090:2388`) +
+  GROUP « Carrousel produits » (FRAME `Produits` avec 4× Product-card `2068:1972` + Carousel-controls
+  `2077:2191`) — **100 % instances locales (`remote:false`), 0 tierce**. Le GROUP déborde de 4 px de
+  chaque côté (1604 vs 1596, chevrons hors cadre, `clipsContent:false`) — hérité de la source,
+  byte-preuve à l'appui, pas une régression.
+- **Adoption** : 2 pages exactement (scan confirmé) — instances `2116:4531` (Motorisation, (66,1846))
+  et `2116:4595` (Accueil, (66,2477)), **0 override chacune** (textes == défauts master mot pour mot :
+  la source dupliquait le même carrousel Hörmann sur les 2 pages). Wrappers bruts `237:911`/`210:382`
+  et internes `237:916`/`210:387` disparus. Ledger **vide explicite** (0/0) = honnête, mesuré.
+- **Preuve pixel** : verdict `2/2 identical, exit 0`, **byte-identique trois voies** —
+  before builder (00:38Z) == after builder (00:42Z) == **capture fraîche du vérificateur** (02:56Z,
+  receveur port 9225, nonce `95dbe147143ff741`) : Accueil `f92ce3f9fc8f…`, Motorisation
+  `4d07354350f8…`. **Provenance du before corroborée** par le jeu de captures Catégories (session
+  indépendante, antérieure à toute mutation produits) qui porte déjà ces shas (Motorisation dès
+  23:43:22Z, Accueil dès 00:04:52Z après l'adoption Catégories) → scénario dégénéré type
+  Réassurances **exclu**. Re-run de `pages:compare` par le vérificateur : `verdict.json`
+  re-produit **byte-identique** au verdict livré.
+- **Vérification visuelle** (rôle du vérificateur) : export du master composité sur blanc vs crops
+  d'instances alignés `absoluteRenderBounds` (1604×414) = **0 px** ; crop Accueil vs crop
+  Motorisation = **0 px** ; glyphes contrôlés (flèche CTA, chevrons Précédent/Suivant) — aucun
+  glyphe décoloré. L'export du master a un fond transparent (416 170 px alpha 0) : le faux diff
+  massif avant compositing est mesuré et expliqué dans l'audit, pas contourné.
+- **Incident — rapport builder null** : l'agent constructeur a livré master + adoption + captures +
+  verdict + ledger mais **ni audit, ni entrée decisions, ni README de preuve, ni tasks cochées**, et
+  son rapport final est revenu null. Le vérificateur a reconstitué la preuve sans rien réutiliser
+  d'invérifiable (capture fraîche à lui, re-run compare, lecture live structure/overrides,
+  corroboration de provenance) et a écrit la documentation manquante. **Aucun fork détecté** :
+  1 seul master dans le fichier, pas de receiver fantôme (9224 = bridge MCP), un seul jeu de
+  captures produits. **Checkpoints non vérifiables** (token REST expiré 401 au moment de la vérif,
+  aucun ID transmis) — impact nul sur la preuve, nommé par honnêteté (règle 9 : à re-vérifier si le
+  token revient avant la clôture de la spec).
+- **Preuve** : `proofs/produits-ecommerce/{verdict.json,verdict.md,README.md}` ;
+  `ledger/produits-ecommerce.json` (`pages:ledger:check` exit 0) ; `audits/produits-ecommerce.md`.
