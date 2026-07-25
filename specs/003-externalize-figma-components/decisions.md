@@ -2979,3 +2979,133 @@ familier. Tous les blocs de construction actifs de la Phase 8 sont maintenant fa
 
 **T106 fait.** Journal complet, cohérent, append-only dans son esprit (jamais dans sa
 lettre à 100 % — écart mineur nommé ci-dessus, sans impact sur la fiabilité du journal).
+
+## 2026-07-25 — amendement-orga — tentative de correction 88/89px stoppée avant écriture
+
+- **Type** : amendement-orga *(pas un master ni un écart pixel — aucune écriture
+  n'a eu lieu ; nommé dans ce type faute de case dédiée à un geste avorté)*
+- **Composant(s)** : programme (Header nav, Footer, SAV, Réassurances, Devis)
+- **Verdict owner** : **stop direct** (« HO STOP ... qui a dit on pouvait
+  toucher ? ») — un agent avait été lancé pour corriger le padding 88→89
+  (bug confirmé par mesure, cf. `audits/categories-principales.md:33` et
+  `audits/hero.md:64`) sur ces 5 masters, avant-capture des 9 pages en cours
+  au moment de l'arrêt. L'autorisation avait été déduite d'un message
+  ambigu (« c'est à régler... tant que c'est pas voulu ») plutôt que
+  confirmée explicitement avant de lancer une mutation touchant les 9
+  pages (Header nav + Footer y sont tous les deux) — erreur de jugement
+  nommée comme telle, pas minimisée.
+- **Chiffres** : vérifié en direct après l'arrêt — les 5 masters sont
+  strictement à leur état d'origine (`Header nav` 2 variantes
+  padL/padR=88 ; `Footer` Copyright x=88/w=618, Séparateur x=88/w=1552,
+  Row x=89/w=1385 ; `SAV` w=1552 pad 0/0 ; `Réassurances` 3 variantes
+  w=1552 pad 0/0 ; `Devis` Container interne x=88/w=1552) — zéro octet
+  écrit, zéro pixel à restaurer.
+- **Raison** : l'agent avait lui-même détecté, avant d'écrire quoi que ce
+  soit, que le correctif n'est pas mécanique : `SAV` a un enfant `GROUP`
+  (pas un `FRAME`) qui ne suit pas un redimensionnement du parent — un fix
+  en bloc sur les 5 masters lui aurait donné un résultat asymétrique (89
+  d'un côté, 87 de l'autre).
+- **Preuve** : lecture live post-arrêt (chiffres ci-dessus). Le correctif
+  reste à faire, un master à la fois, avec l'accord explicite préalable de
+  l'owner à chaque fois — plus jamais déduit d'un message ambigu.
+- **Checkpoint** : n/a (rien exécuté — aucun geste à couvrir)
+
+## 2026-07-25 — amendement-orga — DS · Organisms (rangement post-clôture)
+
+- **Type** : amendement-orga
+- **Composant(s)** : programme (rangement des 14 masters de section, page
+  DS · Organisms)
+- **Verdict owner** : renommer `DS · Sections` (vide, 0 enfant depuis T0) en
+  `DS · Organisms` — vraie terminologie Brad Frost plutôt que le libellé
+  `Sections` posé par R9 sans vérifier le vocabulaire canonique — et y
+  déplacer les 14 masters de section qui vivaient par erreur sur
+  `DS · Molécules` depuis leur construction (Phase 8, T069-T100). Question
+  posée explicitement avant geste (renommer l'existant vs créer une page en
+  plus) — owner a choisi le renommage, zéro page vide laissée derrière.
+- **Chiffres** : 14 SECTION déplacées de `DS · Molécules` (`2052:1145`,
+  26→12 SECTION restantes) vers `DS · Organisms` (`2052:1146`, ex-
+  `DS · Sections`, 0→14) : Devis, Formulaire, Présentation, FAQ,
+  Coordonnées, SAV, Texte SEO, Hero, Réassurances, Équipe, Catégories
+  principales, Produits e-commerce, Réalisations, Footer — réempilées en
+  une seule colonne, gap 60px (convention déjà établie sur les 11 premiers
+  masters de `DS · Molécules`), ordre = ordre Y d'origine. Vérifié après
+  coup sur 2 instances vivantes (Devis et Footer sur `Accueil`) :
+  dimensions inchangées (1728×378, 1728×459), `getMainComponentAsync()`
+  résout bien vers le nouveau node et confirme `mainComponentLivesOnPage:
+  "DS · Organisms"` — déplacer un master entre pages ne casse aucune
+  instance (résolution par id, pas par page).
+- **Raison** : demande owner directe (2026-07-25) — « créer la page
+  organisms et mets les sections dedans, rien d'autre côté Figma ». Limité
+  strictement à ce périmètre : aucun changement de padding/coquille (bloqué
+  séparément, cf. entrée précédente), aucune autre page touchée.
+- **Preuve** : lecture live avant/après (compte de nœuds, 2 instances
+  vérifiées ci-dessus) — pas de triptyque pixel dédié, ce geste ne touche
+  que des définitions de composant, jamais les 9 maquettes elles-mêmes
+  (aucun pixel de page en jeu, confirmé par la vérification
+  `mainComponentId` plutôt que supposé).
+- **Checkpoint** : `003/pre-organisms-reorg` (versionId
+  `2379995022603295384`, pris juste avant ce geste, sur demande explicite
+  owner)
+
+## 2026-07-25 — validation-master — Hero (revue owner directe des crops, clôture du décalage)
+
+- **Type** : validation-master *(referme un écart resté « non résolu » — pas
+  un nouveau geste canvas)*
+- **Composant(s)** : hero
+- **Verdict owner** : **accepté**, après inspection directe par l'owner des
+  triptyques réels (`proofs/hero/crops/À Propos.png`,
+  `proofs/hero/crops/Contactez-nous.png`, ouverts sur demande explicite,
+  dossier Finder + envoi direct) — le décalage +3-5px documenté comme « non
+  résolu » est confirmé être du rendu de texte normal, pas un défaut
+  structurel (« c'est normal c'est juste du text rendering »). L'owner note
+  aussi, indépendamment, que le reste des écarts déjà logués sur cette spec
+  est intentionnellement corrigé.
+- **Chiffres** : re-mesuré avant validation, `proofs/hero/verdict.json` —
+  la page source du clone (`Portes de garage industrielles`) a un
+  diffCount de **4** (boîte 17×1px, bruit pur), contre **8 à 2062** sur les
+  5 autres pages avec un vrai décalage (boîtes ~300 à 1300px de large) —
+  cohérent avec l'hypothèse d'une variance de position déjà présente dans
+  le contenu brut d'origine, **révélée par l'unification sur un master
+  commun, pas causée par elle**. La liste précédente de « 6 pages
+  affectées » (entrée du 2026-07-24) est corrigée ici : la page source du
+  clone n'en fait pas vraiment partie (4px = bruit, pas le même
+  phénomène) — 5 pages réellement concernées, pas 6.
+- **Raison** : revue visuelle directe par l'owner sur les crops réels, pas
+  une acceptation de chiffre agrégé — précédent établi (Field, Accordion-
+  row) réappliqué ici après coup plutôt que laissé ouvert indéfiniment.
+- **Preuve** : `proofs/hero/verdict.json` ; `proofs/hero/crops/*.png`
+- **Checkpoint** : n/a (aucun geste canvas — clôture d'un écart déjà en
+  preuve, rien de nouveau à couvrir)
+
+**Hero (T075-T076) — définitivement clos pour les 8 pages qui l'utilisent.**
+Seul reste ouvert : **Accueil**, qui n'a jamais eu d'instance Hero standard
+(garde son propre hero vidéo, `Hero video` `210:330`, + le wrapper `Hero et
+catégories` jamais masterisé) — chantier séparé, à démarrer, voir
+`BACKLOG-NEXT-SPEC.md`.
+
+## 2026-07-25 — validation-master — 3 liaisons color/blanc (Separator Footer, Titre Devis, 2 Vector Catégories)
+
+- **Type** : validation-master *(correction de binding zéro-pixel — pas un
+  écart pixel à arbitrer)*
+- **Composant(s)** : footer, devis, categories-principales
+- **Verdict owner** : « **on garde** » — 3 des 4 points de
+  `audits/bonnes-pratiques-organisms.md` corrigés sur autorisation explicite
+  (« on reprend les 4 »), puis owner a demandé de repasser en mode doc pour le
+  reste ; ces 3 liaisons sont conservées.
+- **Chiffres** : Separator Footer (`2120:4770`, stroke), Titre Devis
+  (`2096:2526`, fill), 2 Vector décoratifs Catégories principales variant
+  Standard (`2115:4161` + `2115:4169`, stroke) → tous liés à `VariableID:4:29`
+  (`color/blanc` = #FFFFFF). Vérifié par **lecture fraîche séparée** (piège
+  `setBoundVariableForPaint` : la valeur de retour peut mentir) : `bound=true`,
+  couleur résolue **inchangée (1,1,1)** sur les 4 → **zéro pixel**.
+- **Raison** : n/a — la couleur résolue est identique avant/après (blanc déjà
+  blanc → token blanc), aucun écart pixel produit.
+- **Preuve** : lecture live avant/après (bindings posés, résolution inchangée).
+  Pas de triptyque — geste zéro-pixel par construction.
+- **Checkpoint** : `003/pre-fix-4-points` (versionId `2380080569764428014`)
+
+**4e point (icônes sociales Footer) NON fait** — remplacer les copies brutes
+`Frame 8 → Group 6/7` par les instances des atomes Facebook/Instagram exige une
+capture avant/après (remplacement de copies) et est groupé avec la
+reconstruction complète du Footer (auto-layout + coquille 88/89 + renommage) ;
+tenu, pas touché. Détail dans `BACKLOG-NEXT-SPEC.md`.
