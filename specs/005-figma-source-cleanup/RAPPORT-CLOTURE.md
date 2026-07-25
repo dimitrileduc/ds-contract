@@ -69,6 +69,9 @@ opacité 77/255 du relevé T009) ; 2 régressions d'échos sœurs corrigées (so
 **par plages** de la colonne Contact — pattern récupéré depuis l'écho intact du
 master Footer —, letterSpacing 1% du bouton SAV). Leçon : même classe que L2 — le
 style/la variable pure écrase les transformations par plages des overrides d'instance.
+**Triptyque de l'incident** (avant | cassé | diff — la photo masquée par l'overlay
+opaque) : [proofs/menage-final/incident-devis-accueil-triptyque.png](./proofs/menage-final/incident-devis-accueil-triptyque.png).
+La preuve de réparation est le verdict final lui-même (Accueil `identical`).
 
 **Échecs de prédiction pixel (3/5 cycles de Phase 6, même cause structurelle)** :
 V2 Devis (2px annoncé, 0 mesuré), V4 Réassurances (idem), V5 Section-header (mécanisme
