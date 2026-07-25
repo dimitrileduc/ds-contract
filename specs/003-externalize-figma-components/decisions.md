@@ -2780,3 +2780,74 @@ rendu cet oubli structurellement impossible. Piste pour un futur ménage.
 **Réalisations (T095-T096) fait.** 2 interruptions d'infrastructure, 1 régression réelle
 trouvée par la revue et corrigée avant tout commit — le filet de sécurité (ne jamais
 committer sans vérification indépendante) a fonctionné exactement comme prévu.
+
+## 2026-07-25 — decision-pas-de-master + verification — Hero et catégories (T097-T098)
+
+**Contexte.** T097 était briefé « Master Hero et catégories » (composite : instances de Hero
+T076 + Catégories T080, jamais des copies). Le brief de la tâche demandait explicitement de
+**trancher par la mesure** : ce wrapper a-t-il besoin de devenir un master gouverné, ou le
+travail est-il déjà fait par T076+T080 et il ne reste qu'à vérifier + documenter — **sans
+construire un master inutile pour un simple conteneur** ?
+
+**Décision : AUCUN master construit, aucune mutation canvas.** Le composite est **déjà
+intégralement gouverné** par Hero (T076) + Catégories principales (T080). Mesuré, pas supposé.
+
+### Ce que la mesure live montre (résumé ; détail `audits/hero-et-categories.md`)
+
+- **Le cadre wrapper n'a aucune identité visuelle propre** : `FRAME` VERTICAL, FIXED 1728 ×
+  HUG, gap **48**, padding 0, `fills:[]` / `strokes:0` / `effects:0` / `radius:0` — **identique
+  sur les 6 pages** (`226:114`, `210:328`, `237:971`, `237:707`, `387:722`, `230:378`). Sa
+  hauteur est une **pure conséquence du HUG** (`Hero + 48 + Catégories`, vérifié 6/6). La seule
+  valeur de design qu'il encode est le **gap 48** — un gap d'assemblage de page (comme
+  l'`itemSpacing` de la maquette entre ses sections), pas une identité de composant.
+- **Zéro copie brute** : 5/6 pages = Hero INSTANCE (`2111:3382`) + Catégories INSTANCE (set
+  `2115:4277`) ; 11 instances gouvernées, **0 remote** (zéro tierce). SC-003 déjà satisfait ici
+  par T076+T080.
+- **Anti-fork** : scan global = **0** COMPONENT/COMPONENT_SET nommé « Hero et catégories » dans
+  tout le fichier ; 6 FRAMEs, tous sur `Pages`. Aucun master préexistant, aucun fork.
+
+### Trois raisons de ne PAS masteriser (la 2e est décisive)
+
+1. **Précédent établi dans cette spec** : wrapper de pure disposition sans fill/bordure/effet →
+   pas de master séparé — même décision que `accordion` (T067), `tabs` de Tab (T043-44), `row`
+   de Field (T039-40). L'assemblage vit dans la maquette (« les 9 maquettes deviennent des
+   assemblages d'instances »).
+2. **Un master unique serait FAUX sur Accueil.** L'enfant 0 d'Accueil est **`Hero video`**
+   (`210:330`, FRAME 720px, structure différente), pas une instance Hero — c'est le
+   negative-control documenté (audit Hero T075/T076), **jamais externalisé volontairement**. Un
+   `COMPONENT` composite à Hero baké ne pourrait servir Accueil sans, soit forcer `Hero video` →
+   Hero (modéliser une chose pour une autre = régression), soit externaliser un negative-control
+   hors périmètre. Le placement du wrapper varie aussi (5 enfants directs ; 1 niché dans un
+   GROUP `Header + Hero + Cat` `237:970` sur Portes d'entrée) → aucun slot d'adoption canonique.
+3. **Coût/risque sans gain** : master + 6 adoptions = 6 mutations live pour zéro gain de
+   fidélité (les enfants sont déjà gouvernés) et un risque réel (rejeu de props Bouton,
+   overrides manqués). Décliné.
+
+**Pas d'ambiguïté après mesure** → pas d'escalade : le blocage structurel Accueil + le précédent
+in-spec + le modèle d'assemblage convergent tous vers « pas de master ».
+
+### Points ouverts nommés (honnêteté, hors périmètre T097/T098)
+
+- `Hero video` (Accueil) non externalisé — negative-control ; un éventuel master Hero-video
+  dédié n'a jamais été briefé.
+- **Incohérence de source, nommée non corrigée** : Portes d'entrée enveloppe le wrapper dans un
+  `GROUP` superflu `Header + Hero + Cat` (`237:970`) ; les 5 autres l'ont en enfant direct. Le
+  corriger dépasse le périmètre d'un cadre non componentisé (règle owner : nommer, ne pas
+  bricoler autour de la source).
+- Le nom « Hero et catégories » est légèrement inexact sur Accueil (« Hero video + Catégories »)
+  — sur un cadre d'assemblage, sans conséquence.
+
+### Preuve et artefacts
+
+- **Preuve = structurelle + provenance** (lectures live), **plus forte que le pixel** pour
+  « instances gouvernées, zéro copie brute » (un instantané pixel ne distingue pas une copie
+  d'une instance). **Aucune preuve pixel avant/après** car **aucune mutation** — rien à capturer
+  (R5/R8 sans objet). `proofs/hero-et-categories/README.md`.
+- **Ledger vide explicite** : `ledger/hero-et-categories.json` (`entrees:[]`, `totaux 0/0`),
+  `npm run pages:ledger:check` **exit 0** (vérifié). Pas de master unique → `masterNodeId` porte
+  un sentinel honnête nommant les deux masters gouvernants (`2111:3382` + `2115:4277`).
+- `audits/hero-et-categories.md`.
+
+**Hero et catégories (T097-T098) fait — par vérification, pas par construction.** Le composite
+était déjà gouverné ; le travail réel de ce bloc était de le prouver et de tracer pourquoi aucun
+master n'était nécessaire (ni souhaitable). Non committé.
