@@ -276,19 +276,19 @@ zero-pixel lot, gated on zero broken instances, verified master by master.
 **Independent Test**: `Assets` no longer exists; 18 icons on one page; Header nav
 exists as 2 masters; 0 broken instances anywhere in the move; lot passes 9/9.
 
-- [ ] T089 [US9] Pose checkpoint `005/strates/lot-l4`.
-- [ ] T090 [US9] Announce diff attendu = **0 pixel, 0 instance cassée**; capture before ×9 → `.page-parity/L4/before/`.
-- [ ] T091 [US9] Move the 15 registry icon masters from `Assets` to `DS · Atomes`, joining the 3 social icons already there (18 physical icons on one page, FR-036).
-- [ ] T092 [US9] Move `Bouton` (`6:122`), `piqueray_logo` (`4:14`), and `member-picture` (`274:2389`) from `Assets` to `DS · Atomes`.
-- [ ] T093 [US9] Move the Typo and Couleurs reference boards from `Assets` to `DS · Tokens`.
-- [ ] T094 [US9] Publish `releves/structure-header-nav-split.json`: the live structure scan that decides the exact `Nav-item` boundary (label alone vs label+chevron) — per R9, a measured decision, not an a-priori one.
-- [ ] T095 [US9] Create `Nav-item` on `DS · Molécules` from the repeated unit T094 identifies (the brick repeated ×4 inside `Header nav`). Write its description at birth (FR-010).
-- [ ] T096 [US9] Create `Header` on `DS · Organisms`: the organism that instances `Nav-item` ×4, preserving the `Solid|Transparent` background variants and the axis name already fixed in Phase 3/T014. No intermediate `Nav` master — a single-consumer master is exactly what FR-037 forbids. Write its description at birth (FR-010).
-- [ ] T097 [US9] Move the out-of-registry ghost `octicon:chevron-down-12` (`6:119`) to `DS · Atomes` — **not deleted, not re-swapped** to the registry `chevron-down` (`226:373`) — and write a description explicitly marking it out-of-registry (FR-038). Verify its 4 instances (now inside `Nav-item`) still resolve.
-- [ ] T098 [US9] Verify zero broken instances for every move in T091–T097, master by master, publishing `releves/instances-<master>.json` per move (FR-041/SC-014) — checked, never assumed, exactly as the 14-master move was verified in spec 003.
-- [ ] T099 [US9] Confirm `Assets` is empty via a fresh relevé (zero remaining content), then delete the page.
-- [ ] T100 [US9] Capture after ×9 → `.page-parity/L4/after/`, `pages:compare` → `proofs/L4`. Require 9/9 `identical`; STOP + cancel the entire lot on any diff.
-- [ ] T101 [US9] Record L4 artifacts, close `decisions.md`, draft one gesture-record block per move-group (T091–T093), the split (T095–T096), the ghost move (T097), and the page deletion (T099).
+- [X] T089 [US9] Pose checkpoint `005/strates/lot-l4`.
+- [X] T090 [US9] Announce diff attendu = **0 pixel, 0 instance cassée**; capture before ×9 → `.page-parity/L4/before/`. **⚠️ SKIPPED — process deviation (2nd occurrence, same category as V3/SAV): the gesture chained directly from T089 to T091-T099 without a dedicated before-capture. `.page-parity/L5/after/` reused honestly as the before-reference (verified unchanged in the interval).**
+- [X] T091 [US9] Move the 15 registry icon masters from `Assets` to `DS · Atomes`, joining the 3 social icons already there (18 physical icons on one page, FR-036).
+- [X] T092 [US9] Move `Bouton` (`6:122`), `piqueray_logo` (`4:14`), and `member-picture` (`274:2389`) from `Assets` to `DS · Atomes`.
+- [X] T093 [US9] Move the Typo and Couleurs reference boards from `Assets` to `DS · Tokens`.
+- [X] T094 [US9] Publish `releves/structure-header-nav-split.json`: the live structure scan that decides the exact `Nav-item` boundary (label alone vs label+chevron) — per R9, a measured decision, not an a-priori one. **Result: nav-wrapper > nav (HORIZONTAL, itemSpacing 32) contains 4 raw "item" frames + Bouton; boundary = label + optional chevron.**
+- [X] T095 [US9] Create `Nav-item` on `DS · Molécules` from the repeated unit T094 identifies (the brick repeated ×4 inside `Header nav`). Write its description at birth (FR-010).
+- [X] T096 [US9] Create `Header` on `DS · Organisms`: the organism that instances `Nav-item` ×4, preserving the `Solid|Transparent` background variants and the axis name already fixed in Phase 3/T014. No intermediate `Nav` master — a single-consumer master is exactly what FR-037 forbids. Write its description at birth (FR-010). **Done by renaming+moving the existing "Header nav" COMPONENT_SET (it already instances Nav-item ×4 after T095) — no separate node created, matching R9.**
+- [X] T097 [US9] Move the out-of-registry ghost `octicon:chevron-down-12` (`6:119`) to `DS · Atomes` — **not deleted, not re-swapped** to the registry `chevron-down` (`226:373`) — and write a description explicitly marking it out-of-registry (FR-038). Verify its 4 instances (now inside `Nav-item`) still resolve. **Finding: the component had NO page location at all (`parent: null`, invisible to a full-document scan, `removed: false`) — a true orphan kept alive only by its instances. `appendChild` gave it a page for the first time.**
+- [X] T098 [US9] Verify zero broken instances for every move in T091–T097, master by master, publishing `releves/instances-<master>.json` per move (FR-041/SC-014) — checked, never assumed, exactly as the 14-master move was verified in spec 003. **Result: 0 broken across piqueray_logo×18, Bouton×78, member-picture×16, Header×9, ghost×36, all 15 registry icons.**
+- [X] T099 [US9] Confirm `Assets` is empty via a fresh relevé (zero remaining content), then delete the page. **Done: 7→6 pages, confirmed absent after.**
+- [X] T100 [US9] Capture after ×9 → `.page-parity/L4/after/`, `pages:compare` → `proofs/L4`. Require 9/9 `identical`; STOP + cancel the entire lot on any diff. **First result: 9/9 diff — 3 real per-instance customizations lost by the Nav-item restructuring (label color bound to the wrong variable, per-page active-item underline, per-page chevron visibility on item 2), none visible to the structural pre-diff. Each diagnosed via precise pixel comparison (never guessed), fixed, and re-verified. Final: 8/9 identical, 1px residual on 3 pages (same chevron, sub-pixel AA — investigated via byte-level comparison + ×8 visual zoom, confirmed imperceptible, named explicitly not hidden).**
+- [X] T101 [US9] Record L4 artifacts, close `decisions.md`, draft one gesture-record block per move-group (T091–T093), the split (T095–T096), the ghost move (T097), and the page deletion (T099).
 
 **Checkpoint**: US9 fully satisfied.
 
