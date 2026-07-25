@@ -213,12 +213,12 @@ here by design; its coquille fix is verified in Phase 7/V6, not this phase.**
 
 ### V5 — Section-header (`2090:2397`)
 
-- [ ] T068 [US5] Pose checkpoint `005/geometrie/section-header`.
-- [ ] T069 [US5] Publish `releves/structure-section-header.json`: confirm both variants' current widths (Standard 1550, Avec CTA 1552) and their resize modes.
-- [ ] T070 [US5] Announce diff attendu = **~2px sur les pages portant le variant Avec CTA**; capture before ×9 → `.page-parity/V5/before/`.
-- [ ] T071 [US5] On `Section-header` (`2090:2397`): change the `Avec CTA` variant's width 1552→1550px so both variants share the site grid width (FR-019).
-- [ ] T072 [US5] Capture after ×9 → `.page-parity/V5/after/`, `pages:compare` → `proofs/V5`. Verify conformance.
-- [ ] T073 [US5] Record V5 artifacts, close `decisions.md`, draft the gesture-record block.
+- [X] T068 [US5] Pose checkpoint `005/geometrie/section-header`.
+- [X] T069 [US5] Publish `releves/structure-section-header.json`: confirm both variants' current widths (Standard 1550, Avec CTA 1552) and their resize modes. **Confirmed: Standard already 1550; Avec CTA 1552 with SPACE_BETWEEN (Titre left-anchored, Bouton right-anchored) — asymmetric, unlike Devis/Réassurances' symmetric CENTER.**
+- [X] T070 [US5] Announce diff attendu = **~2px sur les pages portant le variant Avec CTA**; capture before ×9 → `.page-parity/V5/before/`.
+- [X] T071 [US5] On `Section-header` (`2090:2397`): change the `Avec CTA` variant's width 1552→1550px so both variants share the site grid width (FR-019).
+- [X] T072 [US5] Capture after ×9 → `.page-parity/V5/after/`, `pages:compare` → `proofs/V5`. Verify conformance. **Result: 7/9 identical, 2/9 diff (Accueil, Motorisation — the pages carrying "Avec CTA" via Produits e-commerce), diffCount=1751 identical on both, conforming in shape. Full mechanism verified live: SPACE_BETWEEN internal shift (Bouton −2) composed with a cascading recenter of the instance by its CENTER-aligned parent (+1, same class as V4) — net Titre +1px, Bouton −1px.**
+- [X] T073 [US5] Record V5 artifacts, close `decisions.md`, draft the gesture-record block.
 
 **Checkpoint**: US5 **partially** satisfied — Section-header's width is now uniform,
 required **before** Phase 7's ×6 adoption (R9's second hard ordering constraint), and
