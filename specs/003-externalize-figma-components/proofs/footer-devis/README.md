@@ -41,3 +41,40 @@ en-dessous de l'enveloppe déjà acceptée cette spec.
   `pages:ledger:check` exit 0)
 - Checkpoints Figma : `003/footer-devis/{master,adoption}` (posés avant chaque geste
   mutant correspondant)
+
+## Vérification indépendante (2026-07-25, post-commit) — le delta BRUT, au-delà du panneau pixelmatch
+
+Ré-exécution indépendante de l'instrument sur les mêmes captures : verdict reproduit au
+byte près (mêmes 9 diffCounts, mêmes diffBoxes). En complément, une passe de delta **brut**
+(tout canal, sans classification anti-aliasing) élargit honnêtement le périmètre décrit
+plus haut :
+
+- **Empreinte brute réelle** : 861-1251 px/page dans une bande x=89..1472, h≤114 — pas
+  seulement le libellé. Trois zones touchées : bordures du Bouton, libellé du Bouton,
+  titre « Suivez-nous ». Logo, 3 Footer-columns, icônes sociales, Copyright, Separator :
+  **zéro delta brut** (byte-identiques).
+- **Couverture 9/9 prouvée, pas échantillonnée** : les motifs de delta (coordonnées +
+  valeurs, sha256) sont identiques en 3 groupes — {Accueil, Contactez-nous, Dépannage/SAV,
+  Motorisation, Portes de garage, À Propos}, {Portes d'entrée, résidentielles},
+  {industrielles}. Une anomalie propre à une seule page (piège Réalisations) est donc
+  exclue par construction, pas par sondage.
+- **Les « lignes rouges pleines » aux bordures du Bouton, mesurées** : en delta brut, les
+  bordures gauche ET droite montrent chacune 2 colonnes changées pleine hauteur — le motif
+  qui signale d'ordinaire un décalage. Mesure au pixel (canal R, fond 38, blanc 255) :
+  avant = trait net 2px (`255,255`), après = `146,255,146` (AA) ; centroïdes déplacés de
+  **0,5px vers la gauche des deux côtés, largeur du cadre constante (220px)** — un
+  repositionnement sous-pixel uniforme du Bouton, PAS un déplacement ≥1px ni un
+  redimensionnement. Étendue du libellé identique (x=122..273) ; populations de pixels
+  clairs et RGB moyens identiques avant/après (pas de changement de couleur ni de graisse
+  — piège Hero re-écarté au niveau pixel).
+- **« Suivez-nous »** : étendues orange strictement identiques à chaque rangée sondée
+  avant/après (aucun letter-spacing, aucune position ≥1px) ; deltas = arêtes AA seules,
+  intérieurs des glyphes intacts.
+- **Lecture** : la phrase « aucun fantôme rouge plein » plus haut décrit le panneau
+  pixelmatch (où ces pixels de bordure sont classés AA, jaunes, hors diffBox et hors
+  crops). Au sens brut, ces lignes existent — quantifiées ici à 0,5px sous-pixel,
+  invisibles à 100 %. Même classe d'écart que le « 1px CTA re-measure » nommé sur
+  Réassurances. **Verdict inchangé : adoption propre sur les 9 pages.**
+- **Anti-fork re-vérifié live après commit** : 1 seul master `Footer` (`2120:4785`),
+  9/9 wrappers = exactement 1 instance `remote:false` du master, 0 GROUP `Footer` brut
+  restant sur `Pages`.
