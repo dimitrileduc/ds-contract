@@ -28,7 +28,7 @@
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { ContractSchema, sortByDependencies, type Contract } from './contract-schema.js';
+import { ContractSchema, IconRegistrySchema, sortByDependencies, type Contract, type IconRegistry } from './contract-schema.js';
 import { generateCss, generateStories, generateTsx, validateContract } from '../core/emit-react.js';
 import { formatCss, formatTsx } from '../core/format.js';
 import { tokenInventoryFromJson } from '../core/tokens.js';
@@ -44,6 +44,8 @@ export interface GenerateComponentsOptions {
   tokenFiles?: string[];
   /** Directory of <name>.svg icon assets. */
   iconsDir?: string;
+  /** Path to the icon registry document (default: <contractsDir>/icons.registry.json). Optional — absent means no governed icons yet. */
+  iconRegistryPath?: string;
   /** Output root — one directory per component is written under it. */
   outDir?: string;
   /** Emit <Name>.stories.tsx per component (default true — the repo path). */
@@ -92,6 +94,62 @@ function loadTokenInventory(tokenFiles: string[]): Set<string> {
   return tokenInventoryFromJson(tokenFiles.map((file) => JSON.parse(readFileSync(file, 'utf8'))));
 }
 
+/** The icon registry (`contracts/icons.registry.json`) — OPTIONAL and
+ *  additive (Principle VI): a repo with no governed icons yet builds fine
+ *  without one. When present, its shape is validated by name — a broken
+ *  registry document is refused exactly like a broken contract, never a
+ *  silent parse failure. */
+function loadIconRegistry(registryPath: string, errors: string[]): IconRegistry | null {
+  if (!existsSync(registryPath)) return null;
+  const raw = JSON.parse(readFileSync(registryPath, 'utf8'));
+  const parsed = IconRegistrySchema.safeParse(raw);
+  if (!parsed.success) {
+    errors.push(
+      `${path.basename(registryPath)}: ${parsed.error.issues.map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`).join('; ')}`,
+    );
+    return null;
+  }
+  return parsed.data;
+}
+
+/** Registry build validation (T022): every entry's asset must exist on
+ *  disk (the per-part missing-asset refusal in emit-react.ts stays the
+ *  last line of defense for anatomy references specifically); and any
+ *  contract enum bound INSTANCE_SWAP that overlaps the registry's names
+ *  at all must equal it EXACTLY — "ni plus ni moins" (FR-011) — so a
+ *  one-sided edit (an icon added to the enum but not the registry, or
+ *  vice versa) is refused BY NAME, not silently accepted as a subset. */
+function validateIconRegistry(
+  registry: IconRegistry,
+  iconAssets: Map<string, string>,
+  contracts: Contract[],
+  errors: string[],
+): void {
+  const registryNames = new Set(registry.icons.map((i) => i.name));
+  for (const icon of registry.icons) {
+    if (!iconAssets.has(icon.asset)) {
+      errors.push(`ds.icons: icon "${icon.name}" needs asset "assets/icons/${icon.asset}.svg" which does not exist`);
+    }
+  }
+  for (const contract of contracts) {
+    for (const prop of contract.props) {
+      if (prop.bindings?.figma?.kind !== 'INSTANCE_SWAP') continue;
+      if (typeof prop.type !== 'object' || !('enum' in prop.type)) continue;
+      const values = prop.type.enum;
+      if (!values.some((v) => registryNames.has(v))) continue; // not icon-registry-shaped
+      const missing = [...registryNames].filter((n) => !values.includes(n));
+      const extra = values.filter((v) => !registryNames.has(v));
+      if (missing.length > 0 || extra.length > 0) {
+        errors.push(
+          `${contract.id}: prop "${prop.name}" (INSTANCE_SWAP over ds.icons) must equal the registry exactly` +
+            `${missing.length > 0 ? ` — missing: ${missing.join(', ')}` : ''}` +
+            `${extra.length > 0 ? ` — not in registry: ${extra.join(', ')}` : ''}`,
+        );
+      }
+    }
+  }
+}
+
 export async function generateComponents(
   options: GenerateComponentsOptions = {},
 ): Promise<{ generated: string[]; outDir: string }> {
@@ -138,6 +196,11 @@ export async function generateComponents(
     }
     seenNames.set(c.name, c.id);
   }
+
+  // Icon registry gate (T022, additive/optional — Principle VI): asset
+  // completeness + enum-vs-registry exactness, named by icon/prop.
+  const iconRegistry = loadIconRegistry(options.iconRegistryPath ?? path.join(contractsDir, 'icons.registry.json'), errors);
+  if (iconRegistry) validateIconRegistry(iconRegistry, iconAssets, parsedContracts, errors);
 
   // Composition graph gate: cycles and unknown refs are refused.
   let ordered: Contract[] = parsedContracts;

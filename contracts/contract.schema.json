@@ -25,6 +25,14 @@
         "deprecated"
       ]
     },
+    "category": {
+      "type": "string",
+      "enum": [
+        "atom",
+        "molecule",
+        "section"
+      ]
+    },
     "description": {
       "type": "string"
     },

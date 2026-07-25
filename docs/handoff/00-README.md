@@ -44,7 +44,7 @@ misunderstood the project — stop and re-read `03-determinism.md`.
   - *Engineer on a design-led team:* Figma is truth → a contract is extracted →
     the CLI generates React + a story into his repo. He never opens Figma.
 - **Status in one line:** the deterministic pipeline is proven and gated at
-  **94/97** headless checks (3 intentional, pending the Piqueray Figma push —
+  **102/102** headless checks (the 3 intentional reds went green with the spec-002 Figma push —
   `npm run eval` prints the live count); individual components are
   **live-validated on a real Figma canvas**; the one advanced exhibit (a
   composite Modal) has known, documented rendering failures. See `07` and `08`.

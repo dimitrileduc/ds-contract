@@ -802,6 +802,17 @@ export const EventSchema = z.strictObject({
     .optional(),
 });
 
+/** v17 (spec 004): the ONE definition of the English display labels for
+ *  `category`. Consumed by all three generated surfaces (Storybook story
+ *  titles, catalog, Contract Hub grouping) so the labels never drift between
+ *  them. Structure mirrored from the Figma DS pages; language stays English
+ *  on the code side (Bouton ↔ Button convention). */
+export const CATEGORY_LABELS: Record<'atom' | 'molecule' | 'section', string> = {
+  atom: 'Atoms',
+  molecule: 'Molecules',
+  section: 'Sections',
+};
+
 export const ContractSchema = z.strictObject({
   $schema: z.string().optional(),
   /** Stable canonical id, never renamed. e.g. "ds.button". The namespace
@@ -813,6 +824,13 @@ export const ContractSchema = z.strictObject({
   name: z.string(),
   version: z.string().regex(/^\d+\.\d+\.\d+$/, 'version must be semver (MAJOR.MINOR.PATCH)'),
   status: z.enum(['draft', 'stable', 'deprecated']).default('draft'),
+  /** v17 (spec 004): organizational tier mirrored STRUCTURALLY from the Figma
+   *  DS pages (DS · Atomes / Molécules / Sections) — not a language choice.
+   *  Optional: a contract without one stays valid and the generated surfaces
+   *  fall back to a `Components/` group (backward-compatible). An unknown value
+   *  is refused BY NAME at build (Zod enum). Display labels live in the single
+   *  source CATEGORY_LABELS (above); never repurpose an existing field. */
+  category: z.enum(['atom', 'molecule', 'section']).optional(),
   description: z.string(),
   semantics: z.strictObject({
     element: z.enum([
@@ -911,6 +929,69 @@ export type ComponentRef = z.infer<typeof ComponentRefSchema>;
 export type Repeat = z.infer<typeof RepeatSchema>;
 export type Layout = z.infer<typeof LayoutSchema>;
 export type VariantLayout = z.infer<typeof VariantLayoutSchema>;
+
+// ---------------------------------------------------------------------------
+// Icon Registry (`contracts/icons.registry.json`, 002-governed-icons-button)
+//
+// A SEPARATE, additive document type — not a Contract. The single versioned
+// list the designer's Figma menu and the developer's code list both derive
+// from and are mechanically verified against (parity's icons axis). Proposed
+// by extraction from the cleaned icon-zone source, reviewed, adopted — never
+// hand-invented. See specs/002-governed-icons-button/contracts/
+// icon-registry.interface.md for the full rule set (asset existence, canvas
+// existence, zero third-party dependency, semver evolution — all enforced
+// by the build/parity tooling that reads this document, not by the schema
+// itself, which only validates shape + structural invariants).
+// ---------------------------------------------------------------------------
+
+export const IconEntrySchema = z.strictObject({
+  /** Canonical kebab id — the shared designer/developer name (e.g.
+   *  "arrow-left"). Becomes an enum value and an `ICONS` map key in
+   *  generated code. */
+  name: z.string().regex(/^[a-z][a-z0-9-]*$/),
+  figma: z.strictObject({
+    /** The master's name as it reads in the file (from-dump; a rename is an
+     *  owner proposal, never silent). */
+    componentName: z.string(),
+    /** Library component key — stable across renames. */
+    key: z.string(),
+    nodeId: z.string(),
+  }),
+  /** Filename stem under `assets/icons/` — derived from `name`. Existence of
+   *  `assets/icons/<asset>.svg` is a build-time refusal, not a schema check
+   *  (the SVG is acquired source, not always present when the registry
+   *  document itself is merely being validated). */
+  asset: z.string(),
+  /** Both 20 and 32 are legal by design (FR-005) — never harmonized. Left
+   *  as a general positive size rather than a fixed union so a future
+   *  legitimately-drawn size doesn't force a schema change for a cosmetic
+   *  fact the audit measures, not one the schema should gatekeep. */
+  size: z.number().int().positive(),
+  description: z.string(),
+});
+
+export const IconRegistrySchema = z.strictObject({
+  /** Fixed — the registry is one well-known singleton document, unlike
+   *  Contract's per-component namespaced ids. */
+  id: z.literal('ds.icons'),
+  version: z.string().regex(/^\d+\.\d+\.\d+$/, 'version must be semver (MAJOR.MINOR.PATCH)'),
+  source: z.strictObject({
+    fileKey: z.string(),
+    zoneNodeId: z.string(),
+    /** ISO-8601 — photo-at-instant-T, the same convention as
+     *  `anchors.figma.dumpedAt`. */
+    dumpedAt: z.string(),
+  }),
+  icons: z
+    .array(IconEntrySchema)
+    .min(1)
+    .refine((icons) => new Set(icons.map((i) => i.name)).size === icons.length, {
+      message: 'icons[].name must be unique',
+    }),
+});
+
+export type IconEntry = z.infer<typeof IconEntrySchema>;
+export type IconRegistry = z.infer<typeof IconRegistrySchema>;
 
 /** The layout a part has under one concrete variant combo: layoutByProp
  *  override (if the combo's value has one) merged over the base layout.

@@ -27,6 +27,7 @@ import {
   statePreviewSubstProps,
   tokensByPropEntries,
   walkAnatomy,
+  CATEGORY_LABELS,
   type Contract,
   type Part,
   type Prop,
@@ -1176,12 +1177,20 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
   const rootDeclaresCursor =
     Boolean(root.declared?.['cursor']) || Boolean(root.declaredStates?.['disabled']?.['cursor']);
   if (contract.semantics.element === 'button' && !rootDeclaresCursor) rootDecls.push('cursor: pointer');
-  // v7 overlay / v9 shape placement: any out-of-flow part (an overlay, or a
-  // part whose stylesWhen carries position: absolute — the shape-placement
-  // spelling) positions against the root.
+  // v7 overlay / v9 shape placement: any out-of-flow part positions against the
+  // root, so the root must be the positioned containing block — an overlay part,
+  // a part whose stylesWhen carries position: absolute (the shape-placement
+  // spelling), OR a native checkable <input> which the emitter overlays
+  // absolutely to cover its presentational box (isNativeCheckablePart, ~L1512).
+  // Without the last case the invisible <input> escaped to the nearest
+  // positioned ancestor (often <body>) and covered the whole page, eating every
+  // click — the Checkbox "freeze" (an invisible full-page overlay, not a JS loop).
   if (
     walkAnatomy(contract).some(
-      (w) => w.part.overlay || (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute'),
+      (w) =>
+        w.part.overlay ||
+        (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute') ||
+        isNativeCheckablePart(w.part),
     )
   ) {
     rootDecls.push('position: relative');
@@ -1749,6 +1758,23 @@ export const ELEMENT_META: Record<string, { attrs: string; el: string; supportsD
   h6: { attrs: 'HTMLAttributes', el: 'HTMLHeadingElement', supportsDisabled: false },
 };
 
+/** HTML void elements in the schema's element vocabulary: they take NO children
+ *  and render self-closing. A root of one of these (e.g. a native `<input>`
+ *  atom) carries its shown value through `defaultValue`, never a text child —
+ *  putting `{children}` inside a void element is invalid React. Nested void
+ *  parts already render correctly (partAttrString); this set extends the same
+ *  rule to the root. */
+export const VOID_ELEMENTS = new Set(['input', 'hr']);
+
+/** Native text form controls: the shown text rides `defaultValue` and the
+ *  element renders self-closing (a child text node is invalid for `<input>`
+ *  and a controlled/children anti-pattern for `<textarea>` in React). The
+ *  canvas draws that value as a text child bound to the same property — exactly
+ *  as the Button's label binds to « Libellé » — and code collapses it onto the
+ *  native control. `<select>` is deliberately absent: its value is one of its
+ *  `<option>` children, a different shape. */
+export const NATIVE_TEXT_CONTROLS = new Set(['input', 'textarea']);
+
 const PARENT_PROP_REF = /^\{([a-z][\w-]*)\}$/;
 
 function depAttrString(
@@ -1973,6 +1999,26 @@ export function generateTsx(
     return s;
   };
 
+  /** A native checkable input (checkbox/radio) that no event drives still
+   *  reflects its contract state: wire `defaultChecked` from the binary enum
+   *  prop bound to the control's VARIANT (the default value is unchecked, the
+   *  other is checked). Uncontrolled (defaultChecked, no onChange required) so
+   *  the real DOM checked state matches the drawn box — never a visual-only
+   *  fake. Event-driven checkables keep the controlled `checked` path
+   *  (eventAttrsFor); this only fills the no-event case (Piqueray declares no
+   *  events). */
+  const nativeCheckedAttr = (partName: string, part: Part): string => {
+    if (!isNativeCheckablePart(part)) return '';
+    if (events.some((e) => e.trigger === partName)) return '';
+    const enumProp = contract.props.find(
+      (p) => isEnum(p) && p.bindings.figma.kind === 'VARIANT' && (p.type as { enum: string[] }).enum.length === 2,
+    );
+    if (!enumProp) return '';
+    const values = (enumProp.type as { enum: string[] }).enum;
+    const onValue = values.find((v) => v !== enumProp.default) ?? values[1];
+    return ` defaultChecked={${enumProp.bindings.code.prop} === '${onValue}'}`;
+  };
+
   const classParts = [
     'styles.root',
     ...enums.map((p) => `styles[\`${p.name}-\${${p.bindings.code.prop}}\`]`),
@@ -2122,9 +2168,16 @@ export function generateTsx(
       const prop = contract.props.find(
         (p) => p.type === 'text' && p.bindings.code.prop === part.content!.prop,
       )!;
+      // A native <select> shows one of its <option> children, never a raw text
+      // node — the shown value is the (placeholder) selected option. The
+      // consumer/Field molecule supplies the real options.
+      const inner =
+        el === 'select'
+          ? `<option>{${prop.bindings.code.prop}}</option>`
+          : `{${prop.bindings.code.prop}}`;
       return wrapVisibleWhen(
         part,
-        `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>{${prop.bindings.code.prop}}</${el}>`,
+        `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
       );
     }
     if (part.text !== undefined) {
@@ -2148,7 +2201,7 @@ export function generateTsx(
       .join('\n');
     return wrapVisibleWhen(
       part,
-      `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
+      `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${nativeCheckedAttr(partName, part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
     );
   };
 
@@ -2193,6 +2246,34 @@ export function ${name}({ ${destructured.join(', ')} }: ${name}Props) {
   }
 
   const root = contract.anatomy.root;
+  // v17 (spec 004): the root element renders its own `attrs` — the same
+  // mechanism nested parts use (partAttrString) — so a native form control at
+  // the root (e.g. `<input type="text" defaultValue={String(value)}>`) carries
+  // its attributes. Inserted before `{...rest}` so consumer props still win.
+  const rootAttrStr = partAttrString(root).trim();
+  if (rootAttrStr) {
+    const restIdx = elementAttrs.indexOf('{...rest}');
+    if (restIdx >= 0) elementAttrs.splice(restIdx, 0, rootAttrStr);
+    else elementAttrs.push(rootAttrStr);
+  }
+  const rootElement = contract.semantics.element;
+  // A native text control (`<input>`, `<textarea>`) cannot host its value as a
+  // child text node: the canvas draws that text child, but code renders the
+  // value through the native `defaultValue` attribute on a self-closing element.
+  // Wire the single text prop through — the same prop the canvas text child
+  // binds to (Bouton ↔ Button: the label is `children`; a bare input's is its
+  // own `value`). No text prop (e.g. a checkbox) → nothing to wire.
+  const isNativeTextControl = NATIVE_TEXT_CONTROLS.has(rootElement);
+  const isSelfClosingRoot = VOID_ELEMENTS.has(rootElement) || isNativeTextControl;
+  if (isNativeTextControl) {
+    const valueProp = textProps(contract)[0];
+    if (valueProp) {
+      const dv = `defaultValue={String(${valueProp.bindings.code.prop})}`;
+      const restIdx = elementAttrs.indexOf('{...rest}');
+      if (restIdx >= 0) elementAttrs.splice(restIdx, 0, dv);
+      else elementAttrs.push(dv);
+    }
+  }
   const rootInner = root.parts
     ? Object.entries(root.parts)
         .map(([childName, child]) => renderPart(childName, child))
@@ -2234,9 +2315,7 @@ export const ${name} = forwardRef<${meta.el}, ${name}Props>(function ${name}(
 ) {
 ${prelude.length > 0 ? prelude.join('\n') + '\n' : ''}  const classes = [${classParts.join(', ')}].filter(Boolean).join(' ');
   return (
-    <${el} ${elementAttrs.join(' ')}>
-      ${rootInner}
-    </${el}>
+    ${isSelfClosingRoot ? `<${el} ${elementAttrs.join(' ')} />` : `<${el} ${elementAttrs.join(' ')}>\n      ${rootInner}\n    </${el}>`}
   );
 });
 `;
@@ -2248,6 +2327,10 @@ ${prelude.length > 0 ? prelude.join('\n') + '\n' : ''}  const classes = [${class
 
 export function generateStories(contract: Contract, byId: Map<string, Contract>): string {
   const name = contract.name;
+  // v17 (spec 004): the Storybook group mirrors the contract's category via the
+  // single label source; a contract without one keeps the pre-004 'Components/'
+  // group (tolerant fallback, FR-013).
+  const group = contract.category ? CATEGORY_LABELS[contract.category] : 'Components';
   const enums = enumProps(contract);
   const bools = boolProps(contract);
   const slots = namedSlots(contract);
@@ -2366,15 +2449,24 @@ export const With${pascal(slot.name)}: Story = {
   }
 
   // A shared render fills the default slot with its declared sample content
-  // for every args-only story (Playground, per-variant, Disabled).
+  // for every args-only story (Playground, per-variant, Disabled), and is keyed
+  // on args so the Playground REMOUNTS on any control change. Native-form-control
+  // atoms are uncontrolled (native defaultValue/defaultChecked — their masters
+  // declare no event), so without a remount a changed value/checked control would
+  // re-render but never update the mounted DOM (defaultValue is read once at
+  // mount). Keying forces a fresh mount, so the controls actually drive the
+  // canvas — matching the Contract Hub playground. Harmless for controlled props
+  // (Button's label re-renders either way); functions in args (action spies) are
+  // dropped by JSON.stringify, so only real value changes re-key.
   const metaRender = defaultSample
     ? `
   render: (args) => (
-    <${name} {...args}>
+    <${name} key={JSON.stringify(args)} {...args}>
       ${defaultSample.split('\n').join('\n      ')}
     </${name}>
   ),`
-    : '';
+    : `
+  render: (args) => <${name} key={JSON.stringify(args)} {...args} />,`;
 
   let matrixStory = '';
   if (enums.length > 0 && !defaultSample) {
@@ -2443,6 +2535,27 @@ export const Disabled: Story = {
 };`
     : '';
 
+  // One story revealing every templated-icon part at once (icon.asset
+  // "{prop}" gated by visibleWhen) — the Matrix story only varies WHICH
+  // glyph an enum picks, never the guarding boolean, so a governed-icon
+  // component's Matrix renders icons hidden in every cell (002-governed-
+  // icons-button finding). Generic: keys off the anatomy shape, not any
+  // component-specific name — booleans forced true, enums render their own
+  // defaults (FR-020: an example with icons visible, no hand-authored fixture).
+  const gatedIconBools = new Set<string>();
+  for (const { part } of walkAnatomy(contract)) {
+    if (part.icon && part.visibleWhen && /^\{[a-z][\w-]*\}$/.test(part.icon.asset)) {
+      gatedIconBools.add(part.visibleWhen.prop);
+    }
+  }
+  const withIconsStory =
+    gatedIconBools.size > 0
+      ? `
+export const WithIcons: Story = {
+  args: { ${[...gatedIconBools].map((p) => `${p}: true`).join(', ')} },
+};`
+      : '';
+
   const sampleImports = [...slotSampleImports]
     .map((depName) => `import { ${depName} } from '../${depName}';`)
     .join('\n');
@@ -2456,7 +2569,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 ${sampleImports}${sampleImports ? '\n' : ''}import { ${name} } from './${name}';
 
 const meta = {
-  title: 'Components/${name}',
+  title: '${group}/${name}',
   component: ${name},
   tags: ['autodocs'],
   parameters: {
@@ -2474,7 +2587,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
-${variantStories}${disabledStory}${slotStories}${matrixStory}
+${variantStories}${disabledStory}${withIconsStory}${slotStories}${matrixStory}
 `;
 }
 

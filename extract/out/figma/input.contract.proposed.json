@@ -1,0 +1,55 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.input",
+  "name": "Input",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "input"
+  },
+  "props": [
+    {
+      "name": "valeur",
+      "type": "text",
+      "default": "Texte de saisie",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Valeur"
+        },
+        "code": {
+          "prop": "valeur"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "align": "center"
+      },
+      "parts": {
+        "texteDeSaisie": {
+          "content": {
+            "prop": "valeur"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
+      "nodeId": "2053:1245"
+    },
+    "code": {
+      "importPath": "src/components/Input",
+      "export": "Input"
+    }
+  }
+}

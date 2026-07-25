@@ -167,6 +167,7 @@ const catalog = {
     name: c.name,
     version: c.version,
     status: c.status,
+    ...(c.category ? { category: c.category } : {}),
     description: c.description,
     figma: c.figmaRepresentation === 'native'
       ? { representation: 'native' }
@@ -213,6 +214,7 @@ const index = {
     name: c.name,
     version: c.version,
     status: c.status,
+    ...(c.category ? { category: c.category } : {}),
     propNames: c.props.map((p) => p.name),
     summary: firstSentence(c.description),
   })),

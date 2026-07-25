@@ -11,6 +11,8 @@ import adherenceJson from '../../evals/adherence/results.json';
 import figmaSnapshotJson from '../../parity/snapshots/figma-components.json';
 import semanticTokensJson from '../../tokens/semantic.tokens.json';
 import semanticColorTokensJson from '../../tokens/modes/semantic.light.tokens.json';
+import primitiveTokensJson from '../../tokens/primitives.tokens.json';
+import iconRegistryJson from '../../contracts/icons.registry.json';
 
 // ---------------------------------------------------------------------------
 // Catalog
@@ -46,6 +48,9 @@ export interface CatalogComponent {
   name: string;
   version: string;
   status: string;
+  /** v17 (spec 004): organizational tier — present only when the contract
+   *  carries one; absent contracts render under a residual group. */
+  category?: 'atom' | 'molecule' | 'section';
   description: string;
   figma: { representation: 'component' | 'native'; componentSetKey?: string };
   props: CatalogProp[];
@@ -81,12 +86,18 @@ export const catalog = catalogJson as unknown as Catalog;
 // Raw contracts
 // ---------------------------------------------------------------------------
 
+export interface TokensByProp {
+  prop: string;
+  map: Record<string, Record<string, string>>;
+}
+
 export interface AnatomyNode {
   element?: string;
   description?: string;
   optional?: boolean;
   layout?: Record<string, string>;
   tokens?: Record<string, string>;
+  tokensByProp?: TokensByProp | TokensByProp[];
   states?: Record<string, Record<string, string>>;
   parts?: Record<string, AnatomyNode>;
   component?: { id: string; props?: Record<string, unknown>; text?: string };
@@ -117,6 +128,8 @@ export interface RawContract {
   name: string;
   version: string;
   status: string;
+  /** v17 (spec 004): organizational tier — optional, mirrors the schema. */
+  category?: 'atom' | 'molecule' | 'section';
   description: string;
   semantics?: { element?: string; role?: string };
   props: RawProp[];
@@ -197,8 +210,34 @@ export function figmaSetByName(name: string): FigmaSet | undefined {
   return figmaSnapshot.sets.find((set) => set.name === name);
 }
 
-export function figmaNodeUrl(nodeId: string): string {
-  return `https://www.figma.com/design/8nim1d0IPnehMxA7B7SYxC/DS-Contracts-POC?node-id=${nodeId.replace(':', '-')}`;
+/** Match the published set by its STABLE key (the contract's
+ *  anchors.figma.componentSetKey), NOT its display name — a contract can be
+ *  anglicized (Button) while the Figma master keeps its own name (« Bouton »),
+ *  and name-matching then false-negatives EVERY binding ("no match" everywhere)
+ *  even though the surfaces genuinely agree. This is the same key-anchored
+ *  identity the differ uses — which is why parity is green while a name lookup
+ *  says "no match". Falls back to name for entries that carry no key. */
+export function figmaSetForEntry(entry: ComponentEntry): FigmaSet | undefined {
+  const key = entry.contract?.anchors?.figma?.componentSetKey;
+  if (key) {
+    const byKey = figmaSnapshot.sets.find((set) => set.key === key);
+    if (byKey) return byKey;
+  }
+  return figmaSnapshot.sets.find((set) => set.name === entry.name);
+}
+
+/** Governed icon registry: canonical name → its Figma component key. The binding
+ *  map verifies each INSTANCE_SWAP glyph choice by KEY against the master's
+ *  preferredValues (names/spellings can diverge; the key is the identity). */
+const iconKeyByName = new Map<string, string>(
+  (iconRegistryJson as { icons: { name: string; figma: { key: string } }[] }).icons.map((i) => [i.name, i.figma.key]),
+);
+export function iconRegistryKey(name: string): string | undefined {
+  return iconKeyByName.get(name);
+}
+
+export function figmaNodeUrl(fileKey: string, nodeId: string): string {
+  return `https://www.figma.com/design/${fileKey}/piqueray?node-id=${nodeId.replace(':', '-')}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -293,9 +332,9 @@ export interface AdherenceReport {
 export const adherence = adherenceJson as unknown as AdherenceReport;
 
 // ---------------------------------------------------------------------------
-// Semantic tokens — walk tokens/semantic.tokens.json to recover the true
-// dot paths (a css var like --space-inset-x-sm cannot be re-segmented from
-// hyphens alone; the source file is authoritative).
+// Tokens — walk tokens/*.tokens.json (primitives + semantic) to recover the
+// true dot paths (a css var like --space-inset-x-sm cannot be re-segmented
+// from hyphens alone; the source files are authoritative).
 // ---------------------------------------------------------------------------
 
 export interface TokenInfo {
@@ -347,19 +386,34 @@ function collectSemanticTokens(): TokenInfo[] {
 
 export const semanticTokens: TokenInfo[] = collectSemanticTokens();
 
-export function semanticTokensByGroup(): Map<string, TokenInfo[]> {
-  const order = ['color', 'space', 'radius', 'size', 'font', 'border', 'opacity'];
+function collectPrimitiveTokens(): TokenInfo[] {
+  const out: TokenInfo[] = [];
+  walkTokens(primitiveTokensJson as unknown as Record<string, unknown>, [], '', out);
+  return out;
+}
+
+export const primitiveTokens: TokenInfo[] = collectPrimitiveTokens();
+
+function groupTokens(tokens: TokenInfo[], order: string[]): Map<string, TokenInfo[]> {
   const groups = new Map<string, TokenInfo[]>();
   for (const name of order) groups.set(name, []);
-  for (const token of semanticTokens) {
+  for (const token of tokens) {
     const group = groups.get(token.group) ?? [];
     group.push(token);
     groups.set(token.group, group);
   }
-  for (const [name, tokens] of groups) {
-    if (tokens.length === 0) groups.delete(name);
+  for (const [name, grouped] of groups) {
+    if (grouped.length === 0) groups.delete(name);
   }
   return groups;
+}
+
+export function semanticTokensByGroup(): Map<string, TokenInfo[]> {
+  return groupTokens(semanticTokens, ['color', 'space', 'radius', 'size', 'font', 'border', 'opacity']);
+}
+
+export function primitiveTokensByGroup(): Map<string, TokenInfo[]> {
+  return groupTokens(primitiveTokens, ['color', 'nav', 'opacity', 'font', 'space', 'radius', 'border-width']);
 }
 
 // ---------------------------------------------------------------------------
@@ -384,6 +438,13 @@ function walkAnatomyRefs(node: AnatomyNode, out: Set<string>): void {
   for (const ref of Object.values(node.tokens ?? {})) {
     // strip braces; keep {prop} placeholders visible in the path
     out.add(ref.slice(1, -1));
+  }
+  // tokensByProp: variant-scoped overrides — one entry or an ordered array (v14)
+  const byProp = node.tokensByProp == null ? [] : Array.isArray(node.tokensByProp) ? node.tokensByProp : [node.tokensByProp];
+  for (const entry of byProp) {
+    for (const channels of Object.values(entry.map)) {
+      for (const ref of Object.values(channels)) out.add(ref.slice(1, -1));
+    }
   }
   for (const stateDecls of Object.values(node.states ?? {})) {
     for (const ref of Object.values(stateDecls)) out.add(ref.slice(1, -1));

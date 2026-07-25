@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "daa344e",
+    "gitCommit": "c26c0a7",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -40,6 +40,7 @@
     "border-width",
     "color",
     "font",
+    "nav",
     "opacity",
     "radius",
     "space",
@@ -49,12 +50,61 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "status": "draft",
+      "category": "atom",
       "propNames": [
-        "variant"
+        "variant",
+        "iconLeft",
+        "iconRight",
+        "iconLeftGlyph",
+        "iconRightGlyph"
       ],
       "summary": "Piqueray button."
+    },
+    {
+      "id": "ds.checkbox",
+      "name": "Checkbox",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "propNames": [
+        "checked"
+      ],
+      "summary": "Piqueray checkbox."
+    },
+    {
+      "id": "ds.input",
+      "name": "Input",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "propNames": [
+        "value"
+      ],
+      "summary": "Piqueray single-line text input."
+    },
+    {
+      "id": "ds.select",
+      "name": "Select",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "propNames": [
+        "value"
+      ],
+      "summary": "Piqueray select."
+    },
+    {
+      "id": "ds.textarea",
+      "name": "Textarea",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "propNames": [
+        "value"
+      ],
+      "summary": "Piqueray multi-line text input."
     }
   ]
 }

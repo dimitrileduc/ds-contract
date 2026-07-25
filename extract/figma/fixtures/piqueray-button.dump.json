@@ -1,79 +1,61 @@
 {
  "_provenance": {
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": "2026-07-23",
-  "dumpVersion": "1.6",
-  "note": "Node-tree structure via the Figma REST API (extract/figma/rest/map.ts, dump v1.6: textCase + strokeAlign captured natively); variable id→name table captured via the plugin bridge (Figma Console MCP) and injected into the mapper — zero variable-unresolved degradations. NEW in this dump: the Bouton set carries the BOOLEAN properties « Icône gauche »/« Icône droite » (set.boolDefaults) added to the masters on 2026-07-23, and each icon layer carries propRefs {visible: <property>} — both icons are hidden by default in every variant (page instances override per-use). For design→contract proposal.",
-  "variablesSource": "figma-console-mcp (desktop plugin bridge), id→name injected into rest/map.ts"
+  "extractedAt": "2026-07-24",
+  "note": "Node-tree dump (extract/figma/dump.plugin.js, dump v1.6, TARGET_SETS=[Bouton]) for design→contract proposal — POST Step-3 master update (Libellé TEXT property + governed preferredValues) — 002-governed-icons-button Phase 6.",
+  "dumpVersion": "1.6"
  },
- "_variables": {
-  "color/bleu": {
-   "type": "COLOR",
-   "value": "#143a84"
+ "_degradations": [
+  {
+   "code": "text-channel-unsupported",
+   "nodePath": "Bouton:Property 1=Default/Contactez-nous",
+   "message": "text channel(s) with no dump v1 projection: textCase UPPER — typography carries (fontSize, fontStyle, style identity) only"
   },
-  "color/orange": {
+  {
+   "code": "text-channel-unsupported",
+   "nodePath": "Bouton:Property 1=Orange/Contactez-nous",
+   "message": "text channel(s) with no dump v1 projection: textCase UPPER — typography carries (fontSize, fontStyle, style identity) only"
+  },
+  {
+   "code": "text-channel-unsupported",
+   "nodePath": "Bouton:Property 1=Blanc/Contactez-nous",
+   "message": "text channel(s) with no dump v1 projection: textCase UPPER — typography carries (fontSize, fontStyle, style identity) only"
+  },
+  {
+   "code": "text-channel-unsupported",
+   "nodePath": "Bouton:Property 1=Outline blanc/Contactez-nous",
+   "message": "text channel(s) with no dump v1 projection: textCase UPPER — typography carries (fontSize, fontStyle, style identity) only"
+  },
+  {
+   "code": "text-channel-unsupported",
+   "nodePath": "Bouton:Property 1=Link/Contactez-nous",
+   "message": "text channel(s) with no dump v1 projection: textCase UPPER — typography carries (fontSize, fontStyle, style identity) only"
+  },
+  {
+   "code": "text-channel-unsupported",
+   "nodePath": "Bouton:Property 1=Outilne noir/Contactez-nous",
+   "message": "text channel(s) with no dump v1 projection: textCase UPPER — typography carries (fontSize, fontStyle, style identity) only"
+  }
+ ],
+ "_variables": {
+  "color/noir-bleute": {
    "type": "COLOR",
-   "value": "#f98a0b"
+   "value": "#26282c"
   },
   "color/blanc": {
    "type": "COLOR",
    "value": "#ffffff"
   },
-  "color/noir-bleute": {
+  "color/orange": {
    "type": "COLOR",
-   "value": "#26282c"
-  },
-  "color/beige": {
-   "type": "COLOR",
-   "value": "#f6d49f"
-  },
-  "color/beige-clair": {
-   "type": "COLOR",
-   "value": "#fff3e2"
-  },
-  "color/bleu-gris": {
-   "type": "COLOR",
-   "value": "#9ba4b5"
-  },
-  "color/bleu-clair": {
-   "type": "COLOR",
-   "value": "#f4f6fa"
-  },
-  "color/beige-clair-80": {
-   "type": "COLOR",
-   "value": "#fff3e2cc"
-  },
-  "color/noir": {
-   "type": "COLOR",
-   "value": "#37373b"
-  },
-  "color/orange-12": {
-   "type": "COLOR",
-   "value": "#f494001f"
-  },
-  "color/orange-42": {
-   "type": "COLOR",
-   "value": "#f494006b"
-  },
-  "color/nav-state": {
-   "type": "STRING",
-   "value": "Transparent"
-  },
-  "opacity/base": {
-   "type": "FLOAT",
-   "value": 100
+   "value": "#f98a0b"
   }
  },
- "_degradations": [],
  "Bouton": {
   "setName": "Bouton",
   "type": "COMPONENT_SET",
   "nodeId": "6:122",
   "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-  "boolDefaults": {
-   "Icône gauche": false,
-   "Icône droite": false
-  },
   "variants": [
    {
     "name": "Property 1=Default",
@@ -101,13 +83,14 @@
     },
     "children": [
      {
-      "name": "cil:arrow-left",
+      "name": "arrow-left",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône gauche"
+       "visible": "Icône gauche",
+       "mainComponent": "Glyphe gauche"
       },
-      "instanceOf": "cil:arrow-left",
+      "instanceOf": "arrow-left",
       "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
       "bbox": {
        "width": 20,
@@ -122,21 +105,24 @@
        "fontSize": 16,
        "fontStyle": "Medium",
        "lineHeight": 22,
-       "textCase": "UPPER",
        "fillVar": "color/blanc"
       },
       "fill": {
        "var": "color/blanc"
+      },
+      "propRefs": {
+       "characters": "Libellé"
       }
      },
      {
-      "name": "cil:arrow-right",
+      "name": "arrow-right",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône droite"
+       "visible": "Icône droite",
+       "mainComponent": "Glyphe droite"
       },
-      "instanceOf": "cil:arrow-right",
+      "instanceOf": "arrow-right",
       "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
       "bbox": {
        "width": 20,
@@ -171,13 +157,14 @@
     },
     "children": [
      {
-      "name": "cil:arrow-left",
+      "name": "arrow-left",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône gauche"
+       "visible": "Icône gauche",
+       "mainComponent": "Glyphe gauche"
       },
-      "instanceOf": "cil:arrow-left",
+      "instanceOf": "arrow-left",
       "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
       "bbox": {
        "width": 20,
@@ -192,21 +179,24 @@
        "fontSize": 16,
        "fontStyle": "Medium",
        "lineHeight": 22,
-       "textCase": "UPPER",
        "fillVar": "color/blanc"
       },
       "fill": {
        "var": "color/blanc"
+      },
+      "propRefs": {
+       "characters": "Libellé"
       }
      },
      {
-      "name": "cil:arrow-right",
+      "name": "arrow-right",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône droite"
+       "visible": "Icône droite",
+       "mainComponent": "Glyphe droite"
       },
-      "instanceOf": "cil:arrow-right",
+      "instanceOf": "arrow-right",
       "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
       "bbox": {
        "width": 20,
@@ -241,13 +231,14 @@
     },
     "children": [
      {
-      "name": "cil:arrow-left",
+      "name": "arrow-left",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône gauche"
+       "visible": "Icône gauche",
+       "mainComponent": "Glyphe gauche"
       },
-      "instanceOf": "cil:arrow-left",
+      "instanceOf": "arrow-left",
       "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
       "bbox": {
        "width": 20,
@@ -262,21 +253,24 @@
        "fontSize": 16,
        "fontStyle": "Medium",
        "lineHeight": 22,
-       "textCase": "UPPER",
        "fillVar": "color/noir-bleute"
       },
       "fill": {
        "var": "color/noir-bleute"
+      },
+      "propRefs": {
+       "characters": "Libellé"
       }
      },
      {
-      "name": "cil:arrow-right",
+      "name": "arrow-right",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône droite"
+       "visible": "Icône droite",
+       "mainComponent": "Glyphe droite"
       },
-      "instanceOf": "cil:arrow-right",
+      "instanceOf": "arrow-right",
       "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
       "bbox": {
        "width": 20,
@@ -310,16 +304,16 @@
      "var": "color/blanc"
     },
     "strokeWeight": 2,
-    "strokeAlign": "INSIDE",
     "children": [
      {
-      "name": "cil:arrow-left",
+      "name": "arrow-left",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône gauche"
+       "visible": "Icône gauche",
+       "mainComponent": "Glyphe gauche"
       },
-      "instanceOf": "cil:arrow-left",
+      "instanceOf": "arrow-left",
       "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
       "bbox": {
        "width": 20,
@@ -334,21 +328,24 @@
        "fontSize": 16,
        "fontStyle": "Medium",
        "lineHeight": 22,
-       "textCase": "UPPER",
        "fillVar": "color/blanc"
       },
       "fill": {
        "var": "color/blanc"
+      },
+      "propRefs": {
+       "characters": "Libellé"
       }
      },
      {
-      "name": "cil:arrow-right",
+      "name": "arrow-right",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône droite"
+       "visible": "Icône droite",
+       "mainComponent": "Glyphe droite"
       },
-      "instanceOf": "cil:arrow-right",
+      "instanceOf": "arrow-right",
       "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
       "bbox": {
        "width": 20,
@@ -381,13 +378,14 @@
     "cornerRadius": 32,
     "children": [
      {
-      "name": "cil:arrow-left",
+      "name": "arrow-left",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône gauche"
+       "visible": "Icône gauche",
+       "mainComponent": "Glyphe gauche"
       },
-      "instanceOf": "cil:arrow-left",
+      "instanceOf": "arrow-left",
       "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
       "bbox": {
        "width": 20,
@@ -402,21 +400,24 @@
        "fontSize": 16,
        "fontStyle": "Medium",
        "lineHeight": 22,
-       "textCase": "UPPER",
        "fillVar": "color/noir-bleute"
       },
       "fill": {
        "var": "color/noir-bleute"
+      },
+      "propRefs": {
+       "characters": "Libellé"
       }
      },
      {
-      "name": "cil:arrow-right",
+      "name": "arrow-right",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône droite"
+       "visible": "Icône droite",
+       "mainComponent": "Glyphe droite"
       },
-      "instanceOf": "cil:arrow-right",
+      "instanceOf": "arrow-right",
       "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
       "bbox": {
        "width": 20,
@@ -450,16 +451,16 @@
      "var": "color/noir-bleute"
     },
     "strokeWeight": 2,
-    "strokeAlign": "INSIDE",
     "children": [
      {
-      "name": "cil:arrow-left",
+      "name": "arrow-left",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône gauche"
+       "visible": "Icône gauche",
+       "mainComponent": "Glyphe gauche"
       },
-      "instanceOf": "cil:arrow-left",
+      "instanceOf": "arrow-left",
       "instanceKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
       "bbox": {
        "width": 20,
@@ -474,21 +475,24 @@
        "fontSize": 16,
        "fontStyle": "Medium",
        "lineHeight": 22,
-       "textCase": "UPPER",
        "fillVar": "color/noir-bleute"
       },
       "fill": {
        "var": "color/noir-bleute"
+      },
+      "propRefs": {
+       "characters": "Libellé"
       }
      },
      {
-      "name": "cil:arrow-right",
+      "name": "arrow-right",
       "type": "INSTANCE",
       "hidden": true,
       "propRefs": {
-       "visible": "Icône droite"
+       "visible": "Icône droite",
+       "mainComponent": "Glyphe droite"
       },
-      "instanceOf": "cil:arrow-right",
+      "instanceOf": "arrow-right",
       "instanceKey": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
       "bbox": {
        "width": 20,
@@ -497,6 +501,120 @@
      }
     ]
    }
-  ]
+  ],
+  "swapPreferredValues": {
+   "Glyphe gauche": [
+    {
+     "type": "COMPONENT",
+     "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "260b884e25dbeb857d92c788868f075448c25d16"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "4583f5973482fbd560e3a81035d3225b04410045"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+    }
+   ],
+   "Glyphe droite": [
+    {
+     "type": "COMPONENT",
+     "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "260b884e25dbeb857d92c788868f075448c25d16"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "4583f5973482fbd560e3a81035d3225b04410045"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+    },
+    {
+     "type": "COMPONENT",
+     "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+    }
+   ]
+  },
+  "boolDefaults": {
+   "Icône gauche": false,
+   "Icône droite": false
+  }
  }
 }

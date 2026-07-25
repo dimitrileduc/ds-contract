@@ -1,0 +1,23 @@
+{
+  "id": "ds.select",
+  "name": "Select",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "atom",
+  "description": "Piqueray select. Extracted from the owner-validated Figma master « Select » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nWrapper pattern (same spirit as Checkbox): the box is presentational, a REAL native <select> inside carries the value and the accessibility, and the Piqueray chevron is a sibling icon — a native <select> cannot hold a custom chevron, so the wrapper gives the exact look AND native semantics. The consumer (Field molecule / form) supplies the real options; the atom shows « Valeur » as the placeholder.\n\nThe chevron is the governed registry icon `chevron-down` (size 24, an instance in the master — reused, never copied). Box styling binds to Piqueray primitives where a token exists; off-scale values (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel. Atom scope only — no label, no state axes (the Field molecule owns them).",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "3063f8a5ed587927ede2ae021433c705656acff5"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "default": "Texte de saisie"
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

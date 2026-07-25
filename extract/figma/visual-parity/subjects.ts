@@ -45,6 +45,35 @@ export interface ContractSubject {
   contractId: string;
   fileKey: string;
   setNodeId: string;
+  /** The fixed px width to render the code side at, before screenshot + box
+   *  measurement — matching a FIXED-width master frame (e.g. a content-width
+   *  atom whose master is a 280px design-time frame). Omit for hug/
+   *  content-width subjects, whose code side renders at its natural width
+   *  (unchanged default — the master IS content-width too, so no container
+   *  is needed for an honest size match). */
+  renderWidth?: number;
+  /** Compare against a REAL page instance instead of the set's default-
+   *  variant render (002-governed-icons-button, D10/T048). A component
+   *  SET's variant node always renders its component properties' DEFAULT
+   *  values via the images API — there is no way to fetch "the master but
+   *  with iconLeft=true", because that combination exists nowhere as a
+   *  distinct node. An `instanceOverride` instead points at a real,
+   *  already-customized page instance (found by the positional scan) whose
+   *  OWN render becomes the "figma" side — the only honest way to get a
+   *  pixel reference for a non-default property combination. */
+  instanceOverride?: {
+    /** The page-instance node id — its rendered PNG becomes the Figma side. */
+    nodeId: string;
+    /** Variant name driving axis substitution, same spelling as a set
+     *  variant's own name (e.g. "Property 1=Link") — flows through the
+     *  existing planVariant exactly like a real set variant would. */
+    variantName: string;
+    /** Boolean/enum prop values a variant NAME cannot carry (BOOLEAN
+     *  visibility, INSTANCE_SWAP glyph choice — neither is a variant axis)
+     *  — merged onto the variant-derived plan. Every value here must be the
+     *  REAL, scanned state of `nodeId`, never invented. */
+    propPreset: Record<string, string | boolean>;
+  };
 }
 
 export type ParitySubject = DumpSubject | ContractSubject;
@@ -54,7 +83,28 @@ const CBDS = 'WofZT8xaxXuc2Q6Je9S4XE';
  *  51-component demo file `8nim1d0IPnehMxA7B7SYxC`, now deleted). */
 const PIQUERAY = 'd9FYAUcqdcNtsuaMgLefvJ';
 
-export const PARITY_SUBJECTS: ParitySubject[] = [
+/**
+ * LEGACY / QUARANTINED — NOT run by the live gate (kept for reference and easy
+ * re-enable, never silently dropped — the honesty rule). These are brownfield-
+ * pilot and foreign-kit subjects (CBDS, Shoelace, Eventz) anchored in EXTERNAL
+ * Figma files this project neither owns nor ships — standing coverage from
+ * before the Piqueray reconversion, none of it part of the Piqueray system.
+ *
+ * Why quarantined (002-governed-icons-button closure, 2026-07-24):
+ *  1. Not Piqueray — the shipping system is the Button on the Piqueray file;
+ *     these foreign kits are unrelated to any Piqueray spec.
+ *  2. External files whose Figma image-render quota we do NOT control. The
+ *     Eventz file (E7oXr98i91HYQGZxA2USOQ) is, as of this writing, in a REAL
+ *     multi-day rate-limit penalty (Retry-After counts down 1:1 in real time,
+ *     ~3.7 days) — one dead external file was blocking the WHOLE summary
+ *     through no fault of the Piqueray conversion.
+ *  3. The live gate's job for spec 002 is the Piqueray icon visual coverage
+ *     (FR-021), proven by the two PARITY_SUBJECTS below on the healthy file.
+ *
+ * Re-enable one by moving its entry back into PARITY_SUBJECTS and re-running
+ * `-- --write-baseline` once its external file is reachable again.
+ */
+export const LEGACY_SUBJECTS: ParitySubject[] = [
   // ---- CBDS fixtures (the owner's file) -----------------------------------
   {
     id: 'cbds-button-brand-primary',
@@ -111,7 +161,12 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     fileKey: 'E7oXr98i91HYQGZxA2USOQ',
     setNodeId: '2313:42',
   },
+];
 
+// ---- LIVE GATE — the Piqueray subjects (the ONLY ones the standing gate and
+// the committed baseline.json cover). Everything above is quarantined in
+// LEGACY_SUBJECTS (see the why-note there).
+export const PARITY_SUBJECTS: ParitySubject[] = [
   // ---- catalog contracts anchored in the Piqueray file ---------------------
   // The four demo subjects (badge, checkbox, switch, heading) were REMOVED with
   // their contracts in US1 — the catalog holds the Button only. `button` keeps
@@ -119,4 +174,93 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // entirely different canvas. Anchors mirror contracts/button.contract.json
   // `anchors.figma` (fileKey + nodeId of the « Bouton » COMPONENT_SET).
   { id: 'button', label: 'Button (Piqueray)', kind: 'contract', contractId: 'ds.button', fileKey: PIQUERAY, setNodeId: '6:122' },
+  // Checkbox (004-input-atoms-categories) — a COMPONENT_SET (Coché=Non/Oui) at a
+  // FIXED 20×20, so its preview render and the master render are the same size:
+  // a meaningful pixel comparison (Coché=Non matches at 0.00%).
+  { id: 'checkbox', label: 'Checkbox (Piqueray)', kind: 'contract', contractId: 'ds.checkbox', fileKey: PIQUERAY, setNodeId: '2053:1256' },
+  // Input / Textarea (004) — content-width bricks: the master is a FIXED-width
+  // frame (280px) but real usage is layoutSizingHorizontal:FILL (the Field
+  // molecule stretches them, audit 003), so a bare atom's NATURAL render is
+  // narrower than the master — a pure-width mismatch img.ts (by design) never
+  // resamples away, not a styling defect. `renderWidth: 280` renders the code
+  // side inside a fixed-280px container (the width a FILL atom takes under a
+  // Field), so the diff judges box styling (border/padding/color/font) at a
+  // shared size instead of two different boxes. Both match at 0.00%. Height is
+  // untouched — Input HUGs to 48px, Textarea carries a literal 128px height,
+  // both already master-height; only width needed the fix. (Select is a THIRD
+  // such brick but is NOT a subject — a native <select> drops its option text
+  // in headless Chromium; see its named-exclusion note just below.)
+  {
+    id: 'input',
+    label: 'Input (Piqueray)',
+    kind: 'contract',
+    contractId: 'ds.input',
+    fileKey: PIQUERAY,
+    setNodeId: '2053:1245',
+    renderWidth: 280, // master absoluteBoundingBox 280×48 (REST nodes, read-only)
+  },
+  {
+    id: 'textarea',
+    label: 'Textarea (Piqueray)',
+    kind: 'contract',
+    contractId: 'ds.textarea',
+    fileKey: PIQUERAY,
+    setNodeId: '2053:1247',
+    renderWidth: 280, // master absoluteBoundingBox 280×128 — height already literal-pinned
+  },
+  // Select is DELIBERATELY NOT a pixel subject (004, named exclusion). At
+  // renderWidth 280px its box/border/chevron match, BUT a native <select> does
+  // NOT render its selected-option TEXT in headless Chromium (this harness's
+  // renderer) — the "ours"/code side comes up empty while Figma shows
+  // « Texte de saisie ». The code is correct (it emits <select><option>{value},
+  // and the dashboard's real-browser render shows the text); only headless
+  // drops the option display. The masked score hides the gap (text rects
+  // excluded), so a Select triptych would read as a false failure. Input and
+  // Textarea KEEP their pixel coverage — <input>/<textarea> DO render their text
+  // headless (both 0.00%). The Select's text fidelity is covered by build +
+  // eval + deterministic-roundtrip, its box/chevron by the figma-script canvas
+  // render — not by pixels.
+  // Icon visual coverage (002-governed-icons-button, D10/T048 — the proof
+  // 001 deferred to v1.3, commit 38aee13). NOT one subject per icon: a bare
+  // icon master has no contract of its own (D1 — the registry is the only
+  // governed identity; icons are pure SVG asset injection, never anatomy),
+  // so `proposeFromDump` over a standalone icon vector produces an empty
+  // background-color <div>, not the drawn shape (verified live) — comparing
+  // that against Figma's real render would be permanent, meaningless noise,
+  // not honest coverage. Instead: ONE subject exercising the REAL code path
+  // (Button's `ICONS[glyph]` SVG injection) against a REAL page instance
+  // that already shows both placements — a component SET's variant node
+  // only ever renders its properties' DEFAULTS via the images API, so a
+  // real customized instance is the only honest Figma-side reference for a
+  // non-default combination (instanceOverride, see subjects.ts doc).
+  // Re-pointed (004): the original instance (230:573) was removed from the live
+  // file by spec 003's work — a coexistence break, not a size issue. Re-scanned
+  // live (read-only) for a current STANDALONE page instance showing both icons:
+  // 237:1500 on the "Pages" page — variant « Outilne noir », « Motifs
+  // disponibles », Glyphe gauche 230:585 = pdf, Glyphe droite 230:599 =
+  // download (all read from the instance, never invented). pdf+download is the
+  // same pairing every real "both icons shown" instance carries file-wide.
+  {
+    id: 'button-with-icons',
+    label: 'Button with icons (Piqueray, both placements)',
+    kind: 'contract',
+    contractId: 'ds.button',
+    fileKey: PIQUERAY,
+    setNodeId: '6:122',
+    instanceOverride: {
+      nodeId: '237:1500',
+      variantName: 'Property 1=Outilne noir',
+      // children matches the instance's OWN scanned text override — without
+      // it the two sides render different widths for a reason that has
+      // nothing to do with icon coverage (our default "Contactez-nous" vs
+      // the instance's real label).
+      propPreset: {
+        children: 'Motifs disponibles',
+        iconLeft: true,
+        iconRight: true,
+        iconLeftGlyph: 'pdf',
+        iconRightGlyph: 'download',
+      },
+    },
+  },
 ];

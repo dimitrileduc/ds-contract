@@ -24,6 +24,10 @@ import { figmaToken } from '../../fidelity-matrix/scripts/env.js';
 
 const API_DELAY_MS = 700;
 const IDS_PER_CALL = 30;
+/** A 429 past this gets refused, never slept through — a real quota reset
+ *  can be hours-to-days; sleeping through it silently just LOOKS like a
+ *  hung process. Fail loudly with the requested duration named instead. */
+const RETRY_AFTER_CAP_MS = 60_000;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -53,6 +57,11 @@ async function figmaFetch(url: string): Promise<Response> {
   let res = await fetch(url, { headers });
   if (res.status === 429) {
     const wait = Number(res.headers.get('retry-after') ?? '5') * 1000;
+    if (wait > RETRY_AFTER_CAP_MS) {
+      throw new Error(
+        `figma API 429 — server asked to wait ${Math.round(wait / 1000)}s, over the ${RETRY_AFTER_CAP_MS / 1000}s cap. Refusing to sleep through it silently: wait for the quota to reset, then re-run.`,
+      );
+    }
     console.log(`    figma API 429 — backing off ${wait}ms`);
     await sleep(wait);
     res = await fetch(url, { headers });

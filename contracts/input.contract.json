@@ -1,0 +1,77 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.input",
+  "name": "Input",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "atom",
+  "description": "Piqueray single-line text input. Extracted from the owner-validated Figma master « Input » (DS · Atomes, built in spec 003), reviewed and adopted — not authored.\n\nThe shown text binds to the « Valeur » TEXT property EXACTLY as the Button's label binds to « Libellé » — one bound text prop, drawn on the canvas, carried in code. Because the code element is a native <input> (a void element), that same value renders through defaultValue on a self-closing tag rather than as a child.\n\nBox styling (white fill, blue-grey 1px border, square corners, 12px padding, 14px Regular Montserrat, text color noir) binds to Piqueray primitives where a token exists; the values the token scale does not carry (12px padding, 1px border, 24px line-height, square 0 radius) ride the honest `literals` channel, named rather than force-fit.\n\nAtom scope only: no label, no help text, no required/disabled/state axes — the master exposes none (the Field molecule owns them).",
+  "semantics": {
+    "element": "input",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "value",
+      "type": "text",
+      "default": "Texte de saisie",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Valeur"
+        },
+        "code": {
+          "prop": "value"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "attrs": {
+        "type": "text"
+      },
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "align": "center"
+      },
+      "tokens": {
+        "background-color": "{color.blanc}",
+        "border-color": "{color.bleu-gris}",
+        "color": "{color.noir}",
+        "font-family": "{font.family.montserrat}",
+        "font-size": "{font.size.14}",
+        "font-weight": "{font.weight.regular}"
+      },
+      "literals": {
+        "padding-block": "12px",
+        "padding-inline": "12px",
+        "border-width": "1px",
+        "border-radius": "0px",
+        "line-height": "24px"
+      },
+      "parts": {
+        "texteDeSaisie": {
+          "element": "span",
+          "content": {
+            "prop": "value"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
+      "nodeId": "2053:1245",
+      "dumpedAt": "2026-07-24"
+    },
+    "code": {
+      "importPath": "src/components/Input",
+      "export": "Input"
+    }
+  }
+}

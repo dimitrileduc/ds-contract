@@ -19,10 +19,11 @@
  *      bindings ("2nd paragraph" → `p2ndParagraph`, deterministic "p"
  *      prefix) with the named note; the figma binding keeps the original
  *      spelling; the referee is clean and all four surfaces emit.
- *   4. figma-script referee — emit-figma-script calls validateContract: an
- *      invalid contract refuses BY NAME on the canvas surface exactly like
- *      react/html/react-inline (before the batch it was the one emitter that
- *      still emitted sync scripts for referee-violating sets).
+ *
+ * A 4th pin (emit-figma-script referees invalid contracts like the other
+ * three emitters) used to live here too; it never replayed a class fixture
+ * like 1-3 above and its own claim shouldn't depend on section 1's ds.avatar
+ * gap — moved to figma-script-referee-check.ts (002-governed-icons-button).
  *
  * Node shell over pure core functions — the same split as every receipt in
  * extract/figma/. Reads the repo and the committed fixtures; writes nothing.
@@ -273,27 +274,10 @@ console.log('\n3. prop-binding-not-camelcase (prop-binding-not-camelcase-note.du
 // 4. figma-script referee — invalid contracts refuse BY NAME on the canvas
 // ---------------------------------------------------------------------------
 
-console.log('\n4. figma-script referee (emit-figma-script calls validateContract)');
-{
-  // A contract that is schema-valid but referee-invalid: visibleWhen points
-  // at a prop that does not exist — exactly the shape the census found the
-  // canvas surface silently emitting.
-  const badge = repoContracts.get('ds.badge')!;
-  const invalid = ContractSchema.parse(JSON.parse(JSON.stringify(badge))) as Contract;
-  (invalid.anatomy.root as { visibleWhen?: { prop: string } }).visibleWhen = { prop: 'nonexistent' };
-  let refusal: string | null = null;
-  try {
-    emitFigmaScript(invalid, { tokens: { ...repoTrees, brands }, icons, contracts: repoContracts });
-  } catch (e) {
-    refusal = e instanceof Error ? e.message : String(e);
-  }
-  check('emitFigmaScript REFUSES the invalid contract (no sync script emitted)', refusal !== null);
-  check('the refusal is NAMED with the emitReact wording ("Refused — 1 contract violation(s)")', refusal?.startsWith('Refused — 1 contract violation(s)') === true);
-  check('the violation names the part and prop (visibleWhen references unknown prop "nonexistent")', refusal?.includes('visibleWhen references unknown prop "nonexistent"') === true);
-  // And the valid original still emits byte-for-byte the same script.
-  const script = emitFigmaScript(badge, { tokens: { ...repoTrees, brands }, icons, contracts: repoContracts });
-  check('the VALID repo contract still emits its sync script (golden untouched)', script.length > 0 && script.includes('ds.badge'));
-}
+// (4. figma-script referee moved to figma-script-referee-check.ts,
+// 002-governed-icons-button D9.4 — it never replayed a class fixture like
+// 1-3 above, and entangling it here meant its OWN claim couldn't run
+// independently of section 1's still-blocked ds.avatar dependency.)
 
 // ---------------------------------------------------------------------------
 

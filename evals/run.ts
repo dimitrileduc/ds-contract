@@ -39,17 +39,6 @@ import {
 import { legacyCases } from './legacy-cases.js';
 
 const cases: Case[] = [
-  // ---------------------------------------------------------------------------
-  // FAILING ON PURPOSE — blocked on the first Figma sync, not on eval wiring.
-  //
-  // These three need a CLEAN parity baseline. `npm run parity` is red because
-  // the Piqueray token set has not been pushed to Figma yet (45 tokens exist in
-  // tokens/ with no Figma variable, 1 value mismatch, 1 authored text-prop
-  // drift). That is a live, temporary state we intend to resolve — NOT an
-  // absent capability — so these cases are neither quarantined (which would
-  // claim Piqueray structurally cannot run them) nor baselined (which would
-  // turn a real pending gap into a green tick). They stay red and named.
-  // ---------------------------------------------------------------------------
   {
     id: 'baseline-parity-clean',
     claim: 'C3-detection',
@@ -83,14 +72,17 @@ const cases: Case[] = [
     run: () => {
       // 1. Code drifts ahead.
       replaceInFile(BTN_TSX, VARIANT_DECL, `${VARIANT_DECL}\n  iconOnly?: boolean;`);
-      replaceInFile(BTN_TSX, "{ variant = 'default',", "{ variant = 'default',\n    iconOnly = false,");
+      // 002-governed-icons-button: v1.3's extra destructured props push the
+      // generator's param block onto multiple lines — anchor on the stable
+      // `variant = 'default',` line itself, not the preceding brace.
+      replaceInFile(BTN_TSX, "    variant = 'default',", "    variant = 'default',\n    iconOnly = false,");
       if (parity().status === 0) throw new Error('Drift not detected');
       const patch = expectFinding(readReport(), 'code', 'ahead', 'Button.iconOnly').proposedPatch;
       if (!patch) throw new Error('No promotion patch proposed');
       // 2. Promote: apply the differ's own patch to the contract.
       editJson(CONTRACT, (c) => {
         c.props.push(patch);
-        c.version = '1.2.0';
+        c.version = '1.4.0';
       });
       // 3. Regenerate code from the amended contract.
       if (generate().status !== 0) throw new Error('Regeneration after promotion failed');
@@ -102,6 +94,184 @@ const cases: Case[] = [
         throw new Error(`Code findings remain: ${JSON.stringify(after)}`);
       expectFinding(after, 'figma', 'behind', 'Button.IconOnly');
       if (after.length !== 1) throw new Error(`Unexpected extra findings: ${JSON.stringify(after)}`);
+    },
+  },
+  // ---------------------------------------------------------------------------
+  // 002-governed-icons-button — the icon registry's three-way guarantee (C3)
+  // and its build-time refusal (C2).
+  // ---------------------------------------------------------------------------
+  {
+    id: 'detect-icon-registry-divergence',
+    claim: 'C3-detection',
+    run: () => {
+      // Seed a divergence on ONE side only (remove "cart" from the registry;
+      // its code asset and its canvas swap-menu presence are untouched) — the
+      // icons axis must catch it from BOTH directions at once (FR-007: never
+      // silent, whichever side actually diverged).
+      editJson('contracts/icons.registry.json', (r) => {
+        r.icons = r.icons.filter((i: { name: string }) => i.name !== 'cart');
+      });
+      if (parity().status === 0) throw new Error('Seeded icon-registry divergence not detected');
+      const report = readReport();
+      expectFinding(report, 'icons', 'ahead', 'assets/icons/cart.svg');
+      expectFinding(report, 'icons', 'ahead', 'figma/cart');
+    },
+  },
+  {
+    id: 'refuse-unregistered-icon-enum',
+    claim: 'C2-refusal',
+    run: () => {
+      // An INSTANCE_SWAP-bound enum that overlaps the registry (so it reads as
+      // an icon-choice prop) but names a value the registry doesn't have —
+      // refused BY NAME (FR-008 edge), never silently generated.
+      editJson(CONTRACT, (c) => {
+        c.props.push({
+          name: 'testGlyph',
+          description: 'Eval fixture — an icon-choice prop with an out-of-registry value.',
+          type: { enum: ['arrow-left', 'not-a-real-icon'] },
+          default: 'arrow-left',
+          bindings: {
+            figma: { kind: 'INSTANCE_SWAP', property: 'Test Glyph', values: { 'arrow-left': 'arrow-left', 'not-a-real-icon': 'not-a-real-icon' } },
+            code: { prop: 'testGlyph' },
+          },
+        });
+      });
+      const r = generate();
+      if (r.status === 0) throw new Error('Generator accepted an INSTANCE_SWAP enum value outside the icon registry');
+      if (!r.out.includes('not-a-real-icon')) throw new Error(`Refusal did not name the offending value: ${r.out}`);
+    },
+  },
+  {
+    id: 'lower-icon-swap-and-visibility-into-props',
+    claim: 'C5-extraction',
+    run: () => {
+      // D5: propose-figma.ts's own extraction gap, closed — boolDefaults +
+      // propRefs.visible recover boolean props, and swapPreferredValues +
+      // the icon registry recover INSTANCE_SWAP enum props (never a slot —
+      // there is no per-icon contract by design, D1). Runs the REAL CLI over
+      // the REAL committed post-cleanup dump — rides the same fixture as D9.
+      const r = run(TSX, ['extract/figma/propose.ts', 'extract/figma/fixtures/piqueray-button.dump.json']);
+      if (r.status !== 0) throw new Error(`extract:figma failed:\n${r.out}`);
+      const proposed = JSON.parse(
+        readFileSync(path.join(SCRATCH, 'extract', 'out', 'figma', 'bouton.contract.proposed.json'), 'utf8'),
+      );
+      const props = proposed.props as Array<{
+        name: string;
+        type?: unknown;
+        default?: unknown;
+        bindings: { figma: { kind: string; property: string; values?: Record<string, string> } };
+      }>;
+
+      const boolLeft = props.find((p) => p.bindings.figma.kind === 'BOOLEAN' && p.bindings.figma.property === 'Icône gauche');
+      if (!boolLeft || boolLeft.default !== false) {
+        throw new Error(`expected a BOOLEAN prop for "Icône gauche" defaulting false (dump v1.5 boolDefaults) — got ${JSON.stringify(boolLeft)}`);
+      }
+
+      const swapLeft = props.find((p) => p.bindings.figma.kind === 'INSTANCE_SWAP' && p.bindings.figma.property === 'Glyphe gauche');
+      if (!swapLeft) throw new Error(`expected an INSTANCE_SWAP enum prop bound to "Glyphe gauche" — props: ${props.map((p) => p.name).join(', ')}`);
+      if (swapLeft.default !== 'arrow-left') {
+        throw new Error(`expected default "arrow-left" (the observed default-variant instance) — got ${JSON.stringify(swapLeft.default)}`);
+      }
+      const enumValues = (swapLeft.type as { enum: string[] }).enum;
+      if (enumValues.length !== 13 || !enumValues.includes('cart') || enumValues.includes('mail') || enumValues.includes('external-link')) {
+        throw new Error(`expected the enum to equal the 13-icon registry exactly (no mail/external-link) — got: ${enumValues.join(', ')}`);
+      }
+      if (swapLeft.bindings.figma.values?.['arrow-left'] !== 'arrow-left') {
+        throw new Error(`expected bindings.figma.values to map canonical "arrow-left" → figma.componentName "arrow-left" — got ${JSON.stringify(swapLeft.bindings.figma.values)}`);
+      }
+
+      const iconPart = Object.values(proposed.anatomy.root.parts as Record<string, { icon?: { asset?: string; size?: number } }>).find(
+        (p) => p.icon?.asset === `{${swapLeft.name}}`,
+      );
+      if (!iconPart) throw new Error(`expected an anatomy part with icon.asset "{${swapLeft.name}}" (the enum-substitution convention) — never a slot`);
+      if (iconPart.icon?.size !== 20) throw new Error(`expected icon.size 20 (the observed instance bbox) — got ${iconPart.icon?.size}`);
+    },
+  },
+  {
+    // Revived from evals/legacy-cases.ts (D9.4): census guard 4 — the census
+    // found the canvas surface was the one emitter that never called
+    // validateContract, so every referee-violating set still emitted a sync
+    // script. Extracted to its own standalone script (figma-script-referee-
+    // check.ts) and re-homed onto ds.button — the claim itself was never
+    // demo-specific (ds.badge no longer exists post-reconversion); it was
+    // quarantined only because the receipt it rode also needed ds.avatar for
+    // an unrelated section (still blocked — the rest of that receipt stays
+    // quarantined in legacy-cases.ts, updated reason).
+    id: 'figma-script-referees-invalid-contracts',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['extract/figma/gauntlet/figma-script-referee-check.ts']);
+      if (r.status !== 0) throw new Error(`figma-script referee receipt failed:\n${r.out}`);
+      for (const line of [
+        '✔ emitFigmaScript REFUSES the invalid contract (no sync script emitted)',
+        '✔ the refusal is NAMED with the emitReact wording ("Refused — 1 contract violation(s)")',
+        '✔ the violation names the part and prop (visibleWhen references unknown prop "nonexistent")',
+        '✔ the VALID repo contract still emits its sync script (golden untouched)',
+      ]) {
+        if (!r.out.includes(line)) throw new Error(`missing check: ${line}`);
+      }
+    },
+  },
+  {
+    // Revived from evals/legacy-cases.ts (D9.4), re-pointed to real Piqueray
+    // facts instead of the deleted demo's Button.Loading/Label/size and
+    // Slider.value: 3 of the original 5 drift classes are testable today
+    // against ds.button's own BOOLEAN prop (iconLeft ↔ "Icône gauche") and
+    // its own generated code. 2 stay out: "figma text default change" needs
+    // an EXISTING TEXT property on the committed canvas snapshot, and
+    // ds.button has none yet (the 001 finding — closes at Step 3, not a
+    // structural gap); "numeric code default drift" needs a numeric prop,
+    // which no Piqueray contract declares (a genuine, not temporary, gap —
+    // inventing one just for this eval would misrepresent the component).
+    id: 'detect-default-and-kind-drift',
+    claim: 'C3-detection',
+    run: () => {
+      const check = (label: string, surface: string, cls: string, subject: string, mutate: () => void, restore: () => void) => {
+        mutate();
+        const r = parity();
+        try {
+          if (r.status === 0) throw new Error(`${label}: NOT detected`);
+          expectFinding(readReport(), surface, cls, subject);
+        } finally {
+          restore();
+        }
+      };
+      const figmaSnap = readFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), 'utf8');
+      check(
+        'figma boolean default flip',
+        'figma',
+        'mismatch',
+        'Button.Icône gauche (default)',
+        () =>
+          editJson(FIGMA_COMPONENTS, (snap) => {
+            const btn = snap.sets.find((x: any) => x.name === FIGMA_SET);
+            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icône gauche'))!;
+            btn.properties[key].defaultValue = true;
+          }),
+        () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap),
+      );
+      check(
+        'figma property kind change',
+        'figma',
+        'mismatch',
+        'Button.Icône gauche (kind)',
+        () =>
+          editJson(FIGMA_COMPONENTS, (snap) => {
+            const btn = snap.sets.find((x: any) => x.name === FIGMA_SET);
+            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icône gauche'))!;
+            btn.properties[key].type = 'TEXT';
+          }),
+        () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap),
+      );
+      const btnSrc = readFileSync(path.join(SCRATCH, BTN_TSX), 'utf8');
+      check(
+        'deleted code default',
+        'code',
+        'mismatch',
+        'Button.variant (default)',
+        () => replaceInFile(BTN_TSX, "variant = 'default',", 'variant,'),
+        () => writeFileSync(path.join(SCRATCH, BTN_TSX), btnSrc),
+      );
     },
   },
   {
@@ -166,6 +336,208 @@ const cases: Case[] = [
     },
   },
   {
+    // v17 category (spec 004): an unknown category value is refused BY NAME —
+    // the Zod enum names the field at the schema layer, and the generator
+    // fails loudly (never silently generates a mis-categorized surface).
+    // Fixture → eval → claim: proven BEFORE any doc/surface relies on category.
+    id: 'refuse-unknown-category',
+    claim: 'C2-refusal',
+    run: () => {
+      let named = false;
+      try {
+        ContractSchema.parse({
+          id: 'ds.categoryfixture', name: 'CategoryFixture', version: '1.0.0',
+          category: 'atome', // out of enum ('atom' | 'molecule' | 'section')
+          description: 'Eval fixture: v17 category refusal.',
+          semantics: { element: 'div' }, props: [],
+          anatomy: { root: { tokens: {} } },
+          anchors: {
+            figma: { fileKey: null, componentSetKey: null },
+            code: { importPath: 'src/components/CategoryFixture', export: 'CategoryFixture' },
+          },
+        });
+      } catch (e) {
+        named = /category/.test(String(e));
+      }
+      if (!named) throw new Error('Unknown category not refused by name at the schema layer');
+      // Build layer: mutating a real contract to a bad category fails the build.
+      editJson(CONTRACT, (c) => { c.category = 'atome'; });
+      if (generate().status === 0) throw new Error('Generator accepted an unknown category value');
+    },
+  },
+  {
+    // v17 category tolerance (spec 004, FR-013): a contract WITHOUT a category
+    // stays valid (category is additive-optional) and its story falls back to
+    // the `Components/` group — the pre-004 behavior, preserved. Backward
+    // compatibility proven as a first-class check, not assumed.
+    id: 'tolerate-contract-without-category',
+    claim: 'C1-determinism',
+    run: () => {
+      const fixture = {
+        id: 'ds.categoryfixture', name: 'CategoryFixture', version: '1.0.0',
+        description: 'Eval fixture: v17 category tolerance.',
+        semantics: { element: 'div' }, props: [],
+        anatomy: { root: { tokens: {} } },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/CategoryFixture', export: 'CategoryFixture' },
+        },
+      };
+      const parsed = ContractSchema.parse(fixture);
+      if (parsed.category !== undefined) throw new Error('absent category must stay undefined (no default)');
+      const { stories } = coreEmitReact(parsed, { tokens: new Set(), icons: new Map(), contracts: new Map() });
+      if (!stories.includes("title: 'Components/CategoryFixture'")) {
+        throw new Error(`no-category contract did not fall back to the Components/ group:\n${stories.slice(0, 400)}`);
+      }
+    },
+  },
+  {
+    // v17 category grouping (spec 004, FR-012/015, SC-002/005): a categorized
+    // contract drives BOTH generated surfaces from the single source —
+    // (1) the Storybook story title is grouped under the category's label, and
+    // (2) the catalog entry carries `category`. Fixture → eval → claim, proven
+    // BEFORE any surface doc relies on the grouping.
+    id: 'category-groups-story-and-catalog',
+    claim: 'C6-theming',
+    run: () => {
+      // (1) Story title mirrors the category via the single label source.
+      const atom = ContractSchema.parse({
+        id: 'ds.categoryfixture', name: 'CategoryFixture', version: '1.0.0', category: 'atom',
+        description: 'Eval fixture: v17 category grouping.',
+        semantics: { element: 'div' }, props: [],
+        anatomy: { root: { tokens: {} } },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/CategoryFixture', export: 'CategoryFixture' },
+        },
+      });
+      const { stories } = coreEmitReact(atom, { tokens: new Set(), icons: new Map(), contracts: new Map() });
+      if (!stories.includes("title: 'Atoms/CategoryFixture'")) {
+        throw new Error(`atom contract did not emit the Atoms/ story group:\n${stories.slice(0, 400)}`);
+      }
+      // (2) The real catalog generator surfaces `category` for a categorized
+      //     contract — Button carries category: "atom".
+      const r = run(TSX, ['scripts/generate-catalog.ts']);
+      if (r.status !== 0) throw new Error(`catalog generation failed:\n${r.out.slice(0, 600)}`);
+      const cat = JSON.parse(readFileSync(path.join(SCRATCH, 'catalog', 'catalog.json'), 'utf8'));
+      const btn = cat.components.find((c: { id: string; category?: string }) => c.id === 'ds.button');
+      if (!btn) throw new Error('Button missing from the generated catalog');
+      if (btn.category !== 'atom') {
+        throw new Error(`catalog dropped the Button category: got ${JSON.stringify(btn.category)}`);
+      }
+    },
+  },
+  {
+    // v17 native form control (spec 004, US1): a root whose element is an HTML
+    // VOID element (input) must render SELF-CLOSING with (a) its root `attrs`
+    // and (b) its text prop wired through `defaultValue` — never
+    // `<input>{children}</input>` (invalid React) and never a dropped value.
+    // The canvas draws that value as a text child (bound to the property,
+    // exactly like the Button label); code collapses it onto the native input.
+    // Regression guard: the demo-era generator rendered nested input PARTS
+    // with attrs, but the ROOT path emitted `{children}` and ignored root
+    // attrs. Fixture → eval → claim.
+    id: 'native-input-root-void-self-closes-with-attrs',
+    claim: 'C1-determinism',
+    run: () => {
+      const fixture = ContractSchema.parse({
+        id: 'ds.inputfixture', name: 'InputFixture', version: '1.0.0',
+        description: 'Eval fixture: native <input> root (void element).',
+        semantics: { element: 'input' },
+        props: [{
+          name: 'value', type: 'text', default: 'x',
+          bindings: { figma: { kind: 'TEXT', property: 'Valeur' }, code: { prop: 'value' } },
+        }],
+        // box root + a content-only text child (canvas draws it); the void
+        // React element drops the child and carries the value via defaultValue.
+        anatomy: { root: { attrs: { type: 'text' }, parts: { text: { element: 'span', content: { prop: 'value' } } } } },
+        anchors: {
+          figma: { fileKey: null, componentSetKey: null },
+          code: { importPath: 'src/components/InputFixture', export: 'InputFixture' },
+        },
+      });
+      const { tsx } = coreEmitReact(fixture, { tokens: new Set(), icons: new Map(), contracts: new Map() });
+      if (tsx.includes('{children}')) throw new Error('void <input> root still renders {children} — invalid for a void element');
+      if (!/<input\b[^>]*\/>/.test(tsx)) throw new Error('void <input> root is not self-closing');
+      if (!tsx.includes('type="text"')) throw new Error('root attrs not rendered into JSX (type="text" missing)');
+      if (!tsx.includes('defaultValue={String(value)}')) throw new Error('the text prop is not wired through defaultValue on the void element');
+    },
+  },
+  {
+    // v17 native form controls (spec 004, US1): the checkbox and select
+    // patterns. A native checkable input reflects its state through
+    // `defaultChecked` even with no declared event (the real DOM checked state
+    // matches the drawn box — never a visual-only fake). A native <select>
+    // wraps its shown value in an <option> (never a raw text child, invalid
+    // HTML). Fixture → eval → claim for the two US1 generator additions.
+    id: 'native-checkbox-and-select-render-correctly',
+    claim: 'C1-determinism',
+    run: () => {
+      const icons = new Map([['check', '<svg/>'], ['chevron-down', '<svg/>']]);
+      // Checkbox: box span + real <input type=checkbox> + custom check glyph.
+      const checkbox = ContractSchema.parse({
+        id: 'ds.checkboxfixture', name: 'CheckboxFixture', version: '1.0.0',
+        description: 'Eval fixture: accessible custom checkbox.',
+        semantics: { element: 'span' },
+        props: [{
+          name: 'checked', type: { enum: ['non', 'oui'] }, default: 'non',
+          bindings: { figma: { kind: 'VARIANT', property: 'Coché', values: { non: 'Non', oui: 'Oui' } }, code: { prop: 'checked' } },
+        }],
+        anatomy: { root: { parts: {
+          input: { element: 'input', attrs: { type: 'checkbox' } },
+          checkGlyph: { icon: { asset: 'check', size: 12 }, visibleWhen: { prop: 'checked', equals: 'oui' } },
+        } } },
+        anchors: { figma: { fileKey: null, componentSetKey: null }, code: { importPath: 'x', export: 'CheckboxFixture' } },
+      });
+      const cbx = coreEmitReact(checkbox, { tokens: new Set(), icons, contracts: new Map() }).tsx;
+      if (!/type="checkbox"/.test(cbx)) throw new Error('checkbox: native input missing');
+      if (!cbx.includes("defaultChecked={checked === 'oui'}")) throw new Error('checkbox: DOM checked not wired from state (a11y fake)');
+      // Select: box div + native <select> (value as option) + chevron sibling.
+      const select = ContractSchema.parse({
+        id: 'ds.selectfixture', name: 'SelectFixture', version: '1.0.0',
+        description: 'Eval fixture: native select in a wrapper.',
+        semantics: { element: 'div' },
+        props: [{
+          name: 'value', type: 'text', default: 'x',
+          bindings: { figma: { kind: 'TEXT', property: 'Valeur' }, code: { prop: 'value' } },
+        }],
+        anatomy: { root: { parts: {
+          valeur: { element: 'select', content: { prop: 'value' } },
+          chevron: { icon: { asset: 'chevron-down', size: 24 } },
+        } } },
+        anchors: { figma: { fileKey: null, componentSetKey: null }, code: { importPath: 'x', export: 'SelectFixture' } },
+      });
+      const sel = coreEmitReact(select, { tokens: new Set(), icons, contracts: new Map() }).tsx;
+      if (!/<option>\{value\}<\/option>/.test(sel)) throw new Error('select: value not wrapped in an <option> (invalid <select> child)');
+      if (/<select[^>]*>\{value\}/.test(sel)) throw new Error('select: raw text child under <select> — invalid HTML');
+    },
+  },
+  {
+    // v17 internal glyph (spec 004, D7): an icon asset a contract consumes
+    // through a FIXED icon.asset (the Checkbox's « check ») is NOT an orphan,
+    // even without a registry entry — it is still Figma-born (exported from the
+    // master's own Vector) and deliberately outside the governed registry. An
+    // asset that is NEITHER registry-listed NOR consumed stays a finding.
+    // Fixture → eval → claim, before any doc calls check an internal glyph.
+    id: 'internal-glyph-consumed-not-orphan',
+    claim: 'C3-detection',
+    run: () => {
+      // The repo ships ds.checkbox consuming assets/icons/check.svg (fixed).
+      if (parity().status === undefined) throw new Error('parity did not run');
+      const findings = readReport();
+      if (findings.some((f) => f.surface === 'icons' && /check\.svg/.test(f.subject))) {
+        throw new Error('check.svg flagged as an orphan despite being consumed by ds.checkbox');
+      }
+      // A genuine orphan (neither registry nor consumed) MUST still be flagged.
+      writeFileSync(path.join(SCRATCH, 'assets', 'icons', 'zzz-orphan-fixture.svg'), '<svg/>\n');
+      parity();
+      const after = readReport();
+      if (!after.some((f) => /zzz-orphan-fixture\.svg/.test(f.subject))) {
+        throw new Error('a genuine orphan asset (not registry, not consumed) is not flagged — the class is too wide');
+      }
+    },
+  },
+  {
     id: 'deterministic-regeneration',
     claim: 'C1-determinism',
     run: () => {
@@ -180,7 +552,10 @@ const cases: Case[] = [
     claim: 'C3-detection',
     run: () => {
       replaceInFile(BTN_TSX, VARIANT_DECL, `${VARIANT_DECL}\n  iconOnly?: boolean;`);
-      replaceInFile(BTN_TSX, "{ variant = 'default',", "{ variant = 'default',\n    iconOnly = false,");
+      // 002-governed-icons-button: v1.3's extra destructured props push the
+      // generator's param block onto multiple lines — anchor on the stable
+      // `variant = 'default',` line itself, not the preceding brace.
+      replaceInFile(BTN_TSX, "    variant = 'default',", "    variant = 'default',\n    iconOnly = false,");
       if (parity().status === 0) throw new Error('Drift not detected');
       const f = expectFinding(readReport(), 'code', 'ahead', 'Button.iconOnly');
       if ((f.proposedPatch as any)?.name !== 'iconOnly') throw new Error('Patch missing/incorrect');
@@ -3687,15 +4062,4 @@ console.log(`\n${passed}/${results.length} evals passed — evals/results.json`)
 console.log(
   `${legacyCases.length} legacy cases quarantined (not run) — Piqueray has no slots / nested instances / repeat collections / multi-root anatomy / dark theme / second brand yet. See evals/REMOVED-CASES.md.`,
 );
-// The three parity-baseline cases are red ON PURPOSE (see the banner above the
-// `cases` array): they are blocked on the first Figma sync, not on a missing
-// capability, so they are neither quarantined nor baselined.
-const parityBlocked = results.filter(
-  (r) => !r.pass && ['baseline-parity-clean', 'baseline-acknowledges-without-failing', 'promotion-converges'].includes(r.id),
-);
-if (parityBlocked.length > 0) {
-  console.log(
-    `${parityBlocked.length} of the ${results.length - passed} failure(s) are the INTENTIONAL parity-baseline block (${parityBlocked.map((r) => r.id).join(', ')}) — they need a clean \`npm run parity\`, which needs the Piqueray token set pushed to Figma.`,
-  );
-}
 process.exit(passed === results.length ? 0 : 1);

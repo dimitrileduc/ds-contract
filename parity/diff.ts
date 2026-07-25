@@ -28,6 +28,7 @@ import {
   slotVisibilityProperty,
   slotsOf,
   statePreviewLabel,
+  walkAnatomy,
   type Contract,
   type Prop,
 } from '../scripts/contract-schema.js';
@@ -36,7 +37,7 @@ import { extractCode, type CodeExtract } from './extract-code.js';
 const ROOT = process.cwd();
 
 interface Finding {
-  surface: 'code' | 'figma' | 'figma-tokens';
+  surface: 'code' | 'figma' | 'figma-tokens' | 'icons';
   classification: 'ahead' | 'behind' | 'mismatch';
   subject: string;
   detail: string;
@@ -362,7 +363,15 @@ for (const contract of contracts) {
         });
       }
     }
-    if (isEnum(p)) {
+    // variantOptions/defaultValue below describe a VARIANT property's axis
+    // values and canvas-positional default — they simply don't exist for an
+    // INSTANCE_SWAP property (whose canvas menu is `preferredValues`, keyed
+    // by component id, and whose "default" is a node id, not an option
+    // name). An icon-registry-governed swap (002-governed-icons-button, D5)
+    // already gets the CORRECT, purpose-built three-way comparison from the
+    // icons axis (registry ↔ code ↔ canvas by key) — this generic check
+    // would just compare the wrong fields and false-positive.
+    if (isEnum(p) && p.bindings.figma.kind !== 'INSTANCE_SWAP') {
       const want = p.type.enum.map((v) => p.bindings.figma.values?.[v] ?? v);
       const got = def.variantOptions ?? [];
       // Order-insensitive: the canvas presents the default variant first;
@@ -723,6 +732,120 @@ checkTokens('Semantic', [
   ...[...semantic].map(([p, v]) => ({ path: p, perMode: { Light: v, Dark: v } })),
   ...[...light].map(([p, v]) => ({ path: p, perMode: { Light: v, Dark: dark.get(p) } })),
 ]);
+
+// ---------------------------------------------------------------------------
+// 4 · icon registry ⟷ code assets ⟷ canvas masters (002-governed-icons-button)
+//
+// The registry pivots the three-way check (D4): every registry entry needs
+// a code asset AND a canvas master (by KEY — stable across renames); an
+// asset with no registry entry, or a canvas master the Button's swap menu
+// offers with no registry entry, is a named `ahead` finding (Figma-first,
+// FR-008) — acknowledgeable via parity/baseline.json exactly like any other
+// axis when the divergence is a recorded owner decision (e.g. the excluded
+// zero-usage mail/external-link icons). The MENU axis itself (registry ↔
+// Button's actual chosen enum values) lands at Step 3 — Button v1.2 has no
+// icon-choice enum prop yet, so that comparison naturally finds nothing to
+// check today, not because it is special-cased out.
+// ---------------------------------------------------------------------------
+
+const iconRegistryPath = path.join(ROOT, 'contracts', 'icons.registry.json');
+if (existsSync(iconRegistryPath)) {
+  const registry: {
+    id: string;
+    version: string;
+    icons: Array<{ name: string; figma: { componentName: string; key: string; nodeId: string }; asset: string; size: number; description: string }>;
+  } = JSON.parse(readFileSync(iconRegistryPath, 'utf8'));
+
+  const assetsDir = path.join(ROOT, 'assets', 'icons');
+  const codeAssets = new Set(
+    existsSync(assetsDir) ? readdirSync(assetsDir).filter((f) => f.endsWith('.svg')).map((f) => f.replace(/\.svg$/, '')) : [],
+  );
+  const canvasByKey = new Map(figmaComponents.sets.map((s) => [s.key, s]));
+
+  // The Button's swap-menu universe: any key its INSTANCE_SWAP properties
+  // offer (Glyphe gauche/droite carry the identical 15) — derived from the
+  // live snapshot, not a hardcoded id list, so a future 16th icon added to
+  // the menu is picked up automatically.
+  const bouton = figmaComponents.sets.find((s) => s.name === 'Bouton');
+  const swapCandidateKeys = new Set<string>();
+  if (bouton) {
+    for (const [propKey, def] of Object.entries(bouton.properties)) {
+      if (propKey.startsWith('Glyphe') && def.preferredValues) {
+        for (const pv of def.preferredValues) swapCandidateKeys.add(pv.key);
+      }
+    }
+  }
+
+  for (const icon of registry.icons) {
+    if (!codeAssets.has(icon.asset)) {
+      add({
+        surface: 'icons',
+        classification: 'behind',
+        subject: `ds.icons/${icon.name}`,
+        detail: `registry entry has no code asset assets/icons/${icon.asset}.svg`,
+        remedy: 'Re-run npm run extract:figma:rest:svg to acquire the asset',
+      });
+    }
+    const canvasSet = canvasByKey.get(icon.figma.key);
+    if (!canvasSet) {
+      add({
+        surface: 'icons',
+        classification: 'behind',
+        subject: `ds.icons/${icon.name}`,
+        detail: `registry entry (key ${icon.figma.key}) has no matching master in the committed canvas snapshot`,
+        remedy: 'Re-run the parity Figma extraction (parity/extract-figma.plugin.js) and re-check',
+      });
+    } else if (canvasSet.name !== icon.figma.componentName) {
+      add({
+        surface: 'icons',
+        classification: 'mismatch',
+        subject: `ds.icons/${icon.name}`,
+        detail: `registry says the master is named "${icon.figma.componentName}", canvas snapshot says "${canvasSet.name}"`,
+        remedy: 'Adopt the canvas name into the registry (promotion) or rename the Figma master back',
+      });
+    }
+  }
+
+  const registryAssetNames = new Set(registry.icons.map((i) => i.asset));
+  // v17 (spec 004, D7): an asset a catalog contract consumes through a FIXED
+  // (non-templated) icon.asset — a component-private glyph like the Checkbox's
+  // « check » — is not an orphan even without a registry entry. It is still
+  // Figma-born (exported read-only from the master's own Vector) and is
+  // deliberately outside the governed icon registry. Enum-templated icon
+  // assets ({glyph}) stay registry-governed and are NOT swept in here. An
+  // asset that is NEITHER registry-listed NOR consumed remains a finding.
+  const consumedAssets = new Set<string>();
+  for (const c of contracts) {
+    for (const { part } of walkAnatomy(c)) {
+      const asset = part.icon?.asset;
+      if (asset && !asset.includes('{')) consumedAssets.add(asset);
+    }
+  }
+  for (const asset of codeAssets) {
+    if (!registryAssetNames.has(asset) && !consumedAssets.has(asset)) {
+      add({
+        surface: 'icons',
+        classification: 'ahead',
+        subject: `assets/icons/${asset}.svg`,
+        detail: 'code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)',
+        remedy: 'Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset',
+      });
+    }
+  }
+
+  const registryKeys = new Set(registry.icons.map((i) => i.figma.key));
+  for (const key of swapCandidateKeys) {
+    if (registryKeys.has(key)) continue;
+    const set = canvasByKey.get(key);
+    add({
+      surface: 'icons',
+      classification: 'ahead',
+      subject: `figma/${set?.name ?? key}`,
+      detail: "canvas offers this icon in the Button's swap menu but ds.icons has no entry for it",
+      remedy: 'Review: add to the registry (promotion) or leave excluded — acknowledge in parity/baseline.json if intentional',
+    });
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Report — triage before firehose.

@@ -900,6 +900,85 @@ accepted deviation and open issue in one place) and `proofs/success-criteria.md`
 execution means "owner-validated" is true in spirit — precedent-following — but not
 literally re-confirmed block-by-block in real time).
 
+## 2026-07-24 — Spec 002: governed icons + the single master update, closed
+
+The governed icon registry (`contracts/icons.registry.json`, v1.0.0 — 13 icons)
+becomes the one source the designer's Figma menu and the developer's code list
+both derive from, verified by a new parity **icons** axis. The Button lowers icon
+choice into INSTANCE_SWAP-bound enum props (`ds.button@1.3.0`), then rebinds its
+label to a real Figma TEXT property (`ds.button@1.4.0`) — closing the last
+declared parity finding from spec 001. **The single master update** landed once
+on the real client file (`step(3-master)`, `c8512f7`): the label became a
+bindable « Libellé » TEXT property in all 6 variants and both icon menus were
+narrowed to exactly the 13 governed icons. Proven by a positional scan (77/77
+Button instances; 43 text + 29 glyph overrides byte-identical) and 9-page state
+photography (**0.000% on all 9 pages**, before/after) with owner restore points.
+`npm run parity` reaches zero active findings; the 3 evals intentionally red
+since before this feature are **green for the first time**. Suite: **102/102**
+(49 legacy quarantined). Closure (`step(4-closure)`): counts synced everywhere,
+the named headless-icon limitation written where the capability is claimed,
+visual icon coverage restored (a real page-instance `button-with-icons` subject;
+8 foreign brownfield subjects quarantined into `LEGACY_SUBJECTS` after an
+external file hit a real Figma image-rate-limit), and the Contract Hub binding
+map fixed to match the set by key (Button↔Bouton) so the icon governance shows
+verified per-glyph.
+
+## 2026-07-24 — Spec 004: the input atoms, native controls, and a category, closed
+
+The four form atoms become governed. **Input, Textarea, Select, Checkbox** are
+extracted from the owner-validated 003 masters (read-only REST dumps → propose →
+reviewed & adopted), generated to code **and** canvas at the Button's level of
+proof, and — the load-bearing part — **accessible native controls**: real
+`<input>` / `<textarea>` / `<select>` / `<input type=checkbox>`, not styled divs.
+That took extending the generator for **native form controls at the root** (the
+demo only ever nested them inside molecules): a void/native-text root self-closes
+and carries its value through `defaultValue`; a native checkable wires
+`defaultChecked` from its VARIANT even with no declared event; a `<select>`'s
+value is wrapped in an `<option>`. A **`category`** schema field (atom/molecule/
+section, additive-optional) groups all three generated surfaces from one label
+source. The icon registry reaches **16** (facebook/instagram/star; star stays
+orange, D6) and `check.svg` enters as an **internal glyph** parity learns to tell
+from an orphan. The whole iteration is **read-only on the live Figma file** —
+proven by a `/versions` before/after with full attribution: 25 new versions, all
+spec 003's, **zero** spec 004's. A lesson banked in the process: `img.ts`'s visual
+instrument deliberately never resamples, so a fluid atom's size delta against a
+fixed-frame master is a REAL mismatch — the fluid atoms are (rightly) not pixel
+subjects; only the fixed Checkbox is. Suite **108/108**, 8/8 gates green.
+
+## 2026-07-24 — Spec 004 post-close: the QA pass
+
+An owner review after close surfaced real defects the gates hadn't caught — each
+fixed at the source, each re-verified against the full suite before landing, all on
+**PR #3**.
+
+- **The playground controls were dead** (`1e1eb99` Contract Hub, `1bb3abd`
+  Storybook). The atoms are uncontrolled (native `defaultValue`/`defaultChecked`,
+  faithful to eventless masters), so a changed value/checked control never updated
+  the mounted DOM. Fixed by REMOUNTING the preview on any control change — the
+  dashboard keys its preview wrapper on the args; `generateStories` emits a `render`
+  keyed on `JSON.stringify(args)` (Polaris example regenerated to match, `c26c0a7`).
+- **The Checkbox "froze" the browser** (`963d74e`) — not a JS loop. The generator
+  overlays a native `<input type=checkbox>` absolutely (`inset:0; opacity:0`) but
+  left the root `position:static`, so the invisible input escaped to `<body>` and
+  covered the whole page (measured 2043×1110 via `getBoundingClientRect`), eating
+  every click. The generator already promoted the root to `position:relative` for
+  out-of-flow parts — it just missed the native-checkable case; one condition
+  (`isNativeCheckablePart`) closed it.
+- **Fluid atoms DO get pixel coverage after all** (`7ddca00`, `ceb7882`) — this
+  supersedes the "not pixel subjects" call above. An optional, additive `renderWidth`
+  renders the code side at the master's fixed 280px frame, so the diff judges box
+  styling at a shared size. **Input and Textarea match at 0.00%** (an `<input>`/
+  `<textarea>` renders its text in headless Chromium). **Select is excluded** with a
+  named reason: a native `<select>` does NOT render its selected-option text headless
+  (the code is correct — `<select><option>{value}` — and the dashboard's real browser
+  shows it), so its triptych reads as a false failure; its text fidelity rides
+  build + eval, its box the figma-script canvas render. Visual subjects: **5**
+  (button, checkbox, input, textarea, button-with-icons).
+
+The pattern that held: the owner's eye caught what masked scores and headless
+renders hid — twice (the freeze via a `getBoundingClientRect` measurement, the
+Select via reading the triptych's `code | figma | diff` panel order).
+
 ---
 
 **Standing scoreboard** (updated with each milestone):

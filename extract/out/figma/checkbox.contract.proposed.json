@@ -1,0 +1,60 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.checkbox",
+  "name": "Checkbox",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "input"
+  },
+  "props": [
+    {
+      "name": "coch",
+      "type": {
+        "enum": [
+          "non",
+          "oui"
+        ]
+      },
+      "default": "non",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Coché",
+          "values": {
+            "non": "Non",
+            "oui": "Oui"
+          }
+        },
+        "code": {
+          "prop": "coch"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "vectorstroke": {
+          "visibleWhen": {
+            "prop": "coch",
+            "equals": "oui"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
+      "nodeId": "2053:1256"
+    },
+    "code": {
+      "importPath": "src/components/Checkbox",
+      "export": "Checkbox"
+    }
+  }
+}
