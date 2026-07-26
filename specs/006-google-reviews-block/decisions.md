@@ -1564,3 +1564,39 @@ Button/Checkbox/icons, sans rapport avec spec 006). `npm run plugin:check` → v
 restants skippés par nom (nécessitent un second composant ou un composite multi-root que
 Piqueray n'a pas encore).
 
+**T066** — Éval `img-part-canvas-placeholder-named` écrite : la part `avatarPhoto` (élément
+`img`, trou A5 ouvert — le pixel photo réel n'existe que comme override IMAGE hors-contrat sur
+les 8 occurrences adoptées, jamais comme état dessiné dans le master) compile en canevas avec
+`imgPlaceholder: true` + l'aplat gris standard `#D9D9D9` (Round 5,
+`core/emit-figma-script.ts:2026-2034`) ; ce fait code-seul force la légende du composant à
+porter le `†` (Constitution, la seule trace canevas exigée pour un fait code-only). Les deux
+moitiés vérifiées ensemble. `npm run eval` → 107/113 (même ligne de base T047a).
+
+### T067 — Fidélité de mock pour le piège GROUP (2026-07-26)
+
+**Investigation** (`core/emit-figma-script.ts`, `scripts/plugin-engine-mock-figma.mjs`) :
+recherche exhaustive de toute création/mutation de nœud `GROUP` par le moteur — **aucune**.
+Les seuls types de nœud créés par le moteur (`figma.createComponent`, `createFrame`,
+`createText`, `createEllipse`, `createRectangle`, `createPolygon`) vivent exclusivement dans
+ses propres pages isolées (`Components`, `Utilities`) — jamais dans la page client où se
+trouvaient les `GROUP` hérités qui ont piégé l'adoption T049.
+
+**Conclusion** : le piège `GROUP` (auto-resize en cascade lors d'une écriture de position
+synchrone juste après `appendChild`, T049) appartient entièrement à la **procédure manuelle
+d'adoption** (scripts `figma_execute` ad hoc insérant une instance dans la mise en page
+préexistante du client) — jamais au moteur généré, ni au harness qu'il simule. La
+Constitution VII (moitié 1 : corriger l'émetteur ; moitié 2 : enseigner au mock) se déclenche
+pour « un bug qui n'apparaît que sur le canevas vivant » **provenant du script émis par le
+moteur** — condition non remplie ici : il n'existe aucun chemin de code émetteur qui touche un
+`GROUP`, donc rien à corriger (moitié 1), et enseigner au mock une mécanique que le moteur
+n'exerce jamais serait **inventer un cas** (moitié 2), ce que la clause d'échappement de la
+tâche interdit explicitement.
+
+**Le correctif réel existe déjà et est documenté** : la boucle de convergence (relire l'id
+frais, réécrire la cible, comparer, jusqu'à stabilité — T049/T050) est la technique
+réutilisable, mais elle vit dans le protocole d'adoption (`decisions.md`), pas dans un chemin
+de code que ce dépôt possède ou teste unitairement.
+
+**Verdict** : ✅ T067 fait — pas de correctif moteur/mock nécessaire, nommé et fermé sans
+inventer un cas, conformément à la clause d'échappement de la tâche.
+
