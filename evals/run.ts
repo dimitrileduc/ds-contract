@@ -4254,6 +4254,71 @@ const cases: Case[] = [
       console.log('google-reviews-repeat-renders-sample-on-static-surfaces: React maps the live "avis" array (avis?.map, undefined renders nothing); html + react-inline both render the contract\'s 5-record OBSERVED sample verbatim, never the real runtime content — the canvas leg of the same claim is proven by scripts/deterministic-roundtrip.mjs (5 nested instances in groupeCartes)');
     },
   },
+  {
+    // T066 (spec 006, US3): ds.review-card's `avatarPhoto` part (element:
+    // "img") is the open A5 gap (R6) — a real photo pixel exists only as an
+    // out-of-contract IMAGE-fill override on the 8 adopted occurrences,
+    // never a designer-drawn master state. On the canvas the SAME part
+    // compiles to the standard #D9D9D9 placeholder wash (Round 5,
+    // core/emit-figma-script.ts:2026-2034, `spec.imgPlaceholder = true`),
+    // and that fact is REPORTED, never hidden: it joins hasPreviewOnlyFacts
+    // (:2426-2428) which forces the component's one-line caption to carry
+    // the trailing † (:2432-2451) — the single canvas trace the constitution
+    // requires for a code-only fact (Part D). This pins BOTH halves: the
+    // compiled placeholder wash AND the † on the description, so the A5 gap
+    // stays a NAMED limit rather than a silent one.
+    id: 'img-part-canvas-placeholder-named',
+    claim: 'C3-detection',
+    run: () => {
+      const byId = new Map(
+        readdirSync(path.join(ROOT, 'contracts'))
+          .filter((f) => f.endsWith('.contract.json'))
+          .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
+          .map((c) => [c.id, c]),
+      );
+      const card = byId.get('ds.review-card');
+      if (!card) throw new Error('contracts/review-card.contract.json missing ds.review-card');
+      const photoPart = (card.anatomy.root.parts!.entete as SchemaPart).parts!.profil.parts!.avatarPhoto;
+      if (photoPart.element !== 'img') throw new Error('avatarPhoto is no longer an <img> part — the A5 proof must be re-derived');
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const engine = createFigmaEngine({
+        tokens: {
+          primitives: read('tokens/primitives.tokens.json'),
+          semantic: read('tokens/semantic.tokens.json'),
+          light: read('tokens/modes/semantic.light.tokens.json'),
+          dark: {},
+          brands: { default: {} },
+        },
+        icons: new Map(
+          readdirSync(path.join(ROOT, 'assets', 'icons'))
+            .filter((f) => f.endsWith('.svg'))
+            .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+        ),
+      });
+      const script = engine.buildComponentScript(card, byId);
+      const comp = JSON.parse(script.match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
+      const findByName = (spec: any, name: string): any => {
+        if (spec.name === name) return spec;
+        for (const c of spec.children ?? []) {
+          const hit = findByName(c, name);
+          if (hit) return hit;
+        }
+        return null;
+      };
+      const va = comp.variants[0].spec;
+      const photoSpec = findByName(va, 'avatarPhoto');
+      if (!photoSpec) throw new Error(`compiled spec has no "avatarPhoto" node:\n${JSON.stringify(va, null, 2).slice(0, 1500)}`);
+      if (photoSpec.imgPlaceholder !== true) throw new Error(`avatarPhoto must compile with imgPlaceholder:true, got: ${JSON.stringify(photoSpec)}`);
+      const grey = photoSpec.lits?.fillColor;
+      if (!grey || Math.abs(grey.r - 217 / 255) > 0.001 || Math.abs(grey.g - 217 / 255) > 0.001 || Math.abs(grey.b - 217 / 255) > 0.001) {
+        throw new Error(`avatarPhoto must carry the standard #D9D9D9 placeholder wash, got: ${JSON.stringify(grey)}`);
+      }
+      if (!comp.description.includes('†')) {
+        throw new Error(`ds.review-card has a code-only fact (imgPlaceholder) — its description must carry the † footnote, got: ${JSON.stringify(comp.description)}`);
+      }
+      console.log('img-part-canvas-placeholder-named: avatarPhoto (element:"img") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas, and the component caption carries the † footnote — the A5 gap (real photo pixel = out-of-contract override) stays a NAMED limit, never a silent one');
+    },
+  },
 ];
 
 // ---------------------------------------------------------------------------
