@@ -1441,3 +1441,58 @@ garage résidentielles/industrielles, Portes d'entrée, Dépannage/SAV, À Propo
 propre de bout en bout (T051→T056 : convergence courte, 0 résidu collatéral). Reste de la Phase 4d :
 T057 (fills photo), T058 (assertion de fin + re-scan positionnel), T059 (ledger).
 
+### T057 — Fills photo : **sans objet par mesure** (2026-07-26)
+
+**Décision, conséquence directe de T022** : la tâche est écrite pour « appliquer les 8 fills photo
+(override de fill IMAGE sur la part `avatarPhoto`) ». Mais la mesure (T012/T021/T022) a établi
+**0/5 avatar photo** sur l'échantillon des 5 avis, appliqué aux 8 occurrences — **toutes les cartes
+adoptées portent `Avatar initiale = true, Avatar photo = false`** (vérifié en lecture sur chaque
+instance en T049→T056). Il n'existe **pas** de `measures/avatar-photo.png` (T022 : aucune source
+d'avatar photo à recadrer). La seule photo présente dans l'aplat est attachée au **contenu** de la
+carte 5 (rendu du raster de l'aplat), pas à un avatar, et n'est **pas** portée par la part
+`avatarPhoto` (A5, trou ouvert et nommé).
+
+**Il n'y a donc aucun fill IMAGE à appliquer, sur aucune des 8 occurrences.** Écrire « 8 fills
+appliqués » serait un mensonge ; sauter la tâche en silence serait l'omission que la constitution
+proscrit. La tâche est **close comme sans objet par mesure** — pas « faite », **inapplicable**.
+
+**Conséquence pour T059** : la ligne « 8 fills photo » annoncée par T023 dans
+`ledger/google-reviews.json` devient **moot** — elle sera consignée comme `type: "image", count: 0,
+raison: "0/5 avatar photo mesuré (T022)"` plutôt qu'omise. La capacité `avatarPhoto`/A5 reste dans le
+contrat et sera exercée par la démo US4/T071 avec un exemple fabriqué (jamais tiré des maquettes).
+
+**Verdict** : ✅ T057 clos — sans objet par mesure, nommé plutôt qu'omis.
+
+### T058 — Assertion de fin d'adoption (2026-07-26)
+
+**Deux vérifications requises par la tâche :**
+
+**① Re-scan positionnel (8 GROUP)** — script bridge, résultat immédiat :
+
+| Maquette | GROUP | kids | hasWidgetRect | governedInstance | hasHeader |
+|---|---|---|---|---|---|
+| Accueil | 210:441 | SectionHeader INSTANCE + GoogleReviews INSTANCE | false | true | true |
+| Portes de garage | 226:227 | idem | false | true | true |
+| Portes de garage résidentielles | 230:645 | idem | false | true | true |
+| Portes de garage industrielles | 387:817 | idem | false | true | true |
+| Portes d'entrée | 237:1095 | idem | false | true | true |
+| Dépannage/SAV | 249:1623 | idem | false | true | true |
+| À Propos | 258:1963 | idem | false | true | true |
+| Contactez-nous | 280:3792 | idem | false | true | true |
+
+**Tous les 8 blocs** contiennent exactement `[SectionHeader INSTANCE, GoogleReviews INSTANCE]`, **zéro RECTANGLE trustindex/widget**.
+
+**② Scan global des résidus IMAGE fill** (toute la page `210:325`) :
+
+- `residualWidgetNodeCount = 0` ✅ — zéro nœud nommé `trustindex` ou `google-reviews-widget`
+- `imageRectCount = 43` — les 43 RECTANGLE IMAGE restants sont tous légitimes :
+  - `google-map` (carte Dépannage/SAV, attendu)
+  - `fun-ia` / `normal` (364×364, galerie photo, IDs imbriqués sous `2115:4044`, hors périmètre bloc)
+  - **Aucun n'est un aplat widget Avis Google**
+- `motorisationAvisGoogleBlocks = 0` ✅ — Motorisation sans bloc (attendu, SC-003)
+
+**Verdict de phase (constitution §Quality Gates — SC-001, SC-003)** : ✅ T058 fait.
+L'instrument par occurrence (T051→T056) a produit **8 diff + 1 identical (Motorisation)** à chaque cycle
+— combinaison conforme à `contracts/region-proof.md §4`. Le re-scan global confirme 0 résidu widget.
+Phase 4d close.
+
