@@ -2031,3 +2031,25 @@ Review-card + Avis Google marquées livrées avec leur spec d'origine ; le compt
 est nommé explicitement (rapport d'honnêteté 003, 2→0) sans toucher au journal daté qui le
 porte.
 
+### T084 — `docs/FIGMA-CAPABILITY-MATRIX.md` mis à jour (2026-07-26)
+
+Deux points, aucune ligne du tableau CSS↔Figma modifiée (aucun canal n'a changé) :
+
+1. **A5 confirmé toujours ouvert** — 006 ne le referme pas. Addendum daté ajouté : le contrat
+   porte `photoUrl` de bout en bout (contrat + émetteur code), le canevas compile en
+   `imgPlaceholder:true` + lavis `#D9D9D9` (T029/T066), démontré en direct en T071 (code =
+   vraie photo, canevas = cercle vide). `figma.createImage` reste natif et inutilisé par cette
+   spec ; le verdict « add » d'A5 (§ a.7) est inchangé.
+2. **Classe « preuve par région » ajoutée, adossée à T029** — pas une ligne de tableau (ce
+   n'est pas un canal CSS↔Figma, ça ne change rien à ce que Figma peut exprimer) mais une note
+   d'addendum décrivant le flag `--regions` de `extract/figma/page-parity/cli.ts` : restreint un
+   diff pixelmatch à un rectangle nommé dans une capture pleine page, rapporte
+   `regionDiffCount`/`regionPct` (dans le rectangle) et `outsideDiffCount` (partout ailleurs) —
+   l'outil qui a permis à 006 de revendiquer SC-002/SC-003 sur des maquettes où le bloc est une
+   petite fraction de la page. Renvoi vers `specs/006-google-reviews-block/contracts/region-proof.md`
+   pour la méthode complète (déjà écrite, T029, avant toute phrase de doc — règle des claims).
+
+**Verdict** : le trou A5 reste nommé et ouvert (rien inventé sur sa fermeture), la nouvelle
+capacité d'instrument est documentée à sa juste place (addendum méthodologique, pas une ligne
+de canal CSS).
+
