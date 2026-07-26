@@ -1864,3 +1864,58 @@ avec l'hypothèse d'une édition passagère par un autre écrivain sur le fichie
 > française. Cette même note est dupliquée dans `quickstart.md` §Rollback pour qu'elle soit
 > trouvée sans relire `decisions.md` en entier.
 
+### T076a — Rafraîchissement du snapshot de parité, et le trou qu'il révèle (2026-07-26)
+
+**Même route qu'en T047a** : `parity/extract-figma.plugin.js` exécuté via `figma_execute`
+(réceveur JSON port 9231, hors plage 9227 déjà prise par le pont — les ports 9223-9232 sont la
+seule plage autorisée par `manifest.json`, `networkAccess.allowedDomains`). Seul
+`parity/snapshots/figma-components.json` est rafraîchi ici — `figma-tokens.json` porte un
+diff bien plus large et sans rapport avec le renommage (nouveaux tokens `color/rouge`,
+`color/noir-pur`, etc., déjà ajoutés à un moment antérieur non capturé), hors périmètre de
+cette tâche, laissé intact.
+
+**`npm run parity` immédiatement après refresh : un NOUVEAU rouge, causé par mon propre
+geste T076** — `[figma BEHIND] GoogleReviews.ReviewCard — Contract composes ds.review-card
+but no ReviewCard instance exists inside the Figma component`. Confirmé absent avec l'ancien
+snapshot (`git stash` du fichier, re-run) : **c'est bien T076 qui l'a introduit**, pas un
+rouge hérité.
+
+**Ce que parity joint par CLÉ et ce que parity joint par NOM (nommé, comme demandé)** :
+- Le lookup principal `contract ⟷ set` (`parity/diff.ts:298-300`) préfère déjà
+  `anchors.figma.componentSetKey` et ne retombe sur `s.name === contract.name` qu'en second
+  recours — **ce chemin a survécu au renommage sans casse** (`ds.review-card`/`ds.google-reviews`
+  continuent de se résoudre par clé).
+- Le check des instances imbriquées (`componentRefsOf`, deux occurrences
+  `parity/diff.ts:465` et `:521`) comparait `set.nestedInstances` (noms **canvas actuels**,
+  extraits par `probe.getMainComponentAsync()` → `main.name`) à `dep.name` (le nom **fixe du
+  contrat**, `"ReviewCard"`, jamais mis à jour) — un **join par nom**, cassé par un renommage
+  canvas-only. **Exactement la même classe de fragilité que B5** (`findComponentByName` dans
+  `core/emit-figma-script.ts`), mais côté lecture (le differ), pas côté écriture (l'émetteur).
+
+**Corrigé ici** (`parity/diff.ts`, +19/-8 lignes, aucun `core/` touché ⇒ zéro churn de
+golden) : nouvel helper `nestedInstanceName(dep)` qui résout le nom **actuel** du composant
+imbriqué via `dep.anchors.figma.componentSetKey` d'abord (le même ordre de préférence que le
+lookup principal), replis sur `dep.name` seulement si aucune clé n'existe encore (contrat
+jamais synchronisé, ou `figmaRepresentation: 'native'`). Les deux sites d'appel
+(`parity/diff.ts:465`, `:521`) utilisent désormais `nestedInstanceName(dep)` au lieu de
+`dep.name` brut.
+
+**Vérification** : `npm run parity` revient exactement à **24 constats actifs** (`figma —
+behind: 5, ahead: 5`, `icons — mismatch: 14`), le compte **exact d'avant le renommage** — le
+rouge T076 a disparu, rien d'autre n'a bougé. `npm run eval` : le cas
+`detect-figma-missing-nested-instance` (qui mute `nestedInstances` sur le nom **canvas**, donc
+`'GoogleReviews'`/`'ReviewCard'` littéraux dans `evals/run.ts`) a été mis à jour vers les noms
+français actuels (`'Avis Google'`/`'Review-card'`) avec une note pointant vers ce même helper
+en cas de futur renommage — **107/113** (compte identique à T065, zéro régression). Gates
+supplémentaires rejoués pour clôturer le geste : `npm run build` (7/7 composants,
+déterministe, zéro diff de fichiers générés), `npm run plugin:check`, le roundtrip
+déterministe et `core-browser-check.mjs` (tous verts), `npx tsc --noEmit` +
+`npx tsc -p tsconfig.build.json` (zéro erreur).
+
+**Verdict** : geste T076 refermé proprement — le trou qu'il a révélé (join par nom côté
+lecture) est un défaut structurel préexistant de `parity/diff.ts`, pas une invention du
+renommage ; corrigé à sa source (le differ), nommé ici avec son receipt avant/après, sans
+toucher `core/` ni les golden. Le même trou côté écriture (B5, `findComponentByName`) reste
+au backlog (T075) — changer les octets émis y exigerait un churn de golden que ce correctif
+côté lecture n'exige pas.
+

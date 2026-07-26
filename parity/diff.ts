@@ -292,6 +292,24 @@ const normalizeFigmaProps = (set: FigmaSet) => {
   return map;
 };
 
+// nestedInstances (parity/extract-figma.plugin.js) records each nested
+// instance's LIVE canvas name (main.parent.name for a variant, main.name for
+// a standalone component) — it cannot record a stable key because Figma's
+// Plugin API exposes no "which variant/component does this INSTANCE point
+// to" identifier other than the resolved node's own name. So this join is
+// name-based by construction. To keep it working after a canvas-only rename
+// (T076 — masters renamed to their French convention, same failure mode as
+// core/emit-figma-script.ts's findComponentByName, B5 backlog), resolve the
+// dependency's CURRENT canvas name via its own componentSetKey anchor first
+// (matching how the direct set lookup above already prefers key over name),
+// falling back to the contract's `name` field for components with no anchor
+// yet (pending first sync) or no key (figmaRepresentation: 'native').
+const nestedInstanceName = (dep: Contract): string => {
+  const depKey = dep.anchors.figma.componentSetKey;
+  const depSet = depKey ? figmaComponents.sets.find((s) => s.key === depKey) : undefined;
+  return depSet?.name ?? dep.name;
+};
+
 for (const contract of contracts) {
   if (contract.figmaRepresentation === 'native') continue; // no Figma component expected
   const anchorKey = contract.anchors.figma.componentSetKey;
@@ -462,12 +480,13 @@ for (const contract of contracts) {
     if ((slot.defaultContent?.length ?? 0) > 1) {
       for (const id of new Set(slot.defaultContent!.map((i) => i.id))) {
         const dep = byIdAll.get(id)!;
-        if (!(set.nestedInstances ?? []).includes(dep.name)) {
+        const depName = nestedInstanceName(dep);
+        if (!(set.nestedInstances ?? []).includes(depName)) {
           add({
             surface: 'figma',
             classification: 'behind',
-            subject: `${contract.name}.${dep.name}`,
-            detail: `Multi-child slot "${slot.name}" declares ${id} default content but no ${dep.name} instance exists inside the Figma component`,
+            subject: `${contract.name}.${depName}`,
+            detail: `Multi-child slot "${slot.name}" declares ${id} default content but no ${depName} instance exists inside the Figma component`,
             remedy: 'Re-run the component sync script',
           });
         }
@@ -518,12 +537,13 @@ for (const contract of contracts) {
   // Nested component refs: the composing instance must exist in Figma.
   for (const { ref } of componentRefsOf(contract)) {
     const dep = byIdAll.get(ref.id)!;
-    if (!(set.nestedInstances ?? []).includes(dep.name)) {
+    const depName = nestedInstanceName(dep);
+    if (!(set.nestedInstances ?? []).includes(depName)) {
       add({
         surface: 'figma',
         classification: 'behind',
-        subject: `${contract.name}.${dep.name}`,
-        detail: `Contract composes ${ref.id} but no ${dep.name} instance exists inside the Figma component`,
+        subject: `${contract.name}.${depName}`,
+        detail: `Contract composes ${ref.id} but no ${depName} instance exists inside the Figma component`,
         remedy: 'Re-run the component sync script',
       });
     }

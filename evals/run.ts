@@ -4087,16 +4087,29 @@ const cases: Case[] = [
   // ref in its anatomy — the exact re-enable condition. Body is the same
   // shape as the original (edit the snapshot's nestedInstances, expect a
   // figma/behind finding), re-pointed onto the real names.
+  //
+  // UPDATED (T076a, 2026-07-26): the two masters were renamed to their
+  // French canvas convention (ReviewCard → Review-card, GoogleReviews →
+  // Avis Google) — the LIVE snapshot now carries those names. The set is
+  // still found by CONTRACT NAME here on purpose (not by key) — this is a
+  // parked, deliberately-fragile probe of the exact join parity/diff.ts's
+  // outer contract⟷set lookup no longer uses (that lookup already prefers
+  // componentSetKey; see the `nestedInstanceName` helper added alongside
+  // this fix). If this literal ever needs touching again after a future
+  // rename, that itself is the signal that some remaining lookup regressed
+  // to name-matching — check parity/diff.ts's `set` and `nestedInstanceName`
+  // resolution first (B5 backlog: same failure class in core/emit-figma-
+  // script.ts's findComponentByName).
   {
     id: 'detect-figma-missing-nested-instance',
     claim: 'C3-detection',
     run: () => {
       editJson(FIGMA_COMPONENTS, (s) => {
-        const set = s.sets.find((x: any) => x.name === 'GoogleReviews');
-        set.nestedInstances = (set.nestedInstances ?? []).filter((n: string) => n !== 'ReviewCard');
+        const set = s.sets.find((x: any) => x.name === 'Avis Google');
+        set.nestedInstances = (set.nestedInstances ?? []).filter((n: string) => n !== 'Review-card');
       });
       if (parity().status === 0) throw new Error('Drift not detected');
-      expectFinding(readReport(), 'figma', 'behind', 'GoogleReviews.ReviewCard');
+      expectFinding(readReport(), 'figma', 'behind', 'GoogleReviews.Review-card');
     },
   },
   {
