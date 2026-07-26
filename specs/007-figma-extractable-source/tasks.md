@@ -370,27 +370,37 @@ typographique est SC-013 : **18/18** styles liés **et** 18/18 marqués.
 
 ### Liaisons de valeurs (P4 du plan — 133 valeurs à token proche + 60 sans, valeur exacte FR-013)
 
-- [ ] T036 [P] [US2] Lier les **58** valeurs `itemSpacing` à leur variable `space/*` (dépend de
+> **CLÔTURE STOP L3 (2026-07-26, `b1c70a5` — décision owner).** Les liaisons de valeurs
+> numériques (T036–T042, T044–T045) et le lot typographique/structure qui en dépend
+> (T046–T058) sont **clos sans exécution**. Motif : lier une variable numérique en Figma
+> produit des diffs pixel **non déterministes** (STOP L3c/L3d, `decisions.md` § « Clôture
+> reprise L3 — 40/43 identical ») — c'est le trou même que l'itération venait de reverter.
+> Fichier laissé à **40/43 identical**, 3 résidus consignés comme limites Figma déjà
+> documentées. Ces tâches sont marquées `[-]` (clos par décision, non exécuté) et **ne
+> doivent pas être relancées** par `/speckit.implement` sans réouverture explicite de la
+> décision. T043 reste `[x]` (test isolé FR-014 exécuté avant la clôture).
+
+- [-] T036 [P] [US2] **CLOS STOP L3.** Lier les **58** valeurs `itemSpacing` à leur variable `space/*` (dépend de
       T030) — valeur **exactement** observée, jamais arrondie/rapprochée (FR-013/FR-015). Pour
       toute valeur de ce canal sans token proche (`suggestions.length===0`), créer la variable
       dédiée et consigner (valeur, usage, occurrences) dans `decisions.md`.
-- [ ] T037 [P] [US2] Lier les **22** valeurs `padding` (par côté) à `space/*` (dépend de T030) —
+- [-] T037 [P] [US2] **CLOS STOP L3.** Lier les **22** valeurs `padding` (par côté) à `space/*` (dépend de T030) —
       même règle valeur-exacte + création dédiée pour les cas sans token proche.
-- [ ] T038 [P] [US2] Lier les **9** `strokeWeight` à `border-width/*` (dépend de T032) — idem.
-- [ ] T039 [P] [US2] Lier les **5** `fontSize` restants hors styles de texte à `font/size/*`
+- [-] T038 [P] [US2] **CLOS STOP L3.** Lier les **9** `strokeWeight` à `border-width/*` (dépend de T032) — idem.
+- [-] T039 [P] [US2] **CLOS STOP L3.** Lier les **5** `fontSize` restants hors styles de texte à `font/size/*`
       (dépend de T026) — **vérifier au fil de l'eau** si ces occurrences recouvrent des nœuds
       déjà couverts par un des 18 styles nommés (P5, ci-dessous) ou des nœuds indépendants ; ne
       pas supposer 0 recouvrement, ne pas double-compter non plus.
-- [ ] T040 [P] [US2] Lier les **48** `fontWeight` à `font/weight/*` (dépend de T027) — même
+- [-] T040 [P] [US2] **CLOS STOP L3.** Lier les **48** `fontWeight` à `font/weight/*` (dépend de T027) — même
       vérification de recouvrement qu'en T039.
-- [ ] T041 [P] [US2] Lier les **46** `lineHeight` à `font/line-height/*` (dépend de T028) — même
+- [-] T041 [P] [US2] **CLOS STOP L3.** Lier les **46** `lineHeight` à `font/line-height/*` (dépend de T028) — même
       vérification de recouvrement qu'en T039. **Gap trouvé 2026-07-26** (`decisions.md`,
       « Plan de liaison T036-T044 ») : `lineHeight=32` à `Hero:root/Bloc texte/Titres/wrapper/
       Sous-titre` n'a pas de primitive — les 11 valeurs de T028 dérivaient des 18 styles de
       texte (R8), pas du canal `lineHeight` général sur tout le fichier. **1 primitive neuve
       requise, `font/line-height/32`** — créer puis lier dans le geste L3, T028 non rouvert
       (déjà exécuté/committé), addendum consigné ici à la place.
-- [ ] T042 [P] [US2] Lier les **3** `cornerRadius` à `radius/*` (dépend de T031).
+- [-] T042 [P] [US2] **CLOS STOP L3.** Lier les **3** `cornerRadius` à `radius/*` (dépend de T031).
 - [x] T043 [US2] Traiter le(s) cas **`opacity`** — se décompose en 1 occurrence exactement
       (`MemberPicture:root/normal = 1`), le combiné `opacity`+`minHeight` du relevé confirmé
       1+1 distincts (`decisions.md`, « Plan de liaison T036-T044 »). FR-014 : **vérifié
@@ -402,12 +412,12 @@ typographique est SC-013 : **18/18** styles liés **et** 18/18 marqués.
       Quirk vérifié **spécifique au scope `OPACITY`** (cornerRadius/strokeWeight/itemSpacing
       testés en contrôle sur le même geste, aucune division) — ne s'étend pas aux autres
       canaux de T036-T042.
-- [ ] T044 [P] [US2] Traiter le(s) cas **`minHeight`** — 1 occurrence exacte,
+- [-] T044 [P] [US2] **CLOS STOP L3.** Traiter le(s) cas **`minHeight`** — 1 occurrence exacte,
       `Coordonnees:root/google-map = 597` (`decisions.md`). Hors gamme `space/*` existante —
       **1 primitive neuve requise, `space/597`** (famille `space` légitime : le scope
       `WIDTH_HEIGHT` couvre minWidth/minHeight/maxWidth/maxHeight au même titre que
       width/height, pas une famille séparée). Créer puis lier, valeur exacte, dans le geste L3.
-- [ ] T045 [US2] Exécuter le **lot L3** (T036-T044, liaisons de valeurs) en un cycle de preuve —
+- [-] T045 [US2] **CLOS STOP L3.** Exécuter le **lot L3** (T036-T044, liaisons de valeurs) en un cycle de preuve —
       version `007/tokens/L3-liaisons` → capture AVANT ×43 → liaisons → capture APRÈS ×43 →
       comparer. **0 pixel attendu** : lier une variable qui porte la valeur déjà rendue ne
       déplace rien. Committer `proofs/L3/{verdict.json,verdict.md}`. Toute variable créée en
@@ -417,7 +427,7 @@ typographique est SC-013 : **18/18** styles liés **et** 18/18 marqués.
 
 ### Styles de texte (P5 du plan — 18 styles, 0/18 liés et 0/18 marqués au départ, confirmé live)
 
-- [ ] T046 [US2] **Correction 2026-07-26 (decisions.md, Correctif D) : le texte ci-dessous
+- [-] T046 [US2] **CLOS STOP L3.** **Correction 2026-07-26 (decisions.md, Correctif D) : le texte ci-dessous
       inversait le mécanisme réel — corrigé pour suivre le Correctif C, jamais réécrit sur
       un coup de tête.** Pour chacun des **18 styles de texte**, lier via
       `TextStyle.setBoundVariable` : `fontFamily`+**`fontWeight`** (la graisse se lie par le
@@ -432,18 +442,18 @@ typographique est SC-013 : **18/18** styles liés **et** 18/18 marqués.
       direct, jamais supposé). Dépend de T033/T034 (rôles prêts) et T035 (L2 vérifié). Piège
       005/cycle 14 à re-vérifier après coup : les instances de textes utilisant ces styles ne
       doivent perdre ni contenu ni alignement.
-- [ ] T047 [US2] Poser le marqueur `ds_contracts/textStyleToken` (plugin data) sur chacun des 18
+- [-] T047 [US2] **CLOS STOP L3.** Poser le marqueur `ds_contracts/textStyleToken` (plugin data) sur chacun des 18
       styles, portant son chemin de token — dépend de T046. Sans lui, le générateur créerait 18
       doublons à la première génération (FR-010c).
-- [ ] T048 [US2] Exécuter le **lot L4** (T046-T047) en un cycle de preuve — version
+- [-] T048 [US2] **CLOS STOP L3.** Exécuter le **lot L4** (T046-T047) en un cycle de preuve — version
       `007/tokens/L4-styles` → capture AVANT ×43 → liaisons+marqueurs → capture APRÈS ×43 →
       comparer. **0 pixel attendu**. Committer `proofs/L4/{verdict.json,verdict.md}`.
-- [ ] T049 [US2] Relevé live **SC-013** (dépend de T048) — `getLocalTextStylesAsync()` →
+- [-] T049 [US2] **CLOS STOP L3.** Relevé live **SC-013** (dépend de T048) — `getLocalTextStylesAsync()` →
       confirmer **18/18** `Object.keys(style.boundVariables).length > 0` **et** 18/18
       `getPluginData('ds_contracts/textStyleToken')` non vide → committer
       `specs/007-figma-extractable-source/releves/styles-post-L4-<date>.json`. C'est le **reçu
       réel** du lot typographique (pas le compteur de notes classe F, cf. R9/decisions T018-O2).
-- [ ] T050 [US2] Re-relevé de notes post-tokenisation (même procédure que T008, dépend de T045 et
+- [-] T050 [US2] **CLOS STOP L3.** Re-relevé de notes post-tokenisation (même procédure que T008, dépend de T045 et
       T049) → `releves/notes-post-tokenisation-<date>.json` : confirmer **0** note classe E sur
       les canaux mesurés (SC-002 volet valeurs) ; confirmer que la classe F reste à 41, comptée à
       part et nommée (recadrage O2 — jamais fondue dans le zéro) ; produire le **backlog
@@ -471,36 +481,36 @@ majoritairement une **vérification du fait accompli**, plus 1 GROUP résiduel r
 Section-header se dimensionne en FILL avec ses 7 adoptions rejouées (vérifiable par relevé
 direct, indépendamment d'US1/US2).
 
-- [ ] T051 [US3] Consigner dans `decisions.md` la réconciliation du fait accompli, sur la base
+- [-] T051 [US3] **CLOS STOP L3.** Consigner dans `decisions.md` la réconciliation du fait accompli, sur la base
       de T005/T009 : Section-header déjà FILL (backlog disait FIXED 1550, **périmé**), 11
       GROUPs déjà absents (backlog en listait 11, **périmé**) → FR-016/FR-018 passent en
       **vérification-seulement** ; seul `Header + Hero + Cat` (`237:970`) reste un GROUP
       structurel réel à trancher.
-- [ ] T052 [US3] Mesurer la **cascade Section-header** sur les 3 instances de `Réassurances` par
+- [-] T052 [US3] **CLOS STOP L3.** Mesurer la **cascade Section-header** sur les 3 instances de `Réassurances` par
       un cycle pixel dédié avant/après (FR-017) — même si le master n'a pas bougé pendant cette
       itération, produire la preuve dédiée exigée par la spec, **pas** un contrôle global qui la
       noierait parmi les 43 cibles.
-- [ ] T053 [US3] Dé-grouper le GROUP résiduel `Header + Hero + Cat` (`237:970`, page Portes
+- [-] T053 [US3] **CLOS STOP L3.** Dé-grouper le GROUP résiduel `Header + Hero + Cat` (`237:970`, page Portes
       d'entrée) — spike `figma.ungroup(node)` (API native, jamais utilisée dans ce dépôt ;
       les dé-groupages 005 étaient des reconstructions manuelles). **Condition** : n'exécuter que
       si le pré-relevé de structure (T005) laisse attendre 0 pixel de mouvement ; sinon, **ne pas
       exécuter** — nommer le cas dans `decisions.md` à la place (O4).
-- [ ] T054 [US3] Écrire la décision pour chaque style sous le seuil d'externalisation (règle
+- [-] T054 [US3] **CLOS STOP L3.** Écrire la décision pour chaque style sous le seuil d'externalisation (règle
       owner ≥ 2 occurrences, 2026-07-25) : **Hero vidéo Regular 44 ×1**, **Nav-item Medium
       16/lh16 ×1** — externaliser, laisser en littéral, ou fusionner, écrit dans `decisions.md`
       (FR-019), pas laissé implicite.
-- [ ] T055 [US3] Trancher le cas des **3 textes Field Regular 14 / interligne AUTO** (candidats
+- [-] T055 [US3] **CLOS STOP L3.** Trancher le cas des **3 textes Field Regular 14 / interligne AUTO** (candidats
       au lien vers le style « Paragraphe » lh24) — décision écrite dans `decisions.md`. **Si la
       décision déplace des pixels**, la traiter comme un **geste visuel assumé** : annoncé avant
       exécution, isolé dans son propre cycle, montré sur crop, validé owner (FR-019, US3 sc.5) —
       jamais fondu dans un cycle 0-pixel.
-- [ ] T056 [US3] Exécuter le(s) cycle(s) **V1(+V2)** couvrant T052/T053/T055 — version
+- [-] T056 [US3] **CLOS STOP L3.** Exécuter le(s) cycle(s) **V1(+V2)** couvrant T052/T053/T055 — version
       `007/structure/V1` → capture AVANT exhaustive sur **toutes** les cibles concernées (règle
       before-capture, jamais un sous-ensemble pilote, SC-007) → geste(s) → capture APRÈS →
       comparer. Si T055 déplace des pixels : le diff observé doit **==** le diff annoncé, montré
       sur crop, sinon STOP (échec de prédiction, pas une validation au jugé). Committer
       `proofs/V1/{verdict.json,verdict.md,crops/}` (+ `V2` si scission de cadence).
-- [ ] T057 [US3] Relevé de structure post-V1 — cibler **directement par nodeId** (`237:970` et
+- [-] T057 [US3] **CLOS STOP L3.** Relevé de structure post-V1 — cibler **directement par nodeId** (`237:970` et
       les 3 instances de Réassurances), **pas** via la classification nominale de `scan.js` (R11
       : elle ne reconnaît plus `Bouton`, déjà renommé en US1). Confirmer **0 GROUP structurel
       résiduel** (ou nommé si T053 a été refusée) → `releves/structure-post-V1-<date>.json`
@@ -519,7 +529,7 @@ regroupement de cadence, la page doit refléter l'état **final** des variables 
 aucun geste ne peut encore en créer. La tâche reste étiquetée `[US2]` parce que son FR/SC en
 relèvent.
 
-- [ ] T058 [US2] Mettre à jour la page canvas `DS · Tokens` (`2051:951`, 3 sections) pour
+- [-] T058 [US2] **CLOS STOP L3.** Mettre à jour la page canvas `DS · Tokens` (`2051:951`, 3 sections) pour
       refléter l'état final des variables — gammes complétées (T026-T032), rôles posés
       (T033-T034), variables créées pour les cas sans token proche (T036-T044) — dépend de T050
       **et** T057 (cadence réelle : après la structure). Geste à **diff annoncé**, capture
