@@ -642,3 +642,135 @@ Script complet transcrit dans
 **Verdict global T026-T035** : ✅ **PASSÉ**. Lot L2 clos, 0 pixel déplacé, 74 nouvelles
 variables (26 Primitives + 48 Semantic) + `ContactValeur` (correctif B, un 31ᵉ calque
 FR-005 trouvé et traité). Committé dans `proofs/L2/{verdict.json,verdict.md,gestes.md}`.
+
+---
+
+## Préparation T036-T050 (lot L3), reprise après commit `66bf3f7`
+
+Session reprise après un commit de checkpoint intermédiaire (ouverture spec + US1 clos +
+US2 primitives/rôles). Avant d'écrire quoi que ce soit pour les liaisons de valeurs
+(T036-T044), pont reconfirmé sain (`figma_get_status probe:true` → latence 1 ms, fichier
+`Piqueray (Copy)` toujours connecté port 9223, seconde instance 9224 toujours visible,
+conforme à la règle multi-écrivains). Trois correctifs trouvés et vérifiés avant le
+premier geste, dans le même esprit que les correctifs A/B/C de L2.
+
+### Correctif D — `tasks.md` T046 corrigé pour suivre le Correctif C déjà tranché
+
+`tasks.md` (rédigé avant le Correctif C ci-dessus, jamais mis à jour depuis) affirmait
+encore l'inverse de ce que le Correctif C a tranché : « la graisse se lie par `fontStyle`
+… **pas** par le canal `fontWeight` FLOAT ». C'est exactement la prémisse que le Correctif
+C a vérifiée fausse. Divergence documentaire réelle entre deux artefacts committés, pas
+une simple relecture — corrigée directement dans `tasks.md` (T046) pour refléter la
+décision qui fait foi, sans réécrire le Correctif C (append-only).
+
+### Correctif E — `font/family/montserrat` porte une valeur inutilisable pour un bind Figma
+
+Vérifié en direct avant tout geste (jamais supposé) :
+- La variable Figma `font/family/montserrat` (`VariableID:2027:954`, STRING, scope
+  `FONT_FAMILY`) a pour valeur **`"Montserrat, sans-serif"`** — la chaîne CSS brute du
+  token DTCG (fallback inclus), recopiée telle quelle à la création (spec antérieure).
+- Un nœud TEXT réel du fichier (`Accroche`, page `Pages`) a pour `fontName.family` réel
+  **`"Montserrat"`** — confirmé aussi par `figma.listAvailableFontsAsync()` : les seules
+  familles installées contenant « montserrat » sont `Montserrat`, `Montserrat Alternates`,
+  `Montserrat Subrayada`, `Montserrat Underline` — **aucune** ne contient `", sans-serif"`.
+- **Conclusion** : lier `fontFamily` à cette variable telle quelle romprait le rendu de
+  tout style qui la consommerait (Figma ne résout pas une famille inexistante). Le
+  générateur du dépôt ne l'a jamais consommée à ce jour (`docs/FIGMA-CAPABILITY-MATRIX.md`
+  a.6 : « STRING-binding upgrade deferred ») — **0 consommateur actuel, donc correction de
+  sa valeur = 0 pixel par construction** (même classe que les créations L2). Défaut de
+  source Figma pré-existant (constitution §VIII) : corrigé à la source (`"Montserrat"`),
+  jamais contourné côté code. Correction groupée dans le geste du lot L3, avant que T046
+  (lot L4) ne devienne le premier consommateur réel.
+
+### Correctif F — `opacity/base` porte une valeur sur la mauvaise échelle (100 au lieu de 1)
+
+Découvert en préparant le test isolé exigé par FR-014 pour T043 (1 seule occurrence
+`opacity` dans le périmètre : `MemberPicture:root/normal = 1`). Vérifié en direct :
+`opacity/base` (`VariableID:266:2143`, FLOAT, scope `OPACITY`) a pour valeur **`100`**.
+L'échelle native Figma (et CSS) pour `opacity` est **0-1** (1 = opaque) — une valeur `100`
+est hors plage, cohérente avec une confusion 0-100/pourcentage faite à la création (spec
+antérieure, jamais consommée depuis — même classe d'angle mort que le Correctif E). Risque
+si liée telle quelle : Figma la clampe très probablement à 1 au rendu (le **pixel
+resterait identique**), mais la variable resterait **sémantiquement fausse** — exactement
+le cas que `contracts/proof-cycle.md` §6 nomme : « la perte d'intention… au rendu
+identique », que le gate pixel ne voit jamais par construction. FR-014 est donc vérifiée
+fondée sur ce fichier précis, pas seulement en théorie. **0 consommateur actuel →
+correction de sa valeur (100→1) = 0 pixel par construction.** Corrigée dans le même geste
+L3, avant le test isolé de liaison (ci-dessous) qui vérifie le MÉCANISME de binding
+(indépendant de cette correction de valeur).
+
+### Plan de liaison T036-T044, construit et croisé mécaniquement (pas à l'œil)
+
+Script `build-l3-plan.mjs` (scratch, hors dépôt — FR-025 ne le protège pas, jamais commité)
+parse `releves/canaux-E-in-scope-2026-07-26.json` canal par canal et vérifie chaque valeur
+contre les primitives live. **Lues par appel direct
+`figma.variables.getLocalVariableCollectionsAsync()`, pas via l'outil MCP
+`figma_get_variables`** : un premier appel à ce dernier a renvoyé un sous-ensemble tronqué
+(36 variables au lieu de 64 réelles dans `Primitives`) malgré `cached:false` annoncé —
+limite de l'outil nommée ici pour ne pas être re-heurtée en silence plus tard ; la lecture
+directe fait foi partout dans cette spec depuis cette découverte.
+
+Résultat croisé avec succès contre le total documenté (193, section « T030/T031/T032 »
+ci-dessus) :
+- itemSpacing 58, padding 22 (×4 côtés = jusqu'à 88 liaisons individuelles), strokeWeight
+  9, fontSize 5, cornerRadius 3 : tous couverts par les primitives L2 existantes, 0 écart.
+- fontWeight/lineHeight : le script trouve 47/45 sur les canaux nommés du relevé +
+  confirme les 2 notes `(inconnu)` déjà nommées en Correctif A (nœud
+  `Coordonnees:root/wrapper/Contact/ContactValeur`, fontWeight=400→`font/weight/regular`,
+  lineHeight=27→`font/line-height/27`, toutes deux déjà existantes) → 48/46, réconcilié
+  exactement avec le total documenté.
+- **1 écart réel neuf, jamais documenté avant ce passage** : `lineHeight=32` à
+  `Hero:root/Bloc texte/Titres/wrapper/Sous-titre` — absent des 11 valeurs créées en L2
+  (dérivées des 18 styles de texte nommés, R8, pas du canal `lineHeight` général sur tout
+  le fichier). **1 primitive neuve requise : `font/line-height/32`.**
+- **minHeight** (1 occurrence, `Coordonnees:root/google-map = 597`) : valeur hors gamme
+  `space/*` existante. **1 primitive neuve requise : `space/597`** (famille `space`
+  légitime — le scope `WIDTH_HEIGHT` couvre minHeight/minWidth/maxWidth/maxHeight au même
+  titre que width/height, pas une famille séparée à créer).
+- **opacity** (1 occurrence) : test isolé FR-014 requis avant liaison — voir entrée
+  suivante.
+
+Total révisé pour le lot L3 : **193 valeurs liées + 2 primitives neuves
+(`font/line-height/32`, `space/597`) + 2 corrections de valeur pré-existante (Correctif E,
+F)**, sous réserve du verdict du test isolé opacité ci-dessous.
+
+### Test isolé FR-014 (opacité) — le Correctif F ci-dessus est FAUX, corrigé ici sans être réécrit
+
+Test exécuté sur une page jetable dédiée (`zzz-scratch-opacity-test-007`, jamais dans le
+périmètre des 43 cibles mesurées — page séparée, jamais enfant d'une des 4 pages
+mesurées), avec une collection de variables jetable (`zzz-test-scratch-007`), les deux
+supprimées immédiatement après lecture des résultats (suppression vérifiée par relevé live
+des pages/collections restantes — 7 pages, 2 collections `Primitives`/`Semantic`
+inchangées). Aucun avant/après ×43 requis : rien dans le périmètre mesuré n'a été
+touché — la page de test n'a jamais existé dans les 4 pages porteuses des 43 cibles, donc
+`contracts/proof-cycle.md` §1 ne s'applique pas à ce geste.
+
+- Rectangle A, `opacity = 0.5` **littéral** → relevé `0.5` (témoin).
+- Rectangle B, `opacity` **lié** à une variable FLOAT jetable valant **0.5** →
+  relevé **`0.004999999888241291`** (≈ **0,5 ÷ 100**).
+
+**FR-014 est confirmée fondée, avec preuve chiffrée : une variable liée au canal `opacity`
+est divisée par 100 par Figma au moment de la liaison.** Ce n'est PAS le cas des autres
+canaux testés en contrôle sur le même geste (`cornerRadius=32→32`, `strokeWeight=2→2`,
+`itemSpacing=24→24` — tous liés SANS division, confirmant que le quirk est **spécifique au
+scope `OPACITY`**, pas un problème général de liaison FLOAT qui menacerait T036-T042).
+
+**Le Correctif F ci-dessus est donc FAUX — nommé, pas corrigé en silence (règle
+append-only) :** `opacity/base = 100` n'est **pas** un défaut d'échelle 0-100/pourcentage.
+C'est très probablement la valeur **délibérément compensée** par l'auteur d'origine pour
+ce quirk exact (100 ÷ 100 = 1.0 = opaque, le rendu correct). **Aucune correction de valeur
+n'est nécessaire ni souhaitable** — corriger `opacity/base` vers `1` comme le proposait le
+Correctif F **aurait cassé le rendu** (1 ÷ 100 = 0,01 = quasi invisible), l'exact inverse
+de l'intention. Leçon methodologique gardée explicitement : le test isolé a rattrapé une
+correction que j'allais faire sur la seule base d'un raisonnement (échelle native 0-1),
+sans l'avoir vérifiée — exactement le risque que FR-014 existe pour empêcher. `T043`
+utilisera **`opacity/base` tel quel, sans aucune modification**, pour lier
+`MemberPicture:root/normal` (valeur actuelle 1 = opaque, cohérent avec 100÷100).
+
+**Correctif E reconfirmé par test isolé** (pas seulement par inférence) sur la même
+occasion, page jetable séparée (`zzz-scratch-fontfamily-test-007`, nettoyage vérifié
+identique) : lier `fontFamily` à une variable STRING valant `"Montserrat, sans-serif"`
+**lève une exception** (`unloaded font "Montserrat, sans-serif Regular"` — Figma tente de
+charger la chaîne entière comme nom de police) ; lier à `"Montserrat"` **réussit**,
+`fontName` relu correct. La correction de valeur (Correctif E) reste nécessaire et est
+maintenant **prouvée**, pas seulement déduite.

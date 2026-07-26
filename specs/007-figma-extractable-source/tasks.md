@@ -384,17 +384,29 @@ typographique est SC-013 : **18/18** styles liés **et** 18/18 marqués.
 - [ ] T040 [P] [US2] Lier les **48** `fontWeight` à `font/weight/*` (dépend de T027) — même
       vérification de recouvrement qu'en T039.
 - [ ] T041 [P] [US2] Lier les **46** `lineHeight` à `font/line-height/*` (dépend de T028) — même
-      vérification de recouvrement qu'en T039.
+      vérification de recouvrement qu'en T039. **Gap trouvé 2026-07-26** (`decisions.md`,
+      « Plan de liaison T036-T044 ») : `lineHeight=32` à `Hero:root/Bloc texte/Titres/wrapper/
+      Sous-titre` n'a pas de primitive — les 11 valeurs de T028 dérivaient des 18 styles de
+      texte (R8), pas du canal `lineHeight` général sur tout le fichier. **1 primitive neuve
+      requise, `font/line-height/32`** — créer puis lier dans le geste L3, T028 non rouvert
+      (déjà exécuté/committé), addendum consigné ici à la place.
 - [ ] T042 [P] [US2] Lier les **3** `cornerRadius` à `radius/*` (dépend de T031).
-- [ ] T043 [US2] Traiter le(s) cas **`opacity`** — une partie des 2 cas combinés
-      `opacity`+`minHeight` du relevé (répartition exacte à confirmer via T008/T009). FR-014 :
-      **vérifier explicitement avant de lier** — un token 0–1 lié pourrait rendre sur l'échelle
-      pourcent (0,5 → 0,5 % au lieu de 50 %). Test isolé (ex. sur une instance jetable ou capture
-      ciblée avant/après liaison) : si la limite est **infirmée**, lier normalement ; si elle
-      **tient**, conserver la valeur littérale et nommer la limite au rapport — jamais de
-      liaison posée sans avoir vérifié.
-- [ ] T044 [P] [US2] Traiter le(s) cas **`minHeight`** restant(s) du total combiné (T043) — lier
-      à la variable appropriée, valeur exacte.
+- [x] T043 [US2] Traiter le(s) cas **`opacity`** — se décompose en 1 occurrence exactement
+      (`MemberPicture:root/normal = 1`), le combiné `opacity`+`minHeight` du relevé confirmé
+      1+1 distincts (`decisions.md`, « Plan de liaison T036-T044 »). FR-014 : **vérifié
+      explicitement avant de lier, sur page jetable, résultat chiffré dans `decisions.md` §
+      « Test isolé FR-014 »** — la limite est **CONFIRMÉE**, pas infirmée : un token FLOAT lié
+      au canal `opacity` est **divisé par 100** par Figma (0,5 lié → relu 0,005). `opacity/base`
+      (valeur existante **100**) s'avère être la compensation déjà correcte pour ce quirk
+      (100÷100=1, opaque) — **aucune correction de valeur**, lier tel quel dans le geste L3.
+      Quirk vérifié **spécifique au scope `OPACITY`** (cornerRadius/strokeWeight/itemSpacing
+      testés en contrôle sur le même geste, aucune division) — ne s'étend pas aux autres
+      canaux de T036-T042.
+- [ ] T044 [P] [US2] Traiter le(s) cas **`minHeight`** — 1 occurrence exacte,
+      `Coordonnees:root/google-map = 597` (`decisions.md`). Hors gamme `space/*` existante —
+      **1 primitive neuve requise, `space/597`** (famille `space` légitime : le scope
+      `WIDTH_HEIGHT` couvre minWidth/minHeight/maxWidth/maxHeight au même titre que
+      width/height, pas une famille séparée). Créer puis lier, valeur exacte, dans le geste L3.
 - [ ] T045 [US2] Exécuter le **lot L3** (T036-T044, liaisons de valeurs) en un cycle de preuve —
       version `007/tokens/L3-liaisons` → capture AVANT ×43 → liaisons → capture APRÈS ×43 →
       comparer. **0 pixel attendu** : lier une variable qui porte la valeur déjà rendue ne
@@ -405,13 +417,21 @@ typographique est SC-013 : **18/18** styles liés **et** 18/18 marqués.
 
 ### Styles de texte (P5 du plan — 18 styles, 0/18 liés et 0/18 marqués au départ, confirmé live)
 
-- [ ] T046 [US2] Pour chacun des **18 styles de texte**, lier via `TextStyle.setBoundVariable` :
-      `fontFamily`+`fontStyle` (la graisse se lie par **`fontStyle`**, un STRING — les primitives
-      `font/weight/*` sont des noms, pas des nombres — **pas** par le canal `fontWeight` FLOAT),
-      `fontSize`, `lineHeight`, `letterSpacing` — **sauf** le style « Note de champ »
-      (interligne `AUTO`, non liable, cf. FR-019/US3 T055). Dépend de T033/T034 (rôles prêts) et
-      T035 (L2 vérifié). Piège 005/cycle 14 à re-vérifier après coup : les instances de textes
-      utilisant ces styles ne doivent perdre ni contenu ni alignement.
+- [ ] T046 [US2] **Correction 2026-07-26 (decisions.md, Correctif D) : le texte ci-dessous
+      inversait le mécanisme réel — corrigé pour suivre le Correctif C, jamais réécrit sur
+      un coup de tête.** Pour chacun des **18 styles de texte**, lier via
+      `TextStyle.setBoundVariable` : `fontFamily`+**`fontWeight`** (la graisse se lie par le
+      canal **`fontWeight`, un FLOAT** — les primitives `font/weight/*` sont bien des valeurs
+      numériques (regular=400, medium=500, semibold=600, bold=700), pas des noms STRING ;
+      `setBoundVariable('fontWeight', …)` est un champ liable réel de `TextStyle`/`TextNode`,
+      jamais utilisé par le générateur du dépôt aujourd'hui — voir Correctif C), `fontSize`,
+      `lineHeight`, `letterSpacing` — **sauf** le style « Note de champ » (interligne `AUTO`,
+      non liable, cf. FR-019/US3 T055). **Préalable ajouté (Correctif E)** : `fontFamily` ne
+      peut être lié qu'après correction de la valeur de `font/family/montserrat`
+      (`"Montserrat, sans-serif"` → `"Montserrat"`, sans quoi le rendu casse — vérifié en
+      direct, jamais supposé). Dépend de T033/T034 (rôles prêts) et T035 (L2 vérifié). Piège
+      005/cycle 14 à re-vérifier après coup : les instances de textes utilisant ces styles ne
+      doivent perdre ni contenu ni alignement.
 - [ ] T047 [US2] Poser le marqueur `ds_contracts/textStyleToken` (plugin data) sur chacun des 18
       styles, portant son chemin de token — dépend de T046. Sans lui, le générateur créerait 18
       doublons à la première génération (FR-010c).
