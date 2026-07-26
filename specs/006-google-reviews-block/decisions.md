@@ -2000,3 +2000,34 @@ touchée) : « no slots / multi-root anatomy / dark theme / second brand yet (00
 block added nested instances + repeat collections) ». Revérifié : `npm run eval` toujours
 **107/113**, message désormais exact.
 
+### T083 — Réconciliation des trois compteurs de blocs reportés (2026-07-26)
+
+`specs/003-externalize-figma-components/proofs/honesty-report.md:137` dit **« 2 blocs
+reportés »** (Review-card, Avis Google — §1 du rapport, daté 2026-07-25). `COMPONENT-
+INVENTORY.md` listait **trois** lignes « reporté » (Review-card, Avis Google, **et** l'icône
+étoile) — la troisième était **périmée depuis spec 004**, qui a livré `star` au registre
+(`contracts/icons.registry.json`, `name: "star"`, master `Étoile` `2053:1263`) sans jamais
+revenir corriger cette ligne d'inventaire. Confirmé par lecture directe du registre.
+
+**Corrigé dans `COMPONENT-INVENTORY.md`** (fichier vivant, pas un journal daté clos comme
+`honesty-report.md` de 003) : la ligne icône étoile → ✓ fait (spec 004) ; Review-card et Avis
+Google → ✓ fait (spec 006-google-reviews-block, net-new avatars/étoile/texte réels validés par
+l'owner plutôt qu'une extraction de la capture Trustindex aplatie). Bandeau de tête, section
+« Ordre de construction » et « Précisions honnêtes » mis à jour en cascade pour ne garder
+aucune ligne encore marquée « reporté » ou « inféré, jamais confirmé ».
+
+**Quel compteur bouge (question posée par la tâche)** : c'est le compteur **« blocs
+reportés »** du rapport d'honnêteté 003 (`honesty-report.md:137`, « 2 blocs reportés ») qui
+passe de **2 à 0** — exactement la revendication SC-008 (« Le compteur … passe de 2 à 0 »).
+`honesty-report.md` lui-même **n'est pas édité** : c'est un journal daté de la clôture 003
+(2026-07-25), exactement comme `MILESTONES.md` — il documente l'état **à cette date-là**, pas
+l'état courant ; le réécrire rétroactivement effacerait la trace de ce qui était vrai à la
+clôture 003. La preuve que le compteur est aujourd'hui à 0 vit dans `COMPONENT-INVENTORY.md`
+(mis à jour, fichier vivant) et dans ce journal-ci (006, la spec qui a fait bouger le
+compteur) — pas dans une réécriture du PDF de clôture d'une autre spec.
+
+**Verdict** : SC-008 atteinte. Icône étoile corrigée (périmée depuis 004, pas depuis 006) ;
+Review-card + Avis Google marquées livrées avec leur spec d'origine ; le compteur qui bouge
+est nommé explicitement (rapport d'honnêteté 003, 2→0) sans toucher au journal daté qui le
+porte.
+
