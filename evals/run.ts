@@ -3388,13 +3388,13 @@ const cases: Case[] = [
       if (r.status !== 0) throw new Error(`deterministic-roundtrip failed:\n${r.out.slice(0, 1600)}`);
       for (const want of [
         'byte-identical', // contract→canvas run twice, identical → deterministic
-        'round-trip closes: the API that went to canvas came back',
+        'round-trip closes: the anatomy that went to canvas came back',
         'emitted', // contract→code
         'THE FULL LOOP RAN WITH ZERO AI',
       ]) {
         if (!r.out.includes(want)) throw new Error(`deterministic-roundtrip missing "${want}":\n${r.out.slice(0, 1600)}`);
       }
-      console.log('deterministic-roundtrip: contract→canvas byte-identical across two runs (deterministic), canvas→contract recovers the API, contract→code emits — the full journey is pure functions, no AI in the conversion');
+      console.log('deterministic-roundtrip: contract→canvas byte-identical across two runs (deterministic), canvas→contract recovers the anatomy, contract→code emits — the full journey is pure functions, no AI in the conversion');
     },
   },
   {
@@ -4078,6 +4078,180 @@ const cases: Case[] = [
         'pages-compare-regions-additive: no-flag run carries zero region keys (byte-identity); ' +
           'region-inside → regionDiffCount 1/outsideDiffCount 0; region-outside → regionDiffCount 0/outsideDiffCount 1',
       );
+    },
+  },
+  // RE-ANIMATED (spec 006, 2026-07-26): was `detect-figma-missing-nested-instance`
+  // in evals/legacy-cases.ts (quarantined at the Piqueray reconversion — no
+  // composite existed to exercise it). Piqueray now ships ds.google-reviews
+  // (GoogleReviews) composing ds.review-card (ReviewCard) via a `component`
+  // ref in its anatomy — the exact re-enable condition. Body is the same
+  // shape as the original (edit the snapshot's nestedInstances, expect a
+  // figma/behind finding), re-pointed onto the real names.
+  {
+    id: 'detect-figma-missing-nested-instance',
+    claim: 'C3-detection',
+    run: () => {
+      editJson(FIGMA_COMPONENTS, (s) => {
+        const set = s.sets.find((x: any) => x.name === 'GoogleReviews');
+        set.nestedInstances = (set.nestedInstances ?? []).filter((n: string) => n !== 'ReviewCard');
+      });
+      if (parity().status === 0) throw new Error('Drift not detected');
+      expectFinding(readReport(), 'figma', 'behind', 'GoogleReviews.ReviewCard');
+    },
+  },
+  {
+    // T064 (spec 006, US3): ds.review-card's initial/photo avatar exclusivity
+    // is a CONVENTION, never a schema constraint. `visibleWhen` has no
+    // negation and no XOR/enum-style construct across two independent
+    // BOOLEAN props (an enum axis would break per-item variation inside
+    // google-reviews' `repeat`, R7/T033) — so `initialeVisible` and `photo`
+    // gate their parts completely independently (core/emit-react.ts
+    // wrapVisibleWhen, one `{cond ? (...) : null}` per part, no cross-part
+    // awareness). This pins that BOTH parts render when BOTH props are true
+    // — proving the schema does not, and structurally cannot, prevent the
+    // double-avatar case — so the exclusion stays a documented convention
+    // (contract description) that callers must honor themselves, never a
+    // silent claim of enforcement (Constitution V).
+    id: 'review-card-avatar-exclusivity-is-convention-not-schema',
+    claim: 'C3-detection',
+    run: () => {
+      const byId = new Map(
+        readdirSync(path.join(ROOT, 'contracts'))
+          .filter((f) => f.endsWith('.contract.json'))
+          .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
+          .map((c) => [c.id, c]),
+      );
+      const card = byId.get('ds.review-card');
+      if (!card) throw new Error('contracts/review-card.contract.json missing ds.review-card');
+      const initialeProp = card.props.find((p) => p.name === 'initialeVisible');
+      const photoProp = card.props.find((p) => p.name === 'photo');
+      if (!initialeProp || !photoProp) throw new Error('ds.review-card lost initialeVisible/photo props');
+      // Schema-level: no shared enum, no mutual negation wired between them.
+      if (typeof initialeProp.type !== 'string' || initialeProp.type !== 'boolean') {
+        throw new Error('initialeVisible is no longer a plain boolean — exclusivity proof must be re-derived');
+      }
+      if (typeof photoProp.type !== 'string' || photoProp.type !== 'boolean') {
+        throw new Error('photo is no longer a plain boolean — exclusivity proof must be re-derived');
+      }
+      // Runtime: emit and confirm BOTH gated parts render when BOTH are true.
+      const icons = new Map(
+        readdirSync(path.join(ROOT, 'assets', 'icons'))
+          .filter((f) => f.endsWith('.svg'))
+          .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+      );
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const tokenInv = tokenInventoryFromJson([
+        read('tokens/primitives.tokens.json'),
+        read('tokens/semantic.tokens.json'),
+        read('tokens/modes/semantic.light.tokens.json'),
+      ]);
+      const { tsx } = coreEmitReact(card, { tokens: tokenInv, icons, contracts: byId });
+      // Same-line only ([^?\n]*, not [^?]*) — the earlier greedy version
+      // crossed newlines and could latch onto an unrelated `{photo` inside
+      // the root's `data-photo={photo || undefined}` attribute, then read
+      // through to the NEXT `?` several lines later (the initialeVisible
+      // ternary), producing a false cross-reference. Anchoring the wrapper
+      // ternary to its own line is what "independent gate" actually means.
+      const initialeCond = tsx.match(/\{(initialeVisible[^?\n]*)\?\s*\(/);
+      const photoCond = tsx.match(/\{(photo[^?\n]*)\?\s*\(/);
+      if (!initialeCond) throw new Error(`emitted TSX has no independent gate on initialeVisible:\n${tsx.slice(0, 800)}`);
+      if (!photoCond) throw new Error(`emitted TSX has no independent gate on photo:\n${tsx.slice(0, 800)}`);
+      // The two conditions must be SEPARATE ternaries — neither referencing
+      // the other prop — which is exactly what "no cross-part awareness"
+      // means: setting both true, both branches independently pass.
+      if (initialeCond[1].includes('photo') || photoCond[1].includes('initialeVisible')) {
+        throw new Error(`gates are cross-referencing — exclusivity would be SCHEMA-enforced, contradicting the contract's own description:\n${initialeCond[1]} / ${photoCond[1]}`);
+      }
+      console.log('review-card-avatar-exclusivity-is-convention-not-schema: initialeVisible and photo gate independently (separate {cond ? (...) : null} per part, no cross-reference) — both true renders BOTH avatars; the exclusion stays a documented convention, never a schema constraint');
+    },
+  },
+  {
+    // T065 (spec 006, US3): ds.google-reviews' `avis` prop is the v12 repeat
+    // collection (repeat.sample + component:ds.review-card, R8/T033) — React
+    // MAPS THE LIVE ARRAY (per-item props flow through), while the static
+    // surfaces (html, react-inline) and the canvas sync script all render the
+    // contract's OBSERVED `sample` instead (never the real runtime content —
+    // the meter discipline, core/emit-{react,html,react-inline,figma-script}.ts
+    // repeat branches). `avis` left `undefined` must render nothing on the
+    // React surface (the arrayOf discipline: never a silent `[]`). The canvas
+    // leg of this claim is proven by scripts/deterministic-roundtrip.mjs
+    // itself ("the repeat+component produced 5 nested instances in
+    // groupeCartes" — same GoogleReviews contract, T060); this eval covers
+    // the two code emitters + the live-array/undefined split that the
+    // roundtrip script does not exercise.
+    id: 'google-reviews-repeat-renders-sample-on-static-surfaces',
+    claim: 'C3-detection',
+    run: () => {
+      const byId = new Map(
+        readdirSync(path.join(ROOT, 'contracts'))
+          .filter((f) => f.endsWith('.contract.json'))
+          .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
+          .map((c) => [c.id, c]),
+      );
+      const section = byId.get('ds.google-reviews');
+      if (!section) throw new Error('contracts/google-reviews.contract.json missing ds.google-reviews');
+      const icons = new Map(
+        readdirSync(path.join(ROOT, 'assets', 'icons'))
+          .filter((f) => f.endsWith('.svg'))
+          .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+      );
+      // 1. React: maps the LIVE array by name, `undefined` renders nothing
+      // (the arrayOf discipline: avis?.map, never a plain avis.map).
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const tokenInv = tokenInventoryFromJson([
+        read('tokens/primitives.tokens.json'),
+        read('tokens/semantic.tokens.json'),
+        read('tokens/modes/semantic.light.tokens.json'),
+      ]);
+      const { tsx } = coreEmitReact(section, { tokens: tokenInv, icons, contracts: byId });
+      if (!/avis\?\.map\(\(item, index\) => \(<ReviewCard key=\{index\}[^)]*item\.auteur[^)]*\/>\)\)/.test(tsx)) {
+        throw new Error(`emitted TSX does not map the live "avis" array onto <ReviewCard>:\n${tsx.slice(0, 1200)}`);
+      }
+      // 2. Static HTML surface: renders the OBSERVED sample (5 records),
+      // never a live array — five distinct sample dates ("il y a 2 mois" …
+      // "il y a 6 mois") must all appear verbatim in the markup.
+      const { html } = coreEmitHtml(section, { tokens: tokenInv, icons, contracts: byId });
+      const sample = (section.anatomy.root.parts!.cartes as SchemaPart).parts!.groupeCartes.parts!.carte.repeat!.sample as Array<Record<string, unknown>>;
+      if (sample.length !== 5) throw new Error(`expected 5-record sample, got ${sample.length}`);
+      for (const rec of sample) {
+        const date = String(rec.date);
+        if (!html.includes(date)) throw new Error(`static html surface missing sample record date "${date}" — sample not rendered`);
+      }
+      // 3. Inline-React surface: same fixed-instance rendering, executed via
+      // a spawned tsx probe (mirrors react-hyphenated-part-names-execute —
+      // emit-react-inline.ts is not re-exported through harness.ts).
+      const probe = run(TSX, ['-e', `
+        import fs from 'node:fs';
+        import { ContractSchema } from './scripts/contract-schema.ts';
+        import { emitReactInline } from './core/emit-react-inline.ts';
+        const byId = new Map(
+          fs.readdirSync('contracts').filter((f) => f.endsWith('.contract.json'))
+            .map((f) => ContractSchema.parse(JSON.parse(fs.readFileSync('contracts/' + f, 'utf8'))))
+            .map((c) => [c.id, c]),
+        );
+        const icons = new Map(
+          fs.readdirSync('assets/icons').filter((f) => f.endsWith('.svg'))
+            .map((f) => [f.replace(/\\.svg$/, ''), fs.readFileSync('assets/icons/' + f, 'utf8').trim()]),
+        );
+        const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+        // emitReactInline wants the RAW TokenTreeInput shape (primitives/
+        // semantic/light/dark/brands), not the flat Set from
+        // tokenInventoryFromJson (that's for emitReact/emitHtml only).
+        const tokens = {
+          primitives: read('tokens/primitives.tokens.json'),
+          semantic: read('tokens/semantic.tokens.json'),
+          light: read('tokens/modes/semantic.light.tokens.json'),
+          dark: {},
+          brands: {},
+        };
+        const section = byId.get('ds.google-reviews');
+        const { tsx } = emitReactInline(section, { tokens, icons, contracts: byId, mode: 'light' });
+        console.log(tsx.includes('il y a 2 mois') && tsx.includes('il y a 6 mois') ? 'INLINE-SAMPLE-OK' : 'INLINE-SAMPLE-MISSING');
+      `]);
+      if (probe.status !== 0 || !probe.out.includes('INLINE-SAMPLE-OK')) {
+        throw new Error(`react-inline surface did not render the observed sample:\n${probe.out.slice(0, 800)}`);
+      }
+      console.log('google-reviews-repeat-renders-sample-on-static-surfaces: React maps the live "avis" array (avis?.map, undefined renders nothing); html + react-inline both render the contract\'s 5-record OBSERVED sample verbatim, never the real runtime content — the canvas leg of the same claim is proven by scripts/deterministic-roundtrip.mjs (5 nested instances in groupeCartes)');
     },
   },
 ];
