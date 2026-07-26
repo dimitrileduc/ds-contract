@@ -1759,3 +1759,67 @@ Les trois évals citées tournent dans la suite vivante (`npm run eval`) ; la li
 propriété **structurelle** du schéma (aucune prop à inventer), la plus dure des quatre à
 contourner et la plus honnête à déclarer telle quelle.
 
+---
+
+## Phase 7 — Polish & clôture (2026-07-26)
+
+### T074 — Note de limites de la spec (cinq + FR-007)
+
+Récapitulatif **complet** des limites de la spec 006, chacune déjà nommée en cours de route,
+regroupées ici pour le rapport de clôture :
+
+1. **Trou A5 — fill image porté par le contrat, non refermé.** `avatarPhoto` (élément `img`)
+   rend une vraie image en code (`photoUrl`) mais compile en `imgPlaceholder:true` + lavis
+   `#D9D9D9` sur canevas (T029, T057, T066). Le contrat porte l'aiguillage et l'URL ; le pixel
+   réel reste un override Figma **hors contrat**. Pas de mécanisme d'émission d'image bitmap
+   depuis un contrat aujourd'hui — limite moteur, pas limite de ce bloc précisément.
+2. **Étoile orange intrinsèque.** L'icône gouvernée `star` (`Étoile`, `2053:1263`) est
+   `#F98A0B` par construction (T068) ; `ds.review-card` n'a **aucune prop note** ⇒ notes < 3,
+   demi-étoiles et notation par item sont inexprimables dans le `repeat` (T073 §2).
+3. **Troncature multi-lignes refusée.** Le champ `tronque` existe côté donnée mais la
+   troncature visuelle multi-lignes n'est pas garantie côté canevas (mesure T012/T057,
+   rappelée en T073 §3) — refus nommé, pas une donnée silencieuse.
+4. **Transcription non garantie au caractère près (FR-010).** Le contenu des 8 occurrences a
+   été retranscrit depuis l'aplat (aucun calque texte natif) ; la règle FR-010 nomme
+   explicitement cette limite — fidèle au **visible**, pas au caractère « correct ». Un détail
+   mineur déjà consigné : l'initiale de la 5ᵉ carte est en minuscule (« m ») dans l'aplat
+   source, retranscrite telle quelle (ligne 251).
+5. **Angle mort de la maquette témoin (T068, R22).** `Motorisation` — le témoin utilisé
+   ailleurs dans la spec pour les gates de non-régression — n'instancie ni `Étoile` ni
+   `check` : aveugle aux deux pièces que 006 introduit. Relecture directe faite en
+   remplacement (T068), zéro dérive détectée, mais le trou de couverture du témoin lui-même
+   reste nommé.
+
+**Limite additionnelle, FR-007 — le Bouton gouverné n'est pas réutilisé.** La résolution des
+dépendances imbriquées du moteur se fait **par nom** (`findComponentByName`,
+`core/emit-figma-script.ts:3098-3106`, `n.name === name`, lève si introuvable) ; le contrat dit
+`Button`, le master vivant s'appelle « Bouton » (convention française du fichier) — un
+`component`-ref vers `ds.button` échouerait au push. Les flèches de carrousel et le CTA de la
+barre-résumé sont donc **dessinés en parts** (frame + `icon.asset` + texte), pas composés
+depuis le Bouton gouverné (T034). Réemploi perdu, nommé au rapport dès l'adoption ; le
+correctif moteur (résolution par `contractId` d'abord, nom en repli) est envoyé au backlog en
+T075, pas fait ici — changer les octets émis exigerait un churn de golden + éval hors
+périmètre de cette spec (Constitution II).
+
+Ces six points (cinq limites + FR-007) sont la liste **complète** des bords nets de la spec
+006 ; aucun n'est nouveau ici — chacun a déjà son geste, sa mesure ou son éval en amont, cette
+section les rassemble pour `RAPPORT-CLOTURE.md` (T086).
+
+### T075 — Deux correctifs moteur envoyés au backlog, chacun avec son reçu
+
+Ajoutés à `specs/003-externalize-figma-components/BACKLOG-SPEC-B-design-to-code.md` (B5, B6) —
+aucun autre backlog ne couvrait le périmètre moteur (`BACKLOG-SPEC-007-*` est un audit source
+Figma, pas un backlog de correctifs `core/`) :
+
+- **B5 — résolution par `contractId` d'abord, nom en repli** (`findComponentByName`,
+  `core/emit-figma-script.ts:3098-3106`) : ~15 lignes, change les octets émis ⇒ churn de golden
+  + éval (Principe II). Reçu attaché : T034 (aucun `component`-ref vers `ds.button` posé dans
+  les deux contrats 006, réemploi FR-007 perdu et nommé) + R5 (`research.md`).
+- **B6 — `figma:plan` auto-nettoyant** pour les orphelins de `figma-sync/` : écarté pour la
+  même raison (comportement émis change ⇒ éval requise). Reçu attaché : T037 (purge manuelle de
+  6 orphelins dans le même commit relu que l'ajout des contrats) + R13 (`research.md`).
+
+Ni l'un ni l'autre n'est fait ici — « ranger au passage » est hors périmètre de 006 (le
+correctif toucherait l'émission, donc les golden, de **tous** les contrats existants, pas
+seulement `ds.review-card`/`ds.google-reviews`).
+
