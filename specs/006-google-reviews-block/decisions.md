@@ -1404,3 +1404,40 @@ rien de nouveau.
 **Verdict** : ✅ T055 fait. Chemin propre (convergence 1 passe, 0 résidu collatéral). Chiffres et crop
 publiés ici pour revue a posteriori.
 
+### T056 — Adopter Contactez-nous (2026-07-26) — **8ᵉ et dernière occurrence**
+
+**Checkpoint** `006/adoption/contactez-nous` → `2380525700182315678`. 9/9 captures avant (0 échec,
+manifests 9/9 ok). Réceptionneur port 9229 (même raison qu'en T055 : 9227 occupé par le pont).
+
+**Occurrence** : `GROUP 280:3792` (« Avis Google »), aplat `RECTANGLE 280:3796`
+(x:88/y:2475/w:1552/h:328), `SectionHeader 2094:2468` frère intact (x:89/y:2344/w:1550/h:83), cadre
+parent `Contactez-nous 274:2464` (h:3901, 7 enfants). Écart attendu (T048) : `outsideDiffCount 0`,
+`regionPct` ≈ 7,7 %, `Motorisation` identical.
+
+**Remplacement + convergence** : offset relatif **131** appliqué dès le départ (leçon T055) →
+`inst.y = groupTop 2344 + 131 = 2475` (= y de l'aplat d'origine). Convergence des deux enfants en
+**4 passes**, GROUP exactement `88/2344/1552/459` (h:459 correcte dès la 1ʳᵉ passe, pas de reprise
+d'offset cette fois).
+
+**Garde FR-012** (relue deux fois) : cadre h:3901 inchangé, **les 7 enfants bit-identiques à la ligne
+de base avant-mutation** — 0 dérive, aucun résidu collatéral.
+
+**Contenu appliqué par propriétés** : barre-résumé (Excellent / 4.8 / 93 avis / Contrôles) + 5 cartes
+appariées par position (x croissant), identiques aux 7 occurrences précédentes (T048/T021).
+
+**Verdict final** (`proofs/contactez-nous/verdict.json`) : `outsideDiffCount = 0` ✅ (SC-003) ·
+`diffCount` (39238) **égale exactement** `regionDiffCount` · `regionPct = 7,708 %` (identique aux 7
+autres : même contenu, même bloc) · `Motorisation` : `identical`, `diffCount 0` · totaux **8 identical
++ 1 diff + 0 dimension-mismatch + 0 capture-failed**. Signature `sha256` : **8 des 9 maquettes
+byte-identiques avant↔après**, seule Contactez-nous diffère (`cd5a8bfd…` → `face7fb2…`) — dimensions
+préservées.
+
+**Revue à l'œil (obligatoire, crop `proofs/contactez-nous/crops/Contactez-nous.png`)** : barre-résumé
+quasi sans diff, écart concentré sur les 5 cartes — police, avatar, badge, photo carte 5 (A5) : **tous
+des résidus déjà nommés en T040**, rien de nouveau.
+
+**Verdict** : ✅ T056 fait. **Les 8 occurrences sont adoptées** (Accueil, Portes de garage, Portes de
+garage résidentielles/industrielles, Portes d'entrée, Dépannage/SAV, À Propos, Contactez-nous) — chemin
+propre de bout en bout (T051→T056 : convergence courte, 0 résidu collatéral). Reste de la Phase 4d :
+T057 (fills photo), T058 (assertion de fin + re-scan positionnel), T059 (ledger).
+
