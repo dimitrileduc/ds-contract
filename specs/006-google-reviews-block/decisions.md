@@ -1600,3 +1600,26 @@ de code que ce dépôt possède ou teste unitairement.
 **Verdict** : ✅ T067 fait — pas de correctif moteur/mock nécessaire, nommé et fermé sans
 inventer un cas, conformément à la clause d'échappement de la tâche.
 
+### T068 — Garde de l'angle mort de la maquette témoin (2026-07-26)
+
+**Constat R22** : `Motorisation` (la maquette qui sert de témoin ailleurs dans la spec)
+n'instancie ni `Étoile` ni `check` — elle est aveugle aux deux pièces que 006 introduit
+(notes en étoiles, badge « avis vérifié »). Relecture directe requise, aucune page ne pouvant
+servir de témoin.
+
+**`Étoile`** (`figma_execute`, lecture seule, `getNodeByIdAsync('2053:1263')`) : `COMPONENT`
+simple (pas un set), 20×20, section `Icônes` (`DS · Atomes`), un seul enfant `Tracé`
+(`STAR`, remplissage lié à `VariableID:4:28`, RGB (0.976, 0.540, 0.042) ≈ `#F98A0B`). Comparé
+verbatim à `assets/icons/star.svg` (`fill="#F98A0B"`, mêmes 20×20) : **identique**, aucune
+dérive depuis l'extraction. La correspondance registre (`contracts/icons.registry.json` :
+`star` → `componentName: "Étoile"`, `nodeId: "2053:1263"`) tient toujours.
+
+**`check`** : déjà creusé en T009 — aucun nœud nommé exactement « check » sur
+`DS · Tokens/Atomes/Molécules/Organisms` ni `Pages`. Confirmé de nouveau ici : c'est un
+glyphe D7 **code-seul par construction** (`assets/icons/check.svg`, un simple trait
+`stroke="white"`), jamais censé avoir de master Figma dédié — même classe que `close.svg`,
+acquittée au gate baseline T005. Rien de nouveau, pas de dérive.
+
+**Verdict** : ✅ T068 fait — angle mort nommé, relecture directe faite, zéro dérive détectée
+sur les deux pièces invisibles aux pages.
+
