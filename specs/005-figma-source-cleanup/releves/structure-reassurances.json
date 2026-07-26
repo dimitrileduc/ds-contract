@@ -1,0 +1,40 @@
+{
+  "cible": "Réassurances (2114:3721, COMPONENT_SET, 3 variants)",
+  "date": "2026-07-25",
+  "geste_prevu": "resize width 1552->1550 sur les 3 variants (root COMPONENT de chacun)",
+  "verifie_live_par_variant": {
+    "Disposition=4 cartes (2114:3619)": {
+      "layoutMode": "VERTICAL", "layoutSizingHorizontal": "FIXED", "width": 1552,
+      "enfants_directs": [
+        { "name": "Section-header", "type": "INSTANCE", "layoutSizingHorizontal": "FIXED", "width": 1552 },
+        { "name": "items", "type": "FRAME", "layoutSizingHorizontal": "FILL", "width": 1552 },
+        { "name": "Bouton", "type": "INSTANCE", "layoutSizingHorizontal": "HUG", "width": 249 }
+      ],
+      "groupsFound": []
+    },
+    "Disposition=4 cartes · 2 CTA (2114:3653)": {
+      "layoutMode": "VERTICAL", "layoutSizingHorizontal": "FIXED", "width": 1552,
+      "enfants_directs": [
+        { "name": "Section-header", "type": "INSTANCE", "layoutSizingHorizontal": "FIXED", "width": 1552 },
+        { "name": "items", "type": "FRAME", "layoutSizingHorizontal": "FILL", "width": 1552 },
+        { "name": "Boutons", "type": "FRAME", "layoutSizingHorizontal": "HUG", "width": 570 }
+      ],
+      "groupsFound": ["I2114:3651;28:115;230:582 \"Tracé composé\" (depth 4, 16x18px — contenu interne d'une icône, sans rapport avec la largeur du variant)"]
+    },
+    "Disposition=5 cartes (2114:3693)": {
+      "layoutMode": "VERTICAL", "layoutSizingHorizontal": "FIXED", "width": 1552,
+      "enfants_directs": [
+        { "name": "Section-header", "type": "INSTANCE", "layoutSizingHorizontal": "FIXED", "width": 1552 },
+        { "name": "items", "type": "FRAME", "layoutSizingHorizontal": "FILL", "width": 1552 },
+        { "name": "Bouton", "type": "INSTANCE", "layoutSizingHorizontal": "HUG", "width": 249 }
+      ],
+      "groupsFound": []
+    }
+  },
+  "verdict": {
+    "piege_GROUP_resize_par_variant": "ABSENT sur les 3 — chaque root est un vrai COMPONENT (pas un GROUP) en auto-layout VERTICAL ; le seul GROUP trouvé (2 CTA, depth 4) est un vecteur interne d'icone, hors du chemin de la largeur.",
+    "piege_nested_INSTANCE_SWAP_resize_noop": "NON APPLICABLE — le resize cible le root COMPONENT de chaque variant (pas une instance nichee).",
+    "note_effet_compose_a_surveiller": "`items` est FILL -> suivra automatiquement le nouveau width du parent (1550). `Section-header` (instance) est FIXED a 1552 -> ne suivra PAS automatiquement le resize du parent (FIXED = independant du parent). Sa propre coquille (1552->1550 sur son variant 'Avec CTA') est prevue Phase 6/V5, un cycle plus tard, pas ici. Consequence possible NON encore mesuree : un debordement/desalignement transitoire de 2px du Section-header par rapport a son parent Reassurances (desormais 1550) jusqu'a ce que V5 corrige le maitre. A verifier sur le diff observe, pas suppose.",
+    "confirme_trap_free_pour_le_resize_lui_meme": true
+  }
+}

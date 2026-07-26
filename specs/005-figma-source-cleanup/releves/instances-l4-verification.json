@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-25",
+  "methode": "scan live des 9 maquettes, chaque INSTANCE resolue via getMainComponentAsync() (par cle, jamais par nom) et comptee vers son master (racine COMPONENT_SET si variant)",
+  "masters_verifies": {
+    "piqueray_logo (4:14, deplace Assets->DS.Atomes)": { "instances_9_pages": 18, "cassees": 0 },
+    "Bouton (6:122, deplace Assets->DS.Atomes)": { "instances_9_pages": 78, "cassees": 0 },
+    "member-picture (274:2389, deplace Assets->DS.Atomes)": { "instances_9_pages": 16, "cassees": 0 },
+    "Header (84:285, ex-Header nav, deplace Assets->DS.Organisms + reconstruit avec Nav-item x4)": { "instances_9_pages": 9, "cassees": 0 },
+    "octicon:chevron-down-12 (6:119, glyphe hors registre, recupere sans page -> DS.Atomes)": { "instances_9_pages": 36, "cassees": 0, "note": "36 = 4 par instance de Header (dont 2 masquees par la propriete Chevron=false) x 9 pages" }
+  },
+  "icones_registre_verifiees": {
+    "piqueray (274:2934)": 4, "mail (263:2125)": 0, "phone (263:2120)": 2, "download (230:599)": 10,
+    "pdf (230:585)": 12, "search (95:252)": 9, "user (95:216)": 9, "chevron-right (27:86)": 2,
+    "chevron-left (27:83)": 2, "chevron-down (226:373)": 28, "chevron-up (226:374)": 12,
+    "cart (27:70)": 17, "arrow-right (6:104)": 67, "arrow-left (6:99)": 54, "external-link (9:185)": 0
+  },
+  "note_icones_a_zero_usage": "mail (263:2125) et external-link (9:185) montrent 0 usage sur les 9 maquettes reelles -- fait preexistant du registre (icones gouvernees mais pas encore consommees sur le site), pas une consequence du deplacement de page.",
+  "verdict": "0 instance cassee sur l'ensemble des masters deplaces et des icones du registre -- verifie par lecture live, jamais suppose."
+}

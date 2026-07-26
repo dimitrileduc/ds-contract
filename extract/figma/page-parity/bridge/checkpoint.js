@@ -23,8 +23,8 @@
 (async () => {
   const input = globalThis.__dsc003_input || {};
   const label = input.label;
-  if (!label || !/^003\/[^/]+\/[^/]+$/.test(label)) {
-    throw new Error('checkpoint.js: label requis au format "003/<increment>/<etape>" — recu: ' + JSON.stringify(label));
+  if (!label || !/^\d{3}\/[^/]+\/[^/]+$/.test(label)) {
+    throw new Error('checkpoint.js: label requis au format "\\d{3}/<increment>/<etape>" — recu: ' + JSON.stringify(label));
   }
   const result = await figma.saveVersionHistoryAsync(label);
   return { label: label, versionId: (result && result.id) || null };

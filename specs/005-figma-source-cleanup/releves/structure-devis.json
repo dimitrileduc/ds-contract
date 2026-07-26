@@ -1,0 +1,17 @@
+{
+  "cible": "Devis (2096:2524)",
+  "date": "2026-07-25",
+  "geste_prevu": "Container (2096:2525) : x 88->89, width 1552->1550",
+  "verifie_live": {
+    "root": { "id": "2096:2524", "name": "Devis", "type": "COMPONENT", "layoutMode": "VERTICAL", "width": 1728, "counterAxisAlignItems": "CENTER" },
+    "container": { "id": "2096:2525", "name": "Container", "type": "FRAME", "layoutSizingHorizontal": "FIXED", "x": 88, "y": 96, "width": 1552, "height": 186 },
+    "groupsFound": [],
+    "nestedInstancesFound": ["Bouton (depth 2)", "arrow-left/arrow-right (depth 3, contenu interne de Bouton)"]
+  },
+  "verdict": {
+    "recentrage": "Devis (racine) porte counterAxisAlignItems=CENTER sur son auto-layout VERTICAL — Container est son seul enfant, donc deja auto-centre horizontalement par le moteur d'auto-layout (88 = (1728-1552)/2, exact). Le recentrage n'est PAS un calcul manuel a faire : resize(1550, h) sur Container suffit, le moteur recalculera x=89 = (1728-1550)/2 automatiquement. Verifie live, pas suppose (D1 'reverifier le recentrage').",
+    "piege_GROUP_resize": "ABSENT — Container est une FRAME, pas un GROUP.",
+    "piege_nested_INSTANCE_SWAP_resize_noop": "NON APPLICABLE — le geste redimensionne Container (une FRAME simple), jamais l'instance Bouton nichee a l'interieur (contenu, pas la cible du resize).",
+    "confirme_trap_free": true
+  }
+}

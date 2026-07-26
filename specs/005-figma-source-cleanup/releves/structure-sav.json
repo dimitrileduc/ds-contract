@@ -1,0 +1,34 @@
+{
+  "cible": "SAV (2108:3105)",
+  "date": "2026-07-25",
+  "AVERTISSEMENT_PROCESSUS": "Ce relevé a ete redige APRES le geste, pas avant (voir decisions.md pour la deviation nommee : l'exploration en lecture seule a directement enchaine sur les ecritures, sans repasser par checkpoint -> annonce -> capture-avant). Son contenu factuel reste verifie (lectures live a chaque etape), seul l'ORDRE du protocole a ete viole.",
+  "geste_prevu": "eviter resize() sur les GROUP (section, row) qui scalerait leur contenu ; agir sur les feuilles non-GROUP a la place",
+  "structure_verifiee_live": {
+    "root": { "id": "2108:3105", "name": "SAV", "type": "COMPONENT", "layoutMode": "HORIZONTAL", "layoutSizingHorizontal": "FIXED", "width_avant": 1552 },
+    "section": { "id": "2108:3093", "name": "section", "type": "GROUP", "note": "bbox TOUJOURS calculee automatiquement depuis ses enfants — jamais resize() directement dessus" },
+    "section_enfants": [
+      { "id": "2108:3094", "name": "background", "type": "RECTANGLE", "width_avant": 1552, "note": "feuille simple, resize() direct sans danger — c'est CE noeud qui fixe la largeur de section" },
+      { "id": "2108:3095", "name": "row", "type": "GROUP", "x_avant": 132, "note": "GROUP — jamais resize(), seulement translation rigide de x (safe, ne scale rien)" }
+    ],
+    "row_enfants": [
+      { "id": "2108:3096", "name": "img-group", "type": "GROUP", "x_avant": 773 },
+      { "id": "2108:3099", "name": "wrapper", "type": "GROUP", "x_avant": 132, "enfants": [
+        { "id": "2108:3100", "name": "background", "type": "RECTANGLE" },
+        { "id": "2108:3101", "name": "inner", "type": "FRAME", "x_avant": 180 }
+      ]}
+    ]
+  },
+  "mecanisme_du_piege_GROUP_confirme": "Un GROUP n'a pas de geometrie propre — sa bbox est TOUJOURS le calcul automatique de l'union de ses enfants. Appeler resize() dessus SCALE tous ses descendants proportionnellement (deforme photo + texte). La sortie sure : redimensionner directement la feuille non-GROUP qui determine la largeur (ici `background` RECTANGLE, 2108:3094) et TRANSLATER (jamais resize) les GROUP enfants (ici `row`, 2108:3095) pour re-centrer — la bbox du GROUP parent (`section`) se recalcule alors automatiquement au bon width, sans jamais scaler un pixel de contenu.",
+  "verifie_apres_geste": {
+    "bg_width": 1550,
+    "row_x": 131,
+    "section_bbox": { "x": 0, "y": 0, "width": 1550, "height": 677 },
+    "root_width": 1550,
+    "contenu_non_scale_confirme": "imgGroup/wrapper/inner/img tous decales de -1px en x exactement (translation rigide), largeurs/hauteurs INCHANGEES (647x561, 641x561, 546x365, 563x504) — aucune deformation."
+  },
+  "verdict": {
+    "piege_GROUP_resize": "CONFIRME PRESENT (section ET row sont des GROUP) — EVITE en ne l'invoquant jamais directement, agissant sur les feuilles a la place.",
+    "piege_nested_INSTANCE_SWAP_resize_noop": "NON APPLICABLE — aucune instance INSTANCE_SWAP n'est la cible du resize (Bouton nested est du contenu, jamais touche).",
+    "resolu_avant_edit_final_racine": true
+  }
+}

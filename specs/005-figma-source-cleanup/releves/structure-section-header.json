@@ -1,0 +1,26 @@
+{
+  "cible": "Section-header (2090:2397, COMPONENT_SET, 2 variants)",
+  "date": "2026-07-25",
+  "geste_prevu": "Avec CTA (2090:2388) : width 1552->1550. Standard (2090:2385) DEJA a 1550 -- non touche.",
+  "verifie_live_par_variant": {
+    "Disposition=Standard (2090:2385)": {
+      "layoutMode": "VERTICAL", "width": 1550, "note": "DEJA a la bonne valeur -- confirme, pas suppose. Enfants: Accroche + Titre, TEXT FIXED 1550, aucun GROUP.",
+      "groupsFound": []
+    },
+    "Disposition=Avec CTA (2090:2388)": {
+      "layoutMode": "HORIZONTAL", "width": 1552, "primaryAxisAlignItems": "SPACE_BETWEEN", "counterAxisAlignItems": "CENTER", "itemSpacing": 0,
+      "enfants_directs": [
+        { "name": "Titre", "type": "TEXT", "layoutSizingHorizontal": "HUG", "x": 0, "width": 438 },
+        { "name": "Bouton", "type": "INSTANCE", "layoutSizingHorizontal": "HUG", "x": 1287, "width": 265 }
+      ],
+      "groupsFound": [],
+      "note": "SPACE_BETWEEN + Titre ancre a gauche (x=0) + Bouton ancre a droite (x=1287, finit exactement a 1552) -- PAS un centrage symetrique comme Devis/Reassurances. Le resize du parent va deplacer Bouton de 2px vers la gauche (space-between recalcule sa position pour finir au nouveau bord droit), Titre restant inchange. Effet ASYMETRIQUE attendu, diff pixel reel probable (contrairement a V2/V4)."
+    }
+  },
+  "verdict": {
+    "piege_GROUP_resize": "ABSENT sur les 2 variants.",
+    "piege_nested_INSTANCE_SWAP_resize_noop": "NON APPLICABLE -- le resize cible le root COMPONENT de chaque variant, jamais l'instance Bouton nichee directement.",
+    "confirme_trap_free": true,
+    "prediction_mecanisme": "SPACE_BETWEEN asymetrique -- Bouton se deplacera reellement de 2px, diff pixel visible attendu (contrairement au centrage symetrique de Devis/Reassurances qui s'annule)."
+  }
+}
