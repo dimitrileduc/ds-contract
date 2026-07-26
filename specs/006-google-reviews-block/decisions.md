@@ -1496,3 +1496,22 @@ L'instrument par occurrence (T051→T056) a produit **8 diff + 1 identical (Moto
 — combinaison conforme à `contracts/region-proof.md §4`. Le re-scan global confirme 0 résidu widget.
 Phase 4d close.
 
+### T059 — Compléter `ledger/google-reviews.json` (2026-07-26)
+
+**Fichier produit** : `specs/006-google-reviews-block/ledger/google-reviews.json`
+(JSON valide, 35 entrées, format 003, rejouable).
+
+**Contenu couvert** (angle mort de `bridge/customizations.js`) :
+- Barre-résumé : 4 champs TEXTE (`note`, `labelNote`, `nbAvis`, `labelControle`)
+- 5 cartes × 6 champs chacune : `auteur`, `initiale`, `testimonial`, `date`, `tronque` (BOOLEAN), `verifie` (BOOLEAN)
+- Entrée spéciale `avatarPhoto` : `statut: "sans-objet-par-mesure"`, `count: 0` — trace honnête de T022/T057, pas une omission silencieuse
+
+**Contenu source** (T021 — unique jeu pour les 8 occurrences) :
+1. pho syster / P / non tronqué / 8 mois
+2. Petit Nicole / P / tronqué / 2 ans
+3. Aun Bukhari / A / tronqué / 6 mois
+4. Thierry Picard / T / non tronqué / 1 an
+5. miguel martinez / m / tronqué / 3 ans
+
+**Verdict** : ✅ T059 fait. **Phase 4d entièrement close** (T051→T059).
+
