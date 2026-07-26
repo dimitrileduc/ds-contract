@@ -41,6 +41,8 @@ description: "Task list template for feature implementation"
   - Delivered as an MVP increment
   
   DO NOT keep these sample tasks in the generated tasks.md file.
+  EXCEPTION: when the feature executes in a git worktree (the norm here), T001 below
+  is NOT a sample — keep it, adapted with the real worktree path.
   ============================================================================
 -->
 
@@ -48,7 +50,15 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan
+- [ ] T001 [Worktree gates — F1] Make this worktree self-sufficient (Constitution,
+      Development Workflow: Worktree Gates): run `npm install` inside the worktree
+      (`npm run eval` symlinks the checkout's own node_modules — it refuses without
+      this), then `npx playwright install chromium` (two checks drive real Chromium).
+      The FULL gate sweep — including `npm run eval` — runs in this worktree at every
+      checkpoint and at closure; the visual-parity baseline is versioned in-worktree.
+      The main checkout cannot check out this branch while the worktree holds it — if
+      a check must run there: `git -C <main-checkout> checkout --detach <commit>`,
+      sweep, restore.
 - [ ] T002 Initialize [language] project with [framework] dependencies
 - [ ] T003 [P] Configure linting and formatting tools
 

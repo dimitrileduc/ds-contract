@@ -7,7 +7,7 @@
 
 **A design system's source of truth should be neither the design file nor the code — but a machine-readable *contract* that sits between them and generates both.**
 
-This repository is the working proof, and the candidate reference implementation for a vendor-neutral component contract specification. 51 component contracts and 282 DTCG tokens generate two surfaces — a typed React library and a native design-tool library — that are continuously proven to match the contracts by a three-way differ. Nothing is hand-maintained twice, and nothing pretends to be in sync when it isn't.
+This repository is the working proof, and the candidate reference implementation for a vendor-neutral component contract specification. Versioned component contracts and DTCG tokens generate two surfaces — a typed React library and a native design-tool library — that are continuously proven to match the contracts by a three-way differ. Nothing is hand-maintained twice, and nothing pretends to be in sync when it isn't.
 
 A growing category of tools speaks this vocabulary; this project holds four positions that, together, none of them do. **Bidirectional:** the contract generates *both* the code and the design canvas, and imports from both — round-trips are proven, not promised. **Deterministic:** every artifact is computed from file data and byte-pinned; no LLM guesses in the pipeline (AI is available as an assistant, never as an authority). **Receipted:** anything the pipeline cannot carry is named on screen — a gap is reported, never papered over with a plausible value. **Open:** the schema, the engine, and every instrument that verifies them are in this repository under one permissive license, with no gated tier — because a spec the community can't fully use isn't a spec.
 
@@ -67,21 +67,21 @@ Every capability claim in this repository is backed by an executable check or a 
 | **Theming** | a brand is a token-layer dimension, nothing else — adding one leaves every component byte-identical | `brand-added-token-layer-only` eval |
 | **Engine as library** | the whole pipeline is browser-safe pure functions; CLI output golden-guarded through the refactor | `npm run core:browser-check` · [docs/15](docs/15-engine-as-library.md) |
 
-All of it is gated by **102 executable checks** (`npm run eval`) that run the real pipeline in a scratch copy — not mocks. All 102 pass; the 3 that were an intentional red block went green once spec 002 pushed the master update to Figma and `npm run parity` reached zero active findings (see [MILESTONES.md](MILESTONES.md)). `npm run eval` prints the live `N/N` — trust that over any number quoted here.
+All of it is gated by **the executable eval suite** (`npm run eval`), which runs the real pipeline in a scratch copy — not mocks. The suite passes in full; the 3 that were an intentional red block went green once spec 002 pushed the master update to Figma and `npm run parity` reached zero active findings (see [MILESTONES.md](MILESTONES.md)). `npm run eval` prints the live `N/N` — that output is the only authoritative count.
 
 ## What's actually here
 
 | Path | What it is | Edit by hand? |
 |---|---|---|
-| `contracts/` | **The source of truth.** 51 component contracts — buttons through banners, form fields, chat messages, navigation, progress meters, switches. APIs mirror a shipping industry component library ([coverage map](docs/research/astryx-coverage.md)) on this system's own tokens. | ✅ This is where changes happen |
-| `tokens/` | 282 DTCG design tokens: primitives → **brand modes** (accent ramp + control radius per brand) → semantic aliases → light/dark mode files. One pipeline compiles them to CSS custom properties *and* design-tool variable collections. Adding a brand touches ONLY this directory — eval-proven. | ✅ |
+| `contracts/` | **The source of truth.** The governed Piqueray component contracts (the Button first, more landing spec by spec) plus `icons.registry.json` — the governed icon set. The pre-reconversion 51-contract demo corpus is archived read-only at [`docs/reference/demo-archive/`](docs/reference/demo-archive/). | ✅ This is where changes happen |
+| `tokens/` | The Piqueray DTCG token foundation (single brand, single mode): primitives → semantic aliases → mode files. One pipeline compiles them to CSS custom properties *and* design-tool variable collections. | ✅ |
 | `core/` | **The engine as a library** — schema, token corpus, both extraction proposers, and four emitters (`react`, `html`, `react-inline`, `figma-script`) behind a pluggable `Emitter` interface. Browser-importable, zero node globals; the CLI scripts are thin shells over it. | ✅ |
 | `src/components/` | The generated React library — typed, accessible, CSF3 stories, publishable package build. | ❌ Generated, never edited |
 | `figma-sync/` | Generated, transport-agnostic scripts that build the canvas library — plus the **Sync Runner** dev plugin (`plugin/`) that executes them from disk. A from-blank rebuild of the entire library ran this way and verified clean. | ❌ Generated (`plugin/`, `arrange.js` hand-maintained) |
 | `parity/` | The three-way differ: classifies every difference between contract, code, and canvas as *ahead*, *behind*, or *mismatched* — with a proposed remedy. Plus the adherence judge and the brownfield `diagnose` referee. | ✅ |
 | `extract/` | Brownfield extraction: code→contract (React/TSX, CSS Modules, Custom Elements Manifest) and design→contract (plugin dump + Figma REST) adapters that propose **full contracts** — API, anatomy, and token bindings — plus the four pilot write-ups and the round-trip receipts. | ✅ |
 | `catalog/` + `context/` | The compiled generation constraint (every API + every token + the governance rules) that an AI agent — or a human — can be held to, sharded to fit an agent's context window at any component count, plus the org rules and memory that feed it. | catalog ❌ · rules ✅ |
-| `evals/` | 102 deterministic checks on the machinery itself (all passing; the 3 formerly-intentional reds green after the spec-002 Figma push): byte-identical regeneration against golden manifests, refusal of illegal contracts, detection of every claimed drift class, convergence after promotion, extraction round-trips. | ✅ |
+| `evals/` | Deterministic checks on the machinery itself (all passing — `npm run eval` prints the live `N/N`; the 3 formerly-intentional reds green after the spec-002 Figma push): byte-identical regeneration against golden manifests, refusal of illegal contracts, detection of every claimed drift class, convergence after promotion, extraction round-trips. | ✅ |
 | `playground/` | The public browser playground ([live](https://ds-contracts-playground.pages.dev)) — a Vite app importing `core/` unmodified. | ✅ |
 | `dashboard/` | The **Contract Hub** — a local app visualizing the whole system: live component previews, per-prop binding maps across all three surfaces, token provenance, one-click parity runs, contract editing with regeneration, and the full docs. | ✅ |
 | `docs/` | The working documents — start at [Getting Started](docs/00-getting-started.md). | ✅ |
@@ -92,7 +92,7 @@ Requires Node ≥ 20. (Two checks drive a real Chromium — one eval and the vis
 
 ```bash
 npm install
-npm run build        # tokens → schema → all 51 components, validated against the contracts
+npm run build        # tokens → schema → components, validated against the contracts
 npm run dashboard    # the Contract Hub → http://localhost:5180
 npm run storybook    # the generated component library
 ```
@@ -104,7 +104,7 @@ npm run parity   # ① clean — code, canvas, and tokens all match the contract
 # ② edit any contract in contracts/ — add an enum value, change a token binding
 npm run build && npm run parity
 #    ③ the differ reports exactly what is now behind, and how to fix it
-npm run eval     # ④ 108 checks that detection, refusal, and convergence still hold (108/108)
+npm run eval     # ④ detection, refusal, and convergence still hold — prints the live N/N
 ```
 
 That honest red state in step ③ is the product. Most design-system tooling shows you the happy path; this one is built to tell you precisely when and where the surfaces have stopped agreeing. (Point a token binding at a token that doesn't exist and the *build itself* fails — the contract↔token integrity gate.)
@@ -184,7 +184,7 @@ Not everything is expressible yet, and nothing here pretends otherwise:
 
 ## Status
 
-The model is validated end-to-end and running in public: generation into both surfaces, the parity loop executed in both directions with receipts, 108/108 evals (see [MILESTONES.md](MILESTONES.md)), the schema and CLI published to the public npm registry (`@ds-contracts/schema`, `@ds-contracts/cli` — stranger-verified from a clean directory), a measured 100-vs-69 governed-generation result, bidirectional anatomy extraction with zero-mismatch round-trip receipts, four brownfield pilots plus an enterprise code gauntlet (Carbon, Fluent 2, Spectrum, Polaris) on systems this project doesn't own, a live enterprise Figma kit censused to 100.0% clean (1,618 sets), a standing pixel-level visual-parity instrument, in-place amend proven forensically on live files, and a launched browser playground running the same engine — with a companion Figma plugin bridging live selections into it. The reference design-tool integration lives behind a transport-agnostic script boundary (`docs/internal/`) — the contract format itself is tool-agnostic.
+The model is validated end-to-end and running in public: generation into both surfaces, the parity loop executed in both directions with receipts, a fully green eval suite (see [MILESTONES.md](MILESTONES.md)), the schema and CLI published to the public npm registry (`@ds-contracts/schema`, `@ds-contracts/cli` — stranger-verified from a clean directory), a measured 100-vs-69 governed-generation result, bidirectional anatomy extraction with zero-mismatch round-trip receipts, four brownfield pilots plus an enterprise code gauntlet (Carbon, Fluent 2, Spectrum, Polaris) on systems this project doesn't own, a live enterprise Figma kit censused to 100.0% clean (1,618 sets), a standing pixel-level visual-parity instrument, in-place amend proven forensically on live files, and a launched browser playground running the same engine — with a companion Figma plugin bridging live selections into it. The reference design-tool integration lives behind a transport-agnostic script boundary (`docs/internal/`) — the contract format itself is tool-agnostic.
 
 - **What has been proven, dated, with receipts:** [MILESTONES.md](MILESTONES.md)
 - **Release history:** [CHANGELOG.md](CHANGELOG.md)

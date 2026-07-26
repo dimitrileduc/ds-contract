@@ -17,7 +17,7 @@ related: [08-status-what-doesnt-work, 12-reference]
 gate. The eval suite is the spine; additional standing gates guard determinism,
 byte-stability, and the plugin engine.
 
-## The eval suite — `npm run eval` (`evals/run.ts`), 102 checks
+## The eval suite — `npm run eval` (`evals/run.ts`)
 
 **This count moved (2026-07-22/23, the Piqueray reconversion's "hybrid rule"):**
 demo-Button-wired cases were re-pointed onto the real Piqueray Button; cases
@@ -48,15 +48,16 @@ The runner copies a scratch workspace, regenerates outputs, and byte-compares
 against the golden manifest. It writes `evals/results.json`. Exit 0 = all pass
 — the 3 that were intentional failures went green once spec 002 pushed the master update to Figma.
 
-**Note for a fresh AI:** the eval runner symlinks `ROOT/node_modules` into its
-scratch dir, so it **cannot run inside a git worktree** (worktrees lack
-`node_modules`). Run it on the main checkout.
+**Note for a fresh AI:** the eval runner symlinks the checkout's own
+`node_modules` into its scratch dir. Feature specs run in git worktrees: run
+`npm install` (+ `npx playwright install chromium`) INSIDE the worktree first,
+and the full suite runs there (constitution: Worktree Gates, F1).
 
 ## The standing gates you must keep green
 
 | Gate | Command | Guards |
 |------|---------|--------|
-| eval suite | `npm run eval` | everything above (102/102) |
+| eval suite | `npm run eval` | everything above (prints the live `N/N`) |
 | golden byte-hash | inside eval (`golden-generated-output`) | `src/` + `figma-sync/` are byte-stable; `npm run golden:update` on reviewed changes only |
 | plugin engine | `npm run plugin:check` | `window.DSC` builds correct anatomy from a bundle; specHash mirror; drift refusal |
 | determinism | `npx tsx scripts/deterministic-roundtrip.mjs` | contract→canvas byte-identical across two runs; loop closes (needs tsx — imports core/*.ts via .js specifiers) |
@@ -83,7 +84,7 @@ scratch dir, so it **cannot run inside a git worktree** (worktrees lack
 ```bash
 git clone github.com/southleft/ds-contracts-poc && cd ds-contracts-poc
 npm install
-npm run eval            # expect: 102/102 evals passed
+npm run eval            # expect: all evals passed — the printed N/N is the count
 npm run plugin:check    # expect: plugin-engine-check: all flows green
 npx tsx scripts/deterministic-roundtrip.mjs   # expect: THE FULL LOOP RAN WITH ZERO AI
 npx tsc --noEmit        # expect: clean

@@ -13,7 +13,7 @@ Only the **sources and outputs** were deleted. The **machine** survived and is t
 | 51 contracts (the source of truth) | deleted | **this directory** (byte-identical), or `git show demo-51:contracts/<x>.contract.json` |
 | Generated React (52 dirs: tsx, module.css, stories) | deleted | `git show demo-51:src/components/<X>/<X>.tsx` |
 | Demo tokens (multi-brand, dark) | deleted | `git show demo-51:tokens/semantic.tokens.json` (etc.) |
-| Demo icon SVGs (21 files) | deleted | `git ls-tree demo-51 assets/icons/` — **not Piqueray artwork**: same-named files drew different glyphs (see CLAUDE.md) |
+| Demo icon SVGs (21 files) | deleted | `git ls-tree demo-51 assets/icons/` — **not Piqueray artwork**: same-named files drew different glyphs (see `docs/handoff/10-history.md`, spec 002) |
 | catalog/, figma-sync scripts, demo screens | deleted | `git ls-tree -r demo-51 catalog/ figma-sync/ src/screens/` |
 | **Emitters** (`core/emit-*.ts`: slots→INSTANCE_SWAP, `icon.asset` inlining, repeat, multi-root) | **alive, unchanged in kind** | current `core/` — dormant under Piqueray; drift since demo-51 is small and named (`git diff --stat demo-51 HEAD -- core/` ≈ 11 files: mono-theme, v15/v16, 002 swapEnums) |
 | **Parity** (diff/judge/diagnose) | **alive** | current `parity/` — demo-era snapshots+verdicts: `git show demo-51:parity/snapshots/figma-components.json`, `…:parity/report.json` |

@@ -25,18 +25,18 @@
 **Project Type**: [e.g., library/cli/generator/plugin or NEEDS CLARIFICATION]  
 **Performance Goals**: [domain-specific, e.g., byte-identical regen, sub-second build or NEEDS CLARIFICATION]  
 **Constraints**: [domain-specific, e.g., zero `node:*` in core/, deterministic output or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 51 contracts, 282 tokens, 4 emitters or NEEDS CLARIFICATION]
+**Scale/Scope**: [domain-specific, e.g., which contracts/registries this touches, token files affected, emitters in play or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-Derived from `.specify/memory/constitution.md` (v1.0.0). Every item MUST be true, or be
+Derived from `.specify/memory/constitution.md` (v1.1.0). Every item MUST be true, or be
 justified in Complexity Tracking below.
 
 - [ ] **I. Determinism (NON-NEGOTIABLE)** — No AI/model sits in the contract→surface path;
       all generated output is reproducible by `npm run build` and byte-identical ×2 via
-      `node scripts/deterministic-roundtrip.mjs`.
+      `npx tsx scripts/deterministic-roundtrip.mjs`.
 - [ ] **II. Claims Rule (NON-NEGOTIABLE)** — Every new capability is backed by an eval in
       `npm run eval` before it is claimed in docs (fixture → eval → claim).
 - [ ] **III. Contract is the SSoT** — Changes flow through `contracts/*.contract.json`, not
@@ -50,14 +50,22 @@ justified in Complexity Tracking below.
 - [ ] **VII. Engine integrity** — `core/` stays browser-pure
       (`node scripts/core-browser-check.mjs`); any live-only canvas bug also gets a mock
       check so it fails headlessly forever.
+- [ ] **VIII. Source cleanliness** — Any component work starts from an audited, cleaned
+      Figma source (Step 0): affordances are official properties (no hidden-layer hacks),
+      names tell the truth, structure is consistent — masters AND usage audited, every
+      instance scanned by POSITION, never by name — BEFORE extraction/contracting.
+      N/A only for features touching no Figma source.
 
 **All gates green:**
 
 ```bash
 npm run build && npm run parity && npm run eval && npm run plugin:check \
-  && node scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
-  && npx tsc --noEmit && tsc -p tsconfig.build.json
+  && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs \
+  && npx tsc --noEmit && npx tsc -p tsconfig.build.json
 ```
+
+Specs executing in a git worktree run this sweep INSIDE the worktree (Constitution:
+Worktree Gates F1) — `npm install` + `npx playwright install chromium` there first.
 
 ## Project Structure
 

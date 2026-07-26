@@ -18,7 +18,7 @@ level: **[gated headless]** (an eval/gate proves it in Node against the mock),
 
 ## The suite
 
-- **102/102 evals pass** (`npm run eval`; live `N/N` — this lags the command).
+- **The eval suite passes in full** (`npm run eval`; the live `N/N` is the only authoritative count).
   The 3 that were an intentional red block went green once spec 002 pushed the
   master update to Figma. 49 further cases are quarantined (not run) under the reconversion's
   hybrid rule — Piqueray has no slots/composites/dark-theme/second-brand yet.
@@ -42,7 +42,7 @@ level: **[gated headless]** (an eval/gate proves it in Node against the mock),
 
 - **React / HTML / inline-React** emit deterministically from contracts, byte-
   guarded by golden. [gated headless]
-- **51 repo contracts** all emit; the differ detects code-ahead/behind/mismatch,
+- **All repo contracts** emit; the differ detects code-ahead/behind/mismatch,
   figma-ahead/behind, token drift. [gated headless] (the `C3-detection` family)
 - **Refusals are named**: invalid contracts, unknown token refs, circular deps,
   unknown component refs, enum/default violations — all refuse *by name*.

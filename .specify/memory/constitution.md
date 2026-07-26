@@ -1,4 +1,48 @@
 <!--
+SYNC IMPACT REPORT — 1.1.0 (2026-07-24, MINOR)
+==============================================
+Version change: 1.0.1 → 1.1.0
+
+Bump rationale:
+  MINOR — one new principle added (VIII. Source Cleanliness), one new workflow
+  subsection added (Worktree Gates — F1, doctrine settled in spec 004), and the
+  Quality Gates block corrected to the commands as they actually run. No principle
+  renamed, removed, or redefined; I–VII untouched and unrenumbered.
+
+Modified principles: none redefined. One content correction: Principle I's proof
+  command `node scripts/deterministic-roundtrip.mjs` →
+  `npx tsx scripts/deterministic-roundtrip.mjs` (the script imports core/*.ts via
+  .js specifiers; plain node cannot resolve them — same correction as Quality Gates).
+
+Added sections:
+  - Core Principles: VIII. Source Cleanliness — Audit and Clean the Figma Source
+    Before Contracting It (owner rule 2026-07-23, elevated from CLAUDE.md;
+    CLAUDE.md now summarizes and points here)
+  - Development Workflow & Change Policy: Worktree Gates (F1)
+
+Removed sections: none
+
+Content corrections carried in this amendment:
+  - Quality Gates: `node scripts/deterministic-roundtrip.mjs` →
+    `npx tsx scripts/deterministic-roundtrip.mjs`, and
+    `tsc -p tsconfig.build.json` → `npx tsc -p tsconfig.build.json`.
+  (The hardcoded eval-count annotation was already removed by 1.0.1, below.)
+
+Templates requiring updates:
+  - .specify/templates/plan-template.md   ✅ updated (constitution ref → v1.1.0;
+    8th checkbox for Principle VIII; corrected "All gates green" block + F1
+    worktree note; Scale/Scope placeholder de-staled)
+  - .specify/templates/tasks-template.md  ✅ updated (standard F1 first task for
+    specs executing in git worktrees)
+  - .specify/templates/spec-template.md   ✅ no change required
+  - .specify/templates/constitution-template.md ✅ no change required
+
+Follow-up TODOs:
+  - Some docs/handoff pages still quote dated demo-era counts (e.g.
+    00-README.md); resync under the zero-hardcoded-count rule at the next
+    feature closure. README and handoff 07/09 were corrected alongside this
+    amendment; CLAUDE.md was rewritten to the current Piqueray state.
+
 SYNC IMPACT REPORT — 1.0.1 (2026-07-23, PATCH)
 ==============================================
 Quality Gates: removed the hardcoded eval-count annotation "(currently 146 checks)",
@@ -79,7 +123,7 @@ The contract→surface pipeline MUST be pure functions: the same contract MUST p
 byte-identical output across two runs, pinned against golden manifests
 (`evals/golden.json`). AI MAY assist authorship — propose a contract, draft an emitter,
 suggest a token — but MUST NEVER sit in the generation path. Every generated artifact MUST
-be reproducible by `npm run build` and provable by `node scripts/deterministic-roundtrip.mjs`
+be reproducible by `npm run build` and provable by `npx tsx scripts/deterministic-roundtrip.mjs`
 with no model in the loop.
 
 **Rationale:** the guarantee the project sells is "byte-identical across two runs," and
@@ -156,6 +200,22 @@ only on the live canvas, the fix has **two** mandatory parts — (1) fix the emi
 trustworthy if every live-only failure it lets through is subsequently closed — a lenient
 mock once let a real SVG bug reach the canvas.
 
+### VIII. Source Cleanliness — Audit and Clean the Figma Source Before Contracting It
+
+Step 0 of any component spec MUST be an audit and cleanup of the component's Figma
+source, completed BEFORE extraction. Unofficial affordances MUST be made official
+component properties — never hidden-layer hacks. Layer, property, and variable names
+MUST tell the truth about what they hold. Structure MUST be consistent across the set.
+Only then is the source extracted; a contract MUST NEVER be modeled around a dirty
+source. The audit covers the source (masters: structure, constraints, variable
+bindings, sizes, descriptions) AND the usage (every instance on every page), and
+instances MUST be scanned by POSITION, never by layer name.
+
+**Rationale:** a contract formalizes its source, so extracting a dirty source launders
+hacks into law. The Button shipped from an unclean set — icon visibility improvised via
+hidden layers ×42, a STRING variable named `color/nav-state` — costing a full day of
+rework and nearly crashing the first push (owner rule, 2026-07-23).
+
 ## Quality Gates
 
 "Green" is defined executably, not by opinion. Every change MUST leave all of the following
@@ -163,17 +223,20 @@ green before merge. A red gate blocks the merge — no exceptions without a
 Governance-approved, time-boxed waiver recorded in the PR.
 
 ```bash
-npm run build                                    # tokens → schema → components, contract-validated
-npm run parity                                   # three-way differ: code, canvas, tokens vs contracts
-npm run eval                                     # the deterministic suite (count = the live N/N it prints)
-npm run plugin:check                             # window.DSC anatomy; specHash mirror; drift refusal
-node scripts/deterministic-roundtrip.mjs         # contract→canvas byte-identical ×2; loop closes
-node scripts/core-browser-check.mjs              # core/ barrel bundles browser-pure
-npx tsc --noEmit && tsc -p tsconfig.build.json   # types across src, scripts, core, extract, parity, evals
+npm run build                                        # tokens → schema → components, contract-validated
+npm run parity                                       # three-way differ: code, canvas, tokens vs contracts
+npm run eval                                         # the deterministic suite — prints the live N/N
+npm run plugin:check                                 # window.DSC anatomy; specHash mirror; drift refusal
+npx tsx scripts/deterministic-roundtrip.mjs          # contract→canvas byte-identical ×2 (needs tsx: imports core/*.ts via .js specifiers)
+node scripts/core-browser-check.mjs                  # core/ barrel bundles browser-pure
+npx tsc --noEmit && npx tsc -p tsconfig.build.json   # types across src, scripts, core, extract, parity, evals
 ```
 
-The eval count is authoritative from the live `N/N` printed by `npm run eval`; any count
-quoted in prose MUST be kept in sync when a case is added or removed (Principle II).
+Eval counts are never hardcoded in living documents: `npm run eval` prints the live
+`N/N`, and that output is the only authoritative count. A number MAY be cited only in
+dated, append-only records (MILESTONES.md entries, commit bodies,
+`evals/REMOVED-CASES.md`); an undated count in a living document is a defect
+(Principle II).
 
 ## Development Workflow & Change Policy
 
@@ -187,6 +250,19 @@ quoted in prose MUST be kept in sync when a case is added or removed (Principle 
   it (Principle VII).
 - **Claims discipline.** A new capability lands as fixture → eval → claim, never claim first
   (Principle II).
+
+### Worktree Gates (F1)
+
+Feature specs execute in dedicated git worktrees, and the worktree MUST be made
+self-sufficient before implementation starts: run `npm install` and
+`npx playwright install chromium` INSIDE the worktree, so the full gate sweep —
+including `npm run eval`, whose runner symlinks the checkout's own `node_modules`
+into its scratch workspace — runs there at every checkpoint and at closure. The
+visual-parity baseline is versioned in-worktree. The main checkout cannot check out
+a branch a worktree holds; if a check must run on the main checkout, the named
+fallback is `git checkout --detach <commit>` there, then sweep. (Doctrine settled in
+spec 004; supersedes the spec-003 practice of "eval on the main checkout plus a
+written waiver".)
 
 ## Governance
 
@@ -211,4 +287,4 @@ conflicts with it, the constitution wins and the conflicting artifact MUST be co
   guides and MUST stay consistent with this constitution; on conflict, this document is
   authoritative and they are updated to match.
 
-**Version**: 1.0.1 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-07-23
+**Version**: 1.1.0 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-07-24

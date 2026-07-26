@@ -3,7 +3,7 @@ title: "History — how we got here"
 doc_id: 10-history
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-07-21
+last_updated: 2026-07-24
 reading_order: 10
 prerequisites: [00-readme, 02-thesis-and-north-star]
 related: [03-determinism, 08-status-what-doesnt-work, 11-roadmap]
@@ -90,6 +90,39 @@ To make the deterministic path the *easy* path, the plugin got a user-facing
 `GET-STARTED.md`, a `PUBLISHING.md` (Figma Community submission kit), and a
 128×128 icon. Confirmed you can paste a single contract and it resolves deps from
 the baked repo contracts.
+
+## The Piqueray reconversion (spec 001)
+
+The project pivoted from the 51-component demo corpus to a real client system:
+Piqueray. Spec 001 removed the 51 demo contracts and the multi-brand/dual-theme
+tokens, laid a single-mode Piqueray foundation (14 variables + 8 Montserrat text
+styles), and extracted the first real contract — the Button — from a Figma REST
+dump. Schema evolution stayed additive (+2 optional fields:
+`anchors.figma.dumpedAt`, a11y/semantics `provenance`). The eval suite was
+re-pointed under the **hybrid rule**: demo-only cases with no Button equivalent
+were removed (named by id in `evals/REMOVED-CASES.md`), a larger set quarantined
+pending Piqueray features (slots, composites, dark theme, a second brand).
+Fidelity was proven by the determinism + parity + visual (≤2%) gates. The demo
+corpus was later materialized read-only at `docs/reference/demo-archive/`
+(tag `demo-51`) so future component specs can consult it without git archaeology.
+
+## Governed icons and the first master write (spec 002)
+
+Spec 002 put the icon set under governance: `contracts/icons.registry.json`
+(registry ↔ code ↔ Figma verified by a new parity icons axis), and the Button's
+icon choice modeled as INSTANCE_SWAP-bound enum props — extracted, with a
+propose-figma lowering closing the gap v1.2 had named; v1.4.0 then rebound the
+label to the real `Libellé` TEXT property. The spec's ONE targeted master update
+(label TEXT property + governed `preferredValues`) was proven safe on the real
+client file by a positional scan + 9-page state photography (0.000% diff) +
+restore points. With parity at zero active findings, the three intentionally-red
+baseline/promotion evals went green for the first time. A trap worth remembering:
+the pre-reconversion `assets/icons/` (search/close/spinner/… — deleted at
+`8f462af`, full history still in git) was **not Piqueray artwork** — a few
+filenames coincidentally matched real Piqueray icon names (e.g.
+`chevron-left.svg`) but drew completely different glyphs under that name. The
+governed set was re-extracted from the real Figma file from scratch, never
+copied from the old demo.
 
 ## Cultural throughline
 
