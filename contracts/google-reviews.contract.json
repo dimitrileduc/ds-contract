@@ -1,0 +1,487 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.google-reviews",
+  "name": "GoogleReviews",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Hauteur du root contrainte à la hauteur mesurée de l'aplat (neutralité de hauteur, R20) — une adoption qui changerait cette hauteur est un STOP, jamais une donnée.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nSimplification nommée : les flèches sont modélisées comme des enfants flex adjacents à la rangée de cartes (pas un overlay/positionnement absolu) — l'aplat les montre en léger chevauchement des bords de carte 1/5 ; à raffiner pendant la convergence (T040) si l'écart mesuré le justifie.",
+  "semantics": {
+    "element": "section",
+    "provenance": "authored"
+  },
+  "props": [
+    {
+      "name": "noteGlobale",
+      "type": "text",
+      "default": "4.8",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Note globale"
+        },
+        "code": {
+          "prop": "noteGlobale"
+        }
+      },
+      "description": "Note globale telle qu affichee par le widget — POINT decimal (4.8), pas une virgule : mesure directe sur l aplat (T040, corrige une transcription initiale fautive)."
+    },
+    {
+      "name": "qualificatif",
+      "type": "text",
+      "default": "Excellent",
+      "description": "Libellé qualitatif du widget (« Excellent » mesuré sur l'aplat, T012) — texte de chrome du widget, pas un avis individuel, mais porté par propriété comme le reste du contenu réel.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Qualificatif"
+        },
+        "code": {
+          "prop": "qualificatif"
+        }
+      }
+    },
+    {
+      "name": "volume",
+      "type": "text",
+      "default": "93 avis",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Volume"
+        },
+        "code": {
+          "prop": "volume"
+        }
+      }
+    },
+    {
+      "name": "montrerControles",
+      "type": "boolean",
+      "default": true,
+      "description": "Flèches de carrousel — mesurées présentes aux deux bords de l'aplat (T012).",
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Contrôles"
+        },
+        "code": {
+          "prop": "montrerControles"
+        }
+      }
+    },
+    {
+      "name": "avis",
+      "type": {
+        "arrayOf": {
+          "auteur": "text",
+          "initiale": "text",
+          "date": "text",
+          "texte": "text",
+          "tronque": "boolean",
+          "initialeVisible": "boolean",
+          "photo": "boolean",
+          "photoUrl": "text",
+          "photoAlt": "text",
+          "verifie": "boolean"
+        }
+      },
+      "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010).",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "avis"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "description": "Correction de convergence T040 (spec 006, decisions.md) : R10 avait décidé `{color.bleu-clair}` pour séparer visuellement la carte du fond (repli du box-shadow refusé). Mesure directe sur l'aplat (scan de bord, deux zones) : le fond hors-carte est en réalité #F8F9FA-#FFFFFF (bruit de compression autour du blanc), PAS teinté bleu — la séparation réelle est un dégradé d'ombre douce (box-shadow), confirmé absent des deux registres de canaux. Décision corrigée : fond blanc partout, aucune séparation de couleur (le seul mécanisme réel — l'ombre — reste un trou nommé, pas remplacé par une couleur inventée).",
+      "element": "section",
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "tokens": {
+        "background-color": "{color.blanc}"
+      },
+      "literals": {
+        "height": "328px",
+        "gap": "12px",
+        "padding-top": "4px",
+        "padding-bottom": "8px",
+        "padding-left": "11px",
+        "padding-right": "11px"
+      },
+      "parts": {
+        "resume": {
+          "description": "Barre-résumé — Google | Excellent | ★★★★★ 4,8 | 93 avis, CTA à droite (measures/mesures-aplat.md). Bordure fine en repli du box-shadow refusé (trouvaille T040 : sans elle, blanc sur fond blanc = boîte invisible).",
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center",
+            "justify": "space-between"
+          },
+          "tokens": {
+            "background-color": "{color.blanc}",
+            "border-color": "{color.bleu-clair}"
+          },
+          "literals": {
+            "border-radius": "8px",
+            "border-width": "1px",
+            "padding-top": "12px",
+            "padding-bottom": "12px",
+            "padding-left": "16px",
+            "padding-right": "16px"
+          },
+          "parts": {
+            "infos": {
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "align": "center"
+              },
+              "literals": {
+                "gap": "10px"
+              },
+              "parts": {
+                "marque": {
+                  "description": "Wordmark « Google » en toutes lettres, quadrichrome — mesuré sur l'aplat : la barre-résumé porte le mot complet, pas le seul logogramme « G » (celui-ci vit sur chaque carte). Glyphe interne D7 (assets/icons/google-wordmark.svg), hors registre gouverné (R4). ⚠️ `icon.size` est volontairement OMIS : il force width ET height à la même valeur (core/emit-react.ts:1108), ce qui écraserait un glyphe non carré — les dimensions viennent du SVG lui-même. Limite nommée : les lettres sont dessinées en Montserrat (la seule fonte gouvernée), pas dans la fonte propriétaire de Google — la forme des lettres diffère, les couleurs et les proportions sont fidèles.",
+                  "icon": {
+                    "asset": "google-wordmark"
+                  }
+                },
+                "qualificatifTexte": {
+                  "element": "span",
+                  "tokens": {
+                    "font-family": "{font.family.montserrat}",
+                    "font-size": "{font.size.14}",
+                    "font-weight": "{font.weight.semibold}"
+                  },
+                  "literals": {
+                    "color": "#000000"
+                  },
+                  "content": {
+                    "prop": "qualificatif"
+                  }
+                },
+                "notation": {
+                  "layout": {
+                    "display": "flex",
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "literals": {
+                    "gap": "2px"
+                  },
+                  "parts": {
+                    "etoile1": {
+                      "icon": {
+                        "asset": "star",
+                        "size": 16
+                      }
+                    },
+                    "etoile2": {
+                      "icon": {
+                        "asset": "star",
+                        "size": 16
+                      }
+                    },
+                    "etoile3": {
+                      "icon": {
+                        "asset": "star",
+                        "size": 16
+                      }
+                    },
+                    "etoile4": {
+                      "icon": {
+                        "asset": "star",
+                        "size": 16
+                      }
+                    },
+                    "etoile5": {
+                      "icon": {
+                        "asset": "star",
+                        "size": 16
+                      }
+                    },
+                    "noteGlobaleTexte": {
+                      "element": "span",
+                      "tokens": {
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{font.size.14}",
+                        "font-weight": "{font.weight.semibold}"
+                      },
+                      "literals": {
+                        "color": "#000000"
+                      },
+                      "content": {
+                        "prop": "noteGlobale"
+                      }
+                    }
+                  }
+                },
+                "separateur": {
+                  "description": "Barre verticale entre la note et le volume — mesurée présente sur l'aplat, absente du premier modèle (trouvaille T040). Texte statique, pas une prop de contenu.",
+                  "element": "span",
+                  "literals": {
+                    "color": "#8A8A8A"
+                  },
+                  "text": "|",
+                  "tokens": {
+                    "font-family": "{font.family.montserrat}",
+                    "font-size": "{font.size.14}"
+                  }
+                },
+                "volume": {
+                  "element": "span",
+                  "literals": {
+                    "color": "#8A8A8A"
+                  },
+                  "content": {
+                    "prop": "volume"
+                  },
+                  "tokens": {
+                    "font-family": "{font.family.montserrat}",
+                    "font-size": "{font.size.14}"
+                  }
+                }
+              }
+            },
+            "ecrireAvis": {
+              "description": "CTA « Écrire un avis » — chrome du widget (texte statique). Mesuré sur l'aplat : 226×51 px natifs (151×34 CSS), coins CARRES (aucun rayon), libellé GRAS. Corrections T040 : le libellé n'avait aucune `font-family` et rendait en police à empattements de repli (défaut visible au zoom) ; les coins étaient arrondis à tort. Dessiné en part, jamais un component-ref vers ds.button (R5).",
+              "layout": {
+                "display": "flex",
+                "align": "center",
+                "justify": "center"
+              },
+              "literals": {
+                "border-width": "1px",
+                "border-radius": "0px",
+                "padding-top": "8px",
+                "padding-bottom": "8px",
+                "padding-left": "22px",
+                "padding-right": "22px"
+              },
+              "tokens": {
+                "border-color": "{color.noir}"
+              },
+              "parts": {
+                "libelle": {
+                  "element": "span",
+                  "literals": {
+                    "color": "#000000"
+                  },
+                  "text": "Écrire un avis",
+                  "tokens": {
+                    "font-family": "{font.family.montserrat}",
+                    "font-size": "{font.size.14}",
+                    "font-weight": "{font.weight.semibold}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "cartes": {
+          "description": "Structure 3 colonnes (T040, demande owner) : flèche | groupe des 5 cartes | flèche. Gap 0 à l'extérieur, 8 px entre les cartes (mesuré) — le groupe central prend toute la largeur restante, ce qui donne aux cartes 288 px au lieu de 285 quand les flèches partageaient le même gap. ⚠️ LIMITE NOMMÉE : dans l'aplat les flèches CHEVAUCHENT les cartes (flèche gauche x=0→46 px natifs, carte 1 à x=16 : 30 px de recouvrement) ; les cartes y démarrent donc à 16 px natifs contre 58 ici. Aucun mécanisme de superposition n'existe sur les DEUX surfaces dans ce moteur : `stylesWhen` (position/left/transform/z-index) est « Canvas v1: not represented », et `layout.overlap` est code-only aussi (0 occurrence dans core/emit-figma-script.ts — le « negative itemSpacing » annoncé en commentaire n'est pas implémenté) ; `margin-*` n'est dans aucun registre de canaux. Résidu assumé : ~28 CSS de décalage horizontal, identique sur les deux surfaces (donc code≡canevas préservé). Correctif moteur → backlog.",
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "stretch",
+            "justify": "space-between"
+          },
+          "parts": {
+            "flecheGauche": {
+              "description": "Flèche de carrousel gauche — dessinée en part (jamais un component-ref vers ds.button, R5). ⚠️ Conteneur à LARGEUR NULLE + pastille à `min-width` (T040, demande owner) : c'est le seul moyen, sans positionnement absolu ni marge négative (aucun des deux n'existe sur les DEUX surfaces dans ce moteur), de faire chevaucher la flèche sur les cartes comme l'aplat le montre — le conteneur ne consomme aucune largeur de rangée, la pastille déborde symétriquement de part et d'autre du bord. Sans `min-width` sur la pastille, flex-shrink l'écrase à zéro et la flèche disparaît (constaté, corrigé).",
+              "visibleWhen": {
+                "prop": "montrerControles"
+              },
+              "layout": {
+                "display": "flex",
+                "align": "center",
+                "justify": "center"
+              },
+              "literals": {
+                "width": "0px",
+                "min-width": "0px"
+              },
+              "parts": {
+                "pastilleGauche": {
+                  "layout": {
+                    "display": "flex",
+                    "align": "center",
+                    "justify": "center"
+                  },
+                  "tokens": {
+                    "background-color": "{color.blanc}",
+                    "border-color": "{color.bleu-clair}"
+                  },
+                  "literals": {
+                    "width": "30px",
+                    "height": "30px",
+                    "min-width": "30px",
+                    "border-radius": "15px",
+                    "border-width": "1px"
+                  },
+                  "parts": {
+                    "iconeGauche": {
+                      "icon": {
+                        "asset": "chevron-left",
+                        "size": 14
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "groupeCartes": {
+              "description": "Groupe central des 5 cartes — `grow` pour prendre toute la largeur laissée par les deux flèches.",
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "align": "stretch",
+                "grow": true
+              },
+              "literals": {
+                "gap": "8px"
+              },
+              "parts": {
+                "carte": {
+                  "description": "Un repeat+component n'a pas de wrapper propre à styliser — le partage de largeur égal entre les 5 instances est porté par `grow:true` sur la racine de ds.review-card (trouvaille T040, voir sa description).",
+                  "repeat": {
+                    "itemsProp": "avis",
+                    "sample": [
+                      {
+                        "auteur": "Prénom N.",
+                        "initiale": "P",
+                        "date": "il y a 2 mois",
+                        "texte": "Un témoignage neutre, exemple générique de contenu.",
+                        "initialeVisible": true,
+                        "photo": false,
+                        "photoUrl": "",
+                        "photoAlt": "",
+                        "verifie": true,
+                        "tronque": false
+                      },
+                      {
+                        "auteur": "Prénom N.",
+                        "initiale": "P",
+                        "date": "il y a 3 mois",
+                        "texte": "Un témoignage neutre, exemple générique de contenu.",
+                        "initialeVisible": true,
+                        "photo": false,
+                        "photoUrl": "",
+                        "photoAlt": "",
+                        "verifie": true,
+                        "tronque": false
+                      },
+                      {
+                        "auteur": "Prénom N.",
+                        "initiale": "P",
+                        "date": "il y a 4 mois",
+                        "texte": "Un témoignage neutre, exemple générique de contenu.",
+                        "initialeVisible": true,
+                        "photo": false,
+                        "photoUrl": "",
+                        "photoAlt": "",
+                        "verifie": true,
+                        "tronque": false
+                      },
+                      {
+                        "auteur": "Prénom N.",
+                        "initiale": "P",
+                        "date": "il y a 5 mois",
+                        "texte": "Un témoignage neutre, exemple générique de contenu.",
+                        "initialeVisible": true,
+                        "photo": false,
+                        "photoUrl": "",
+                        "photoAlt": "",
+                        "verifie": true,
+                        "tronque": false
+                      },
+                      {
+                        "auteur": "Prénom N.",
+                        "initiale": "P",
+                        "date": "il y a 6 mois",
+                        "texte": "Un témoignage neutre, exemple générique de contenu.",
+                        "initialeVisible": true,
+                        "photo": false,
+                        "photoUrl": "",
+                        "photoAlt": "",
+                        "verifie": true,
+                        "tronque": false
+                      }
+                    ]
+                  },
+                  "component": {
+                    "id": "ds.review-card"
+                  }
+                }
+              }
+            },
+            "flecheDroite": {
+              "description": "Flèche de carrousel droite — dessinée en part (jamais un component-ref vers ds.button, R5). ⚠️ Conteneur à LARGEUR NULLE + pastille à `min-width` (T040, demande owner) : c'est le seul moyen, sans positionnement absolu ni marge négative (aucun des deux n'existe sur les DEUX surfaces dans ce moteur), de faire chevaucher la flèche sur les cartes comme l'aplat le montre — le conteneur ne consomme aucune largeur de rangée, la pastille déborde symétriquement de part et d'autre du bord. Sans `min-width` sur la pastille, flex-shrink l'écrase à zéro et la flèche disparaît (constaté, corrigé).",
+              "visibleWhen": {
+                "prop": "montrerControles"
+              },
+              "layout": {
+                "display": "flex",
+                "align": "center",
+                "justify": "center"
+              },
+              "literals": {
+                "width": "0px",
+                "min-width": "0px"
+              },
+              "parts": {
+                "pastilleDroite": {
+                  "layout": {
+                    "display": "flex",
+                    "align": "center",
+                    "justify": "center"
+                  },
+                  "tokens": {
+                    "background-color": "{color.blanc}",
+                    "border-color": "{color.bleu-clair}"
+                  },
+                  "literals": {
+                    "width": "30px",
+                    "height": "30px",
+                    "min-width": "30px",
+                    "border-radius": "15px",
+                    "border-width": "1px"
+                  },
+                  "parts": {
+                    "iconeDroite": {
+                      "icon": {
+                        "asset": "chevron-right",
+                        "size": 14
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": null,
+      "nodeId": null,
+      "dumpedAt": "2026-07-26"
+    },
+    "code": {
+      "importPath": "src/components/GoogleReviews",
+      "export": "GoogleReviews"
+    }
+  }
+}

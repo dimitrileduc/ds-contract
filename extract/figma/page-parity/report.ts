@@ -30,7 +30,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { PNG } from 'pngjs';
 import { writeTriptych, type Aligned } from '../visual-parity/img.js';
-import type { CompareEntryResult, DiffBox, PixelVerdict } from './compare.js';
+import type { CompareEntryResult, DiffBox, PixelVerdict, Region } from './compare.js';
 
 /** Margin added around a diffBox before cropping, clamped to the frame's own bounds (pinned interface). */
 const CROP_PAD = 24;
@@ -85,6 +85,20 @@ function paddedCrop(box: DiffBox, imgWidth: number, imgHeight: number): Rect {
 }
 
 /**
+ * spec 006 (contracts/region-proof.md §3): "le triptyque cadre région ∪
+ * diffBox padded — pour montrer le bloc, pas une lamelle de 24px". Union of
+ * the two rectangles, THEN clamped to the frame's own bounds — never a second
+ * alignment/normalization (R2), just a wider fixed window on the same pixels.
+ */
+function unionRect(a: Rect, b: Rect, imgWidth: number, imgHeight: number): Rect {
+  const x0 = Math.max(0, Math.min(a.x, b.x));
+  const y0 = Math.max(0, Math.min(a.y, b.y));
+  const x1 = Math.min(imgWidth, Math.max(a.x + a.w, b.x + b.w));
+  const y1 = Math.min(imgHeight, Math.max(a.y + a.h, b.y + b.h));
+  return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+}
+
+/**
  * Writes crops/<maquette>.png for every "diff" entry and stamps
  * verdict.cropTriptyque with the relative path once the file exists.
  * Mutates the verdict objects in place (they still live inside `entries`,
@@ -109,7 +123,10 @@ function writeCrops(outDir: string, entries: CompareEntryResult[]): void {
         `page-parity/report: entrée "diff" sans images/diffBox pour "${verdict.maquette}" — invariant de compareEntry violé`,
       );
     }
-    const rect = paddedCrop(verdict.diffBox, images.before.width, images.before.height);
+    let rect = paddedCrop(verdict.diffBox, images.before.width, images.before.height);
+    if (verdict.region) {
+      rect = unionRect(rect, verdict.region, images.before.width, images.before.height);
+    }
     const aligned: Aligned = {
       a: cropPng(images.before, rect),
       b: cropPng(images.after, rect),
@@ -184,6 +201,10 @@ function fmtDiffBox(box: DiffBox | null): string {
   return box ? `x=${box.x}, y=${box.y}, w=${box.w}, h=${box.h}` : '—';
 }
 
+function fmtRegion(region: Region | undefined): string {
+  return region ? `x=${region.x}, y=${region.y}, w=${region.w}, h=${region.h}` : '—';
+}
+
 /** Minimal markdown-table escaping — a maquette name or refus reason with a literal "|" must not break the table. */
 function mdCell(s: string): string {
   return s.replace(/\|/g, '\\|').replace(/\r?\n/g, ' ');
@@ -206,12 +227,28 @@ function renderMarkdown(doc: VerdictDocument): string {
     lines.push('');
   }
 
-  lines.push('| Maquette | Statut | diffCount | diffBox | Refus |');
-  lines.push('|---|---|---|---|---|');
-  for (const m of doc.maquettes) {
-    lines.push(
-      `| ${mdCell(m.maquette)} | ${m.status} | ${m.diffCount} | ${fmtDiffBox(m.diffBox)} | ${mdCell(m.refus ?? '—')} |`,
-    );
+  // spec 006 (contracts/region-proof.md §3): the 4 region columns appear ONLY
+  // if at least one entry carries a region — otherwise this table (and the
+  // whole file) stays byte-identical to the pre-006 output.
+  const anyRegion = doc.maquettes.some((m) => m.region !== undefined);
+  if (anyRegion) {
+    lines.push('| Maquette | Statut | diffCount | diffBox | region | regionDiffCount | regionPct | outsideDiffCount | Refus |');
+    lines.push('|---|---|---|---|---|---|---|---|---|');
+    for (const m of doc.maquettes) {
+      lines.push(
+        `| ${mdCell(m.maquette)} | ${m.status} | ${m.diffCount} | ${fmtDiffBox(m.diffBox)} | ${fmtRegion(m.region)} | ` +
+          `${m.regionDiffCount ?? '—'} | ${m.regionPct !== undefined ? m.regionPct.toFixed(3) + '%' : '—'} | ` +
+          `${m.outsideDiffCount ?? '—'} | ${mdCell(m.refus ?? '—')} |`,
+      );
+    }
+  } else {
+    lines.push('| Maquette | Statut | diffCount | diffBox | Refus |');
+    lines.push('|---|---|---|---|---|');
+    for (const m of doc.maquettes) {
+      lines.push(
+        `| ${mdCell(m.maquette)} | ${m.status} | ${m.diffCount} | ${fmtDiffBox(m.diffBox)} | ${mdCell(m.refus ?? '—')} |`,
+      );
+    }
   }
   lines.push('');
 

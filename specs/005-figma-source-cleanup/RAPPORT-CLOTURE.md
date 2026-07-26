@@ -24,11 +24,12 @@ Le cycle **ménage-final** (13ᵉ, post-compilation) a son quadruplet dans
    - **Réparation attendue** : décision adopter-ou-remplacer léguée à la Spec B.
 3. **Checkbox — 0 usage réel** (constaté dès la spec 004, re-confirmé par l'audit fichier-entier du 2026-07-25) — seul contrat sans aucun consommateur. Décision Spec B : garder gouverné sans usage, ou parquer.
 4. **Étoile / mail / external-link — 0 usage réel** (gouvernance registre 002 ; mail et external-link confirmés par `releves/instances-l4-verification.json`, Étoile par l'audit fichier-entier). Décision Spec B.
-5. **Section-header — enfants FIXED 1550, cause racine de l'adoption 0/6** (US7) : limite d'API confirmée par exécution (un enfant FIXED hérité du maître n'est pas redimensionnable au niveau instance). **Réparation attendue** : passer `Accroche`/`Titre` en FILL sur le **maître** puis rejouer l'adoption ×7 — Spec 006, cycle pixel dédié (cascade Réassurances ×3 à mesurer).
-6. **Hero vidéo — strate** : master né en place sur la maquette Accueil (componentisation T085). **Réparation attendue** : déplacement vers `DS · Organisms` + instance laissée sur Accueil — Spec 006, cycle visuel dédié.
+5. ✅ **FAIT depuis cette clôture — Section-header — enfants FIXED 1550, cause racine de l'adoption 0/6** (US7) : limite d'API confirmée par exécution (un enfant FIXED hérité du maître n'est pas redimensionnable au niveau instance). ~~**Réparation attendue** : passer `Accroche`/`Titre` en FILL sur le **maître** puis rejouer l'adoption ×7 — Spec 006, cycle pixel dédié (cascade Réassurances ×3 à mesurer).~~ **Amendement 2026-07-26** : traité par le cycle 14 post-clôture (`d8b0d27`, « fix-post-cloture ») — `Accroche`/`Titre` vérifiés `layoutSizingHorizontal: FILL` en direct sur le fichier vivant ; verdict du cycle : 5/9 identical + 4 résidus sub-pixel/AA nommés (PdE 17 / PdG 20 / AP 99 / CN 469 px, triptyques dans `proofs/fix-post-cloture/`). Ce commit n'avait mis à jour ni cette ligne ni le backlog — corrigé en repassant par ici lors de la résolution de la collision de numéro spec 006 (voir point 6 ci-dessous).
+6. **Hero vidéo — strate** : master né en place sur la maquette Accueil (componentisation T085). **Réparation attendue** : déplacement vers `DS · Organisms` + instance laissée sur Accueil — **Spec 007** (renumérotée depuis « Spec 006 » le 2026-07-26 : ce numéro avait entre-temps été pris par la spec « Avis Google », `specs/006-google-reviews-block/`, dont le FR-008 contredit frontalement l'ancien item 1 de cette liste — voir sa `decisions.md`), cycle visuel dédié. Non re-vérifié en direct à ce jour.
 
-Voir aussi `BACKLOG-SPEC-006-figma-styles-structure.md` (racine du dépôt) : GROUPs
-structurels ×11, rich-text B1, styles sous seuil, Nav-item/contrat Header.
+Voir aussi `BACKLOG-SPEC-007-figma-styles-structure.md` (racine du dépôt, renommé depuis
+`BACKLOG-SPEC-006-*.md` le 2026-07-26) : GROUPs structurels ×11 (probablement déjà fait par le même
+cycle 14, non spot-vérifié), rich-text B1, styles sous seuil, Nav-item/contrat Header.
 
 ## Valeurs laissées littérales
 

@@ -4027,6 +4027,59 @@ const cases: Case[] = [
       );
     },
   },
+  {
+    // spec 006 (R14 #4, contracts/region-proof.md): the --regions flag on
+    // page-parity's cli.ts is STRICTLY ADDITIVE. Reuses the committed
+    // one-pixel fixture pair (copied into scratch as part of `extract/`) —
+    // no new PNGs, only different --regions rectangles (region-proof.md §6).
+    id: 'pages-compare-regions-additive',
+    claim: 'C1-determinism',
+    run: () => {
+      const CLI = 'extract/figma/page-parity/cli.ts';
+      const before = 'extract/figma/page-parity/fixtures/one-pixel/before';
+      const after = 'extract/figma/page-parity/fixtures/one-pixel/after';
+      const outNoFlag = 'evals/.scratch-out/pages-regions/no-flag';
+      const outInside = 'evals/.scratch-out/pages-regions/inside';
+      const outOutside = 'evals/.scratch-out/pages-regions/outside';
+      const regionsInsidePath = 'evals/.scratch-out/pages-regions/inside.regions.json';
+      const regionsOutsidePath = 'evals/.scratch-out/pages-regions/outside.regions.json';
+      mkdirSync(path.join(SCRATCH, 'evals', '.scratch-out', 'pages-regions'), { recursive: true });
+      writeFileSync(path.join(SCRATCH, regionsInsidePath), JSON.stringify({ 'maquette-a': { x: 5, y: 5, w: 10, h: 10 } }));
+      writeFileSync(path.join(SCRATCH, regionsOutsidePath), JSON.stringify({ 'maquette-a': { x: 50, y: 50, w: 10, h: 10 } }));
+
+      // 1. Byte-identity WITHOUT --regions: raw verdict.json text carries none
+      //    of the 4 new keys (JSON.stringify omits undefined-valued props).
+      const rNoFlag = run(TSX, [CLI, '--before', before, '--after', after, '--out', outNoFlag]);
+      if (rNoFlag.status !== 1) throw new Error(`no-flag run: expected exit 1, got ${rNoFlag.status}\n${rNoFlag.out}`);
+      const jsonNoFlag = readFileSync(path.join(SCRATCH, outNoFlag, 'verdict.json'), 'utf8');
+      if (jsonNoFlag.includes('"region"') || jsonNoFlag.includes('regionDiffCount')) {
+        throw new Error(`verdict.json (no --regions) unexpectedly carries a region key:\n${jsonNoFlag}`);
+      }
+
+      // 2. region-inside: rectangle CONTAINS the flipped pixel (10,7).
+      const rInside = run(TSX, [CLI, '--before', before, '--after', after, '--out', outInside, '--regions', regionsInsidePath]);
+      if (rInside.status !== 1) throw new Error(`region-inside run: expected exit 1, got ${rInside.status}\n${rInside.out}`);
+      const docInside = JSON.parse(readFileSync(path.join(SCRATCH, outInside, 'verdict.json'), 'utf8'));
+      const entryInside = docInside.maquettes.find((m: { maquette: string }) => m.maquette === 'maquette-a');
+      if (entryInside.regionDiffCount !== 1 || entryInside.outsideDiffCount !== 0) {
+        throw new Error(`region-inside: expected regionDiffCount 1 / outsideDiffCount 0, got ${JSON.stringify(entryInside)}`);
+      }
+
+      // 3. region-outside: rectangle EXCLUDES the flipped pixel — the mirror.
+      const rOutside = run(TSX, [CLI, '--before', before, '--after', after, '--out', outOutside, '--regions', regionsOutsidePath]);
+      if (rOutside.status !== 1) throw new Error(`region-outside run: expected exit 1, got ${rOutside.status}\n${rOutside.out}`);
+      const docOutside = JSON.parse(readFileSync(path.join(SCRATCH, outOutside, 'verdict.json'), 'utf8'));
+      const entryOutside = docOutside.maquettes.find((m: { maquette: string }) => m.maquette === 'maquette-a');
+      if (entryOutside.regionDiffCount !== 0 || entryOutside.outsideDiffCount !== 1) {
+        throw new Error(`region-outside: expected regionDiffCount 0 / outsideDiffCount 1, got ${JSON.stringify(entryOutside)}`);
+      }
+
+      console.log(
+        'pages-compare-regions-additive: no-flag run carries zero region keys (byte-identity); ' +
+          'region-inside → regionDiffCount 1/outsideDiffCount 0; region-outside → regionDiffCount 0/outsideDiffCount 1',
+      );
+    },
+  },
 ];
 
 // ---------------------------------------------------------------------------

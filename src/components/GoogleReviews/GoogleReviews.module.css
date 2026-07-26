@@ -1,0 +1,229 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  background-color: var(--color-blanc);
+  height: 328px;
+  gap: 12px;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  padding-left: 11px;
+  padding-right: 11px;
+}
+
+.resume {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-blanc);
+  border-color: var(--color-bleu-clair);
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 1px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.infos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.marque {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.qualificatifTexte {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: #000000;
+}
+
+.notation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+}
+
+.etoile1 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile2 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile3 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile4 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile5 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.noteGlobaleTexte {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: #000000;
+}
+
+.separateur {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  color: #8a8a8a;
+}
+
+.volume {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  color: #8a8a8a;
+}
+
+.ecrireAvis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: var(--color-noir);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.libelle {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: #000000;
+}
+
+.cartes {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.flecheGauche {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0px;
+  min-width: 0px;
+}
+
+.pastilleGauche {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-blanc);
+  border-color: var(--color-bleu-clair);
+  border-style: solid;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 15px;
+  border-width: 1px;
+}
+
+.iconeGauche svg {
+  width: 14px;
+  height: 14px;
+}
+
+.iconeGauche {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.groupeCartes {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 8px;
+}
+
+.flecheDroite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0px;
+  min-width: 0px;
+}
+
+.pastilleDroite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-blanc);
+  border-color: var(--color-bleu-clair);
+  border-style: solid;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  border-radius: 15px;
+  border-width: 1px;
+}
+
+.iconeDroite svg {
+  width: 14px;
+  height: 14px;
+}
+
+.iconeDroite {
+  display: inline-flex;
+  flex-shrink: 0;
+}

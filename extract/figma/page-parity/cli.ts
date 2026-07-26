@@ -26,13 +26,13 @@
  */
 import { mkdirSync, readdirSync, readFileSync, statSync, type Dirent } from 'node:fs';
 import path from 'node:path';
-import { compareEntry, type CompareEntryResult, type ManifestSidecar, type PixelVerdict } from './compare.js';
+import { compareEntry, type CompareEntryResult, type ManifestSidecar, type PixelVerdict, type Region } from './compare.js';
 import { writeReport } from './report.js';
 
 const USAGE =
-  'Usage: node_modules/.bin/tsx extract/figma/page-parity/cli.ts --before <dir> --after <dir> --out <dir>\n' +
-  '  (npm run pages:compare -- --before <dir> --after <dir> --out <dir>)\n' +
-  '  --before, --after and --out are all required.';
+  'Usage: node_modules/.bin/tsx extract/figma/page-parity/cli.ts --before <dir> --after <dir> --out <dir> [--regions <fichier.json>]\n' +
+  '  (npm run pages:compare -- --before <dir> --after <dir> --out <dir> [--regions <fichier.json>])\n' +
+  '  --before, --after and --out are all required. --regions is additive (spec 006).';
 
 function fail(reason: string): never {
   console.error(reason);
@@ -83,6 +83,51 @@ function readManifestSidecar(pngPath: string): ManifestSidecar | null {
   }
 }
 
+/**
+ * Parses --regions <fichier.json> (spec 006, contracts/region-proof.md §2):
+ * `{ "<maquette>": {x,y,w,h}, … }` — one entry per maquette, coordinates
+ * relative to the captured frame, in capture pixels (exportAsync @1×). A
+ * maquette absent from the map is compared exactly as today (no region).
+ * Malformed JSON or a non-object root is a usage error, exit 2 — "jamais de
+ * défaut silencieux" (region-proof.md §2), same posture as an unknown flag.
+ */
+function readRegionsFile(regionsPath: string): Map<string, Region> {
+  let raw: string;
+  try {
+    raw = readFileSync(regionsPath, 'utf8');
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    return fail(`Erreur : --regions "${regionsPath}" illisible (${msg}).`);
+  }
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    return fail(`Erreur : --regions "${regionsPath}" n'est pas un JSON valide (${msg}).`);
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return fail(`Erreur : --regions "${regionsPath}" doit être un objet JSON {maquette: {x,y,w,h}}.`);
+  }
+  const map = new Map<string, Region>();
+  for (const [maquette, rect] of Object.entries(parsed as Record<string, unknown>)) {
+    if (
+      !rect ||
+      typeof rect !== 'object' ||
+      Array.isArray(rect) ||
+      typeof (rect as Region).x !== 'number' ||
+      typeof (rect as Region).y !== 'number' ||
+      typeof (rect as Region).w !== 'number' ||
+      typeof (rect as Region).h !== 'number'
+    ) {
+      return fail(`Erreur : --regions "${regionsPath}" — entrée "${maquette}" invalide (attendu {x,y,w,h} numériques).`);
+    }
+    const r = rect as Region;
+    map.set(maquette, { x: r.x, y: r.y, w: r.w, h: r.h });
+  }
+  return map;
+}
+
 function formatMaquetteLine(m: PixelVerdict): string {
   if (m.status === 'diff') {
     const box = m.diffBox ? `x=${m.diffBox.x},y=${m.diffBox.y},w=${m.diffBox.w},h=${m.diffBox.h}` : '—';
@@ -100,6 +145,7 @@ function main(): void {
   const beforeDir = readFlag('--before');
   const afterDir = readFlag('--after');
   const outDir = readFlag('--out');
+  const regionsPath = readFlag('--regions'); // additive, optional (spec 006)
 
   if (!beforeDir || !afterDir || !outDir) {
     fail('Erreur : --before, --after et --out sont tous les trois obligatoires.');
@@ -107,6 +153,8 @@ function main(): void {
   if (args.length > 0) {
     fail(`Erreur : argument(s) inconnu(s) : ${args.join(' ')}`);
   }
+
+  const regionsByMaquette = regionsPath ? readRegionsFile(path.resolve(process.cwd(), regionsPath)) : null;
 
   const beforeAbs = path.resolve(process.cwd(), beforeDir);
   const afterAbs = path.resolve(process.cwd(), afterDir);
@@ -141,6 +189,7 @@ function main(): void {
       afterPath,
       beforeManifest: beforePath ? readManifestSidecar(beforePath) : null,
       afterManifest: afterPath ? readManifestSidecar(afterPath) : null,
+      region: regionsByMaquette?.get(maquette),
     });
   });
 

@@ -45,7 +45,11 @@ const require = createRequire(import.meta.url);
 const MONTSERRAT_WEIGHTS = [400, 500, 600] as const;
 
 let embeddedFontFacesCache: string | null = null;
-function embeddedFontFaces(): string {
+/** Exported for reuse by extract/figma/aplat-parity/render.ts (spec 006, R11
+ *  jambe A) — the SAME embedded-Montserrat fix, never re-implemented, so a
+ *  second harness cannot silently regress into the system-font-fallback bug
+ *  this replaced (2026-07-23, see module header). */
+export function embeddedFontFaces(): string {
   if (embeddedFontFacesCache !== null) return embeddedFontFacesCache;
   const faces: string[] = [];
   for (const w of MONTSERRAT_WEIGHTS) {

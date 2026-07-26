@@ -33,7 +33,7 @@
  * yet. If a fixture PNG is missing, we fail loudly and name the exact fix
  * rather than let cli.ts's own error stand in for ours.
  */
-import { existsSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
@@ -73,6 +73,11 @@ interface MaquetteVerdict {
   diffBox: Box | null;
   cropTriptyque: string | null;
   refus: string | null;
+  // spec 006 (contracts/region-proof.md §3) — optional, added at the end.
+  region?: Box;
+  regionDiffCount?: number;
+  regionPct?: number;
+  outsideDiffCount?: number;
 }
 
 interface Verdict {
@@ -119,11 +124,13 @@ interface CliResult {
   stderr: string;
 }
 
-function runCli(beforeDir: string, afterDir: string, outDir: string): CliResult {
+function runCli(beforeDir: string, afterDir: string, outDir: string, regionsPath?: string): CliResult {
   // Wipe stale output from a previous run (see file header) — every check
   // below must only ever see what THIS invocation wrote.
   rmSync(outDir, { recursive: true, force: true });
-  const res = spawnSync(TSX, [CLI, '--before', beforeDir, '--after', afterDir, '--out', outDir], {
+  const argv = [CLI, '--before', beforeDir, '--after', afterDir, '--out', outDir];
+  if (regionsPath) argv.push('--regions', regionsPath); // additive, spec 006
+  const res = spawnSync(TSX, argv, {
     cwd: ROOT,
     encoding: 'utf8',
   });
@@ -194,7 +201,59 @@ function caseOnePixel(): string {
   expect(containsFlip, `diffBox ${JSON.stringify(box)} does not contain the flipped pixel (${FLIP_X}, ${FLIP_Y})`);
   const cropPath = path.join(out, 'crops', `${MAQUETTE}.png`);
   expect(existsSync(cropPath), `expected crop triptych at ${path.relative(ROOT, cropPath)}`);
-  return `exit 1, statutGlobal "diff", diffCount ${entry.diffCount}, diffBox ${JSON.stringify(box)} contains (${FLIP_X},${FLIP_Y}), crop written`;
+  // spec 006 (T028, contracts/region-proof.md §3): byte-identity when
+  // --regions is ABSENT — the raw JSON text must carry none of the 4 new
+  // keys at all (not even as "undefined"), proving this run's verdict.json
+  // is byte-identical to what cli.ts produced before --regions existed.
+  const rawJson = readFileSync(path.join(out, 'verdict.json'), 'utf8');
+  expect(!rawJson.includes('"region"'), `verdict.json (no --regions passed) unexpectedly contains a "region" key:\n${rawJson}`);
+  expect(!rawJson.includes('regionDiffCount'), `verdict.json (no --regions passed) unexpectedly contains "regionDiffCount"`);
+  return `exit 1, statutGlobal "diff", diffCount ${entry.diffCount}, diffBox ${JSON.stringify(box)} contains (${FLIP_X},${FLIP_Y}), crop written, no region keys without --regions (byte-identity, T028)`;
+}
+
+/** Side-car format: contracts/region-proof.md §2 — {maquette: {x,y,w,h}}. */
+function writeRegionsFile(outPath: string, region: Box): void {
+  writeFileSync(outPath, JSON.stringify({ [MAQUETTE]: region }));
+}
+
+function caseRegionInside(): string {
+  // Reuses the one-pixel fixture pair (FLIP_X=10, FLIP_Y=7) — a region that
+  // CONTAINS the flipped pixel: regionDiffCount 1, outsideDiffCount 0.
+  const out = path.join(OUT_ROOT, 'region-inside');
+  const regionsPath = path.join(OUT_ROOT, 'region-inside.regions.json');
+  const region: Box = { x: 5, y: 5, w: 10, h: 10 }; // contains (10,7): 5<=10<15, 5<=7<15
+  writeRegionsFile(regionsPath, region);
+  const cli = runCli(fixtureDir('one-pixel', 'before'), fixtureDir('one-pixel', 'after'), out, regionsPath);
+  expect(cli.status === 1, `expected process exit 1, got ${cli.status}\n${cli.stdout}${cli.stderr}`);
+  const verdict = readVerdictJson(out, cli);
+  const entry = findMaquette(verdict, MAQUETTE);
+  expect(entry.region !== undefined, `${MAQUETTE} expected a "region" field`);
+  expect(entry.regionDiffCount === 1, `${MAQUETTE} regionDiffCount expected 1, got ${entry.regionDiffCount}`);
+  expect(entry.outsideDiffCount === 0, `${MAQUETTE} outsideDiffCount expected 0, got ${entry.outsideDiffCount}`);
+  const expectedPct = (1 / (region.w * region.h)) * 100;
+  expect(
+    entry.regionPct !== undefined && Math.abs(entry.regionPct - expectedPct) < 1e-9,
+    `${MAQUETTE} regionPct expected ${expectedPct}, got ${entry.regionPct}`,
+  );
+  return `region ${JSON.stringify(region)} contains (${FLIP_X},${FLIP_Y}): regionDiffCount ${entry.regionDiffCount}, outsideDiffCount ${entry.outsideDiffCount}, regionPct ${entry.regionPct}`;
+}
+
+function caseRegionOutside(): string {
+  // Mirror case: a region that EXCLUDES the flipped pixel — regionDiffCount 0,
+  // outsideDiffCount 1. Same fixture pair, only the rectangle differs (no new
+  // PNG — region-proof.md §6: "aucun PNG nouveau, seulement des rectangles différents").
+  const out = path.join(OUT_ROOT, 'region-outside');
+  const regionsPath = path.join(OUT_ROOT, 'region-outside.regions.json');
+  const region: Box = { x: 50, y: 50, w: 10, h: 10 }; // does not contain (10,7)
+  writeRegionsFile(regionsPath, region);
+  const cli = runCli(fixtureDir('one-pixel', 'before'), fixtureDir('one-pixel', 'after'), out, regionsPath);
+  expect(cli.status === 1, `expected process exit 1, got ${cli.status}\n${cli.stdout}${cli.stderr}`);
+  const verdict = readVerdictJson(out, cli);
+  const entry = findMaquette(verdict, MAQUETTE);
+  expect(entry.region !== undefined, `${MAQUETTE} expected a "region" field`);
+  expect(entry.regionDiffCount === 0, `${MAQUETTE} regionDiffCount expected 0, got ${entry.regionDiffCount}`);
+  expect(entry.outsideDiffCount === 1, `${MAQUETTE} outsideDiffCount expected 1, got ${entry.outsideDiffCount}`);
+  return `region ${JSON.stringify(region)} excludes (${FLIP_X},${FLIP_Y}): regionDiffCount ${entry.regionDiffCount}, outsideDiffCount ${entry.outsideDiffCount}`;
 }
 
 function caseEmptyCapture(): string {
@@ -282,6 +341,8 @@ const CASES: CaseSpec[] = [
   { name: 'empty-capture', run: caseEmptyCapture },
   { name: 'dimension-mismatch', run: caseDimensionMismatch },
   { name: 'determinism', run: caseDeterminism },
+  { name: 'region-inside', run: caseRegionInside }, // spec 006, T027 (5 -> 7)
+  { name: 'region-outside', run: caseRegionOutside },
 ];
 
 verifyFixturesPresent();

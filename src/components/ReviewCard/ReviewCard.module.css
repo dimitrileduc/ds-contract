@@ -1,0 +1,193 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/review-card.contract.json (ds.review-card v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  background-color: var(--color-blanc);
+  --dsc-border-color: var(--color-bleu-clair);
+  width: 299px;
+  min-height: 239px;
+  border-radius: 8px;
+  --dsc-border-width: 1px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  gap: 14px;
+}
+
+.entete {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profil {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatarInitiale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bleu-gris);
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 20px;
+}
+
+.initialeTexte {
+  font-family: var(--font-family-montserrat);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-18);
+  color: var(--color-blanc);
+  line-height: 1;
+}
+
+.avatarPhoto {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 20px;
+}
+
+.identite {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.auteur {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  color: #000000;
+  line-height: 1.2;
+}
+
+.date {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  color: #8a8a8a;
+  line-height: 1.2;
+}
+
+.marque svg {
+  width: 18px;
+  height: 18px;
+}
+
+.marque {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.etoiles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+.etoile1 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile2 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile3 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile4 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.etoile5 svg {
+  width: 16px;
+  height: 16px;
+}
+
+.etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.verification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border-radius: 8px;
+  background-color: #000000;
+}
+
+.coche svg {
+  width: 10px;
+  height: 10px;
+}
+
+.coche {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.temoignage {
+  margin: 0;
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  color: #000000;
+  line-height: 1.4;
+}
+
+.lireLaSuite {
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  color: #8a8a8a;
+}

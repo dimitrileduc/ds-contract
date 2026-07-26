@@ -33,7 +33,7 @@ extract/figma/page-parity/
 ├── cli.ts              argv/env/fs layer (`pages:compare`)
 ├── compare.ts           the pixelmatch engine: one PixelVerdict per maquette
 ├── report.ts             verdict.json + verdict.md + diffBox crop-triptychs
-├── selftest.ts            the 5 fixture cases (`pages:selftest`)
+├── selftest.ts            the 7 fixture cases (`pages:selftest`)
 ├── ledger-check.ts         ledger completeness validator (`pages:ledger:check`)
 ├── bridge/                 live-only, run via figma_execute — see §4
 │   ├── scan.js
@@ -162,17 +162,25 @@ no-customization adoption still needs an explicit **empty** ledger
 
 ## 9. Fixtures & selftest
 
-`npm run pages:selftest` runs the 5 cases from `contracts/page-proof.md` §3,
-committed as PNG pairs under `fixtures/`, regenerable via
-`fixtures/generate.ts` — never hand-edited binary blobs:
+`npm run pages:selftest` runs the 7 cases from `contracts/page-proof.md` §3
+plus spec 006's `--regions` extension (`../../../specs/006-google-reviews-block/
+contracts/region-proof.md` §6), committed as PNG pairs under `fixtures/`,
+regenerable via `fixtures/generate.ts` — never hand-edited binary blobs:
 
 1. **identical** pair → `identical`, `diffCount 0`, exit `0`.
 2. **one pixel** changed beyond the threshold → `diff`, `diffCount ≥ 1`,
-   `diffBox` localizes it, exit `1`.
+   `diffBox` localizes it, exit `1`. Also asserts **byte-identity**: without
+   `--regions`, `verdict.json` carries none of the 4 region keys at all.
 3. **empty capture** (0×0 or fully transparent) → `capture-failed`, exit `2`.
 4. **dimension mismatch** → `dimension-mismatch`, exit `2`.
 5. **byte-determinism** — two runs over the same inputs → byte-identical
    `verdict.json`.
+6. **region-inside** (spec 006) — reuses the one-pixel fixture pair with a
+   `--regions` rectangle that CONTAINS the flipped pixel → `regionDiffCount 1`,
+   `outsideDiffCount 0`.
+7. **region-outside** (spec 006) — mirror case, a rectangle that EXCLUDES the
+   flipped pixel → `regionDiffCount 0`, `outsideDiffCount 1`. Same fixture
+   PNGs as case 2 — no new binaries, only different rectangles.
 
 The "fixture" half of the claims rule's fixture → eval → claim order (R12)
 — the instrument proves itself before any claim about it is made elsewhere.
