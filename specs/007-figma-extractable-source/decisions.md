@@ -797,6 +797,40 @@ Exécution L3c (liaisons typographiques seules, 53 posées après validation val
 
 **Approche alternative documentée** : les liaisons pourraient être posées individuellement en testant 1 liaison → capture → compare avant de passer à la suivante — mais cela nécessiterait ~86 appels de capture par liaison + un parsing du résultat, soit ~16 718 appels pour 194 liaisons. Hors budget de la spec.
 
+### Réparation post-L3 — résidus de revert trouvés et corrigés, 43/43 conforme (2026-07-26)
+
+**Root cause distincte de la limite « bind ≠ littéral »** : les reverts successifs (L3 →
+L3b → L3c/L3d, `setBoundVariable(field, null)`) retirent la liaison mais ne restaurent
+**pas** la valeur littérale d'avant-liaison sur tous les canaux — `null` binding fige la
+valeur *courante* du champ, qui peut être celle temporairement copiée depuis la variable
+pendant le geste. Un recensement exhaustif (comparaison programmatique, tous les nœuds
+`layoutMode≠NONE` des 43 masters, dump post-L1b vs état live, tous canaux : `itemSpacing`,
+`padding[4]`, `strokeWeight` par côté, `cornerRadius`) a trouvé **32 résidus de layout**
+(spacing/padding, ex. `Carte:Disposition=Reassurance` itemSpacing 24→8), **1 résidu de
+stroke** (`AccordionRow:Taille=Grand, Etat=Ferme` — bordure basse seule `[0,0,1,0]`
+transformée en boîte complète `[1,1,1,1]`) et **9 résidus de cornerRadius** (frames non
+visibles au rendu — `clipsContent:false` ou fond masqué — donc sans impact pixel réel mais
+corrigés par cohérence de source). Rien à voir avec la limite bind-vs-littéral : ce sont
+des **valeurs jamais restaurées**, trouvées et corrigées nœud par nœud à partir du dump
+post-L1b comme référence, jamais en devinant depuis un screenshot.
+
+Séparément, la tentative de restauration manuelle des 3 runs de texte en gras
+(`DS-Molecules__Carte`, `DS-Organisms__Hero`, `DS-Organisms__Presentation` — cf. session
+précédente) avait utilisé un poids de base "Medium" au lieu de "Regular" sur Hero,
+provoquant un retour à la ligne différent (largeur de caractère différente) : corrigé en
+ré-appliquant Regular comme poids de base, gras uniquement sur les 2 runs identifiés.
+
+**Vérification finale, 43/43 cibles (Pages + DS masters), comparées à `L3-before`** :
+**37/43 identical, 6/43 diff** — chaque diff inspecté visuellement (crop triptyque) :
+texte identique, position identique, poids identique ; le diffCount (167 à 2280 px sur des
+images de plusieurs centaines de milliers de pixels) est du bruit d'anti-aliasing sur fond
+photo/texte, pas une perte de contenu. Aucun résidu restant.
+
+**Portée non affectée** : ni les 247 tentatives de liaison variable (retirées, cf. STOP
+L3c/L3d ci-dessus) ni le Correctif E / les 2 primitives (`font/line-height/32`,
+`space/597`, restées en place) ne sont concernés par cette réparation — elle ne restaure
+que des valeurs littérales corrompues par le cycle revert, sans reposer aucune liaison.
+
 ### STOP L3b — diff non nul : 11/43 cibles modifiées après validation, revert complet (2026-07-26)
 
 Exécution L3b (payload-validated, 220 entrées, valeurs live confirmées) → verdict APRÈS : **32/43 identical, 11 diff**. Diffs : DS·Organisms·Presentation (w=518,h=71), DS·Organisms·TexteSEO (w=1006,h=38), + 9 maquettes Pages.
