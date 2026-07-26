@@ -7,7 +7,7 @@
   "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Hauteur du root contrainte à la hauteur mesurée de l'aplat (neutralité de hauteur, R20) — une adoption qui changerait cette hauteur est un STOP, jamais une donnée.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nSimplification nommée : les flèches sont modélisées comme des enfants flex adjacents à la rangée de cartes (pas un overlay/positionnement absolu) — l'aplat les montre en léger chevauchement des bords de carte 1/5 ; à raffiner pendant la convergence (T040) si l'écart mesuré le justifie.",
   "figma": {
     "representation": "component",
-    "componentSetKey": null
+    "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c"
   },
   "props": [
     {

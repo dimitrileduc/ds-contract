@@ -6,7 +6,7 @@ const COMPONENTS = [
   {
     "setName": "GoogleReviews",
     "contractId": "ds.google-reviews",
-    "anchorKey": null,
+    "anchorKey": "9bc775b834830afc0b67841e8d341cf2efa3037c",
     "description": "GoogleReviews — generated from contract ds.google-reviews v1.0.0",
     "isSet": false,
     "boolProps": [
@@ -36,6 +36,7 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "lits": {
+            "width": 1552,
             "height": 328,
             "itemSpacing": 12,
             "paddingTop": 4,
@@ -197,8 +198,7 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "SPACE_BETWEEN",
-                "counter": "MIN",
-                "stretchChildren": true
+                "counter": "CENTER"
               },
               "children": [
                 {

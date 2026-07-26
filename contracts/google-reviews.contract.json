@@ -110,6 +110,7 @@
         "background-color": "{color.blanc}"
       },
       "literals": {
+        "width": "1552px",
         "height": "328px",
         "gap": "12px",
         "padding-top": "4px",
@@ -288,11 +289,11 @@
           }
         },
         "cartes": {
-          "description": "Structure 3 colonnes (T040, demande owner) : flèche | groupe des 5 cartes | flèche. Gap 0 à l'extérieur, 8 px entre les cartes (mesuré) — le groupe central prend toute la largeur restante, ce qui donne aux cartes 288 px au lieu de 285 quand les flèches partageaient le même gap. ⚠️ LIMITE NOMMÉE : dans l'aplat les flèches CHEVAUCHENT les cartes (flèche gauche x=0→46 px natifs, carte 1 à x=16 : 30 px de recouvrement) ; les cartes y démarrent donc à 16 px natifs contre 58 ici. Aucun mécanisme de superposition n'existe sur les DEUX surfaces dans ce moteur : `stylesWhen` (position/left/transform/z-index) est « Canvas v1: not represented », et `layout.overlap` est code-only aussi (0 occurrence dans core/emit-figma-script.ts — le « negative itemSpacing » annoncé en commentaire n'est pas implémenté) ; `margin-*` n'est dans aucun registre de canaux. Résidu assumé : ~28 CSS de décalage horizontal, identique sur les deux surfaces (donc code≡canevas préservé). Correctif moteur → backlog.",
+          "description": "Structure 3 colonnes (T040, demande owner) : flèche | groupe des 5 cartes | flèche. Gap 0 à l'extérieur, 8 px entre les cartes (mesuré) — le groupe central prend toute la largeur restante, ce qui donne aux cartes 288 px au lieu de 285 quand les flèches partageaient le même gap. ⚠️ LIMITE NOMMÉE : dans l'aplat les flèches CHEVAUCHENT les cartes (flèche gauche x=0→46 px natifs, carte 1 à x=16 : 30 px de recouvrement) ; les cartes y démarrent donc à 16 px natifs contre 58 ici. Aucun mécanisme de superposition n'existe sur les DEUX surfaces dans ce moteur : `stylesWhen` (position/left/transform/z-index) est « Canvas v1: not represented », et `layout.overlap` est code-only aussi (0 occurrence dans core/emit-figma-script.ts — le « negative itemSpacing » annoncé en commentaire n'est pas implémenté) ; `margin-*` n'est dans aucun registre de canaux. Résidu assumé : ~28 CSS de décalage horizontal, identique sur les deux surfaces (donc code≡canevas préservé). Correctif moteur → backlog. ⚠️ `align` vaut « center » et NON « stretch », et ce n'est pas cosmétique : `core/emit-figma-script.ts:871` active `stretchChildren` dès qu'une part porte un `layout` sans `align` explicite OU avec `align: stretch`, et `:3315` pose alors `layoutSizingHorizontal = FILL` sur tout enfant dépourvu de largeur issue d'un TOKEN (les deux seules sources de `fixedWidth` sont `:1115`/`:1120`). Avec « stretch », les literals `width: 0px` des deux conteneurs de flèche étaient écrasés et les 3 colonnes se partageaient la largeur en tiers égaux (169,3 px chacune, mesuré sur le canevas le 26/07) — les instances de carte y échappant seules (`:3316`, `child.type !== 'instance'`), 5 cartes de 299 px débordaient d'un parent de 169. « center » éteint ce défaut d'origine et rend visuellement l'identique côté code, les cartes tenant déjà leur hauteur égale par leur propre `min-height: 239px`.",
           "layout": {
             "display": "flex",
             "direction": "row",
-            "align": "stretch",
+            "align": "center",
             "justify": "space-between"
           },
           "parts": {
@@ -475,8 +476,8 @@
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": null,
-      "nodeId": null,
+      "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c",
+      "nodeId": "2178:7381",
       "dumpedAt": "2026-07-26"
     },
     "code": {

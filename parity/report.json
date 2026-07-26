@@ -1,11 +1,267 @@
 {
   "summary": {
-    "total": 0,
+    "total": 24,
     "acknowledged": 2,
-    "pending": 2,
-    "bySurface": {}
+    "pending": 0,
+    "bySurface": {
+      "figma": {
+        "behind": 5,
+        "ahead": 5
+      },
+      "icons": {
+        "mismatch": 14
+      }
+    }
   },
-  "findings": [],
+  "findings": [
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Button.Property 1",
+      "detail": "Contract prop \"variant\" has no VARIANT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Button.Libellé",
+      "detail": "Contract prop \"children\" has no TEXT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Button.Icône gauche",
+      "detail": "Contract prop \"iconLeft\" has no BOOLEAN property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Button.Icône droite",
+      "detail": "Contract prop \"iconRight\" has no BOOLEAN property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Icone gauche",
+      "detail": "Figma set declares BOOLEAN property \"Icone gauche\" the contract does not define",
+      "proposedPatch": {
+        "name": "icone gauche",
+        "type": "boolean",
+        "bindings": {
+          "figma": {
+            "kind": "BOOLEAN",
+            "property": "Icone gauche"
+          },
+          "code": {
+            "prop": "icone gauche"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Icone droite",
+      "detail": "Figma set declares BOOLEAN property \"Icone droite\" the contract does not define",
+      "proposedPatch": {
+        "name": "icone droite",
+        "type": "boolean",
+        "bindings": {
+          "figma": {
+            "kind": "BOOLEAN",
+            "property": "Icone droite"
+          },
+          "code": {
+            "prop": "icone droite"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Libelle",
+      "detail": "Figma set declares TEXT property \"Libelle\" the contract does not define",
+      "proposedPatch": {
+        "name": "libelle",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Libelle"
+          },
+          "code": {
+            "prop": "libelle"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Button.Style",
+      "detail": "Figma set declares VARIANT property \"Style\" the contract does not define",
+      "proposedPatch": {
+        "name": "style",
+        "type": {
+          "enum": [
+            "Default",
+            "Orange",
+            "Blanc",
+            "Outline blanc",
+            "Link",
+            "Outline noir"
+          ]
+        },
+        "bindings": {
+          "figma": {
+            "kind": "VARIANT",
+            "property": "Style"
+          },
+          "code": {
+            "prop": "style"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Checkbox.Coché",
+      "detail": "Contract prop \"checked\" has no VARIANT property on the Figma set",
+      "remedy": "Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Checkbox.Coche",
+      "detail": "Figma set declares VARIANT property \"Coche\" the contract does not define",
+      "proposedPatch": {
+        "name": "coche",
+        "type": {
+          "enum": [
+            "Non",
+            "Oui"
+          ]
+        },
+        "bindings": {
+          "figma": {
+            "kind": "VARIANT",
+            "property": "Coche"
+          },
+          "code": {
+            "prop": "coche"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/piqueray",
+      "detail": "registry says the master is named \"piqueray\", canvas snapshot says \"Piqueray\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/phone",
+      "detail": "registry says the master is named \"phone\", canvas snapshot says \"Phone\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/download",
+      "detail": "registry says the master is named \"download\", canvas snapshot says \"Download\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/pdf",
+      "detail": "registry says the master is named \"pdf\", canvas snapshot says \"Pdf\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/search",
+      "detail": "registry says the master is named \"search\", canvas snapshot says \"Search\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/user",
+      "detail": "registry says the master is named \"user\", canvas snapshot says \"User\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/chevron-right",
+      "detail": "registry says the master is named \"chevron-right\", canvas snapshot says \"ChevronRight\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/chevron-left",
+      "detail": "registry says the master is named \"chevron-left\", canvas snapshot says \"ChevronLeft\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/chevron-down",
+      "detail": "registry says the master is named \"chevron-down\", canvas snapshot says \"ChevronDown\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/chevron-up",
+      "detail": "registry says the master is named \"chevron-up\", canvas snapshot says \"ChevronUp\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/cart",
+      "detail": "registry says the master is named \"cart\", canvas snapshot says \"Cart\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/arrow-right",
+      "detail": "registry says the master is named \"arrow-right\", canvas snapshot says \"ArrowRight\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/arrow-left",
+      "detail": "registry says the master is named \"arrow-left\", canvas snapshot says \"ArrowLeft\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    },
+    {
+      "surface": "icons",
+      "classification": "mismatch",
+      "subject": "ds.icons/star",
+      "detail": "registry says the master is named \"Étoile\", canvas snapshot says \"Etoile\"",
+      "remedy": "Adopt the canvas name into the registry (promotion) or rename the Figma master back"
+    }
+  ],
   "acknowledged": [
     {
       "surface": "figma-tokens",
@@ -22,18 +278,7 @@
       "remedy": "Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset"
     }
   ],
-  "pending": [
-    {
-      "subject": "GoogleReviews",
-      "detail": "No design anchor yet — the contract has never been synced to Figma (pending first generation, not drift)",
-      "remedy": "Run its figma-sync script, write back anchors (npm run anchors:writeback), re-extract snapshots"
-    },
-    {
-      "subject": "ReviewCard",
-      "detail": "No design anchor yet — the contract has never been synced to Figma (pending first generation, not drift)",
-      "remedy": "Run its figma-sync script, write back anchors (npm run anchors:writeback), re-extract snapshots"
-    }
-  ],
+  "pending": [],
   "checkedContracts": [
     "ds.button@1.5.0",
     "ds.checkbox@1.0.0",

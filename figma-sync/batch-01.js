@@ -433,7 +433,7 @@ const COMPONENTS = [
   {
     "setName": "ReviewCard",
     "contractId": "ds.review-card",
-    "anchorKey": null,
+    "anchorKey": "3826fdc9975d42b1661e14494476701676759671",
     "description": "ReviewCard — generated from contract ds.review-card v1.0.0 †",
     "isSet": false,
     "boolProps": [
@@ -540,7 +540,7 @@ const COMPONENTS = [
                           "fontSize": 18,
                           "fontStyle": "Semi Bold",
                           "textFill": "color/blanc",
-                          "lineHeight": 1,
+                          "lineHeight": 18,
                           "fontFamily": "Montserrat",
                           "contentProp": "Initiale"
                         }
@@ -591,7 +591,7 @@ const COMPONENTS = [
                           "characters": "Prénom N.",
                           "fontSize": 16,
                           "fontStyle": "Semi Bold",
-                          "lineHeight": 1.2,
+                          "lineHeight": 19.2,
                           "fontFamily": "Montserrat",
                           "contentProp": "Auteur"
                         },
@@ -601,7 +601,7 @@ const COMPONENTS = [
                           "characters": "il y a 2 mois",
                           "fontSize": 14,
                           "fontStyle": "Medium",
-                          "lineHeight": 1.2,
+                          "lineHeight": 16.8,
                           "fontFamily": "Montserrat",
                           "contentProp": "Date"
                         }
@@ -711,7 +711,7 @@ const COMPONENTS = [
               "characters": "Un témoignage neutre, exemple générique de contenu.",
               "fontSize": 14,
               "fontStyle": "Medium",
-              "lineHeight": 1.4,
+              "lineHeight": 19.6,
               "fontFamily": "Montserrat",
               "contentProp": "Témoignage"
             },
@@ -734,7 +734,7 @@ const COMPONENTS = [
   {
     "setName": "GoogleReviews",
     "contractId": "ds.google-reviews",
-    "anchorKey": null,
+    "anchorKey": "9bc775b834830afc0b67841e8d341cf2efa3037c",
     "description": "GoogleReviews — generated from contract ds.google-reviews v1.0.0",
     "isSet": false,
     "boolProps": [
@@ -764,6 +764,7 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "lits": {
+            "width": 1552,
             "height": 328,
             "itemSpacing": 12,
             "paddingTop": 4,
@@ -925,8 +926,7 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "SPACE_BETWEEN",
-                "counter": "MIN",
-                "stretchChildren": true
+                "counter": "CENTER"
               },
               "children": [
                 {

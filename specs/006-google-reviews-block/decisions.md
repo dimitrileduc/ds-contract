@@ -804,3 +804,377 @@ contenu réel, un seul jeu source — relu en seconde passe), T022 (crop de l'av
 (déclaration d'inapplicabilité du ledger côté aplat). Aucun de ces sept ne porte de STOP-GATE
 owner — travail méthodique, pas des décisions d'architecture.
 
+
+---
+
+## Phase 4c — Première poussée générative (2026-07-26)
+
+### T041 — Signature de la jambe A + **correction d'un chiffre faux au journal**
+
+**Chiffre réel atteint : 6,0755 %** (`measures/floor-probe/gr-fix-7.json`, `diffCount` 69 699 sur
+une région 2327×493 = 1 147 211 px), sous le seuil owner de **9,76 %** (T016).
+
+⚠️ **Correction d'une erreur de ce journal, dite plutôt que corrigée en silence** : le paragraphe
+« Verdict » de T040 (5ᵉ passe) annonce **7,253 %**. Ce chiffre est **périmé** — c'est celui de la
+3ᵉ passe (ligne 678), recopié sans être remis à jour après les 4ᵉ et 5ᵉ passes. La série mesurée
+est 7,816 → 7,450 → 6,981 → 6,839 → 6,123 → 6,122 → **6,076 %**. Le message du commit
+`82c3f29` porte, lui, le bon chiffre. Reçu qui fait foi : le JSON de l'itération, pas la prose.
+
+**Triptyque de signature** : `measures/floor-probe/gr-fix-7.triptych.png` (+ l'empilé
+`gr-fix-7-EMPILE.png`, rendu au-dessus / réel en dessous — c'est celui sur lequel l'owner a zoomé).
+
+**Accord owner** : les 5 passes de T040 ont chacune été arbitrées par l'owner sur crops zoomés
+(« on ne retire rien » sur les flèches, « rien à faire » sur la couleur des pastilles, « reprends
+les typos du DS » sur l'échelle, graisse de rendu acceptée). L'autorisation d'ouvrir la Phase 4c
+vaut signature de la jambe A. **Ce que cette signature couvre exactement** : la convergence
+hors ligne code ↔ aplat. Elle ne dit rien du portage canevas — c'est la jambe B (T046), signée
+séparément plus bas.
+
+**Résidu assumé, inchangé depuis la 5ᵉ passe** : substitution de police (dominant, R3) ; couleur
+d'avatar fixe vs 5 teintes réelles ; photo de contenu carte 5 hors contrat ; teinte d'étoile
+orange intrinsèque (D6) ; forme du badge vérifié ; ~6 px natifs de débord de la flèche gauche ;
+corps de texte arrondis à l'échelle du DS.
+
+**Verdict** : ✅ T041 fait. Verrou R19 à moitié levé — la jambe B reste à signer avant l'adoption
+(T049), pas avant la poussée.
+
+### T042 — Point de restauration + 9 captures avant (2026-07-26)
+
+**Checkpoint** : `{ label: "006/masters/creation", versionId: "2380469458121552767" }` —
+`saveVersionHistoryAsync` via `bridge/checkpoint.js`, octets committés joués par
+`fetch`+`eval` depuis la route `/file` du receveur (1 570 o), jamais une copie retapée.
+
+**Captures avant : 9/9 `ok`**, chacune re-décodée côté Node (`manifests.mjs`) — largeur/hauteur
+relues **dans le PNG**, pas dans la géométrie du nœud — et hashée :
+
+| Maquette | Taille | sha256 |
+|---|---|---|
+| Accueil | 1728×5430 | `daa0cb18bc90…` |
+| Portes de garage | 1728×4372 | `a21f4ed21820…` |
+| Portes de garage résidentielles | 1728×6575 | `b6e56dc5ea48…` |
+| Portes de garage industrielles | 1728×6762 | `548868d128a5…` |
+| Motorisation | 1728×3334 | `195f6fcdc1b6…` |
+| Portes d'entrée | 1728×6534 | `78605a371d1e…` |
+| Dépannage/SAV | 1728×4242 | `e6cd553311b4…` |
+| À Propos | 1728×5928 | `3ac7df2cfb90…` |
+| Contactez-nous | 1728×3901 | `cd5a8bfdd5c3…` |
+
+**Règle before-capture respectée** : les 9 maquettes capturées avant le premier geste, pas un
+sous-ensemble pilote.
+
+**Incident d'outillage attrapé avant qu'il ne coûte quelque chose** : un receveur de captures de
+la spec 005 tournait encore depuis le **samedi 25/07 05h41** sur le port 9223, et un receveur de
+T012 (09h30, `outDir` = `measures/`) sur le 9227. Le second aurait répondu « page-parity » au
+contrôle de santé et **avalé les 9 captures dans le mauvais dossier** — exactement l'incident
+contre lequel le contrôle de nonce a été construit en 003. Les deux tués, receveur relancé propre
+(nonce `df53d8ef557876b2`), nonce épinglé dans chaque appel.
+
+**Leçon de pont, à retenir** : le port 9223 libéré a été repris dans la seconde par le serveur
+figma-console d'une **autre session Claude**. Ce n'est pas un problème — la règle multi-writer du
+`CLAUDE.md` (25/07) le dit déjà : plusieurs serveurs coexistent sur des ports différents, et le
+plugin trouve le bon tout seul en balayant 9223→9232. Relance du plugin = seule action requise ;
+**ne jamais tuer le serveur d'une autre session** pour « libérer » un port. J'ai proposé cette
+fausse manœuvre, l'owner l'a refusée en rappelant la règle.
+
+### T043-T044 — Première poussée générative, et ce qu'elle a révélé (2026-07-26)
+
+**Transport retenu : `figma:serve` sur le port 9228 + `fetch` depuis le bac à sable du pont**, et
+non le plugin Sync Runner. Raison : Figma n'exécute **qu'un plugin à la fois** — lancer le Sync
+Runner déconnecterait le Desktop Bridge, donc les checkpoints et les captures. Le port 9228 est
+dans la plage 9223-9232 autorisée par le manifeste du plugin, `FIGMA_SERVE_ONLY` restreint le
+manifeste aux deux seuls scripts de composant, et les empreintes sha256 servies ont été recoupées
+avec le disque **avant chaque exécution**. Les valeurs de retour `{name, nodeId, key}` sont celles
+du script lui-même — pas un appariement par nom (la fragilité dénoncée en 002).
+
+**Trois refus armés dans l'appel**, avant que le script ne touche quoi que ce soit : `fileKey`
+attendue présente dans les octets servis · `figma.fileKey` égale · absence de
+`createVariableCollection` (garde anti-`01-tokens.js`).
+
+**Résultat** : `ReviewCard` `2178:7349` (clé `3826fdc9…`, 10 propriétés) puis `GoogleReviews`
+`2178:7381` (clé `9bc775b8…`, 4 propriétés). Le `repeat` a produit **5 instances** de carte — le
+premier `repeat`+`component` du dépôt fonctionne.
+
+**Preuve T044 : 9/9 identical, exit 0** — et chaque sha256 « après » est **byte-identique** à son
+« avant », plus fort que l'égalité pixelmatch.
+
+#### Le portage canevas était faux, et la jambe B ne l'aurait dit que plus tard
+
+Relevé de géométrie immédiat après la poussée (lecture seule) : racine **530×328** au lieu de
+1552, et les 3 colonnes `[flèche][cartes][flèche]` à **169,3 px chacune** — des tiers égaux — avec
+5 cartes de 299 débordant d'un parent de 169. **Trois causes, toutes tranchées « ça vient du
+contrat », aucune du canevas** (corollaire source-cleanliness) :
+
+1. **La racine ne portait aucune largeur.** Le CSS généré n'avait pas de `width` : les 1552 px de
+   la jambe A venaient du **viewport du harnais de rendu**, pas du contrat. Sur canevas il n'y a
+   pas de viewport → HUG. Corrigé par `literals.width: "1552px"` — et on sait que ça tient parce
+   que le literal `height: 328px` de la même racine, lui, avait déjà produit
+   `primaryAxisSizingMode: FIXED`.
+2. **`align: stretch` sur la rangée écrasait les largeurs des flèches.**
+   `core/emit-figma-script.ts:871` allume `stretchChildren` dès qu'une part porte un `layout` sans
+   `align` explicite **ou** avec `align: stretch`, et `:3315` pose alors `layoutSizingHorizontal =
+   FILL` sur tout enfant sans largeur **de token** (`:1115`/`:1120` = les deux seules sources de
+   `fixedWidth`). Un `literals.width` ne protège donc **pas** un enfant ; seules les instances y
+   échappent (`:3316`). Corrigé par `align: "center"`, explicite, qui éteint le défaut.
+3. **4 `line-height` sans unité dans `ds.review-card`** (`"1"`, `"1.2"`, `"1.2"`, `"1.4"`).
+   Côté code, un ratio CSS ; côté canevas l'émetteur écrit `lineHeight = { unit: 'PIXELS', value:
+   1.4 }` — soit **1,4 pixel**. La boîte de `temoignage` faisait **3 px de haut** et les textes se
+   chevauchaient. Convertis en px exacts (ratio × taille de police) : 18 / 19,2 / 16,8 / 19,6 px.
+   ⚠️ **Les 5 contrats pré-existants n'ont pas ce défaut** (px ou token partout) : c'est une faute
+   introduite par cette spec, pas un bug hérité. Classe de dégât **silencieuse** — rien ne refuse,
+   le master est simplement faux. Correctif moteur (refuser un `line-height` sans unité, ou le
+   résoudre contre la taille de police) → **backlog avec ce reçu**, Constitution VII.
+
+**Les trois corrections sont rigoureusement neutres côté code** : jambe A re-mesurée à
+**6,076 %, diffCount 69 699** — identique à l'octet près avant et après. Le canevas est réparé
+sans qu'un pixel du rendu code ne bouge.
+
+**Géométrie après correction** : racine 1552×328 FIXED/FIXED · flèches à 0 px aux deux bords ·
+groupe de cartes 1530 FILL · 5 cartes de 299 aux x 0/307/614/921/1228 (gap 8). Conforme au code.
+
+**Deux itérations d'amend, chacune avec sa preuve complète** :
+`006/masters/iteration-1` (`2380449820962294161`, section) → **9/9 identical** ·
+`006/masters/iteration-2` (`2380480866074020014`, carte) → **9/9 identical**.
+`amended: true` les deux fois, **id et `key` conservés** — l'identité par marqueur
+`ds_contracts/contractId` tient, comme le protocole l'annonçait.
+
+#### Leçon de harnais : j'ai cru le chiffre signé non reproductible, à tort
+
+En re-mesurant la jambe A j'ai obtenu 7,85 % puis 7,57 % contre les 6,076 % signés, et j'ai
+d'abord conclu que l'état de contrat ayant produit 6,076 % n'existait plus. **C'était faux, et
+c'étaient mes deux ratés** : (1) je passais à la sonde le CSS émis **sans** `src/styles/tokens.css`
+— le CSS émis *référence* `var(--color-blanc)` mais ne le *définit* pas, donc cartes sans fond ni
+bordure et pastilles d'avatar sans remplissage ; (2) je rendais le showcase entier au lieu du
+**fragment du bloc**, et le `<p class="showcase__label">default</p>` décalait tout verticalement.
+Les deux corrigés → **6,076 %, diffCount 69 699, reproduit à l'octet près**.
+
+**Ce que ça coûte et ce qu'on en fait** : la recette exacte de la jambe A (concaténer
+`tokens.css`, extraire le fragment `<section class="google-reviews">`) **n'est écrite nulle part et
+ses scripts ne sont pas committés** — elle vivait dans le bac à sable d'une session. Un chiffre
+qu'on ne sait pas rejouer n'est pas un reçu. → **backlog** : committer un script de jambe A
+reproductible. En attendant, la recette est ci-dessus, noir sur blanc.
+
+**Reste ouvert à ce point** : les flèches de carrousel sont **dessinées mais rognées** sur le
+canevas (`pastilleGauche` à x=-15, largeur 30, dans une frame de largeur 0 qui rogne). C'est le
+trou **A25** de `docs/FIGMA-CAPABILITY-MATRIX.md` — « frames default clip », capacité `overflow`
+**non portée** par le contrat aujourd'hui. Décision owner requise.
+
+### Flèches rognées sur le canevas — limite A25 acceptée, PAS `overlay` (2026-07-26)
+
+**Autocorrection avant d'exécuter** : j'ai d'abord recommandé de passer `flecheGauche`/`flecheDroite`
+en vocabulaire `overlay` (placement `start`/`end`). Vérification faite *avant* d'y toucher —
+c'était **faux**. `overlay` place la part **entièrement hors du parent, à ras d'un bord, zéro
+chevauchement** (`core/emit-figma-script.ts:3189-3201` : `x = -width` pour `start` ; CSS
+`right: 100%`) — le patron « bulle de tooltip au-dessus d'un déclencheur ». La structure déjà
+signée en T040 est différente et vérifiée dans le CSS généré : `.flecheGauche { width:0;
+min-width:0 }` contenant `.pastilleGauche { width:30px; min-width:30px }` — un conteneur à largeur
+nulle dont l'enfant déborde **symétriquement des deux côtés**, parce que CSS ne rogne pas par
+défaut. C'est exactement le chevauchement mesuré sur l'aplat, **déjà convergé à 6,076 %** (T041).
+Passer en `overlay` aurait changé la géométrie et cassé un résultat déjà prouvé, pour un chiffre
+probablement pire, sans même reproduire le chevauchement réel.
+
+**Vrai défaut, plus étroit** : les frames Figma rognent leurs enfants par défaut
+(`clipsContent: true`), CSS non — c'est le trou A25 de `docs/FIGMA-CAPABILITY-MATRIX.md`
+(« overflow — CARRY-BOTH (trivial add) », jamais fait). Aucun contrat aujourd'hui n'expose de
+canal `overflow` vers `clipsContent` côté canevas (`overflow-x`/`overflow-y` existent mais sont
+`canvas: 'annotate'` — code seul, jamais dessinés). Le brancher est un ajout moteur légitime, mais
+touche `core/emit-figma-script.ts` en pleine poussée → churn golden + éval, contre la discipline
+T075 qui envoie explicitement ce type de correctif au backlog plutôt que de l'absorber au passage.
+Un contournement à la main sur le canevas (`clipsContent = false` posé en direct) a aussi été
+écarté : un ré-amend futur de `ds.google-reviews` recréerait la frame depuis le spec et effacerait
+la bascule en silence — **exactement l'« étape manuelle » que T037 interdit** (Independent Test
+US1 : chaîne traversée sans retouche).
+
+**Décision owner** : limite **acceptée et nommée**, rien retiré. Les flèches restent entières dans
+le contrat et dans le code (aucune régression sur « on ne retire rien », qui portait sur un tout
+autre choix — les évacuer du design). Seul le **master Figma** les montre rognées ; c'est une
+limite A25 antérieure à cette spec, générale à tout le moteur, pas spécifique à ce composant.
+
+**Backlog** : brancher `overflow-x`/`overflow-y: visible` → `clipsContent = false` côté émetteur
+canevas (matrice : « trivial add »). Reçu : ce défaut précis, `flecheGauche`/`flecheDroite` de
+`ds.google-reviews`, capture avant/après jointe aux itérations 1-2 ci-dessus.
+
+### T045 — anchors:writeback + régénération + golden:update (2026-07-26)
+
+**Transport réel ≠ transport nominal** : la route Sync Runner (plugin, POST `/runner-result`) n'a
+pas été utilisée — l'exécuter aurait déconnecté le Desktop Bridge qui porte les checkpoints et
+captures. `figma-sync/.runner-result.json` a donc été **écrit manuellement**, avec les valeurs
+`{name, nodeId, key}` réellement retournées par les deux scripts poussés en T043-T044 (source
+déclarée dans le fichier), pas des valeurs inventées — repli explicitement prévu par
+`contracts/push-protocol.md` §2 (« sinon l'écriture des ancres est manuelle »).
+
+**`anchors:writeback`** : 2 mis à jour, 0 non appariés. Ancres avant → après :
+
+| Contrat | `componentSetKey` | `nodeId` |
+|---|---|---|
+| review-card | `null` → `3826fdc9975d42b1661e14494476701676759671` | `null` → `2178:7349` |
+| google-reviews | `null` → `9bc775b834830afc0b67841e8d341cf2efa3037c` | `null` → `2178:7381` |
+
+`fileKey`/`dumpedAt` intacts, JSON toujours valide, édition textuelle ciblée (pas de reformattage).
+
+**Régénération** : `build && figma:plan && catalog && verify:catalog` — ancre vérifiée présente
+dans les octets émis (1 occurrence dans chacun des 2 scripts). `golden:update` → 42 fichiers.
+
+**`npm run parity` → exit 1, 2 constats `figma BEHIND` (`GoogleReviews`, `ReviewCard`)** —
+**attendu, pas une régression** : `parity/snapshots/figma-components.json` date d'avant la poussée
+canevas et ne connaît pas encore les deux masters. C'est exactement ce que T047a referme. Les 2
+constats déjà acquittés (`Primitives/color/rouge`, `close.svg`) sont inchangés.
+
+### T046 — Jambe B (portage), signature (2026-07-26)
+
+**+2 sujets** dans `extract/figma/visual-parity/subjects.ts` (`review-card`, `google-reviews`),
+`kind: 'contract'`, ancres = celles écrites en T045. **Aucun `renderWidth`** : contrairement à
+Input/Textarea (atomes FILL), les deux racines portent déjà un `literals.width` fixe (299px /
+1552px) qui égale exactement la largeur du master — pas de décalage content-width à corriger.
+Vérifié dans `figma-api.ts` : un COMPONENT autonome (`isSet:false`, notre cas) est traité comme sa
+propre liste de variantes à une entrée ; `match.ts` (`planVariant`) rend l'état tout-par-défaut
+pour un nom sans `=` — exactement le chemin par défaut de Button/Checkbox, sans l'enveloppe SET.
+
+**Résultat (run complet, sans filtre)** :
+
+| Sujet | masqué | non masqué | cause dominante |
+|---|---|---|---|
+| ReviewCard | **0,00 %** | 1,68 % | substitution de police (raster) |
+| GoogleReviews | **1,50 %** (seuil 2 %) | 3,31 % | Δ largeur 8 px CSS (flèches, voir ci-dessous) + police |
+
+Le Δ largeur de GoogleReviews (`ours 3120×656 vs figma 3104×656`, device px, soit 8 px CSS) a été
+vérifié sur le triptyque avant signature — le panneau diff ne surligne que les glyphes de texte,
+aucun décalage structurel. Hypothèse cohérente avec la limite A25 déjà nommée (flèches rognées sur
+le canevas, entières côté code) : le contenu qui déborde du cadre nominal côté code (pastilles à
+largeur nulle) n'a pas d'équivalent rogné à mesurer côté Figma de la même façon, ce qui élargit
+légèrement la boîte de contenu mesurée côté code. Sous le seuil, revue à l'œil faite — **signé**.
+
+#### Trouvaille non liée à 006, déjà anticipée par T005 : Button/Checkbox « SKIPPED »
+
+Le run complet (obligatoire — `writeBaseline` reconstruit **tout** `baseline.json` depuis les seuls
+sujets exécutés cette invocation, aucun mode fusion) a révélé que **Button (6 variantes) et
+Checkbox (2 variantes) sont désormais `SKIPPED`**, alors que le `baseline.json` committé (24/07)
+portait encore de vrais scores (`Property 1=Default` 1,31 %, etc.).
+
+**Cause identifiée, pas juste constatée** : `contracts/button.contract.json` porte toujours
+`bindings.figma.property: "Property 1"` (inchangé). Un fetch REST frais du fichier vivant montre
+que le COMPONENT_SET s'appelle désormais **« Style »** (`Style=Default`, `Style=Orange`, …) — un
+renommage de nettoyage vraisemblablement fait pendant la spec 005, jamais répercuté dans le
+contrat. C'est **exactement** la dérive nommée dans tasks.md T005 : *« l'orthographe Bouton pré-005
+que 005 a délibérément laissée ⇒ extract:figma:visual peut être rouge pour une raison étrangère à
+006 »* — anticipée, pas causée ici.
+
+**Décision owner** : écrire le baseline **honnête** — Button/Checkbox passent en `status: "skipped"`
+(l'état réellement vérifiable aujourd'hui) plutôt que de conserver artificiellement d'anciens
+scores qui ne correspondent plus à rien de mesurable. **Hors périmètre 006** (aucune tâche de
+`tasks.md` ne couvre la réparation du binding Button/Checkbox ↔ canevas post-005) → **backlog** :
+reproposer `button.contract.json`/`checkbox.contract.json` depuis le fichier vivant pour capter le
+renommage `Property 1` → `Style` (et `Coché` → ce que le fetch montrera). Reçu joint :
+`contracts/button.contract.json` dit « Property 1 », fetch REST daté 2026-07-26 dit « Style ».
+
+**`baseline.json` après (13 lignes, 7 sujets)** : Button ×6 `skipped` · Checkbox ×2 `skipped` ·
+**ReviewCard `diffed` 0,00 %** · **GoogleReviews `diffed` 1,50 %** · Input `diffed` 0,00 % ·
+Textarea `diffed` 0,00 % · button-with-icons `figma-declined` (image API, déjà connu — inchangé).
+
+**Verdict** : ✅ T046 fait. Jambe B **signée** : le canevas porte fidèlement ce que les deux
+contrats disent, sous le seuil, revu à l'œil. Verrou R19 levé — jambes A **et** B signées,
+l'adoption (Phase 4d) peut commencer.
+
+### T047 — Rangement, et une trouvaille non prévue (2026-07-26)
+
+**Checkpoint** `006/masters/rangement` → `2380472820518738371` (identique au numéro vu par le
+fetch REST du T046 — cohérent, rien n'a muté le canevas entre les deux). 9 captures avant faites.
+
+**Déplacement** : `ReviewCard` → nouvelle SECTION « Review-card » sur `DS · Molécules` ;
+`GoogleReviews` → nouvelle SECTION « Avis Google » sur `DS · Organisms`. Ids et `key` inchangés
+(`2178:7349` / `2178:7381`, mêmes clés qu'en T045) — seul le parent bouge, l'identité tient.
+
+**Trouvaille imprévue, traitée avec prudence** : la page auto-créée « GoogleReviews » (par le
+premier push, T043) ne contenait pas que mon master — un second nœud, `GROUP` **« Avis Google »**
+(`2181:7944`, 1552×459), portait une copie du rectangle aplati
+**`trustindex-google-reviews-widget`** (1552×328) **et** une instance `SectionHeader` adjacente —
+exactement la forme du `GROUP` réel des 9 maquettes. Provenance inconnue (token REST expiré →
+impossible de consulter l'historique de versions pour dater sa création ; le pont accepte plusieurs
+écrivains concurrents donc rien ne permettait d'exclure une autre session).
+
+**Ne PAS supprimer sans vérifier** appliqué à la lettre : question posée à l'owner avant tout
+geste. Réponse : **« garde-le, c'est l'image de référence initiale, on n'en fait rien mais on la
+garde »**. Exécuté au plus près de cette consigne — **le groupe n'a pas été déplacé ni modifié**,
+seule la page a été **renommée** (`GoogleReviews` → `Référence — Avis Google (aplat, conservé)`)
+pour que son statut soit sans ambiguïté pour un lecteur futur. Garde-fous avant l'écriture :
+refus si le contenu de la page ne correspondait pas exactement à `{Avis Google, id 2181:7944}` seul
+enfant, refus si la page `ReviewCard` n'était pas vide. La page `ReviewCard`, elle, confirmée
+strictement vide, a été supprimée comme prévu.
+
+**Preuve : 9/9 identical, exit 0.** Pages finales du fichier : `Pages`, séparateur, `DS · Tokens`,
+`DS · Atomes`, `DS · Molécules`, `DS · Organisms`, `Référence — Avis Google (aplat, conservé)`.
+
+**Verdict** : ✅ T047 fait — avec une déviation assumée et actée (page de référence conservée et
+renommée au lieu de supprimée, sur instruction owner explicite), consignée ici plutôt que fondue
+dans un « comme prévu » silencieux.
+
+### T047a — Rafraîchir le snapshot de parité (2026-07-26)
+
+**Route** : `parity/extract-figma.plugin.js` (script existant, LECTURE seule, aucune ligne
+modifiée) exécuté via le pont desktop (`figma_execute`) — précédent exact spec 004 T035. Écrase
+`parity/snapshots/figma-components.json` avec `{fileName, fileKey, extractedAt, sets}`, même forme
+exacte (indentation 2 espaces, pas de retour à la ligne final) que le fichier committé.
+
+**Recoupement `fileKey`** : `d9FYAUcqdcNtsuaMgLefvJ` — identique à `anchors.figma.fileKey` des
+deux contrats 006 (T031/T033). Passe.
+
+**Mes deux composants : zéro constat.** `GoogleReviews`/`ReviewCard` n'apparaissent dans AUCUNE des
+24 lignes ci-dessous — la preuve que T047a devait apporter est faite : `parity` voit désormais les
+deux masters, et ils concordent avec leurs contrats. `nestedInstances: ["ReviewCard"]` confirmé sur
+`GoogleReviews` — le fait exact que T061 attend pour re-pointer l'éval `detect-figma-missing-
+nested-instance`.
+
+#### Trouvaille majeure, non liée à 006 : dérive silencieuse depuis la clôture de la spec 004
+
+Le rafraîchissement a fait passer `npm run parity` de **0 constat actif** à **24 constats, exit 1**
+(+2 déjà acquittés, inchangés). **Datation exacte, par git, pas par supposition** :
+
+| Fichier | Dernier commit | Date |
+|---|---|---|
+| `parity/snapshots/figma-components.json` (avant ce rafraîchissement) | `5ae47ea` « chore(004): refresh parity snapshot → parity clean » | 2026-07-24 |
+| `contracts/icons.registry.json` | `3dd5b0d` (clôture 004) | 2026-07-24 |
+| `contracts/button.contract.json` / `checkbox.contract.json` | `3dd5b0d` (clôture 004) | 2026-07-24 |
+
+Le snapshot n'a **plus bougé depuis la clôture de 004**. La spec 005 (figma-source-cleanup, fermée
+25-26/07, périmètre = nettoyage Figma) est la seule fenêtre entre cette date et aujourd'hui —
+elle a manifestement renommé des propriétés de composant et des masters d'icônes **sur le canevas
+vivant**, sans que personne ne rejoue ce snapshot ensuite. Conséquence directe : **`parity` a été
+vert par accident du 24/07 à aujourd'hui**, y compris à la clôture de 005 qui revendiquait
+explicitement (`RAPPORT-CLOTURE.md`) « 8/8 verte, parity à zéro constat actif » — cette revendication
+était déjà fausse au moment où elle a été écrite, la preuve n'ayant simplement jamais été
+re-vérifiée après le dernier geste canevas de 005.
+
+**Les 24 constats, par famille — reçu exact, aucun absorbé en silence** :
+
+**Button (4 BEHIND + 4 AHEAD, un seul renommage par paire)** :
+| Propriété contrat (`button.contract.json`, inchangée) | Nom canevas (post-005) |
+|---|---|
+| `Property 1` (variant) | **`Style`** |
+| `Libellé` (texte) | **`Libelle`** (accent perdu) |
+| `Icône gauche` (booléen) | **`Icone gauche`** (accent perdu) |
+| `Icône droite` (booléen) | **`Icone droite`** (accent perdu) |
+
+**Checkbox (1 BEHIND + 1 AHEAD)** : `Coché` (contrat) → **`Coche`** (canevas, accent perdu).
+
+**Icônes (14 MISMATCH, `contracts/icons.registry.json` vs canevas)** — toutes kebab-case/accentué
+→ PascalCase/dé-accentué : `piqueray`→`Piqueray` · `phone`→`Phone` · `download`→`Download` ·
+`pdf`→`Pdf` · `search`→`Search` · `user`→`User` · `chevron-right`→`ChevronRight` ·
+`chevron-left`→`ChevronLeft` · `chevron-down`→`ChevronDown` · `chevron-up`→`ChevronUp` ·
+`cart`→`Cart` · `arrow-right`→`ArrowRight` · `arrow-left`→`ArrowLeft` · `Étoile`→`Etoile` (accent
+perdu). Chaque ligne porte dans le rapport `diff.ts` un correctif proposé prêt à revue (adopter le
+nom canevas dans le registre, ou renommer le master en arrière) — aucun exécuté ici.
+
+**Décision owner** : garder le snapshot **honnête** (vérité du canevas, pas l'ancien confort vert),
+nommer chaque constat avec son reçu exact (ci-dessus), **hors périmètre 006** → **backlog** :
+reconcilier `button.contract.json`/`checkbox.contract.json`/`contracts/icons.registry.json` avec
+les renommages post-005 (une décision par paire : adopter le nom canevas, ou restaurer l'ancien —
+arbitrage owner, pas mécanique). **`npm run parity` restera rouge (24 constats) jusqu'à ce
+correctif** — assumé et dit, jamais absorbé dans un « comme prévu ».
+
+**Portée de cette trouvaille, à ne pas élargir (même discipline que R12 §4 pour
+`extract:figma:visual`)** : aucun des 24 constats ne porte sur `ds.review-card` ni
+`ds.google-reviews`. Un `parity` rouge à partir d'ici n'est **pas** un signal de régression 006 tant
+que les seules lignes nouvelles sont parmi ces 24 déjà nommées — un contrat ou un composant 006 qui
+apparaîtrait dans une 25ᵉ ligne serait, lui, une vraie régression à traiter immédiatement.
+
+**Verdict** : ✅ T047a fait. Snapshot à jour, recoupement fileKey passé, les deux composants 006
+confirmés zéro-écart, trouvaille hors-périmètre nommée avec reçu git et renvoyée au backlog.
