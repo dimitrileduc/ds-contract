@@ -1515,3 +1515,52 @@ Phase 4d close.
 
 **Verdict** : ✅ T059 fait. **Phase 4d entièrement close** (T051→T059).
 
+### T060-T065 — Phase 5 (US3), non-régression (2026-07-26)
+
+**T060** — `scripts/deterministic-roundtrip.mjs` re-pointé sur `ds.google-reviews` (le
+composite repeat+component) : la boucle contrat→canevas est prouvée octet-identique sur deux
+passes, et referme la dégradation littérale documentée dans l'en-tête du script depuis la
+reconversion Piqueray (« TO RESTORE: when Piqueray gains a component that composes others »).
+
+**T061** — `detect-figma-missing-nested-instance` déplacé (pas réécrit) de
+`evals/legacy-cases.ts` vers `evals/run.ts`, re-pointé `Card`/`Avatar` → `GoogleReviews`/
+`ReviewCard`. Édite `parity/snapshots/figma-components.json` (retire `ReviewCard` de
+`nestedInstances`), attend et obtient un constat `figma/behind`.
+
+**T062** — `npm run extract:figma:repeat:check` vérifié : **rouge** (4 échecs, fixtures
+"Badge Row"/"Text Area" — TEXT field carry, sample verbatim, enum P10-gating). Rouge
+**pré-existant**, sans rapport avec `ds.google-reviews` (dont le repeat a été construit et
+validé manuellement en T033, pas via cet extracteur). Conformément à l'instruction de la
+tâche : dit, laissé en quarantaine, rien promis. `repeated-children-collection` reste
+quarantinée dans `evals/legacy-cases.ts`.
+
+**T063** — Le saut par nom dans `scripts/plugin-engine-check.mjs` (flow 3, ordonnancement de
+dépendances) retiré : `ds.google-reviews` est le composite qui manquait. Confirmé vert :
+« bundle order: ds.google-reviews plans 2 component scripts, dependencies first
+(ds.review-card → ds.google-reviews) ».
+
+**T064** — Éval `review-card-avatar-exclusivity-is-convention-not-schema` écrite : pin que
+`initialeVisible`/`photo` gate indépendamment (deux ternaires séparés, aucune référence
+croisée) — les deux vrais rendent les deux avatars. L'exclusion reste une convention
+documentée, jamais une contrainte de schéma (Constitution V).
+
+**T065** — Éval `google-reviews-repeat-renders-sample-on-static-surfaces` écrite : React
+mappe le tableau vivant `avis` (`avis?.map`, jamais un `[]` silencieux) ; `html` et
+`react-inline` rendent tous deux le `sample` observé du contrat (5 dates distinctes
+vérifiées verbatim) ; le volet canevas de la même revendication est déjà prouvé par
+`scripts/deterministic-roundtrip.mjs` (T060, 5 instances imbriquées dans `groupeCartes`).
+
+**Bug rencontré et corrigé** : les deux évals (T064, T065) échouaient d'abord parce que
+`tokens: new Set()` faisait refuser le contrat (21 violations "token introuvable") — corrigé
+en passant un vrai `tokenInventoryFromJson(...)` comme partout ailleurs dans `evals/run.ts`.
+Un second bug affectait T064 : la regex de détection de ternaire indépendante (`[^?]*`)
+traversait les sauts de ligne et pouvait capturer du texte entre l'attribut
+`data-photo={photo...}` du root et le `?` du ternaire `initialeVisible` plusieurs lignes plus
+loin, produisant un faux positif de « référence croisée ». Corrigé en `[^?\n]*` (même ligne
+seulement).
+
+**Volée** : `npm run eval` → 106/112 (6 échecs pré-existants documentés en T047a — drift
+Button/Checkbox/icons, sans rapport avec spec 006). `npm run plugin:check` → vert, 3 flows
+restants skippés par nom (nécessitent un second composant ou un composite multi-root que
+Piqueray n'a pas encore).
+
