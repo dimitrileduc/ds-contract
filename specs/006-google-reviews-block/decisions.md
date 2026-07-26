@@ -1623,3 +1623,39 @@ acquittée au gate baseline T005. Rien de nouveau, pas de dérive.
 **Verdict** : ✅ T068 fait — angle mort nommé, relecture directe faite, zéro dérive détectée
 sur les deux pièces invisibles aux pages.
 
+### T069 — Volée complète des gates, checkout principal (2026-07-26)
+
+Chaîne complète exécutée sur ce worktree (`006-google-reviews-block`, `581ae8f`) : les 8 gates
++ les 2 instruments de la spec, comparés ligne à ligne à la ligne de base T005.
+
+| Gate | T005 (baseline) | T069 (maintenant) | Verdict |
+|---|---|---|---|
+| `build` | 5 composants (Button, Checkbox, Input, Select, Textarea) | **7 composants** (+ GoogleReviews, ReviewCard) | ✅ attendu |
+| `parity` | 0 constat actif (2 acquittés) | **24 constats actifs, exit 1** (+2 acquittés inchangés) | ⚠️ **hérité, daté, documenté en T047a** — voir ci-dessous |
+| `eval` | 108/108 vert | **107/113 vert, 6 rouges** | ⚠️ **les 6 rouges SONT la conséquence directe des 24 constats parity** (`baseline-parity-clean`, `baseline-acknowledges-without-failing`, `promotion-converges`, `detect-icon-registry-divergence`, `detect-default-and-kind-drift`, `detect-figma-variant-options-drift` — chacun affirme littéralement que parity est propre) |
+| `plugin:check` | vert, 4 flux sautés (nommés) | vert, **3 flux sautés** (nommés) — un 4ᵉ (ordonnancement de dépendances) débloqué par T063 | ✅ amélioration |
+| `deterministic-roundtrip` | vert, Button plat ×2 | vert, **GoogleReviews repeat+component ×2**, 5 instances imbriquées | ✅ amélioration (T060) |
+| `core-browser-check` | vert | vert (barrel 11,82 Mo brut / 5,16 Mo minifié) | ✅ identique |
+| `tsc --noEmit` | vert | vert | ✅ identique |
+| `tsc -p tsconfig.build.json` | vert | vert | ✅ identique |
+| `pages:selftest` | (pas mesuré à T005 — instrument introduit après) | **7/7** | ✅ |
+| `aplat:selftest` | (idem) | **2/2** | ✅ |
+
+**Le rouge `parity`/`eval` n'est PAS une régression 006** — c'est la trouvaille T047a
+(dérive silencieuse post-005, datée par git au commit `5ae47ea` du 24/07, la ligne de base T005
+elle-même était déjà fausse au moment où elle a été mesurée, le snapshot n'ayant simplement
+jamais été rejoué depuis la clôture 005). Vérification explicite requise par la tâche
+(« un rouge de parity, build, eval ou plugin:check absent de la ligne de base est une
+régression 006 ») : **aucun des 24 constats parity ne porte sur `ds.review-card` ni
+`ds.google-reviews`** (reconfirmé ici, même liste exacte qu'en T047a — Button/Checkbox/icônes
+post-005) ; **aucun des 6 rouges eval** n'a de rapport avec le contenu de spec 006 (ils testent
+tous la propreté globale de parity, pas un contrat 006). Les deux composants 006 restent à
+zéro écart dans les deux gates.
+
+**Verdict** : ✅ T069 fait. 8/8 gates + 2/2 instruments exécutés, comparés ligne à ligne à T005,
+tout rouge est hérité ET déjà nommé (T047a), rien de nouveau, rien absorbé en silence.
+
+**Checkpoint US3 fermé** : 8/8 gates verts ou rouges hérités nommés, suite d'évals au complet
+avec son compteur vivant (107/113 + 48 quarantinés + 6 hérités = 113+48 = 161 cas connus), garde
+directe des pièces invisibles aux pages (T068) faite.
+
