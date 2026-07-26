@@ -1659,3 +1659,103 @@ tout rouge est hérité ET déjà nommé (T047a), rien de nouveau, rien absorbé
 avec son compteur vivant (107/113 + 48 quarantinés + 6 hérités = 113+48 = 161 cas connus), garde
 directe des pièces invisibles aux pages (T068) faite.
 
+---
+
+## Phase 6 (US4) — Gouvernance démontrée (2026-07-26)
+
+### T070 — Surface canevas : une carte neuve par propriétés seules
+
+**Checkpoint** `006/demo/us4` → `versionId 2380614847064107676` (posé **avant** tout geste, R16).
+**9 captures avant** faites ensuite (`.page-parity/006-demo-us4/before/`, 9 PNG non vides,
+manifests 9/9 ok, receveur port 9228 nonce `6ae0a7e55d7651f6` — 9227 pris par le pont, 9229-9232
+squattés par des receveurs morts d'autres sessions, tués nommément avant capture ; le squatteur
+`verify-now-Presentation` sur 9229 est exactement l'incident « octets dans le mauvais évier » que
+le contrôle de santé + nonce interdit).
+
+**Geste** : page de travail `· 006 démo US4 (travail)` (id `2192:9622`, hors maquettes),
+instance de `GoogleReviews` (master `2178:7381`, id `2192:9623`). Le master est une **collection
+`repeat`** de 5 instances de `ReviewCard` imbriquées (`carte`..`carte 5`). Contenu entièrement
+refait **par propriétés seules** (`inst.setProperties` / `carte.setProperties`), aucun calque
+dessiné, dupliqué ni détaché :
+- barre-résumé : `Qualificatif=Exceptionnel`, `Note globale=4.9`, `Volume=247 avis` ;
+- 5 avis distincts (Marc Lefèvre, Sophie Nguyen, Karim Benali, Claire Dubois, Thomas Roy) ;
+- **carte 3 basculée `Avatar photo=true`/`Avatar initiale=false`** (`URL photo`, `Alt photo`
+  renseignés) — le **choix gouverné** initiale↔photo, pas un second dessin.
+
+Preuves : `proofs/us4-proprietes/avant-defaut@2x.png` (les 5 cartes neutres du master) →
+`apres-mutation-proprietes@2x.png` (les 5 avis manufacturés). Sur le canevas, la carte photo rend
+un **cercle vide** — le pixel de la photo est l'override de fill image **hors contrat** (trou A5,
+T066), nommé, jamais inventé.
+
+### T071 — Surface code : même bloc, même gouvernance
+
+`specs/006-google-reviews-block/proofs/us4-proprietes/render-code.mts` — réemploie l'outillage
+visual-parity **inchangé** (`composeSubject` pour tokens/icônes/contrats, `emitHtml`, la pipeline
+Montserrat-embarqué + playwright de `render.ts`). Seule mutation : un `structuredClone` du contrat
+dont `repeat.sample` (itemsProp `avis`) porte les 5 avis manufacturés — l'extension du truc
+`withOverridesAsDefaults` à la collection que la substitution scalaire n'atteint pas. `core/`
+intact. Rendu : `code-avis-manufacture@2x.png`, 1552×328 (identique au bloc canevas). **La carte 3
+y rend une VRAIE photo** (l'émetteur `img` honore `photoUrl`) : les deux cas d'avatar côté à côte,
+tous deux gouvernés. Les deux surfaces **divergent exactement à la frontière A5** — image réelle en
+code, cercle vide sur canevas — receipt propre de la limite T066.
+
+### T072 — Nettoyage : la démo ne laisse aucune trace
+
+Instance (`2192:9623`) + page de travail (`2192:9622`) supprimées. Pages restantes conformes
+(`Pages`, séparateur, `DS · Tokens`, `DS · Atomes`, `DS · Molécules`, `DS · Organisms`,
+`Référence — Avis Google`). **9 captures après** (`.page-parity/006-demo-us4/after/`, nonce
+`0ca9ecfd05b58475`, manifests 9/9 ok).
+
+**`pages:compare` → 8/9 identical, 1 diff (Contactez-nous), exit 1.**
+`.page-parity/006-demo-us4/verdict/` : 8 maquettes **byte-identiques** (sha256 avant = après) ;
+Contactez-nous diff `diffCount 2280`, `diffBox x=1020,y=3577,w=222,h=96`.
+
+**Le diff n'est PAS causé par la démo — prouvé, jamais supposé** :
+1. **Localisation** : le triptyque (`verdict/crops/Contactez-nous.png`) montre le pied de page
+   « Contact / Tél / Email » **décalé de 1 px** — contenu identique, glyphes fantômes. Le bloc Avis
+   Google de Contactez-nous est à `bboxGroup x=15813,y=2344` (canevas absolu) ; la région du diff
+   `x=1020,y=3577` est le pied de page frame-local, **sans rapport avec le bloc ni la page de
+   travail** (supprimée).
+2. **Le diff est stable, pas du bruit de capture** : test de calibration (doctrine README §5) —
+   deux captures indépendantes de l'état **courant** (`calib-a` vs `calib-b`) → **1/1 identical,
+   exit 0**. L'instrument reproduit à zéro : le décalage est réel.
+3. **Il est survenu entre l'avant et l'après** : `before` vs `calib-a` (avant vs courant) rejoue le
+   **même** diff 2280 px au **même** endroit → le pied de page a bougé de 1 px **après** ma capture
+   avant, pendant la fenêtre de la démo.
+
+**Verdict** : geste démo **sans trace** (checkpoint → mutation par propriétés → suppression, tout
+sur une page à part). Le décalage de 1 px du pied de page de Contactez-nous est une **édition
+concurrente exogène** d'un autre écrivain sur le fichier vivant partagé — zone **disjointe** de la
+mienne (règle multi-écrivains : parallèle autorisé « tant qu'ils ne se marchent pas dessus », et
+ici ils ne se sont pas marchés dessus). Nommé ici, adossé à trois receipts, **jamais absorbé en
+« 9/9 » en silence**. Aucune restauration du checkpoint nécessaire : rien de la démo n'a atteint une
+maquette.
+
+### T073 — Limites de cette réutilisabilité, chacune adossée à un pin
+
+La gouvernance démontrée (T070-T071) a des **bords nets**, tous déjà épinglés par une éval ou par
+le schéma — nommés ici pour que la revendication US4 ne surpromette pas :
+
+1. **Exclusion pastille/photo = convention, pas contrainte de schéma.** `Avatar initiale` et
+   `Avatar photo` sont deux booléens qui gouvernent **indépendamment** ; les mettre tous deux à
+   `true` rend **les deux** avatars. L'exclusivité est une discipline de contenu, pas une garantie
+   du contrat. Pin : éval `review-card-avatar-exclusivity-is-convention-not-schema` (T064).
+2. **Étoile gouvernée = orange intrinsèque.** La note se dessine avec l'icône `star` gouvernée,
+   **orange par construction** — elle ne se recolore pas. Conséquence de schéma : `ds.review-card`
+   **n'a aucune prop `note`** (vérifié : 0 prop note/star côté carte) ⇒ notes < 3, demi-étoiles et
+   note **par item** sont **inexprimables** dans le `repeat` ; `noteGlobale` sur
+   `ds.google-reviews` est du **texte de chrome** (barre-résumé), pas un axe de notation. Pin :
+   l'**absence** d'axe note au schéma + l'éval `google-reviews-repeat-renders-sample-on-static-surfaces`
+   (T065), qui montre que seuls les champs du sample sont gouvernés.
+3. **Troncature multi-lignes refusée.** Le champ `tronque` existe mais la troncature visuelle
+   multi-lignes n'est **pas** garantie côté canevas (mesure T012/T057) — refus nommé, pas une
+   donnée silencieuse.
+4. **Le pixel de l'avatar photo est un override hors contrat (trou A5, ouvert).** En code
+   l'émetteur `img` rend `photoUrl` ; sur canevas la part `avatarPhoto` compile en
+   `imgPlaceholder:true` + le lavis standard `#D9D9D9`, et la légende porte la note † — la vraie
+   image reste un override hors du contrat. Pin : éval `img-part-canvas-placeholder-named` (T066).
+
+Les trois évals citées tournent dans la suite vivante (`npm run eval`) ; la limite #2 est une
+propriété **structurelle** du schéma (aucune prop à inventer), la plus dure des quatre à
+contourner et la plus honnête à déclarer telle quelle.
+
