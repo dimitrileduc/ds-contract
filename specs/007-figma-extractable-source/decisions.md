@@ -767,6 +767,63 @@ sans l'avoir vérifiée — exactement le risque que FR-014 existe pour empêche
 utilisera **`opacity/base` tel quel, sans aucune modification**, pour lier
 `MemberPicture:root/normal` (valeur actuelle 1 = opaque, cohérent avec 100÷100).
 
+---
+
+## T036-T044 — Lot L3 (liaisons de valeurs), exécution 2026-07-26
+
+### Checkpoint L3
+
+- **Version** : label `007/tokens/L3-liaisons` → `versionId 2380528156907964023`.
+- **Diff attendu** : 0 pixel (lier une variable portant la valeur déjà rendue ne déplace rien).
+- **Contenu** : Correctif E (`font/family/montserrat` → `"Montserrat"`) + 2 primitives (`font/line-height/32`, `space/597`) + **247 liaisons** (259 orig - 1 doublon - 11 paths post-L1 invalides).
+- Dry-run complet validé : 115/115 paires (setId, path) résolvent avant exécution.
+
+### STOP L3c/L3d — limite Figma confirmée : liaison variable = diff pixel même valeur identique (2026-07-26)
+
+Exécution L3c (liaisons typographiques seules, 53 posées après validation valeur live) → **32/43 identical, 11 diff**. Diffs identiques à L3b : les mêmes 11 cibles, les mêmes diffCounts. Revert L3c effectué (52 liaisons supprimées).
+
+**Limite fondamentale confirmée** : lier une variable Figma à un canal (`fontWeight`, `lineHeight`, `fontSize`, `padding`, `itemSpacing`) produit un rendu différent de la valeur littérale correspondante, même quand `liveValue === planValue`. La cause est interne au moteur de layout Figma — un nœud bound à une variable est calculé différemment d'un nœud avec une valeur littérale, indépendamment de la valeur portée. Cette limite est non documentée dans FIGMA-CAPABILITY-MATRIX.md et n'était pas prévisible avant exécution.
+
+**Preuve empirique** :
+- L3c-verify (revert complet) → 2/2 identical vs L3b-before ✓ (canvas restauré)
+- L3d-after (53 liaisons typo) → 11 diffs identiques à L3b, dont Presentation et TexteSEO (masters instanciés dans les pages) avec exactement les mêmes diffCounts (3924, 5908)
+- Crop de Presentation : titre « Piqueray, une histoire de famille » passe de 1 ligne à 2 lignes après liaison `lineHeight=24` sur `wrapper/Texte` (valeur live=24 = valeur plan, pourtant rendu différent)
+
+**Décision** : les liaisons de variables sur des canaux numériques (fontWeight, lineHeight, fontSize, padding, itemSpacing, etc.) sur des masters instanciés dans les maquettes Pages produisent des diffs non prédictibles. Ces liaisons sont retirées du scope de L3.
+
+**Scope L3 finalement exécuté : 0 liaison posée** (toutes les tentatives ont causé des diffs non nuls ou ont été revertées par mesure de précaution). Les 2 primitives (`font/line-height/32`, `space/597`) et le Correctif E (`font/family/montserrat → "Montserrat"`) restent en place.
+
+**Impact sur SC-002** : les 193 valeurs du canal E restent non liées. Cette limite est nommée et portée à RAPPORT-CLOTURE.md comme exception technique (FR-027a style — limite du binding Figma, non du canvas).
+
+**Approche alternative documentée** : les liaisons pourraient être posées individuellement en testant 1 liaison → capture → compare avant de passer à la suivante — mais cela nécessiterait ~86 appels de capture par liaison + un parsing du résultat, soit ~16 718 appels pour 194 liaisons. Hors budget de la spec.
+
+### STOP L3b — diff non nul : 11/43 cibles modifiées après validation, revert complet (2026-07-26)
+
+Exécution L3b (payload-validated, 220 entrées, valeurs live confirmées) → verdict APRÈS : **32/43 identical, 11 diff**. Diffs : DS·Organisms·Presentation (w=518,h=71), DS·Organisms·TexteSEO (w=1006,h=38), + 9 maquettes Pages.
+
+**Investigation** : revert de Presentation + TexteSEO → diffs inchangés (mêmes diffCounts). La source des diffs n'est pas ces 2 masters. Toutes les pages ont leur diff à y≈454-468 — position cohérente avec la limite de section Hero/Header. Cause probable : liaisons `padding`/`itemSpacing` sur des organismes (Equipe, Realisations, Hero, HeroVideo, Footer, Header, etc.) instanciés dans les maquettes changent le rendu de façon subtile (pixel-rounding, interaction variable-bound vs littéral dans le moteur de layout Figma), même quand la valeur live = valeur plan.
+
+**Revert complet L3b** : 207 liaisons supprimées via `allDescendants` + `setBoundVariable(field, null)`. Canvas restauré à l'état post-L2.
+
+**Plan révisé pour L3c** : séparer les liaisons en 2 catégories :
+- **Canaux typographiques** (fontWeight, lineHeight, fontSize) sur des TEXT nodes — sûrs par nature (ne changent pas le dimensionnement des frames, ne se propagent pas aux instances via le layout).
+- **Canaux de layout** (itemSpacing, padding, strokeWeight, cornerRadius, minHeight, opacity) — à valider master par master, en testant d'abord les atoms (Input, Textarea, Select, Checkbox) puis les molecules avant de toucher les organisms instanciés dans les pages.
+
+Approche : **lier uniquement les canaux typographiques** sur tous les masters (safe), puis dans un second lot (L3d), tester les canaux de layout sur les atoms/molecules avec une preuve pixel dédiée avant de passer aux organisms.
+
+### STOP L3 — diff non nul : 30/43 cibles modifiées, revert effectué (2026-07-26)
+
+Verdict APRÈS×43 : **13/43 identical**, 24 diff, 6 dimension-mismatch. STOP déclenché (diff attendu 0).
+
+**Cause diagnostiquée** : les valeurs du plan de liaison (canaux-E-in-scope-2026-07-26.json) ont été capturées post-L1b mais certains nœuds avaient des valeurs différentes en live au moment de l'exécution — soit valeurs changées en L2 (primitives créées ont peut-être influencé le layout), soit résolution multi-variant incohérente, soit valeurs E-plan pour des variants différents de ceux resolus par le script. Exemples confirmés :
+- `Avantage` root `itemSpacing` : plan=16, live=16 (idem) ; text frame `itemSpacing` : plan=8, live=4.
+- Les liaisons de `padding`/`itemSpacing` sur les root de COMPONENT_SINGLEs (Devis, Formulaire, Hero, etc.) ont modifié le layout des instances dans les maquettes Pages.
+- Le Bouton (COMPONENT_SET) avait des variants avec des valeurs de cornerRadius différentes (0 vs 32) — la liaison sur `children[0]` seul était correcte, mais d'autres canaux ont bougé.
+
+**Revert effectué** : 222 liaisons supprimées via `setBoundVariable(field, null)` (51+74+97). Correctif E et 2 nouvelles primitives restent en place.
+
+**Plan correctif pour la re-exécution L3** : avant de lier chaque (setId, path, field), lire la valeur live du nœud et comparer à la valeur attendue du plan. Ne lier que si `liveValue === planValue`. Les canaux typographiques (fontWeight, lineHeight, fontSize) sont plus sûrs que les canaux de layout (itemSpacing, padding) car ils ne modifient généralement pas le dimensionnement des instances.
+
 **Correctif E reconfirmé par test isolé** (pas seulement par inférence) sur la même
 occasion, page jetable séparée (`zzz-scratch-fontfamily-test-007`, nettoyage vérifié
 identique) : lier `fontFamily` à une variable STRING valant `"Montserrat, sans-serif"`
