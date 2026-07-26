@@ -1356,3 +1356,51 @@ déjà nommés uniquement (police, avatar, badge, photo carte 5 hors contrat A5)
 **Verdict** : ✅ T054 fait (verdict de région régénéré après correctif d'instrument). **Reste** : le
 `versionId` du checkpoint à récupérer et journaliser avant clôture.
 
+### T055 — Adopter À Propos (2026-07-26)
+
+**Checkpoint** `006/adoption/a-propos` → `2380513439123474372`. 9/9 captures avant (0 échec,
+manifests 9/9 ok, `sha256` de l'aplat À Propos avant = `3ac7df2cfb90…`). Réceptionneur sur **port
+9229** et non 9227 : le pont figma-console occupe 9227 dans cette session (constat au probe de statut),
+9229 est libre et dans la plage `9223-9232` autorisée par le manifeste du plugin — nommé ici, ce n'est
+pas un contournement mais le port suivant disponible.
+
+**Occurrence** : `GROUP 258:1963` (« Avis Google »), aplat `RECTANGLE 258:1967`
+(`trustindex-google-reviews-widget`, x:88/y:4502/w:1552/h:328), `SectionHeader 2091:2401` frère intact
+(x:89/y:4371/w:1550/h:83), cadre parent `À Propos 258:1887` (h:5928, 9 enfants). Écart attendu écrit
+avant exécution (T048) : `outsideDiffCount 0`, `regionPct` ≈ 7,7 %, `Motorisation` identical.
+
+**Correction d'une erreur d'offset, attrapée par la garde de hauteur du GROUP avant toute capture** :
+première convergence des deux enfants à `inst.y=4515` (valeur **absolue** de l'instance Accueil) →
+enfants stables mais **GROUP à h:472 au lieu de 459**. Cause : 4515 est l'`y` absolu d'Accueil, pas
+l'offset. Le bon invariant, lu sur l'instance Accueil déjà adoptée : **offset instance = 131 px sous
+le haut du GROUP** (= header 83 + gap 48), GROUP h = 131 + 328 = 459. Pour À Propos (haut GROUP 4371) →
+`inst.y = 4371 + 131 = 4502` (exactement l'`y` de l'aplat d'origine — cohérent). Re-convergence à 4502 :
+**stable en 1 passe**, GROUP exactement `88/4371/1552/459` (identique à l'avant-mutation). Technique
+propre T051/T053 confirmée ; l'offset relatif (131), pas l'`y` absolu, est la valeur à réutiliser.
+
+**Garde FR-012** (relue **deux fois** : après remplacement, puis après application du contenu) : cadre
+h:5928 inchangé, **les 9 enfants du cadre (8 frères + GROUP) bit-identiques à la ligne de base
+avant-mutation** — 0 dérive. Aucun résidu collatéral (contrairement à T050).
+
+**Contenu appliqué par propriétés** (jamais d'override brut) : barre-résumé
+(Qualificatif=Excellent, Note globale=4.8, Volume=93 avis, Contrôles=true) + les 5 cartes appariées à
+leur contenu **par position (x croissant)**, jamais par nom de calque (T048/T021), identiques aux 7
+occurrences précédentes.
+
+**Verdict final** (`proofs/a-propos/verdict.json`) : `outsideDiffCount = 0` ✅ (SC-003) · `diffCount`
+(39238) **égale exactement** `regionDiffCount` — toute la diff est contenue dans la région déclarée ·
+`regionPct = 7,708 %` (identique à Accueil/Dépannage : même contenu, même bloc) · `Motorisation` :
+`identical`, `diffCount 0` · totaux **8 identical + 1 diff + 0 dimension-mismatch + 0 capture-failed**.
+Signature `sha256` : **8 des 9 maquettes byte-identiques avant↔après**, seule À Propos diffère
+(`3ac7df2c…` → `b7a3afbb…`) — dimensions préservées (pas de dimension-mismatch déguisé).
+
+**Revue à l'œil (obligatoire, crop `proofs/a-propos/crops/À Propos.png`)** : barre-résumé quasi sans
+diff, écart concentré sur les 5 cartes — substitution de police, couleur d'avatar, badge de
+vérification, photo de contenu carte 5 (hors contrat, A5) : **tous des résidus déjà nommés en T040**,
+rien de nouveau.
+
+**Ledger** : reporté à T059 (consolidation finale), conformément à T023.
+
+**Verdict** : ✅ T055 fait. Chemin propre (convergence 1 passe, 0 résidu collatéral). Chiffres et crop
+publiés ici pour revue a posteriori.
+

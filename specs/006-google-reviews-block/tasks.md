@@ -177,7 +177,7 @@ valoir 0 partout, `Motorisation` comprise** (SC-003) · toute ligne `dimension-m
 - [X] T052 [US1] Adopter l'occurrence **Portes de garage industrielles** — protocole 9 étapes ; artefacts dans `proofs/portes-de-garage-industrielles/`.
 - [X] T053 [US1] Adopter l'occurrence **Portes d'entrée** — protocole 9 étapes ; artefacts dans `proofs/portes-d-entree/`.
 - [X] T054 [US1] Adopter l'occurrence **Dépannage/SAV** — protocole 9 étapes ; artefacts dans `proofs/depannage-sav/`.
-- [ ] T055 [US1] Adopter l'occurrence **À Propos** — protocole 9 étapes ; artefacts dans `proofs/a-propos/`.
+- [X] T055 [US1] Adopter l'occurrence **À Propos** — protocole 9 étapes ; artefacts dans `proofs/a-propos/`.
 - [ ] T056 [US1] Adopter l'occurrence **Contactez-nous** — protocole 9 étapes ; artefacts dans `proofs/contactez-nous/`.
 - [ ] T057 [US1] Appliquer les **8 fills photo** (override de fill IMAGE sur la part `avatarPhoto`, depuis `measures/avatar-photo.png`) — **après le dernier amend**, c'est la donnée la plus fragile (R19 règle 3) — et les consigner dans `ledger/google-reviews.json` : `type: "image"`, `portePar: "fill IMAGE de la part avatarPhoto (override d'instance imbriquée, A5)"`.
 - [ ] T058 [US1] **Assertion de fin d'adoption** : le verdict global attendu est **exit 1** avec **8 `diff` + 1 `identical` (`Motorisation`)** — écrire « l'instrument est passé » n'aurait ici aucun sens ; **toute autre combinaison est un STOP** (`contracts/region-proof.md` §4). Puis re-scan positionnel : **0 occurrence** du fill image du widget dans le périmètre du bloc (SC-001), le seul fill image restant admis étant l'avatar photo de contenu porté par propriété.
