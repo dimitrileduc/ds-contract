@@ -2072,3 +2072,44 @@ verdict écrit.
 **Verdict** : journal daté à jour, aucune revendication avant preuve, aucun trou de traçabilité
 nouveau trouvé à cette relecture finale.
 
+### T086 — Volée finale de gates et rapport de clôture (2026-07-26)
+
+Chaîne complète rejouée une dernière fois, après **tous** les gestes de la Phase 7
+(T074-T085 inclus, dont le renommage T076 et son correctif de parité T076a) :
+
+| Gate/instrument | Résultat |
+|---|---|
+| `npm run build` | ✅ vert, 7 composants, déterministe |
+| `npm run parity` | ⚠️ **24 constats actifs, exit 1** — même ligne exacte que T069 (hérité, T047a, aucun sur `ds.review-card`/`ds.google-reviews`) |
+| `npm run eval` | ⚠️ **107/113**, 48 quarantinés — même ligne que T069/T082 (6 rouges hérités, conséquence directe des 24 constats parity) |
+| `npm run plugin:check` | ✅ vert |
+| `npx tsx scripts/deterministic-roundtrip.mjs` | ✅ vert |
+| `node scripts/core-browser-check.mjs` | ✅ vert |
+| `npx tsc --noEmit` | ✅ vert |
+| `npx tsc -p tsconfig.build.json` | ✅ vert |
+| `npm run pages:selftest` | ✅ **7/7** |
+| `npm run aplat:selftest` | ✅ **2/2** |
+| `npm run pages:ledger:check` | ✅ vert |
+
+**Aucun changement depuis T069** sur les deux lignes rouges (parity/eval) — confirmé une
+dernière fois qu'aucun des 24 constats ni des 6 rouges n'a de rapport avec `ds.review-card`/
+`ds.google-reviews`. Les gestes de Phase 7 (renommage T076, correctif de parité T076a,
+resynchronisation des compteurs T081-T083) n'ont ni ajouté ni retiré un seul constat parity —
+la dérive T047a reste identique à elle-même, exactement isolée de cette spec.
+
+**Rapport de clôture** : `specs/006-google-reviews-block/RAPPORT-CLOTURE.md` créé, suivant le
+patron déjà établi par la spec 005 (`specs/005-figma-source-cleanup/RAPPORT-CLOTURE.md`) —
+tâche T086 le prescrit explicitement (« ranger un rapport de clôture »), ce n'est pas une
+création de fichier hors périmètre. Contenu : les 8 SC contre leur état, les gates rejoués,
+les six limites + FR-007 (T074, résumées), le backlog envoyé (T075), le dernier geste canevas
+(T076-T076a) et un renvoi vers `decisions.md` pour le détail chronologique complet des 86
+tâches — `decisions.md` reste la source de vérité détaillée, `RAPPORT-CLOTURE.md` en est la
+synthèse navigable.
+
+**Verdict final** : spec 006 close. `ds.review-card` + `ds.google-reviews` livrés, gouvernés,
+adoptés sur 8 occurrences, démontrés vivants (US4), le geste canevas final effectué avec
+procédure de retour écrite, le trou de parité qu'il a révélé corrigé à la source, tous les
+compteurs et journaux resynchronisés. Le seul état rouge persistant (`parity`/`eval`) est
+hérité d'avant cette spec, nommé quatre fois indépendamment (T047a, T069, T082, T086), jamais
+introduit ni aggravé par elle.
+
