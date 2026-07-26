@@ -1823,3 +1823,44 @@ Ni l'un ni l'autre n'est fait ici — « ranger au passage » est hors périmèt
 correctif toucherait l'émission, donc les golden, de **tous** les contrats existants, pas
 seulement `ds.review-card`/`ds.google-reviews`).
 
+### T076 — Dernier geste canevas : renommage français des masters (2026-07-26)
+
+**Checkpoint** `006/cloture/renommage` → `versionId 2380602413129417606`, posé **avant** tout
+renommage (R16, R19).
+
+**9 captures avant** (`.page-parity/006-cloture-renommage/before/`, manifests 9/9 ok, receveur
+port 9228 nonce `b982d7f4af190109` — 9227 pris par le pont).
+
+**Geste** (`figma_execute`, lecture-écriture ciblée, un seul champ `.name` par master) :
+- `ReviewCard` (`2178:7349`) → **`Review-card`**
+- `GoogleReviews` (`2178:7381`) → **`Avis Google`**
+
+Aucun autre champ touché (type, propriétés, enfants, position inchangés) — vérifié par
+lecture immédiate après écriture (`{before, after}` dans le retour de l'exécution).
+
+**9 captures après** (`.page-parity/006-cloture-renommage/after/`, port 9229, nonce
+`6007b404e2e54015`, manifests 9/9 ok). **Les sha256 avant/après sont identiques sur les 9
+maquettes** (ex. Accueil `79df421d626b…`, Contactez-nous `fd49bc873ab6…`) — un renommage de
+master ne touche aucun pixel, comme attendu (aucune instance ne référence le master par son
+`name` pour le rendu).
+
+**`pages:compare` → 9/9 identical, exit 0**
+(`specs/006-google-reviews-block/proofs/cloture-renommage/pages-compare-verdict.json`). Note
+au passage : le diff exogène du pied de page de Contactez-nous (T072, 1px, édition concurrente
+d'un autre écrivain) **a disparu** — la maquette est de nouveau stable à cette date, cohérent
+avec l'hypothèse d'une édition passagère par un autre écrivain sur le fichier partagé.
+
+**Procédure inverse consignée (R5 — obligatoire avant tout re-push futur de la section)** :
+
+> Si `figma:plan` doit un jour repousser `ds.review-card` ou `ds.google-reviews` (amend de
+> contrat, reconstruction), **renommer d'abord les masters EN ARRIÈRE** —
+> `Review-card` → `ReviewCard`, `Avis Google` → `GoogleReviews` — **avant** d'exécuter le
+> script. `findComponentByName(spec.dep)` (`core/emit-figma-script.ts:3098-3106`) résout par
+> `n.name === name`, où `name` vient du contrat (`"name": "ReviewCard"` / `"GoogleReviews"`,
+> PascalCase, `setName` à `:2441`) ; un master déjà renommé en français ferait échouer la
+> recherche, et une « réparation » naïve créerait un second set à côté de l'existant (même
+> piège que le Bouton, R5). Une fois le re-push terminé, reproduire ce même geste T076
+> (checkpoint → renommage → 9 captures → `pages:compare` 9/9) pour revenir à la convention
+> française. Cette même note est dupliquée dans `quickstart.md` §Rollback pour qu'elle soit
+> trouvée sans relire `decisions.md` en entier.
+

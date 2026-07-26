@@ -146,7 +146,10 @@ Pour chaque occurrence, dans cet ordre :
 19. Appliquer les **8 fills photo** (après le dernier amend — donnée la plus fragile), consignés au
     ledger.
 20. `checkpoint 006/cloture/renommage` → renommer en français → **9/9 identical**. Consigner la
-    procédure inverse (renommer en arrière avant tout re-push futur).
+    procédure inverse (renommer en arrière avant tout re-push futur). — **Fait** : checkpoint
+    `versionId 2380602413129417606`, `ReviewCard`→`Review-card`, `GoogleReviews`→`Avis Google`,
+    sha256 avant=après sur les 9 maquettes, `pages:compare` 9/9 identical. Procédure inverse
+    ci-dessous (§Rollback renommage).
 21. **Re-pointer `deterministic-roundtrip` sur `ds.google-reviews`** — son en-tête demande
     littéralement ce re-pointage dès que Piqueray gagne un composant qui en compose un autre.
 22. Évals : réanimer `detect-figma-missing-nested-instance` (déplacement), vérifier puis réanimer
@@ -172,3 +175,35 @@ Pour chaque occurrence, dans cet ordre :
    preuve n'a pas eu lieu, il n'y a ni crop ni chiffre.
 5. **Amender un master après le début de l'adoption** — les overrides imbriqués des occurrences déjà
    faites meurent, et seul le ledger permet de les rejouer.
+
+---
+
+## Rollback renommage (R5 — geste manuel, guidé, requis avant tout re-push futur)
+
+À la clôture de la spec (T076), les masters portent les noms **français** :
+`Review-card` (`2178:7349`), `Avis Google` (`2178:7381`).
+
+`findComponentByName(spec.dep)` (`core/emit-figma-script.ts:3098-3106`, appelé `:3252`)
+résout par `n.name === name`, où `name` vient du contrat (`"ReviewCard"` / `"GoogleReviews"`,
+PascalCase — `setName` à `:2441`). **Si un re-push de `NN-reviewcard.js` ou
+`NN-googlereviews.js` est un jour nécessaire** (amend de contrat, reconstruction après incident),
+la recherche par nom **échouera** contre les masters français — et une « réparation » naïve
+créerait un **second set** à côté de l'existant (le même piège que le Bouton, R5).
+
+**Procédure, dans l'ordre** :
+
+1. `checkpoint 006/rollback/renommage-avant-repush` → captures avant ×9.
+2. Renommer **en arrière**, un seul champ `.name` par master, aucune autre propriété touchée :
+   - `Review-card` → `ReviewCard`
+   - `Avis Google` → `GoogleReviews`
+3. `pages:compare` → exiger **9/9 identical** (un renommage seul ne doit toucher aucun pixel,
+   comme constaté à la clôture — sha256 avant/après identiques sur les 9 maquettes).
+4. Exécuter le(s) script(s) `figma-sync/NN-*.js` nécessaire(s) (protocole habituel).
+5. **Reproduire le geste T076** pour revenir à la convention française : nouveau checkpoint,
+   renommer `ReviewCard`→`Review-card` / `GoogleReviews`→`Avis Google`, captures avant/après,
+   `pages:compare` 9/9 identical.
+6. Consigner les deux allers-retours dans `decisions.md` (checkpoints + verdicts), comme pour
+   tout autre geste canevas.
+
+Aucune API de restauration programmatique n'existe pour un renommage (comme pour les
+checkpoints eux-mêmes) — c'est un geste manuel guidé par cette procédure, pas un script.
