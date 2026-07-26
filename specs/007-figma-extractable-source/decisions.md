@@ -865,3 +865,48 @@ identique) : lier `fontFamily` à une variable STRING valant `"Montserrat, sans-
 charger la chaîne entière comme nom de police) ; lier à `"Montserrat"` **réussit**,
 `fontName` relu correct. La correction de valeur (Correctif E) reste nécessaire et est
 maintenant **prouvée**, pas seulement déduite.
+
+### Correction du diagnostic L3 + préparation L3 proper (2026-07-26)
+
+La conclusion des entrées STOP L3c/L3d (« tout canal numérique lié produit un rendu
+différent ») est **supersedée** pour les canaux autres que `opacity`. La preuve précédente
+liait `fontWeight` au niveau du `TextNode` alors que plusieurs cibles étaient `figma.mixed`
+(runs Bold/Regular) ; elle ne séparait donc pas le binding numérique de l'aplatissement des
+runs. La matrice de capacité et le test de contrôle live restent la référence :
+`itemSpacing=24`, `cornerRadius=32` et `strokeWeight=2` restent identiques après binding.
+
+Test isolé relancé sur la page séparatrice `----------------------`, dans un conteneur
+jetable `zzz-scratch-007-bindings`, puis supprimé immédiatement : une paire littérale et une
+paire liée par canal pour `itemSpacing`, `padding`, `strokeWeight`, `lineHeight`, ainsi qu'un
+texte Bold/Regular lié par plages avec `setRangeBoundVariable` pour `fontWeight`. Capture
+avant/après du conteneur par `exportAsync` : **1280×800, 0 pixel différent, 0 octet
+différent**. Aucun master ni aucune maquette de production n'a été touché par ce spike.
+
+Le cycle de reprise est donc autorisé, mais avec deux règles : (1) un texte `mixed` est lié
+par plages, jamais par `setBoundVariable` au niveau du nœud pour `fontWeight` ; (2) les 43
+cibles de production sont recapturées immédiatement avant le geste. Checkpoint créé avant
+le geste : `007/tokens/L3-proper-isolated` → `2380598294827524557`. Les **43/43 PNG avant**
+sont non vides et dimensionnés ; aucune liaison de production n'a encore été posée.
+
+`opacity` reste la seule limite confirmée : une variable FLOAT liée à `opacity` applique
+une division par 100 (`0.5` → `0.005`). Elle reste hors de la reprise générale et sera
+traitée comme exception T043.
+
+### Clôture reprise L3 — 40/43 identical, 3 résidus consignés comme limites déjà documentées (2026-07-26)
+
+Reprise du revert L3 conduite contre une baseline fraîche `l3-resume-before` (43/43
+recapturées immédiatement avant tout geste, port 9232 nonce `4777aa8db9a1a417`), sans
+toucher les cibles Google Reviews ni les pages de la session concurrente 006. Verdict
+final : **40/43 identical, 3 diff** (preuve : `.page-parity/l3-revert-final/`). Les 3
+résidus sont caractérisés et relèvent tous de limites déjà nommées ci-dessus — aucun n'est
+une perte de contenu récupérable par un geste sûr. Décision owner : **clôturer à 40/43**,
+ne pas modifier la structure des propriétés source.
+
+| Cible | Résidu | Cause établie |
+|---|---:|---|
+| `DS-Molecules__Carte` | 3 488 px (`diffBox x=82,y=532,w=360,h=93`) | Propriété `TEXT` partagée entre variantes : les setters typographiques du Plugin API se propagent d'une variante à l'autre, alors que la baseline porte des métriques Bold distinctes. La séparation des propriétés (autorisée puis annulée par l'owner) aplatirait les styles mixtes des instances existantes — elle dégrade, ne répare pas. Même classe que la limite « bind ≠ littéral » sur canal typographique partagé. |
+| `DS-Organisms__TexteSEO` | 3 351 px (`diffBox x=249,y=168,w=1452,h=121`) | Corps enrichi aplati pendant le revert L3 initial. 4 emphases restaurées par plages, terminaux inclus (`Notre showroom `, `à Pepinster `, `portes de garage, motorisations et portes d'entrée`, `Hörmann`) — meilleur état démontré. Base Regular confirmée (test Medium rejeté à 10 869 px, ponctuations rejetées, `proche de Verviers` rejeté). Résidu = information de plages non sérialisée par le dump, non reconstructible sans la métadonnée mixed-style d'origine. |
+| `DS-Organisms__Coordonnees` | 88 px (`diffBox x=1325,y=334,w=54,h=152`) | Bruit de rasterisation sous-pixel après restauration ; valeurs, styles et soulignements revenus à l'état observé. Sous le seuil d'anti-aliasing sur texte. |
+
+Aucune liaison variable posée durant cette reprise (cohérent avec STOP L3c/L3d). Le canvas
+est laissé dans son meilleur état restauré vérifié.
