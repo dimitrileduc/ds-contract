@@ -1919,3 +1919,39 @@ toucher `core/` ni les golden. Le même trou côté écriture (B5, `findComponen
 au backlog (T075) — changer les octets émis y exigerait un churn de golden que ce correctif
 côté lecture n'exige pas.
 
+### T077-T080 — Fermeture du bracket US2 (2026-07-26)
+
+Le rapport avant/après (`proofs/rapport-avant-apres.md`) est assemblé **après** le dernier
+geste canevas (T076/T076a), conformément à l'ordre déclaré dans `tasks.md` §Phase 7 — la preuve
+US2 s'arme en Phase 3 et se ferme ici, jamais avant que le fichier vivant n'ait atteint son état
+final.
+
+**T077-T078 (complétude)** : 8/8 entrées, une par occurrence de `inventory/occurrences.json` —
+chaque dossier `proofs/<maquette>/` a bien son `region.json`, `verdict.json`, `verdict.md` et
+son crop, vérifié par lecture directe (aucun échantillonnage). Un seul trou nommé, déjà connu
+depuis T054 : le `versionId` du checkpoint `006/adoption/depannage-sav` n'a pas été capturé au
+moment du geste. Tentative de récupération après coup via l'API REST versions (comme pour
+T047a/T076a) : **échec** — `FIGMA_ACCESS_TOKEN` lu vide dans l'environnement du shell utilisé
+ici (`401 Missing credentials`), bien que défini pour le processus MCP lui-même. Pas de seconde
+route disponible sans rejouer un geste canevas (hors périmètre pour un simple relevé de
+métadonnée). **Déclaré manquant, jamais inventé** (FR-017) — le rapport porte la mention
+explicite en face de cette ligne plutôt qu'un chiffre halluciné.
+
+**T079 (synthèse)** : dénominateur employé = bbox de l'**aplat** (1552×328 = 509 056 px) sur
+les 8 occurrences, identique partout (la position `x,y` varie, `w,h` non) — affiché au rapport
+à côté de ce qu'aurait donné le `GROUP` (1552×459, +40 % de surface, aurait dilué chaque
+pourcentage). Fidélité structurelle (8/8 exacte, géométrie < 0,0004 px, FR-012) séparée de la
+fidélité raster (7,7-7,8 %, décomposée en 3 contributions : police, avatar-badge, fill photo).
+La contribution du fill photo **n'est pas isolable séparément** dans les chiffres actuels —
+`pixelmatch` agrège toute la région en un seul `regionDiffCount`, nommé ici comme limite de
+granularité de l'instrument (pas un écart supplémentaire découvert, une limite de mesure).
+
+**T080 (`outsideDiffCount`, SC-003)** : relu les 8 `verdict.json` un par un. `Motorisation`
+(témoin) : `identical`/`diffCount 0` sur **les 8** — jamais touché par aucune des 8 adoptions.
+`outsideDiffCount` : **0 sur 7/8**, la seule exception (Portes de garage, T050) déjà
+investiguée et acquittée par l'owner en son temps — reconfirmée ici, pas ré-ouverte.
+
+**Verdict** : bracket US2 fermé. Les 8 chiffres sont publiés **tels quels**, le seul trou
+(`versionId` manquant) est nommé avec sa tentative de récupération et son échec, la seule
+exception (`outsideDiffCount 8`) est reconfirmée acquittée. Rien n'est absorbé en silence.
+
