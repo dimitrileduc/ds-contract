@@ -1001,3 +1001,51 @@ Select via reading the triptych's `code | figma | diff` panel order).
 | Plugin engine freshness | zip build refuses a stale engine by committed input-hash receipt | `plugin-engine-bundle` eval (guard fires on a real core mutation) |
 | Canvas fidelity | headless canvas renders vs the real npm package, 7/10 PASS (3 at exact 0.00), every >10% cell named | `canvas-gate-standing-pin` eval · `examples/polaris/receipts/canvas-gate/` |
 | Vendor-doc referee | extraction proposals diffed against the vendor's own shipped docs, 0 silent rows | `examples/astryx/extraction/DOC-REFEREE.md` |
+
+## 2026-07-26 — Spec 006: the Google Reviews block, closed — Piqueray's first composite
+
+`ds.review-card` and `ds.google-reviews` land net-new — the two blocks spec 003
+explicitly deferred (source was a flattened third-party screenshot, zero vector
+to extract). The owner chose net-new over extraction: real avatars, a real
+governed `star` icon (delivered earlier, spec 004), real text, composed via
+Piqueray's first `repeat` + `component` collection (5 nested `ds.review-card`
+instances inside `ds.google-reviews`) — a composite class the 51-component demo
+archive never exercised either (checked first, per the prior-art rule; the one
+matching pattern found, `ds.avatar-group`'s fixed-width-token-on-own-root
+technique, informed the repeat's equal-width children).
+
+Adopted onto the real client file across the same 8 maquettes spec 003
+externalized (+ the `Motorisation` witness, untouched throughout) — a new
+**region-based proof** class (`page-parity/cli.ts --regions`, pixelmatch scoped
+to a named rectangle) let each adoption claim "the block matches its region"
+(7.7-7.8%, all raster: web font substitution + vector-vs-bitmap badge + one
+out-of-contract photo fill) **and** "nothing outside the block moved"
+(`outsideDiffCount = 0` on 7/8, the one exception on Portes de garage
+investigated via calibration and owner-acquitted, unrelated text re-rasterized
+by an unrelated auto-layout convergence pass). US4 then proved the block is
+*governed*, not just adopted: a demo instance driven purely by properties
+(5 different reviewers, one card toggled photo↔initial) on both surfaces —
+code renders a real photo where canvas shows a governed placeholder, the exact
+A5 boundary named rather than closed. The demo left no canvas trace; the one
+diff found during cleanup (a 1px Contactez-nous footer nudge) was proven
+exogenous — a concurrent edit by another writer in a disjoint zone — via
+calibration (two independent captures of "now", byte-identical) rather than
+absorbed into a false "9/9".
+
+The closing canvas gesture — renaming both masters to the file's French
+convention (`ReviewCard`→`Review-card`, `GoogleReviews`→`Avis Google`) — came
+with a checkpoint, a 9/9 zero-pixel proof, and a written reverse procedure
+(R5: canvas-only renames break `findComponentByName`'s name-based resolution on
+any future re-push). Refreshing the parity snapshot after that rename then
+caught a **second** instance of the exact same name-join fragility — this time
+on the read side (`parity/diff.ts`'s nested-instance check), fixed at its
+source with a key-first/name-fallback helper, zero `core/` touched, zero
+golden churn. The matching write-side fix (`core/emit-figma-script.ts`'s
+`findComponentByName`) is scoped to the backlog, named with its receipts,
+rather than folded in here. Suite: **113/113 executable** (+10 new cases
+across `repeat`/nested-instances/A5/convention coverage, +1 revived —
+`detect-figma-missing-nested-instance`, Piqueray's first composite finally
+exercising it), **107 pass** — 6 inherited reds, all already named before
+006 began and reconfirmed unrelated to `ds.review-card`/`ds.google-reviews`.
+48 legacy cases stay quarantined (slots, dark theme, a second brand — still
+none of those exist in Piqueray).

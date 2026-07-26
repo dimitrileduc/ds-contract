@@ -2053,3 +2053,22 @@ Deux points, aucune ligne du tableau CSS↔Figma modifiée (aucun canal n'a chan
 capacité d'instrument est documentée à sa juste place (addendum méthodologique, pas une ligne
 de canal CSS).
 
+### T085 — Journal daté (2026-07-26)
+
+**Entrée `MILESTONES.md`** ajoutée (« 2026-07-26 — Spec 006 : the Google Reviews block, closed
+— Piqueray's first composite »), écrite **après** les gates verts, pas avant. **`CHANGELOG.md` :
+pas d'entrée** — `package.json` reste à `0.7.0` tout au long de la spec, aucune release ; T085
+lui-même conditionne l'entrée CHANGELOG à « si release ».
+
+**Relecture de bout en bout de `decisions.md`** (grep ciblé sur les 9 gestes canevas) : chaque
+geste porte son `{label, versionId}` et son verdict — `006/masters/creation`
+(`2380469458121552767`), les 8 `006/adoption/*` (7 avec `versionId`, **1 trou nommé et
+reconfirmé** : `006/adoption/depannage-sav`, T054/T077-T080), `006/demo/us4`
+(`2380614847064107676`), `006/cloture/renommage` (`2380602413129417606`) — **9 checkpoints**,
+**8 `versionId` capturés**, **1 trou déjà nommé deux fois** (jamais une troisième invention).
+22 occurrences de verdicts `identical`/`pages:compare` relevées en regard, aucun geste sans
+verdict écrit.
+
+**Verdict** : journal daté à jour, aucune revendication avant preuve, aucun trou de traçabilité
+nouveau trouvé à cette relecture finale.
+
