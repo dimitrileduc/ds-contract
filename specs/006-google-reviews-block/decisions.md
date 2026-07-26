@@ -1955,3 +1955,48 @@ investiguée et acquittée par l'owner en son temps — reconfirmée ici, pas r�
 (`versionId` manquant) est nommé avec sa tentative de récupération et son échec, la seule
 exception (`outsideDiffCount 8`) est reconfirmée acquittée. Rien n'est absorbé en silence.
 
+### T081-T082 — Compteurs et quarantaine, audit complet (2026-07-26)
+
+**T081** : audit systématique des compteurs cités hors journaux datés. `grep -n "102\|108"
+README.md` → **vide** — les deux valeurs décrites par la tâche comme actuellement en
+contradiction n'existent nulle part dans le fichier ; réconciliées par une clôture antérieure
+non journalisée sous ce nom de tâche. `extract/figma/page-parity/README.md` : déjà à **7** cas
+de selftest (`ls contracts/*.contract.json` confirme 7 contrats réels). `CLAUDE.md`/`docs/` :
+aucun compte périmé identifié par grep ciblé. Les seules occurrences de `102`/`108` restantes
+sont dans `MILESTONES.md`, un journal daté — exempté par la convention CLAUDE.md
+(« dated logs like MILESTONES.md are the exception »). **Rien à corriger** : le trou que la
+tâche décrivait était déjà refermé avant que cette tâche ne soit exécutée.
+
+**T082** : `evals/REMOVED-CASES.md` lui-même contenait le vrai trou de complétude. Script de
+vérification (`/tmp/check_ids.py`, comparaison `evals/legacy-cases.ts` ↔ table du fichier) :
+**2 lignes fantômes** — `detect-figma-missing-nested-instance` (réanimé T061, ce cycle) et
+`detect-default-and-kind-drift` (réanimé lors de 002, jamais retiré du tableau alors qu'il
+tourne en direct depuis). Les deux retirées ; diff = vide, **48/48** aligné avec
+`legacy-cases.ts`. Mis à jour en cascade : l'en-tête (« 49 cases » → « 48 cases … 3 since
+revived »), le bloc `N/N` d'exemple (102/49 → 113/48), la section « shopping list » (référence
+au nested-instance revive nommée plutôt que retirée en silence), et un nouveau paragraphe
+**Counts** daté de la clôture 006 (113 exécutés/48 quarantinés, +10 cas neufs 006 + 1 réanimé,
+107/113 avec les 6 rouges hérités déjà nommés en T069). Vérifié par arithmétique directe :
+`49 - 1 = 48` quarantinés, `102 + 10 + 1 = 113` exécutés.
+
+`pending-first-sync-not-drift` et `naxis-full-cartesian-product` : confirmés toujours en
+quarantaine à juste titre — leurs corps référencent des contrats démo supprimés
+(`contracts/heading.contract.json`, tokens du bouton démo à 2 axes), les réanimer exigerait de
+**réécrire** l'assertion contre une fixture Piqueray, pas de la **déplacer** verbatim (la règle
+du fichier). La **famille slot** (6 cas : `detect-figma-missing-slot-property`,
+`detect-figma-accepts-drift`, `detect-code-removed-slot-prop`,
+`refuse-defaultContent-outside-accepts`, `slot-empty-not-placeholder`,
+`preferred-values-accepts`) reste également en quarantaine — 006 introduit `repeat` +
+`component`, pas de `SLOT`, donc aucune de ces six ne trouve de fixture Piqueray à ce jour.
+
+**Verdict** : les deux tâches ont trouvé des états différents de ce qu'elles anticipaient — T081
+un trou déjà refermé, T082 un trou réel resté ouvert depuis 002. Les deux sont désormais
+vérifiées par script, pas par relecture visuelle.
+
+**Troisième trouvaille au passage** : le message console imprimé par `evals/run.ts:4368` lui-même
+disait « Piqueray has no slots / nested instances / repeat collections… » — faux depuis T061/T065
+(006 en a livré). Corrigé (chaîne de log uniquement, pas un fichier golden, aucune éval
+touchée) : « no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-
+block added nested instances + repeat collections) ». Revérifié : `npm run eval` toujours
+**107/113**, message désormais exact.
+

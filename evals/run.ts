@@ -4365,6 +4365,6 @@ console.log(`\n${passed}/${results.length} evals passed — evals/results.json`)
 // The quarantine is never silent: these cases exist, are preserved verbatim in
 // evals/legacy-cases.ts, and are NOT part of the N/N above.
 console.log(
-  `${legacyCases.length} legacy cases quarantined (not run) — Piqueray has no slots / nested instances / repeat collections / multi-root anatomy / dark theme / second brand yet. See evals/REMOVED-CASES.md.`,
+  `${legacyCases.length} legacy cases quarantined (not run) — Piqueray has no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-block added nested instances + repeat collections). See evals/REMOVED-CASES.md.`,
 );
 process.exit(passed === results.length ? 0 : 1);
