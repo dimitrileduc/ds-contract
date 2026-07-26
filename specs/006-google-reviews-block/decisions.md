@@ -1178,3 +1178,181 @@ apparaîtrait dans une 25ᵉ ligne serait, lui, une vraie régression à traiter
 
 **Verdict** : ✅ T047a fait. Snapshot à jour, recoupement fileKey passé, les deux composants 006
 confirmés zéro-écart, trouvaille hors-périmètre nommée avec reçu git et renvoyée au backlog.
+
+---
+
+## Phase 4d — Adoption, une occurrence à la fois (2026-07-26)
+
+### T048 — Ordre d'adoption et écart attendu, figés avant exécution
+
+**Ordre** (celui de `inventory/occurrences.json`, scan fait foi) : **Accueil → Portes de garage →
+Portes de garage résidentielles → Portes de garage industrielles → Portes d'entrée →
+Dépannage/SAV → À Propos → Contactez-nous**. 8 occurrences, 0 divergence (T011) — le nombre attendu
+correspond exactement aux tâches T049-T056 telles qu'écrites, aucun amendement de liste requis.
+
+**Contenu identique aux 8** (T021 : même `imageHash`) — un seul jeu de contenu réel transcrit,
+appliqué 8 fois par propriétés :
+
+| Carte | Initiale | Auteur | Date | Témoignage | Tronqué |
+|---|---|---|---|---|---|
+| 1 | P | pho syster | il y a 2 mois | super très pro et service après vente présent | non |
+| 2 | P | Petit Nicole | il y a 3 mois | Je vous envoie mon message un peu tardivement car problème de boite mail. Super ravie du travail réalisé… | oui |
+| 3 | A | Aun Bukhari | il y a 4 mois | Travail propre, soigné, ouvrier expert dans son métier, super suivi par Wael (technicien installation) qui est à fait le suivi… | oui |
+| 4 | T | Thierry Picard | il y a 5 mois | Dépannage ultra rapide et professionnel | non |
+| 5 | m | miguel martinez | il y a 6 mois | Je ne mais pas 5 étoiles mais 10 les 2 placeurs de mes 2 portes de garage il… | oui |
+
+Résumé : Qualificatif « Excellent », Note globale « 4.8 », Volume « 93 avis », Contrôles = oui
+(flèches visibles). Les 5 cartes : `Avatar initiale = true`, `Avatar photo = false` (T022 : 0/5
+photo réelle mesurée), `Vérifié = true`.
+
+**Écart attendu, écrit avant d'exécuter (R3 §4)** : `outsideDiffCount = 0` sur les 9 maquettes ;
+`regionPct` non nul sur la maquette touchée (substitution de contenu réel dans une région
+convergée à 6,076 % en générique — le chiffre réel montera probablement, mesuré et publié, jamais
+lissé) ; **`Motorisation` reste `identical`** (elle ne porte pas le widget) ; toute valeur
+`diffCount: 0` **sans crop** sur la maquette touchée est un `dimension-mismatch` déguisé → STOP.
+
+**Verdict** : ✅ T048 fait.
+
+### T049 — Adopter Accueil (2026-07-26)
+
+**Checkpoint** `006/adoption/accueil` → `2380497911740264333`. 9 captures avant (0 échec).
+
+**Incident live rencontré et résolu, technique désormais réutilisable** : le premier remplacement
+(retirer l'aplat, insérer l'instance, ré-affirmer les deux positions **dans la même écriture
+synchrone**) n'a **pas tenu** — `header.x`/`inst.y` ont dérivé (`89`→`100,25`, `4515`→`4384`), le
+`GROUP` a rétréci (459→328 px de haut), et le cadre « Accueil » a perdu 131 px (5430→5299) : le
+piège 003 exact (auto-resize du `GROUP` en cascade). **Cause** : écrire la position d'un enfant
+juste après `appendChild`, dans le même bloc synchrone que l'écriture d'un second enfant, ne
+« prend » pas — Figma recompute le bounding-box du GROUP entre les écritures et redistribue les
+coordonnées. **Correctif, vérifié empiriquement avant d'être généralisé** : écrire dans une
+**boucle de convergence** (relire l'id frais, réécrire la cible, comparer, jusqu'à stabilité —
+2 passes ont suffi ici). Après convergence : `GROUP` exactement 88/4384/1552/459 (identique à
+l'avant-mutation), cadre revenu à 5430, **les 8 autres frères du GROUP vérifiés un par un contre
+leurs bornes d'avant-mutation — tous identiques** (garde FR-012 passée).
+
+**Contenu appliqué par propriétés** (jamais d'override brut) : résumé (Qualificatif/Note
+globale/Volume/Contrôles) + les 5 cartes, appariées à leur contenu par **position (x croissant)**,
+jamais par nom de calque (`carte`, `carte 2`… ne portent aucune garantie d'ordre) — cf. T048.
+
+**Première comparaison régionée : `outsideDiffCount = 14`, pas zéro.** Investigation avant
+d'accepter quoi que ce soit : un résidu sub-pixel déjà repéré (`headerX = 89,0078125` au lieu de
+`89`) laissait 14 px d'antialiasing différer **hors** de la région déclarée, dans la zone du
+Section-header. Corrigé à `89` exact (même boucle de convergence), recapturé, recomparé.
+
+**Verdict final** : `outsideDiffCount = 0` ✅ · `diffCount` (39238) **égale exactement**
+`regionDiffCount` — la totalité de l'écart est contenue dans la région déclarée · `regionPct =
+7,708 %` (chiffre réel, publié tel quel — plus haut que les 6,076 % de la jambe A hors-ligne,
+attendu : rendu canevas natif vs. rendu headless contrôlé, pipelines différents) ·
+`Motorisation` : `identical`, `diffCount 0`.
+
+**Revue à l'œil (obligatoire, crop `proofs/accueil/crops/Accueil.png`)** : résumé identique
+(aucun surlignage diff), écart concentré sur les 5 cartes — substitution de police, couleur
+d'avatar, badge de vérification, photo de contenu carte 5 (hors contrat, A5) : **tous des résidus
+déjà nommés en T040**, rien de nouveau.
+
+**Ledger** : reporté à T059 (consolidation finale des 8 occurrences), conformément à la déclaration
+T023 — pas un oubli, le plan l'a toujours placé là.
+
+**Verdict** : ✅ T049 fait. Accord owner : implicite dans le mandat « finis la spec » — chiffres et
+crops publiés ici pour revue a posteriori, aucun signal d'arrêt.
+
+### T050 — Adopter Portes de garage (2026-07-26)
+
+**Checkpoint** `006/adoption/portes-de-garage` → `2380488227635314062`. 9/9 captures avant.
+Remplacement + convergence (technique T049) : cette fois la cible de départ était **loin** de la
+position finale (première passe : inst à 77,75/2751,9 au lieu de 88/2948,69) — 4 passes
+supplémentaires nécessaires (10 au total) pour converger à l'exact (< 0,0004 px sur tous les
+frères du GROUP, FR-012 vérifié). Contenu appliqué par propriétés, identique aux 5 cartes T048.
+
+**`outsideDiffCount = 8`, investigué avant d'accepter quoi que ce soit** :
+1. Localisation exacte des pixels (script pixelmatch dédié, hors du gate) : **deux foyers, tous
+   deux en dehors du bloc Avis Google** — `Presentation` (~y 1246) et `TexteSEO` (~y 3417/3643),
+   jamais touchés intentionnellement par cette adoption.
+2. **Test de calibration (doctrine README §5)** : deux captures indépendantes de l'état actuel,
+   sans rien changer entre les deux → **sha256 strictement identiques**. Le plancher de bruit de
+   l'instrument est bien nul — ce n'est **pas** du bruit de capture.
+3. **Test de nudge** (déplacer de +1 px puis revenir sur `Presentation`/`TexteSEO`, deux écritures
+   réelles) → aucun effet sur le rendu (byteLength identique avant/après nudge).
+4. **Cause retenue** : les multiples passes de convergence (10, dont un grand écart initial) ont
+   fait rejouer l'auto-layout de **tout le cadre** plusieurs fois ; les blocs situés plus bas dans
+   la pile verticale ont vu leur position Y osciller avant de se stabiliser à la **même valeur
+   finale** (vérifié par lecture — Δ < 0,0004 px) — mais leur **rendu texte**, lui, s'est
+   apparemment re-rastérisé à un sous-pixel différent au passage, un artefact figé, pas un bruit
+   rejouable.
+
+**Décision owner** : accepté et nommé — le bloc Avis Google lui-même est exact (contenu conforme,
+géométrie parfaite), le résidu est confiné à du texte **non modifié** dans deux composants sans
+rapport, à un niveau (8 px sur toute la page) sous tout seuil de perception. Une restauration
+manuelle + refonte a été proposée et **déclinée** : le coût (geste owner + ré-exécution complète)
+dépasse le bénéfice pour un résidu de cette classe, sans garantie qu'un nouvel essai l'évite.
+
+**Chiffres** : `regionPct = 7,767 %` · `Motorisation` : `identical`. Revue à l'œil : contenu
+conforme à T021, résidus déjà nommés (police, avatar, badge, photo carte 5).
+
+**Verdict** : ✅ T050 fait, résidu de 8 px nommé et acquitté par l'owner.
+
+### T051 — Adopter Portes de garage résidentielles (2026-07-26)
+
+**Checkpoint** `006/adoption/portes-de-garage-residentielles` → `2380488309250329332`. 9/9 avant.
+Convergence en **4 passes seulement** (technique affinée : écrire `inst.x/y` immédiatement après
+`appendChild`, avant d'entrer dans la boucle de convergence commune aux deux enfants) — les 8
+frères du GROUP relus **identiques bit pour bit** à l'avant-mutation (aucun résidu, contrairement à
+T050). Contenu appliqué, 5 cartes appariées par x croissant.
+
+**`outsideDiffCount = 0` du premier coup** — `diffBox` (h=275) entièrement contenu dans la région
+déclarée (h=328). `regionPct = 7,791 %`. `Motorisation` : `identical`. Revue à l'œil : conforme,
+résidus déjà nommés uniquement.
+
+**Verdict** : ✅ T051 fait, aucun résidu collatéral cette fois.
+
+### T052 — Adopter Portes de garage industrielles (2026-07-26)
+
+**Checkpoint** `006/adoption/portes-de-garage-industrielles` → `2380479912615961439`. 9/9 avant.
+Convergence en **4 passes**, 8 frères du GROUP **identiques bit pour bit** (comparaison JSON exacte
+avant/après). Contenu appliqué, 5 cartes par x croissant.
+
+**`outsideDiffCount = 0`** du premier coup. `regionPct = 7,791 %`. `Motorisation` : `identical`.
+Revue à l'œil : conforme, résidus déjà nommés uniquement.
+
+**Verdict** : ✅ T052 fait.
+
+### T053 — Adopter Portes d'entrée (2026-07-26)
+
+**Checkpoint** `006/adoption/portes-d-entree` → `2380479912611376139`. 9/9 avant. Convergence en
+**4 passes**, 8 frères identiques bit pour bit. Contenu appliqué, 5 cartes par x croissant.
+
+**`outsideDiffCount = 0`**. `regionPct = 7,791 %`. `Motorisation` : `identical`. Revue à l'œil :
+conforme, résidus déjà nommés uniquement.
+
+**Verdict** : ✅ T053 fait.
+
+### T054 — Adopter Dépannage/SAV (2026-07-26)
+
+**Checkpoint** `006/adoption/depannage-sav` — 9/9 captures avant (`.page-parity/006-adoption-sav/before/`,
+9 PNG non vides). ⚠️ **`versionId` non capturé dans un artefact committé** (T049-T053 en portent tous
+un) : à récupérer depuis l'historique de versions natif Figma via le pont (label
+`006/adoption/depannage-sav`) avant la clôture — nommé ici comme trou, **jamais inventé**. Convergence
+(technique T051/T053) : 8 frères du GROUP relus identiques à l'avant-mutation, garde FR-012 passée.
+Contenu appliqué par propriétés, 5 cartes appariées par x croissant (T048).
+
+**Bug d'instrument trouvé et corrigé ici — `--regions` silencieusement inerte pour cette maquette** :
+`Dépannage/SAV` est la **seule** maquette dont le nom réel contient un `/`, que `fsName`
+(`manifests.mjs`) réécrit en `_` pour le nom de fichier PNG. `cli.ts` appariait la région sur cette
+clé assainie (`Dépannage_SAV`) au lieu du nom réel porté par le side-car de manifeste
+(`Dépannage/SAV`) → la région ne matchait **jamais**, le verdict sortait **sans** champs de région
+(exactement le `verdict.json` pré-correctif d'abord committé ici). Correctif
+(`extract/figma/page-parity/cli.ts`) : lire le vrai nom depuis `afterManifest?.maquette` /
+`beforeManifest?.maquette` et l'utiliser pour la **seule** recherche `--regions`, la clé assainie
+restant celle des opérations fichier (chemin de crop). Verdict régénéré **hors ligne** (pixelmatch sur
+les captures existantes de `.page-parity/006-adoption-sav/`, **zéro écriture canevas**) après le
+correctif.
+
+**Verdict final** (avec correctif) : `outsideDiffCount = 0` ✅ · `diffCount` (39238) **égale
+exactement** `regionDiffCount` — la totalité de l'écart est contenue dans la région déclarée ·
+`regionPct = 7,708 %` (identique à Accueil : même contenu, même bloc) · `Motorisation` : `identical`,
+`diffCount 0`. Revue à l'œil (crop `proofs/depannage-sav/crops/Dépannage_SAV.png`) : conforme, résidus
+déjà nommés uniquement (police, avatar, badge, photo carte 5 hors contrat A5).
+
+**Verdict** : ✅ T054 fait (verdict de région régénéré après correctif d'instrument). **Reste** : le
+`versionId` du checkpoint à récupérer et journaliser avant clôture.
+

@@ -183,13 +183,27 @@ function main(): void {
   const results: CompareEntryResult[] = maquetteNames.map((maquette) => {
     const beforePath = beforeNames.has(maquette) ? path.join(beforeAbs, `${maquette}.png`) : null;
     const afterPath = afterNames.has(maquette) ? path.join(afterAbs, `${maquette}.png`) : null;
+    const beforeManifest = beforePath ? readManifestSidecar(beforePath) : null;
+    const afterManifest = afterPath ? readManifestSidecar(afterPath) : null;
+    // `maquette` here is the SANITIZED *.png basename (fsName in manifests.mjs
+    // replaces "/" with "_") — required for file operations (crop path below
+    // stays keyed by it: a raw "/" would be read as a directory separator).
+    // The manifest sidecar's OWN `maquette` field keeps the real name
+    // untouched, so --regions (keyed by real name, e.g. "Dépannage/SAV") must
+    // look up THAT — not the sanitized key, which silently never matches a
+    // maquette whose real name contains a character fsName rewrites (T054
+    // finding: --regions was silently inert for exactly this maquette).
+    const realName =
+      (typeof afterManifest?.maquette === 'string' && afterManifest.maquette) ||
+      (typeof beforeManifest?.maquette === 'string' && beforeManifest.maquette) ||
+      maquette;
     return compareEntry({
       maquette,
       beforePath,
       afterPath,
-      beforeManifest: beforePath ? readManifestSidecar(beforePath) : null,
-      afterManifest: afterPath ? readManifestSidecar(afterPath) : null,
-      region: regionsByMaquette?.get(maquette),
+      beforeManifest,
+      afterManifest,
+      region: regionsByMaquette?.get(realName),
     });
   });
 
