@@ -1,0 +1,91 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.avantage",
+  "name": "Avantage",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Conseils personnalisés",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "texte",
+      "type": "text",
+      "default": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Texte"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row"
+      },
+      "parts": {
+        "Piqueray": {
+          "component": {
+            "id": "ds.piqueray"
+          }
+        },
+        "text": {
+          "layout": {
+            "direction": "column"
+          },
+          "parts": {
+            "Titre": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              }
+            },
+            "Texte": {
+              "content": {
+                "prop": "texte"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
+      "nodeId": "2088:2350"
+    },
+    "code": {
+      "importPath": "src/components/Avantage",
+      "export": "Avantage"
+    }
+  }
+}

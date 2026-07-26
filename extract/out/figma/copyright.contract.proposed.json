@@ -1,25 +1,25 @@
 {
   "$schema": "./contract.schema.json",
-  "id": "ds.select",
-  "name": "Select",
+  "id": "ds.copyright",
+  "name": "Copyright",
   "version": "0.1.0",
   "status": "draft",
   "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
   "semantics": {
-    "element": "select"
+    "element": "div"
   },
   "props": [
     {
-      "name": "valeur",
+      "name": "texte",
       "type": "text",
-      "default": "Texte de saisie",
+      "default": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
       "bindings": {
         "figma": {
           "kind": "TEXT",
-          "property": "Valeur"
+          "property": "Texte"
         },
         "code": {
-          "prop": "valeur"
+          "prop": "texte"
         }
       }
     }
@@ -29,40 +29,29 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "row",
-        "justify": "space-between",
-        "align": "center"
+        "direction": "column"
       },
       "parts": {
-        "Valeur": {
+        "Texte": {
           "content": {
-            "prop": "valeur"
+            "prop": "texte"
           },
           "tokens": {
-            "color": "{color.noir}"
-          }
-        },
-        "ChevronDown": {
-          "component": {
-            "id": "ds.chevron-down"
+            "color": "{color.blanc}"
           }
         }
-      },
-      "tokens": {
-        "background-color": "{color.blanc}",
-        "border-color": "{color.bleu-gris}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "3063f8a5ed587927ede2ae021433c705656acff5",
-      "nodeId": "2053:1249"
+      "componentSetKey": "314cd2368d8d019fec33b60eb8995fac453d0e9f",
+      "nodeId": "2086:2330"
     },
     "code": {
-      "importPath": "src/components/Select",
-      "export": "Select"
+      "importPath": "src/components/Copyright",
+      "export": "Copyright"
     }
   }
 }

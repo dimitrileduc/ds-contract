@@ -1,34 +1,48 @@
 {
   "$schema": "./contract.schema.json",
-  "id": "ds.checkbox",
-  "name": "Checkbox",
+  "id": "ds.tab",
+  "name": "Tab",
   "version": "0.1.0",
   "status": "draft",
   "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
   "semantics": {
-    "element": "input"
+    "element": "div"
   },
   "props": [
     {
-      "name": "coche",
+      "name": "etat",
       "type": {
         "enum": [
-          "non",
-          "oui"
+          "defaut",
+          "selectionne"
         ]
       },
-      "default": "non",
+      "default": "defaut",
       "bindings": {
         "figma": {
           "kind": "VARIANT",
-          "property": "Coche",
+          "property": "Etat",
           "values": {
-            "non": "Non",
-            "oui": "Oui"
+            "defaut": "Defaut",
+            "selectionne": "Selectionne"
           }
         },
         "code": {
-          "prop": "coche"
+          "prop": "etat"
+        }
+      }
+    },
+    {
+      "name": "libelle",
+      "type": "text",
+      "default": "Onglet",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Libelle"
+        },
+        "code": {
+          "prop": "libelle"
         }
       }
     }
@@ -37,38 +51,26 @@
   "anatomy": {
     "root": {
       "parts": {
-        "vectorstroke": {
-          "tokens": {
-            "border-color": "{color.blanc}"
+        "libell": {
+          "content": {
+            "prop": "libelle"
           },
-          "visibleWhen": {
-            "prop": "coche",
-            "equals": "oui"
+          "tokens": {
+            "color": "{color.noir-bleute}"
           }
         }
-      },
-      "tokensByProp": {
-        "prop": "coche",
-        "map": {
-          "oui": {
-            "background-color": "{color.bleu}"
-          }
-        }
-      },
-      "tokens": {
-        "background-color": "{color.blanc}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
-      "nodeId": "2053:1256"
+      "componentSetKey": "c5fa537d17c544114dc780ba11bbf1157fedba37",
+      "nodeId": "2061:1588"
     },
     "code": {
-      "importPath": "src/components/Checkbox",
-      "export": "Checkbox"
+      "importPath": "src/components/Tab",
+      "export": "Tab"
     }
   }
 }

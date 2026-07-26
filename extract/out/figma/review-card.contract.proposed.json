@@ -1,0 +1,275 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.review-card",
+  "name": "ReviewCard",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "initiale",
+      "type": "text",
+      "default": "P",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Initiale"
+        },
+        "code": {
+          "prop": "initiale"
+        }
+      }
+    },
+    {
+      "name": "auteur",
+      "type": "text",
+      "default": "Prénom N.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Auteur"
+        },
+        "code": {
+          "prop": "auteur"
+        }
+      }
+    },
+    {
+      "name": "date",
+      "type": "text",
+      "default": "il y a 2 mois",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Date"
+        },
+        "code": {
+          "prop": "date"
+        }
+      }
+    },
+    {
+      "name": "tMoignage",
+      "type": "text",
+      "default": "Un témoignage neutre, exemple générique de contenu.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Témoignage"
+        },
+        "code": {
+          "prop": "tMoignage"
+        }
+      }
+    },
+    {
+      "name": "avatarInitiale",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Avatar initiale"
+        },
+        "code": {
+          "prop": "avatarInitiale"
+        }
+      }
+    },
+    {
+      "name": "avatarPhoto",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Avatar photo"
+        },
+        "code": {
+          "prop": "avatarPhoto"
+        }
+      }
+    },
+    {
+      "name": "vRifi",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Vérifié"
+        },
+        "code": {
+          "prop": "vRifi"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "parts": {
+        "entete": {
+          "layout": {
+            "direction": "row",
+            "justify": "space-between",
+            "align": "center"
+          },
+          "parts": {
+            "profil": {
+              "layout": {
+                "direction": "row",
+                "align": "center"
+              },
+              "parts": {
+                "avatarInitiale": {
+                  "layout": {
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center"
+                  },
+                  "tokens": {
+                    "background-color": "{color.bleu-gris}"
+                  },
+                  "visibleWhen": {
+                    "prop": "avatarInitiale"
+                  },
+                  "parts": {
+                    "initialeTexte": {
+                      "content": {
+                        "prop": "initiale"
+                      },
+                      "tokens": {
+                        "color": "{color.blanc}"
+                      }
+                    }
+                  }
+                },
+                "avatarPhoto": {
+                  "visibleWhen": {
+                    "prop": "avatarPhoto"
+                  }
+                },
+                "identite": {
+                  "layout": {
+                    "direction": "column",
+                    "justify": "center",
+                    "align": "stretch"
+                  },
+                  "parts": {
+                    "auteur": {
+                      "content": {
+                        "prop": "auteur"
+                      }
+                    },
+                    "date": {
+                      "content": {
+                        "prop": "date"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "marque": {
+              "parts": {
+                "Vector": {},
+                "vector2": {},
+                "vector3": {},
+                "vector4": {}
+              }
+            }
+          }
+        },
+        "notation": {
+          "layout": {
+            "direction": "row",
+            "align": "center"
+          },
+          "parts": {
+            "etoiles": {
+              "layout": {
+                "direction": "row",
+                "align": "center"
+              },
+              "parts": {
+                "etoile1": {
+                  "parts": {
+                    "etoile1Vector": {}
+                  }
+                },
+                "etoile2": {
+                  "parts": {
+                    "etoile2Vector": {}
+                  }
+                },
+                "etoile3": {
+                  "parts": {
+                    "etoile3Vector": {}
+                  }
+                },
+                "etoile4": {
+                  "parts": {
+                    "etoile4Vector": {}
+                  }
+                },
+                "etoile5": {
+                  "parts": {
+                    "etoile5Vector": {}
+                  }
+                }
+              }
+            },
+            "verification": {
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "center"
+              },
+              "visibleWhen": {
+                "prop": "vRifi"
+              },
+              "parts": {
+                "coche": {
+                  "parts": {
+                    "cocheVector": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "temoignage": {
+          "content": {
+            "prop": "tMoignage"
+          }
+        },
+        "lireLaSuite": {
+          "text": "Lire la suite"
+        }
+      },
+      "tokens": {
+        "background-color": "{color.blanc}",
+        "border-color": "{color.bleu-clair}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "3826fdc9975d42b1661e14494476701676759671",
+      "nodeId": "2178:7349"
+    },
+    "code": {
+      "importPath": "src/components/ReviewCard",
+      "export": "ReviewCard"
+    }
+  }
+}

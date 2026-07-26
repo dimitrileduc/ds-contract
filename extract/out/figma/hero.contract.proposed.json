@@ -1,0 +1,84 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.hero",
+  "name": "Hero",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "space-between",
+        "align": "end"
+      },
+      "parts": {
+        "blocTexte": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch",
+            "grow": true
+          },
+          "parts": {
+            "Titres": {
+              "layout": {
+                "direction": "column",
+                "align": "stretch"
+              },
+              "parts": {
+                "SectionHeader": {
+                  "component": {
+                    "id": "ds.section-header",
+                    "props": {
+                      "accroche2": false,
+                      "titre": "Portes de garage industrielles",
+                      "accroche": "Plus de 50 ans d’expérience",
+                      "disposition": "standard"
+                    }
+                  }
+                },
+                "wrapper": {
+                  "layout": {
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "end"
+                  },
+                  "parts": {
+                    "sousTitre": {
+                      "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                      "tokens": {
+                        "color": "{color.blanc}"
+                      }
+                    },
+                    "Bouton": {
+                      "component": {
+                        "id": "ds.button"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
+      "nodeId": "2111:3382"
+    },
+    "code": {
+      "importPath": "src/components/Hero",
+      "export": "Hero"
+    }
+  }
+}

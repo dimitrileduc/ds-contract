@@ -1,0 +1,56 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.hero-video",
+  "name": "HeroVideo",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "space-between",
+        "align": "end"
+      },
+      "parts": {
+        "Text": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch",
+            "grow": true
+          },
+          "parts": {
+            "Accroche": {
+              "text": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+              "tokens": {
+                "color": "{color.blanc}"
+              }
+            }
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "nodeId": "2151:5552"
+    },
+    "code": {
+      "importPath": "src/components/HeroVideo",
+      "export": "HeroVideo"
+    }
+  }
+}

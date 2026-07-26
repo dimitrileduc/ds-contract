@@ -1,0 +1,358 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.google-reviews",
+  "name": "GoogleReviews",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "qualificatif",
+      "type": "text",
+      "default": "Excellent",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Qualificatif"
+        },
+        "code": {
+          "prop": "qualificatif"
+        }
+      }
+    },
+    {
+      "name": "noteGlobale",
+      "type": "text",
+      "default": "4.8",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Note globale"
+        },
+        "code": {
+          "prop": "noteGlobale"
+        }
+      }
+    },
+    {
+      "name": "volume",
+      "type": "text",
+      "default": "93 avis",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Volume"
+        },
+        "code": {
+          "prop": "volume"
+        }
+      }
+    },
+    {
+      "name": "contrLes",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Contrôles"
+        },
+        "code": {
+          "prop": "contrLes"
+        }
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "altPhoto": "text",
+          "urlPhoto": "text",
+          "date": "text",
+          "auteur": "text",
+          "tMoignage": "text",
+          "initiale": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "stretch"
+      },
+      "parts": {
+        "resume": {
+          "layout": {
+            "direction": "row",
+            "justify": "space-between",
+            "align": "center"
+          },
+          "tokens": {
+            "background-color": "{color.blanc}",
+            "border-color": "{color.bleu-clair}"
+          },
+          "parts": {
+            "infos": {
+              "layout": {
+                "direction": "row",
+                "align": "center"
+              },
+              "parts": {
+                "marque": {
+                  "parts": {
+                    "G": {
+                      "text": "G"
+                    },
+                    "o": {
+                      "text": "o"
+                    },
+                    "o2": {
+                      "text": "o"
+                    },
+                    "g": {
+                      "text": "g"
+                    },
+                    "l": {
+                      "text": "l"
+                    },
+                    "e": {
+                      "text": "e"
+                    }
+                  }
+                },
+                "qualificatifTexte": {
+                  "content": {
+                    "prop": "qualificatif"
+                  }
+                },
+                "notation": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "parts": {
+                    "etoile1": {
+                      "parts": {
+                        "Vector": {}
+                      }
+                    },
+                    "etoile2": {
+                      "parts": {
+                        "etoile2Vector": {}
+                      }
+                    },
+                    "etoile3": {
+                      "parts": {
+                        "etoile3Vector": {}
+                      }
+                    },
+                    "etoile4": {
+                      "parts": {
+                        "etoile4Vector": {}
+                      }
+                    },
+                    "etoile5": {
+                      "parts": {
+                        "etoile5Vector": {}
+                      }
+                    },
+                    "noteGlobaleTexte": {
+                      "content": {
+                        "prop": "noteGlobale"
+                      }
+                    }
+                  }
+                },
+                "separateur": {
+                  "text": "|"
+                },
+                "volume": {
+                  "content": {
+                    "prop": "volume"
+                  }
+                }
+              }
+            },
+            "ecrireAvis": {
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "center"
+              },
+              "tokens": {
+                "border-color": "{color.noir}"
+              },
+              "parts": {
+                "libelle": {
+                  "text": "Écrire un avis"
+                }
+              }
+            }
+          }
+        },
+        "cartes": {
+          "layout": {
+            "direction": "row",
+            "justify": "space-between",
+            "align": "center"
+          },
+          "parts": {
+            "flecheGauche": {
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "center"
+              },
+              "visibleWhen": {
+                "prop": "contrLes"
+              },
+              "parts": {
+                "pastilleGauche": {
+                  "layout": {
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center"
+                  },
+                  "tokens": {
+                    "background-color": "{color.blanc}",
+                    "border-color": "{color.bleu-clair}"
+                  },
+                  "parts": {
+                    "iconeGauche": {
+                      "parts": {
+                        "iconeGaucheVector": {}
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "groupeCartes": {
+              "layout": {
+                "direction": "row",
+                "grow": true
+              },
+              "parts": {
+                "carte": {
+                  "component": {
+                    "id": "ds.review-card",
+                    "props": {
+                      "avatarInitiale": true,
+                      "vRifi": true,
+                      "tronqu": false,
+                      "avatarPhoto": false
+                    }
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "altPhoto": "",
+                        "urlPhoto": "",
+                        "date": "il y a 2 mois",
+                        "auteur": "Prénom N.",
+                        "tMoignage": "Un témoignage neutre, exemple générique de contenu.",
+                        "initiale": "P"
+                      },
+                      {
+                        "altPhoto": "",
+                        "urlPhoto": "",
+                        "date": "il y a 3 mois",
+                        "auteur": "Prénom N.",
+                        "tMoignage": "Un témoignage neutre, exemple générique de contenu.",
+                        "initiale": "P"
+                      },
+                      {
+                        "altPhoto": "",
+                        "urlPhoto": "",
+                        "date": "il y a 4 mois",
+                        "auteur": "Prénom N.",
+                        "tMoignage": "Un témoignage neutre, exemple générique de contenu.",
+                        "initiale": "P"
+                      },
+                      {
+                        "altPhoto": "",
+                        "urlPhoto": "",
+                        "date": "il y a 5 mois",
+                        "auteur": "Prénom N.",
+                        "tMoignage": "Un témoignage neutre, exemple générique de contenu.",
+                        "initiale": "P"
+                      },
+                      {
+                        "altPhoto": "",
+                        "urlPhoto": "",
+                        "date": "il y a 6 mois",
+                        "auteur": "Prénom N.",
+                        "tMoignage": "Un témoignage neutre, exemple générique de contenu.",
+                        "initiale": "P"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "flecheDroite": {
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "center"
+              },
+              "visibleWhen": {
+                "prop": "contrLes"
+              },
+              "parts": {
+                "pastilleDroite": {
+                  "layout": {
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "center"
+                  },
+                  "tokens": {
+                    "background-color": "{color.blanc}",
+                    "border-color": "{color.bleu-clair}"
+                  },
+                  "parts": {
+                    "iconeDroite": {
+                      "parts": {
+                        "iconeDroiteVector": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "tokens": {
+        "background-color": "{color.blanc}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c",
+      "nodeId": "2178:7381"
+    },
+    "code": {
+      "importPath": "src/components/GoogleReviews",
+      "export": "GoogleReviews"
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.produits-ecommerce",
+  "name": "ProduitsECommerce",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "prix": "text",
+          "titre": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "SectionHeader": {
+          "component": {
+            "id": "ds.section-header",
+            "props": {
+              "accroche2": true,
+              "accroche": "Plus de 50 ans d’expérience",
+              "titre": "Découvrez nos produits disponibles en ligne",
+              "disposition": "avecCta"
+            }
+          }
+        },
+        "carrouselProduits": {
+          "parts": {
+            "Produits": {
+              "layout": {
+                "direction": "row",
+                "align": "center"
+              },
+              "parts": {
+                "ProductCard": {
+                  "component": {
+                    "id": "ds.product-card",
+                    "props": {
+                      "bouton": false
+                    }
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "prix": "74,99€",
+                        "titre": "Télécommande Hörmann HSE4-868BS"
+                      },
+                      {
+                        "prix": "139,99€",
+                        "titre": "Clavier à code Hörmann FCT3-1BS"
+                      },
+                      {
+                        "prix": "89,99€",
+                        "titre": "Bouton poussoir Hörmann FIT2-1-868-BS"
+                      },
+                      {
+                        "prix": "74,99€",
+                        "titre": "Passerelle BiSecure Hörmann"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "CarouselControls": {
+              "component": {
+                "id": "ds.carousel-controls"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "a616f938df22515ef5778930a99802ea925de85f",
+      "nodeId": "2116:4475"
+    },
+    "code": {
+      "importPath": "src/components/ProduitsECommerce",
+      "export": "ProduitsECommerce"
+    }
+  }
+}

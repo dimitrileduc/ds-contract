@@ -1,0 +1,123 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.field",
+  "name": "Field",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "normal",
+          "erreur"
+        ]
+      },
+      "default": "normal",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "normal": "Normal",
+            "erreur": "Erreur"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    },
+    {
+      "name": "label",
+      "type": "text",
+      "default": "Libellé",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Label"
+        },
+        "code": {
+          "prop": "label"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "parts": {
+        "label": {
+          "layout": {
+            "direction": "row"
+          },
+          "parts": {
+            "Label": {
+              "content": {
+                "prop": "label"
+              },
+              "tokens": {
+                "color": "{color.bleu-gris}"
+              }
+            },
+            "MentionOptionnelle": {
+              "text": "(optionnel)",
+              "tokens": {
+                "color": "{color.bleu-gris}"
+              }
+            }
+          }
+        },
+        "Saisie": {
+          "slot": {
+            "name": "children",
+            "accepts": [
+              "ds.input",
+              "ds.select",
+              "ds.textarea"
+            ],
+            "acceptsMode": "prefer",
+            "defaultContent": [
+              {
+                "id": "ds.input",
+                "props": {
+                  "value": "Texte de saisie"
+                }
+              }
+            ],
+            "figmaProperty": "Saisie"
+          }
+        },
+        "messageErreur": {
+          "text": "Message d’erreur",
+          "tokens": {
+            "color": "{color.rouge}"
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "erreur"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
+      "nodeId": "2056:1278"
+    },
+    "code": {
+      "importPath": "src/components/Field",
+      "export": "Field"
+    }
+  }
+}

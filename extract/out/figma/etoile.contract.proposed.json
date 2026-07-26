@@ -1,0 +1,35 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.etoile",
+  "name": "Etoile",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "trac": {
+          "tokens": {
+            "background-color": "{color.orange}"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "db3d036dbc1284c356fef54113b29afab9d6580a",
+      "nodeId": "2053:1263"
+    },
+    "code": {
+      "importPath": "src/components/Etoile",
+      "export": "Etoile"
+    }
+  }
+}

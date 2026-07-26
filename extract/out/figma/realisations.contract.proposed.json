@@ -1,0 +1,206 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.realisations",
+  "name": "Realisations",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "enTete",
+      "type": {
+        "enum": [
+          "accroche",
+          "presentation"
+        ]
+      },
+      "default": "accroche",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "En-tete",
+          "values": {
+            "accroche": "Accroche",
+            "presentation": "Presentation"
+          }
+        },
+        "code": {
+          "prop": "enTete"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "blocEnTte": {
+          "layout": {
+            "direction": "row",
+            "justify": "center",
+            "align": "end"
+          },
+          "parts": {
+            "SectionHeader": {
+              "component": {
+                "id": "ds.section-header",
+                "props": {
+                  "accroche2": false,
+                  "titre": "Nos réalisations industrielles et installations de qualité ",
+                  "accroche": "Plus de 50 ans d’expérience",
+                  "disposition": "standard"
+                }
+              },
+              "visibleWhen": {
+                "prop": "enTete",
+                "equals": "presentation"
+              }
+            },
+            "wrapper": {
+              "layout": {
+                "direction": "column",
+                "align": "stretch"
+              },
+              "parts": {
+                "Texte": {
+                  "text": "Personnalisez votre porte industrielle grâce à nos solutions sur mesure, parfaitement intégrées à votre façade. Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit) ou des sections vitrées, nos portes garantissent une robustesse exceptionnelle et une très longue durée de vie.",
+                  "tokens": {
+                    "color": "{color.noir}"
+                  },
+                  "visibleWhen": {
+                    "prop": "enTete",
+                    "equals": "presentation"
+                  }
+                }
+              },
+              "visibleWhen": {
+                "prop": "enTete",
+                "equals": "presentation"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "enTete",
+            "equals": "presentation"
+          }
+        },
+        "SectionHeaderAccroche": {
+          "component": {
+            "id": "ds.section-header",
+            "props": {
+              "accroche2": true,
+              "titre": "Quelques réalisations Piqueray",
+              "accroche": "Des installations de qualité",
+              "disposition": "standard"
+            }
+          },
+          "visibleWhen": {
+            "prop": "enTete",
+            "equals": "accroche"
+          }
+        },
+        "grid": {
+          "layout": {
+            "direction": "row"
+          },
+          "parts": {
+            "Realisation": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "grand"
+                }
+              }
+            },
+            "realisation2": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            },
+            "realisation3": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            },
+            "realisation4": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            },
+            "realisation5": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            },
+            "realisation6": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            },
+            "realisation7": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            },
+            "realisation8": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            },
+            "realisation9": {
+              "component": {
+                "id": "ds.realisation",
+                "props": {
+                  "taille": "petit"
+                }
+              }
+            }
+          }
+        }
+      },
+      "tokens": {
+        "background-color": "{color.bleu-clair}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "4a89264afa90d95c324efcdace47f1caf5617e62",
+      "nodeId": "2117:4691"
+    },
+    "code": {
+      "importPath": "src/components/Realisations",
+      "export": "Realisations"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "date": "2026-07-26",
+  "procedure": "figma_execute direct (loadAllPagesAsync + findAllWithCriteria sur les 55 masters). Périmètre identique à T008 : les 55 masters, jamais l'intérieur des instances (walk() bascule inInstance=true au premier INSTANCE rencontré et ne redescend jamais).",
+  "a_calques_nommes_par_contenu": {
+    "regle": "FR-005/SC-017 — un nœud TEXT hors instance dont node.name === node.characters, ou en est un préfixe/troncature (avec ou sans ellipse finale).",
+    "denominateur_etabli_ici": 30,
+    "note": "Aucun nombre n'était documenté avant ce relevé (data-model.md : « c'est le compte de départ que la spec ne donne pas »). 30 devient le dénominateur de SC-017.",
+    "detail": [
+      { "master": "Input", "nodeId": "2053:1246", "layerName": "Texte de saisie" },
+      { "master": "Textarea", "nodeId": "2053:1248", "layerName": "Texte de saisie" },
+      { "master": "Select", "nodeId": "2053:1250", "layerName": "Texte de saisie" },
+      { "master": "Bouton", "nodeId": "6:95", "layerName": "Contactez-nous" },
+      { "master": "Bouton", "nodeId": "6:125", "layerName": "Contactez-nous" },
+      { "master": "Bouton", "nodeId": "6:131", "layerName": "Contactez-nous" },
+      { "master": "Bouton", "nodeId": "6:137", "layerName": "Contactez-nous" },
+      { "master": "Bouton", "nodeId": "9:208", "layerName": "Contactez-nous" },
+      { "master": "Bouton", "nodeId": "28:116", "layerName": "Contactez-nous" },
+      { "master": "Field", "nodeId": "2056:1268", "layerName": "(optionnel)" },
+      { "master": "Field", "nodeId": "2056:1274", "layerName": "(optionnel)" },
+      { "master": "Formulaire", "nodeId": "2096:2562", "layerName": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité." },
+      { "master": "Présentation", "nodeId": "2103:2821", "layerName": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège…" },
+      { "master": "Coordonnées", "nodeId": "2104:2884", "layerName": "Adresse" },
+      { "master": "Coordonnées", "nodeId": "2104:2885", "layerName": "Rue Alfred Drèze 7, 4860 Pepinster" },
+      { "master": "Coordonnées", "nodeId": "2104:2887", "layerName": "Horaires" },
+      { "master": "Coordonnées", "nodeId": "2104:2888", "layerName": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00" },
+      { "master": "Coordonnées", "nodeId": "2104:2890", "layerName": "Contact" },
+      { "master": "Coordonnées", "nodeId": "2104:2893", "layerName": "Suivez-nous" },
+      { "master": "Texte SEO", "nodeId": "2108:3116", "layerName": "Rien ne vaut le toucher et la vue pour choisir ses finitions…" },
+      { "master": "Texte SEO", "nodeId": "2108:3118", "layerName": "Infos pratiques" },
+      { "master": "Catégories principales", "nodeId": "2115:4165", "layerName": "Portes de garage résidentielles" },
+      { "master": "Catégories principales", "nodeId": "2115:4166", "layerName": "Sectionnelles, basculantes ou enroulables…" },
+      { "master": "Catégories principales", "nodeId": "2115:4173", "layerName": "Portes de garage industrielles" },
+      { "master": "Catégories principales", "nodeId": "2115:4174", "layerName": "Solutions robustes, rapides et sécurisées…" },
+      { "master": "Catégories principales", "nodeId": "2115:4249", "layerName": "Maintenance" },
+      { "master": "Catégories principales", "nodeId": "2115:4250", "layerName": "Mieux vaut prévenir que guérir !…" },
+      { "master": "Réalisations", "nodeId": "2117:4679", "layerName": "Personnalisez votre porte industrielle…" },
+      { "master": "Footer", "nodeId": "2120:4773", "layerName": "Suivez-nous" },
+      { "master": "Hero vidéo", "nodeId": "210:333", "layerName": "Le numéro 1 des portes HÖRMANN en Province de Liège !" }
+    ],
+    "note_bouton": "Les 6 occurrences 'Contactez-nous' dans Bouton correspondent au calque TEXT interne dont la PROPRIÉTÉ porte déjà un nom propre (« Libellé »), mais dont le calque canvas lui-même n'a jamais été renommé — exactement le point que la 005 avait explicitement laissé hors périmètre (decisions.md 005 : « toucher le nom du calque Libellé interne serait un débordement du périmètre écrit »). FR-005 le couvre maintenant."
+  },
+  "b_valeurs_variant_non_ascii": {
+    "regle": "FR-003a/O3 — valeur de propriété VARIANT hors [A-Za-z0-9 _-].",
+    "attendu": 10,
+    "mesure": 10,
+    "verdict": "CONFIRMÉ EXACT — correspond ligne à ligne à la liste pré-établie de T014 (départ recherche).",
+    "detail": [
+      { "set": "member-picture", "prop": "État", "value": "Défaut" },
+      { "set": "Accordion-row", "prop": "État", "value": "Fermé" },
+      { "set": "Tab", "prop": "État", "value": "Défaut" },
+      { "set": "Tab", "prop": "État", "value": "Sélectionné" },
+      { "set": "Carte", "prop": "Disposition", "value": "Réassurance" },
+      { "set": "Carte", "prop": "Disposition", "value": "Catégorie" },
+      { "set": "Réassurances", "prop": "Disposition", "value": "4 cartes · 2 CTA" },
+      { "set": "Catégories principales", "prop": "Disposition", "value": "Pleine largeur · 3 cartes" },
+      { "set": "Catégories principales", "prop": "Disposition", "value": "Pleine largeur · RDV" },
+      { "set": "Réalisations", "prop": "En-tête", "value": "Présentation" }
+    ]
+  },
+  "c_descriptions_composant": {
+    "regle": "SC-018 — état des descriptions de composant avant tout geste FR-006a.",
+    "mesure": "55/55 masters portent DÉJÀ une description non vide.",
+    "verdict": "Résout la question ouverte de data-model.md (« combien de masters en portent une, et laquelle ») : TOUS. Le geste FR-006a de US1 sera donc un AJOUT de l'orthographe accentuée à une description existante et substantielle, jamais une création depuis vide — à traiter avec soin pour ne pas écraser le contenu déjà écrit (audits, limites connues, décisions historiques y sont documentées).",
+    "echantillon_notable": [
+      "octicon:chevron-down-12 : description porte déjà la décision d'adoption léguée à la Spec B (FR-038, spec 005) — ne pas écraser.",
+      "Bouton : description porte déjà la limite connue du menu swap (13/16 icônes) — ne pas écraser.",
+      "Field : description porte déjà le token color/rouge (T039) — ne pas écraser."
+    ]
+  }
+}

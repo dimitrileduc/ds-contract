@@ -1,0 +1,35 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.external-link",
+  "name": "ExternalLink",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "trac": {
+          "tokens": {
+            "background-color": "{color.noir-bleute}"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "a3820c3581b97b107cf1b3f34af63bb7d284978c",
+      "nodeId": "9:185"
+    },
+    "code": {
+      "importPath": "src/components/ExternalLink",
+      "export": "ExternalLink"
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.r-assurances",
+  "name": "RAssurances",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": {
+        "enum": [
+          "4Cartes",
+          "4Cartes·2Cta",
+          "5Cartes"
+        ]
+      },
+      "default": "4Cartes",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Disposition",
+          "values": {
+            "4Cartes": "4 cartes",
+            "4Cartes·2Cta": "4 cartes · 2 CTA",
+            "5Cartes": "5 cartes"
+          }
+        },
+        "code": {
+          "prop": "disposition"
+        }
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "texte": "text",
+          "titre": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "sectionHeader": {
+          "component": {
+            "id": "ds.section-header",
+            "props": {
+              "accroche2": true,
+              "titre": "Pourquoi choisir nos portes de garage industrielles ?",
+              "accroche": "Plus de 50 ans d’expérience",
+              "disposition": "standard"
+            }
+          }
+        },
+        "items": {
+          "layout": {
+            "direction": "row",
+            "justify": "center"
+          },
+          "parts": {
+            "Carte": {
+              "component": {
+                "id": "ds.carte",
+                "props": {
+                  "disposition": "réassurance"
+                }
+              },
+              "repeat": {
+                "itemsProp": "items",
+                "sample": [
+                  {
+                    "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+                    "titre": "Sécurité et conformité"
+                  },
+                  {
+                    "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+                    "titre": "Intégration parfaite"
+                  },
+                  {
+                    "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+                    "titre": "Moteur performant"
+                  },
+                  {
+                    "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
+                    "titre": "SAV & maintenance dédiés"
+                  },
+                  {
+                    "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
+                    "titre": "Expérience"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Boutons": {
+          "layout": {
+            "direction": "row"
+          },
+          "parts": {
+            "Bouton": {
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "children": "Motifs disponibles",
+                  "iconRight": true,
+                  "iconLeft": true
+                }
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "4Cartes·2Cta"
+              }
+            },
+            "bouton2": {
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "children": "Contactez-nous",
+                  "iconRight": true,
+                  "iconLeft": false
+                }
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "4Cartes·2Cta"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "4Cartes·2Cta"
+          }
+        },
+        "Bouton2": {
+          "component": {
+            "id": "ds.button",
+            "props": {
+              "children": "Contactez-nous",
+              "iconRight": true,
+              "iconLeft": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8",
+      "nodeId": "2114:3721"
+    },
+    "code": {
+      "importPath": "src/components/RAssurances",
+      "export": "RAssurances"
+    }
+  }
+}
