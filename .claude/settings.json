@@ -6,5 +6,29 @@
       "Bash(npx tsc *)",
       "Bash(node scripts/core-browser-check.mjs)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__figma-console__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-visual-proof.sh\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__figma-console__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/figma-visual-proof.sh\""
+          }
+        ]
+      }
+    ]
   }
 }
