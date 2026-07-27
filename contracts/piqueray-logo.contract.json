@@ -15,7 +15,10 @@
       "name": "couleur",
       "description": "Color variant: default (orange mark + blue text) or white (all white for dark backgrounds). Extracted from the VARIANT property « Couleur » on the Figma master.",
       "type": {
-        "enum": ["default", "blanc"]
+        "enum": [
+          "default",
+          "blanc"
+        ]
       },
       "default": "default",
       "bindings": {
@@ -152,6 +155,9 @@
             }
           }
         }
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}"
       }
     }
   },

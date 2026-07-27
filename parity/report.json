@@ -1,11 +1,226 @@
 {
   "summary": {
-    "total": 0,
+    "total": 13,
     "acknowledged": 2,
     "pending": 0,
-    "bySurface": {}
+    "bySurface": {
+      "figma": {
+        "behind": 3,
+        "ahead": 9,
+        "mismatch": 1
+      }
+    }
   },
-  "findings": [],
+  "findings": [
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Avantage.PiquerayLogo",
+      "detail": "Contract composes ds.piqueray-logo but no PiquerayLogo instance exists inside the Figma component",
+      "remedy": "Re-run the component sync script"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "Carte.Bouton",
+      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
+      "remedy": "Re-run the component sync script"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Coordonnees.Accroche",
+      "detail": "Figma set declares TEXT property \"Accroche\" the contract does not define",
+      "proposedPatch": {
+        "name": "accroche",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Accroche"
+          },
+          "code": {
+            "prop": "accroche"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Coordonnees.Titre",
+      "detail": "Figma set declares TEXT property \"Titre\" the contract does not define",
+      "proposedPatch": {
+        "name": "titre",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Titre"
+          },
+          "code": {
+            "prop": "titre"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "FAQ.Ligne 3",
+      "detail": "Figma set declares BOOLEAN property \"Ligne 3\" the contract does not define",
+      "proposedPatch": {
+        "name": "ligne 3",
+        "type": "boolean",
+        "bindings": {
+          "figma": {
+            "kind": "BOOLEAN",
+            "property": "Ligne 3"
+          },
+          "code": {
+            "prop": "ligne 3"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Field.Optionnel",
+      "detail": "Figma set declares BOOLEAN property \"Optionnel\" the contract does not define",
+      "proposedPatch": {
+        "name": "optionnel",
+        "type": "boolean",
+        "bindings": {
+          "figma": {
+            "kind": "BOOLEAN",
+            "property": "Optionnel"
+          },
+          "code": {
+            "prop": "optionnel"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Formulaire.Accroche",
+      "detail": "Figma set declares TEXT property \"Accroche\" the contract does not define",
+      "proposedPatch": {
+        "name": "accroche",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Accroche"
+          },
+          "code": {
+            "prop": "accroche"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Formulaire.Titre",
+      "detail": "Figma set declares TEXT property \"Titre\" the contract does not define",
+      "proposedPatch": {
+        "name": "titre",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Titre"
+          },
+          "code": {
+            "prop": "titre"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "Presentation.Texte (default)",
+      "detail": "Default differs — contract: \"Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd hui dirigée par Florian et Cécilia Piqueray, l entreprise perpétue les valeurs de proximité et d excellence technique. Dépositaire officiel Hörmann, nous allions la force d un leader mondial à la souplesse d une PME locale.\", figma: \"Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.\"",
+      "remedy": "Adopt into contract (promotion) or reset the property default"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "Presentation.Titre",
+      "detail": "Figma set declares TEXT property \"Titre\" the contract does not define",
+      "proposedPatch": {
+        "name": "titre",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Titre"
+          },
+          "code": {
+            "prop": "titre"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "SAV.Titre",
+      "detail": "Figma set declares TEXT property \"Titre\" the contract does not define",
+      "proposedPatch": {
+        "name": "titre",
+        "type": "text",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Titre"
+          },
+          "code": {
+            "prop": "titre"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
+      "classification": "behind",
+      "subject": "SectionHeader.Bouton",
+      "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
+      "remedy": "Re-run the component sync script"
+    },
+    {
+      "surface": "figma",
+      "classification": "ahead",
+      "subject": "SectionHeader.Accroche2",
+      "detail": "Figma set declares BOOLEAN property \"Accroche2\" the contract does not define",
+      "proposedPatch": {
+        "name": "accroche2",
+        "type": "boolean",
+        "bindings": {
+          "figma": {
+            "kind": "BOOLEAN",
+            "property": "Accroche2"
+          },
+          "code": {
+            "prop": "accroche2"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    }
+  ],
   "acknowledged": [
     {
       "surface": "figma-tokens",
@@ -24,13 +239,40 @@
   ],
   "pending": [],
   "checkedContracts": [
-    "ds.button@1.5.1",
+    "ds.accordion-row@1.0.0",
+    "ds.avantage@1.0.0",
+    "ds.button@1.5.2",
+    "ds.carousel-controls@1.0.0",
+    "ds.carte@1.0.0",
     "ds.checkbox@1.0.1",
+    "ds.coordonnees@1.0.0",
+    "ds.copyright@1.0.0",
+    "ds.devis@1.0.0",
+    "ds.equipe@1.0.0",
+    "ds.faq@1.0.0",
+    "ds.field@1.0.0",
+    "ds.footer-column@1.0.0",
+    "ds.footer@1.0.0",
+    "ds.formulaire@1.0.0",
     "ds.google-reviews@1.0.0",
+    "ds.header@1.0.0",
+    "ds.hero@1.0.0",
     "ds.input@1.0.0",
+    "ds.member-card@1.0.0",
+    "ds.member-picture@1.0.0",
+    "ds.nav-item@1.0.0",
+    "ds.piqueray-logo@1.0.0",
+    "ds.presentation@1.0.0",
+    "ds.product-card@1.0.0",
+    "ds.realisation@1.0.0",
+    "ds.reassurances@1.0.0",
     "ds.review-card@1.0.0",
+    "ds.sav@1.0.0",
+    "ds.section-header@1.0.0",
     "ds.select@1.0.0",
-    "ds.textarea@1.0.0"
+    "ds.tab@1.0.0",
+    "ds.textarea@1.0.0",
+    "ds.texte-seo@1.0.0"
   ],
   "namingBridges": [
     "mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\""

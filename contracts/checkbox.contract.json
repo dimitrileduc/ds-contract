@@ -14,7 +14,10 @@
     {
       "name": "checked",
       "type": {
-        "enum": ["non", "oui"]
+        "enum": [
+          "non",
+          "oui"
+        ]
       },
       "default": "non",
       "bindings": {
@@ -42,7 +45,8 @@
         "justify": "center"
       },
       "tokens": {
-        "border-width": "{border-width.2}"
+        "border-width": "{border-width.2}",
+        "font-family": "{font.family.montserrat}"
       },
       "literals": {
         "width": "20px",
