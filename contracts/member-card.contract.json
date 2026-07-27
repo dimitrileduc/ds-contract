@@ -1,0 +1,98 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.member-card",
+  "name": "MemberCard",
+  "version": "1.0.0",
+  "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "nom",
+      "type": "text",
+      "default": "Cécilia Piqueray",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Nom"
+        },
+        "code": {
+          "prop": "nom"
+        }
+      }
+    },
+    {
+      "name": "poste",
+      "type": "text",
+      "default": "Gérante",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Poste"
+        },
+        "code": {
+          "prop": "poste"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "MemberPicture": {
+          "component": {
+            "id": "ds.member-picture",
+            "props": {
+              "etat": "defaut"
+            }
+          }
+        },
+        "text": {
+          "layout": {
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "Nom": {
+              "content": {
+                "prop": "nom"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              }
+            },
+            "Poste": {
+              "content": {
+                "prop": "poste"
+              },
+              "tokens": {
+                "color": "{color.orange}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
+      "nodeId": "2074:2072",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/MemberCard",
+      "export": "MemberCard"
+    }
+  },
+  "category": "molecule"
+}

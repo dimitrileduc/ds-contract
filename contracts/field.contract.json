@@ -1,0 +1,123 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.field",
+  "name": "Field",
+  "version": "1.0.0",
+  "description": "Piqueray Field. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "normal",
+          "erreur"
+        ]
+      },
+      "default": "normal",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "normal": "Normal",
+            "erreur": "Erreur"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    },
+    {
+      "name": "label",
+      "type": "text",
+      "default": "Libellé",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Label"
+        },
+        "code": {
+          "prop": "label"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "parts": {
+        "label": {
+          "layout": {
+            "direction": "row"
+          },
+          "parts": {
+            "Label": {
+              "content": {
+                "prop": "label"
+              },
+              "tokens": {
+                "color": "{color.bleu-gris}"
+              }
+            },
+            "MentionOptionnelle": {
+              "text": "(optionnel)",
+              "tokens": {
+                "color": "{color.bleu-gris}"
+              }
+            }
+          }
+        },
+        "Saisie": {
+          "slot": {
+            "name": "children",
+            "accepts": [
+              "ds.input",
+              "ds.select",
+              "ds.textarea"
+            ],
+            "acceptsMode": "prefer",
+            "defaultContent": [
+              {
+                "id": "ds.input",
+                "props": {
+                  "value": "Texte de saisie"
+                }
+              }
+            ],
+            "figmaProperty": "Saisie"
+          }
+        },
+        "messageErreur": {
+          "text": "Message d’erreur",
+          "tokens": {},
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "erreur"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
+      "nodeId": "2056:1278",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Field",
+      "export": "Field"
+    }
+  },
+  "category": "molecule"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "ds.carte",
+  "name": "Carte",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "molecule",
+  "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": [
+        "reassurance",
+        "categorie"
+      ],
+      "default": "reassurance"
+    },
+    {
+      "name": "titre",
+      "type": "string",
+      "default": "Pour portes de garage"
+    },
+    {
+      "name": "texte",
+      "type": "string",
+      "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.footer-column",
+  "name": "FooterColumn",
+  "version": "1.0.0",
+  "description": "Piqueray FooterColumn. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Adresse",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "texte",
+      "type": "text",
+      "default": "Rue Alfred Drèze 7,  4860 Pepinster",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Texte"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "parts": {
+        "Titre": {
+          "content": {
+            "prop": "titre"
+          },
+          "tokens": {
+            "color": "{color.orange}"
+          }
+        },
+        "Texte": {
+          "content": {
+            "prop": "texte"
+          },
+          "tokens": {
+            "color": "{color.blanc}"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "1de5585bfa55ff9e973748a4b2b99ef4b0a88cef",
+      "nodeId": "2079:2246",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/FooterColumn",
+      "export": "FooterColumn"
+    }
+  },
+  "category": "molecule"
+}

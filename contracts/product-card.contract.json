@@ -1,0 +1,105 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.product-card",
+  "name": "ProductCard",
+  "version": "1.0.0",
+  "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Télécommande Hörmann HSE4-868BS",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "prix",
+      "type": "text",
+      "default": "74,99€",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Prix"
+        },
+        "code": {
+          "prop": "prix"
+        }
+      }
+    },
+    {
+      "name": "bouton",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Bouton"
+        },
+        "code": {
+          "prop": "bouton"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "Image": {},
+        "Titre": {
+          "content": {
+            "prop": "titre"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          }
+        },
+        "Prix": {
+          "content": {
+            "prop": "prix"
+          },
+          "tokens": {
+            "color": "{color.bleu}"
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button"
+          },
+          "visibleWhen": {
+            "prop": "bouton"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
+      "nodeId": "2068:1972",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/ProductCard",
+      "export": "ProductCard"
+    }
+  },
+  "category": "molecule"
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.tab",
+  "name": "Tab",
+  "version": "1.0.0",
+  "description": "Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "defaut",
+          "selectionne"
+        ]
+      },
+      "default": "defaut",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "defaut": "Defaut",
+            "selectionne": "Selectionne"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    },
+    {
+      "name": "libelle",
+      "type": "text",
+      "default": "Onglet",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Libelle"
+        },
+        "code": {
+          "prop": "libelle"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "libell": {
+          "content": {
+            "prop": "libelle"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "c5fa537d17c544114dc780ba11bbf1157fedba37",
+      "nodeId": "2061:1588",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Tab",
+      "export": "Tab"
+    }
+  },
+  "category": "molecule"
+}

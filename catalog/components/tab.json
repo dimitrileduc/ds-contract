@@ -1,0 +1,31 @@
+{
+  "id": "ds.tab",
+  "name": "Tab",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "molecule",
+  "description": "Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "c5fa537d17c544114dc780ba11bbf1157fedba37"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": [
+        "defaut",
+        "selectionne"
+      ],
+      "default": "defaut"
+    },
+    {
+      "name": "libelle",
+      "type": "string",
+      "default": "Onglet"
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

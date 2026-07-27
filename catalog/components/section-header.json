@@ -1,0 +1,36 @@
+{
+  "id": "ds.section-header",
+  "name": "SectionHeader",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "molecule",
+  "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": [
+        "standard",
+        "avecCta"
+      ],
+      "default": "standard"
+    },
+    {
+      "name": "accroche",
+      "type": "string",
+      "default": "Plus de 50 ans d’expérience"
+    },
+    {
+      "name": "titre",
+      "type": "string",
+      "default": "Pourquoi choisir Piqueray ?"
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.realisation",
+  "name": "Realisation",
+  "version": "1.0.0",
+  "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "taille",
+      "type": {
+        "enum": [
+          "grand",
+          "petit"
+        ]
+      },
+      "default": "grand",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Taille",
+          "values": {
+            "grand": "Grand",
+            "petit": "Petit"
+          }
+        },
+        "code": {
+          "prop": "taille"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "tokens": {}
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43",
+      "nodeId": "2095:2484",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Realisation",
+      "export": "Realisation"
+    }
+  },
+  "category": "molecule"
+}

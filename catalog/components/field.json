@@ -1,0 +1,37 @@
+{
+  "id": "ds.field",
+  "name": "Field",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "molecule",
+  "description": "Piqueray Field. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": [
+        "normal",
+        "erreur"
+      ],
+      "default": "normal"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "default": "Libellé"
+    }
+  ],
+  "children": {
+    "kind": "slot",
+    "accepts": [
+      "Input",
+      "Select",
+      "Textarea"
+    ],
+    "acceptsMode": "prefer"
+  },
+  "slots": []
+}

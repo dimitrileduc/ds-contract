@@ -1,0 +1,204 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.accordion-row",
+  "name": "AccordionRow",
+  "version": "1.0.0",
+  "description": "Piqueray AccordionRow. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "taille",
+      "type": {
+        "enum": [
+          "grand",
+          "petit"
+        ]
+      },
+      "default": "grand",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Taille",
+          "values": {
+            "grand": "Grand",
+            "petit": "Petit"
+          }
+        },
+        "code": {
+          "prop": "taille"
+        }
+      }
+    },
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "ferme",
+          "ouvert"
+        ]
+      },
+      "default": "ferme",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "ferme": "Ferme",
+            "ouvert": "Ouvert"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Question",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "contenu",
+      "type": "text",
+      "default": "Réponse",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Contenu"
+        },
+        "code": {
+          "prop": "contenu"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "space-between",
+        "align": "center"
+      },
+      "layoutByProp": {
+        "prop": "etat",
+        "map": {
+          "ouvert": {
+            "direction": "column",
+            "justify": "start",
+            "align": "start"
+          }
+        }
+      },
+      "parts": {
+        "title": {
+          "layout": {
+            "direction": "row",
+            "justify": "space-between",
+            "align": "center",
+            "grow": true
+          },
+          "parts": {
+            "TitreOuvert": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              },
+              "visibleWhen": {
+                "prop": "etat",
+                "equals": "ouvert"
+              }
+            },
+            "ChevronUp": {
+              "icon": {
+                "asset": "chevron-up",
+                "size": 32
+              },
+              "visibleWhen": {
+                "prop": "etat",
+                "equals": "ouvert"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ouvert"
+          }
+        },
+        "Contenu": {
+          "content": {
+            "prop": "contenu"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ouvert"
+          }
+        },
+        "Titre": {
+          "content": {
+            "prop": "titre"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ferme"
+          }
+        },
+        "ChevronDown": {
+          "icon": {
+            "asset": "chevron-down",
+            "size": 32
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ferme"
+          }
+        }
+      },
+      "tokensByProp": {
+        "prop": "taille",
+        "map": {
+          "petit": {
+            "border-color": "{color.noir-bleute}"
+          }
+        }
+      },
+      "tokens": {
+        "border-color": "{color.noir-bleute}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
+      "nodeId": "2059:1417",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/AccordionRow",
+      "export": "AccordionRow"
+    }
+  },
+  "category": "molecule"
+}

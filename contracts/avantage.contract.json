@@ -1,0 +1,93 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.avantage",
+  "name": "Avantage",
+  "version": "1.0.0",
+  "description": "Piqueray Avantage. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Conseils personnalisés",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "texte",
+      "type": "text",
+      "default": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Texte"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row"
+      },
+      "parts": {
+        "Piqueray": {
+          "component": {
+            "id": "ds.piqueray-logo"
+          }
+        },
+        "text": {
+          "layout": {
+            "direction": "column"
+          },
+          "parts": {
+            "Titre": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              }
+            },
+            "Texte": {
+              "content": {
+                "prop": "texte"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
+      "nodeId": "2088:2350",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Avantage",
+      "export": "Avantage"
+    }
+  },
+  "category": "molecule"
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.nav-item",
+  "name": "NavItem",
+  "version": "1.0.0",
+  "description": "Piqueray NavItem. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "chevron",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Chevron"
+        },
+        "code": {
+          "prop": "chevron"
+        }
+      }
+    },
+    {
+      "name": "actif",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Actif"
+        },
+        "code": {
+          "prop": "actif"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "align": "center"
+      },
+      "parts": {
+        "libell": {
+          "text": "Portes de garage",
+          "tokens": {
+            "color": "{color.blanc}"
+          }
+        },
+        "OcticonChevronDown12": {
+          "visibleWhen": {
+            "prop": "chevron"
+          },
+          "icon": {
+            "asset": "octicon-chevron-down12",
+            "size": 16
+          }
+        },
+        "Soulignement": {
+          "tokens": {
+            "background-color": "{color.blanc}"
+          },
+          "visibleWhen": {
+            "prop": "actif"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "bb5fff155aa25e719d1b9e38dedc767d677b4471",
+      "nodeId": "2152:5554",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/NavItem",
+      "export": "NavItem"
+    }
+  },
+  "category": "molecule"
+}

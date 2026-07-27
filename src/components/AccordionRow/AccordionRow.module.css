@@ -1,0 +1,65 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  --dsc-border-color: var(--color-noir-bleute);
+}
+
+.taille-petit {
+  --dsc-border-color: var(--color-noir-bleute);
+}
+
+.etat-ouvert {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.TitreOuvert {
+  color: var(--color-noir-bleute);
+}
+
+.ChevronUp svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ChevronUp {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.Contenu {
+  color: var(--color-noir-bleute);
+}
+
+.Titre {
+  color: var(--color-noir-bleute);
+}
+
+.ChevronDown svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ChevronDown {
+  display: inline-flex;
+  flex-shrink: 0;
+}

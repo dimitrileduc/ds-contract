@@ -1,0 +1,29 @@
+{
+  "id": "ds.realisation",
+  "name": "Realisation",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "molecule",
+  "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43"
+  },
+  "props": [
+    {
+      "name": "taille",
+      "type": [
+        "grand",
+        "petit"
+      ],
+      "default": "grand"
+    }
+  ],
+  "children": {
+    "kind": "slot",
+    "accepts": [],
+    "acceptsMode": "open",
+    "description": "Any catalog content."
+  },
+  "slots": []
+}

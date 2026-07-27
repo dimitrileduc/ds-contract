@@ -1,0 +1,44 @@
+{
+  "id": "ds.accordion-row",
+  "name": "AccordionRow",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "molecule",
+  "description": "Piqueray AccordionRow. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d"
+  },
+  "props": [
+    {
+      "name": "taille",
+      "type": [
+        "grand",
+        "petit"
+      ],
+      "default": "grand"
+    },
+    {
+      "name": "etat",
+      "type": [
+        "ferme",
+        "ouvert"
+      ],
+      "default": "ferme"
+    },
+    {
+      "name": "titre",
+      "type": "string",
+      "default": "Question"
+    },
+    {
+      "name": "contenu",
+      "type": "string",
+      "default": "Réponse"
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

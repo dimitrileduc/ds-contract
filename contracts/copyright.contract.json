@@ -1,0 +1,59 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.copyright",
+  "name": "Copyright",
+  "version": "1.0.0",
+  "description": "Piqueray Copyright. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "texte",
+      "type": "text",
+      "default": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Texte"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "parts": {
+        "Texte": {
+          "content": {
+            "prop": "texte"
+          },
+          "tokens": {
+            "color": "{color.blanc}"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "314cd2368d8d019fec33b60eb8995fac453d0e9f",
+      "nodeId": "2086:2330",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Copyright",
+      "export": "Copyright"
+    }
+  },
+  "category": "molecule"
+}
