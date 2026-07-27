@@ -18,7 +18,7 @@ import iconRegistryJson from '../../contracts/icons.registry.json';
 // Catalog
 // ---------------------------------------------------------------------------
 
-export type PropType = string[] | 'boolean' | 'string';
+export type PropType = string[] | 'boolean' | 'string' | { arrayOf: Record<string, string> };
 
 export interface CatalogProp {
   name: string;

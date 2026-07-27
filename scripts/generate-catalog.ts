@@ -72,12 +72,15 @@ const byId = new Map(contracts.map((c) => [c.id, c]));
 const isEnum = (p: Prop): p is Prop & { type: { enum: string[] } } =>
   typeof p.type === 'object' && 'enum' in p.type;
 
+const isArrayOf = (p: Prop): p is Prop & { type: { arrayOf: Record<string, string> } } =>
+  typeof p.type === 'object' && 'arrayOf' in p.type;
+
 function catalogProps(contract: Contract) {
   return contract.props
     .filter((p) => p.bindings.code.prop !== 'children')
     .map((p) => ({
       name: p.bindings.code.prop,
-      type: isEnum(p) ? p.type.enum : p.type === 'boolean' ? 'boolean' : 'string',
+      type: isEnum(p) ? p.type.enum : isArrayOf(p) ? { arrayOf: p.type.arrayOf } : p.type === 'boolean' ? 'boolean' : 'string',
       ...(p.default !== undefined ? { default: p.default } : {}),
       ...(p.required ? { required: true } : {}),
       ...(p.description ? { description: p.description } : {}),

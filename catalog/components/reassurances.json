@@ -21,7 +21,12 @@
     },
     {
       "name": "items",
-      "type": "string"
+      "type": {
+        "arrayOf": {
+          "texte": "text",
+          "titre": "text"
+        }
+      }
     }
   ],
   "children": {

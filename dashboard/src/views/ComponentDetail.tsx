@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import React from 'react';
 import type { ReactNode } from 'react';
 import { ExternalLink } from 'lucide-react';
 import {
@@ -211,6 +212,22 @@ function TokenValue({ dotPath }: { dotPath: string }) {
 
 /* -------------------------------------------------------------- playground */
 
+class PlaygroundErrorBoundary extends React.Component<{ children: ReactNode }, { error: Error | null }> {
+  constructor(props: { children: ReactNode }) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(error: Error) { return { error }; }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="bg-destructive/10 rounded-lg border border-destructive p-4 text-sm">
+          <p className="font-semibold text-destructive">Preview render error</p>
+          <pre className="text-muted-foreground mt-1 text-xs">{this.state.error.message}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 function Playground({ entry }: { entry: ComponentEntry }) {
   const [props, setProps] = useState<Record<string, unknown>>({});
   const [childText, setChildText] = useState('');
@@ -219,7 +236,7 @@ function Playground({ entry }: { entry: ComponentEntry }) {
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-end gap-x-4 gap-y-2">
-        {entry.props.map((p) =>
+        {entry.props.filter(p => typeof p.type !== 'object' || Array.isArray(p.type)).map((p) =>
           Array.isArray(p.type) ? (
             <div key={p.name} className="space-y-1">
               <Label htmlFor={`pg-${p.name}`} className="text-muted-foreground block text-xs">{p.name}</Label>
@@ -269,7 +286,9 @@ function Playground({ entry }: { entry: ComponentEntry }) {
         key={JSON.stringify(props) + '|' + (childText ?? '')}
         className="bg-background overflow-x-auto rounded-lg border border-dashed p-6"
       >
-        {renderSample(entry.name, props, childText || undefined)}
+        <PlaygroundErrorBoundary>
+          {renderSample(entry.name, props, childText || undefined)}
+        </PlaygroundErrorBoundary>
       </div>
       <p className="text-muted-foreground text-xs">
         Live render of the real generated component from <code>src/components/{entry.name}</code> — the controls above are

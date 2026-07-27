@@ -12,7 +12,12 @@
   "props": [
     {
       "name": "items",
-      "type": "string"
+      "type": {
+        "arrayOf": {
+          "contenu": "text",
+          "titre": "text"
+        }
+      }
     }
   ],
   "children": {

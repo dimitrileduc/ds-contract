@@ -20,7 +20,11 @@
     },
     {
       "name": "items",
-      "type": "string"
+      "type": {
+        "arrayOf": {
+          "chevron": "boolean"
+        }
+      }
     }
   ],
   "children": {

@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "4de12ee",
+    "gitCommit": "c7c8e8b",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -575,7 +575,12 @@
       "props": [
         {
           "name": "items",
-          "type": "string"
+          "type": {
+            "arrayOf": {
+              "poste": "text",
+              "nom": "text"
+            }
+          }
         }
       ],
       "children": {
@@ -597,7 +602,12 @@
       "props": [
         {
           "name": "items",
-          "type": "string"
+          "type": {
+            "arrayOf": {
+              "contenu": "text",
+              "titre": "text"
+            }
+          }
         }
       ],
       "children": {
@@ -753,7 +763,12 @@
       "props": [
         {
           "name": "items",
-          "type": "string"
+          "type": {
+            "arrayOf": {
+              "texte": "text",
+              "titre": "text"
+            }
+          }
         }
       ],
       "children": {
@@ -780,7 +795,12 @@
         },
         {
           "name": "items",
-          "type": "string"
+          "type": {
+            "arrayOf": {
+              "texte": "text",
+              "titre": "text"
+            }
+          }
         }
       ],
       "children": {
@@ -897,7 +917,20 @@
         },
         {
           "name": "avis",
-          "type": "string",
+          "type": {
+            "arrayOf": {
+              "auteur": "text",
+              "initiale": "text",
+              "date": "text",
+              "texte": "text",
+              "tronque": "boolean",
+              "initialeVisible": "boolean",
+              "photo": "boolean",
+              "photoUrl": "text",
+              "photoAlt": "text",
+              "verifie": "boolean"
+            }
+          },
           "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010)."
         }
       ],
@@ -956,7 +989,11 @@
         },
         {
           "name": "items",
-          "type": "string"
+          "type": {
+            "arrayOf": {
+              "chevron": "boolean"
+            }
+          }
         }
       ],
       "children": {
@@ -1094,7 +1131,12 @@
         },
         {
           "name": "items",
-          "type": "string"
+          "type": {
+            "arrayOf": {
+              "texte": "text",
+              "titre": "text"
+            }
+          }
         }
       ],
       "children": {
@@ -1164,7 +1206,12 @@
       "props": [
         {
           "name": "items",
-          "type": "string"
+          "type": {
+            "arrayOf": {
+              "contenu": "text",
+              "titre": "text"
+            }
+          }
         }
       ],
       "children": {
