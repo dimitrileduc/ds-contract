@@ -1,0 +1,255 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.formulaire",
+  "name": "Formulaire",
+  "version": "1.0.0",
+  "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "consentement",
+      "type": "text",
+      "default": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Consentement"
+        },
+        "code": {
+          "prop": "consentement"
+        }
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "texte": "text",
+          "titre": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row"
+      },
+      "parts": {
+        "column": {
+          "layout": {
+            "direction": "column",
+            "grow": true
+          },
+          "parts": {
+            "SectionHeader": {
+              "component": {
+                "id": "ds.section-header",
+                "props": {
+                  "titre": "Prenez contact avec nous dès maintenant !",
+                  "accroche": "Une demande de devis ? Une réparation ?",
+                  "disposition": "standard"
+                }
+              }
+            },
+            "features": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "Avantage": {
+                  "component": {
+                    "id": "ds.avantage"
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
+                        "titre": "Conseils personnalisés"
+                      },
+                      {
+                        "texte": "Marque Hormann renommée, qualité allemande",
+                        "titre": "Produits de qualité"
+                      },
+                      {
+                        "texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais",
+                        "titre": "Dépannage et SAV"
+                      },
+                      {
+                        "texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
+                        "titre": "Expérience et savoir-faire"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "buttons": {
+              "layout": {
+                "direction": "row"
+              },
+              "parts": {
+                "FormArgumentBoutonA": {
+                  "component": {
+                    "id": "ds.button"
+                  }
+                },
+                "FormArgumentBoutonB": {
+                  "component": {
+                    "id": "ds.button"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "form": {
+          "layout": {
+            "direction": "column",
+            "grow": true
+          },
+          "tokens": {
+            "background-color": "{color.bleu-clair}"
+          },
+          "parts": {
+            "row": {
+              "layout": {
+                "direction": "row"
+              },
+              "parts": {
+                "FormRow1FieldA": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Prénom",
+                      "etat": "normal"
+                    }
+                  }
+                },
+                "FormRow1FieldB": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Nom",
+                      "etat": "normal"
+                    }
+                  }
+                }
+              }
+            },
+            "row2": {
+              "layout": {
+                "direction": "row"
+              },
+              "parts": {
+                "FormRow2FieldA": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Email",
+                      "etat": "normal"
+                    }
+                  }
+                },
+                "FormRow2FieldB": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Téléphone",
+                      "etat": "normal"
+                    }
+                  }
+                }
+              }
+            },
+            "row3": {
+              "layout": {
+                "direction": "row"
+              },
+              "parts": {
+                "FormRow3Field": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Adresse",
+                      "etat": "normal"
+                    }
+                  }
+                }
+              }
+            },
+            "row4": {
+              "layout": {
+                "direction": "row"
+              },
+              "parts": {
+                "FormRow4Field": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Sujet",
+                      "etat": "normal"
+                    }
+                  }
+                }
+              }
+            },
+            "row5": {
+              "layout": {
+                "direction": "row"
+              },
+              "parts": {
+                "FormRow5Field": {
+                  "component": {
+                    "id": "ds.field",
+                    "props": {
+                      "label": "Message",
+                      "etat": "normal"
+                    }
+                  }
+                }
+              }
+            },
+            "TexteConsentement": {
+              "content": {
+                "prop": "consentement"
+              }
+            },
+            "FormulaireBouton": {
+              "component": {
+                "id": "ds.button"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "b588bcccec2ae782382324bcda5fc257b91defd5",
+      "nodeId": "2096:2564",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Formulaire",
+      "export": "Formulaire"
+    }
+  },
+  "category": "section"
+}

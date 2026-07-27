@@ -1,0 +1,37 @@
+/**
+ * GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/footer.contract.json (ds.footer v1.0.0)
+ * Regenerate with: npm run generate
+ */
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Footer } from './Footer';
+
+const meta = {
+  title: 'Sections/Footer',
+  component: Footer,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.',
+      },
+    },
+  },
+  render: (args) => <Footer key={JSON.stringify(args)} {...args} />,
+  argTypes: {
+    items: { control: false },
+  },
+  args: {
+    items: [
+      { texte: 'Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be', titre: 'Contact' },
+      { texte: 'Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00', titre: 'Horaires' },
+      { texte: 'Rue Alfred Drèze 7,  4860 Pepinster', titre: 'Adresse' },
+    ],
+  },
+} satisfies Meta<typeof Footer>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Playground: Story = {};

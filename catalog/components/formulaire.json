@@ -1,0 +1,27 @@
+{
+  "id": "ds.formulaire",
+  "name": "Formulaire",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "b588bcccec2ae782382324bcda5fc257b91defd5"
+  },
+  "props": [
+    {
+      "name": "consentement",
+      "type": "string",
+      "default": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité."
+    },
+    {
+      "name": "items",
+      "type": "string"
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

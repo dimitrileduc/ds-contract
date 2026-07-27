@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "1e1a6bf",
+    "gitCommit": "4de12ee",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -408,6 +408,59 @@
       "slots": []
     },
     {
+      "id": "ds.section-header",
+      "name": "SectionHeader",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356"
+      },
+      "props": [
+        {
+          "name": "disposition",
+          "type": [
+            "standard",
+            "avecCta"
+          ],
+          "default": "standard"
+        },
+        {
+          "name": "accroche",
+          "type": "string",
+          "default": "Plus de 50 ans d’expérience"
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.coordonnees",
+      "name": "Coordonnees",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1"
+      },
+      "props": [],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
       "id": "ds.copyright",
       "name": "Copyright",
       "version": "1.0.0",
@@ -423,6 +476,128 @@
           "name": "texte",
           "type": "string",
           "default": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.devis",
+      "name": "Devis",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "0caac7487988d0da129211e64a40545163149a6f"
+      },
+      "props": [
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.member-picture",
+      "name": "MemberPicture",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "description": "Piqueray member picture. A circular avatar placeholder with two states: default (visible) and hover (overlay shown). Extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant drives a visual overlay (opacity 1→0 between defaut/survol). Corner radius 500px via literals (circular crop — no token carries unitless border-radius values at this scale). Opacity transition is a Figma-internal layering technique; the contract models both states as drawn.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f"
+      },
+      "props": [
+        {
+          "name": "etat",
+          "type": [
+            "defaut",
+            "survol"
+          ],
+          "default": "defaut",
+          "description": "Visual state: default (no overlay) or hover (overlay visible). Extracted from the VARIANT property « Etat » on the Figma master."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.member-card",
+      "name": "MemberCard",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8"
+      },
+      "props": [
+        {
+          "name": "nom",
+          "type": "string",
+          "default": "Cécilia Piqueray"
+        },
+        {
+          "name": "poste",
+          "type": "string",
+          "default": "Gérante"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.equipe",
+      "name": "Equipe",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Equipe. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "786b6f6634939b2081530949058eddf071b22ab1"
+      },
+      "props": [
+        {
+          "name": "items",
+          "type": "string"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.faq",
+      "name": "FAQ",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "0df659be188a72700e42e2afbf30e95bb38db5f1"
+      },
+      "props": [
+        {
+          "name": "items",
+          "type": "string"
         }
       ],
       "children": {
@@ -565,6 +740,55 @@
       "slots": []
     },
     {
+      "id": "ds.footer",
+      "name": "Footer",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b"
+      },
+      "props": [
+        {
+          "name": "items",
+          "type": "string"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.formulaire",
+      "name": "Formulaire",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "b588bcccec2ae782382324bcda5fc257b91defd5"
+      },
+      "props": [
+        {
+          "name": "consentement",
+          "type": "string",
+          "default": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité."
+        },
+        {
+          "name": "items",
+          "type": "string"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
       "id": "ds.review-card",
       "name": "ReviewCard",
       "version": "1.0.0",
@@ -683,61 +907,6 @@
       "slots": []
     },
     {
-      "id": "ds.member-picture",
-      "name": "MemberPicture",
-      "version": "1.0.0",
-      "status": "draft",
-      "category": "atom",
-      "description": "Piqueray member picture. A circular avatar placeholder with two states: default (visible) and hover (overlay shown). Extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant drives a visual overlay (opacity 1→0 between defaut/survol). Corner radius 500px via literals (circular crop — no token carries unitless border-radius values at this scale). Opacity transition is a Figma-internal layering technique; the contract models both states as drawn.",
-      "figma": {
-        "representation": "component",
-        "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f"
-      },
-      "props": [
-        {
-          "name": "etat",
-          "type": [
-            "defaut",
-            "survol"
-          ],
-          "default": "defaut",
-          "description": "Visual state: default (no overlay) or hover (overlay visible). Extracted from the VARIANT property « Etat » on the Figma master."
-        }
-      ],
-      "children": {
-        "kind": "none"
-      },
-      "slots": []
-    },
-    {
-      "id": "ds.member-card",
-      "name": "MemberCard",
-      "version": "1.0.0",
-      "status": "draft",
-      "category": "molecule",
-      "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
-      "figma": {
-        "representation": "component",
-        "componentSetKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8"
-      },
-      "props": [
-        {
-          "name": "nom",
-          "type": "string",
-          "default": "Cécilia Piqueray"
-        },
-        {
-          "name": "poste",
-          "type": "string",
-          "default": "Gérante"
-        }
-      ],
-      "children": {
-        "kind": "none"
-      },
-      "slots": []
-    },
-    {
       "id": "ds.nav-item",
       "name": "NavItem",
       "version": "1.0.0",
@@ -756,6 +925,81 @@
         },
         {
           "name": "actif",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.header",
+      "name": "Header",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "4165b8449f68916cca476b62454ede85eea13420"
+      },
+      "props": [
+        {
+          "name": "fond",
+          "type": [
+            "solid",
+            "transparent"
+          ],
+          "default": "solid"
+        },
+        {
+          "name": "items",
+          "type": "string"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.hero",
+      "name": "Hero",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a"
+      },
+      "props": [],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.presentation",
+      "name": "Presentation",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8"
+      },
+      "props": [
+        {
+          "name": "texte",
+          "type": "string",
+          "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd hui dirigée par Florian et Cécilia Piqueray, l entreprise perpétue les valeurs de proximité et d excellence technique. Dépositaire officiel Hörmann, nous allions la force d un leader mondial à la souplesse d une PME locale."
+        },
+        {
+          "name": "bouton",
           "type": "boolean",
           "default": false
         }
@@ -828,36 +1072,48 @@
       "slots": []
     },
     {
-      "id": "ds.section-header",
-      "name": "SectionHeader",
+      "id": "ds.reassurances",
+      "name": "Reassurances",
       "version": "1.0.0",
       "status": "draft",
-      "category": "molecule",
-      "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "category": "section",
+      "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356"
+        "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8"
       },
       "props": [
         {
           "name": "disposition",
           "type": [
-            "standard",
-            "avecCta"
+            "4Cartes",
+            "quatrecartesdeuxcta",
+            "5Cartes"
           ],
-          "default": "standard"
+          "default": "4Cartes"
         },
         {
-          "name": "accroche",
-          "type": "string",
-          "default": "Plus de 50 ans d’expérience"
-        },
-        {
-          "name": "titre",
-          "type": "string",
-          "default": "Pourquoi choisir Piqueray ?"
+          "name": "items",
+          "type": "string"
         }
       ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.sav",
+      "name": "SAV",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "bf5e147a9b56206eba9c73045d533c9868b445b2"
+      },
+      "props": [],
       "children": {
         "kind": "none"
       },
@@ -887,6 +1143,28 @@
           "name": "libelle",
           "type": "string",
           "default": "Onglet"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.texte-seo",
+      "name": "TexteSEO",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9"
+      },
+      "props": [
+        {
+          "name": "items",
+          "type": "string"
         }
       ],
       "children": {

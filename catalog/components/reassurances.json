@@ -1,0 +1,31 @@
+{
+  "id": "ds.reassurances",
+  "name": "Reassurances",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": [
+        "4Cartes",
+        "quatrecartesdeuxcta",
+        "5Cartes"
+      ],
+      "default": "4Cartes"
+    },
+    {
+      "name": "items",
+      "type": "string"
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

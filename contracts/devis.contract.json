@@ -1,0 +1,76 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.devis",
+  "name": "Devis",
+  "version": "1.0.0",
+  "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "Container": {
+          "layout": {
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "Titre": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.blanc}"
+              }
+            },
+            "Bouton": {
+              "component": {
+                "id": "ds.button"
+              }
+            }
+          }
+        }
+      },
+      "tokens": {
+        "background-color": "{color.noir-bleute}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "0caac7487988d0da129211e64a40545163149a6f",
+      "nodeId": "2096:2524",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Devis",
+      "export": "Devis"
+    }
+  },
+  "category": "section"
+}

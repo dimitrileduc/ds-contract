@@ -1,0 +1,148 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.coordonnees",
+  "name": "Coordonnees",
+  "version": "1.0.0",
+  "description": "Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row"
+      },
+      "parts": {
+        "wrapper": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch"
+          },
+          "parts": {
+            "SectionHeader": {
+              "component": {
+                "id": "ds.section-header",
+                "props": {
+                  "titre": "Nos coordonnées",
+                  "accroche": "Contact",
+                  "disposition": "standard"
+                }
+              }
+            },
+            "Adresse": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "AdresseEtiquette": {
+                  "text": "Adresse",
+                  "tokens": {
+                    "color": "{color.orange}"
+                  }
+                },
+                "AdresseValeur": {
+                  "text": "Rue Alfred Drèze 7, 4860 Pepinster",
+                  "tokens": {
+                    "color": "{color.noir-bleute}"
+                  }
+                }
+              }
+            },
+            "Horaires": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "HorairesEtiquette": {
+                  "text": "Horaires",
+                  "tokens": {
+                    "color": "{color.orange}"
+                  }
+                },
+                "HorairesValeur": {
+                  "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+                  "tokens": {
+                    "color": "{color.noir-bleute}"
+                  }
+                }
+              }
+            },
+            "Contact": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "ContactEtiquette": {
+                  "text": "Contact",
+                  "tokens": {
+                    "color": "{color.orange}"
+                  }
+                },
+                "tl32087463266EmailInfopi": {
+                  "text": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
+                  "tokens": {
+                    "color": "{color.noir-bleute}"
+                  }
+                }
+              }
+            },
+            "suivezNous": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "SuivezNousEtiquette": {
+                  "text": "Suivez-nous",
+                  "tokens": {
+                    "color": "{color.orange}"
+                  }
+                },
+                "rseauxSociaux": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "parts": {
+                    "Facebook": {
+                      "icon": {
+                        "asset": "facebook",
+                        "size": 32
+                      }
+                    },
+                    "Instagram": {
+                      "icon": {
+                        "asset": "instagram",
+                        "size": 32
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "googleMap": {}
+      },
+      "tokens": {
+        "background-color": "{color.bleu-clair}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
+      "nodeId": "2104:2904",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Coordonnees",
+      "export": "Coordonnees"
+    }
+  },
+  "category": "section"
+}

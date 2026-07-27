@@ -1,0 +1,160 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.header",
+  "name": "Header",
+  "version": "1.0.0",
+  "description": "Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "fond",
+      "type": {
+        "enum": [
+          "solid",
+          "transparent"
+        ]
+      },
+      "default": "solid",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Fond",
+          "values": {
+            "solid": "Solid",
+            "transparent": "Transparent"
+          }
+        },
+        "code": {
+          "prop": "fond"
+        }
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "chevron": "boolean"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "space-between",
+        "align": "center"
+      },
+      "parts": {
+        "PiquerayLogo": {
+          "component": {
+            "id": "ds.piqueray-logo",
+            "props": {
+              "couleur": "default"
+            }
+          }
+        },
+        "navWrapper": {
+          "layout": {
+            "direction": "row",
+            "justify": "end",
+            "align": "center"
+          },
+          "parts": {
+            "nav": {
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "center"
+              },
+              "parts": {
+                "NavItem": {
+                  "component": {
+                    "id": "ds.nav-item",
+                    "props": {
+                      "actif": false
+                    }
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "chevron": true
+                      },
+                      {
+                        "chevron": true
+                      },
+                      {
+                        "chevron": false
+                      },
+                      {
+                        "chevron": false
+                      }
+                    ]
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button"
+                  }
+                }
+              }
+            },
+            "iconsNav": {
+              "layout": {
+                "direction": "row",
+                "align": "center"
+              },
+              "parts": {
+                "Search": {
+                  "icon": {
+                    "asset": "search",
+                    "size": 32
+                  }
+                },
+                "User": {
+                  "icon": {
+                    "asset": "user",
+                    "size": 32
+                  }
+                },
+                "Cart": {
+                  "icon": {
+                    "asset": "cart",
+                    "size": 32
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "4165b8449f68916cca476b62454ede85eea13420",
+      "nodeId": "84:285",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Header",
+      "export": "Header"
+    }
+  },
+  "category": "section"
+}

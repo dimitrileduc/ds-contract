@@ -1,0 +1,178 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.reassurances",
+  "name": "Reassurances",
+  "version": "1.0.0",
+  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": {
+        "enum": [
+          "4Cartes",
+          "quatrecartesdeuxcta",
+          "5Cartes"
+        ]
+      },
+      "default": "4Cartes",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Disposition",
+          "values": {
+            "4Cartes": "4 cartes",
+            "quatrecartesdeuxcta": "QuatreCartesDeuxCta",
+            "5Cartes": "5 cartes"
+          }
+        },
+        "code": {
+          "prop": "disposition"
+        }
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "texte": "text",
+          "titre": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "SectionHeader": {
+          "component": {
+            "id": "ds.section-header",
+            "props": {
+              "titre": "Pourquoi choisir nos portes de garage industrielles ?",
+              "accroche": "Plus de 50 ans d’expérience",
+              "disposition": "standard"
+            }
+          }
+        },
+        "items": {
+          "layout": {
+            "direction": "row",
+            "justify": "center"
+          },
+          "parts": {
+            "Carte": {
+              "component": {
+                "id": "ds.carte",
+                "props": {
+                  "disposition": "reassurance"
+                }
+              },
+              "repeat": {
+                "itemsProp": "items",
+                "sample": [
+                  {
+                    "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+                    "titre": "Sécurité et conformité"
+                  },
+                  {
+                    "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+                    "titre": "Intégration parfaite"
+                  },
+                  {
+                    "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+                    "titre": "Moteur performant"
+                  },
+                  {
+                    "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
+                    "titre": "SAV & maintenance dédiés"
+                  },
+                  {
+                    "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
+                    "titre": "Expérience"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "BoutonCinqCartes": {
+          "component": {
+            "id": "ds.button"
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "5Cartes"
+          }
+        },
+        "Boutons": {
+          "layout": {
+            "direction": "row"
+          },
+          "parts": {
+            "Bouton": {
+              "component": {
+                "id": "ds.button"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "quatrecartesdeuxcta"
+              }
+            },
+            "BoutonSecondaire": {
+              "component": {
+                "id": "ds.button"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "quatrecartesdeuxcta"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "quatrecartesdeuxcta"
+          }
+        },
+        "BoutonQuatreCartes": {
+          "component": {
+            "id": "ds.button"
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "4Cartes"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8",
+      "nodeId": "2114:3721",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/Reassurances",
+      "export": "Reassurances"
+    }
+  },
+  "category": "section"
+}
