@@ -1,0 +1,29 @@
+{
+  "date": "2026-07-27",
+  "tache": "T059 (volet hors-compteur, pendant de T008a/T025a)",
+  "procedure": "figma_execute direct (loadAllPagesAsync + findAllWithCriteria sur les masters). Périmètre = 55 masters de la 007, EXCLUANT les 2 sets de la session concurrente 006 (Review-card / Avis Google, branche 006-google-reviews-block). Ces trois classes (SC-017, FR-003a, SC-018) ne sortent jamais du compteur de notes — d'où le relevé live.",
+  "perimetre": 55,
+  "a_calques_nommes_par_contenu": {
+    "regle": "FR-005/SC-017 — nœud TEXT hors instance dont node.name === node.characters (ou en est un préfixe/troncature).",
+    "denominateur_ouverture": 30,
+    "mesure_cloture": 0,
+    "verdict": "SC-017 TENU À LA CLÔTURE — les 30 calques du relevé d'ouverture restent tous portant un nom de rôle distinct de leur contenu ; 0 survivant, inchangé depuis post-L1."
+  },
+  "b_valeurs_variant_non_ascii": {
+    "regle": "FR-003a/O3 — valeur de propriété VARIANT hors [A-Za-z0-9 _-].",
+    "denominateur_ouverture": 10,
+    "mesure_cloture": 0,
+    "verdict": "FR-003a TENU À LA CLÔTURE — 0/10 restant, inchangé depuis post-L1."
+  },
+  "c_descriptions_composant": {
+    "regle": "SC-018 — descriptions de composant non vides (FR-006a a préfixé l'orthographe accentuée d'origine sans écraser le contenu).",
+    "mesure_cloture": "55/55 peuplées",
+    "verdict": "SC-018 TENU — aucune description vidée par les gestes de l'itération."
+  },
+  "nameCollisions_classe_G": {
+    "regle": "Unicité des componentIdSlug sur les 55 noms finaux — le risque que deux des 36 renommages convergent vers le même id.",
+    "mesure_cloture": 0,
+    "verdict": "0 collision — cohérent avec la classe G=0 du compteur de notes (notes-cloture)."
+  },
+  "invariant": "Ce relevé se prend par position/signature structurelle, jamais par nom (note-census.md §8). Les 2 sets 006 sont exclus par nom uniquement pour tracer la frontière de périmètre, pas pour mesurer un défaut."
+}

@@ -1,0 +1,342 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.categories-principales",
+  "name": "CategoriesPrincipales",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": {
+        "enum": [
+          "standard",
+          "pleineLargeur",
+          "pleinelargeurtroiscartes",
+          "pleinelargeurrdv"
+        ]
+      },
+      "default": "standard",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Disposition",
+          "values": {
+            "standard": "Standard",
+            "pleineLargeur": "Pleine largeur",
+            "pleinelargeurtroiscartes": "PleineLargeurTroisCartes",
+            "pleinelargeurrdv": "PleineLargeurRdv"
+          }
+        },
+        "code": {
+          "prop": "disposition"
+        }
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "texte": "text",
+          "titre": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "align": "center"
+      },
+      "layoutByProp": {
+        "prop": "disposition",
+        "map": {
+          "pleineLargeur": {
+            "justify": "center",
+            "align": "start"
+          },
+          "pleinelargeurtroiscartes": {
+            "justify": "center",
+            "align": "start"
+          },
+          "pleinelargeurrdv": {
+            "justify": "center",
+            "align": "start"
+          }
+        }
+      },
+      "parts": {
+        "Carte": {
+          "component": {
+            "id": "ds.carte",
+            "props": {
+              "disposition": "categorie"
+            }
+          },
+          "repeat": {
+            "itemsProp": "items",
+            "sample": [
+              {
+                "texte": "Une fiabilité exceptionnelle et une grande longévité. Conçues pour une utilisation intensive, adaptées à toutes les dimensions, avec des solutions bardées ou vitrées selon vos besoins.",
+                "titre": "PORTES INDUSTRIELLES SUR MESURE"
+              },
+              {
+                "texte": "Alliez praticité, sécurité et conformité. Facilitez les passages fréquents avec un portillon intégré, idéal pour le confort quotidien dans vos ateliers et bâtiments industriels.",
+                "titre": "PORTES AVEC PORTILLON INTÉGRÉ"
+              },
+              {
+                "texte": "Vérifiez si votre porte est fermée depuis votre lieu de vacances. Le système radio BiSecur utilise un cryptage de niveau bancaire pour une sécurité totale.",
+                "titre": "Pilotez à distance"
+              }
+            ]
+          }
+        },
+        "item": {
+          "layout": {
+            "direction": "column",
+            "justify": "end",
+            "align": "stretch"
+          },
+          "parts": {
+            "img": {
+              "layout": {
+                "direction": "column"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "pleinelargeurrdv"
+              }
+            },
+            "dcor": {
+              "tokens": {
+                "border-color": "{color.blanc}"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "standard"
+              }
+            },
+            "wrapper": {
+              "layout": {
+                "direction": "column",
+                "align": "stretch"
+              },
+              "parts": {
+                "blocTexte": {
+                  "layout": {
+                    "direction": "column",
+                    "align": "stretch"
+                  },
+                  "parts": {
+                    "Titre": {
+                      "text": "Maintenance",
+                      "tokens": {
+                        "color": "{color.noir-bleute}"
+                      },
+                      "visibleWhen": {
+                        "prop": "disposition",
+                        "equals": "pleinelargeurrdv"
+                      }
+                    },
+                    "Texte": {
+                      "text": "Mieux vaut prévenir que guérir ! Une porte de garage comporte des pièces d'usure (ressorts, câbles). Pensez à l'entretien annuel pour éviter la casse inopinée.\r",
+                      "tokens": {
+                        "color": "{color.noir-bleute}"
+                      },
+                      "visibleWhen": {
+                        "prop": "disposition",
+                        "equals": "pleinelargeurrdv"
+                      }
+                    }
+                  },
+                  "visibleWhen": {
+                    "prop": "disposition",
+                    "equals": "pleinelargeurrdv"
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button"
+                  },
+                  "visibleWhen": {
+                    "prop": "disposition",
+                    "equals": "pleinelargeurrdv"
+                  }
+                },
+                "inner": {
+                  "layout": {
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "end"
+                  },
+                  "parts": {
+                    "Item1BlocTexte": {
+                      "layout": {
+                        "direction": "column",
+                        "align": "stretch",
+                        "grow": true
+                      },
+                      "parts": {
+                        "Item1Titre": {
+                          "text": "Portes de garage résidentielles",
+                          "tokens": {
+                            "color": "{color.blanc}"
+                          },
+                          "visibleWhen": {
+                            "prop": "disposition",
+                            "equals": "standard"
+                          }
+                        },
+                        "Item1Texte": {
+                          "text": "Sectionnelles, basculantes ou enroulables. Alliez esthétique, confort et isolation pour votre habitat.",
+                          "tokens": {
+                            "color": "{color.blanc}"
+                          },
+                          "visibleWhen": {
+                            "prop": "disposition",
+                            "equals": "standard"
+                          }
+                        }
+                      },
+                      "visibleWhen": {
+                        "prop": "disposition",
+                        "equals": "standard"
+                      }
+                    },
+                    "ArrowRight": {
+                      "component": {
+                        "id": "ds.arrow-right"
+                      },
+                      "visibleWhen": {
+                        "prop": "disposition",
+                        "equals": "standard"
+                      }
+                    }
+                  },
+                  "visibleWhen": {
+                    "prop": "disposition",
+                    "equals": "standard"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "item2": {
+          "layout": {
+            "direction": "column",
+            "justify": "end",
+            "align": "stretch"
+          },
+          "parts": {
+            "Item2Decor": {
+              "tokens": {
+                "border-color": "{color.blanc}"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "standard"
+              }
+            },
+            "Item2Wrapper": {
+              "layout": {
+                "direction": "column",
+                "align": "stretch"
+              },
+              "parts": {
+                "Item2Inner": {
+                  "layout": {
+                    "direction": "row",
+                    "justify": "center",
+                    "align": "end"
+                  },
+                  "parts": {
+                    "Item2BlocTexte": {
+                      "layout": {
+                        "direction": "column",
+                        "align": "stretch",
+                        "grow": true
+                      },
+                      "parts": {
+                        "Item2Titre": {
+                          "text": "Portes de garage industrielles",
+                          "tokens": {
+                            "color": "{color.blanc}"
+                          },
+                          "visibleWhen": {
+                            "prop": "disposition",
+                            "equals": "standard"
+                          }
+                        },
+                        "Item2Texte": {
+                          "text": "Solutions robustes, rapides et sécurisées pour vos entrepôts, commerces et bâtiments logistiques.",
+                          "tokens": {
+                            "color": "{color.blanc}"
+                          },
+                          "visibleWhen": {
+                            "prop": "disposition",
+                            "equals": "standard"
+                          }
+                        }
+                      },
+                      "visibleWhen": {
+                        "prop": "disposition",
+                        "equals": "standard"
+                      }
+                    },
+                    "Item2ArrowRight": {
+                      "component": {
+                        "id": "ds.arrow-right"
+                      },
+                      "visibleWhen": {
+                        "prop": "disposition",
+                        "equals": "standard"
+                      }
+                    }
+                  },
+                  "visibleWhen": {
+                    "prop": "disposition",
+                    "equals": "standard"
+                  }
+                }
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "standard"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "standard"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "94f64a369a5db615d68935bb353614eaaadbffc2",
+      "nodeId": "2115:4277"
+    },
+    "code": {
+      "importPath": "src/components/CategoriesPrincipales",
+      "export": "CategoriesPrincipales"
+    }
+  }
+}

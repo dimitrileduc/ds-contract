@@ -1,0 +1,103 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.product-card",
+  "name": "ProductCard",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Télécommande Hörmann HSE4-868BS",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "prix",
+      "type": "text",
+      "default": "74,99€",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Prix"
+        },
+        "code": {
+          "prop": "prix"
+        }
+      }
+    },
+    {
+      "name": "bouton",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Bouton"
+        },
+        "code": {
+          "prop": "bouton"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "Image": {},
+        "Titre": {
+          "content": {
+            "prop": "titre"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          }
+        },
+        "Prix": {
+          "content": {
+            "prop": "prix"
+          },
+          "tokens": {
+            "color": "{color.bleu}"
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button"
+          },
+          "visibleWhen": {
+            "prop": "bouton"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
+      "nodeId": "2068:1972"
+    },
+    "code": {
+      "importPath": "src/components/ProductCard",
+      "export": "ProductCard"
+    }
+  }
+}

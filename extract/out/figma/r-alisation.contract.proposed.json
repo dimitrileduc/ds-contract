@@ -1,0 +1,55 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.r-alisation",
+  "name": "RAlisation",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "taille",
+      "type": {
+        "enum": [
+          "grand",
+          "petit"
+        ]
+      },
+      "default": "grand",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Taille",
+          "values": {
+            "grand": "Grand",
+            "petit": "Petit"
+          }
+        },
+        "code": {
+          "prop": "taille"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "tokens": {
+        "background-color": "{color.gris-clair}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43",
+      "nodeId": "2095:2484"
+    },
+    "code": {
+      "importPath": "src/components/RAlisation",
+      "export": "RAlisation"
+    }
+  }
+}

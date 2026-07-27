@@ -1,0 +1,33 @@
+{
+  "date": "2026-07-27",
+  "tache": "T059 — lecture de périmètre du compteur de clôture (notes-cloture-2026-07-27.json)",
+  "pourquoi": "Le compteur (note-census.mjs) mesure TOUT set local du fichier — il en trouve 57, dont 2 appartiennent à la session concurrente 006 (Review-card / Avis Google, branche 006-google-reviews-block) qui n'ont JAMAIS été dans le périmètre de la 007. Ce fichier trace la frontière sans toucher l'artefact généré : les 2 sets 006 sont soustraits par nom, la dérivation est écrite, rien n'est absorbé en silence.",
+  "source": "notes-cloture-2026-07-27.json (généré par note-census.mjs, laissé verbatim)",
+  "derivation": "specs/007-figma-extractable-source/tools/note-census.mjs classe par préfixe stable ; la ventilation par set vient de report.perSet ; le partage 55/2 est un filtre par nom sur { Review-card, Avis Google }.",
+  "totaux_57_sets": { "A": 2, "B": 0, "C": 3, "D": 12, "E": 270, "F": 20, "G": 0, "Z": 471, "schemaValid": "57/57" },
+  "mon_perimetre_55": {
+    "A": 0, "B": 0, "C": 0, "D": 0, "E": 184, "F": 20, "G": 0, "Z": 446,
+    "commentaire": "Toutes les classes de NOMMAGE (A/B/C/D) et de COLLISION (G) sont à 0 sur mes 55 masters — le lot US1 les a intégralement soldées, 0 collision de slug sur les 36 renommages. E=184, entièrement sur canaux numériques mesurés (0 sur peintures)."
+  },
+  "sets_006_hors_perimetre_2": {
+    "A": 2, "B": 0, "C": 3, "D": 12, "E": 86, "F": 0, "G": 0, "Z": 25,
+    "sets": ["Review-card", "Avis Google"],
+    "commentaire": "Ces sets ne relèvent pas de la 007. Leurs notes A/C/D/E sont rapportées ici pour ne rien cacher, jamais fondues dans les compteurs 007."
+  },
+  "classe_E_mon_perimetre": {
+    "total": 184,
+    "sur_canaux_numeriques_mesures": 184,
+    "sur_peintures_ou_autre": 0,
+    "cause": "STOP L3 (decisions.md § « Clôture reprise L3 » + STOP L3c/L3d) — les liaisons de valeurs numériques (T036-T058) n'ont PAS été exécutées : lier une variable numérique en Figma produit un diff pixel non déterministe. E n'atteint donc PAS 0 sur les canaux mesurés, et c'est le fait à rapporter, pas un objectif tenu. Le volet VALEURS de SC-002 est explicitement abandonné par décision owner ; le volet NOMS (classes A-D) est, lui, tenu à 0.",
+    "ecart_vs_ouverture": "Ouverture (T008) : 193 UNBOUND sur canaux mesurés. Clôture : 184. L'écart de 9 vient de la restructuration L1 (paths renommés/déplacés en US1 devenus non résolvables comme note distincte, cf. proofs/L3/gestes.md : 12 éléments non-bindables post-L1) et de recomptages par canal — aucune liaison n'a réduit E (aucune n'a été posée)."
+  },
+  "classe_F": {
+    "total": 20,
+    "cause": "Regex /^font\\.(.+?)\\.size/ de core/token-corpus.ts face à la convention typography.<rôle>.size (textStyles=[]). AUCUNE action canvas ne la déplace — trou d'émetteur n° 1, légué (research.md R9, note-census.md §6). Comptée à part, jamais fondue dans E.",
+    "note_ouverture": "Le recadrage O2 parlait de 41 en classe F au 2026-07-26 sur un traitement hors dépôt ; le compteur du dépôt (seule autorité, note-census.md §8) en trouve 20 sur mes 55 masters. Le chiffre d'arrivée est 20."
+  },
+  "classe_Z": {
+    "total_57": 471, "mon_perimetre_55": 446,
+    "occupant_principal": "semantics.element defaulted to \"div\" — décisions balise/ARIA affectées au chantier 2.2 de la spec SUIVANTE (note-census.md §4). Vues, jamais comptées dans la 007. Z ne gonfle pas d'un motif dérivé : les classes A-G restent reconnues."
+  }
+}

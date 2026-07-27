@@ -1,0 +1,44 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.pdf",
+  "name": "Pdf",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "tracCompos": {
+          "parts": {
+            "trac1": {
+              "tokens": {
+                "background-color": "{color.noir-bleute}"
+              }
+            },
+            "trac2": {
+              "tokens": {
+                "background-color": "{color.noir-bleute}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60",
+      "nodeId": "230:585"
+    },
+    "code": {
+      "importPath": "src/components/Pdf",
+      "export": "Pdf"
+    }
+  }
+}

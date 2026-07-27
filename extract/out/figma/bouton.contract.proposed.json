@@ -1,0 +1,234 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.bouton",
+  "name": "Bouton",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "style",
+      "type": {
+        "enum": [
+          "default",
+          "orange",
+          "blanc",
+          "outlineBlanc",
+          "link",
+          "outlineNoir"
+        ]
+      },
+      "default": "default",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Style",
+          "values": {
+            "default": "Default",
+            "orange": "Orange",
+            "blanc": "Blanc",
+            "outlineBlanc": "Outline blanc",
+            "link": "Link",
+            "outlineNoir": "Outline noir"
+          }
+        },
+        "code": {
+          "prop": "style"
+        }
+      }
+    },
+    {
+      "name": "libelle",
+      "type": "text",
+      "default": "Contactez-nous",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Libelle"
+        },
+        "code": {
+          "prop": "libelle"
+        }
+      }
+    },
+    {
+      "name": "iconeGauche",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Icone gauche"
+        },
+        "code": {
+          "prop": "iconeGauche"
+        }
+      }
+    },
+    {
+      "name": "iconeDroite",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Icone droite"
+        },
+        "code": {
+          "prop": "iconeDroite"
+        }
+      }
+    },
+    {
+      "name": "glypheGauche",
+      "type": {
+        "enum": [
+          "piqueray",
+          "phone",
+          "download",
+          "pdf",
+          "search",
+          "user",
+          "chevron-right",
+          "chevron-left",
+          "chevron-down",
+          "chevron-up",
+          "cart",
+          "arrow-right",
+          "arrow-left"
+        ]
+      },
+      "default": "arrow-left",
+      "bindings": {
+        "figma": {
+          "kind": "INSTANCE_SWAP",
+          "property": "Glyphe gauche",
+          "values": {
+            "piqueray": "piqueray",
+            "phone": "phone",
+            "download": "download",
+            "pdf": "pdf",
+            "search": "search",
+            "user": "user",
+            "chevron-right": "chevron-right",
+            "chevron-left": "chevron-left",
+            "chevron-down": "chevron-down",
+            "chevron-up": "chevron-up",
+            "cart": "cart",
+            "arrow-right": "arrow-right",
+            "arrow-left": "arrow-left"
+          }
+        },
+        "code": {
+          "prop": "glypheGauche"
+        }
+      }
+    },
+    {
+      "name": "glypheDroite",
+      "type": {
+        "enum": [
+          "piqueray",
+          "phone",
+          "download",
+          "pdf",
+          "search",
+          "user",
+          "chevron-right",
+          "chevron-left",
+          "chevron-down",
+          "chevron-up",
+          "cart",
+          "arrow-right",
+          "arrow-left"
+        ]
+      },
+      "default": "arrow-right",
+      "bindings": {
+        "figma": {
+          "kind": "INSTANCE_SWAP",
+          "property": "Glyphe droite",
+          "values": {
+            "piqueray": "piqueray",
+            "phone": "phone",
+            "download": "download",
+            "pdf": "pdf",
+            "search": "search",
+            "user": "user",
+            "chevron-right": "chevron-right",
+            "chevron-left": "chevron-left",
+            "chevron-down": "chevron-down",
+            "chevron-up": "chevron-up",
+            "cart": "cart",
+            "arrow-right": "arrow-right",
+            "arrow-left": "arrow-left"
+          }
+        },
+        "code": {
+          "prop": "glypheDroite"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "ArrowLeft": {
+          "icon": {
+            "asset": "{glypheGauche}",
+            "size": 20
+          },
+          "visibleWhen": {
+            "prop": "iconeGauche"
+          }
+        },
+        "libell": {
+          "tokensByProp": {
+            "prop": "style",
+            "map": {
+              "blanc": {
+                "color": "{color.noir-bleute}"
+              },
+              "link": {
+                "color": "{color.noir-bleute}"
+              },
+              "outlineNoir": {
+                "color": "{color.noir-bleute}"
+              }
+            }
+          },
+          "content": {
+            "prop": "libelle"
+          },
+          "tokens": {
+            "color": "{color.blanc}"
+          }
+        },
+        "ArrowRight": {
+          "icon": {
+            "asset": "{glypheDroite}",
+            "size": 20
+          },
+          "visibleWhen": {
+            "prop": "iconeDroite"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
+      "nodeId": "6:122"
+    },
+    "code": {
+      "importPath": "src/components/Bouton",
+      "export": "Bouton"
+    }
+  }
+}

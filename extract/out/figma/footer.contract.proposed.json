@@ -1,0 +1,146 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.footer",
+  "name": "Footer",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "texte": "text",
+          "titre": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "parts": {
+        "Background": {
+          "tokens": {
+            "background-color": "{color.noir-bleute}"
+          }
+        },
+        "Row": {
+          "parts": {
+            "col5": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "TitreReseaux": {
+                  "text": "Suivez-nous",
+                  "tokens": {
+                    "color": "{color.orange}"
+                  }
+                },
+                "rseauxSociaux": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "parts": {
+                    "Facebook": {
+                      "component": {
+                        "id": "ds.facebook"
+                      }
+                    },
+                    "Instagram": {
+                      "component": {
+                        "id": "ds.instagram"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "FooterColumn": {
+              "component": {
+                "id": "ds.footer-column"
+              },
+              "repeat": {
+                "itemsProp": "items",
+                "sample": [
+                  {
+                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                    "titre": "Contact"
+                  },
+                  {
+                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                    "titre": "Horaires"
+                  },
+                  {
+                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                    "titre": "Adresse"
+                  }
+                ]
+              }
+            },
+            "col1": {
+              "parts": {
+                "PiquerayLogo": {
+                  "component": {
+                    "id": "ds.piqueray-logo",
+                    "props": {
+                      "couleur": "blanc"
+                    }
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Spacer": {},
+        "Separator": {
+          "tokens": {
+            "border-color": "{color.blanc}"
+          }
+        },
+        "spacer2": {},
+        "Copyright": {
+          "component": {
+            "id": "ds.copyright",
+            "props": {
+              "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b",
+      "nodeId": "2120:4785"
+    },
+    "code": {
+      "importPath": "src/components/Footer",
+      "export": "Footer"
+    }
+  }
+}

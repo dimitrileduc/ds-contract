@@ -1,0 +1,35 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.arrow-left",
+  "name": "ArrowLeft",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "trac": {
+          "tokens": {
+            "background-color": "{color.noir-bleute}"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "nodeId": "6:99"
+    },
+    "code": {
+      "importPath": "src/components/ArrowLeft",
+      "export": "ArrowLeft"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.faq",
+  "name": "FAQ",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "contenu": "text",
+          "titre": "text"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "SectionHeader": {
+          "component": {
+            "id": "ds.section-header",
+            "props": {
+              "accroche2": true,
+              "titre": "Questions fréquentes",
+              "accroche": "FAQ",
+              "disposition": "standard"
+            }
+          }
+        },
+        "accordion": {
+          "layout": {
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "AccordionRow": {
+              "component": {
+                "id": "ds.accordion-row",
+                "props": {
+                  "taille": "grand"
+                }
+              },
+              "repeat": {
+                "itemsProp": "items",
+                "sample": [
+                  {
+                    "contenu": "Réponse",
+                    "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+                  },
+                  {
+                    "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+                    "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+                  },
+                  {
+                    "contenu": "Réponse",
+                    "titre": "Assurez-vous la maintenance après l'installation ?"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
+      "nodeId": "2104:2914"
+    },
+    "code": {
+      "importPath": "src/components/FAQ",
+      "export": "FAQ"
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.carte",
+  "name": "Carte",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": {
+        "enum": [
+          "reassurance",
+          "categorie"
+        ]
+      },
+      "default": "reassurance",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Disposition",
+          "values": {
+            "reassurance": "Reassurance",
+            "categorie": "Categorie"
+          }
+        },
+        "code": {
+          "prop": "disposition"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Pour portes de garage",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "texte",
+      "type": "text",
+      "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Texte"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "stretch"
+      },
+      "parts": {
+        "img": {},
+        "text": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch"
+          },
+          "parts": {
+            "Titre": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              }
+            },
+            "Texte": {
+              "tokensByProp": {
+                "prop": "disposition",
+                "map": {
+                  "categorie": {
+                    "color": "{color.noir-bleute}"
+                  }
+                }
+              },
+              "content": {
+                "prop": "texte"
+              },
+              "tokens": {
+                "color": "{color.noir}"
+              }
+            }
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button"
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "categorie"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
+      "nodeId": "2063:1622"
+    },
+    "code": {
+      "importPath": "src/components/Carte",
+      "export": "Carte"
+    }
+  }
+}

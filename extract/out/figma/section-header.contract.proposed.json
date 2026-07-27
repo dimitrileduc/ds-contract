@@ -1,0 +1,125 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.section-header",
+  "name": "SectionHeader",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "disposition",
+      "type": {
+        "enum": [
+          "standard",
+          "avecCta"
+        ]
+      },
+      "default": "standard",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Disposition",
+          "values": {
+            "standard": "Standard",
+            "avecCta": "Avec CTA"
+          }
+        },
+        "code": {
+          "prop": "disposition"
+        }
+      }
+    },
+    {
+      "name": "accroche",
+      "type": "text",
+      "default": "Plus de 50 ans d’expérience",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Accroche"
+        },
+        "code": {
+          "prop": "accroche"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Pourquoi choisir Piqueray ?",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "layoutByProp": {
+        "prop": "disposition",
+        "map": {
+          "avecCta": {
+            "direction": "row",
+            "justify": "space-between"
+          }
+        }
+      },
+      "parts": {
+        "Accroche": {
+          "content": {
+            "prop": "accroche"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "standard"
+          }
+        },
+        "Titre": {
+          "content": {
+            "prop": "titre"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button"
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "avecCta"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "770d5801af6e899b9547461ea2c714a66e0fa356",
+      "nodeId": "2090:2397"
+    },
+    "code": {
+      "importPath": "src/components/SectionHeader",
+      "export": "SectionHeader"
+    }
+  }
+}

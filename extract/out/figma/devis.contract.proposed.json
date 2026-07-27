@@ -1,0 +1,74 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.devis",
+  "name": "Devis",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column",
+        "align": "center"
+      },
+      "parts": {
+        "Container": {
+          "layout": {
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "Titre": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.blanc}"
+              }
+            },
+            "Bouton": {
+              "component": {
+                "id": "ds.button"
+              }
+            }
+          }
+        }
+      },
+      "tokens": {
+        "background-color": "{color.noir-pur}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "0caac7487988d0da129211e64a40545163149a6f",
+      "nodeId": "2096:2524"
+    },
+    "code": {
+      "importPath": "src/components/Devis",
+      "export": "Devis"
+    }
+  }
+}

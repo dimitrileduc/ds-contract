@@ -1,0 +1,155 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.header",
+  "name": "Header",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "fond",
+      "type": {
+        "enum": [
+          "solid",
+          "transparent"
+        ]
+      },
+      "default": "solid",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Fond",
+          "values": {
+            "solid": "Solid",
+            "transparent": "Transparent"
+          }
+        },
+        "code": {
+          "prop": "fond"
+        }
+      }
+    },
+    {
+      "name": "items",
+      "type": {
+        "arrayOf": {
+          "chevron": "boolean"
+        }
+      },
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "items"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "space-between",
+        "align": "center"
+      },
+      "parts": {
+        "PiquerayLogo": {
+          "component": {
+            "id": "ds.piqueray-logo",
+            "props": {
+              "couleur": "default"
+            }
+          }
+        },
+        "navWrapper": {
+          "layout": {
+            "direction": "row",
+            "justify": "end",
+            "align": "center"
+          },
+          "parts": {
+            "nav": {
+              "layout": {
+                "direction": "row",
+                "justify": "center",
+                "align": "center"
+              },
+              "parts": {
+                "NavItem": {
+                  "component": {
+                    "id": "ds.nav-item",
+                    "props": {
+                      "actif": false
+                    }
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "chevron": true
+                      },
+                      {
+                        "chevron": true
+                      },
+                      {
+                        "chevron": false
+                      },
+                      {
+                        "chevron": false
+                      }
+                    ]
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button"
+                  }
+                }
+              }
+            },
+            "iconsNav": {
+              "layout": {
+                "direction": "row",
+                "align": "center"
+              },
+              "parts": {
+                "Search": {
+                  "component": {
+                    "id": "ds.search"
+                  }
+                },
+                "User": {
+                  "component": {
+                    "id": "ds.user"
+                  }
+                },
+                "Cart": {
+                  "component": {
+                    "id": "ds.cart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "4165b8449f68916cca476b62454ede85eea13420",
+      "nodeId": "84:285"
+    },
+    "code": {
+      "importPath": "src/components/Header",
+      "export": "Header"
+    }
+  }
+}

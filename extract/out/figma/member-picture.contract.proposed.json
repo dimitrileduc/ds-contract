@@ -1,0 +1,56 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.member-picture",
+  "name": "MemberPicture",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "defaut",
+          "survol"
+        ]
+      },
+      "default": "defaut",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "defaut": "Defaut",
+            "survol": "Survol"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "funIa": {},
+        "normal": {}
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f",
+      "nodeId": "274:2389"
+    },
+    "code": {
+      "importPath": "src/components/MemberPicture",
+      "export": "MemberPicture"
+    }
+  }
+}

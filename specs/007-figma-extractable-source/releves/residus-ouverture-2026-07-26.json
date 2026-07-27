@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-26",
+  "source": "specs/005-figma-source-cleanup/proofs/fix-post-cloture/verdict.json — verdict avant/après du cycle 14 post-clôture 005 (commit d8b0d27, nuit du 25-26 juillet 2026)",
+  "note_methode": "Ces chiffres ne sortent PAS d'une capture T006 : une double capture d'un fichier inchangé rend 0 partout. Ils sont un écart contre un état pré-cycle-14 dont aucune capture pleine page ne subsiste (cf. contracts/proof-cycle.md §7 — aucune baseline gardée par l'instrument). Recopiés ici en citant la source, jamais re-mesurés.",
+  "totaux_source": { "identical": 5, "diff": 4, "captureFailed": 0, "dimensionMismatch": 0 },
+  "residus_acquittes": [
+    { "maquette": "Contactez-nous", "diffCount": 469, "diffBox": { "x": 375, "y": 457, "w": 408, "h": 51 } },
+    { "maquette": "Portes d_entrée", "diffCount": 17, "diffBox": { "x": 528, "y": 478, "w": 615, "h": 39 } },
+    { "maquette": "Portes de garage", "diffCount": 20, "diffBox": { "x": 782, "y": 401, "w": 198, "h": 28 } },
+    { "maquette": "À Propos", "diffCount": 99, "diffBox": { "x": 344, "y": 457, "w": 699, "h": 48 } }
+  ],
+  "maquettes_confirmees_identical_dans_le_meme_verdict": ["Accueil", "Dépannage_SAV", "Motorisation", "Portes de garage industrielles", "Portes de garage résidentielles"],
+  "crops_disque": {
+    "verdict_json_references": "crops/<maquette>.png (chemin relatif au dossier du verdict)",
+    "realite_disque_2026-07-26": "les 4 PNG existent bien, mais à plat dans fix-post-cloture/ — PAS sous un sous-dossier crops/. Fichiers confirmés : 'À Propos.png', 'Contactez-nous.png', 'Portes d_entrée.png', 'Portes de garage.png'.",
+    "verdict": "CONFIRME R10 — un ré-examen visuel reste possible. Path à corriger si on rouvre ces crops : specs/005-figma-source-cleanup/proofs/fix-post-cloture/<maquette>.png, pas .../crops/<maquette>.png."
+  },
+  "suivi_attendu_007": "SC-008a — tout diff non nul apparaissant sur ces 4 pages dans un cycle de l'itération (L1-L4, V1-V3) est signalé et expliqué, jamais absorbé. Les liaisons fontWeight/lineHeight/fontSize d'US2 sont les leviers mêmes qui ont produit ces écarts (héritage 005)."
+}

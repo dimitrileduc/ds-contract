@@ -1,0 +1,41 @@
+{
+  "date": "2026-07-26",
+  "procedure": "figma_execute direct — loadAllPagesAsync + findAll(type==='GROUP') sur toutes les pages + getNodeByIdAsync ciblé (237:970, 2090:2386, 2090:2387). Lecture seule, classification par TYPE structurel puis par nesting (jamais par nom en primaire — le nom n'est utilisé qu'en documentation secondaire pour les exclusions déjà connues).",
+  "sectionHeader": {
+    "2090:2386": { "name": "Accroche", "type": "TEXT", "layoutSizingHorizontal": "FILL", "layoutAlign": "STRETCH" },
+    "2090:2387": { "name": "Titre", "type": "TEXT", "layoutSizingHorizontal": "FILL", "layoutAlign": "STRETCH" },
+    "verdict": "CONFIRMÉ déjà FILL/STRETCH — le backlog 2025-07-25 disait FIXED 1550 : PÉRIMÉ (cycle 14, d8b0d27)."
+  },
+  "residualGroup": {
+    "nodeId": "237:970",
+    "name": "Header + Hero + Cat",
+    "type": "GROUP",
+    "parent": { "id": "237:969", "name": "Portes d’entrée", "type": "FRAME" },
+    "verdict": "CONFIRMÉ seul GROUP structurel résiduel réel — cible de T053."
+  },
+  "totalGroupsFound": 76,
+  "classification": {
+    "structurel_residuel": 1,
+    "avis_google": 8,
+    "vecteur_trace_compose_ou_texte": 67
+  },
+  "ecarts_vs_documentation": [
+    {
+      "champ": "Nombre de GROUPs « Avis Google »",
+      "documente": 5,
+      "sources_documentees": [
+        "plan.md — O4 : « les 5 GROUPs Avis Google relevés en R10 »",
+        "contracts/scope-inventory.md §3 : « Les cartes « Avis Google » ×5 »",
+        "research.md R10 (à recouper)"
+      ],
+      "mesure_live_2026-07-26": 8,
+      "detail": "8 GROUPs nommés « Avis Google », un par maquette SAUF Motorisation (237:705) qui n'en porte aucun : Contactez-nous (280:3792), À Propos (258:1963), Dépannage/SAV (249:1623), Portes d'entrée (237:1095), Portes de garage industrielles (387:817), Portes de garage résidentielles (230:645), Portes de garage (226:227), Accueil (210:441).",
+      "impact": "AUCUN sur le périmètre de cette itération — les 8 restent hors périmètre par la même décision owner du 2026-07-25 (widget tiers aplati, branche 006-google-reviews-block), qu'ils soient 5 ou 8. Le chiffre documenté est simplement faux/périmé et doit être corrigé dans les 3 sources ci-dessus au moment de la relecture T067 (elles sont sous specs/007-.../, donc modifiables sans violer FR-025).",
+      "regle_appliquee": "« le relevé frais gagne toujours sur le document daté » (scope-inventory.md §6) — aucun chiffre périmé n'est recopié tel quel."
+    }
+  ],
+  "confirmation_absence_autres_groupes_structurels": {
+    "verdict": "CONFIRMÉ — sur les 76 GROUPs du fichier entier (toutes pages), 75 se classent sans reste en {1 résiduel connu, 8 Avis Google, 67 vecteurs Tracé composé/Texte imbriqués dans une instance ou un COMPONENT/COMPONENT_SET d'icône ou de piqueray_logo}. Aucun GROUP non classifié.",
+    "pages_scannees": ["Pages", "----------------------", "DS · Tokens", "DS · Atomes", "DS · Molécules", "DS · Organisms"]
+  }
+}

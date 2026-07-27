@@ -1,0 +1,86 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.nav-item",
+  "name": "NavItem",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "chevron",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Chevron"
+        },
+        "code": {
+          "prop": "chevron"
+        }
+      }
+    },
+    {
+      "name": "actif",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Actif"
+        },
+        "code": {
+          "prop": "actif"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "align": "center"
+      },
+      "parts": {
+        "libell": {
+          "text": "Portes de garage",
+          "tokens": {
+            "color": "{color.blanc}"
+          }
+        },
+        "OcticonChevronDown12": {
+          "component": {
+            "id": "ds.octicon-chevron-down12"
+          },
+          "visibleWhen": {
+            "prop": "chevron"
+          }
+        },
+        "Soulignement": {
+          "tokens": {
+            "background-color": "{color.blanc}"
+          },
+          "visibleWhen": {
+            "prop": "actif"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "bb5fff155aa25e719d1b9e38dedc767d677b4471",
+      "nodeId": "2152:5554"
+    },
+    "code": {
+      "importPath": "src/components/NavItem",
+      "export": "NavItem"
+    }
+  }
+}

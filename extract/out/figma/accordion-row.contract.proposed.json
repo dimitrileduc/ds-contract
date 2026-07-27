@@ -1,0 +1,200 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.accordion-row",
+  "name": "AccordionRow",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+  "semantics": {
+    "element": "div"
+  },
+  "props": [
+    {
+      "name": "taille",
+      "type": {
+        "enum": [
+          "grand",
+          "petit"
+        ]
+      },
+      "default": "grand",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Taille",
+          "values": {
+            "grand": "Grand",
+            "petit": "Petit"
+          }
+        },
+        "code": {
+          "prop": "taille"
+        }
+      }
+    },
+    {
+      "name": "etat",
+      "type": {
+        "enum": [
+          "ferme",
+          "ouvert"
+        ]
+      },
+      "default": "ferme",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "ferme": "Ferme",
+            "ouvert": "Ouvert"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Question",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "contenu",
+      "type": "text",
+      "default": "Réponse",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Contenu"
+        },
+        "code": {
+          "prop": "contenu"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "space-between",
+        "align": "center"
+      },
+      "layoutByProp": {
+        "prop": "etat",
+        "map": {
+          "ouvert": {
+            "direction": "column",
+            "justify": "start",
+            "align": "start"
+          }
+        }
+      },
+      "parts": {
+        "title": {
+          "layout": {
+            "direction": "row",
+            "justify": "space-between",
+            "align": "center",
+            "grow": true
+          },
+          "parts": {
+            "TitreOuvert": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}"
+              },
+              "visibleWhen": {
+                "prop": "etat",
+                "equals": "ouvert"
+              }
+            },
+            "ChevronUp": {
+              "component": {
+                "id": "ds.chevron-up"
+              },
+              "visibleWhen": {
+                "prop": "etat",
+                "equals": "ouvert"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ouvert"
+          }
+        },
+        "Contenu": {
+          "content": {
+            "prop": "contenu"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ouvert"
+          }
+        },
+        "Titre": {
+          "content": {
+            "prop": "titre"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}"
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ferme"
+          }
+        },
+        "ChevronDown": {
+          "component": {
+            "id": "ds.chevron-down"
+          },
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ferme"
+          }
+        }
+      },
+      "tokensByProp": {
+        "prop": "taille",
+        "map": {
+          "petit": {
+            "border-color": "{color.noir-bleute}"
+          }
+        }
+      },
+      "tokens": {
+        "border-color": "{color.noir-pur}"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
+      "nodeId": "2059:1417"
+    },
+    "code": {
+      "importPath": "src/components/AccordionRow",
+      "export": "AccordionRow"
+    }
+  }
+}
