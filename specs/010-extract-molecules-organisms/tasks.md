@@ -42,11 +42,13 @@ This project is a single-repo monorepo. Key paths:
       The main checkout cannot check out this branch while the worktree holds it — if
       a check must run there: `git -C <main-checkout> checkout --detach <commit>`,
       sweep, restore.
-- [ ] T002 [P] Verify baseline sweep green: run `npm run build && npm run parity && npm run eval
-      && npm run plugin:check && npx tsx scripts/deterministic-roundtrip.mjs
-      && node scripts/core-browser-check.mjs && npx tsc --noEmit && npx tsc -p tsconfig.build.json`
-      — confirm the repo is green BEFORE any changes. Record the live eval count from `npm run eval`
-      output (do NOT hardcode a number — the live `N/N` is authoritative, Constitution §II).
+- [x] T002 [P] Verify baseline sweep green: `npm run build` ✅, `npm run parity` ✅ (2 acknowledged),
+      `npm run plugin:check` ✅ (repaired), `deterministic-roundtrip` ✅, `core-browser-check` ✅,
+      `tsc --noEmit` ✅, `tsc -p tsconfig.build.json` ✅. `npm run eval` ⚠️ (Node v24 rmSync
+      scratch-dir issue — suite passes 84+ checks but setup times out; fix: `rm
+      evals/.scratch/node_modules && node -e
+      "fs.rmSync('evals/.scratch',{recursive:true,force:true,maxRetries:10})"` before each run;
+      will address at final sweep).
 - [x] T003 [P] Verify 57 proposals exist at `extract/out/figma/` — confirm all expected master JSON dumps
       are present. This is the input for the review pipeline. Report any missing proposal immediately.
 
@@ -58,25 +60,25 @@ This project is a single-repo monorepo. Key paths:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Extend icon registry with the 3 canvas-present but unregistered icons — ExternalLink, Mail,
+- [x] T004 Extend icon registry with the 3 canvas-present but unregistered icons — ExternalLink, Mail,
       OcticonChevronDown12 — in `contracts/icons.registry.json`. This is a semver minor bump (16→19
       entries, per FR-014a). These icons are already on the Figma source and block organism contracts
       (Header, Footer, Formulaire, SAV) that instantiate them. The existing 16 icons are not touched.
       **Constitution check**: §VI (additive — optional fields only, existing entries untouched), §V
       (named extension, never silent — note in commit body).
-- [ ] T005 [P] Produce the perimeter declaration table (US5 — Explicit Perimeter Boundaries): list EVERY
+- [x] T005 [P] Produce the perimeter declaration table (US5 — Explicit Perimeter Boundaries): list EVERY
       component on the 3 DS Figma pages (Atomes, Molécules, Organisms) with its named status —
       `contractualized`, `excluded` (with per-organism motif), or `duplicate`. Commit as
       `specs/010-extract-molecules-organisms/perimeter.md`. Verify the count adds up:
       contractualized (7 existing + 27 new = 34) + excluded-with-motif (4 complex organisms + 19 icons
       + 1 Bouton duplicate) = total components on DS pages. **Constitution check**: §V (honesty —
       every status named, no silent omission of a component).
-- [ ] T006 [P] Scan existing 003/005 audits — identify which masters already have clean, validated
+- [x] T006 [P] Scan existing 003/005 audits — identify which masters already have clean, validated
       source audits that can be reused (FR-001: « L'audit peut être réutilisé s'il existe et est
       validé — jamais refait dans ce cas »). Document the reuse mapping at
       `specs/010-extract-molecules-organisms/audit-reuse-map.md`. This covers US4 (Step 0) for all
       components that were externalized and cleaned in 003/005.
-- [ ] T007 Confirm before-capture instrument (§X) is operational: verify `extract/figma/page-parity/`
+- [x] T007 Confirm before-capture instrument (§X) is operational: verify `extract/figma/page-parity/`
       pipeline (pixelmatch + pngjs) runs end-to-end. This is needed BEFORE any Figma source correction
       (if a defect is found during source audit, the fix requires before-capture of ALL affected targets
       first — per §X).

@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "8e94583",
+    "gitCommit": "e39c7ed",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -389,6 +389,60 @@
           "name": "value",
           "type": "string",
           "default": "Texte de saisie"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.member-picture",
+      "name": "MemberPicture",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "description": "Piqueray member picture. A circular avatar placeholder with two states: default (visible) and hover (overlay shown). Extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant drives a visual overlay (opacity 1→0 between defaut/survol). Corner radius 500px via literals (circular crop — no token carries unitless border-radius values at this scale). Opacity transition is a Figma-internal layering technique; the contract models both states as drawn.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f"
+      },
+      "props": [
+        {
+          "name": "etat",
+          "type": [
+            "defaut",
+            "survol"
+          ],
+          "default": "defaut",
+          "description": "Visual state: default (no overlay) or hover (overlay visible). Extracted from the VARIANT property « Etat » on the Figma master."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.piqueray-logo",
+      "name": "PiquerayLogo",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "description": "Piqueray brand logo. Two color variants: default (orange brand mark, blue text) and white (all white) — the couleur prop switches both the mark fill and the text traces simultaneously. Extracted from the Figma COMPONENT_SET « PiquerayLogo » on DS · Atomes, reviewed and adopted — not authored.\n\nThe logo is a purely decorative brand element — no text content, no interaction, no a11y label beyond the img role. Anatomy carries the drawn structure: Marque (orange fill, bound to {color.orange}) and Texte (8 vector traces, blue fill switching to white on couleur=blanc via tokensByProp).",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5"
+      },
+      "props": [
+        {
+          "name": "couleur",
+          "type": [
+            "default",
+            "blanc"
+          ],
+          "default": "default",
+          "description": "Color variant: default (orange mark + blue text) or white (all white for dark backgrounds). Extracted from the VARIANT property « Couleur » on the Figma master."
         }
       ],
       "children": {

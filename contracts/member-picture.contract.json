@@ -1,0 +1,69 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.member-picture",
+  "name": "MemberPicture",
+  "version": "1.0.0",
+  "category": "atom",
+  "description": "Piqueray member picture. A circular avatar placeholder with two states: default (visible) and hover (overlay shown). Extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant drives a visual overlay (opacity 1→0 between defaut/survol). Corner radius 500px via literals (circular crop — no token carries unitless border-radius values at this scale). Opacity transition is a Figma-internal layering technique; the contract models both states as drawn.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "description": "Visual state: default (no overlay) or hover (overlay visible). Extracted from the VARIANT property « Etat » on the Figma master.",
+      "type": {
+        "enum": [
+          "defaut",
+          "survol"
+        ]
+      },
+      "default": "defaut",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Etat",
+          "values": {
+            "defaut": "Defaut",
+            "survol": "Survol"
+          }
+        },
+        "code": {
+          "prop": "etat"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "parts": {
+        "funIa": {
+          "description": "Picture placeholder frame — circular clip area for the member photo.",
+          "literals": {
+            "border-radius": "500px"
+          }
+        },
+        "normal": {
+          "description": "Hover overlay — visible on survol state, hidden on defaut. Opacity is a Figma-internal layering technique; code renders via CSS visibility/opacity transitions.",
+          "literals": {
+            "border-radius": "500px"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f",
+      "nodeId": "274:2389",
+      "dumpedAt": "2026-07-27"
+    },
+    "code": {
+      "importPath": "src/components/MemberPicture",
+      "export": "MemberPicture"
+    }
+  }
+}

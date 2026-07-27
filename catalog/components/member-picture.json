@@ -1,0 +1,27 @@
+{
+  "id": "ds.member-picture",
+  "name": "MemberPicture",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "atom",
+  "description": "Piqueray member picture. A circular avatar placeholder with two states: default (visible) and hover (overlay shown). Extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant drives a visual overlay (opacity 1→0 between defaut/survol). Corner radius 500px via literals (circular crop — no token carries unitless border-radius values at this scale). Opacity transition is a Figma-internal layering technique; the contract models both states as drawn.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f"
+  },
+  "props": [
+    {
+      "name": "etat",
+      "type": [
+        "defaut",
+        "survol"
+      ],
+      "default": "defaut",
+      "description": "Visual state: default (no overlay) or hover (overlay visible). Extracted from the VARIANT property « Etat » on the Figma master."
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}
