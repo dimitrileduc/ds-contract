@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.5.0)
+ * Source of truth: contracts/button.contract.json (ds.button v1.5.1)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outilne noir), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libellé » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icône gauche »/« Icône droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
+          "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
       },
     },
   },
@@ -33,12 +33,12 @@ const meta = {
     iconLeft: {
       control: 'boolean',
       description:
-        'Shows the leading icon slot (which glyph: iconLeftGlyph, default arrow-left). Extracted from the BOOLEAN property « Icône gauche » added to the Figma masters on 2026-07-23.',
+        'Shows the leading icon slot (which glyph: iconLeftGlyph, default arrow-left). Extracted from the BOOLEAN property « Icone gauche » added to the Figma masters on 2026-07-23.',
     },
     iconRight: {
       control: 'boolean',
       description:
-        'Shows the trailing icon slot (which glyph: iconRightGlyph, default arrow-right — the « → » of Link buttons). Extracted from the BOOLEAN property « Icône droite » added to the Figma masters on 2026-07-23.',
+        'Shows the trailing icon slot (which glyph: iconRightGlyph, default arrow-right — the « → » of Link buttons). Extracted from the BOOLEAN property « Icone droite » added to the Figma masters on 2026-07-23.',
     },
     iconLeftGlyph: {
       control: 'select',

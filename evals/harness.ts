@@ -179,7 +179,7 @@ export const CONTRACT = 'contracts/button.contract.json';
 export const VARIANT_DECL = "variant?: 'default' | 'orange' | 'blanc' | 'outlineBlanc' | 'link' | 'outilneNoir';";
 /** The drawn set's spelling on the canvas, and its one VARIANT property. */
 export const FIGMA_SET = 'Bouton';
-export const VARIANT_PROPERTY = 'Property 1';
+export const VARIANT_PROPERTY = 'Style';
 export const FIGMA_COMPONENTS = 'parity/snapshots/figma-components.json';
 export const FIGMA_TOKENS = 'parity/snapshots/figma-tokens.json';
 

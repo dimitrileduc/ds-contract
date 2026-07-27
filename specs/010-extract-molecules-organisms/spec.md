@@ -139,6 +139,8 @@ En tant qu'owner du design system, je veux que l'ajout de 27 composants gouvern�
 
 ### Functional Requirements
 
+**Convention de numérotation** : Les FR sont numérotés séquentiellement (FR-001 à FR-019). Un suffixe alphabétique (FR-014a) indique un sous-requirement logiquement lié au FR parent (ici FR-014 traite des icônes exclues des contrats composants, FR-014a traite de leur enregistrement dans le registre). Le suffixe n'indique pas un amendement tardif ni une priorité différente.
+
 **Étape 0 — source propre avant contrat (constitution §VIII)**
 
 - **FR-001**: Chaque composant candidat à la contractualisation MUST être précédé d'un audit de source (masters : structure, contraintes, branchements de variables, tailles, descriptions) ET de l'usage (toutes les instances sur toutes les pages, repérées par POSITION jamais par nom de calque). L'audit peut être réutilisé s'il existe et est validé (issu de 003/005) — jamais refait dans ce cas.
@@ -150,7 +152,12 @@ En tant qu'owner du design system, je veux que l'ajout de 27 composants gouvern�
 - **FR-004**: Chaque composant MUST être extrait de son master Figma (Figma-first) puis garanti par son contrat — le contrat garantit exactement ce que le master expose, ni plus ni moins. La proposition générée depuis le canvas est un point de départ, pas un contrat fini : elle MUST être reviewée (notes corrigées, unbound values résolues) avant d'être contractualisée.
 - **FR-005**: Chaque valeur non liée à un token (unbound value) découverte dans une proposition MUST être soit liée à un token existant, soit mintée comme token `imported.*` provisoire — jamais inventée, toujours rapportée, jamais laissée silencieusement non liée (constitution, Principle V).
 - **FR-006**: Le rapprochement master ↔ contrat MUST se faire par identité stable (clé de composant), jamais par nom d'affichage — sinon échec silencieux (leçon « Button » vs « Bouton » de 002).
-- **FR-007**: Le nommage MUST suivre le précédent établi : français côté Figma, anglais côté code (Bouton ↔ Button, Équipe ↔ Equipe, Coordonnées ↔ Coordonnees).
+- **FR-007**: Le nommage code MUST suivre la règle suivante (appliquée dans l'ordre) :
+  1. Si le nom Figma est un terme anglais courant du design system (Button, Header, Field, Tab, etc.) → nom anglais conservé à l'identique.
+  2. Si le nom Figma est un nom propre (PiquerayLogo) ou un sigle (FAQ, SAV) → conservé à l'identique.
+  3. Si le nom Figma est un terme français avec diacritiques (Équipe, Coordonnées, Réassurances) → le diacritique est supprimé (Equipe, Coordonnees, Reassurances), le mot français est conservé.
+  4. Par exception à la règle 1 : `Bouton` (français dans Figma) → `Button` (anglais dans le code), seul cas de traduction complète, justifié par le précédent 001.
+  La table de nommage complète des 27 nouveaux composants est documentée dans `specs/007-figma-extractable-source/naming-table.md` (référence normative pour la résolution des ambiguïtés accent vs. sans-accent).
 - **FR-008**: Chaque composant contractualisé MUST porter sa catégorie (`atom`, `molecule`, ou `section`) — l'usage est exhaustif, aucun composant orphelin sans catégorie ne subsiste (précédent établi en 004). La catégorie est déterminée par la page Figma où le master réside (DS · Atomes → `atom`, DS · Molécules → `molecule`, DS · Organisms → `section`).
 - **FR-009**: La composition (un composant qui en instancie un autre) MUST être déclarée dans le contrat par lien de clé de composant — jamais par nom. Un organisme qui compose des molécules MUST attendre que ces molécules soient contractualisées.
 
@@ -190,7 +197,7 @@ En tant qu'owner du design system, je veux que l'ajout de 27 composants gouvern�
 - **SC-002**: Le nombre de composants gouvernés passe de 7 à **34** ; le compte vivant (affiché par les outils du dépôt) fait foi ; tout écart par rapport à 34 est nommé et justifié.
 - **SC-003**: Chaque composant contractualisé s'appuie sur un audit de source validé (réutilisé ou produit) — aucun composant n'est contractualisé sur une source non auditée.
 - **SC-004**: Toute correction de source Figma nécessaire a été précédée d'une capture avant de TOUTES les cibles affectées (vérifiées non-vides et correctement dimensionnées) — aucune mutation n'a commencé sur un sous-ensemble pilote.
-- **SC-005**: Chaque composant du fichier Figma a un statut explicite et nommé (contractualisé, exclu avec motif, ou doublon) — aucun composant orphelin non décidé ne subsiste.
+- **SC-005**: Chaque master de composant sur les pages DS (Atomes, Molécules, Organisms) a un statut explicite et nommé — contractualisé, exclu avec motif (par organisme pour les complexes), ou doublon. Les instances d'icônes (19) sont exclues du statut « composant » avec un motif nommé (FR-014) — elles relèvent du registre d'icônes, pas des contrats de composants. Aucun master orphelin non décidé ne subsiste.
 - **SC-006**: Les 4 organismes complexes sont exclus avec motif **par organisme** (reflétant les capacités réellement non couvertes post-006 : `grid`, `embed`, variants de `repeat` au-delà de 006) et reportés ; les 19 icônes seules sont exclues avec motif nommé (instances, pas composants) ; le doublon `Bouton` est exclu avec motif nommé (doublon de `ds.button`).
 - **SC-007**: Les cas d'évals quarantainés activables du fait de cette itération sont réactivés selon la règle hybride (définie dans `docs/handoff/09-testing-and-gates.md` et `evals/REMOVED-CASES.md` §Re-enabling a case — retrait nommé) ; les compteurs cités sont synchronisés avec le compte vivant.
 - **SC-008**: Aucune valeur non liée à un token n'est laissée silencieusement non liée — chaque unbound value est liée à un token existant ou mintée provisoirement avec rapport (constitution, Principle V).

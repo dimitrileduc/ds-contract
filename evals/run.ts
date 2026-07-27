@@ -114,7 +114,7 @@ const cases: Case[] = [
       if (parity().status === 0) throw new Error('Seeded icon-registry divergence not detected');
       const report = readReport();
       expectFinding(report, 'icons', 'ahead', 'assets/icons/cart.svg');
-      expectFinding(report, 'icons', 'ahead', 'figma/cart');
+      expectFinding(report, 'icons', 'ahead', 'figma/Cart');
     },
   },
   {
@@ -176,8 +176,8 @@ const cases: Case[] = [
       if (enumValues.length !== 13 || !enumValues.includes('cart') || enumValues.includes('mail') || enumValues.includes('external-link')) {
         throw new Error(`expected the enum to equal the 13-icon registry exactly (no mail/external-link) — got: ${enumValues.join(', ')}`);
       }
-      if (swapLeft.bindings.figma.values?.['arrow-left'] !== 'arrow-left') {
-        throw new Error(`expected bindings.figma.values to map canonical "arrow-left" → figma.componentName "arrow-left" — got ${JSON.stringify(swapLeft.bindings.figma.values)}`);
+      if (swapLeft.bindings.figma.values?.['arrow-left'] !== 'ArrowLeft') {
+        throw new Error(`expected bindings.figma.values to map canonical "arrow-left" → figma.componentName "ArrowLeft" — got ${JSON.stringify(swapLeft.bindings.figma.values)}`);
       }
 
       const iconPart = Object.values(proposed.anatomy.root.parts as Record<string, { icon?: { asset?: string; size?: number } }>).find(
@@ -241,11 +241,11 @@ const cases: Case[] = [
         'figma boolean default flip',
         'figma',
         'mismatch',
-        'Button.Icône gauche (default)',
+        'Button.Icone gauche (default)',
         () =>
           editJson(FIGMA_COMPONENTS, (snap) => {
             const btn = snap.sets.find((x: any) => x.name === FIGMA_SET);
-            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icône gauche'))!;
+            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icone gauche'))!;
             btn.properties[key].defaultValue = true;
           }),
         () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap),
@@ -254,11 +254,11 @@ const cases: Case[] = [
         'figma property kind change',
         'figma',
         'mismatch',
-        'Button.Icône gauche (kind)',
+        'Button.Icone gauche (kind)',
         () =>
           editJson(FIGMA_COMPONENTS, (snap) => {
             const btn = snap.sets.find((x: any) => x.name === FIGMA_SET);
-            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icône gauche'))!;
+            const key = Object.keys(btn.properties).find((k: string) => k.startsWith('Icone gauche'))!;
             btn.properties[key].type = 'TEXT';
           }),
         () => writeFileSync(path.join(SCRATCH, FIGMA_COMPONENTS), figmaSnap),

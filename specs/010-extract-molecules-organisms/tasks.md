@@ -33,7 +33,7 @@ This project is a single-repo monorepo. Key paths:
 
 **Purpose**: Worktree self-sufficiency + tooling verification
 
-- [ ] T001 [Worktree gates — F1] Make this worktree self-sufficient (Constitution,
+- [x] T001 [Worktree gates — F1] Make this worktree self-sufficient (Constitution,
       Development Workflow: Worktree Gates): run `npm install` inside the worktree
       (`npm run eval` symlinks the checkout's own node_modules — it refuses without
       this), then `npx playwright install chromium` (two checks drive real Chromium).
@@ -47,7 +47,7 @@ This project is a single-repo monorepo. Key paths:
       && node scripts/core-browser-check.mjs && npx tsc --noEmit && npx tsc -p tsconfig.build.json`
       — confirm the repo is green BEFORE any changes. Record the live eval count from `npm run eval`
       output (do NOT hardcode a number — the live `N/N` is authoritative, Constitution §II).
-- [ ] T003 [P] Verify 57 proposals exist at `extract/out/figma/` — confirm all expected master JSON dumps
+- [x] T003 [P] Verify 57 proposals exist at `extract/out/figma/` — confirm all expected master JSON dumps
       are present. This is the input for the review pipeline. Report any missing proposal immediately.
 
 ---
@@ -268,6 +268,11 @@ verified, counts synchronized.
       all 27 new `contracts/*.contract.json` files exist, all audit reports are committed under
       `specs/010-extract-molecules-organisms/audits/`, perimeter table is committed, any Figma source
       corrections have their before-capture proof committed.
+      **FR-007 vérification de conformité de nommage** : pour chacun des 27 nouveaux contrats, assert que
+      son `id` et son nom de fichier suivent la règle établie en FR-007 (règle à 4 clauses ordonnées :
+      anglais conservé, nom propre conservé, français dé-accentué, exception Button). Tout écart est
+      nommé et justifié — jamais corrigé silencieusement. Le rapprochement se fait par clé de composant
+      (FR-006) ; le nom de fichier est un index lisible, pas un identifiant stable.
 
 ---
 

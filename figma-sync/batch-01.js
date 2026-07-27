@@ -5,15 +5,15 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v1.5.0",
+    "description": "Button — generated from contract ds.button v1.5.1",
     "isSet": true,
     "boolProps": [
       {
-        "property": "Icône gauche",
+        "property": "Icone gauche",
         "default": false
       },
       {
-        "property": "Icône droite",
+        "property": "Icone droite",
         "default": false
       }
     ],
@@ -23,12 +23,12 @@ const COMPONENTS = [
     ],
     "variants": [
       {
-        "name": "Property 1=Default",
+        "name": "Style=Default",
         "row": 0,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Property 1=Default",
+          "name": "Style=Default",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
@@ -50,7 +50,7 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
-              "visibleProp": "Icône gauche",
+              "visibleProp": "Icone gauche",
               "visibleDefault": false
             },
             {
@@ -63,7 +63,7 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Libellé"
+              "contentProp": "Libelle"
             },
             {
               "type": "svg",
@@ -71,19 +71,19 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
-              "visibleProp": "Icône droite",
+              "visibleProp": "Icone droite",
               "visibleDefault": false
             }
           ]
         }
       },
       {
-        "name": "Property 1=Orange",
+        "name": "Style=Orange",
         "row": 1,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Property 1=Orange",
+          "name": "Style=Orange",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
@@ -105,7 +105,7 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
-              "visibleProp": "Icône gauche",
+              "visibleProp": "Icone gauche",
               "visibleDefault": false
             },
             {
@@ -118,7 +118,7 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Libellé"
+              "contentProp": "Libelle"
             },
             {
               "type": "svg",
@@ -126,19 +126,19 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
-              "visibleProp": "Icône droite",
+              "visibleProp": "Icone droite",
               "visibleDefault": false
             }
           ]
         }
       },
       {
-        "name": "Property 1=Blanc",
+        "name": "Style=Blanc",
         "row": 2,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Property 1=Blanc",
+          "name": "Style=Blanc",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
@@ -160,7 +160,7 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
-              "visibleProp": "Icône gauche",
+              "visibleProp": "Icone gauche",
               "visibleDefault": false
             },
             {
@@ -173,7 +173,7 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Libellé"
+              "contentProp": "Libelle"
             },
             {
               "type": "svg",
@@ -181,19 +181,19 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
-              "visibleProp": "Icône droite",
+              "visibleProp": "Icone droite",
               "visibleDefault": false
             }
           ]
         }
       },
       {
-        "name": "Property 1=Outline blanc",
+        "name": "Style=Outline blanc",
         "row": 3,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Property 1=Outline blanc",
+          "name": "Style=Outline blanc",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
@@ -215,7 +215,7 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
-              "visibleProp": "Icône gauche",
+              "visibleProp": "Icone gauche",
               "visibleDefault": false
             },
             {
@@ -228,7 +228,7 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Libellé"
+              "contentProp": "Libelle"
             },
             {
               "type": "svg",
@@ -236,19 +236,19 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#FFFFFF\"/>\n</svg>",
               "svgPaintVar": "color/blanc",
               "iconSize": 20,
-              "visibleProp": "Icône droite",
+              "visibleProp": "Icone droite",
               "visibleDefault": false
             }
           ]
         }
       },
       {
-        "name": "Property 1=Link",
+        "name": "Style=Link",
         "row": 4,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Property 1=Link",
+          "name": "Style=Link",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
@@ -273,7 +273,7 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
-              "visibleProp": "Icône gauche",
+              "visibleProp": "Icone gauche",
               "visibleDefault": false
             },
             {
@@ -286,7 +286,7 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Libellé"
+              "contentProp": "Libelle"
             },
             {
               "type": "svg",
@@ -294,19 +294,19 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
-              "visibleProp": "Icône droite",
+              "visibleProp": "Icone droite",
               "visibleDefault": false
             }
           ]
         }
       },
       {
-        "name": "Property 1=Outilne noir",
+        "name": "Style=Outline noir",
         "row": 5,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Property 1=Outilne noir",
+          "name": "Style=Outline noir",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
@@ -328,7 +328,7 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M19.4271 9.375H3.12861L6.87842 5.6252L5.99455 4.74133L0.73584 10L5.99455 15.2588L6.87842 14.3749L3.12854 10.625H19.4271V9.375Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
-              "visibleProp": "Icône gauche",
+              "visibleProp": "Icone gauche",
               "visibleDefault": false
             },
             {
@@ -341,7 +341,7 @@ const COMPONENTS = [
               "lineHeight": 22,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Libellé"
+              "contentProp": "Libelle"
             },
             {
               "type": "svg",
@@ -349,7 +349,7 @@ const COMPONENTS = [
               "svg": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z\" fill=\"#26282C\"/>\n</svg>",
               "svgPaintVar": "color/noir-bleute",
               "iconSize": 20,
-              "visibleProp": "Icône droite",
+              "visibleProp": "Icone droite",
               "visibleDefault": false
             }
           ]
@@ -362,7 +362,7 @@ const COMPONENTS = [
     "setName": "Checkbox",
     "contractId": "ds.checkbox",
     "anchorKey": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
-    "description": "Checkbox — generated from contract ds.checkbox v1.0.0",
+    "description": "Checkbox — generated from contract ds.checkbox v1.0.1",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -371,12 +371,12 @@ const COMPONENTS = [
     ],
     "variants": [
       {
-        "name": "Coché=Non",
+        "name": "Coche=Non",
         "row": 0,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Coché=Non",
+          "name": "Coche=Non",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
@@ -396,12 +396,12 @@ const COMPONENTS = [
         }
       },
       {
-        "name": "Coché=Oui",
+        "name": "Coche=Oui",
         "row": 1,
         "col": 0,
         "spec": {
           "type": "root",
-          "name": "Coché=Oui",
+          "name": "Coche=Oui",
           "layout": {
             "mode": "HORIZONTAL",
             "primary": "CENTER",
