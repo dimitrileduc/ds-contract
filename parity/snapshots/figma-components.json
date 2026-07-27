@@ -1,16 +1,256 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1784908011977,
+  "extractedAt": 1785099569818,
   "sets": [
     {
-      "name": "piqueray_logo",
-      "nodeId": "4:14",
-      "key": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
-      "description": "",
+      "name": "Input",
+      "nodeId": "2053:1245",
+      "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
+      "description": "Champ de saisie texte — atome de formulaire. Fond color/blanc, bordure 1px color/bleu-gris (INSIDE), coins droits (0). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur » liée au contenu affiché — pas de calque à éditer manuellement.",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2053:1": {
+          "type": "TEXT",
+          "defaultValue": "Texte de saisie",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Textarea",
+      "nodeId": "2053:1247",
+      "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
+      "description": "Zone de saisie multi-lignes — atome de formulaire. Même style que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), texte aligné en haut. Hauteur fixe 128px portée par le container (pas par un texte surdimensionné). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2053:2": {
+          "type": "TEXT",
+          "defaultValue": "Texte de saisie",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Select",
+      "nodeId": "2053:1249",
+      "key": "3063f8a5ed587927ede2ae021433c705656acff5",
+      "description": "Liste déroulante — atome de formulaire. Même boîte que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), disposition SPACE_BETWEEN pour pousser le chevron à droite. Chevron = INSTANCE du composant local chevron-down (226:373, zéro dépendance tierce), jamais une copie. Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "variantCount": 1,
+      "properties": {
+        "Valeur#2053:3": {
+          "type": "TEXT",
+          "defaultValue": "Texte de saisie",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "ChevronDown"
+      ]
+    },
+    {
+      "name": "Checkbox",
+      "nodeId": "2053:1256",
+      "key": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
+      "description": "Case à cocher — atome net-new intégral (aucune référence dans les 9 maquettes, consentement RGPD en simple texte). Variant officiel « Coché » (Non/Oui) : décoché = fond color/blanc, bordure 2px color/bleu-gris ; coché = fond color/bleu plein, coche blanche. Coins droits (0), cohérent avec la famille Input/Textarea/Select. 20×20.",
       "variantCount": 2,
       "properties": {
-        "Property 1": {
+        "Coche": {
+          "type": "VARIANT",
+          "defaultValue": "Non",
+          "variantOptions": [
+            "Non",
+            "Oui"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Facebook",
+      "nodeId": "2053:1259",
+      "key": "b93576522d25e558dee053c6f0b517f43e683fef",
+      "description": "Icône sociale — logo Facebook. Clonée à l'identique depuis l'occurrence source (280:3801), fill déjà lié à color/noir-bleute. Zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Instagram",
+      "nodeId": "2053:1261",
+      "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd",
+      "description": "Icône sociale — logo Instagram. Clonée à l'identique depuis l'occurrence source (280:3803), fill déjà lié à color/noir-bleute. Zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Etoile",
+      "nodeId": "2053:1263",
+      "key": "db3d036dbc1284c356fef54113b29afab9d6580a",
+      "description": "Anciennement nommé « Étoile » sur le canvas. Icône étoile de notation — atome net-new (aucun vecteur source : la section Avis Google est un screenshot aplati d'un widget tiers, cf. audits/atomes-icones.md §2). Pictogramme standard 5 branches, fill color/orange. Zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Piqueray",
+      "nodeId": "274:2934",
+      "key": "ace5d8b67130291fbd265415134c45599d294b6a",
+      "description": "Anciennement nommé « piqueray » sur le canvas. Piqueray brand mark, used as a decorative icon.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Mail",
+      "nodeId": "263:2125",
+      "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e",
+      "description": "Anciennement nommé « mail » sur le canvas. Envelope icon — email / contact actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Phone",
+      "nodeId": "263:2120",
+      "key": "20efe0347620fd90d43a5f156fe743d0b015f16b",
+      "description": "Anciennement nommé « phone » sur le canvas. Phone handset icon — call / contact actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Download",
+      "nodeId": "230:599",
+      "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697",
+      "description": "Anciennement nommé « download » sur le canvas. Downward arrow into a tray — download actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Pdf",
+      "nodeId": "230:585",
+      "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60",
+      "description": "Anciennement nommé « pdf » sur le canvas. Document icon marked PDF — file download / document links.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Search",
+      "nodeId": "95:252",
+      "key": "260b884e25dbeb857d92c788868f075448c25d16",
+      "description": "Anciennement nommé « search » sur le canvas. Magnifying glass — search actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "User",
+      "nodeId": "95:216",
+      "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781",
+      "description": "Anciennement nommé « user » sur le canvas. Person silhouette — account / profile actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ChevronRight",
+      "nodeId": "27:86",
+      "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
+      "description": "Anciennement nommé « chevron-right » sur le canvas. Chevron pointing right — forward navigation, expand.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ChevronLeft",
+      "nodeId": "27:83",
+      "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47",
+      "description": "Anciennement nommé « chevron-left » sur le canvas. Chevron pointing left — back navigation.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ChevronDown",
+      "nodeId": "226:373",
+      "key": "8825e487906a06701e6e87987c10bb1e4195bb1b",
+      "description": "Anciennement nommé « chevron-down » sur le canvas. Chevron pointing down — expand / dropdown indicator.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ChevronUp",
+      "nodeId": "226:374",
+      "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d",
+      "description": "Anciennement nommé « chevron-up » sur le canvas. Chevron pointing up — collapse indicator.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "Cart",
+      "nodeId": "27:70",
+      "key": "4583f5973482fbd560e3a81035d3225b04410045",
+      "description": "Anciennement nommé « cart » sur le canvas. Shopping cart — add-to-cart / e-commerce actions.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ArrowRight",
+      "nodeId": "6:104",
+      "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
+      "description": "Anciennement nommé « arrow-right » sur le canvas. Arrow pointing right — the Button's trailing icon default.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ArrowLeft",
+      "nodeId": "6:99",
+      "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
+      "description": "Anciennement nommé « arrow-left » sur le canvas. Arrow pointing left — the Button's leading icon default.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "ExternalLink",
+      "nodeId": "9:185",
+      "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c",
+      "description": "Anciennement nommé « external-link » sur le canvas. Arrow exiting a box — external link / opens in a new tab.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "OcticonChevronDown12",
+      "nodeId": "6:119",
+      "key": "effda951d950a7ab05d4745ab1ab90cca8da3176",
+      "description": "Anciennement nommé « octicon:chevron-down-12 » sur le canvas. Glyphe hors registre (contracts/icons.registry.json ne le liste pas — gouvernance spec 002). Conservé tel quel, non réassigné à l'icône chevron-down du registre (226:373) : ses 4 usages actuels (dans les instances de Nav-item, en-tête du site) rendent visuellement à l'identique de ce glyphe précis, un ré-assignement serait un changement visuel non demandé. Décision d'adoption-ou-remplacement définitive léguée à la Spec B (FR-038, spec 005). Découvert sans emplacement de page (composant orphelin — aucun parent, non trouvé par balayage de page) avant ce déplacement ; c'est la première fois qu'il vit sur une page.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
+    },
+    {
+      "name": "PiquerayLogo",
+      "nodeId": "4:14",
+      "key": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
+      "description": "Anciennement nommé « piqueray_logo » sur le canvas. Le logotype de marque Piqueray, instancié notamment dans le Header nav et le Footer. Sa couleur se pilote depuis l'instance entre deux variantes : une normale et une blanche, cette dernière destinée aux fonds sombres (par exemple le Header nav en mode transparent, ou le Footer). Le lettrage est un tracé vectoriel figé, sans auto-layout — un choix de construction assumé, pas une limite du composant.",
+      "variantCount": 2,
+      "properties": {
+        "Couleur": {
           "type": "VARIANT",
           "defaultValue": "Default",
           "variantOptions": [
@@ -26,16 +266,16 @@
       "name": "Bouton",
       "nodeId": "6:122",
       "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-      "description": "",
+      "description": "Bouton — atome d'action, le plus instancié du fichier (14+ usages sur les deux pages DS). Libellé piloté par une propriété texte. Icône gauche/droite : visibilité pilotée par une propriété booléenne, glyphe par une propriété instance-swap — propriétés officielles, aucun calque caché non exposé. Porte 6 variantes de traitement visuel (couleur et style du fond et du texte). Limite connue : le menu de swap du glyphe ne propose que 13 icônes sur les 16 du registre gouverné — divergence héritée de la spec 004, non résolue ici.",
       "variantCount": 6,
       "properties": {
-        "Icône gauche#2024:0": {
+        "Icone gauche#2024:0": {
           "type": "BOOLEAN",
           "defaultValue": false,
           "variantOptions": null,
           "preferredValues": null
         },
-        "Icône droite#2024:7": {
+        "Icone droite#2024:7": {
           "type": "BOOLEAN",
           "defaultValue": false,
           "variantOptions": null,
@@ -159,13 +399,13 @@
             }
           ]
         },
-        "Libellé#2044:28": {
+        "Libelle#2044:28": {
           "type": "TEXT",
           "defaultValue": "Contactez-nous",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Property 1": {
+        "Style": {
           "type": "VARIANT",
           "defaultValue": "Default",
           "variantOptions": [
@@ -174,292 +414,33 @@
             "Blanc",
             "Outline blanc",
             "Link",
-            "Outilne noir"
+            "Outline noir"
           ],
           "preferredValues": null
         }
       },
       "nestedInstances": [
-        "arrow-left",
-        "arrow-right"
+        "ArrowLeft",
+        "ArrowRight"
       ]
     },
     {
-      "name": "piqueray",
-      "nodeId": "274:2934",
-      "key": "ace5d8b67130291fbd265415134c45599d294b6a",
-      "description": "Piqueray brand mark, used as a decorative icon.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "mail",
-      "nodeId": "263:2125",
-      "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e",
-      "description": "Envelope icon — email / contact actions.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "phone",
-      "nodeId": "263:2120",
-      "key": "20efe0347620fd90d43a5f156fe743d0b015f16b",
-      "description": "Phone handset icon — call / contact actions.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "download",
-      "nodeId": "230:599",
-      "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697",
-      "description": "Downward arrow into a tray — download actions.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "pdf",
-      "nodeId": "230:585",
-      "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60",
-      "description": "Document icon marked PDF — file download / document links.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "search",
-      "nodeId": "95:252",
-      "key": "260b884e25dbeb857d92c788868f075448c25d16",
-      "description": "Magnifying glass — search actions.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "user",
-      "nodeId": "95:216",
-      "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781",
-      "description": "Person silhouette — account / profile actions.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "chevron-right",
-      "nodeId": "27:86",
-      "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3",
-      "description": "Chevron pointing right — forward navigation, expand.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "chevron-left",
-      "nodeId": "27:83",
-      "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47",
-      "description": "Chevron pointing left — back navigation.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "chevron-down",
-      "nodeId": "226:373",
-      "key": "8825e487906a06701e6e87987c10bb1e4195bb1b",
-      "description": "Chevron pointing down — expand / dropdown indicator.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "chevron-up",
-      "nodeId": "226:374",
-      "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d",
-      "description": "Chevron pointing up — collapse indicator.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "cart",
-      "nodeId": "27:70",
-      "key": "4583f5973482fbd560e3a81035d3225b04410045",
-      "description": "Shopping cart — add-to-cart / e-commerce actions.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "arrow-right",
-      "nodeId": "6:104",
-      "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5",
-      "description": "Arrow pointing right — the Button's trailing icon default.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "arrow-left",
-      "nodeId": "6:99",
-      "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f",
-      "description": "Arrow pointing left — the Button's leading icon default.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "external-link",
-      "nodeId": "9:185",
-      "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c",
-      "description": "Arrow exiting a box — external link / opens in a new tab.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Header nav",
-      "nodeId": "84:285",
-      "key": "4165b8449f68916cca476b62454ede85eea13420",
-      "description": "",
-      "variantCount": 2,
-      "properties": {
-        "Property 1": {
-          "type": "VARIANT",
-          "defaultValue": "Solid",
-          "variantOptions": [
-            "Solid",
-            "Transparent"
-          ],
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": [
-        "piqueray_logo",
-        "octicon:chevron-down-12",
-        "Bouton",
-        "arrow-left",
-        "arrow-right",
-        "search",
-        "user",
-        "cart"
-      ]
-    },
-    {
-      "name": "member-picture",
+      "name": "MemberPicture",
       "nodeId": "274:2389",
       "key": "70fdd040214e23fd7b5709b1009638a711b4080f",
-      "description": "",
+      "description": "Anciennement nommé « member-picture » sur le canvas. Photo (portrait rond) d'un membre de l'équipe. Une instance peut afficher soit l'apparence par défaut, soit une apparence déclenchée par le survol du pointeur (interaction souris) — réglage pilotable directement sur l'instance. Les deux images n'ont pas de note d'alternative textuelle distincte dans Figma.",
       "variantCount": 2,
       "properties": {
-        "Property 1": {
+        "Etat": {
           "type": "VARIANT",
-          "defaultValue": "Default",
+          "defaultValue": "Defaut",
           "variantOptions": [
-            "Default",
-            "hover"
+            "Defaut",
+            "Survol"
           ],
           "preferredValues": null
         }
       },
-      "nestedInstances": []
-    },
-    {
-      "name": "Input",
-      "nodeId": "2053:1245",
-      "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
-      "description": "Champ de saisie texte — atome de formulaire. Fond color/blanc, bordure 1px color/bleu-gris (INSIDE), coins droits (0). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur » liée au contenu affiché — pas de calque à éditer manuellement.",
-      "variantCount": 1,
-      "properties": {
-        "Valeur#2053:1": {
-          "type": "TEXT",
-          "defaultValue": "Texte de saisie",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": []
-    },
-    {
-      "name": "Textarea",
-      "nodeId": "2053:1247",
-      "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
-      "description": "Zone de saisie multi-lignes — atome de formulaire. Même style que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), texte aligné en haut. Hauteur fixe 128px portée par le container (pas par un texte surdimensionné). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
-      "variantCount": 1,
-      "properties": {
-        "Valeur#2053:2": {
-          "type": "TEXT",
-          "defaultValue": "Texte de saisie",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": []
-    },
-    {
-      "name": "Select",
-      "nodeId": "2053:1249",
-      "key": "3063f8a5ed587927ede2ae021433c705656acff5",
-      "description": "Liste déroulante — atome de formulaire. Même boîte que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), disposition SPACE_BETWEEN pour pousser le chevron à droite. Chevron = INSTANCE du composant local chevron-down (226:373, zéro dépendance tierce), jamais une copie. Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
-      "variantCount": 1,
-      "properties": {
-        "Valeur#2053:3": {
-          "type": "TEXT",
-          "defaultValue": "Texte de saisie",
-          "variantOptions": null,
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": [
-        "chevron-down"
-      ]
-    },
-    {
-      "name": "Checkbox",
-      "nodeId": "2053:1256",
-      "key": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
-      "description": "Case à cocher — atome net-new intégral (aucune référence dans les 9 maquettes, consentement RGPD en simple texte). Variant officiel « Coché » (Non/Oui) : décoché = fond color/blanc, bordure 2px color/bleu-gris ; coché = fond color/bleu plein, coche blanche. Coins droits (0), cohérent avec la famille Input/Textarea/Select. 20×20.",
-      "variantCount": 2,
-      "properties": {
-        "Coché": {
-          "type": "VARIANT",
-          "defaultValue": "Non",
-          "variantOptions": [
-            "Non",
-            "Oui"
-          ],
-          "preferredValues": null
-        }
-      },
-      "nestedInstances": []
-    },
-    {
-      "name": "Facebook",
-      "nodeId": "2053:1259",
-      "key": "b93576522d25e558dee053c6f0b517f43e683fef",
-      "description": "Icône sociale — logo Facebook. Clonée à l'identique depuis l'occurrence source (280:3801), fill déjà lié à color/noir-bleute. Zéro dépendance tierce.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Instagram",
-      "nodeId": "2053:1261",
-      "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd",
-      "description": "Icône sociale — logo Instagram. Clonée à l'identique depuis l'occurrence source (280:3803), fill déjà lié à color/noir-bleute. Zéro dépendance tierce.",
-      "variantCount": 1,
-      "properties": {},
-      "nestedInstances": []
-    },
-    {
-      "name": "Étoile",
-      "nodeId": "2053:1263",
-      "key": "db3d036dbc1284c356fef54113b29afab9d6580a",
-      "description": "Icône étoile de notation — atome net-new (aucun vecteur source : la section Avis Google est un screenshot aplati d'un widget tiers, cf. audits/atomes-icones.md §2). Pictogramme standard 5 branches, fill color/orange. Zéro dépendance tierce.",
-      "variantCount": 1,
-      "properties": {},
       "nestedInstances": []
     },
     {
@@ -500,7 +481,7 @@
             }
           ]
         },
-        "État": {
+        "Etat": {
           "type": "VARIANT",
           "defaultValue": "Normal",
           "variantOptions": [
@@ -515,10 +496,10 @@
       ]
     },
     {
-      "name": "Accordion-row",
+      "name": "AccordionRow",
       "nodeId": "2059:1417",
       "key": "6b15207fffd75082f1f8c423eab771aa6709179d",
-      "description": "Molécule Accordion-row (ligne repliable) — 2 tailles réelles trouvées à l'audit (Grand=sections FAQ 20px/32px chevron, Petit=sections Texte SEO 14px/24px chevron), même comportement. Propriétés : Taille (Grand/Petit), État (Fermé/Ouvert), Titre (texte), Contenu (texte, visible si Ouvert — limite: ne porte pas le texte riche multi-style, cf. audits/accordion-row.md).",
+      "description": "Anciennement nommé « Accordion-row » sur le canvas. Molécule Accordion-row (ligne repliable) — 2 tailles réelles trouvées à l'audit (Grand=sections FAQ 20px/32px chevron, Petit=sections Texte SEO 14px/24px chevron), même comportement. Propriétés : Taille (Grand/Petit), État (Fermé/Ouvert), Titre (texte), Contenu (texte, visible si Ouvert — limite: ne porte pas le texte riche multi-style, cf. audits/accordion-row.md).",
       "variantCount": 4,
       "properties": {
         "Titre#2059:13": {
@@ -542,18 +523,18 @@
           ],
           "preferredValues": null
         },
-        "État": {
+        "Etat": {
           "type": "VARIANT",
-          "defaultValue": "Fermé",
+          "defaultValue": "Ferme",
           "variantOptions": [
-            "Fermé",
+            "Ferme",
             "Ouvert"
           ],
           "preferredValues": null
         }
       },
       "nestedInstances": [
-        "chevron-down"
+        "ChevronDown"
       ]
     },
     {
@@ -561,21 +542,20 @@
       "nodeId": "2061:1588",
       "key": "c5fa537d17c544114dc780ba11bbf1157fedba37",
       "description": "Molécule Tab (onglet de navigation) — propriété État (Défaut/Sélectionné, l'état sélectionné affiche un soulignement 2px) + Libellé (texte). Utilisé en rangée (plusieurs instances) pour former une barre d'onglets — le conteneur lui-même n'a aucune identité visuelle propre, non gouverné séparément.",
-      "variantCount": 3,
+      "variantCount": 2,
       "properties": {
-        "Libellé#2061:23": {
+        "Libelle#2061:23": {
           "type": "TEXT",
           "defaultValue": "Onglet",
           "variantOptions": null,
           "preferredValues": null
         },
-        "État": {
+        "Etat": {
           "type": "VARIANT",
-          "defaultValue": "Défaut",
+          "defaultValue": "Defaut",
           "variantOptions": [
-            "Défaut",
-            "Sélectionné",
-            "État3"
+            "Defaut",
+            "Selectionne"
           ],
           "preferredValues": null
         }
@@ -586,7 +566,7 @@
       "name": "Carte",
       "nodeId": "2063:1622",
       "key": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
-      "description": "",
+      "description": "Carte générique pour présenter une catégorie ou un service : image, titre et texte descriptif. Ce composant propose deux variantes pilotables depuis l'instance. Limite connue : les images sont des placeholders, sans alternative textuelle.",
       "variantCount": 2,
       "properties": {
         "Titre#2063:26": {
@@ -603,10 +583,10 @@
         },
         "Disposition": {
           "type": "VARIANT",
-          "defaultValue": "Réassurance",
+          "defaultValue": "Reassurance",
           "variantOptions": [
-            "Réassurance",
-            "Catégorie"
+            "Categorie",
+            "Reassurance"
           ],
           "preferredValues": null
         }
@@ -614,10 +594,10 @@
       "nestedInstances": []
     },
     {
-      "name": "Product-card",
+      "name": "ProductCard",
       "nodeId": "2068:1972",
       "key": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
-      "description": "",
+      "description": "Anciennement nommé « Product-card » sur le canvas. Carte qui présente un produit e-commerce. Elle associe une image, un titre, un prix et un bouton d'action. Le titre et le prix sont propres à chaque produit représenté.",
       "variantCount": 1,
       "properties": {
         "Titre#2068:34": {
@@ -631,19 +611,25 @@
           "defaultValue": "74,99€",
           "variantOptions": null,
           "preferredValues": null
+        },
+        "Bouton#2136:61": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
         }
       },
       "nestedInstances": [
         "Bouton",
-        "cart",
-        "arrow-right"
+        "Cart",
+        "ArrowRight"
       ]
     },
     {
-      "name": "Member-card",
+      "name": "MemberCard",
       "nodeId": "2074:2072",
       "key": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
-      "description": "",
+      "description": "Anciennement nommé « Member-card » sur le canvas. Carte de présentation d'un membre de l'équipe (photo + nom + intitulé de poste). Nom et intitulé de poste sont deux propriétés texte éditables depuis l'instance. La photo n'est pas une propriété de la carte : elle provient de l'instance member-picture imbriquée, pilotée séparément.",
       "variantCount": 1,
       "properties": {
         "Nom#2074:36": {
@@ -660,29 +646,29 @@
         }
       },
       "nestedInstances": [
-        "member-picture"
+        "MemberPicture"
       ]
     },
     {
-      "name": "Carousel-controls",
+      "name": "CarouselControls",
       "nodeId": "2077:2191",
       "key": "f9cf66306491d239164a61b8a0ac6ba8d0de0238",
-      "description": "",
+      "description": "Anciennement nommé « Carousel-controls » sur le canvas. Molécule Carousel-controls — les deux boutons de navigation (précédent et suivant) d'un carrousel. Elle instancie Bouton deux fois, un pour chaque sens. Aucune propriété n'est exposée par la molécule elle-même : les libellés des deux instances ne se pilotent qu'en forant dans les instances Bouton imbriquées.",
       "variantCount": 1,
       "properties": {},
       "nestedInstances": [
         "Bouton",
-        "chevron-left",
-        "arrow-right",
-        "arrow-left",
-        "chevron-right"
+        "ChevronLeft",
+        "ArrowRight",
+        "ArrowLeft",
+        "ChevronRight"
       ]
     },
     {
-      "name": "Footer-column",
+      "name": "FooterColumn",
       "nodeId": "2079:2246",
       "key": "1de5585bfa55ff9e973748a4b2b99ef4b0a88cef",
-      "description": "",
+      "description": "Anciennement nommé « Footer-column » sur le canvas. Molécule Footer-column : une colonne du pied de page qui associe un titre de rubrique à une liste de liens. Le titre et chaque libellé se modifient par surcharge de texte depuis l'instance.",
       "variantCount": 1,
       "properties": {
         "Titre#2079:38": {
@@ -693,7 +679,7 @@
         },
         "Texte#2079:39": {
           "type": "TEXT",
-          "defaultValue": "Rue Alfred Drèze 7,  4860 Pepinster",
+          "defaultValue": "Rue Alfred Drèze 7,  4860 Pepinster",
           "variantOptions": null,
           "preferredValues": null
         }
@@ -704,12 +690,12 @@
       "name": "Copyright",
       "nodeId": "2086:2330",
       "key": "314cd2368d8d019fec33b60eb8995fac453d0e9f",
-      "description": "",
+      "description": "Affiche la ligne de copyright en pied de page du site. Il s'agit du texte de mention légale.",
       "variantCount": 1,
       "properties": {
         "Texte#2086:40": {
           "type": "TEXT",
-          "defaultValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+          "defaultValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
           "variantOptions": null,
           "preferredValues": null
         }
@@ -720,7 +706,7 @@
       "name": "Avantage",
       "nodeId": "2088:2350",
       "key": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
-      "description": "",
+      "description": "Molécule Avantage — met en avant un point fort ou argument, en associant l'icône de marque Piqueray à un titre et un texte. Titre et Texte sont deux propriétés texte indépendantes, éditables par instance. L'icône, elle, est une instance fixe sans propriété exposée : non substituable par une autre icône.",
       "variantCount": 1,
       "properties": {
         "Titre#2088:41": {
@@ -737,14 +723,14 @@
         }
       },
       "nestedInstances": [
-        "piqueray"
+        "Piqueray"
       ]
     },
     {
-      "name": "Section-header",
+      "name": "SectionHeader",
       "nodeId": "2090:2397",
       "key": "770d5801af6e899b9547461ea2c714a66e0fa356",
-      "description": "",
+      "description": "Anciennement nommé « Section-header » sur le canvas. Molécule Section-header (en-tête générique de section) — propriétés pilotables depuis l'instance : le texte du titre, et la présence ou non d'un CTA (bouton d'action) via la variante.",
       "variantCount": 2,
       "properties": {
         "Accroche#2090:46": {
@@ -759,6 +745,12 @@
           "variantOptions": null,
           "preferredValues": null
         },
+        "Accroche2#2169:64": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
         "Disposition": {
           "type": "VARIANT",
           "defaultValue": "Standard",
@@ -770,6 +762,510 @@
         }
       },
       "nestedInstances": []
+    },
+    {
+      "name": "Realisation",
+      "nodeId": "2095:2484",
+      "key": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43",
+      "description": "Anciennement nommé « Réalisation » sur le canvas. Tuile de la galerie « Réalisations » (grille native GRID, 3 maquettes). Taille=Grand (743×743, tuile vedette, toujours en 1re position) ou Petit (339.5×339.5). Fill image posé par instance à l’adoption — le placeholder gris du master n’a aucune signification.",
+      "variantCount": 2,
+      "properties": {
+        "Taille": {
+          "type": "VARIANT",
+          "defaultValue": "Grand",
+          "variantOptions": [
+            "Grand",
+            "Petit"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "NavItem",
+      "nodeId": "2152:5554",
+      "key": "bb5fff155aa25e719d1b9e38dedc767d677b4471",
+      "description": "Anciennement nommé « Nav-item » sur le canvas. Brique de navigation répétée du Header (×4, ex-copies brutes dans Header nav). Libellé + chevron optionnel (propriété booléenne \"Chevron\", défaut vrai) pour les entrées à sous-menu. Le chevron instancie le glyphe hors registre octicon:chevron-down-12 (6:119, gouvernance 002) — conservé tel quel, jamais réassigné à l'icône chevron-down du registre (décision FR-038, spec 005).",
+      "variantCount": 1,
+      "properties": {
+        "Chevron#2152:62": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Actif#2156:63": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "OcticonChevronDown12"
+      ]
+    },
+    {
+      "name": "Review-card",
+      "nodeId": "2178:7349",
+      "key": "3826fdc9975d42b1661e14494476701676759671",
+      "description": "ReviewCard — generated from contract ds.review-card v1.0.0 †",
+      "variantCount": 1,
+      "properties": {
+        "Initiale#2178:67": {
+          "type": "TEXT",
+          "defaultValue": "P",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Auteur#2178:68": {
+          "type": "TEXT",
+          "defaultValue": "Prénom N.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Date#2178:69": {
+          "type": "TEXT",
+          "defaultValue": "il y a 2 mois",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Témoignage#2178:70": {
+          "type": "TEXT",
+          "defaultValue": "Un témoignage neutre, exemple générique de contenu.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Tronqué#2178:71": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Avatar initiale#2178:72": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Avatar photo#2178:73": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Vérifié#2178:74": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "URL photo#2178:75": {
+          "type": "TEXT",
+          "defaultValue": "",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Alt photo#2178:76": {
+          "type": "TEXT",
+          "defaultValue": "",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Devis",
+      "nodeId": "2096:2524",
+      "key": "0caac7487988d0da129211e64a40545163149a6f",
+      "description": "Bandeau CTA pleine largeur (photo de fond + voile noir 30% + titre + bouton). Le titre est une propriete texte gouvernee : varie entre l'offre particuliers (\"chez vous\") et l'offre professionnels (\"dans vos locaux\", page Portes de garage industrielles). Le fond photo varie egalement sur cette meme page (override d'instance, comme gallery-item) - voir ledger/devis-cta.json.",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2096:49": {
+          "type": "TEXT",
+          "defaultValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Formulaire",
+      "nodeId": "2096:2564",
+      "key": "b588bcccec2ae782382324bcda5fc257b91defd5",
+      "description": "Bloc formulaire de contact (2 colonnes) : argumentaire + Avantage x4 + Boutons, et colonne formulaire (7 Field + consentement RGPD + Bouton Envoyer). Note: le lien hypertexte du texte de consentement pointe vers un domaine tiers (jonckers-clabots.be), résidu de template pré-Piqueray reproduit fidèlement depuis la source — signalé en anomalie, pas corrigé silencieusement (voir decisions.md).",
+      "variantCount": 1,
+      "properties": {
+        "Accroche#2096:50": {
+          "type": "TEXT",
+          "defaultValue": "Une demande de devis ? Une réparation ?",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Titre#2096:51": {
+          "type": "TEXT",
+          "defaultValue": "Prenez contact avec nous dès maintenant !",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Consentement#2096:52": {
+          "type": "TEXT",
+          "defaultValue": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "Avantage",
+        "Piqueray",
+        "Bouton",
+        "Phone",
+        "ArrowRight",
+        "Field",
+        "Input",
+        "Select",
+        "ChevronDown",
+        "Textarea",
+        "ArrowLeft"
+      ]
+    },
+    {
+      "name": "Presentation",
+      "nodeId": "2103:2824",
+      "key": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
+      "description": "Anciennement nommé « Présentation » sur le canvas. Bloc \"Présentation\" (histoire/branding de l'entreprise) : titre + paragraphe + CTA optionnel \"En savoir plus\". Propriétés : Titre (TEXTE), Texte (TEXTE, porte souvent du gras par plage — réappliquer après tout override d'instance, le binding aplatit sinon), Bouton (BOOLEAN, visibilité du CTA, défaut masqué — mesuré sur 3 occurrences réelles : 1 seule l'affiche). Bouton = instance baked du composant Bouton existant (Property 1=Link), zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2103:53": {
+          "type": "TEXT",
+          "defaultValue": "Piqueray, une histoire de famille ",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2103:54": {
+          "type": "TEXT",
+          "defaultValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Bouton#2103:55": {
+          "type": "BOOLEAN",
+          "defaultValue": false,
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "FAQ",
+      "nodeId": "2104:2914",
+      "key": "0df659be188a72700e42e2afbf30e95bb38db5f1",
+      "description": "Section FAQ — assemble 3 pièces déjà gouvernées : Section-header (Disposition Standard), accordion (N instances Accordion-row, Taille Grand) et Bouton (Outilne noir, « Contactez-nous »). Propriété `Ligne 3` (BOOLEAN, défaut true) montre/masque la 3e question — les 3 occurrences sources mesurées ont soit 2 soit 3 questions (jamais plus), et retirer un enfant structurel d'une instance placée n'est pas supporté par l'API Figma (vérifié) — la visibilité togglable est le mécanisme officiel retenu, pas un calque caché sans contrôle. Le contenu des questions/réponses est propre à chaque page et s'override par instance (propriétés TEXTE `Titre`/`Contenu` d'Accordion-row). Le bloc « Hero et FAQ » (Dépannage/SAV) porte en plus 4 instances Tab déjà gouvernées dans un frame `tabs` séparé, volontairement exclu de ce master (voir decisions.md) — cette page garde sa structure composite telle quelle, ses 3 pièces (Section-header/accordion/Bouton) étant déjà des instances gouvernées individuellement, sans instance FAQ consolidée. Zéro dépendance tierce.",
+      "variantCount": 1,
+      "properties": {
+        "Ligne 3#2104:59": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "AccordionRow",
+        "ChevronDown",
+        "ChevronUp",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Coordonnees",
+      "nodeId": "2104:2904",
+      "key": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
+      "description": "Anciennement nommé « Coordonnées » sur le canvas. Bloc « Coordonnées » (Contactez-nous) : adresse, horaires, contact, réseaux sociaux + carte statique. Couleurs aux variables (color/noir-bleute, color/orange, color/bleu-clair). Icônes Facebook/Instagram = instances des masters T037 (remplacent les vecteurs bruts d'origine). google-map = image statique, zéro dépendance tierce. 2 propriétés TEXTE (Accroche, Titre) pour l'en-tête ; Adresse/Horaires/Contact/Suivez-nous restent du texte fixe — 2 des 3 valeurs portent des caractères de saut de ligne invisibles (U+2028 sur Adresse ; \\r+U+2028 sur Contact, entre le tél et l'email) préservés à l'identique par clonage, jamais retypés à la main. Voir specs/003-externalize-figma-components/audits/coordonnees.md.",
+      "variantCount": 1,
+      "properties": {
+        "Accroche#2104:57": {
+          "type": "TEXT",
+          "defaultValue": "Contact",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Titre#2104:58": {
+          "type": "TEXT",
+          "defaultValue": "Nos coordonnées",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "Facebook",
+        "Instagram"
+      ]
+    },
+    {
+      "name": "SAV",
+      "nodeId": "2108:3105",
+      "key": "bf5e147a9b56206eba9c73045d533c9868b445b2",
+      "description": "Section SAV (« Dépannage / SAV ») — 1 occurrence (Accueil). Propriété officielle TEXTE `Titre`. Le corps de texte reste STATIQUE : styles mixtes (3 plages Bold) + saut de ligne manuel — le lier aplatirait le gras (piège documenté Présentation/Formulaire). Bouton = instance gouvernée locale (set Bouton, remote:false). 2 fonds image bakés (illustration + bandeau de fond), zéro dépendance tierce. Groupes internes conservés verbatim (fidélité pixel).",
+      "variantCount": 1,
+      "properties": {
+        "Titre#2108:60": {
+          "type": "TEXT",
+          "defaultValue": "Dépannage / SAV",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "TexteSEO",
+      "nodeId": "2108:3123",
+      "key": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
+      "description": "Anciennement nommé « Texte SEO » sur le canvas. Bloc SEO de bas de page (contenu par maquette). Structure : h2 (titre, gras par plage) + p (paragraphe body, gras par plage) + h3 (sous-titre) + accordion (3 lignes Accordion-row gouvernées, motif Fermé/Ouvert/Fermé). Hauteur HUG (varie selon la longueur du body et de la réponse ouverte). Contenu porté par override d'instance (h2/p/h3 : plages/caractères invisibles préservés ; lignes : propriétés Titre/Contenu/État de chaque Accordion-row).",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "SectionHeader",
+        "AccordionRow",
+        "ChevronDown",
+        "ChevronUp"
+      ]
+    },
+    {
+      "name": "Hero",
+      "nodeId": "2111:3382",
+      "key": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
+      "description": "Hero de page (bandeau haut, 1728×640, hauteur externe fixe). Fond image par page + 2 dégradés de lisibilité ; bloc texte en HUG (280–360 selon le contenu) : titre (gras riche par plage) + rangée sous-titre (FILL) + Bouton « Outline blanc » (libellé + glyphe droit + gap variables par page). Contenu porté par override de sous-calque (aucune propriété TEXTE formelle — le binding aplatirait le gras, précédent Texte SEO). Zéro dépendance tierce. Cloné depuis Portes de garage industrielles.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "SectionHeader",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Reassurances",
+      "nodeId": "2114:3721",
+      "key": "a303bd661e06746baa62828633b5c6132714a8c8",
+      "description": "Anciennement nommé « Réassurances » sur le canvas. Section Réassurances — Section-header (gouverné) + rangée `items` de Cartes (disposition Réassurance, gouvernées) + CTA. Variante `Disposition` : `4 cartes` (À Propos, Portes de garage industrielles, résidentielles), `4 cartes · 2 CTA` (Portes d'entrée — bouton `Motifs disponibles` + `Contactez-nous`), `5 cartes` (Accueil, Portes de garage). Cartes/section-header/boutons déjà gouvernés ; contenu par override d'instance à l'adoption.",
+      "variantCount": 3,
+      "properties": {
+        "Disposition": {
+          "type": "VARIANT",
+          "defaultValue": "4 cartes",
+          "variantOptions": [
+            "4 cartes",
+            "QuatreCartesDeuxCta",
+            "5 cartes"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "Carte",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Equipe",
+      "nodeId": "2115:3947",
+      "key": "786b6f6634939b2081530949058eddf071b22ab1",
+      "description": "Anciennement nommé « Équipe » sur le canvas. Section Équipe — grille qui instancie 16 Member-card déjà gouvernées, chacune affichant le nom, le poste et la photo d'un membre. Le master ne porte aucune propriété pilotable : les 16 fiches sont posées en dur, sans propriété exposée pour changer un membre depuis une instance. Limite de source : 3 des 16 fiches gardent un nom et un poste au stade placeholder (texte littéral « Prénom »/« Poste », jamais renseigné), alors que leur photo, elle, est réelle.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "MemberCard",
+        "MemberPicture"
+      ]
+    },
+    {
+      "name": "CategoriesPrincipales",
+      "nodeId": "2115:4277",
+      "key": "94f64a369a5db615d68935bb353614eaaadbffc2",
+      "description": "Anciennement nommé « Catégories principales » sur le canvas. Section Catégories principales — met en avant les grandes catégories de produits (types de portes) juste après le bloc Hero, sur la plupart des pages du site. Une propriété Disposition (4 valeurs) fait varier la mise en page et le nombre de cartes affichées (2 ou 3) ; sur la variante Pleine largeur · RDV, une carte devient un bloc de rendez-vous. Seules les 3 variantes Pleine largeur instancient la molécule Carte ; la variante Standard reste construite en natif, non pilotable depuis l'instance.",
+      "variantCount": 4,
+      "properties": {
+        "Disposition": {
+          "type": "VARIANT",
+          "defaultValue": "Standard",
+          "variantOptions": [
+            "Standard",
+            "Pleine largeur",
+            "PleineLargeurRdv",
+            "PleineLargeurTroisCartes"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "ProduitsECommerce",
+      "nodeId": "2116:4475",
+      "key": "a616f938df22515ef5778930a99802ea925de85f",
+      "description": "Anciennement nommé « Produits e-commerce » sur le canvas. Section qui met en avant une sélection de produits de la boutique en ligne : elle assemble une grille d'instances Product-card, un Carousel-controls pour naviguer entre les produits, et un Section-header pour l'intitulé de la section. Produits affichés et texte d'en-tête sont portés par ces instances imbriquées, modifiables depuis chaque occurrence du composant.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "SectionHeader",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight",
+        "ProductCard",
+        "Cart",
+        "CarouselControls",
+        "ChevronLeft",
+        "ChevronRight"
+      ]
+    },
+    {
+      "name": "Realisations",
+      "nodeId": "2117:4691",
+      "key": "4a89264afa90d95c324efcdace47f1caf5617e62",
+      "description": "Anciennement nommé « Réalisations » sur le canvas. Section Réalisations : header + grille de 9 vignettes (1 Grand 743×743 span 2×2 + 8 Petit 340×340, GRID 4×3 gap 64). Propriété « En-tête » = Accroche (Section-header gouverné : Titre + accroche) | Presentation (titre 40px + texte descriptif 2 colonnes, gras par plage — NON la molécule Présentation gouvernée qui est en 32px). Photos = overrides de fill sur les vignettes (master Réalisation = tuile grise, sans slot). Défauts : Accroche = contenu Portes d'entrée ; Presentation = contenu Portes de garage industrielles.",
+      "variantCount": 2,
+      "properties": {
+        "En-tete": {
+          "type": "VARIANT",
+          "defaultValue": "Accroche",
+          "variantOptions": [
+            "Accroche",
+            "Presentation"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "SectionHeader",
+        "Realisation"
+      ]
+    },
+    {
+      "name": "Footer",
+      "nodeId": "2120:4785",
+      "key": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b",
+      "description": "Footer du site — logo + colonnes de liens (gouvernées, T058) + copyright (gouverné, T060) + réseaux sociaux + Bouton CTA (gouverné). Contenu identique sur les 9 maquettes (0 override attendu à l'adoption).",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "Facebook",
+        "Instagram",
+        "FooterColumn",
+        "PiquerayLogo",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight",
+        "Copyright"
+      ]
+    },
+    {
+      "name": "Header",
+      "nodeId": "84:285",
+      "key": "4165b8449f68916cca476b62454ede85eea13420",
+      "description": "En-tête de navigation du site — regroupe logo, liens de navigation, recherche, compte, panier et un CTA. Son fond peut être opaque ou transparent, ce dernier prévu pour un affichage sur photo. Un des glyphes qu'il instancie est hors du registre d'icônes gouverné ; son traitement est réservé à une étape séparée.",
+      "variantCount": 2,
+      "properties": {
+        "Fond": {
+          "type": "VARIANT",
+          "defaultValue": "Solid",
+          "variantOptions": [
+            "Solid",
+            "Transparent"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "PiquerayLogo",
+        "NavItem",
+        "OcticonChevronDown12",
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight",
+        "Search",
+        "User",
+        "Cart"
+      ]
+    },
+    {
+      "name": "HeroVideo",
+      "nodeId": "2151:5552",
+      "key": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "description": "Anciennement nommé « Hero vidéo » sur le canvas. Hero vidéo — bandeau plein écran de l'accueil (1728×720), au-dessus d'une vidéo/image de fond hors composant (le cadre lui-même ne porte pas le média). Contient un texte d'accroche (\"Le numéro 1 des portes HÖRMANN en Province de Liège !\") et un Bouton (instance) en bas à droite. Couvre exactement le cadre \"Hero video\" existant — pas de fusion avec le bloc catégories qui suit (question mesurée et close par l'audit hero-et-categories.md de la spec 003), pas modélisé comme un variant de Hero (structure et rôle différents : Hero a Titre+Sous-titre+Bouton sur fond image statique ; celui-ci est le fond vidéo de la page d'accueil, un seul texte + bouton).",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "Bouton",
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
+      "name": "Avis Google",
+      "nodeId": "2178:7381",
+      "key": "9bc775b834830afc0b67841e8d341cf2efa3037c",
+      "description": "GoogleReviews — generated from contract ds.google-reviews v1.0.0",
+      "variantCount": 1,
+      "properties": {
+        "Qualificatif#2178:77": {
+          "type": "TEXT",
+          "defaultValue": "Excellent",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Note globale#2178:78": {
+          "type": "TEXT",
+          "defaultValue": "4.8",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Volume#2178:79": {
+          "type": "TEXT",
+          "defaultValue": "93 avis",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Contrôles#2178:80": {
+          "type": "BOOLEAN",
+          "defaultValue": true,
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "Review-card"
+      ]
     }
   ]
 }

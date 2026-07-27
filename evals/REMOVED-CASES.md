@@ -1,10 +1,11 @@
 # Quarantined eval cases
 
-These 49 cases (51 at the reconversion, 2 since revived by spec 002 — see **Counts** below) were taken out of the live suite during the **Piqueray
-reconversion (2026-07-22)**, when the repo went from a 51-component demo design
-system with two themes and two brands to Piqueray: **one component (Button),
-one theme, one brand, no slots, no nested instances, no repeat collections, no
-multi-root anatomy.**
+These 48 cases (51 at the reconversion, 3 since revived — 2 by spec 002, 1 by
+spec 006 — see **Counts** below) were taken out of the live suite during the
+**Piqueray reconversion (2026-07-22)**, when the repo went from a
+51-component demo design system with two themes and two brands to Piqueray:
+**one component (Button), one theme, one brand, no slots, no nested
+instances, no repeat collections, no multi-root anatomy.**
 
 **The removal is deliberate, and the suite is smaller by design.** Every case
 below asserted something real, and none of them can assert it against what
@@ -21,13 +22,26 @@ them, and the runner prints the quarantine count on every run so it can never
 go quiet:
 
 ```
-N/102 evals passed — evals/results.json
-49 legacy cases quarantined (not run) — …
+N/113 evals passed — evals/results.json
+48 legacy cases quarantined (not run) — …
 ```
 
 The live `N/N` counts executed cases only, so the pass rate stays honest. **Trust the live `npm run eval` output over this file** — it prints the count on every run; update this note when it drifts (`grep -rn` the number, per CLAUDE.md).
 
 **Counts:** 147 cases before the reconversion → 96 executed at the reconversion, **102 executed** as of 002-governed-icons-button's close (+2 new: `detect-icon-registry-divergence`, `refuse-unregistered-icon-enum`; +1 new: `lower-icon-swap-and-visibility-into-props`; +2 revived: `figma-script-referees-invalid-contracts` (re-homed onto `ds.button` in its own standalone script — see `extract/figma/gauntlet/figma-script-referee-check.ts`) and `detect-default-and-kind-drift` (re-pointed 3 of 5 sub-checks to real `ds.button` facts)), **49 quarantined**. All 102 pass — the 3 that were intentionally red (`baseline-parity-clean`, `baseline-acknowledges-without-failing`, `promotion-converges`) turned green when Step 3 landed the master update (`step(3-master)`, `npm run parity` reaches zero active findings).
+
+**As of 006-google-reviews-block's close (2026-07-26):** **113 executed**, **48
+quarantined** (+10 new cases across US1-US4: repeat/nested-instance/A5/convention
+coverage — `evals/run.ts` is the source of truth for their ids; +1 revived:
+`detect-figma-missing-nested-instance`, re-pointed onto `ds.google-reviews`
+composing `ds.review-card` via a real `component` ref, the first Piqueray
+composite — see T061 in `specs/006-google-reviews-block/decisions.md`).
+**107/113 pass** — 6 inherited reds, all already named before spec 006 began
+and confirmed at its close (T069) to have zero relation to `ds.review-card`/
+`ds.google-reviews` (the 3 intentionally-red parity-baseline cases above,
+still an unresolved token-push state, plus 3 more from the post-005
+icon-casing drift named at T047a). **Trust `npm run eval`'s live output over
+this paragraph too** — it is a dated snapshot, not a live assertion.
 
 ## What quarantine does NOT mean
 
@@ -60,11 +74,9 @@ restore is a move, not a rewrite.
 |---|---|---|---|---|
 | `refuse-incomplete-mode-set` | C2-refusal | the token build refuses a light/dark mode gap by name | Piqueray is mono-theme: tokens/modes/semantic.dark.tokens.json does not exist, so there is no mode set to leave incomplete | a second token mode (a real dark theme in tokens/modes/) |
 | `detect-figma-missing-slot-property` | C3-detection | a slot's INSTANCE_SWAP property missing from the canvas surfaces as figma BEHIND | Piqueray has no component with a slot | a Piqueray component with a slot (INSTANCE_SWAP) drawn on its Figma set |
-| `detect-figma-missing-nested-instance` | C3-detection | a nested instance missing from the canvas surfaces as figma BEHIND | Piqueray has no component that nests another component | a Piqueray component with a nested instance (component ref in its anatomy) |
 | `detect-figma-accepts-drift` | C3-detection | a slot's `accepts` set narrowing on the canvas (preferredValues) surfaces as figma MISMATCH | Piqueray has no slot, so there is no accepts set to drift — confirmed still true post-002-governed-icons-button: that spec's own INSTANCE_SWAP preferredValues (Button's icon choice) deliberately resolve through the new icon registry as a plain enum prop, never `slot.accepts` (D2: no per-icon contract to resolve `accepts` ids against, by design) | a Piqueray component with a slot carrying `accepts` |
 | `detect-code-removed-slot-prop` | C3-detection | deleting a slot's ReactNode prop from the generated code surfaces as code BEHIND | Piqueray has no slot-bearing component | a Piqueray component with a slot |
 | `brand-added-token-layer-only` | C6-theming | adding a brand is a TOKEN-LAYER-ONLY operation: generated components stay byte-identical, a [data-brand] block is emitted, a Brand mode reaches the canvas, and an incomplete brand file is refused by name | Piqueray is mono-brand: brand.default.tokens.json is empty and there is no second brand to add alongside it | a second brand file in tokens/modes/ (brand.<name>.tokens.json) with real brand-layer tokens |
-| `detect-default-and-kind-drift` | C3-detection | boolean/text canvas defaults, numeric code defaults, a DELETED code default, and property KIND changes on either surface are all caught | needs a Figma set with BOOLEAN and TEXT properties and a component with a numeric prop default (the demo Button.Loading/Label and Slider.value); the Piqueray Bouton set has one VARIANT property and the Button has no numeric or boolean prop | a Piqueray component with a boolean and/or numeric prop, drawn as BOOLEAN/TEXT properties on its Figma set |
 | `naxis-full-cartesian-product` | C1-determinism | every enum prop is a variant axis: a 4-axis contract compiles the full 36-cell cartesian product with per-axis {prop} token substitution, and the existing 2-axis set keeps its names | the fixture binds demo tokens ({color.action.{variant}.*}, {space.inset-x.{size}}, {font.control.size.{size}}) and the second half asserts the DEMO Button's 2-axis 12-variant grid; the Piqueray Button has ONE axis and 6 variants | a Piqueray component with two or more enum axes (and the fixture re-authored against Piqueray tokens) |
 | `detect-code-removed-event` | C3-detection | deleting a contract-declared event callback from the code surfaces as code BEHIND | no Piqueray contract declares an event | a Piqueray contract with a declared event (contract.events) |
 | `refuse-defaultContent-outside-accepts` | C2-refusal | defaultContent naming a contract outside the slot's `accepts` set is refused by name | Piqueray has no slot, so no accepts/defaultContent pair exists | a Piqueray component with a slot carrying accepts + defaultContent |
@@ -134,8 +146,10 @@ these capabilities back by gaining:
 
 - **a second component** — `pending-first-sync-not-drift`, `plugin-update-report`
 - **a composed component** (one contract nesting another) — `key-based-linking`,
-  `stub-geometry-render`, `detect-figma-missing-nested-instance`,
-  `design-census-*`, `plugin-engine-bundle`, `plugin-propose-dry-run`
+  `stub-geometry-render`, `design-census-*`, `plugin-engine-bundle`,
+  `plugin-propose-dry-run` (`detect-figma-missing-nested-instance` was revived
+  in 006-google-reviews-block, T061 — `ds.google-reviews` composes
+  `ds.review-card` — see the live suite, not this file)
 - **a slot (INSTANCE_SWAP)** — `preferred-values-accepts`,
   `detect-figma-missing-slot-property`, `detect-figma-accepts-drift`,
   `detect-code-removed-slot-prop`, `refuse-defaultContent-outside-accepts`,
@@ -143,7 +157,6 @@ these capabilities back by gaining:
 - **interaction states** — `refuse-hollow-state-previews`,
   `state-previews-bounded-canvas-only`, `state-axis-drift-both-directions`,
   `focus-not-pressed-browser-probe`, `wc-emitter-css-parity`
-- **a boolean or numeric prop** — `detect-default-and-kind-drift`
 - **a second enum axis** — `naxis-full-cartesian-product`, `token-size-live`
 - **a second token mode or brand** — `refuse-incomplete-mode-set`,
   `brand-added-token-layer-only`

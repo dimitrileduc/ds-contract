@@ -178,6 +178,22 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // FIXED 20×20, so its preview render and the master render are the same size:
   // a meaningful pixel comparison (Coché=Non matches at 0.00%).
   { id: 'checkbox', label: 'Checkbox (Piqueray)', kind: 'contract', contractId: 'ds.checkbox', fileKey: PIQUERAY, setNodeId: '2053:1256' },
+  // ReviewCard / GoogleReviews (006-google-reviews-block) — both standalone
+  // COMPONENTs (isSet: false, no variant axis): figma-api.ts's
+  // standalone-COMPONENT path (document.type !== 'COMPONENT_SET') treats the
+  // node itself as its own one-entry variant list, and match.ts's
+  // planVariant returns the zero-axis default-state plan for a plain-named
+  // component ("a plain-named single COMPONENT has no axes — render the
+  // all-defaults state") — exactly the Button/Checkbox default-variant path,
+  // just without a set wrapper. Anchors mirror
+  // contracts/review-card.contract.json / google-reviews.contract.json
+  // anchors.figma (fileKey + nodeId written by anchors:writeback, T045,
+  // after the first live push T043-T044). No `renderWidth`: both roots
+  // already carry a FIXED width literal (299px / 1552px, T040/T042) matching
+  // their master's own width exactly — unlike Input/Textarea's FILL-based
+  // atoms below, there is no content-width mismatch to correct.
+  { id: 'review-card', label: 'ReviewCard (Piqueray)', kind: 'contract', contractId: 'ds.review-card', fileKey: PIQUERAY, setNodeId: '2178:7349' },
+  { id: 'google-reviews', label: 'GoogleReviews (Piqueray)', kind: 'contract', contractId: 'ds.google-reviews', fileKey: PIQUERAY, setNodeId: '2178:7381' },
   // Input / Textarea (004) — content-width bricks: the master is a FIXED-width
   // frame (280px) but real usage is layoutSizingHorizontal:FILL (the Field
   // molecule stretches them, audit 003), so a bare atom's NATURAL render is

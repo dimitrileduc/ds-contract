@@ -61,19 +61,6 @@ export const legacyCases: Case[] = [
       expectFinding(readReport(), 'figma', 'behind', 'Card.Actions');
     },
   },
-  // RE-ENABLE WHEN: a Piqueray component with a nested instance (component ref in its anatomy).
-  {
-    id: 'detect-figma-missing-nested-instance',
-    claim: 'C3-detection',
-    run: () => {
-      editJson(FIGMA_COMPONENTS, (s) => {
-        const card = s.sets.find((x: any) => x.name === 'Card');
-        card.nestedInstances = card.nestedInstances.filter((n: string) => n !== 'Avatar');
-      });
-      if (parity().status === 0) throw new Error('Drift not detected');
-      expectFinding(readReport(), 'figma', 'behind', 'Card.Avatar');
-    },
-  },
   // RE-ENABLE WHEN: a Piqueray component with a slot carrying `accepts`.
   {
     id: 'detect-figma-accepts-drift',

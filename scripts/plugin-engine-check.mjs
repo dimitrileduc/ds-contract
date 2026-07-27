@@ -23,12 +23,16 @@
  *                  (a mutated base surfaces its +prop/default lines)
  *   6. pr        — the dry-run PR plan, exact lines, zero network
  *
- * The subject is whatever contracts/ ships — currently the Piqueray Button.
- * Flows that need a shape Piqueray does not have (a composite with nested
- * component instances; a SECOND contract, for the report's "new — will be
- * created" line) are SKIPPED BY NAME and printed, never quietly dropped:
- * every skip below prints a ⏭ line saying what it needs. The frozen coverage
- * is recorded in evals/REMOVED-CASES.md.
+ * The subject (flow 2, generate) is the first contract alphabetically —
+ * currently the Piqueray Button. Flow 3 (ordering) is unlocked (spec 006,
+ * 2026-07-26): ds.google-reviews is a real composite (anatomy references
+ * ds.review-card via `component`), so dependency ordering is asserted, not
+ * skipped. Flows that need a shape Piqueray still does not have (a SECOND
+ * contract, for the update report's "new — will be created" line; a
+ * multi-root composite for the packaged-engine composition flows) are
+ * SKIPPED BY NAME and printed, never quietly dropped: every skip below
+ * prints a ⏭ line saying what it needs. The frozen coverage is recorded in
+ * evals/REMOVED-CASES.md.
  */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -108,6 +112,11 @@ const subject = JSON.parse(read(`contracts/${SUBJECT_FILE}`));
 }
 
 // --- 3. bundle ordering (dependencies first) -------------------------------
+// UNLOCKED (2026-07-26, spec 006): Piqueray now ships a composite
+// (ds.google-reviews, anatomy references ds.review-card via `component`), so
+// this is a hard assertion, not a by-name skip. The condition named in the
+// removed skip ("needs a contract whose anatomy references another
+// contract") is genuinely met.
 {
   // Find a shipping contract that references other contracts.
   let composite = null;
@@ -120,11 +129,7 @@ const subject = JSON.parse(read(`contracts/${SUBJECT_FILE}`));
       break;
     }
   }
-  if (!composite) {
-    skip(
-      'dependency ordering (needs a contract whose anatomy references another contract — Piqueray ships a flat Button). Restore when Piqueray gains a composite.',
-    );
-  } else {
+  assert(composite, 'contracts/ ships at least one composite (a contract whose anatomy references another via `component`)');
   const plan = DSC.planGenerate([composite], { withTokens: false, fileKey: '' });
   assert(plan.ok, `composite plan accepted (${plan.ok ? '' : plan.issues.map((i) => i.headline).join('; ')})`);
   const componentSteps = plan.steps.filter((s) => s.kind === 'component');
@@ -136,7 +141,6 @@ const subject = JSON.parse(read(`contracts/${SUBJECT_FILE}`));
   console.log(
     `✔ bundle order: ${composite.id} plans ${componentSteps.length} component scripts, dependencies first (${componentSteps.map((s) => s.contractId).join(' → ')})`,
   );
-  }
 }
 
 // --- 4. update-library report + apply --------------------------------------

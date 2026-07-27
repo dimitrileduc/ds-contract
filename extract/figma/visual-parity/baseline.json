@@ -1,28 +1,44 @@
 {
- "generatedAt": "2026-07-24T20:41:37.753Z",
- "headCommit": "7ddca00fd333eb0794a2d726a4aa02698948ae08",
+ "generatedAt": "2026-07-26T12:01:50.488Z",
+ "headCommit": "82c3f29a7bf07666c99ba6612afee36a3214bd0f",
  "epsilonPp": 0.1,
  "subjects": {
   "button": {
-   "version": "2379873028366184322",
+   "version": "2380472820518738371",
    "fontFamilies": [
     "Montserrat"
    ],
-   "pinned": {
-    "variant": "Property 1=Default",
-    "sizeOurs": "436×108"
-   }
+   "pinned": null
   },
   "checkbox": {
-   "version": "2379873028366184322",
+   "version": "2380472820518738371",
    "fontFamilies": [],
+   "pinned": null
+  },
+  "review-card": {
+   "version": "2380472820518738371",
+   "fontFamilies": [
+    "Inter",
+    "Montserrat"
+   ],
    "pinned": {
-    "variant": "Coché=Non",
-    "sizeOurs": "40×40"
+    "variant": "ReviewCard",
+    "sizeOurs": "598×478"
+   }
+  },
+  "google-reviews": {
+   "version": "2380472820518738371",
+   "fontFamilies": [
+    "Inter",
+    "Montserrat"
+   ],
+   "pinned": {
+    "variant": "GoogleReviews",
+    "sizeOurs": "3120×656"
    }
   },
   "input": {
-   "version": "2379873028366184322",
+   "version": "2380472820518738371",
    "fontFamilies": [
     "Montserrat"
    ],
@@ -32,7 +48,7 @@
    }
   },
   "textarea": {
-   "version": "2379873028366184322",
+   "version": "2380472820518738371",
    "fontFamilies": [
     "Montserrat"
    ],
@@ -42,72 +58,83 @@
    }
   },
   "button-with-icons": {
-   "version": "2379873028366184322",
+   "version": "2380472820518738371",
    "fontFamilies": [
     "Montserrat"
    ],
-   "pinned": {
-    "variant": "Property 1=Outilne noir",
-    "sizeOurs": "610×108"
-   }
+   "pinned": null
   }
  },
  "rows": {
-  "button :: Property 1=Default": {
-   "status": "diffed",
-   "masked": 1.3115550428076992,
-   "unmasked": 3.028198653198653,
-   "sizeOurs": "436×108",
-   "causeClass": "renderer"
-  },
-  "button :: Property 1=Orange": {
-   "status": "diffed",
-   "masked": 1.3115550428076992,
-   "unmasked": 3.0218855218855216,
-   "sizeOurs": "436×108",
-   "causeClass": "renderer"
-  },
-  "button :: Property 1=Blanc": {
-   "status": "diffed",
-   "masked": 0,
-   "unmasked": 2.1338383838383836,
-   "sizeOurs": "436×108",
-   "causeClass": "renderer"
-  },
-  "button :: Property 1=Outline blanc": {
-   "status": "diffed",
-   "masked": 0,
-   "unmasked": 0,
-   "sizeOurs": "436×108",
-   "causeClass": "renderer"
-  },
-  "button :: Property 1=Link": {
-   "status": "diffed",
+  "button :: Style=Default": {
+   "status": "skipped",
    "masked": null,
-   "unmasked": 4.829545454545454,
-   "sizeOurs": "307×24",
-   "causeClass": "renderer"
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
   },
-  "button :: Property 1=Outilne noir": {
-   "status": "diffed",
-   "masked": 2.5259578602222357,
-   "unmasked": 3.882575757575758,
-   "sizeOurs": "436×108",
-   "causeClass": "renderer"
+  "button :: Style=Orange": {
+   "status": "skipped",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
   },
-  "checkbox :: Coché=Non": {
+  "button :: Style=Blanc": {
+   "status": "skipped",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
+  },
+  "button :: Style=Outline blanc": {
+   "status": "skipped",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
+  },
+  "button :: Style=Link": {
+   "status": "skipped",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
+  },
+  "button :: Style=Outline noir": {
+   "status": "skipped",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
+  },
+  "checkbox :: Coche=Non": {
+   "status": "skipped",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
+  },
+  "checkbox :: Coche=Oui": {
+   "status": "skipped",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
+   "causeClass": null
+  },
+  "review-card :: ReviewCard": {
    "status": "diffed",
    "masked": 0,
-   "unmasked": 0,
-   "sizeOurs": "40×40",
-   "causeClass": "renderer"
+   "unmasked": 1.680287149634066,
+   "sizeOurs": "598×478",
+   "causeClass": null
   },
-  "checkbox :: Coché=Oui": {
+  "google-reviews :: GoogleReviews": {
    "status": "diffed",
-   "masked": 2.5625,
-   "unmasked": 2.5625,
-   "sizeOurs": "40×40",
-   "causeClass": "renderer"
+   "masked": 1.497225973460509,
+   "unmasked": 3.3071939493433393,
+   "sizeOurs": "3120×656",
+   "causeClass": null
   },
   "input :: Input": {
    "status": "diffed",
@@ -124,10 +151,10 @@
    "causeClass": null
   },
   "button-with-icons :: Property 1=Outilne noir": {
-   "status": "diffed",
-   "masked": 0.008186655751125664,
-   "unmasked": 1.621129326047359,
-   "sizeOurs": "610×108",
+   "status": "figma-declined",
+   "masked": null,
+   "unmasked": null,
+   "sizeOurs": null,
    "causeClass": null
   }
  }

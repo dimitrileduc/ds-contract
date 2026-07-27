@@ -1,0 +1,435 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.review-card",
+  "name": "ReviewCard",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "molecule",
+  "description": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).\n\nLimites nommées (measures/mesures-aplat.md, measures/faisabilite-canaux.md) : (1) l'exclusion pastille/photo est une CONVENTION de deux booléens indépendants, pas une contrainte de schéma — `visibleWhen` n'a pas de négation et un axe d'enum romprait la variation par item du `repeat` ; (2) la couleur de fond de la pastille-initiale est FIXE et gouvernée — les 5 avis réels portent 5 teintes différentes, non modélisables (aucun canal ne lie une couleur CSS à une valeur de texte libre par item) ; écart assumé, arbitré par l'owner (« la couleur, rien à faire ») ; (3) l'avatar photo reste un aplat gris + † sur le canevas — trou A5, non refermé (R6) ; le pixel réel est un override de fill IMAGE hors contrat, appliqué après le dernier amend ; (4) la séparation carte/fond du widget réel est une ombre douce (mesurée par balayage de bord : dégradé lisse sur ~15px) — `box-shadow` étant hors des deux registres de canaux, le repli est une bordure fine 1px, seul canal disponible.",
+  "semantics": {
+    "element": "article",
+    "provenance": "authored"
+  },
+  "props": [
+    {
+      "name": "auteur",
+      "type": "text",
+      "required": true,
+      "default": "Prénom N.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Auteur"
+        },
+        "code": {
+          "prop": "auteur"
+        }
+      }
+    },
+    {
+      "name": "initiale",
+      "type": "text",
+      "default": "P",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Initiale"
+        },
+        "code": {
+          "prop": "initiale"
+        }
+      }
+    },
+    {
+      "name": "date",
+      "type": "text",
+      "default": "il y a 2 mois",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Date"
+        },
+        "code": {
+          "prop": "date"
+        }
+      }
+    },
+    {
+      "name": "texte",
+      "type": "text",
+      "required": true,
+      "default": "Un témoignage neutre, exemple générique de contenu.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Témoignage"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    },
+    {
+      "name": "tronque",
+      "type": "boolean",
+      "default": false,
+      "description": "Trouvaille de la convergence T040 : le widget affiche un lien « Lire la suite » sous les avis qu'il a lui-même tronqués (ellipse déjà présente dans `texte`), absent sur les avis complets (mesuré : Thierry Picard, carte 4). La troncature multi-lignes elle-même reste refusée (R10, `-webkit-line-clamp` hors registre) — ce booléen ne gouverne QUE la visibilité du lien.",
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Tronqué"
+        },
+        "code": {
+          "prop": "tronque"
+        }
+      }
+    },
+    {
+      "name": "initialeVisible",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Avatar initiale"
+        },
+        "code": {
+          "prop": "initialeVisible"
+        }
+      }
+    },
+    {
+      "name": "photo",
+      "type": "boolean",
+      "default": false,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Avatar photo"
+        },
+        "code": {
+          "prop": "photo"
+        }
+      }
+    },
+    {
+      "name": "photoUrl",
+      "type": "text",
+      "default": "",
+      "description": "src côté code ; inerte sur le canevas (trou A5, R6) — une prop scalaire ne peut pas être figma.kind:'NONE'.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "URL photo"
+        },
+        "code": {
+          "prop": "photoUrl"
+        }
+      }
+    },
+    {
+      "name": "photoAlt",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Alt photo"
+        },
+        "code": {
+          "prop": "photoAlt"
+        }
+      }
+    },
+    {
+      "name": "verifie",
+      "type": "boolean",
+      "default": true,
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Vérifié"
+        },
+        "code": {
+          "prop": "verifie"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "description": "Largeur FIXE et hauteur MINIMALE mesurées (T040) : les 5 cartes de l'aplat ont une largeur ET une hauteur identiques malgré des textes de longueur différente. `layout.grow` ne s'applique jamais à la racine d'un contrat (core/emit-react.ts saute explicitement le root de la boucle qui pose flex:1 1 auto) et un `component`/`repeat` ne génère aucun CSS de wrapper côté parent — vérifié : aucun des 51 contrats démo pré-reconversion n'a jamais utilisé `repeat`, donc aucun mécanisme d'égalisation entre instances répétées n'existe dans ce moteur. Repli identique au SEUL précédent trouvé dans l'archive (`ds.avatar-group`) : une dimension FIXE, mesurée, sur la racine de l'enfant. 282px = (1552 - 2×16 padding root - 2×28 flèches - 6×9 gaps) / 5 ; min-height 261px = hauteur mesurée des cartes réelles (391 px natifs ÷ 1,4994). À recalculer si gap/flèches changent — limite nommée, pas une vraie grille.",
+      "element": "article",
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "tokens": {
+        "background-color": "{color.blanc}",
+        "border-color": "{color.bleu-clair}"
+      },
+      "literals": {
+        "width": "299px",
+        "min-height": "239px",
+        "border-radius": "8px",
+        "border-width": "1px",
+        "padding-top": "24px",
+        "padding-bottom": "24px",
+        "padding-left": "24px",
+        "padding-right": "24px",
+        "gap": "14px"
+      },
+      "parts": {
+        "entete": {
+          "description": "Rangée profil (avatar + identité) à gauche, logo Google à droite — mesuré sur l'aplat : chaque carte porte son propre « G » en haut à droite.",
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center",
+            "justify": "space-between"
+          },
+          "parts": {
+            "profil": {
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "align": "center"
+              },
+              "literals": {
+                "gap": "12px"
+              },
+              "parts": {
+                "avatarInitiale": {
+                  "description": "Pastille initiale — 40px mesurés (60 px natifs ÷ 1,4994). ⚠️ Contournement d'émetteur (T040) : le texte de l'initiale vit dans une SOUS-PART (`initialeTexte`) et non sur cette part, parce que `isStructural()` (core/emit-react.ts:223) exclut toute part portant du `content` — son `layout` serait alors jeté et l'initiale ne serait jamais centrée (défaut constaté : lettre hors du cercle, en haut à gauche). La couleur de fond est fixe et gouvernée : voir limite (2) du contrat.",
+                  "visibleWhen": {
+                    "prop": "initialeVisible"
+                  },
+                  "layout": {
+                    "display": "flex",
+                    "align": "center",
+                    "justify": "center"
+                  },
+                  "tokens": {
+                    "background-color": "{color.bleu-gris}"
+                  },
+                  "literals": {
+                    "width": "40px",
+                    "height": "40px",
+                    "min-width": "40px",
+                    "border-radius": "20px"
+                  },
+                  "parts": {
+                    "initialeTexte": {
+                      "element": "span",
+                      "tokens": {
+                        "font-family": "{font.family.montserrat}",
+                        "font-weight": "{font.weight.semibold}",
+                        "font-size": "{font.size.18}",
+                        "color": "{color.blanc}"
+                      },
+                      "literals": {
+                        "line-height": "18px"
+                      },
+                      "content": {
+                        "prop": "initiale"
+                      }
+                    }
+                  }
+                },
+                "avatarPhoto": {
+                  "description": "Avatar photo — trou A5 (canevas : aplat gris + †, R6). photoUrl/photoAlt portés par le contrat ; le pixel réel est un override de fill IMAGE hors contrat sur les occurrences adoptées.",
+                  "element": "img",
+                  "visibleWhen": {
+                    "prop": "photo"
+                  },
+                  "literals": {
+                    "width": "40px",
+                    "height": "40px",
+                    "min-width": "40px",
+                    "border-radius": "20px"
+                  },
+                  "attrs": {
+                    "src": "{photoUrl}",
+                    "alt": "{photoAlt}"
+                  }
+                },
+                "identite": {
+                  "layout": {
+                    "display": "flex",
+                    "direction": "column",
+                    "justify": "center"
+                  },
+                  "literals": {
+                    "gap": "2px"
+                  },
+                  "parts": {
+                    "auteur": {
+                      "description": "Nom de l'auteur — GRAS sur l'aplat (mesuré : même largeur d'encre que le rendu regular, mais graisse visiblement supérieure ; corrigé en T040).",
+                      "element": "span",
+                      "tokens": {
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{font.size.16}",
+                        "font-weight": "{font.weight.semibold}"
+                      },
+                      "literals": {
+                        "color": "#000000",
+                        "line-height": "19.2px"
+                      },
+                      "content": {
+                        "prop": "auteur"
+                      }
+                    },
+                    "date": {
+                      "element": "span",
+                      "tokens": {
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{font.size.14}"
+                      },
+                      "literals": {
+                        "color": "#8A8A8A",
+                        "line-height": "16.8px"
+                      },
+                      "content": {
+                        "prop": "date"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "marque": {
+              "description": "Logo Google par carte — glyphe interne D7 (assets/icons/google.svg), hors registre gouverné (R4). Mesuré présent en haut à droite de chacune des 5 cartes de l'aplat.",
+              "icon": {
+                "asset": "google",
+                "size": 18
+              }
+            }
+          }
+        },
+        "notation": {
+          "description": "Étoiles ET badge « vérifié » sur la MÊME rangée — mesuré sur l'aplat (le badge suit immédiatement la 5ᵉ étoile ; il était à tort seul en bas de carte avant la correction T040). 5 étoiles fixes : mesuré 5/5 sur les 5 avis échantillon ET la barre-résumé, aucune partielle — axe de variante `note` supprimé (R7), l'icône gouvernée star.svg est orange intrinsèque et ne se recolore pas.",
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "literals": {
+            "gap": "8px"
+          },
+          "parts": {
+            "etoiles": {
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "align": "center"
+              },
+              "literals": {
+                "gap": "3px"
+              },
+              "parts": {
+                "etoile1": {
+                  "icon": {
+                    "asset": "star",
+                    "size": 16
+                  }
+                },
+                "etoile2": {
+                  "icon": {
+                    "asset": "star",
+                    "size": 16
+                  }
+                },
+                "etoile3": {
+                  "icon": {
+                    "asset": "star",
+                    "size": 16
+                  }
+                },
+                "etoile4": {
+                  "icon": {
+                    "asset": "star",
+                    "size": 16
+                  }
+                },
+                "etoile5": {
+                  "icon": {
+                    "asset": "star",
+                    "size": 16
+                  }
+                }
+              }
+            },
+            "verification": {
+              "description": "Badge « vérifié » — icône seule, AUCUN libellé texte visible sur l'aplat (mesuré ; corrige l'anatomie esquissée en data-model.md, qui supposait un libellé).",
+              "visibleWhen": {
+                "prop": "verifie"
+              },
+              "layout": {
+                "display": "flex",
+                "align": "center",
+                "justify": "center"
+              },
+              "literals": {
+                "width": "16px",
+                "height": "16px",
+                "min-width": "16px",
+                "border-radius": "8px",
+                "background-color": "#000000"
+              },
+              "parts": {
+                "coche": {
+                  "icon": {
+                    "asset": "check",
+                    "size": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "temoignage": {
+          "element": "p",
+          "tokens": {
+            "font-family": "{font.family.montserrat}",
+            "font-size": "{font.size.14}"
+          },
+          "literals": {
+            "color": "#000000",
+            "line-height": "19.6px"
+          },
+          "content": {
+            "prop": "texte"
+          }
+        },
+        "lireLaSuite": {
+          "description": "Lien « Lire la suite » — visible seulement sur les avis que le widget a lui-même tronqués (trouvaille T040).",
+          "element": "span",
+          "visibleWhen": {
+            "prop": "tronque"
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}",
+            "font-size": "{font.size.14}"
+          },
+          "literals": {
+            "color": "#8A8A8A"
+          },
+          "text": "Lire la suite"
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "3826fdc9975d42b1661e14494476701676759671",
+      "nodeId": "2178:7349",
+      "dumpedAt": "2026-07-26"
+    },
+    "code": {
+      "importPath": "src/components/ReviewCard",
+      "export": "ReviewCard"
+    }
+  }
+}

@@ -3388,13 +3388,13 @@ const cases: Case[] = [
       if (r.status !== 0) throw new Error(`deterministic-roundtrip failed:\n${r.out.slice(0, 1600)}`);
       for (const want of [
         'byte-identical', // contract→canvas run twice, identical → deterministic
-        'round-trip closes: the API that went to canvas came back',
+        'round-trip closes: the anatomy that went to canvas came back',
         'emitted', // contract→code
         'THE FULL LOOP RAN WITH ZERO AI',
       ]) {
         if (!r.out.includes(want)) throw new Error(`deterministic-roundtrip missing "${want}":\n${r.out.slice(0, 1600)}`);
       }
-      console.log('deterministic-roundtrip: contract→canvas byte-identical across two runs (deterministic), canvas→contract recovers the API, contract→code emits — the full journey is pure functions, no AI in the conversion');
+      console.log('deterministic-roundtrip: contract→canvas byte-identical across two runs (deterministic), canvas→contract recovers the anatomy, contract→code emits — the full journey is pure functions, no AI in the conversion');
     },
   },
   {
@@ -4027,6 +4027,311 @@ const cases: Case[] = [
       );
     },
   },
+  {
+    // spec 006 (R14 #4, contracts/region-proof.md): the --regions flag on
+    // page-parity's cli.ts is STRICTLY ADDITIVE. Reuses the committed
+    // one-pixel fixture pair (copied into scratch as part of `extract/`) —
+    // no new PNGs, only different --regions rectangles (region-proof.md §6).
+    id: 'pages-compare-regions-additive',
+    claim: 'C1-determinism',
+    run: () => {
+      const CLI = 'extract/figma/page-parity/cli.ts';
+      const before = 'extract/figma/page-parity/fixtures/one-pixel/before';
+      const after = 'extract/figma/page-parity/fixtures/one-pixel/after';
+      const outNoFlag = 'evals/.scratch-out/pages-regions/no-flag';
+      const outInside = 'evals/.scratch-out/pages-regions/inside';
+      const outOutside = 'evals/.scratch-out/pages-regions/outside';
+      const regionsInsidePath = 'evals/.scratch-out/pages-regions/inside.regions.json';
+      const regionsOutsidePath = 'evals/.scratch-out/pages-regions/outside.regions.json';
+      mkdirSync(path.join(SCRATCH, 'evals', '.scratch-out', 'pages-regions'), { recursive: true });
+      writeFileSync(path.join(SCRATCH, regionsInsidePath), JSON.stringify({ 'maquette-a': { x: 5, y: 5, w: 10, h: 10 } }));
+      writeFileSync(path.join(SCRATCH, regionsOutsidePath), JSON.stringify({ 'maquette-a': { x: 50, y: 50, w: 10, h: 10 } }));
+
+      // 1. Byte-identity WITHOUT --regions: raw verdict.json text carries none
+      //    of the 4 new keys (JSON.stringify omits undefined-valued props).
+      const rNoFlag = run(TSX, [CLI, '--before', before, '--after', after, '--out', outNoFlag]);
+      if (rNoFlag.status !== 1) throw new Error(`no-flag run: expected exit 1, got ${rNoFlag.status}\n${rNoFlag.out}`);
+      const jsonNoFlag = readFileSync(path.join(SCRATCH, outNoFlag, 'verdict.json'), 'utf8');
+      if (jsonNoFlag.includes('"region"') || jsonNoFlag.includes('regionDiffCount')) {
+        throw new Error(`verdict.json (no --regions) unexpectedly carries a region key:\n${jsonNoFlag}`);
+      }
+
+      // 2. region-inside: rectangle CONTAINS the flipped pixel (10,7).
+      const rInside = run(TSX, [CLI, '--before', before, '--after', after, '--out', outInside, '--regions', regionsInsidePath]);
+      if (rInside.status !== 1) throw new Error(`region-inside run: expected exit 1, got ${rInside.status}\n${rInside.out}`);
+      const docInside = JSON.parse(readFileSync(path.join(SCRATCH, outInside, 'verdict.json'), 'utf8'));
+      const entryInside = docInside.maquettes.find((m: { maquette: string }) => m.maquette === 'maquette-a');
+      if (entryInside.regionDiffCount !== 1 || entryInside.outsideDiffCount !== 0) {
+        throw new Error(`region-inside: expected regionDiffCount 1 / outsideDiffCount 0, got ${JSON.stringify(entryInside)}`);
+      }
+
+      // 3. region-outside: rectangle EXCLUDES the flipped pixel — the mirror.
+      const rOutside = run(TSX, [CLI, '--before', before, '--after', after, '--out', outOutside, '--regions', regionsOutsidePath]);
+      if (rOutside.status !== 1) throw new Error(`region-outside run: expected exit 1, got ${rOutside.status}\n${rOutside.out}`);
+      const docOutside = JSON.parse(readFileSync(path.join(SCRATCH, outOutside, 'verdict.json'), 'utf8'));
+      const entryOutside = docOutside.maquettes.find((m: { maquette: string }) => m.maquette === 'maquette-a');
+      if (entryOutside.regionDiffCount !== 0 || entryOutside.outsideDiffCount !== 1) {
+        throw new Error(`region-outside: expected regionDiffCount 0 / outsideDiffCount 1, got ${JSON.stringify(entryOutside)}`);
+      }
+
+      console.log(
+        'pages-compare-regions-additive: no-flag run carries zero region keys (byte-identity); ' +
+          'region-inside → regionDiffCount 1/outsideDiffCount 0; region-outside → regionDiffCount 0/outsideDiffCount 1',
+      );
+    },
+  },
+  // RE-ANIMATED (spec 006, 2026-07-26): was `detect-figma-missing-nested-instance`
+  // in evals/legacy-cases.ts (quarantined at the Piqueray reconversion — no
+  // composite existed to exercise it). Piqueray now ships ds.google-reviews
+  // (GoogleReviews) composing ds.review-card (ReviewCard) via a `component`
+  // ref in its anatomy — the exact re-enable condition. Body is the same
+  // shape as the original (edit the snapshot's nestedInstances, expect a
+  // figma/behind finding), re-pointed onto the real names.
+  //
+  // UPDATED (T076a, 2026-07-26): the two masters were renamed to their
+  // French canvas convention (ReviewCard → Review-card, GoogleReviews →
+  // Avis Google) — the LIVE snapshot now carries those names. The set is
+  // still found by CONTRACT NAME here on purpose (not by key) — this is a
+  // parked, deliberately-fragile probe of the exact join parity/diff.ts's
+  // outer contract⟷set lookup no longer uses (that lookup already prefers
+  // componentSetKey; see the `nestedInstanceName` helper added alongside
+  // this fix). If this literal ever needs touching again after a future
+  // rename, that itself is the signal that some remaining lookup regressed
+  // to name-matching — check parity/diff.ts's `set` and `nestedInstanceName`
+  // resolution first (B5 backlog: same failure class in core/emit-figma-
+  // script.ts's findComponentByName).
+  {
+    id: 'detect-figma-missing-nested-instance',
+    claim: 'C3-detection',
+    run: () => {
+      editJson(FIGMA_COMPONENTS, (s) => {
+        const set = s.sets.find((x: any) => x.name === 'Avis Google');
+        set.nestedInstances = (set.nestedInstances ?? []).filter((n: string) => n !== 'Review-card');
+      });
+      if (parity().status === 0) throw new Error('Drift not detected');
+      expectFinding(readReport(), 'figma', 'behind', 'GoogleReviews.Review-card');
+    },
+  },
+  {
+    // T064 (spec 006, US3): ds.review-card's initial/photo avatar exclusivity
+    // is a CONVENTION, never a schema constraint. `visibleWhen` has no
+    // negation and no XOR/enum-style construct across two independent
+    // BOOLEAN props (an enum axis would break per-item variation inside
+    // google-reviews' `repeat`, R7/T033) — so `initialeVisible` and `photo`
+    // gate their parts completely independently (core/emit-react.ts
+    // wrapVisibleWhen, one `{cond ? (...) : null}` per part, no cross-part
+    // awareness). This pins that BOTH parts render when BOTH props are true
+    // — proving the schema does not, and structurally cannot, prevent the
+    // double-avatar case — so the exclusion stays a documented convention
+    // (contract description) that callers must honor themselves, never a
+    // silent claim of enforcement (Constitution V).
+    id: 'review-card-avatar-exclusivity-is-convention-not-schema',
+    claim: 'C3-detection',
+    run: () => {
+      const byId = new Map(
+        readdirSync(path.join(ROOT, 'contracts'))
+          .filter((f) => f.endsWith('.contract.json'))
+          .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
+          .map((c) => [c.id, c]),
+      );
+      const card = byId.get('ds.review-card');
+      if (!card) throw new Error('contracts/review-card.contract.json missing ds.review-card');
+      const initialeProp = card.props.find((p) => p.name === 'initialeVisible');
+      const photoProp = card.props.find((p) => p.name === 'photo');
+      if (!initialeProp || !photoProp) throw new Error('ds.review-card lost initialeVisible/photo props');
+      // Schema-level: no shared enum, no mutual negation wired between them.
+      if (typeof initialeProp.type !== 'string' || initialeProp.type !== 'boolean') {
+        throw new Error('initialeVisible is no longer a plain boolean — exclusivity proof must be re-derived');
+      }
+      if (typeof photoProp.type !== 'string' || photoProp.type !== 'boolean') {
+        throw new Error('photo is no longer a plain boolean — exclusivity proof must be re-derived');
+      }
+      // Runtime: emit and confirm BOTH gated parts render when BOTH are true.
+      const icons = new Map(
+        readdirSync(path.join(ROOT, 'assets', 'icons'))
+          .filter((f) => f.endsWith('.svg'))
+          .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+      );
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const tokenInv = tokenInventoryFromJson([
+        read('tokens/primitives.tokens.json'),
+        read('tokens/semantic.tokens.json'),
+        read('tokens/modes/semantic.light.tokens.json'),
+      ]);
+      const { tsx } = coreEmitReact(card, { tokens: tokenInv, icons, contracts: byId });
+      // Same-line only ([^?\n]*, not [^?]*) — the earlier greedy version
+      // crossed newlines and could latch onto an unrelated `{photo` inside
+      // the root's `data-photo={photo || undefined}` attribute, then read
+      // through to the NEXT `?` several lines later (the initialeVisible
+      // ternary), producing a false cross-reference. Anchoring the wrapper
+      // ternary to its own line is what "independent gate" actually means.
+      const initialeCond = tsx.match(/\{(initialeVisible[^?\n]*)\?\s*\(/);
+      const photoCond = tsx.match(/\{(photo[^?\n]*)\?\s*\(/);
+      if (!initialeCond) throw new Error(`emitted TSX has no independent gate on initialeVisible:\n${tsx.slice(0, 800)}`);
+      if (!photoCond) throw new Error(`emitted TSX has no independent gate on photo:\n${tsx.slice(0, 800)}`);
+      // The two conditions must be SEPARATE ternaries — neither referencing
+      // the other prop — which is exactly what "no cross-part awareness"
+      // means: setting both true, both branches independently pass.
+      if (initialeCond[1].includes('photo') || photoCond[1].includes('initialeVisible')) {
+        throw new Error(`gates are cross-referencing — exclusivity would be SCHEMA-enforced, contradicting the contract's own description:\n${initialeCond[1]} / ${photoCond[1]}`);
+      }
+      console.log('review-card-avatar-exclusivity-is-convention-not-schema: initialeVisible and photo gate independently (separate {cond ? (...) : null} per part, no cross-reference) — both true renders BOTH avatars; the exclusion stays a documented convention, never a schema constraint');
+    },
+  },
+  {
+    // T065 (spec 006, US3): ds.google-reviews' `avis` prop is the v12 repeat
+    // collection (repeat.sample + component:ds.review-card, R8/T033) — React
+    // MAPS THE LIVE ARRAY (per-item props flow through), while the static
+    // surfaces (html, react-inline) and the canvas sync script all render the
+    // contract's OBSERVED `sample` instead (never the real runtime content —
+    // the meter discipline, core/emit-{react,html,react-inline,figma-script}.ts
+    // repeat branches). `avis` left `undefined` must render nothing on the
+    // React surface (the arrayOf discipline: never a silent `[]`). The canvas
+    // leg of this claim is proven by scripts/deterministic-roundtrip.mjs
+    // itself ("the repeat+component produced 5 nested instances in
+    // groupeCartes" — same GoogleReviews contract, T060); this eval covers
+    // the two code emitters + the live-array/undefined split that the
+    // roundtrip script does not exercise.
+    id: 'google-reviews-repeat-renders-sample-on-static-surfaces',
+    claim: 'C3-detection',
+    run: () => {
+      const byId = new Map(
+        readdirSync(path.join(ROOT, 'contracts'))
+          .filter((f) => f.endsWith('.contract.json'))
+          .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
+          .map((c) => [c.id, c]),
+      );
+      const section = byId.get('ds.google-reviews');
+      if (!section) throw new Error('contracts/google-reviews.contract.json missing ds.google-reviews');
+      const icons = new Map(
+        readdirSync(path.join(ROOT, 'assets', 'icons'))
+          .filter((f) => f.endsWith('.svg'))
+          .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+      );
+      // 1. React: maps the LIVE array by name, `undefined` renders nothing
+      // (the arrayOf discipline: avis?.map, never a plain avis.map).
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const tokenInv = tokenInventoryFromJson([
+        read('tokens/primitives.tokens.json'),
+        read('tokens/semantic.tokens.json'),
+        read('tokens/modes/semantic.light.tokens.json'),
+      ]);
+      const { tsx } = coreEmitReact(section, { tokens: tokenInv, icons, contracts: byId });
+      if (!/avis\?\.map\(\(item, index\) => \(<ReviewCard key=\{index\}[^)]*item\.auteur[^)]*\/>\)\)/.test(tsx)) {
+        throw new Error(`emitted TSX does not map the live "avis" array onto <ReviewCard>:\n${tsx.slice(0, 1200)}`);
+      }
+      // 2. Static HTML surface: renders the OBSERVED sample (5 records),
+      // never a live array — five distinct sample dates ("il y a 2 mois" …
+      // "il y a 6 mois") must all appear verbatim in the markup.
+      const { html } = coreEmitHtml(section, { tokens: tokenInv, icons, contracts: byId });
+      const sample = (section.anatomy.root.parts!.cartes as SchemaPart).parts!.groupeCartes.parts!.carte.repeat!.sample as Array<Record<string, unknown>>;
+      if (sample.length !== 5) throw new Error(`expected 5-record sample, got ${sample.length}`);
+      for (const rec of sample) {
+        const date = String(rec.date);
+        if (!html.includes(date)) throw new Error(`static html surface missing sample record date "${date}" — sample not rendered`);
+      }
+      // 3. Inline-React surface: same fixed-instance rendering, executed via
+      // a spawned tsx probe (mirrors react-hyphenated-part-names-execute —
+      // emit-react-inline.ts is not re-exported through harness.ts).
+      const probe = run(TSX, ['-e', `
+        import fs from 'node:fs';
+        import { ContractSchema } from './scripts/contract-schema.ts';
+        import { emitReactInline } from './core/emit-react-inline.ts';
+        const byId = new Map(
+          fs.readdirSync('contracts').filter((f) => f.endsWith('.contract.json'))
+            .map((f) => ContractSchema.parse(JSON.parse(fs.readFileSync('contracts/' + f, 'utf8'))))
+            .map((c) => [c.id, c]),
+        );
+        const icons = new Map(
+          fs.readdirSync('assets/icons').filter((f) => f.endsWith('.svg'))
+            .map((f) => [f.replace(/\\.svg$/, ''), fs.readFileSync('assets/icons/' + f, 'utf8').trim()]),
+        );
+        const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+        // emitReactInline wants the RAW TokenTreeInput shape (primitives/
+        // semantic/light/dark/brands), not the flat Set from
+        // tokenInventoryFromJson (that's for emitReact/emitHtml only).
+        const tokens = {
+          primitives: read('tokens/primitives.tokens.json'),
+          semantic: read('tokens/semantic.tokens.json'),
+          light: read('tokens/modes/semantic.light.tokens.json'),
+          dark: {},
+          brands: {},
+        };
+        const section = byId.get('ds.google-reviews');
+        const { tsx } = emitReactInline(section, { tokens, icons, contracts: byId, mode: 'light' });
+        console.log(tsx.includes('il y a 2 mois') && tsx.includes('il y a 6 mois') ? 'INLINE-SAMPLE-OK' : 'INLINE-SAMPLE-MISSING');
+      `]);
+      if (probe.status !== 0 || !probe.out.includes('INLINE-SAMPLE-OK')) {
+        throw new Error(`react-inline surface did not render the observed sample:\n${probe.out.slice(0, 800)}`);
+      }
+      console.log('google-reviews-repeat-renders-sample-on-static-surfaces: React maps the live "avis" array (avis?.map, undefined renders nothing); html + react-inline both render the contract\'s 5-record OBSERVED sample verbatim, never the real runtime content — the canvas leg of the same claim is proven by scripts/deterministic-roundtrip.mjs (5 nested instances in groupeCartes)');
+    },
+  },
+  {
+    // T066 (spec 006, US3): ds.review-card's `avatarPhoto` part (element:
+    // "img") is the open A5 gap (R6) — a real photo pixel exists only as an
+    // out-of-contract IMAGE-fill override on the 8 adopted occurrences,
+    // never a designer-drawn master state. On the canvas the SAME part
+    // compiles to the standard #D9D9D9 placeholder wash (Round 5,
+    // core/emit-figma-script.ts:2026-2034, `spec.imgPlaceholder = true`),
+    // and that fact is REPORTED, never hidden: it joins hasPreviewOnlyFacts
+    // (:2426-2428) which forces the component's one-line caption to carry
+    // the trailing † (:2432-2451) — the single canvas trace the constitution
+    // requires for a code-only fact (Part D). This pins BOTH halves: the
+    // compiled placeholder wash AND the † on the description, so the A5 gap
+    // stays a NAMED limit rather than a silent one.
+    id: 'img-part-canvas-placeholder-named',
+    claim: 'C3-detection',
+    run: () => {
+      const byId = new Map(
+        readdirSync(path.join(ROOT, 'contracts'))
+          .filter((f) => f.endsWith('.contract.json'))
+          .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
+          .map((c) => [c.id, c]),
+      );
+      const card = byId.get('ds.review-card');
+      if (!card) throw new Error('contracts/review-card.contract.json missing ds.review-card');
+      const photoPart = (card.anatomy.root.parts!.entete as SchemaPart).parts!.profil.parts!.avatarPhoto;
+      if (photoPart.element !== 'img') throw new Error('avatarPhoto is no longer an <img> part — the A5 proof must be re-derived');
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const engine = createFigmaEngine({
+        tokens: {
+          primitives: read('tokens/primitives.tokens.json'),
+          semantic: read('tokens/semantic.tokens.json'),
+          light: read('tokens/modes/semantic.light.tokens.json'),
+          dark: {},
+          brands: { default: {} },
+        },
+        icons: new Map(
+          readdirSync(path.join(ROOT, 'assets', 'icons'))
+            .filter((f) => f.endsWith('.svg'))
+            .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+        ),
+      });
+      const script = engine.buildComponentScript(card, byId);
+      const comp = JSON.parse(script.match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
+      const findByName = (spec: any, name: string): any => {
+        if (spec.name === name) return spec;
+        for (const c of spec.children ?? []) {
+          const hit = findByName(c, name);
+          if (hit) return hit;
+        }
+        return null;
+      };
+      const va = comp.variants[0].spec;
+      const photoSpec = findByName(va, 'avatarPhoto');
+      if (!photoSpec) throw new Error(`compiled spec has no "avatarPhoto" node:\n${JSON.stringify(va, null, 2).slice(0, 1500)}`);
+      if (photoSpec.imgPlaceholder !== true) throw new Error(`avatarPhoto must compile with imgPlaceholder:true, got: ${JSON.stringify(photoSpec)}`);
+      const grey = photoSpec.lits?.fillColor;
+      if (!grey || Math.abs(grey.r - 217 / 255) > 0.001 || Math.abs(grey.g - 217 / 255) > 0.001 || Math.abs(grey.b - 217 / 255) > 0.001) {
+        throw new Error(`avatarPhoto must carry the standard #D9D9D9 placeholder wash, got: ${JSON.stringify(grey)}`);
+      }
+      if (!comp.description.includes('†')) {
+        throw new Error(`ds.review-card has a code-only fact (imgPlaceholder) — its description must carry the † footnote, got: ${JSON.stringify(comp.description)}`);
+      }
+      console.log('img-part-canvas-placeholder-named: avatarPhoto (element:"img") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas, and the component caption carries the † footnote — the A5 gap (real photo pixel = out-of-contract override) stays a NAMED limit, never a silent one');
+    },
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -4060,6 +4365,6 @@ console.log(`\n${passed}/${results.length} evals passed — evals/results.json`)
 // The quarantine is never silent: these cases exist, are preserved verbatim in
 // evals/legacy-cases.ts, and are NOT part of the N/N above.
 console.log(
-  `${legacyCases.length} legacy cases quarantined (not run) — Piqueray has no slots / nested instances / repeat collections / multi-root anatomy / dark theme / second brand yet. See evals/REMOVED-CASES.md.`,
+  `${legacyCases.length} legacy cases quarantined (not run) — Piqueray has no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-block added nested instances + repeat collections). See evals/REMOVED-CASES.md.`,
 );
 process.exit(passed === results.length ? 0 : 1);

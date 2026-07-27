@@ -6,12 +6,20 @@
 > voir `specs/003-externalize-figma-components/inventory/scan-final-2026-07-25.json` et
 > `proofs/honesty-report.md`. **Tous les atomes/molécules/sections listés ci-dessous comme
 > « à faire » sont maintenant construits et adoptés**, sauf 2 blocs explicitement reportés
-> (raison nommée, condition de reprise claire — voir `proofs/honesty-report.md` §1) :
-> **Review-card** (source = capture d'écran aplatie d'un widget tiers, zéro vecteur) et
-> **Avis Google** (bloqué par Review-card). Le tableau ci-dessous garde sa forme T0
-> d'origine pour la trace historique ; chaque ligne construite porte maintenant ✓ +
-> un renvoi vers son entrée `decisions.md`. `dependancesTierces = 0` confirmé à nouveau
-> par le scan final (inchangé depuis T0).
+> à la clôture 003 (raison nommée, condition de reprise claire — voir
+> `proofs/honesty-report.md` §1) : **Review-card** (source = capture d'écran aplatie d'un
+> widget tiers, zéro vecteur) et **Avis Google** (bloqué par Review-card). Le tableau
+> ci-dessous garde sa forme T0 d'origine pour la trace historique ; chaque ligne construite
+> porte maintenant ✓ + un renvoi vers son entrée `decisions.md`. `dependancesTierces = 0`
+> confirmé à nouveau par le scan final (inchangé depuis T0).
+>
+> **✅ Mise à jour à la clôture spec 006 (2026-07-26)** : les **2 blocs reportés** ci-dessus
+> sont **livrés** — `ds.review-card` et `ds.google-reviews`, net-new (l'owner a validé un
+> design net-new plutôt que d'extraire la capture Trustindex aplatie), adoptés sur les 8
+> occurrences (`specs/006-google-reviews-block/`). L'icône étoile avait déjà été livrée au
+> registre en spec 004 (`contracts/icons.registry.json`, `name: "star"`). Le tableau
+> ci-dessous porte désormais ✓ sur ces trois lignes ; le compteur « blocs reportés » du
+> rapport d'honnêteté 003 passe de **2 à 0** (SC-008, `specs/006-google-reviews-block/`).
 >
 > **Une divergence notée à la clôture, pas silencieuse** : la Checkbox listée ci-dessous
 > comme atome « à faire » n'a **jamais été construite** — l'audit du Formulaire (T091) a
@@ -63,7 +71,7 @@
 | **Select** (liste déroulante) | 1 `input` contient un `chevron-down` | chevron-down ✓ | ✓ fait |
 | **Checkbox** | **inexistant** (le consentement RGPD est un simple texte) | tokens | **jamais construit** — prémisse invalidée à l'audit T091, rien à externaliser (voir bandeau ci-dessus) |
 | **Icônes sociales** | groupes bruts dans `Suivez-nous` | — *(à ajouter au jeu d'icônes)* | ✓ fait |
-| **Icône étoile** (note avis) | Avis Google *(inféré)* | — | reporté avec Avis Google/Review-card (widget tiers aplati) |
+| **Icône étoile** (note avis) | Avis Google *(inféré)* | — | ✓ fait (spec 004 — livrée au registre `contracts/icons.registry.json`, `name: "star"`, master `Étoile` `2053:1263`) |
 
 ## MOLÉCULES (T0 : à faire → clôture 2026-07-25)
 
@@ -76,7 +84,7 @@
 | **Product-card** (`Thumbnail produit`) | brut ×8 | Bouton ✓ | ✓ fait (T047-T048) |
 | **Member-card** (photo + nom + rôle) | `member` brut ×16 | member-picture ✓ | ✓ fait (T049-T050) |
 | **Reassurance-item** (icône + texte) | `item` ~26 | icônes | ✓ fait (T051-T052) |
-| **Review-card** (avatar + étoiles + texte) | Avis Google *(inféré)* | **Icône étoile** | **reporté** — source = capture d'écran aplatie (Trustindex), zéro vecteur |
+| **Review-card** (avatar + étoiles + texte) | Avis Google *(inféré)* | **Icône étoile** ✓ | ✓ fait (spec 006-google-reviews-block — `ds.review-card`, net-new sur les avatars/étoile/texte réels, plus une capture d'écran aplatie) |
 | **Tabs / Tab** | `tab` brut ×4 | tokens | ✓ fait (T043-T044) |
 | **Carousel-controls** (prev / next) | `Controls` brut ×2 | Bouton ✓ | ✓ fait (T055-T056) |
 | **Footer-column** + **Copyright** | brut ×27 / ×9 (re-mesuré T0) | liens | ✓ fait (T057-T060) |
@@ -91,7 +99,7 @@
 | **Footer (+ Devis)** | 9 | logo ✓ + **Footer-column** + **Copyright** + Bouton ✓ | ✓ fait (T099-T100) — « + Devis » du nom = artefact, aucun Devis fusionné trouvé |
 | **Devis / CTA** | 8 | Bouton ✓ | ✓ fait (T069-T070) |
 | **Hero** | 8 | **Section-header** (dépendance de séquencement, pas de composition) | ✓ fait (T075-T076) — **1 écart pixel resté ouvert**, voir `proofs/honesty-report.md` §7 |
-| **Avis Google** | 8 | **Review-card** | **reporté** — bloqué par Review-card |
+| **Avis Google** | 8 | **Review-card** ✓ | ✓ fait (spec 006-google-reviews-block — `ds.google-reviews`, `repeat` de 5 `ds.review-card`, adopté sur les 8 occurrences) |
 | **Texte SEO** | 8 | **Accordion** | ✓ fait (T081-T082) — 1 reflow réel accepté et documenté (À Propos) |
 | **Réassurances** | 6 | **Reassurance-item** + Bouton ✓ | ✓ fait (T077-T078) — COMPONENT_SET 3 variantes (prémisse « 1 seule structure » invalidée à l'audit) |
 | **Catégories principales** (+ alt) | 7 | **Category-card** | ✓ fait (T079-T080) — COMPONENT_SET 4 variantes (tuiles nav natives + Carte gouvernée + variante RDV) |
@@ -112,9 +120,9 @@
 Le modèle de contrats impose le bottom-up : un contrat d'organisme référence les contrats de ses atomes. On ne peut donc pas contractualiser une section avant ses molécules, ni une molécule avant ses atomes.
 
 1. **Tokens** — nettoyage (odeurs connues : `nav/state` en STRING, `orange-12/42` mintés, `space`/`radius` nommés par valeur). ✓ fait (`nav-state` réglé avant spec 003 ; `orange-12/42` et `space`/`radius` déclinés par l'owner, pas des odeurs à corriger).
-2. **Atomes** — `Input` d'abord, puis `Textarea` / `Select` / `Checkbox` ; + icônes sociales & étoile. ✓ fait, sauf `Checkbox` (jamais construite — inexistante à la source) et icône étoile (reportée avec Avis Google).
-3. **Molécules** — `Field`, `Accordion-row` → `Accordion`, les 4 cartes (category / product / member / review), `Reassurance-item`, `Tabs`, `Carousel-controls`, `Footer-column`, `Contact-row`, `Section-header`. ✓ fait, sauf `Review-card` (reportée).
-4. **Sections** — d'abord les triviales (`Devis`, `Présentation`, `SAV` = juste Bouton), puis `Hero`, `Réassurances`, `Catégories`, `Texte SEO`, `FAQ`, `Produits`, `Équipe`, `Avis Google`, `Formulaire`, `Coordonnées` → enfin les **composites** (`Hero et catégories`, `Footer + Devis`). ✓ fait, sauf `Avis Google` (reportée, bloquée par Review-card).
+2. **Atomes** — `Input` d'abord, puis `Textarea` / `Select` / `Checkbox` ; + icônes sociales & étoile. ✓ fait, sauf `Checkbox` (jamais construite — inexistante à la source) ; icône étoile livrée au registre en spec 004.
+3. **Molécules** — `Field`, `Accordion-row` → `Accordion`, les 4 cartes (category / product / member / review), `Reassurance-item`, `Tabs`, `Carousel-controls`, `Footer-column`, `Contact-row`, `Section-header`. ✓ fait — `Review-card` livrée en spec 006-google-reviews-block (était reportée à la clôture 003).
+4. **Sections** — d'abord les triviales (`Devis`, `Présentation`, `SAV` = juste Bouton), puis `Hero`, `Réassurances`, `Catégories`, `Texte SEO`, `FAQ`, `Produits`, `Équipe`, `Avis Google`, `Formulaire`, `Coordonnées` → enfin les **composites** (`Hero et catégories`, `Footer + Devis`). ✓ fait — `Avis Google` livrée en spec 006-google-reviews-block (était reportée, bloquée par Review-card, à la clôture 003).
 
 **Détail complet de chaque décision, chiffre et écart accepté** : `specs/003-externalize-figma-components/decisions.md` (journal complet, append-only) et `specs/003-externalize-figma-components/proofs/honesty-report.md` (synthèse SC-009).
 
@@ -123,7 +131,7 @@ Le modèle de contrats impose le bottom-up : un contrat d'organisme référence 
 ## Précisions honnêtes
 
 - **`item` (×71) = 3 molécules distinctes** sous un même nom Figma : Accordion-row (~34) + Category-card (~15) + Reassurance-item (~26). Séparées au nommage à la construction — trois masters distincts, jamais confondus.
-- **Review-card, icône étoile = restés inférés, jamais confirmés** — bloqués avec Avis Google (source = capture d'écran aplatie d'un widget tiers, rien à extraire fidèlement).
+- **Review-card, icône étoile, Avis Google = livrés** — l'icône étoile au registre en spec 004, Review-card et Avis Google (net-new, `repeat` de 5 cartes) en spec 006-google-reviews-block. À l'origine reportés (source Trustindex = capture d'écran aplatie, zéro vecteur) ; l'owner a validé un design net-new plutôt que d'extraire la capture.
 - **Gallery-item (Réalisations) = inféré à T0, confirmé et construit** (T065-T066) — 27 tuiles mosaïque sur 3 pages, exactement comme prévu.
 - **`Header nav` et `Footer`** apparaissent aussi comme frames brutes : ce sont des conteneurs de positionnement autour de l'instance / des atomes — le Header est bien un composant, le Footer **est devenu** un composant à la clôture (T099, master `Footer`) ; le wrapper `Footer + Devis` qui le contient, lui, reste volontairement un simple FRAME (zéro identité visuelle propre, décision mesurée, même logique que `Hero et catégories`).
 - **Scan final (2026-07-25)** : `dependancesTierces = []` confirmé à nouveau, inchangé depuis T0 — voir `specs/003-externalize-figma-components/inventory/scan-final-2026-07-25.json`.

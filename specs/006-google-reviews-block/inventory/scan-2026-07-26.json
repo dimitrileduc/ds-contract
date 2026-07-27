@@ -1,0 +1,1866 @@
+{
+  "date": "2026-07-26",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "pageId": "210:325",
+  "maquettes": [
+    {
+      "nom": "Accueil",
+      "nodeId": "210:326",
+      "bounds": {
+        "x": 301,
+        "y": 0,
+        "w": 1728,
+        "h": 5430
+      }
+    },
+    {
+      "nom": "Portes de garage",
+      "nodeId": "226:112",
+      "bounds": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 4372
+      }
+    },
+    {
+      "nom": "Portes de garage résidentielles",
+      "nodeId": "230:376",
+      "bounds": {
+        "x": 4157,
+        "y": 0,
+        "w": 1728,
+        "h": 6575
+      }
+    },
+    {
+      "nom": "Portes de garage industrielles",
+      "nodeId": "387:720",
+      "bounds": {
+        "x": 6085,
+        "y": 0,
+        "w": 1728,
+        "h": 6762
+      }
+    },
+    {
+      "nom": "Motorisation",
+      "nodeId": "237:705",
+      "bounds": {
+        "x": 8013,
+        "y": 0,
+        "w": 1728,
+        "h": 3334
+      }
+    },
+    {
+      "nom": "Portes d'entrée",
+      "nodeId": "237:969",
+      "bounds": {
+        "x": 9941,
+        "y": 0,
+        "w": 1728,
+        "h": 6534
+      }
+    },
+    {
+      "nom": "Dépannage/SAV",
+      "nodeId": "249:1510",
+      "bounds": {
+        "x": 11869,
+        "y": 0,
+        "w": 1728,
+        "h": 4242
+      }
+    },
+    {
+      "nom": "À Propos",
+      "nodeId": "258:1887",
+      "bounds": {
+        "x": 13797,
+        "y": 0,
+        "w": 1728,
+        "h": 5928
+      }
+    },
+    {
+      "nom": "Contactez-nous",
+      "nodeId": "274:2464",
+      "bounds": {
+        "x": 15725,
+        "y": 0,
+        "w": 1728,
+        "h": 3901
+      }
+    }
+  ],
+  "blocs": [
+    {
+      "cle": "hero-et-categories",
+      "niveau": "section",
+      "origine": "extraction",
+      "occurrences": [
+        {
+          "maquette": "Portes d'entrée",
+          "nodeId": "237:970",
+          "bounds": {
+            "x": 9941,
+            "y": 0,
+            "w": 1728,
+            "h": 1310
+          },
+          "signature": "group[frame]",
+          "nomFigma": "Header + Hero + Cat",
+          "etat": "copie-brute",
+          "note": "GROUP composite incluant le header (Portes d’entrée) — re-mesuré: composition réelle à trancher à l’audit"
+        }
+      ]
+    }
+  ],
+  "dejaInstancie": {
+    "Hero vidéo": 1,
+    "Bouton": 78,
+    "arrow-left": 54,
+    "arrow-right": 67,
+    "Catégories principales": 7,
+    "Présentation": 3,
+    "Section-header": 45,
+    "SAV": 1,
+    "Produits e-commerce": 2,
+    "Product-card": 8,
+    "cart": 17,
+    "Carousel-controls": 2,
+    "chevron-left": 2,
+    "chevron-right": 2,
+    "Devis": 8,
+    "Réassurances": 6,
+    "Carte": 36,
+    "Footer": 9,
+    "Facebook": 10,
+    "Instagram": 10,
+    "Footer-column": 27,
+    "piqueray_logo": 18,
+    "Copyright": 9,
+    "Header": 9,
+    "Nav-item": 36,
+    "octicon:chevron-down-12": 36,
+    "search": 9,
+    "user": 9,
+    "Hero": 8,
+    "chevron-down": 28,
+    "Texte SEO": 8,
+    "Accordion-row": 36,
+    "chevron-up": 12,
+    "pdf": 12,
+    "download": 10,
+    "Réalisations": 3,
+    "Réalisation": 27,
+    "FAQ": 3,
+    "Tab": 4,
+    "Équipe": 1,
+    "Member-card": 16,
+    "member-picture": 16,
+    "Formulaire": 1,
+    "Avantage": 4,
+    "piqueray": 4,
+    "phone": 2,
+    "Field": 7,
+    "Input": 5,
+    "Select": 1,
+    "Textarea": 1,
+    "Coordonnées": 1
+  },
+  "totaux": {
+    "blocsParNiveau": {
+      "atome": 0,
+      "molecule": 0,
+      "section": 1
+    },
+    "copiesRestantes": {
+      "hero-et-categories": 1
+    }
+  },
+  "introuvables": [
+    {
+      "cle": "reassurance-item",
+      "attenduDans": "sections Réassurances (x6 localisées)",
+      "note": "items unitaires non isolés a cette passe (icones heterogenes, fratries non appariées par le scan) — releve fin par position a l’audit T051, la section est localisée"
+    },
+    {
+      "cle": "review-card",
+      "attenduDans": "sections Avis Google (x8 localisées)",
+      "note": "bloc INFERE (inventaire) — aucune repetition de card detectee dans les groupes Avis Google a cette passe ; a confirmer par passe visuelle + audit T053"
+    },
+    {
+      "cle": "copyright",
+      "attenduDans": "sections Footer + Devis (x9 localisées)",
+      "note": "singleton par page, hors seuil de repetition du scan — releve a l’audit T059"
+    },
+    {
+      "cle": "section-header",
+      "attenduDans": "toutes maquettes (paires titre/sous-titre observees en fragments 1550px)",
+      "note": "wrappers Titres non isolés unitairement a cette passe — releve a l’audit T063"
+    },
+    {
+      "cle": "carousel-controls",
+      "attenduDans": "sections Produits e-commerce (x2 localisées)",
+      "note": "les fleches prev/next sont des instances arrow-left/right — la molecule Controls se releve a l’audit T055"
+    },
+    {
+      "cle": "icone-etoile",
+      "attenduDans": "sections Avis Google",
+      "note": "bloc INFERE — non detecte a cette passe (etoiles probablement vectors dans les cards) ; passe visuelle + audit T036"
+    },
+    {
+      "cle": "input",
+      "attenduDans": "section Formulaire (fields localisés)",
+      "note": "atome DANS field — releve fin des saisies brutes a l’audit T031 (net-new: le master se cree, les occurrences brutes s’adoptent via Field)"
+    },
+    {
+      "cle": "textarea",
+      "attenduDans": "section Formulaire",
+      "note": "champ Message 161px — audit T031"
+    },
+    {
+      "cle": "select",
+      "attenduDans": "section Formulaire",
+      "note": "input contenant un chevron-down — audit T031"
+    },
+    {
+      "cle": "checkbox",
+      "attenduDans": "nulle part (net-new integral)",
+      "note": "consentement RGPD en simple texte — rien a scanner, creation pure (T035)"
+    },
+    {
+      "cle": "icones-sociales",
+      "attenduDans": "bloc Suivez-nous (footer)",
+      "note": "groupes bruts dans le footer — releve a l’audit T036"
+    }
+  ],
+  "dependancesTierces": [],
+  "nonClasses": [
+    {
+      "genre": "section-candidate",
+      "maquette": "Accueil",
+      "nomFigma": "Hero et catégories",
+      "nodeId": "210:328",
+      "signature": "frame[instance,instance]",
+      "bounds": {
+        "x": 301,
+        "y": 0,
+        "w": 1728,
+        "h": 1186
+      },
+      "aBouton": true,
+      "maxFont": 44
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Accueil",
+      "nomFigma": "Avis Google",
+      "nodeId": "210:441",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 389,
+        "y": 4384,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Accueil",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "210:446",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 301,
+        "y": 4971,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage",
+      "nomFigma": "Hero et catégories",
+      "nodeId": "226:114",
+      "signature": "frame[instance,instance]",
+      "bounds": {
+        "x": 2229,
+        "y": 0,
+        "w": 1728,
+        "h": 1106
+      },
+      "aBouton": true,
+      "maxFont": 54
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage",
+      "nomFigma": "Avis Google",
+      "nodeId": "226:227",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 2317,
+        "y": 2818,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "226:232",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 2229,
+        "y": 3913,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage résidentielles",
+      "nomFigma": "Hero et catégories",
+      "nodeId": "230:378",
+      "signature": "frame[instance,instance]",
+      "bounds": {
+        "x": 4157,
+        "y": 0,
+        "w": 1728,
+        "h": 1310
+      },
+      "aBouton": true,
+      "maxFont": 54
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage résidentielles",
+      "nomFigma": "Avis Google",
+      "nodeId": "230:645",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 4245,
+        "y": 5018,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage résidentielles",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "230:456",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 4157,
+        "y": 6116,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage industrielles",
+      "nomFigma": "Hero et catégories",
+      "nodeId": "387:722",
+      "signature": "frame[instance,instance]",
+      "bounds": {
+        "x": 6085,
+        "y": 0,
+        "w": 1728,
+        "h": 1337
+      },
+      "aBouton": true,
+      "maxFont": 54
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage industrielles",
+      "nomFigma": "Avis Google",
+      "nodeId": "387:817",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 6173,
+        "y": 5085,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes de garage industrielles",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "387:842",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 6085,
+        "y": 6303,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Motorisation",
+      "nomFigma": "Hero et catégories",
+      "nodeId": "237:707",
+      "signature": "frame[instance,instance]",
+      "bounds": {
+        "x": 8013,
+        "y": 0,
+        "w": 1728,
+        "h": 1212
+      },
+      "aBouton": true,
+      "maxFont": 54
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Motorisation",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "237:801",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 8013,
+        "y": 2875,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes d'entrée",
+      "nomFigma": "Avis Google",
+      "nodeId": "237:1095",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 10029,
+        "y": 5001,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Portes d'entrée",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "237:1100",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 9941,
+        "y": 6075,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Dépannage/SAV",
+      "nomFigma": "Hero et FAQ",
+      "nodeId": "249:1512",
+      "signature": "frame[instance,frame]",
+      "bounds": {
+        "x": 11869,
+        "y": 0,
+        "w": 1728,
+        "h": 1274
+      },
+      "aBouton": true,
+      "maxFont": 54
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Dépannage/SAV",
+      "nomFigma": "Avis Google",
+      "nodeId": "249:1623",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 11957,
+        "y": 2709,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Dépannage/SAV",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "249:1628",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 11869,
+        "y": 3783,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "À Propos",
+      "nomFigma": "Avis Google",
+      "nodeId": "258:1963",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 13885,
+        "y": 4371,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "À Propos",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "258:1968",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 13797,
+        "y": 5469,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Contactez-nous",
+      "nomFigma": "Avis Google",
+      "nodeId": "280:3792",
+      "signature": "group[rectangle,instance]",
+      "bounds": {
+        "x": 15813,
+        "y": 2344,
+        "w": 1552,
+        "h": 459
+      },
+      "aBouton": false,
+      "maxFont": 40
+    },
+    {
+      "genre": "section-candidate",
+      "maquette": "Contactez-nous",
+      "nomFigma": "Footer + Devis",
+      "nodeId": "274:2675",
+      "signature": "frame[instance]",
+      "bounds": {
+        "x": 15725,
+        "y": 3442,
+        "w": 1728,
+        "h": 459
+      },
+      "aBouton": true,
+      "maxFont": 24
+    }
+  ],
+  "fragmentsInternes": {
+    "count": 0,
+    "detail": []
+  },
+  "contenuInstances": {
+    "count": 209,
+    "detail": [
+      {
+        "maquette": "Accueil",
+        "parent": "Catégories principales",
+        "signatureItem": "frame[vector,frame]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Bloc texte",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Bloc texte",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "img-group",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Produits",
+        "signatureItem": "instance[rectangle,text,text,instance]",
+        "count": 4
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "items",
+        "signatureItem": "instance[frame,frame]",
+        "count": 5
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Accueil",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Catégories principales",
+        "signatureItem": "frame[vector,frame]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Bloc texte",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Bloc texte",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "items",
+        "signatureItem": "instance[frame,frame]",
+        "count": 5
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Catégories principales",
+        "signatureItem": "instance[frame,frame,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "items",
+        "signatureItem": "instance[frame,frame]",
+        "count": 4
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "grid",
+        "signatureItem": "instance[]",
+        "count": 9
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Accordion-row",
+        "signatureItem": "dims:1552x32",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage résidentielles",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Catégories principales",
+        "signatureItem": "instance[frame,frame,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "items",
+        "signatureItem": "instance[frame,frame]",
+        "count": 4
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "grid",
+        "signatureItem": "instance[]",
+        "count": 9
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Accordion-row",
+        "signatureItem": "dims:1552x32",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes de garage industrielles",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Catégories principales",
+        "signatureItem": "instance[frame,frame,instance]",
+        "count": 3
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Produits",
+        "signatureItem": "instance[rectangle,text,text,instance]",
+        "count": 4
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Motorisation",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Catégories principales",
+        "signatureItem": "instance[frame,frame,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "items",
+        "signatureItem": "instance[frame,frame]",
+        "count": 4
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Boutons",
+        "signatureItem": "instance[instance,text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "grid",
+        "signatureItem": "instance[]",
+        "count": 9
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Accordion-row",
+        "signatureItem": "dims:1552x32",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Portes d'entrée",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Accordion-row",
+        "signatureItem": "dims:1552x32",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Catégories principales",
+        "signatureItem": "dims:744x672",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Bloc texte",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Dépannage/SAV",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "grid",
+        "signatureItem": "instance[instance,frame]",
+        "count": 16
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "member-picture",
+        "signatureItem": "rectangle[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "items",
+        "signatureItem": "instance[frame,frame]",
+        "count": 4
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "À Propos",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "features",
+        "signatureItem": "instance[instance,frame]",
+        "count": 4
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "text",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "buttons",
+        "signatureItem": "instance[instance,text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "form",
+        "signatureItem": "frame[instance,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "form",
+        "signatureItem": "frame[instance]",
+        "count": 3
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "row",
+        "signatureItem": "instance[frame,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "row",
+        "signatureItem": "instance[frame,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "wrapper",
+        "signatureItem": "frame[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Texte SEO",
+        "signatureItem": "frame[text]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Section-header",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "accordion",
+        "signatureItem": "instance[text,instance]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Footer",
+        "signatureItem": "frame[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Row",
+        "signatureItem": "instance[text,text]",
+        "count": 3
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Footer-column",
+        "signatureItem": "text[]",
+        "count": 2
+      },
+      {
+        "maquette": "Contactez-nous",
+        "parent": "Header nav",
+        "signatureItem": "frame[instance]",
+        "count": 1,
+        "note": "wrapper de positionnement du composant Header nav — exclu (FR-001)"
+      }
+    ]
+  },
+  "notes": [
+    "Classification par geometrie + structure + contenu en instances gouvernees — les noms Figma sont documentaires (contrat inventory-scan §Règles).",
+    "dejaInstancie compte TOUTES les instances du sous-arbre, y compris celles nichees dans des masters instancies (ex. les icones du Header nav) — superset des 145 instances directes de l’inventaire.",
+    "Les atomes net-new (Input, Textarea, Select, Checkbox, icones) n’ont pas d’occurrences propres a scanner : voir introuvables[] pour leur voie de releve.",
+    "Ce scan est re-mesure avant CHAQUE extraction (FR-002) — le dernier scan fait foi."
+  ]
+}

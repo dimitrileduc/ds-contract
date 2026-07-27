@@ -66,6 +66,14 @@ export interface DiffBox {
   h: number;
 }
 
+/** A region rectangle, in the frame's OWN capture-pixel coordinates (spec 006, contracts/region-proof.md). */
+export interface Region {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
 export interface PixelVerdict {
   maquette: string;
   status: PixelVerdictStatus;
@@ -75,6 +83,23 @@ export interface PixelVerdict {
   cropTriptyque: string | null;
   /** Explicit French reason naming the side(s) and cause(s); set only for capture-failed / dimension-mismatch. */
   refus: string | null;
+  // ---- spec 006 additions (contracts/region-proof.md §3) — ADDED AT THE END,
+  // all four optional: absent when --regions wasn't passed, so JSON.stringify
+  // (which omits undefined-valued keys) makes verdict.json byte-identical to
+  // today whenever this flag is unused (region-proof.md §3's byte-determinism
+  // rule; selftest case "byte-identity" asserts this — T028/T029). Populated
+  // together, only when a region was supplied AND both sides decoded to
+  // same-dimension images (i.e. status is 'identical' or 'diff' — never for
+  // capture-failed/dimension-mismatch, which never reach the pixelmatch call
+  // at all).
+  /** The rectangle applied (echoed back for review) — same coordinates for before/after: a dimension mismatch between the two captures already refuses upstream (dimension-mismatch), so "regionAvant ≠ regionAprès" can only arise from a moved/resized frame, which that existing check already catches (R20/R2 — never re-derived here). */
+  region?: Region;
+  /** Mismatched pixels strictly INSIDE `region`, read off the SAME diff bitmap as `diffCount` — never a second pixelmatch call (R2). */
+  regionDiffCount?: number;
+  /** regionDiffCount / (region.w * region.h) * 100 — the FR-016 number. */
+  regionPct?: number;
+  /** Mismatched pixels OUTSIDE `region` — MUST be 0 (SC-003): any non-zero value means the adoption touched pixels outside its own block. */
+  outsideDiffCount?: number;
 }
 
 /**
@@ -97,6 +122,8 @@ export interface CompareEntryInput {
   afterPath: string | null;
   beforeManifest?: ManifestSidecar | null;
   afterManifest?: ManifestSidecar | null;
+  /** spec 006 (contracts/region-proof.md) — optional, absent by default (additive). */
+  region?: Region;
 }
 
 export interface CompareEntryResult {
@@ -201,6 +228,43 @@ function redPixelBoundingBox(diff: PNG, width: number, height: number): DiffBox 
   return { x: minX, y: minY, w: maxX - minX + 1, h: maxY - minY + 1 };
 }
 
+/**
+ * Count pure-RED (255,0,0) mismatch pixels strictly inside `rect`, clamped to
+ * the bitmap's own bounds — read off the SAME diff bitmap `redPixelBoundingBox`
+ * already scans (region-proof.md §3: "un seul pixelmatch pleine planche…les
+ * deux compteurs se lisent sur le même bitmap de diff", never a second diff).
+ */
+function countRedInRect(diff: PNG, width: number, height: number, rect: Region): number {
+  const x0 = Math.max(0, Math.floor(rect.x));
+  const y0 = Math.max(0, Math.floor(rect.y));
+  const x1 = Math.min(width, Math.ceil(rect.x + rect.w));
+  const y1 = Math.min(height, Math.ceil(rect.y + rect.h));
+  const { data } = diff;
+  let count = 0;
+  for (let y = y0; y < y1; y++) {
+    for (let x = x0; x < x1; x++) {
+      const i = (y * width + x) * 4;
+      if (data[i] === 255 && data[i + 1] === 0 && data[i + 2] === 0) count++;
+    }
+  }
+  return count;
+}
+
+/** Adds the four spec-006 region fields to an already-built verdict, mutating
+ *  nothing — returns a new object so callers stay explicit about when the
+ *  fields exist. Only called when `region` is defined (additive by construction). */
+function withRegion(verdict: PixelVerdict, diff: PNG, width: number, height: number, region: Region): PixelVerdict {
+  const regionDiffCount = countRedInRect(diff, width, height, region);
+  const denom = region.w * region.h;
+  return {
+    ...verdict,
+    region,
+    regionDiffCount,
+    regionPct: denom > 0 ? (regionDiffCount / denom) * 100 : 0,
+    outsideDiffCount: verdict.diffCount - regionDiffCount,
+  };
+}
+
 function captureFailedVerdict(maquette: string, causes: string[]): PixelVerdict {
   return {
     maquette,
@@ -217,7 +281,7 @@ function captureFailedVerdict(maquette: string, causes: string[]): PixelVerdict 
 // ---------------------------------------------------------------------------
 
 export function compareEntry(input: CompareEntryInput): CompareEntryResult {
-  const { maquette, beforePath, afterPath, beforeManifest, afterManifest } = input;
+  const { maquette, beforePath, afterPath, beforeManifest, afterManifest, region } = input;
 
   const before = evalSide(beforePath, beforeManifest);
   const after = evalSide(afterPath, afterManifest);
@@ -253,20 +317,22 @@ export function compareEntry(input: CompareEntryInput): CompareEntryResult {
   const diffCount = pixelmatch(beforePng.data, afterPng.data, diff.data, width, height, { threshold: 0.1 });
 
   if (diffCount === 0) {
-    return {
-      verdict: { maquette, status: 'identical', diffCount: 0, diffBox: null, cropTriptyque: null, refus: null },
-    };
+    let verdict: PixelVerdict = { maquette, status: 'identical', diffCount: 0, diffBox: null, cropTriptyque: null, refus: null };
+    if (region) verdict = withRegion(verdict, diff, width, height, region);
+    return { verdict };
   }
 
+  let verdict: PixelVerdict = {
+    maquette,
+    status: 'diff',
+    diffCount,
+    diffBox: redPixelBoundingBox(diff, width, height),
+    cropTriptyque: null, // report.ts sets this once the crop file is actually written
+    refus: null,
+  };
+  if (region) verdict = withRegion(verdict, diff, width, height, region);
   return {
-    verdict: {
-      maquette,
-      status: 'diff',
-      diffCount,
-      diffBox: redPixelBoundingBox(diff, width, height),
-      cropTriptyque: null, // report.ts sets this once the crop file is actually written
-      refus: null,
-    },
+    verdict,
     images: { before: beforePng, after: afterPng, diff },
   };
 }
