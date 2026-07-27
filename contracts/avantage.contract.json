@@ -61,7 +61,11 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "40px"
               }
             },
             "Texte": {
@@ -69,11 +73,21 @@
                 "prop": "texte"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "27px"
               }
             }
+          },
+          "literals": {
+            "gap": "8px"
           }
         }
+      },
+      "literals": {
+        "gap": "8px"
       }
     }
   },

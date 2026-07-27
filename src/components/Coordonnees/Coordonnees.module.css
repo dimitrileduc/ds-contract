@@ -14,41 +14,59 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: var(--space-16);
+  padding-top: 48px;
+  padding-right: 48px;
+  padding-bottom: 48px;
+  padding-left: 48px;
 }
 
 .Adresse {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .AdresseEtiquette {
   color: var(--color-orange);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
 }
 
 .AdresseValeur {
   color: var(--color-noir-bleute);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
 }
 
 .Horaires {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .HorairesEtiquette {
   color: var(--color-orange);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
 }
 
 .HorairesValeur {
   color: var(--color-noir-bleute);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
 }
 
 .Contact {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .ContactEtiquette {
   color: var(--color-orange);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
 }
 
 .tl32087463266EmailInfopi {

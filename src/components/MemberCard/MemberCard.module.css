@@ -8,18 +8,24 @@
   flex-direction: column;
   align-items: center;
   border: 0;
+  gap: var(--space-16);
 }
 
 .text {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 8px;
 }
 
 .Nom {
   color: var(--color-noir-bleute);
+  font-weight: var(--font-weight-regular);
+  line-height: 40px;
 }
 
 .Poste {
   color: var(--color-orange);
+  font-weight: var(--font-weight-semibold);
+  line-height: 20px;
 }

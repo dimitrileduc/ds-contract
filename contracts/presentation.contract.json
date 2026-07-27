@@ -67,7 +67,11 @@
                 "prop": "texte"
               },
               "tokens": {
-                "color": "{color.noir}"
+                "color": "{color.noir}",
+                "font-weight": "{font.weight.medium}"
+              },
+              "literals": {
+                "line-height": "24px"
               }
             },
             "Bouton": {
@@ -78,8 +82,14 @@
                 "prop": "bouton"
               }
             }
+          },
+          "tokens": {
+            "gap": "{space.16}"
           }
         }
+      },
+      "tokens": {
+        "gap": "{space.32}"
       }
     }
   },

@@ -44,7 +44,11 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.blanc}"
+                "color": "{color.blanc}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "50px"
               }
             },
             "Bouton": {
@@ -52,11 +56,18 @@
                 "id": "ds.button"
               }
             }
+          },
+          "tokens": {
+            "gap": "{space.32}"
           }
         }
       },
       "tokens": {
         "background-color": "{color.noir-bleute}"
+      },
+      "literals": {
+        "padding-top": "96px",
+        "padding-bottom": "96px"
       }
     }
   },

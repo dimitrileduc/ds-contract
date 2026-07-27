@@ -96,6 +96,9 @@
                     ]
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.32}"
               }
             },
             "buttons": {
@@ -113,8 +116,14 @@
                     "id": "ds.button"
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             }
+          },
+          "literals": {
+            "gap": "48px"
           }
         },
         "form": {
@@ -123,7 +132,8 @@
             "grow": true
           },
           "tokens": {
-            "background-color": "{color.bleu-clair}"
+            "background-color": "{color.bleu-clair}",
+            "gap": "{space.16}"
           },
           "parts": {
             "row": {
@@ -149,6 +159,9 @@
                     }
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             },
             "row2": {
@@ -227,6 +240,12 @@
             "TexteConsentement": {
               "content": {
                 "prop": "consentement"
+              },
+              "tokens": {
+                "font-weight": "{font.weight.medium}"
+              },
+              "literals": {
+                "line-height": "24px"
               }
             },
             "FormulaireBouton": {
@@ -234,8 +253,17 @@
                 "id": "ds.button"
               }
             }
+          },
+          "literals": {
+            "padding-top": "32px",
+            "padding-right": "32px",
+            "padding-bottom": "32px",
+            "padding-left": "32px"
           }
         }
+      },
+      "tokens": {
+        "gap": "{space.32}"
       }
     }
   },

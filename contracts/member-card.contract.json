@@ -66,7 +66,11 @@
                 "prop": "nom"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "40px"
               }
             },
             "Poste": {
@@ -74,11 +78,21 @@
                 "prop": "poste"
               },
               "tokens": {
-                "color": "{color.orange}"
+                "color": "{color.orange}",
+                "font-weight": "{font.weight.semibold}"
+              },
+              "literals": {
+                "line-height": "20px"
               }
             }
+          },
+          "literals": {
+            "gap": "8px"
           }
         }
+      },
+      "tokens": {
+        "gap": "{space.16}"
       }
     }
   },

@@ -51,7 +51,11 @@
             "prop": "titre"
           },
           "tokens": {
-            "color": "{color.orange}"
+            "color": "{color.orange}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "literals": {
+            "line-height": "30px"
           }
         },
         "Texte": {
@@ -59,9 +63,16 @@
             "prop": "texte"
           },
           "tokens": {
-            "color": "{color.blanc}"
+            "color": "{color.blanc}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "literals": {
+            "line-height": "27px"
           }
         }
+      },
+      "tokens": {
+        "gap": "{space.16}"
       }
     }
   },

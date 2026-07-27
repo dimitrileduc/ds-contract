@@ -17,7 +17,8 @@ const COMPONENTS = [
     ],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Semi Bold"
     ],
     "variants": [
       {
@@ -31,6 +32,9 @@ const COMPONENTS = [
             "mode": "VERTICAL",
             "primary": "MIN",
             "counter": "CENTER"
+          },
+          "bindings": {
+            "itemSpacing": "space/16"
           },
           "children": [
             {
@@ -48,8 +52,9 @@ const COMPONENTS = [
               "name": "Titre",
               "characters": "Télécommande Hörmann HSE4-868BS",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
+              "lineHeight": 20,
               "contentProp": "Titre"
             },
             {
@@ -57,8 +62,9 @@ const COMPONENTS = [
               "name": "Prix",
               "characters": "74,99€",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Semi Bold",
               "textFill": "color/bleu",
+              "lineHeight": 20,
               "contentProp": "Prix"
             },
             {
@@ -270,6 +276,7 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

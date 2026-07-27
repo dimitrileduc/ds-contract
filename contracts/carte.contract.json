@@ -82,7 +82,12 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.24}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "30px"
               }
             },
             "Texte": {
@@ -98,9 +103,19 @@
                 "prop": "texte"
               },
               "tokens": {
-                "color": "{color.noir}"
+                "color": "{color.noir}",
+                "font-size": "{font.size.14}",
+                "font-weight": "{font.weight.medium}"
+              },
+              "literals": {
+                "line-height": "24px"
               }
             }
+          },
+          "literals": {
+            "gap": "8px",
+            "padding-right": "16px",
+            "padding-left": "16px"
           }
         },
         "Bouton": {
@@ -112,6 +127,10 @@
             "equals": "categorie"
           }
         }
+      },
+      "literals": {
+        "gap": "24px",
+        "padding-bottom": "24px"
       }
     }
   },

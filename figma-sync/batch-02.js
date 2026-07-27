@@ -427,6 +427,9 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "text",
@@ -486,6 +489,13 @@ const COMPONENTS = [
             "mode": "HORIZONTAL",
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
+          },
+          "lits": {
+            "itemSpacing": 392,
+            "paddingTop": 16,
+            "paddingRight": 89,
+            "paddingBottom": 16,
+            "paddingLeft": 89
           },
           "children": [
             {
@@ -603,6 +613,13 @@ const COMPONENTS = [
             "mode": "HORIZONTAL",
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
+          },
+          "lits": {
+            "itemSpacing": 392,
+            "paddingTop": 16,
+            "paddingRight": 89,
+            "paddingBottom": 16,
+            "paddingLeft": 89
           },
           "children": [
             {
@@ -833,6 +850,9 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "bindings": {
+            "itemSpacing": "space/32"
+          },
           "children": [
             {
               "type": "instance",
@@ -853,6 +873,9 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "bindings": {
+                "itemSpacing": "space/16"
+              },
               "children": [
                 {
                   "type": "text",
@@ -861,6 +884,7 @@ const COMPONENTS = [
                   "fontSize": 16,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
+                  "lineHeight": 24,
                   "contentProp": "Texte"
                 },
                 {
@@ -893,7 +917,8 @@ const COMPONENTS = [
     ],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Semi Bold"
     ],
     "variants": [
       {
@@ -907,6 +932,9 @@ const COMPONENTS = [
             "mode": "VERTICAL",
             "primary": "MIN",
             "counter": "CENTER"
+          },
+          "bindings": {
+            "itemSpacing": "space/16"
           },
           "children": [
             {
@@ -924,8 +952,9 @@ const COMPONENTS = [
               "name": "Titre",
               "characters": "Télécommande Hörmann HSE4-868BS",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
+              "lineHeight": 20,
               "contentProp": "Titre"
             },
             {
@@ -933,8 +962,9 @@ const COMPONENTS = [
               "name": "Prix",
               "characters": "74,99€",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Semi Bold",
               "textFill": "color/bleu",
+              "lineHeight": 20,
               "contentProp": "Prix"
             },
             {
@@ -1018,6 +1048,9 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 48
+          },
           "children": [
             {
               "type": "instance",
@@ -1037,6 +1070,9 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
+              },
+              "bindings": {
+                "itemSpacing": "space/32"
               },
               "children": [
                 {
@@ -1112,6 +1148,9 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 48
+          },
           "children": [
             {
               "type": "instance",
@@ -1131,6 +1170,9 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
+              },
+              "bindings": {
+                "itemSpacing": "space/32"
               },
               "children": [
                 {
@@ -1194,6 +1236,9 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "bindings": {
+                "itemSpacing": "space/16"
+              },
               "children": [
                 {
                   "type": "instance",
@@ -1224,6 +1269,9 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 48
+          },
           "children": [
             {
               "type": "instance",
@@ -1243,6 +1291,9 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
+              },
+              "bindings": {
+                "itemSpacing": "space/32"
               },
               "children": [
                 {
@@ -1392,6 +1443,9 @@ const COMPONENTS = [
                             "counter": "MIN",
                             "stretchChildren": true
                           },
+                          "bindings": {
+                            "itemSpacing": "space/32"
+                          },
                           "children": [
                             {
                               "type": "instance",
@@ -1487,6 +1541,10 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
+          "lits": {
+            "paddingTop": 8,
+            "paddingBottom": 8
+          },
           "children": [
             {
               "type": "text",
@@ -1511,6 +1569,10 @@ const COMPONENTS = [
             "mode": "HORIZONTAL",
             "primary": "CENTER",
             "counter": "CENTER"
+          },
+          "lits": {
+            "paddingTop": 8,
+            "paddingBottom": 8
           },
           "children": [
             {
@@ -1537,7 +1599,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Semi Bold"
     ],
     "variants": [
       {
@@ -1552,6 +1615,13 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
+          },
+          "bindings": {
+            "itemSpacing": "space/32"
+          },
+          "lits": {
+            "paddingRight": 89,
+            "paddingLeft": 89
           },
           "children": [
             {
@@ -1591,7 +1661,8 @@ const COMPONENTS = [
                   "characters": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
                   "fontSize": 14,
                   "fontStyle": "Medium",
-                  "textFill": "color/noir"
+                  "textFill": "color/noir",
+                  "lineHeight": 24
                 }
               ]
             },
@@ -1609,8 +1680,9 @@ const COMPONENTS = [
                   "name": "SousTitre",
                   "characters": "Infos pratiques",
                   "fontSize": 14,
-                  "fontStyle": "Medium",
-                  "textFill": "color/noir-bleute"
+                  "fontStyle": "Semi Bold",
+                  "textFill": "color/noir-bleute",
+                  "lineHeight": 25
                 }
               ]
             },
@@ -1900,6 +1972,7 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (spec.fontFamily) {
       try {
         await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });

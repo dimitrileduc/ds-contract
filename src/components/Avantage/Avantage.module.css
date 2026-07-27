@@ -7,17 +7,23 @@
   display: flex;
   flex-direction: row;
   border: 0;
+  gap: 8px;
 }
 
 .text {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .Titre {
   color: var(--color-noir-bleute);
+  font-weight: var(--font-weight-regular);
+  line-height: 40px;
 }
 
 .Texte {
   color: var(--color-noir-bleute);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
 }

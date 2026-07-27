@@ -67,7 +67,11 @@
             "prop": "titre"
           },
           "tokens": {
-            "color": "{color.noir-bleute}"
+            "color": "{color.noir-bleute}",
+            "font-weight": "{font.weight.semibold}"
+          },
+          "literals": {
+            "line-height": "20px"
           }
         },
         "Prix": {
@@ -75,7 +79,11 @@
             "prop": "prix"
           },
           "tokens": {
-            "color": "{color.bleu}"
+            "color": "{color.bleu}",
+            "font-weight": "{font.weight.semibold}"
+          },
+          "literals": {
+            "line-height": "20px"
           }
         },
         "Bouton": {
@@ -86,6 +94,9 @@
             "prop": "bouton"
           }
         }
+      },
+      "tokens": {
+        "gap": "{space.16}"
       }
     }
   },

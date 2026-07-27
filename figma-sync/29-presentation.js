@@ -33,6 +33,9 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "bindings": {
+            "itemSpacing": "space/32"
+          },
           "children": [
             {
               "type": "instance",
@@ -53,6 +56,9 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "bindings": {
+                "itemSpacing": "space/16"
+              },
               "children": [
                 {
                   "type": "text",
@@ -61,6 +67,7 @@ const COMPONENTS = [
                   "fontSize": 16,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
+                  "lineHeight": 24,
                   "contentProp": "Texte"
                 },
                 {
@@ -274,6 +281,7 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

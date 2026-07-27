@@ -86,6 +86,9 @@ const COMPONENTS = [
                             "counter": "MIN",
                             "stretchChildren": true
                           },
+                          "bindings": {
+                            "itemSpacing": "space/32"
+                          },
                           "children": [
                             {
                               "type": "instance",

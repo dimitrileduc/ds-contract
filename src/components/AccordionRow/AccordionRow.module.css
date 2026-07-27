@@ -11,6 +11,9 @@
   border: 0;
   box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
   --dsc-border-color: var(--color-noir-bleute);
+  gap: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .taille-petit {
@@ -34,6 +37,9 @@
 
 .TitreOuvert {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: 25px;
 }
 
 .ChevronUp svg {
@@ -48,10 +54,15 @@
 
 .Contenu {
   color: var(--color-noir-bleute);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
 }
 
 .Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: 25px;
 }
 
 .ChevronDown svg {

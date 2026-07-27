@@ -12,7 +12,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -28,14 +29,18 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "bindings": {
+            "itemSpacing": "space/16"
+          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Adresse",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/orange",
+              "lineHeight": 30,
               "contentProp": "Titre"
             },
             {
@@ -43,8 +48,9 @@ const COMPONENTS = [
               "name": "Texte",
               "characters": "Rue Alfred Drèze 7,  4860 Pepinster",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/blanc",
+              "lineHeight": 27,
               "contentProp": "Texte"
             }
           ]
@@ -248,6 +254,7 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

@@ -65,15 +65,23 @@
                 "prop": "label"
               },
               "tokens": {
-                "color": "{color.bleu-gris}"
+                "color": "{color.bleu-gris}",
+                "font-weight": "{font.weight.semibold}"
+              },
+              "literals": {
+                "line-height": "25px"
               }
             },
             "MentionOptionnelle": {
               "text": "(optionnel)",
               "tokens": {
-                "color": "{color.bleu-gris}"
+                "color": "{color.bleu-gris}",
+                "font-weight": "{font.weight.regular}"
               }
             }
+          },
+          "tokens": {
+            "gap": "{space.4}"
           }
         },
         "Saisie": {
@@ -98,12 +106,17 @@
         },
         "messageErreur": {
           "text": "Message d’erreur",
-          "tokens": {},
+          "tokens": {
+            "font-weight": "{font.weight.regular}"
+          },
           "visibleWhen": {
             "prop": "etat",
             "equals": "erreur"
           }
         }
+      },
+      "literals": {
+        "gap": "8px"
       }
     }
   },

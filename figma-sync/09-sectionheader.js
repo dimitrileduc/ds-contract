@@ -12,7 +12,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -27,23 +28,28 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "text",
               "name": "Accroche",
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 25,
               "contentProp": "Accroche"
             },
             {
               "type": "text",
               "name": "Titre",
               "characters": "Pourquoi choisir Piqueray ?",
-              "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontSize": 40,
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 50,
               "contentProp": "Titre"
             }
           ]
@@ -61,14 +67,18 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Pourquoi choisir Piqueray ?",
-              "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontSize": 40,
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 50,
               "contentProp": "Titre"
             },
             {
@@ -246,6 +256,50 @@ function applyFrameSpec(node, spec) {
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }
+  if (spec.lits) {
+    // v14 literals: no variable to bind — plain values, compile-parsed.
+    const li = spec.lits;
+    if (li.paddingTop !== undefined) node.paddingTop = li.paddingTop;
+    if (li.paddingBottom !== undefined) node.paddingBottom = li.paddingBottom;
+    if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
+    if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
+    if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
+    if (li.radius !== undefined) node.cornerRadius = li.radius;
+    if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
+    if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
+    if (li.minHeight !== undefined) { try { node.minHeight = li.minHeight; } catch (e) { /* needs auto-layout */ } }
+    // #60 fix 1 (fillClear precedence): a spec-carried fill is NEVER
+    // trampled — fillClear only clears when no fill was spec'd. The compile
+    // side already drops fillClear when a fill binding exists (applyLiterals);
+    // this runtime guard makes the emitted script safe even for hand-fed
+    // specs carrying both.
+    if (li.fillClear && !spec.fill) node.fills = [];
+    else if (li.fillColor) node.fills = [{ type: 'SOLID', color: { r: li.fillColor.r, g: li.fillColor.g, b: li.fillColor.b }, opacity: li.fillColor.a === undefined ? 1 : li.fillColor.a }];
+    if (li.radiusCorners) {
+      const rc = li.radiusCorners;
+      if (rc.tl !== undefined) node.topLeftRadius = rc.tl;
+      if (rc.tr !== undefined) node.topRightRadius = rc.tr;
+      if (rc.bl !== undefined) node.bottomLeftRadius = rc.bl;
+      if (rc.br !== undefined) node.bottomRightRadius = rc.br;
+    }
+    if (li.strokeSides) {
+      const sw = li.strokeSides;
+      if (sw.top !== undefined) node.strokeTopWeight = sw.top;
+      if (sw.right !== undefined) node.strokeRightWeight = sw.right;
+      if (sw.bottom !== undefined) node.strokeBottomWeight = sw.bottom;
+      if (sw.left !== undefined) node.strokeLeftWeight = sw.left;
+    }
+    if (li.width !== undefined || li.height !== undefined) {
+      node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
+      const horizontalIsPrimary = (spec.layout || { mode: 'HORIZONTAL' }).mode === 'HORIZONTAL';
+      if (li.width !== undefined) {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
+      }
+      if (li.height !== undefined) {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+      }
+    }
+  }
 }
 
 // v7 overlay: out-of-flow edge attachment. Must run AFTER appendChild —
@@ -278,6 +332,7 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

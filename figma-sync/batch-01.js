@@ -10,7 +10,9 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Semi Bold",
+      "Regular"
     ],
     "variants": [
       {
@@ -26,14 +28,20 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
+          "lits": {
+            "itemSpacing": 24,
+            "paddingTop": 16,
+            "paddingBottom": 16
+          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Question",
-              "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontSize": 20,
+              "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
+              "lineHeight": 25,
               "contentProp": "Titre"
             },
             {
@@ -58,6 +66,11 @@ const COMPONENTS = [
             "counter": "MIN"
           },
           "stroke": "color/noir-bleute",
+          "lits": {
+            "itemSpacing": 24,
+            "paddingTop": 16,
+            "paddingBottom": 16
+          },
           "children": [
             {
               "type": "frame",
@@ -73,9 +86,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "TitreOuvert",
                   "characters": "Question",
-                  "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontSize": 20,
+                  "fontStyle": "Semi Bold",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 25,
                   "contentProp": "Titre"
                 },
                 {
@@ -91,8 +105,9 @@ const COMPONENTS = [
               "name": "Contenu",
               "characters": "Réponse",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 24,
               "contentProp": "Contenu"
             }
           ]
@@ -111,14 +126,20 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
+          "lits": {
+            "itemSpacing": 24,
+            "paddingTop": 16,
+            "paddingBottom": 16
+          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Question",
-              "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontSize": 20,
+              "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
+              "lineHeight": 25,
               "contentProp": "Titre"
             },
             {
@@ -143,6 +164,11 @@ const COMPONENTS = [
             "counter": "MIN"
           },
           "stroke": "color/noir-bleute",
+          "lits": {
+            "itemSpacing": 24,
+            "paddingTop": 16,
+            "paddingBottom": 16
+          },
           "children": [
             {
               "type": "frame",
@@ -158,9 +184,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "TitreOuvert",
                   "characters": "Question",
-                  "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontSize": 20,
+                  "fontStyle": "Semi Bold",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 25,
                   "contentProp": "Titre"
                 },
                 {
@@ -176,8 +203,9 @@ const COMPONENTS = [
               "name": "Contenu",
               "characters": "Réponse",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 24,
               "contentProp": "Contenu"
             }
           ]
@@ -462,7 +490,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -477,6 +506,9 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
+          },
+          "lits": {
+            "itemSpacing": 8
           },
           "children": [
             {
@@ -494,14 +526,18 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "lits": {
+                "itemSpacing": 8
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Conseils personnalisés",
                   "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 40,
                   "contentProp": "Titre"
                 },
                 {
@@ -509,8 +545,9 @@ const COMPONENTS = [
                   "name": "Texte",
                   "characters": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
                   "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 27,
                   "contentProp": "Texte"
                 }
               ]
@@ -930,7 +967,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -945,6 +983,10 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
+          },
+          "lits": {
+            "itemSpacing": 24,
+            "paddingBottom": 24
           },
           "children": [
             {
@@ -966,23 +1008,30 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "lits": {
+                "itemSpacing": 8,
+                "paddingRight": 16,
+                "paddingLeft": 16
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Pour portes de garage",
-                  "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontSize": 24,
+                  "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 30,
                   "contentProp": "Titre"
                 },
                 {
                   "type": "text",
                   "name": "Texte",
                   "characters": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-                  "fontSize": 16,
+                  "fontSize": 14,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
+                  "lineHeight": 24,
                   "contentProp": "Texte"
                 }
               ]
@@ -1003,6 +1052,10 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "lits": {
+            "itemSpacing": 24,
+            "paddingBottom": 24
+          },
           "children": [
             {
               "type": "frame",
@@ -1023,23 +1076,30 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "lits": {
+                "itemSpacing": 8,
+                "paddingRight": 16,
+                "paddingLeft": 16
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Pour portes de garage",
-                  "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontSize": 24,
+                  "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 30,
                   "contentProp": "Titre"
                 },
                 {
                   "type": "text",
                   "name": "Texte",
                   "characters": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-                  "fontSize": 16,
+                  "fontSize": 14,
                   "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 24,
                   "contentProp": "Texte"
                 }
               ]
@@ -1137,7 +1197,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -1152,23 +1213,28 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "text",
               "name": "Accroche",
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 25,
               "contentProp": "Accroche"
             },
             {
               "type": "text",
               "name": "Titre",
               "characters": "Pourquoi choisir Piqueray ?",
-              "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontSize": 40,
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 50,
               "contentProp": "Titre"
             }
           ]
@@ -1186,14 +1252,18 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Pourquoi choisir Piqueray ?",
-              "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontSize": 40,
+              "fontStyle": "Regular",
               "textFill": "color/noir-bleute",
+              "lineHeight": 50,
               "contentProp": "Titre"
             },
             {
@@ -1217,7 +1287,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -1244,6 +1315,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "bindings": {
+                "itemSpacing": "space/16"
+              },
+              "lits": {
+                "paddingTop": 48,
+                "paddingRight": 48,
+                "paddingBottom": 48,
+                "paddingLeft": 48
+              },
               "children": [
                 {
                   "type": "instance",
@@ -1264,22 +1344,27 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 8
+                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "AdresseEtiquette",
                       "characters": "Adresse",
                       "fontSize": 14,
-                      "fontStyle": "Medium",
-                      "textFill": "color/orange"
+                      "fontStyle": "Regular",
+                      "textFill": "color/orange",
+                      "lineHeight": 30
                     },
                     {
                       "type": "text",
                       "name": "AdresseValeur",
                       "characters": "Rue Alfred Drèze 7, 4860 Pepinster",
                       "fontSize": 14,
-                      "fontStyle": "Medium",
-                      "textFill": "color/noir-bleute"
+                      "fontStyle": "Regular",
+                      "textFill": "color/noir-bleute",
+                      "lineHeight": 27
                     }
                   ]
                 },
@@ -1292,22 +1377,27 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 8
+                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "HorairesEtiquette",
                       "characters": "Horaires",
                       "fontSize": 14,
-                      "fontStyle": "Medium",
-                      "textFill": "color/orange"
+                      "fontStyle": "Regular",
+                      "textFill": "color/orange",
+                      "lineHeight": 30
                     },
                     {
                       "type": "text",
                       "name": "HorairesValeur",
                       "characters": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
                       "fontSize": 14,
-                      "fontStyle": "Medium",
-                      "textFill": "color/noir-bleute"
+                      "fontStyle": "Regular",
+                      "textFill": "color/noir-bleute",
+                      "lineHeight": 27
                     }
                   ]
                 },
@@ -1320,14 +1410,18 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 8
+                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "ContactEtiquette",
                       "characters": "Contact",
                       "fontSize": 14,
-                      "fontStyle": "Medium",
-                      "textFill": "color/orange"
+                      "fontStyle": "Regular",
+                      "textFill": "color/orange",
+                      "lineHeight": 30
                     },
                     {
                       "type": "text",
@@ -1409,7 +1503,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -1431,8 +1526,9 @@ const COMPONENTS = [
               "name": "Texte",
               "characters": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/blanc",
+              "lineHeight": 24,
               "contentProp": "Texte"
             }
           ]
@@ -1450,7 +1546,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -1466,6 +1563,10 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "fill": "color/noir-bleute",
+          "lits": {
+            "paddingTop": 96,
+            "paddingBottom": 96
+          },
           "children": [
             {
               "type": "frame",
@@ -1475,14 +1576,18 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
+              "bindings": {
+                "itemSpacing": "space/32"
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
                   "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
                   "textFill": "color/blanc",
+                  "lineHeight": 50,
                   "contentProp": "Titre"
                 },
                 {
@@ -1607,7 +1712,9 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular",
+      "Semi Bold"
     ],
     "variants": [
       {
@@ -1621,6 +1728,9 @@ const COMPONENTS = [
             "mode": "VERTICAL",
             "primary": "MIN",
             "counter": "CENTER"
+          },
+          "bindings": {
+            "itemSpacing": "space/16"
           },
           "children": [
             {
@@ -1639,14 +1749,18 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
+              "lits": {
+                "itemSpacing": 8
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Nom",
                   "characters": "Cécilia Piqueray",
                   "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 40,
                   "contentProp": "Nom"
                 },
                 {
@@ -1654,8 +1768,9 @@ const COMPONENTS = [
                   "name": "Poste",
                   "characters": "Gérante",
                   "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Semi Bold",
                   "textFill": "color/orange",
+                  "lineHeight": 20,
                   "contentProp": "Poste"
                 }
               ]
@@ -1691,6 +1806,10 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "lits": {
+            "paddingRight": 89,
+            "paddingLeft": 89
+          },
           "children": [
             {
               "type": "frame",
@@ -1702,6 +1821,9 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
+              "bindings": {
+                "itemSpacing": "space/32"
+              },
               "children": [
                 {
                   "type": "instance",
@@ -1878,6 +2000,11 @@ const COMPONENTS = [
             "mode": "VERTICAL",
             "primary": "MIN",
             "counter": "CENTER"
+          },
+          "lits": {
+            "itemSpacing": 48,
+            "paddingRight": 89,
+            "paddingLeft": 89
           },
           "children": [
             {
@@ -2119,7 +2246,9 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Semi Bold",
+      "Regular"
     ],
     "variants": [
       {
@@ -2135,6 +2264,9 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "frame",
@@ -2145,14 +2277,18 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "bindings": {
+                "itemSpacing": "space/4"
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Label",
                   "characters": "Libellé",
                   "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Semi Bold",
                   "textFill": "color/bleu-gris",
+                  "lineHeight": 25,
                   "contentProp": "Label"
                 },
                 {
@@ -2160,7 +2296,7 @@ const COMPONENTS = [
                   "name": "MentionOptionnelle",
                   "characters": "(optionnel)",
                   "fontSize": 14,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
                   "textFill": "color/bleu-gris"
                 }
               ]
@@ -2204,6 +2340,9 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "frame",
@@ -2214,14 +2353,18 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "bindings": {
+                "itemSpacing": "space/4"
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Label",
                   "characters": "Libellé",
                   "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Semi Bold",
                   "textFill": "color/bleu-gris",
+                  "lineHeight": 25,
                   "contentProp": "Label"
                 },
                 {
@@ -2229,7 +2372,7 @@ const COMPONENTS = [
                   "name": "MentionOptionnelle",
                   "characters": "(optionnel)",
                   "fontSize": 14,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
                   "textFill": "color/bleu-gris"
                 }
               ]
@@ -2262,7 +2405,7 @@ const COMPONENTS = [
               "name": "messageErreur",
               "characters": "Message d’erreur",
               "fontSize": 14,
-              "fontStyle": "Medium"
+              "fontStyle": "Regular"
             }
           ]
         }
@@ -2279,7 +2422,8 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -2295,14 +2439,18 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "bindings": {
+            "itemSpacing": "space/16"
+          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Adresse",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/orange",
+              "lineHeight": 30,
               "contentProp": "Titre"
             },
             {
@@ -2310,8 +2458,9 @@ const COMPONENTS = [
               "name": "Texte",
               "characters": "Rue Alfred Drèze 7,  4860 Pepinster",
               "fontSize": 16,
-              "fontStyle": "Medium",
+              "fontStyle": "Regular",
               "textFill": "color/blanc",
+              "lineHeight": 27,
               "contentProp": "Texte"
             }
           ]
@@ -2344,6 +2493,12 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
+          },
+          "lits": {
+            "paddingTop": 128,
+            "paddingRight": 89,
+            "paddingBottom": 32,
+            "paddingLeft": 89
           },
           "children": [
             {
@@ -2482,6 +2637,9 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "stroke": "color/blanc",
+              "lits": {
+                "strokeWeight": 1
+              },
               "children": []
             },
             {
@@ -2533,6 +2691,9 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "bindings": {
+            "itemSpacing": "space/32"
+          },
           "children": [
             {
               "type": "frame",
@@ -2544,6 +2705,9 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
+              "lits": {
+                "itemSpacing": 48
+              },
               "children": [
                 {
                   "type": "instance",
@@ -2563,6 +2727,9 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN",
                     "stretchChildren": true
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/32"
                   },
                   "children": [
                     {
@@ -2612,6 +2779,9 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "bindings": {
+                    "itemSpacing": "space/16"
+                  },
                   "children": [
                     {
                       "type": "instance",
@@ -2640,6 +2810,15 @@ const COMPONENTS = [
               },
               "grow": true,
               "fill": "color/bleu-clair",
+              "bindings": {
+                "itemSpacing": "space/16"
+              },
+              "lits": {
+                "paddingTop": 32,
+                "paddingRight": 32,
+                "paddingBottom": 32,
+                "paddingLeft": 32
+              },
               "children": [
                 {
                   "type": "frame",
@@ -2649,6 +2828,9 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN",
                     "stretchChildren": true
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/16"
                   },
                   "children": [
                     {
@@ -2770,6 +2952,7 @@ const COMPONENTS = [
                   "characters": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.",
                   "fontSize": 16,
                   "fontStyle": "Medium",
+                  "lineHeight": 24,
                   "contentProp": "Consentement"
                 },
                 {

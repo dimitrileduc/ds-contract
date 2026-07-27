@@ -8,15 +8,18 @@
   flex-direction: column;
   align-items: center;
   border: 0;
+  gap: 48px;
 }
 
 .items {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: var(--space-32);
 }
 
 .Boutons {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }

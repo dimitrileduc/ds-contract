@@ -41,15 +41,26 @@
                 "AdresseEtiquette": {
                   "text": "Adresse",
                   "tokens": {
-                    "color": "{color.orange}"
+                    "color": "{color.orange}",
+                    "font-weight": "{font.weight.regular}"
+                  },
+                  "literals": {
+                    "line-height": "30px"
                   }
                 },
                 "AdresseValeur": {
                   "text": "Rue Alfred Drèze 7, 4860 Pepinster",
                   "tokens": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-weight": "{font.weight.regular}"
+                  },
+                  "literals": {
+                    "line-height": "27px"
                   }
                 }
+              },
+              "literals": {
+                "gap": "8px"
               }
             },
             "Horaires": {
@@ -60,15 +71,26 @@
                 "HorairesEtiquette": {
                   "text": "Horaires",
                   "tokens": {
-                    "color": "{color.orange}"
+                    "color": "{color.orange}",
+                    "font-weight": "{font.weight.regular}"
+                  },
+                  "literals": {
+                    "line-height": "30px"
                   }
                 },
                 "HorairesValeur": {
                   "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
                   "tokens": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-weight": "{font.weight.regular}"
+                  },
+                  "literals": {
+                    "line-height": "27px"
                   }
                 }
+              },
+              "literals": {
+                "gap": "8px"
               }
             },
             "Contact": {
@@ -79,7 +101,11 @@
                 "ContactEtiquette": {
                   "text": "Contact",
                   "tokens": {
-                    "color": "{color.orange}"
+                    "color": "{color.orange}",
+                    "font-weight": "{font.weight.regular}"
+                  },
+                  "literals": {
+                    "line-height": "30px"
                   }
                 },
                 "tl32087463266EmailInfopi": {
@@ -88,6 +114,9 @@
                     "color": "{color.noir-bleute}"
                   }
                 }
+              },
+              "literals": {
+                "gap": "8px"
               }
             },
             "suivezNous": {
@@ -123,6 +152,15 @@
                 }
               }
             }
+          },
+          "tokens": {
+            "gap": "{space.16}"
+          },
+          "literals": {
+            "padding-top": "48px",
+            "padding-right": "48px",
+            "padding-bottom": "48px",
+            "padding-left": "48px"
           }
         },
         "googleMap": {}
