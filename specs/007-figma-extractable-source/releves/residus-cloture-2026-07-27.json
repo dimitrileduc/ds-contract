@@ -1,0 +1,32 @@
+{
+  "date": "2026-07-27",
+  "tache": "T060 — Bilan de clôture des 4 résidus acquittés (FR-024a, SC-008a)",
+  "nature": "Synthèse des verdicts de cycle (L1-L4 / V1-V3) restreinte aux 4 pages concernées. Ce n'est PAS une re-mesure — la re-mesure est impossible (proof-cycle.md §7 : aucun outil ne rend une image à une version Figma passée). La ligne de base de T007 est recopiée en citant sa source, jamais recalculée.",
+  "ligne_de_base_T007": {
+    "source": "specs/005-figma-source-cleanup/proofs/fix-post-cloture/verdict.json (recopié en releves/residus-ouverture-2026-07-26.json)",
+    "residus": {
+      "Contactez-nous": "469 px",
+      "Portes d'entrée": "17 px",
+      "Portes de garage": "20 px",
+      "À Propos": "99 px"
+    },
+    "totaux": "identical:5, diff:4 — bruit de plancher hérité de la 005, mesuré contre la référence code 003/005, pas un diff introduit par la 007."
+  },
+  "verdicts_par_cycle_007_sur_les_4_pages": {
+    "L1": { "statut": "identical", "les_4_pages": "0 diff (proofs/L1/verdict.json — 43/43 identical)" },
+    "L1b": { "statut": "identical", "les_4_pages": "0 diff (proofs/L1b/verdict.json — 43/43 identical)" },
+    "L2": { "statut": "identical", "les_4_pages": "0 diff (proofs/L2/verdict.json — 43/43 identical)" },
+    "L3": { "statut": "NON EXÉCUTÉ", "raison": "STOP L3 — liaisons de valeurs numériques abandonnées (decisions.md § STOP L3c/L3d + Clôture reprise L3). Le canvas a été REVERTÉ à son meilleur état ; verdict final de la reprise = 40/43 identical, aucune des 3 cibles diff n'est une des 4 pages (ce sont des MASTERS : Carte, TexteSEO, Coordonnees)." },
+    "L4": { "statut": "NON EXÉCUTÉ", "raison": "Dépendait de L3 (STOP L3)." },
+    "V1": { "statut": "NON EXÉCUTÉ", "raison": "Structure (T051-T057) close par STOP L3 ; aucun geste sur ces 4 pages." },
+    "V2": { "statut": "NON EXÉCUTÉ", "raison": "idem V1." },
+    "V3": { "statut": "NON EXÉCUTÉ", "raison": "DS·Tokens (T058) close par STOP L3." }
+  },
+  "verdict": "0 diff non nul introduit par la 007 sur les 4 pages acquittées. Tous les cycles réellement exécutés (L1, L1b, L2) sont sortis à 43/43 identical, donc à 0 sur ces 4 pages. Les cycles L3/L4/V1-V3 n'ont posé aucun geste (STOP L3) ; la reprise L3 a REVERTÉ le canvas à 40/43 identical, et les 3 résidus finaux sont des MASTERS (Carte, TexteSEO, Coordonnees), pas les 4 pages de cette ligne de base. La ligne de base T007 (469/17/20/99) est donc INCHANGÉE par l'itération — ni amélioration ni aggravation sur ces 4 pages.",
+  "residus_finaux_hors_ces_4_pages": {
+    "note": "Les 3 diffs du verdict final 40/43 (STOP L3) sont rapportés ici pour ne rien cacher, MAIS ils ne concernent PAS les 4 pages acquittées — ce sont des masters du DS. Détail complet : decisions.md § « Clôture reprise L3 ».",
+    "DS-Molecules__Carte": "3 488 px (diffBox x=82,y=532,w=360,h=93) — propriété TEXT partagée entre variantes, limite Figma.",
+    "DS-Organisms__TexteSEO": "3 351 px (diffBox x=249,y=168,w=1452,h=121) — plages mixed-style non sérialisées par le dump, meilleur état restauré.",
+    "DS-Organisms__Coordonnees": "88 px (diffBox x=1325,y=334,w=54,h=152) — bruit de rastérisation sous-pixel."
+  }
+}

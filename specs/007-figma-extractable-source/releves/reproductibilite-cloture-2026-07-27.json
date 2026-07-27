@@ -1,0 +1,15 @@
+{
+  "date": "2026-07-27",
+  "tache": "T061 — Reproduction du relevé « à blanc » (SC-011, test d'acceptation d'US4)",
+  "regle": "Un tiers, à partir du SEUL texte de note-census.md (pas la mémoire de session), reproduit les compteurs annoncés en T059.",
+  "procedure_suivie": "note-census.md §3 pas 5 — rejouée sur le dump banké identique, sans relire les valeurs attendues au préalable. Le compteur (note-census.mjs) appelle proposeBatchFromDump (moteur PUR, déterministe, sans node:*) et classe par préfixe stable ; aucune regex sur le markdown.",
+  "resultat": {
+    "counts_A_G_identiques": true,
+    "schemaValid_identique": "57/57",
+    "totalNotes_identique": 778,
+    "unboundByChannel_identique": true,
+    "rapport_byte_identique_hors_chemin_dump": true
+  },
+  "verdict": "SC-011 TENU — le relevé est déterministe et reproductible à l'octet près (le seul champ variable est le chemin absolu du dump, données non pertinentes au compteur). La procédure écrite suffit : les deux trous documentés (Trou A = TARGET_SETS=[], Trou B = le compteur vit sous specs/…/tools) sont comblés dans le texte, sans quoi le tiers échouerait.",
+  "note_determinisme": "Conforme à la règle constitution §I : le compteur est une fonction pure du dump ; deux passages donnent le même octet. Le dump lui-même n'est pas committé (~173 Ko, reproductible) ; seul le relevé JSON l'est (data-model.md §1)."
+}
