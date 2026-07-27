@@ -547,7 +547,7 @@ une par une (FR-020…FR-030 transverses, FR-026/FR-027/FR-027a/FR-027b).
 **Test d'indépendance** : la procédure du relevé, rejouée par un tiers à partir du seul rapport
 de clôture, reproduit les compteurs annoncés.
 
-- [ ] T059 [US4] Relevé de notes de **clôture** — rejouer `contracts/note-census.md` intégralement
+- [X] T059 [US4] Relevé de notes de **clôture** — rejouer `contracts/note-census.md` intégralement
       (dump frais, édition locale `TARGET_SETS=[]` non committée, `note-census.mjs`, **puis
       `git checkout extract/figma/dump.plugin.js`** — le pas de restauration fait partie de la
       procédure, T064 le contrôle) → dépend de T058 → `releves/notes-cloture-<date>.json`.
@@ -556,7 +556,7 @@ de clôture, reproduit les compteurs annoncés.
       classes A/B/C/D/E sur canaux mesurés, classe F comptée à part et nommée (O2), classe G à 0
       (vérifier qu'aucun des 36 renommages n'a fait converger deux ids vers le même
       `componentIdSlug`).
-- [ ] T060 [US4] Bilan de clôture des 4 résidus (FR-024a, SC-008a) → dépend de T058 →
+- [X] T060 [US4] Bilan de clôture des 4 résidus (FR-024a, SC-008a) → dépend de T058 →
       `releves/residus-cloture-<date>.json`. **Ce n'est pas une re-mesure** — elle est impossible
       (cf. T007) : c'est la **synthèse des verdicts L1-L4 / V1-V3** restreinte aux 4 pages
       concernées (Portes d'entrée, Portes de garage, À Propos, Contactez-nous). Verdict attendu :
@@ -564,16 +564,16 @@ de clôture, reproduit les compteurs annoncés.
       T007 est inchangée et le rapport le dit. Tout diff observé est reporté avec son cycle, sa
       `diffBox` et son crop, et expliqué — amélioration comme aggravation sont toutes deux un
       fait à rapporter, **0** absorbé en silence.
-- [ ] T061 [US4] Reproduire la procédure du relevé **« à blanc »** — en suivant uniquement le
+- [X] T061 [US4] Reproduire la procédure du relevé **« à blanc »** — en suivant uniquement le
       texte écrit dans `contracts/note-census.md` (pas la mémoire de cette session), confirmer
       que les compteurs annoncés en T059 sont bien reproduits. C'est le test d'acceptation de
       US4 elle-même (SC-011).
-- [ ] T062 [US4] Rédiger `specs/007-figma-extractable-source/RAPPORT-CLOTURE.md` — dépend de
+- [X] T062 [US4] Rédiger `specs/007-figma-extractable-source/RAPPORT-CLOTURE.md` — dépend de
       T059-T061, T050 (backlog d'harmonisation) : par geste (L1-L4, V1-V3), l'avant/après et une
       explication courte (FR-026) ; la procédure du relevé écrite reproductible (FR-028) ; le
       backlog d'harmonisation chiffré (T050/FR-013a) ; **toutes** les exceptions nommées une par
       une (opacité si la limite a tenu, styles sous seuil, GROUP non traité si refusé, etc.).
-- [ ] T063 [US4] Dans `RAPPORT-CLOTURE.md`, dépend de T062, reporter nommément à la **dette
+- [X] T063 [US4] Dans `RAPPORT-CLOTURE.md`, dépend de T062, reporter nommément à la **dette
       léguée** (section unique reprenant « Prochaines étapes » de spec.md item par item,
       FR-027) : (1) divergences contrat↔canvas des 5 masters adoptés renommés + le registre
       d'icônes si O1 retenu ; (2) les 4 divergences héritées de la 005 (Bouton,
@@ -589,7 +589,7 @@ de clôture, reproduit les compteurs annoncés.
       l.769 `'Bouton'` / l.773 `'Glyphe'`, `evals/harness.ts` l.181, `bridge/scan.js` l.69 —
       R11) ; **+** la divergence documentaire du README `page-parity` §10 (périmètre 9→43,
       Complexity Tracking du plan).
-- [ ] T064 [US4] Vérifier `git status` / `git diff --stat`, dépend de T063 : le diff de la
+- [X] T064 [US4] Vérifier `git status` / `git diff --stat`, dépend de T063 : le diff de la
       branche ne touche que `specs/007-figma-extractable-source/**` (+ les 2 lignes « Active
       Technologies » de `CLAUDE.md` que `/speckit.plan` a déjà ajoutées — lecture retenue au
       Complexity Tracking du plan, à confirmer owner) — **SC-009**. Tout autre fichier modifié
@@ -604,7 +604,7 @@ de clôture, reproduit les compteurs annoncés.
 **But** : les gates du dépôt restent au statu quo strict ; rien de cette itération ne fuit hors
 de son périmètre d'artefacts.
 
-- [ ] T065 Faire tourner le sweep complet des gates (statu quo attendu, 8/8) :
+- [X] T065 Faire tourner le sweep complet des gates (statu quo attendu, 8/8) :
       `npm run build && npm run parity && npm run eval && npm run plugin:check && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs && npx tsc --noEmit && npx tsc -p tsconfig.build.json`.
       Si `parity` rougit sur une **péremption de snapshot** (`MAX_SNAPSHOT_AGE_DAYS`, défaut 14
       jours depuis le 2026-07-25 → rouge attendu vers le **2026-08-08**) plutôt que sur le
@@ -616,14 +616,14 @@ de son périmètre d'artefacts.
       re-montrée au rapport de clôture avec le rouge d'origine. Une levée silencieuse par
       variable d'environnement est exactement le « gate suppressed rather than fixed » que la
       constitution demande au relecteur de refuser.
-- [ ] T066 [P] Nettoyer les PNG de travail gitignorés (`.page-parity/`, `extract/figma/page-parity/out/`)
+- [X] T066 [P] Nettoyer les PNG de travail gitignorés (`.page-parity/`, `extract/figma/page-parity/out/`)
       — confirmer qu'ils ne sont pas committés ; confirmer que le dump du relevé (~300 Ko,
       T008/T059) n'est pas committé, seul le relevé JSON l'est (data-model.md §1).
-- [ ] T067 [P] Relire `quickstart.md` et les 4 fichiers sous `contracts/` à la lumière de
+- [X] T067 [P] Relire `quickstart.md` et les 4 fichiers sous `contracts/` à la lumière de
       l'exécution réelle — si un pas a divergé (ex. l'écart classe B confirmé à une valeur autre
       que 10, ou une répartition opacity/minHeight différente), corriger ces artefacts de spec
       **avant** de clore (ils sont sous `specs/007-...`, donc pas soumis à FR-025).
-- [ ] T068 Revue finale owner de `RAPPORT-CLOTURE.md` et de la table de nommage exécutée —
+- [X] T068 Revue finale owner de `RAPPORT-CLOTURE.md` et de la table de nommage exécutée —
       confirmer **SC-010** (100 % des exceptions et dettes léguées sont nommées) et clore
       l'itération. **Écrire dans le corps de la PR les deux waivers Governance** identifiés au
       Complexity Tracking de `plan.md` : (1) **exécution hors worktree dédié** (constitution

@@ -31,7 +31,7 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-Derived from `.specify/memory/constitution.md` (v1.1.0). Every item MUST be true, or be
+Derived from `.specify/memory/constitution.md` (v1.2.0). Every item MUST be true, or be
 justified in Complexity Tracking below.
 
 - [ ] **I. Determinism (NON-NEGOTIABLE)** — No AI/model sits in the contract→surface path;
@@ -55,6 +55,18 @@ justified in Complexity Tracking below.
       names tell the truth, structure is consistent — masters AND usage audited, every
       instance scanned by POSITION, never by name — BEFORE extraction/contracting.
       N/A only for features touching no Figma source.
+- [ ] **IX. Docs-first** — `docs/` (especially `docs/handoff/` and
+      `docs/FIGMA-CAPABILITY-MATRIX.md`) is consulted via auggie MCP BEFORE any modeling
+      decision, coding choice, or capability question. Re-deriving what a doc already
+      states is a violation.
+- [ ] **X. Before-capture** — Before any live Figma-canvas replacement begins, the
+      pre-change state of EVERY target that will be touched is captured, verified
+      non-empty, and correctly sized before proceeding. N/A only for features with no
+      canvas mutations.
+- [ ] **XI. Multi-writer bridge** — Parallel canvas writes are allowed only when work is
+      partitioned into DISJOINT zones (different masters/pages/nodes); exactly one global
+      pixel-verification cycle wraps the parallel batch, owned by the orchestrator, never
+      by individual agents. N/A for single-agent or non-canvas features.
 
 **All gates green:**
 

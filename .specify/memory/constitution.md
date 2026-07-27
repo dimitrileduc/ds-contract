@@ -1,4 +1,39 @@
 <!--
+SYNC IMPACT REPORT — 1.2.0 (2026-07-26, MINOR)
+==============================================
+Version change: 1.1.0 → 1.2.0
+
+Bump rationale:
+  MINOR — three new principles added (IX. Docs-First, X. Before-Capture,
+  XI. Multi-Writer Bridge), all owner rules elevated from CLAUDE.md. No principle
+  renamed, removed, or redefined; I–VIII untouched and unrenumbered.
+
+Modified principles: none.
+
+Added sections:
+  - Core Principles: IX. Docs-First — Read the Docs Before Deriving
+    (owner rule 2026-07-24, elevated from CLAUDE.md; CLAUDE.md now
+    summarizes and points here)
+  - Core Principles: X. Before-Capture — Capture Every Affected Target Before
+    Any Live Canvas Mutation Starts (owner rule, Gallery-item lesson, 2026-07-24,
+    elevated from CLAUDE.md; CLAUDE.md now summarizes and points here)
+  - Core Principles: XI. Multi-Writer Bridge — Parallel Canvas Writes Allowed;
+    Partition Work Into Disjoint Zones (owner rule, 2026-07-25, elevated from
+    CLAUDE.md; CLAUDE.md now summarizes and points here)
+
+Removed sections: none
+
+Templates requiring updates:
+  - .specify/templates/plan-template.md   ✅ updated (constitution ref → v1.2.0;
+    three new checkboxes for Principles IX, X, XI)
+  - .specify/templates/spec-template.md   ✅ no change required
+  - .specify/templates/tasks-template.md  ✅ no change required
+  - CLAUDE.md                             ✅ updated (docs-first, before-capture,
+    multi-writer bridge condensed to summaries pointing to §IX/X/XI; canonical
+    note updated)
+
+Follow-up TODOs: none
+
 SYNC IMPACT REPORT — 1.1.0 (2026-07-24, MINOR)
 ==============================================
 Version change: 1.0.1 → 1.1.0
@@ -216,6 +251,52 @@ hacks into law. The Button shipped from an unclean set — icon visibility impro
 hidden layers ×42, a STRING variable named `color/nav-state` — costing a full day of
 rework and nearly crashing the first push (owner rule, 2026-07-23).
 
+### IX. Docs-First — Read the Docs Before Deriving
+
+Before any modeling decision, coding choice, or capability question, the `docs/` folder
+MUST be consulted first — via auggie MCP (`codebase-retrieval`, natural-language
+`information_request`). Key entry points: `docs/handoff/` (13-file AI-to-AI onboarding,
+most authoritative), `docs/FIGMA-CAPABILITY-MATRIX.md` (every CSS↔Figma capability, the
+FIXED/HUG/FILL sizing model, CARRY-BOTH vs CARRY-CODE-ONLY vs named limits), and
+`docs/00-…-15-*.md`. Re-deriving what a doc already states is wasted effort and the
+exact failure mode this rule exists to stop. When a doc answers the question, that answer
+is used verbatim — never overridden by in-context inference.
+
+**Rationale:** the same re-derivation failure occurred across multiple specs (owner note,
+2026-07-24: "la doc est là, vous la zappez à chaque fois"). The docs encode settled
+decisions that took effort to reach; re-deriving them from code is slower, error-prone,
+and disrespects that investment.
+
+### X. Before-Capture — Capture Every Affected Target Before Any Live Canvas Mutation
+
+Before any live Figma-canvas replacement begins, the pre-change state of EVERY target
+that will be touched MUST be captured — not a pilot subset, not a first page only. Each
+capture MUST be verified non-empty and correctly sized before the mutation proceeds. This
+is non-negotiable because once a raw copy is replaced on canvas, its pre-change state is
+gone for good: no tool renders an image at a past Figma version (`figma_get_file_at_version`
+returns structure, not pixels; version-diff tools do not track canvas instance changes),
+and rolling a shared live file back is disruptive and unreliable as a reconstruction path.
+
+**Rationale:** several spec-003 molecules shipped with pixel-proof on only 1–2 of many
+maquettes each; checked afterward, the gap was genuinely unrecoverable (owner rule,
+Gallery-item lesson, 2026-07-24). A pilot-first approach is too late: by the time the
+pilot succeeds, the remaining targets' before-states are already gone.
+
+### XI. Multi-Writer Bridge — Parallel Canvas Writes Are Allowed; Partition Into Disjoint Zones
+
+The figma-console bridge DOES accept several concurrent writers over several ports;
+multiple bridge server instances coexist (e.g. ports 9223 + 9224, observed live), so
+multi-agent parallel writes to the canvas are ALLOWED — the old "one session on the bridge
+at a time" rule (specs 003/005) is superseded. The condition: work MUST be partitioned
+into DISJOINT zones (different masters/pages/nodes) so no two agents ever touch the same
+node. Exactly one global pixel-verification cycle (before/after, all targets) MUST wrap
+the entire parallel batch, owned by the orchestrator, never by an individual agent.
+
+**Rationale:** the constraint is not the bridge but coordination — two writers touching the
+same node corrupt each other's work in ways that are hard to detect and hard to undo.
+Disjoint partitioning plus a single orchestrator-owned verification cycle preserves the
+safety guarantee while unlocking the speed benefit (owner rule, 2026-07-25).
+
 ## Quality Gates
 
 "Green" is defined executably, not by opinion. Every change MUST leave all of the following
@@ -287,4 +368,4 @@ conflicts with it, the constitution wins and the conflicting artifact MUST be co
   guides and MUST stay consistent with this constitution; on conflict, this document is
   authoritative and they are updated to match.
 
-**Version**: 1.1.0 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-07-24
+**Version**: 1.2.0 | **Ratified**: 2026-07-22 | **Last Amended**: 2026-07-26
