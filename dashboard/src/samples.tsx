@@ -16,8 +16,19 @@
  * Checkbox) are the current governed set.
  */
 import type { ReactNode } from 'react';
-import { Button, Input, Textarea, Select, Checkbox } from '../../src/components';
-import type { ButtonProps, InputProps, TextareaProps, SelectProps, CheckboxProps } from '../../src/components';
+import {
+  Button, Input, Textarea, Select, Checkbox,
+  MemberPicture, PiquerayLogo,
+  AccordionRow, Avantage, CarouselControls, Carte, Copyright,
+  Field, FooterColumn, MemberCard, NavItem, ProductCard,
+  Realisation, SectionHeader, Tab,
+  Coordonnees, Devis, Equipe, FAQ, Footer, Formulaire,
+  Header, Hero, Presentation, Reassurances, SAV, TexteSEO,
+  GoogleReviews, ReviewCard,
+} from '../../src/components';
+import type {
+  ButtonProps, InputProps, TextareaProps, SelectProps, CheckboxProps,
+} from '../../src/components';
 
 /** Default text children/value per component, used when no override is supplied. */
 export const SAMPLE_TEXT: Record<string, string> = {
@@ -25,6 +36,13 @@ export const SAMPLE_TEXT: Record<string, string> = {
   Input: 'Texte de saisie',
   Textarea: 'Texte de saisie',
   Select: 'Texte de saisie',
+  AccordionRow: 'Contenu de l\'accordéon',
+  Carte: 'Description de la carte',
+  Copyright: '© Piqueray 2026',
+  NavItem: 'Accueil',
+  Tab: 'Onglet 1',
+  Coordonnees: 'Nos coordonnées',
+  TexteSEO: 'Texte optimisé pour le référencement',
 };
 
 export function renderSample(
@@ -57,6 +75,72 @@ export function renderSample(
 
     case 'Checkbox':
       return <Checkbox {...(props as CheckboxProps)} />;
+
+    // -- US1: missing atoms --
+    case 'MemberPicture':
+      return <MemberPicture etat="defaut" {...props} />;
+    case 'PiquerayLogo':
+      return <PiquerayLogo couleur="default" {...props} />;
+
+    // -- US2: molecules --
+    case 'AccordionRow':
+      return <AccordionRow taille="grand" etat="ferme" titre="Question fréquente" {...props}>{text('Contenu de l\'accordéon')}</AccordionRow>;
+    case 'Avantage':
+      return <Avantage titre="Qualité garantie" {...props} />;
+    case 'CarouselControls':
+      return <CarouselControls {...props} />;
+    case 'Carte':
+      return <Carte disposition="reassurance" titre="Titre" {...props} />;
+    case 'Copyright':
+      return <Copyright {...props}>{text('© Piqueray 2026')}</Copyright>;
+    case 'Field':
+      return <Field label="Nom" etat="normal" {...props}><Input /></Field>;
+    case 'FooterColumn':
+      return <FooterColumn {...props} />;
+    case 'MemberCard':
+      return <MemberCard {...props} />;
+    case 'NavItem':
+      return <NavItem actif={false} {...props}>{text('Accueil')}</NavItem>;
+    case 'ProductCard':
+      return <ProductCard {...props} />;
+    case 'Realisation':
+      return <Realisation {...props} />;
+    case 'SectionHeader':
+      return <SectionHeader disposition="standard" {...props} />;
+    case 'Tab':
+      return <Tab actif={false} {...props}>{text('Onglet 1')}</Tab>;
+
+    // -- US3: organisms --
+    case 'Coordonnees':
+      return <Coordonnees {...props} />;
+    case 'Devis':
+      return <Devis {...props} />;
+    case 'Equipe':
+      return <Equipe {...props} />;
+    case 'FAQ':
+      return <FAQ {...props} />;
+    case 'Footer':
+      return <Footer {...props} />;
+    case 'Formulaire':
+      return <Formulaire {...props} />;
+    case 'Header':
+      return <Header {...props} />;
+    case 'Hero':
+      return <Hero {...props} />;
+    case 'Presentation':
+      return <Presentation {...props} />;
+    case 'Reassurances':
+      return <Reassurances {...props} />;
+    case 'SAV':
+      return <SAV {...props} />;
+    case 'TexteSEO':
+      return <TexteSEO {...props} />;
+
+    // -- existing composites --
+    case 'GoogleReviews':
+      return <GoogleReviews {...props} />;
+    case 'ReviewCard':
+      return <ReviewCard {...props} />;
 
     default:
       return <span className="muted">No sample available.</span>;
