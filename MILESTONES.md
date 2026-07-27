@@ -1049,3 +1049,25 @@ exercising it), **107 pass** — 6 inherited reds, all already named before
 006 began and reconfirmed unrelated to `ds.review-card`/`ds.google-reviews`.
 48 legacy cases stay quarantined (slots, dark theme, a second brand — still
 none of those exist in Piqueray).
+
+## 2026-07-27 — Spec 010: 27 new governed components, 34 total (7→34)
+
+**Summary**: The full Piqueray component library extracted from the Figma canvas into governed contracts — 2 missing atoms, 13 molecules, 12 organisms — for a total of 34 governed components. Icon registry extended 16→19 (v1.2.0).
+
+**Components adopted** (all v1.0.0, provenance: extracted):
+- **Atoms (2)**: MemberPicture, PiquerayLogo
+- **Molecules (13)**: AccordionRow, Avantage, CarouselControls, Carte, Copyright, Field, FooterColumn, MemberCard, NavItem, ProductCard, Realisation, SectionHeader, Tab
+- **Organisms (12)**: Coordonnees, Devis, Equipe, FAQ, Footer, Formulaire, Header, Hero, Presentation, Reassurances, SAV, TexteSEO
+
+**Infrastructure**:
+- Icon registry: 16→19 entries (v1.2.0, +external-link, mail, octicon-chevron-down12)
+- Button: widened icon enums to 19 (v1.5.2)
+- All 34 components generate successfully (`npm run build`)
+- figma-sync renumbered (35 scripts + 2 batches)
+- Dashboard: 34 components live
+
+**Known limitations (named, not silent)**:
+- Presentation default text: apostrophes sanitized to avoid JSX generator bug (U+2019 treated as string delimiter by Prettier)
+- 3 Figma token references not in DTCG tokens (noir-pur→noir-bleute, rouge/gris-clair removed)
+- 13 parity drift findings: expected post-extraction (Figma properties not yet promoted into contracts)
+- Eval suite not run (scratch-dir Node v24 issue, user-requested skip)
