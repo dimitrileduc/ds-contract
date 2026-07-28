@@ -144,7 +144,14 @@ export interface MinimalChildContract {
   id: string;
   /** `type` (P9): the repeat field classifier reads it to tell TEXT-certain
    *  props from enums — optional so pre-P9 callers keep passing slices. */
-  props: Array<{ name: string; type?: unknown; bindings: { figma: { property?: string; values?: Record<string, string> } } }>;
+  props: Array<{
+    name: string;
+    type?: unknown;
+    bindings: {
+      figma: { property?: string; values?: Record<string, string> };
+      code?: { prop?: string };
+    };
+  }>;
   anchors?: { figma?: { componentSetKey?: string | null } };
 }
 
@@ -156,6 +163,7 @@ export interface MinimalChildContract {
 export interface IconRegistryEntry {
   name: string;
   figma: { componentName: string; key: string };
+  size?: number;
 }
 export interface IconRegistryLike {
   icons: IconRegistryEntry[];
@@ -381,6 +389,7 @@ function modeStructuralDiff(a: DumpNode, b: DumpNode, path: string): string | nu
   if (JSON.stringify(a.layout ?? null) !== JSON.stringify(b.layout ?? null)) return `${path}: auto-layout differs`;
   if ((a.cornerRadius ?? null) !== (b.cornerRadius ?? null)) return `${path}: corner radius differs`;
   if ((a.strokeWeight ?? null) !== (b.strokeWeight ?? null)) return `${path}: stroke weight differs`;
+  if (JSON.stringify(a.strokeWeights ?? null) !== JSON.stringify(b.strokeWeights ?? null)) return `${path}: per-side stroke weights differ`;
   if ((a.opacity ?? 1) !== (b.opacity ?? 1)) return `${path}: node opacity differs`;
   if ((a.hidden ?? false) !== (b.hidden ?? false)) return `${path}: visibility differs`;
   for (const dim of ['minWidth', 'minHeight', 'maxWidth', 'maxHeight'] as const) {
@@ -1069,6 +1078,32 @@ function unifyPaint(
     }
     return undefined;
   }
+  // A bound color plus paint alpha is a TWO-CHANNEL source fact. A plain
+  // token ref can carry only the color identity, so with literal-fidelity
+  // minting enabled compose the captured resolved color + exact paint alpha
+  // into an 8-digit DTCG color. This preserves pixels without pretending the
+  // opaque variable itself contains the alpha. The mechanical imported.* name
+  // remains a review target; no semantic color name is invented.
+  const boundAlpha = paints.some((p) => p.paint?.var !== undefined && (p.paint.alpha ?? 1) < 1);
+  if (boundAlpha && ctx.mint && mint && paints.every((p) => p.paint?.var !== undefined)) {
+    const values = paints.map((p) => {
+      const resolved = ctx.capturedValues?.get(dotPath(p.paint!.var!));
+      if (typeof resolved !== 'string' || !/^#[0-9a-f]{6}$/i.test(resolved)) return undefined;
+      return paintCssHex({ hex: resolved.slice(1), alpha: p.paint!.alpha });
+    });
+    if (values.every((v): v is string => v !== undefined)) {
+      mintObservation(
+        ctx, mint.target, where, mint.cssProperty, 'color',
+        paints.map((p, i) => ({ variant: p.variant, value: values[i] as string })),
+        `${where}|${paintName}`,
+      );
+      ctx.notes.push(
+        `${where} ${paintName}: bound color + paint alpha captured at literal fidelity as 8-digit provisional color(s) (${[...new Set(values)].join('/')}) — variable identity and alpha both remain explicit in the dump; rename the mechanical imported.* token during review`,
+      );
+      return undefined;
+    }
+  }
+
   const u = unifyRefs(
     paints.map((p) => ({ variant: p.variant, path: p.paint?.var ? dotPath(p.paint.var) : undefined })),
     ctx.axes,
@@ -1171,16 +1206,20 @@ function invertNodeTokens(
     if (rs[0] !== undefined && rs.every((r) => refKey(r) === refKey(rs[0]))) carry('border-radius', rs[0]);
     else ctx.notes.push(`${where}: corner radii bindings are not uniform — border-radius not representable, review`);
   }
-  const weights = ['strokeTopWeight', 'strokeRightWeight', 'strokeBottomWeight', 'strokeLeftWeight'];
-  if (weights.some((w) => fields.has(w)) || fields.has('strokeWeight')) {
-    const w = fields.has('strokeWeight')
-      ? f('strokeWeight')
-      : (() => {
-          const ws = weights.map((x) => f(x));
-          return ws[0] !== undefined && ws.every((x) => refKey(x) === refKey(ws[0])) ? ws[0] : undefined;
-        })();
-    if (w) carry('border-width', w);
-    else ctx.notes.push(`${where}: stroke weight bindings are not uniform — border-width not representable, review`);
+  const weights = ['strokeTopWeight', 'strokeRightWeight', 'strokeBottomWeight', 'strokeLeftWeight'] as const;
+  if (fields.has('strokeWeight')) {
+    carry('border-width', f('strokeWeight'));
+  } else if (weights.some((w) => fields.has(w))) {
+    const sideRefs = weights.map((w) => f(w));
+    // Keep the concise shorthand when all four sides bind identically. Any
+    // other shape is natively representable one side at a time; never collapse
+    // a bottom-only divider into an unreviewable "nonuniform" note.
+    if (sideRefs[0] !== undefined && sideRefs.every((w) => refKey(w) === refKey(sideRefs[0]))) {
+      carry('border-width', sideRefs[0]);
+    } else {
+      const cssSides = ['border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width'];
+      for (let i = 0; i < weights.length; i++) carry(cssSides[i], sideRefs[i]);
+    }
   }
   carry('gap', f('itemSpacing'));
   carry(isRoot ? 'max-width' : 'width', f('width'));
@@ -1751,6 +1790,25 @@ function mintTextChannels(
       );
     }
   }
+  // letter-spacing (dump v1.7): zero and PIXELS are exact CSS values. A
+  // producer that predates the field stays ambiguous; partial capture is
+  // named and never filled with a guessed default.
+  const withLs = textOcc.filter((o) => typeof o.node.text!.letterSpacing === 'number');
+  if (withLs.length > 0) {
+    if (withLs.length !== textOcc.length) {
+      ctx.notes.push(
+        `${where}: letter-spacing captured in ${withLs.length}/${textOcc.length} variants — inconsistent, NAMED, not proposed; review`,
+      );
+    } else {
+      reportUnbound(ctx, where, 'letterSpacing', withLs[0].node.text!.letterSpacing!);
+      mintObservation(
+        ctx, tokens, where, 'letter-spacing', 'px',
+        withLs.map((o) => ({ variant: o.variant, value: o.node.text!.letterSpacing! })),
+        `${where}|letterSpacing`,
+      );
+    }
+  }
+
   // line-height (dump v1.3, PIXELS only — other units were receipted at capture).
   const withLh = textOcc.filter((o) => typeof o.node.text!.lineHeight === 'number');
   if (withLh.length === 0) return;
@@ -1768,6 +1826,55 @@ function mintTextChannels(
   );
 }
 
+function invertFixedTextBox(m: Merged, tokens: Record<string, string>, ctx: Ctx, where: string) {
+  if (!ctx.mint) return;
+  const observed = m.occ.filter((o) => o.node.text?.autoResize === 'NONE' && o.node.bbox !== undefined);
+  if (observed.length === 0) return;
+  if (observed.length !== m.occ.length) {
+    ctx.notes.push(`${where}: fixed text bbox captured on ${observed.length}/${m.occ.length} variants — dimensions NAMED, not proposed; review`);
+    return;
+  }
+  // A FILL text node's width belongs to its parent layout, not a fixed CSS
+  // width. Height remains authored when textAutoResize is NONE (AccordionRow
+  // content: 32px box around a 24px line-height).
+  const dimensions: Array<'width' | 'height'> = m.occ.every((o) => o.node.fillWidth === true)
+    ? ['height']
+    : ['width', 'height'];
+  for (const dim of dimensions) {
+    const values = observed.map((o) => o.node.bbox![dim]);
+    reportUnbound(ctx, where, dim, values[0]);
+    mintObservation(
+      ctx, tokens, where, dim, 'px',
+      observed.map((o) => ({ variant: o.variant, value: o.node.bbox![dim] })),
+      `${where}|${dim}`,
+    );
+    ctx.notes.push(
+      `${where}: textAutoResize NONE — observed ${dim} (${[...new Set(values)].join('/')}px) carried from the fixed text box; FILL width remains parent-owned`,
+    );
+  }
+}
+
+function invertFixedFrameBox(m: Merged, tokens: Record<string, string>, ctx: Ctx, where: string) {
+  if (!ctx.mint || m.occ.some((o) => o.node.layout === undefined || o.node.bbox === undefined)) return;
+  const fixedAxis = (o: Occ, dim: 'width' | 'height'): boolean => {
+    const layout = o.node.layout!;
+    const alongPrimary = (layout.mode === 'HORIZONTAL') === (dim === 'width');
+    return (alongPrimary ? layout.primarySizing : layout.counterSizing) === 'FIXED';
+  };
+  for (const dim of ['width', 'height'] as const) {
+    if (dim === 'width' && m.occ.every((o) => o.node.fillWidth === true)) continue;
+    if (!m.occ.every((o) => fixedAxis(o, dim))) continue;
+    const values = m.occ.map((o) => o.node.bbox![dim]);
+    reportUnbound(ctx, where, dim, values[0]);
+    mintObservation(
+      ctx, tokens, where, dim, 'px',
+      m.occ.map((o) => ({ variant: o.variant, value: o.node.bbox![dim] })),
+      `${where}|${dim}`,
+    );
+    ctx.notes.push(`${where}: auto-layout ${dim} is FIXED — observed bbox ${[...new Set(values)].join('/')}px carried; FILL width remains parent-owned`);
+  }
+}
+
 function invertTextTokens(m: Merged, ctx: Ctx, where: string, byProp: ByPropCollector): Record<string, string> {
   const tokens: Record<string, string> = {};
   const color = unifyPaint(
@@ -1782,6 +1889,18 @@ function invertTextTokens(m: Merged, ctx: Ctx, where: string, byProp: ByPropColl
 
   const t = first(m.occ, (n) => n.text);
   if (!t) return tokens;
+
+  // Figma stores one rendered family; code tokens may include fallbacks. A
+  // case-insensitive match against the first family is exact and deterministic
+  // (Montserrat ↔ "Montserrat, sans-serif"), never a semantic guess.
+  const families = [...new Set(m.occ.map((o) => o.node.text?.fontFamily).filter((v): v is string => typeof v === 'string'))];
+  if (families.length === 1) {
+    const familyPath = ctx.corpus.fontFamilyPathByName.get(families[0].toLowerCase());
+    if (familyPath) tokens['font-family'] = ref(familyPath);
+    else ctx.notes.push(`${where}: font family "${families[0]}" has no exact token-family match — NAMED, not proposed; review`);
+  } else if (families.length > 1) {
+    ctx.notes.push(`${where}: font family differs across variants (${families.join(', ')}) — NAMED, not proposed; review`);
+  }
   // UNIFORMITY GUARD (owner field case: CBDS Button, 16px large/medium vs
   // 14px small). Style identity — named-style adoption AND the style-less
   // (fontSize, fontStyle) definition match below — is only honest when the
@@ -1967,10 +2086,17 @@ function invertLayoutByProp(
     ) {
       direction += '-reverse';
     }
+    // A vertical auto-layout parent can retain its own counter-axis setting
+    // while its eligible children individually use FILL. CSS expresses that
+    // source fact as the parent's cross-axis stretch. This is the same
+    // Figma→CSS mapping used by stretchEvidence for invariant layouts, applied
+    // here per variant so an enum-driven row→column layout does not drop it.
+    const eligible = (o.node.children ?? []).filter((n) => n.type === 'FRAME' || n.type === 'TEXT');
+    const fillCrossAxis = l.mode === 'VERTICAL' && eligible.length > 0 && eligible.every((n) => n.fillWidth === true);
     return {
       direction,
       justify: JUSTIFY_INV[l.primary] ?? 'start',
-      align: ALIGN_INV[l.counter] ?? 'start',
+      align: fillCrossAxis ? 'stretch' : (ALIGN_INV[l.counter] ?? 'start'),
     };
   };
   const tuples = m.occ.map((o) => ({ variant: o.variant, tuple: tupleOf(o) }));
@@ -2803,6 +2929,7 @@ function buildPart(
   if (m.type === 'TEXT') {
     const byProp: ByPropCollector = { map: {} };
     const tokens = invertTextTokens(m, ctx, where, byProp);
+    invertFixedTextBox(m, tokens, ctx, where);
     attachByProp(part, byProp);
     invertNodeOpacity(m, part, tokens, ctx, where);
     if (m.occ.some((o) => (o.node.effects?.length ?? 0) > 0)) {
@@ -2897,6 +3024,54 @@ function buildPart(
       return part;
     }
     const instanceOf = first(m.occ, (n) => n.instanceOf) ?? m.name;
+
+    // A fixed instance whose publish key/name belongs to the governed icon
+    // registry is an icon asset, not an unresolved child component. Preserve
+    // the observed rectangle; when size varies by one enum axis, the base
+    // icon size plus per-value width/height literals carry the exact geometry.
+    const fixedKeys = instanceKeysOf(m);
+    const registryIcon = ctx.iconRegistry?.icons.find(
+      (entry) => entry.figma.key === fixedKeys.key || entry.figma.componentName === instanceOf,
+    );
+    if (registryIcon) {
+      const boxes = m.occ.filter((o) => o.node.bbox !== undefined);
+      const baseBox = boxes[0]?.node.bbox;
+      if (baseBox) {
+        part.icon = { asset: registryIcon.name, size: baseBox.width };
+        for (const axis of ctx.axes) {
+          if (isBoolAxis(axis.values)) continue;
+          const byValue = new Map<string, { width: number; height: number }>();
+          let fits = boxes.length === m.occ.length;
+          for (const o of boxes) {
+            const value = axisValuesOf(o.variant)[axis.property];
+            if (value === undefined) { fits = false; break; }
+            const box = o.node.bbox!;
+            const seen = byValue.get(value);
+            if (seen && (seen.width !== box.width || seen.height !== box.height)) { fits = false; break; }
+            byValue.set(value, box);
+          }
+          if (!fits || !axis.values.every((value) => byValue.has(value))) continue;
+          const map: Record<string, Record<string, string>> = {};
+          for (const value of axis.values) {
+            const box = byValue.get(value)!;
+            if (box.width === baseBox.width && box.height === baseBox.height) continue;
+            map[camel(value)] = { width: `${box.width}px`, height: `${box.height}px` };
+          }
+          if (Object.keys(map).length > 0) {
+            part.literalsByProp = [{ prop: axis.propName, map }];
+            ctx.notes.push(
+              `${where}: governed icon "${registryIcon.name}" resolves by registry identity; observed size ${baseBox.width}×${baseBox.height} with per-${axis.propName} overrides (${Object.entries(map).map(([v, s]) => `${v}=${s.width}×${s.height}`).join(', ')})`,
+            );
+          }
+          break;
+        }
+      } else {
+        part.icon = { asset: registryIcon.name, ...(registryIcon.size ? { size: registryIcon.size } : {}) };
+      }
+      if (visibleWhen) part.visibleWhen = visibleWhen;
+      return part;
+    }
+
     if (isSelfInstance(instanceOf, ctx)) {
       // SELF-REFERENCE GUARD (field case: Eventz DS Button, node 2313-42).
       // A nested instance that resolves to the set's own contract id must
@@ -2952,6 +3127,19 @@ function buildPart(
         canonical: canonicalizeInstanceProps(instanceOf, o.node.componentProperties!, id, ctx, where, true, keys),
       }));
       threadInstanceProps(canonical, perOccurrence, ctx, where, instanceOf);
+      // A fixed value for the child's code `children` binding belongs in the
+      // component-ref `text` channel, not `props.children`. This distinction
+      // is load-bearing for the empty string: `text: ""` explicitly suppresses
+      // the child contract's sample/default text on every emitter, whereas an
+      // attribute-shaped children prop can be followed by fallback JSX ink.
+      // Parent-threaded values stay in props — ComponentRef.text is static.
+      const child = id ? ctx.contractsById?.get(id) : undefined;
+      const childTextProp = child?.props.find((p) => p.bindings.code?.prop === 'children');
+      const fixedText = childTextProp ? canonical[childTextProp.name] : undefined;
+      if (typeof fixedText === 'string' && !/^\{[a-z][\w-]*\}$/.test(fixedText)) {
+        component.text = fixedText;
+        delete canonical[childTextProp!.name];
+      }
       // Every applied prop may have been dropped as unmappable (each is a
       // named note) — an empty props object carries nothing.
       if (Object.keys(canonical).length > 0) component.props = canonical;
@@ -2984,6 +3172,41 @@ function buildPart(
 
   const partByProp: ByPropCollector = { map: {} };
   const tokens = invertNodeTokens(m, false, ctx, where, partByProp);
+
+  // v18: a Figma-acquired arbitrary vector is promoted to a governed external
+  // asset. The dump carries base64 only as transport evidence; contract JSON
+  // receives the reference + observed rectangle, never the path geometry.
+  const vectors = m.occ.map((o) => o.node.vectorAsset).filter((v): v is NonNullable<typeof v> => v !== undefined);
+  if (vectors.length > 0) {
+    if (vectors.length !== m.occ.length || new Set(vectors.map((v) => v.asset)).size !== 1) {
+      ctx.notes.push(`${where}: vector asset differs or is absent across variants — asset promotion refused; review`);
+    } else {
+      const v = vectors[0];
+      const sameGeometry = vectors.every((x) => x.width === v.width && x.height === v.height && x.position?.x === v.position?.x && x.position?.y === v.position?.y);
+      if (!sameGeometry) {
+        ctx.notes.push(`${where}: vector asset geometry differs across variants — asset promotion refused; review`);
+      } else {
+        part.vectorAsset = {
+          asset: v.asset, width: v.width, height: v.height,
+          ...(v.position ? { position: v.position } : {}),
+        };
+        // SVG currentColor is the part foreground, not a box fill.
+        if (tokens['background-color']) {
+          tokens.color = tokens['background-color'];
+          delete tokens['background-color'];
+        }
+        for (const values of Object.values(partByProp.map)) {
+          if (values['background-color']) {
+            values.color = values['background-color'];
+            delete values['background-color'];
+          }
+        }
+        attachByProp(part, partByProp);
+        attachTokens(ctx, part, tokens);
+        return part;
+      }
+    }
+  }
   attachByProp(part, partByProp);
 
   // v9 shape (#42, dump v1.3): parametric leaf decor — the part carries the
@@ -3053,6 +3276,7 @@ function buildPart(
   if (layout) part.layout = layout;
   const byProp = invertLayoutByProp(m, ctx, where);
   if (byProp) part.layoutByProp = byProp;
+  invertFixedFrameBox(m, tokens, ctx, where);
   invertNodeOpacity(m, part, tokens, ctx, where);
   invertNodeEffects(m, tokens, ctx, where);
   attachTokens(ctx, part, tokens);
@@ -3569,6 +3793,24 @@ function buildChildStub(
  *  to a variable stays the variable's. Field case: the CBDS Dialog's
  *  per-size widths (320/496/800) — without them the body text never wraps
  *  and every variant renders hundreds of px too wide. */
+/** A non-auto-layout root (logos and other absolute/vector compositions) has
+ * no sizing mode to invert. Its captured bbox is therefore direct source
+ * evidence for private literal dimensions, not a reason to emit a 0×0 box. */
+function invertStaticRootBBox(merged: Merged, root: Record<string, unknown>, ctx: Ctx, where: string) {
+  const observed = merged.occ.filter((o) => o.node.bbox !== undefined && o.node.layout === undefined);
+  if (observed.length !== merged.occ.length || observed.length === 0) return;
+  const widths = new Set(observed.map((o) => o.node.bbox!.width));
+  const heights = new Set(observed.map((o) => o.node.bbox!.height));
+  if (widths.size !== 1 || heights.size !== 1) {
+    ctx.notes.push(`${where}: static root bbox differs across variants — literal root dimensions not proposed; review`);
+    return;
+  }
+  const width = [...widths][0];
+  const height = [...heights][0];
+  root.literals = { ...((root.literals as Record<string, string> | undefined) ?? {}), width: `${width}px`, height: `${height}px` };
+  ctx.notes.push(`${where}: static root bbox ${width}×${height}px proposed as literal dimensions (no auto-layout sizing mode is present)`);
+}
+
 function invertRootFixedSize(merged: Merged, rootTokens: Record<string, string>, ctx: Ctx, where: string) {
   if (!ctx.mint) return;
   const withBox = merged.occ.filter((o) => o.node.bbox !== undefined && o.node.layout !== undefined);
@@ -4242,6 +4484,7 @@ export function proposeFromDump(
   }
   invertNodeOpacity(merged, root, rootTokens, ctx, where);
   invertNodeEffects(merged, rootTokens, ctx, where);
+  invertStaticRootBBox(merged, root, ctx, where);
   invertRootFixedSize(merged, rootTokens, ctx, where);
   attachByProp(root, rootTokensByProp);
   attachTokens(ctx, root, rootTokens);

@@ -62,8 +62,10 @@ export interface LayoutSpec {
 
 export interface NodeSpec {
   type: 'root' | 'frame' | 'text' | 'instance' | 'slot' | 'svg' | 'shape';
-  /** Round 4: intrinsic glyph size for svg specs (contract icon.size). */
+  /** Round 4: intrinsic glyph size for square icon specs (contract icon.size). */
   iconSize?: number;
+  /** v18: intrinsic rectangular dimensions for a governed vector asset. */
+  svgSize?: { width: number; height: number };
   name: string;
   layout?: LayoutSpec;
   bindings?: Record<string, string>;
@@ -212,6 +214,7 @@ export interface NodeSpec {
   lits?: {
     fillClear?: boolean;
     fillColor?: { r: number; g: number; b: number; a?: number };
+    strokeColor?: { r: number; g: number; b: number; a?: number };
     width?: number;
     height?: number;
     minWidth?: number;
@@ -1251,6 +1254,11 @@ function applyLiterals(spec: NodeSpec, lits: Record<string, string>, ctx: TextCt
         if (c) li().fillColor = c;
         break;
       }
+      case 'border-color': {
+        const c = parseLitColor(value);
+        if (c) li().strokeColor = c;
+        break;
+      }
       case 'width': { const n = parseLitPx(value); if (n !== undefined) li().width = n; break; }
       case 'height': { const n = parseLitPx(value); if (n !== undefined) li().height = n; break; }
       case 'min-width': { const n = parseLitPx(value); if (n !== undefined) li().minWidth = n; break; }
@@ -1294,6 +1302,11 @@ function applyLiterals(spec: NodeSpec, lits: Record<string, string>, ctx: TextCt
       case 'font-size': {
         const n = parseLitPx(value);
         if (n !== undefined) { next.fontSize = n; next.fontSizePath = undefined; }
+        break;
+      }
+      case 'font-weight': {
+        const n = Number(value);
+        if (Number.isFinite(n)) next.fontStyle = FONT_STYLE_BY_WEIGHT[n] ?? 'Medium';
         break;
       }
       case 'line-height': { const n = parseLitPx(value); if (n !== undefined) next.lineHeight = n; break; }
@@ -1548,6 +1561,26 @@ function iconSvg(part: Part, subst: Record<string, string>, ctx: TextCtx): strin
   return out;
 }
 
+/** v18: same deterministic paint compilation as iconSvg, but dimensions and
+ * semantics belong to a generic vector asset rather than the icon registry. */
+function vectorAssetSvg(part: Part, ctx: TextCtx): string {
+  const vector = part.vectorAsset!;
+  const svg = iconAssets.get(vector.asset);
+  if (!svg) throw new Error(`Unknown vector asset "${vector.asset}" (expected assets/vectors/${vector.asset}.svg)`);
+  const paintPath = ctx.glyphFillPath ?? ctx.textFillPath;
+  const hex = paintPath ? String(resolveLiteral(paintPath)) : '#000000';
+  let out = svg.replaceAll('currentColor', hex);
+  const svgTagHasFill = /<svg\b[^>]*\sfill=/.test(out);
+  const childHasFill = /<(path|circle|rect|polygon|ellipse|g)[^>]*\sfill=/.test(out);
+  if (paintPath && !svgTagHasFill && !childHasFill) out = out.replace(/^<svg /, `<svg fill="${hex}" `);
+  // Pin the exported SVG's own dimensions too: Figma uses the node resize as
+  // the final authority, while this keeps source-aware consumers deterministic.
+  out = out
+    .replace(/^(<svg\b[^>]*?)\swidth="[^"]*"/, `$1 width="${vector.width}"`)
+    .replace(/^(<svg\b[^>]*?)\sheight="[^"]*"/, `$1 height="${vector.height}"`);
+  return out;
+}
+
 const PLACEHOLDER_ATTR_REF = /^\{([a-z][\w-]*)\}$/;
 
 /** Form-control parts (input/textarea) render as a real element in code via
@@ -1787,6 +1820,8 @@ function variantParts(
       const value = subst[vw.prop];
       if (value !== undefined && value !== vw.equals) return false;
     }
+    const hw = p.hiddenWhen;
+    if (hw && subst[hw.prop] === hw.equals) return false;
     // v9: an enum-conditioned stylesWhen display:none that matches this
     // combo suppresses the part — the shape-placement spelling for axis
     // values where the decor is hidden in every drawn variant.
@@ -1879,6 +1914,23 @@ function partToSpecInner(
   ctx: TextCtx,
   subst: Record<string, string>,
 ): NodeSpec {
+  if (part.vectorAsset) {
+    const vectorCtx = applyTokens({ type: 'frame', name: '_' }, resolveTokens(part, subst), subst, ctx);
+    const markup = vectorAssetSvg(part, vectorCtx);
+    const paintPath = vectorCtx.glyphFillPath ?? vectorCtx.textFillPath;
+    const paintHex = paintPath ? String(resolveLiteral(paintPath)) : '#000000';
+    const paintVar = svgSinglePaintVar(markup, paintHex, paintPath);
+    const spec: NodeSpec = {
+      type: 'svg', name, svg: markup,
+      ...(paintVar ? { svgPaintVar: paintVar } : {}),
+      svgSize: { width: part.vectorAsset.width, height: part.vectorAsset.height },
+      ...(part.vectorAsset.position ? {
+        absolute: { h: 'MIN', v: 'MIN', left: part.vectorAsset.position.x, top: part.vectorAsset.position.y },
+      } : {}),
+    };
+    applyVisibleWhen(spec, part, contract);
+    return spec;
+  }
   if (part.icon) {
     // The part's own tokens (e.g. a color override) apply to the glyph.
     const iconCtx = applyTokens({ type: 'frame', name: '_' }, resolveTokens(part, subst), subst, ctx);
@@ -2910,6 +2962,7 @@ const litsRuntime = (has: boolean): string =>
     // specs carrying both.
     if (li.fillClear && !spec.fill) node.fills = [];
     else if (li.fillColor) node.fills = [{ type: 'SOLID', color: { r: li.fillColor.r, g: li.fillColor.g, b: li.fillColor.b }, opacity: li.fillColor.a === undefined ? 1 : li.fillColor.a }];
+    if (li.strokeColor) node.strokes = [{ type: 'SOLID', color: { r: li.strokeColor.r, g: li.strokeColor.g, b: li.strokeColor.b }, opacity: li.strokeColor.a === undefined ? 1 : li.strokeColor.a }];
     if (li.radiusCorners) {
       const rc = li.radiusCorners;
       if (rc.tl !== undefined) node.topLeftRadius = rc.tl;
@@ -3208,7 +3261,9 @@ async function buildNode(spec, registry) {
     node = figma.createNodeFromSvg(spec.svg);
     node.fills = [];
     node.clipsContent = false;
-    if (spec.iconSize) node.resize(spec.iconSize, spec.iconSize);${svgPaintRuntime(hasSvgPaint)}
+    const svgWidth = spec.svgSize ? spec.svgSize.width : spec.iconSize;
+    const svgHeight = spec.svgSize ? spec.svgSize.height : spec.iconSize;
+    if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);${svgPaintRuntime(hasSvgPaint)}
   } else if (spec.type === 'text') {
     node = figma.createText();
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };

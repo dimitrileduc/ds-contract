@@ -778,13 +778,19 @@ function generateElement(contract: Contract, ctx: WcEmitCtx): string {
       .join('');
 
   const visibleWrap = (part: Part, inner: string): string => {
-    if (!part.visibleWhen) return inner;
-    const vw = part.visibleWhen;
-    const cond =
-      vw.equals !== undefined
-        ? `(${acc(vw.prop)} ?? '') === ${JSON.stringify(vw.equals)}`
-        : `${acc(vw.prop)} === true`;
-    return `\${${cond} ? \`${inner}\` : ''}`;
+    if (part.visibleWhen) {
+      const vw = part.visibleWhen;
+      const cond =
+        vw.equals !== undefined
+          ? `(${acc(vw.prop)} ?? '') === ${JSON.stringify(vw.equals)}`
+          : `${acc(vw.prop)} === true`;
+      return `\${${cond} ? \`${inner}\` : ''}`;
+    }
+    if (part.hiddenWhen) {
+      const cond = `(${acc(part.hiddenWhen.prop)} ?? '') !== ${JSON.stringify(part.hiddenWhen.equals)}`;
+      return `\${${cond} ? \`${inner}\` : ''}`;
+    }
+    return inner;
   };
 
   /** Attribute fragment for a fixed/threaded prop set on a composed child. */

@@ -1,0 +1,81 @@
+/* MemberPicture — from ds.member-picture v1.0.1 (core/emit-html.ts) */
+
+.member-picture, .member-picture *, .member-picture *::before, .member-picture *::after {
+  box-sizing: border-box;
+}
+
+.member-picture {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+  width: 364px;
+  height: 364px;
+  border-radius: 500px;
+  background-color: #D9D9D9;
+  position: relative;
+}
+
+.member-picture--etat-defaut {
+  overflow: hidden;
+}
+
+.member-picture--etat-survol {
+  overflow: hidden;
+}
+
+.member-picture__funIa {
+  width: 364px;
+  height: 364px;
+  border-radius: 500px;
+  position: absolute;
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.member-picture--etat-defaut .member-picture__funIa {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.member-picture--etat-survol .member-picture__funIa {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.member-picture__normal {
+  width: 364px;
+  height: 364px;
+  border-radius: 500px;
+  position: absolute;
+  aspect-ratio: 1;
+  transition: opacity 300ms;
+  width: 100%;
+  height: 100%;
+}
+
+.member-picture--etat-defaut .member-picture__normal {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 1;
+}
+
+.member-picture--etat-survol .member-picture__normal {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0;
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

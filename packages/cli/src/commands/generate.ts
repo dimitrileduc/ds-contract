@@ -60,7 +60,7 @@ export async function loadEmitterModule(spec: string): Promise<Emitter[]> {
 
 export async function generateCommand(argv: string[]): Promise<number> {
   const parsed = parseFlags(argv, {
-    value: ['out', 'target', 'tokens', 'icons', 'emitter', 'file-key'],
+    value: ['out', 'target', 'tokens', 'icons', 'vectors', 'emitter', 'file-key'],
     bool: ['stories'],
   });
   if (parsed.positionals.length === 0) {
@@ -80,6 +80,7 @@ export async function generateCommand(argv: string[]): Promise<number> {
   const files = expandContractArgs(parsed.positionals);
   const tokenFiles = splitList(flagString(parsed, 'tokens')).map((f) => path.resolve(f));
   const iconsDir = flagString(parsed, 'icons');
+  const vectorsDir = flagString(parsed, 'vectors');
   const outDir = path.resolve(out);
 
   if (target === 'react') {
@@ -89,6 +90,7 @@ export async function generateCommand(argv: string[]): Promise<number> {
       contractFiles: files,
       tokenFiles: tokenFiles.length > 0 ? tokenFiles : undefined,
       iconsDir,
+      vectorsDir,
       outDir,
       stories: parsed.flags.get('stories') === true,
     });
@@ -103,7 +105,7 @@ export async function generateCommand(argv: string[]): Promise<number> {
     );
   }
   const contracts = loadContracts(files);
-  const ctx = buildEmitterCtx(contracts, tokenFiles, iconsDir, flagString(parsed, 'file-key'));
+  const ctx = buildEmitterCtx(contracts, tokenFiles, iconsDir, flagString(parsed, 'file-key'), vectorsDir);
   mkdirSync(outDir, { recursive: true });
   const written: string[] = [];
   for (const contract of contracts.values()) {

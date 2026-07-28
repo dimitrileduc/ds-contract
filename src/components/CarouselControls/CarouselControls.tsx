@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carousel-controls.contract.json (ds.carousel-controls v1.0.0)
+ * Source of truth: contracts/carousel-controls.contract.json (ds.carousel-controls v1.0.2)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -16,8 +16,12 @@ export const CarouselControls = forwardRef<HTMLDivElement, CarouselControlsProps
     const classes = [styles.root, className].filter(Boolean).join(' ');
     return (
       <div ref={ref} className={classes} {...rest}>
-        <Button>Contactez-nous</Button>
-        <Button>Contactez-nous</Button>
+        <Button iconLeftGlyph="chevron-left" variant="iconOnly">
+          Précédent
+        </Button>
+        <Button iconLeftGlyph="chevron-right" variant="iconOnly">
+          Suivant
+        </Button>
       </div>
     );
   },

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.5.2)
+ * Source of truth: contracts/button.contract.json (ds.button v1.6.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -45,7 +45,7 @@ const ICONS: Record<string, string> = {
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Visual style of the button. */
-  variant?: 'default' | 'orange' | 'blanc' | 'outlineBlanc' | 'link' | 'outilneNoir';
+  variant?: 'default' | 'orange' | 'blanc' | 'outlineBlanc' | 'link' | 'outilneNoir' | 'iconOnly';
   /** Shows the leading icon slot (which glyph: iconLeftGlyph, default arrow-left). Extracted from the BOOLEAN property « Icone gauche » added to the Figma masters on 2026-07-23. */
   iconLeft?: boolean;
   /** Shows the trailing icon slot (which glyph: iconRightGlyph, default arrow-right — the « → » of Link buttons). Extracted from the BOOLEAN property « Icone droite » added to the Figma masters on 2026-07-23. */
@@ -94,7 +94,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'octicon-chevron-down12';
 }
 
-/** Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir), bound to Piqueray primitives.
+/** Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.
 
 The label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).
 
@@ -135,6 +135,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         <span
           className={styles.iconLeft}
           aria-hidden="true"
+          dangerouslySetInnerHTML={{ __html: ICONS[iconLeftGlyph] }}
+        />
+      ) : null}
+      {variant === 'iconOnly' ? (
+        <span
+          className={styles.iconOnlyIcon}
+          role="img"
+          aria-label={String(children)}
           dangerouslySetInnerHTML={{ __html: ICONS[iconLeftGlyph] }}
         />
       ) : null}

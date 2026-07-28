@@ -40,9 +40,18 @@ export interface DumpPaint {
 export interface DumpText {
   characters: string;
   fontSize: number;
-  /** Inter style name ('Medium', 'Semi Bold', …) — the canvas projection of a
+  /** Figma font family, when the text run is uniform (dump v1.7). */
+  fontFamily?: string;
+  /** Style name ('Regular', 'SemiBold', …) — the canvas projection of a
    *  font-weight token through FONT_STYLE_BY_WEIGHT. */
   fontStyle: string;
+  /** Exact letter spacing in CSS px. Zero is retained because it is an exact
+   *  typography fact; non-zero Figma percent spacing remains a named capture
+   *  degradation until the contract has a percent-safe canvas round trip. */
+  letterSpacing?: number;
+  /** Figma textAutoResize (dump v1.8). NONE means the observed text bbox is
+   *  an authored fixed box; WIDTH_AND_HEIGHT/HEIGHT mean content-driven. */
+  autoResize?: 'NONE' | 'WIDTH_AND_HEIGHT' | 'HEIGHT' | 'TRUNCATE';
   /** Line height in PX (dump v1.3, additive) — captured ONLY when the canvas
    *  spells it in PIXELS (REST lineHeightUnit 'PIXELS' / Plugin lineHeight
    *  unit 'PIXELS'). PERCENT/AUTO units stay named degradation receipts
@@ -82,8 +91,9 @@ export interface DumpEffect {
 /** Decor-shape geometry (dump v1.3, additive) — captured for the closed set
  *  of parametric vector nodes the pipeline can carry faithfully:
  *  REGULAR_POLYGON, ELLIPSE, and rotated RECTANGLE (#42). Arbitrary-path
- *  vectors (VECTOR / STAR / LINE / BOOLEAN_OPERATION) remain named
- *  degradation receipts — their geometry is not parametric.
+ *  vectors (VECTOR / STAR / LINE / BOOLEAN_OPERATION) use the v1.8
+ *  monochrome external-SVG promotion path; this shape field does not carry
+ *  their geometry.
  *  Field case: the CBDS Tooltip "Pointer" triangle (12×12 REGULAR_POLYGON,
  *  rotated per placement, absolutely positioned against the bubble). */
 export interface DumpShape {
@@ -119,6 +129,17 @@ export interface DumpShape {
   constraints?: { horizontal: string; vertical: string };
 }
 
+/** An arbitrary SVG captured from a Figma VECTOR or monochrome vector GROUP.
+ * The base64 source is an extraction transport artifact only: the proposer
+ * emits an asset reference, never geometry into the contract JSON. */
+export interface DumpVectorAsset {
+  asset: string;
+  width: number;
+  height: number;
+  position?: { x: number; y: number };
+  svgBase64?: string;
+}
+
 export interface DumpNode {
   name: string;
   /** Node type. 'SLOT' (dump v1.5): a NATIVE Figma slot node (Schema 2025) —
@@ -126,6 +147,8 @@ export interface DumpNode {
    *  same contract `slot` part the INSTANCE_SWAP spelling maps to, with a
    *  named provenance note (regeneration should reproduce the spelling). */
   type: 'COMPONENT' | 'FRAME' | 'TEXT' | 'INSTANCE' | 'SLOT' | string;
+  /** v18: a governed arbitrary vector promoted to an external SVG asset. */
+  vectorAsset?: DumpVectorAsset;
   layout?: DumpLayout;
   /** Literal corner radius when uniform and nonzero. Bound radii are in `bound`. */
   cornerRadius?: number;
@@ -135,6 +158,10 @@ export interface DumpNode {
   fill?: DumpPaint;
   stroke?: DumpPaint;
   strokeWeight?: number;
+  /** Per-side stroke widths (dump v1.7, additive). Present when Figma's
+   * strokeWeight is mixed; a zero side is explicit source evidence, never a
+   * fabricated omission. Bound sides still ride `bound.stroke*Weight`. */
+  strokeWeights?: { top: number; right: number; bottom: number; left: number };
   /** Stroke alignment (dump v1.6, additive) — Figma `strokeAlign`, captured
    *  ONLY when a stroke is emitted. INSIDE strokes lower to a `box-shadow:
    *  inset` border (no layout growth, mirroring Figma); the DEFAULT the dump
@@ -190,21 +217,17 @@ export interface DumpNode {
    *  set). Matches contracts' anchors.figma.componentSetKey — checked FIRST
    *  by the resolver; instanceKey is the fallback for setless components. */
   instanceSetKey?: string;
-  /** OBSERVED bounding box (dump v1.5, additive; post-layout width/height,
-   *  px) on two node classes:
-   *  · INSTANCE nodes — dump v1 stops at instance boundaries by design;
-   *    this is the honest OBSERVED geometry a child STUB renders (a
-   *    correctly-sized box, never invented anatomy).
-   *  · variant ROOT (COMPONENT) nodes — when a root axis is drawn FIXED
-   *    (primary/counterSizing), the drawn dimension is otherwise
-   *    unrecoverable (field case: the CBDS Dialog's per-size fixed widths —
-   *    without them the body text never wraps and every variant renders
-   *    hundreds of px too wide).
-   *  Absence in older dumps means not captured. */
+  /** OBSERVED bounding box (dump v1.5 roots/instances; all scene nodes since
+   *  v1.8). Roots preserve FIXED dimensions, instances give honest stub/icon
+   *  geometry, and TEXT + text.autoResize=NONE preserves authored text-box
+   *  height. Consumers use it only with matching sizing evidence — never as a
+   *  blanket fixed-size guess. Absence in older dumps means not captured. */
   bbox?: { width: number; height: number };
   /** For INSTANCE nodes: applied component property values (dump v1.1,
    *  additive — the shipped fixtures predate it; propose.ts treats absence
-   *  as a declared fidelity limit and never invents the values).
+   *  as a declared fidelity limit and never invents the values). INSTANCE_SWAP
+   *  values are captured as the selected component NAME (not its session-local
+   *  node id), so a child contract's bindings.figma.values can invert them.
    *  KEYS (dump v1.5): keep their "#id" suffix, the Plugin API's own
    *  spelling — a suffixed string key is a TEXT property with certainty
    *  (promoteBaseInstanceCaptures' rule); v1.1–v1.4 producers stripped the

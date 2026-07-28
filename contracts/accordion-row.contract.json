@@ -2,11 +2,11 @@
   "$schema": "./contract.schema.json",
   "id": "ds.accordion-row",
   "name": "AccordionRow",
-  "version": "1.0.0",
-  "description": "Piqueray AccordionRow. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "version": "1.1.0",
+  "description": "Piqueray AccordionRow. Visual and layout facts were extracted from the live Figma COMPONENT_SET on DS · Molécules after source cleanup; native button semantics, toggle behavior and ARIA association were added in reviewed code-side semantics behind evals. The live source intentionally keeps its documented Fermé/Ouvert structural asymmetry; the semantic trigger wrapper normalizes only the generated DOM while preserving the four measured geometries.",
   "semantics": {
     "element": "div",
-    "provenance": "extracted"
+    "provenance": "authored"
   },
   "props": [
     {
@@ -34,6 +34,7 @@
     },
     {
       "name": "etat",
+      "description": "Controlled when supplied; otherwise each AccordionRow instance toggles independently between fermé and ouvert.",
       "type": {
         "enum": [
           "ferme",
@@ -59,6 +60,7 @@
       "name": "titre",
       "type": "text",
       "default": "Question",
+      "required": true,
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -73,6 +75,7 @@
       "name": "contenu",
       "type": "text",
       "default": "Réponse",
+      "required": true,
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -84,44 +87,131 @@
       }
     }
   ],
+  "events": [
+    {
+      "name": "toggle",
+      "description": "Fires when the native trigger button is activated; uncontrolled rows flip independently between fermé and ouvert.",
+      "bindings": {
+        "code": {
+          "prop": "onToggle"
+        }
+      },
+      "trigger": "trigger",
+      "toggles": {
+        "prop": "etat",
+        "between": [
+          "ferme",
+          "ouvert"
+        ],
+        "aria": "expanded",
+        "controls": "Contenu"
+      }
+    }
+  ],
   "states": [],
   "anatomy": {
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "row",
-        "justify": "space-between",
-        "align": "center"
-      },
-      "layoutByProp": {
-        "prop": "etat",
-        "map": {
-          "ouvert": {
-            "direction": "column",
-            "justify": "start",
-            "align": "start"
-          }
-        }
+        "direction": "column",
+        "align": "stretch"
       },
       "parts": {
-        "title": {
+        "trigger": {
+          "description": "Native disclosure trigger. Its height matrix preserves the live Fermé/Ouvert structural asymmetry without changing pixels.",
+          "element": "button",
           "layout": {
             "direction": "row",
             "justify": "space-between",
-            "align": "center",
-            "grow": true
+            "align": "center"
+          },
+          "literals": {
+            "height": "32px",
+            "background-color": "transparent",
+            "border-width": "0px",
+            "padding-inline": "0px",
+            "padding-block": "0px"
+          },
+          "literalsByProp": [
+            {
+              "prop": "taille",
+              "map": {
+                "petit": {
+                  "height": "24px"
+                }
+              }
+            },
+            {
+              "prop": "etat",
+              "map": {
+                "ouvert": {
+                  "height": "32px"
+                }
+              }
+            }
+          ],
+          "declared": {
+            "cursor": "pointer"
           },
           "parts": {
-            "TitreOuvert": {
+            "Titre": {
+              "element": "span",
               "content": {
                 "prop": "titre"
               },
-              "tokens": {
-                "color": "{color.noir-bleute}"
+              "layout": {
+                "grow": true
               },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-family": "{typography.titre-5.family}",
+                "font-size": "{typography.titre-5.size}",
+                "font-weight": "{typography.titre-5.weight}"
+              },
+              "tokensByProp": {
+                "prop": "taille",
+                "map": {
+                  "petit": {
+                    "font-family": "{typography.paragraphe.family}",
+                    "font-size": "{typography.paragraphe.size}"
+                  }
+                }
+              },
+              "literals": {
+                "line-height": "25px",
+                "letter-spacing": "0px"
+              },
+              "literalsByProp": [
+                {
+                  "prop": "taille",
+                  "map": {
+                    "petit": {
+                      "font-weight": "700",
+                      "line-height": "24px"
+                    }
+                  }
+                }
+              ]
+            },
+            "ChevronDown": {
+              "icon": {
+                "asset": "chevron-down",
+                "size": 32
+              },
+              "literalsByProp": [
+                {
+                  "prop": "taille",
+                  "map": {
+                    "petit": {
+                      "width": "24px",
+                      "height": "24px"
+                    }
+                  }
+                }
+              ],
               "visibleWhen": {
                 "prop": "etat",
-                "equals": "ouvert"
+                "equals": "ferme"
               }
             },
             "ChevronUp": {
@@ -129,76 +219,98 @@
                 "asset": "chevron-up",
                 "size": 32
               },
+              "literalsByProp": [
+                {
+                  "prop": "taille",
+                  "map": {
+                    "petit": {
+                      "width": "24px",
+                      "height": "24px"
+                    }
+                  }
+                }
+              ],
               "visibleWhen": {
                 "prop": "etat",
                 "equals": "ouvert"
               }
             }
-          },
-          "visibleWhen": {
-            "prop": "etat",
-            "equals": "ouvert"
           }
         },
         "Contenu": {
+          "element": "div",
           "content": {
             "prop": "contenu"
-          },
-          "tokens": {
-            "color": "{color.noir-bleute}"
           },
           "visibleWhen": {
             "prop": "etat",
             "equals": "ouvert"
           },
-          "literals": {
-            "padding-block": "16px",
-            "line-height": "24px"
-          }
-        },
-        "Titre": {
-          "content": {
-            "prop": "titre"
-          },
           "tokens": {
-            "color": "{color.noir-bleute}"
+            "color": "{color.noir-bleute}",
+            "font-family": "{typography.paragraphe.family}",
+            "font-size": "{typography.paragraphe.size}",
+            "font-weight": "{typography.paragraphe.weight}"
           },
-          "visibleWhen": {
-            "prop": "etat",
-            "equals": "ferme"
-          }
-        },
-        "ChevronDown": {
-          "icon": {
-            "asset": "chevron-down",
-            "size": 32
+          "literals": {
+            "line-height": "24px",
+            "letter-spacing": "0px",
+            "height": "32px"
           },
-          "visibleWhen": {
-            "prop": "etat",
-            "equals": "ferme"
-          }
-        }
-      },
-      "tokensByProp": {
-        "prop": "taille",
-        "map": {
-          "petit": {
-            "border-color": "{color.noir-bleute}"
-          }
+          "literalsByProp": [
+            {
+              "prop": "taille",
+              "map": {
+                "petit": {
+                  "height": "24px"
+                }
+              }
+            }
+          ]
         }
       },
       "tokens": {
-        "border-color": "{color.noir-bleute}",
-        "font-family": "{font.family.montserrat}"
-      }
+        "border-bottom-width": "{border-width.1}"
+      },
+      "literals": {
+        "width": "1550px",
+        "border-color": "#000000",
+        "gap": "24px",
+        "padding-block": "16px"
+      },
+      "literalsByProp": [
+        {
+          "prop": "taille",
+          "map": {
+            "petit": {
+              "border-color": "#26282C52",
+              "gap": "8px",
+              "padding-block": "8px"
+            }
+          }
+        },
+        {
+          "prop": "etat",
+          "map": {
+            "ferme": {
+              "gap": "24px"
+            }
+          }
+        }
+      ]
     }
+  },
+  "a11y": {
+    "focusVisible": true,
+    "contrast": "AA",
+    "provenance": "authored"
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
       "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
       "nodeId": "2059:1417",
-      "dumpedAt": "2026-07-27"
+      "dumpedAt": "2026-07-28"
     },
     "code": {
       "importPath": "src/components/AccordionRow",

@@ -257,6 +257,7 @@ function applyFrameSpec(node, spec) {
     // specs carrying both.
     if (li.fillClear && !spec.fill) node.fills = [];
     else if (li.fillColor) node.fills = [{ type: 'SOLID', color: { r: li.fillColor.r, g: li.fillColor.g, b: li.fillColor.b }, opacity: li.fillColor.a === undefined ? 1 : li.fillColor.a }];
+    if (li.strokeColor) node.strokes = [{ type: 'SOLID', color: { r: li.strokeColor.r, g: li.strokeColor.g, b: li.strokeColor.b }, opacity: li.strokeColor.a === undefined ? 1 : li.strokeColor.a }];
     if (li.radiusCorners) {
       const rc = li.radiusCorners;
       if (rc.tl !== undefined) node.topLeftRadius = rc.tl;
@@ -308,7 +309,9 @@ async function buildNode(spec, registry) {
     node = figma.createNodeFromSvg(spec.svg);
     node.fills = [];
     node.clipsContent = false;
-    if (spec.iconSize) node.resize(spec.iconSize, spec.iconSize);
+    const svgWidth = spec.svgSize ? spec.svgSize.width : spec.iconSize;
+    const svgHeight = spec.svgSize ? spec.svgSize.height : spec.iconSize;
+    if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);
   } else if (spec.type === 'text') {
     node = figma.createText();
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };

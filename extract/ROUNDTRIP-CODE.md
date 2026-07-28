@@ -13,9 +13,9 @@ css-module anatomy adapter: **round-trip identity**. Verdicts:
   text props, slot constraints, prose); listed by name, never silently waved through
 - **MISMATCH** — extraction failure. **The bar is zero.**
 
-## Verdict: ✅ ZERO MISMATCH — 6 matched, 8 code-absent (listed), 0 mismatched
+## Verdict: ✅ ZERO MISMATCH — 12 matched, 11 code-absent (listed), 0 mismatched
 
-## Button — 6 matched · 8 code-absent · 0 mismatched
+## Button — 12 matched · 11 code-absent · 0 mismatched
 
 | subject | verdict | detail |
 |---|---|---|
@@ -28,9 +28,18 @@ css-module anatomy adapter: **round-trip identity**. Verdicts:
 | `states` | MATCHED | [] |
 | `props.variant` | MATCHED | type + default |
 | `props.children` | CODE-ABSENT | children-bound text prop — code renders {children}; the TEXT property spelling and canvas default live in the contract |
+| `props.iconLeft` | MATCHED | type + default |
+| `props.iconRight` | MATCHED | type + default |
+| `props.iconLeftGlyph` | MATCHED | type + default |
+| `props.iconRightGlyph` | MATCHED | type + default |
 | `anatomy.root` | MATCHED | 9 token binding(s) |
+| `anatomy.root.iconLeft.icon` | CODE-ABSENT | icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8) |
+| `anatomy.root.iconLeft` | MATCHED | visibleWhen {"prop":"iconLeft"} |
+| `anatomy.root.iconOnlyIcon.description` | CODE-ABSENT | part description is contract prose — nothing in code carries it |
+| `anatomy.root.iconOnlyIcon.icon` | CODE-ABSENT | icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8) |
+| `anatomy.root.iconOnlyIcon` | MATCHED | attrs {"role":"img","aria-label":"{children}"}, visibleWhen {"prop":"variant","equals":"iconOnly"} |
 | `anatomy.root.label.{content|slot}` | CODE-ABSENT | both spellings emit exactly {children} — the channel (content-bound text prop vs slot) is not decidable from code (N7) |
 | `anatomy.root.label` | MATCHED | structure + layout |
-| `anatomy.root.arrow.icon` | CODE-ABSENT | icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8) |
-| `anatomy.root.arrow` | MATCHED | visibleWhen {"prop":"variant","equals":"link"} |
+| `anatomy.root.iconRight.icon` | CODE-ABSENT | icon asset name/size are contract vocabulary the generator inlines as an SVG string — extraction does not yet match an inlined glyph back to an icon asset (N8) |
+| `anatomy.root.iconRight` | MATCHED | visibleWhen {"prop":"iconRight"} |
 

@@ -1,31 +1,26 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v1.0.0)
+ * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v0.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PiquerayLogo } from './PiquerayLogo';
 
 const meta = {
-  title: 'Atoms/PiquerayLogo',
+  title: 'Components/PiquerayLogo',
   component: PiquerayLogo,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'Piqueray brand logo. Two color variants: default (orange brand mark, blue text) and white (all white) — the couleur prop switches both the mark fill and the text traces simultaneously. Extracted from the Figma COMPONENT_SET « PiquerayLogo » on DS · Atomes, reviewed and adopted — not authored.\n\nThe logo is a purely decorative brand element — no text content, no interaction, no a11y label beyond the img role. Anatomy carries the drawn structure: Marque (orange fill, bound to {color.orange}) and Texte (8 vector traces, blue fill switching to white on couleur=blanc via tokensByProp).',
+          'PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.',
       },
     },
   },
   render: (args) => <PiquerayLogo key={JSON.stringify(args)} {...args} />,
   argTypes: {
-    couleur: {
-      control: 'select',
-      options: ['default', 'blanc'],
-      description:
-        'Color variant: default (orange mark + blue text) or white (all white for dark backgrounds). Extracted from the VARIANT property « Couleur » on the Figma master.',
-    },
+    couleur: { control: 'select', options: ['default', 'blanc'] },
   },
   args: {
     couleur: 'default',

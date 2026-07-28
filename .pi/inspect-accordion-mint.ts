@@ -1,0 +1,10 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { loadTokenCorpus } from '../extract/figma/tokens.ts';
+import { loadContracts } from '../extract/figma/propose.ts';
+import { proposeBatchFromDump } from '../core/propose-figma.ts';
+const dump=JSON.parse(readFileSync('extract/out/figma/accordion-row.live.dump.json','utf8'));
+const loaded=loadContracts(path.resolve('contracts'));
+const batch=proposeBatchFromDump(dump,{corpus:loadTokenCorpus(process.cwd()),contractIdByName:loaded.byName,contractsById:loaded.byId,contractIdByKey:loaded.byKey,fileKey:dump._provenance.fileKey,mintUnbound:true,hiddenCaptured:true});
+writeFileSync('.pi/accordion-minted.json',JSON.stringify(batch.proposals[0],null,2));
+console.log(JSON.stringify({notes:batch.proposals[0].notes,unbound:batch.proposals[0].unbound,minted:batch.proposals[0].mintedTokens},null,2));

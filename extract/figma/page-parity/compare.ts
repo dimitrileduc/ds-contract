@@ -44,9 +44,9 @@
  * catching one.
  */
 import { statSync } from 'node:fs';
-import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import { readPng } from '../visual-parity/img.js';
+import { compareDecodedImages } from '../../image-parity/compare.js';
 
 // ---------------------------------------------------------------------------
 // Types. PixelVerdict's field order matches verdict.json's per-maquette
@@ -310,29 +310,33 @@ export function compareEntry(input: CompareEntryInput): CompareEntryResult {
     };
   }
 
-  const { width, height } = beforePng;
-  const diff = new PNG({ width, height });
-  // AA detector stays ON (includeAA omitted -> defaults to false): AA-only
-  // pixels are painted yellow and excluded from diffCount, matching img.ts.
-  const diffCount = pixelmatch(beforePng.data, afterPng.data, diff.data, width, height, { threshold: 0.1 });
-
-  if (diffCount === 0) {
+  // The renderer-agnostic image-parity engine owns the actual pixelmatch
+  // decision. This wrapper only adds page manifests, batch naming and regions.
+  const comparison = compareDecodedImages(beforePng, afterPng);
+  if (comparison.status === 'identical') {
+    // comparison dimensions are the already-guarded shared dimensions.
+    const diff = new PNG({ width: beforePng.width, height: beforePng.height });
     let verdict: PixelVerdict = { maquette, status: 'identical', diffCount: 0, diffBox: null, cropTriptyque: null, refus: null };
-    if (region) verdict = withRegion(verdict, diff, width, height, region);
+    if (region) verdict = withRegion(verdict, diff, beforePng.width, beforePng.height, region);
     return { verdict };
+  }
+  if (comparison.status !== 'diff' || !comparison.images || !comparison.diffBox) {
+    throw new Error(`page-parity/compare: image-parity returned unexpected status "${comparison.status}" after validated same-size PNGs`);
   }
 
   let verdict: PixelVerdict = {
     maquette,
     status: 'diff',
-    diffCount,
-    diffBox: redPixelBoundingBox(diff, width, height),
+    diffCount: comparison.diffCount,
+    // Keep page-parity's established local helper for the report contract;
+    // it reads the exact diff bitmap supplied by image-parity.
+    diffBox: redPixelBoundingBox(comparison.images.diff, beforePng.width, beforePng.height),
     cropTriptyque: null, // report.ts sets this once the crop file is actually written
     refus: null,
   };
-  if (region) verdict = withRegion(verdict, diff, width, height, region);
+  if (region) verdict = withRegion(verdict, comparison.images.diff, beforePng.width, beforePng.height, region);
   return {
     verdict,
-    images: { before: beforePng, after: afterPng, diff },
+    images: { before: beforePng, after: afterPng, diff: comparison.images.diff },
   };
 }

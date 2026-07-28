@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.0.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,20 +14,29 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray AccordionRow. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.',
+          'Piqueray AccordionRow. Visual and layout facts were extracted from the live Figma COMPONENT_SET on DS · Molécules after source cleanup; native button semantics, toggle behavior and ARIA association were added in reviewed code-side semantics behind evals. The live source intentionally keeps its documented Fermé/Ouvert structural asymmetry; the semantic trigger wrapper normalizes only the generated DOM while preserving the four measured geometries.',
       },
     },
   },
   render: (args) => <AccordionRow key={JSON.stringify(args)} {...args} />,
   argTypes: {
     taille: { control: 'select', options: ['grand', 'petit'] },
-    etat: { control: 'select', options: ['ferme', 'ouvert'] },
+    etat: {
+      control: 'select',
+      options: ['ferme', 'ouvert'],
+      description:
+        'Controlled when supplied; otherwise each AccordionRow instance toggles independently between fermé and ouvert.',
+    },
     titre: { control: 'text' },
     contenu: { control: 'text' },
+    onToggle: {
+      control: false,
+      description:
+        'Fires when the native trigger button is activated; uncontrolled rows flip independently between fermé and ouvert.',
+    },
   },
   args: {
     taille: 'grand',
-    etat: 'ferme',
     titre: 'Question',
     contenu: 'Réponse',
   },
@@ -58,10 +67,10 @@ export const Matrix: Story = {
         justifyItems: 'start',
       }}
     >
-      <AccordionRow taille="grand" etat="ferme" />
-      <AccordionRow taille="grand" etat="ouvert" />
-      <AccordionRow taille="petit" etat="ferme" />
-      <AccordionRow taille="petit" etat="ouvert" />
+      <AccordionRow taille="grand" etat="ferme" titre="Question" contenu="Réponse" />
+      <AccordionRow taille="grand" etat="ouvert" titre="Question" contenu="Réponse" />
+      <AccordionRow taille="petit" etat="ferme" titre="Question" contenu="Réponse" />
+      <AccordionRow taille="petit" etat="ouvert" titre="Question" contenu="Réponse" />
     </div>
   ),
 };

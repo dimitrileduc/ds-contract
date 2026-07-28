@@ -1,0 +1,55 @@
+/* Checkbox — from ds.checkbox v1.0.1 (core/emit-html.ts) */
+
+.checkbox, .checkbox *, .checkbox *::before, .checkbox *::after {
+  box-sizing: border-box;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  --dsc-border-width: var(--border-width-2);
+  font-family: var(--font-family-montserrat);
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
+}
+
+.checkbox--checked-non {
+  background-color: var(--color-blanc);
+  --dsc-border-color: var(--color-bleu-gris);
+}
+
+.checkbox--checked-oui {
+  background-color: var(--color-bleu);
+  --dsc-border-color: var(--color-bleu);
+}
+
+.checkbox__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox__checkGlyph svg {
+  display: block;
+  width: 13px;
+  height: 13px;
+}
+
+.checkbox__checkGlyph {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

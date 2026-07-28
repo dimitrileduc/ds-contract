@@ -81,18 +81,18 @@ export const contractIdByKey = new Map<string, string>(
 );
 
 // ---------------------------------------------------------------------------
-// Icon assets — the same assets/icons/*.svg the generator inlines.
+// SVG assets — the same icon/vector sources the generators inline.
 // ---------------------------------------------------------------------------
 
 const iconModules = import.meta.glob('../../../assets/icons/*.svg', {
-  eager: true,
-  query: '?raw',
-  import: 'default',
+  eager: true, query: '?raw', import: 'default',
+}) as Record<string, string>;
+const vectorModules = import.meta.glob('../../../assets/vectors/*.svg', {
+  eager: true, query: '?raw', import: 'default',
 }) as Record<string, string>;
 
 export const icons = new Map<string, string>(
-  Object.entries(iconModules).map(([p, svg]) => [
-    p.split('/').pop()!.replace(/\.svg$/, ''),
-    svg.trim(),
+  Object.entries({ ...iconModules, ...vectorModules }).map(([p, svg]) => [
+    p.split('/').pop()!.replace(/\.svg$/, ''), svg.trim(),
   ]),
 );

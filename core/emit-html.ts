@@ -158,11 +158,12 @@ function componentCss(contract: Contract): string[] {
         decls.push('appearance: none', 'background: none', 'border: none', 'font: inherit',
           'color: inherit', 'cursor: pointer');
       }
-      if (part.icon) {
+      if (part.icon || part.vectorAsset) {
         decls.push('display: inline-flex', 'flex-shrink: 0');
-        if (part.icon.size) {
-          lines.push('', `${partCls(name)} svg {`, `  width: ${part.icon.size}px;`, `  height: ${part.icon.size}px;`, '}');
-        }
+        if (part.vectorAsset?.position) decls.push('position: absolute', `left: ${part.vectorAsset.position.x}px`, `top: ${part.vectorAsset.position.y}px`);
+        const width = part.vectorAsset?.width ?? part.icon?.size;
+        const height = part.vectorAsset?.height ?? part.icon?.size;
+        if (width && height) lines.push('', `${partCls(name)} svg {`, `  width: ${width}px;`, `  height: ${height}px;`, '}');
       }
       for (const [cssProp, ref] of Object.entries(part.tokens ?? {})) {
         const refPath = stripBraces(ref);
@@ -226,7 +227,7 @@ function componentCss(contract: Contract): string[] {
   if (contract.semantics.element === 'button' && !rootDeclaresCursor) rootDecls.push('cursor: pointer');
   if (
     walkAnatomy(contract).some(
-      (w) => w.part.overlay || (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute'),
+      (w) => w.part.overlay || w.part.vectorAsset?.position || (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute'),
     )
   ) {
     rootDecls.push('position: relative');
@@ -484,14 +485,17 @@ function componentCss(contract: Contract): string[] {
         'margin: 0', 'padding: 0', 'opacity: 0', 'cursor: pointer',
       );
     }
-    if (part.icon) {
+    if (part.icon || part.vectorAsset) {
       decls.push('display: inline-flex', 'flex-shrink: 0');
+      if (part.vectorAsset?.position) decls.push('position: absolute', `left: ${part.vectorAsset.position.x}px`, `top: ${part.vectorAsset.position.y}px`);
       // the glyph svg renders block — an inline svg's baseline gap would
       // inflate the icon box (round 4: promoted icon hosts carry their own
       // captured display, which may be block; the glyph must not add ~4px).
+      const width = part.vectorAsset?.width ?? part.icon?.size;
+      const height = part.vectorAsset?.height ?? part.icon?.size;
       rule(`${partCls(name)} svg`, [
         'display: block',
-        ...(part.icon.size ? [`width: ${part.icon.size}px`, `height: ${part.icon.size}px`] : []),
+        ...(width && height ? [`width: ${width}px`, `height: ${height}px`] : []),
       ]);
       if (part.element === 'button') {
         decls.push('align-items: center', 'justify-content: center', 'background: none',
@@ -680,10 +684,14 @@ function renderComponentHtml(
     return typeof prop?.default === 'string' ? prop.default : contract.name;
   };
   const visible = (part: Part): boolean => {
-    if (!part.visibleWhen) return true;
-    const vw = part.visibleWhen;
-    if (vw.equals !== undefined) return (propValue(vw.prop) ?? '') === vw.equals;
-    return state.bools[vw.prop] === true;
+    if (part.visibleWhen) {
+      const vw = part.visibleWhen;
+      return vw.equals !== undefined
+        ? (propValue(vw.prop) ?? '') === vw.equals
+        : state.bools[vw.prop] === true;
+    }
+    if (part.hiddenWhen) return (propValue(part.hiddenWhen.prop) ?? '') !== part.hiddenWhen.equals;
+    return true;
   };
 
   const attrString = (part: Part): string =>
@@ -705,12 +713,19 @@ function renderComponentHtml(
     // defaults to "option" there instead of "span" (an authored element is
     // respected — the author owns that call).
     const textEl = part.element ?? (parentEl === 'select' ? 'option' : 'span');
+    if (part.vectorAsset) {
+      const svg = ctx.icons.get(part.vectorAsset.asset) ?? '';
+      return `${pad}<span class="${cls}" aria-hidden="true">${svg}</span>`;
+    }
     if (part.icon) {
       const ref = part.icon.asset.match(/^\{([a-z][\w-]*)\}$/);
       const asset = ref ? (propValue(ref[1]) ?? String(contract.props.find((p) => p.name === ref[1])?.default ?? '')) : part.icon.asset;
       const svg = ctx.icons.get(asset) ?? '';
       if (part.element) {
         return `${pad}<${part.element} class="${cls}"${attrString(part)}><span class="${cls}-glyph" aria-hidden="true">${svg}</span></${part.element}>`;
+      }
+      if (Object.keys(part.attrs ?? {}).length > 0) {
+        return `${pad}<span class="${cls}"${attrString(part)}>${svg}</span>`;
       }
       return `${pad}<span class="${cls}" aria-hidden="true">${svg}</span>`;
     }

@@ -118,11 +118,12 @@ export function rootBorderPlan(root: Part): RootBorderPlan {
   for (const e of tokensByPropEntries(root)) for (const m of Object.values(e.map)) collect(m);
   for (const e of root.literalsByProp ?? []) for (const m of Object.values(e.map)) collect(m);
   for (const s of Object.values(root.states ?? {})) collect(s);
+  const perSide = [...chans].some((c) => /^border-(top|right|bottom|left)-width$/.test(c));
   const hasBorder =
     'border-width' in (root.tokens ?? {}) ||
     'border-color' in (root.tokens ?? {}) ||
-    'border-width' in (root.literals ?? {});
-  const perSide = [...chans].some((c) => /^border-(top|right|bottom|left)-width$/.test(c));
+    'border-width' in (root.literals ?? {}) ||
+    perSide;
   const declaredStyle =
     Boolean(root.declared?.['border-style']) ||
     Object.values(root.declaredStates ?? {}).some((o) => 'border-style' in o);
@@ -645,7 +646,7 @@ export function validateContract(
     if (part.shape) {
       for (const [field, present] of Object.entries({
         parts: part.parts, slot: part.slot, component: part.component,
-        content: part.content, text: part.text, icon: part.icon, meter: part.meter,
+        content: part.content, text: part.text, icon: part.icon, vectorAsset: part.vectorAsset, meter: part.meter,
       })) {
         if (present !== undefined) {
           errors.push(`${contract.id}: part "${name}" is a shape (leaf decor) — it cannot also carry "${field}"`);
@@ -653,6 +654,19 @@ export function validateContract(
       }
       if (part.shape.sides !== undefined && part.shape.kind !== 'polygon') {
         errors.push(`${contract.id}: part "${name}" shape kind "${part.shape.kind}" cannot declare sides — side count is polygon vocabulary`);
+      }
+    }
+    // v18 vector assets are leaf geometry. Their source SVG is governed on
+    // disk; no nested boxes or a second geometry carrier may shadow it.
+    if (part.vectorAsset) {
+      for (const [field, present] of Object.entries({
+        parts: part.parts, slot: part.slot, component: part.component, content: part.content,
+        text: part.text, icon: part.icon, shape: part.shape, meter: part.meter,
+      })) {
+        if (present !== undefined) errors.push(`${contract.id}: part "${name}" is a vectorAsset (leaf geometry) — it cannot also carry "${field}"`);
+      }
+      if (part.vectorAsset.position && p.length === 1) {
+        errors.push(`${contract.id}: root part "${name}" cannot position itself — vectorAsset.position belongs to a child of a structural root`);
       }
     }
     // v12 repeat (P9): the item template must be mechanically renderable on
@@ -665,7 +679,7 @@ export function validateContract(
       }
       for (const [field, present] of Object.entries({
         slot: part.slot, content: part.content, text: part.text,
-        meter: part.meter, icon: part.icon, shape: part.shape, parts: part.parts,
+        meter: part.meter, icon: part.icon, vectorAsset: part.vectorAsset, shape: part.shape, parts: part.parts,
       })) {
         if (present !== undefined) {
           errors.push(`${contract.id}: part "${name}" is a repeat template — it cannot also carry "${field}"`);
@@ -705,12 +719,36 @@ export function validateContract(
         }
       }
     }
+    if (part.visibleWhen && part.hiddenWhen) {
+      errors.push(`${contract.id}: part "${name}" declares both visibleWhen and hiddenWhen — choose one presence condition`);
+    }
     if (part.visibleWhen) {
       const vwProp = contract.props.find((pr) => pr.name === part.visibleWhen!.prop);
       if (!vwProp) {
         errors.push(`${contract.id}: part "${name}" visibleWhen references unknown prop "${part.visibleWhen.prop}"`);
       } else if (part.visibleWhen.equals !== undefined && !(typeof vwProp.type === 'object' && 'enum' in vwProp.type && vwProp.type.enum.includes(part.visibleWhen.equals))) {
         errors.push(`${contract.id}: part "${name}" visibleWhen.equals "${part.visibleWhen.equals}" is not a value of prop "${part.visibleWhen.prop}"`);
+      }
+    }
+    if (part.hiddenWhen) {
+      const hwProp = contract.props.find((pr) => pr.name === part.hiddenWhen!.prop);
+      if (!hwProp) {
+        errors.push(`${contract.id}: part "${name}" hiddenWhen references unknown prop "${part.hiddenWhen.prop}"`);
+      } else if (!(typeof hwProp.type === 'object' && 'enum' in hwProp.type && hwProp.type.enum.includes(part.hiddenWhen.equals))) {
+        errors.push(`${contract.id}: part "${name}" hiddenWhen.equals "${part.hiddenWhen.equals}" is not a value of enum prop "${part.hiddenWhen.prop}"`);
+      }
+    }
+    if (part.vectorAsset) {
+      const svg = iconAssets.get(part.vectorAsset.asset);
+      if (!svg) {
+        errors.push(`${contract.id}: part "${name}" needs vector asset "assets/vectors/${part.vectorAsset.asset}.svg" which does not exist`);
+      } else {
+        const drawable = /<(path|circle|rect|polygon|ellipse|line|polyline|text)\b/i.test(svg);
+        if (!drawable) errors.push(`${contract.id}: vector asset "${part.vectorAsset.asset}" has no drawable SVG geometry`);
+        const colorBound = part.tokens?.color !== undefined || JSON.stringify(part.tokensByProp ?? {}).includes('"color"');
+        if (colorBound && !/currentColor/i.test(svg)) {
+          errors.push(`${contract.id}: vector asset "${part.vectorAsset.asset}" is color-bound but has no currentColor paint — normalize the Figma export before promotion`);
+        }
       }
     }
     if (part.icon) {
@@ -877,6 +915,19 @@ export function validateContract(
           if (!prop.type.enum.includes(v)) {
             errors.push(
               `${contract.id}: event "${ev.name}" toggles between "${v}" which is not a value of "${ev.toggles.prop}"`,
+            );
+          }
+        }
+      }
+      if (ev.toggles.controls) {
+        const controlled = partByName.get(ev.toggles.controls);
+        if (!controlled) {
+          errors.push(`${contract.id}: event "${ev.name}" controls unknown part "${ev.toggles.controls}"`);
+        } else {
+          const on = ev.toggles.between[1];
+          if (controlled.visibleWhen?.prop !== ev.toggles.prop || controlled.visibleWhen.equals !== on) {
+            errors.push(
+              `${contract.id}: event "${ev.name}" controls part "${ev.toggles.controls}" but that part must declare visibleWhen { prop: "${ev.toggles.prop}", equals: "${on}" }`,
             );
           }
         }
@@ -1102,11 +1153,14 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         decls.push('appearance: none', 'background: none', 'border: none', 'font: inherit',
           'color: inherit', 'cursor: pointer');
       }
-      if (part.icon) {
+      if (part.icon || part.vectorAsset) {
         decls.push('display: inline-flex', 'flex-shrink: 0');
-        if (part.icon.size) {
-          lines.push('', `.${name} svg {`, `  width: ${part.icon.size}px;`, `  height: ${part.icon.size}px;`, '}');
+        if (part.vectorAsset?.position) {
+          decls.push('position: absolute', `left: ${part.vectorAsset.position.x}px`, `top: ${part.vectorAsset.position.y}px`);
         }
+        const width = part.vectorAsset?.width ?? part.icon?.size;
+        const height = part.vectorAsset?.height ?? part.icon?.size;
+        if (width && height) lines.push('', `.${name} svg {`, `  width: ${width}px;`, `  height: ${height}px;`, '}');
       }
       // Non-substituted token refs → var(--…); single-placeholder refs are a
       // per-enum descendant idiom that only exists under a single root and do
@@ -1189,6 +1243,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     walkAnatomy(contract).some(
       (w) =>
         w.part.overlay ||
+        w.part.vectorAsset?.position ||
         (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute') ||
         isNativeCheckablePart(w.part),
     )
@@ -1529,11 +1584,14 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         'cursor: pointer',
       );
     }
-    if (part.icon) {
+    if (part.icon || part.vectorAsset) {
       decls.push('display: inline-flex', 'flex-shrink: 0');
-      if (part.icon.size) {
-        lines.push('', `.${name} svg {`, `  width: ${part.icon.size}px;`, `  height: ${part.icon.size}px;`, '}');
+      if (part.vectorAsset?.position) {
+        decls.push('position: absolute', `left: ${part.vectorAsset.position.x}px`, `top: ${part.vectorAsset.position.y}px`);
       }
+      const width = part.vectorAsset?.width ?? part.icon?.size;
+      const height = part.vectorAsset?.height ?? part.icon?.size;
+      if (width && height) lines.push('', `.${name} svg {`, `  width: ${width}px;`, `  height: ${height}px;`, '}');
       if (part.element === 'button') {
         decls.push(
           'align-items: center',
@@ -1876,6 +1934,12 @@ export function generateTsx(
   ];
 
   const events = contract.events ?? [];
+  const controlIdByPart = new Map<string, string>();
+  for (const ev of events) {
+    if (ev.toggles?.controls && !controlIdByPart.has(ev.toggles.controls)) {
+      controlIdByPart.set(ev.toggles.controls, `${ev.name}ControlsId`);
+    }
+  }
   const toggledCodeProps = new Set(
     events.filter((e) => e.toggles).map((e) => codePropOf(e.toggles!.prop)),
   );
@@ -1937,8 +2001,11 @@ export function generateTsx(
   for (const ev of events) destructured.push(ev.bindings.code.prop);
   destructured.push('className', 'children', '...rest');
 
-  // Body prelude: uncontrolled state + handlers for declared events.
+  // Body prelude: per-instance ARIA associations, uncontrolled state and
+  // handlers for declared events. useId avoids duplicate ids when FAQ renders
+  // several independently toggled rows.
   const prelude: string[] = [];
+  for (const idVar of controlIdByPart.values()) prelude.push(`  const ${idVar} = useId();`);
   for (const ev of events) {
     if (!ev.toggles) continue;
     const prop = contract.props.find((p) => p.name === ev.toggles!.prop)!;
@@ -1995,6 +2062,9 @@ export function generateTsx(
       s += others.length
         ? ` aria-${ev.toggles.aria}={${code} === '${on}' ? true : ${code} === '${off}' ? false : 'mixed'}`
         : ` aria-${ev.toggles.aria}={${code} === '${on}'}`;
+    }
+    if (ev.toggles?.controls) {
+      s += ` aria-controls={${controlIdByPart.get(ev.toggles.controls)}}`;
     }
     return s;
   };
@@ -2056,9 +2126,10 @@ export function generateTsx(
   }
   elementAttrs.push('{...rest}');
 
-  // Icon assets this contract needs (fixed names + enum expansions).
+  // SVG assets this contract needs (icons plus arbitrary governed vectors).
   const neededIcons = new Map<string, string>();
   for (const { part } of walkAnatomy(contract)) {
+    if (part.vectorAsset) neededIcons.set(part.vectorAsset.asset, iconAssets.get(part.vectorAsset.asset) ?? '');
     if (!part.icon) continue;
     const m = part.icon.asset.match(/^\{([a-z][\w-]*)\}$/);
     if (m) {
@@ -2088,6 +2159,11 @@ export function generateTsx(
     JS_IDENT_RE.test(cls) ? `styles.${cls}` : `styles[${JSON.stringify(cls)}]`;
 
   const NUMERIC_ATTRS = new Set(['rows', 'cols', 'tabIndex', 'colSpan', 'rowSpan']);
+  const controlIdAttrFor = (partName: string): string => {
+    const idVar = controlIdByPart.get(partName);
+    return idVar ? ` id={${idVar}}` : '';
+  };
+
   const partAttrString = (part: Part): string =>
     Object.entries(part.attrs ?? {})
       .map(([attr, value]) => {
@@ -2098,28 +2174,41 @@ export function generateTsx(
       })
       .join('');
 
-  const wrapVisibleWhen = (part: Part, jsx: string): string => {
-    if (!part.visibleWhen) return jsx;
-    const codeName = codePropOf(part.visibleWhen.prop);
-    const cond =
-      part.visibleWhen.equals !== undefined ? `${codeName} === '${part.visibleWhen.equals}'` : codeName;
-    return `{${cond} ? (${jsx}) : null}`;
+  const wrapPresence = (part: Part, jsx: string): string => {
+    if (part.visibleWhen) {
+      const codeName = codePropOf(part.visibleWhen.prop);
+      const cond = part.visibleWhen.equals !== undefined ? `${codeName} === '${part.visibleWhen.equals}'` : codeName;
+      return `{${cond} ? (${jsx}) : null}`;
+    }
+    if (part.hiddenWhen) {
+      const codeName = codePropOf(part.hiddenWhen.prop);
+      return `{${codeName} !== '${part.hiddenWhen.equals}' ? (${jsx}) : null}`;
+    }
+    return jsx;
   };
 
   // Recursive JSX for the anatomy tree.
   const renderPart = (partName: string, part: Part): string => {
+    if (part.vectorAsset) {
+      const glyph = `dangerouslySetInnerHTML={{ __html: ICONS[${JSON.stringify(part.vectorAsset.asset)}] }}`;
+      return wrapPresence(part, `<span className={${stylesRef(partName)}} aria-hidden="true" ${glyph} />`);
+    }
     if (part.icon) {
       const ref = part.icon.asset.match(/^\{([a-z][\w-]*)\}$/);
       const keyExpr = ref ? codePropOf(ref[1]) : JSON.stringify(part.icon.asset);
       const glyph = `dangerouslySetInnerHTML={{ __html: ICONS[${keyExpr}] }}`;
-      // A bare icon is decorative (aria-hidden). An icon on an interactive
-      // element (element/attrs declared) keeps the element semantics — the
-      // accessible name comes from attrs (e.g. aria-label) — and only the
-      // glyph itself is hidden.
+      // A bare icon is decorative (aria-hidden). Authored attrs on that same
+      // wrapper (for example aria-label on an icon-only control) make it the
+      // semantic carrier without inventing a second DOM/Figma anatomy node.
+      // An explicit element keeps the existing nested-glyph form so its own
+      // semantics/events remain isolated from the decorative SVG.
+      const hasAttrs = Object.keys(part.attrs ?? {}).length > 0;
       const node = part.element
         ? `<${part.element} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, part.element)}><span aria-hidden="true" className={${stylesRef(`${partName}Glyph`)}} ${glyph} /></${part.element}>`
-        : `<span className={${stylesRef(partName)}} aria-hidden="true" ${glyph} />`;
-      return wrapVisibleWhen(part, node);
+        : hasAttrs
+          ? `<span className={${stylesRef(partName)}}${partAttrString(part)} ${glyph} />`
+          : `<span className={${stylesRef(partName)}} aria-hidden="true" ${glyph} />`;
+      return wrapPresence(part, node);
     }
     if (part.repeat && part.component) {
       // v12 repeat (P9): the item template maps the live arrayOf prop — one
@@ -2146,7 +2235,7 @@ export function generateTsx(
       const node = childrenField
         ? `<${dep.name} key={index}${fixedAttrs}${fieldAttrs}>{item.${childrenField}}</${dep.name}>`
         : `<${dep.name} key={index}${fixedAttrs}${fieldAttrs} />`;
-      return wrapVisibleWhen(part, `{${codeName}?.map((item, index) => (${node}))}`);
+      return wrapPresence(part, `{${codeName}?.map((item, index) => (${node}))}`);
     }
     if (part.component) {
       const dep = byId.get(part.component.id)!;
@@ -2160,8 +2249,8 @@ export function generateTsx(
     if (part.slot) {
       const el = part.element ?? 'div';
       const expr = part.slot.name === 'children' ? 'children' : part.slot.name;
-      const node = `<${el} className={${stylesRef(partName)}}${partAttrString(part)}>{${expr}}</${el}>`;
-      return part.optional ? `{${expr} != null ? ${node} : null}` : wrapVisibleWhen(part, node);
+      const node = `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}>{${expr}}</${el}>`;
+      return part.optional ? `{${expr} != null ? ${node} : null}` : wrapPresence(part, node);
     }
     if (part.content) {
       const el = part.element ?? 'span';
@@ -2175,22 +2264,22 @@ export function generateTsx(
         el === 'select'
           ? `<option>{${prop.bindings.code.prop}}</option>`
           : `{${prop.bindings.code.prop}}`;
-      return wrapVisibleWhen(
+      return wrapPresence(
         part,
-        `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
+        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
       );
     }
     if (part.text !== undefined) {
       const el = part.element ?? 'span';
-      return wrapVisibleWhen(
+      return wrapPresence(
         part,
-        `<${el} className={${stylesRef(partName)}}${partAttrString(part)}>${part.text}</${el}>`,
+        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}>${part.text}</${el}>`,
       );
     }
     if (part.meter) {
       const v = codePropOf(part.meter.valueProp);
       const m = codePropOf(part.meter.maxProp);
-      return wrapVisibleWhen(
+      return wrapPresence(
         part,
         `<div className={${stylesRef(partName)}} style={{ width: \`\${Math.min(100, Math.max(0, (${v} / ${m}) * 100))}%\` }} />`,
       );
@@ -2199,9 +2288,9 @@ export function generateTsx(
     const inner = Object.entries(part.parts ?? {})
       .map(([childName, child]) => renderPart(childName, child))
       .join('\n');
-    return wrapVisibleWhen(
+    return wrapPresence(
       part,
-      `<${el} className={${stylesRef(partName)}}${partAttrString(part)}${nativeCheckedAttr(partName, part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
+      `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}${nativeCheckedAttr(partName, part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
     );
   };
 
@@ -2300,7 +2389,7 @@ export function ${name}({ ${destructured.join(', ')} }: ${name}Props) {
  * Source of truth: contracts/${contract.id.replace(/^[^.]+\./, '')}.contract.json (${contract.id} v${contract.version})
  * Regenerate with: npm run generate
  */
-import { forwardRef${events.some((e) => e.toggles) ? ', useState' : ''} } from 'react';
+import { forwardRef${events.some((e) => e.toggles) ? ', useState' : ''}${controlIdByPart.size > 0 ? ', useId' : ''} } from 'react';
 import type { ${typeImports} } from 'react';
 ${depImports}${depImports ? '\n' : ''}import styles from './${name}.module.css';
 
@@ -2544,9 +2633,9 @@ export const Disabled: Story = {
   // defaults (FR-020: an example with icons visible, no hand-authored fixture).
   const gatedIconBools = new Set<string>();
   for (const { part } of walkAnatomy(contract)) {
-    if (part.icon && part.visibleWhen && /^\{[a-z][\w-]*\}$/.test(part.icon.asset)) {
-      gatedIconBools.add(part.visibleWhen.prop);
-    }
+    if (!part.icon || !part.visibleWhen || !/^\{[a-z][\w-]*\}$/.test(part.icon.asset)) continue;
+    const gate = contract.props.find((p) => p.name === part.visibleWhen!.prop);
+    if (gate?.type === 'boolean') gatedIconBools.add(part.visibleWhen.prop);
   }
   const withIconsStory =
     gatedIconBools.size > 0

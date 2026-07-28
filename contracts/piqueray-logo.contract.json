@@ -2,18 +2,15 @@
   "$schema": "./contract.schema.json",
   "id": "ds.piqueray-logo",
   "name": "PiquerayLogo",
-  "version": "1.0.0",
-  "category": "atom",
-  "description": "Piqueray brand logo. Two color variants: default (orange brand mark, blue text) and white (all white) — the couleur prop switches both the mark fill and the text traces simultaneously. Extracted from the Figma COMPONENT_SET « PiquerayLogo » on DS · Atomes, reviewed and adopted — not authored.\n\nThe logo is a purely decorative brand element — no text content, no interaction, no a11y label beyond the img role. Anatomy carries the drawn structure: Marque (orange fill, bound to {color.orange}) and Texte (8 vector traces, blue fill switching to white on couleur=blanc via tokensByProp).",
+  "version": "0.1.0",
+  "status": "draft",
+  "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
   "semantics": {
-    "element": "div",
-    "role": "img",
-    "provenance": "extracted"
+    "element": "div"
   },
   "props": [
     {
       "name": "couleur",
-      "description": "Color variant: default (orange mark + blue text) or white (all white for dark backgrounds). Extracted from the VARIANT property « Couleur » on the Figma master.",
       "type": {
         "enum": [
           "default",
@@ -41,123 +38,45 @@
     "root": {
       "parts": {
         "Marque": {
-          "description": "Brand mark — orange fill, the Piqueray symbol. Bound to {color.orange}.",
+          "vectorAsset": {
+            "asset": "piqueray-logo-marque",
+            "width": 25.96292495727539,
+            "height": 34,
+            "position": {
+              "x": 0,
+              "y": 0
+            }
+          },
           "tokens": {
-            "background-color": "{color.orange}"
+            "color": "{color.orange}"
           }
         },
-        "Texte": {
-          "description": "Text part — 8 vector traces forming the Piqueray wordmark. Blue by default, white on couleur=blanc.",
-          "parts": {
-            "trac": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac2": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac3": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac4": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac5": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac6": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac7": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac8": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
+        "Wordmark": {
+          "vectorAsset": {
+            "asset": "piqueray-logo-wordmark",
+            "width": 145.67019653320312,
+            "height": 25.00434112548828,
+            "position": {
+              "x": 34.329803466796875,
+              "y": 5.959875106811523
+            }
+          },
+          "tokensByProp": {
+            "prop": "couleur",
+            "map": {
+              "blanc": {
+                "color": "{color.blanc}"
               }
             }
+          },
+          "tokens": {
+            "color": "{color.bleu}"
           }
         }
       },
-      "tokens": {
-        "font-family": "{font.family.montserrat}"
+      "literals": {
+        "width": "180px",
+        "height": "34px"
       }
     }
   },
@@ -165,8 +84,7 @@
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
       "componentSetKey": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
-      "nodeId": "4:14",
-      "dumpedAt": "2026-07-27"
+      "nodeId": "4:14"
     },
     "code": {
       "importPath": "src/components/PiquerayLogo",

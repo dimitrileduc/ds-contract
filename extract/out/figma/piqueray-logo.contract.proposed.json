@@ -38,118 +38,45 @@
     "root": {
       "parts": {
         "Marque": {
+          "vectorAsset": {
+            "asset": "piqueray-logo-marque",
+            "width": 25.96292495727539,
+            "height": 34,
+            "position": {
+              "x": 0,
+              "y": 0
+            }
+          },
           "tokens": {
-            "background-color": "{color.orange}"
+            "color": "{color.orange}"
           }
         },
-        "Texte": {
-          "parts": {
-            "trac": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac2": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac3": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac4": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac5": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac6": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac7": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
-              }
-            },
-            "trac8": {
-              "tokensByProp": {
-                "prop": "couleur",
-                "map": {
-                  "blanc": {
-                    "background-color": "{color.blanc}"
-                  }
-                }
-              },
-              "tokens": {
-                "background-color": "{color.bleu}"
+        "Wordmark": {
+          "vectorAsset": {
+            "asset": "piqueray-logo-wordmark",
+            "width": 145.67019653320312,
+            "height": 25.00434112548828,
+            "position": {
+              "x": 34.329803466796875,
+              "y": 5.959875106811523
+            }
+          },
+          "tokensByProp": {
+            "prop": "couleur",
+            "map": {
+              "blanc": {
+                "color": "{color.blanc}"
               }
             }
+          },
+          "tokens": {
+            "color": "{color.bleu}"
           }
         }
+      },
+      "literals": {
+        "width": "180px",
+        "height": "34px"
       }
     }
   },

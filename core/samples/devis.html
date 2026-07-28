@@ -1,0 +1,21 @@
+<!--
+  Devis — static HTML+CSS emitted from contract ds.devis v1.0.0 by core/emit-html.ts.
+  Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
+  bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
+  Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
+  Slots render their declared defaultContent; an empty slot renders its wrapper empty (absent content
+  is absent — named in an inline comment, never painted as placeholder text). Booleans render per showcase item.
+-->
+<section class="showcase showcase--devis">
+  <div class="showcase__item">
+    <p class="showcase__label">default</p>
+    <div class="devis">
+      <div class="devis__Container">
+        <span class="devis__Titre">Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right">
+          <span class="button__label">Contactez-nous</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

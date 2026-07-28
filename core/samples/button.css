@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.2.0 (core/emit-html.ts) */
+/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -66,6 +66,16 @@
   color: var(--color-noir-bleute);
 }
 
+.button--variant-iconOnly {
+  width: var(--size-button-icon-only);
+  height: var(--size-button-icon-only);
+  gap: var(--space-0);
+  padding-inline: var(--space-16);
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
 .button__iconLeft svg {
   display: block;
   width: 20px;
@@ -75,6 +85,21 @@
 .button__iconLeft {
   display: inline-flex;
   flex-shrink: 0;
+}
+
+.button__iconOnlyIcon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconOnlyIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button--variant-iconOnly .button__label {
+  display: none;
 }
 
 .button__iconRight svg {

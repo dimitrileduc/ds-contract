@@ -1,0 +1,20 @@
+/* Copyright — from ds.copyright v1.0.0 (core/emit-html.ts) */
+
+.copyright, .copyright *, .copyright *::before, .copyright *::after {
+  box-sizing: border-box;
+}
+
+.copyright {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.copyright__Texte {
+  color: var(--color-blanc);
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

@@ -1,0 +1,29 @@
+<!--
+  ProductCard — static HTML+CSS emitted from contract ds.product-card v1.0.0 by core/emit-html.ts.
+  Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
+  bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
+  Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
+  Slots render their declared defaultContent; an empty slot renders its wrapper empty (absent content
+  is absent — named in an inline comment, never painted as placeholder text). Booleans render per showcase item.
+-->
+<section class="showcase showcase--product-card">
+  <div class="showcase__item">
+    <p class="showcase__label">default</p>
+    <div class="product-card">
+      <div class="product-card__Image"></div>
+      <span class="product-card__Titre">Télécommande Hörmann HSE4-868BS</span>
+      <span class="product-card__Prix">74,99€</span>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">bouton=true</p>
+    <div class="product-card" data-bouton="true">
+      <div class="product-card__Image"></div>
+      <span class="product-card__Titre">Télécommande Hörmann HSE4-868BS</span>
+      <span class="product-card__Prix">74,99€</span>
+      <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right">
+        <span class="button__label">Contactez-nous</span>
+      </button>
+    </div>
+  </div>
+</section>

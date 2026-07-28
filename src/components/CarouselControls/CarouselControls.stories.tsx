@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carousel-controls.contract.json (ds.carousel-controls v1.0.0)
+ * Source of truth: contracts/carousel-controls.contract.json (ds.carousel-controls v1.0.2)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';

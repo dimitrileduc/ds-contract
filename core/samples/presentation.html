@@ -1,0 +1,37 @@
+<!--
+  Presentation — static HTML+CSS emitted from contract ds.presentation v1.0.0 by core/emit-html.ts.
+  Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
+  bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
+  Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
+  Slots render their declared defaultContent; an empty slot renders its wrapper empty (absent content
+  is absent — named in an inline comment, never painted as placeholder text). Booleans render per showcase item.
+-->
+<section class="showcase showcase--presentation">
+  <div class="showcase__item">
+    <p class="showcase__label">default</p>
+    <div class="presentation">
+      <div class="section-header section-header--disposition-standard" data-accroche2="true">
+        <span class="section-header__Accroche">Plus de 50 ans d’expérience</span>
+        <span class="section-header__Titre">Piqueray, une histoire de famille </span>
+      </div>
+      <div class="presentation__wrapper">
+        <span class="presentation__Texte">Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.</span>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">bouton=true</p>
+    <div class="presentation" data-bouton="true">
+      <div class="section-header section-header--disposition-standard" data-accroche2="true">
+        <span class="section-header__Accroche">Plus de 50 ans d’expérience</span>
+        <span class="section-header__Titre">Piqueray, une histoire de famille </span>
+      </div>
+      <div class="presentation__wrapper">
+        <span class="presentation__Texte">Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.</span>
+        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right">
+          <span class="button__label">Contactez-nous</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

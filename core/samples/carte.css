@@ -1,0 +1,150 @@
+/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+
+.button, .button *, .button *::before, .button *::after {
+  box-sizing: border-box;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  background-color: transparent;
+  cursor: pointer;
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-22);
+  color: var(--color-blanc);
+  gap: var(--space-10);
+  padding-block: var(--space-16);
+  padding-inline: var(--space-32);
+  --dsc-border-width: var(--border-width-0);
+  text-transform: uppercase;
+  position: relative;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+.button--variant-default {
+  background-color: var(--color-noir-bleute);
+}
+
+.button--variant-orange {
+  background-color: var(--color-orange);
+}
+
+.button--variant-blanc {
+  background-color: var(--color-blanc);
+  color: var(--color-noir-bleute);
+}
+
+.button--variant-outlineBlanc {
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-blanc);
+}
+
+.button--variant-link {
+  color: var(--color-noir-bleute);
+  border-radius: var(--radius-32);
+  padding-block: var(--space-4);
+  padding-inline: var(--space-0);
+}
+
+.button--variant-outilneNoir {
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
+.button--variant-iconOnly {
+  width: var(--size-button-icon-only);
+  height: var(--size-button-icon-only);
+  gap: var(--space-0);
+  padding-inline: var(--space-16);
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
+.button__iconLeft svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconLeft {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button__iconOnlyIcon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconOnlyIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button--variant-iconOnly .button__label {
+  display: none;
+}
+
+.button__iconRight svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconRight {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* Carte — from ds.carte v1.0.0 (core/emit-html.ts) */
+
+.carte, .carte *, .carte *::before, .carte *::after {
+  box-sizing: border-box;
+}
+
+.carte {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.carte__text {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.carte__Titre {
+  color: var(--color-noir-bleute);
+}
+
+.carte__Texte {
+  color: var(--color-noir);
+}
+
+.carte--disposition-categorie .carte__Texte {
+  color: var(--color-noir-bleute);
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

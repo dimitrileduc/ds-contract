@@ -115,7 +115,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { DumpFile } from './types.js';
 import { isDumpSet } from './types.js';
+import { promoteVectorAssets } from './vector-assets.js';
 import { loadTokenCorpus } from './tokens.js';
+import { capturedTokensFromDump } from '../../core/captured-tokens.js';
 import {
   componentIdSlug,
   dumpCapturesHidden,
@@ -195,6 +197,7 @@ function loadIconRegistry(root: string): IconRegistryLike | undefined {
 
 // ---------------------------------------------------------------------------
 // CLI: npm run extract:figma -- <dump.json> [--out dir] [--contracts dir]
+//      [--assets-dir dir] [--promote-assets]
 // ---------------------------------------------------------------------------
 
 function main() {
@@ -205,9 +208,15 @@ function main() {
   };
   const outDir = readFlag('--out') ?? path.join('extract', 'out', 'figma');
   const contractsDir = readFlag('--contracts') ?? 'contracts';
+  const assetsDirArg = readFlag('--assets-dir');
+  const promoteAssets = args.includes('--promote-assets');
+  if (promoteAssets) args.splice(args.indexOf('--promote-assets'), 1);
+  const noMintIndex = args.indexOf('--no-mint-unbound');
+  const mintUnbound = noMintIndex < 0;
+  if (noMintIndex >= 0) args.splice(noMintIndex, 1);
   const dumpPathArg = args[0];
   if (!dumpPathArg) {
-    console.error('Usage: npm run extract:figma -- <dump.json> [--out dir] [--contracts dir]');
+    console.error('Usage: npm run extract:figma -- <dump.json> [--out dir] [--contracts dir] [--assets-dir dir] [--promote-assets] [--no-mint-unbound]');
     process.exit(2);
   }
   const root = process.cwd();
@@ -217,9 +226,25 @@ function main() {
   const contractIdByName = loaded.byName;
   const fileKey = dump._provenance?.fileKey ?? null;
   const iconRegistry = loadIconRegistry(root);
+  const capturedValues = new Map(
+    (capturedTokensFromDump(dump)?.entries ?? []).map((entry) => [entry.path, entry.value] as const),
+  );
+  const outPath = path.resolve(root, outDir);
+  const assetsDir = path.resolve(
+    root,
+    assetsDirArg ?? (promoteAssets ? path.join('assets', 'vectors') : path.join(outDir, 'assets', 'vectors')),
+  );
+  const promotedAssets = promoteVectorAssets(dump, assetsDir);
+  if (promotedAssets.length > 0) {
+    writeFileSync(
+      path.join(outPath, 'vector-assets.manifest.json'),
+      JSON.stringify({ dumpVersion: dump._provenance?.dumpVersion ?? null, assets: promotedAssets }, null, 2) + '\n',
+    );
+    console.log(`✔ vector assets → ${path.relative(root, assetsDir)} (${promotedAssets.length} asset(s), normalized + hashed)`);
+  }
 
   const results: Array<{ setName: string; proposal: FigmaProposalResult }> = [];
-  mkdirSync(path.resolve(root, outDir), { recursive: true });
+  mkdirSync(outPath, { recursive: true });
   for (const [name, value] of Object.entries(dump)) {
     if (name === '_provenance' || !isDumpSet(value)) continue;
     const proposal = proposeFromDump(value, {
@@ -230,15 +255,22 @@ function main() {
       fileKey,
       hiddenCaptured: dumpCapturesHidden(dump._provenance),
       iconRegistry,
+      capturedValues,
+      mintUnbound,
     });
     results.push({ setName: name, proposal });
     // componentIdSlug, not raw kebab: a set name like "Button / Primary /
     // Medium" must not turn the output filename into a directory walk.
-    const file = path.resolve(root, outDir, `${componentIdSlug(name)}.contract.proposed.json`);
+    const file = path.resolve(outPath, `${componentIdSlug(name)}.contract.proposed.json`);
     writeFileSync(file, JSON.stringify(proposal.contract, null, 2) + '\n');
+    if (proposal.mintedTokens) {
+      const tokenFile = path.resolve(outPath, `${componentIdSlug(name)}.tokens.proposed.json`);
+      writeFileSync(tokenFile, JSON.stringify(proposal.mintedTokens.tree, null, 2) + '\n');
+      console.log(`✔ ${name} provisional tokens → ${path.relative(root, tokenFile)} (${proposal.mintedTokens.count} source-derived leaf/leaves)`);
+    }
     console.log(`✔ ${name} → ${path.relative(root, file)} (${proposal.notes.length} notes, ${proposal.unbound.length} unbound value(s))`);
   }
-  writeFileSync(path.resolve(root, outDir, 'figma-proposals.md'), figmaProposalsReport(results) + '\n');
+  writeFileSync(path.join(outPath, 'figma-proposals.md'), figmaProposalsReport(results) + '\n');
   console.log(`✔ report → ${path.join(outDir, 'figma-proposals.md')}`);
 }
 

@@ -1,7 +1,7 @@
 /**
  * `ds-contracts figma` — the canvas as an emit target, both directions.
  *
- *   figma <contracts..> --out <dir> [--tokens f,f] [--icons dir] [--file-key KEY]
+ *   figma <contracts..> --out <dir> [--tokens f,f] [--icons dir] [--vectors dir] [--file-key KEY]
  *       emit one Figma Plugin API sync script per contract
  *       (core/emit-figma-script — referee-gated, same engine as the repo)
  *
@@ -96,7 +96,7 @@ async function pushCommand(argv: string[]): Promise<number> {
 export async function figmaCommand(argv: string[]): Promise<number> {
   if (argv[0] === 'push') return pushCommand(argv.slice(1));
 
-  const parsed = parseFlags(argv, { value: ['out', 'tokens', 'icons', 'file-key'] });
+  const parsed = parseFlags(argv, { value: ['out', 'tokens', 'icons', 'vectors', 'file-key'] });
   if (parsed.positionals.length === 0) {
     throw new CliUsageError('figma needs contract files/directories (or the `push` subcommand)');
   }
@@ -109,6 +109,7 @@ export async function figmaCommand(argv: string[]): Promise<number> {
     splitList(flagString(parsed, 'tokens')).map((f) => path.resolve(f)),
     flagString(parsed, 'icons'),
     flagString(parsed, 'file-key'),
+    flagString(parsed, 'vectors'),
   );
   const outDir = path.resolve(out);
   mkdirSync(outDir, { recursive: true });

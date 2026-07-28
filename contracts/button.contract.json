@@ -2,10 +2,10 @@
   "$schema": "./contract.schema.json",
   "id": "ds.button",
   "name": "Button",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "status": "draft",
   "category": "atom",
-  "description": "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
+  "description": "Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
   "semantics": {
     "element": "button",
     "role": "button",
@@ -22,7 +22,8 @@
           "blanc",
           "outlineBlanc",
           "link",
-          "outilneNoir"
+          "outilneNoir",
+          "iconOnly"
         ]
       },
       "default": "default",
@@ -36,7 +37,8 @@
             "blanc": "Blanc",
             "outlineBlanc": "Outline blanc",
             "link": "Link",
-            "outilneNoir": "Outline noir"
+            "outilneNoir": "Outline noir",
+            "iconOnly": "Icône seule"
           }
         },
         "code": {
@@ -250,6 +252,15 @@
             "border-width": "{border-width.2}",
             "border-color": "{color.noir-bleute}",
             "color": "{color.noir-bleute}"
+          },
+          "iconOnly": {
+            "width": "{size.button.icon-only}",
+            "height": "{size.button.icon-only}",
+            "gap": "{space.0}",
+            "padding-inline": "{space.16}",
+            "border-width": "{border-width.2}",
+            "border-color": "{color.noir-bleute}",
+            "color": "{color.noir-bleute}"
           }
         }
       },
@@ -263,11 +274,35 @@
             "prop": "iconLeft"
           }
         },
+        "iconOnlyIcon": {
+          "description": "The sole visible glyph in the icon-only variant. Its wrapper carries the authored accessible name while the SVG remains decorative.",
+          "attrs": {
+            "role": "img",
+            "aria-label": "{children}"
+          },
+          "icon": {
+            "asset": "{iconLeftGlyph}",
+            "size": 20
+          },
+          "visibleWhen": {
+            "prop": "variant",
+            "equals": "iconOnly"
+          }
+        },
         "label": {
           "element": "span",
           "content": {
             "prop": "children"
-          }
+          },
+          "stylesWhen": [
+            {
+              "prop": "variant",
+              "equals": "iconOnly",
+              "styles": {
+                "display": "none"
+              }
+            }
+          ]
         },
         "iconRight": {
           "icon": {

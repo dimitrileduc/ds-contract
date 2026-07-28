@@ -50,7 +50,7 @@ export interface PluginEngineData {
   /** The repo's shipping contract documents — the reference scope
    *  composition refs resolve through when a pasted contract needs them. */
   contracts: unknown[];
-  /** Icon asset name → SVG markup (assets/icons/*.svg). */
+  /** SVG asset name → markup (assets/icons/ and assets/vectors/). */
   icons: Record<string, string>;
 }
 

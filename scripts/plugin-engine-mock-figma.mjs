@@ -10,8 +10,9 @@
  * Fidelity notes (deliberate, harness-scoped):
  *   - Geometry is not laid out: width/height start at Figma's 100×100 frame
  *     default and change only via resize()/resizeWithoutConstraints().
- *   - createNodeFromSvg returns an empty 16×16 frame (vector internals are
- *     out of scope for the engine checks).
+ *   - createNodeFromSvg validates drawable vector geometry and derives an
+ *     intrinsic size from width/height or viewBox; it records vectorNodeCount
+ *     for headless geometry fixtures (it is not a full SVG renderer).
  *   - Fonts always "load"; text style application is exact (textStyleId).
  */
 
@@ -69,6 +70,7 @@ export function createFigmaMock() {
       this.boundVariables = {};
       this.componentPropertyReferences = {};
       this._shared = new Map();
+      this._svgExport = null;
       if (type !== 'TEXT') this.children = [];
       if (type === 'TEXT') {
         this.characters = '';
@@ -239,6 +241,13 @@ export function createFigmaMock() {
     async setTextStyleIdAsync(id) {
       this.textStyleId = id;
     }
+
+    async exportAsync(options = {}) {
+      if (options.format !== 'SVG' || typeof this._svgExport !== 'string') {
+        throw new Error('mock exportAsync supports only configured SVG fixtures');
+      }
+      return Uint8Array.from(Buffer.from(this._svgExport, 'utf8'));
+    }
   }
 
   class MockTextStyle {
@@ -317,6 +326,9 @@ export function createFigmaMock() {
 
   const figma = {
     mixed,
+    base64Encode(bytes) {
+      return Buffer.from(bytes).toString('base64');
+    },
     fileKey: null,
     root,
     currentPage: firstPage,
@@ -341,6 +353,15 @@ export function createFigmaMock() {
       n.pointCount = 3;
       return n;
     },
+    // Test-only source capture seam for the embedded dump fixture. It models
+    // the Plugin API's VECTOR + exportAsync path without pretending to render
+    // arbitrary Figma geometry in Node.
+    createVector: (svg = '<svg viewBox="0 0 1 1"><path d="M0 0h1v1H0z" fill="#000000"/></svg>') => {
+      const n = new MockNode('VECTOR');
+      n._svgExport = svg;
+      n.fills = [{ type: 'SOLID', visible: true, color: { r: 0, g: 0, b: 0 } }];
+      return n;
+    },
     createNodeFromSvg: (svg) => {
       // Real Figma refuses malformed SVG with "Failed to convert SVG file".
       // The old no-op mock accepted anything, which let an emitter bug (an
@@ -359,8 +380,22 @@ export function createFigmaMock() {
           seen.add(m[1]);
         }
       }
+      // SVG text is drawable too (the governed Google wordmark is source
+      // typography, not an empty geometry box); Figma converts it during SVG
+      // import. The refusal is for assets with no drawable element at all.
+      const vectorNodeCount = (svg.match(/<(path|circle|rect|polygon|ellipse|line|polyline|text)\b/g) ?? []).length;
+      if (vectorNodeCount === 0) {
+        throw new Error('in createNodeFromSvg: Failed to convert SVG file (no drawable vector geometry)');
+      }
+      const rootTag = svg.match(/<svg\b[^>]*>/)?.[0] ?? '';
+      const attr = (name) => rootTag.match(new RegExp(`\\s${name}="([^" ]+)"`))?.[1];
+      const viewBox = attr('viewBox')?.trim().split(/\s+/).map(Number);
+      const width = Number.parseFloat(attr('width') ?? '') || (viewBox?.[2] ?? 16);
+      const height = Number.parseFloat(attr('height') ?? '') || (viewBox?.[3] ?? 16);
       const n = new MockNode('FRAME');
-      n.resize(16, 16);
+      n.vectorNodeCount = vectorNodeCount;
+      n.svg = svg;
+      n.resize(width, height);
       return n;
     },
     createTextStyle: () => {

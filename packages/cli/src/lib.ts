@@ -9,7 +9,7 @@
  * (examples/polaris/generate.ts). The repo's 4-tree layout stays a repo
  * feature; a consumer's token set rides one or more files.
  */
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../../schema/src/index.js';
 import type { EmitterCtx } from '../../../core/emitter.js';
@@ -151,6 +151,7 @@ export function buildEmitterCtx(
   tokenFiles: string[],
   iconsDir?: string,
   fileKey?: string,
+  vectorsDir?: string,
 ): EmitterCtx {
   const primitives: Record<string, unknown> = {};
   for (const f of tokenFiles) {
@@ -162,7 +163,13 @@ export function buildEmitterCtx(
   }
   return {
     tokens: { primitives, semantic: {}, light: {}, dark: {}, brands: { default: {} } },
-    icons: loadIcons(iconsDir),
+    icons: new Map([
+      ...loadIcons(iconsDir),
+      ...(() => {
+        const dir = vectorsDir ?? (iconsDir ? path.join(path.dirname(iconsDir), 'vectors') : undefined);
+        return dir && existsSync(dir) ? loadIcons(dir) : [];
+      })(),
+    ]),
     contracts,
     fileKey,
   };

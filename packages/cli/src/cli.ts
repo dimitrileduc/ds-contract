@@ -28,9 +28,9 @@ Commands:
           [--harness <dir>] [--out <dir>]     (needs playwright-core + Chromium; degrades by name)
   generate <contracts..> --out <dir>          contract → code
           [--target react|html|react-inline|figma-script|<registered>]
-          [--tokens f,f] [--icons dir] [--stories] [--emitter <module>]
+          [--tokens f,f] [--icons dir] [--vectors dir] [--stories] [--emitter <module>]
   figma <contracts..> --out <dir>             contract → Figma sync scripts
-          [--tokens f,f] [--icons dir] [--file-key KEY]
+          [--tokens f,f] [--icons dir] [--vectors dir] [--file-key KEY]
   figma push <file> --code <CODE>             send a CONTRACTS-BUNDLE to the plugin bridge
           [--bridge <url>]                    (pairing-code flow, deliver-once, 15-min TTL)
   diff [config]                               parity referee: contracts vs code/design

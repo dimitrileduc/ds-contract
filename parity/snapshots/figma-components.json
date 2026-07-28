@@ -266,8 +266,8 @@
       "name": "Bouton",
       "nodeId": "6:122",
       "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-      "description": "Bouton — atome d'action, le plus instancié du fichier (14+ usages sur les deux pages DS). Libellé piloté par une propriété texte. Icône gauche/droite : visibilité pilotée par une propriété booléenne, glyphe par une propriété instance-swap — propriétés officielles, aucun calque caché non exposé. Porte 6 variantes de traitement visuel (couleur et style du fond et du texte). Limite connue : le menu de swap du glyphe ne propose que 13 icônes sur les 16 du registre gouverné — divergence héritée de la spec 004, non résolue ici.",
-      "variantCount": 6,
+      "description": "Bouton — atome d'action, le plus instancié du fichier (14+ usages sur les deux pages DS). Libellé piloté par une propriété texte. Icône gauche/droite : visibilité pilotée par une propriété booléenne, glyphe par une propriété instance-swap — propriétés officielles, aucun calque caché non exposé. Porte 7 variantes de traitement visuel (couleur et style du fond et du texte, dont « Icône seule »). Limite connue : le menu de swap du glyphe ne propose que 13 icônes sur les 16 du registre gouverné — divergence héritée de la spec 004, non résolue ici.",
+      "variantCount": 7,
       "properties": {
         "Icone gauche#2024:0": {
           "type": "BOOLEAN",
@@ -414,7 +414,8 @@
             "Blanc",
             "Outline blanc",
             "Link",
-            "Outline noir"
+            "Outline noir",
+            "Icône seule"
           ],
           "preferredValues": null
         }

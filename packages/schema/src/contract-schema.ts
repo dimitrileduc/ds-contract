@@ -178,10 +178,10 @@ export const LiteralValueSchema = z
  *  foreign systems keep component-private literals. Everything else refuses
  *  by name (validateContract). */
 export const LITERAL_CHANNELS = new Set([
-  'background', 'background-color', 'color',
+  'background', 'background-color', 'color', 'border-color',
   'height', 'width', 'min-width', 'min-height',
   'padding-block', 'padding-inline', 'gap', 'border-radius', 'border-width',
-  'font-size', 'line-height', 'letter-spacing',
+  'font-size', 'font-weight', 'line-height', 'letter-spacing',
   // v15 (S4/matrix a.4–a.5): per-corner radii and per-side border widths are
   // natively CARRY-BOTH (each corner/side field is independently
   // variable-bindable) — the literal grammar carries them like their
@@ -529,6 +529,19 @@ export const ShapeSchema = z.strictObject({
 /** Vertex list for a regular n-gon inscribed in its box, as CSS clip-path
  *  percentages — vertex 0 at the top center, matching Figma's
  *  REGULAR_POLYGON (a triangle's apex points up at rotation 0). */
+/** v18: an arbitrary SVG asset, kept outside the contract so geometry remains
+ * Figma-acquired, reviewable source rather than opaque path data in JSON.
+ * Unlike icon.asset this has non-square intrinsic dimensions and optional
+ * explicit local coordinates. The renderer imports it inline in code and via
+ * createNodeFromSvg in Figma; its single paint is supplied by `tokens.color`.
+ */
+export const VectorAssetSchema = z.strictObject({
+  asset: z.string(),
+  width: z.number().positive(),
+  height: z.number().positive(),
+  position: z.strictObject({ x: z.number(), y: z.number() }).optional(),
+});
+
 export function polygonClipPath(sides: number): string {
   const pts: string[] = [];
   const fmt = (n: number) => `${Math.round(n * 10000) / 10000}%`;
@@ -583,6 +596,14 @@ export const VisibleWhenSchema = z.strictObject({
   prop: z.string(),
   /** Omit for boolean props (truthy). */
   equals: z.string().optional(),
+});
+
+/** Inverse conditional presence. It is intentionally enum-only in the
+ * generator: a concrete enum cell can omit anatomy on both code and canvas
+ * without inventing a Figma boolean inversion. */
+export const HiddenWhenSchema = z.strictObject({
+  prop: z.string(),
+  equals: z.string(),
 });
 
 /** Design-time default content for a slot (Curtis's fifth slot property).
@@ -656,6 +677,8 @@ export interface Part {
   overlay?: z.infer<typeof OverlaySchema>;
   /** v9: parametric leaf decor (triangle/ellipse/rotated rect — #42). */
   shape?: z.infer<typeof ShapeSchema>;
+  /** v18: a governed arbitrary SVG asset (logos/illustrations, not icons). */
+  vectorAsset?: z.infer<typeof VectorAssetSchema>;
   /** CSS property → token reference. The CSS Module AND the Figma bindings
    *  are generated from these — there is no handwritten style layer. */
   tokens?: Record<string, string>;
@@ -713,6 +736,8 @@ export interface Part {
   icon?: { asset: string; size?: number };
   attrs?: Record<string, string>;
   visibleWhen?: z.infer<typeof VisibleWhenSchema>;
+  /** Removes a part for one enum value (inverse of visibleWhen). */
+  hiddenWhen?: z.infer<typeof HiddenWhenSchema>;
   /** Optional parts render conditionally (code: when the slot prop is
    *  provided; Figma: a "Show X" BOOLEAN controls visibility). */
   optional?: boolean;
@@ -734,6 +759,8 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
     overlay: OverlaySchema.optional(),
     /** v9. */
     shape: ShapeSchema.optional(),
+    /** v18: arbitrary governed SVG, with intrinsic rectangular dimensions. */
+    vectorAsset: VectorAssetSchema.optional(),
     tokens: z.record(z.string(), TokenRefSchema).optional(),
     /** v10. */
     /** v14: single entry OR ordered array of entries (see TokensByPropFieldSchema). */
@@ -766,6 +793,8 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
     attrs: z.record(z.string(), z.string()).optional(),
     /** v4, gap G1. */
     visibleWhen: VisibleWhenSchema.optional(),
+    /** Enum-specific absent anatomy (the inverse of visibleWhen). */
+    hiddenWhen: HiddenWhenSchema.optional(),
     optional: z.boolean().optional(),
     parts: z.record(z.string(), PartSchema).optional(),
   }),
@@ -798,6 +827,11 @@ export const EventSchema = z.strictObject({
        *  non-member value flips to onValue (indeterminate → checked). */
       between: z.tuple([z.string(), z.string()]),
       aria: z.enum(['expanded', 'checked', 'pressed', 'selected']).optional(),
+      /** Anatomy part revealed/controlled by the trigger. React generation
+       *  creates a per-instance useId(), writes aria-controls on the native
+       *  trigger and id on this part — no duplicate static ids in repeated
+       *  accordions. */
+      controls: z.string().optional(),
     })
     .optional(),
 });

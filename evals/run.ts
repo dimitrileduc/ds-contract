@@ -37,8 +37,20 @@ import {
   type Case, type RunResult,
 } from './harness.js';
 import { legacyCases } from './legacy-cases.js';
+import { normalizeVectorSvg } from '../extract/figma/vector-assets.js';
 
 const cases: Case[] = [
+  {
+    id: 'accordion-row-source-cleanup-extraction',
+    claim: 'C5-extraction',
+    run: () => {
+      const r = run(TSX, ['extract/figma/accordion-row-source-cleanup-check.ts']);
+      if (r.status !== 0) throw new Error(`AccordionRow source-cleanup extraction receipt failed:\n${r.out}`);
+      if (!r.out.includes('✔ AccordionRow source-cleanup extraction receipt holds')) {
+        throw new Error(`AccordionRow source-cleanup extraction receipt did not reach its success verdict:\n${r.out}`);
+      }
+    },
+  },
   {
     id: 'baseline-parity-clean',
     claim: 'C3-detection',
@@ -185,6 +197,25 @@ const cases: Case[] = [
       );
       if (!iconPart) throw new Error(`expected an anatomy part with icon.asset "{${swapLeft.name}}" (the enum-substitution convention) — never a slot`);
       if (iconPart.icon?.size !== 20) throw new Error(`expected icon.size 20 (the observed instance bbox) — got ${iconPart.icon?.size}`);
+    },
+  },
+  {
+    id: 'preserve-nested-empty-boolean-and-swap-props',
+    claim: 'C5-extraction',
+    run: () => {
+      // Raw REST fixture → real mapper → real proposer. A nested Button's
+      // empty TEXT, false BOOLEAN and INSTANCE_SWAP selections are all
+      // meaningful fixed values; none may be mistaken for absence.
+      const r = run(TSX, ['extract/figma/nested-instance-props-check.ts']);
+      if (r.status !== 0) throw new Error(`nested instance props receipt failed:\n${r.out}`);
+      for (const line of [
+        '✔ REST mapper preserves empty nested TEXT values',
+        '✔ REST mapper preserves nested BOOLEAN true/false values',
+        '✔ REST mapper resolves nested INSTANCE_SWAP ids to ChevronLeft/ChevronRight',
+        '✔ proposer canonicalizes all fixed values through ds.button without dropping falsy values',
+      ]) {
+        if (!r.out.includes(line)) throw new Error(`missing check: ${line}`);
+      }
     },
   },
   {
@@ -1927,6 +1958,65 @@ const cases: Case[] = [
       const label = contract.anatomy.root.parts?.label;
       if (label?.content?.prop !== 'children') {
         throw new Error('label content is not bound to the children prop — accessible name would not flow from the contract');
+      }
+    },
+  },
+  {
+    // Icon-only Button: one contract variant hides the visual label by variant,
+    // names the existing icon wrapper while keeping its SVG decorative, carries
+    // square geometry, and composes named Carousel controls. Normal Buttons
+    // keep native text naming — never an unconditional root aria-label.
+    id: 'button-icon-only-and-carousel-controls',
+    claim: 'C1-determinism',
+    run: () => {
+      if (generate().status !== 0) throw new Error('generate failed');
+      const button = JSON.parse(readFileSync(path.join(SCRATCH, CONTRACT), 'utf8'));
+      const iconOnly = button.props.find((p: { name: string }) => p.name === 'variant')?.type.enum.includes('iconOnly');
+      if (!iconOnly) throw new Error('Button variant iconOnly missing');
+      const root = button.anatomy.root;
+      const layout = root.tokensByProp.map.iconOnly;
+      if (layout.width !== '{size.button.icon-only}' || layout.height !== '{size.button.icon-only}' || layout.gap !== '{space.0}' || layout['padding-inline'] !== '{space.16}') {
+        throw new Error(`iconOnly geometry mismatch: ${JSON.stringify(layout)}`);
+      }
+      const labelHide = root.parts.label?.stylesWhen?.find((rule: { prop: string; equals?: string; styles?: Record<string, string> }) =>
+        rule.prop === 'variant' && rule.equals === 'iconOnly',
+      );
+      if (labelHide?.styles?.display !== 'none') {
+        throw new Error('iconOnly must hide the visual label through a variant-driven style');
+      }
+      const buttonTsx = readFileSync(path.join(SCRATCH, BTN_TSX), 'utf8');
+      const buttonCss = readFileSync(path.join(SCRATCH, 'src/components/Button/Button.module.css'), 'utf8');
+      if (!buttonTsx.includes('<span className={styles.label}>{children}</span>')) {
+        throw new Error('Button no longer emits the label content used by normal variants');
+      }
+      if (!buttonCss.includes('.variant-iconOnly .label {') || !buttonCss.includes('display: none;')) {
+        throw new Error('iconOnly visual label is not hidden by its variant class');
+      }
+      if (!/className=\{styles\.iconOnlyIcon\}[\s\S]*?aria-label=\{String\(children\)\}[\s\S]*?dangerouslySetInnerHTML/.test(buttonTsx)) {
+        throw new Error('iconOnly icon wrapper does not carry the accessible name and inline SVG together');
+      }
+      if (buttonTsx.includes('iconOnlyIconGlyph')) {
+        throw new Error('iconOnly invented a second glyph wrapper instead of naming the existing icon anatomy node');
+      }
+      const rootStart = buttonTsx.indexOf('<button');
+      const rootOpen = buttonTsx.slice(rootStart, buttonTsx.indexOf('>', rootStart));
+      if (rootOpen.includes('aria-label')) {
+        throw new Error('Button applies an unconditional root aria-label and can rename normal ReactNode children to "[object Object]"');
+      }
+      for (const declaration of ['width: var(--size-button-icon-only);', 'height: var(--size-button-icon-only);', 'gap: var(--space-0);']) {
+        if (!buttonCss.includes(declaration)) throw new Error(`iconOnly CSS missing ${declaration}`);
+      }
+      const carousel = JSON.parse(readFileSync(path.join(SCRATCH, 'contracts/carousel-controls.contract.json'), 'utf8'));
+      const parts = carousel.anatomy.root.parts;
+      const expected = [
+        ['prcdent', 'Précédent', 'chevron-left'],
+        ['Suivant', 'Suivant', 'chevron-right'],
+      ];
+      for (const [partName, text, glyph] of expected) {
+        const ref = parts[partName].component;
+        if (ref.text !== text || ref.props.variant !== 'iconOnly' || ref.props.iconLeftGlyph !== glyph || ref.props.iconLeft !== false || ref.props.iconRight !== false) {
+          throw new Error(`Carousel ${partName} is not the governed icon-only control: ${JSON.stringify(ref)}`);
+        }
       }
     },
   },
@@ -3944,10 +4034,14 @@ const cases: Case[] = [
           .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
           .map((c) => [c.id, c]),
       );
+      // Arbitrary vector assets share the external-asset registry with icons;
+      // their contract vocabulary differs, not their loading mechanism.
       const icons = new Map(
-        readdirSync(path.join(ROOT, 'assets', 'icons'))
-          .filter((f) => f.endsWith('.svg'))
-          .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+        ['icons', 'vectors'].flatMap((kind) =>
+          readdirSync(path.join(ROOT, 'assets', kind))
+            .filter((f) => f.endsWith('.svg'))
+            .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', kind, f), 'utf8').trim()] as const),
+        ),
       );
       const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
       const tokenInv = tokenInventoryFromJson([
@@ -3971,6 +4065,130 @@ const cases: Case[] = [
         if (!/\.root\s*\{/.test(css)) throw new Error(`${id}: single-root CSS lost its .root rule`);
       }
       console.log(`single-root-golden-invariant: all ${byId.size} repo contracts are single-root (0 multi-root); Badge/Button/Card take the untouched forwardRef+.root path, zero multi-root marker — byte authority is golden-generated-output`);
+    },
+  },
+  {
+    // v18 extraction floor: a captured Figma VECTOR/GROUP asset becomes an
+    // external reference and preserves its captured root/part geometry. The
+    // proposal must never contain SVG path data.
+    id: 'vector-asset-figma-capture-proposes-external-geometry',
+    claim: 'C5-extraction',
+    run: () => {
+      const out = 'tmp/vector-asset-proposal';
+      const result = run(TSX, ['extract/figma/propose.ts', 'extract/out/figma/piqueray-logo.vector.dump.json', '--out', out, '--contracts', 'contracts']);
+      if (result.status !== 0) throw new Error(`vector capture proposal failed:\n${result.out}`);
+      const proposal = JSON.parse(readFileSync(path.join(SCRATCH, out, 'piqueray-logo.contract.proposed.json'), 'utf8'));
+      const root = proposal.anatomy.root;
+      const mark = root.parts.Marque;
+      const wordmark = root.parts.Wordmark;
+      if (root.literals?.width !== '180px' || root.literals?.height !== '34px') throw new Error(`captured root geometry lost: ${JSON.stringify(root.literals)}`);
+      if (mark.vectorAsset?.asset !== 'piqueray-logo-marque' || mark.vectorAsset?.width !== 25.96292495727539 || mark.tokens?.color !== '{color.orange}') {
+        throw new Error(`mark did not promote to a color-bound vectorAsset: ${JSON.stringify(mark)}`);
+      }
+      if (wordmark.vectorAsset?.asset !== 'piqueray-logo-wordmark' || wordmark.vectorAsset?.position?.x !== 34.329803466796875 || wordmark.tokens?.color !== '{color.bleu}' || wordmark.tokensByProp?.map?.blanc?.color !== '{color.blanc}') {
+        throw new Error(`wordmark did not preserve vector geometry/tone mapping: ${JSON.stringify(wordmark)}`);
+      }
+      if (JSON.stringify(proposal).includes('svgBase64') || JSON.stringify(proposal).includes('<path')) throw new Error('proposal leaked SVG geometry into contract JSON');
+      const promotedMark = path.join(SCRATCH, out, 'assets', 'vectors', 'piqueray-logo-marque.svg');
+      const promotedWordmark = path.join(SCRATCH, out, 'assets', 'vectors', 'piqueray-logo-wordmark.svg');
+      for (const assetPath of [promotedMark, promotedWordmark]) {
+        if (!existsSync(assetPath)) throw new Error(`captured SVG was not promoted: ${assetPath}`);
+        const svg = readFileSync(assetPath, 'utf8');
+        if (!svg.includes('currentColor') || /fill="#|fill="white"/i.test(svg)) throw new Error(`promoted SVG was not normalized to currentColor: ${assetPath}`);
+      }
+      const manifest = JSON.parse(readFileSync(path.join(SCRATCH, out, 'vector-assets.manifest.json'), 'utf8'));
+      if (manifest.assets?.length !== 2 || manifest.assets.some((a: { sha256?: string; bytes?: number }) => !/^[a-f0-9]{64}$/.test(a.sha256 ?? '') || !(typeof a.bytes === 'number' && a.bytes > 0))) {
+        throw new Error(`vector promotion manifest is incomplete: ${JSON.stringify(manifest)}`);
+      }
+      const staticSvg = readFileSync(promotedMark, 'utf8').replaceAll('currentColor', '#F98A0B');
+      const normalized = normalizeVectorSvg(staticSvg);
+      if (!normalized.svg.includes('currentColor') || normalized.svg.includes('#F98A0B')) throw new Error('static Figma paint was not deterministically normalized');
+      let refused = false;
+      try { normalizeVectorSvg('<svg viewBox="0 0 10 10"><g/></svg>'); } catch { refused = true; }
+      if (!refused) throw new Error('empty SVG geometry was accepted');
+    },
+  },
+  {
+    // v18 arbitrary vector assets: a non-square, monochrome SVG is an asset
+    // reference (never paths in the contract), gets inline React markup and a
+    // real, token-bound Figma vector at its captured dimensions. This fixture
+    // predates the PiquerayLogo adoption so a missing source export can never
+    // be papered over with empty boxes.
+    id: 'vector-asset-non-square-token-bound',
+    claim: 'C3-detection',
+    run: () => {
+      const markSvg = '<svg width="25.963" height="34" viewBox="0 0 25.963 34" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H25.963V34H0Z" fill="currentColor"/></svg>';
+      const wordSvg = '<svg width="145.67" height="25.004" viewBox="0 0 145.67 25.004" xmlns="http://www.w3.org/2000/svg"><path d="M0 0H145.67V25.004H0Z" fill="currentColor"/></svg>';
+      const fixture = ContractSchema.parse({
+        id: 'ds.vectorfixture', name: 'VectorFixture', version: '1.0.0', status: 'draft',
+        description: 'Eval fixture: arbitrary rectangular vector assets.', semantics: { element: 'div', role: 'img' },
+        props: [{ name: 'tone', type: { enum: ['default', 'blanc'] }, default: 'default',
+          bindings: { figma: { kind: 'VARIANT', property: 'Tone', values: { default: 'Default', blanc: 'Blanc' } }, code: { prop: 'tone' } } }],
+        states: [],
+        anatomy: { root: { tokens: { width: '{fixture.width}', height: '{fixture.height}' }, parts: {
+          mark: { vectorAsset: { asset: 'fixture-mark', width: 25.963, height: 34, position: { x: 0, y: 0 } }, tokens: { color: '{fixture.orange}' } },
+          wordmark: { vectorAsset: { asset: 'fixture-wordmark', width: 145.67, height: 25.004, position: { x: 34.33, y: 5.96 } }, tokens: { color: '{fixture.blue}' }, tokensByProp: { prop: 'tone', map: { blanc: { color: '{fixture.white}' } } } },
+        } } },
+        anchors: { figma: { fileKey: null, componentSetKey: null }, code: { importPath: 'src/components/VectorFixture', export: 'VectorFixture' } },
+      });
+      const assets = new Map([['fixture-mark', markSvg], ['fixture-wordmark', wordSvg]]);
+      const tokenNames = new Set(['fixture.width', 'fixture.height', 'fixture.orange', 'fixture.blue', 'fixture.white']);
+      const errors: string[] = [];
+      coreValidateContract(fixture, new Map([[fixture.id, fixture]]), errors, assets);
+      if (errors.length) throw new Error(`valid vectorAsset fixture refused: ${errors.join('; ')}`);
+      const invalid = JSON.parse(JSON.stringify(fixture));
+      invalid.anatomy.root.parts.mark.vectorAsset.asset = 'empty-vector';
+      const invalidErrors: string[] = [];
+      coreValidateContract(invalid, new Map([[invalid.id, invalid]]), invalidErrors, new Map([...assets, ['empty-vector', '<svg viewBox="0 0 10 10"></svg>']]));
+      if (!invalidErrors.some((e) => e.includes('no drawable SVG geometry'))) throw new Error(`empty vector asset was not refused: ${invalidErrors.join('; ')}`);
+      const { tsx, css } = coreEmitReact(fixture, { tokens: tokenNames, icons: assets, contracts: new Map([[fixture.id, fixture]]) });
+      if ((tsx.match(/dangerouslySetInnerHTML/g) ?? []).length !== 2 || !tsx.includes('fixture-mark') || !tsx.includes('fixture-wordmark')) {
+        throw new Error(`React did not inject both SVG assets:\n${tsx.slice(0, 1600)}`);
+      }
+      for (const expected of ['width: var(--fixture-width)', 'height: var(--fixture-height)', 'width: 25.963px', 'height: 25.004px', 'left: 34.33px', 'top: 5.96px']) {
+        if (!css.includes(expected)) throw new Error(`React CSS lost vector geometry ${expected}:\n${css}`);
+      }
+      const tokenTree = { primitives: { fixture: {
+        width: { $value: '180px', $type: 'dimension' }, height: { $value: '34px', $type: 'dimension' },
+        orange: { $value: '#ff6500', $type: 'color' }, blue: { $value: '#0055aa', $type: 'color' }, white: { $value: '#ffffff', $type: 'color' },
+      } }, semantic: {}, light: {}, dark: {}, brands: { default: {} } };
+      const engine = createFigmaEngine({ tokens: tokenTree, icons: assets });
+      const emitted = engine.buildComponentScript(fixture, new Map([[fixture.id, fixture]]));
+      const data = JSON.parse(emitted.match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
+      const spec = data.variants.find((v: any) => v.name.includes('Tone=Default')).spec;
+      const find = (node: any, name: string): any => node.name === name ? node : (node.children ?? []).map((child: any) => find(child, name)).find(Boolean);
+      const mark = find(spec, 'mark');
+      const wordmark = find(spec, 'wordmark');
+      if (!mark?.svg || mark.svgSize?.width !== 25.963 || mark.svgSize?.height !== 34 || mark.absolute?.left !== 0 || mark.absolute?.top !== 0) {
+        throw new Error(`Figma mark spec lost SVG geometry: ${JSON.stringify(mark)}`);
+      }
+      if (!wordmark?.svg || wordmark.svgSize?.width !== 145.67 || wordmark.svgSize?.height !== 25.004 || wordmark.absolute?.left !== 34.33 || wordmark.absolute?.top !== 5.96 || wordmark.svgPaintVar !== 'fixture/blue') {
+        throw new Error(`Figma wordmark spec lost geometry or token binding: ${JSON.stringify(wordmark)}`);
+      }
+      const runtime = path.join(SCRATCH, 'vector-asset-runtime.ts');
+      writeFileSync(runtime, `
+        import vm from 'node:vm';
+        import { createFigmaMock } from './scripts/plugin-engine-mock-figma.mjs';
+        import { createFigmaEngine } from './core/emit-figma-script.ts';
+        const fixture = ${JSON.stringify(fixture)};
+        const assets = new Map(${JSON.stringify([...assets])});
+        const tokens = ${JSON.stringify(tokenTree)};
+        const engine = createFigmaEngine({ tokens, icons: assets });
+        const tokenScript = engine.buildTokensScript(null);
+        const script = engine.buildComponentScript(fixture, new Map([[fixture.id, fixture]]));
+        const { figma, root } = createFigmaMock();
+        const context = vm.createContext({ figma, console: { log() {}, warn() {}, error() {} } });
+        await vm.runInContext('(async () => {\\n' + tokenScript + '\\n})()', context);
+        await vm.runInContext('(async () => {\\n' + script + '\\n})()', context);
+        const mark = root.findOne((n) => n.name === 'mark');
+        const wordmark = root.findOne((n) => n.name === 'wordmark');
+        if (!mark || !wordmark || mark.width !== 25.963 || mark.height !== 34 || wordmark.width !== 145.67 || wordmark.height !== 25.004 || mark.vectorNodeCount !== 1 || wordmark.vectorNodeCount !== 1) throw new Error('runtime vector dimensions or geometry missing');
+        console.log('vector runtime dimensions + geometry ok');
+      `);
+      const runtimeResult = run(TSX, [runtime]);
+      if (runtimeResult.status !== 0 || !runtimeResult.out.includes('vector runtime dimensions + geometry ok')) {
+        throw new Error(`mock Figma runtime did not create non-empty vectors:\n${runtimeResult.out}`);
+      }
     },
   },
   {
@@ -4330,6 +4548,123 @@ const cases: Case[] = [
         throw new Error(`ds.review-card has a code-only fact (imgPlaceholder) — its description must carry the † footnote, got: ${JSON.stringify(comp.description)}`);
       }
       console.log('img-part-canvas-placeholder-named: avatarPhoto (element:"img") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas, and the component caption carries the † footnote — the A5 gap (real photo pixel = out-of-contract override) stays a NAMED limit, never a silent one');
+    },
+  },
+  {
+    // Regression: MemberPicture was adopted with a purely structural anatomy,
+    // so every generated surface collapsed its root to 0×0. The contract must
+    // carry the measured 364px circle and both stacked image planes; the IMAGE
+    // pixels themselves remain the named A5 technical placeholder, never a
+    // fabricated Piqueray colour or a silent loss.
+    id: 'member-picture-fixed-circle-and-named-a5-placeholder',
+    claim: 'C2-refusal',
+    run: () => {
+      const byId = new Map(
+        readdirSync(path.join(ROOT, 'contracts'))
+          .filter((f) => f.endsWith('.contract.json'))
+          .map((f) => ContractSchema.parse(JSON.parse(readFileSync(path.join(ROOT, 'contracts', f), 'utf8'))))
+          .map((c) => [c.id, c]),
+      );
+      const member = byId.get('ds.member-picture');
+      if (!member) throw new Error('contracts/member-picture.contract.json missing ds.member-picture');
+      const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8'));
+      const tokens = {
+        primitives: read('tokens/primitives.tokens.json'),
+        semantic: read('tokens/semantic.tokens.json'),
+        light: read('tokens/modes/semantic.light.tokens.json'),
+        dark: {},
+        brands: { default: {} },
+      };
+      const tokenInv = tokenInventoryFromJson([tokens.primitives, tokens.semantic, tokens.light]);
+      const icons = new Map(
+        readdirSync(path.join(ROOT, 'assets', 'icons'))
+          .filter((f) => f.endsWith('.svg'))
+          .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+      );
+      const { css } = coreEmitReact(member, { tokens: tokenInv, icons, contracts: byId });
+      const engine = createFigmaEngine({ tokens, icons });
+      const script = engine.buildComponentScript(member, byId);
+      const compiled = JSON.parse(script.match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
+      const findByName = (spec: any, name: string): any =>
+        spec.name === name ? spec : (spec.children ?? []).map((c: any) => findByName(c, name)).find(Boolean);
+      const assertProjection = (component: any): void => {
+        if (component.variants.length !== 2) throw new Error(`MemberPicture must compile two states, got ${component.variants.length}`);
+        for (const variant of component.variants) {
+          const root = variant.spec;
+          const rootWidth = root.fixedWidth?.px ?? root.lits?.width;
+          const rootHeight = root.fixedHeight?.px ?? root.lits?.height;
+          if (rootWidth !== 364 || rootHeight !== 364) {
+            throw new Error(`MemberPicture ${variant.name} root is ${rootWidth ?? 0}×${rootHeight ?? 0}, expected 364×364 — refusing a collapsed root`);
+          }
+          if (root.lits?.radius !== 500) throw new Error(`MemberPicture ${variant.name} root lost its 500px circular radius`);
+          const previewBase = root.lits?.fillColor;
+          const generic = 217 / 255;
+          if (
+            !previewBase ||
+            Math.abs(previewBase.r - generic) > 0.001 ||
+            Math.abs(previewBase.g - generic) > 0.001 ||
+            Math.abs(previewBase.b - generic) > 0.001
+          ) {
+            throw new Error(`MemberPicture ${variant.name} root lost its explicitly named technical #D9D9D9 A5 preview base`);
+          }
+          for (const layerName of ['funIa', 'normal']) {
+            const layer = findByName(root, layerName);
+            if (!layer) throw new Error(`MemberPicture ${variant.name} is missing ${layerName}`);
+            const width = layer.fixedWidth?.px ?? layer.lits?.width;
+            const height = layer.fixedHeight?.px ?? layer.lits?.height;
+            if (width !== 364 || height !== 364) throw new Error(`MemberPicture ${variant.name}/${layerName} is ${width ?? 0}×${height ?? 0}, expected 364×364`);
+            if (layer.lits?.radius !== 500 || layer.insetOverlay !== true) throw new Error(`MemberPicture ${variant.name}/${layerName} must be a 500px absolute inset-0 circle`);
+            const fallback = layer.lits?.fillColor;
+            if (
+              layer.imgPlaceholder !== true ||
+              !fallback ||
+              Math.abs(fallback.r - generic) > 0.001 ||
+              Math.abs(fallback.g - generic) > 0.001 ||
+              Math.abs(fallback.b - generic) > 0.001
+            ) {
+              throw new Error(`MemberPicture ${variant.name}/${layerName} lost the generic #D9D9D9 A5 image placeholder`);
+            }
+          }
+          const normal = findByName(root, 'normal');
+          const expectedOpacity = variant.name.includes('Survol') ? 0 : 1;
+          if (normal.opacity !== expectedOpacity) throw new Error(`MemberPicture ${variant.name}/normal opacity is ${normal.opacity}, expected ${expectedOpacity}`);
+        }
+      };
+      assertProjection(compiled);
+      const rootParts = member.anatomy.root.parts ?? {};
+      for (const [partName, part] of Object.entries(rootParts)) {
+        if (part.literals?.['background-color'] !== undefined || part.tokens?.['background-color'] !== undefined) {
+          throw new Error(`MemberPicture/${partName} carries its own background fill — A5 must come from the engine's generic img fallback`);
+        }
+      }
+      // Compile an actually broken CONTRACT, rather than mutating the already
+      // compiled spec. This is the pre-fix MemberPicture failure class: with
+      // no root geometry, the absolute children contribute no intrinsic size
+      // and the generated root collapses to 0×0.
+      const collapsedContract = ContractSchema.parse(JSON.parse(JSON.stringify(member)));
+      delete collapsedContract.anatomy.root.literals?.width;
+      delete collapsedContract.anatomy.root.literals?.height;
+      const collapsedById = new Map(byId);
+      collapsedById.set(collapsedContract.id, collapsedContract);
+      const collapsedScript = engine.buildComponentScript(collapsedContract, collapsedById);
+      const collapsed = JSON.parse(collapsedScript.match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
+      let refused = false;
+      try { assertProjection(collapsed); } catch (err) { refused = String(err).includes('collapsed root'); }
+      if (!refused) throw new Error('A MemberPicture contract that generates a 0×0 root was accepted');
+      for (const required of [
+        '.root {', 'width: 364px;', 'height: 364px;', 'border-radius: 500px;', 'background-color: #d9d9d9;', 'position: relative;',
+        '.etat-defaut {', '.etat-survol {', 'overflow: hidden;',
+        '.funIa {', '.normal {', 'position: absolute;', 'top: 0px;', 'right: 0px;', 'bottom: 0px;', 'left: 0px;',
+        'transition: opacity 300ms;',
+      ]) {
+        if (!css.includes(required)) throw new Error(`MemberPicture CSS is missing ${JSON.stringify(required)}`);
+      }
+      if (!/\.etat-defaut \.normal \{[\s\S]*?opacity: 1;/.test(css)) throw new Error('MemberPicture defaut must keep normal at opacity 1');
+      if (!/\.etat-survol \.normal \{[\s\S]*?opacity: 0;/.test(css)) throw new Error('MemberPicture survol must set normal to opacity 0');
+      if (!member.description.includes('A5') || !member.description.includes('†') || !compiled.description.includes('†')) {
+        throw new Error(`MemberPicture image loss must remain named A5 in the contract and marked † on the canvas, got contract=${JSON.stringify(member.description)}, canvas=${JSON.stringify(compiled.description)}`);
+      }
+      console.log('member-picture-fixed-circle-and-named-a5-placeholder: rejects a 0×0 root; both 364×364 circular inset layers stack with normal opacity 1→0 and a 300ms transition; unavailable IMAGE pixels render only as the generic technical A5 placeholder, explicitly named (not a Piqueray colour or pixel-parity claim)');
     },
   },
 ];

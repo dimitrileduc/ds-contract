@@ -1046,7 +1046,7 @@
      Do not edit here: scripts/build-plugin-zip.mjs refuses to package this
      plugin when the block below differs from the repo file. -->
 <script type="text/plain" id="dump-source">
-// Design-side ANATOMY dump — the canonical node-tree capture (dump v1.6).
+// Design-side ANATOMY dump — the canonical node-tree capture (dump v1.8).
 //
 // Transport-agnostic Plugin API script (same boundary as extract/figma-dump.js
 // and parity/extract-figma.plugin.js): run it through any console/plugin-runner
@@ -1090,7 +1090,8 @@
 //                      visible→BOOLEAN ("Show X" optional-part convention)
 //   instanceOf         INSTANCE nodes: the main component's owning set name
 //   componentProperties INSTANCE nodes (dump v1.1, additive): applied property
-//                      values, so nested component refs keep their fixed props
+//                      values, so nested component refs keep their fixed props;
+//                      INSTANCE_SWAP ids resolve to selected component names
 //   instanceKey /      INSTANCE nodes (dump v1.5): the main component's publish
 //   instanceSetKey     key and its owning set's key — rename-safe identity the
 //                      session-linking resolver matches against in-scope
@@ -1098,6 +1099,9 @@
 //   bbox               INSTANCE nodes (dump v1.5): the OBSERVED bounding box —
 //                      honest geometry for child STUBS (a correctly-sized box;
 //                      instance internals still never recursed)
+//   vectorAsset        monochrome arbitrary SVG export (dump v1.8): asset name,
+//                      intrinsic rectangle, local position, and base64 transport
+//                      bytes; propose.ts promotes the bytes to assets/vectors/
 //   swapPreferredValues set-level (dump v1.5): INSTANCE_SWAP preferredValues
 //                      (component keys) → slot `accepts` where the keys resolve
 //   boolDefaults       set-level (dump v1.5): BOOLEAN property defaultValues —
@@ -1111,7 +1115,7 @@
 
 // Target set names. Empty array = every local set/component except the Slot
 // utility. For the shipped fixtures this was ['Badge', 'Switch', 'Card'].
-const TARGET_SETS = ['Badge', 'Switch', 'Card'];
+const TARGET_SETS = ['Badge', 'Switch', 'Card', 'PiquerayLogo'];
 
 await figma.loadAllPagesAsync();
 
@@ -1125,10 +1129,38 @@ const rgbToHex = (c) => {
 // cannot carry lands here by name (STYLE-FIDELITY audit: zero silent loss).
 const degradations = [];
 const degrade = (code, nodePath, message) => degradations.push({ code, nodePath, message });
-// Arbitrary-path vectors — still #42 receipts. REGULAR_POLYGON / ELLIPSE /
-// rotated RECTANGLE are CARRIED since dump v1.3 (see dumpShape below).
+// Parametric decor remains the v1.3 shape path. Arbitrary-path vectors use
+// the v1.8 monochrome SVG promotion path below; failed promotions retain a
+// named #42 degradation receipt.
 const VECTOR_TYPES = ['VECTOR', 'STAR', 'POLYGON', 'LINE', 'BOOLEAN_OPERATION'];
 const SHAPE_KIND_BY_TYPE = { REGULAR_POLYGON: 'polygon', ELLIPSE: 'ellipse', RECTANGLE: 'rect' };
+// Arbitrary SVG promotion (dump v1.8): a single vector, or a GROUP composed
+// entirely of vectors, carries its Figma-exported bytes as transport evidence.
+// The contract proposer emits only the external asset name + geometry; SVG path
+// data is never written into a contract.
+const assetSlug = (s) => s
+  .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+  .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+  .replace(/[^a-zA-Z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '')
+  .toLowerCase();
+const vectorLeaves = (node) => {
+  const out = [];
+  const walk = (n) => {
+    if (VECTOR_TYPES.includes(n.type)) { out.push(n); return; }
+    for (const child of n.children || []) walk(child);
+  };
+  walk(node);
+  return out;
+};
+const hasOnlyVectorDescendants = (node) => {
+  if (VECTOR_TYPES.includes(node.type)) return true;
+  const children = node.children || [];
+  return children.length > 0 && children.every((child) => hasOnlyVectorDescendants(child));
+};
+const isPromotableVector = (node) =>
+  VECTOR_TYPES.includes(node.type) ||
+  (node.type === 'GROUP' && hasOnlyVectorDescendants(node));
 const round2 = (n) => Math.round(n * 100) / 100;
 
 // Decor-shape capture (dump v1.3, #42) — the plugin mirror of
@@ -1260,18 +1292,59 @@ const dumpPaint = async (paints, nodePath, field, consumer) => {
   return withAlpha({ hex: rgbToHex(p.color) });
 };
 
+/** Promote source geometry only when every drawable leaf has the SAME solid
+ * paint. Multicolour/mixed vectors must stay an explicit receipt: converting
+ * them to one currentColor asset would silently change their picture. */
+async function dumpVectorAsset(node, nodePath) {
+  if (!isPromotableVector(node)) return null;
+  const leaves = vectorLeaves(node);
+  const paints = [];
+  for (const leaf of leaves) {
+    const paint = await dumpPaint(leaf.fills, nodePath, 'fill', leaf);
+    if (!paint) {
+      degrade('vector-asset-promotion-refused', nodePath, 'vector asset has a non-solid, invisible, or absent leaf fill — SVG export not promoted as a currentColor asset');
+      return null;
+    }
+    paints.push(paint);
+  }
+  const keys = new Set(paints.map((p) => JSON.stringify(p)));
+  if (keys.size !== 1) {
+    degrade('vector-asset-promotion-refused', nodePath, 'vector asset has mixed leaf paints — SVG export not promoted as a single currentColor asset');
+    return null;
+  }
+  const componentName = nodePath.split(':')[0];
+  const bytes = await node.exportAsync({ format: 'SVG' });
+  return {
+    asset: assetSlug(componentName) + '-' + assetSlug(node.name),
+    width: node.width,
+    height: node.height,
+    ...(typeof node.x === 'number' && typeof node.y === 'number' ? { position: { x: node.x, y: node.y } } : {}),
+    svgBase64: figma.base64Encode(bytes),
+    paint: paints[0],
+  };
+}
+
 async function dumpNode(node, nodePath, parent) {
   const out = { name: node.name, type: node.type };
 
-  // dump v1.5: variant-ROOT observed bounding box — the drawn dimension of a
-  // FIXED root axis is otherwise unrecoverable (CBDS Dialog field case).
-  if (node.type === 'COMPONENT' && typeof node.width === 'number' && typeof node.height === 'number') {
+  // dump v1.8: observed bbox on every scene node. Consumers require matching
+  // sizing evidence before fixing a dimension (root FIXED axis, INSTANCE
+  // geometry, or TEXT autoResize NONE), so this is measurement, not a guess.
+  if (typeof node.width === 'number' && typeof node.height === 'number') {
     out.bbox = { width: round2(node.width), height: round2(node.height) };
   }
 
   // dump v1.3 (#42): parametric decor geometry is CARRIED (rotation rides it).
   const shape = dumpShape(node, parent);
   if (shape) out.shape = shape;
+  const capturedVector = shape ? null : await dumpVectorAsset(node, nodePath);
+  if (capturedVector) {
+    const { paint, ...vectorAsset } = capturedVector;
+    out.vectorAsset = vectorAsset;
+    // GROUPs have no fill of their own; carry the verified uniform leaf paint
+    // on the promoted part so the proposer can bind SVG currentColor.
+    out.fill = paint;
+  }
 
   // dump v1.2: channels with NO dump projection are named receipts.
   if ('blendMode' in node && node.blendMode !== 'NORMAL' && node.blendMode !== 'PASS_THROUGH') {
@@ -1280,8 +1353,8 @@ async function dumpNode(node, nodePath, parent) {
   if (!shape && 'rotation' in node && typeof node.rotation === 'number' && Math.abs(node.rotation) > 1e-6) {
     degrade('rotation-unsupported', nodePath, 'rotation ' + node.rotation + ' on a ' + node.type + ' has no dump projection (rotation is carried only on shape decor — dump v1.3) — node renders unrotated (#42 residue)');
   }
-  if (VECTOR_TYPES.indexOf(node.type) >= 0) {
-    degrade('vector-geometry-unsupported', nodePath, node.type + ' geometry (arbitrary paths) is not captured — parametric decor (REGULAR_POLYGON/ELLIPSE/rotated RECTANGLE) IS carried since dump v1.3; this node carries paints only and renders as a box (#42 residue)');
+  if (VECTOR_TYPES.indexOf(node.type) >= 0 && !capturedVector) {
+    degrade('vector-geometry-unsupported', nodePath, node.type + ' geometry could not be promoted as a monochrome external SVG asset — see the vector-asset-promotion-refused receipt; this node carries paints only and renders as a box');
   }
 
   if ('layoutMode' in node && node.layoutMode !== 'NONE') {
@@ -1311,7 +1384,7 @@ async function dumpNode(node, nodePath, parent) {
   }
   if (Object.keys(bound).length > 0) out.bound = bound;
 
-  if (node.type !== 'TEXT') {
+  if (node.type !== 'TEXT' && !out.fill) {
     const fill = 'fills' in node ? await dumpPaint(node.fills, nodePath, 'fill', node) : null;
     if (fill) out.fill = fill;
   }
@@ -1319,13 +1392,22 @@ async function dumpNode(node, nodePath, parent) {
   if (stroke) {
     out.stroke = stroke;
     if (typeof node.strokeWeight === 'number') out.strokeWeight = node.strokeWeight;
+    else if (node.type !== 'INSTANCE') {
+      // dump v1.7: Figma exposes each side even when the shorthand is MIXED.
+      // Preserve all four literals (including zeroes) and let `bound` retain
+      // an independently bound side. This is generic per-side stroke support,
+      // not a component-specific exception.
+      out.strokeWeights = {
+        top: node.strokeTopWeight,
+        right: node.strokeRightWeight,
+        bottom: node.strokeBottomWeight,
+        left: node.strokeLeftWeight,
+      };
+    }
     // Stroke DETAIL on an INSTANCE is elided by design downstream (instance
     // styling belongs to the child contract; the Slot utility's dashed
     // border is the utility's own) — no receipt for an unconsumed channel.
     if (node.type !== 'INSTANCE') {
-      if (typeof node.strokeWeight !== 'number') {
-        degrade('stroke-weights-nonuniform', nodePath, 'per-side stroke weights [' + [node.strokeTopWeight, node.strokeRightWeight, node.strokeBottomWeight, node.strokeLeftWeight].join(', ') + '] — dump v1 carries a uniform strokeWeight only');
-      }
       if (Array.isArray(node.dashPattern) && node.dashPattern.length > 0) {
         degrade('stroke-style-unsupported', nodePath, 'dashPattern [' + node.dashPattern.join(', ') + '] — dashed strokes have no dump v1 projection; stroke renders solid');
       }
@@ -1379,8 +1461,13 @@ async function dumpNode(node, nodePath, parent) {
         ? node.lineHeight.value
         : null;
     const channels = [];
-    if (node.letterSpacing !== figma.mixed && node.letterSpacing && node.letterSpacing.value !== 0) {
-      channels.push('letterSpacing ' + node.letterSpacing.value + node.letterSpacing.unit);
+    if (
+      node.letterSpacing !== figma.mixed &&
+      node.letterSpacing &&
+      node.letterSpacing.value !== 0 &&
+      node.letterSpacing.unit !== 'PIXELS'
+    ) {
+      channels.push('letterSpacing ' + node.letterSpacing.value + node.letterSpacing.unit + ' — nonzero percent spacing is not yet carried');
     }
     if (node.textCase !== figma.mixed && node.textCase && node.textCase !== 'ORIGINAL') channels.push('textCase ' + node.textCase);
     if (node.textDecoration !== figma.mixed && node.textDecoration && node.textDecoration !== 'NONE') channels.push('textDecoration ' + node.textDecoration);
@@ -1395,6 +1482,13 @@ async function dumpNode(node, nodePath, parent) {
       fontSize: typeof node.fontSize === 'number' ? node.fontSize : null,
       fontStyle: node.fontName === figma.mixed ? null : node.fontName.style,
     };
+    if (node.fontName !== figma.mixed) text.fontFamily = node.fontName.family;
+    if (node.textAutoResize) text.autoResize = node.textAutoResize;
+    if (
+      node.letterSpacing !== figma.mixed &&
+      node.letterSpacing &&
+      (node.letterSpacing.value === 0 || node.letterSpacing.unit === 'PIXELS')
+    ) text.letterSpacing = node.letterSpacing.value;
     if (typeof pxLineHeight === 'number') text.lineHeight = pxLineHeight;
     if (node.textStyleId && node.textStyleId !== figma.mixed) {
       const style = await figma.getStyleByIdAsync(node.textStyleId);
@@ -1437,7 +1531,25 @@ async function dumpNode(node, nodePath, parent) {
     try {
       const props = {};
       for (const [key, def] of Object.entries(node.componentProperties || {})) {
-        if (def.type === 'INSTANCE_SWAP') continue; // slots ride propRefs instead
+        // Applied INSTANCE_SWAP values configure the nested child itself;
+        // they are not parent slots. Resolve the session-local component id
+        // to its stable drawn name so the proposer can invert it through the
+        // child contract's bindings.figma.values.
+        if (def.type === 'INSTANCE_SWAP') {
+          const selected = typeof def.value === 'string' ? await figma.getNodeByIdAsync(def.value) : null;
+          if (selected && selected.type === 'COMPONENT') {
+            props[key] = selected.name;
+          } else {
+            props[key] = def.value;
+            degrade(
+              'instance-swap-value-unresolved',
+              nodePath,
+              'INSTANCE_SWAP property "' + key.split('#')[0] + '" value ' + String(def.value) + ' did not resolve to a COMPONENT — raw value preserved',
+            );
+          }
+          continue;
+        }
+        // Empty strings and false booleans are values, never absence.
         props[key] = def.value;
       }
       if (Object.keys(props).length > 0) out.componentProperties = props;
@@ -1447,7 +1559,7 @@ async function dumpNode(node, nodePath, parent) {
     }
   }
 
-  if ('children' in node && node.type !== 'INSTANCE') {
+  if ('children' in node && node.type !== 'INSTANCE' && !capturedVector) {
     out.children = [];
     for (const child of node.children) out.children.push(await dumpNode(child, nodePath + '/' + child.name, node));
   }
@@ -1482,8 +1594,8 @@ const dumps = {
   _provenance: {
     fileKey: figma.fileKey || null,
     extractedAt: new Date().toISOString().slice(0, 10),
-    note: 'Node-tree dump (extract/figma/dump.plugin.js, dump v1.6) for design→contract proposal.',
-    dumpVersion: '1.6',
+    note: 'Node-tree dump (extract/figma/dump.plugin.js, dump v1.8) for design→contract proposal.',
+    dumpVersion: '1.8',
   },
 };
 dumps._degradations = degradations;
@@ -1512,4 +1624,5 @@ for (const page of figma.root.children) {
   }
 }
 return dumps;
+
 </script>

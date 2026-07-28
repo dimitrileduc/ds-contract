@@ -1,0 +1,36 @@
+/* NavItem — from ds.nav-item v1.0.0 (core/emit-html.ts) */
+
+.nav-item, .nav-item *, .nav-item *::before, .nav-item *::after {
+  box-sizing: border-box;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.nav-item__libell {
+  color: var(--color-blanc);
+}
+
+.nav-item__OcticonChevronDown12 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.nav-item__OcticonChevronDown12 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.nav-item__Soulignement {
+  background-color: var(--color-blanc);
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

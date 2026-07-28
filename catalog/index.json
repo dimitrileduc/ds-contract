@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "7999c63",
+    "gitCommit": "26ff7e1",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -43,6 +43,7 @@
     "nav",
     "opacity",
     "radius",
+    "size",
     "space",
     "typography"
   ],
@@ -50,7 +51,7 @@
     {
       "id": "ds.accordion-row",
       "name": "AccordionRow",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -64,13 +65,12 @@
     {
       "id": "ds.piqueray-logo",
       "name": "PiquerayLogo",
-      "version": "1.0.0",
+      "version": "0.1.0",
       "status": "draft",
-      "category": "atom",
       "propNames": [
         "couleur"
       ],
-      "summary": "Piqueray brand logo."
+      "summary": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure."
     },
     {
       "id": "ds.avantage",
@@ -87,7 +87,7 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "1.5.2",
+      "version": "1.6.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -102,7 +102,7 @@
     {
       "id": "ds.carousel-controls",
       "name": "CarouselControls",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "status": "draft",
       "category": "molecule",
       "propNames": [],
@@ -183,7 +183,7 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "draft",
       "category": "atom",
       "propNames": [

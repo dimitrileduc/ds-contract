@@ -1,0 +1,58 @@
+/* Input — from ds.input v1.0.0 (core/emit-html.ts) */
+
+.input, .input *, .input *::before, .input *::after {
+  box-sizing: border-box;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  background-color: var(--color-blanc);
+  --dsc-border-color: var(--color-bleu-gris);
+  color: var(--color-noir);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  padding-block: 12px;
+  padding-inline: 12px;
+  --dsc-border-width: 1px;
+  border-radius: 0px;
+  line-height: 24px;
+}
+
+/* Field — from ds.field v1.0.0 (core/emit-html.ts) */
+
+.field, .field *, .field *::before, .field *::after {
+  box-sizing: border-box;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.field__label {
+  display: flex;
+  flex-direction: row;
+}
+
+.field__Label {
+  color: var(--color-bleu-gris);
+}
+
+.field__MentionOptionnelle {
+  color: var(--color-bleu-gris);
+}
+
+.field__Saisie {
+  display: flex;
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

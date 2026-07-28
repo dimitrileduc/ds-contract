@@ -29,18 +29,18 @@ const brandNames = readdirSync(path.join(ROOT, 'tokens', 'modes'))
   .filter((f) => /^brand\.[a-z][a-z0-9-]*\.tokens\.json$/.test(f))
   .map((f) => f.replace(/^brand\.|\.tokens\.json$/g, ''));
 
-// Icon assets (assets/icons/*.svg) — same source the code generator inlines.
+// SVG sources share one deterministic runtime while remaining physically
+// separate: assets/icons is the governed icon registry; assets/vectors holds
+// arbitrary rectangular assets such as brand marks and wordmarks.
 const iconAssets = new Map<string, string>();
-{
-  const dir = path.join(ROOT, 'assets', 'icons');
+for (const subdir of ['icons', 'vectors']) {
+  const dir = path.join(ROOT, 'assets', subdir);
   try {
     for (const f of readdirSync(dir)) {
-      if (f.endsWith('.svg')) {
-        iconAssets.set(f.replace(/\.svg$/, ''), readFileSync(path.join(dir, f), 'utf8').trim());
-      }
+      if (f.endsWith('.svg')) iconAssets.set(f.replace(/\.svg$/, ''), readFileSync(path.join(dir, f), 'utf8').trim());
     }
   } catch {
-    /* no icons dir — contracts without icon parts */
+    /* optional source directory */
   }
 }
 

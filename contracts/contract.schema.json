@@ -338,6 +338,9 @@
                   "pressed",
                   "selected"
                 ]
+              },
+              "controls": {
+                "type": "string"
               }
             },
             "required": [
@@ -693,6 +696,44 @@
           },
           "required": [
             "kind",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        },
+        "vectorAsset": {
+          "type": "object",
+          "properties": {
+            "asset": {
+              "type": "string"
+            },
+            "width": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "position": {
+              "type": "object",
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "asset",
             "width",
             "height"
           ],
@@ -1076,6 +1117,22 @@
           },
           "required": [
             "prop"
+          ],
+          "additionalProperties": false
+        },
+        "hiddenWhen": {
+          "type": "object",
+          "properties": {
+            "prop": {
+              "type": "string"
+            },
+            "equals": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "prop",
+            "equals"
           ],
           "additionalProperties": false
         },

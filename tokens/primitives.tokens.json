@@ -64,6 +64,15 @@
     "16": { "$value": "16px" },
     "32": { "$value": "32px" }
   },
+  "size": {
+    "button": {
+      "icon-only": {
+        "$type": "dimension",
+        "$description": "Observed from the governed Figma Button Style=Icône seule master (52×52).",
+        "$value": "52px"
+      }
+    }
+  },
   "radius": {
     "$type": "dimension",
     "$description": "Authored from the Button canvas geometry (dump v1.5: Link cornerRadius 32). NOT a Figma variable; minted from-dump.",
@@ -73,6 +82,7 @@
     "$type": "dimension",
     "$description": "Authored from the Button canvas geometry (dump v1.5: outline strokeWeight 2; non-outline variants have no stroke = 0). NOT Figma variables; minted from-dump. The 0 is the base border so border-style resolves solid and the outline variants' 2px border renders.",
     "0": { "$value": "0px" },
+    "1": { "$value": "1px" },
     "2": { "$value": "2px" }
   }
 }

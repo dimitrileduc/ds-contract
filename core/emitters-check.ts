@@ -41,9 +41,13 @@ const contracts = new Map<string, Contract>(
     .map((c) => [c.id, c]),
 );
 const icons = new Map<string, string>(
-  readdirSync(path.join(ROOT, 'assets', 'icons'))
-    .filter((f) => f.endsWith('.svg'))
-    .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+  ['icons', 'vectors'].flatMap((subdir) => {
+    const dir = path.join(ROOT, 'assets', subdir);
+    if (!existsSync(dir)) return [] as Array<[string, string]>;
+    return readdirSync(dir)
+      .filter((f) => f.endsWith('.svg'))
+      .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(dir, f), 'utf8').trim()] as [string, string]);
+  }),
 );
 const brands = Object.fromEntries(
   readdirSync(path.join(ROOT, 'tokens', 'modes'))

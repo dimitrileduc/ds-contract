@@ -1,0 +1,52 @@
+/* Select — from ds.select v1.0.0 (core/emit-html.ts) */
+
+.select, .select *, .select *::before, .select *::after {
+  box-sizing: border-box;
+}
+
+.select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  background-color: var(--color-blanc);
+  --dsc-border-color: var(--color-bleu-gris);
+  color: var(--color-noir);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  padding-block: 12px;
+  padding-inline: 12px;
+  --dsc-border-width: 1px;
+  border-radius: 0px;
+  line-height: 24px;
+}
+
+.select__valeur {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.select__chevron svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.select__chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

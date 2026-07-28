@@ -99,7 +99,7 @@
           "ouvert": {
             "direction": "column",
             "justify": "start",
-            "align": "start"
+            "align": "stretch"
           }
         }
       },
@@ -117,7 +117,13 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{imported.accordion-row.title-titre-ouvert.font-size.{taille}}",
+                "font-weight": "{imported.accordion-row.title-titre-ouvert.font-weight.{taille}}",
+                "letter-spacing": "{imported.shared.size-0}",
+                "line-height": "{imported.accordion-row.title-titre-ouvert.line-height.{taille}}",
+                "height": "{imported.accordion-row.title-titre-ouvert.height.{taille}}"
               },
               "visibleWhen": {
                 "prop": "etat",
@@ -125,9 +131,21 @@
               }
             },
             "ChevronUp": {
-              "component": {
-                "id": "ds.chevron-up"
+              "icon": {
+                "asset": "chevron-up",
+                "size": 32
               },
+              "literalsByProp": [
+                {
+                  "prop": "taille",
+                  "map": {
+                    "petit": {
+                      "width": "24px",
+                      "height": "24px"
+                    }
+                  }
+                }
+              ],
               "visibleWhen": {
                 "prop": "etat",
                 "equals": "ouvert"
@@ -137,6 +155,9 @@
           "visibleWhen": {
             "prop": "etat",
             "equals": "ouvert"
+          },
+          "tokens": {
+            "height": "{imported.accordion-row.title.height}"
           }
         },
         "Contenu": {
@@ -144,7 +165,13 @@
             "prop": "contenu"
           },
           "tokens": {
-            "color": "{color.noir-bleute}"
+            "color": "{color.noir-bleute}",
+            "font-family": "{font.family.montserrat}",
+            "font-size": "{imported.accordion-row.contenu.font-size}",
+            "font-weight": "{imported.accordion-row.contenu.font-weight}",
+            "letter-spacing": "{imported.shared.size-0}",
+            "line-height": "{imported.accordion-row.contenu.line-height}",
+            "height": "{imported.accordion-row.contenu.height.{taille}}"
           },
           "visibleWhen": {
             "prop": "etat",
@@ -156,7 +183,13 @@
             "prop": "titre"
           },
           "tokens": {
-            "color": "{color.noir-bleute}"
+            "color": "{color.noir-bleute}",
+            "font-family": "{font.family.montserrat}",
+            "font-size": "{imported.accordion-row.titre.font-size.{taille}}",
+            "font-weight": "{imported.accordion-row.titre.font-weight.{taille}}",
+            "letter-spacing": "{imported.shared.size-0}",
+            "line-height": "{imported.accordion-row.titre.line-height.{taille}}",
+            "height": "{imported.accordion-row.titre.height.{taille}}"
           },
           "visibleWhen": {
             "prop": "etat",
@@ -164,25 +197,33 @@
           }
         },
         "ChevronDown": {
-          "component": {
-            "id": "ds.chevron-down"
+          "icon": {
+            "asset": "chevron-down",
+            "size": 32
           },
+          "literalsByProp": [
+            {
+              "prop": "taille",
+              "map": {
+                "petit": {
+                  "width": "24px",
+                  "height": "24px"
+                }
+              }
+            }
+          ],
           "visibleWhen": {
             "prop": "etat",
             "equals": "ferme"
           }
         }
       },
-      "tokensByProp": {
-        "prop": "taille",
-        "map": {
-          "petit": {
-            "border-color": "{color.noir-bleute}"
-          }
-        }
-      },
       "tokens": {
-        "border-color": "{color.noir-pur}"
+        "border-bottom-width": "{border-width.1}",
+        "border-color": "{imported.accordion-row.root.border-color.{taille}}",
+        "gap": "{imported.accordion-row.root.gap.{taille}.{etat}}",
+        "padding-block": "{imported.accordion-row.root.padding-block.{taille}}",
+        "width": "{imported.accordion-row.root.width}"
       }
     }
   },

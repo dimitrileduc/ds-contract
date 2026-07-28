@@ -1,0 +1,314 @@
+/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+
+.button, .button *, .button *::before, .button *::after {
+  box-sizing: border-box;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  background-color: transparent;
+  cursor: pointer;
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-22);
+  color: var(--color-blanc);
+  gap: var(--space-10);
+  padding-block: var(--space-16);
+  padding-inline: var(--space-32);
+  --dsc-border-width: var(--border-width-0);
+  text-transform: uppercase;
+  position: relative;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+.button--variant-default {
+  background-color: var(--color-noir-bleute);
+}
+
+.button--variant-orange {
+  background-color: var(--color-orange);
+}
+
+.button--variant-blanc {
+  background-color: var(--color-blanc);
+  color: var(--color-noir-bleute);
+}
+
+.button--variant-outlineBlanc {
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-blanc);
+}
+
+.button--variant-link {
+  color: var(--color-noir-bleute);
+  border-radius: var(--radius-32);
+  padding-block: var(--space-4);
+  padding-inline: var(--space-0);
+}
+
+.button--variant-outilneNoir {
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
+.button--variant-iconOnly {
+  width: var(--size-button-icon-only);
+  height: var(--size-button-icon-only);
+  gap: var(--space-0);
+  padding-inline: var(--space-16);
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
+.button__iconLeft svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconLeft {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button__iconOnlyIcon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconOnlyIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button--variant-iconOnly .button__label {
+  display: none;
+}
+
+.button__iconRight svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconRight {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* SectionHeader — from ds.section-header v1.0.0 (core/emit-html.ts) */
+
+.section-header, .section-header *, .section-header *::before, .section-header *::after {
+  box-sizing: border-box;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.section-header--disposition-avecCta {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.section-header__Accroche {
+  color: var(--color-noir-bleute);
+}
+
+.section-header__Titre {
+  color: var(--color-noir-bleute);
+}
+
+/* AccordionRow — from ds.accordion-row v1.1.0 (core/emit-html.ts) */
+
+.accordion-row, .accordion-row *, .accordion-row *::before, .accordion-row *::after {
+  box-sizing: border-box;
+}
+
+.accordion-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 0;
+  border-style: solid;
+  border-bottom-width: var(--border-width-1);
+  width: 1550px;
+  border-color: #000000;
+  gap: 24px;
+  padding-block: 16px;
+}
+
+.accordion-row--taille-petit {
+  border-color: #26282C52;
+  gap: 8px;
+  padding-block: 8px;
+}
+
+.accordion-row--etat-ferme {
+  gap: 24px;
+}
+
+.accordion-row__trigger {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  border-style: solid;
+  height: 32px;
+  background-color: transparent;
+  border-width: 0px;
+  padding-inline: 0px;
+  padding-block: 0px;
+  cursor: pointer;
+}
+
+.accordion-row--taille-petit .accordion-row__trigger {
+  height: 24px;
+}
+
+.accordion-row--etat-ouvert .accordion-row__trigger {
+  height: 32px;
+}
+
+.accordion-row__Titre {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-titre-5-family);
+  font-size: var(--typography-titre-5-size);
+  font-weight: var(--typography-titre-5-weight);
+  line-height: 25px;
+  letter-spacing: 0px;
+}
+
+.accordion-row--taille-petit .accordion-row__Titre {
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.accordion-row--taille-petit .accordion-row__Titre {
+  font-family: var(--typography-paragraphe-family);
+  font-size: var(--typography-paragraphe-size);
+}
+
+.accordion-row__ChevronDown svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.accordion-row__ChevronDown {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.accordion-row--taille-petit .accordion-row__ChevronDown {
+  width: 24px;
+  height: 24px;
+}
+
+.accordion-row__ChevronUp svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.accordion-row__ChevronUp {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.accordion-row--taille-petit .accordion-row__ChevronUp {
+  width: 24px;
+  height: 24px;
+}
+
+.accordion-row__Contenu {
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-paragraphe-family);
+  font-size: var(--typography-paragraphe-size);
+  font-weight: var(--typography-paragraphe-weight);
+  line-height: 24px;
+  letter-spacing: 0px;
+  height: 32px;
+}
+
+.accordion-row--taille-petit .accordion-row__Contenu {
+  height: 24px;
+}
+
+/* TexteSEO — from ds.texte-seo v1.0.0 (core/emit-html.ts) */
+
+.texte-seo, .texte-seo *, .texte-seo *::before, .texte-seo *::after {
+  box-sizing: border-box;
+}
+
+.texte-seo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.texte-seo__h2 {
+  display: flex;
+}
+
+.texte-seo__p {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.texte-seo__Paragraphe {
+  color: var(--color-noir);
+}
+
+.texte-seo__h3 {
+  display: flex;
+}
+
+.texte-seo__SousTitre {
+  color: var(--color-noir-bleute);
+}
+
+.texte-seo__accordion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

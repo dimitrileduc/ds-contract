@@ -1,0 +1,26 @@
+<!--
+  SectionHeader — static HTML+CSS emitted from contract ds.section-header v1.0.0 by core/emit-html.ts.
+  Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
+  bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
+  Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
+  Slots render their declared defaultContent; an empty slot renders its wrapper empty (absent content
+  is absent — named in an inline comment, never painted as placeholder text). Booleans render per showcase item.
+-->
+<section class="showcase showcase--section-header">
+  <div class="showcase__item">
+    <p class="showcase__label">default</p>
+    <div class="section-header section-header--disposition-standard" data-accroche2="true">
+      <span class="section-header__Accroche">Plus de 50 ans d’expérience</span>
+      <span class="section-header__Titre">Pourquoi choisir Piqueray ?</span>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">disposition=avecCta</p>
+    <div class="section-header section-header--disposition-avecCta" data-accroche2="true">
+      <span class="section-header__Titre">Pourquoi choisir Piqueray ?</span>
+      <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right">
+        <span class="button__label">Contactez-nous</span>
+      </button>
+    </div>
+  </div>
+</section>

@@ -1041,12 +1041,14 @@ function attrsOf(el: JsxEl, partName: string, isRoot: boolean, hasOnClick: boole
         ctx.ariaOnPart.set(isRoot ? 'root' : partName, 'checked');
         continue;
       }
-      if (name.startsWith('aria-') || name.startsWith('data-')) continue; // bool-prop plumbing
-      // {String(x)} → "{x}" (contract attrs prop-reference form)
+      // {String(x)} → "{x}" (contract attrs prop-reference form). This must
+      // run before the generic aria/data plumbing skip: authored names such as
+      // aria-label={String(children)} are contract attrs, not state plumbing.
       if (ts.isCallExpression(e) && e.expression.getText() === 'String' && e.arguments.length === 1 && ts.isIdentifier(e.arguments[0])) {
         out[name] = `{${e.arguments[0].text}}`;
         continue;
       }
+      if (name.startsWith('aria-') || name.startsWith('data-')) continue; // bool-prop plumbing
       if (ts.isNumericLiteral(e)) {
         out[name] = e.text;
         continue;

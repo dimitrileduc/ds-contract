@@ -55,8 +55,9 @@ Anatomy is a **nested tree** of named parts (CEM's slots/parts, Curtis's anatomy
 | `component: { id, props? }` | Fixed instance of another contract; `props` spelled canonically, mapped through the *child's* bindings | imported `<Child prop="…">` | nested instance with properties set |
 | `slot: { name, accepts?, acceptsMode?, min?, max?, required?, designProperty? }` | Constrained insertion point; `accepts` lists contract IDs resolved via anchors | `children` / `ReactNode` prop | instance-swap slot property (Slot-utility default) whose preferred values are the accepted contracts' component keys; optional parts get a `Show X` boolean |
 | `content: { prop }` | Text bound to a declared text prop | `{title}` in the part's element | text node linked to the text property |
+| `vectorAsset: { asset, width, height, position? }` | Governed arbitrary SVG (logo/illustration), not an icon | inline SVG asset; token `color` drives `currentColor` | `createNodeFromSvg`, resized to the declared rectangle; monochrome paint is rebound to the token variable |
 
-Parts with none of these are structural (frames/elements containing `parts`). `optional: true` renders conditionally in code and toggles visibility on the canvas. Composition rules: part names are unique per contract; cycles and unknown contract refs **fail the build**; sync scripts emit in dependency order. See [docs/08](08-composition-and-spec.md) for the design rationale.
+Parts with none of these are structural (frames/elements containing `parts`). `optional: true` renders conditionally in code and toggles visibility on the canvas. `visibleWhen` includes a part for a matching prop; its enum-only inverse, `hiddenWhen: { prop, equals }`, omits a part for that variant on every renderer. This is used when a variant removes anatomy entirely — for example Button `iconOnly` has no label node — rather than merely applying `display: none`. Composition rules: part names are unique per contract; cycles and unknown contract refs **fail the build**; sync scripts emit in dependency order. See [docs/08](08-composition-and-spec.md) for the design rationale.
 
 ```jsonc
 "anatomy": {
@@ -140,6 +141,24 @@ This is the DTCG `$extensions` dual-ID pattern applied to components. After phas
 **Dump provenance (v16).** `anchors.figma.dumpedAt` is an optional ISO-8601 string recording *when* the Figma dump this contract was extracted from was taken — a photo at instant-T, not a live sync (populated from the dump's `_provenance.extractedAt`). It lets the differ report contract↔Figma drift against a named baseline instead of an unmarked "sometime".
 
 **Authored-vs-extracted markers (v16).** `a11y.provenance` and `semantics.provenance` are optional `"authored" | "extracted"` enums. Figma does not encode accessibility or element semantics, so a Button's `a11y`/`semantics` baseline is **authored**, never canvas-recovered — the marker makes that a machine-checkable fact on the artifact rather than an implied one (Honesty: no invented value passes unlabelled). Both are additive-optional; an absent marker means unmarked (legacy), and every existing contract still validates.
+
+## Vector assets (`assets/vectors/`, v18)
+
+`vectorAsset` is additive anatomy vocabulary for arbitrary SVG geometry whose source is governed as a file rather than copied as path data into a contract. It deliberately differs from `icon.asset`: its intrinsic `width` and `height` are independent, it is not registry-backed or assumed square, and a child may carry explicit `{ x, y }` coordinates through `position`.
+
+```jsonc
+"wordmark": {
+  "vectorAsset": {
+    "asset": "brand-wordmark",
+    "width": 145.67,
+    "height": 25.004,
+    "position": { "x": 34.33, "y": 5.96 }
+  },
+  "tokens": { "color": "{color.brand}" }
+}
+```
+
+Assets live at `assets/vectors/<asset>.svg`; the build refuses a missing asset by name. SVGs must be acquired from the source design, not redrawn. Dump v1.8 promotes a monochrome `VECTOR`, or a `GROUP` composed only of uniform-painted vector leaves, to a `vectorAsset` extraction record. `extract:figma` decodes and normalizes the captured bytes into `<out>/assets/vectors/`, writes `vector-assets.manifest.json` with deterministic SHA-256 hashes, and refuses mixed, non-solid, absent, or empty geometry. Use `--promote-assets` only after review to write the governed `assets/vectors/` directory; promotion refuses to overwrite differing files. The contract contains only the asset reference and geometry, never base64 or path data. The React/HTML/inline emitters inject the SVG, while the Figma emitter imports it through `createNodeFromSvg`, applies the declared non-square bounds, and rebinds a monochrome `currentColor` paint to the part's `color` token. The C5 fixture `vector-asset-figma-capture-proposes-external-geometry` pins capture, normalization, hashing, and proposal; the C3 fixture `vector-asset-non-square-token-bound` executes both generated React/Figma paths and requires drawable vector geometry in the mock.
 
 ## Icon Registry (`contracts/icons.registry.json`, v1.0.0+)
 

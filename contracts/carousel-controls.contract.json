@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.carousel-controls",
   "name": "CarouselControls",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -21,17 +21,28 @@
       "parts": {
         "prcdent": {
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "Précédent",
+            "props": {
+              "iconLeftGlyph": "chevron-left",
+              "iconRight": false,
+              "iconLeft": false,
+              "variant": "iconOnly"
+            }
           }
         },
         "Suivant": {
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "Suivant",
+            "props": {
+              "iconLeftGlyph": "chevron-right",
+              "iconRight": false,
+              "iconLeft": false,
+              "variant": "iconOnly"
+            }
           }
         }
-      },
-      "tokens": {
-        "font-family": "{font.family.montserrat}"
       }
     }
   },
@@ -40,7 +51,7 @@
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
       "componentSetKey": "f9cf66306491d239164a61b8a0ac6ba8d0de0238",
       "nodeId": "2077:2191",
-      "dumpedAt": "2026-07-27"
+      "dumpedAt": "2026-07-28"
     },
     "code": {
       "importPath": "src/components/CarouselControls",

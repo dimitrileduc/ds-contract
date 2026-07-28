@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "7999c63",
+    "gitCommit": "26ff7e1",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -103,8 +103,10 @@
       "--space-10",
       "--space-16",
       "--space-32",
+      "--size-button-icon-only",
       "--radius-32",
       "--border-width-0",
+      "--border-width-1",
       "--border-width-2",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
@@ -136,10 +138,10 @@
     {
       "id": "ds.accordion-row",
       "name": "AccordionRow",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray AccordionRow. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray AccordionRow. Visual and layout facts were extracted from the live Figma COMPONENT_SET on DS · Molécules after source cleanup; native button semantics, toggle behavior and ARIA association were added in reviewed code-side semantics behind evals. The live source intentionally keeps its documented Fermé/Ouvert structural asymmetry; the semantic trigger wrapper normalizes only the generated DOM while preserving the four measured geometries.",
       "figma": {
         "representation": "component",
         "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d"
@@ -159,17 +161,27 @@
             "ferme",
             "ouvert"
           ],
-          "default": "ferme"
+          "default": "ferme",
+          "description": "Controlled when supplied; otherwise each AccordionRow instance toggles independently between fermé and ouvert."
         },
         {
           "name": "titre",
           "type": "string",
-          "default": "Question"
+          "default": "Question",
+          "required": true
         },
         {
           "name": "contenu",
           "type": "string",
-          "default": "Réponse"
+          "default": "Réponse",
+          "required": true
+        }
+      ],
+      "events": [
+        {
+          "prop": "onToggle",
+          "type": "() => void",
+          "description": "Fires when the native trigger button is activated; uncontrolled rows flip independently between fermé and ouvert."
         }
       ],
       "children": {
@@ -180,10 +192,9 @@
     {
       "id": "ds.piqueray-logo",
       "name": "PiquerayLogo",
-      "version": "1.0.0",
+      "version": "0.1.0",
       "status": "draft",
-      "category": "atom",
-      "description": "Piqueray brand logo. Two color variants: default (orange brand mark, blue text) and white (all white) — the couleur prop switches both the mark fill and the text traces simultaneously. Extracted from the Figma COMPONENT_SET « PiquerayLogo » on DS · Atomes, reviewed and adopted — not authored.\n\nThe logo is a purely decorative brand element — no text content, no interaction, no a11y label beyond the img role. Anatomy carries the drawn structure: Marque (orange fill, bound to {color.orange}) and Texte (8 vector traces, blue fill switching to white on couleur=blanc via tokensByProp).",
+      "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
       "figma": {
         "representation": "component",
         "componentSetKey": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5"
@@ -195,8 +206,7 @@
             "default",
             "blanc"
           ],
-          "default": "default",
-          "description": "Color variant: default (orange mark + blue text) or white (all white for dark backgrounds). Extracted from the VARIANT property « Couleur » on the Figma master."
+          "default": "default"
         }
       ],
       "children": {
@@ -235,10 +245,10 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "1.5.2",
+      "version": "1.6.0",
       "status": "draft",
       "category": "atom",
-      "description": "Piqueray button. Six variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
+      "description": "Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
       "figma": {
         "representation": "component",
         "componentSetKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6"
@@ -252,7 +262,8 @@
             "blanc",
             "outlineBlanc",
             "link",
-            "outilneNoir"
+            "outilneNoir",
+            "iconOnly"
           ],
           "default": "default",
           "description": "Visual style of the button."
@@ -331,7 +342,7 @@
     {
       "id": "ds.carousel-controls",
       "name": "CarouselControls",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "status": "draft",
       "category": "molecule",
       "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
@@ -528,10 +539,10 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "draft",
       "category": "atom",
-      "description": "Piqueray member picture. A circular avatar placeholder with two states: default (visible) and hover (overlay shown). Extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant drives a visual overlay (opacity 1→0 between defaut/survol). Corner radius 500px via literals (circular crop — no token carries unitless border-radius values at this scale). Opacity transition is a Figma-internal layering technique; the contract models both states as drawn.",
+      "description": "Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius.\n\n† A5 technical placeholder: the source IMAGE pixels of funIa and normal are unavailable to the contract→canvas transport. Both layers therefore use the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma, and this contract makes no full inner-photo pixel-parity claim.",
       "figma": {
         "representation": "component",
         "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f"

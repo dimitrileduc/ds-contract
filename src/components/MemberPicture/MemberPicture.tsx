@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.0.0)
+ * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.0.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -12,9 +12,11 @@ export interface MemberPictureProps extends HTMLAttributes<HTMLDivElement> {
   etat?: 'defaut' | 'survol';
 }
 
-/** Piqueray member picture. A circular avatar placeholder with two states: default (visible) and hover (overlay shown). Extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.
+/** Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.
 
-The etat variant drives a visual overlay (opacity 1→0 between defaut/survol). Corner radius 500px via literals (circular crop — no token carries unitless border-radius values at this scale). Opacity transition is a Figma-internal layering technique; the contract models both states as drawn. */
+The etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius.
+
+† A5 technical placeholder: the source IMAGE pixels of funIa and normal are unavailable to the contract→canvas transport. Both layers therefore use the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma, and this contract makes no full inner-photo pixel-parity claim. */
 export const MemberPicture = forwardRef<HTMLDivElement, MemberPictureProps>(function MemberPicture(
   { etat = 'defaut', className, children, ...rest },
   ref,
@@ -22,8 +24,8 @@ export const MemberPicture = forwardRef<HTMLDivElement, MemberPictureProps>(func
   const classes = [styles.root, styles[`etat-${etat}`], className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} {...rest}>
-      <div className={styles.funIa}></div>
-      <div className={styles.normal}></div>
+      <img className={styles.funIa} alt=""></img>
+      <img className={styles.normal} alt=""></img>
     </div>
   );
 });

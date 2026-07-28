@@ -21,12 +21,28 @@
       "parts": {
         "prcdent": {
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "",
+            "props": {
+              "iconRightGlyph": "arrow-right",
+              "iconLeft": false,
+              "iconRight": false,
+              "iconLeftGlyph": "chevron-left",
+              "variant": "iconOnly"
+            }
           }
         },
         "Suivant": {
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "",
+            "props": {
+              "iconLeft": false,
+              "iconRightGlyph": "chevron-right",
+              "iconRight": false,
+              "iconLeftGlyph": "chevron-right",
+              "variant": "iconOnly"
+            }
           }
         }
       }

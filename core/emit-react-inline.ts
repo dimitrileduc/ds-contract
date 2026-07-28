@@ -200,7 +200,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       if (contract.semantics.element === 'button') s.cursor = 'pointer';
       if (
         walkAnatomy(contract).some(
-          (w) => w.part.overlay || (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute'),
+          (w) => w.part.overlay || w.part.vectorAsset?.position || (w.part.stylesWhen ?? []).some((sw) => sw.styles['position'] === 'absolute'),
         )
       ) {
         s.position = 'relative';
@@ -241,9 +241,14 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       if (Object.values(part.parts ?? {}).some((child) => isNativeCheckablePart(child))) {
         s.position = 'relative';
       }
-      if (part.icon) {
+      if (part.icon || part.vectorAsset) {
         s.display = 'inline-flex';
         s.flexShrink = 0;
+        if (part.vectorAsset?.position) {
+          s.position = 'absolute';
+          s.left = `${part.vectorAsset.position.x}px`;
+          s.top = `${part.vectorAsset.position.y}px`;
+        }
         if (part.element === 'button') {
           Object.assign(s, {
             alignItems: 'center', justifyContent: 'center', background: 'none',
@@ -545,12 +550,17 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     return out;
   };
 
-  const wrapVisibleWhen = (part: Part, jsx: string): string => {
-    if (!part.visibleWhen) return jsx;
-    const codeName = codePropOf(part.visibleWhen.prop);
-    const cond =
-      part.visibleWhen.equals !== undefined ? `${codeName} === '${part.visibleWhen.equals}'` : codeName;
-    return `{${cond} ? (${jsx}) : null}`;
+  const wrapPresence = (part: Part, jsx: string): string => {
+    if (part.visibleWhen) {
+      const codeName = codePropOf(part.visibleWhen.prop);
+      const cond = part.visibleWhen.equals !== undefined ? `${codeName} === '${part.visibleWhen.equals}'` : codeName;
+      return `{${cond} ? (${jsx}) : null}`;
+    }
+    if (part.hiddenWhen) {
+      const codeName = codePropOf(part.hiddenWhen.prop);
+      return `{${codeName} !== '${part.hiddenWhen.equals}' ? (${jsx}) : null}`;
+    }
+    return jsx;
   };
 
   const NUMERIC_ATTRS = new Set(['rows', 'cols', 'tabIndex', 'colSpan', 'rowSpan']);
@@ -564,9 +574,18 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       })
       .join('');
 
-  // Icon assets (fixed names + enum expansions), same table as the CSS-Module emitter.
+  // SVG assets (icons plus arbitrary governed vectors), same table as CSS Modules.
+  // Inline styles cannot target the injected <svg>, so dimensions are pinned
+  // on the root tag before it enters the generated source.
+  const vectorMarkup = (asset: string, width: number, height: number) =>
+    (ctx.icons.get(asset) ?? '')
+      .replace(/^(<svg\b[^>]*?)\swidth="[^"]*"/, `$1 width="${width}"`)
+      .replace(/^(<svg\b[^>]*?)\sheight="[^"]*"/, `$1 height="${height}"`)
+      .replace(/^<svg\b(?![^>]*\swidth=)/, `<svg width="${width}"`)
+      .replace(/^<svg\b(?![^>]*\sheight=)/, `<svg height="${height}"`);
   const neededIcons = new Map<string, string>();
   for (const { part } of walkAnatomy(contract)) {
+    if (part.vectorAsset) neededIcons.set(part.vectorAsset.asset, vectorMarkup(part.vectorAsset.asset, part.vectorAsset.width, part.vectorAsset.height));
     if (!part.icon) continue;
     const m = part.icon.asset.match(/^\{([a-z][\w-]*)\}$/);
     if (m) {
@@ -608,14 +627,21 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
   };
 
   const renderPart = (partName: string, part: Part): string => {
+    if (part.vectorAsset) {
+      const glyph = `dangerouslySetInnerHTML={{ __html: ICONS[${JSON.stringify(part.vectorAsset.asset)}] }}`;
+      return wrapPresence(part, `<span style=${styleExpr(partName, false, stylesWhenExprs(part))} aria-hidden="true" ${glyph} />`);
+    }
     if (part.icon) {
       const ref = part.icon.asset.match(/^\{([a-z][\w-]*)\}$/);
       const keyExpr = ref ? codePropOf(ref[1]) : JSON.stringify(part.icon.asset);
       const glyph = `dangerouslySetInnerHTML={{ __html: ICONS[${keyExpr}] }}`;
+      const hasAttrs = Object.keys(part.attrs ?? {}).length > 0;
       const node = part.element
         ? `<${part.element} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}${eventAttrsFor(partName, part, part.element)}><span aria-hidden="true" style={{ display: 'inline-flex' }} ${glyph} /></${part.element}>`
-        : `<span style=${styleExpr(partName, false, stylesWhenExprs(part))} aria-hidden="true" ${glyph} />`;
-      return wrapVisibleWhen(part, node);
+        : hasAttrs
+          ? `<span style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)} ${glyph} />`
+          : `<span style=${styleExpr(partName, false, stylesWhenExprs(part))} aria-hidden="true" ${glyph} />`;
+      return wrapPresence(part, node);
     }
     if (part.repeat && part.component) {
       // v12 repeat (P9): the inline surface renders the contract's OBSERVED
@@ -623,7 +649,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       // surface maps the live array) — a declared fidelity limit, named in
       // the emitted header comment (repeatNote).
       const dep = ctx.contracts.get(part.component.id)!;
-      return wrapVisibleWhen(
+      return wrapPresence(
         part,
         part.repeat.sample
           .map((rec) => {
@@ -663,21 +689,21 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       const el = part.element ?? 'div';
       const expr = part.slot.name === 'children' ? 'children' : part.slot.name;
       const node = `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}>{${expr}}</${el}>`;
-      return part.optional ? `{${expr} != null ? ${node} : null}` : wrapVisibleWhen(part, node);
+      return part.optional ? `{${expr} != null ? ${node} : null}` : wrapPresence(part, node);
     }
     if (part.content) {
       const el = part.element ?? 'span';
       const prop = contract.props.find(
         (p) => p.type === 'text' && p.bindings.code.prop === part.content!.prop,
       )!;
-      return wrapVisibleWhen(
+      return wrapPresence(
         part,
         `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>{${prop.bindings.code.prop}}</${el}>`,
       );
     }
     if (part.text !== undefined) {
       const el = part.element ?? 'span';
-      return wrapVisibleWhen(
+      return wrapPresence(
         part,
         `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}>${part.text}</${el}>`,
       );
@@ -685,7 +711,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     if (part.meter) {
       const v = codePropOf(part.meter.valueProp);
       const m = codePropOf(part.meter.maxProp);
-      return wrapVisibleWhen(
+      return wrapPresence(
         part,
         `<div style=${styleExpr(partName, false, [`width: \`\${Math.min(100, Math.max(0, (${v} / ${m}) * 100))}%\``])} />`,
       );
@@ -694,7 +720,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     const inner = Object.entries(part.parts ?? {})
       .map(([childName, child]) => renderPart(childName, child))
       .join('\n');
-    return wrapVisibleWhen(
+    return wrapPresence(
       part,
       `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
     );

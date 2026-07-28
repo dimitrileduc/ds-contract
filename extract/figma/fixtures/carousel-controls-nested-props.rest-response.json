@@ -1,0 +1,67 @@
+{
+  "name": "Piqueray nested-props fixture",
+  "nodes": {
+    "2077:2191": {
+      "document": {
+        "id": "2077:2191",
+        "name": "CarouselControls",
+        "type": "COMPONENT",
+        "layoutMode": "HORIZONTAL",
+        "primaryAxisAlignItems": "SPACE_BETWEEN",
+        "counterAxisAlignItems": "CENTER",
+        "primaryAxisSizingMode": "FIXED",
+        "counterAxisSizingMode": "AUTO",
+        "itemSpacing": 0,
+        "paddingTop": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "absoluteBoundingBox": { "x": 0, "y": 0, "width": 1604, "height": 52 },
+        "children": [
+          {
+            "id": "2077:2206",
+            "name": "Precedent",
+            "type": "INSTANCE",
+            "componentId": "2238:4417",
+            "absoluteBoundingBox": { "x": 0, "y": 0, "width": 52, "height": 52 },
+            "componentProperties": {
+              "Libelle#2044:28": { "type": "TEXT", "value": "" },
+              "Icone droite#2024:7": { "type": "BOOLEAN", "value": false },
+              "Icone gauche#2024:0": { "type": "BOOLEAN", "value": true },
+              "Glyphe gauche#2028:14": { "type": "INSTANCE_SWAP", "value": "27:83" },
+              "Glyphe droite#2028:21": { "type": "INSTANCE_SWAP", "value": "6:104" },
+              "Style": { "type": "VARIANT", "value": "Icône seule" }
+            }
+          },
+          {
+            "id": "2077:2213",
+            "name": "Suivant",
+            "type": "INSTANCE",
+            "componentId": "2238:4417",
+            "absoluteBoundingBox": { "x": 1552, "y": 0, "width": 52, "height": 52 },
+            "componentProperties": {
+              "Libelle#2044:28": { "type": "TEXT", "value": "" },
+              "Icone droite#2024:7": { "type": "BOOLEAN", "value": true },
+              "Icone gauche#2024:0": { "type": "BOOLEAN", "value": false },
+              "Glyphe gauche#2028:14": { "type": "INSTANCE_SWAP", "value": "6:99" },
+              "Glyphe droite#2028:21": { "type": "INSTANCE_SWAP", "value": "27:86" },
+              "Style": { "type": "VARIANT", "value": "Icône seule" }
+            }
+          }
+        ]
+      },
+      "components": {
+        "2077:2191": { "name": "CarouselControls", "key": "f9cf66306491d239164a61b8a0ac6ba8d0de0238" },
+        "2238:4417": { "name": "Style=Icône seule", "componentSetId": "6:122", "key": "4be192ca5db4c45bec2fd8b852681d4abaf0b5a1" },
+        "27:83": { "name": "ChevronLeft", "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d" },
+        "27:86": { "name": "ChevronRight", "key": "8825e487906a06701e6e87987c10bb1e4195bb1b" },
+        "6:99": { "name": "ArrowLeft", "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5" },
+        "6:104": { "name": "ArrowRight", "key": "4583f5973482fbd560e3a81035d3225b04410045" }
+      },
+      "componentSets": {
+        "6:122": { "name": "Bouton", "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6" }
+      },
+      "styles": {}
+    }
+  }
+}

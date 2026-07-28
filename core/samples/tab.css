@@ -1,0 +1,21 @@
+/* Tab — from ds.tab v1.0.0 (core/emit-html.ts) */
+
+.tab, .tab *, .tab *::before, .tab *::after {
+  box-sizing: border-box;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+}
+
+.tab__libell {
+  color: var(--color-noir-bleute);
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

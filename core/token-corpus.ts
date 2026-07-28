@@ -36,6 +36,9 @@ export interface TokenCorpus {
    *  exactly as the generator derives them. */
   textStyles: DerivedTextStyle[];
   textStyleByName: Map<string, DerivedTextStyle>;
+  /** First rendered family name → token path (case-insensitive). Figma stores
+   *  one family while code tokens may include a fallback stack. */
+  fontFamilyPathByName: Map<string, string>;
   /** Nearest-token suggestions for a raw canvas value (hex color or number),
    *  semantic paths first. For the unbound-value report only. */
   suggestFor(raw: string | number): string[];
@@ -89,6 +92,18 @@ export function tokenCorpusFromJson(input: TokenCorpusInput): TokenCorpus {
   }
   textStyles.sort((a, b) => a.name.localeCompare(b.name));
 
+  const fontFamilyPathByName = new Map<string, string>();
+  for (const layer of [primitives, semantic, light]) {
+    for (const [p, entry] of layer) {
+      if (entry.type !== 'fontFamily') continue;
+      let value: unknown;
+      try { value = resolveLiteral(p); } catch { continue; }
+      if (typeof value !== 'string') continue;
+      const firstFamily = value.split(',')[0].trim().replace(/^['"]|['"]$/g, '').toLowerCase();
+      if (firstFamily && !fontFamilyPathByName.has(firstFamily)) fontFamilyPathByName.set(firstFamily, p);
+    }
+  }
+
   // Value index: literal → candidate token paths (semantic + mode layers
   // first — those are what a contract would bind — then primitives).
   const byValue = new Map<string, string[]>();
@@ -124,6 +139,7 @@ export function tokenCorpusFromJson(input: TokenCorpusInput): TokenCorpus {
     has: (p) => all.has(p),
     textStyles,
     textStyleByName: new Map(textStyles.map((t) => [t.name, t])),
+    fontFamilyPathByName,
     suggestFor: (raw) => byValue.get(norm(raw) ?? '') ?? [],
   };
 }

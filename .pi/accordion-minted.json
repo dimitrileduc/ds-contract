@@ -1,0 +1,598 @@
+{
+  "setName": "AccordionRow",
+  "contract": {
+    "$schema": "./contract.schema.json",
+    "id": "ds.accordion-row",
+    "name": "AccordionRow",
+    "version": "0.1.0",
+    "status": "draft",
+    "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+    "semantics": {
+      "element": "div"
+    },
+    "props": [
+      {
+        "name": "taille",
+        "type": {
+          "enum": [
+            "grand",
+            "petit"
+          ]
+        },
+        "default": "grand",
+        "bindings": {
+          "figma": {
+            "kind": "VARIANT",
+            "property": "Taille",
+            "values": {
+              "grand": "Grand",
+              "petit": "Petit"
+            }
+          },
+          "code": {
+            "prop": "taille"
+          }
+        }
+      },
+      {
+        "name": "etat",
+        "type": {
+          "enum": [
+            "ferme",
+            "ouvert"
+          ]
+        },
+        "default": "ferme",
+        "bindings": {
+          "figma": {
+            "kind": "VARIANT",
+            "property": "Etat",
+            "values": {
+              "ferme": "Ferme",
+              "ouvert": "Ouvert"
+            }
+          },
+          "code": {
+            "prop": "etat"
+          }
+        }
+      },
+      {
+        "name": "titre",
+        "type": "text",
+        "default": "Question",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Titre"
+          },
+          "code": {
+            "prop": "titre"
+          }
+        }
+      },
+      {
+        "name": "contenu",
+        "type": "text",
+        "default": "Réponse",
+        "bindings": {
+          "figma": {
+            "kind": "TEXT",
+            "property": "Contenu"
+          },
+          "code": {
+            "prop": "contenu"
+          }
+        }
+      }
+    ],
+    "states": [],
+    "anatomy": {
+      "root": {
+        "layout": {
+          "display": "flex",
+          "direction": "row",
+          "justify": "space-between",
+          "align": "center"
+        },
+        "layoutByProp": {
+          "prop": "etat",
+          "map": {
+            "ouvert": {
+              "direction": "column",
+              "justify": "start",
+              "align": "stretch"
+            }
+          }
+        },
+        "parts": {
+          "title": {
+            "layout": {
+              "direction": "row",
+              "justify": "space-between",
+              "align": "center",
+              "grow": true
+            },
+            "parts": {
+              "TitreOuvert": {
+                "content": {
+                  "prop": "titre"
+                },
+                "tokens": {
+                  "color": "{color.noir-bleute}",
+                  "font-size": "{imported.accordion-row.title-titre-ouvert.font-size.{taille}}",
+                  "font-weight": "{imported.accordion-row.title-titre-ouvert.font-weight.{taille}}",
+                  "line-height": "{imported.accordion-row.title-titre-ouvert.line-height.{taille}}"
+                },
+                "visibleWhen": {
+                  "prop": "etat",
+                  "equals": "ouvert"
+                }
+              },
+              "ChevronUp": {
+                "component": {
+                  "id": "ds.chevron-up"
+                },
+                "visibleWhen": {
+                  "prop": "etat",
+                  "equals": "ouvert"
+                }
+              }
+            },
+            "visibleWhen": {
+              "prop": "etat",
+              "equals": "ouvert"
+            }
+          },
+          "Contenu": {
+            "content": {
+              "prop": "contenu"
+            },
+            "tokens": {
+              "color": "{color.noir-bleute}",
+              "font-size": "{imported.accordion-row.contenu.font-size}",
+              "font-weight": "{imported.accordion-row.contenu.font-weight}",
+              "line-height": "{imported.accordion-row.contenu.line-height}"
+            },
+            "visibleWhen": {
+              "prop": "etat",
+              "equals": "ouvert"
+            }
+          },
+          "Titre": {
+            "content": {
+              "prop": "titre"
+            },
+            "tokens": {
+              "color": "{color.noir-bleute}",
+              "font-size": "{imported.accordion-row.titre.font-size.{taille}}",
+              "font-weight": "{imported.accordion-row.titre.font-weight.{taille}}",
+              "line-height": "{imported.accordion-row.titre.line-height.{taille}}"
+            },
+            "visibleWhen": {
+              "prop": "etat",
+              "equals": "ferme"
+            }
+          },
+          "ChevronDown": {
+            "component": {
+              "id": "ds.chevron-down"
+            },
+            "visibleWhen": {
+              "prop": "etat",
+              "equals": "ferme"
+            }
+          }
+        },
+        "tokensByProp": {
+          "prop": "taille",
+          "map": {
+            "petit": {
+              "border-color": "{color.noir-bleute}"
+            }
+          }
+        },
+        "tokens": {
+          "border-color": "{color.noir-pur}",
+          "border-bottom-width": "{border-width.1}",
+          "gap": "{imported.accordion-row.root.gap.{taille}.{etat}}",
+          "padding-block": "{imported.accordion-row.root.padding-block.{taille}}",
+          "width": "{imported.accordion-row.root.width}"
+        }
+      }
+    },
+    "anchors": {
+      "figma": {
+        "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+        "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
+        "nodeId": "2059:1417"
+      },
+      "code": {
+        "importPath": "src/components/AccordionRow",
+        "export": "AccordionRow"
+      }
+    }
+  },
+  "notes": [
+    "semantics.element defaulted to \"div\" — element/role/ARIA are not drawn on the canvas and the name/axis inference table matched nothing; set the real host element",
+    "AccordionRow:root: auto-layout differs across variants as a function of axis \"Etat\" — proposed layoutByProp on `etat` (1 override(s); reversed child order spelled as -reverse directions)",
+    "AccordionRow:root stroke: paint opacity 0.32156863808631897 rides the bound variable \"color/noir-bleute\" — alpha is not representable on a token ref; binding proposed at full opacity, review",
+    "AccordionRow:root border-color: bindings are a function of variant axis \"taille\" by VALUE (default grand={color.noir-pur}; petit={color.noir-bleute}) — carried as tokensByProp overrides (v10; the token names do not spell the axis values, so the substituted-ref shape cannot carry them)",
+    "AccordionRow:root/title/TitreOuvert: typography varies across variants (fontSize 20/14, weight SemiBold/Bold) — no single text-style identity adopted (the first variant's value would be wrong for the others); font-size minted per variant where axis-correlated; font-weight minted per variant through the weight-name table where every name maps (unknown names stay NAMED) (review)",
+    "AccordionRow:root/title/ChevronUp: nested instance of \"ChevronUp\" has no known contract — component ref proposed as \"ds.chevron-up\" with a STUB child contract auto-proposed alongside (childStubs; API from observed applied values only, anatomy not captured — import the real child set to replace it)",
+    "AccordionRow:root/title/ChevronUp: fixed prop values of the nested \"ChevronUp\" instance are not captured in dump v1 — declared fidelity limit, author them if the instance is configured",
+    "AccordionRow:root/Contenu: rides text style \"Paragraphe\" which is not a token-derived style — typography not proposed",
+    "AccordionRow:root/Titre: typography varies across variants (fontSize 20/14, weight SemiBold/Bold) — no single text-style identity adopted (the first variant's value would be wrong for the others); font-size minted per variant where axis-correlated; font-weight minted per variant through the weight-name table where every name maps (unknown names stay NAMED) (review)",
+    "AccordionRow:root/ChevronDown: nested instance of \"ChevronDown\" has no known contract — component ref proposed as \"ds.chevron-down\" with a STUB child contract auto-proposed alongside (childStubs; API from observed applied values only, anatomy not captured — import the real child set to replace it)",
+    "AccordionRow:root/ChevronDown: fixed prop values of the nested \"ChevronDown\" instance are not captured in dump v1 — declared fidelity limit, author them if the instance is configured",
+    "AccordionRow:root: root width is DRAWN FIXED in every variant — the observed dimension (1550px, dump v1.5 bbox) is proposed as a minted root token (the drawn value is the only witness; rename against your real tokens)",
+    "prop `taille`: two-value axis [Grand, Petit] kept as an ENUM (both states render truthfully on both surfaces); a code boolean is a compatible code-side binding — see extract/reconcile.ts bool⇄axis treatment",
+    "prop `etat`: two-value axis [Ferme, Ouvert] kept as an ENUM (both states render truthfully on both surfaces); a code boolean is a compatible code-side binding — see extract/reconcile.ts bool⇄axis treatment",
+    "MINTED {imported.accordion-row.root.gap.grand.ferme} = 24px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root gap (taille=grand, etat=ferme)",
+    "MINTED {imported.accordion-row.root.gap.petit.ferme} = 24px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root gap (taille=petit, etat=ferme)",
+    "MINTED {imported.accordion-row.root.gap.grand.ouvert} = 24px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root gap (taille=grand, etat=ouvert)",
+    "MINTED {imported.accordion-row.root.gap.petit.ouvert} = 8px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root gap (taille=petit, etat=ouvert)",
+    "MINTED {imported.accordion-row.root.padding-block.grand} = 16px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root padding-block (taille=grand)",
+    "MINTED {imported.accordion-row.root.padding-block.petit} = 8px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root padding-block (taille=petit)",
+    "MINTED {imported.accordion-row.title-titre-ouvert.font-size.grand} = 20px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/title/TitreOuvert font-size (taille=grand)",
+    "MINTED {imported.accordion-row.title-titre-ouvert.font-size.petit} = 14px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/title/TitreOuvert font-size (taille=petit)",
+    "MINTED {imported.accordion-row.title-titre-ouvert.font-weight.grand} = 600 — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/title/TitreOuvert font-weight (taille=grand)",
+    "MINTED {imported.accordion-row.title-titre-ouvert.font-weight.petit} = 700 — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/title/TitreOuvert font-weight (taille=petit)",
+    "MINTED {imported.accordion-row.title-titre-ouvert.line-height.grand} = 25px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/title/TitreOuvert line-height (taille=grand)",
+    "MINTED {imported.accordion-row.title-titre-ouvert.line-height.petit} = 24px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/title/TitreOuvert line-height (taille=petit)",
+    "MINTED {imported.accordion-row.contenu.font-size} = 14px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Contenu font-size",
+    "MINTED {imported.accordion-row.contenu.font-weight} = 400 — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Contenu font-weight",
+    "MINTED {imported.accordion-row.contenu.line-height} = 24px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Contenu line-height",
+    "MINTED {imported.accordion-row.titre.font-size.grand} = 20px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Titre font-size (taille=grand)",
+    "MINTED {imported.accordion-row.titre.font-size.petit} = 14px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Titre font-size (taille=petit)",
+    "MINTED {imported.accordion-row.titre.font-weight.grand} = 600 — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Titre font-weight (taille=grand)",
+    "MINTED {imported.accordion-row.titre.font-weight.petit} = 700 — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Titre font-weight (taille=petit)",
+    "MINTED {imported.accordion-row.titre.line-height.grand} = 25px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Titre line-height (taille=grand)",
+    "MINTED {imported.accordion-row.titre.line-height.petit} = 24px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root/Titre line-height (taille=petit)",
+    "MINTED {imported.accordion-row.root.width} = 1550px — machine-named from a resolved value — rename against your real tokens (provisional); bound at: AccordionRow:root width",
+    "stub ds.chevron-up width: resolved values differ across variants without correlating to any variant axis (or axis pair/triple) — nothing minted; bind manually",
+    "stub ds.chevron-up height: resolved values differ across variants without correlating to any variant axis (or axis pair/triple) — nothing minted; bind manually",
+    "stub ds.chevron-down width: resolved values differ across variants without correlating to any variant axis (or axis pair/triple) — nothing minted; bind manually",
+    "stub ds.chevron-down height: resolved values differ across variants without correlating to any variant axis (or axis pair/triple) — nothing minted; bind manually"
+  ],
+  "unbound": [],
+  "mintedTokens": {
+    "tree": {
+      "imported": {
+        "accordion-row": {
+          "root": {
+            "gap": {
+              "grand": {
+                "ferme": {
+                  "$value": "24px",
+                  "$type": "dimension"
+                },
+                "ouvert": {
+                  "$value": "24px",
+                  "$type": "dimension"
+                }
+              },
+              "petit": {
+                "ferme": {
+                  "$value": "24px",
+                  "$type": "dimension"
+                },
+                "ouvert": {
+                  "$value": "8px",
+                  "$type": "dimension"
+                }
+              }
+            },
+            "padding-block": {
+              "grand": {
+                "$value": "16px",
+                "$type": "dimension"
+              },
+              "petit": {
+                "$value": "8px",
+                "$type": "dimension"
+              }
+            },
+            "width": {
+              "$value": "1550px",
+              "$type": "dimension"
+            }
+          },
+          "title-titre-ouvert": {
+            "font-size": {
+              "grand": {
+                "$value": "20px",
+                "$type": "dimension"
+              },
+              "petit": {
+                "$value": "14px",
+                "$type": "dimension"
+              }
+            },
+            "font-weight": {
+              "grand": {
+                "$value": "600",
+                "$type": "number"
+              },
+              "petit": {
+                "$value": "700",
+                "$type": "number"
+              }
+            },
+            "line-height": {
+              "grand": {
+                "$value": "25px",
+                "$type": "dimension"
+              },
+              "petit": {
+                "$value": "24px",
+                "$type": "dimension"
+              }
+            }
+          },
+          "contenu": {
+            "font-size": {
+              "$value": "14px",
+              "$type": "dimension"
+            },
+            "font-weight": {
+              "$value": "400",
+              "$type": "number"
+            },
+            "line-height": {
+              "$value": "24px",
+              "$type": "dimension"
+            }
+          },
+          "titre": {
+            "font-size": {
+              "grand": {
+                "$value": "20px",
+                "$type": "dimension"
+              },
+              "petit": {
+                "$value": "14px",
+                "$type": "dimension"
+              }
+            },
+            "font-weight": {
+              "grand": {
+                "$value": "600",
+                "$type": "number"
+              },
+              "petit": {
+                "$value": "700",
+                "$type": "number"
+              }
+            },
+            "line-height": {
+              "grand": {
+                "$value": "25px",
+                "$type": "dimension"
+              },
+              "petit": {
+                "$value": "24px",
+                "$type": "dimension"
+              }
+            }
+          }
+        }
+      }
+    },
+    "count": 22,
+    "entries": [
+      {
+        "ref": "{imported.accordion-row.root.gap.grand.ferme}",
+        "value": "24px",
+        "usageSites": [
+          "AccordionRow:root gap (taille=grand, etat=ferme)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.root.gap.petit.ferme}",
+        "value": "24px",
+        "usageSites": [
+          "AccordionRow:root gap (taille=petit, etat=ferme)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.root.gap.grand.ouvert}",
+        "value": "24px",
+        "usageSites": [
+          "AccordionRow:root gap (taille=grand, etat=ouvert)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.root.gap.petit.ouvert}",
+        "value": "8px",
+        "usageSites": [
+          "AccordionRow:root gap (taille=petit, etat=ouvert)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.root.padding-block.grand}",
+        "value": "16px",
+        "usageSites": [
+          "AccordionRow:root padding-block (taille=grand)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.root.padding-block.petit}",
+        "value": "8px",
+        "usageSites": [
+          "AccordionRow:root padding-block (taille=petit)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.title-titre-ouvert.font-size.grand}",
+        "value": "20px",
+        "usageSites": [
+          "AccordionRow:root/title/TitreOuvert font-size (taille=grand)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.title-titre-ouvert.font-size.petit}",
+        "value": "14px",
+        "usageSites": [
+          "AccordionRow:root/title/TitreOuvert font-size (taille=petit)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.title-titre-ouvert.font-weight.grand}",
+        "value": "600",
+        "usageSites": [
+          "AccordionRow:root/title/TitreOuvert font-weight (taille=grand)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.title-titre-ouvert.font-weight.petit}",
+        "value": "700",
+        "usageSites": [
+          "AccordionRow:root/title/TitreOuvert font-weight (taille=petit)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.title-titre-ouvert.line-height.grand}",
+        "value": "25px",
+        "usageSites": [
+          "AccordionRow:root/title/TitreOuvert line-height (taille=grand)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.title-titre-ouvert.line-height.petit}",
+        "value": "24px",
+        "usageSites": [
+          "AccordionRow:root/title/TitreOuvert line-height (taille=petit)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.contenu.font-size}",
+        "value": "14px",
+        "usageSites": [
+          "AccordionRow:root/Contenu font-size"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.contenu.font-weight}",
+        "value": "400",
+        "usageSites": [
+          "AccordionRow:root/Contenu font-weight"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.contenu.line-height}",
+        "value": "24px",
+        "usageSites": [
+          "AccordionRow:root/Contenu line-height"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.titre.font-size.grand}",
+        "value": "20px",
+        "usageSites": [
+          "AccordionRow:root/Titre font-size (taille=grand)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.titre.font-size.petit}",
+        "value": "14px",
+        "usageSites": [
+          "AccordionRow:root/Titre font-size (taille=petit)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.titre.font-weight.grand}",
+        "value": "600",
+        "usageSites": [
+          "AccordionRow:root/Titre font-weight (taille=grand)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.titre.font-weight.petit}",
+        "value": "700",
+        "usageSites": [
+          "AccordionRow:root/Titre font-weight (taille=petit)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.titre.line-height.grand}",
+        "value": "25px",
+        "usageSites": [
+          "AccordionRow:root/Titre line-height (taille=grand)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.titre.line-height.petit}",
+        "value": "24px",
+        "usageSites": [
+          "AccordionRow:root/Titre line-height (taille=petit)"
+        ]
+      },
+      {
+        "ref": "{imported.accordion-row.root.width}",
+        "value": "1550px",
+        "usageSites": [
+          "AccordionRow:root width"
+        ]
+      }
+    ]
+  },
+  "childStubs": [
+    {
+      "$schema": "./contract.schema.json",
+      "id": "ds.chevron-up",
+      "name": "ChevronUp",
+      "version": "0.1.0",
+      "status": "draft",
+      "description": "STUB contract auto-proposed for the nested \"ChevronUp\" instances of AccordionRow — the child set was not imported. Props are the observed applied values ONLY; anatomy and styling are NOT captured (dump v1 stops at instance boundaries). Import the child set to replace this stub.",
+      "semantics": {
+        "element": "span"
+      },
+      "props": [],
+      "states": [],
+      "anatomy": {
+        "root": {
+          "parts": {}
+        }
+      },
+      "anchors": {
+        "figma": {
+          "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+          "componentSetKey": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+        },
+        "code": {
+          "importPath": "src/components/ChevronUp",
+          "export": "ChevronUp"
+        }
+      }
+    },
+    {
+      "$schema": "./contract.schema.json",
+      "id": "ds.chevron-down",
+      "name": "ChevronDown",
+      "version": "0.1.0",
+      "status": "draft",
+      "description": "STUB contract auto-proposed for the nested \"ChevronDown\" instances of AccordionRow — the child set was not imported. Props are the observed applied values ONLY; anatomy and styling are NOT captured (dump v1 stops at instance boundaries). Import the child set to replace this stub.",
+      "semantics": {
+        "element": "span"
+      },
+      "props": [],
+      "states": [],
+      "anatomy": {
+        "root": {
+          "parts": {}
+        }
+      },
+      "anchors": {
+        "figma": {
+          "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+          "componentSetKey": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+        },
+        "code": {
+          "importPath": "src/components/ChevronDown",
+          "export": "ChevronDown"
+        }
+      }
+    }
+  ]
+}

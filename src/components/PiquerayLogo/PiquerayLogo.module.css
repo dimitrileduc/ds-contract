@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v1.0.0)
+ * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v0.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -8,77 +8,39 @@
   align-items: center;
   justify-content: center;
   border: 0;
-  font-family: var(--font-family-montserrat);
+  position: relative;
+  width: 180px;
+  height: 34px;
+}
+
+.Marque svg {
+  width: 25.96292495727539px;
+  height: 34px;
 }
 
 .Marque {
-  background-color: var(--color-orange);
+  display: inline-flex;
+  flex-shrink: 0;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: var(--color-orange);
 }
 
-.Texte {
-  display: flex;
+.Wordmark svg {
+  width: 145.67019653320312px;
+  height: 25.00434112548828px;
 }
 
-.trac {
-  background-color: var(--color-bleu);
+.Wordmark {
+  display: inline-flex;
+  flex-shrink: 0;
+  position: absolute;
+  left: 34.329803466796875px;
+  top: 5.959875106811523px;
+  color: var(--color-bleu);
 }
 
-.couleur-blanc .trac {
-  background-color: var(--color-blanc);
-}
-
-.trac2 {
-  background-color: var(--color-bleu);
-}
-
-.couleur-blanc .trac2 {
-  background-color: var(--color-blanc);
-}
-
-.trac3 {
-  background-color: var(--color-bleu);
-}
-
-.couleur-blanc .trac3 {
-  background-color: var(--color-blanc);
-}
-
-.trac4 {
-  background-color: var(--color-bleu);
-}
-
-.couleur-blanc .trac4 {
-  background-color: var(--color-blanc);
-}
-
-.trac5 {
-  background-color: var(--color-bleu);
-}
-
-.couleur-blanc .trac5 {
-  background-color: var(--color-blanc);
-}
-
-.trac6 {
-  background-color: var(--color-bleu);
-}
-
-.couleur-blanc .trac6 {
-  background-color: var(--color-blanc);
-}
-
-.trac7 {
-  background-color: var(--color-bleu);
-}
-
-.couleur-blanc .trac7 {
-  background-color: var(--color-blanc);
-}
-
-.trac8 {
-  background-color: var(--color-bleu);
-}
-
-.couleur-blanc .trac8 {
-  background-color: var(--color-blanc);
+.couleur-blanc .Wordmark {
+  color: var(--color-blanc);
 }

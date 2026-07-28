@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.5.2)
+ * Source of truth: contracts/button.contract.json (ds.button v1.6.0)
  * Regenerate with: npm run generate
  */
 
@@ -66,6 +66,16 @@
   color: var(--color-noir-bleute);
 }
 
+.variant-iconOnly {
+  width: var(--size-button-icon-only);
+  height: var(--size-button-icon-only);
+  gap: var(--space-0);
+  padding-inline: var(--space-16);
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
 .iconLeft svg {
   width: 20px;
   height: 20px;
@@ -74,6 +84,20 @@
 .iconLeft {
   display: inline-flex;
   flex-shrink: 0;
+}
+
+.iconOnlyIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.iconOnlyIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.variant-iconOnly .label {
+  display: none;
 }
 
 .iconRight svg {

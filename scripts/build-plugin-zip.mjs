@@ -132,11 +132,17 @@ function collectEngineData() {
     .filter((f) => f.endsWith('.contract.json'))
     .sort()
     .map((f) => readJson(`contracts/${f}`));
+  // Icons and arbitrary vector assets share the SVG interpreter but retain
+  // distinct source directories and contract semantics.
   const icons = Object.fromEntries(
-    readdirSync(join(repoRoot, 'assets', 'icons'))
-      .filter((f) => f.endsWith('.svg'))
-      .sort()
-      .map((f) => [f.replace(/\.svg$/, ''), readFileSync(join(repoRoot, 'assets', 'icons', f), 'utf8')]),
+    ['icons', 'vectors'].flatMap((subdir) => {
+      const dir = join(repoRoot, 'assets', subdir);
+      if (!existsSync(dir)) return [];
+      return readdirSync(dir)
+        .filter((f) => f.endsWith('.svg'))
+        .sort()
+        .map((f) => [f.replace(/\.svg$/, ''), readFileSync(join(dir, f), 'utf8')]);
+    }),
   );
   return {
     tokens: {

@@ -1,10 +1,10 @@
 {
   "id": "ds.accordion-row",
   "name": "AccordionRow",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "draft",
   "category": "molecule",
-  "description": "Piqueray AccordionRow. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray AccordionRow. Visual and layout facts were extracted from the live Figma COMPONENT_SET on DS · Molécules after source cleanup; native button semantics, toggle behavior and ARIA association were added in reviewed code-side semantics behind evals. The live source intentionally keeps its documented Fermé/Ouvert structural asymmetry; the semantic trigger wrapper normalizes only the generated DOM while preserving the four measured geometries.",
   "figma": {
     "representation": "component",
     "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d"
@@ -24,17 +24,27 @@
         "ferme",
         "ouvert"
       ],
-      "default": "ferme"
+      "default": "ferme",
+      "description": "Controlled when supplied; otherwise each AccordionRow instance toggles independently between fermé and ouvert."
     },
     {
       "name": "titre",
       "type": "string",
-      "default": "Question"
+      "default": "Question",
+      "required": true
     },
     {
       "name": "contenu",
       "type": "string",
-      "default": "Réponse"
+      "default": "Réponse",
+      "required": true
+    }
+  ],
+  "events": [
+    {
+      "prop": "onToggle",
+      "type": "() => void",
+      "description": "Fires when the native trigger button is activated; uncontrolled rows flip independently between fermé and ouvert."
     }
   ],
   "children": {

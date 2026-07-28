@@ -44,6 +44,8 @@ export interface GenerateComponentsOptions {
   tokenFiles?: string[];
   /** Directory of <name>.svg icon assets. */
   iconsDir?: string;
+  /** Directory of arbitrary governed SVG vector assets (default: sibling vectors/). */
+  vectorsDir?: string;
   /** Path to the icon registry document (default: <contractsDir>/icons.registry.json). Optional — absent means no governed icons yet. */
   iconRegistryPath?: string;
   /** Output root — one directory per component is written under it. */
@@ -75,15 +77,12 @@ const defaultTokenFiles = (root: string) =>
 
 /** Icon assets are SOURCE (like tokens): <iconsDir>/<name>.svg, inlined by
  *  the generator on the code side and rendered as vectors in Figma. */
-function loadIconAssets(iconsDir: string): Map<string, string> {
+function loadSvgAssets(dir: string): Map<string, string> {
   try {
     return new Map(
-      readdirSync(iconsDir)
+      readdirSync(dir)
         .filter((f) => f.endsWith('.svg'))
-        .map((f) => [
-          f.replace(/\.svg$/, ''),
-          readFileSync(path.join(iconsDir, f), 'utf8').trim(),
-        ]),
+        .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(dir, f), 'utf8').trim()]),
     );
   } catch {
     return new Map();
@@ -158,7 +157,12 @@ export async function generateComponents(
   const outDir = options.outDir ?? path.join(root, 'src', 'components');
   const stories = options.stories ?? true;
   const tokenInventory = loadTokenInventory(options.tokenFiles ?? defaultTokenFiles(root));
-  const iconAssets = loadIconAssets(options.iconsDir ?? path.join(root, 'assets', 'icons'));
+  const iconsDir = options.iconsDir ?? path.join(root, 'assets', 'icons');
+  const iconAssets = loadSvgAssets(iconsDir);
+  // Vector assets deliberately have their own source directory: they reuse
+  // the SVG runtime, never the icon registry's square/decorative semantics.
+  const vectorAssets = loadSvgAssets(options.vectorsDir ?? path.join(path.dirname(iconsDir), 'vectors'));
+  const svgAssets = new Map([...iconAssets, ...vectorAssets]);
   const contractFiles =
     options.contractFiles ??
     readdirSync(contractsDir)
@@ -222,7 +226,7 @@ export async function generateComponents(
   }
 
   for (const contract of ordered) {
-    validateContract(contract, byId, errors, iconAssets);
+    validateContract(contract, byId, errors, svgAssets);
     if (errors.length > 0 && errors.some((e) => e.startsWith(contract.id))) continue;
 
     const css = generateCss(contract, tokenInventory, errors);
@@ -234,7 +238,7 @@ export async function generateComponents(
     writeFileSync(path.join(dir, `${contract.name}.module.css`), await formatCss(css));
     writeFileSync(
       path.join(dir, `${contract.name}.tsx`),
-      await formatTsx(generateTsx(contract, byId, iconAssets)),
+      await formatTsx(generateTsx(contract, byId, svgAssets))
     );
     if (stories) {
       writeFileSync(

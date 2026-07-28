@@ -38,7 +38,8 @@
  *   node.styles.text → styles metadata map          text.style (name), else omitted + degradation
  *   componentPropertyReferences ("Label#1:0")       propRefs { kind: name-without-#suffix }
  *   componentId → components/componentSets maps     instanceOf (owning set name, else component name)
- *   componentProperties (non-INSTANCE_SWAP)         componentProperties (dump v1.1, additive)
+ *   componentProperties                             componentProperties (dump v1.1, additive;
+ *                                                   INSTANCE_SWAP ids resolve to selected component names)
  *   REGULAR_POLYGON | ELLIPSE | rotated RECTANGLE   shape (dump v1.3, #42 — kind, intrinsic size, CSS-degrees rotation,
  *     + absoluteBoundingBox/rotation/constraints      ABSOLUTE placement offsets vs the parent box); VECTOR/STAR/LINE/
  *                                                     BOOLEAN_OPERATION stay named receipts (arbitrary paths)
@@ -92,6 +93,7 @@ export interface RestTypeStyle {
   textDecoration?: string;
   lineHeightUnit?: string;
   lineHeightPx?: number;
+  textAutoResize?: 'NONE' | 'WIDTH_AND_HEIGHT' | 'HEIGHT' | 'TRUNCATE';
 }
 
 /** HasBoundVariablesTrait (api_types.ts) — the spellings that differ from the
@@ -229,6 +231,7 @@ export type MapDegradationCode =
   | 'variable-unresolved'
   | 'text-style-unresolved'
   | 'instance-main-unresolved'
+  | 'instance-swap-value-unresolved'
   // 'paint-alpha-dropped' retired in dump v1.1: solid-paint opacity is
   // CAPTURED ({ hex, alpha }) instead of degraded away.
   | 'paint-unsupported'
@@ -493,7 +496,10 @@ function mapText(node: RestNode, ctx: Ctx, nodePath: string): DumpText {
   const text: DumpText = {
     characters: node.characters ?? '',
     fontSize: s.fontSize ?? 0,
+    ...(s.fontFamily ? { fontFamily: s.fontFamily } : {}),
     fontStyle,
+    ...(typeof s.letterSpacing === 'number' ? { letterSpacing: s.letterSpacing } : {}),
+    ...(s.textAutoResize ? { autoResize: s.textAutoResize } : {}),
   };
   // dump v1.3: PIXEL line heights are CAPTURED (text.lineHeight); other
   // explicit units stay receipts below.
@@ -513,7 +519,6 @@ function mapText(node: RestNode, ctx: Ctx, nodePath: string): DumpText {
   }
   // dump v1.2: text channels with no dump projection are NAMED per node.
   const channels: string[] = [];
-  if (typeof s.letterSpacing === 'number' && s.letterSpacing !== 0) channels.push(`letterSpacing ${s.letterSpacing}`);
   if (s.textCase !== undefined && s.textCase !== 'ORIGINAL' && !TEXT_CASE_CSS[s.textCase]) {
     channels.push(`textCase ${s.textCase} (no text-transform projection)`);
   }
@@ -668,14 +673,8 @@ function nameUnsupportedChannels(node: RestNode, ctx: Ctx, nodePath: string, str
   const strokeDetail = strokeEmitted && node.type !== 'INSTANCE';
   const w = node.individualStrokeWeights;
   if (w && node.type !== 'INSTANCE') {
-    const values = [w.top ?? 0, w.right ?? 0, w.bottom ?? 0, w.left ?? 0];
-    if (new Set(values).size > 1) {
-      ctx.report.degradations.push({
-        code: 'stroke-weights-nonuniform',
-        nodePath,
-        message: `per-side stroke weights [${values.join(', ')}] — dump v1 carries a uniform strokeWeight only; per-side weights dropped`,
-      });
-    }
+    // Carried by mapNode as DumpNode.strokeWeights (dump v1.7). No
+    // degradation: all four sides, including explicit zeroes, survive.
   }
   if (strokeDetail && Array.isArray(node.strokeDashes) && node.strokeDashes.length > 0) {
     ctx.report.degradations.push({
@@ -698,9 +697,9 @@ function mapNode(
 ): RestDumpNode {
   const out: RestDumpNode = { name: node.name, type: node.type };
 
-  // dump v1.5: variant-ROOT observed bounding box — the drawn dimension of a
-  // FIXED root axis is otherwise unrecoverable (CBDS Dialog field case).
-  if (node.type === 'COMPONENT' && node.absoluteBoundingBox) {
+  // dump v1.8: observed bbox on every scene node. Consumers require matching
+  // sizing evidence before fixing a dimension.
+  if (node.absoluteBoundingBox) {
     out.bbox = { width: round2(node.absoluteBoundingBox.width), height: round2(node.absoluteBoundingBox.height) };
   }
 
@@ -717,6 +716,14 @@ function mapNode(
   if (stroke) {
     out.stroke = stroke;
     if (typeof node.strokeWeight === 'number') out.strokeWeight = node.strokeWeight;
+    else if (node.individualStrokeWeights && node.type !== 'INSTANCE') {
+      out.strokeWeights = {
+        top: node.individualStrokeWeights.top ?? 0,
+        right: node.individualStrokeWeights.right ?? 0,
+        bottom: node.individualStrokeWeights.bottom ?? 0,
+        left: node.individualStrokeWeights.left ?? 0,
+      };
+    }
     // dump v1.6: capture the alignment (was assumed INSIDE + dropped). CENTER/
     // OUTSIDE now travel so the emitter renders the right border model.
     if (node.strokeAlign === 'CENTER' || node.strokeAlign === 'OUTSIDE' || node.strokeAlign === 'INSIDE') {
@@ -791,11 +798,31 @@ function mapNode(
     }
     const props: Record<string, string | boolean> = {};
     for (const [key, def] of Object.entries(node.componentProperties ?? {})) {
-      if (def.type === 'INSTANCE_SWAP') continue; // slots ride propRefs instead
+      // An applied INSTANCE_SWAP on this nested instance is a FIXED CHILD PROP,
+      // not a slot on the parent. REST spells its value as a component node id;
+      // resolve that id through the response metadata so propose.ts can invert
+      // it through the child contract's bindings.figma.values (ChevronLeft →
+      // chevron-left). Dropping these values lost configured nested glyphs.
+      if (def.type === 'INSTANCE_SWAP') {
+        const selected = typeof def.value === 'string' ? ctx.components.get(def.value) : undefined;
+        if (selected) {
+          props[key] = selected.name;
+        } else {
+          props[key] = def.value;
+          ctx.report.degradations.push({
+            code: 'instance-swap-value-unresolved',
+            nodePath,
+            field: key.split('#')[0],
+            message: `INSTANCE_SWAP value ${String(def.value)} has no entry in the response's components map — raw value preserved; child-prop canonicalization will name any mismatch`,
+          });
+        }
+        continue;
+      }
       // dump v1.5: keys keep their "#id" suffix (the Plugin API's own
       // spelling). A suffixed string key is a TEXT property WITH CERTAINTY —
       // stripping it (dump v1.1) collapsed TEXT and VARIANT properties into
       // one ambiguous shape and every stub modeled its label as an enum.
+      // Empty strings and false booleans are values, never absence.
       props[key] = def.value;
     }
     if (Object.keys(props).length > 0) out.componentProperties = props;
@@ -831,8 +858,8 @@ export function mapRestToDump(nodesResponse: RestNodesResponse, options: MapOpti
     _provenance: {
       fileKey: options.fileKey ?? null,
       extractedAt: new Date().toISOString().slice(0, 10),
-      note: 'Node-tree dump mapped from the Figma REST API (extract/figma/rest/map.ts, dump v1.5) for design→contract proposal.',
-      dumpVersion: '1.6',
+      note: 'Node-tree dump mapped from the Figma REST API (extract/figma/rest/map.ts, dump v1.7) for design→contract proposal.',
+      dumpVersion: '1.7',
     },
   };
 

@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.0.0)
+ * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.0.1)
  * Regenerate with: npm run generate
  */
 
@@ -9,4 +9,68 @@
   justify-content: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: 364px;
+  height: 364px;
+  border-radius: 500px;
+  background-color: #d9d9d9;
+  position: relative;
+}
+
+.etat-defaut {
+  overflow: hidden;
+}
+
+.etat-survol {
+  overflow: hidden;
+}
+
+.funIa {
+  width: 364px;
+  height: 364px;
+  border-radius: 500px;
+  position: absolute;
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.etat-defaut .funIa {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.etat-survol .funIa {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.normal {
+  width: 364px;
+  height: 364px;
+  border-radius: 500px;
+  position: absolute;
+  aspect-ratio: 1;
+  transition: opacity 300ms;
+  width: 100%;
+  height: 100%;
+}
+
+.etat-defaut .normal {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 1;
+}
+
+.etat-survol .normal {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0;
 }

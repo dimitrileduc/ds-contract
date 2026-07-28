@@ -1,0 +1,56 @@
+<!--
+  Field — static HTML+CSS emitted from contract ds.field v1.0.0 by core/emit-html.ts.
+  Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
+  bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
+  Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
+  Slots render their declared defaultContent; an empty slot renders its wrapper empty (absent content
+  is absent — named in an inline comment, never painted as placeholder text). Booleans render per showcase item.
+-->
+<section class="showcase showcase--field">
+  <div class="showcase__item">
+    <p class="showcase__label">default</p>
+    <div class="field field--etat-normal">
+      <div class="field__label">
+        <span class="field__Label">Libellé</span>
+        <span class="field__MentionOptionnelle">(optionnel)</span>
+      </div>
+      <div class="field__Saisie">
+        <!-- root element "input" cannot host the drawn anatomy (void element — children would hoist out of the box); box projected as <div>, element inference stays on the contract -->
+        <div class="input">
+          <span class="input__texteDeSaisie">Texte de saisie</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">etat=erreur</p>
+    <div class="field field--etat-erreur">
+      <div class="field__label">
+        <span class="field__Label">Libellé</span>
+        <span class="field__MentionOptionnelle">(optionnel)</span>
+      </div>
+      <div class="field__Saisie">
+        <!-- root element "input" cannot host the drawn anatomy (void element — children would hoist out of the box); box projected as <div>, element inference stays on the contract -->
+        <div class="input">
+          <span class="input__texteDeSaisie">Texte de saisie</span>
+        </div>
+      </div>
+      <span class="field__messageErreur">Message d’erreur</span>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">optionnel=true</p>
+    <div class="field field--etat-normal" data-optionnel="true">
+      <div class="field__label">
+        <span class="field__Label">Libellé</span>
+        <span class="field__MentionOptionnelle">(optionnel)</span>
+      </div>
+      <div class="field__Saisie">
+        <!-- root element "input" cannot host the drawn anatomy (void element — children would hoist out of the box); box projected as <div>, element inference stays on the contract -->
+        <div class="input">
+          <span class="input__texteDeSaisie">Texte de saisie</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

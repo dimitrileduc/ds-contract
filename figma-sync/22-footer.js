@@ -381,7 +381,9 @@ async function buildNode(spec, registry) {
     node = figma.createNodeFromSvg(spec.svg);
     node.fills = [];
     node.clipsContent = false;
-    if (spec.iconSize) node.resize(spec.iconSize, spec.iconSize);
+    const svgWidth = spec.svgSize ? spec.svgSize.width : spec.iconSize;
+    const svgHeight = spec.svgSize ? spec.svgSize.height : spec.iconSize;
+    if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);
   } else if (spec.type === 'text') {
     node = figma.createText();
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
