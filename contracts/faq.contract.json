@@ -25,6 +25,21 @@
           "prop": "items"
         }
       }
+    },
+    {
+      "name": "ligne3",
+      "type": "boolean",
+      "default": true,
+      "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass).",
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Ligne 3"
+        },
+        "code": {
+          "prop": "ligne3"
+        }
+      }
     }
   ],
   "states": [],
@@ -84,11 +99,6 @@
             "id": "ds.button"
           }
         }
-      },
-      "literals": {
-        "gap": "48px",
-        "padding-right": "89px",
-        "padding-left": "89px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

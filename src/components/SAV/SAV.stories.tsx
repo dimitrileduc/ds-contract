@@ -19,8 +19,15 @@ const meta = {
     },
   },
   render: (args) => <SAV key={JSON.stringify(args)} {...args} />,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    titre: {
+      control: 'text',
+      description: 'Extracted from Figma "Titre" TEXT property (added by sync pass).',
+    },
+  },
+  args: {
+    titre: 'Dépannage / SAV',
+  },
 } satisfies Meta<typeof SAV>;
 
 export default meta;

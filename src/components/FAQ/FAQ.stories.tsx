@@ -21,6 +21,10 @@ const meta = {
   render: (args) => <FAQ key={JSON.stringify(args)} {...args} />,
   argTypes: {
     items: { control: false },
+    ligne3: {
+      control: 'boolean',
+      description: 'Extracted from Figma "Ligne 3" BOOLEAN property (added by sync pass).',
+    },
   },
   args: {
     items: [
@@ -35,6 +39,7 @@ const meta = {
       },
       { contenu: 'Réponse', titre: "Assurez-vous la maintenance après l'installation ?" },
     ],
+    ligne3: true,
   },
 } satisfies Meta<typeof FAQ>;
 

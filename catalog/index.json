@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "34defb3",
+    "gitCommit": "7999c63",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -141,7 +141,8 @@
       "propNames": [
         "disposition",
         "accroche",
-        "titre"
+        "titre",
+        "accroche2"
       ],
       "summary": "Piqueray SectionHeader."
     },
@@ -151,7 +152,10 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "section",
-      "propNames": [],
+      "propNames": [
+        "accroche",
+        "titre"
+      ],
       "summary": "Piqueray Coordonnees."
     },
     {
@@ -217,7 +221,8 @@
       "status": "draft",
       "category": "section",
       "propNames": [
-        "items"
+        "items",
+        "ligne3"
       ],
       "summary": "Piqueray FAQ."
     },
@@ -262,7 +267,8 @@
       "category": "molecule",
       "propNames": [
         "etat",
-        "label"
+        "label",
+        "optionnel"
       ],
       "summary": "Piqueray Field."
     },
@@ -297,7 +303,9 @@
       "category": "section",
       "propNames": [
         "consentement",
-        "items"
+        "items",
+        "accroche",
+        "titre"
       ],
       "summary": "Piqueray Formulaire."
     },
@@ -377,7 +385,8 @@
       "category": "section",
       "propNames": [
         "texte",
-        "bouton"
+        "bouton",
+        "titre"
       ],
       "summary": "Piqueray Presentation."
     },
@@ -423,7 +432,9 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "section",
-      "propNames": [],
+      "propNames": [
+        "titre"
+      ],
       "summary": "Piqueray SAV."
     },
     {

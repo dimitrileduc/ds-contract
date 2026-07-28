@@ -10,9 +10,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Semi Bold",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -28,20 +26,15 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Question",
-              "fontSize": 20,
-              "fontStyle": "Semi Bold",
+              "fontSize": 16,
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 25,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -66,11 +59,6 @@ const COMPONENTS = [
             "counter": "MIN"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "frame",
@@ -86,10 +74,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "TitreOuvert",
                   "characters": "Question",
-                  "fontSize": 20,
-                  "fontStyle": "Semi Bold",
+                  "fontSize": 16,
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
@@ -103,11 +91,16 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
+              "lits": {
+                "paddingTop": 16,
+                "paddingBottom": 16
+              },
               "characters": "Réponse",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
+              "fontFamily": "Montserrat",
               "contentProp": "Contenu"
             }
           ]
@@ -126,20 +119,15 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Question",
-              "fontSize": 20,
-              "fontStyle": "Semi Bold",
+              "fontSize": 16,
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 25,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -164,11 +152,6 @@ const COMPONENTS = [
             "counter": "MIN"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "frame",
@@ -184,10 +167,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "TitreOuvert",
                   "characters": "Question",
-                  "fontSize": 20,
-                  "fontStyle": "Semi Bold",
+                  "fontSize": 16,
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
@@ -201,11 +184,16 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
+              "lits": {
+                "paddingTop": 16,
+                "paddingBottom": 16
+              },
               "characters": "Réponse",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
+              "fontFamily": "Montserrat",
               "contentProp": "Contenu"
             }
           ]
@@ -490,8 +478,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -506,9 +493,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
-          },
-          "lits": {
-            "itemSpacing": 8
           },
           "children": [
             {
@@ -526,18 +510,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 8
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Conseils personnalisés",
                   "fontSize": 16,
-                  "fontStyle": "Regular",
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 40,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
@@ -545,9 +526,9 @@ const COMPONENTS = [
                   "name": "Texte",
                   "characters": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
                   "fontSize": 16,
-                  "fontStyle": "Regular",
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 27,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 }
               ]
@@ -967,8 +948,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -983,10 +963,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
-          },
-          "lits": {
-            "itemSpacing": 24,
-            "paddingBottom": 24
           },
           "children": [
             {
@@ -1008,30 +984,25 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 8,
-                "paddingRight": 16,
-                "paddingLeft": 16
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Pour portes de garage",
-                  "fontSize": 24,
-                  "fontStyle": "Regular",
+                  "fontSize": 16,
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 30,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
                   "type": "text",
                   "name": "Texte",
                   "characters": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-                  "fontSize": 14,
+                  "fontSize": 16,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
-                  "lineHeight": 24,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 }
               ]
@@ -1052,10 +1023,6 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "itemSpacing": 24,
-            "paddingBottom": 24
-          },
           "children": [
             {
               "type": "frame",
@@ -1076,30 +1043,25 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 8,
-                "paddingRight": 16,
-                "paddingLeft": 16
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Pour portes de garage",
-                  "fontSize": 24,
-                  "fontStyle": "Regular",
+                  "fontSize": 16,
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 30,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
                   "type": "text",
                   "name": "Texte",
                   "characters": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
-                  "fontSize": 14,
+                  "fontSize": 16,
                   "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 24,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 }
               ]
@@ -1194,11 +1156,15 @@ const COMPONENTS = [
     "anchorKey": "770d5801af6e899b9547461ea2c714a66e0fa356",
     "description": "SectionHeader — generated from contract ds.section-header v1.0.0",
     "isSet": true,
-    "boolProps": [],
+    "boolProps": [
+      {
+        "property": "Accroche2",
+        "default": true
+      }
+    ],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -1213,28 +1179,25 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 8
-          },
           "children": [
             {
               "type": "text",
               "name": "Accroche",
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 25,
+              "fontFamily": "Montserrat",
               "contentProp": "Accroche"
             },
             {
               "type": "text",
               "name": "Titre",
               "characters": "Pourquoi choisir Piqueray ?",
-              "fontSize": 40,
-              "fontStyle": "Regular",
+              "fontSize": 16,
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 50,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             }
           ]
@@ -1252,18 +1215,15 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 8
-          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Pourquoi choisir Piqueray ?",
-              "fontSize": 40,
-              "fontStyle": "Regular",
+              "fontSize": 16,
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 50,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -1285,10 +1245,18 @@ const COMPONENTS = [
     "description": "Coordonnees — generated from contract ds.coordonnees v1.0.0",
     "isSet": false,
     "boolProps": [],
-    "textProps": [],
+    "textProps": [
+      {
+        "property": "Accroche",
+        "default": "Contact"
+      },
+      {
+        "property": "Titre",
+        "default": "Nos coordonnées"
+      }
+    ],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -1315,15 +1283,6 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/16"
-              },
-              "lits": {
-                "paddingTop": 48,
-                "paddingRight": 48,
-                "paddingBottom": 48,
-                "paddingLeft": 48
-              },
               "children": [
                 {
                   "type": "instance",
@@ -1344,27 +1303,24 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
-                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "AdresseEtiquette",
                       "characters": "Adresse",
                       "fontSize": 14,
-                      "fontStyle": "Regular",
+                      "fontStyle": "Medium",
                       "textFill": "color/orange",
-                      "lineHeight": 30
+                      "fontFamily": "Montserrat"
                     },
                     {
                       "type": "text",
                       "name": "AdresseValeur",
                       "characters": "Rue Alfred Drèze 7, 4860 Pepinster",
                       "fontSize": 14,
-                      "fontStyle": "Regular",
+                      "fontStyle": "Medium",
                       "textFill": "color/noir-bleute",
-                      "lineHeight": 27
+                      "fontFamily": "Montserrat"
                     }
                   ]
                 },
@@ -1377,27 +1333,24 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
-                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "HorairesEtiquette",
                       "characters": "Horaires",
                       "fontSize": 14,
-                      "fontStyle": "Regular",
+                      "fontStyle": "Medium",
                       "textFill": "color/orange",
-                      "lineHeight": 30
+                      "fontFamily": "Montserrat"
                     },
                     {
                       "type": "text",
                       "name": "HorairesValeur",
                       "characters": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
                       "fontSize": 14,
-                      "fontStyle": "Regular",
+                      "fontStyle": "Medium",
                       "textFill": "color/noir-bleute",
-                      "lineHeight": 27
+                      "fontFamily": "Montserrat"
                     }
                   ]
                 },
@@ -1410,18 +1363,15 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
-                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "ContactEtiquette",
                       "characters": "Contact",
                       "fontSize": 14,
-                      "fontStyle": "Regular",
+                      "fontStyle": "Medium",
                       "textFill": "color/orange",
-                      "lineHeight": 30
+                      "fontFamily": "Montserrat"
                     },
                     {
                       "type": "text",
@@ -1429,7 +1379,8 @@ const COMPONENTS = [
                       "characters": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
                       "fontSize": 14,
                       "fontStyle": "Medium",
-                      "textFill": "color/noir-bleute"
+                      "textFill": "color/noir-bleute",
+                      "fontFamily": "Montserrat"
                     }
                   ]
                 },
@@ -1449,7 +1400,8 @@ const COMPONENTS = [
                       "characters": "Suivez-nous",
                       "fontSize": 14,
                       "fontStyle": "Medium",
-                      "textFill": "color/orange"
+                      "textFill": "color/orange",
+                      "fontFamily": "Montserrat"
                     },
                     {
                       "type": "frame",
@@ -1503,8 +1455,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -1526,9 +1477,9 @@ const COMPONENTS = [
               "name": "Texte",
               "characters": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/blanc",
-              "lineHeight": 24,
+              "fontFamily": "Montserrat",
               "contentProp": "Texte"
             }
           ]
@@ -1546,8 +1497,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -1563,10 +1513,6 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "fill": "color/noir-bleute",
-          "lits": {
-            "paddingTop": 96,
-            "paddingBottom": 96
-          },
           "children": [
             {
               "type": "frame",
@@ -1576,18 +1522,15 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
-              "bindings": {
-                "itemSpacing": "space/32"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
                   "characters": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
                   "fontSize": 16,
-                  "fontStyle": "Regular",
+                  "fontStyle": "Medium",
                   "textFill": "color/blanc",
-                  "lineHeight": 50,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
@@ -1637,9 +1580,6 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
-              "lits": {
-                "radius": 500
-              },
               "children": []
             },
             {
@@ -1649,9 +1589,6 @@ const COMPONENTS = [
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
                 "counter": "MIN"
-              },
-              "lits": {
-                "radius": 500
               },
               "children": []
             }
@@ -1679,9 +1616,6 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
-              "lits": {
-                "radius": 500
-              },
               "children": []
             },
             {
@@ -1691,9 +1625,6 @@ const COMPONENTS = [
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
                 "counter": "MIN"
-              },
-              "lits": {
-                "radius": 500
               },
               "children": []
             }
@@ -1712,9 +1643,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular",
-      "Semi Bold"
+      "Medium"
     ],
     "variants": [
       {
@@ -1728,9 +1657,6 @@ const COMPONENTS = [
             "mode": "VERTICAL",
             "primary": "MIN",
             "counter": "CENTER"
-          },
-          "bindings": {
-            "itemSpacing": "space/16"
           },
           "children": [
             {
@@ -1749,18 +1675,15 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
-              "lits": {
-                "itemSpacing": 8
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Nom",
                   "characters": "Cécilia Piqueray",
                   "fontSize": 16,
-                  "fontStyle": "Regular",
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 40,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Nom"
                 },
                 {
@@ -1768,9 +1691,9 @@ const COMPONENTS = [
                   "name": "Poste",
                   "characters": "Gérante",
                   "fontSize": 16,
-                  "fontStyle": "Semi Bold",
+                  "fontStyle": "Medium",
                   "textFill": "color/orange",
-                  "lineHeight": 20,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Poste"
                 }
               ]
@@ -1806,10 +1729,6 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "paddingRight": 89,
-            "paddingLeft": 89
-          },
           "children": [
             {
               "type": "frame",
@@ -1821,9 +1740,6 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
-              "bindings": {
-                "itemSpacing": "space/32"
-              },
               "children": [
                 {
                   "type": "instance",
@@ -1983,7 +1899,12 @@ const COMPONENTS = [
     "anchorKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
     "description": "FAQ — generated from contract ds.faq v1.0.0",
     "isSet": false,
-    "boolProps": [],
+    "boolProps": [
+      {
+        "property": "Ligne 3",
+        "default": true
+      }
+    ],
     "textProps": [],
     "fontStyles": [
       "Medium"
@@ -2000,11 +1921,6 @@ const COMPONENTS = [
             "mode": "VERTICAL",
             "primary": "MIN",
             "counter": "CENTER"
-          },
-          "lits": {
-            "itemSpacing": 48,
-            "paddingRight": 89,
-            "paddingLeft": 89
           },
           "children": [
             {
@@ -2243,12 +2159,15 @@ const COMPONENTS = [
     "anchorKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
     "description": "Field — generated from contract ds.field v1.0.0",
     "isSet": true,
-    "boolProps": [],
+    "boolProps": [
+      {
+        "property": "Optionnel",
+        "default": false
+      }
+    ],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Semi Bold",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -2264,9 +2183,6 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "itemSpacing": 8
-          },
           "children": [
             {
               "type": "frame",
@@ -2277,18 +2193,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/4"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Label",
                   "characters": "Libellé",
                   "fontSize": 16,
-                  "fontStyle": "Semi Bold",
+                  "fontStyle": "Medium",
                   "textFill": "color/bleu-gris",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Label"
                 },
                 {
@@ -2296,8 +2209,9 @@ const COMPONENTS = [
                   "name": "MentionOptionnelle",
                   "characters": "(optionnel)",
                   "fontSize": 14,
-                  "fontStyle": "Regular",
-                  "textFill": "color/bleu-gris"
+                  "fontStyle": "Medium",
+                  "textFill": "color/bleu-gris",
+                  "fontFamily": "Montserrat"
                 }
               ]
             },
@@ -2340,9 +2254,6 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "itemSpacing": 8
-          },
           "children": [
             {
               "type": "frame",
@@ -2353,18 +2264,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/4"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Label",
                   "characters": "Libellé",
                   "fontSize": 16,
-                  "fontStyle": "Semi Bold",
+                  "fontStyle": "Medium",
                   "textFill": "color/bleu-gris",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Label"
                 },
                 {
@@ -2372,8 +2280,9 @@ const COMPONENTS = [
                   "name": "MentionOptionnelle",
                   "characters": "(optionnel)",
                   "fontSize": 14,
-                  "fontStyle": "Regular",
-                  "textFill": "color/bleu-gris"
+                  "fontStyle": "Medium",
+                  "textFill": "color/bleu-gris",
+                  "fontFamily": "Montserrat"
                 }
               ]
             },
@@ -2405,7 +2314,8 @@ const COMPONENTS = [
               "name": "messageErreur",
               "characters": "Message d’erreur",
               "fontSize": 14,
-              "fontStyle": "Regular"
+              "fontStyle": "Medium",
+              "fontFamily": "Montserrat"
             }
           ]
         }
@@ -2422,8 +2332,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -2439,18 +2348,15 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "bindings": {
-            "itemSpacing": "space/16"
-          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Adresse",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/orange",
-              "lineHeight": 30,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -2458,9 +2364,9 @@ const COMPONENTS = [
               "name": "Texte",
               "characters": "Rue Alfred Drèze 7,  4860 Pepinster",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/blanc",
-              "lineHeight": 27,
+              "fontFamily": "Montserrat",
               "contentProp": "Texte"
             }
           ]
@@ -2493,12 +2399,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
-          },
-          "lits": {
-            "paddingTop": 128,
-            "paddingRight": 89,
-            "paddingBottom": 32,
-            "paddingLeft": 89
           },
           "children": [
             {
@@ -2537,7 +2437,8 @@ const COMPONENTS = [
                       "characters": "Suivez-nous",
                       "fontSize": 14,
                       "fontStyle": "Medium",
-                      "textFill": "color/orange"
+                      "textFill": "color/orange",
+                      "fontFamily": "Montserrat"
                     },
                     {
                       "type": "frame",
@@ -2637,9 +2538,6 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "stroke": "color/blanc",
-              "lits": {
-                "strokeWeight": 1
-              },
               "children": []
             },
             {
@@ -2673,7 +2571,16 @@ const COMPONENTS = [
     "description": "Formulaire — generated from contract ds.formulaire v1.0.0",
     "isSet": false,
     "boolProps": [],
-    "textProps": [],
+    "textProps": [
+      {
+        "property": "Accroche",
+        "default": "Une demande de devis ? Une réparation ?"
+      },
+      {
+        "property": "Titre",
+        "default": "Prenez contact avec nous dès maintenant !"
+      }
+    ],
     "fontStyles": [
       "Medium"
     ],
@@ -2691,9 +2598,6 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "bindings": {
-            "itemSpacing": "space/32"
-          },
           "children": [
             {
               "type": "frame",
@@ -2705,9 +2609,6 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
-              "lits": {
-                "itemSpacing": 48
-              },
               "children": [
                 {
                   "type": "instance",
@@ -2727,9 +2628,6 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN",
                     "stretchChildren": true
-                  },
-                  "bindings": {
-                    "itemSpacing": "space/32"
                   },
                   "children": [
                     {
@@ -2779,9 +2677,6 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "bindings": {
-                    "itemSpacing": "space/16"
-                  },
                   "children": [
                     {
                       "type": "instance",
@@ -2810,15 +2705,6 @@ const COMPONENTS = [
               },
               "grow": true,
               "fill": "color/bleu-clair",
-              "bindings": {
-                "itemSpacing": "space/16"
-              },
-              "lits": {
-                "paddingTop": 32,
-                "paddingRight": 32,
-                "paddingBottom": 32,
-                "paddingLeft": 32
-              },
               "children": [
                 {
                   "type": "frame",
@@ -2828,9 +2714,6 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN",
                     "stretchChildren": true
-                  },
-                  "bindings": {
-                    "itemSpacing": "space/16"
                   },
                   "children": [
                     {
@@ -2952,7 +2835,7 @@ const COMPONENTS = [
                   "characters": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.",
                   "fontSize": 16,
                   "fontStyle": "Medium",
-                  "lineHeight": 24,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Consentement"
                 },
                 {

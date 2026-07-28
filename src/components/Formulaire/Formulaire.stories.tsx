@@ -22,6 +22,14 @@ const meta = {
   argTypes: {
     consentement: { control: 'text' },
     items: { control: false },
+    accroche: {
+      control: 'text',
+      description: 'Extracted from Figma "Accroche" TEXT property (added by sync pass).',
+    },
+    titre: {
+      control: 'text',
+      description: 'Extracted from Figma "Titre" TEXT property (added by sync pass).',
+    },
   },
   args: {
     consentement:
@@ -41,6 +49,8 @@ const meta = {
         titre: 'Expérience et savoir-faire',
       },
     ],
+    accroche: 'Une demande de devis ? Une réparation ?',
+    titre: 'Prenez contact avec nous dès maintenant !',
   },
 } satisfies Meta<typeof Formulaire>;
 

@@ -45,6 +45,21 @@
           "prop": "label"
         }
       }
+    },
+    {
+      "name": "optionnel",
+      "type": "boolean",
+      "default": false,
+      "description": "Extracted from Figma \"Optionnel\" BOOLEAN property (added by sync pass).",
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Optionnel"
+        },
+        "code": {
+          "prop": "optionnel"
+        }
+      }
     }
   ],
   "states": [],
@@ -65,23 +80,15 @@
                 "prop": "label"
               },
               "tokens": {
-                "color": "{color.bleu-gris}",
-                "font-weight": "{font.weight.semibold}"
-              },
-              "literals": {
-                "line-height": "25px"
+                "color": "{color.bleu-gris}"
               }
             },
             "MentionOptionnelle": {
               "text": "(optionnel)",
               "tokens": {
-                "color": "{color.bleu-gris}",
-                "font-weight": "{font.weight.regular}"
+                "color": "{color.bleu-gris}"
               }
             }
-          },
-          "tokens": {
-            "gap": "{space.4}"
           }
         },
         "Saisie": {
@@ -106,17 +113,12 @@
         },
         "messageErreur": {
           "text": "Message d’erreur",
-          "tokens": {
-            "font-weight": "{font.weight.regular}"
-          },
+          "tokens": {},
           "visibleWhen": {
             "prop": "etat",
             "equals": "erreur"
           }
         }
-      },
-      "literals": {
-        "gap": "8px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

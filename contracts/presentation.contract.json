@@ -12,7 +12,7 @@
     {
       "name": "texte",
       "type": "text",
-      "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd hui dirigée par Florian et Cécilia Piqueray, l entreprise perpétue les valeurs de proximité et d excellence technique. Dépositaire officiel Hörmann, nous allions la force d un leader mondial à la souplesse d une PME locale.",
+      "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -34,6 +34,21 @@
         },
         "code": {
           "prop": "bouton"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Piqueray, une histoire de famille ",
+      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass).",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
         }
       }
     }
@@ -67,11 +82,7 @@
                 "prop": "texte"
               },
               "tokens": {
-                "color": "{color.noir}",
-                "font-weight": "{font.weight.medium}"
-              },
-              "literals": {
-                "line-height": "24px"
+                "color": "{color.noir}"
               }
             },
             "Bouton": {
@@ -82,14 +93,10 @@
                 "prop": "bouton"
               }
             }
-          },
-          "tokens": {
-            "gap": "{space.16}"
           }
         }
       },
       "tokens": {
-        "gap": "{space.32}",
         "font-family": "{font.family.montserrat}"
       }
     }

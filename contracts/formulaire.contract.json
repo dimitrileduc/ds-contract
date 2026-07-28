@@ -39,6 +39,36 @@
           "prop": "items"
         }
       }
+    },
+    {
+      "name": "accroche",
+      "type": "text",
+      "default": "Une demande de devis ? Une réparation ?",
+      "description": "Extracted from Figma \"Accroche\" TEXT property (added by sync pass).",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Accroche"
+        },
+        "code": {
+          "prop": "accroche"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Prenez contact avec nous dès maintenant !",
+      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass).",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
     }
   ],
   "states": [],
@@ -96,9 +126,6 @@
                     ]
                   }
                 }
-              },
-              "tokens": {
-                "gap": "{space.32}"
               }
             },
             "buttons": {
@@ -116,14 +143,8 @@
                     "id": "ds.button"
                   }
                 }
-              },
-              "tokens": {
-                "gap": "{space.16}"
               }
             }
-          },
-          "literals": {
-            "gap": "48px"
           }
         },
         "form": {
@@ -132,8 +153,7 @@
             "grow": true
           },
           "tokens": {
-            "background-color": "{color.bleu-clair}",
-            "gap": "{space.16}"
+            "background-color": "{color.bleu-clair}"
           },
           "parts": {
             "row": {
@@ -159,9 +179,6 @@
                     }
                   }
                 }
-              },
-              "tokens": {
-                "gap": "{space.16}"
               }
             },
             "row2": {
@@ -240,12 +257,6 @@
             "TexteConsentement": {
               "content": {
                 "prop": "consentement"
-              },
-              "tokens": {
-                "font-weight": "{font.weight.medium}"
-              },
-              "literals": {
-                "line-height": "24px"
               }
             },
             "FormulaireBouton": {
@@ -253,17 +264,10 @@
                 "id": "ds.button"
               }
             }
-          },
-          "literals": {
-            "padding-top": "32px",
-            "padding-right": "32px",
-            "padding-bottom": "32px",
-            "padding-left": "32px"
           }
         }
       },
       "tokens": {
-        "gap": "{space.32}",
         "font-family": "{font.family.montserrat}"
       }
     }

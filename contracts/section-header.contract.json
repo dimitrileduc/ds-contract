@@ -59,6 +59,21 @@
           "prop": "titre"
         }
       }
+    },
+    {
+      "name": "accroche2",
+      "type": "boolean",
+      "default": true,
+      "description": "Extracted from Figma \"Accroche2\" BOOLEAN property (added by sync pass).",
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "Accroche2"
+        },
+        "code": {
+          "prop": "accroche2"
+        }
+      }
     }
   ],
   "states": [],
@@ -84,15 +99,11 @@
             "prop": "accroche"
           },
           "tokens": {
-            "color": "{color.noir-bleute}",
-            "font-weight": "{font.weight.regular}"
+            "color": "{color.noir-bleute}"
           },
           "visibleWhen": {
             "prop": "disposition",
             "equals": "standard"
-          },
-          "literals": {
-            "line-height": "25px"
           }
         },
         "Titre": {
@@ -100,12 +111,7 @@
             "prop": "titre"
           },
           "tokens": {
-            "color": "{color.noir-bleute}",
-            "font-size": "{font.size.40}",
-            "font-weight": "{font.weight.regular}"
-          },
-          "literals": {
-            "line-height": "50px"
+            "color": "{color.noir-bleute}"
           }
         },
         "Bouton": {
@@ -117,9 +123,6 @@
             "equals": "avecCta"
           }
         }
-      },
-      "literals": {
-        "gap": "8px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

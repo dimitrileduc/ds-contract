@@ -22,11 +22,16 @@ const meta = {
   argTypes: {
     texte: { control: 'text' },
     bouton: { control: 'boolean' },
+    titre: {
+      control: 'text',
+      description: 'Extracted from Figma "Titre" TEXT property (added by sync pass).',
+    },
   },
   args: {
     texte:
-      'Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd hui dirigée par Florian et Cécilia Piqueray, l entreprise perpétue les valeurs de proximité et d excellence technique. Dépositaire officiel Hörmann, nous allions la force d un leader mondial à la souplesse d une PME locale.',
+      'Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.',
     bouton: false,
+    titre: 'Piqueray, une histoire de famille ',
   },
 } satisfies Meta<typeof Presentation>;
 

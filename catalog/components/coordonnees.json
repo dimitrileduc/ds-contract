@@ -9,7 +9,20 @@
     "representation": "component",
     "componentSetKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1"
   },
-  "props": [],
+  "props": [
+    {
+      "name": "accroche",
+      "type": "string",
+      "default": "Contact",
+      "description": "Extracted from Figma \"Accroche\" TEXT property (added by sync pass)."
+    },
+    {
+      "name": "titre",
+      "type": "string",
+      "default": "Nos coordonnées",
+      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+    }
+  ],
   "children": {
     "kind": "none"
   },

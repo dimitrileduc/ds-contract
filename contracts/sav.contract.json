@@ -8,7 +8,23 @@
     "element": "div",
     "provenance": "extracted"
   },
-  "props": [],
+  "props": [
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Dépannage / SAV",
+      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass).",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    }
+  ],
   "states": [],
   "anatomy": {
     "root": {
@@ -60,9 +76,6 @@
                             "id": "ds.button"
                           }
                         }
-                      },
-                      "tokens": {
-                        "gap": "{space.32}"
                       }
                     }
                   }

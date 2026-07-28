@@ -9,12 +9,15 @@ const COMPONENTS = [
     "anchorKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
     "description": "Field — generated from contract ds.field v1.0.0",
     "isSet": true,
-    "boolProps": [],
+    "boolProps": [
+      {
+        "property": "Optionnel",
+        "default": false
+      }
+    ],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Semi Bold",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -30,9 +33,6 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "itemSpacing": 8
-          },
           "children": [
             {
               "type": "frame",
@@ -43,18 +43,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/4"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Label",
                   "characters": "Libellé",
                   "fontSize": 16,
-                  "fontStyle": "Semi Bold",
+                  "fontStyle": "Medium",
                   "textFill": "color/bleu-gris",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Label"
                 },
                 {
@@ -62,8 +59,9 @@ const COMPONENTS = [
                   "name": "MentionOptionnelle",
                   "characters": "(optionnel)",
                   "fontSize": 14,
-                  "fontStyle": "Regular",
-                  "textFill": "color/bleu-gris"
+                  "fontStyle": "Medium",
+                  "textFill": "color/bleu-gris",
+                  "fontFamily": "Montserrat"
                 }
               ]
             },
@@ -106,9 +104,6 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "itemSpacing": 8
-          },
           "children": [
             {
               "type": "frame",
@@ -119,18 +114,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/4"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Label",
                   "characters": "Libellé",
                   "fontSize": 16,
-                  "fontStyle": "Semi Bold",
+                  "fontStyle": "Medium",
                   "textFill": "color/bleu-gris",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Label"
                 },
                 {
@@ -138,8 +130,9 @@ const COMPONENTS = [
                   "name": "MentionOptionnelle",
                   "characters": "(optionnel)",
                   "fontSize": 14,
-                  "fontStyle": "Regular",
-                  "textFill": "color/bleu-gris"
+                  "fontStyle": "Medium",
+                  "textFill": "color/bleu-gris",
+                  "fontFamily": "Montserrat"
                 }
               ]
             },
@@ -171,7 +164,8 @@ const COMPONENTS = [
               "name": "messageErreur",
               "characters": "Message d’erreur",
               "fontSize": 14,
-              "fontStyle": "Regular"
+              "fontStyle": "Medium",
+              "fontFamily": "Montserrat"
             }
           ]
         }
@@ -342,50 +336,6 @@ function applyFrameSpec(node, spec) {
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }
-  if (spec.lits) {
-    // v14 literals: no variable to bind — plain values, compile-parsed.
-    const li = spec.lits;
-    if (li.paddingTop !== undefined) node.paddingTop = li.paddingTop;
-    if (li.paddingBottom !== undefined) node.paddingBottom = li.paddingBottom;
-    if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
-    if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
-    if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
-    if (li.radius !== undefined) node.cornerRadius = li.radius;
-    if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
-    if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
-    if (li.minHeight !== undefined) { try { node.minHeight = li.minHeight; } catch (e) { /* needs auto-layout */ } }
-    // #60 fix 1 (fillClear precedence): a spec-carried fill is NEVER
-    // trampled — fillClear only clears when no fill was spec'd. The compile
-    // side already drops fillClear when a fill binding exists (applyLiterals);
-    // this runtime guard makes the emitted script safe even for hand-fed
-    // specs carrying both.
-    if (li.fillClear && !spec.fill) node.fills = [];
-    else if (li.fillColor) node.fills = [{ type: 'SOLID', color: { r: li.fillColor.r, g: li.fillColor.g, b: li.fillColor.b }, opacity: li.fillColor.a === undefined ? 1 : li.fillColor.a }];
-    if (li.radiusCorners) {
-      const rc = li.radiusCorners;
-      if (rc.tl !== undefined) node.topLeftRadius = rc.tl;
-      if (rc.tr !== undefined) node.topRightRadius = rc.tr;
-      if (rc.bl !== undefined) node.bottomLeftRadius = rc.bl;
-      if (rc.br !== undefined) node.bottomRightRadius = rc.br;
-    }
-    if (li.strokeSides) {
-      const sw = li.strokeSides;
-      if (sw.top !== undefined) node.strokeTopWeight = sw.top;
-      if (sw.right !== undefined) node.strokeRightWeight = sw.right;
-      if (sw.bottom !== undefined) node.strokeBottomWeight = sw.bottom;
-      if (sw.left !== undefined) node.strokeLeftWeight = sw.left;
-    }
-    if (li.width !== undefined || li.height !== undefined) {
-      node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
-      const horizontalIsPrimary = (spec.layout || { mode: 'HORIZONTAL' }).mode === 'HORIZONTAL';
-      if (li.width !== undefined) {
-        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
-      }
-      if (li.height !== undefined) {
-        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
-      }
-    }
-  }
 }
 
 // v7 overlay: out-of-flow edge attachment. Must run AFTER appendChild —
@@ -418,7 +368,17 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
-    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
+    if (spec.fontFamily) {
+      try {
+        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
+        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
+      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
+    }
+    if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
+    if (spec.textCase) node.textCase = spec.textCase;
+    if (spec.textDecoration) node.textDecoration = spec.textDecoration;
+    if (spec.textAlignH) node.textAlignHorizontal = spec.textAlignH;
+    if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

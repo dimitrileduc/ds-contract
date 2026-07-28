@@ -14,12 +14,18 @@ import styles from './Formulaire.module.css';
 export interface FormulaireProps extends HTMLAttributes<HTMLDivElement> {
   consentement?: string;
   items?: Array<{ texte: string; titre: string }>;
+  /** Extracted from Figma "Accroche" TEXT property (added by sync pass). */
+  accroche?: string;
+  /** Extracted from Figma "Titre" TEXT property (added by sync pass). */
+  titre?: string;
 }
 
 /** Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function Formulaire(
   {
     consentement = 'En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.',
+    accroche = 'Une demande de devis ? Une réparation ?',
+    titre = 'Prenez contact avec nous dès maintenant !',
     items,
     className,
     children,

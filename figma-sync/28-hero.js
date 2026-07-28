@@ -74,7 +74,8 @@ const COMPONENTS = [
                           "characters": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
                           "fontSize": 14,
                           "fontStyle": "Medium",
-                          "textFill": "color/blanc"
+                          "textFill": "color/blanc",
+                          "fontFamily": "Montserrat"
                         },
                         {
                           "type": "instance",
@@ -289,6 +290,17 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (spec.fontFamily) {
+      try {
+        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
+        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
+      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
+    }
+    if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
+    if (spec.textCase) node.textCase = spec.textCase;
+    if (spec.textDecoration) node.textDecoration = spec.textDecoration;
+    if (spec.textAlignH) node.textAlignHorizontal = spec.textAlignH;
+    if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

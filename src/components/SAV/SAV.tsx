@@ -9,11 +9,14 @@ import { SectionHeader } from '../SectionHeader';
 import { Button } from '../Button';
 import styles from './SAV.module.css';
 
-export interface SAVProps extends HTMLAttributes<HTMLDivElement> {}
+export interface SAVProps extends HTMLAttributes<HTMLDivElement> {
+  /** Extracted from Figma "Titre" TEXT property (added by sync pass). */
+  titre?: string;
+}
 
 /** Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const SAV = forwardRef<HTMLDivElement, SAVProps>(function SAV(
-  { className, children, ...rest },
+  { titre = 'Dépannage / SAV', className, children, ...rest },
   ref,
 ) {
   const classes = [styles.root, className].filter(Boolean).join(' ');

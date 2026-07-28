@@ -27,11 +27,16 @@ const meta = {
   argTypes: {
     etat: { control: 'select', options: ['normal', 'erreur'] },
     label: { control: 'text' },
+    optionnel: {
+      control: 'boolean',
+      description: 'Extracted from Figma "Optionnel" BOOLEAN property (added by sync pass).',
+    },
     children: { control: false },
   },
   args: {
     etat: 'normal',
     label: 'Libellé',
+    optionnel: false,
   },
 } satisfies Meta<typeof Field>;
 

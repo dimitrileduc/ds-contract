@@ -12,12 +12,15 @@ export interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
   disposition?: 'standard' | 'avecCta';
   accroche?: string;
   titre?: string;
+  /** Extracted from Figma "Accroche2" BOOLEAN property (added by sync pass). */
+  accroche2?: boolean;
 }
 
 /** Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
 export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(function SectionHeader(
   {
     disposition = 'standard',
+    accroche2 = true,
     accroche = 'Plus de 50 ans d’expérience',
     titre = 'Pourquoi choisir Piqueray ?',
     className,
@@ -30,7 +33,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
     .filter(Boolean)
     .join(' ');
   return (
-    <div ref={ref} className={classes} {...rest}>
+    <div ref={ref} className={classes} data-accroche2={accroche2 || undefined} {...rest}>
       {disposition === 'standard' ? <span className={styles.Accroche}>{accroche}</span> : null}
       <span className={styles.Titre}>{titre}</span>
       <Button>Contactez-nous</Button>

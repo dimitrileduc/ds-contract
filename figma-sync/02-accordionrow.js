@@ -12,9 +12,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Semi Bold",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -30,20 +28,15 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Question",
-              "fontSize": 20,
-              "fontStyle": "Semi Bold",
+              "fontSize": 16,
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 25,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -68,11 +61,6 @@ const COMPONENTS = [
             "counter": "MIN"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "frame",
@@ -88,10 +76,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "TitreOuvert",
                   "characters": "Question",
-                  "fontSize": 20,
-                  "fontStyle": "Semi Bold",
+                  "fontSize": 16,
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
@@ -105,11 +93,16 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
+              "lits": {
+                "paddingTop": 16,
+                "paddingBottom": 16
+              },
               "characters": "Réponse",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
+              "fontFamily": "Montserrat",
               "contentProp": "Contenu"
             }
           ]
@@ -128,20 +121,15 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Question",
-              "fontSize": 20,
-              "fontStyle": "Semi Bold",
+              "fontSize": 16,
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 25,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -166,11 +154,6 @@ const COMPONENTS = [
             "counter": "MIN"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16
-          },
           "children": [
             {
               "type": "frame",
@@ -186,10 +169,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "TitreOuvert",
                   "characters": "Question",
-                  "fontSize": 20,
-                  "fontStyle": "Semi Bold",
+                  "fontSize": 16,
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 25,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
@@ -203,11 +186,16 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
+              "lits": {
+                "paddingTop": 16,
+                "paddingBottom": 16
+              },
               "characters": "Réponse",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
+              "fontFamily": "Montserrat",
               "contentProp": "Contenu"
             }
           ]
@@ -456,6 +444,17 @@ async function buildNode(spec, registry) {
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
     if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
+    if (spec.fontFamily) {
+      try {
+        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
+        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
+      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
+    }
+    if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
+    if (spec.textCase) node.textCase = spec.textCase;
+    if (spec.textDecoration) node.textDecoration = spec.textDecoration;
+    if (spec.textAlignH) node.textAlignHorizontal = spec.textAlignH;
+    if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

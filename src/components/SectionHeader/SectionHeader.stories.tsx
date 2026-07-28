@@ -23,11 +23,16 @@ const meta = {
     disposition: { control: 'select', options: ['standard', 'avecCta'] },
     accroche: { control: 'text' },
     titre: { control: 'text' },
+    accroche2: {
+      control: 'boolean',
+      description: 'Extracted from Figma "Accroche2" BOOLEAN property (added by sync pass).',
+    },
   },
   args: {
     disposition: 'standard',
     accroche: 'Plus de 50 ans d’expérience',
     titre: 'Pourquoi choisir Piqueray ?',
+    accroche2: true,
   },
 } satisfies Meta<typeof SectionHeader>;
 

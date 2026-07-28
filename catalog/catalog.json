@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "34defb3",
+    "gitCommit": "7999c63",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -436,6 +436,12 @@
           "name": "titre",
           "type": "string",
           "default": "Pourquoi choisir Piqueray ?"
+        },
+        {
+          "name": "accroche2",
+          "type": "boolean",
+          "default": true,
+          "description": "Extracted from Figma \"Accroche2\" BOOLEAN property (added by sync pass)."
         }
       ],
       "children": {
@@ -454,7 +460,20 @@
         "representation": "component",
         "componentSetKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1"
       },
-      "props": [],
+      "props": [
+        {
+          "name": "accroche",
+          "type": "string",
+          "default": "Contact",
+          "description": "Extracted from Figma \"Accroche\" TEXT property (added by sync pass)."
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Nos coordonnées",
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+        }
+      ],
       "children": {
         "kind": "none"
       },
@@ -608,6 +627,12 @@
               "titre": "text"
             }
           }
+        },
+        {
+          "name": "ligne3",
+          "type": "boolean",
+          "default": true,
+          "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass)."
         }
       ],
       "children": {
@@ -708,6 +733,12 @@
           "name": "label",
           "type": "string",
           "default": "Libellé"
+        },
+        {
+          "name": "optionnel",
+          "type": "boolean",
+          "default": false,
+          "description": "Extracted from Figma \"Optionnel\" BOOLEAN property (added by sync pass)."
         }
       ],
       "children": {
@@ -801,6 +832,18 @@
               "titre": "text"
             }
           }
+        },
+        {
+          "name": "accroche",
+          "type": "string",
+          "default": "Une demande de devis ? Une réparation ?",
+          "description": "Extracted from Figma \"Accroche\" TEXT property (added by sync pass)."
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Prenez contact avec nous dès maintenant !",
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
         }
       ],
       "children": {
@@ -1033,12 +1076,18 @@
         {
           "name": "texte",
           "type": "string",
-          "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd hui dirigée par Florian et Cécilia Piqueray, l entreprise perpétue les valeurs de proximité et d excellence technique. Dépositaire officiel Hörmann, nous allions la force d un leader mondial à la souplesse d une PME locale."
+          "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale."
         },
         {
           "name": "bouton",
           "type": "boolean",
           "default": false
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Piqueray, une histoire de famille ",
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
         }
       ],
       "children": {
@@ -1155,7 +1204,14 @@
         "representation": "component",
         "componentSetKey": "bf5e147a9b56206eba9c73045d533c9868b445b2"
       },
-      "props": [],
+      "props": [
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Dépannage / SAV",
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+        }
+      ],
       "children": {
         "kind": "none"
       },

@@ -19,8 +19,20 @@ const meta = {
     },
   },
   render: (args) => <Coordonnees key={JSON.stringify(args)} {...args} />,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    accroche: {
+      control: 'text',
+      description: 'Extracted from Figma "Accroche" TEXT property (added by sync pass).',
+    },
+    titre: {
+      control: 'text',
+      description: 'Extracted from Figma "Titre" TEXT property (added by sync pass).',
+    },
+  },
+  args: {
+    accroche: 'Contact',
+    titre: 'Nos coordonnées',
+  },
 } satisfies Meta<typeof Coordonnees>;
 
 export default meta;

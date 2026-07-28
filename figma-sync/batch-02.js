@@ -427,9 +427,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 8
-          },
           "children": [
             {
               "type": "text",
@@ -437,7 +434,8 @@ const COMPONENTS = [
               "characters": "Portes de garage",
               "fontSize": 14,
               "fontStyle": "Medium",
-              "textFill": "color/blanc"
+              "textFill": "color/blanc",
+              "fontFamily": "Montserrat"
             },
             {
               "type": "svg",
@@ -489,13 +487,6 @@ const COMPONENTS = [
             "mode": "HORIZONTAL",
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
-          },
-          "lits": {
-            "itemSpacing": 392,
-            "paddingTop": 16,
-            "paddingRight": 89,
-            "paddingBottom": 16,
-            "paddingLeft": 89
           },
           "children": [
             {
@@ -613,13 +604,6 @@ const COMPONENTS = [
             "mode": "HORIZONTAL",
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
-          },
-          "lits": {
-            "itemSpacing": 392,
-            "paddingTop": 16,
-            "paddingRight": 89,
-            "paddingBottom": 16,
-            "paddingLeft": 89
           },
           "children": [
             {
@@ -800,7 +784,8 @@ const COMPONENTS = [
                           "characters": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
                           "fontSize": 14,
                           "fontStyle": "Medium",
-                          "textFill": "color/blanc"
+                          "textFill": "color/blanc",
+                          "fontFamily": "Montserrat"
                         },
                         {
                           "type": "instance",
@@ -832,7 +817,12 @@ const COMPONENTS = [
         "default": false
       }
     ],
-    "textProps": [],
+    "textProps": [
+      {
+        "property": "Titre",
+        "default": "Piqueray, une histoire de famille "
+      }
+    ],
     "fontStyles": [
       "Medium"
     ],
@@ -849,9 +839,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
-          },
-          "bindings": {
-            "itemSpacing": "space/32"
           },
           "children": [
             {
@@ -873,18 +860,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/16"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Texte",
-                  "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd hui dirigée par Florian et Cécilia Piqueray, l entreprise perpétue les valeurs de proximité et d excellence technique. Dépositaire officiel Hörmann, nous allions la force d un leader mondial à la souplesse d une PME locale.",
+                  "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
                   "fontSize": 16,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
-                  "lineHeight": 24,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 },
                 {
@@ -917,8 +901,7 @@ const COMPONENTS = [
     ],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Semi Bold"
+      "Medium"
     ],
     "variants": [
       {
@@ -932,9 +915,6 @@ const COMPONENTS = [
             "mode": "VERTICAL",
             "primary": "MIN",
             "counter": "CENTER"
-          },
-          "bindings": {
-            "itemSpacing": "space/16"
           },
           "children": [
             {
@@ -952,9 +932,9 @@ const COMPONENTS = [
               "name": "Titre",
               "characters": "Télécommande Hörmann HSE4-868BS",
               "fontSize": 16,
-              "fontStyle": "Semi Bold",
+              "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
-              "lineHeight": 20,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -962,9 +942,9 @@ const COMPONENTS = [
               "name": "Prix",
               "characters": "74,99€",
               "fontSize": 16,
-              "fontStyle": "Semi Bold",
+              "fontStyle": "Medium",
               "textFill": "color/bleu",
-              "lineHeight": 20,
+              "fontFamily": "Montserrat",
               "contentProp": "Prix"
             },
             {
@@ -1048,9 +1028,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 48
-          },
           "children": [
             {
               "type": "instance",
@@ -1070,9 +1047,6 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
-              },
-              "bindings": {
-                "itemSpacing": "space/32"
               },
               "children": [
                 {
@@ -1148,9 +1122,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 48
-          },
           "children": [
             {
               "type": "instance",
@@ -1170,9 +1141,6 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
-              },
-              "bindings": {
-                "itemSpacing": "space/32"
               },
               "children": [
                 {
@@ -1236,9 +1204,6 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/16"
-              },
               "children": [
                 {
                   "type": "instance",
@@ -1269,9 +1234,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 48
-          },
           "children": [
             {
               "type": "instance",
@@ -1291,9 +1253,6 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
-              },
-              "bindings": {
-                "itemSpacing": "space/32"
               },
               "children": [
                 {
@@ -1367,7 +1326,12 @@ const COMPONENTS = [
     "description": "SAV — generated from contract ds.sav v1.0.0",
     "isSet": false,
     "boolProps": [],
-    "textProps": [],
+    "textProps": [
+      {
+        "property": "Titre",
+        "default": "Dépannage / SAV"
+      }
+    ],
     "fontStyles": [
       "Medium"
     ],
@@ -1443,9 +1407,6 @@ const COMPONENTS = [
                             "counter": "MIN",
                             "stretchChildren": true
                           },
-                          "bindings": {
-                            "itemSpacing": "space/32"
-                          },
                           "children": [
                             {
                               "type": "instance",
@@ -1463,7 +1424,8 @@ const COMPONENTS = [
                               "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
                               "fontSize": 14,
                               "fontStyle": "Medium",
-                              "textFill": "color/noir"
+                              "textFill": "color/noir",
+                              "fontFamily": "Montserrat"
                             },
                             {
                               "type": "instance",
@@ -1541,10 +1503,6 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
-          "lits": {
-            "paddingTop": 8,
-            "paddingBottom": 8
-          },
           "children": [
             {
               "type": "text",
@@ -1553,6 +1511,7 @@ const COMPONENTS = [
               "fontSize": 16,
               "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
+              "fontFamily": "Montserrat",
               "contentProp": "Libelle"
             }
           ]
@@ -1570,10 +1529,6 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
-          "lits": {
-            "paddingTop": 8,
-            "paddingBottom": 8
-          },
           "children": [
             {
               "type": "text",
@@ -1582,6 +1537,7 @@ const COMPONENTS = [
               "fontSize": 16,
               "fontStyle": "Medium",
               "textFill": "color/noir-bleute",
+              "fontFamily": "Montserrat",
               "contentProp": "Libelle"
             }
           ]
@@ -1599,8 +1555,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Semi Bold"
+      "Medium"
     ],
     "variants": [
       {
@@ -1615,13 +1570,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
-          },
-          "bindings": {
-            "itemSpacing": "space/32"
-          },
-          "lits": {
-            "paddingRight": 89,
-            "paddingLeft": 89
           },
           "children": [
             {
@@ -1662,7 +1610,7 @@ const COMPONENTS = [
                   "fontSize": 14,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
-                  "lineHeight": 24
+                  "fontFamily": "Montserrat"
                 }
               ]
             },
@@ -1680,9 +1628,9 @@ const COMPONENTS = [
                   "name": "SousTitre",
                   "characters": "Infos pratiques",
                   "fontSize": 14,
-                  "fontStyle": "Semi Bold",
+                  "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
-                  "lineHeight": 25
+                  "fontFamily": "Montserrat"
                 }
               ]
             },
@@ -1972,7 +1920,6 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
-    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (spec.fontFamily) {
       try {
         await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });

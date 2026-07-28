@@ -10,7 +10,12 @@ const COMPONENTS = [
     "description": "SAV — generated from contract ds.sav v1.0.0",
     "isSet": false,
     "boolProps": [],
-    "textProps": [],
+    "textProps": [
+      {
+        "property": "Titre",
+        "default": "Dépannage / SAV"
+      }
+    ],
     "fontStyles": [
       "Medium"
     ],
@@ -86,9 +91,6 @@ const COMPONENTS = [
                             "counter": "MIN",
                             "stretchChildren": true
                           },
-                          "bindings": {
-                            "itemSpacing": "space/32"
-                          },
                           "children": [
                             {
                               "type": "instance",
@@ -106,7 +108,8 @@ const COMPONENTS = [
                               "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
                               "fontSize": 14,
                               "fontStyle": "Medium",
-                              "textFill": "color/noir"
+                              "textFill": "color/noir",
+                              "fontFamily": "Montserrat"
                             },
                             {
                               "type": "instance",
@@ -355,6 +358,17 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (spec.fontFamily) {
+      try {
+        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
+        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
+      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
+    }
+    if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
+    if (spec.textCase) node.textCase = spec.textCase;
+    if (spec.textDecoration) node.textDecoration = spec.textDecoration;
+    if (spec.textAlignH) node.textAlignHorizontal = spec.textAlignH;
+    if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

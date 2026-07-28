@@ -15,7 +15,12 @@ const COMPONENTS = [
         "default": false
       }
     ],
-    "textProps": [],
+    "textProps": [
+      {
+        "property": "Titre",
+        "default": "Piqueray, une histoire de famille "
+      }
+    ],
     "fontStyles": [
       "Medium"
     ],
@@ -32,9 +37,6 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
-          },
-          "bindings": {
-            "itemSpacing": "space/32"
           },
           "children": [
             {
@@ -56,18 +58,15 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "bindings": {
-                "itemSpacing": "space/16"
-              },
               "children": [
                 {
                   "type": "text",
                   "name": "Texte",
-                  "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd hui dirigée par Florian et Cécilia Piqueray, l entreprise perpétue les valeurs de proximité et d excellence technique. Dépositaire officiel Hörmann, nous allions la force d un leader mondial à la souplesse d une PME locale.",
+                  "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
                   "fontSize": 16,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
-                  "lineHeight": 24,
+                  "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 },
                 {
@@ -281,7 +280,17 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
-    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
+    if (spec.fontFamily) {
+      try {
+        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
+        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
+      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
+    }
+    if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
+    if (spec.textCase) node.textCase = spec.textCase;
+    if (spec.textDecoration) node.textDecoration = spec.textDecoration;
+    if (spec.textAlignH) node.textAlignHorizontal = spec.textAlignH;
+    if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.

@@ -117,16 +117,11 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.noir-bleute}",
-                "font-size": "{font.size.20}",
-                "font-weight": "{font.weight.semibold}"
+                "color": "{color.noir-bleute}"
               },
               "visibleWhen": {
                 "prop": "etat",
                 "equals": "ouvert"
-              },
-              "literals": {
-                "line-height": "25px"
               }
             },
             "ChevronUp": {
@@ -150,14 +145,14 @@
             "prop": "contenu"
           },
           "tokens": {
-            "color": "{color.noir-bleute}",
-            "font-weight": "{font.weight.regular}"
+            "color": "{color.noir-bleute}"
           },
           "visibleWhen": {
             "prop": "etat",
             "equals": "ouvert"
           },
           "literals": {
+            "padding-block": "16px",
             "line-height": "24px"
           }
         },
@@ -166,16 +161,11 @@
             "prop": "titre"
           },
           "tokens": {
-            "color": "{color.noir-bleute}",
-            "font-size": "{font.size.20}",
-            "font-weight": "{font.weight.semibold}"
+            "color": "{color.noir-bleute}"
           },
           "visibleWhen": {
             "prop": "etat",
             "equals": "ferme"
-          },
-          "literals": {
-            "line-height": "25px"
           }
         },
         "ChevronDown": {
@@ -200,11 +190,6 @@
       "tokens": {
         "border-color": "{color.noir-bleute}",
         "font-family": "{font.family.montserrat}"
-      },
-      "literals": {
-        "gap": "24px",
-        "padding-top": "16px",
-        "padding-bottom": "16px"
       }
     }
   },

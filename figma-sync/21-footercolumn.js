@@ -12,8 +12,7 @@ const COMPONENTS = [
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium",
-      "Regular"
+      "Medium"
     ],
     "variants": [
       {
@@ -29,18 +28,15 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "bindings": {
-            "itemSpacing": "space/16"
-          },
           "children": [
             {
               "type": "text",
               "name": "Titre",
               "characters": "Adresse",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/orange",
-              "lineHeight": 30,
+              "fontFamily": "Montserrat",
               "contentProp": "Titre"
             },
             {
@@ -48,9 +44,9 @@ const COMPONENTS = [
               "name": "Texte",
               "characters": "Rue Alfred Drèze 7,  4860 Pepinster",
               "fontSize": 16,
-              "fontStyle": "Regular",
+              "fontStyle": "Medium",
               "textFill": "color/blanc",
-              "lineHeight": 27,
+              "fontFamily": "Montserrat",
               "contentProp": "Texte"
             }
           ]
@@ -254,7 +250,17 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
-    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
+    if (spec.fontFamily) {
+      try {
+        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
+        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
+      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
+    }
+    if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
+    if (spec.textCase) node.textCase = spec.textCase;
+    if (spec.textDecoration) node.textDecoration = spec.textDecoration;
+    if (spec.textAlignH) node.textAlignHorizontal = spec.textAlignH;
+    if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }
     if (spec.textStyle) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.
