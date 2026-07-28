@@ -41,6 +41,13 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from
 import { execSync } from 'node:child_process';
 import path from 'node:path';
 import { composeSubject, type RenderablePackage } from './compose.js';
+import {
+  validateCampaignOutputPath,
+  validateVisualCampaign,
+  type CampaignAssetManifest,
+  type CampaignValidationIssue,
+  type VisualCampaign,
+} from './campaign.js';
 import { fetchNodePngs, fetchSetInfos, type SetInfo } from './figma-api.js';
 import { authoritativeScore } from './gate.js';
 import { alignPair, diffPair, meanInk, readPng, writeTriptych, type Aligned, type DiffResult } from './img.js';
@@ -51,6 +58,7 @@ import { triageFor, type TriageRule } from './triage.js';
 import { THRESHOLD_PCT } from './tolerance.js';
 
 const HERE = path.resolve(new URL('.', import.meta.url).pathname);
+const REPOSITORY_ROOT = path.resolve(HERE, '../../..');
 const OUT = path.join(HERE, 'out');
 const CACHE = path.join(OUT, '_cache');
 const ASSETS = path.join(HERE, 'report-assets');
@@ -62,6 +70,19 @@ const TRIAGE_LINE_PCT = 3.0;
  *  same Chromium, scores reproduce byte-identically; this is NOT a fidelity
  *  tolerance (the scores themselves stay untouched). */
 const EPSILON_PP = 0.1;
+
+/** CLI/preflight failures are input blocks (campaign exit-code class 2), not
+ * Figma/render failures.  Keeping this distinct lets malformed input fail
+ * before a directory, API cache, or browser can be touched. */
+class CampaignPreflightError extends Error {}
+
+interface VisualRunArguments {
+  refresh: boolean;
+  summary: boolean;
+  writeBaseline: boolean;
+  legacySubjectFilters: string[];
+  campaign: VisualCampaign | null;
+}
 
 interface Row {
   subject: string;
@@ -166,12 +187,126 @@ function receiptsLine(pkg: RenderablePackage): string {
   return bits.join('; ') || 'repo tokens only';
 }
 
+function campaignIssues(issues: CampaignValidationIssue[]): string {
+  return issues.map((issue) => `  - ${issue.code} at ${issue.path}: ${issue.message}`).join('\n');
+}
+
+function isWithin(root: string, candidate: string): boolean {
+  const relative = path.relative(root, candidate);
+  return relative === '' || (!relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative));
+}
+
+function readJsonPreflight(file: string, label: string): unknown {
+  try {
+    return JSON.parse(readFileSync(file, 'utf8'));
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new CampaignPreflightError(`${label} cannot be read as JSON (${file}): ${detail}`);
+  }
+}
+
+/**
+ * Parse and validate the campaign entirely before main creates its output
+ * directories.  This deliberately stays filesystem-read-only: the first
+ * mkdir, Figma request, and Chromium launch remain below this preflight.
+ */
+function parseVisualRunArguments(args: string[]): VisualRunArguments {
+  let refresh = false;
+  let summary = false;
+  let writeBaseline = false;
+  let campaignArgument: string | null = null;
+  let outArgument: string | null = null;
+  const legacySubjectFilters: string[] = [];
+
+  for (let index = 0; index < args.length; index++) {
+    const argument = args[index];
+    switch (argument) {
+      case '--refresh':
+        refresh = true;
+        break;
+      case '--summary':
+        summary = true;
+        break;
+      case '--write-baseline':
+        writeBaseline = true;
+        break;
+      case '--campaign':
+      case '--out': {
+        const value = args[++index];
+        if (!value || value.startsWith('--')) {
+          throw new CampaignPreflightError(`${argument} requires one path argument`);
+        }
+        if (argument === '--campaign') {
+          if (campaignArgument !== null) throw new CampaignPreflightError('--campaign may be specified only once');
+          campaignArgument = value;
+        } else {
+          if (outArgument !== null) throw new CampaignPreflightError('--out may be specified only once');
+          outArgument = value;
+        }
+        break;
+      }
+      default:
+        if (argument.startsWith('--')) throw new CampaignPreflightError(`unknown visual-parity option: ${argument}`);
+        legacySubjectFilters.push(argument);
+    }
+  }
+
+  if (campaignArgument === null && outArgument !== null) {
+    throw new CampaignPreflightError('--out is only valid with --campaign');
+  }
+  if (campaignArgument !== null && outArgument === null) {
+    throw new CampaignPreflightError('--campaign requires a bounded --out destination');
+  }
+  if (campaignArgument === null) {
+    return { refresh, summary, writeBaseline, legacySubjectFilters, campaign: null };
+  }
+  if (legacySubjectFilters.length > 0) {
+    throw new CampaignPreflightError('--campaign is mutually exclusive with legacy subject filters');
+  }
+
+  if (outArgument === null) {
+    throw new CampaignPreflightError('--campaign requires a bounded --out destination');
+  }
+  const campaignOut = outArgument;
+  const campaignPath = path.resolve(process.cwd(), campaignArgument);
+  if (!isWithin(REPOSITORY_ROOT, campaignPath)) {
+    throw new CampaignPreflightError('--campaign must name a repository-local campaign JSON file');
+  }
+  const candidate = readJsonPreflight(campaignPath, 'visual campaign');
+
+  // Validate the document's shape and path declarations before using its
+  // assetsManifest value to read any second file.
+  const shape = validateVisualCampaign(candidate);
+  if (!shape.ok) {
+    throw new CampaignPreflightError(`invalid visual campaign:\n${campaignIssues(shape.issues)}`);
+  }
+  const assetManifestPath = path.resolve(REPOSITORY_ROOT, shape.value.assetsManifest);
+  if (!isWithin(REPOSITORY_ROOT, assetManifestPath)) {
+    // This should be impossible after validateVisualCampaign, but keeps the
+    // boundary explicit if the validator's path policy ever changes.
+    throw new CampaignPreflightError('campaign assetsManifest resolves outside the repository');
+  }
+  const assetManifest = readJsonPreflight(assetManifestPath, 'campaign assets manifest') as CampaignAssetManifest;
+  const campaignValidation = validateVisualCampaign(candidate, { assetManifest });
+  if (!campaignValidation.ok) {
+    throw new CampaignPreflightError(`invalid visual campaign:\n${campaignIssues(campaignValidation.issues)}`);
+  }
+
+  // A campaign id owns exactly one feature-proof root.  The optional output
+  // path may select that root or a nested retry/scratch directory, never a
+  // repository-wide or sibling campaign location.
+  const campaignOutputRoot = path.join(REPOSITORY_ROOT, 'specs', campaignValidation.value.id, 'proofs', 'visual');
+  const output = validateCampaignOutputPath(path.resolve(process.cwd(), campaignOut), campaignOutputRoot);
+  if (!output.ok) {
+    throw new CampaignPreflightError(`invalid campaign --out:\n${campaignIssues(output.issues)}`);
+  }
+
+  return { refresh, summary, writeBaseline, legacySubjectFilters, campaign: campaignValidation.value };
+}
+
 async function main(): Promise<void> {
-  const args = process.argv.slice(2);
-  const refresh = args.includes('--refresh');
-  const summary = args.includes('--summary');
-  const writeBaselineFlag = args.includes('--write-baseline');
-  const only = args.filter((a) => !a.startsWith('--'));
+  const { refresh, summary, writeBaseline: writeBaselineFlag, legacySubjectFilters, campaign } = parseVisualRunArguments(process.argv.slice(2));
+  const only = campaign ? campaign.subjects.map((subject) => subject.id) : legacySubjectFilters;
   const subjects = PARITY_SUBJECTS.filter((s) => only.length === 0 || only.includes(s.id));
   if (subjects.length === 0) throw new Error(`no subjects match: ${only.join(', ')}`);
   if (summary && only.length > 0) {
@@ -592,5 +727,5 @@ in device px, never resampled away.
 
 main().catch((e: unknown) => {
   console.error(e instanceof Error ? e.message : e);
-  process.exitCode = 1;
+  process.exitCode = e instanceof CampaignPreflightError ? 2 : 1;
 });

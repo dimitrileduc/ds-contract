@@ -44,7 +44,7 @@ description: "Executable task list for the 011 molecule-convergence campaign"
 - [X] T008 [P] Create adversarial evidence-integrity checks for missing coverage, stale references, invalid assets, and incomplete artifact sets in evals/fixtures/visual-evidence-integrity-check.ts
 - [X] T009 Implement the versioned campaign, coverage, receipt, and result validation model from the feature interfaces in extract/figma/visual-parity/campaign.ts
 - [X] T010 Register the new foundational campaign and evidence fixtures in evals/run.ts
-- [ ] T011 Add --campaign and bounded --out argument validation, mutual exclusion with legacy subject filters, and legacy-mode preservation in extract/figma/visual-parity/run.ts
+- [X] T011 Add --campaign and bounded --out argument validation, mutual exclusion with legacy subject filters, and legacy-mode preservation in extract/figma/visual-parity/run.ts
 
 **Checkpoint**: The runner can refuse malformed campaigns, unsafe destinations, and incomplete evidence before it touches Figma or writes artifacts.
 
