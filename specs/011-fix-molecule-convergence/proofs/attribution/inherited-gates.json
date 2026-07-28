@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-28",
+  "command": "npm run eval",
+  "environment": {
+    "head": "29d70187cdb7c7e45ca3bbc4f2d75da64bcd31b5",
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "liveFileVersion": "2381229993207753432"
+  },
+  "preflightRepair": {
+    "path": "packages/schema/src/contract-schema.ts",
+    "finding": "An inherited unmatched `});` at line 127 prevented TypeScript transformation.",
+    "repair": "Removed only the unmatched delimiter; `npx tsc --noEmit` then passed."
+  },
+  "gates": [
+    {
+      "id": "baseline-parity-clean",
+      "status": "failed-as-expected",
+      "finding": "figma-tokens behind: Primitives/border-width/1",
+      "hypothesis": "The immutable local Figma token snapshot omits the live border-width variable."
+    },
+    {
+      "id": "baseline-acknowledges-without-failing",
+      "status": "failed-as-expected",
+      "finding": "The seeded baselined provenance mismatch remains non-zero because the unacknowledged border-width drift is still active.",
+      "hypothesis": "This is downstream of the same missing snapshot variable, not a baseline-routing regression."
+    },
+    {
+      "id": "promotion-converges",
+      "status": "failed-as-expected",
+      "finding": "The expected Button.IconOnly finding is accompanied by Primitives/border-width/1.",
+      "hypothesis": "The unrelated active token finding prevents the fixture from reaching its one-finding assertion."
+    },
+    {
+      "id": "detect-icon-registry-divergence",
+      "status": "failed-as-expected",
+      "finding": "The expected assets/icons/cart.svg finding is displaced by the active border-width drift and figma/Cart finding.",
+      "hypothesis": "The icon fixture itself remains a detection check; its strict expected report is contaminated by the token snapshot defect."
+    }
+  ],
+  "readOnlyEvidence": {
+    "nodeGet": "GET /v1/files/:fileKey/nodes?ids=2059:1417 returned 200 and Figma version 2381229993207753432; all four AccordionRow variants bind BORDER_BOTTOM_WEIGHT to VariableID:2183:7977.",
+    "variablesGet": "GET /v1/files/:fileKey/variables/local returned 403. The REST endpoint cannot expose the local variable on this plan.",
+    "consoleMcp": "The local Figma Console MCP Desktop Bridge read the Plugin API without a canvas mutation and recovered Primitives/border-width/1 = 1 from the pinned file version. See figma-token-receipt.json."
+  },
+  "recovery": {
+    "snapshot": "parity/snapshots/figma-tokens.json now includes Primitives/border-width/1 from the Console MCP receipt.",
+    "receipt": "specs/011-fix-molecule-convergence/proofs/attribution/figma-token-receipt.json",
+    "normalizedPayloadSha256": "ffff893d8c10ab2ed0db544dd3c713e6fa8e828c80c7db01aca1c54463e54b2c",
+    "namedGateResults": [
+      "baseline-parity-clean: pass via npm run parity",
+      "baseline-acknowledges-without-failing: pass via the deterministic eval harness after snapshot refresh",
+      "promotion-converges: pass via the deterministic eval harness after snapshot refresh",
+      "detect-icon-registry-divergence: pass via the deterministic eval harness after restoring the governed dynamic-asset check"
+    ]
+  }
+}

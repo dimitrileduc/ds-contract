@@ -124,7 +124,6 @@ export const PropSchema = z
       path: ['bindings', 'figma', 'kind'],
     },
   );
-  });
 
 export const LayoutSchema = z.strictObject({
   display: z.enum(['flex', 'inline-flex']).optional(),

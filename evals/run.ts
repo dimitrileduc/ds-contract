@@ -60,6 +60,30 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'primitives-border-width-parity',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/primitives-border-width-parity-check.ts']);
+      if (r.status !== 0) throw new Error(`Immutable Figma border-width reference check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-campaign-schema-guards',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-campaign-schema-check.ts']);
+      if (r.status !== 0) throw new Error(`Visual campaign schema guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-evidence-integrity-guards',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-evidence-integrity-check.ts']);
+      if (r.status !== 0) throw new Error(`Visual evidence integrity guard failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'baseline-acknowledges-without-failing',
     claim: 'C3-detection',
     run: () => {

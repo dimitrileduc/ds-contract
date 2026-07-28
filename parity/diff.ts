@@ -835,14 +835,24 @@ if (existsSync(iconRegistryPath)) {
   // assets ({glyph}) stay registry-governed and are NOT swept in here. An
   // asset that is NEITHER registry-listed NOR consumed remains a finding.
   const consumedAssets = new Set<string>();
+  const governedDynamicAssets = new Set<string>();
   for (const c of contracts) {
     for (const { part } of walkAnatomy(c)) {
       const asset = part.icon?.asset;
-      if (asset && !asset.includes('{')) consumedAssets.add(asset);
+      if (!asset) continue;
+      const dynamic = asset.match(/^\{([^}]+)\}$/);
+      if (!dynamic) {
+        consumedAssets.add(asset);
+        continue;
+      }
+      const prop = c.props.find((candidate) => candidate.name === dynamic[1]);
+      if (prop && isEnum(prop)) {
+        for (const value of prop.type.enum) governedDynamicAssets.add(value);
+      }
     }
   }
   for (const asset of codeAssets) {
-    if (!registryAssetNames.has(asset) && !consumedAssets.has(asset)) {
+    if (!registryAssetNames.has(asset) && (!consumedAssets.has(asset) || governedDynamicAssets.has(asset))) {
       add({
         surface: 'icons',
         classification: 'ahead',
