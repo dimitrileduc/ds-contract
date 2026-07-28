@@ -3,7 +3,7 @@
   "id": "ds.realisation",
   "name": "Realisation",
   "version": "1.0.0",
-  "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. IMAGE fills are instance overrides in Figma; src/alt are explicit code semantics.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -31,11 +31,61 @@
           "prop": "taille"
         }
       }
+    },
+    {
+      "name": "imageUrl",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageUrl"
+        }
+      }
+    },
+    {
+      "name": "imageAlt",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageAlt"
+        }
+      }
     }
   ],
   "states": [],
   "anatomy": {
     "root": {
+      "parts": {
+        "Image": {
+          "element": "img",
+          "attrs": {
+            "src": "{imageUrl}",
+            "alt": "{imageAlt}"
+          },
+          "literals": {
+            "width": "743px",
+            "height": "743px"
+          },
+          "literalsByProp": [
+            {
+              "prop": "taille",
+              "map": {
+                "petit": {
+                  "width": "339.5px",
+                  "height": "339.5px"
+                }
+              }
+            }
+          ]
+        }
+      },
       "tokens": {
         "font-family": "{font.family.montserrat}"
       }

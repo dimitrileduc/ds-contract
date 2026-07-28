@@ -99,11 +99,20 @@
             "prop": "accroche"
           },
           "tokens": {
-            "color": "{color.noir-bleute}"
+            "color": "{color.noir-bleute}",
+            "font-size": "{font.size.20}",
+            "font-weight": "{font.weight.regular}"
           },
           "visibleWhen": {
             "prop": "disposition",
             "equals": "standard"
+          },
+          "literals": {
+            "letter-spacing": "3px",
+            "line-height": "25px"
+          },
+          "declared": {
+            "text-transform": "uppercase"
           }
         },
         "Titre": {
@@ -111,18 +120,49 @@
             "prop": "titre"
           },
           "tokens": {
-            "color": "{color.noir-bleute}"
-          }
+            "color": "{color.noir-bleute}",
+            "font-size": "{font.size.40}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "tokensByProp": {
+            "prop": "disposition",
+            "map": {
+              "avecCta": {
+                "font-size": "{font.size.32}"
+              }
+            }
+          },
+          "literals": {
+            "line-height": "50px"
+          },
+          "literalsByProp": [
+            {
+              "prop": "disposition",
+              "map": {
+                "avecCta": {
+                  "line-height": "40px"
+                }
+              }
+            }
+          ]
         },
         "Bouton": {
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "Voir les produits",
+            "props": {
+              "variant": "outilneNoir"
+            }
           },
           "visibleWhen": {
             "prop": "disposition",
             "equals": "avecCta"
           }
         }
+      },
+      "literals": {
+        "gap": "8px",
+        "width": "1550px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

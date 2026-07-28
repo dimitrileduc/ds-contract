@@ -125,6 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
+  width: 1550px;
 }
 
 .section-header--disposition-avecCta {
@@ -134,10 +136,26 @@
 
 .section-header__Accroche {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 3px;
+  line-height: 25px;
+  text-transform: uppercase;
 }
 
 .section-header__Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-40);
+  font-weight: var(--font-weight-regular);
+  line-height: 50px;
+}
+
+.section-header--disposition-avecCta .section-header__Titre {
+  line-height: 40px;
+}
+
+.section-header--disposition-avecCta .section-header__Titre {
+  font-size: var(--font-size-32);
 }
 
 /* Carte — from ds.carte v1.0.0 (core/emit-html.ts) */
@@ -151,25 +169,70 @@
   flex-direction: column;
   align-items: stretch;
   border: 0;
+  background-color: var(--color-blanc);
   font-family: var(--font-family-montserrat);
+  gap: 24px;
+  padding-bottom: 24px;
+  border-radius: 10px;
+}
+
+.carte--disposition-categorie {
+  background-color: transparent;
+  gap: 32px;
+  padding-bottom: 0px;
+  border-radius: 0px;
+}
+
+.carte__img {
+  height: 364px;
 }
 
 .carte__text {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 8px;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.carte--disposition-categorie .carte__text {
+  gap: 16px;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .carte__Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
+}
+
+.carte--disposition-categorie .carte__Titre {
+  line-height: 40px;
+}
+
+.carte--disposition-categorie .carte__Titre {
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-medium);
 }
 
 .carte__Texte {
   color: var(--color-noir);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 24px;
+}
+
+.carte--disposition-categorie .carte__Texte {
+  line-height: 27px;
 }
 
 .carte--disposition-categorie .carte__Texte {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
 }
 
 /* Reassurances — from ds.reassurances v1.0.0 (core/emit-html.ts) */

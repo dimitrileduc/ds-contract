@@ -36,6 +36,8 @@
       "name": "items",
       "type": {
         "arrayOf": {
+          "libelle": "text",
+          "href": "text",
           "chevron": "boolean"
         }
       },
@@ -92,15 +94,23 @@
                     "itemsProp": "items",
                     "sample": [
                       {
+                        "libelle": "Portes de garage",
+                        "href": "/portes-de-garage",
                         "chevron": true
                       },
                       {
+                        "libelle": "Portes d’entrée",
+                        "href": "/portes-entree",
                         "chevron": true
                       },
                       {
+                        "libelle": "Motorisation",
+                        "href": "/motorisation",
                         "chevron": false
                       },
                       {
+                        "libelle": "À propos",
+                        "href": "/a-propos",
                         "chevron": false
                       }
                     ]

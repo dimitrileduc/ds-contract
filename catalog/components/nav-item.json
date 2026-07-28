@@ -4,12 +4,22 @@
   "version": "1.0.0",
   "status": "draft",
   "category": "molecule",
-  "description": "Piqueray NavItem. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact.",
   "figma": {
     "representation": "component",
     "componentSetKey": "bb5fff155aa25e719d1b9e38dedc767d677b4471"
   },
   "props": [
+    {
+      "name": "libelle",
+      "type": "string",
+      "default": "Portes de garage"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "required": true
+    },
     {
       "name": "chevron",
       "type": "boolean",

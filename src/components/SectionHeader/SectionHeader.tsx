@@ -36,7 +36,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
     <div ref={ref} className={classes} data-accroche2={accroche2 || undefined} {...rest}>
       {disposition === 'standard' ? <span className={styles.Accroche}>{accroche}</span> : null}
       <span className={styles.Titre}>{titre}</span>
-      <Button>Contactez-nous</Button>
+      {disposition === 'avecCta' ? <Button variant="outilneNoir">Voir les produits</Button> : null}
     </div>
   );
 });

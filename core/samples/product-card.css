@@ -125,14 +125,28 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 16px;
+}
+
+.product-card__Image {
+  width: 240px;
+  height: 240px;
 }
 
 .product-card__Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: 20px;
+  text-align: center;
 }
 
 .product-card__Prix {
   color: var(--color-bleu);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: 20px;
+  text-align: center;
 }
 
 /* showcase chrome */

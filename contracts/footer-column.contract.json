@@ -3,7 +3,7 @@
   "id": "ds.footer-column",
   "name": "FooterColumn",
   "version": "1.0.0",
-  "description": "Piqueray FooterColumn. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray FooterColumn. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -51,7 +51,12 @@
             "prop": "titre"
           },
           "tokens": {
-            "color": "{color.orange}"
+            "color": "{color.orange}",
+            "font-size": "{font.size.24}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "literals": {
+            "line-height": "30px"
           }
         },
         "Texte": {
@@ -59,9 +64,18 @@
             "prop": "texte"
           },
           "tokens": {
-            "color": "{color.blanc}"
+            "color": "{color.blanc}",
+            "font-size": "{font.size.18}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "literals": {
+            "line-height": "27px"
           }
         }
+      },
+      "literals": {
+        "gap": "16px",
+        "width": "310px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

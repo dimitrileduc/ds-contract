@@ -129,6 +129,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       className={classes}
       data-icon-left={iconLeft || undefined}
       data-icon-right={iconRight || undefined}
+      type="button"
       {...rest}
     >
       {iconLeft ? (

@@ -681,9 +681,10 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       const attrs = depAttrString(dep, part.component.props ?? {});
       const depChildren = textProps(dep).find((p) => p.bindings.code.prop === 'children');
       const text = part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
-      return text !== undefined
+      const node = text !== undefined
         ? `<${dep.name}${attrs}>${text}</${dep.name}>`
         : `<${dep.name}${attrs} />`;
+      return wrapPresence(part, node);
     }
     if (part.slot) {
       const el = part.element ?? 'div';
@@ -745,6 +746,9 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
 
   const nativeDisabled = meta.supportsDisabled && bools.some((p) => p.name === 'disabled');
   const elementAttrs: string[] = ['ref={ref}', `style=${styleExpr('root', true, root ? stylesWhenExprs(root) : [])}`];
+  if (!elementByProp && contract.semantics.element === 'button' && root?.attrs?.type === undefined) {
+    elementAttrs.push('type="button"');
+  }
   if (nativeDisabled) elementAttrs.push('disabled={disabled}');
   for (const p of bools) {
     if (p.name === 'disabled' && nativeDisabled) continue;

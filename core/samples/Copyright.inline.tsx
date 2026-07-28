@@ -21,7 +21,10 @@ const S: Record<string, CSSProperties> = {
     "fontFamily": "Montserrat, sans-serif"
   },
   "Texte": {
-    "color": "#FFFFFF"
+    "color": "#FFFFFF",
+    "fontSize": "14px",
+    "fontWeight": 400,
+    "lineHeight": "24px"
   }
 };
 
@@ -32,7 +35,7 @@ export interface CopyrightProps extends HTMLAttributes<HTMLDivElement> {
   texte?: string;
 }
 
-/** Piqueray Copyright. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray Copyright. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. */
 export const Copyright = forwardRef<HTMLDivElement, CopyrightProps>(function Copyright(
   { texte = '© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb', style, children, ...rest },
   ref,

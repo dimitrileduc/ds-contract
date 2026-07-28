@@ -24,7 +24,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
     <div ref={ref} className={classes} data-optionnel={optionnel || undefined} {...rest}>
       <div className={styles.label}>
         <span className={styles.Label}>{label}</span>
-        <span className={styles.MentionOptionnelle}>(optionnel)</span>
+        {optionnel ? <span className={styles.MentionOptionnelle}>(optionnel)</span> : null}
       </div>
       <div className={styles.Saisie}>{children}</div>
       {etat === 'erreur' ? <span className={styles.messageErreur}>Message d’erreur</span> : null}

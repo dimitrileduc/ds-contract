@@ -6,19 +6,41 @@
 .root {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
+  width: 759px;
+  height: 75px;
+}
+
+.Piqueray svg {
+  width: 64px;
+  height: 64px;
+}
+
+.Piqueray {
+  display: inline-flex;
+  flex-shrink: 0;
 }
 
 .text {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  width: 687px;
 }
 
 .Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-regular);
+  line-height: 40px;
 }
 
 .Texte {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
 }

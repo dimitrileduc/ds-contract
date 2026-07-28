@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "26ff7e1",
+    "gitCommit": "45e2a7d",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -52,7 +52,7 @@
       "id": "ds.accordion-row",
       "name": "AccordionRow",
       "version": "1.1.0",
-      "status": "draft",
+      "status": "stable",
       "category": "molecule",
       "propNames": [
         "taille",
@@ -61,16 +61,6 @@
         "contenu"
       ],
       "summary": "Piqueray AccordionRow."
-    },
-    {
-      "id": "ds.piqueray-logo",
-      "name": "PiquerayLogo",
-      "version": "0.1.0",
-      "status": "draft",
-      "propNames": [
-        "couleur"
-      ],
-      "summary": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure."
     },
     {
       "id": "ds.avantage",
@@ -117,6 +107,8 @@
       "propNames": [
         "disposition",
         "titre",
+        "imageUrl",
+        "imageAlt",
         "texte"
       ],
       "summary": "Piqueray Carte."
@@ -285,6 +277,16 @@
       "summary": "Piqueray FooterColumn."
     },
     {
+      "id": "ds.piqueray-logo",
+      "name": "PiquerayLogo",
+      "version": "0.1.0",
+      "status": "draft",
+      "propNames": [
+        "couleur"
+      ],
+      "summary": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure."
+    },
+    {
       "id": "ds.footer",
       "name": "Footer",
       "version": "1.0.0",
@@ -351,6 +353,8 @@
       "status": "draft",
       "category": "molecule",
       "propNames": [
+        "libelle",
+        "href",
         "chevron",
         "actif"
       ],
@@ -399,6 +403,8 @@
       "propNames": [
         "titre",
         "prix",
+        "imageUrl",
+        "imageAlt",
         "bouton"
       ],
       "summary": "Piqueray ProductCard."
@@ -410,7 +416,9 @@
       "status": "draft",
       "category": "molecule",
       "propNames": [
-        "taille"
+        "taille",
+        "imageUrl",
+        "imageAlt"
       ],
       "summary": "Piqueray Realisation."
     },

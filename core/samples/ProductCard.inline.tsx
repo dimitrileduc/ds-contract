@@ -20,14 +20,26 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "column",
     "alignItems": "center",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "gap": "16px"
   },
-  "Image": {},
+  "Image": {
+    "width": "240px",
+    "height": "240px"
+  },
   "Titre": {
-    "color": "#26282C"
+    "color": "#26282C",
+    "fontSize": "16px",
+    "fontWeight": 600,
+    "lineHeight": "20px",
+    "textAlign": "center"
   },
   "Prix": {
-    "color": "#143A84"
+    "color": "#143A84",
+    "fontSize": "16px",
+    "fontWeight": 600,
+    "lineHeight": "20px",
+    "textAlign": "center"
   }
 };
 
@@ -37,22 +49,24 @@ const V: Record<string, CSSProperties> = {};
 export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   titre?: string;
   prix?: string;
+  imageUrl?: string;
+  imageAlt?: string;
   bouton?: boolean;
 }
 
-/** Piqueray ProductCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides. */
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(function ProductCard(
-  { bouton = false, titre = 'Télécommande Hörmann HSE4-868BS', prix = '74,99€', style, children, ...rest },
+  { bouton = false, titre = 'Télécommande Hörmann HSE4-868BS', prix = '74,99€', imageUrl = '', imageAlt = '', style, children, ...rest },
   ref,
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }} data-bouton={bouton || undefined} {...rest}>
-      <div style={{ ...S.Image }}>
+      <img style={{ ...S.Image }} src={String(imageUrl)} alt={String(imageAlt)}>
 
-</div>
+</img>
 <span style={{ ...S.Titre }}>{titre}</span>
 <span style={{ ...S.Prix }}>{prix}</span>
-<Button>Contactez-nous</Button>
+{bouton ? (<Button variant="default" iconLeft iconLeftGlyph="cart">Ajouter au panier</Button>) : null}
     </div>
   );
 });

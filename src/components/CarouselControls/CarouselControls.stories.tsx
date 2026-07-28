@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray CarouselControls. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.',
+          'Piqueray CarouselControls. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Navigation semantics are a code decision; click callbacks remain a documented consumer boundary.',
       },
     },
   },

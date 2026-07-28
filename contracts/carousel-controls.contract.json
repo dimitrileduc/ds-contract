@@ -3,15 +3,18 @@
   "id": "ds.carousel-controls",
   "name": "CarouselControls",
   "version": "1.0.2",
-  "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Navigation semantics are a code decision; click callbacks remain a documented consumer boundary.",
   "semantics": {
-    "element": "div",
+    "element": "nav",
     "provenance": "extracted"
   },
   "props": [],
   "states": [],
   "anatomy": {
     "root": {
+      "attrs": {
+        "aria-label": "Navigation du carrousel"
+      },
       "layout": {
         "display": "flex",
         "direction": "row",

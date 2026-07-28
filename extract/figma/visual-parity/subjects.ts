@@ -18,6 +18,7 @@
  *
  * Adding a subject = adding one entry here.
  */
+import type { ComparisonSurface } from './img.js';
 
 export interface DumpSubject {
   id: string;
@@ -35,6 +36,10 @@ export interface DumpSubject {
   scope?: Array<{ dumpPath: string; set?: string }>;
   fileKey: string;
   setNodeId: string;
+  /** Neutral alpha-flattening context for transparent component ink.
+   * `dark` is required for white-on-transparent subjects. This changes only
+   * the inspection surface shared by BOTH PNGs, never component styling. */
+  comparisonSurface?: ComparisonSurface;
 }
 
 export interface ContractSubject {
@@ -45,6 +50,10 @@ export interface ContractSubject {
   contractId: string;
   fileKey: string;
   setNodeId: string;
+  /** Neutral alpha-flattening context for transparent component ink.
+   * `dark` is required for white-on-transparent subjects. This changes only
+   * the inspection surface shared by BOTH PNGs, never component styling. */
+  comparisonSurface?: ComparisonSurface;
   /** The fixed px width to render the code side at, before screenshot + box
    *  measurement — matching a FIXED-width master frame (e.g. a content-width
    *  atom whose master is a 280px design-time frame). Omit for hug/
@@ -290,9 +299,20 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   { id: 'field', label: 'Field (Piqueray)', kind: 'contract', contractId: 'ds.field', fileKey: PIQUERAY, setNodeId: '2056:1278', renderWidth: 280 },
   { id: 'footer-column', label: 'FooterColumn (Piqueray)', kind: 'contract', contractId: 'ds.footer-column', fileKey: PIQUERAY, setNodeId: '2079:2246', renderWidth: 169 },
   { id: 'member-card', label: 'MemberCard (Piqueray)', kind: 'contract', contractId: 'ds.member-card', fileKey: PIQUERAY, setNodeId: '2074:2072' },
-  { id: 'nav-item', label: 'NavItem (Piqueray)', kind: 'contract', contractId: 'ds.nav-item', fileKey: PIQUERAY, setNodeId: '2152:5554', renderWidth: 190 },
+  {
+    id: 'nav-item',
+    label: 'NavItem (Piqueray)',
+    kind: 'contract',
+    contractId: 'ds.nav-item',
+    fileKey: PIQUERAY,
+    setNodeId: '2152:5554',
+    // The HUG master is 194×16 (REST receipt in the version-keyed node
+    // cache), so no forced width is legitimate. Its white text/chevron are
+    // transparent component ink intended for a dark Header/photo context.
+    comparisonSurface: 'dark',
+  },
   { id: 'product-card', label: 'ProductCard (Piqueray)', kind: 'contract', contractId: 'ds.product-card', fileKey: PIQUERAY, setNodeId: '2068:1972' },
   { id: 'realisation', label: 'Realisation (Piqueray)', kind: 'contract', contractId: 'ds.realisation', fileKey: PIQUERAY, setNodeId: '2095:2484' },
-  { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397', renderWidth: 540 },
+  { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397' },
   { id: 'tab', label: 'Tab (Piqueray)', kind: 'contract', contractId: 'ds.tab', fileKey: PIQUERAY, setNodeId: '2061:1588', renderWidth: 86 },
 ];

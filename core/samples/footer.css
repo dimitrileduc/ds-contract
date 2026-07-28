@@ -9,14 +9,22 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 16px;
+  width: 310px;
 }
 
 .footer-column__Titre {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
 }
 
 .footer-column__Texte {
   color: var(--color-blanc);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
 }
 
 /* PiquerayLogo — from ds.piqueray-logo v0.1.0 (core/emit-html.ts) */
@@ -199,6 +207,9 @@
 
 .copyright__Texte {
   color: var(--color-blanc);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
 }
 
 /* Footer — from ds.footer v1.0.0 (core/emit-html.ts) */

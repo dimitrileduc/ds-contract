@@ -18,22 +18,35 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "gap": "8px"
   },
   "label": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "gap": "4px"
   },
   "Label": {
-    "color": "#9BA4B5"
+    "color": "#9BA4B5",
+    "fontSize": "20px",
+    "fontWeight": 600,
+    "lineHeight": "25px"
   },
   "MentionOptionnelle": {
-    "color": "#9BA4B5"
+    "color": "#9BA4B5",
+    "fontSize": "14px",
+    "fontWeight": 400,
+    "lineHeight": "24px"
   },
   "Saisie": {
     "display": "flex"
   },
-  "messageErreur": {}
+  "messageErreur": {
+    "fontSize": "14px",
+    "fontWeight": 400,
+    "color": "#D32F2F",
+    "lineHeight": "24px"
+  }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
@@ -55,7 +68,7 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
     <div ref={ref} style={{ ...S.root, ...style }} data-optionnel={optionnel || undefined} {...rest}>
       <div style={{ ...S.label }}>
 <span style={{ ...S.Label }}>{label}</span>
-<span style={{ ...S.MentionOptionnelle }}>(optionnel)</span>
+{optionnel ? (<span style={{ ...S.MentionOptionnelle }}>(optionnel)</span>) : null}
 </div>
 <div style={{ ...S.Saisie }}>{children}</div>
 {etat === 'erreur' ? (<span style={{ ...S.messageErreur }}>Message d’erreur</span>) : null}

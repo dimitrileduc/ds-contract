@@ -14,16 +14,20 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.',
+          'Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. IMAGE fills are instance overrides in Figma; src/alt are explicit code semantics.',
       },
     },
   },
   render: (args) => <Realisation key={JSON.stringify(args)} {...args} />,
   argTypes: {
     taille: { control: 'select', options: ['grand', 'petit'] },
+    imageUrl: { control: 'text' },
+    imageAlt: { control: 'text' },
   },
   args: {
     taille: 'grand',
+    imageUrl: '',
+    imageAlt: '',
   },
 } satisfies Meta<typeof Realisation>;
 

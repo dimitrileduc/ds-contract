@@ -2617,7 +2617,9 @@ async function buildNode(spec, registry) {
     node = figma.createNodeFromSvg(spec.svg);
     node.fills = [];
     node.clipsContent = false;
-    if (spec.iconSize) node.resize(spec.iconSize, spec.iconSize);
+    const svgWidth = spec.svgSize ? spec.svgSize.width : spec.iconSize;
+    const svgHeight = spec.svgSize ? spec.svgSize.height : spec.iconSize;
+    if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);
     if (spec.svgPaintVar) {
       const glyphPaint = boundPaint(spec.svgPaintVar, node);
       const rebind = (n) => {

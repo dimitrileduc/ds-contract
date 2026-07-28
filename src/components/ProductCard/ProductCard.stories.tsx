@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray ProductCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.',
+          'Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.',
       },
     },
   },
@@ -22,11 +22,15 @@ const meta = {
   argTypes: {
     titre: { control: 'text' },
     prix: { control: 'text' },
+    imageUrl: { control: 'text' },
+    imageAlt: { control: 'text' },
     bouton: { control: 'boolean' },
   },
   args: {
     titre: 'Télécommande Hörmann HSE4-868BS',
     prix: '74,99€',
+    imageUrl: '',
+    imageAlt: '',
     bouton: false,
   },
 } satisfies Meta<typeof ProductCard>;

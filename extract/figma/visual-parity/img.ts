@@ -5,8 +5,10 @@
  * backgrounds (our screenshot omits the body background; Figma's component
  * export is transparent outside the node), so trimming alpha≤16 edges aligns
  * both images on their painted content, DPR already matched at 2x. The pair
- * is then CENTER-padded onto a shared white canvas — never resampled, so a
- * size delta stays visible as a real mismatch and is reported in device px.
+ * is then CENTER-padded onto a shared inspection surface — light by default,
+ * or explicitly dark for transparent white-ink subjects — never resampled,
+ * so a size delta stays visible as a real mismatch and is reported in device
+ * px.
  *
  * Two scores per pair, both printed, no silent tolerance:
  *   · unmasked — every pixel counts (pixelmatch threshold 0.1, its
@@ -24,6 +26,14 @@ import type { Rect } from './render.js';
 
 const ALPHA_TRIM = 16;
 const MASK_INFLATE = 4; // device px around each text rect
+
+/** Neutral inspection surface used only to alpha-flatten both PNGs equally.
+ * It is measurement context, never component styling or a Figma design fact. */
+export type ComparisonSurface = 'light' | 'dark';
+const SURFACE_RGB: Record<ComparisonSurface, { r: number; g: number; b: number }> = {
+  light: { r: 255, g: 255, b: 255 },
+  dark: { r: 32, g: 32, b: 32 },
+};
 
 export const readPng = (source: string | Buffer): PNG =>
   PNG.sync.read(typeof source === 'string' ? readFileSync(source) : source);
@@ -64,40 +74,81 @@ export interface Aligned {
   aOffset: { x: number; y: number };
   /** a's trim origin in its ORIGINAL image (for mask-rect transforms). */
   aTrimOrigin: { x: number; y: number };
+  /** Shared alpha-flattening context used for both sides. */
+  comparisonSurface?: ComparisonSurface;
 }
 
-/** Copy src's box onto a white canvas at (dx, dy), alpha-flattened. */
-function blitOnWhite(dst: PNG, src: PNG, box: Box, dx: number, dy: number): void {
+/** Copy src's box at (dx, dy), alpha-flattened on the shared surface. */
+function blitOnSurface(
+  dst: PNG,
+  src: PNG,
+  box: Box,
+  dx: number,
+  dy: number,
+  surface: ComparisonSurface,
+): void {
+  const bg = SURFACE_RGB[surface];
   for (let y = 0; y < box.height; y++) {
     for (let x = 0; x < box.width; x++) {
       const si = ((box.y + y) * src.width + (box.x + x)) * 4;
       const di = ((dy + y) * dst.width + (dx + x)) * 4;
       const alpha = src.data[si + 3] / 255;
-      dst.data[di] = Math.round(src.data[si] * alpha + 255 * (1 - alpha));
-      dst.data[di + 1] = Math.round(src.data[si + 1] * alpha + 255 * (1 - alpha));
-      dst.data[di + 2] = Math.round(src.data[si + 2] * alpha + 255 * (1 - alpha));
+      dst.data[di] = Math.round(src.data[si] * alpha + bg.r * (1 - alpha));
+      dst.data[di + 1] = Math.round(src.data[si + 1] * alpha + bg.g * (1 - alpha));
+      dst.data[di + 2] = Math.round(src.data[si + 2] * alpha + bg.b * (1 - alpha));
       dst.data[di + 3] = 255;
     }
   }
 }
 
-const whiteCanvas = (width: number, height: number): PNG => {
+const surfaceCanvas = (width: number, height: number, surface: ComparisonSurface): PNG => {
   const png = new PNG({ width, height });
-  png.data.fill(255);
+  const bg = SURFACE_RGB[surface];
+  for (let p = 0; p < width * height; p++) {
+    const i = p * 4;
+    png.data[i] = bg.r;
+    png.data[i + 1] = bg.g;
+    png.data[i + 2] = bg.b;
+    png.data[i + 3] = 255;
+  }
   return png;
 };
 
-export function alignPair(ours: PNG, figma: PNG): Aligned {
-  const boxA = contentBox(ours);
-  const boxB = contentBox(figma);
+export function alignPair(
+  ours: PNG,
+  figma: PNG,
+  oursRoot?: Rect,
+  comparisonSurface: ComparisonSurface = 'light',
+): Aligned {
+  // When the browser root box is exactly the Figma node export size, that
+  // shared geometry is the strongest possible anchor. Alpha-content cropping
+  // is inappropriate in this case: a font rasterization delta changes the
+  // painted text bbox and center-padding then moves an otherwise identical
+  // full-width border (AccordionRow exposed this as a false 4.65% diff).
+  const roundedRoot = oursRoot
+    ? {
+        x: Math.round(oursRoot.x),
+        y: Math.round(oursRoot.y),
+        width: Math.round(oursRoot.width),
+        height: Math.round(oursRoot.height),
+      }
+    : null;
+  const exactRoot =
+    roundedRoot !== null &&
+    roundedRoot.width === figma.width &&
+    roundedRoot.height === figma.height;
+  const boxA = exactRoot ? roundedRoot : contentBox(ours);
+  const boxB = exactRoot
+    ? { x: 0, y: 0, width: figma.width, height: figma.height }
+    : contentBox(figma);
   const width = Math.max(boxA.width, boxB.width);
   const height = Math.max(boxA.height, boxB.height);
-  const a = whiteCanvas(width, height);
-  const b = whiteCanvas(width, height);
+  const a = surfaceCanvas(width, height, comparisonSurface);
+  const b = surfaceCanvas(width, height, comparisonSurface);
   const aOffset = { x: Math.floor((width - boxA.width) / 2), y: Math.floor((height - boxA.height) / 2) };
   const bOffset = { x: Math.floor((width - boxB.width) / 2), y: Math.floor((height - boxB.height) / 2) };
-  blitOnWhite(a, ours, boxA, aOffset.x, aOffset.y);
-  blitOnWhite(b, figma, boxB, bOffset.x, bOffset.y);
+  blitOnSurface(a, ours, boxA, aOffset.x, aOffset.y, comparisonSurface);
+  blitOnSurface(b, figma, boxB, bOffset.x, bOffset.y, comparisonSurface);
   return {
     a,
     b,
@@ -107,6 +158,7 @@ export function alignPair(ours: PNG, figma: PNG): Aligned {
     bContent: { width: boxB.width, height: boxB.height },
     aOffset,
     aTrimOrigin: { x: boxA.x, y: boxA.y },
+    comparisonSurface,
   };
 }
 
@@ -199,7 +251,7 @@ export function diffPair(aligned: Aligned, textRects: Rect[]): DiffResult {
 export function writeTriptych(outPath: string, aligned: Aligned, diff: PNG): void {
   const gutter = 12;
   const { width, height } = aligned;
-  const canvas = whiteCanvas(width * 3 + gutter * 2, height);
+  const canvas = surfaceCanvas(width * 3 + gutter * 2, height, aligned.comparisonSurface ?? 'light');
   const blit = (src: PNG, dx: number) => {
     for (let y = 0; y < height; y++) {
       const si = y * width * 4;

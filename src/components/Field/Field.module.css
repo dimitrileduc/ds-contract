@@ -8,21 +8,37 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
+  width: 280px;
 }
 
 .label {
   display: flex;
   flex-direction: row;
+  gap: 4px;
 }
 
 .Label {
   color: var(--color-bleu-gris);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: 25px;
 }
 
 .MentionOptionnelle {
   color: var(--color-bleu-gris);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
 }
 
 .Saisie {
   display: flex;
+}
+
+.messageErreur {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  color: #d32f2f;
+  line-height: 24px;
 }

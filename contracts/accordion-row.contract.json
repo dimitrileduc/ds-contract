@@ -3,10 +3,10 @@
   "id": "ds.accordion-row",
   "name": "AccordionRow",
   "version": "1.1.0",
-  "description": "Piqueray AccordionRow. Visual and layout facts were extracted from the live Figma COMPONENT_SET on DS · Molécules after source cleanup; native button semantics, toggle behavior and ARIA association were added in reviewed code-side semantics behind evals. The live source intentionally keeps its documented Fermé/Ouvert structural asymmetry; the semantic trigger wrapper normalizes only the generated DOM while preserving the four measured geometries.",
+  "status": "stable",
+  "description": "Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability.",
   "semantics": {
-    "element": "div",
-    "provenance": "authored"
+    "element": "div"
   },
   "props": [
     {
@@ -34,7 +34,7 @@
     },
     {
       "name": "etat",
-      "description": "Controlled when supplied; otherwise each AccordionRow instance toggles independently between fermé and ouvert.",
+      "description": "Controlled when supplied; otherwise toggles independently between fermé and ouvert.",
       "type": {
         "enum": [
           "ferme",
@@ -90,19 +90,14 @@
   "events": [
     {
       "name": "toggle",
-      "description": "Fires when the native trigger button is activated; uncontrolled rows flip independently between fermé and ouvert.",
+      "description": "Activates the transparent native trigger projected over the Figma title row.",
       "bindings": {
-        "code": {
-          "prop": "onToggle"
-        }
+        "code": { "prop": "onToggle" }
       },
       "trigger": "trigger",
       "toggles": {
         "prop": "etat",
-        "between": [
-          "ferme",
-          "ouvert"
-        ],
+        "between": ["ferme", "ouvert"],
         "aria": "expanded",
         "controls": "Contenu"
       }
@@ -113,54 +108,32 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "column",
-        "align": "stretch"
+        "direction": "row",
+        "justify": "space-between",
+        "align": "center"
+      },
+      "layoutByProp": {
+        "prop": "etat",
+        "map": {
+          "ouvert": {
+            "direction": "column",
+            "justify": "start",
+            "align": "stretch"
+          }
+        }
       },
       "parts": {
-        "trigger": {
-          "description": "Native disclosure trigger. Its height matrix preserves the live Fermé/Ouvert structural asymmetry without changing pixels.",
-          "element": "button",
+        "title": {
           "layout": {
             "direction": "row",
             "justify": "space-between",
-            "align": "center"
-          },
-          "literals": {
-            "height": "32px",
-            "background-color": "transparent",
-            "border-width": "0px",
-            "padding-inline": "0px",
-            "padding-block": "0px"
-          },
-          "literalsByProp": [
-            {
-              "prop": "taille",
-              "map": {
-                "petit": {
-                  "height": "24px"
-                }
-              }
-            },
-            {
-              "prop": "etat",
-              "map": {
-                "ouvert": {
-                  "height": "32px"
-                }
-              }
-            }
-          ],
-          "declared": {
-            "cursor": "pointer"
+            "align": "center",
+            "grow": true
           },
           "parts": {
-            "Titre": {
-              "element": "span",
+            "TitreOuvert": {
               "content": {
                 "prop": "titre"
-              },
-              "layout": {
-                "grow": true
               },
               "tokens": {
                 "color": "{color.noir-bleute}",
@@ -178,40 +151,23 @@
                 }
               },
               "literals": {
+                "letter-spacing": "0px",
                 "line-height": "25px",
-                "letter-spacing": "0px"
+                "height": "32px"
               },
-              "literalsByProp": [
-                {
-                  "prop": "taille",
-                  "map": {
-                    "petit": {
-                      "font-weight": "700",
-                      "line-height": "24px"
-                    }
+              "literalsByProp": [{
+                "prop": "taille",
+                "map": {
+                  "petit": {
+                    "font-weight": "700",
+                    "line-height": "24px",
+                    "height": "24px"
                   }
                 }
-              ]
-            },
-            "ChevronDown": {
-              "icon": {
-                "asset": "chevron-down",
-                "size": 32
-              },
-              "literalsByProp": [
-                {
-                  "prop": "taille",
-                  "map": {
-                    "petit": {
-                      "width": "24px",
-                      "height": "24px"
-                    }
-                  }
-                }
-              ],
+              }],
               "visibleWhen": {
                 "prop": "etat",
-                "equals": "ferme"
+                "equals": "ouvert"
               }
             },
             "ChevronUp": {
@@ -235,16 +191,18 @@
                 "equals": "ouvert"
               }
             }
-          }
-        },
-        "Contenu": {
-          "element": "div",
-          "content": {
-            "prop": "contenu"
           },
           "visibleWhen": {
             "prop": "etat",
             "equals": "ouvert"
+          },
+          "literals": {
+            "height": "32px"
+          }
+        },
+        "Contenu": {
+          "content": {
+            "prop": "contenu"
           },
           "tokens": {
             "color": "{color.noir-bleute}",
@@ -253,16 +211,125 @@
             "font-weight": "{typography.paragraphe.weight}"
           },
           "literals": {
-            "line-height": "24px",
             "letter-spacing": "0px",
+            "line-height": "24px",
             "height": "32px"
+          },
+          "literalsByProp": [{
+            "prop": "taille",
+            "map": {
+              "petit": {
+                "height": "24px"
+              }
+            }
+          }],
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ouvert"
+          }
+        },
+        "Titre": {
+          "content": {
+            "prop": "titre"
+          },
+          "tokens": {
+            "color": "{color.noir-bleute}",
+            "font-family": "{typography.titre-5.family}",
+            "font-size": "{typography.titre-5.size}",
+            "font-weight": "{typography.titre-5.weight}"
+          },
+          "tokensByProp": {
+            "prop": "taille",
+            "map": {
+              "petit": {
+                "font-family": "{typography.paragraphe.family}",
+                "font-size": "{typography.paragraphe.size}"
+              }
+            }
+          },
+          "literals": {
+            "letter-spacing": "0px",
+            "line-height": "25px",
+            "height": "32px"
+          },
+          "literalsByProp": [{
+            "prop": "taille",
+            "map": {
+              "petit": {
+                "font-weight": "700",
+                "line-height": "24px",
+                "height": "24px"
+              }
+            }
+          }],
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ferme"
+          }
+        },
+        "ChevronDown": {
+          "icon": {
+            "asset": "chevron-down",
+            "size": 32
           },
           "literalsByProp": [
             {
               "prop": "taille",
               "map": {
                 "petit": {
+                  "width": "24px",
                   "height": "24px"
+                }
+              }
+            }
+          ],
+          "visibleWhen": {
+            "prop": "etat",
+            "equals": "ferme"
+          }
+        },
+        "trigger": {
+          "description": "Code-only native disclosure trigger; absolutely overlaid so it contributes no Figma layout geometry.",
+          "element": "button",
+          "attrs": {
+            "aria-label": "{titre}"
+          },
+          "literals": {
+            "height": "64px",
+            "background-color": "transparent",
+            "border-width": "0px",
+            "padding-inline": "0px",
+            "padding-block": "0px"
+          },
+          "declared": {
+            "position": "absolute"
+          },
+          "stylesWhen": [
+            {
+              "prop": "taille",
+              "equals": "grand",
+              "styles": {
+                "left": "0px",
+                "right": "0px",
+                "top": "0px"
+              }
+            },
+            {
+              "prop": "taille",
+              "equals": "petit",
+              "styles": {
+                "left": "0px",
+                "right": "0px",
+                "top": "0px"
+              }
+            }
+          ],
+          "literalsByProp": [
+            {
+              "prop": "taille",
+              "map": {
+                "petit": {
+                  "height": "40px"
                 }
               }
             }
@@ -273,17 +340,20 @@
         "border-bottom-width": "{border-width.1}"
       },
       "literals": {
-        "width": "1550px",
         "border-color": "#000000",
         "gap": "24px",
-        "padding-block": "16px"
+        "padding-block": "16px",
+        "width": "1550px"
+      },
+      "declared": {
+        "position": "relative"
       },
       "literalsByProp": [
         {
           "prop": "taille",
           "map": {
             "petit": {
-              "border-color": "#26282C52",
+              "border-color": "#26282c52",
               "gap": "8px",
               "padding-block": "8px"
             }
@@ -299,11 +369,6 @@
         }
       ]
     }
-  },
-  "a11y": {
-    "focusVisible": true,
-    "contrast": "AA",
-    "provenance": "authored"
   },
   "anchors": {
     "figma": {

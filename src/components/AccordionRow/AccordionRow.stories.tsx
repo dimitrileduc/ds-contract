@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray AccordionRow. Visual and layout facts were extracted from the live Figma COMPONENT_SET on DS · Molécules after source cleanup; native button semantics, toggle behavior and ARIA association were added in reviewed code-side semantics behind evals. The live source intentionally keeps its documented Fermé/Ouvert structural asymmetry; the semantic trigger wrapper normalizes only the generated DOM while preserving the four measured geometries.',
+          'Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability.',
       },
     },
   },
@@ -25,14 +25,13 @@ const meta = {
       control: 'select',
       options: ['ferme', 'ouvert'],
       description:
-        'Controlled when supplied; otherwise each AccordionRow instance toggles independently between fermé and ouvert.',
+        'Controlled when supplied; otherwise toggles independently between fermé and ouvert.',
     },
     titre: { control: 'text' },
     contenu: { control: 'text' },
     onToggle: {
       control: false,
-      description:
-        'Fires when the native trigger button is activated; uncontrolled rows flip independently between fermé and ouvert.',
+      description: 'Activates the transparent native trigger projected over the Figma title row.',
     },
   },
   args: {

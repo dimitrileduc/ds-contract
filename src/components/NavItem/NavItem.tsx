@@ -4,7 +4,7 @@
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
-import type { HTMLAttributes } from 'react';
+import type { AnchorHTMLAttributes } from 'react';
 import styles from './NavItem.module.css';
 
 const ICONS: Record<string, string> = {
@@ -12,26 +12,37 @@ const ICONS: Record<string, string> = {
     '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M8.00003 11.7666C7.73336 11.7666 7.4667 11.6333 7.33336 11.5L2.93336 7.09998C2.53336 6.69998 2.53336 6.03331 2.93336 5.63331C3.33336 5.23331 4.00003 5.23331 4.40003 5.63331L8.00003 9.23331L11.6 5.63331C12 5.23331 12.6667 5.23331 13.0667 5.63331C13.4667 6.03331 13.4667 6.69998 13.0667 7.09998L8.80003 11.3666C8.53336 11.6333 8.2667 11.7666 8.00003 11.7666Z" fill="white"/>\n</svg>',
 };
 
-export interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
+export interface NavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  libelle?: string;
+  href: string;
   chevron?: boolean;
   actif?: boolean;
 }
 
-/** Piqueray NavItem. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
-export const NavItem = forwardRef<HTMLDivElement, NavItemProps>(function NavItem(
-  { chevron = true, actif = false, className, children, ...rest },
+/** Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact. */
+export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(function NavItem(
+  {
+    chevron = true,
+    actif = false,
+    libelle = 'Portes de garage',
+    href,
+    className,
+    children,
+    ...rest
+  },
   ref,
 ) {
   const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
-    <div
+    <a
       ref={ref}
       className={classes}
       data-chevron={chevron || undefined}
       data-actif={actif || undefined}
+      href={String(href)}
       {...rest}
     >
-      <span className={styles.libell}>Portes de garage</span>
+      <span className={styles.libell}>{libelle}</span>
       {chevron ? (
         <span
           className={styles.OcticonChevronDown12}
@@ -40,6 +51,6 @@ export const NavItem = forwardRef<HTMLDivElement, NavItemProps>(function NavItem
         />
       ) : null}
       {actif ? <div className={styles.Soulignement}></div> : null}
-    </div>
+    </a>
   );
 });

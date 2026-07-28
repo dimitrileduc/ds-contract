@@ -87,6 +87,9 @@ export interface RenderedVariant {
   png: Buffer;
   /** Text-node client rects, DEVICE px, relative to the clip origin. */
   textRects: Rect[];
+  /** Root layout box, DEVICE px, relative to the clip origin. This is the
+   * coordinate anchor when the Figma export has the exact same dimensions. */
+  rootRect: Rect;
   /** font family → available in this browser/OS. */
   fontChecks: Record<string, boolean>;
 }
@@ -224,6 +227,7 @@ export function previewDoc(
 
 interface PageMeasurement {
   clip: Rect;
+  rootRect: Rect;
   textRects: Rect[];
   fontChecks: Record<string, boolean>;
   found: boolean;
@@ -299,7 +303,8 @@ export async function renderVariant(
   const MEASURE_JS = `(() => {
     const args = ${JSON.stringify({ selector: ROOT_SELECTOR, margin: CLIP_MARGIN, fonts: figmaFonts })};
     const el = document.querySelector(args.selector);
-    if (!el) return { found: false, clip: { x: 0, y: 0, width: 0, height: 0 }, textRects: [], fontChecks: {} };
+    if (!el) return { found: false, clip: { x: 0, y: 0, width: 0, height: 0 }, rootRect: { x: 0, y: 0, width: 0, height: 0 }, textRects: [], fontChecks: {} };
+    const rootBox = el.getBoundingClientRect();
     let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
     const union = (r) => {
       if (r.width === 0 && r.height === 0) return;
@@ -329,7 +334,13 @@ export async function renderVariant(
     }
     const fontChecks = {};
     for (const f of args.fonts) fontChecks[f] = document.fonts.check('16px "' + f + '"');
-    return { found: true, clip, textRects, fontChecks };
+    const rootRect = {
+      x: rootBox.left - clip.x,
+      y: rootBox.top - clip.y,
+      width: rootBox.width,
+      height: rootBox.height,
+    };
+    return { found: true, clip, rootRect, textRects, fontChecks };
   })()`;
   const m = (await page.evaluate(MEASURE_JS)) as PageMeasurement;
   if (!m.found) return { ok: false, error: 'component root not found for measurement' };
@@ -347,6 +358,12 @@ export async function renderVariant(
       width: r.width * dpr,
       height: r.height * dpr,
     })),
+    rootRect: {
+      x: m.rootRect.x * dpr,
+      y: m.rootRect.y * dpr,
+      width: m.rootRect.width * dpr,
+      height: m.rootRect.height * dpr,
+    },
     fontChecks: m.fontChecks,
   };
 }

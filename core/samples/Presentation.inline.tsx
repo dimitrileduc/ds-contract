@@ -52,7 +52,7 @@ export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(functi
       <SectionHeader titre="Piqueray, une histoire de famille " accroche="Plus de 50 ans d’expérience" disposition="standard" />
 <div style={{ ...S.wrapper }}>
 <span style={{ ...S.Texte }}>{texte}</span>
-<Button>Contactez-nous</Button>
+{bouton ? (<Button>Contactez-nous</Button>) : null}
 </div>
     </div>
   );

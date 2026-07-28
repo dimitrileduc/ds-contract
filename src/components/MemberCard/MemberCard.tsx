@@ -13,7 +13,7 @@ export interface MemberCardProps extends HTMLAttributes<HTMLDivElement> {
   poste?: string;
 }
 
-/** Piqueray MemberCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides remain an explicit runtime boundary until a governed image API is adopted. */
 export const MemberCard = forwardRef<HTMLDivElement, MemberCardProps>(function MemberCard(
   { nom = 'Cécilia Piqueray', poste = 'Gérante', className, children, ...rest },
   ref,

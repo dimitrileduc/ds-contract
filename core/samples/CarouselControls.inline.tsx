@@ -27,19 +27,19 @@ const S: Record<string, CSSProperties> = {
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
 const V: Record<string, CSSProperties> = {};
 
-export interface CarouselControlsProps extends HTMLAttributes<HTMLDivElement> {
+export interface CarouselControlsProps extends HTMLAttributes<HTMLElement> {
 
 }
 
-/** Piqueray CarouselControls. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
-export const CarouselControls = forwardRef<HTMLDivElement, CarouselControlsProps>(function CarouselControls(
+/** Piqueray CarouselControls. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Navigation semantics are a code decision; click callbacks remain a documented consumer boundary. */
+export const CarouselControls = forwardRef<HTMLElement, CarouselControlsProps>(function CarouselControls(
   { style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <nav ref={ref} style={{ ...S.root, ...style }} {...rest}>
       <Button iconLeftGlyph="chevron-left" variant="iconOnly">Précédent</Button>
 <Button iconLeftGlyph="chevron-right" variant="iconOnly">Suivant</Button>
-    </div>
+    </nav>
   );
 });

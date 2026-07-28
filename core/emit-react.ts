@@ -96,6 +96,7 @@ export const UA_MARGIN_ELEMENTS = new Set([
  *  never grows the ROOT's box, so it keeps the plain `border-style` path. */
 export const DSC_BORDER_VARS: Record<string, string> = {
   'border-width': '--dsc-border-width',
+  'border-bottom-width': '--dsc-border-bottom-width',
   'border-color': '--dsc-border-color',
 };
 export interface RootBorderPlan {
@@ -107,6 +108,7 @@ export interface RootBorderPlan {
    *  or a declared non-solid border-style (dashed/dotted). Named limit: the
    *  inset box-shadow disappears under `forced-colors` — no fallback yet. */
   inset: boolean;
+  side: 'uniform' | 'bottom' | null;
 }
 export function rootBorderPlan(root: Part): RootBorderPlan {
   const chans = new Set<string>();
@@ -118,19 +120,27 @@ export function rootBorderPlan(root: Part): RootBorderPlan {
   for (const e of tokensByPropEntries(root)) for (const m of Object.values(e.map)) collect(m);
   for (const e of root.literalsByProp ?? []) for (const m of Object.values(e.map)) collect(m);
   for (const s of Object.values(root.states ?? {})) collect(s);
-  const perSide = [...chans].some((c) => /^border-(top|right|bottom|left)-width$/.test(c));
+  const sides = [...chans].filter((c) => /^border-(top|right|bottom|left)-width$/.test(c));
+  const bottomOnly = sides.length === 1 && sides[0] === 'border-bottom-width' && !chans.has('border-width');
   const hasBorder =
     'border-width' in (root.tokens ?? {}) ||
     'border-color' in (root.tokens ?? {}) ||
     'border-width' in (root.literals ?? {}) ||
-    perSide;
+    sides.length > 0;
   const declaredStyle =
     Boolean(root.declared?.['border-style']) ||
     Object.values(root.declaredStates ?? {}).some((o) => 'border-style' in o);
-  return { hasBorder, inset: hasBorder && !perSide && !chans.has('box-shadow') && !declaredStyle };
+  const canInset = hasBorder && !chans.has('box-shadow') && !declaredStyle;
+  return {
+    hasBorder,
+    inset: canInset && (sides.length === 0 || bottomOnly),
+    side: canInset && bottomOnly ? 'bottom' : canInset && sides.length === 0 ? 'uniform' : null,
+  };
 }
 export const INSET_BORDER_SHADOW =
   'box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent)';
+export const BOTTOM_INSET_BORDER_SHADOW =
+  'box-shadow: inset 0 calc(-1 * var(--dsc-border-bottom-width, 0)) 0 var(--dsc-border-color, transparent)';
 
 /** Every element the contract's root can render as. */
 export function rootElementsOf(contract: Contract): string[] {
@@ -195,6 +205,21 @@ export const isArrayType = (
 ): p is Prop & { type: { arrayOf: Record<string, 'text' | 'number' | 'boolean'> } } =>
   typeof p.type === 'object' && 'arrayOf' in p.type;
 
+/** Structured mixed-style text: native TEXT on the canvas, bounded segment
+ * data in code. Raw HTML is deliberately not part of the contract surface. */
+export const isRichText = (
+  p: Prop,
+): p is Prop & {
+  type: 'rich-text';
+  default?: Array<{ text: string; strong?: boolean }>;
+} => p.type === 'rich-text';
+
+export function richTextPlain(
+  value: Array<{ text: string; strong?: boolean }> | undefined,
+): string {
+  return value?.map((segment) => segment.text).join('') ?? '';
+}
+
 export function enumProps(contract: Contract) {
   return contract.props.filter(isEnum);
 }
@@ -210,8 +235,14 @@ export function arrayProps(contract: Contract) {
 export function textProps(contract: Contract) {
   return contract.props.filter((p) => p.type === 'text');
 }
+export function richTextProps(contract: Contract) {
+  return contract.props.filter(isRichText);
+}
 export function namedTextProps(contract: Contract) {
   return textProps(contract).filter((p) => p.bindings.code.prop !== 'children');
+}
+export function namedRichTextProps(contract: Contract) {
+  return richTextProps(contract).filter((p) => p.bindings.code.prop !== 'children');
 }
 export function namedSlots(contract: Contract) {
   return slotsOf(contract).filter((s) => s.slot.name !== 'children');
@@ -364,11 +395,21 @@ export function validateContract(
     }
     if (part.content) {
       const prop = contract.props.find(
-        (pr) => pr.type === 'text' && pr.bindings.code.prop === part.content!.prop,
+        (pr) =>
+          (pr.type === 'text' || pr.type === 'rich-text') &&
+          pr.bindings.code.prop === part.content!.prop,
       );
       if (!prop) {
         errors.push(
-          `${contract.id}: part "${name}" binds content to unknown text prop "${part.content.prop}"`,
+          `${contract.id}: part "${name}" binds content to unknown text/rich-text prop "${part.content.prop}"`,
+        );
+      } else if (prop.type === 'rich-text' && !part.content.marks?.strong) {
+        errors.push(
+          `${contract.id}: rich-text part "${name}" must declare content.marks.strong — marked weight is governed, never UA-default`,
+        );
+      } else if (prop.type === 'text' && part.content.marks) {
+        errors.push(
+          `${contract.id}: flat text part "${name}" declares rich-text marks — change the prop to type "rich-text" or remove marks`,
         );
       }
     }
@@ -832,6 +873,9 @@ export function validateContract(
       if (p.type === 'text' && typeof p.default !== 'string') {
         errors.push(`${contract.id}: text prop "${p.name}" default must be a string (got ${JSON.stringify(p.default)})`);
       }
+      if (p.type === 'rich-text' && !Array.isArray(p.default)) {
+        errors.push(`${contract.id}: rich-text prop "${p.name}" default must be a segment array (got ${JSON.stringify(p.default)})`);
+      }
     }
     // v7 arrayOf: structured props are code-only — the pairing with figma
     // kind "NONE" is enforced BOTH ways so a scalar prop can never silently
@@ -847,13 +891,16 @@ export function validateContract(
       if (Object.keys(p.type.arrayOf).length === 0) {
         errors.push(`${contract.id}: arrayOf prop "${p.name}" must declare at least one field`);
       }
-    } else if (p.bindings.figma.kind === 'NONE') {
-      errors.push(`${contract.id}: prop "${p.name}" binds figma kind "NONE" but is not an arrayOf prop — every scalar prop has a canvas manifestation`);
     }
     // Required text props need a default: it is the canvas TEXT property's
     // default value AND the sample every generated story/matrix cell uses.
-    if (p.type === 'text' && p.required && typeof p.default !== 'string') {
-      errors.push(`${contract.id}: required text prop "${p.name}" must declare a string default (canvas default + story sample)`);
+    if (
+      (p.type === 'text' || p.type === 'rich-text') &&
+      p.required &&
+      p.bindings.figma.kind !== 'NONE' &&
+      (p.type === 'text' ? typeof p.default !== 'string' : !Array.isArray(p.default))
+    ) {
+      errors.push(`${contract.id}: required ${p.type} prop "${p.name}" must declare a default (canvas default + story sample)`);
     }
     // The figma values map, when present, must cover the enum exactly.
     if (isEnum(p) && p.bindings.figma.values) {
@@ -1177,6 +1224,13 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       if (decls.length > 0) {
         lines.push('', `.${name} {`, ...decls.map((d) => `  ${d};`), '}');
       }
+      const strongRef = part.content?.marks?.strong;
+      if (strongRef) {
+        const tokenPath = stripBraces(strongRef);
+        if (checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
+          lines.push('', `.${name} > strong {`, `  font-weight: ${cssVar(tokenPath)};`, '}');
+        }
+      }
     }
     return lines.join('\n') + '\n';
   }
@@ -1201,7 +1255,11 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
   }
   const borderPlan = rootBorderPlan(root);
   rootDecls.push('border: 0'); // always: kills the UA <button> 2px outset border
-  if (borderPlan.inset) rootDecls.push(INSET_BORDER_SHADOW); // drawn INSIDE — Figma parity
+  if (borderPlan.inset) {
+    rootDecls.push(
+      borderPlan.side === 'bottom' ? BOTTOM_INSET_BORDER_SHADOW : INSET_BORDER_SHADOW,
+    ); // drawn INSIDE — Figma parity
+  }
   else if (borderPlan.hasBorder) rootDecls.push('border-style: solid'); // legacy path (non-uniform / shadowed root)
   if (contract.semantics.element === 'button') rootDecls.push('background-color: transparent'); // UA ButtonFace reset — before any token/literal push below
   const route = (cssProp: string): string => (borderPlan.inset && DSC_BORDER_VARS[cssProp]) || cssProp;
@@ -1605,6 +1663,15 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       }
     }
     const nestedSubRules: string[] = [];
+    const strongRef = part.content?.marks?.strong;
+    if (strongRef) {
+      const tokenPath = stripBraces(strongRef);
+      if (checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
+        nestedSubRules.push(
+          `\n.${name} > strong {\n  font-weight: ${cssVar(tokenPath)};\n}`,
+        );
+      }
+    }
     if (part.animation) {
       decls.push(
         part.animation === 'spin'
@@ -1691,6 +1758,16 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         const lDecls = Object.entries(overrides).map(([cssProp, lit]) => `  ${cssProp}: ${lit};`);
         if (lDecls.length === 0) continue;
         nestedSubRules.push(`\n.${entry.prop}-${value} .${name} {\n${lDecls.join('\n')}\n}`);
+        if (part.icon) {
+          const svgSizeDecls = Object.entries(overrides)
+            .filter(([cssProp]) => cssProp === 'width' || cssProp === 'height')
+            .map(([cssProp, lit]) => `  ${cssProp}: ${lit};`);
+          if (svgSizeDecls.length > 0) {
+            nestedSubRules.push(
+              `\n.${entry.prop}-${value} .${name} svg {\n${svgSizeDecls.join('\n')}\n}`,
+            );
+          }
+        }
       }
     }
     // v15 declared facts on a nested part: verbatim base decls + per-state
@@ -1922,6 +1999,7 @@ export function generateTsx(
   const enums = enumProps(contract);
   const bools = boolProps(contract);
   const texts = namedTextProps(contract);
+  const richTexts = namedRichTextProps(contract);
   const slots = namedSlots(contract);
   const codePropOf = (propName: string) =>
     contract.props.find((p) => p.name === propName)?.bindings.code.prop ?? propName;
@@ -1955,6 +2033,10 @@ export function generateTsx(
         .map(([f, t]) => `${f}: ${t === 'text' ? 'string' : t}`)
         .join('; ');
       propLines.push(`${doc}  ${p.bindings.code.prop}?: Array<{ ${fields} }>;`);
+    } else if (isRichText(p)) {
+      propLines.push(
+        `${doc}  ${p.bindings.code.prop}${p.required ? '' : '?'}: Array<{ text: string; strong?: boolean }>;`,
+      );
     } else if (p.type === 'boolean') {
       propLines.push(`${doc}  ${p.bindings.code.prop}?: boolean;`);
     } else if (p.type === 'number') {
@@ -1991,6 +2073,13 @@ export function generateTsx(
       p.required || p.default === undefined
         ? p.bindings.code.prop
         : `${p.bindings.code.prop} = '${p.default}'`,
+    );
+  }
+  for (const p of richTexts) {
+    destructured.push(
+      p.required || p.default === undefined
+        ? p.bindings.code.prop
+        : `${p.bindings.code.prop} = ${JSON.stringify(p.default)}`,
     );
   }
   // v7 arrayOf props: no default destructure — undefined means "not
@@ -2097,6 +2186,13 @@ export function generateTsx(
 
   const nativeDisabled = meta.supportsDisabled && bools.some((p) => p.name === 'disabled');
   const elementAttrs: string[] = ['ref={ref}', 'className={classes}'];
+  if (
+    !elementByProp &&
+    contract.semantics.element === 'button' &&
+    contract.anatomy.root.attrs?.type === undefined
+  ) {
+    elementAttrs.push('type="button"');
+  }
   if (nativeDisabled) elementAttrs.push('disabled={disabled}');
   for (const p of bools) {
     if (p.name === 'disabled' && nativeDisabled) continue;
@@ -2242,9 +2338,10 @@ export function generateTsx(
       const attrs = depAttrString(dep, part.component.props ?? {}, contract);
       const depChildren = textProps(dep).find((p) => p.bindings.code.prop === 'children');
       const text = part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
-      return text !== undefined
+      const node = text !== undefined
         ? `<${dep.name}${attrs}>${text}</${dep.name}>`
         : `<${dep.name}${attrs} />`;
+      return wrapPresence(part, node);
     }
     if (part.slot) {
       const el = part.element ?? 'div';
@@ -2255,13 +2352,17 @@ export function generateTsx(
     if (part.content) {
       const el = part.element ?? 'span';
       const prop = contract.props.find(
-        (p) => p.type === 'text' && p.bindings.code.prop === part.content!.prop,
+        (p) =>
+          (p.type === 'text' || p.type === 'rich-text') &&
+          p.bindings.code.prop === part.content!.prop,
       )!;
       // A native <select> shows one of its <option> children, never a raw text
       // node — the shown value is the (placeholder) selected option. The
       // consumer/Field molecule supplies the real options.
       const inner =
-        el === 'select'
+        prop.type === 'rich-text'
+          ? `{${prop.bindings.code.prop}.map((segment, index) => segment.strong ? <strong key={index}>{segment.text}</strong> : <span key={index}>{segment.text}</span>)}`
+          : el === 'select'
           ? `<option>{${prop.bindings.code.prop}}</option>`
           : `{${prop.bindings.code.prop}}`;
       return wrapPresence(
@@ -2453,6 +2554,11 @@ export function generateStories(contract: Contract, byId: Map<string, Contract>)
       if (repeatPart) {
         args.push(`    ${codeName}: ${JSON.stringify(repeatPart.part.repeat!.sample)},`);
       }
+    } else if (isRichText(p)) {
+      argTypes.push(`    ${codeName}: { control: false${desc} },`);
+      if (Array.isArray(p.default)) {
+        args.push(`    ${codeName}: ${JSON.stringify(p.default)},`);
+      }
     } else if (p.type === 'boolean') {
       argTypes.push(`    ${codeName}: { control: 'boolean'${desc} },`);
       args.push(`    ${codeName}: ${p.default === true},`);
@@ -2462,6 +2568,12 @@ export function generateStories(contract: Contract, byId: Map<string, Contract>)
     } else {
       argTypes.push(`    ${codeName}: { control: 'text'${desc} },`);
       if (typeof p.default === 'string') args.push(`    ${codeName}: '${p.default}',`);
+      else if (p.required && p.bindings.figma.kind === 'NONE') {
+        // Code-only required scalars have no canvas default by definition.
+        // Give Storybook an explicit empty sample so its Meta type remains
+        // honest without manufacturing a runtime default in the component.
+        args.push(`    ${codeName}: '',`);
+      }
     }
   }
   for (const { slot } of slots) {

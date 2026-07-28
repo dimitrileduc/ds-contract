@@ -80,15 +80,31 @@
                 "prop": "label"
               },
               "tokens": {
-                "color": "{color.bleu-gris}"
+                "color": "{color.bleu-gris}",
+                "font-size": "{font.size.20}",
+                "font-weight": "{font.weight.semibold}"
+              },
+              "literals": {
+                "line-height": "25px"
               }
             },
             "MentionOptionnelle": {
               "text": "(optionnel)",
               "tokens": {
-                "color": "{color.bleu-gris}"
+                "color": "{color.bleu-gris}",
+                "font-size": "{font.size.14}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "24px"
+              },
+              "visibleWhen": {
+                "prop": "optionnel"
               }
             }
+          },
+          "literals": {
+            "gap": "4px"
           }
         },
         "Saisie": {
@@ -113,12 +129,23 @@
         },
         "messageErreur": {
           "text": "Message d’erreur",
-          "tokens": {},
+          "tokens": {
+            "font-size": "{font.size.14}",
+            "font-weight": "{font.weight.regular}"
+          },
+          "literals": {
+            "color": "#D32F2F",
+            "line-height": "24px"
+          },
           "visibleWhen": {
             "prop": "etat",
             "equals": "erreur"
           }
         }
+      },
+      "literals": {
+        "gap": "8px",
+        "width": "280px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

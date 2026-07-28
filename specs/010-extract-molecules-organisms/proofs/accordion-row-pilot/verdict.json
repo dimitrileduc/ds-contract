@@ -1,0 +1,30 @@
+{
+  "checkpoint": "45e2a7d5a950e3d6ccc2a0dd62982b7c288210c5",
+  "figma": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
+    "nodeId": "2059:1417",
+    "version": "2381229993207753432",
+    "readOnly": true
+  },
+  "variants": {
+    "grand-ferme": { "figmaSize": [1550, 64], "pngSize": [3100, 128], "sha256": "725eed686df21942a3844754c01a7c306df9de7102be4950401a1c4dd0adc861", "maskedDiffPct": 0.00, "unmaskedDiffPct": 0.13 },
+    "petit-ferme": { "figmaSize": [1550, 40], "pngSize": [3100, 80], "sha256": "167dcb17e90fe20352238029354f7a49d954f167f994cd29a6a5c3ff3bd327ae", "maskedDiffPct": 0.00 },
+    "grand-ouvert": { "figmaSize": [1550, 120], "pngSize": [3100, 240], "sha256": "8e13af7eb78ef61c197a1d56a1634d2466e300afd7696ca2e238b251d1dda315", "maskedDiffPct": 0.00, "unmaskedDiffPct": 0.08 },
+    "petit-ouvert": { "figmaSize": [1550, 80], "pngSize": [3100, 160], "sha256": "d62c40dd0531cea9fa1fc81b0d664083f3c934afd489b2fd9e07ca245e20bf9c", "maskedDiffPct": 0.00 }
+  },
+  "tests": {
+    "extractionReceipt": "pass",
+    "tokens": "pass; 61 CSS properties; provisional mints kept out of global tokens",
+    "generate": "pass",
+    "typecheck": "pass",
+    "visualParity": "4 compared; exact geometry; Petit variants 0.00%; Grand renderer residuals explicitly triaged",
+    "iconVariantSvgFixture": "red before emitter correction; pass after correction on React and HTML",
+    "bottomInsetBorderFixture": "pass on React and HTML",
+    "visualRootAlignmentFixture": "pass",
+    "interaction": "pass: independent mouse, Enter, Space toggles; aria-expanded and aria-controls valid",
+    "globalParity": "1 pre-existing out-of-scope drift: Primitives/border-width/1",
+    "fullEval": "116/122 pass; all AccordionRow and new generic fixtures pass; 6 unrelated failures classified in verdict.md"
+  },
+  "semanticDecision": "Native transparent overlay button preserves extracted anatomy; local toggle and ARIA are verified."
+}

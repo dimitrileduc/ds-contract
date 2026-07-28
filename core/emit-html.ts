@@ -40,6 +40,7 @@ import {
 import { kebab } from '../extract/types.js';
 import {
   boolProps,
+  BOTTOM_INSET_BORDER_SHADOW,
   DSC_BORDER_VARS,
   enumProps,
   INSET_BORDER_SHADOW,
@@ -196,7 +197,11 @@ function componentCss(contract: Contract): string[] {
   }
   const borderPlan = rootBorderPlan(root);
   rootDecls.push('border: 0'); // always: kills the UA <button> 2px outset border
-  if (borderPlan.inset) rootDecls.push(INSET_BORDER_SHADOW); // drawn INSIDE — Figma parity
+  if (borderPlan.inset) {
+    rootDecls.push(
+      borderPlan.side === 'bottom' ? BOTTOM_INSET_BORDER_SHADOW : INSET_BORDER_SHADOW,
+    ); // drawn INSIDE — Figma parity
+  }
   else if (borderPlan.hasBorder) rootDecls.push('border-style: solid'); // legacy path (non-uniform / shadowed root)
   if (contract.semantics.element === 'button') rootDecls.push('background-color: transparent'); // UA ButtonFace reset — before any token/literal push below
   const route = (cssProp: string): string => (borderPlan.inset && DSC_BORDER_VARS[cssProp]) || cssProp;
@@ -570,6 +575,17 @@ function componentCss(contract: Contract): string[] {
           `${enumCls(entry.prop, value)} ${partCls(name)}`,
           Object.entries(overrides).map(([cssProp, lit]) => `${cssProp}: ${lit}`),
         ]);
+        if (part.icon) {
+          const svgSizeDecls = Object.entries(overrides)
+            .filter(([cssProp]) => cssProp === 'width' || cssProp === 'height')
+            .map(([cssProp, lit]) => `${cssProp}: ${lit}`);
+          if (svgSizeDecls.length > 0) {
+            subRules.push([
+              `${enumCls(entry.prop, value)} ${partCls(name)} svg`,
+              svgSizeDecls,
+            ]);
+          }
+        }
       }
     }
     // A box holding a visually-managed native input anchors it and carries
@@ -904,6 +920,7 @@ function renderComponentHtml(
       .map((p) => `${k}--${p.name}-${state.subst[p.name]}`),
   ];
   const attrs: string[] = [`class="${classes.join(' ')}"`];
+  if (el === 'button' && root.attrs?.type === undefined) attrs.push('type="button"');
   const supportsDisabled = ['button', 'input', 'textarea', 'select', 'fieldset'].includes(el);
   for (const p of boolProps(contract)) {
     if (!state.bools[p.name]) continue;

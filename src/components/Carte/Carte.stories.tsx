@@ -22,11 +22,15 @@ const meta = {
   argTypes: {
     disposition: { control: 'select', options: ['reassurance', 'categorie'] },
     titre: { control: 'text' },
+    imageUrl: { control: 'text' },
+    imageAlt: { control: 'text' },
     texte: { control: 'text' },
   },
   args: {
     disposition: 'reassurance',
     titre: 'Pour portes de garage',
+    imageUrl: '',
+    imageAlt: '',
     texte:
       'SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.',
   },

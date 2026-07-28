@@ -38,7 +38,7 @@ export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(functi
       />
       <div className={styles.wrapper}>
         <span className={styles.Texte}>{texte}</span>
-        <Button>Contactez-nous</Button>
+        {bouton ? <Button>Contactez-nous</Button> : null}
       </div>
     </div>
   );

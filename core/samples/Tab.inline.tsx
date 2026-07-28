@@ -11,15 +11,24 @@
  * declared limit as the hover states (state-selected descendant styling).
  */
 import { forwardRef } from 'react';
-import type { CSSProperties, HTMLAttributes } from 'react';
+import type { CSSProperties, ButtonHTMLAttributes } from 'react';
 
 const S: Record<string, CSSProperties> = {
   "root": {
     "display": "inline-flex",
+    "flexDirection": "row",
     "alignItems": "center",
-    "justifyContent": "center",
-    "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "borderStyle": "solid",
+    "cursor": "pointer",
+    "borderColor": "#26282C",
+    "fontFamily": "Montserrat, sans-serif",
+    "fontSize": "20px",
+    "fontWeight": 600,
+    "paddingTop": "8px",
+    "paddingRight": "0px",
+    "paddingBottom": "8px",
+    "paddingLeft": "0px",
+    "lineHeight": "25px"
   },
   "libell": {
     "color": "#26282C"
@@ -27,21 +36,25 @@ const S: Record<string, CSSProperties> = {
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
-const V: Record<string, CSSProperties> = {};
+const V: Record<string, CSSProperties> = {
+  "etat-selectionne:root": {
+    "borderBottomWidth": "2px"
+  }
+};
 
-export interface TabProps extends HTMLAttributes<HTMLDivElement> {
+export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   etat?: 'defaut' | 'selectionne';
   libelle?: string;
 }
 
 /** Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
-export const Tab = forwardRef<HTMLDivElement, TabProps>(function Tab(
+export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   { etat = 'defaut', libelle = 'Onglet', style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <button ref={ref} style={{ ...S.root, ...(V[`etat-${etat}:root`] ?? {}), ...style }} role="tab" {...rest}>
       <span style={{ ...S.libell }}>{libelle}</span>
-    </div>
+    </button>
   );
 });

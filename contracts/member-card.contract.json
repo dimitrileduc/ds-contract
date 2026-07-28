@@ -3,7 +3,7 @@
   "id": "ds.member-card",
   "name": "MemberCard",
   "version": "1.0.0",
-  "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides remain an explicit runtime boundary until a governed image API is adopted.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -60,13 +60,21 @@
             "direction": "column",
             "align": "center"
           },
+          "literals": {
+            "gap": "8px"
+          },
           "parts": {
             "Nom": {
               "content": {
                 "prop": "nom"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.32}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "40px"
               }
             },
             "Poste": {
@@ -74,11 +82,19 @@
                 "prop": "poste"
               },
               "tokens": {
-                "color": "{color.orange}"
+                "color": "{color.orange}",
+                "font-size": "{font.size.16}",
+                "font-weight": "{font.weight.semibold}"
+              },
+              "literals": {
+                "line-height": "20px"
               }
             }
           }
         }
+      },
+      "literals": {
+        "gap": "16px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

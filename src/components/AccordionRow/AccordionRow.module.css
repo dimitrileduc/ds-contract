@@ -5,19 +5,22 @@
 
 .root {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   border: 0;
-  border-style: solid;
-  border-bottom-width: var(--border-width-1);
-  width: 1550px;
-  border-color: #000000;
+  box-shadow: inset 0 calc(-1 * var(--dsc-border-bottom-width, 0)) 0
+    var(--dsc-border-color, transparent);
+  --dsc-border-bottom-width: var(--border-width-1);
+  --dsc-border-color: #000000;
   gap: 24px;
   padding-block: 16px;
+  width: 1550px;
+  position: relative;
 }
 
 .taille-petit {
-  border-color: #26282c52;
+  --dsc-border-color: #26282c52;
   gap: 8px;
   padding-block: 8px;
 }
@@ -26,73 +29,43 @@
   gap: 24px;
 }
 
-.trigger {
+.etat-ouvert {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.title {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  appearance: none;
-  background: none;
-  border: none;
-  margin: 0;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  text-align: inherit;
-  cursor: pointer;
-  border-style: solid;
-  height: 32px;
-  background-color: transparent;
-  border-width: 0px;
-  padding-inline: 0px;
-  padding-block: 0px;
-  cursor: pointer;
-}
-
-.taille-petit .trigger {
-  height: 24px;
-}
-
-.etat-ouvert .trigger {
-  height: 32px;
-}
-
-.Titre {
   flex: 1 1 auto;
   min-width: 0;
+  height: 32px;
+}
+
+.TitreOuvert {
   color: var(--color-noir-bleute);
   font-family: var(--typography-titre-5-family);
   font-size: var(--typography-titre-5-size);
   font-weight: var(--typography-titre-5-weight);
-  line-height: 25px;
   letter-spacing: 0px;
-}
-
-.taille-petit .Titre {
-  font-family: var(--typography-paragraphe-family);
-}
-
-.taille-petit .Titre {
-  font-size: var(--typography-paragraphe-size);
-}
-
-.taille-petit .Titre {
-  font-weight: 700;
-  line-height: 24px;
-}
-
-.ChevronDown svg {
-  width: 32px;
+  line-height: 25px;
   height: 32px;
 }
 
-.ChevronDown {
-  display: inline-flex;
-  flex-shrink: 0;
+.taille-petit .TitreOuvert {
+  font-family: var(--typography-paragraphe-family);
 }
 
-.taille-petit .ChevronDown {
-  width: 24px;
+.taille-petit .TitreOuvert {
+  font-size: var(--typography-paragraphe-size);
+}
+
+.taille-petit .TitreOuvert {
+  font-weight: 700;
+  line-height: 24px;
   height: 24px;
 }
 
@@ -111,16 +84,100 @@
   height: 24px;
 }
 
+.taille-petit .ChevronUp svg {
+  width: 24px;
+  height: 24px;
+}
+
 .Contenu {
   color: var(--color-noir-bleute);
   font-family: var(--typography-paragraphe-family);
   font-size: var(--typography-paragraphe-size);
   font-weight: var(--typography-paragraphe-weight);
-  line-height: 24px;
   letter-spacing: 0px;
+  line-height: 24px;
   height: 32px;
 }
 
 .taille-petit .Contenu {
   height: 24px;
+}
+
+.Titre {
+  color: var(--color-noir-bleute);
+  font-family: var(--typography-titre-5-family);
+  font-size: var(--typography-titre-5-size);
+  font-weight: var(--typography-titre-5-weight);
+  letter-spacing: 0px;
+  line-height: 25px;
+  height: 32px;
+}
+
+.taille-petit .Titre {
+  font-family: var(--typography-paragraphe-family);
+}
+
+.taille-petit .Titre {
+  font-size: var(--typography-paragraphe-size);
+}
+
+.taille-petit .Titre {
+  font-weight: 700;
+  line-height: 24px;
+  height: 24px;
+}
+
+.ChevronDown svg {
+  width: 32px;
+  height: 32px;
+}
+
+.ChevronDown {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.taille-petit .ChevronDown {
+  width: 24px;
+  height: 24px;
+}
+
+.taille-petit .ChevronDown svg {
+  width: 24px;
+  height: 24px;
+}
+
+.trigger {
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  border-style: solid;
+  height: 64px;
+  background-color: transparent;
+  border-width: 0px;
+  padding-inline: 0px;
+  padding-block: 0px;
+  position: absolute;
+}
+
+.taille-petit .trigger {
+  height: 40px;
+}
+
+.taille-grand .trigger {
+  left: 0px;
+  right: 0px;
+  top: 0px;
+}
+
+.taille-petit .trigger {
+  left: 0px;
+  right: 0px;
+  top: 0px;
 }

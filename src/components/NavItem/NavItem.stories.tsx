@@ -14,16 +14,20 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray NavItem. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.',
+          'Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact.',
       },
     },
   },
   render: (args) => <NavItem key={JSON.stringify(args)} {...args} />,
   argTypes: {
+    libelle: { control: 'text' },
+    href: { control: 'text' },
     chevron: { control: 'boolean' },
     actif: { control: 'boolean' },
   },
   args: {
+    libelle: 'Portes de garage',
+    href: '',
     chevron: true,
     actif: false,
   },

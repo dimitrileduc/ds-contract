@@ -61,12 +61,12 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
 <Carte disposition="reassurance" texte="Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces." titre="SAV & maintenance dédiés" />
 <Carte disposition="reassurance" texte="Savoir-faire familial transmis depuis plus de 50 ans sur trois générations." titre="Expérience" />
 </div>
-<Button>Contactez-nous</Button>
+{disposition === '5Cartes' ? (<Button>Contactez-nous</Button>) : null}
 {disposition === 'quatrecartesdeuxcta' ? (<div style={{ ...S.Boutons }}>
-<Button>Contactez-nous</Button>
-<Button>Contactez-nous</Button>
+{disposition === 'quatrecartesdeuxcta' ? (<Button>Contactez-nous</Button>) : null}
+{disposition === 'quatrecartesdeuxcta' ? (<Button>Contactez-nous</Button>) : null}
 </div>) : null}
-<Button>Contactez-nous</Button>
+{disposition === '4Cartes' ? (<Button>Contactez-nous</Button>) : null}
     </div>
   );
 });

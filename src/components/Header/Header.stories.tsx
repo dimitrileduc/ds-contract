@@ -25,7 +25,12 @@ const meta = {
   },
   args: {
     fond: 'solid',
-    items: [{ chevron: true }, { chevron: true }, { chevron: false }, { chevron: false }],
+    items: [
+      { libelle: 'Portes de garage', href: '/portes-de-garage', chevron: true },
+      { libelle: 'Portes d’entrée', href: '/portes-entree', chevron: true },
+      { libelle: 'Motorisation', href: '/motorisation', chevron: false },
+      { libelle: 'À propos', href: '/a-propos', chevron: false },
+    ],
   },
 } satisfies Meta<typeof Header>;
 

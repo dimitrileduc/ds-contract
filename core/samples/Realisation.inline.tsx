@@ -20,24 +20,37 @@ const S: Record<string, CSSProperties> = {
     "justifyContent": "center",
     "border": 0,
     "fontFamily": "Montserrat, sans-serif"
+  },
+  "Image": {
+    "width": "743px",
+    "height": "743px"
   }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
-const V: Record<string, CSSProperties> = {};
+const V: Record<string, CSSProperties> = {
+  "taille-petit:Image": {
+    "width": "339.5px",
+    "height": "339.5px"
+  }
+};
 
 export interface RealisationProps extends HTMLAttributes<HTMLDivElement> {
   taille?: 'grand' | 'petit';
+  imageUrl?: string;
+  imageAlt?: string;
 }
 
-/** Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. IMAGE fills are instance overrides in Figma; src/alt are explicit code semantics. */
 export const Realisation = forwardRef<HTMLDivElement, RealisationProps>(function Realisation(
-  { taille = 'grand', style, children, ...rest },
+  { taille = 'grand', imageUrl = '', imageAlt = '', style, children, ...rest },
   ref,
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
-      {children}
+      <img style={{ ...S.Image, ...(V[`taille-${taille}:Image`] ?? {}) }} src={String(imageUrl)} alt={String(imageAlt)}>
+
+</img>
     </div>
   );
 });

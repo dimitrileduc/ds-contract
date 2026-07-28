@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "26ff7e1",
+    "gitCommit": "45e2a7d",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -139,9 +139,9 @@
       "id": "ds.accordion-row",
       "name": "AccordionRow",
       "version": "1.1.0",
-      "status": "draft",
+      "status": "stable",
       "category": "molecule",
-      "description": "Piqueray AccordionRow. Visual and layout facts were extracted from the live Figma COMPONENT_SET on DS · Molécules after source cleanup; native button semantics, toggle behavior and ARIA association were added in reviewed code-side semantics behind evals. The live source intentionally keeps its documented Fermé/Ouvert structural asymmetry; the semantic trigger wrapper normalizes only the generated DOM while preserving the four measured geometries.",
+      "description": "Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability.",
       "figma": {
         "representation": "component",
         "componentSetKey": "6b15207fffd75082f1f8c423eab771aa6709179d"
@@ -162,7 +162,7 @@
             "ouvert"
           ],
           "default": "ferme",
-          "description": "Controlled when supplied; otherwise each AccordionRow instance toggles independently between fermé and ouvert."
+          "description": "Controlled when supplied; otherwise toggles independently between fermé and ouvert."
         },
         {
           "name": "titre",
@@ -181,32 +181,7 @@
         {
           "prop": "onToggle",
           "type": "() => void",
-          "description": "Fires when the native trigger button is activated; uncontrolled rows flip independently between fermé and ouvert."
-        }
-      ],
-      "children": {
-        "kind": "none"
-      },
-      "slots": []
-    },
-    {
-      "id": "ds.piqueray-logo",
-      "name": "PiquerayLogo",
-      "version": "0.1.0",
-      "status": "draft",
-      "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
-      "figma": {
-        "representation": "component",
-        "componentSetKey": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5"
-      },
-      "props": [
-        {
-          "name": "couleur",
-          "type": [
-            "default",
-            "blanc"
-          ],
-          "default": "default"
+          "description": "Activates the transparent native trigger projected over the Figma title row."
         }
       ],
       "children": {
@@ -220,7 +195,7 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Avantage. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray Avantage. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
       "figma": {
         "representation": "component",
         "componentSetKey": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b"
@@ -345,7 +320,7 @@
       "version": "1.0.2",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray CarouselControls. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Navigation semantics are a code decision; click callbacks remain a documented consumer boundary.",
       "figma": {
         "representation": "component",
         "componentSetKey": "f9cf66306491d239164a61b8a0ac6ba8d0de0238"
@@ -380,6 +355,16 @@
           "name": "titre",
           "type": "string",
           "default": "Pour portes de garage"
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "default": ""
         },
         {
           "name": "texte",
@@ -496,7 +481,7 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Copyright. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray Copyright. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
       "figma": {
         "representation": "component",
         "componentSetKey": "314cd2368d8d019fec33b60eb8995fac453d0e9f"
@@ -569,7 +554,7 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides remain an explicit runtime boundary until a governed image API is adopted.",
       "figma": {
         "representation": "component",
         "componentSetKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8"
@@ -769,7 +754,7 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray FooterColumn. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray FooterColumn. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
       "figma": {
         "representation": "component",
         "componentSetKey": "1de5585bfa55ff9e973748a4b2b99ef4b0a88cef"
@@ -784,6 +769,31 @@
           "name": "texte",
           "type": "string",
           "default": "Rue Alfred Drèze 7,  4860 Pepinster"
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.piqueray-logo",
+      "name": "PiquerayLogo",
+      "version": "0.1.0",
+      "status": "draft",
+      "description": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5"
+      },
+      "props": [
+        {
+          "name": "couleur",
+          "type": [
+            "default",
+            "blanc"
+          ],
+          "default": "default"
         }
       ],
       "children": {
@@ -999,12 +1009,22 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray NavItem. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact.",
       "figma": {
         "representation": "component",
         "componentSetKey": "bb5fff155aa25e719d1b9e38dedc767d677b4471"
       },
       "props": [
+        {
+          "name": "libelle",
+          "type": "string",
+          "default": "Portes de garage"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": true
+        },
         {
           "name": "chevron",
           "type": "boolean",
@@ -1045,6 +1065,8 @@
           "name": "items",
           "type": {
             "arrayOf": {
+              "libelle": "text",
+              "href": "text",
               "chevron": "boolean"
             }
           }
@@ -1112,7 +1134,7 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.",
       "figma": {
         "representation": "component",
         "componentSetKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7"
@@ -1127,6 +1149,16 @@
           "name": "prix",
           "type": "string",
           "default": "74,99€"
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "default": ""
         },
         {
           "name": "bouton",
@@ -1145,7 +1177,7 @@
       "version": "1.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. IMAGE fills are instance overrides in Figma; src/alt are explicit code semantics.",
       "figma": {
         "representation": "component",
         "componentSetKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43"
@@ -1158,13 +1190,20 @@
             "petit"
           ],
           "default": "grand"
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "default": ""
         }
       ],
       "children": {
-        "kind": "slot",
-        "accepts": [],
-        "acceptsMode": "open",
-        "description": "Any catalog content."
+        "kind": "none"
       },
       "slots": []
     },

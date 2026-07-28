@@ -35,14 +35,14 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
           <Carte key={index} disposition="reassurance" texte={item.texte} titre={item.titre} />
         ))}
       </div>
-      <Button>Contactez-nous</Button>
+      {disposition === '5Cartes' ? <Button>Contactez-nous</Button> : null}
       {disposition === 'quatrecartesdeuxcta' ? (
         <div className={styles.Boutons}>
-          <Button>Contactez-nous</Button>
-          <Button>Contactez-nous</Button>
+          {disposition === 'quatrecartesdeuxcta' ? <Button>Contactez-nous</Button> : null}
+          {disposition === 'quatrecartesdeuxcta' ? <Button>Contactez-nous</Button> : null}
         </div>
       ) : null}
-      <Button>Contactez-nous</Button>
+      {disposition === '4Cartes' ? <Button>Contactez-nous</Button> : null}
     </div>
   );
 });

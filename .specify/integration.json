@@ -2,14 +2,19 @@
   "version": "0.12.11",
   "integration_state_schema": 1,
   "installed_integrations": [
-    "pi"
+    "pi",
+    "codex"
   ],
   "integration_settings": {
     "pi": {
       "script": "sh",
       "invoke_separator": "."
+    },
+    "codex": {
+      "script": "sh",
+      "invoke_separator": "-"
     }
   },
-  "integration": "pi",
-  "default_integration": "pi"
+  "integration": "codex",
+  "default_integration": "codex"
 }

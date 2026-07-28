@@ -51,20 +51,39 @@ const ArrayTypeSchema = z.strictObject({
   arrayOf: z.record(z.string(), z.enum(['text', 'number', 'boolean'])),
 });
 
+/** Structured inline text for code while preserving the canvas's native TEXT
+ * property. Segments are data (never raw HTML): `strong` is the first bounded
+ * mark because it is the independently observed mixed-style gap. The Figma
+ * projection flattens `text` fields to the property's native string value;
+ * code emitters retain the segment boundaries and render semantic <strong>. */
+export const RichTextSegmentSchema = z.strictObject({
+  text: z.string(),
+  strong: z.boolean().optional(),
+});
+
 export const PropSchema = z
   .strictObject({
     name: z.string(),
     description: z.string().optional(),
-    /** "boolean" | "text" | "number" | { enum: [...] } | { arrayOf: {...} } */
+    /** "boolean" | "text" | "rich-text" | "number" |
+     *  { enum: [...] } | { arrayOf: {...} } */
     type: z.union([
       z.literal('boolean'),
       z.literal('text'),
+      z.literal('rich-text'),
       z.literal('number'),
       EnumTypeSchema,
       ArrayTypeSchema,
     ]),
-    default: z.union([z.string(), z.boolean(), z.number()]).optional(),
-    /** Text props may be required (no default in the code signature). */
+    default: z
+      .union([
+        z.string(),
+        z.boolean(),
+        z.number(),
+        z.array(RichTextSegmentSchema).min(1),
+      ])
+      .optional(),
+    /** Text/rich-text props may be required (no default in the code signature). */
     required: z.boolean().optional(),
     /** How this prop manifests on each side. Neither side is primary;
      *  the contract owns the canonical name and value set. */
@@ -90,6 +109,21 @@ export const PropSchema = z
   .refine((p) => p.bindings.figma.kind !== 'NONE' || p.bindings.figma.property === undefined, {
     message: 'kind "NONE" declares no canvas property — omit bindings.figma.property',
     path: ['bindings', 'figma', 'property'],
+  })
+  .refine(
+    (p) => (p.type === 'rich-text' ? Array.isArray(p.default) : !Array.isArray(p.default)),
+    {
+      message: 'rich-text defaults must be a non-empty segment array, and segment arrays are reserved for rich-text props',
+      path: ['default'],
+    },
+  )
+  .refine(
+    (p) => p.type !== 'rich-text' || p.bindings.figma.kind === 'TEXT',
+    {
+      message: 'rich-text maps to one native Figma TEXT property',
+      path: ['bindings', 'figma', 'kind'],
+    },
+  );
   });
 
 export const LayoutSchema = z.strictObject({
@@ -715,8 +749,15 @@ export interface Part {
    *  State-preview variants. Unknown state names, undeclared states, ref/
    *  slot parts, and non-color channels refuse by name (validateContract). */
   states?: Record<string, Record<string, string>>;
-  /** Text content bound to a text prop: { prop: "title" }. */
-  content?: { prop: string };
+  /** Text content bound to a flat text or structured rich-text prop.
+   *  A rich-text part declares the token governing its semantic <strong>
+   *  ranges; flat text keeps the historical `{ prop }` spelling. */
+  content?: {
+    prop: string;
+    marks?: {
+      strong: string;
+    };
+  };
   /** Static literal text (a page number, an ellipsis) — same on both
    *  surfaces, not bound to any prop. */
   text?: string;
@@ -776,7 +817,12 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
     /** Root: full state vocabulary. v13: non-ref parts, color-kind channels
      *  only — see the Part interface doc + emit-react validateContract. */
     states: z.record(z.string(), z.record(z.string(), TokenRefSchema)).optional(),
-    content: z.strictObject({ prop: z.string() }).optional(),
+    content: z
+      .strictObject({
+        prop: z.string(),
+        marks: z.strictObject({ strong: TokenRefSchema }).optional(),
+      })
+      .optional(),
     text: z.string().optional(),
     meter: z.strictObject({ valueProp: z.string(), maxProp: z.string() }).optional(),
     animation: z.enum(['spin', 'pulse']).optional(),
@@ -957,6 +1003,7 @@ export const ContractSchema = z.strictObject({
 
 export type Contract = z.infer<typeof ContractSchema>;
 export type Prop = z.infer<typeof PropSchema>;
+export type RichTextSegment = z.infer<typeof RichTextSegmentSchema>;
 export type ContractEvent = z.infer<typeof EventSchema>;
 export type Slot = z.infer<typeof SlotSchema>;
 export type ComponentRef = z.infer<typeof ComponentRefSchema>;

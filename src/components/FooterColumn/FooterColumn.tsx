@@ -12,7 +12,7 @@ export interface FooterColumnProps extends HTMLAttributes<HTMLDivElement> {
   texte?: string;
 }
 
-/** Piqueray FooterColumn. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray FooterColumn. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. */
 export const FooterColumn = forwardRef<HTMLDivElement, FooterColumnProps>(function FooterColumn(
   {
     titre = 'Adresse',

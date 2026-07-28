@@ -47,6 +47,32 @@
       }
     },
     {
+      "name": "imageUrl",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageUrl"
+        }
+      }
+    },
+    {
+      "name": "imageAlt",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageAlt"
+        }
+      }
+    },
+    {
       "name": "texte",
       "type": "text",
       "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
@@ -70,7 +96,28 @@
         "align": "stretch"
       },
       "parts": {
-        "img": {},
+        "img": {
+          "element": "img",
+          "attrs": {
+            "src": "{imageUrl}",
+            "alt": "{imageAlt}"
+          },
+          "literals": {
+            "width": "364px",
+            "height": "364px"
+          },
+          "literalsByProp": [
+            {
+              "prop": "disposition",
+              "map": {
+                "categorie": {
+                  "width": "743px",
+                  "height": "418px"
+                }
+              }
+            }
+          ]
+        },
         "text": {
           "layout": {
             "direction": "column",
@@ -82,15 +129,40 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
-              }
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.24}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "tokensByProp": {
+                "prop": "disposition",
+                "map": {
+                  "categorie": {
+                    "font-size": "{font.size.32}"
+                  }
+                }
+              },
+              "literals": {
+                "line-height": "30px"
+              },
+              "literalsByProp": [
+                {
+                  "prop": "disposition",
+                  "map": {
+                    "categorie": {
+                      "line-height": "40px"
+                    }
+                  }
+                }
+              ]
             },
             "Texte": {
               "tokensByProp": {
                 "prop": "disposition",
                 "map": {
                   "categorie": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.18}",
+                    "font-weight": "{font.weight.regular}"
                   }
                 }
               },
@@ -98,14 +170,54 @@
                 "prop": "texte"
               },
               "tokens": {
-                "color": "{color.noir}"
+                "color": "{color.noir}",
+                "font-size": "{font.size.14}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "24px"
+              },
+              "literalsByProp": [
+                {
+                  "prop": "disposition",
+                  "map": {
+                    "categorie": {
+                      "line-height": "27px"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "literals": {
+            "gap": "8px",
+            "padding-right": "16px",
+            "padding-left": "16px"
+          },
+          "literalsByProp": [
+            {
+              "prop": "disposition",
+              "map": {
+                "categorie": {
+                  "gap": "16px",
+                  "padding-right": "0px",
+                  "padding-left": "0px"
+                }
               }
             }
-          }
+          ]
         },
         "Bouton": {
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "Contactez-nous",
+            "props": {
+              "variant": "link",
+              "iconLeft": true,
+              "iconRight": true,
+              "iconLeftGlyph": "arrow-left",
+              "iconRightGlyph": "arrow-right"
+            }
           },
           "visibleWhen": {
             "prop": "disposition",
@@ -114,8 +226,27 @@
         }
       },
       "tokens": {
+        "background-color": "{color.blanc}",
         "font-family": "{font.family.montserrat}"
-      }
+      },
+      "literals": {
+        "width": "364px",
+        "gap": "24px",
+        "padding-bottom": "24px"
+      },
+      "literalsByProp": [
+        {
+          "prop": "disposition",
+          "map": {
+            "categorie": {
+              "width": "743px",
+              "background-color": "transparent",
+              "gap": "32px",
+              "padding-bottom": "0px"
+            }
+          }
+        }
+      ]
     }
   },
   "anchors": {

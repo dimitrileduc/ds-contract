@@ -125,6 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
+  width: 1550px;
 }
 
 .section-header--disposition-avecCta {
@@ -134,60 +136,26 @@
 
 .section-header__Accroche {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 3px;
+  line-height: 25px;
+  text-transform: uppercase;
 }
 
 .section-header__Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-40);
+  font-weight: var(--font-weight-regular);
+  line-height: 50px;
 }
 
-/* PiquerayLogo — from ds.piqueray-logo v0.1.0 (core/emit-html.ts) */
-
-.piqueray-logo, .piqueray-logo *, .piqueray-logo *::before, .piqueray-logo *::after {
-  box-sizing: border-box;
+.section-header--disposition-avecCta .section-header__Titre {
+  line-height: 40px;
 }
 
-.piqueray-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  position: relative;
-  width: 180px;
-  height: 34px;
-}
-
-.piqueray-logo__Marque svg {
-  display: block;
-  width: 25.96292495727539px;
-  height: 34px;
-}
-
-.piqueray-logo__Marque {
-  display: inline-flex;
-  flex-shrink: 0;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  color: var(--color-orange);
-}
-
-.piqueray-logo__Wordmark svg {
-  display: block;
-  width: 145.67019653320312px;
-  height: 25.00434112548828px;
-}
-
-.piqueray-logo__Wordmark {
-  display: inline-flex;
-  flex-shrink: 0;
-  position: absolute;
-  left: 34.329803466796875px;
-  top: 5.959875106811523px;
-  color: var(--color-bleu);
-}
-
-.piqueray-logo--couleur-blanc .piqueray-logo__Wordmark {
-  color: var(--color-blanc);
+.section-header--disposition-avecCta .section-header__Titre {
+  font-size: var(--font-size-32);
 }
 
 /* Avantage — from ds.avantage v1.0.0 (core/emit-html.ts) */
@@ -199,21 +167,44 @@
 .avantage {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
+  width: 759px;
+  height: 75px;
+}
+
+.avantage__Piqueray svg {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+.avantage__Piqueray {
+  display: inline-flex;
+  flex-shrink: 0;
 }
 
 .avantage__text {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  width: 687px;
 }
 
 .avantage__Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-regular);
+  line-height: 40px;
 }
 
 .avantage__Texte {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
 }
 
 /* Input — from ds.input v1.0.0 (core/emit-html.ts) */
@@ -252,23 +243,38 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
 }
 
 .field__label {
   display: flex;
   flex-direction: row;
+  gap: 4px;
 }
 
 .field__Label {
   color: var(--color-bleu-gris);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: 25px;
 }
 
 .field__MentionOptionnelle {
   color: var(--color-bleu-gris);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
 }
 
 .field__Saisie {
   display: flex;
+}
+
+.field__messageErreur {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  color: #D32F2F;
+  line-height: 24px;
 }
 
 /* Formulaire — from ds.formulaire v1.0.0 (core/emit-html.ts) */

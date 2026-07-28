@@ -1,6 +1,6 @@
 {
-  "passed": 114,
-  "total": 119,
+  "passed": 120,
+  "total": 125,
   "quarantined": 48,
   "results": [
     {
@@ -11,7 +11,8 @@
     {
       "id": "baseline-parity-clean",
       "claim": "C3-detection",
-      "pass": true
+      "pass": false,
+      "error": "Error: Baseline not clean:\n⚠ Figma naming bridged (the file does not use this repo's collection/mode names):\n    · mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\"\n\n✖ 1 drift finding(s) (+5 acknowledged in parity/baseline.json):\n    figma-tokens — behind: 1\n\n  [figma-tokens BEHIND] Primitives/border-width/1\n    Token exists in tokens/ but has no Figma variable\n    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)\n\n  — acknowledged (baselined, does not fail the check) —\n\n  [figma BEHIND] Carte.Bouton\n    Contract composes ds.button but no Bouton instance exists inside the Figma component\n    → Re-run the component sync script\n\n  [figma MISMATCH] Presentation.Texte (default)\n    Default differs — contract: \"Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.\", figma: \"Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.\"\n    → Adopt into contract (promotion) or reset the property default\n\n  [figma BEHIND] SectionHeader.Bouton\n    Contract composes ds.button but no Bouton instance exists inside the Figma component\n    → Re-run the component sync script\n\n  [figma-tokens AHEAD] Primitives/color/rouge\n    Figma variable has no counterpart in tokens/\n    → Review + add to tokens/ (promotion) or delete the variable\n\n  [icons AHEAD] assets/icons/close.svg\n    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\n    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\n\n"
     },
     {
       "id": "baseline-acknowledges-without-failing",
@@ -22,13 +23,14 @@
     {
       "id": "promotion-converges",
       "claim": "C4-convergence",
-      "pass": true
+      "pass": false,
+      "error": "Error: Unexpected extra findings: [{\"surface\":\"figma\",\"classification\":\"behind\",\"subject\":\"Button.IconOnly\",\"detail\":\"Contract prop \\\"iconOnly\\\" has no BOOLEAN property on the Figma set\",\"remedy\":\"Add the property to the existing set via a scripted edit — sync scripts are currently CREATE-only and skip existing components (see docs/internal/figma-sync.md)\"},{\"surface\":\"figma-tokens\",\"classification\":\"behind\",\"subject\":\"Primitives/border-width/1\",\"detail\":\"Token exists in tokens/ but has no Figma variable\",\"remedy\":\"Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)\"}]"
     },
     {
       "id": "detect-icon-registry-divergence",
       "claim": "C3-detection",
       "pass": false,
-      "error": "Error: Expected [icons ahead] assets/icons/cart.svg; got: [icons ahead] figma/Cart"
+      "error": "Error: Expected [icons ahead] assets/icons/cart.svg; got: [figma-tokens behind] Primitives/border-width/1, [icons ahead] figma/Cart"
     },
     {
       "id": "refuse-unregistered-icon-enum",
@@ -211,6 +213,36 @@
       "pass": true
     },
     {
+      "id": "native-button-type",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "code-only-scalar-prop",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "component-visiblewhen-emission",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "visual-root-alignment",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "bottom-inset-border",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "icon-variant-svg-size",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
       "id": "plain-token-wrap",
       "claim": "C5-extraction",
       "pass": true
@@ -249,7 +281,7 @@
       "id": "golden-generated-output",
       "claim": "C1-determinism",
       "pass": false,
-      "error": "Error: Generated output diverges from golden manifest (2 file[s]): figma-sync/05-button.js, figma-sync/batch-01.js — if intentional, npm run golden:update in a reviewed change"
+      "error": "Error: Generated output diverges from golden manifest (3 file[s]): src/components/Field/Field.module.css, figma-sync/19-field.js, figma-sync/batch-01.js — if intentional, npm run golden:update in a reviewed change"
     },
     {
       "id": "detect-snapshot-provenance-mismatch",
@@ -264,8 +296,7 @@
     {
       "id": "extract-code-roundtrip-identity",
       "claim": "C5-extraction",
-      "pass": false,
-      "error": "Error: Round trip not clean:\n· [Button CODE-ABSENT] version, status, description — contract governance prose — extraction proposes 0.1.0 draft\n· [Button CODE-ABSENT] anchors.figma — design-side identity anchors — written back by the Figma generator\n· [Button CODE-ABSENT] a11y — declared a11y budget — a contract commitment, not code syntax\n· [Button CODE-ABSENT] props.*.bindings.figma — design-side spellings — extraction infers TitleCase, reconcile confirms\n✔ [Button MATCHED] semantics.element — button\n· [Button CODE-ABSENT] semantics.role — role \"button\" equals the host element — the generator omits the redundant attribute (N6)\n✔ [Button MATCHED] states — []\n✔ [Button MATCHED] props.variant — type + default\n· [Button CODE-ABSENT] props.children — children-bound text prop — code renders {children}; the TEXT property spelling and canvas default live in the contract\n✔ [Button MATCHED] props.iconLeft — type + default\n✔ [Button MATCHED] props.iconRight — type + default\n✔ [Button MATCHED] props.iconLeftGlyph — type + default\n✔ [Button MATCHED] props.iconRightGlyph — type + default\n✔ [Button MATCHED] anatomy.root — 9 token binding(s)\n✘ [Button MISMATCH] anatomy.root.parts — part names/order: contract [iconLeft, iconOnlyIcon, iconOnlyLabel, label, iconRight] vs proposed [iconLeft, iconOnlyIcon, iconOnlyLabel, iconRight]\n\n✘ Round trip: 8 matched, 6 code-absent (listed), 1 mismatched → extract/ROUNDTRIP-CODE.md\n"
+      "pass": true
     },
     {
       "id": "extract-raw-values-never-invented",
@@ -273,7 +304,7 @@
       "pass": true
     },
     {
-      "id": "design-propose-unbound-fill-named-never-invented",
+      "id": "design-propose-unbound-fill-provisional-mint",
       "claim": "C5-extraction",
       "pass": true
     },
@@ -445,8 +476,7 @@
     {
       "id": "polaris-showcase-reproducible",
       "claim": "C1-determinism",
-      "pass": false,
-      "error": "Error: showcase --check failed:\n✖ polaris showcase drift (12):\n  - figma/avatar.figma.js: regenerated bytes differ from the committed file\n  - figma/badge.figma.js: regenerated bytes differ from the committed file\n  - figma/banner.figma.js: regenerated bytes differ from the committed file\n  - figma/button.figma.js: regenerated bytes differ from the committed file\n  - figma/checkbox.figma.js: regenerated bytes differ from the committed file\n  - figma/progress-bar.figma.js: regenerated bytes differ from the committed file\n  - figma/radio-button.figma.js: regenerated bytes differ from the committed file\n  - figma/spinner.figma.js: regenerated bytes differ from the committed file\n  - figma/tag.figma.js: regenerated bytes differ from the committed file\n  - figma/text-field.figma.js: regenerated bytes differ from the committed file\n  - figma/text.figma.js: regenerated bytes differ from the committed file\n  - figma/thumbnail.figma.js: regenerated bytes differ from the committed file\n"
+      "pass": true
     },
     {
       "id": "computed-floor-gate",

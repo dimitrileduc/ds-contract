@@ -3,12 +3,38 @@
   "id": "ds.nav-item",
   "name": "NavItem",
   "version": "1.0.0",
-  "description": "Piqueray NavItem. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact.",
   "semantics": {
-    "element": "div",
+    "element": "a",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "libelle",
+      "type": "text",
+      "default": "Portes de garage",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "libelle"
+        }
+      }
+    },
+    {
+      "name": "href",
+      "type": "text",
+      "required": true,
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "href"
+        }
+      }
+    },
     {
       "name": "chevron",
       "type": "boolean",
@@ -41,6 +67,9 @@
   "states": [],
   "anatomy": {
     "root": {
+      "attrs": {
+        "href": "{href}"
+      },
       "layout": {
         "display": "flex",
         "direction": "row",
@@ -48,7 +77,9 @@
       },
       "parts": {
         "libell": {
-          "text": "Portes de garage",
+          "content": {
+            "prop": "libelle"
+          },
           "tokens": {
             "color": "{color.blanc}"
           }
@@ -68,11 +99,37 @@
           },
           "visibleWhen": {
             "prop": "actif"
-          }
+          },
+          "literals": {
+            "height": "2px"
+          },
+          "declared": {
+            "position": "absolute"
+          },
+          "stylesWhen": [
+            {
+              "prop": "actif",
+              "styles": {
+                "right": "0px",
+                "bottom": "0px",
+                "left": "0px"
+              }
+            }
+          ]
         }
       },
+      "literals": {
+        "gap": "8px",
+        "line-height": "16px"
+      },
+      "declared": {
+        "position": "relative",
+        "text-transform": "uppercase"
+      },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "font-size": "{font.size.16}",
+        "font-weight": "{font.weight.medium}"
       }
     }
   },

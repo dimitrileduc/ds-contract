@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray Copyright. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.',
+          'Piqueray Copyright. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.',
       },
     },
   },

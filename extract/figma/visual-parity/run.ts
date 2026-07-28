@@ -14,14 +14,16 @@
  *   REPORT.md                              ranked WORST-FIRST
  *   report-assets/                         the worst-10 triptychs (committed)
  *
- * Both scores (unmasked + text-masked) print per variant next to the
- * threshold — no silent tolerance anywhere. Skips, refusals, and API
- * declines are rows, not omissions. Every diffed row over the 3% masked
- * line must match a NAMED cause in triage.ts (committed, classed) or the
+ * The authoritative unmasked score and the text-masked diagnostic both print
+ * per variant next to mask coverage. A mask may explain glyph rasterization;
+ * because it deletes evidence, it can never lower the pass/fail score. Skips,
+ * refusals, and API declines are rows, not omissions. Every diffed row over
+ * the 3% authoritative line must match a NAMED cause in triage.ts or the
  * report prints it UNTRIAGED — loud, never a silent residue.
  *
  * STANDING-GATE MODES:
- *   --summary         no artifacts; every row's masked score compares to the
+ *   --summary         no artifacts; every row's authoritative raw score
+ *                     compares to the
  *                     committed baseline.json — a regression beyond
  *                     EPSILON_PP percentage points, a vanished row, or a row
  *                     the baseline has never seen FAILS the run (exit 1),
@@ -40,6 +42,7 @@ import { execSync } from 'node:child_process';
 import path from 'node:path';
 import { composeSubject, type RenderablePackage } from './compose.js';
 import { fetchNodePngs, fetchSetInfos, type SetInfo } from './figma-api.js';
+import { authoritativeScore } from './gate.js';
 import { alignPair, diffPair, meanInk, readPng, writeTriptych, type Aligned, type DiffResult } from './img.js';
 import { planVariant, variantSlug } from './match.js';
 import { launchBrowser, renderVariant } from './render.js';
@@ -52,9 +55,9 @@ const OUT = path.join(HERE, 'out');
 const CACHE = path.join(OUT, '_cache');
 const ASSETS = path.join(HERE, 'report-assets');
 const BASELINE = path.join(HERE, 'baseline.json');
-/** Over this masked score a row must carry a triage.ts named cause. */
+/** Over this authoritative raw score a row needs a triage.ts named cause. */
 const TRIAGE_LINE_PCT = 3.0;
-/** Summary mode: allowed per-row masked-score drift vs baseline.json, in
+/** Summary mode: allowed per-row authoritative-score drift vs baseline.json, in
  *  percentage points. Absorbs antialiasing jitter only — same machine,
  *  same Chromium, scores reproduce byte-identically; this is NOT a fidelity
  *  tolerance (the scores themselves stay untouched). */
@@ -70,6 +73,7 @@ interface Row {
   sizeOurs?: string;
   sizeFigma?: string;
   interaction?: string;
+  comparisonSurface?: 'light' | 'dark';
   diagnosis: string;
   triptych?: string;
   notes: string[];
@@ -99,6 +103,7 @@ interface Baseline {
       status: Row['status'];
       masked: number | null;
       unmasked: number | null;
+      maskCoverage?: number | null;
       sizeOurs: string | null;
       causeClass: TriageRule['class'] | null;
     }
@@ -266,7 +271,12 @@ async function main(): Promise<void> {
       }
       for (const [f, ok] of Object.entries(rendered.fontChecks)) fontAvailability.set(f, ok);
 
-      const aligned = alignPair(readPng(rendered.png), readPng(figmaPngPath));
+      const aligned = alignPair(
+        readPng(rendered.png),
+        readPng(figmaPngPath),
+        rendered.rootRect,
+        subject.comparisonSurface ?? 'light',
+      );
       const diff = diffPair(aligned, rendered.textRects);
       const triptychPath = path.join(subjectOut, `${slug}.triptych.png`);
       if (!summary) {
@@ -286,21 +296,27 @@ async function main(): Promise<void> {
         sizeOurs: `${aligned.aContent.width}×${aligned.aContent.height}`,
         sizeFigma: `${aligned.bContent.width}×${aligned.bContent.height}`,
         interaction: plan.interaction === 'none' ? '' : plan.interaction,
+        comparisonSurface: aligned.comparisonSurface ?? 'light',
         diagnosis: diagnose(aligned, diff),
         triptych: path.relative(HERE, triptychPath),
         notes: plan.notes,
         cause: triageFor(subject.id, variant.name),
       };
       rows.push(row);
-      const verdict = (diff.maskedPct ?? diff.unmaskedPct) <= THRESHOLD_PCT ? 'within' : 'OVER';
+      const gate = authoritativeScore(diff);
+      const verdict = gate.scorePct <= THRESHOLD_PCT ? 'within' : 'OVER';
       const causeTag =
-        (diff.maskedPct ?? diff.unmaskedPct) > TRIAGE_LINE_PCT
+        gate.scorePct > TRIAGE_LINE_PCT
           ? row.cause
             ? ` [cause: ${row.cause.class}]`
             : ' [UNTRIAGED]'
           : '';
       console.log(
-        `  ${verdict === 'within' ? '·' : '✗'} ${variant.name}: unmasked ${pct(diff.unmaskedPct)} | masked ${pct(diff.maskedPct)} (threshold ${THRESHOLD_PCT}% — ${verdict})${plan.interaction !== 'none' ? ` [${plan.interaction}]` : ''} — ${row.diagnosis}${causeTag}`,
+        `  ${verdict === 'within' ? '·' : '✗'} ${variant.name}: gate/raw ${pct(gate.scorePct)} ` +
+          `| masked diagnostic ${pct(diff.maskedPct)} | mask coverage ${pct(diff.maskCoveragePct)} ` +
+          `| surface ${aligned.comparisonSurface ?? 'light'} (threshold ${THRESHOLD_PCT}% — ${verdict})` +
+          `${plan.interaction !== 'none' ? ` [${plan.interaction}]` : ''} ` +
+          `— ${row.diagnosis}${causeTag}`,
       );
     }
   }
@@ -357,6 +373,7 @@ function writeBaseline(
       status: r.status,
       masked: r.maskedPct ?? null,
       unmasked: r.unmaskedPct ?? null,
+      maskCoverage: r.maskCoveragePct ?? null,
       sizeOurs: r.sizeOurs ?? null,
       causeClass: r.cause?.class ?? null,
     };
@@ -392,11 +409,16 @@ function compareToBaseline(rows: Row[]): number {
       continue;
     }
     if (base.status !== 'diffed') continue;
-    const baseScore = base.masked ?? base.unmasked ?? 0;
-    const curScore = cur.maskedPct ?? cur.unmaskedPct ?? 0;
+    if (base.unmasked === null || cur.unmaskedPct === undefined) {
+      console.error(`✗ ${key}: authoritative raw score missing (baseline/current) — review and re-baseline; masked evidence cannot substitute`);
+      failures++;
+      continue;
+    }
+    const baseScore = base.unmasked;
+    const curScore = cur.unmaskedPct;
     const delta = curScore - baseScore;
     if (delta > eps) {
-      console.error(`✗ ${key}: masked ${baseScore.toFixed(2)}% → ${curScore.toFixed(2)}% (+${delta.toFixed(2)}pp > ε ${eps})`);
+      console.error(`✗ ${key}: gate/raw ${baseScore.toFixed(2)}% → ${curScore.toFixed(2)}% (+${delta.toFixed(2)}pp > ε ${eps})`);
       failures++;
     } else if (delta < -eps) {
       console.log(`· ${key}: IMPROVED ${baseScore.toFixed(2)}% → ${curScore.toFixed(2)}% — re-baseline (--write-baseline) to lock it in`);
@@ -418,7 +440,9 @@ function writeReport(
 ): void {
   const diffed = rows.filter((r) => r.status === 'diffed');
   const problem = rows.filter((r) => r.status !== 'diffed');
-  const score = (r: Row) => r.maskedPct ?? r.unmaskedPct ?? 0;
+  // A mask deletes evidence and is diagnostic-only. Ranking, threshold,
+  // triage and baseline all use the same authoritative raw score.
+  const score = (r: Row) => r.unmaskedPct!;
   const ranked = [...diffed].sort((x, y) => score(y) - score(x));
 
   // Worst-10 triptychs → committed report-assets/.
@@ -446,7 +470,7 @@ function writeReport(
     return score(r) > TRIAGE_LINE_PCT ? '**UNTRIAGED**' : '—';
   };
   const tableRow = (r: Row): string =>
-    `| ${r.subject} | ${r.variant}${r.interaction ? ` [${r.interaction}]` : ''} | ${pct(r.maskedPct)} | ${pct(r.unmaskedPct)} | ${r.sizeOurs} vs ${r.sizeFigma} | ${r.diagnosis}${r.notes.length > 0 ? ` (${r.notes.join('; ')})` : ''} | ${causeCell(r)} | ${r.triptych ?? '—'} |`;
+    `| ${r.subject} | ${r.variant}${r.interaction ? ` [${r.interaction}]` : ''} | ${pct(score(r))} | ${pct(r.maskedPct)} | ${pct(r.maskCoveragePct)} | ${r.comparisonSurface ?? 'light'} | ${r.sizeOurs} vs ${r.sizeFigma} | ${r.diagnosis}${r.notes.length > 0 ? ` (${r.notes.join('; ')})` : ''} | ${causeCell(r)} | ${r.triptych ?? '—'} |`;
 
   // Gate read: distribution by triage class + the standing invariants.
   const over = (lo: number, hi: number) => diffed.filter((r) => score(r) > lo && score(r) <= hi);
@@ -460,9 +484,9 @@ function writeReport(
   const md = `# Visual-parity baseline — pixels as receipts
 
 Generated by \`npm run extract:figma:visual\` (extract/figma/visual-parity/run.ts).
-Ranked WORST-FIRST by the masked score. Provisional gate line: **${THRESHOLD_PCT}%** —
-printed per row, applied nowhere silently. Every row over **${TRIAGE_LINE_PCT}%**
-masked carries a NAMED cause from the committed triage table (triage.ts,
+Ranked WORST-FIRST by the authoritative **raw** score. Gate line: **${THRESHOLD_PCT}%** —
+printed per row without any masked substitution. Every row over **${TRIAGE_LINE_PCT}%**
+raw carries a NAMED cause from the committed triage table (triage.ts,
 classed engine / capture-gap / renderer / harness / design) or prints
 **UNTRIAGED**. Standing gate: \`-- --summary\` re-scores every row against the
 committed baseline.json and FAILS on any regression beyond ±${EPSILON_PP}pp
@@ -473,8 +497,15 @@ moves the gate, explicitly, after review.
 
 - **Font rasterization**: Chromium (CoreText on macOS) and Figma's renderer hint and
   rasterize glyphs differently even for the SAME face — sub-pixel widths shift.
-  Handled by the masked score (text-node DOM rects excluded from numerator and
-  denominator), never by a fatter threshold.
+  The text-masked score (text-node DOM rects excluded from numerator and
+  denominator) is printed only as diagnosis. Because it deletes evidence, it
+  never lowers the authoritative raw gate and never replaces the raw baseline.
+- **Mask coverage**: the exact canvas share removed by the text mask is printed
+  for every row. A 0% masked diagnostic therefore cannot masquerade as 0% parity.
+- **Transparent ink**: both PNGs are alpha-flattened onto the same explicit
+  inspection surface. The default is light; a subject whose component ink is
+  white-on-transparent declares \`dark\`. This surface is capture context only,
+  not component CSS and not a Figma mutation.
 - **Text-hug metrics**: the SAME text also SIZES differently — Figma hugs an
   Inter 16px line at lineHeightPx 19.36 where the CSS line box is 20px, and
   glyph advance widths differ per rasterizer, so a hug-sized component's box
@@ -507,8 +538,8 @@ ${fontLines}
 
 ## Worst-first (all diffed variants)
 
-| subject | variant | masked | unmasked | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
-|---|---|---|---|---|---|---|---|
+| subject | variant | gate/raw | masked diagnostic | mask coverage | surface | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
+|---|---|---|---|---|---|---|---|---|---|
 ${ranked.map(tableRow).join('\n')}
 
 ## Not diffed (named, never dropped)
@@ -529,7 +560,7 @@ ${(() => {
       .join('\n')}`;
   })()}
 
-## Distribution (masked score)
+## Distribution (authoritative raw score)
 
 ${buckets.map(([label, n]) => `- ${label}: ${n} variant(s)`).join('\n')}
 

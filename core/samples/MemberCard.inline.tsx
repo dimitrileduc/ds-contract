@@ -20,18 +20,26 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "column",
     "alignItems": "center",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "gap": "16px"
   },
   "text": {
     "display": "flex",
     "flexDirection": "column",
-    "alignItems": "center"
+    "alignItems": "center",
+    "gap": "8px"
   },
   "Nom": {
-    "color": "#26282C"
+    "color": "#26282C",
+    "fontSize": "32px",
+    "fontWeight": 400,
+    "lineHeight": "40px"
   },
   "Poste": {
-    "color": "#F98A0B"
+    "color": "#F98A0B",
+    "fontSize": "16px",
+    "fontWeight": 600,
+    "lineHeight": "20px"
   }
 };
 
@@ -43,7 +51,7 @@ export interface MemberCardProps extends HTMLAttributes<HTMLDivElement> {
   poste?: string;
 }
 
-/** Piqueray MemberCard. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides remain an explicit runtime boundary until a governed image API is adopted. */
 export const MemberCard = forwardRef<HTMLDivElement, MemberCardProps>(function MemberCard(
   { nom = 'Cécilia Piqueray', poste = 'Gérante', style, children, ...rest },
   ref,

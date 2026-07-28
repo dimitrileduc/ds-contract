@@ -9,12 +9,26 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 16px;
+}
+
+.Image {
+  width: 240px;
+  height: 240px;
 }
 
 .Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: 20px;
+  text-align: center;
 }
 
 .Prix {
   color: var(--color-bleu);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-semibold);
+  line-height: 20px;
+  text-align: center;
 }

@@ -18,13 +18,21 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "gap": "16px",
+    "width": "310px"
   },
   "Titre": {
-    "color": "#F98A0B"
+    "color": "#F98A0B",
+    "fontSize": "24px",
+    "fontWeight": 400,
+    "lineHeight": "30px"
   },
   "Texte": {
-    "color": "#FFFFFF"
+    "color": "#FFFFFF",
+    "fontSize": "18px",
+    "fontWeight": 400,
+    "lineHeight": "27px"
   }
 };
 
@@ -36,7 +44,7 @@ export interface FooterColumnProps extends HTMLAttributes<HTMLDivElement> {
   texte?: string;
 }
 
-/** Piqueray FooterColumn. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray FooterColumn. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. */
 export const FooterColumn = forwardRef<HTMLDivElement, FooterColumnProps>(function FooterColumn(
   { titre = 'Adresse', texte = 'Rue Alfred Drèze 7,  4860 Pepinster', style, children, ...rest },
   ref,

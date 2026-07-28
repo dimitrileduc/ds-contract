@@ -133,7 +133,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   return (
     <button ref={ref} style={{ ...S.root, ...(V[`variant-${variant}:root`] ?? {}), ...style }} data-icon-left={iconLeft || undefined} data-icon-right={iconRight || undefined} {...rest}>
       {iconLeft ? (<span style={{ ...S.iconLeft }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS[iconLeftGlyph] }} />) : null}
-{variant === 'iconOnly' ? (<span style={{ ...S.iconOnlyIcon }} aria-label={String(children)} dangerouslySetInnerHTML={{ __html: ICONS[iconLeftGlyph] }} />) : null}
+{variant === 'iconOnly' ? (<span style={{ ...S.iconOnlyIcon }} role="img" aria-label={String(children)} dangerouslySetInnerHTML={{ __html: ICONS[iconLeftGlyph] }} />) : null}
 <span style={{ ...S.label, ...(variant === 'iconOnly' ? {"display":"none"} : {}) }}>{children}</span>
 {iconRight ? (<span style={{ ...S.iconRight }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS[iconRightGlyph] }} />) : null}
     </button>

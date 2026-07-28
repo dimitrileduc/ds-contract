@@ -20,13 +20,23 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "column",
     "alignItems": "center",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "gap": "8px",
+    "width": "1550px"
   },
   "Accroche": {
-    "color": "#26282C"
+    "color": "#26282C",
+    "fontSize": "20px",
+    "fontWeight": 400,
+    "letterSpacing": "3px",
+    "lineHeight": "25px",
+    "textTransform": "uppercase"
   },
   "Titre": {
-    "color": "#26282C"
+    "color": "#26282C",
+    "fontSize": "40px",
+    "fontWeight": 400,
+    "lineHeight": "50px"
   }
 };
 
@@ -37,6 +47,10 @@ const V: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "center",
     "justifyContent": "space-between"
+  },
+  "disposition-avecCta:Titre": {
+    "fontSize": "32px",
+    "lineHeight": "40px"
   }
 };
 
@@ -56,8 +70,8 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
   return (
     <div ref={ref} style={{ ...S.root, ...(V[`disposition-${disposition}:root`] ?? {}), ...style }} data-accroche2={accroche2 || undefined} {...rest}>
       {disposition === 'standard' ? (<span style={{ ...S.Accroche }}>{accroche}</span>) : null}
-<span style={{ ...S.Titre }}>{titre}</span>
-<Button>Contactez-nous</Button>
+<span style={{ ...S.Titre, ...(V[`disposition-${disposition}:Titre`] ?? {}) }}>{titre}</span>
+{disposition === 'avecCta' ? (<Button variant="outilneNoir">Voir les produits</Button>) : null}
     </div>
   );
 });

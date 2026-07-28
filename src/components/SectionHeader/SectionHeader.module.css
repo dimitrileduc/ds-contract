@@ -9,6 +9,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
+  width: 1550px;
 }
 
 .disposition-avecCta {
@@ -18,8 +20,24 @@
 
 .Accroche {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 3px;
+  line-height: 25px;
+  text-transform: uppercase;
 }
 
 .Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-40);
+  font-weight: var(--font-weight-regular);
+  line-height: 50px;
+}
+
+.disposition-avecCta .Titre {
+  font-size: var(--font-size-32);
+}
+
+.disposition-avecCta .Titre {
+  line-height: 40px;
 }

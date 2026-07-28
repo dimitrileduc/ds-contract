@@ -3,7 +3,7 @@
   "id": "ds.avantage",
   "name": "Avantage",
   "version": "1.0.0",
-  "description": "Piqueray Avantage. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray Avantage. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -43,17 +43,23 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "row"
+        "direction": "row",
+        "align": "start"
       },
       "parts": {
         "Piqueray": {
-          "component": {
-            "id": "ds.piqueray-logo"
+          "icon": {
+            "asset": "piqueray",
+            "size": 64
           }
         },
         "text": {
           "layout": {
             "direction": "column"
+          },
+          "literals": {
+            "gap": "8px",
+            "width": "687px"
           },
           "parts": {
             "Titre": {
@@ -61,7 +67,12 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.32}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "40px"
               }
             },
             "Texte": {
@@ -69,11 +80,21 @@
                 "prop": "texte"
               },
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.18}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "27px"
               }
             }
           }
         }
+      },
+      "literals": {
+        "gap": "8px",
+        "width": "759px",
+        "height": "75px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

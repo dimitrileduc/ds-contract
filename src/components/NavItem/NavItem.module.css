@@ -9,6 +9,12 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  gap: 8px;
+  line-height: 16px;
+  position: relative;
+  text-transform: uppercase;
 }
 
 .libell {
@@ -27,4 +33,12 @@
 
 .Soulignement {
   background-color: var(--color-blanc);
+  height: 2px;
+  position: absolute;
+}
+
+.root[data-actif] .Soulignement {
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }

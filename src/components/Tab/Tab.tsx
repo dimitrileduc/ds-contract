@@ -4,23 +4,23 @@
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
-import type { HTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 import styles from './Tab.module.css';
 
-export interface TabProps extends HTMLAttributes<HTMLDivElement> {
+export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   etat?: 'defaut' | 'selectionne';
   libelle?: string;
 }
 
 /** Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
-export const Tab = forwardRef<HTMLDivElement, TabProps>(function Tab(
+export const Tab = forwardRef<HTMLButtonElement, TabProps>(function Tab(
   { etat = 'defaut', libelle = 'Onglet', className, children, ...rest },
   ref,
 ) {
   const classes = [styles.root, styles[`etat-${etat}`], className].filter(Boolean).join(' ');
   return (
-    <div ref={ref} className={classes} {...rest}>
+    <button ref={ref} className={classes} role="tab" type="button" {...rest}>
       <span className={styles.libell}>{libelle}</span>
-    </div>
+    </button>
   );
 });

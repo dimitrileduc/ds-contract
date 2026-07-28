@@ -1,9 +1,9 @@
 /**
  * TRIAGE — the committed named-cause table for visual-parity rows.
  *
- * Every diffed row over the 3% masked line must match a rule here or the
- * report prints it as **UNTRIAGED** (loud, ranked first in the distribution
- * section) — a standing queue entry, never a silent residue. Rules are
+ * Every diffed row over the 3% authoritative raw line must match a rule here
+ * or the report prints it as **UNTRIAGED** (loud, ranked first in the
+ * distribution section) — a standing queue entry, never a silent residue. Rules are
  * CLASSED so the distribution can say what kind of delta remains:
  *
  *   · engine       — our emitters render the contract wrong. FIX IT; a rule
@@ -41,6 +41,43 @@ export interface TriageRule {
 }
 
 export const TRIAGE: TriageRule[] = [
+  // ---- Piqueray molecule extraction pilot ----------------------------------
+  {
+    subject: 'member-card',
+    class: 'capture-gap',
+    cause:
+      'A5 image boundary: Figma paints the real portrait while ds.member-picture deliberately renders the documented #D9D9D9 technical placeholder; text and outer geometry agree (height Δ1 device px).',
+  },
+  {
+    subject: 'product-card',
+    class: 'capture-gap',
+    cause:
+      'A5 image boundary: the master carries an IMAGE fill that the code-only imageUrl prop cannot obtain from the contract; the default empty URL leaves the 240px image plane unpainted while text and outer geometry remain near-equal.',
+  },
+  {
+    subject: 'realisation',
+    class: 'capture-gap',
+    cause:
+      'A5 image boundary: Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty; both variant dimensions are exact, but image pixels are intentionally not transported.',
+  },
+  {
+    subject: 'carte',
+    class: 'engine',
+    cause:
+      'open component defect: IMAGE pixels are outside the contract transport and the two layouts still need distinct image sizing; Reassurance also lacks its measured shadow/alignment and Categorie lacks uppercase/rich-text treatment.',
+  },
+  {
+    subject: 'field',
+    class: 'engine',
+    cause:
+      'open composition defect: the slotted Input keeps intrinsic width and the Field error state cannot yet propagate the measured red border/aria-invalid to the composed control.',
+  },
+  {
+    subject: 'tab',
+    class: 'renderer',
+    cause:
+      'geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization.',
+  },
   // ---- button (Piqueray ds.button vs the owner file's « Bouton » set) ------
   // (Two demo-era rules removed 2026-07-23: State=Disabled / State=Focus
   //  Visible matched variants of the DELETED demo Button — the Piqueray axis

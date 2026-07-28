@@ -34,23 +34,38 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
 }
 
 .field__label {
   display: flex;
   flex-direction: row;
+  gap: 4px;
 }
 
 .field__Label {
   color: var(--color-bleu-gris);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: 25px;
 }
 
 .field__MentionOptionnelle {
   color: var(--color-bleu-gris);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  line-height: 24px;
 }
 
 .field__Saisie {
   display: flex;
+}
+
+.field__messageErreur {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  color: #D32F2F;
+  line-height: 24px;
 }
 
 /* showcase chrome */

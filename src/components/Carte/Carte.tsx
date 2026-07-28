@@ -11,6 +11,8 @@ import styles from './Carte.module.css';
 export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
   disposition?: 'reassurance' | 'categorie';
   titre?: string;
+  imageUrl?: string;
+  imageAlt?: string;
   texte?: string;
 }
 
@@ -19,6 +21,8 @@ export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
   {
     disposition = 'reassurance',
     titre = 'Pour portes de garage',
+    imageUrl = '',
+    imageAlt = '',
     texte = 'SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.',
     className,
     children,
@@ -31,12 +35,12 @@ export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
     .join(' ');
   return (
     <div ref={ref} className={classes} {...rest}>
-      <div className={styles.img}></div>
+      <img className={styles.img} src={String(imageUrl)} alt={String(imageAlt)}></img>
       <div className={styles.text}>
         <span className={styles.Titre}>{titre}</span>
         <span className={styles.Texte}>{texte}</span>
       </div>
-      <Button>Contactez-nous</Button>
+      {disposition === 'categorie' ? <Button>Contactez-nous</Button> : null}
     </div>
   );
 });

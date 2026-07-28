@@ -7,7 +7,7 @@ const COMPONENTS = [
     "setName": "NavItem",
     "contractId": "ds.nav-item",
     "anchorKey": "bb5fff155aa25e719d1b9e38dedc767d677b4471",
-    "description": "NavItem — generated from contract ds.nav-item v1.0.0",
+    "description": "NavItem — generated from contract ds.nav-item v1.0.0 †",
     "isSet": false,
     "boolProps": [
       {
@@ -19,7 +19,14 @@ const COMPONENTS = [
         "default": false
       }
     ],
-    "textProps": [],
+    "textProps": [
+      {
+        "default": "Portes de garage"
+      },
+      {
+        "default": ""
+      }
+    ],
     "fontStyles": [
       "Medium"
     ],
@@ -36,14 +43,19 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 8
+          },
           "children": [
             {
               "type": "text",
               "name": "libell",
               "characters": "Portes de garage",
-              "fontSize": 14,
+              "fontSize": 16,
               "fontStyle": "Medium",
               "textFill": "color/blanc",
+              "lineHeight": 16,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat"
             },
             {
@@ -63,6 +75,9 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "fill": "color/blanc",
+              "lits": {
+                "height": 2
+              },
               "children": [],
               "visibleProp": "Actif",
               "visibleDefault": false
@@ -236,6 +251,51 @@ function applyFrameSpec(node, spec) {
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }
+  if (spec.lits) {
+    // v14 literals: no variable to bind — plain values, compile-parsed.
+    const li = spec.lits;
+    if (li.paddingTop !== undefined) node.paddingTop = li.paddingTop;
+    if (li.paddingBottom !== undefined) node.paddingBottom = li.paddingBottom;
+    if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
+    if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
+    if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
+    if (li.radius !== undefined) node.cornerRadius = li.radius;
+    if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
+    if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
+    if (li.minHeight !== undefined) { try { node.minHeight = li.minHeight; } catch (e) { /* needs auto-layout */ } }
+    // #60 fix 1 (fillClear precedence): a spec-carried fill is NEVER
+    // trampled — fillClear only clears when no fill was spec'd. The compile
+    // side already drops fillClear when a fill binding exists (applyLiterals);
+    // this runtime guard makes the emitted script safe even for hand-fed
+    // specs carrying both.
+    if (li.fillClear && !spec.fill) node.fills = [];
+    else if (li.fillColor) node.fills = [{ type: 'SOLID', color: { r: li.fillColor.r, g: li.fillColor.g, b: li.fillColor.b }, opacity: li.fillColor.a === undefined ? 1 : li.fillColor.a }];
+    if (li.strokeColor) node.strokes = [{ type: 'SOLID', color: { r: li.strokeColor.r, g: li.strokeColor.g, b: li.strokeColor.b }, opacity: li.strokeColor.a === undefined ? 1 : li.strokeColor.a }];
+    if (li.radiusCorners) {
+      const rc = li.radiusCorners;
+      if (rc.tl !== undefined) node.topLeftRadius = rc.tl;
+      if (rc.tr !== undefined) node.topRightRadius = rc.tr;
+      if (rc.bl !== undefined) node.bottomLeftRadius = rc.bl;
+      if (rc.br !== undefined) node.bottomRightRadius = rc.br;
+    }
+    if (li.strokeSides) {
+      const sw = li.strokeSides;
+      if (sw.top !== undefined) node.strokeTopWeight = sw.top;
+      if (sw.right !== undefined) node.strokeRightWeight = sw.right;
+      if (sw.bottom !== undefined) node.strokeBottomWeight = sw.bottom;
+      if (sw.left !== undefined) node.strokeLeftWeight = sw.left;
+    }
+    if (li.width !== undefined || li.height !== undefined) {
+      node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
+      const horizontalIsPrimary = (spec.layout || { mode: 'HORIZONTAL' }).mode === 'HORIZONTAL';
+      if (li.width !== undefined) {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
+      }
+      if (li.height !== undefined) {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+      }
+    }
+  }
 }
 
 // v7 overlay: out-of-flow edge attachment. Must run AFTER appendChild —
@@ -270,6 +330,7 @@ async function buildNode(spec, registry) {
     node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (spec.fontFamily) {
       try {
         await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });

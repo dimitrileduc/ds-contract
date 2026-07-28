@@ -12,6 +12,16 @@
   font-family: var(--font-family-montserrat);
 }
 
+.realisation__Image {
+  width: 743px;
+  height: 743px;
+}
+
+.realisation--taille-petit .realisation__Image {
+  width: 339.5px;
+  height: 339.5px;
+}
+
 /* showcase chrome */
 .showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
 .showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

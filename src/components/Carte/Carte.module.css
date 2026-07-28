@@ -8,23 +8,77 @@
   flex-direction: column;
   align-items: stretch;
   border: 0;
+  background-color: var(--color-blanc);
   font-family: var(--font-family-montserrat);
+  gap: 24px;
+  padding-bottom: 24px;
+  border-radius: 10px;
+}
+
+.disposition-categorie {
+  background-color: transparent;
+  gap: 32px;
+  padding-bottom: 0px;
+  border-radius: 0px;
+}
+
+.img {
+  height: 364px;
 }
 
 .text {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 8px;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.disposition-categorie .text {
+  gap: 16px;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-regular);
+  line-height: 30px;
+}
+
+.disposition-categorie .Titre {
+  font-size: var(--font-size-32);
+}
+
+.disposition-categorie .Titre {
+  font-weight: var(--font-weight-medium);
+}
+
+.disposition-categorie .Titre {
+  line-height: 40px;
 }
 
 .Texte {
   color: var(--color-noir);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 24px;
 }
 
 .disposition-categorie .Texte {
   color: var(--color-noir-bleute);
+}
+
+.disposition-categorie .Texte {
+  font-size: var(--font-size-18);
+}
+
+.disposition-categorie .Texte {
+  font-weight: var(--font-weight-regular);
+}
+
+.disposition-categorie .Texte {
+  line-height: 27px;
 }

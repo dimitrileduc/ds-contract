@@ -125,6 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 8px;
+  width: 1550px;
 }
 
 .section-header--disposition-avecCta {
@@ -134,10 +136,26 @@
 
 .section-header__Accroche {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 3px;
+  line-height: 25px;
+  text-transform: uppercase;
 }
 
 .section-header__Titre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-40);
+  font-weight: var(--font-weight-regular);
+  line-height: 50px;
+}
+
+.section-header--disposition-avecCta .section-header__Titre {
+  line-height: 40px;
+}
+
+.section-header--disposition-avecCta .section-header__Titre {
+  font-size: var(--font-size-32);
 }
 
 /* Coordonnees — from ds.coordonnees v1.0.0 (core/emit-html.ts) */

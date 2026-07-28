@@ -27,7 +27,7 @@ import {
   GoogleReviews, ReviewCard,
 } from '../../src/components';
 import type {
-  ButtonProps, InputProps, TextareaProps, SelectProps, CheckboxProps,
+  AccordionRowProps, ButtonProps, InputProps, TextareaProps, SelectProps, CheckboxProps,
 } from '../../src/components';
 
 /** Default text children/value per component, used when no override is supplied. */
@@ -44,6 +44,9 @@ export const SAMPLE_TEXT: Record<string, string> = {
   Coordonnees: 'Nos coordonnées',
   TexteSEO: 'Texte optimisé pour le référencement',
 };
+
+const SAMPLE_IMAGE =
+  'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22743%22 height=%22743%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23d9d9d9%22/%3E%3C/svg%3E';
 
 export function renderSample(
   name: string,
@@ -84,13 +87,20 @@ export function renderSample(
 
     // -- US2: molecules --
     case 'AccordionRow':
-      return <AccordionRow taille="grand" etat="ferme" titre="Question fréquente" {...props}>{text('Contenu de l\'accordéon')}</AccordionRow>;
+      return (
+        <AccordionRow
+          taille="grand"
+          titre="Question fréquente"
+          contenu={text('Réponse')}
+          {...(props as AccordionRowProps)}
+        />
+      );
     case 'Avantage':
       return <Avantage titre="Qualité garantie" {...props} />;
     case 'CarouselControls':
       return <CarouselControls {...props} />;
     case 'Carte':
-      return <Carte disposition="reassurance" titre="Titre" {...props} />;
+      return <Carte disposition="reassurance" titre="Titre" imageUrl={SAMPLE_IMAGE} imageAlt="" {...props} />;
     case 'Copyright':
       return <Copyright {...props}>{text('© Piqueray 2026')}</Copyright>;
     case 'Field':
@@ -100,11 +110,11 @@ export function renderSample(
     case 'MemberCard':
       return <MemberCard {...props} />;
     case 'NavItem':
-      return <NavItem actif={false} {...props}>{text('Accueil')}</NavItem>;
+      return <NavItem actif={false} libelle={text('Accueil')} href="/" {...props} />;
     case 'ProductCard':
-      return <ProductCard {...props} />;
+      return <ProductCard imageUrl={SAMPLE_IMAGE} imageAlt="Produit" {...props} />;
     case 'Realisation':
-      return <Realisation {...props} />;
+      return <Realisation imageUrl={SAMPLE_IMAGE} imageAlt="Réalisation" {...props} />;
     case 'SectionHeader':
       return <SectionHeader disposition="standard" {...props} />;
     case 'Tab':

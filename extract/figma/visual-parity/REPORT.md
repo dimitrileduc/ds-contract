@@ -23,8 +23,8 @@ moves the gate, explicitly, after review.
   delta is REAL and stays in the score; rows whose residual is only this are
   triaged `renderer`.
 - **Font availability** (checked in-page via `document.fonts.check`):
-  - "Montserrat": available locally (same face used in the preview)
   - "Inter": available locally (same face used in the preview)
+  - "Montserrat": available locally (same face used in the preview)
 - **Antialiasing**: edge pixels differ per renderer. pixelmatch's antialiasing
   detector is ON (its default) — a per-pixel classifier, not a tolerance knob.
 - **Subpixel positioning**: Figma positions nodes on fractional pixels; CSS layout
@@ -51,92 +51,67 @@ moves the gate, explicitly, after review.
 
 | subject | variant | masked | unmasked | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
 |---|---|---|---|---|---|---|---|
-| realisation | Taille=Grand | 100.00% | 99.96% | 171×26 vs 1486×1486 | size ours 171×26 vs figma 1486×1486 (Δ-1315, Δ-1460 device px); overall ink differs (ours #606060 vs figma #e0e0e0) | **UNTRIAGED** | report-assets/realisation--taille-grand.triptych.png |
-| realisation | Taille=Petit | 100.00% | 99.79% | 171×26 vs 679×679 | size ours 171×26 vs figma 679×679 (Δ-508, Δ-653 device px); overall ink differs (ours #606060 vs figma #e0e0e0) | **UNTRIAGED** | report-assets/realisation--taille-petit.triptych.png |
-| member-card | MemberCard | 58.31% | 59.02% | 253×64 vs 728×888 | size ours 253×64 vs figma 728×888 (Δ-475, Δ-824 device px); overall ink differs (ours #977b5b vs figma #aa9f97) | **UNTRIAGED** | report-assets/member-card--membercard.triptych.png |
-| member-picture | Etat=Defaut | 56.27% | 56.27% | 920×192 vs 727×727 | size ours 920×192 vs figma 727×727 (Δ193, Δ-535 device px); overall ink differs (ours #ffffff vs figma #aba198) | **UNTRIAGED** | report-assets/member-picture--etat-defaut.triptych.png |
-| member-picture | Etat=Survol | 55.31% | 55.31% | 920×192 vs 727×727 | size ours 920×192 vs figma 727×727 (Δ193, Δ-535 device px); overall ink differs (ours #ffffff vs figma #6d6d6c) | **UNTRIAGED** | report-assets/member-picture--etat-survol.triptych.png |
-| carte | Disposition=Categorie | 53.72% | 55.10% | 1532×179 vs 1486×1227 | size ours 1532×179 vs figma 1486×1227 (Δ46, Δ-1048 device px); overall ink differs (ours #2c2e32 vs figma #767672) | **UNTRIAGED** | report-assets/carte--disposition-categorie.triptych.png |
-| carte | Disposition=Reassurance | 31.45% | 31.97% | 1529×70 vs 736×1064 | size ours 1529×70 vs figma 736×1064 (Δ793, Δ-994 device px) | **UNTRIAGED** | report-assets/carte--disposition-reassurance.triptych.png |
-| tab | Etat=Selectionne | 29.57% | 24.85% | 110×32 vs 172×55 | size ours 110×32 vs figma 172×55 (Δ-62, Δ-23 device px); overall ink differs (ours #636467 vs figma #404246) | **UNTRIAGED** | report-assets/tab--etat-selectionne.triptych.png |
-| tab | Etat=Defaut | 26.29% | 30.59% | 110×32 vs 171×30 | size ours 110×32 vs figma 171×30 (Δ-61, Δ2 device px); overall ink differs (ours #636467 vs figma #484a4d) | **UNTRIAGED** | report-assets/tab--etat-defaut.triptych.png |
-| carousel-controls | CarouselControls | 18.13% | 22.89% | 3136×108 vs 3208×104 | size ours 3136×108 vs figma 3208×104 (Δ-72, Δ4 device px) | **UNTRIAGED** | report-assets/carousel-controls--carouselcontrols.triptych.png |
-| product-card | ProductCard | 15.54% | 17.97% | 625×68 vs 637×621 | size ours 625×68 vs figma 637×621 (Δ-12, Δ-553 device px) | **UNTRIAGED** | out/product-card/productcard.triptych.png |
-| section-header | Disposition=Avec CTA | 15.33% | 17.60% | 1077×108 vs 3093×108 | size ours 1077×108 vs figma 3093×108 (Δ-2016, Δ0 device px) | **UNTRIAGED** | out/section-header/disposition-avec-cta.triptych.png |
-| section-header | Disposition=Standard | 8.75% | 9.99% | 438×70 vs 1081×156 | size ours 438×70 vs figma 1081×156 (Δ-643, Δ-86 device px) | **UNTRIAGED** | out/section-header/disposition-standard.triptych.png |
-| avantage | Avantage | 7.99% | 9.14% | 1047×70 vs 1307×144 | size ours 1047×70 vs figma 1307×144 (Δ-260, Δ-74 device px) | **UNTRIAGED** | out/avantage/avantage.triptych.png |
-| field | Etat=Normal | 7.89% | 8.79% | 278×129 vs 560×153 | size ours 278×129 vs figma 560×153 (Δ-282, Δ-24 device px) | **UNTRIAGED** | out/field/etat-normal.triptych.png |
-| piqueray-logo | Couleur=Default | 7.66% | 7.66% | 552×192 vs 360×68 | size ours 552×192 vs figma 360×68 (Δ192, Δ124 device px); overall ink differs (ours #ffffff vs figma #5e5d72) | **UNTRIAGED** | out/piqueray-logo/couleur-default.triptych.png |
-| field | Etat=Erreur | 5.62% | 8.15% | 278×166 vs 560×203 | size ours 278×166 vs figma 560×203 (Δ-282, Δ-37 device px); overall ink differs (ours #878b93 vs figma #bd6f73) | **UNTRIAGED** | out/field/etat-erreur.triptych.png |
-| accordion-row | Taille=Petit, Etat=Ferme | 4.18% | 4.80% | 3085×30 vs 3100×52 | size ours 3085×30 vs figma 3100×52 (Δ-15, Δ-22 device px); overall ink differs (ours #5c5e60 vs figma #a4a5a6) | **UNTRIAGED** | out/accordion-row/taille-petit_etat-ferme.triptych.png |
-| accordion-row | Taille=Grand, Etat=Ferme | 2.80% | 3.24% | 3085×30 vs 3100×87 | size ours 3085×30 vs figma 3100×87 (Δ-15, Δ-57 device px); overall ink differs (ours #5c5e60 vs figma #171819) | — | out/accordion-row/taille-grand_etat-ferme.triptych.png |
-| footer-column | FooterColumn | 2.78% | 2.77% | 301×108 vs 338×181 | size ours 301×108 vs figma 338×181 (Δ-37, Δ-73 device px); diff localized top-left (187×61px) | — | out/footer-column/footercolumn.triptych.png |
-| checkbox | Coche=Oui | 2.56% | 2.56% | 40×40 vs 40×40 | diffuse delta — see triptych | renderer: label advance-width hug (ours Δ-7 device px) shifts the center-padded pair; residual masked ink is the control-box edge ring + Figma label pixels escaping the DOM-derived text mask | out/checkbox/coche-oui.triptych.png |
-| piqueray-logo | Couleur=Blanc | 2.00% | 2.00% | 552×192 vs 360×68 | size ours 552×192 vs figma 360×68 (Δ192, Δ124 device px); overall ink differs (ours #ffffff vs figma #f9921b); diff localized middle-left (51×66px) | — | out/piqueray-logo/couleur-blanc.triptych.png |
-| accordion-row | Taille=Petit, Etat=Ouvert | 1.99% | 2.32% | 195×118 vs 3100×124 | size ours 195×118 vs figma 3100×124 (Δ-2905, Δ-6 device px); overall ink differs (ours #606164 vs figma #9e9fa1) | — | out/accordion-row/taille-petit_etat-ouvert.triptych.png |
-| google-reviews | Avis Google | 1.50% | 3.31% | 3120×656 vs 3104×656 | size ours 3120×656 vs figma 3104×656 (Δ16, Δ0 device px); text raster/family delta dominates | — | out/google-reviews/avis-google.triptych.png |
-| accordion-row | Taille=Grand, Etat=Ouvert | 1.41% | 1.58% | 195×118 vs 3100×199 | size ours 195×118 vs figma 3100×199 (Δ-2905, Δ-81 device px); overall ink differs (ours #606164 vs figma #202022) | — | out/accordion-row/taille-grand_etat-ouvert.triptych.png |
-| button | Style=Outline noir | 1.27% | 3.14% | 436×108 vs 438×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-outline-noir.triptych.png |
-| button | Style=Link | — | 0.99% | 307×24 vs 307×24 | diffuse delta — see triptych | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-link.triptych.png |
-| button | Style=Default | 0.66% | 2.70% | 436×108 vs 438×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-default.triptych.png |
-| button | Style=Orange | 0.66% | 2.70% | 436×108 vs 438×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-orange.triptych.png |
-| button | Style=Blanc | 0.00% | 2.26% | 436×108 vs 438×108 | text raster/family delta dominates; diff localized middle-center (306×25px) | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-blanc.triptych.png |
-| button | Style=Outline blanc | 0.00% | 0.00% | 436×108 vs 438×108 | near-identical | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-outline-blanc.triptych.png |
-| checkbox | Coche=Non | 0.00% | 0.00% | 40×40 vs 40×40 | near-identical | renderer: label advance-width hug (ours Δ-7 device px) shifts the center-padded pair; residual masked ink is the control-box edge ring + Figma label pixels escaping the DOM-derived text mask | out/checkbox/coche-non.triptych.png |
+| realisation | Taille=Grand | 99.97% | 99.97% | 1486×1486 vs 1486×1486 | overall ink differs (ours #bfc0c0 vs figma #e0e0e0) | capture-gap: A5 image boundary: Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty; both variant dimensions are exact, but image pixels are intentionally not transported. | report-assets/realisation--taille-grand.triptych.png |
+| realisation | Taille=Petit | 99.86% | 99.86% | 679×679 vs 679×679 | overall ink differs (ours #bdc1c0 vs figma #e0e0e0) | capture-gap: A5 image boundary: Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty; both variant dimensions are exact, but image pixels are intentionally not transported. | report-assets/realisation--taille-petit.triptych.png |
+| member-card | MemberCard | 57.24% | 52.93% | 728×887 vs 728×888 | overall ink differs (ours #d7d6d6 vs figma #aa9f97) | capture-gap: A5 image boundary: Figma paints the real portrait while ds.member-picture deliberately renders the documented #D9D9D9 technical placeholder; text and outer geometry agree (height Δ1 device px). | report-assets/member-card--membercard.triptych.png |
+| carte | Disposition=Categorie | 48.66% | 50.54% | 1722×325 vs 1486×1227 | size ours 1722×325 vs figma 1486×1227 (Δ236, Δ-902 device px); overall ink differs (ours #2c2e32 vs figma #767672) | engine: open component defect: IMAGE pixels are outside the contract transport and the two layouts still need distinct image sizing; Reassurance also lacks its measured shadow/alignment and Categorie lacks uppercase/rich-text treatment. | report-assets/carte--disposition-categorie.triptych.png |
+| carte | Disposition=Reassurance | 36.16% | 34.60% | 1424×948 vs 736×1064 | size ours 1424×948 vs figma 736×1064 (Δ688, Δ-116 device px) | engine: open component defect: IMAGE pixels are outside the contract transport and the two layouts still need distinct image sizing; Reassurance also lacks its measured shadow/alignment and Categorie lacks uppercase/rich-text treatment. | report-assets/carte--disposition-reassurance.triptych.png |
+| product-card | ProductCard | 19.12% | 17.61% | 638×619 vs 637×621 | diffuse delta — see triptych | capture-gap: A5 image boundary: the master carries an IMAGE fill that the code-only imageUrl prop cannot obtain from the contract; the default empty URL leaves the 240px image plane unpainted while text and outer geometry remain near-equal. | report-assets/product-card--productcard.triptych.png |
+| field | Etat=Erreur | 5.87% | 7.19% | 248×212 vs 560×203 | size ours 248×212 vs figma 560×203 (Δ-312, Δ9 device px); overall ink differs (ours #a98d96 vs figma #bd6f73) | engine: open composition defect: the slotted Input keeps intrinsic width and the Field error state cannot yet propagate the measured red border/aria-invalid to the composed control. | report-assets/field--etat-erreur.triptych.png |
+| tab | Etat=Defaut | 3.15% | 10.90% | 172×82 vs 172×82 | text raster/family delta dominates | renderer: geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization. | report-assets/tab--etat-defaut.triptych.png |
+| tab | Etat=Selectionne | 3.15% | 10.90% | 172×82 vs 172×82 | text raster/family delta dominates | renderer: geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization. | report-assets/tab--etat-selectionne.triptych.png |
+| field | Etat=Normal | 2.20% | 2.34% | 560×162 vs 560×162 | diffuse delta — see triptych | engine: open composition defect: the slotted Input keeps intrinsic width and the Field error state cannot yet propagate the measured red border/aria-invalid to the composed control. | report-assets/field--etat-normal.triptych.png |
+| section-header | Disposition=Avec CTA | 0.67% | 1.16% | 3100×108 vs 3100×108 | diffuse delta — see triptych | — | out/section-header/disposition-avec-cta.triptych.png |
+| carousel-controls | CarouselControls | 0.41% | 0.41% | 3208×104 vs 3208×104 | diff localized middle-right (72×104px) | — | out/carousel-controls/carouselcontrols.triptych.png |
+| footer-column | FooterColumn | 0.09% | 2.77% | 322×182 vs 338×181 | size ours 322×182 vs figma 338×181 (Δ-16, Δ1 device px); text raster/family delta dominates; diff localized top-left (196×37px) | — | out/footer-column/footercolumn.triptych.png |
+| avantage | Avantage | 0.00% | 1.81% | 1518×150 vs 1518×150 | text raster/family delta dominates | — | out/avantage/avantage.triptych.png |
 | review-card | Review-card | 0.00% | 1.68% | 598×478 vs 598×478 | text raster/family delta dominates | — | out/review-card/review-card.triptych.png |
-| input | Input | 0.00% | 0.17% | 560×96 vs 560×96 | diff localized middle-left (179×20px) | — | out/input/input.triptych.png |
-| textarea | Textarea | 0.00% | 0.06% | 560×256 vs 560×256 | diff localized top-left (179×20px) | — | out/textarea/textarea.triptych.png |
-| copyright | Copyright | — | 0.00% | 1410×32 vs 1233×27 | size ours 1410×32 vs figma 1233×27 (Δ177, Δ5 device px) | — | out/copyright/copyright.triptych.png |
-| nav-item | NavItem | 0.00% | 0.00% | 298×32 vs 380×24 | size ours 298×32 vs figma 380×24 (Δ-82, Δ8 device px) | — | out/nav-item/navitem.triptych.png |
+| accordion-row | Taille=Grand, Etat=Ferme | 0.00% | 0.13% | 3100×128 vs 3100×128 | diff localized middle-left (182×39px) | — | out/accordion-row/taille-grand_etat-ferme.triptych.png |
+| accordion-row | Taille=Petit, Etat=Ferme | 0.00% | 0.05% | 3100×80 vs 3100×80 | near-identical | — | out/accordion-row/taille-petit_etat-ferme.triptych.png |
+| accordion-row | Taille=Grand, Etat=Ouvert | 0.00% | 0.08% | 3100×240 vs 3100×240 | diff localized middle-left (182×144px) | — | out/accordion-row/taille-grand_etat-ouvert.triptych.png |
+| accordion-row | Taille=Petit, Etat=Ouvert | 0.00% | 0.04% | 3100×160 vs 3100×160 | near-identical | — | out/accordion-row/taille-petit_etat-ouvert.triptych.png |
+| copyright | Copyright | — | 0.00% | 1234×28 vs 1233×27 | near-identical | — | out/copyright/copyright.triptych.png |
+| nav-item | NavItem | 0.00% | 0.00% | 374×56 vs 380×24 | size ours 374×56 vs figma 380×24 (Δ-6, Δ32 device px) | harness: white text/icon on a transparent export is flattened onto the white comparison canvas, leaving no scorable ink; the current 190px forced width also makes the geometry receipt non-conclusive. | out/nav-item/navitem.triptych.png |
+| section-header | Disposition=Standard | 0.00% | 0.90% | 3100×166 vs 3100×166 | diffuse delta — see triptych | — | out/section-header/disposition-standard.triptych.png |
 
 ## Not diffed (named, never dropped)
 
-| subject | variants | status | reason |
-|---|---|---|---|
-| button-with-icons | Property 1=Outilne noir | skipped | axis "Property 1=Outilne noir" has no contract binding (props: Style, Libelle, Icone gauche, Icone droite, Glyphe gauche, Glyphe droite) |
+_none_
 
 ## Distribution (masked score)
 
-- ≤ 1%: 11 variant(s)
-- 1–3%: 8 variant(s)
-- 3–10%: 6 variant(s)
-- > 10%: 12 variant(s)
+- ≤ 1%: 12 variant(s)
+- 1–3%: 1 variant(s)
+- 3–10%: 3 variant(s)
+- > 10%: 6 variant(s)
 
-- diffed: 37 · skipped/refused/declined: 1
+- diffed: 22 · skipped/refused/declined: 0
 
 ## Gate read (triage classes)
 
-- **UNTRIAGED over 3%: 18** — member-picture :: Etat=Defaut; member-picture :: Etat=Survol; piqueray-logo :: Couleur=Default; accordion-row :: Taille=Petit, Etat=Ferme; avantage :: Avantage; carousel-controls :: CarouselControls; carte :: Disposition=Reassurance; carte :: Disposition=Categorie; field :: Etat=Normal; field :: Etat=Erreur; member-card :: MemberCard; product-card :: ProductCard; realisation :: Taille=Grand; realisation :: Taille=Petit; section-header :: Disposition=Standard; section-header :: Disposition=Avec CTA; tab :: Etat=Defaut; tab :: Etat=Selectionne
-- > 10% by class: UNTRIAGED ×12
-- 3–10% by class: UNTRIAGED ×6
-- open `engine`-class causes: 0 (an engine row is a tracked defect, not an accepted delta)
+- **UNTRIAGED over 3%: 0** — the queue is empty
+- > 10% by class: capture-gap ×4, engine ×2
+- 3–10% by class: renderer ×2, engine ×1
+- open `engine`-class causes: 4 (an engine row is a tracked defect, not an accepted delta)
 
 ## Subjects
 
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
-| button (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| checkbox (contract) | v2380970555701900576 | repo tokens only | (none) |
-| review-card (contract) | v2380970555701900576 | repo tokens only | Inter, Montserrat |
-| google-reviews (contract) | v2380970555701900576 | repo tokens only | Inter, Montserrat |
-| input (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| textarea (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| button-with-icons (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| member-picture (contract) | v2380970555701900576 | repo tokens only | (none) |
-| piqueray-logo (contract) | v2380970555701900576 | repo tokens only | (none) |
-| accordion-row (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| avantage (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| carousel-controls (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| carte (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| copyright (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| field (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| footer-column (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| member-card (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| nav-item (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| product-card (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| realisation (contract) | v2380970555701900576 | repo tokens only | (none) |
-| section-header (contract) | v2380970555701900576 | repo tokens only | Montserrat |
-| tab (contract) | v2380970555701900576 | repo tokens only | Montserrat |
+| review-card (contract) | v2381229993207753432 | repo tokens only | Inter, Montserrat |
+| accordion-row (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| avantage (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| carousel-controls (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| carte (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| copyright (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| field (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| footer-column (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| member-card (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| nav-item (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| product-card (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| realisation (contract) | v2381229993207753432 | repo tokens only | (none) |
+| section-header (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| tab (contract) | v2381229993207753432 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

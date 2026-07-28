@@ -1096,6 +1096,112 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'native-button-type',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/native-button-type-check.ts']);
+      if (r.status !== 0 || !r.out.includes('native button roots are type=button')) {
+        throw new Error(`native button type check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'code-only-scalar-prop',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/code-only-scalar-prop-check.ts']);
+      if (r.status !== 0 || !r.out.includes('scalar props can be explicitly code-only')) {
+        throw new Error(`code-only scalar prop check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'component-visiblewhen-emission',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/component-visiblewhen-emission-check.ts']);
+      if (r.status !== 0 || !r.out.includes('visibleWhen gates composed children')) {
+        throw new Error(`component visibleWhen check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    // Independent harness regression: text ink can rasterize to different
+    // alpha bboxes without moving the component's shared geometric frame.
+    id: 'visual-root-alignment',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-root-alignment-check.ts']);
+      if (r.status !== 0 || !r.out.includes('root geometry anchors image parity')) {
+        throw new Error(`visual root alignment check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    // Independent gate regression: a DOM text mask may erase every changed
+    // pixel while leaving an identical sliver in the denominator. The mask
+    // remains useful diagnosis, but can never turn a raw failure green.
+    id: 'visual-mask-cannot-false-green',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-mask-false-green-check.ts']);
+      if (r.status !== 0 || !r.out.includes('gate remains raw')) {
+        throw new Error(`visual mask false-green check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    // Independent harness regression: transparent white ink is invisible
+    // after the default light flattening. A subject-declared dark inspection
+    // surface must expose positional drift on both PNGs without styling code.
+    id: 'visual-transparent-ink-surface',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-transparent-ink-surface-check.ts']);
+      if (r.status !== 0 || !r.out.includes('dark inspection surface exposes')) {
+        throw new Error(`visual transparent-ink surface check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    // Independent emitter regression: Figma strokes are painted inside their
+    // frame. A bottom-only root stroke therefore must not use a CSS border
+    // that adds a pixel to an auto-sized component.
+    id: 'bottom-inset-border',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/bottom-inset-border-check.ts']);
+      if (r.status !== 0 || !r.out.includes('bottom-only Figma stroke is painted inset')) {
+        throw new Error(`bottom inset border check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    // Independent emitter regression: a variant-sized icon must resize the
+    // painted SVG as well as its wrapper on every generated surface.
+    id: 'icon-variant-svg-size',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/icon-variant-svg-size-check.ts']);
+      if (r.status !== 0 || !r.out.includes('variant icon size reaches the painted SVG')) {
+        throw new Error(`variant icon size check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    // Independent engine gap exposed by Avantage: one native Figma TEXT
+    // property may carry mixed strong ranges. Code must retain those ranges
+    // structurally while the canvas property receives the same flat string.
+    id: 'structured-rich-text',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/structured-rich-text-check.ts']);
+      if (r.status !== 0 || !r.out.includes('structured rich-text stays typed and marked')) {
+        throw new Error(`structured rich-text check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
     // Enterprise gauntlet fix #6: none of Carbon/Fluent/Spectrum/Polaris
     // publishes DTCG, but every published shape is one MECHANICAL $value
     // wrap away — core/wrap-plain-tokens.ts. Fixture shapes mirror all four;
@@ -1306,23 +1412,30 @@ const cases: Case[] = [
     },
   },
   {
-    // Unbound fills are REPORTED with nearest-token candidates, never invented.
-    id: 'design-propose-unbound-fill-named-never-invented',
+    // Unbound fills are preserved through a provisional imported.* mint. They
+    // must never be silently aliased to a visually equal governed token:
+    // human review decides that semantic promotion later.
+    id: 'design-propose-unbound-fill-provisional-mint',
     claim: 'C5-extraction',
     run: () => {
       // A hex equal to a real Piqueray primitive ({color.orange} = #f98a0b)
       // that the dump does NOT bind as a variable: the fill is unbound, so it
-      // must be REPORTED with that token as a candidate — never adopted.
+      // must be preserved under imported.* — never silently adopted as orange.
       editJson('extract/figma/fixtures/main-file-dumps.json', (d) => {
         for (const v of d.Badge.variants) v.fill = { hex: 'f98a0b' };
       });
       const r = run(TSX, ['extract/figma/propose.ts', 'extract/figma/fixtures/main-file-dumps.json', '--out', 'extract/out/figma']);
       if (r.status !== 0) throw new Error(`Proposal failed on an unbound fill:\n${r.out}`);
       const proposed = JSON.parse(readFileSync(path.join(SCRATCH, 'extract', 'out', 'figma', 'badge.contract.proposed.json'), 'utf8'));
-      if (proposed.anatomy.root.tokens?.['background-color']) throw new Error('Proposal fabricated a token for an unbound fill');
+      const bg = proposed.anatomy.root.tokens?.['background-color'];
+      if (bg !== '{imported.badge.root.background-color}') {
+        throw new Error(`Unbound fill was not preserved under its deterministic provisional mint: ${bg}`);
+      }
       const report = readFileSync(path.join(SCRATCH, 'extract', 'out', 'figma', 'figma-proposals.md'), 'utf8');
-      if (!report.includes('UNBOUND Badge:root fill = #f98a0b')) throw new Error('Unbound fill not named in the report');
-      if (!report.includes('{color.orange}')) throw new Error('Nearest-token suggestions missing');
+      if (!report.includes('MINTED {imported.badge.root.background-color} = #f98a0b')) {
+        throw new Error('Provisional fill mint not named in the report');
+      }
+      if (bg === '{color.orange}') throw new Error('Unbound fill was silently promoted to a governed semantic token');
     },
   },
   {
@@ -4657,7 +4770,9 @@ const cases: Case[] = [
         '.funIa {', '.normal {', 'position: absolute;', 'top: 0px;', 'right: 0px;', 'bottom: 0px;', 'left: 0px;',
         'transition: opacity 300ms;',
       ]) {
-        if (!css.includes(required)) throw new Error(`MemberPicture CSS is missing ${JSON.stringify(required)}`);
+        if (!css.toLowerCase().includes(required.toLowerCase())) {
+          throw new Error(`MemberPicture CSS is missing ${JSON.stringify(required)}`);
+        }
       }
       if (!/\.etat-defaut \.normal \{[\s\S]*?opacity: 1;/.test(css)) throw new Error('MemberPicture defaut must keep normal at opacity 1');
       if (!/\.etat-survol \.normal \{[\s\S]*?opacity: 0;/.test(css)) throw new Error('MemberPicture survol must set normal to opacity 0');

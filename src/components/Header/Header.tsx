@@ -19,7 +19,7 @@ const ICONS: Record<string, string> = {
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
   fond?: 'solid' | 'transparent';
-  items?: Array<{ chevron: boolean }>;
+  items?: Array<{ libelle: string; href: string; chevron: boolean }>;
 }
 
 /** Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
@@ -34,7 +34,7 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
       <div className={styles.navWrapper}>
         <div className={styles.nav}>
           {items?.map((item, index) => (
-            <NavItem key={index} chevron={item.chevron} />
+            <NavItem key={index} libelle={item.libelle} href={item.href} chevron={item.chevron} />
           ))}
           <Button>Contactez-nous</Button>
         </div>

@@ -70,7 +70,7 @@ const V: Record<string, CSSProperties> = {};
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
   fond?: 'solid' | 'transparent';
-  items?: Array<{ chevron: boolean }>;
+  items?: Array<{ libelle: string; href: string; chevron: boolean }>;
 }
 
 /** Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
@@ -83,10 +83,10 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
       <PiquerayLogo couleur="default" />
 <div style={{ ...S.navWrapper }}>
 <div style={{ ...S.nav }}>
-<NavItem chevron />
-<NavItem chevron />
-<NavItem />
-<NavItem />
+<NavItem libelle="Portes de garage" href="/portes-de-garage" chevron />
+<NavItem libelle="Portes d’entrée" href="/portes-entree" chevron />
+<NavItem libelle="Motorisation" href="/motorisation" />
+<NavItem libelle="À propos" href="/a-propos" />
 <Button>Contactez-nous</Button>
 </div>
 <div style={{ ...S.iconsNav }}>

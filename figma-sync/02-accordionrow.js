@@ -26,16 +26,14 @@ const COMPONENTS = [
           "type": "root",
           "name": "Taille=Grand, Etat=Ferme",
           "layout": {
-            "mode": "VERTICAL",
-            "primary": "MIN",
-            "counter": "MIN",
-            "stretchChildren": true
+            "mode": "HORIZONTAL",
+            "primary": "SPACE_BETWEEN",
+            "counter": "CENTER"
           },
           "bindings": {
             "strokeBottomWeight": "border-width/1"
           },
           "lits": {
-            "width": 1550,
             "strokeColor": {
               "r": 0,
               "g": 0,
@@ -43,19 +41,41 @@ const COMPONENTS = [
             },
             "itemSpacing": 24,
             "paddingTop": 16,
-            "paddingBottom": 16
+            "paddingBottom": 16,
+            "width": 1550
           },
           "children": [
+            {
+              "type": "text",
+              "name": "Titre",
+              "lits": {
+                "height": 32
+              },
+              "characters": "Question",
+              "fontSize": 20,
+              "fontStyle": "Semi Bold",
+              "textFill": "color/noir-bleute",
+              "lineHeight": 25,
+              "letterSpacing": 0,
+              "fontFamily": "Montserrat",
+              "contentProp": "Titre"
+            },
+            {
+              "type": "svg",
+              "name": "ChevronDown",
+              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#000000\"/>\n</svg>",
+              "iconSize": 32
+            },
             {
               "type": "frame",
               "name": "trigger",
               "layout": {
                 "mode": "HORIZONTAL",
-                "primary": "SPACE_BETWEEN",
-                "counter": "CENTER"
+                "primary": "MIN",
+                "counter": "MIN"
               },
               "lits": {
-                "height": 32,
+                "height": 64,
                 "fillClear": true,
                 "strokeWeight": 0,
                 "paddingLeft": 0,
@@ -63,26 +83,7 @@ const COMPONENTS = [
                 "paddingTop": 0,
                 "paddingBottom": 0
               },
-              "children": [
-                {
-                  "type": "text",
-                  "name": "Titre",
-                  "characters": "Question",
-                  "fontSize": 20,
-                  "fontStyle": "Semi Bold",
-                  "textFill": "color/noir-bleute",
-                  "lineHeight": 25,
-                  "letterSpacing": 0,
-                  "fontFamily": "Montserrat",
-                  "contentProp": "Titre"
-                },
-                {
-                  "type": "svg",
-                  "name": "ChevronDown",
-                  "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#000000\"/>\n</svg>",
-                  "iconSize": 32
-                }
-              ]
+              "children": []
             }
           ]
         }
@@ -104,7 +105,6 @@ const COMPONENTS = [
             "strokeBottomWeight": "border-width/1"
           },
           "lits": {
-            "width": 1550,
             "strokeColor": {
               "r": 0,
               "g": 0,
@@ -112,30 +112,29 @@ const COMPONENTS = [
             },
             "itemSpacing": 24,
             "paddingTop": 16,
-            "paddingBottom": 16
+            "paddingBottom": 16,
+            "width": 1550
           },
           "children": [
             {
               "type": "frame",
-              "name": "trigger",
+              "name": "title",
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "SPACE_BETWEEN",
                 "counter": "CENTER"
               },
+              "grow": true,
               "lits": {
-                "height": 32,
-                "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "height": 32
               },
               "children": [
                 {
                   "type": "text",
-                  "name": "Titre",
+                  "name": "TitreOuvert",
+                  "lits": {
+                    "height": 32
+                  },
                   "characters": "Question",
                   "fontSize": 20,
                   "fontStyle": "Semi Bold",
@@ -167,6 +166,25 @@ const COMPONENTS = [
               "letterSpacing": 0,
               "fontFamily": "Montserrat",
               "contentProp": "Contenu"
+            },
+            {
+              "type": "frame",
+              "name": "trigger",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "lits": {
+                "height": 64,
+                "fillClear": true,
+                "strokeWeight": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingBottom": 0
+              },
+              "children": []
             }
           ]
         }
@@ -179,16 +197,14 @@ const COMPONENTS = [
           "type": "root",
           "name": "Taille=Petit, Etat=Ferme",
           "layout": {
-            "mode": "VERTICAL",
-            "primary": "MIN",
-            "counter": "MIN",
-            "stretchChildren": true
+            "mode": "HORIZONTAL",
+            "primary": "SPACE_BETWEEN",
+            "counter": "CENTER"
           },
           "bindings": {
             "strokeBottomWeight": "border-width/1"
           },
           "lits": {
-            "width": 1550,
             "strokeColor": {
               "r": 0.14901960784313725,
               "g": 0.1568627450980392,
@@ -197,19 +213,41 @@ const COMPONENTS = [
             },
             "itemSpacing": 24,
             "paddingTop": 8,
-            "paddingBottom": 8
+            "paddingBottom": 8,
+            "width": 1550
           },
           "children": [
+            {
+              "type": "text",
+              "name": "Titre",
+              "lits": {
+                "height": 24
+              },
+              "characters": "Question",
+              "fontSize": 14,
+              "fontStyle": "Bold",
+              "textFill": "color/noir-bleute",
+              "lineHeight": 24,
+              "letterSpacing": 0,
+              "fontFamily": "Montserrat",
+              "contentProp": "Titre"
+            },
+            {
+              "type": "svg",
+              "name": "ChevronDown",
+              "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#000000\"/>\n</svg>",
+              "iconSize": 32
+            },
             {
               "type": "frame",
               "name": "trigger",
               "layout": {
                 "mode": "HORIZONTAL",
-                "primary": "SPACE_BETWEEN",
-                "counter": "CENTER"
+                "primary": "MIN",
+                "counter": "MIN"
               },
               "lits": {
-                "height": 24,
+                "height": 40,
                 "fillClear": true,
                 "strokeWeight": 0,
                 "paddingLeft": 0,
@@ -217,26 +255,7 @@ const COMPONENTS = [
                 "paddingTop": 0,
                 "paddingBottom": 0
               },
-              "children": [
-                {
-                  "type": "text",
-                  "name": "Titre",
-                  "characters": "Question",
-                  "fontSize": 14,
-                  "fontStyle": "Bold",
-                  "textFill": "color/noir-bleute",
-                  "lineHeight": 24,
-                  "letterSpacing": 0,
-                  "fontFamily": "Montserrat",
-                  "contentProp": "Titre"
-                },
-                {
-                  "type": "svg",
-                  "name": "ChevronDown",
-                  "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#000000\"/>\n</svg>",
-                  "iconSize": 32
-                }
-              ]
+              "children": []
             }
           ]
         }
@@ -258,7 +277,6 @@ const COMPONENTS = [
             "strokeBottomWeight": "border-width/1"
           },
           "lits": {
-            "width": 1550,
             "strokeColor": {
               "r": 0.14901960784313725,
               "g": 0.1568627450980392,
@@ -267,30 +285,29 @@ const COMPONENTS = [
             },
             "itemSpacing": 8,
             "paddingTop": 8,
-            "paddingBottom": 8
+            "paddingBottom": 8,
+            "width": 1550
           },
           "children": [
             {
               "type": "frame",
-              "name": "trigger",
+              "name": "title",
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "SPACE_BETWEEN",
                 "counter": "CENTER"
               },
+              "grow": true,
               "lits": {
-                "height": 32,
-                "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "height": 32
               },
               "children": [
                 {
                   "type": "text",
-                  "name": "Titre",
+                  "name": "TitreOuvert",
+                  "lits": {
+                    "height": 24
+                  },
                   "characters": "Question",
                   "fontSize": 14,
                   "fontStyle": "Bold",
@@ -322,6 +339,25 @@ const COMPONENTS = [
               "letterSpacing": 0,
               "fontFamily": "Montserrat",
               "contentProp": "Contenu"
+            },
+            {
+              "type": "frame",
+              "name": "trigger",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "lits": {
+                "height": 40,
+                "fillClear": true,
+                "strokeWeight": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingBottom": 0
+              },
+              "children": []
             }
           ]
         }
