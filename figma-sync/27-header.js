@@ -508,6 +508,9 @@ async function buildNode(spec, registry) {
         if (spec.layout && spec.layout.stretchChildren) {
           try { inst.layoutSizingHorizontal = 'FILL'; } catch (e) { /* fixed-size deps */ }
         }
+        if (spec.slotControlStroke) {
+          inst.strokes = [boundPaint(spec.slotControlStroke, inst)];
+        }
         instances.push({ inst, main });
       }
       if (defaults.length === 1) {

@@ -3,7 +3,7 @@
   "id": "011-fix-molecule-convergence",
   "reference": {
     "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-    "fileVersion": "2381229993207753432",
+    "fileVersion": "2381568261081914456",
     "readOnly": true,
     "deviceScaleFactor": 2
   },
@@ -136,9 +136,10 @@
           "instanceCount": 8,
           "imagePaintCount": 8,
           "uniqueImageRefCount": 4,
-          "observedBouton": {
-            "false": 8,
-            "true": 0
+          "removedAtSource": {
+            "property": "Bouton",
+            "date": "2026-07-29",
+            "reason": "The master carried an 'Ajouter au panier' CTA that none of the twelve immutable occurrences ever enabled. Removed from the Figma master and from the contract (major 2.0.0); the twelve occurrences were proven pixel-identical before and after."
           }
         },
         {
@@ -190,7 +191,7 @@
         "realisation": 27
       },
       "distinctImageRefCounts": {
-        "carte": 26,
+        "carte": 28,
         "member-card": 17,
         "product-card": 4,
         "realisation": 27
@@ -223,43 +224,6 @@
       ],
       "evidence": "source-census.json records seven Field instances, all from main component 2056:1265 (Etat=Normal): five input, one optional input, one select and one textarea. Component 2056:1271 (Etat=Erreur) exists in the immutable set catalog but has zero page instances; it is not substituted for a non-default instance.",
       "resolution": "Find pre-existing immutable instances for each listed combination. Do not manufacture them by changing the master."
-    },
-    {
-      "id": "field-observed-saisie-rendering-unproved",
-      "subjectId": "field",
-      "verdict": "blocked",
-      "reason": "coverage-incomplete",
-      "exitCode": 2,
-      "requiredCoverage": "Every observed immutable Saisie child and value must be rendered as the exact input, select, or textarea content of its Field occurrence, rather than as Field's default ds.input content.",
-      "knownPinnedCoverage": [
-        "field-normal-input-required",
-        "field-normal-input-optionnel",
-        "field-normal-select-required",
-        "field-normal-textarea-required"
-      ],
-      "evidence": "The campaign pins Input instances I2096:2714;2096:2551 (Prénom) and I2096:2714;2096:2555 (Téléphone), plus the select and textarea swaps I2096:2714;2096:2559 and I2096:2714;2096:2561. The current comparison input supports top-level Field props only; it cannot bind the required slotted child or its immutable value. Rendering any of these cases as Field's default input would be a false comparison.",
-      "resolution": "Add a fixture-first, contract-bound comparison input for the restricted Saisie child and its value before trying to accept an observed Field occurrence."
-    },
-    {
-      "id": "product-card-contract-bouton-true-without-immutable-instance",
-      "subjectId": "product-card",
-      "verdict": "blocked",
-      "reason": "coverage-incomplete",
-      "exitCode": 2,
-      "requiredFactIds": [
-        "product-card.bouton.true",
-        "product-card.image.inventory"
-      ],
-      "evidence": {
-        "receipt": "specs/011-fix-molecule-convergence/proofs/visual/source-census.json",
-        "instanceCount": 8,
-        "observedBouton": {
-          "false": 8,
-          "true": 0
-        },
-        "finding": "All eight immutable ProductCard instances declare Bouton=false; no immutable Bouton=true instance exists in the census."
-      },
-      "resolution": "Find a pre-existing Bouton=true instance through a read-only GET and pin it. Rendering the master with a temporary property is prohibited."
     },
     {
       "id": "member-card-shared-base-image-unbindable",
@@ -319,10 +283,10 @@
           "carte.content.0e8a6fa3c850b75e",
           "carte.content.11be1fb231214eb5",
           "carte.content.143dfa43f00e73d4",
+          "carte.content.24efe76744f9c345",
           "carte.content.258e3c5c85db5204",
           "carte.content.2e495483195a7cc9",
           "carte.content.3799f2fe65700d19",
-          "carte.content.39d763b915b01442",
           "carte.content.41b96cb975803ea7",
           "carte.content.486b5ecd0ced88b0",
           "carte.content.534a3cc0e95f7f13",
@@ -351,7 +315,6 @@
           "carte.disposition.reassurance",
           "carte.image.031815a6a17cfa62111fa319fc34487ea36b37b9",
           "carte.image.23389291cb533e2a7ab2b80486badf605578cf19",
-          "carte.image.23930c613e37b88a535bd304778677adf9a3f1d3",
           "carte.image.3c54b9a6dc4162164e25c6513d82696c73717826",
           "carte.image.41da76bcec07682508765ed9aa9fe3a5bbced8f6",
           "carte.image.531908a93f3208d0c07cd7e3d16ef302e899c4d5",
@@ -365,6 +328,7 @@
           "carte.image.a578caed28b176c68c12383f883357df7167749a",
           "carte.image.ab6a82d4b83b657d48c90b5e253f82459fd505bf",
           "carte.image.b434ddd16a1162695251a8e9b233872997147294",
+          "carte.image.c42411d407f394aca80668400e4ebf9ee4d54ed6",
           "carte.image.cae469674a682ce067e565040d966e4911424eb7",
           "carte.image.cc37fe3bc6f00b7621d88304cb907e250050b67e",
           "carte.image.d00de3d48206b57be5125a2d01e8595d3eca56de",
@@ -372,8 +336,8 @@
           "carte.image.d62d8bf32a1935f6f709cd2a9be8081b7c7bfb96",
           "carte.image.dc3a406f3ce6ab14a5b439cf3982c3bfe4744533",
           "carte.image.dd8df2d97b9e4a7e1ab81990750af8f40b7c1dcb",
-          "carte.image.dfaa8d2046343398e067aade577f177137d32cce",
           "carte.image.e0f8dd0b3654f98e9f308399acf7c10c7227623d",
+          "carte.image.ea72d8cdf16423ecac331c26d3d98d38ad2d6f14",
           "carte.image.f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
           "carte.occurrence.1cfb77beef03b3df",
           "carte.occurrence.1d54dbec545751ee",
@@ -416,7 +380,7 @@
       "requiredCaseIds": [
         "carte-occurrence-01-reassurance-d62d8bf3",
         "carte-occurrence-02-reassurance-d3234fc1",
-        "carte-occurrence-03-reassurance-23930c61",
+        "carte-occurrence-03-reassurance-ea72d8cd",
         "carte-occurrence-04-reassurance-79e37f4c",
         "carte-occurrence-05-categorie-cae46967",
         "carte-occurrence-06-categorie-cc37fe3b",
@@ -424,7 +388,7 @@
         "carte-occurrence-08-reassurance-23389291",
         "carte-occurrence-09-reassurance-cc37fe3b",
         "carte-occurrence-10-reassurance-531908a9",
-        "carte-occurrence-11-reassurance-dfaa8d20",
+        "carte-occurrence-11-reassurance-c42411d4",
         "carte-occurrence-12-categorie-3c54b9a6",
         "carte-occurrence-13-categorie-86d495b8",
         "carte-occurrence-14-categorie-715170bb",
@@ -631,7 +595,7 @@
           "status": "source-pinned"
         },
         {
-          "id": "carte-occurrence-03-reassurance-23930c61",
+          "id": "carte-occurrence-03-reassurance-ea72d8cd",
           "figmaNodeId": "I2115:3830;2114:3616",
           "figmaVariant": "Disposition=Reassurance",
           "observedProperties": {
@@ -661,7 +625,7 @@
               }
             ],
             "imageUrl": {
-              "$asset": "carte-image-23930c613e37"
+              "$asset": "carte-image-ea72d8cdf164"
             },
             "imageAlt": "Service après-vente"
           },
@@ -672,12 +636,12 @@
           },
           "factIds": [
             "carte.disposition.reassurance",
-            "carte.image.23930c613e37b88a535bd304778677adf9a3f1d3",
+            "carte.image.ea72d8cdf16423ecac331c26d3d98d38ad2d6f14",
             "carte.content.e2d29ea55ac5b7ef",
             "carte.occurrence.698766739be997b4"
           ],
           "fixtureAssetIds": [
-            "carte-image-23930c613e37"
+            "carte-image-ea72d8cdf164"
           ],
           "comparisonSurface": "light",
           "requiredRegions": [
@@ -1141,15 +1105,15 @@
           "observedProperties": {
             "Disposition": "Reassurance",
             "Texte": "Lecteur d’empreinte digitale, serrure électrique, 5 points de verrouillage en alu.",
-            "Titre": "Sécurité  CR3 & CR4"
+            "Titre": "Sécurité CR3 & CR4"
           },
           "observedPropertyDefinitions": {
             "Disposition": "Reassurance",
             "Texte": "Lecteur d’empreinte digitale, serrure électrique, 5 points de verrouillage en alu.",
-            "Titre": "Sécurité  CR3 & CR4"
+            "Titre": "Sécurité CR3 & CR4"
           },
           "observedTexts": {
-            "Titre": "Sécurité  CR3 & CR4",
+            "Titre": "Sécurité CR3 & CR4",
             "Texte": "Lecteur d’empreinte digitale, serrure électrique, 5 points de verrouillage en alu."
           },
           "figmaPartNodeIds": {
@@ -1158,7 +1122,7 @@
           },
           "codeProps": {
             "disposition": "reassurance",
-            "titre": "Sécurité  CR3 & CR4",
+            "titre": "Sécurité CR3 & CR4",
             "texte": [
               {
                 "text": "Lecteur d’empreinte digitale, serrure électrique, 5 points de verrouillage en alu."
@@ -1167,7 +1131,7 @@
             "imageUrl": {
               "$asset": "carte-image-23389291cb53"
             },
-            "imageAlt": "Sécurité  CR3 & CR4"
+            "imageAlt": "Sécurité CR3 & CR4"
           },
           "codePresetProvenance": "Disposition, Titre, Texte, nested CTA label/glyph instances and IMAGE ref are immutable source-census facts. Mixed strong ranges omitted by the REST instance style table are retained only where the pinned Figma PNG visibly proves them.",
           "layoutContext": {
@@ -1177,7 +1141,7 @@
           "factIds": [
             "carte.disposition.reassurance",
             "carte.image.23389291cb533e2a7ab2b80486badf605578cf19",
-            "carte.content.39d763b915b01442",
+            "carte.content.24efe76744f9c345",
             "carte.occurrence.bc9ab3603083e2b7"
           ],
           "fixtureAssetIds": [
@@ -1396,7 +1360,7 @@
           "status": "source-pinned"
         },
         {
-          "id": "carte-occurrence-11-reassurance-dfaa8d20",
+          "id": "carte-occurrence-11-reassurance-c42411d4",
           "figmaNodeId": "I2115:3754;2114:3649",
           "figmaVariant": "Disposition=Reassurance",
           "observedProperties": {
@@ -1426,7 +1390,7 @@
               }
             ],
             "imageUrl": {
-              "$asset": "carte-image-dfaa8d204634"
+              "$asset": "carte-image-c42411d407f3"
             },
             "imageAlt": "Personnalisation"
           },
@@ -1437,12 +1401,12 @@
           },
           "factIds": [
             "carte.disposition.reassurance",
-            "carte.image.dfaa8d2046343398e067aade577f177137d32cce",
+            "carte.image.c42411d407f394aca80668400e4ebf9ee4d54ed6",
             "carte.content.0e531f87a656910d",
             "carte.occurrence.1d7d504083c74667"
           ],
           "fixtureAssetIds": [
-            "carte-image-dfaa8d204634"
+            "carte-image-c42411d407f3"
           ],
           "comparisonSurface": "light",
           "requiredRegions": [
@@ -6253,7 +6217,6 @@
         "deriveFromFigmaProperties": true,
         "deriveFromContract": true,
         "requiredFactIds": [
-          "product-card.bouton.false",
           "product-card.content.b51ad9d784906253",
           "product-card.content.cfeee227f5d5c305",
           "product-card.content.dd5f3056eccd2379",
@@ -6291,12 +6254,10 @@
           "figmaNodeId": "I2116:4531;2116:4470",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Télécommande Hörmann HSE4-868BS"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Télécommande Hörmann HSE4-868BS"
           },
@@ -6308,15 +6269,13 @@
           "codeProps": {
             "titre": "Télécommande Hörmann HSE4-868BS",
             "prix": "74,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-default"
             },
             "imageAlt": "Télécommande Hörmann HSE4-868BS"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.1ba972fd8df54b3eafdfd9c97b169cfd57c17e8c",
             "product-card.content.e43c0e93e6a7d8aa",
             "product-card.occurrence.b45d846d197ec49a"
@@ -6373,12 +6332,10 @@
           "figmaNodeId": "I2116:4531;2116:4471",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "139,99€",
             "Titre": "Clavier à code Hörmann FCT3-1BS"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "139,99€",
             "Titre": "Clavier à code Hörmann FCT3-1BS"
           },
@@ -6390,15 +6347,13 @@
           "codeProps": {
             "titre": "Clavier à code Hörmann FCT3-1BS",
             "prix": "139,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-image-51b2d6d67c7f"
             },
             "imageAlt": "Clavier à code Hörmann FCT3-1BS"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.51b2d6d67c7fa001e5f9c60835be516e26a35a89",
             "product-card.content.cfeee227f5d5c305",
             "product-card.occurrence.734e4fe9568d2a59"
@@ -6455,12 +6410,10 @@
           "figmaNodeId": "I2116:4531;2116:4472",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "89,99€",
             "Titre": "Bouton poussoir Hörmann FIT2-1-868-BS"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "89,99€",
             "Titre": "Bouton poussoir Hörmann FIT2-1-868-BS"
           },
@@ -6472,15 +6425,13 @@
           "codeProps": {
             "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
             "prix": "89,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-image-2e0e3ad062cc"
             },
             "imageAlt": "Bouton poussoir Hörmann FIT2-1-868-BS"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.2e0e3ad062ccc49ee6ba8a0b1ab77e59fd972397",
             "product-card.content.b51ad9d784906253",
             "product-card.occurrence.4473a5f68cb94e95"
@@ -6537,12 +6488,10 @@
           "figmaNodeId": "I2116:4531;2116:4473",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Passerelle BiSecure Hörmann"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Passerelle BiSecure Hörmann"
           },
@@ -6554,15 +6503,13 @@
           "codeProps": {
             "titre": "Passerelle BiSecure Hörmann",
             "prix": "74,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-image-cfd3b7776d43"
             },
             "imageAlt": "Passerelle BiSecure Hörmann"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.cfd3b7776d43764fb8f4eec4f29226c395989583",
             "product-card.content.dd5f3056eccd2379",
             "product-card.occurrence.5885a71ce4b92ea0"
@@ -6619,12 +6566,10 @@
           "figmaNodeId": "I2116:4595;2116:4470",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Télécommande Hörmann HSE4-868BS"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Télécommande Hörmann HSE4-868BS"
           },
@@ -6636,15 +6581,13 @@
           "codeProps": {
             "titre": "Télécommande Hörmann HSE4-868BS",
             "prix": "74,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-default"
             },
             "imageAlt": "Télécommande Hörmann HSE4-868BS"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.1ba972fd8df54b3eafdfd9c97b169cfd57c17e8c",
             "product-card.content.e43c0e93e6a7d8aa",
             "product-card.occurrence.748fe63b13b5990f"
@@ -6701,12 +6644,10 @@
           "figmaNodeId": "I2116:4595;2116:4471",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "139,99€",
             "Titre": "Clavier à code Hörmann FCT3-1BS"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "139,99€",
             "Titre": "Clavier à code Hörmann FCT3-1BS"
           },
@@ -6718,15 +6659,13 @@
           "codeProps": {
             "titre": "Clavier à code Hörmann FCT3-1BS",
             "prix": "139,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-image-51b2d6d67c7f"
             },
             "imageAlt": "Clavier à code Hörmann FCT3-1BS"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.51b2d6d67c7fa001e5f9c60835be516e26a35a89",
             "product-card.content.cfeee227f5d5c305",
             "product-card.occurrence.ae14c6e202e0c19d"
@@ -6783,12 +6722,10 @@
           "figmaNodeId": "I2116:4595;2116:4472",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "89,99€",
             "Titre": "Bouton poussoir Hörmann FIT2-1-868-BS"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "89,99€",
             "Titre": "Bouton poussoir Hörmann FIT2-1-868-BS"
           },
@@ -6800,15 +6737,13 @@
           "codeProps": {
             "titre": "Bouton poussoir Hörmann FIT2-1-868-BS",
             "prix": "89,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-image-2e0e3ad062cc"
             },
             "imageAlt": "Bouton poussoir Hörmann FIT2-1-868-BS"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.2e0e3ad062ccc49ee6ba8a0b1ab77e59fd972397",
             "product-card.content.b51ad9d784906253",
             "product-card.occurrence.a3ede00da44d84f0"
@@ -6865,12 +6800,10 @@
           "figmaNodeId": "I2116:4595;2116:4473",
           "figmaVariant": "ProductCard",
           "observedProperties": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Passerelle BiSecure Hörmann"
           },
           "observedPropertyDefinitions": {
-            "Bouton": false,
             "Prix": "74,99€",
             "Titre": "Passerelle BiSecure Hörmann"
           },
@@ -6882,15 +6815,13 @@
           "codeProps": {
             "titre": "Passerelle BiSecure Hörmann",
             "prix": "74,99€",
-            "bouton": false,
             "imageUrl": {
               "$asset": "product-card-image-cfd3b7776d43"
             },
             "imageAlt": "Passerelle BiSecure Hörmann"
           },
-          "codePresetProvenance": "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+          "codePresetProvenance": "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
           "factIds": [
-            "product-card.bouton.false",
             "product-card.image.cfd3b7776d43764fb8f4eec4f29226c395989583",
             "product-card.content.dd5f3056eccd2379",
             "product-card.occurrence.b87e73e240427bed"

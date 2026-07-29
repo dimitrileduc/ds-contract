@@ -1489,14 +1489,9 @@ const COMPONENTS = [
     "setName": "ProductCard",
     "contractId": "ds.product-card",
     "anchorKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
-    "description": "ProductCard — generated from contract ds.product-card v1.1.0 †",
+    "description": "ProductCard — generated from contract ds.product-card v2.0.0 †",
     "isSet": false,
-    "boolProps": [
-      {
-        "property": "Bouton",
-        "default": false
-      }
-    ],
+    "boolProps": [],
     "textProps": [],
     "fontStyles": [
       "Medium",
@@ -1563,19 +1558,6 @@ const COMPONENTS = [
               "textAlignH": "CENTER",
               "fontFamily": "Montserrat",
               "contentProp": "Prix"
-            },
-            {
-              "type":"instance",
-              "name": "Bouton",
-              "dep":"Button",
-              "depProps": {
-                "Style": "Default",
-                "Icone gauche": true,
-                "Glyphe gauche": "Cart",
-                "Libelle": "Ajouter au panier"
-              },
-              "visibleProp": "Bouton",
-              "visibleDefault": false
             }
           ]
         }
@@ -2681,6 +2663,9 @@ async function buildNode(spec, registry) {
         node.appendChild(inst);
         if (spec.layout && spec.layout.stretchChildren) {
           try { inst.layoutSizingHorizontal = 'FILL'; } catch (e) { /* fixed-size deps */ }
+        }
+        if (spec.slotControlStroke) {
+          inst.strokes = [boundPaint(spec.slotControlStroke, inst)];
         }
         instances.push({ inst, main });
       }

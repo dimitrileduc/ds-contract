@@ -1,9 +1,9 @@
 {
   "campaign": {
     "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-    "fileVersion": "2381229993207753432",
+    "fileVersion": "2381568261081914456",
     "path": "specs/011-fix-molecule-convergence/contracts/visual-campaign.json",
-    "sha256": "79a8898d52e742febb2cab2797c394f0ce49e7cf53378108bc605595d0016a78"
+    "sha256": "4cb58bc18dc508addaffd612bc8ef8a401d6baa9b5580c986aeaf2387178ef54"
   },
   "census": {
     "targets": [
@@ -399,7 +399,7 @@
                     "y": 3643
                   }
                 },
-                "imageRef": "23930c613e37b88a535bd304778677adf9a3f1d3",
+                "imageRef": "ea72d8cdf16423ecac331c26d3d98d38ad2d6f14",
                 "imageTransform": null,
                 "indexPath": [
                   0
@@ -1614,7 +1614,7 @@
               },
               "Titre#2063:26": {
                 "type": "TEXT",
-                "value": "Sécurité  CR3 & CR4"
+                "value": "Sécurité CR3 & CR4"
               }
             },
             "imageRefs": [
@@ -1671,12 +1671,12 @@
                   },
                   "absoluteRenderBounds": {
                     "height": 18.072021484375,
-                    "width": 235.580078125,
-                    "x": 10093.6044921875,
+                    "width": 229.298828125,
+                    "x": 10096.7451171875,
                     "y": 2469.19189453125
                   }
                 },
-                "characters": "Sécurité  CR3 & CR4",
+                "characters": "Sécurité CR3 & CR4",
                 "indexPath": [
                   1,
                   0
@@ -1685,7 +1685,7 @@
                 "nodeId": "I2115:3754;2114:3646;2063:1609",
                 "styleRuns": [
                   {
-                    "end": 19,
+                    "end": 18,
                     "start": 0,
                     "style": {
                       "fontFamily": "Montserrat",
@@ -1695,7 +1695,7 @@
                       "letterSpacing": 0,
                       "lineHeightPx": 30
                     },
-                    "text": "Sécurité  CR3 & CR4"
+                    "text": "Sécurité CR3 & CR4"
                   }
                 ],
                 "visible": true
@@ -2119,7 +2119,7 @@
                     "y": 2075
                   }
                 },
-                "imageRef": "dfaa8d2046343398e067aade577f177137d32cce",
+                "imageRef": "c42411d407f394aca80668400e4ebf9ee4d54ed6",
                 "imageTransform": null,
                 "indexPath": [
                   0
@@ -16226,10 +16226,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "74,99€"
@@ -16280,92 +16276,7 @@
               0
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 8145,
-                    "y": 2276
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4531;2116:4470;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 8177,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4531;2116:4470;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 8343,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4531;2116:4470;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4531;2116:4470",
             "subjectId": "product-card",
             "texts": [
@@ -16444,41 +16355,6 @@
                   }
                 ],
                 "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 8177,
-                    "y": 2292
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4531;2116:4470;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
-                  }
-                ],
-                "visible": true
               }
             ],
             "visible": true
@@ -16507,10 +16383,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "139,99€"
@@ -16561,92 +16433,7 @@
               1
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 8541,
-                    "y": 2276
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4531;2116:4471;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 8573,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4531;2116:4471;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 8739,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4531;2116:4471;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4531;2116:4471",
             "subjectId": "product-card",
             "texts": [
@@ -16725,41 +16512,6 @@
                   }
                 ],
                 "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 8573,
-                    "y": 2292
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4531;2116:4471;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
-                  }
-                ],
-                "visible": true
               }
             ],
             "visible": true
@@ -16788,10 +16540,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "89,99€"
@@ -16842,92 +16590,7 @@
               2
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 8937,
-                    "y": 2276
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4531;2116:4472;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 8969,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4531;2116:4472;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 9135,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4531;2116:4472;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4531;2116:4472",
             "subjectId": "product-card",
             "texts": [
@@ -17006,41 +16669,6 @@
                   }
                 ],
                 "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 8969,
-                    "y": 2292
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4531;2116:4472;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
-                  }
-                ],
-                "visible": true
               }
             ],
             "visible": true
@@ -17069,10 +16697,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "74,99€"
@@ -17123,92 +16747,7 @@
               3
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 9333,
-                    "y": 2276
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4531;2116:4473;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 9365,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4531;2116:4473;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 9531,
-                    "y": 2293
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4531;2116:4473;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4531;2116:4473",
             "subjectId": "product-card",
             "texts": [
@@ -17287,41 +16826,6 @@
                   }
                 ],
                 "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 9365,
-                    "y": 2292
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4531;2116:4473;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
-                  }
-                ],
-                "visible": true
               }
             ],
             "visible": true
@@ -17350,10 +16854,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "74,99€"
@@ -17404,92 +16904,7 @@
               0
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 433,
-                    "y": 2907
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4595;2116:4470;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 465,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4595;2116:4470;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 631,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4595;2116:4470;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4595;2116:4470",
             "subjectId": "product-card",
             "texts": [
@@ -17568,41 +16983,6 @@
                   }
                 ],
                 "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 465,
-                    "y": 2923
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4595;2116:4470;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
-                  }
-                ],
-                "visible": true
               }
             ],
             "visible": true
@@ -17631,10 +17011,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "139,99€"
@@ -17685,92 +17061,7 @@
               1
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 829,
-                    "y": 2907
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4595;2116:4471;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 861,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4595;2116:4471;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 1027,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4595;2116:4471;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4595;2116:4471",
             "subjectId": "product-card",
             "texts": [
@@ -17849,41 +17140,6 @@
                   }
                 ],
                 "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 861,
-                    "y": 2923
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4595;2116:4471;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
-                  }
-                ],
-                "visible": true
               }
             ],
             "visible": true
@@ -17912,10 +17168,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "89,99€"
@@ -17966,92 +17218,7 @@
               2
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 1225,
-                    "y": 2907
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4595;2116:4472;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 1257,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4595;2116:4472;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 1423,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4595;2116:4472;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4595;2116:4472",
             "subjectId": "product-card",
             "texts": [
@@ -18130,41 +17297,6 @@
                   }
                 ],
                 "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 1257,
-                    "y": 2923
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4595;2116:4472;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
-                  }
-                ],
-                "visible": true
               }
             ],
             "visible": true
@@ -18193,10 +17325,6 @@
               "type": "COMPONENT"
             },
             "componentProperties": {
-              "Bouton#2136:61": {
-                "type": "BOOLEAN",
-                "value": false
-              },
               "Prix#2068:35": {
                 "type": "TEXT",
                 "value": "74,99€"
@@ -18247,92 +17375,7 @@
               3
             ],
             "name": "ProductCard",
-            "nestedInstances": [
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 54,
-                    "width": 268,
-                    "x": 1621,
-                    "y": 2907
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:107",
-                "componentProperties": {
-                  "Glyphe droite#2028:21": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "6:104"
-                  },
-                  "Glyphe gauche#2028:14": {
-                    "type": "INSTANCE_SWAP",
-                    "value": "27:70"
-                  },
-                  "Icone droite#2024:7": {
-                    "type": "BOOLEAN",
-                    "value": false
-                  },
-                  "Icone gauche#2024:0": {
-                    "type": "BOOLEAN",
-                    "value": true
-                  },
-                  "Libelle#2044:28": {
-                    "type": "TEXT",
-                    "value": "Ajouter au panier"
-                  },
-                  "Style": {
-                    "type": "VARIANT",
-                    "value": "Default"
-                  }
-                },
-                "indexPath": [
-                  3
-                ],
-                "name": "Bouton",
-                "nodeId": "I2116:4595;2116:4473;2068:1976",
-                "visible": false
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 1653,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "27:70",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  0
-                ],
-                "name": "Cart",
-                "nodeId": "I2116:4595;2116:4473;2068:1976;6:105",
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 20,
-                    "width": 20,
-                    "x": 1819,
-                    "y": 2924
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "componentId": "6:104",
-                "componentProperties": {},
-                "indexPath": [
-                  3,
-                  2
-                ],
-                "name": "ArrowRight",
-                "nodeId": "I2116:4595;2116:4473;2068:1976;6:106",
-                "visible": false
-              }
-            ],
+            "nestedInstances": [],
             "nodeId": "I2116:4595;2116:4473",
             "subjectId": "product-card",
             "texts": [
@@ -18408,41 +17451,6 @@
                       "lineHeightPx": 20
                     },
                     "text": "74,99€"
-                  }
-                ],
-                "visible": true
-              },
-              {
-                "bounds": {
-                  "absoluteBoundingBox": {
-                    "height": 22,
-                    "width": 174,
-                    "x": 1653,
-                    "y": 2923
-                  },
-                  "absoluteRenderBounds": null
-                },
-                "characters": "Ajouter au panier",
-                "indexPath": [
-                  3,
-                  1
-                ],
-                "name": "Libellé",
-                "nodeId": "I2116:4595;2116:4473;2068:1976;6:95",
-                "styleRuns": [
-                  {
-                    "end": 17,
-                    "start": 0,
-                    "style": {
-                      "fontFamily": "Montserrat",
-                      "fontPostScriptName": "Montserrat-Medium",
-                      "fontSize": 16,
-                      "fontWeight": 500,
-                      "letterSpacing": 0,
-                      "lineHeightPx": 22,
-                      "textCase": "UPPER"
-                    },
-                    "text": "Ajouter au panier"
                   }
                 ],
                 "visible": true
@@ -20830,7 +19838,7 @@
       "imagePaintCount": 103,
       "instanceCount": 134,
       "targetCount": 7,
-      "textCount": 199,
+      "textCount": 191,
       "uniqueImageRefs": [
         "031815a6a17cfa62111fa319fc34487ea36b37b9",
         "05dd99256f8f2004a98e7a098231bf6622faf963",
@@ -20840,7 +19848,6 @@
         "1f17390f701368d3688b82981edc09b7f5de6435",
         "23389291cb533e2a7ab2b80486badf605578cf19",
         "23844d60213a07a0b9c2222a84d83d9242dd3734",
-        "23930c613e37b88a535bd304778677adf9a3f1d3",
         "24fff00273a5163dc90e923e21a617cb8b4c1262",
         "2b1776d2cba4a074ecfbc042e8ab703e5989b48f",
         "2dfc857bc9cc02205cd204b0c68728f83d07b5c9",
@@ -20891,6 +19898,7 @@
         "af91a64c7ef0e893d25d963413861af524ad9423",
         "b434ddd16a1162695251a8e9b233872997147294",
         "baab1500d80ad2fe40bf146d2ed27536c78024ee",
+        "c42411d407f394aca80668400e4ebf9ee4d54ed6",
         "c60f37abee2a78de43e7b189e77356ab1a16c7e4",
         "c79c91e14549438fecc995d4c4cae66b71b076dd",
         "cae469674a682ce067e565040d966e4911424eb7",
@@ -20903,8 +19911,8 @@
         "da474ccd23ed13eac0e769c9bca5a5689e21dc95",
         "dc3a406f3ce6ab14a5b439cf3982c3bfe4744533",
         "dd8df2d97b9e4a7e1ab81990750af8f40b7c1dcb",
-        "dfaa8d2046343398e067aade577f177137d32cce",
         "e0f8dd0b3654f98e9f308399acf7c10c7227623d",
+        "ea72d8cdf16423ecac331c26d3d98d38ad2d6f14",
         "f08d845ee4ed18b5c95787e4fd23ceafdcda38be"
       ]
     }
@@ -20921,7 +19929,7 @@
   "source": {
     "file": {
       "name": "Piqueray (Copy)",
-      "version": "2381229993207753432"
+      "version": "2381568261081914456"
     },
     "instances": [
       {
@@ -21301,7 +20309,7 @@
                 "y": 3643
               }
             },
-            "imageRef": "23930c613e37b88a535bd304778677adf9a3f1d3",
+            "imageRef": "ea72d8cdf16423ecac331c26d3d98d38ad2d6f14",
             "imageTransform": null,
             "indexPath": [
               0
@@ -22516,7 +21524,7 @@
           },
           "Titre#2063:26": {
             "type": "TEXT",
-            "value": "Sécurité  CR3 & CR4"
+            "value": "Sécurité CR3 & CR4"
           }
         },
         "imageRefs": [
@@ -22573,12 +21581,12 @@
               },
               "absoluteRenderBounds": {
                 "height": 18.072021484375,
-                "width": 235.580078125,
-                "x": 10093.6044921875,
+                "width": 229.298828125,
+                "x": 10096.7451171875,
                 "y": 2469.19189453125
               }
             },
-            "characters": "Sécurité  CR3 & CR4",
+            "characters": "Sécurité CR3 & CR4",
             "indexPath": [
               1,
               0
@@ -22587,7 +21595,7 @@
             "nodeId": "I2115:3754;2114:3646;2063:1609",
             "styleRuns": [
               {
-                "end": 19,
+                "end": 18,
                 "start": 0,
                 "style": {
                   "fontFamily": "Montserrat",
@@ -22597,7 +21605,7 @@
                   "letterSpacing": 0,
                   "lineHeightPx": 30
                 },
-                "text": "Sécurité  CR3 & CR4"
+                "text": "Sécurité CR3 & CR4"
               }
             ],
             "visible": true
@@ -23021,7 +22029,7 @@
                 "y": 2075
               }
             },
-            "imageRef": "dfaa8d2046343398e067aade577f177137d32cce",
+            "imageRef": "c42411d407f394aca80668400e4ebf9ee4d54ed6",
             "imageTransform": null,
             "indexPath": [
               0
@@ -37059,10 +36067,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "74,99€"
@@ -37113,92 +36117,7 @@
           0
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 8145,
-                "y": 2276
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4531;2116:4470;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 8177,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4531;2116:4470;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 8343,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4531;2116:4470;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4531;2116:4470",
         "subjectId": "product-card",
         "texts": [
@@ -37277,41 +36196,6 @@
               }
             ],
             "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 8177,
-                "y": 2292
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4531;2116:4470;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
-              }
-            ],
-            "visible": true
           }
         ],
         "visible": true
@@ -37340,10 +36224,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "139,99€"
@@ -37394,92 +36274,7 @@
           1
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 8541,
-                "y": 2276
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4531;2116:4471;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 8573,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4531;2116:4471;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 8739,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4531;2116:4471;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4531;2116:4471",
         "subjectId": "product-card",
         "texts": [
@@ -37558,41 +36353,6 @@
               }
             ],
             "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 8573,
-                "y": 2292
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4531;2116:4471;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
-              }
-            ],
-            "visible": true
           }
         ],
         "visible": true
@@ -37621,10 +36381,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "89,99€"
@@ -37675,92 +36431,7 @@
           2
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 8937,
-                "y": 2276
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4531;2116:4472;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 8969,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4531;2116:4472;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 9135,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4531;2116:4472;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4531;2116:4472",
         "subjectId": "product-card",
         "texts": [
@@ -37839,41 +36510,6 @@
               }
             ],
             "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 8969,
-                "y": 2292
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4531;2116:4472;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
-              }
-            ],
-            "visible": true
           }
         ],
         "visible": true
@@ -37902,10 +36538,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "74,99€"
@@ -37956,92 +36588,7 @@
           3
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 9333,
-                "y": 2276
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4531;2116:4473;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 9365,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4531;2116:4473;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 9531,
-                "y": 2293
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4531;2116:4473;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4531;2116:4473",
         "subjectId": "product-card",
         "texts": [
@@ -38120,41 +36667,6 @@
               }
             ],
             "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 9365,
-                "y": 2292
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4531;2116:4473;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
-              }
-            ],
-            "visible": true
           }
         ],
         "visible": true
@@ -38183,10 +36695,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "74,99€"
@@ -38237,92 +36745,7 @@
           0
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 433,
-                "y": 2907
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4595;2116:4470;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 465,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4595;2116:4470;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 631,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4595;2116:4470;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4595;2116:4470",
         "subjectId": "product-card",
         "texts": [
@@ -38401,41 +36824,6 @@
               }
             ],
             "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 465,
-                "y": 2923
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4595;2116:4470;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
-              }
-            ],
-            "visible": true
           }
         ],
         "visible": true
@@ -38464,10 +36852,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "139,99€"
@@ -38518,92 +36902,7 @@
           1
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 829,
-                "y": 2907
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4595;2116:4471;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 861,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4595;2116:4471;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 1027,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4595;2116:4471;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4595;2116:4471",
         "subjectId": "product-card",
         "texts": [
@@ -38682,41 +36981,6 @@
               }
             ],
             "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 861,
-                "y": 2923
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4595;2116:4471;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
-              }
-            ],
-            "visible": true
           }
         ],
         "visible": true
@@ -38745,10 +37009,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "89,99€"
@@ -38799,92 +37059,7 @@
           2
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 1225,
-                "y": 2907
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4595;2116:4472;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 1257,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4595;2116:4472;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 1423,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4595;2116:4472;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4595;2116:4472",
         "subjectId": "product-card",
         "texts": [
@@ -38963,41 +37138,6 @@
               }
             ],
             "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 1257,
-                "y": 2923
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4595;2116:4472;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
-              }
-            ],
-            "visible": true
           }
         ],
         "visible": true
@@ -39026,10 +37166,6 @@
           "type": "COMPONENT"
         },
         "componentProperties": {
-          "Bouton#2136:61": {
-            "type": "BOOLEAN",
-            "value": false
-          },
           "Prix#2068:35": {
             "type": "TEXT",
             "value": "74,99€"
@@ -39080,92 +37216,7 @@
           3
         ],
         "name": "ProductCard",
-        "nestedInstances": [
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 54,
-                "width": 268,
-                "x": 1621,
-                "y": 2907
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:107",
-            "componentProperties": {
-              "Glyphe droite#2028:21": {
-                "type": "INSTANCE_SWAP",
-                "value": "6:104"
-              },
-              "Glyphe gauche#2028:14": {
-                "type": "INSTANCE_SWAP",
-                "value": "27:70"
-              },
-              "Icone droite#2024:7": {
-                "type": "BOOLEAN",
-                "value": false
-              },
-              "Icone gauche#2024:0": {
-                "type": "BOOLEAN",
-                "value": true
-              },
-              "Libelle#2044:28": {
-                "type": "TEXT",
-                "value": "Ajouter au panier"
-              },
-              "Style": {
-                "type": "VARIANT",
-                "value": "Default"
-              }
-            },
-            "indexPath": [
-              3
-            ],
-            "name": "Bouton",
-            "nodeId": "I2116:4595;2116:4473;2068:1976",
-            "visible": false
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 1653,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "27:70",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              0
-            ],
-            "name": "Cart",
-            "nodeId": "I2116:4595;2116:4473;2068:1976;6:105",
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 20,
-                "width": 20,
-                "x": 1819,
-                "y": 2924
-              },
-              "absoluteRenderBounds": null
-            },
-            "componentId": "6:104",
-            "componentProperties": {},
-            "indexPath": [
-              3,
-              2
-            ],
-            "name": "ArrowRight",
-            "nodeId": "I2116:4595;2116:4473;2068:1976;6:106",
-            "visible": false
-          }
-        ],
+        "nestedInstances": [],
         "nodeId": "I2116:4595;2116:4473",
         "subjectId": "product-card",
         "texts": [
@@ -39241,41 +37292,6 @@
                   "lineHeightPx": 20
                 },
                 "text": "74,99€"
-              }
-            ],
-            "visible": true
-          },
-          {
-            "bounds": {
-              "absoluteBoundingBox": {
-                "height": 22,
-                "width": 174,
-                "x": 1653,
-                "y": 2923
-              },
-              "absoluteRenderBounds": null
-            },
-            "characters": "Ajouter au panier",
-            "indexPath": [
-              3,
-              1
-            ],
-            "name": "Libellé",
-            "nodeId": "I2116:4595;2116:4473;2068:1976;6:95",
-            "styleRuns": [
-              {
-                "end": 17,
-                "start": 0,
-                "style": {
-                  "fontFamily": "Montserrat",
-                  "fontPostScriptName": "Montserrat-Medium",
-                  "fontSize": 16,
-                  "fontWeight": 500,
-                  "letterSpacing": 0,
-                  "lineHeightPx": 22,
-                  "textCase": "UPPER"
-                },
-                "text": "Ajouter au panier"
               }
             ],
             "visible": true

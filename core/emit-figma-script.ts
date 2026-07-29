@@ -261,6 +261,12 @@ export interface NodeSpec {
    *  directly, NO swap property (INSTANCE_SWAP holds one instance — the
    *  native SLOT property type is the migration target, see docs/08). */
   slotDefault?: Array<{ dep: string; props?: Record<string, string | boolean> }>;
+  /** Variable name for a `slot.control` border-color resolved at this variant.
+   *  It paints the slotted CONTROL, not the slot wrapper — the canvas half of
+   *  the same state paint the code surfaces forward onto the child. Only a
+   *  token-bound colour can travel here: the canvas binds strokes to
+   *  variables, so a raw hex is dropped rather than silently unbound. */
+  slotControlStroke?: string;
   children?: NodeSpec[];
 }
 
@@ -1914,6 +1920,30 @@ function partToSpec(
   return spec;
 }
 
+/** The `slot.control` border-color resolved to a Figma variable name for this
+ *  variant combo. The canvas binds a stroke to a VARIABLE, never to a literal
+ *  paint, so only a `{token.path}` value can make the crossing — a raw hex is
+ *  dropped here on purpose rather than emitted as an unbound colour, which is
+ *  the same governance the token pipeline enforces everywhere else. */
+function slotControlStrokeVar(
+  control:
+    | {
+        styles?: Record<
+          string,
+          { prop: string; values: Record<string, string | null> }
+        >;
+      }
+    | undefined,
+  subst: Record<string, string>,
+): string | undefined {
+  const declaration = control?.styles?.['border-color'];
+  if (!declaration) return undefined;
+  const value = declaration.values[subst[declaration.prop] ?? ''];
+  if (typeof value !== 'string') return undefined;
+  const token = value.match(/^\{([^}]+)\}$/);
+  return token ? token[1].split('.').join('/') : undefined;
+}
+
 function partToSpecInner(
   name: string,
   part: Part,
@@ -2007,6 +2037,8 @@ function partToSpecInner(
         return { dep: dep.name, props: mapDepProps(dep, item.props ?? {}, subst, item.text) };
       });
     }
+    const controlStroke = slotControlStrokeVar(part.slot.control, subst);
+    if (controlStroke) spec.slotControlStroke = controlStroke;
     applyStyling(spec, part, subst, ctx);
     applyVisibleWhen(spec, part, contract);
     return spec;
@@ -3370,6 +3402,9 @@ async function buildNode(spec, registry) {
         node.appendChild(inst);
         if (spec.layout && spec.layout.stretchChildren) {
           try { inst.layoutSizingHorizontal = 'FILL'; } catch (e) { /* fixed-size deps */ }
+        }
+        if (spec.slotControlStroke) {
+          inst.strokes = [boundPaint(spec.slotControlStroke, inst)];
         }
         instances.push({ inst, main });
       }

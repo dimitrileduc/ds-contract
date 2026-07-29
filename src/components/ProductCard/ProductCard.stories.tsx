@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v1.1.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v2.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -32,18 +32,12 @@ const meta = {
       description:
         'Code-supplied text alternative paired with imageUrl. Figma has no corresponding component property, so the empty runtime default is intentional.',
     },
-    bouton: {
-      control: 'boolean',
-      description:
-        'The immutable ProductCard master observes BOOLEAN `Bouton` as false by default.',
-    },
   },
   args: {
     titre: 'Télécommande Hörmann HSE4-868BS',
     prix: '74,99€',
     imageUrl: '',
     imageAlt: '',
-    bouton: false,
   },
 } satisfies Meta<typeof ProductCard>;
 

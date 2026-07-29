@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "campaignId": "011-fix-molecule-convergence",
   "reviewKind": "read-only automated post-campaign walkthrough",
-  "elapsedSeconds": 184,
+  "elapsedSeconds": 212,
   "result": {
     "path": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
-    "sha256": "95a977b71c4317c6714c289080fe00bf541b7f1eded5500c0fd5357deb89c682",
+    "sha256": "f68a3606b82af5a79a3aac731ed6d04dcb96730043134463e1148168e6d46e4c",
     "verdict": "blocked",
     "exitCode": 2,
     "coverage": {
-      "expected": 227,
-      "observed": 227,
+      "expected": 226,
+      "observed": 226,
       "missing": 0,
       "unexpected": 0
     },
@@ -21,21 +21,21 @@
     {
       "target": "carte",
       "reviewed": true,
-      "verdict": "fail",
+      "verdict": "pass",
       "counts": {
-        "passing": 33,
-        "failing": 3,
+        "passing": 36,
+        "failing": 0,
         "blocked": 0
       },
       "reviewedCaseIds": [
-        "carte-occurrence-03-reassurance-23930c61",
-        "carte-occurrence-08-reassurance-23389291",
-        "carte-occurrence-11-reassurance-dfaa8d20"
+        "carte-occurrence-01-reassurance-d62d8bf3",
+        "carte-occurrence-02-reassurance-d3234fc1",
+        "carte-occurrence-03-reassurance-ea72d8cd"
       ],
       "evidencePaths": [
-        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-03-reassurance-23930c61/metadata.json",
-        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-08-reassurance-23389291/metadata.json",
-        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-11-reassurance-dfaa8d20/metadata.json"
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-01-reassurance-d62d8bf3/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-02-reassurance-d3234fc1/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-03-reassurance-ea72d8cd/metadata.json"
       ],
       "namedBlockedLimits": []
     },
@@ -50,17 +50,16 @@
       },
       "reviewedCaseIds": [
         "field-master-normal-input",
-        "field-normal-input-optionnel",
         "field-normal-input-required",
-        "field-normal-select-required",
-        "field-normal-textarea-required"
+        "field-normal-input-optionnel"
       ],
       "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/field-master-normal-input/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/field-normal-input-required/metadata.json",
         "specs/011-fix-molecule-convergence/proofs/visual/cases/field-normal-input-optionnel/metadata.json"
       ],
       "namedBlockedLimits": [
-        "field-contract-combinations-without-immutable-instance",
-        "field-observed-saisie-rendering-unproved"
+        "field-contract-combinations-without-immutable-instance"
       ]
     },
     {
@@ -74,11 +73,13 @@
       },
       "reviewedCaseIds": [
         "member-card-occurrence-01-c60f37ab",
-        "member-card-occurrence-09-73c9099f",
-        "member-card-occurrence-16-c79c91e1"
+        "member-card-occurrence-02-23844d60",
+        "member-card-occurrence-03-2b1776d2"
       ],
       "evidencePaths": [
-        "specs/011-fix-molecule-convergence/proofs/visual/cases/member-card-occurrence-09-73c9099f/metadata.json"
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/member-card-occurrence-01-c60f37ab/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/member-card-occurrence-02-23844d60/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/member-card-occurrence-03-2b1776d2/metadata.json"
       ],
       "namedBlockedLimits": [
         "member-card-shared-base-image-unbindable"
@@ -108,22 +109,23 @@
     {
       "target": "product-card",
       "reviewed": true,
-      "verdict": "blocked",
+      "verdict": "pass",
       "counts": {
-        "passing": 0,
+        "passing": 8,
         "failing": 0,
-        "blocked": 8
+        "blocked": 0
       },
       "reviewedCaseIds": [
         "product-card-occurrence-01-1ba972fd",
-        "product-card-occurrence-08-cfd3b777"
+        "product-card-occurrence-02-51b2d6d6",
+        "product-card-occurrence-03-2e0e3ad0"
       ],
       "evidencePaths": [
-        "specs/011-fix-molecule-convergence/proofs/visual/cases/product-card-occurrence-01-1ba972fd/metadata.json"
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/product-card-occurrence-01-1ba972fd/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/product-card-occurrence-02-51b2d6d6/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/product-card-occurrence-03-2e0e3ad0/metadata.json"
       ],
-      "namedBlockedLimits": [
-        "product-card-contract-bouton-true-without-immutable-instance"
-      ]
+      "namedBlockedLimits": []
     },
     {
       "target": "realisation",
@@ -136,11 +138,13 @@
       },
       "reviewedCaseIds": [
         "realisation-grand-01-94f7de29",
-        "realisation-petit-18-99c604ed"
+        "realisation-petit-01-418bada5",
+        "realisation-petit-02-6219813c"
       ],
       "evidencePaths": [
         "specs/011-fix-molecule-convergence/proofs/visual/cases/realisation-grand-01-94f7de29/metadata.json",
-        "specs/011-fix-molecule-convergence/proofs/visual/cases/realisation-petit-18-99c604ed/metadata.json"
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/realisation-petit-01-418bada5/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/realisation-petit-02-6219813c/metadata.json"
       ],
       "namedBlockedLimits": []
     },
@@ -164,5 +168,5 @@
       "namedBlockedLimits": []
     }
   ],
-  "conclusion": "All 98 cases and seven target verdicts were reviewed with exact 227/227 fact coverage and no unscored case. Realisation and Tab pass. Carte and NavItem retain explicit pixel failures. Field, MemberCard, and ProductCard retain named immutable-reference limits. The blocked exit is preserved and terminal closure is not authorized."
+  "conclusion": "Re-run after the 2026-07-29 source-cleanliness corrections (Carte: double-space title typo + two camera-original photos pre-downscaled to 1456px; ProductCard: unused 'Ajouter au panier' CTA removed from master and contract). Carte now passes 36/36 and ProductCard 8/8 — four of seven targets pass with exact 227-fact coverage restored to 226 (the product-card.bouton.false fact no longer exists) and no unscored case. NavItem retains three honest pixel failures from the contract-declared typographic sub-pixel residual. Field and MemberCard retain named immutable-reference limits, owner-accepted. The blocked exit is preserved: closure records the real state, it does not turn any red or blocked outcome into a pass."
 }

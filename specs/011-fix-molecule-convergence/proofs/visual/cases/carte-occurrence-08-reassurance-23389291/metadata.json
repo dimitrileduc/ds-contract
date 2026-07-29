@@ -5,11 +5,11 @@
   "figma": {
     "nodeId": "I2115:3754;2114:3646",
     "setNodeId": "2063:1622",
-    "version": "2381229993207753432",
+    "version": "2381568261081914456",
     "observedProperties": {
       "Disposition": "Reassurance",
       "Texte": "Lecteur d’empreinte digitale, serrure électrique, 5 points de verrouillage en alu.",
-      "Titre": "Sécurité  CR3 & CR4"
+      "Titre": "Sécurité CR3 & CR4"
     }
   },
   "contract": {
@@ -18,7 +18,7 @@
     "factIds": [
       "carte.disposition.reassurance",
       "carte.image.23389291cb533e2a7ab2b80486badf605578cf19",
-      "carte.content.39d763b915b01442",
+      "carte.content.24efe76744f9c345",
       "carte.occurrence.bc9ab3603083e2b7"
     ]
   },
@@ -27,7 +27,7 @@
       "side": "figma",
       "surface": "light",
       "alphaPixels": 818519,
-      "contrastPixels": 599584,
+      "contrastPixels": 599681,
       "paintedBounds": {
         "x": 0,
         "y": 0,
@@ -161,8 +161,8 @@
     "contractJustification": null
   },
   "pixels": {
-    "rawPct": 0.4492400920232054,
-    "maskedDiagnosticPct": 0.00042617026354369096,
+    "rawPct": 0.02047234825511617,
+    "maskedDiagnosticPct": 0.00014205675451456367,
     "maskCoveragePct": 9.928832999378152,
     "thresholdPct": 2.5,
     "regions": {
@@ -194,15 +194,13 @@
           "height": 172
         },
         "totalPixels": 125216,
-        "mismatchedPixels": 3510,
-        "diffPct": 2.803156146179402,
-        "referenceSignalPixels": 11848,
+        "mismatchedPixels": 159,
+        "diffPct": 0.12698057756197292,
+        "referenceSignalPixels": 11945,
         "generatedSignalPixels": 12584,
         "maxDiffPct": 2.5,
         "minSignalPixels": 1,
-        "failures": [
-          "region-threshold-exceeded"
-        ]
+        "failures": []
       },
       "whole": {
         "id": "whole",
@@ -214,9 +212,9 @@
           "height": 1059
         },
         "totalPixels": 781542,
-        "mismatchedPixels": 3511,
-        "diffPct": 0.4492400920232054,
-        "referenceSignalPixels": 560488,
+        "mismatchedPixels": 160,
+        "diffPct": 0.02047234825511617,
+        "referenceSignalPixels": 560585,
         "generatedSignalPixels": 564078,
         "maxDiffPct": 2.5,
         "minSignalPixels": 1,
@@ -228,20 +226,16 @@
       "image",
       "text"
     ],
-    "verdict": "fail",
-    "failures": [
-      "region:text:region-threshold-exceeded"
-    ]
+    "verdict": "pass",
+    "failures": []
   },
   "semantics": [],
   "gate": {
-    "scorePct": 0.4492400920232054,
+    "scorePct": 0.02047234825511617,
     "basis": "unmasked",
-    "passed": false,
-    "verdict": "fail",
-    "failures": [
-      "required-region-failed"
-    ]
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
   },
   "namedBlockedConditions": [],
   "regionError": null,

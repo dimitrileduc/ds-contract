@@ -1,7 +1,7 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 5,
+    "acknowledged": 4,
     "pending": 0,
     "bySurface": {}
   },
@@ -27,13 +27,6 @@
       "subject": "SectionHeader.Bouton",
       "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
       "remedy": "Re-run the component sync script"
-    },
-    {
-      "surface": "figma-tokens",
-      "classification": "ahead",
-      "subject": "Primitives/color/rouge",
-      "detail": "Figma variable has no counterpart in tokens/",
-      "remedy": "Review + add to tokens/ (promotion) or delete the variable"
     },
     {
       "surface": "icons",
@@ -69,7 +62,7 @@
     "ds.nav-item@1.1.0",
     "ds.piqueray-logo@0.1.0",
     "ds.presentation@1.0.0",
-    "ds.product-card@1.1.0",
+    "ds.product-card@2.0.0",
     "ds.realisation@1.1.0",
     "ds.reassurances@1.0.0",
     "ds.review-card@1.0.0",

@@ -2393,7 +2393,8 @@ const COMPONENTS = [
                     "Valeur": "Texte de saisie"
                   }
                 }
-              ]
+              ],
+              "slotControlStroke": "color/bleu-gris"
             }
           ]
         }
@@ -2473,7 +2474,8 @@ const COMPONENTS = [
                     "Valeur": "Texte de saisie"
                   }
                 }
-              ]
+              ],
+              "slotControlStroke": "color/rouge"
             },
             {
               "type": "text",
@@ -2481,6 +2483,7 @@ const COMPONENTS = [
               "characters": "Message d’erreur",
               "fontSize": 14,
               "fontStyle": "Regular",
+              "textFill": "color/rouge",
               "lineHeight": 17,
               "fontFamily": "Montserrat"
             }
@@ -3235,6 +3238,9 @@ async function buildNode(spec, registry) {
         node.appendChild(inst);
         if (spec.layout && spec.layout.stretchChildren) {
           try { inst.layoutSizingHorizontal = 'FILL'; } catch (e) { /* fixed-size deps */ }
+        }
+        if (spec.slotControlStroke) {
+          inst.strokes = [boundPaint(spec.slotControlStroke, inst)];
         }
         instances.push({ inst, main });
       }

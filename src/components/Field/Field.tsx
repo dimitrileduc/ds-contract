@@ -31,13 +31,13 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
             etat === 'normal'
               ? 'var(--color-bleu-gris)'
               : etat === 'erreur'
-                ? '#D32F2F'
+                ? 'var(--color-rouge)'
                 : undefined,
           '--dsc-border-color':
             etat === 'normal'
               ? 'var(--color-bleu-gris)'
               : etat === 'erreur'
-                ? '#D32F2F'
+                ? 'var(--color-rouge)'
                 : undefined,
         },
       })

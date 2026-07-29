@@ -447,14 +447,17 @@ function memberCases(censusTarget, assets) {
 function productCases(censusTarget, assets) {
   return censusTarget.instances.map((instance, index) => {
     const properties = normalizedProperties(instance);
-    if (properties.Bouton !== false)
-      fail(`${instance.nodeId} unexpectedly has ProductCard Bouton != false`);
+    // The CTA was removed at the source on 2026-07-29: none of the twelve
+    // immutable occurrences ever enabled it, so master and contract both
+    // dropped it (contract major 2.0.0). Its reappearance would mean the
+    // Figma master regained a property the contract no longer models.
+    if ("Bouton" in properties)
+      fail(`${instance.nodeId} unexpectedly declares a ProductCard Bouton property`);
     const title = text(instance, "Titre");
     const price = text(instance, "Prix");
     const picture = image(instance);
     const asset = assetFor(assets, "product-card", picture.imageRef);
     const factIds = [
-      "product-card.bouton.false",
       `product-card.image.${picture.imageRef}`,
       `product-card.content.${shortHash([title.characters, price.characters])}`,
       occurrenceFact("product-card", instance.nodeId),
@@ -473,12 +476,11 @@ function productCases(censusTarget, assets) {
       codeProps: {
         titre: title.characters,
         prix: price.characters,
-        bouton: false,
         imageUrl: { $asset: asset.id },
         imageAlt: title.characters,
       },
       codePresetProvenance:
-        "Titre, Prix, Bouton=false and IMAGE ref are immutable source-census facts. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
+        "Titre, Prix and IMAGE ref are immutable source-census facts. The CTA the master carried but no occurrence enabled was removed at the source on 2026-07-29, so no bouton fact remains to project. Duplicate page placements remain distinct cases because no alias fingerprint is merely asserted.",
       factIds,
       fixtureAssetIds: [asset.id],
       comparisonSurface: "light",

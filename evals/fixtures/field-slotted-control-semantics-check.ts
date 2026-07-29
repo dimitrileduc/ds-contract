@@ -171,7 +171,7 @@ const field = (id: string, name: string, defaultEtat: "normal" | "erreur") => {
     styles: {
       "border-color": {
         prop: "etat",
-        values: { normal: "{color.bleu-gris}", erreur: "#D32F2F" },
+        values: { normal: "{color.bleu-gris}", erreur: "{color.rouge}" },
       },
     },
   };
@@ -202,6 +202,7 @@ const inlineTokens = {
   primitives: {
     color: {
       "bleu-gris": { $value: "#9BA4B5", $type: "color" },
+      rouge: { $value: "#D32F2F", $type: "color" },
     },
   },
   semantic: {},
@@ -351,6 +352,26 @@ expect(
     figma,
   ),
   "Figma runtime does not turn a stretched default slot instance into horizontal FILL",
+);
+
+// The parent-owned state paint is a VISUAL fact, so unlike ARIA it must also
+// reach the canvas: a designer opening the Erreur variant has to see the red
+// control border, not a default grey one. It rides the same token-variable
+// binding as any other stroke — a raw hex could never bind, which is why the
+// contract governs the colour as {color.rouge}.
+expect(
+  figma.includes('"slotControlStroke": "color/rouge"'),
+  "Figma slot spec drops the erreur state control border (expected slotControlStroke color/rouge)",
+);
+expect(
+  figma.includes('"slotControlStroke": "color/bleu-gris"'),
+  "Figma slot spec drops the normal state control border (expected slotControlStroke color/bleu-gris)",
+);
+expect(
+  /spec\.slotControlStroke[\s\S]{0,200}inst\.strokes = \[boundPaint\(spec\.slotControlStroke, inst\)\]/.test(
+    figma,
+  ),
+  "Figma runtime never applies slotControlStroke to the default slot instance",
 );
 
 if (problems.length > 0) {
