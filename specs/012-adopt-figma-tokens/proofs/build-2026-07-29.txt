@@ -1,0 +1,29 @@
+=== T008 — npm run build — 2026-07-29T15:20:03Z ===
+
+> ds-contracts-poc@0.7.0 build
+> npm run tokens && npm run schema && npm run generate
+
+
+> ds-contracts-poc@0.7.0 tokens
+> node scripts/build-tokens.mjs
+
+✔ Tokens built: 139 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default
+
+> ds-contracts-poc@0.7.0 schema
+> tsx scripts/emit-schema.ts
+
+✔ contracts/contract.schema.json emitted from Zod schema
+
+> ds-contracts-poc@0.7.0 generate
+> tsx scripts/generate-components.ts
+
+✔ Generated 34 component(s) from contracts: AccordionRow, Avantage, Button, CarouselControls, Carte, Checkbox, Coordonnees, Copyright, Devis, Equipe, FAQ, Field, Footer, FooterColumn, Formulaire, GoogleReviews, Header, Hero, Input, MemberCard, MemberPicture, NavItem, PiquerayLogo, Presentation, ProductCard, Realisation, Reassurances, ReviewCard, SAV, SectionHeader, Select, Tab, Textarea, TexteSEO
+BUILD_EXIT=0
+
+=== npm run figma:plan ===
+
+> ds-contracts-poc@0.7.0 figma:plan
+> tsx scripts/generate-figma.ts
+
+✔ Emitted figma-sync scripts (dependency order): 01-tokens.js, 02-accordionrow.js, 03-avantage.js, 04-button.js, 05-carouselcontrols.js, 06-carte.js, 07-checkbox.js, 08-sectionheader.js, 09-coordonnees.js, 10-copyright.js, 11-devis.js, 12-memberpicture.js, 13-membercard.js, 14-equipe.js, 15-faq.js, 16-input.js, 17-select.js, 18-textarea.js, 19-field.js, 20-footercolumn.js, 21-piqueraylogo.js, 22-footer.js, 23-formulaire.js, 24-reviewcard.js, 25-googlereviews.js, 26-navitem.js, 27-header.js, 28-hero.js, 29-presentation.js, 30-productcard.js, 31-realisation.js, 32-reassurances.js, 33-sav.js, 34-tab.js, 35-texteseo.js, batch-01.js, batch-02.js
+FIGMA_PLAN_EXIT=0

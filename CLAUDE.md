@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Last updated**: 2026-07-27
+**Last updated**: 2026-07-29
 
 ## What this is
 
@@ -104,6 +104,8 @@ Degradation is named, never silent. Extraction marks every heuristic (`confidenc
 - artefacts committés sous `specs/007-figma-extractable-source/` (`decisions.md`, `releves/`, `naming-table.md`, `proofs/<cycle>/`, `RAPPORT-CLOTURE.md`) ; PNG de travail gitignorés (`.page-parity/`, `extract/figma/page-parity/out/`) ; dump du relevé **non committé** (~300 KB, reproductible) (007-figma-extractable-source)
 - TypeScript (repo pin `typescript@^6`), Node ≥ 20, ESM exécuté via `tsx` + Zod (`@ds-contracts/schema` — seule source du schéma), React 19 + CSS Modules (émetteur `react`), Figma Plugin API (scripts de sync, lecture seule cette itération sauf corrections §VIII), Figma REST API (`FIGMA_TOKEN` — export SVG des 3 icônes, lecture), pont figma-console (lecture : refresh snapshots), `playwright-core` + `pixelmatch` (instrument visuel existant) (010-extract-molecules-organisms)
 - JSON sur disque — `extract/out/figma/*.contract.proposed.json` (entrée, 57 sets), `contracts/*.contract.json` (+27), `contracts/icons.registry.json` (1.1.0 → 1.2.0), `assets/icons/*.svg` (+3), `tokens/*.tokens.json` (inchangés), `evals/golden.json` (re-pin revu), `parity/snapshots/*.json` (refresh lecture), `parity/baseline.json` (acquittements owner éventuels), `extract/figma/visual-parity/{subjects.ts,baseline.json}` (+27 sujets) (010-extract-molecules-organisms)
+- TypeScript (pin `typescript@^6`) / Node ≥ 20, ESM via `tsx` — instruments existants uniquement, AUCUN nouveau code applicatif : `scripts/build-tokens.mjs`, `scripts/generate-figma.ts` + `core/emit-figma-script.ts`, `parity/diff.ts` + `parity/extract-figma.plugin.js` (pont figma-console, lecture seule), `scripts/update-golden.mjs`, `evals/run.ts` (012-adopt-figma-tokens)
+- JSON sur disque — `tokens/{primitives,semantic}.tokens.json` (seuls fichiers édités, 62 → 139 feuilles), `parity/snapshots/figma-tokens.json` (cliché rafraîchi commité — entrée capturée), `evals/golden.json` (re-pin limité à 2 hashes : `src/styles/tokens.css` + `figma-sync/01-tokens.js`), `specs/012-adopt-figma-tokens/{adoption-report.md,proofs/}` (012-adopt-figma-tokens)
 
 ## Recent Changes
 - 003-externalize-figma-components: closed (merged via PR #4, `8f3137d`) — the Piqueray maquettes fully externalized into governed masters (atoms → molecules → sections), each adoption proven byte-identical by a new page-parity instrument; artefacts: `specs/003-externalize-figma-components/` (decisions.md, proofs/)

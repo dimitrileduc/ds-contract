@@ -1,0 +1,26 @@
+=== T015 — diff sémantique (chemin→valeur) des 2 fichiers sources — 2026-07-29T15:22:06Z ===
+tokens/primitives.tokens.json — avant: 38 après: 67 | ajoutées: 29 | modifiées: 0 | supprimées: 0
+tokens/semantic.tokens.json — avant: 24 après: 72 | ajoutées: 48 | modifiées: 0 | supprimées: 0
+(le diff git ligne-à-ligne montre des lignes '-'/'+' appariées identiques à une virgule finale près —
+ artefact syntaxique JSON d'insertion en fin d'objet, PAS une modification de $value ; vérifié ci-dessus
+ au niveau feuille chemin/valeur, la seule granularité qui fait foi pour FR-003/SC-003.)
+
+=== T016 — 48/48 alias sémantiques ===
+Total feuilles semantic.tokens.json: 72 | alias: 72 | littéraux: 0
+48/48 alias résolus (zéro littéral): CONFIRME
+
+=== T017 — surfaces prédites byte-identiques (aucune ne doit apparaître ci-dessous) ===
+ figma-sync/01-tokens.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+(vide au-dessus = toutes byte-identiques, confirmé)
+
+=== T017 CORRECTION ===
+Le premier essai incluait par erreur figma-sync/01-tokens.js dans le glob de contrôle
+(motif [0-9][0-9]-*.js matchant aussi "01-"), alors que 01-tokens.js EST dans la liste
+blanche (changement attendu, déjà vérifié golden ligne 2/2). Reprise en excluant
+explicitement 01-tokens.js :
+  git diff --stat -- src/components/ tokens.dark.css tokens.brands.css catalog.json
+    contract.schema.json + figma-sync/*.js (hors 01-tokens.js, 70 fichiers)
+  → AUCUNE sortie = toutes byte-identiques, confirmé (src/components/**,
+    tokens.dark.css, tokens.brands.css, figma-sync 02-35 + batch-01/02,
+    catalog.json, contract.schema.json).

@@ -1,0 +1,40 @@
+=== T009 — npm run parity (APRES adoption) — 2026-07-29T15:20:17Z ===
+
+> ds-contracts-poc@0.7.0 parity
+> tsx parity/diff.ts
+
+⚠ Figma naming bridged (the file does not use this repo's collection/mode names):
+    · mode "Dark" does not exist in collection "Semantic" — read from its only mode, "Light"
+
+✖ 1 drift finding(s) (+4 acknowledged in parity/baseline.json):
+    figma-tokens — mismatch: 1
+
+  [figma-tokens MISMATCH] Primitives/font/family/montserrat [Value]
+    tokens/ says Montserrat, sans-serif, Figma says Montserrat
+    proposed patch: {"tokenPath":"font.family.montserrat","mode":"Value","adoptFigmaValue":"Montserrat"}
+    → Adopt into tokens/ (promotion) then npm run tokens — or push tokens/ to Figma via figma_import_tokens
+
+  — acknowledged (baselined, does not fail the check) —
+
+  [figma BEHIND] Carte.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma MISMATCH] Presentation.Texte (default)
+    Default differs — contract: "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.", figma: "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale."
+    → Adopt into contract (promotion) or reset the property default
+
+  [figma BEHIND] SectionHeader.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [icons AHEAD] assets/icons/close.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+
+EXIT_CODE=1
+Primitives/color/gris-clair [Value] → absent des findings = comparé et apparié (match)
+Primitives/font/line-height/25 [Value] → absent des findings = comparé et apparié (match)
+Semantic/typography/titre-hero/size [Light] → absent des findings = comparé et apparié (match)
+
+Total feuilles couvertes par la comparaison: 139 — 1 seul residual (hors-perimetre) sur 5 findings totaux (dont 4 preexistants sans rapport)

@@ -13,7 +13,9 @@
     "noir": { "$value": "#37373B" },
     "rouge": { "$value": "#D32F2F" },
     "orange-12": { "$value": "#F494001F" },
-    "orange-42": { "$value": "#F494006B" }
+    "orange-42": { "$value": "#F494006B" },
+    "gris-clair": { "$value": "#E0E0E0" },
+    "noir-pur": { "$value": "#000000" }
   },
   "nav": {
     "state": {
@@ -42,18 +44,37 @@
       "24": { "$value": "24px" },
       "32": { "$value": "32px" },
       "40": { "$value": "40px" },
-      "48": { "$value": "48px" }
+      "44": { "$value": "44px" },
+      "48": { "$value": "48px" },
+      "54": { "$value": "54px" }
     },
     "weight": {
       "$type": "fontWeight",
       "regular": { "$value": 400 },
       "medium": { "$value": 500 },
-      "semibold": { "$value": 600 }
+      "semibold": { "$value": 600 },
+      "bold": { "$value": 700 }
     },
     "line-height": {
       "$type": "dimension",
       "$description": "Authored from the Button canvas geometry (dump v1.5: text lineHeight 22px). NOT a Figma variable — Piqueray binds no line-height variable; minted from-dump so anatomy can reference a token instead of a literal (the schema forbids literals in anatomy tokens).",
-      "22": { "$value": "22px" }
+      "16": { "$value": "16px" },
+      "20": { "$value": "20px" },
+      "22": { "$value": "22px" },
+      "24": { "$value": "24px" },
+      "25": { "$value": "25px" },
+      "27": { "$value": "27px" },
+      "30": { "$value": "30px" },
+      "32": { "$value": "32px" },
+      "40": { "$value": "40px" },
+      "48": { "$value": "48px" },
+      "50": { "$value": "50px" },
+      "60": { "$value": "60px" },
+      "68": { "$value": "68px" }
+    },
+    "letter-spacing": {
+      "$type": "dimension",
+      "15": { "$value": "15px" }
     }
   },
   "space": {
@@ -61,9 +82,19 @@
     "$description": "Authored from the Button canvas geometry (dump v1.5: itemSpacing 10, padding 16/32, Link padding 4/0). NOT Figma variables — Piqueray binds no spacing variables; minted from-dump so anatomy references tokens, not literals.",
     "0": { "$value": "0px" },
     "4": { "$value": "4px" },
+    "8": { "$value": "8px" },
     "10": { "$value": "10px" },
+    "12": { "$value": "12px" },
     "16": { "$value": "16px" },
-    "32": { "$value": "32px" }
+    "24": { "$value": "24px" },
+    "32": { "$value": "32px" },
+    "48": { "$value": "48px" },
+    "64": { "$value": "64px" },
+    "89": { "$value": "89px" },
+    "96": { "$value": "96px" },
+    "128": { "$value": "128px" },
+    "392": { "$value": "392px" },
+    "597": { "$value": "597px" }
   },
   "size": {
     "button": {
@@ -77,7 +108,8 @@
   "radius": {
     "$type": "dimension",
     "$description": "Authored from the Button canvas geometry (dump v1.5: Link cornerRadius 32). NOT a Figma variable; minted from-dump.",
-    "32": { "$value": "32px" }
+    "32": { "$value": "32px" },
+    "500": { "$value": "500px" }
   },
   "border-width": {
     "$type": "dimension",
