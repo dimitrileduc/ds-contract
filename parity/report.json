@@ -1,7 +1,7 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 4,
+    "acknowledged": 5,
     "pending": 0,
     "bySurface": {}
   },
@@ -27,6 +27,18 @@
       "subject": "SectionHeader.Bouton",
       "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
       "remedy": "Re-run the component sync script"
+    },
+    {
+      "surface": "figma-tokens",
+      "classification": "mismatch",
+      "subject": "Primitives/font/family/montserrat [Value]",
+      "detail": "tokens/ says Montserrat, sans-serif, Figma says Montserrat",
+      "proposedPatch": {
+        "tokenPath": "font.family.montserrat",
+        "mode": "Value",
+        "adoptFigmaValue": "Montserrat"
+      },
+      "remedy": "Adopt into tokens/ (promotion) then npm run tokens — or push tokens/ to Figma via figma_import_tokens"
     },
     {
       "surface": "icons",

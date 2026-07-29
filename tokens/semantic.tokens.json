@@ -3,42 +3,110 @@
     "titre-1": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.48}" },
-      "weight": { "$type": "fontWeight", "$value": "{font.weight.medium}" }
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.medium}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.60}" }
     },
     "titre-2": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.40}" },
-      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.50}" }
     },
     "titre-3": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.32}" },
-      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.40}" }
     },
     "titre-4": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.24}" },
-      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.30}" }
     },
     "titre-5": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.20}" },
-      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}" }
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.25}" }
     },
     "titre-6": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.16}" },
-      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}" }
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.20}" }
     },
     "paragraphe": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.14}" },
-      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.24}" }
     },
     "lead": {
       "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
       "size": { "$type": "dimension", "$value": "{font.size.18}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.27}" }
+    },
+    "titre-2-majuscules": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.40}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.50}" }
+    },
+    "titre-3-majuscules": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.32}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.40}" }
+    },
+    "titre-hero": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.54}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.bold}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.68}" }
+    },
+    "titre-hero-video": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.44}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.48}" }
+    },
+    "accroche": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.20}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.25}" },
+      "letter-spacing": { "$type": "dimension", "$value": "{font.letter-spacing.15}" }
+    },
+    "libelle-bouton": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.16}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.medium}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.22}" }
+    },
+    "libelle-nav": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.16}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.medium}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.16}" }
+    },
+    "note-de-champ": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.14}" },
       "weight": { "$type": "fontWeight", "$value": "{font.weight.regular}" }
+    },
+    "onglet": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.20}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.semibold}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.25}" }
+    },
+    "paragraphe-gras": {
+      "family": { "$type": "fontFamily", "$value": "{font.family.montserrat}" },
+      "size": { "$type": "dimension", "$value": "{font.size.14}" },
+      "weight": { "$type": "fontWeight", "$value": "{font.weight.bold}" },
+      "line-height": { "$type": "dimension", "$value": "{font.line-height.24}" }
     }
   }
 }

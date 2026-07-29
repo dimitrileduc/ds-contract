@@ -1,0 +1,36 @@
+=== T012 — git diff evals/golden.json — 2026-07-29T15:21:01Z ===
+ evals/golden.json | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/evals/golden.json b/evals/golden.json
+index 24d2f50..0c4f52d 100644
+--- a/evals/golden.json
++++ b/evals/golden.json
+@@ -138,9 +138,9 @@
+   "src/components/index.ts": "d47361f13e8c6a24cbe1ca1ea0266b26aa2e69d93c158b0f0de8977203bebab7",
+   "src/index.ts": "35f48e541bbef31136155112ebd0fdcd2d3b2536700f559d2d5ecb66ba40abed",
+   "src/styles/tokens.brands.css": "d87286c81bead175568754475803357dc6ac2cb2c49bec02e76a3082d95eab30",
+-  "src/styles/tokens.css": "7b36b726bd56df58e367c31525d251984276a22534a95ffe26e15970dc9279e6",
++  "src/styles/tokens.css": "e1771e748da2c486eae9a0108e2d6f8c0cb303fd0cfa9f0c6d24699235521351",
+   "src/styles/tokens.dark.css": "549a67952095e1d1a92f0aea6aed208ebeac76e290c19362397eb115bb8f3aa9",
+-  "figma-sync/01-tokens.js": "ec944173eff363fa109831e8ca22b6b361f0b582611722973d2749ec35647136",
++  "figma-sync/01-tokens.js": "d7193252ce1d0f4af4396abed42a54b1cdc7ea3dcce2988160dd13828d5c5fb1",
+   "figma-sync/02-accordionrow.js": "7b6a7c12f928f843c93e567d1e0a8eb9c820b8a7715b91b551d60dd48755ba28",
+   "figma-sync/03-avantage.js": "68ee32ac04faa49cbe792f9cd680e02f6648f6d105101a5f8ab55e6e69d34b3f",
+   "figma-sync/03-piqueraylogo.js": "9577ec6d078b1de70983751c3a7bcce736b47d87f165b6f95bfdf43abd53e8b8",
+
+=== T013 — périmètre final re-vérifié après acquittement montserrat + re-pin engine ===
+git diff --stat / git status --porcelain montrent EXACTEMENT 10 fichiers modifiés +
+specs/012-adopt-figma-tokens/ (untracked) :
+  CLAUDE.md, evals/golden.json, figma-sync/01-tokens.js,
+  figma-sync/plugin/engine.receipt.json, parity/baseline.json, parity/report.json,
+  parity/snapshots/figma-tokens.json, src/styles/tokens.css,
+  tokens/primitives.tokens.json, tokens/semantic.tokens.json.
+Tous conformes à D12, SAUF figma-sync/plugin/engine.receipt.json qui n'y figurait PAS —
+découverte en T023 (le bundle du plugin embarque tokens/contracts/icons ; l'adoption
+des 77 tokens l'a fait dériver ; re-pin via
+`node scripts/build-plugin-zip.mjs --update-engine-receipt`, mécanisme séparé et
+légitime, analogue à golden:update mais pour un reçu distinct). parity/baseline.json
+présent et conforme à la clause conditionnelle de D12 (limite nommée = le mismatch
+montserrat, acquitté après re-confirmation utilisateur). Zéro fichier hors de ces 11
+entrées — protocole d'alarme T014 non déclenché sur ce périmètre final.

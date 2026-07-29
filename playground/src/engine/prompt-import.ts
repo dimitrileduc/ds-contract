@@ -18,7 +18,7 @@
  * demo mode replays recorded-shape responses through the identical code
  * path, so the whole flow is verifiable without a key.
  */
-import badgeContract from '../../../contracts/badge.contract.json';
+import copyrightContract from '../../../contracts/copyright.contract.json';
 import buttonContract from '../../../contracts/button.contract.json';
 import { activeTokens } from './token-source.js';
 
@@ -62,7 +62,7 @@ const CONTRACT_TOOL = {
         type: 'string',
         pattern: '^\\{[a-z0-9.{}-]+\\}$',
         description:
-          'Brace-wrapped token path from the inventory, e.g. "{radius.badge}". ' +
+          'Brace-wrapped token path from the inventory, e.g. "{radius.32}". ' +
           'May contain an enum-prop placeholder that expands over its values, ' +
           'e.g. "{color.feedback.{variant}.background}".',
       },
@@ -128,7 +128,7 @@ const CONTRACT_TOOL = {
         pattern: '^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$',
         description: 'Stable canonical id, namespace.name — use "ds.<kebab-name>".',
       },
-      name: { type: 'string', description: 'PascalCase display/export name, e.g. "Badge".' },
+      name: { type: 'string', description: 'PascalCase display/export name, e.g. "Copyright".' },
       version: { type: 'string', pattern: '^\\d+\\.\\d+\\.\\d+$', description: 'Semver. New contracts start at "0.1.0".' },
       status: { enum: ['draft', 'stable', 'deprecated'], description: 'New contracts are "draft".' },
       description: { type: 'string' },
@@ -283,7 +283,7 @@ export const CONTRACT_TOOL_JSON = JSON.stringify(CONTRACT_TOOL);
 
 // ---------------------------------------------------------------------------
 // System prompt — authoring rules + the ACTIVE token inventory + one compact
-// exemplar (Badge, anchors rewritten to the prompt-born shape).
+// exemplar (Copyright, anchors rewritten to the prompt-born shape).
 // ---------------------------------------------------------------------------
 
 const pascal = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -303,8 +303,8 @@ function promptBorn(raw: Record<string, unknown>, exportName: string): Record<st
   };
 }
 
-function badgeExemplar(): string {
-  return JSON.stringify(promptBorn(badgeContract as Record<string, unknown>, 'Badge'));
+function copyrightExemplar(): string {
+  return JSON.stringify(promptBorn(copyrightContract as Record<string, unknown>, 'Copyright'));
 }
 
 /** Button — the interactive exemplar: TWO enum axes, each driving several
@@ -373,8 +373,8 @@ export function buildSystemPrompt(): string {
     `TOKEN INVENTORY (${source.inventory.size} paths — ${source.label}):`,
     inventory,
     '',
-    'EXEMPLAR — minimal, static (Badge):',
-    badgeExemplar(),
+    'EXEMPLAR — minimal, static (Copyright):',
+    copyrightExemplar(),
     '',
     'EXEMPLAR — interactive (Button: two enum axes each driving substituted',
     'refs, state overrides, a boolean-gated part, text content):',

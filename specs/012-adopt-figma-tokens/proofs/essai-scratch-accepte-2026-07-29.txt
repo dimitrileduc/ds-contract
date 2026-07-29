@@ -1,0 +1,25 @@
+=== T019 — essai scratch ACCEPTE — 2026-07-29T15:23:43Z ===
+Liaison retargetée (copie scratch uniquement): contracts/button.contract.json
+  variants.default.link."border-radius": "{radius.32}" -> "{radius.500}"
+  (radius.500 = l'une des 29 primitives adoptées en T006)
+
+
+> ds-contracts-poc@0.7.0 build
+> npm run tokens && npm run schema && npm run generate
+
+
+> ds-contracts-poc@0.7.0 tokens
+> node scripts/build-tokens.mjs
+
+✔ Tokens built: 139 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default
+
+> ds-contracts-poc@0.7.0 schema
+> tsx scripts/emit-schema.ts
+
+✔ contracts/contract.schema.json emitted from Zod schema
+
+> ds-contracts-poc@0.7.0 generate
+> tsx scripts/generate-components.ts
+
+✔ Generated 34 component(s) from contracts: AccordionRow, Avantage, Button, CarouselControls, Carte, Checkbox, Coordonnees, Copyright, Devis, Equipe, FAQ, Field, Footer, FooterColumn, Formulaire, GoogleReviews, Header, Hero, Input, MemberCard, MemberPicture, NavItem, PiquerayLogo, Presentation, ProductCard, Realisation, Reassurances, ReviewCard, SAV, SectionHeader, Select, Tab, Textarea, TexteSEO
+EXIT_CODE=0

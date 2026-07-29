@@ -1,0 +1,16 @@
+=== T021/T022 — scratch détruit, contracts/ intact, 0 conversion — 2026-07-29T15:24:19Z ===
+Scratch supprimé: OK (rm -rf confirmé absent)
+
+git status --porcelain (dépôt réel):
+ M CLAUDE.md
+ M evals/golden.json
+ M figma-sync/01-tokens.js
+ M parity/report.json
+ M parity/snapshots/figma-tokens.json
+ M src/styles/tokens.css
+ M tokens/primitives.tokens.json
+ M tokens/semantic.tokens.json
+?? specs/012-adopt-figma-tokens/
+
+git diff contracts/ (doit être VIDE — FR-009, SC-006 volet négatif):
+(vide ci-dessus = zéro fichier de contracts/ touché, zéro conversion de valeur en dur)

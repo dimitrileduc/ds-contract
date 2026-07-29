@@ -1,0 +1,26 @@
+=== T020 — essai scratch REFUSE — 2026-07-29T15:24:00Z ===
+Liaison retargetée (copie scratch uniquement): contracts/button.contract.json
+  variants.default.link."border-radius": "{radius.500}" -> "{typography.inexistant.size}" (token inexistant)
+
+
+> ds-contracts-poc@0.7.0 build
+> npm run tokens && npm run schema && npm run generate
+
+
+> ds-contracts-poc@0.7.0 tokens
+> node scripts/build-tokens.mjs
+
+✔ Tokens built: 139 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default
+
+> ds-contracts-poc@0.7.0 schema
+> tsx scripts/emit-schema.ts
+
+✔ contracts/contract.schema.json emitted from Zod schema
+
+> ds-contracts-poc@0.7.0 generate
+> tsx scripts/generate-components.ts
+
+✖ Contract validation failed:
+
+  - ds.button: anatomy.root.tokensByProp.link.border-radius references token "{typography.inexistant.size}" which does not exist in tokens/
+EXIT_CODE=1
