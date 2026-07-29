@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "caseId": "product-card-occurrence-05-1ba972fd",
+  "subjectId": "product-card",
+  "status": "blocked-before-capture",
+  "admissionFailures": [
+    "coverage-incomplete",
+    "render-refused"
+  ],
+  "namedBlockedConditions": [
+    "product-card-contract-bouton-true-without-immutable-instance"
+  ],
+  "figma": {
+    "nodeId": "I2116:4595;2116:4470",
+    "setNodeId": "2068:1972",
+    "error": "[\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/^(-?\\\\d+(\\\\.\\\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\\\([\\\\d ,./%]+\\\\))$/\",\n    \"path\": [\n      \"anatomy\",\n      \"root\",\n      \"literals\",\n      \"text-rendering\"\n    ],\n    \"message\": \"Literal value must be a px/rem/em/number, hex or rgb()/rgba() color, or transparent/inherit/currentColor\"\n  }\n]"
+  }
+}

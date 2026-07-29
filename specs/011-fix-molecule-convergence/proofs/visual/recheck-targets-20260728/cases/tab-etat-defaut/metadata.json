@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "caseId": "tab-etat-defaut",
+  "subjectId": "tab",
+  "figma": {
+    "nodeId": "2061:1584",
+    "setNodeId": "2061:1588",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Etat": "Defaut"
+    }
+  },
+  "contract": {
+    "id": "ds.tab",
+    "version": "2.0.0",
+    "factIds": [
+      "tab.etat.defaut"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 2252,
+      "contrastPixels": 2252,
+      "paintedBounds": {
+        "x": 1,
+        "y": 27,
+        "width": 171,
+        "height": 30
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 2505,
+      "contrastPixels": 2505,
+      "paintedBounds": {
+        "x": 65,
+        "y": 91,
+        "width": 171,
+        "height": 30
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 172,
+      "height": 82
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 172,
+      "height": 82
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "libell": {
+        "figma": null,
+        "generated": {
+          "x": 0,
+          "y": 0.21951219512195122,
+          "width": 0.9989098837209303,
+          "height": 0.6097560975609756
+        },
+        "delta": null,
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:libell"
+    ],
+    "verdict": "fail",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.014180374361883154,
+    "maskedDiagnosticPct": 0,
+    "maskCoveragePct": 68.29268292682927,
+    "thresholdPct": 2.5,
+    "regions": {
+      "label": {
+        "id": "label",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 18,
+          "width": 172,
+          "height": 50
+        },
+        "totalPixels": 8600,
+        "mismatchedPixels": 2,
+        "diffPct": 0.023255813953488372,
+        "referenceSignalPixels": 2252,
+        "generatedSignalPixels": 2505,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 172,
+          "height": 82
+        },
+        "totalPixels": 14104,
+        "mismatchedPixels": 2,
+        "diffPct": 0.014180374361883154,
+        "referenceSignalPixels": 2252,
+        "generatedSignalPixels": 2505,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "label"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [
+    {
+      "id": "tab-is-button",
+      "selector": "button",
+      "assertion": "element",
+      "contractPointer": "/semantics/element",
+      "contractResolved": true,
+      "expected": "button",
+      "actual": "button",
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "tab-role",
+      "selector": "button",
+      "assertion": "attribute",
+      "contractPointer": "/semantics/role",
+      "contractResolved": true,
+      "expected": {
+        "role": "tab"
+      },
+      "actual": {
+        "role": "tab"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "tab-default-aria-selected",
+      "selector": "button",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrsByProp",
+      "contractResolved": true,
+      "expected": {
+        "aria-selected": "false",
+        "aria-controls": "campaign-tab-panel",
+        "tabIndex": "-1"
+      },
+      "actual": {
+        "aria-controls": "campaign-tab-panel",
+        "aria-selected": "false",
+        "tabIndex": "-1"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "tab-roving-context",
+      "selector": "[role='tablist']",
+      "assertion": "keyboard-context",
+      "contractPointer": "/anatomy/root/tabContext",
+      "contractResolved": false,
+      "expected": {
+        "id": "campaign-tablist",
+        "rovingFocus": true
+      },
+      "verdict": "fail",
+      "failures": [
+        "contract-pointer-unresolved",
+        "semantic-value-mismatch"
+      ]
+    }
+  ],
+  "gate": {
+    "scorePct": 0.014180374361883154,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "geometry-receipt-failed",
+      "semantic-receipt-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "tab-state-pair-not-yet-pinned"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/tab-etat-defaut/figma.png",
+    "cases/tab-etat-defaut/generated.png",
+    "cases/tab-etat-defaut/diff.png",
+    "cases/tab-etat-defaut/triptych.png"
+  ]
+}

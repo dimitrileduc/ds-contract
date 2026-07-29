@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.carte",
   "name": "Carte",
-  "version": "1.0.0",
-  "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "version": "2.0.0",
+  "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -74,8 +74,17 @@
     },
     {
       "name": "texte",
-      "type": "text",
-      "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+      "description": "The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "SupraMatic & ProMatic.",
+          "strong": true
+        },
+        {
+          "text": " Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+        }
+      ],
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -83,6 +92,57 @@
         },
         "code": {
           "prop": "texte"
+        }
+      }
+    },
+    {
+      "name": "ctaLabel",
+      "description": "Nested Categorie Link Button label. The source Carte component does not expose it as a top-level Figma property, so immutable occurrence values come from the nested Button TEXT property retained by the campaign census.",
+      "type": "text",
+      "default": "Contactez-nous",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "ctaLabel"
+        }
+      }
+    },
+    {
+      "name": "ctaIconLeftGlyph",
+      "description": "Nested Categorie Link Button leading glyph retained from the concrete nested Figma instance.",
+      "type": {
+        "enum": [
+          "pdf"
+        ]
+      },
+      "default": "pdf",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "ctaIconLeftGlyph"
+        }
+      }
+    },
+    {
+      "name": "ctaIconRightGlyph",
+      "description": "Nested Categorie Link Button trailing glyph retained from the concrete nested Figma instance.",
+      "type": {
+        "enum": [
+          "arrow-right",
+          "download"
+        ]
+      },
+      "default": "download",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "ctaIconRightGlyph"
         }
       }
     }
@@ -95,28 +155,67 @@
         "direction": "column",
         "align": "stretch"
       },
+      "geometryJustification": {
+        "cause": "typographic-subpixel-rounding",
+        "reason": "The Categorie CTA keeps its Figma HUG content sizing. Across all ten pinned occurrences, Figma and Chromium differ by at most 0.001532832278481 normalized width because they round the same Montserrat label advance differently; no fixed width, letter-spacing, or transform compensation is introduced.",
+        "bounds": {
+          "root": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "parts": {
+            "Bouton": {
+              "x": 0,
+              "y": 0,
+              "width": 0.001532832278481,
+              "height": 0
+            }
+          }
+        }
+      },
       "parts": {
-        "img": {
+        "reassuranceImage": {
+          "description": "Source layer `img` in Reassurance: horizontal FILL with a fixed 364px height.",
           "element": "img",
           "attrs": {
             "src": "{imageUrl}",
             "alt": "{imageAlt}"
           },
           "literals": {
-            "width": "364px",
             "height": "364px"
           },
-          "literalsByProp": [
-            {
-              "prop": "disposition",
-              "map": {
-                "categorie": {
-                  "width": "743px",
-                  "height": "418px"
-                }
-              }
-            }
-          ]
+          "declared": {
+            "object-fit": "cover",
+            "object-position": "50% 50%"
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "reassurance"
+          }
+        },
+        "categorieImage": {
+          "description": "Source layer `img` in Categorie: horizontal FILL with the 418px master basis, shrinking or growing to the concrete instance's exact remaining height.",
+          "element": "img",
+          "attrs": {
+            "src": "{imageUrl}",
+            "alt": "{imageAlt}"
+          },
+          "layout": {
+            "grow": true
+          },
+          "literals": {
+            "height": "418px",
+            "min-height": "0px"
+          },
+          "declared": {
+            "object-fit": "cover"
+          },
+          "visibleWhen": {
+            "prop": "disposition",
+            "equals": "categorie"
+          }
         },
         "text": {
           "layout": {
@@ -124,50 +223,57 @@
             "align": "stretch"
           },
           "parts": {
-            "Titre": {
+            "TitreReassurance": {
               "content": {
                 "prop": "titre"
               },
               "tokens": {
                 "color": "{color.noir-bleute}",
                 "font-size": "{font.size.24}",
-                "font-weight": "{font.weight.regular}"
-              },
-              "tokensByProp": {
-                "prop": "disposition",
-                "map": {
-                  "categorie": {
-                    "font-size": "{font.size.32}"
-                  }
-                }
+              "font-weight": "{font.weight.regular}"
               },
               "literals": {
                 "line-height": "30px"
               },
-              "literalsByProp": [
-                {
-                  "prop": "disposition",
-                  "map": {
-                    "categorie": {
-                      "line-height": "40px"
-                    }
-                  }
-                }
-              ]
-            },
-            "Texte": {
-              "tokensByProp": {
-                "prop": "disposition",
-                "map": {
-                  "categorie": {
-                    "color": "{color.noir-bleute}",
-                    "font-size": "{font.size.18}",
-                    "font-weight": "{font.weight.regular}"
-                  }
-                }
+              "declared": {
+                "text-align": "center"
               },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "reassurance"
+              }
+            },
+            "TitreCategorie": {
               "content": {
-                "prop": "texte"
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.32}",
+                "font-weight": "{font.weight.medium}"
+              },
+              "literals": {
+                "line-height": "40px"
+              },
+              "declared": {
+                "text-align": "left",
+                "text-transform": "uppercase"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "categorie"
+              }
+            },
+            "TexteReassurance": {
+              "content": {
+                "prop": "texte",
+                "marks": {
+                  "strong": {
+                    "font-weight": "700",
+                    "font-size": "18px",
+                    "line-height": "27px"
+                  }
+                }
               },
               "tokens": {
                 "color": "{color.noir}",
@@ -177,16 +283,38 @@
               "literals": {
                 "line-height": "24px"
               },
-              "literalsByProp": [
-                {
-                  "prop": "disposition",
-                  "map": {
-                    "categorie": {
-                      "line-height": "27px"
-                    }
+              "declared": {
+                "text-align": "center"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "reassurance"
+              }
+            },
+            "TexteCategorie": {
+              "content": {
+                "prop": "texte",
+                "marks": {
+                  "strong": {
+                    "font-weight": "700"
                   }
                 }
-              ]
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.18}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "27px"
+              },
+              "declared": {
+                "text-align": "left"
+              },
+              "visibleWhen": {
+                "prop": "disposition",
+                "equals": "categorie"
+              }
             }
           },
           "literals": {
@@ -205,23 +333,38 @@
                 }
               }
             }
-          ]
+          ],
+          "declared": {
+            "text-rendering": "geometricprecision"
+          }
         },
         "Bouton": {
-          "component": {
-            "id": "ds.button",
-            "text": "Contactez-nous",
-            "props": {
-              "variant": "link",
-              "iconLeft": true,
-              "iconRight": true,
-              "iconLeftGlyph": "arrow-left",
-              "iconRightGlyph": "arrow-right"
+          "description": "Observed Categorie CTA: Link Button with visible leading/trailing glyphs, ArrowLeft/ArrowRight defaults, and the nested Figma TEXT default “Contactez-nous”. Occurrence-specific label and glyph overrides stay on the real child instance, as recorded in the read-only Carte ledger.",
+          "layout": {
+            "display": "flex",
+            "align": "start"
+          },
+          "parts": {
+            "action": {
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "variant": "link",
+                  "children": "{ctaLabel}",
+                  "iconLeft": true,
+                  "iconRight": true,
+                  "iconLeftGlyph": "{ctaIconLeftGlyph}",
+                  "iconRightGlyph": "{ctaIconRightGlyph}"
+                }
+              }
             }
           },
           "visibleWhen": {
             "prop": "disposition",
             "equals": "categorie"
+          },
+          "declared": {
+            "align-self": "flex-start"
           }
         }
       },
@@ -233,6 +376,10 @@
         "width": "364px",
         "gap": "24px",
         "padding-bottom": "24px"
+      },
+      "declared": {
+        "box-shadow": "0px 5px 10px rgba(0, 0, 0, 0.2)",
+        "text-rendering": "geometricprecision"
       },
       "literalsByProp": [
         {

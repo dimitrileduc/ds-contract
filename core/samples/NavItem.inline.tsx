@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.0.0)
+ * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -29,7 +29,9 @@ const S: Record<string, CSSProperties> = {
     "gap": "8px",
     "lineHeight": "16px",
     "position": "relative",
-    "textTransform": "uppercase"
+    "textTransform": "uppercase",
+    "textDecorationLine": "none",
+    "textRendering": "geometricprecision"
   },
   "libell": {
     "color": "#FFFFFF"
@@ -55,16 +57,16 @@ export interface NavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   actif?: boolean;
 }
 
-/** Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact. */
+/** Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; chevron and active are Figma BOOLEAN facts, and the transparent white-ink composition is intended for a dark Header/photo surface. */
 export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(function NavItem(
   { chevron = true, actif = false, libelle = 'Portes de garage', href, style, children, ...rest },
   ref,
 ) {
   return (
-    <a ref={ref} style={{ ...S.root, ...style }} data-chevron={chevron || undefined} data-actif={actif || undefined} {...rest}>
+    <a ref={ref} style={{ ...S.root, ...style }} data-chevron={chevron || undefined} data-actif={actif || undefined}  href={String(href)} {...(({ "true": { "aria-current": "page" } } as const)[String(actif) as "true"] ?? {})} {...rest}>
       <span style={{ ...S.libell }}>{libelle}</span>
 {chevron ? (<span style={{ ...S.OcticonChevronDown12 }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["octicon-chevron-down12"] }} />) : null}
-{actif ? (<div style={{ ...S.Soulignement, ...(actif ? {"right":"0px","bottom":"0px","left":"0px"} : {}) }}>
+{actif ? (<div style={{ ...S.Soulignement, ...(actif ? {"right":"0px","top":"22px","left":"0px"} : {}) }}>
 
 </div>) : null}
     </a>

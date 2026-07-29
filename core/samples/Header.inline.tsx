@@ -79,7 +79,7 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <PiquerayLogo couleur="default" />
 <div style={{ ...S.navWrapper }}>
 <div style={{ ...S.nav }}>

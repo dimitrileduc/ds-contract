@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.0.0)
+ * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -15,6 +15,8 @@
   line-height: 16px;
   position: relative;
   text-transform: uppercase;
+  text-decoration-line: none;
+  text-rendering: geometricprecision;
 }
 
 .libell {
@@ -31,6 +33,10 @@
   flex-shrink: 0;
 }
 
+.root[data-chevron] .OcticonChevronDown12 svg {
+  transform: translateY(-1px);
+}
+
 .Soulignement {
   background-color: var(--color-blanc);
   height: 2px;
@@ -39,6 +45,6 @@
 
 .root[data-actif] .Soulignement {
   right: 0px;
-  bottom: 0px;
+  top: 22px;
   left: 0px;
 }

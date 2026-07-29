@@ -39,7 +39,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
 ) {
   const classes = [styles.root, styles[`size-${size}`], className].filter(Boolean).join(' ');
   return (
-    <span ref={ref} className={classes} data-customer={customer || undefined} data-with-initials={withInitials || undefined} {...rest}>
+    <span ref={ref} className={classes} data-customer={customer || undefined} data-with-initials={withInitials || undefined}  {...rest}>
       <span className={styles.initials}>{initials}</span>
     </span>
   );

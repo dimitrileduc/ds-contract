@@ -8,13 +8,14 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
+import { type ExtractedDefault, type RichTextSegment } from './defaults.js';
 
 export interface CodeProp {
   name: string;
   kind: 'enum' | 'boolean' | 'other';
   values?: string[];
   optional: boolean;
-  default?: string | boolean | number;
+  default?: ExtractedDefault;
 }
 
 export interface CodeExtract {
@@ -39,7 +40,37 @@ export function extractCode(root = process.cwd()): CodeExtract[] {
 
     const sf = ts.createSourceFile(`${name}.tsx`, src, ts.ScriptTarget.Latest, true);
     const props: CodeProp[] = [];
-    const defaults = new Map<string, string | boolean | number>();
+    const defaults = new Map<string, ExtractedDefault>();
+
+    const readDefault = (initializer: ts.Expression): ExtractedDefault | undefined => {
+      if (ts.isStringLiteral(initializer)) return initializer.text;
+      if (ts.isNumericLiteral(initializer)) return Number(initializer.text);
+      if (initializer.kind === ts.SyntaxKind.TrueKeyword) return true;
+      if (initializer.kind === ts.SyntaxKind.FalseKeyword) return false;
+      if (!ts.isArrayLiteralExpression(initializer)) return undefined;
+
+      const segments: RichTextSegment[] = [];
+      for (const element of initializer.elements) {
+        if (!ts.isObjectLiteralExpression(element)) return undefined;
+        let text: string | undefined;
+        let strong: boolean | undefined;
+        for (const property of element.properties) {
+          if (!ts.isPropertyAssignment(property)) return undefined;
+          const key = ts.isIdentifier(property.name)
+            ? property.name.text
+            : ts.isStringLiteral(property.name)
+              ? property.name.text
+              : undefined;
+          if (key === 'text' && ts.isStringLiteral(property.initializer)) text = property.initializer.text;
+          else if (key === 'strong' && property.initializer.kind === ts.SyntaxKind.TrueKeyword) strong = true;
+          else if (key === 'strong' && property.initializer.kind === ts.SyntaxKind.FalseKeyword) strong = false;
+          else return undefined;
+        }
+        if (text === undefined) return undefined;
+        segments.push(strong ? { text, strong: true } : { text });
+      }
+      return segments;
+    };
 
     const visit = (node: ts.Node): void => {
       if (ts.isInterfaceDeclaration(node) && node.name.text === `${name}Props`) {
@@ -52,6 +83,15 @@ export function extractCode(root = process.cwd()): CodeExtract[] {
           if (member.type) {
             if (member.type.kind === ts.SyntaxKind.BooleanKeyword) {
               kind = 'boolean';
+            } else if (
+              ts.isLiteralTypeNode(member.type) &&
+              ts.isStringLiteral(member.type.literal)
+            ) {
+              // TypeScript collapses a one-member string union to a literal
+              // type (`'pdf'`, not `'pdf' | ...`). It is still the generated
+              // code surface of a one-value contract enum.
+              kind = 'enum';
+              values = [member.type.literal.text];
             } else if (ts.isUnionTypeNode(member.type)) {
               const literals = member.type.types
                 .filter(ts.isLiteralTypeNode)
@@ -73,13 +113,8 @@ export function extractCode(root = process.cwd()): CodeExtract[] {
       if (ts.isObjectBindingPattern(node) && node.parent && ts.isParameter(node.parent)) {
         for (const el of node.elements) {
           if (el.initializer && ts.isIdentifier(el.name)) {
-            if (ts.isStringLiteral(el.initializer)) defaults.set(el.name.text, el.initializer.text);
-            else if (ts.isNumericLiteral(el.initializer))
-              defaults.set(el.name.text, Number(el.initializer.text));
-            else if (el.initializer.kind === ts.SyntaxKind.TrueKeyword)
-              defaults.set(el.name.text, true);
-            else if (el.initializer.kind === ts.SyntaxKind.FalseKeyword)
-              defaults.set(el.name.text, false);
+            const value = readDefault(el.initializer);
+            if (value !== undefined) defaults.set(el.name.text, value);
           }
         }
       }

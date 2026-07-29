@@ -1,10 +1,10 @@
 {
   "id": "ds.tab",
   "name": "Tab",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "molecule",
-  "description": "Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+  "description": "Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. Panel and tablist identities are code-only semantics: every Tab belongs to an existing tablist, whose controller owns the bounded roving-focus behavior and keeps exactly one Tab selected/focusable; this contract does not invent a TabList molecule or a panel. Version 2.0.0 is breaking because panelId and tablistId are now required for an accessible Tab relationship.",
   "figma": {
     "representation": "component",
     "componentSetKey": "c5fa537d17c544114dc780ba11bbf1157fedba37"
@@ -22,6 +22,18 @@
       "name": "libelle",
       "type": "string",
       "default": "Onglet"
+    },
+    {
+      "name": "panelId",
+      "type": "string",
+      "required": true,
+      "description": "Code-only id of the panel controlled by this Tab."
+    },
+    {
+      "name": "tablistId",
+      "type": "string",
+      "required": true,
+      "description": "Code-only id of the owning tablist. Its controller supplies the bounded arrow-key roving-focus behavior; exactly one sibling Tab is selected and has tabIndex 0."
     }
   ],
   "children": {

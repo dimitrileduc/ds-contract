@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-10-reassurance-531908a9",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:3754;2114:3648",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance",
+      "Texte": "Une meilleure isolation avec ThermoFrame. Degrés d’isolation de U en W/m³K des portes de 1,3 à 0,47.",
+      "Titre": "Isolation thermique"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.531908a93f3208d0c07cd7e3d16ef302e899c4d5",
+      "carte.content.8d3b1dce118ad75e",
+      "carte.occurrence.9f62e23d590e0c14"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 818519,
+      "contrastPixels": 601637,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1084
+      },
+      "imagePixels": 529984,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 842564,
+      "contrastPixels": 627030,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 774,
+        "height": 1090
+      },
+      "imagePixels": 529984,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-531908a93f32",
+      "expectedSha256": "abf0fa86b8bf14901ded0c607411526fa3399d46ba45177d5a7dfb06d6183813",
+      "actualSha256": "abf0fa86b8bf14901ded0c607411526fa3399d46ba45177d5a7dfb06d6183813",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 587,
+      "naturalHeight": 765,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 50176,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 1044
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 1044
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "reassuranceImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6973180076628352
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6973180076628352
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7432950191570882,
+          "width": 1,
+          "height": 0.210727969348659
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7432950191570882,
+          "width": 1,
+          "height": 0.210727969348659
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.11502900675843396,
+    "maskedDiagnosticPct": 0.10759798377039576,
+    "maskCoveragePct": 11.763667211742938,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 728,
+          "height": 728
+        },
+        "totalPixels": 529984,
+        "mismatchedPixels": 752,
+        "diffPct": 0.14189107595701,
+        "referenceSignalPixels": 529984,
+        "generatedSignalPixels": 529984,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 728,
+          "height": 220
+        },
+        "totalPixels": 160160,
+        "mismatchedPixels": 157,
+        "diffPct": 0.09802697302697302,
+        "referenceSignalPixels": 13901,
+        "generatedSignalPixels": 14514,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 738,
+          "height": 1059
+        },
+        "totalPixels": 781542,
+        "mismatchedPixels": 899,
+        "diffPct": 0.11502900675843396,
+        "referenceSignalPixels": 562541,
+        "generatedSignalPixels": 566008,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.11502900675843396,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-10-reassurance-531908a9/figma.png",
+    "cases/carte-occurrence-10-reassurance-531908a9/generated.png",
+    "cases/carte-occurrence-10-reassurance-531908a9/diff.png",
+    "cases/carte-occurrence-10-reassurance-531908a9/triptych.png"
+  ]
+}

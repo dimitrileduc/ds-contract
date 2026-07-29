@@ -60,7 +60,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.blocTexte }}>
 <div style={{ ...S.Titres }}>
 <SectionHeader titre="Portes de garage industrielles" accroche="Plus de 50 ans d’expérience" disposition="standard" />

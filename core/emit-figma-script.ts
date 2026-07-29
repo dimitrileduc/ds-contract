@@ -48,7 +48,7 @@ import {
   type Prop,
 } from '../scripts/contract-schema.js';
 import { flattenTokens, aliasTarget, px, type TokenEntry, type TokenTreeInput } from './tokens.js';
-import { isMultiRoot, topRoots, validateContract } from './emit-react.js';
+import { isMultiRoot, isRichText, richTextPlain, topRoots, validateContract } from './emit-react.js';
 
 
 export interface LayoutSpec {
@@ -1634,11 +1634,19 @@ function formControlSpec(
 
 const PARENT_PROP_REF = /^\{([a-z][\w-]*)\}$/;
 
+/** A rich-text prop remains one native Figma TEXT property. Its structured
+ * code value therefore projects to concatenated segment text on the canvas. */
+const isTextLikeProp = (prop: Prop) => prop.type === 'text' || prop.type === 'rich-text';
+const nativeTextDefault = (prop: Prop | undefined, fallback: string): string => {
+  if (prop && isRichText(prop)) return richTextPlain(prop.default);
+  return typeof prop?.default === 'string' ? prop.default : fallback;
+};
+
 /** Map canonical prop values to Figma property/value pairs through the CHILD
  *  contract's bindings. `{parentProp}` values resolve through `subst` first. */
 function mapDepProps(
   dep: Contract,
-  props: Record<string, string | boolean>,
+  props: Record<string, string | boolean | number>,
   subst: Record<string, string>,
   text?: string,
 ): Record<string, string | boolean> {
@@ -1647,7 +1655,7 @@ function mapDepProps(
     const depProp = dep.props.find((p) => p.name === propName);
     if (!depProp) continue;
     if (depProp.bindings.figma.kind === 'NONE') continue; // code-only (v7 arrayOf)
-    let value = rawValue;
+    let value: string | boolean = typeof rawValue === 'number' ? String(rawValue) : rawValue;
     if (typeof value === 'string') {
       const parentRef = value.match(PARENT_PROP_REF);
       if (parentRef) {
@@ -1661,7 +1669,7 @@ function mapDepProps(
     else out[depProp.bindings.figma.property!] = depProp.bindings.figma.values?.[value] ?? value;
   }
   if (text !== undefined) {
-    const textProp = dep.props.find((p) => p.type === 'text' && p.bindings.code.prop === 'children');
+    const textProp = dep.props.find((p) => isTextLikeProp(p) && p.bindings.code.prop === 'children');
     if (textProp) out[textProp.bindings.figma.property!] = text;
   }
   return out;
@@ -2034,20 +2042,26 @@ function partToSpecInner(
   // name placeholder forced a 6-char overflow no real mount shows). The TEXT
   // property still reaches the Figma surface via textProps (unbound). A
   // content part WITHOUT children keeps the design-time name placeholder.
+  const contentProp = part.content
+    ? contract.props.find(
+        (p) => isTextLikeProp(p) && p.bindings.code.prop === part.content!.prop,
+      )
+    : undefined;
+  const contentHasDefault = contentProp && isRichText(contentProp)
+    ? Array.isArray(contentProp.default)
+    : typeof contentProp?.default === 'string';
   const contentFallsThrough =
     part.content !== undefined &&
     part.parts !== undefined &&
     Object.keys(part.parts).length > 0 &&
-    typeof contract.props.find(
-      (p) => p.type === 'text' && p.bindings.code.prop === part.content!.prop,
-    )?.default !== 'string';
+    !contentHasDefault;
   if (part.content && !contentFallsThrough) {
     const prop = contract.props.find(
-      (p) => p.type === 'text' && p.bindings.code.prop === part.content!.prop,
+      (p) => isTextLikeProp(p) && p.bindings.code.prop === part.content!.prop,
     )!;
     const spec: NodeSpec = { type: 'text', name };
     const textCtx = applyStyling(spec, part, subst, ctx);
-    spec.characters = typeof prop.default === 'string' ? prop.default : contract.name;
+    spec.characters = nativeTextDefault(prop, contract.name);
     spec.fontSize = textCtx.fontSize ?? 16;
     spec.fontStyle = textCtx.fontStyle ?? 'Medium';
     spec.textStyle = matchTextStyle(textCtx);
@@ -2165,12 +2179,12 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   const variantEnums = enums.filter((p) => p.bindings.figma.kind === 'VARIANT');
   const swapEnums = enums.filter((p) => p.bindings.figma.kind === 'INSTANCE_SWAP');
   const textProp = contract.props.find(
-    (p) => p.type === 'text' && p.bindings.code.prop === 'children',
+    (p) => isTextLikeProp(p) && p.bindings.code.prop === 'children',
   );
   const boolPropsData = contract.props
-    .filter((p) => p.type === 'boolean')
+    .filter((p) => p.type === 'boolean' && p.bindings.figma.kind === 'BOOLEAN')
     .map((p) => ({ property: p.bindings.figma.property!, default: p.default === true }));
-  const label = typeof textProp?.default === 'string' ? textProp.default : contract.name;
+  const label = nativeTextDefault(textProp, contract.name);
 
   const orderedValues = (p: { type: { enum: string[] }; default?: unknown }) => {
     const values = [...p.type.enum];
@@ -2199,6 +2213,20 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   const swapDefaults = Object.fromEntries(
     swapEnums.filter((p) => p.default !== undefined).map((p) => [p.name, String(p.default)]),
   );
+  // Code-only scalar props do not become Figma axes or component properties,
+  // but their defaults still determine the static canvas plan when a parent
+  // threads one into a child's real Figma property (for example a CTA label
+  // mapped to a nested Button's TEXT property).
+  const codeOnlyDefaults = Object.fromEntries(
+    contract.props
+      .filter(
+        (p) =>
+          p.bindings.figma.kind === 'NONE' &&
+          p.default !== undefined &&
+          (p.type === 'text' || p.type === 'number' || p.type === 'boolean' || isEnum(p)),
+      )
+      .map((p) => [p.name, String(p.default)]),
+  );
   let combos: number[][] = [[]];
   for (const axis of axes) {
     const next: number[][] = [];
@@ -2212,7 +2240,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   for (const combo of combos) {
     // Every axis's value for this combo feeds BOTH the `{prop}` token
     // substitutions and the visibleWhen part filtering (variantParts).
-    const subst: Record<string, string> = { ...swapDefaults };
+    const subst: Record<string, string> = { ...swapDefaults, ...codeOnlyDefaults };
     const nameParts: string[] = [];
     let col = 0;
     for (let a = 0; a < axes.length; a++) {
@@ -2321,7 +2349,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     for (let si = 0; si < contract.states.length; si++) {
       const stateName = contract.states[si];
       for (let pi = 0; pi < primaryValues.length; pi++) {
-        const subst: Record<string, string> = { ...swapDefaults };
+        const subst: Record<string, string> = { ...swapDefaults, ...codeOnlyDefaults };
         const nameParts: string[] = [];
         for (let a = 0; a < axes.length; a++) {
           const { prop, values } = axes[a];
@@ -2407,13 +2435,20 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   const textOnlyProps = contract.props
     .filter(
       (p) =>
-        (p.type === 'text' || p.type === 'number') &&
+        (p.type === 'text' || p.type === 'rich-text' || p.type === 'number') &&
+        p.bindings.figma.kind === 'TEXT' &&
         !boundTextProps.has(p.bindings.figma.property!),
     )
     .map((p) => ({
       property: p.bindings.figma.property!,
       default:
-        typeof p.default === 'string' ? p.default : typeof p.default === 'number' ? String(p.default) : '',
+        isRichText(p)
+          ? richTextPlain(p.default)
+          : typeof p.default === 'string'
+            ? p.default
+            : typeof p.default === 'number'
+              ? String(p.default)
+              : '',
     }));
 
   // v15 (S4): declared-not-drawn facts land ON the component as description
@@ -3047,6 +3082,14 @@ function buildSyncScript(
   fileKey: string | null,
   opts: { header: string; preamble: string },
 ): string {
+  // An instance is the composition boundary in the canvas plan. Keep its two
+  // identifying fields compact even though the surrounding plan remains
+  // indented for review: downstream checks can distinguish a retained child
+  // instance from an accidentally inlined child anatomy without parsing the
+  // whole generated script.
+  const componentsJson = JSON.stringify(datas, null, 2)
+    .replaceAll('"type": "instance"', '"type":"instance"')
+    .replace(/"dep": "([^"\\]+)"/g, '"dep":"$1"');
   const hasOpacity = datas.some(dataHasOpacity);
   const hasShape = datas.some((d) => dataSome(d, (x) => x.shape !== undefined));
   const hasShadow = datas.some((d) => dataSome(d, (x) => x.dropShadow !== undefined));
@@ -3072,7 +3115,7 @@ function buildSyncScript(
     ),
   );
   return `${opts.header}
-const COMPONENTS = ${JSON.stringify(datas, null, 2)};
+const COMPONENTS = ${componentsJson};
 const ROW_H = 240, PAD = 40;
 
 const EXPECTED_FILE_KEY = ${JSON.stringify(fileKey)};

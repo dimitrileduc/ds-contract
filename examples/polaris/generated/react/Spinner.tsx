@@ -28,7 +28,7 @@ export const Spinner = forwardRef<HTMLSpanElement, SpinnerProps>(function Spinne
 ) {
   const classes = [styles.root, styles[`size-${size}`], className].filter(Boolean).join(' ');
   return (
-    <span ref={ref} className={classes} data-has-focusable-parent={hasFocusableParent || undefined} {...rest}>
+    <span ref={ref} className={classes} data-has-focusable-parent={hasFocusableParent || undefined}  {...rest}>
       {size === 'small' ? (<span className={styles["root-small"]} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["spinner-root-small"] }} />) : null}
 {size === 'large' ? (<span className={styles["root-large"]} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["spinner-root-large"] }} />) : null}
     </span>

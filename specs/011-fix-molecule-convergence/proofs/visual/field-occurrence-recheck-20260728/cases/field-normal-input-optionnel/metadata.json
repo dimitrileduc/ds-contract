@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "caseId": "field-normal-input-optionnel",
+  "subjectId": "field",
+  "status": "blocked-before-capture",
+  "admissionFailures": [
+    "coverage-incomplete",
+    "render-refused"
+  ],
+  "namedBlockedConditions": [
+    "field-contract-combinations-without-immutable-instance",
+    "field-observed-saisie-rendering-unproved"
+  ],
+  "figma": {
+    "nodeId": "I2096:2714;2096:2555",
+    "setNodeId": "2056:1278",
+    "error": "[\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/^(-?\\\\d+(\\\\.\\\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\\\([\\\\d ,./%]+\\\\))$/\",\n    \"path\": [\n      \"anatomy\",\n      \"root\",\n      \"literals\",\n      \"text-rendering\"\n    ],\n    \"message\": \"Literal value must be a px/rem/em/number, hex or rgb()/rgba() color, or transparent/inherit/currentColor\"\n  }\n]"
+  }
+}

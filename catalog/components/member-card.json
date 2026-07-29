@@ -1,10 +1,10 @@
 {
   "id": "ds.member-card",
   "name": "MemberCard",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "draft",
   "category": "molecule",
-  "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides remain an explicit runtime boundary until a governed image API is adopted.",
+  "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides are explicit code-only photo data, propagated to the composed MemberPicture without flattening its image anatomy.",
   "figma": {
     "representation": "component",
     "componentSetKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8"
@@ -19,6 +19,16 @@
       "name": "poste",
       "type": "string",
       "default": "Gérante"
+    },
+    {
+      "name": "imageUrl",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "imageAlt",
+      "type": "string",
+      "default": ""
     }
   ],
   "children": {

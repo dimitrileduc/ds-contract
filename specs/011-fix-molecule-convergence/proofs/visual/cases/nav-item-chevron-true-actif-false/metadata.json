@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "caseId": "nav-item-chevron-true-actif-false",
+  "subjectId": "nav-item",
+  "figma": {
+    "nodeId": "I274:2702;2152:5574",
+    "setNodeId": "2152:5554",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Chevron": true,
+      "Actif": false
+    }
+  },
+  "contract": {
+    "id": "ds.nav-item",
+    "version": "1.1.0",
+    "factIds": [
+      "nav-item.chevron.true.actif.false"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "dark",
+      "alphaPixels": 3328,
+      "contrastPixels": 3328,
+      "paintedBounds": {
+        "x": 3,
+        "y": 5,
+        "width": 380,
+        "height": 24
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "dark",
+      "alphaPixels": 3370,
+      "contrastPixels": 3370,
+      "paintedBounds": {
+        "x": 67,
+        "y": 68,
+        "width": 379,
+        "height": 24
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 388,
+      "height": 32
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 386.765625,
+      "height": 32
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": -1.234375,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "libell": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 0.8762886597938144,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 0.8758938310507817,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.00039482874303276017,
+          "height": 0
+        },
+        "verdict": "fail"
+      },
+      "OcticonChevronDown12": {
+        "figma": {
+          "x": 0.9175257731958762,
+          "y": 0,
+          "width": 0.08247422680412371,
+          "height": 1
+        },
+        "generated": {
+          "x": 0.9172625540338545,
+          "y": 0,
+          "width": 0.08273744596614552,
+          "height": 1
+        },
+        "delta": {
+          "x": -0.0002632191620217661,
+          "y": 0,
+          "width": 0.00026321916202180773,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "root",
+      "part:libell",
+      "part:OcticonChevronDown12"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.20833333333333334,
+    "maskedDiagnosticPct": 2.398989898989899,
+    "maskCoveragePct": 91.3157894736842,
+    "thresholdPct": 2.5,
+    "regions": {
+      "chevron": {
+        "id": "chevron",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 351,
+          "y": 0,
+          "width": 29,
+          "height": 24
+        },
+        "totalPixels": 696,
+        "mismatchedPixels": 19,
+        "diffPct": 2.7298850574712645,
+        "referenceSignalPixels": 160,
+        "generatedSignalPixels": 136,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      },
+      "label": {
+        "id": "label",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 336,
+          "height": 24
+        },
+        "totalPixels": 8064,
+        "mismatchedPixels": 0,
+        "diffPct": 0,
+        "referenceSignalPixels": 3168,
+        "generatedSignalPixels": 3234,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 380,
+          "height": 24
+        },
+        "totalPixels": 9120,
+        "mismatchedPixels": 19,
+        "diffPct": 0.20833333333333334,
+        "referenceSignalPixels": 3328,
+        "generatedSignalPixels": 3370,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "label",
+      "chevron"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "region:chevron:region-threshold-exceeded"
+    ]
+  },
+  "semantics": [
+    {
+      "id": "nav-item-chevron-true-actif-false-is-link",
+      "selector": "a",
+      "assertion": "element",
+      "contractPointer": "/semantics/element",
+      "contractResolved": true,
+      "expected": "a",
+      "actual": "a",
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-chevron-true-actif-false-href",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrs/href",
+      "contractResolved": true,
+      "expected": {
+        "href": "/portes-de-garage"
+      },
+      "actual": {
+        "href": "/portes-de-garage"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-chevron-true-actif-false-aria-current-absent",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrsByProp",
+      "contractResolved": true,
+      "expected": {
+        "aria-current": null
+      },
+      "actual": {
+        "aria-current": null
+      },
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "gate": {
+    "scorePct": 0.20833333333333334,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "required-region-failed"
+    ]
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/nav-item-chevron-true-actif-false/figma.png",
+    "cases/nav-item-chevron-true-actif-false/generated.png",
+    "cases/nav-item-chevron-true-actif-false/diff.png",
+    "cases/nav-item-chevron-true-actif-false/triptych.png"
+  ]
+}

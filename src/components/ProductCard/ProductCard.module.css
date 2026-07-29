@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v1.0.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v1.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -10,6 +10,8 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: 16px;
+  width: 364px;
+  text-rendering: geometricprecision;
 }
 
 .Image {
@@ -23,6 +25,7 @@
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
   text-align: center;
+  align-self: stretch;
 }
 
 .Prix {
@@ -31,4 +34,5 @@
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
   text-align: center;
+  align-self: stretch;
 }

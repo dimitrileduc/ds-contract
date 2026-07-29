@@ -63,7 +63,7 @@ export const PiquerayLogo = forwardRef<HTMLDivElement, PiquerayLogoProps>(functi
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <span style={{ ...S.Marque }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["piqueray-logo-marque"] }} />
 <span style={{ ...S.Wordmark, ...(V[`couleur-${couleur}:Wordmark`] ?? {}) }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["piqueray-logo-wordmark"] }} />
     </div>

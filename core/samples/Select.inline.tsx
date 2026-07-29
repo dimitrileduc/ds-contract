@@ -60,7 +60,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(function Select(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <select style={{ ...S.valeur }}>{value}</select>
 <span style={{ ...S.chevron }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-down"] }} />
     </div>

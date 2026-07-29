@@ -1,4 +1,4 @@
-/* MemberPicture — from ds.member-picture v1.0.1 (core/emit-html.ts) */
+/* MemberPicture — from ds.member-picture v1.2.0 (core/emit-html.ts) */
 
 .member-picture, .member-picture *, .member-picture *::before, .member-picture *::after {
   box-sizing: border-box;
@@ -17,6 +17,11 @@
   position: relative;
 }
 
+.member-picture--taille-member-card {
+  width: 363.5px;
+  height: 363.5px;
+}
+
 .member-picture--etat-defaut {
   overflow: hidden;
 }
@@ -33,6 +38,11 @@
   aspect-ratio: 1;
   width: 100%;
   height: 100%;
+}
+
+.member-picture--taille-member-card .member-picture__funIa {
+  width: 363.5px;
+  height: 363.5px;
 }
 
 .member-picture--etat-defaut .member-picture__funIa {
@@ -58,6 +68,11 @@
   transition: opacity 300ms;
   width: 100%;
   height: 100%;
+}
+
+.member-picture--taille-member-card .member-picture__normal {
+  width: 363.5px;
+  height: 363.5px;
 }
 
 .member-picture--etat-defaut .member-picture__normal {

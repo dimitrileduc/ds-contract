@@ -27,7 +27,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(function
 ) {
   const classes = [styles.root, styles[`size-${size}`], styles[`tone-${tone}`], className].filter(Boolean).join(' ');
   return (
-    <div ref={ref} className={classes} data-animated={animated || undefined} {...rest}>
+    <div ref={ref} className={classes} data-animated={animated || undefined}  {...rest}>
       <progress className={styles.progress}>
 
 </progress>

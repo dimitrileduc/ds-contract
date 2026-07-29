@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.0.0)
+ * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -19,7 +19,7 @@ export interface NavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   actif?: boolean;
 }
 
-/** Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact. */
+/** Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; chevron and active are Figma BOOLEAN facts, and the transparent white-ink composition is intended for a dark Header/photo surface. */
 export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(function NavItem(
   {
     chevron = true,
@@ -40,6 +40,7 @@ export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(function NavI
       data-chevron={chevron || undefined}
       data-actif={actif || undefined}
       href={String(href)}
+      {...(({ true: { 'aria-current': 'page' } } as const)[String(actif) as 'true'] ?? {})}
       {...rest}
     >
       <span className={styles.libell}>{libelle}</span>

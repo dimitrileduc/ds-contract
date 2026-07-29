@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "caseId": "product-card-occurrence-08-cfd3b777",
+  "subjectId": "product-card",
+  "figma": {
+    "nodeId": "I2116:4595;2116:4473",
+    "setNodeId": "2068:1972",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Bouton": false,
+      "Prix": "74,99€",
+      "Titre": "Passerelle BiSecure Hörmann"
+    }
+  },
+  "contract": {
+    "id": "ds.product-card",
+    "version": "1.1.0",
+    "factIds": [
+      "product-card.bouton.false",
+      "product-card.image.cfd3b7776d43764fb8f4eec4f29226c395989583",
+      "product-card.content.dd5f3056eccd2379",
+      "product-card.occurrence.b87e73e240427bed"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 236861,
+      "contrastPixels": 68171,
+      "paintedBounds": {
+        "x": 123,
+        "y": 0,
+        "width": 483,
+        "height": 621
+      },
+      "imagePixels": 61710,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 237034,
+      "contrastPixels": 68340,
+      "paintedBounds": {
+        "x": 187,
+        "y": 64,
+        "width": 483,
+        "height": 620
+      },
+      "imagePixels": 61706,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "product-card-image-cfd3b7776d43",
+      "expectedSha256": "33058dd96878a41b4b3722e41594e00e1cade20f8f18a50914fd444181c002c4",
+      "actualSha256": "33058dd96878a41b4b3722e41594e00e1cade20f8f18a50914fd444181c002c4",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 340,
+      "naturalHeight": 340,
+      "renderedWidth": 240,
+      "renderedHeight": 240,
+      "visiblePixels": 65536,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 624
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 624
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Image": {
+        "figma": {
+          "x": 0.17032967032967034,
+          "y": 0,
+          "width": 0.6593406593406593,
+          "height": 0.7692307692307693
+        },
+        "generated": {
+          "x": 0.17032967032967034,
+          "y": 0,
+          "width": 0.6593406593406593,
+          "height": 0.7692307692307693
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Titre": {
+        "figma": {
+          "x": 0,
+          "y": 0.8205128205128205,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.8205128205128205,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Prix": {
+        "figma": {
+          "x": 0,
+          "y": 0.9358974358974359,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9358974358974359,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.07176317272471118,
+    "maskedDiagnosticPct": 0.008223838793962292,
+    "maskCoveragePct": 6.313398140321218,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 124,
+          "y": 0,
+          "width": 480,
+          "height": 480
+        },
+        "totalPixels": 230400,
+        "mismatchedPixels": 35,
+        "diffPct": 0.015190972222222222,
+        "referenceSignalPixels": 61710,
+        "generatedSignalPixels": 61706,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "title-price": {
+        "id": "title-price",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 511,
+          "width": 728,
+          "height": 113
+        },
+        "totalPixels": 82264,
+        "mismatchedPixels": 291,
+        "diffPct": 0.3537391811728095,
+        "referenceSignalPixels": 6461,
+        "generatedSignalPixels": 6634,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 624
+        },
+        "totalPixels": 454272,
+        "mismatchedPixels": 326,
+        "diffPct": 0.07176317272471118,
+        "referenceSignalPixels": 68171,
+        "generatedSignalPixels": 68340,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "title-price"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.07176317272471118,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "product-card-contract-bouton-true-without-immutable-instance"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/product-card-occurrence-08-cfd3b777/figma.png",
+    "cases/product-card-occurrence-08-cfd3b777/generated.png",
+    "cases/product-card-occurrence-08-cfd3b777/diff.png",
+    "cases/product-card-occurrence-08-cfd3b777/triptych.png"
+  ]
+}

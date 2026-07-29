@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.field",
   "name": "Field",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Piqueray Field. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -67,12 +67,17 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "column"
+        "direction": "column",
+        "align": "start"
       },
       "parts": {
         "label": {
           "layout": {
-            "direction": "row"
+            "direction": "row",
+            "align": "start"
+          },
+          "declared": {
+            "align-self": "flex-start"
           },
           "parts": {
             "Label": {
@@ -96,7 +101,7 @@
                 "font-weight": "{font.weight.regular}"
               },
               "literals": {
-                "line-height": "24px"
+                "line-height": "17.066px"
               },
               "visibleWhen": {
                 "prop": "optionnel"
@@ -108,6 +113,11 @@
           }
         },
         "Saisie": {
+          "layout": {
+            "display": "flex",
+            "direction": "column",
+            "align": "stretch"
+          },
           "slot": {
             "name": "children",
             "accepts": [
@@ -115,7 +125,38 @@
               "ds.select",
               "ds.textarea"
             ],
-            "acceptsMode": "prefer",
+            "acceptsMode": "restrict",
+            "min": 1,
+            "max": 1,
+            "required": true,
+            "control": {
+              "fill": "width",
+              "attributes": {
+                "aria-invalid": {
+                  "prop": "etat",
+                  "values": {
+                    "normal": "false",
+                    "erreur": "true"
+                  }
+                },
+                "aria-describedby": {
+                  "prop": "etat",
+                  "values": {
+                    "normal": null,
+                    "erreur": "field-error-message"
+                  }
+                }
+              },
+              "styles": {
+                "border-color": {
+                  "prop": "etat",
+                  "values": {
+                    "normal": "{color.bleu-gris}",
+                    "erreur": "#D32F2F"
+                  }
+                }
+              }
+            },
             "defaultContent": [
               {
                 "id": "ds.input",
@@ -128,14 +169,18 @@
           }
         },
         "messageErreur": {
+          "element": "span",
           "text": "Message d’erreur",
+          "attrs": {
+            "id": "field-error-message"
+          },
           "tokens": {
             "font-size": "{font.size.14}",
             "font-weight": "{font.weight.regular}"
           },
           "literals": {
             "color": "#D32F2F",
-            "line-height": "24px"
+            "line-height": "17px"
           },
           "visibleWhen": {
             "prop": "etat",
@@ -144,8 +189,27 @@
         }
       },
       "literals": {
-        "gap": "8px",
-        "width": "280px"
+        "gap": "8px"
+      },
+      "geometryJustification": {
+        "cause": "typographic-subpixel-rounding",
+        "reason": "Pinned Figma GET records the Label text as Montserrat-SemiBold 600 at 20px/25px in a HUG frame. Chromium retains the source-driven position and line height but resolves the glyph advance fractionally narrower by at most 0.003 of the Field root; no letter-spacing, fixed label width, or transform compensation is introduced.",
+        "bounds": {
+          "root": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          "parts": {
+            "label": {
+              "x": 0,
+              "y": 0,
+              "width": 0.0031,
+              "height": 0
+            }
+          }
+        }
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"

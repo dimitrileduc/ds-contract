@@ -44,6 +44,8 @@ if (!tsx.includes('src={String(src)}') || !tsx.includes('alt={String(alt)}')) {
 }
 if (!tsx.includes('src: string;')) throw new Error('required code-only prop became optional');
 const stories = generateStories(fixture, contracts);
-if (!stories.includes("src: ''")) throw new Error('required code-only prop left Storybook untypeable');
+if (!stories.includes('src: "src-sample"')) {
+  throw new Error('required code-only prop did not receive a concrete story-only sample');
+}
 
 console.log('✔ scalar props can be explicitly code-only and still drive DOM attributes');

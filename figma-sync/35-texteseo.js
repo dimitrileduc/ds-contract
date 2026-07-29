@@ -39,9 +39,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "SectionHeader",
-                  "dep": "SectionHeader",
+                  "dep":"SectionHeader",
                   "depProps": {
                     "Titre": "Visitez notre showroom à Pepinster ou contactez-nous",
                     "Accroche": "Plus de 50 ans d’expérience",
@@ -101,9 +101,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Réponse",
@@ -111,9 +111,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 2",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
@@ -121,9 +121,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 3",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Réponse",

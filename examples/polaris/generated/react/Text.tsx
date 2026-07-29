@@ -35,7 +35,7 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(function Text(
 ) {
   const classes = [styles.root, styles[`alignment-${alignment}`], styles[`as-${as}`], styles[`tone-${tone}`], styles[`fontWeight-${fontWeight}`], styles[`variant-${variant}`], className].filter(Boolean).join(' ');
   return (
-    <p ref={ref} className={classes} data-break-word={breakWord || undefined} data-numeric={numeric || undefined} data-truncate={truncate || undefined} data-visually-hidden={visuallyHidden || undefined} {...rest}>
+    <p ref={ref} className={classes} data-break-word={breakWord || undefined} data-numeric={numeric || undefined} data-truncate={truncate || undefined} data-visually-hidden={visuallyHidden || undefined}  {...rest}>
       {children}
     </p>
   );

@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-22-categorie-dc3a406f",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:4438;2115:4178",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie",
+      "Texte": "Le classique intemporel. La qualité et la sécurité Hörmann au meilleur rapport qualité-prix. Idéale pour les box de garage.",
+      "Titre": "Porte basculante"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.dc3a406f3ce6ab14a5b439cf3982c3bfe4744533",
+      "carte.content.ec00fa3de4c920d4",
+      "carte.occurrence.5d6ef406647ed250"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 1279370,
+      "contrastPixels": 1279360,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1486,
+        "height": 1232
+      },
+      "imagePixels": 1242286,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 1407450,
+      "contrastPixels": 1407450,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 1532,
+        "height": 1290
+      },
+      "imagePixels": 1242296,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-dc3a406f3ce6",
+      "expectedSha256": "1f6a7e03377e797398b4167a05d9804bd37c6b634df851ba4e961b127873ddf0",
+      "actualSha256": "1f6a7e03377e797398b4167a05d9804bd37c6b634df851ba4e961b127873ddf0",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1205,
+      "naturalHeight": 980,
+      "renderedWidth": 743,
+      "renderedHeight": 418,
+      "visiblePixels": 53248,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "categorieImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Bouton": {
+        "figma": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.47644683714670255,
+          "height": 0.04823151125401929
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.4761313930013459,
+          "height": 0.04823151125401929
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.0003154441453566692,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Bouton"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.11419551397177516,
+    "maskedDiagnosticPct": 0.046229697812077794,
+    "maskCoveragePct": 10.951950249488258,
+    "thresholdPct": 2.5,
+    "regions": {
+      "cta": {
+        "id": "cta",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 1184,
+          "width": 708,
+          "height": 60
+        },
+        "totalPixels": 42480,
+        "mismatchedPixels": 493,
+        "diffPct": 1.1605461393596987,
+        "referenceSignalPixels": 6481,
+        "generatedSignalPixels": 7215,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 836
+        },
+        "totalPixels": 1242296,
+        "mismatchedPixels": 757,
+        "diffPct": 0.06093555803125825,
+        "referenceSignalPixels": 1242286,
+        "generatedSignalPixels": 1242296,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 900,
+          "width": 1486,
+          "height": 220
+        },
+        "totalPixels": 326920,
+        "mismatchedPixels": 861,
+        "diffPct": 0.26336718463232595,
+        "referenceSignalPixels": 30593,
+        "generatedSignalPixels": 31339,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 1244
+        },
+        "totalPixels": 1848584,
+        "mismatchedPixels": 2111,
+        "diffPct": 0.11419551397177516,
+        "referenceSignalPixels": 1279360,
+        "generatedSignalPixels": 1280850,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text",
+      "cta"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.11419551397177516,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-22-categorie-dc3a406f/figma.png",
+    "cases/carte-occurrence-22-categorie-dc3a406f/generated.png",
+    "cases/carte-occurrence-22-categorie-dc3a406f/diff.png",
+    "cases/carte-occurrence-22-categorie-dc3a406f/triptych.png"
+  ]
+}

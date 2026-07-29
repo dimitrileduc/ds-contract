@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "caseId": "member-card-occurrence-01-c60f37ab",
+  "subjectId": "member-card",
+  "figma": {
+    "nodeId": "I2115:4044;2115:3931",
+    "setNodeId": "2074:2072",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Nom": "Cécilia Piqueray",
+      "Poste": "Gérante"
+    }
+  },
+  "contract": {
+    "id": "ds.member-card",
+    "version": "1.2.0",
+    "factIds": [
+      "member-card.image.base.508388d688080236a8ce2c4bfc27ce3dd7d724e9",
+      "member-card.image.portrait.c60f37abee2a78de43e7b189e77356ab1a16c7e4",
+      "member-card.content.e194c3e928887616",
+      "member-card.occurrence.daab3391dc13ecee"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 424300,
+      "contrastPixels": 424300,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 728,
+        "height": 888
+      },
+      "imagePixels": 416244,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 425486,
+      "contrastPixels": 425482,
+      "paintedBounds": {
+        "x": 65,
+        "y": 64,
+        "width": 727,
+        "height": 887
+      },
+      "imagePixels": 416141,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "member-card-normal",
+      "expectedSha256": "7253598106cfb978042c7eb7a9aa06585a6857d3fc8e5f20d962e62401fa2746",
+      "actualSha256": "7253598106cfb978042c7eb7a9aa06585a6857d3fc8e5f20d962e62401fa2746",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 2048,
+      "naturalHeight": 2048,
+      "renderedWidth": 363.5,
+      "renderedHeight": 363.5,
+      "visiblePixels": 65536,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 895
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 895
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "MemberPicture": {
+        "figma": {
+          "x": 0.0006868131868131869,
+          "y": 0,
+          "width": 0.9986263736263736,
+          "height": 0.8122905027932961
+        },
+        "generated": {
+          "x": 0.0006868131868131869,
+          "y": 0,
+          "width": 0.9986263736263736,
+          "height": 0.8122905027932961
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0.1510989010989011,
+          "y": 0.8480446927374302,
+          "width": 0.6978021978021978,
+          "height": 0.15195530726256984
+        },
+        "generated": {
+          "x": 0.15193595467032966,
+          "y": 0.8480446927374302,
+          "width": 0.6961066277472527,
+          "height": 0.15195530726256984
+        },
+        "delta": {
+          "x": 0.0008370535714285754,
+          "y": 0,
+          "width": -0.001695570054945028,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:text"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.16422125360672846,
+    "maskedDiagnosticPct": 0.11611001507101343,
+    "maskCoveragePct": 7.736202345140892,
+    "thresholdPct": 2.5,
+    "regions": {
+      "portrait": {
+        "id": "portrait",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 727
+        },
+        "totalPixels": 529256,
+        "mismatchedPixels": 698,
+        "diffPct": 0.13188324742657617,
+        "referenceSignalPixels": 416244,
+        "generatedSignalPixels": 416141,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 110,
+          "y": 759,
+          "width": 508,
+          "height": 136
+        },
+        "totalPixels": 69088,
+        "mismatchedPixels": 374,
+        "diffPct": 0.5413385826771654,
+        "referenceSignalPixels": 8056,
+        "generatedSignalPixels": 9341,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 895
+        },
+        "totalPixels": 651560,
+        "mismatchedPixels": 1070,
+        "diffPct": 0.16422125360672846,
+        "referenceSignalPixels": 424300,
+        "generatedSignalPixels": 425482,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "portrait",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.16422125360672846,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "member-card-shared-base-image-unbindable"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/member-card-occurrence-01-c60f37ab/figma.png",
+    "cases/member-card-occurrence-01-c60f37ab/generated.png",
+    "cases/member-card-occurrence-01-c60f37ab/diff.png",
+    "cases/member-card-occurrence-01-c60f37ab/triptych.png"
+  ]
+}

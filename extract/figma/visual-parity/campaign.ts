@@ -114,6 +114,17 @@ export interface CampaignCase {
   factIds: string[];
   fixtureAssetIds?: string[];
   codeProps?: Record<string, unknown>;
+  /**
+   * Measured Figma geometry used only to recreate the containing layout of a
+   * concrete comparison occurrence.  This never alters the reusable
+   * component contract: a member of `partWidths` must name an already-pinned
+   * `figmaPartNodeIds` descendant, whose GET bounding box supplies the width.
+   */
+  layoutContext?: {
+    rootWidth?: 'figma-root';
+    rootHeight?: 'figma-root';
+    partWidths?: string[];
+  };
   requiredParts?: string[];
   aliases?: CampaignAlias[];
   /** Canonical equality receipts required when aliases deduplicate cases. */
@@ -292,6 +303,13 @@ export function validateVisualCampaign(
     }
 
     const allCaseIds = new Set<string>();
+    // A campaign may opt into its explicit Figma/contract coverage declaration
+    // through subject.coverage.requiredFactIds.  Once it does, every canonical
+    // case fact participates in one exact campaign-wide union: aliases cannot
+    // add coverage because they must repeat their canonical case facts.
+    const declaredFactIds: string[] = [];
+    const observedFactIds: string[] = [];
+    let hasDeclaredCoverage = false;
     for (const [subjectIndex, subject] of subjects.entries()) {
       const subjectPath = `$.subjects[${subjectIndex}]`;
       if (!isRecord(subject)) {
@@ -304,6 +322,12 @@ export function validateVisualCampaign(
       }
       if (!isNonEmptyString(subject.figmaSetNodeId)) {
         push(issues, 'subject-set-node', `${subjectPath}.figmaSetNodeId`, 'figmaSetNodeId is required');
+      }
+      if (subject.coverage !== undefined) {
+        hasDeclaredCoverage = true;
+        if (isRecord(subject.coverage) && isStringArray(subject.coverage.requiredFactIds)) {
+          declaredFactIds.push(...subject.coverage.requiredFactIds);
+        }
       }
       if (!Array.isArray(subject.cases) || subject.cases.length === 0) {
         push(issues, 'case-shape', `${subjectPath}.cases`, 'each subject must declare at least one canonical case');
@@ -326,9 +350,37 @@ export function validateVisualCampaign(
         }
         if (!isStringArray(campaignCase.factIds) || campaignCase.factIds.length === 0 || !unique(campaignCase.factIds)) {
           push(issues, 'case-facts', `${casePath}.factIds`, 'case must declare a non-empty unique fact set');
+        } else {
+          observedFactIds.push(...campaignCase.factIds);
         }
         if (campaignCase.requiredParts !== undefined && (!isStringArray(campaignCase.requiredParts) || !campaignCase.requiredParts.includes('root'))) {
           push(issues, 'required-parts', `${casePath}.requiredParts`, 'requiredParts must include root');
+        }
+        if (campaignCase.layoutContext !== undefined) {
+          const context = campaignCase.layoutContext;
+          const partWidths = isRecord(context) ? context.partWidths : undefined;
+          const validRootWidth = isRecord(context) &&
+            (context.rootWidth === undefined || context.rootWidth === 'figma-root');
+          const validRootHeight = isRecord(context) &&
+            (context.rootHeight === undefined || context.rootHeight === 'figma-root');
+          const validPartWidths = partWidths === undefined ||
+            (isStringArray(partWidths) && partWidths.length > 0 && unique(partWidths));
+          const validKeys = isRecord(context) &&
+            Object.keys(context).every((key) => key === 'rootWidth' || key === 'rootHeight' || key === 'partWidths') &&
+            Object.keys(context).length > 0;
+          const namedParts = isRecord(campaignCase.figmaPartNodeIds)
+            ? Object.keys(campaignCase.figmaPartNodeIds)
+            : [];
+          const referencedParts = Array.isArray(partWidths) ? partWidths : [];
+          const validPartReferences = referencedParts.every((partName) => namedParts.includes(partName));
+          if (!validRootWidth || !validRootHeight || !validPartWidths || !validKeys || !validPartReferences) {
+            push(
+              issues,
+              'case-shape',
+              `${casePath}.layoutContext`,
+              'layoutContext may contain rootWidth/rootHeight: "figma-root" and/or a non-empty unique partWidths array whose names are pinned by figmaPartNodeIds',
+            );
+          }
         }
 
         const declaredAssets = isStringArray(campaignCase.fixtureAssetIds) ? campaignCase.fixtureAssetIds : [];
@@ -386,6 +438,11 @@ export function validateVisualCampaign(
         }
         if (isStringArray(campaignCase.factIds)) validateAliases(campaignCase.aliases, campaignCase.factIds, `${casePath}.aliases`, issues);
       }
+    }
+
+    if (hasDeclaredCoverage) {
+      const coverage = validateExactCoverage(declaredFactIds, observedFactIds);
+      if (!coverage.ok) issues.push(...coverage.issues);
     }
   }
 

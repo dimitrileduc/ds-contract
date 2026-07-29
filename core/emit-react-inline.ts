@@ -42,11 +42,14 @@ import {
   enumProps,
   isArrayType,
   isEnum,
+  isRichText,
   isMultiRoot,
+  namedRichTextProps,
   namedSlots,
   namedTextProps,
   numberProps,
   rootElementsOf,
+  richTextStrongStyle,
   textProps,
   topRoots,
   UA_MARGIN_ELEMENTS,
@@ -392,6 +395,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     : ELEMENT_META[contract.semantics.element];
   const slots = namedSlots(contract);
   const texts = namedTextProps(contract);
+  const richTexts = namedRichTextProps(contract);
   const toggledCodeProps = new Set(events.filter((e) => e.toggles).map((e) => codePropOf(e.toggles!.prop)));
 
   const propLines: string[] = [];
@@ -404,6 +408,10 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
         .map(([f, t]) => `${f}: ${t === 'text' ? 'string' : t}`)
         .join('; ');
       propLines.push(`${doc}  ${p.bindings.code.prop}?: Array<{ ${fields} }>;`);
+    } else if (isRichText(p)) {
+      propLines.push(
+        `${doc}  ${p.bindings.code.prop}${p.required ? '' : '?'}: Array<{ text: string; strong?: boolean }>;`,
+      );
     } else if (p.type === 'boolean') {
       propLines.push(`${doc}  ${p.bindings.code.prop}?: boolean;`);
     } else if (p.type === 'number') {
@@ -438,6 +446,13 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       p.required || p.default === undefined
         ? p.bindings.code.prop
         : `${p.bindings.code.prop} = '${p.default}'`,
+    );
+  }
+  for (const p of richTexts) {
+    destructured.push(
+      p.required || p.default === undefined
+        ? p.bindings.code.prop
+        : `${p.bindings.code.prop} = ${JSON.stringify(p.default)}`,
     );
   }
   for (const p of arrayProps(contract)) destructured.push(p.bindings.code.prop);
@@ -564,15 +579,93 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
   };
 
   const NUMERIC_ATTRS = new Set(['rows', 'cols', 'tabIndex', 'colSpan', 'rowSpan']);
+  const NUMERIC_ATTR_VALUE = /^-?\d+(?:\.\d+)?$/;
+  const isNumericAttrValue = (attr: string, value: string): boolean =>
+    NUMERIC_ATTRS.has(attr) && NUMERIC_ATTR_VALUE.test(value);
+  const attrValueExpression = (attr: string, value: string): string => {
+    const ref = value.match(/^\{([a-z][\w-]*)\}$/);
+    if (ref) {
+      const code = codePropOf(ref[1]);
+      return NUMERIC_ATTRS.has(attr) ? `Number(${code})` : `String(${code})`;
+    }
+    return isNumericAttrValue(attr, value) ? value : JSON.stringify(value);
+  };
   const partAttrString = (part: Part): string =>
     Object.entries(part.attrs ?? {})
       .map(([attr, value]) => {
-        const ref = value.match(/^\{([a-z][\w-]*)\}$/);
-        if (ref) return ` ${attr}={String(${codePropOf(ref[1])})}`;
-        if (NUMERIC_ATTRS.has(attr) && /^\d+$/.test(value)) return ` ${attr}={${value}}`;
-        return ` ${attr}=${JSON.stringify(value)}`;
+        const isExpression = /^\{([a-z][\w-]*)\}$/.test(value) || isNumericAttrValue(attr, value);
+        const expression = attrValueExpression(attr, value);
+        return isExpression ? ` ${attr}={${expression}}` : ` ${attr}=${expression}`;
       })
       .join('');
+
+  const attrsByPropString = (part: Part): string => {
+    const entries = part.attrsByProp
+      ? (Array.isArray(part.attrsByProp) ? part.attrsByProp : [part.attrsByProp])
+      : [];
+    return entries
+      .map((entry) => {
+        const map = Object.entries(entry.map)
+          .map(([selector, attrs]) => {
+            const values = Object.entries(attrs)
+              .map(([attr, value]) => {
+                return `${JSON.stringify(attr)}: ${attrValueExpression(attr, value)}`;
+              })
+              .join(', ');
+            return `${JSON.stringify(selector)}: { ${values} }`;
+          })
+          .join(', ');
+        const selector = codePropOf(entry.prop);
+        const selectorProp = contract.props.find((p) => p.name === entry.prop);
+        const keyType = Object.keys(entry.map).map((value) => JSON.stringify(value)).join(' | ') || 'never';
+        const key = selectorProp?.type === 'boolean'
+          ? `String(${selector}) as ${keyType}`
+          : `${selector} as ${keyType}`;
+        return ` {...(({ ${map} } as const)[${key}] ?? {})}`;
+      })
+      .join('');
+  };
+  const renderedPartAttrs = (part: Part): string => partAttrString(part) + attrsByPropString(part);
+
+  const slotControlValueByPart = new Map<string, string>();
+  const controlledSlots = walkAnatomy(contract).filter((w) => w.part.slot?.control);
+  const cssStyleKey = (property: string): string => property.replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase());
+  const cssStyleValue = (value: string): string => {
+    const token = value.match(/^\{([^}]+)\}$/);
+    return token ? JSON.stringify(resolveValue(token[1])) : JSON.stringify(value);
+  };
+  for (const [index, { name: partName, part }] of controlledSlots.entries()) {
+    const slot = part.slot!;
+    const source = slot.name === 'children' ? 'children' : slot.name;
+    const forwarded = `slotControl${index}`;
+    const attrs = Object.entries(slot.control!.attributes ?? {})
+      .map(([attr, declaration]) => {
+        const code = codePropOf(declaration.prop);
+        const selected = Object.entries(declaration.values).reduceRight(
+          (fallback, [value, resolved]) =>
+            `${code} === ${JSON.stringify(value)} ? ${resolved === null ? 'undefined' : JSON.stringify(resolved)} : ${fallback}`,
+          'undefined',
+        );
+        return `${JSON.stringify(attr)}: ${selected}`;
+      });
+    const styles = [`...((${source}.props.style as Record<string, unknown> | undefined) ?? {})`];
+    if (slot.control!.fill === 'width') styles.push(`width: '100%'`);
+    for (const [property, declaration] of Object.entries(slot.control!.styles ?? {})) {
+      const code = codePropOf(declaration.prop);
+      const selected = Object.entries(declaration.values).reduceRight(
+        (fallback, [value, resolved]) =>
+          `${code} === ${JSON.stringify(value)} ? ${resolved === null ? 'undefined' : cssStyleValue(resolved)} : ${fallback}`,
+        'undefined',
+      );
+      styles.push(`${JSON.stringify(cssStyleKey(property))}: ${selected}`);
+      if (property === 'border-color') styles.push(`"--dsc-border-color": ${selected}`);
+    }
+    if (styles.length > 1) attrs.push(`style: { ${styles.join(', ')} }`);
+    prelude.push(
+      `  const ${forwarded} = isValidElement<Record<string, unknown>>(${source}) ? cloneElement(${source}, { ${attrs.join(', ')} }) : ${source};`,
+    );
+    slotControlValueByPart.set(partName, forwarded);
+  }
 
   // SVG assets (icons plus arbitrary governed vectors), same table as CSS Modules.
   // Inline styles cannot target the injected <svg>, so dimensions are pinned
@@ -606,13 +699,22 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     ),
   ];
 
-  const depAttrString = (dep: Contract, fixedProps: Record<string, string | boolean>): string => {
+  const depAttrString = (
+    dep: Contract,
+    fixedProps: Record<string, string | boolean | number>,
+    omitChildren = false,
+  ): string => {
     const parts: string[] = [];
     for (const [propName, value] of Object.entries(fixedProps)) {
       const depProp = dep.props.find((p) => p.name === propName);
+      if (omitChildren && depProp?.bindings.code.prop === 'children') continue;
       const codeName = depProp?.bindings.code.prop ?? propName;
       if (typeof value === 'boolean') {
         parts.push(value ? ` ${codeName}` : '');
+        continue;
+      }
+      if (typeof value === 'number') {
+        parts.push(` ${codeName}={${value}}`);
         continue;
       }
       const parentRef = value.match(/^\{([a-z][\w-]*)\}$/);
@@ -626,6 +728,28 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     return parts.join('');
   };
 
+  // A composed child whose text prop binds to `children` must receive its
+  // value as JSX child content. Serializing that mapping as children={...}
+  // and then rendering the child's text default creates duplicate children.
+  const componentChildrenJsx = (
+    dep: Contract,
+    fixedProps: Record<string, string | boolean | number>,
+  ): string | undefined => {
+    for (const [propName, value] of Object.entries(fixedProps)) {
+      const depProp = dep.props.find((p) => p.name === propName);
+      if (depProp?.bindings.code.prop !== 'children') continue;
+      if (typeof value === 'string') {
+        const parentRef = value.match(/^\{([a-z][\w-]*)\}$/);
+        if (parentRef) {
+          const parentProp = contract.props.find((p) => p.name === parentRef[1]);
+          return `{${parentProp?.bindings.code.prop ?? parentRef[1]}}`;
+        }
+      }
+      return String(value);
+    }
+    return undefined;
+  };
+
   const renderPart = (partName: string, part: Part): string => {
     if (part.vectorAsset) {
       const glyph = `dangerouslySetInnerHTML={{ __html: ICONS[${JSON.stringify(part.vectorAsset.asset)}] }}`;
@@ -635,11 +759,11 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       const ref = part.icon.asset.match(/^\{([a-z][\w-]*)\}$/);
       const keyExpr = ref ? codePropOf(ref[1]) : JSON.stringify(part.icon.asset);
       const glyph = `dangerouslySetInnerHTML={{ __html: ICONS[${keyExpr}] }}`;
-      const hasAttrs = Object.keys(part.attrs ?? {}).length > 0;
+      const hasAttrs = Object.keys(part.attrs ?? {}).length > 0 || part.attrsByProp !== undefined;
       const node = part.element
-        ? `<${part.element} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}${eventAttrsFor(partName, part, part.element)}><span aria-hidden="true" style={{ display: 'inline-flex' }} ${glyph} /></${part.element}>`
+        ? `<${part.element} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}${eventAttrsFor(partName, part, part.element)}><span aria-hidden="true" style={{ display: 'inline-flex' }} ${glyph} /></${part.element}>`
         : hasAttrs
-          ? `<span style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)} ${glyph} />`
+          ? `<span style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)} ${glyph} />`
           : `<span style=${styleExpr(partName, false, stylesWhenExprs(part))} aria-hidden="true" ${glyph} />`;
       return wrapPresence(part, node);
     }
@@ -658,7 +782,9 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
             for (const [field, v] of Object.entries(rec)) {
               const depProp = dep.props.find((p) => p.name === field);
               const codeName = depProp?.bindings.code.prop ?? field;
-              if (typeof v === 'string' && codeName === 'children') {
+              if (typeof v === 'string' && isRichText(depProp!)) {
+                fieldAttrs += ` ${codeName}={[{ text: ${JSON.stringify(v)} }]}`;
+              } else if (typeof v === 'string' && codeName === 'children') {
                 itemText = v;
               } else if (typeof v === 'boolean') {
                 fieldAttrs += v ? ` ${codeName}` : '';
@@ -678,9 +804,11 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     }
     if (part.component) {
       const dep = ctx.contracts.get(part.component.id)!;
-      const attrs = depAttrString(dep, part.component.props ?? {});
+      const fixedProps = part.component.props ?? {};
+      const mappedChildren = componentChildrenJsx(dep, fixedProps);
+      const attrs = depAttrString(dep, fixedProps, mappedChildren !== undefined);
       const depChildren = textProps(dep).find((p) => p.bindings.code.prop === 'children');
-      const text = part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
+      const text = mappedChildren ?? part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
       const node = text !== undefined
         ? `<${dep.name}${attrs}>${text}</${dep.name}>`
         : `<${dep.name}${attrs} />`;
@@ -689,24 +817,39 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     if (part.slot) {
       const el = part.element ?? 'div';
       const expr = part.slot.name === 'children' ? 'children' : part.slot.name;
-      const node = `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}>{${expr}}</${el}>`;
+      const value = slotControlValueByPart.get(partName) ?? expr;
+      const node = `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}>{${value}}</${el}>`;
       return part.optional ? `{${expr} != null ? ${node} : null}` : wrapPresence(part, node);
     }
     if (part.content) {
       const el = part.element ?? 'span';
       const prop = contract.props.find(
-        (p) => p.type === 'text' && p.bindings.code.prop === part.content!.prop,
+        (p) =>
+          (p.type === 'text' || p.type === 'rich-text') &&
+          p.bindings.code.prop === part.content!.prop,
       )!;
+      const strong = richTextStrongStyle(part.content.marks?.strong);
+      const strongStyle = strong.fontWeight
+        ? ` style={{ ${[
+            `fontWeight: ${JSON.stringify(strong.fontWeight.startsWith('{') ? resolveValue(stripBraces(strong.fontWeight)) : strong.fontWeight)}`,
+            strong.fontSize ? `fontSize: ${JSON.stringify(strong.fontSize)}` : null,
+            strong.lineHeight ? `lineHeight: ${JSON.stringify(strong.lineHeight)}` : null,
+          ].filter(Boolean).join(', ')} }}`
+        : '';
+      const inner =
+        prop.type === 'rich-text'
+          ? `{${prop.bindings.code.prop}.map(({ text, strong }, index) => strong ? <strong key={index}${strongStyle}>{text}</strong> : <span key={index}>{text}</span>)}`
+          : `{${prop.bindings.code.prop}}`;
       return wrapPresence(
         part,
-        `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>{${prop.bindings.code.prop}}</${el}>`,
+        `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
       );
     }
     if (part.text !== undefined) {
       const el = part.element ?? 'span';
       return wrapPresence(
         part,
-        `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}>${part.text}</${el}>`,
+        `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}>${part.text}</${el}>`,
       );
     }
     if (part.meter) {
@@ -723,7 +866,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       .join('\n');
     return wrapPresence(
       part,
-      `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
+      `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
     );
   };
 
@@ -769,6 +912,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
   }
   const rootEvent = events.find((e) => e.trigger === 'root');
   if (rootEvent) elementAttrs.push(`onClick={handle${pascal(rootEvent.name)}}`);
+  if (root) elementAttrs.push(renderedPartAttrs(root));
   elementAttrs.push('{...rest}');
 
   // Flatten variant styles into a single lookup: `${prop}-${value}:${part}`.
@@ -822,7 +966,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
  * MULTI-ROOT composite — ${topRoots(contract).length} top-level roots (${topRoots(contract).map(([n]) => n).join(', ')})
  * render as SIBLINGS in a Fragment; there is no single wrapping element.
  */
-import type { ${typeImports} } from 'react';
+${controlledSlots.length > 0 ? "import { cloneElement, isValidElement } from 'react';\n" : ''}import type { ${typeImports} } from 'react';
 ${depImports}${depImports ? '\n' : ''}
 ${iconsConst}${keyframesConst}const S: Record<string, CSSProperties> = ${JSON.stringify(baseStyles, null, 2)};
 
@@ -857,7 +1001,7 @@ export function ${name}({ ${destructured.join(', ')} }: ${name}Props) {
  * prop; PART-level state overrides (Part.states, v13) are omitted — the same
  * declared limit as the hover states (state-selected descendant styling).${overlapNote}${repeatNote}
  */
-import { forwardRef${events.some((e) => e.toggles) ? ', useState' : ''} } from 'react';
+import { forwardRef${events.some((e) => e.toggles) ? ', useState' : ''}${controlledSlots.length > 0 ? ', cloneElement, isValidElement' : ''} } from 'react';
 import type { ${typeImports} } from 'react';
 ${depImports}${depImports ? '\n' : ''}
 ${iconsConst}${roleMapConst}${elementMapConst}${keyframesConst}const S: Record<string, CSSProperties> = ${JSON.stringify(baseStyles, null, 2)};

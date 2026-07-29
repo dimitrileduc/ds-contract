@@ -36,7 +36,7 @@ export const Tag = forwardRef<HTMLSpanElement, TagProps>(function Tag(
 ) {
   const classes = [styles.root, styles[`size-${size}`], className].filter(Boolean).join(' ');
   return (
-    <span ref={ref} className={classes} data-disabled={disabled || undefined} data-removable={removable || undefined} data-clickable={clickable || undefined} data-linked={linked || undefined} {...rest}>
+    <span ref={ref} className={classes} data-disabled={disabled || undefined} data-removable={removable || undefined} data-clickable={clickable || undefined} data-linked={linked || undefined}  {...rest}>
       {linked ? (<a className={styles.link}>
 {linked ? (<span className={styles["text-2"]}>
 {linked ? (<span className={styles["label-2"]}>Wholesale</span>) : null}

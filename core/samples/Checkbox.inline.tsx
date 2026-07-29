@@ -72,7 +72,7 @@ export const Checkbox = forwardRef<HTMLSpanElement, CheckboxProps>(function Chec
   ref,
 ) {
   return (
-    <span ref={ref} style={{ ...S.root, ...(V[`checked-${checked}:root`] ?? {}), ...style }} {...rest}>
+    <span ref={ref} style={{ ...S.root, ...(V[`checked-${checked}:root`] ?? {}), ...style }}  {...rest}>
       <input style={{ ...S.input }} type="checkbox">
 
 </input>

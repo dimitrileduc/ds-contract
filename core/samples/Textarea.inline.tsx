@@ -52,7 +52,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
   ref,
 ) {
   return (
-    <textarea ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <textarea ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <span style={{ ...S.texteDeSaisie }}>{value}</span>
     </textarea>
   );

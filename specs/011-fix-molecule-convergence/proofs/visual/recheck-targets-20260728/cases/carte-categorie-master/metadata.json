@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-categorie-master",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "2063:1611",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.3c54b9a6dc4162164e25c6513d82696c73717826"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 1273105,
+      "contrastPixels": 1272865,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1486,
+        "height": 1227
+      },
+      "imagePixels": 1242056,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 1619122,
+      "contrastPixels": 1618919,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 1532,
+        "height": 1290
+      },
+      "imagePixels": 1242093,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-categorie",
+      "expectedSha256": "d87ba6d82785beefb2cb50c1536d7d18c90c919d34001b9b1ccfbdc6e4a09060",
+      "actualSha256": "d87ba6d82785beefb2cb50c1536d7d18c90c919d34001b9b1ccfbdc6e4a09060",
+      "complete": true,
+      "decoded": false,
+      "naturalWidth": 1350,
+      "naturalHeight": 900,
+      "renderedWidth": 743,
+      "renderedHeight": null,
+      "visiblePixels": 43776,
+      "verdict": "fail",
+      "failures": [
+        "image-not-decoded"
+      ]
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "img": {
+        "figma": null,
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "delta": null,
+        "verdict": "fail"
+      },
+      "text": {
+        "figma": null,
+        "generated": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "delta": null,
+        "verdict": "fail"
+      },
+      "Bouton": {
+        "figma": null,
+        "generated": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 1,
+          "height": 0.04823151125401929
+        },
+        "delta": null,
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:img",
+      "part:text",
+      "part:Bouton"
+    ],
+    "verdict": "fail",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 50.24889320690864,
+    "maskedDiagnosticPct": 51.21352376814134,
+    "maskCoveragePct": 9.864956096125468,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 836
+        },
+        "totalPixels": 1242296,
+        "mismatchedPixels": 713759,
+        "diffPct": 57.454825581020955,
+        "referenceSignalPixels": 1242056,
+        "generatedSignalPixels": 1242093,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 900,
+          "width": 1486,
+          "height": 220
+        },
+        "totalPixels": 326920,
+        "mismatchedPixels": 122183,
+        "diffPct": 37.37397528447327,
+        "referenceSignalPixels": 27441,
+        "generatedSignalPixels": 151376,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 1244
+        },
+        "totalPixels": 1848584,
+        "mismatchedPixels": 928893,
+        "diffPct": 50.24889320690864,
+        "referenceSignalPixels": 1272865,
+        "generatedSignalPixels": 1492319,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "raw-threshold-exceeded",
+      "region:image:region-threshold-exceeded",
+      "region:text:region-threshold-exceeded",
+      "region:whole:region-threshold-exceeded"
+    ]
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 50.24889320690864,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "global-score-exceeds-threshold",
+      "required-region-failed",
+      "required-region-failed",
+      "required-region-failed",
+      "geometry-receipt-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "carte-occurrence-census-not-yet-pinned"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-categorie-master/figma.png",
+    "cases/carte-categorie-master/generated.png",
+    "cases/carte-categorie-master/diff.png",
+    "cases/carte-categorie-master/triptych.png"
+  ]
+}

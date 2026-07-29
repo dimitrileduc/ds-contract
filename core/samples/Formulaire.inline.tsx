@@ -89,7 +89,7 @@ export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function F
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.column }}>
 <SectionHeader titre="Prenez contact avec nous dès maintenant !" accroche="Une demande de devis ? Une réparation ?" disposition="standard" />
 <div style={{ ...S.features }}>

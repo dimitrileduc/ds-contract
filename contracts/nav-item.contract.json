@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.nav-item",
   "name": "NavItem",
-  "version": "1.0.0",
-  "description": "Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact.",
+  "version": "1.1.0",
+  "description": "Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; chevron and active are Figma BOOLEAN facts, and the transparent white-ink composition is intended for a dark Header/photo surface.",
   "semantics": {
     "element": "a",
     "provenance": "extracted"
@@ -70,6 +70,16 @@
       "attrs": {
         "href": "{href}"
       },
+      "attrsByProp": [
+        {
+          "prop": "actif",
+          "map": {
+            "true": {
+              "aria-current": "page"
+            }
+          }
+        }
+      ],
       "layout": {
         "display": "flex",
         "direction": "row",
@@ -91,7 +101,15 @@
           "icon": {
             "asset": "octicon-chevron-down12",
             "size": 16
-          }
+          },
+          "glyphStylesWhen": [
+            {
+              "prop": "chevron",
+              "styles": {
+                "transform": "translateY(-1px)"
+              }
+            }
+          ]
         },
         "Soulignement": {
           "tokens": {
@@ -111,7 +129,7 @@
               "prop": "actif",
               "styles": {
                 "right": "0px",
-                "bottom": "0px",
+                "top": "22px",
                 "left": "0px"
               }
             }
@@ -124,7 +142,35 @@
       },
       "declared": {
         "position": "relative",
-        "text-transform": "uppercase"
+        "text-transform": "uppercase",
+        "text-decoration-line": "none",
+        "text-rendering": "geometricprecision"
+      },
+      "geometryJustification": {
+        "cause": "typographic-subpixel-rounding",
+        "reason": "The Figma and Chromium renderers round the observed Montserrat HUG glyph advances on different sub-pixel grids. This names only the measured residual; the NavItem keeps intrinsic HUG sizing and adds no fixed width, letter-spacing, or wrapper-transform compensation. The chevron optical offset targets only its internal SVG, leaving the measured anatomy box unchanged.",
+        "bounds": {
+          "root": {
+            "x": 0,
+            "y": 0,
+            "width": 1.25,
+            "height": 0
+          },
+          "parts": {
+            "libell": {
+              "x": 0,
+              "y": 0,
+              "width": 0.001,
+              "height": 0
+            },
+            "OcticonChevronDown12": {
+              "x": 0.001,
+              "y": 0.063,
+              "width": 0.001,
+              "height": 0
+            }
+          }
+        }
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",

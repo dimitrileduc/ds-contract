@@ -259,9 +259,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -276,9 +276,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 2",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -293,9 +293,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 3",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -310,9 +310,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 4",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -327,9 +327,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 5",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",

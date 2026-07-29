@@ -885,9 +885,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "prcdent",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {
                 "Glyphe gauche": "ChevronLeft",
                 "Icone droite": false,
@@ -897,9 +897,9 @@ const COMPONENTS = [
               }
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Suivant",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {
                 "Glyphe gauche": "ChevronRight",
                 "Icone droite": false,
@@ -918,17 +918,10 @@ const COMPONENTS = [
     "setName": "Carte",
     "contractId": "ds.carte",
     "anchorKey": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
-    "description": "Carte — generated from contract ds.carte v1.0.0 †",
+    "description": "Carte — generated from contract ds.carte v2.0.0 †",
     "isSet": true,
     "boolProps": [],
-    "textProps": [
-      {
-        "default": ""
-      },
-      {
-        "default": ""
-      }
-    ],
+    "textProps": [],
     "fontStyles": [
       "Medium",
       "Regular"
@@ -949,14 +942,14 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "lits": {
+            "width": 364,
             "itemSpacing": 24,
-            "paddingBottom": 24,
-            "radius": 10
+            "paddingBottom": 24
           },
           "children": [
             {
               "type": "frame",
-              "name": "img",
+              "name": "reassuranceImage",
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
@@ -990,23 +983,25 @@ const COMPONENTS = [
               "children": [
                 {
                   "type": "text",
-                  "name": "Titre",
+                  "name": "TitreReassurance",
                   "characters": "Pour portes de garage",
                   "fontSize": 24,
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 30,
+                  "textAlignH": "CENTER",
                   "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
                   "type": "text",
-                  "name": "Texte",
+                  "name": "TexteReassurance",
                   "characters": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
                   "fontSize": 14,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
                   "textFill": "color/noir",
                   "lineHeight": 24,
+                  "textAlignH": "CENTER",
                   "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 }
@@ -1030,21 +1025,24 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "lits": {
+            "width": 743,
             "itemSpacing": 32,
-            "paddingBottom": 0,
-            "radius": 0
+            "paddingBottom": 0
           },
           "children": [
             {
               "type": "frame",
-              "name": "img",
+              "name": "categorieImage",
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
-                "counter": "MIN"
+                "counter": "MIN",
+                "stretchChildren": true
               },
+              "grow": true,
               "lits": {
-                "height": 364,
+                "height": 418,
+                "minHeight": 0,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
@@ -1071,33 +1069,54 @@ const COMPONENTS = [
               "children": [
                 {
                   "type": "text",
-                  "name": "Titre",
+                  "name": "TitreCategorie",
                   "characters": "Pour portes de garage",
                   "fontSize": 32,
                   "fontStyle": "Medium",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 40,
+                  "textCase": "UPPER",
+                  "textAlignH": "LEFT",
                   "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
                 {
                   "type": "text",
-                  "name": "Texte",
+                  "name": "TexteCategorie",
                   "characters": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
                   "fontSize": 18,
                   "fontStyle": "Regular",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 27,
+                  "textAlignH": "LEFT",
                   "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 }
               ]
             },
             {
-              "type": "instance",
+              "type": "frame",
               "name": "Bouton",
-              "dep": "Button",
-              "depProps": {}
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "children": [
+                {
+                  "type":"instance",
+                  "name": "action",
+                  "dep":"Button",
+                  "depProps": {
+                    "Style": "Link",
+                    "Libelle": "Contactez-nous",
+                    "Icone gauche": true,
+                    "Icone droite": true,
+                    "Glyphe gauche": "Pdf",
+                    "Glyphe droite": "Download"
+                  }
+                }
+              ]
             }
           ]
         }
@@ -1268,9 +1287,9 @@ const COMPONENTS = [
               "contentProp": "Titre"
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Bouton",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {
                 "Style": "Outline noir",
                 "Libelle": "Voir les produits"
@@ -1329,9 +1348,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "SectionHeader",
-                  "dep": "SectionHeader",
+                  "dep":"SectionHeader",
                   "depProps": {
                     "Titre": "Nos coordonnées",
                     "Accroche": "Contact",
@@ -1580,9 +1599,9 @@ const COMPONENTS = [
                   "contentProp": "Titre"
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Bouton",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 }
               ]
@@ -1597,7 +1616,7 @@ const COMPONENTS = [
     "setName": "MemberPicture",
     "contractId": "ds.member-picture",
     "anchorKey": "70fdd040214e23fd7b5709b1009638a711b4080f",
-    "description": "MemberPicture — generated from contract ds.member-picture v1.0.1 †",
+    "description": "MemberPicture — generated from contract ds.member-picture v1.2.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1754,7 +1773,7 @@ const COMPONENTS = [
     "setName": "MemberCard",
     "contractId": "ds.member-card",
     "anchorKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
-    "description": "MemberCard — generated from contract ds.member-card v1.0.0",
+    "description": "MemberCard — generated from contract ds.member-card v1.2.0",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -1777,13 +1796,14 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "lits": {
-            "itemSpacing": 16
+            "itemSpacing": 16,
+            "width": 364
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "MemberPicture",
-              "dep": "MemberPicture",
+              "dep":"MemberPicture",
               "depProps": {
                 "Etat": "Defaut"
               }
@@ -1868,144 +1888,144 @@ const COMPONENTS = [
               "grow": true,
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Gérante",
                     "Nom": "Cécilia Piqueray"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 2",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Gérant",
                     "Nom": "Florian Piqueray"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 3",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Jordan"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 4",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Florian"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 5",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Dépanneur",
                     "Nom": "Hervé"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 6",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Poste",
                     "Nom": "Prénom"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 7",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Poste",
                     "Nom": "Prénom"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 8",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Poste",
                     "Nom": "Prénom"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 9",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Collaboratrice admin & comptabilité",
                     "Nom": "Sandra Magermans"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 10",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Collaborateur admin & gestion SAV",
                     "Nom": "Arnaud Dahmen"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 11",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Peintre",
                     "Nom": "Ricardo"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 12",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Préparateur",
                     "Nom": "Quentin"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 13",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Marc"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 14",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "André"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 15",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Laurent"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 16",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Grégory"
@@ -2050,9 +2070,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Questions fréquentes",
                 "Accroche": "FAQ",
@@ -2069,9 +2089,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Grand",
                     "Contenu": "Réponse",
@@ -2079,9 +2099,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 2",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Grand",
                     "Contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
@@ -2089,9 +2109,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 3",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Grand",
                     "Contenu": "Réponse",
@@ -2101,9 +2121,9 @@ const COMPONENTS = [
               ]
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Bouton",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {}
             }
           ]
@@ -2283,7 +2303,7 @@ const COMPONENTS = [
     "setName": "Field",
     "contractId": "ds.field",
     "anchorKey": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
-    "description": "Field — generated from contract ds.field v1.0.0",
+    "description": "Field — generated from contract ds.field v2.0.0 †",
     "isSet": true,
     "boolProps": [
       {
@@ -2308,8 +2328,7 @@ const COMPONENTS = [
           "layout": {
             "mode": "VERTICAL",
             "primary": "MIN",
-            "counter": "MIN",
-            "stretchChildren": true
+            "counter": "MIN"
           },
           "lits": {
             "itemSpacing": 8
@@ -2321,8 +2340,7 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
-                "counter": "MIN",
-                "stretchChildren": true
+                "counter": "MIN"
               },
               "lits": {
                 "itemSpacing": 4
@@ -2346,7 +2364,7 @@ const COMPONENTS = [
                   "fontSize": 14,
                   "fontStyle": "Regular",
                   "textFill": "color/bleu-gris",
-                  "lineHeight": 24,
+                  "lineHeight": 17.066,
                   "fontFamily": "Montserrat",
                   "visibleProp": "Optionnel",
                   "visibleDefault": false
@@ -2357,9 +2375,10 @@ const COMPONENTS = [
               "type": "slot",
               "name": "Saisie",
               "layout": {
-                "mode": "HORIZONTAL",
+                "mode": "VERTICAL",
                 "primary": "MIN",
-                "counter": "MIN"
+                "counter": "MIN",
+                "stretchChildren": true
               },
               "slotProperty": "Saisie",
               "slotAccepts": [
@@ -2369,7 +2388,7 @@ const COMPONENTS = [
               ],
               "slotDefault": [
                 {
-                  "dep": "Input",
+                  "dep":"Input",
                   "props": {
                     "Valeur": "Texte de saisie"
                   }
@@ -2389,8 +2408,7 @@ const COMPONENTS = [
           "layout": {
             "mode": "VERTICAL",
             "primary": "MIN",
-            "counter": "MIN",
-            "stretchChildren": true
+            "counter": "MIN"
           },
           "lits": {
             "itemSpacing": 8
@@ -2402,8 +2420,7 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
-                "counter": "MIN",
-                "stretchChildren": true
+                "counter": "MIN"
               },
               "lits": {
                 "itemSpacing": 4
@@ -2427,7 +2444,7 @@ const COMPONENTS = [
                   "fontSize": 14,
                   "fontStyle": "Regular",
                   "textFill": "color/bleu-gris",
-                  "lineHeight": 24,
+                  "lineHeight": 17.066,
                   "fontFamily": "Montserrat",
                   "visibleProp": "Optionnel",
                   "visibleDefault": false
@@ -2438,9 +2455,10 @@ const COMPONENTS = [
               "type": "slot",
               "name": "Saisie",
               "layout": {
-                "mode": "HORIZONTAL",
+                "mode": "VERTICAL",
                 "primary": "MIN",
-                "counter": "MIN"
+                "counter": "MIN",
+                "stretchChildren": true
               },
               "slotProperty": "Saisie",
               "slotAccepts": [
@@ -2450,7 +2468,7 @@ const COMPONENTS = [
               ],
               "slotDefault": [
                 {
-                  "dep": "Input",
+                  "dep":"Input",
                   "props": {
                     "Valeur": "Texte de saisie"
                   }
@@ -2463,7 +2481,7 @@ const COMPONENTS = [
               "characters": "Message d’erreur",
               "fontSize": 14,
               "fontStyle": "Regular",
-              "lineHeight": 24,
+              "lineHeight": 17,
               "fontFamily": "Montserrat"
             }
           ]
@@ -2741,27 +2759,27 @@ const COMPONENTS = [
                   ]
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FooterColumn",
-                  "dep": "FooterColumn",
+                  "dep":"FooterColumn",
                   "depProps": {
                     "Texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
                     "Titre": "Contact"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FooterColumn 2",
-                  "dep": "FooterColumn",
+                  "dep":"FooterColumn",
                   "depProps": {
                     "Texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
                     "Titre": "Horaires"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FooterColumn 3",
-                  "dep": "FooterColumn",
+                  "dep":"FooterColumn",
                   "depProps": {
                     "Texte": "Rue Alfred Drèze 7,  4860 Pepinster",
                     "Titre": "Adresse"
@@ -2777,17 +2795,17 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "PiquerayLogo",
-                      "dep": "PiquerayLogo",
+                      "dep":"PiquerayLogo",
                       "depProps": {
                         "Couleur": "Blanc"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Bouton",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]
@@ -2826,9 +2844,9 @@ const COMPONENTS = [
               "children": []
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Copyright",
-              "dep": "Copyright",
+              "dep":"Copyright",
               "depProps": {
                 "Texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
               }

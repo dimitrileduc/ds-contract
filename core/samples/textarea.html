@@ -10,8 +10,8 @@
   <div class="showcase__item">
     <p class="showcase__label">default</p>
     <!-- root element "textarea" cannot host the drawn anatomy (raw-text content model — child markup would render as literal text); box projected as <div>, element inference stays on the contract -->
-    <div class="textarea">
-      <span class="textarea__texteDeSaisie">Texte de saisie</span>
+    <div class="textarea" data-part="root">
+      <span class="textarea__texteDeSaisie" data-part="texteDeSaisie">Texte de saisie</span>
     </div>
   </div>
 </section>

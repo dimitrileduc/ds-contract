@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "caseId": "field-normal-textarea-required",
+  "subjectId": "field",
+  "figma": {
+    "nodeId": "I2096:2714;2096:2561",
+    "setNodeId": "2056:1278",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Etat": "Normal",
+      "Label": "Message",
+      "Optionnel": false,
+      "Saisie": "2053:1247"
+    }
+  },
+  "contract": {
+    "id": "ds.field",
+    "version": "2.0.0",
+    "factIds": [
+      "field.etat.normal.optionnel.false.saisie.textarea"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 358400,
+      "contrastPixels": 11493,
+      "paintedBounds": {
+        "x": 0,
+        "y": 12,
+        "width": 1390,
+        "height": 310
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 358697,
+      "contrastPixels": 12256,
+      "paintedBounds": {
+        "x": 64,
+        "y": 74,
+        "width": 1390,
+        "height": 312
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 1390,
+      "height": 322
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 1390,
+      "height": 322
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "label": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 0.13093525179856116,
+          "height": 0.15527950310559005
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 0.1303956834532374,
+          "height": 0.15527950310559005
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.0005395683453237599,
+          "height": 0
+        },
+        "verdict": "fail"
+      },
+      "Saisie": {
+        "figma": {
+          "x": 0,
+          "y": 0.20496894409937888,
+          "width": 1,
+          "height": 0.7950310559006211
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.20496894409937888,
+          "width": 1,
+          "height": 0.7950310559006211
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [
+      "part:label"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.06613342866079806,
+    "maskedDiagnosticPct": 0,
+    "maskCoveragePct": 5.947986952053264,
+    "thresholdPct": 2.5,
+    "regions": {
+      "control": {
+        "id": "control",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 66,
+          "width": 1390,
+          "height": 256
+        },
+        "totalPixels": 355840,
+        "mismatchedPixels": 162,
+        "diffPct": 0.04552607913669065,
+        "referenceSignalPixels": 8933,
+        "generatedSignalPixels": 9415,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "label": {
+        "id": "label",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 182,
+          "height": 50
+        },
+        "totalPixels": 9100,
+        "mismatchedPixels": 134,
+        "diffPct": 1.4725274725274726,
+        "referenceSignalPixels": 2560,
+        "generatedSignalPixels": 2841,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1390,
+          "height": 322
+        },
+        "totalPixels": 447580,
+        "mismatchedPixels": 296,
+        "diffPct": 0.06613342866079806,
+        "referenceSignalPixels": 11493,
+        "generatedSignalPixels": 12256,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "label",
+      "control"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.06613342866079806,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "field-contract-combinations-without-immutable-instance",
+    "field-observed-saisie-rendering-unproved"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/field-normal-textarea-required/figma.png",
+    "cases/field-normal-textarea-required/generated.png",
+    "cases/field-normal-textarea-required/diff.png",
+    "cases/field-normal-textarea-required/triptych.png"
+  ]
+}

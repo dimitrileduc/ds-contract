@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-12-categorie-3c54b9a6",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:4324;2115:4204",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie",
+      "Texte": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+      "Titre": "Pour portes de garage"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.3c54b9a6dc4162164e25c6513d82696c73717826",
+      "carte.content.e8e6c4850998a042",
+      "carte.occurrence.1d54dbec545751ee"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 540648,
+      "contrastPixels": 540608,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 948,
+        "height": 928
+      },
+      "imagePixels": 504296,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 629904,
+      "contrastPixels": 629814,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 994,
+        "height": 986
+      },
+      "imagePixels": 504246,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-categorie",
+      "expectedSha256": "d87ba6d82785beefb2cb50c1536d7d18c90c919d34001b9b1ccfbdc6e4a09060",
+      "actualSha256": "d87ba6d82785beefb2cb50c1536d7d18c90c919d34001b9b1ccfbdc6e4a09060",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1350,
+      "naturalHeight": 900,
+      "renderedWidth": 474,
+      "renderedHeight": 266,
+      "visiblePixels": 43776,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 948,
+      "height": 940
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 948,
+      "height": 940
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "categorieImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.5659574468085107
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.5659574468085107
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.6340425531914894,
+          "width": 1,
+          "height": 0.23404255319148937
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.6340425531914894,
+          "width": 1,
+          "height": 0.23404255319148937
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Bouton": {
+        "figma": {
+          "x": 0,
+          "y": 0.9361702127659575,
+          "width": 0.6983122362869199,
+          "height": 0.06382978723404255
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9361702127659575,
+          "width": 0.6967794040084389,
+          "height": 0.06382978723404255
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.001532832278481,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Bouton"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.11984917856180986,
+    "maskedDiagnosticPct": 0.01104618884966137,
+    "maskCoveragePct": 21.775630667025766,
+    "thresholdPct": 2.5,
+    "regions": {
+      "cta": {
+        "id": "cta",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 880,
+          "width": 661,
+          "height": 60
+        },
+        "totalPixels": 39660,
+        "mismatchedPixels": 481,
+        "diffPct": 1.2128088754412507,
+        "referenceSignalPixels": 5996,
+        "generatedSignalPixels": 6657,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 948,
+          "height": 532
+        },
+        "totalPixels": 504336,
+        "mismatchedPixels": 44,
+        "diffPct": 0.00872434250182418,
+        "referenceSignalPixels": 504296,
+        "generatedSignalPixels": 504246,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 596,
+          "width": 948,
+          "height": 220
+        },
+        "totalPixels": 208560,
+        "mismatchedPixels": 543,
+        "diffPct": 0.2603567318757192,
+        "referenceSignalPixels": 30316,
+        "generatedSignalPixels": 31043,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 948,
+          "height": 940
+        },
+        "totalPixels": 891120,
+        "mismatchedPixels": 1068,
+        "diffPct": 0.11984917856180986,
+        "referenceSignalPixels": 540608,
+        "generatedSignalPixels": 541946,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text",
+      "cta"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.11984917856180986,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-12-categorie-3c54b9a6/figma.png",
+    "cases/carte-occurrence-12-categorie-3c54b9a6/generated.png",
+    "cases/carte-occurrence-12-categorie-3c54b9a6/diff.png",
+    "cases/carte-occurrence-12-categorie-3c54b9a6/triptych.png"
+  ]
+}

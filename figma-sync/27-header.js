@@ -29,9 +29,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "PiquerayLogo",
-              "dep": "PiquerayLogo",
+              "dep":"PiquerayLogo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -55,45 +55,45 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 2",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 3",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 4",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Bouton",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]
@@ -146,9 +146,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "PiquerayLogo",
-              "dep": "PiquerayLogo",
+              "dep":"PiquerayLogo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -172,45 +172,45 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 2",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 3",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 4",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Bouton",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]

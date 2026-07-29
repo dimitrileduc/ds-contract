@@ -94,27 +94,27 @@ const COMPONENTS = [
                   ]
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FooterColumn",
-                  "dep": "FooterColumn",
+                  "dep":"FooterColumn",
                   "depProps": {
                     "Texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
                     "Titre": "Contact"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FooterColumn 2",
-                  "dep": "FooterColumn",
+                  "dep":"FooterColumn",
                   "depProps": {
                     "Texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
                     "Titre": "Horaires"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FooterColumn 3",
-                  "dep": "FooterColumn",
+                  "dep":"FooterColumn",
                   "depProps": {
                     "Texte": "Rue Alfred Drèze 7,  4860 Pepinster",
                     "Titre": "Adresse"
@@ -130,17 +130,17 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "PiquerayLogo",
-                      "dep": "PiquerayLogo",
+                      "dep":"PiquerayLogo",
                       "depProps": {
                         "Couleur": "Blanc"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Bouton",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]
@@ -179,9 +179,9 @@ const COMPONENTS = [
               "children": []
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Copyright",
-              "dep": "Copyright",
+              "dep":"Copyright",
               "depProps": {
                 "Texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
               }

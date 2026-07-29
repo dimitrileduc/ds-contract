@@ -3376,7 +3376,14 @@ function canonicalizeInstanceProps(
       const values = (childProp.bindings.figma as { values?: Record<string, string> }).values;
       const canonical = values ? Object.entries(values).find(([, spelled]) => spelled === value)?.[0] : undefined;
       if (canonical !== undefined) {
-        out[childProp.name] = canonical;
+        // Figma component-property captures encode variant values as strings.
+        // When a known child exposes a boolean through a two-value VARIANT
+        // binding, map its canonical "true"/"false" key back to the child
+        // contract's boolean API rather than emitting a string literal.
+        out[childProp.name] =
+          childProp.type === 'boolean' && (canonical === 'true' || canonical === 'false')
+            ? canonical === 'true'
+            : canonical;
         mapped++;
         continue;
       }

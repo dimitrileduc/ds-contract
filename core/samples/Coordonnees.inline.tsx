@@ -101,7 +101,7 @@ export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.wrapper }}>
 <SectionHeader titre="Nos coordonnées" accroche="Contact" disposition="standard" />
 <div style={{ ...S.Adresse }}>

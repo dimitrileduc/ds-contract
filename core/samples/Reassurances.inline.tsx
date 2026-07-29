@@ -52,14 +52,14 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <SectionHeader titre="Pourquoi choisir nos portes de garage industrielles ?" accroche="Plus de 50 ans d’expérience" disposition="standard" />
 <div style={{ ...S.items }}>
-<Carte disposition="reassurance" texte="Respectent les normes des bâtiments publics et les réglementations pompiers." titre="Sécurité et conformité" />
-<Carte disposition="reassurance" texte="Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit)." titre="Intégration parfaite" />
-<Carte disposition="reassurance" texte="Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal." titre="Moteur performant" />
-<Carte disposition="reassurance" texte="Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces." titre="SAV & maintenance dédiés" />
-<Carte disposition="reassurance" texte="Savoir-faire familial transmis depuis plus de 50 ans sur trois générations." titre="Expérience" />
+<Carte disposition="reassurance" texte={[{ text: "Respectent les normes des bâtiments publics et les réglementations pompiers." }]} titre="Sécurité et conformité" />
+<Carte disposition="reassurance" texte={[{ text: "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit)." }]} titre="Intégration parfaite" />
+<Carte disposition="reassurance" texte={[{ text: "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal." }]} titre="Moteur performant" />
+<Carte disposition="reassurance" texte={[{ text: "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces." }]} titre="SAV & maintenance dédiés" />
+<Carte disposition="reassurance" texte={[{ text: "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations." }]} titre="Expérience" />
 </div>
 {disposition === '5Cartes' ? (<Button>Contactez-nous</Button>) : null}
 {disposition === 'quatrecartesdeuxcta' ? (<div style={{ ...S.Boutons }}>

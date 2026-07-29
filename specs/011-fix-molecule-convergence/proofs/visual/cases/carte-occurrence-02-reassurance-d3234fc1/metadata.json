@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-02-reassurance-d3234fc1",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:3830;2114:3615",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance",
+      "Texte": "Marque Hormann renommée, qualité allemande",
+      "Titre": "Produits de qualité"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.d3234fc1d13b0ddd3231ea573353dc466c44ea71",
+      "carte.content.11be1fb231214eb5",
+      "carte.occurrence.f754cd7ae2cf1b85"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 781936,
+      "contrastPixels": 595235,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1036
+      },
+      "imagePixels": 529984,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 805412,
+      "contrastPixels": 619884,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 774,
+        "height": 1042
+      },
+      "imagePixels": 529984,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-d3234fc1d13b",
+      "expectedSha256": "8a4dbaffbeb03f06f79fd8b033d3afdad90fb50b645a7a228ef27a1a819f12cf",
+      "actualSha256": "8a4dbaffbeb03f06f79fd8b033d3afdad90fb50b645a7a228ef27a1a819f12cf",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 970,
+      "naturalHeight": 667,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 45056,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "reassuranceImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.033774818460350776,
+    "maskedDiagnosticPct": 0.016317301584526534,
+    "maskCoveragePct": 8.005436137447427,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 728,
+          "height": 728
+        },
+        "totalPixels": 529984,
+        "mismatchedPixels": 112,
+        "diffPct": 0.021132713440405747,
+        "referenceSignalPixels": 529984,
+        "generatedSignalPixels": 529984,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 728,
+          "height": 172
+        },
+        "totalPixels": 125216,
+        "mismatchedPixels": 140,
+        "diffPct": 0.11180679785330948,
+        "referenceSignalPixels": 9162,
+        "generatedSignalPixels": 9576,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 738,
+          "height": 1011
+        },
+        "totalPixels": 746118,
+        "mismatchedPixels": 252,
+        "diffPct": 0.033774818460350776,
+        "referenceSignalPixels": 557418,
+        "generatedSignalPixels": 560590,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.033774818460350776,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-02-reassurance-d3234fc1/figma.png",
+    "cases/carte-occurrence-02-reassurance-d3234fc1/generated.png",
+    "cases/carte-occurrence-02-reassurance-d3234fc1/diff.png",
+    "cases/carte-occurrence-02-reassurance-d3234fc1/triptych.png"
+  ]
+}

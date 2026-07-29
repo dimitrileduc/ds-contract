@@ -29,7 +29,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
 ) {
   const classes = [styles.root, styles[`tone-${tone}`], styles[`progress-${progress}`], className].filter(Boolean).join(' ');
   return (
-    <span ref={ref} className={classes} {...rest}>
+    <span ref={ref} className={classes}  {...rest}>
       <span className={styles["label-2"]}>Info</span>
 <span className={styles.icon}>
 <span className={styles["icon-2"]}>

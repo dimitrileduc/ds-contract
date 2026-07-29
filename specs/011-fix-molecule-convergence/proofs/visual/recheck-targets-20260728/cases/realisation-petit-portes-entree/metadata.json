@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "caseId": "realisation-petit-portes-entree",
+  "subjectId": "realisation",
+  "figma": {
+    "nodeId": "I2118:4722;2116:4664",
+    "setNodeId": "2095:2484",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Taille": "Petit"
+    }
+  },
+  "contract": {
+    "id": "ds.realisation",
+    "version": "1.1.0",
+    "factIds": [
+      "realisation.taille.grand",
+      "realisation.taille.petit",
+      "realisation.image.inventory"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 461041,
+      "contrastPixels": 461041,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 679,
+        "height": 679
+      },
+      "imagePixels": 461041,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 462400,
+      "contrastPixels": 462400,
+      "paintedBounds": {
+        "x": 64,
+        "y": 64,
+        "width": 680,
+        "height": 680
+      },
+      "imagePixels": 461041,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "realisation-petit-portes-entree",
+      "expectedSha256": "78ffedcea96fdd97b775cff9b237268cb1ddcf3c3c410236685a28d2acf7f1a1",
+      "actualSha256": "78ffedcea96fdd97b775cff9b237268cb1ddcf3c3c410236685a28d2acf7f1a1",
+      "complete": true,
+      "decoded": false,
+      "naturalWidth": 626,
+      "naturalHeight": 836,
+      "renderedWidth": null,
+      "renderedHeight": null,
+      "visiblePixels": 49152,
+      "verdict": "fail",
+      "failures": [
+        "image-not-decoded"
+      ]
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 679,
+      "height": 679
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 679,
+      "height": 679
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Image": {
+        "figma": null,
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": null,
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Image"
+    ],
+    "verdict": "fail",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 2.4956565685047534,
+    "maskedDiagnosticPct": 2.4956565685047534,
+    "maskCoveragePct": 0,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 679,
+          "height": 679
+        },
+        "totalPixels": 461041,
+        "mismatchedPixels": 11506,
+        "diffPct": 2.4956565685047534,
+        "referenceSignalPixels": 461041,
+        "generatedSignalPixels": 461041,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 679,
+          "height": 679
+        },
+        "totalPixels": 461041,
+        "mismatchedPixels": 11506,
+        "diffPct": 2.4956565685047534,
+        "referenceSignalPixels": 461041,
+        "generatedSignalPixels": 461041,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 2.4956565685047534,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "geometry-receipt-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "realisation-image-census-not-yet-pinned"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/realisation-petit-portes-entree/figma.png",
+    "cases/realisation-petit-portes-entree/generated.png",
+    "cases/realisation-petit-portes-entree/diff.png",
+    "cases/realisation-petit-portes-entree/triptych.png"
+  ]
+}

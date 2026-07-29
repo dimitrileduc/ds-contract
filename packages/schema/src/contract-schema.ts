@@ -207,6 +207,22 @@ export const LiteralValueSchema = z
   .string()
   .regex(LITERAL_VALUE_RE, 'Literal value must be a px/rem/em/number, hex or rgb()/rgba() color, or transparent/inherit/currentColor');
 
+/** The semantic <strong> range always owns a governed weight.  An observed
+ * Figma mixed-style range may additionally carry its own literal size and
+ * line height (for example an 18/27 bold lead-in inside 14/24 body copy).
+ * The scalar spelling remains valid for existing contracts. */
+export const RichTextStrongMarkSchema = z.union([
+  TokenRefSchema,
+  z.strictObject({
+    // A source may have a real mixed-style Bold/700 range while its token
+    // inventory stops at semibold.  Carry that observed fact narrowly here;
+    // arbitrary font-weight strings remain refused.
+    'font-weight': z.union([TokenRefSchema, z.string().regex(/^[1-9]00$/, 'Strong font-weight literal must be 100 through 900')]),
+    'font-size': LiteralValueSchema.optional(),
+    'line-height': LiteralValueSchema.optional(),
+  }),
+]);
+
 /** v14: the channels a literal may ride — geometry and paint channels where
  *  foreign systems keep component-private literals. Everything else refuses
  *  by name (validateContract). */
@@ -343,6 +359,25 @@ export const DECLARED_CHANNELS: Record<string, DeclaredChannelSpec> = {
     canvas: 'draw', // emit-figma-script sizes height = width / ratio when only width is bound
     note: 'The intrinsic aspect ratio renders natively (height follows the bound width).',
   },
+  // Image fills in Figma carry their crop behavior as scaleMode.  Code-side
+  // <img> elements need the equivalent browser rule to reproduce a FILL
+  // paint without stretching its pixels; the canvas keeps the IMAGE paint's
+  // native scaleMode and names this HTML carrier in its description.
+  'object-fit': {
+    value: kw('fill', 'contain', 'cover', 'none', 'scale-down'),
+    canvas: 'annotate',
+    note: 'Image crop behavior maps approximately to the Figma IMAGE scaleMode; the canvas retains the native paint scaleMode.',
+  },
+  'object-position': {
+    value: /^(?:left|center|right|top|bottom|-?\d+(?:\.\d+)?(?:%|px))(?: (?:left|center|right|top|bottom|-?\d+(?:\.\d+)?(?:%|px)))?$/,
+    canvas: 'annotate',
+    note: 'Image crop focal point is carried on the HTML image; the canvas retains the Figma IMAGE transform.',
+  },
+  'align-self': {
+    value: kw('auto', 'normal', 'stretch', 'center', 'start', 'end', 'self-start', 'self-end', 'flex-start', 'flex-end', 'baseline'),
+    canvas: 'annotate',
+    note: 'Per-item cross-axis alignment maps approximately to Figma layoutAlign; the canvas retains the frame alignment.',
+  },
   // -- box constraints outside the token grammar ----------------------------
   'max-width': {
     value: /^(none|-?\d+(\.\d+)?(px|rem|em|%)|fit-content|max-content|min-content)$/,
@@ -478,6 +513,11 @@ export const DECLARED_CHANNELS: Record<string, DeclaredChannelSpec> = {
     value: /^[a-z0-9.% -]+(, [a-z0-9.% -]+)*$/,
     canvas: 'annotate',
     note: 'Background sizing exists only in code.',
+  },
+  'box-shadow': {
+    value: /^[^;{}]+$/,
+    canvas: 'annotate',
+    note: 'The code-side shadow preserves the observed paint; the canvas keeps its native effect.',
   },
   // -- compositing ----------------------------------------------------------
   isolation: {
@@ -622,6 +662,62 @@ export const RepeatSchema = z.strictObject({
   sample: z.array(z.record(z.string(), z.union([z.string(), z.boolean(), z.number()]))).min(1),
 });
 
+/** A bounded per-prop attribute selection. `attrs` remains the spelling for
+ * unconditional literal / `{prop}` attributes; this map covers the cases
+ * where an enum or boolean selects an attribute's value or presence. An
+ * absent selector value (or absent attribute in that value's record) means
+ * the attribute is omitted. The selector's type and keys, and `{prop}` value
+ * references, are checked against the owning contract by the build referee. */
+export const AttrsByPropSchema = z.strictObject({
+  /** A boolean or enum prop on the owning contract. */
+  prop: z.string(),
+  /** Selector value → DOM attribute name → literal or `{prop}` value. */
+  map: z.record(z.string(), z.record(z.string(), z.string())),
+});
+
+/** One mapping is the compact spelling; an ordered array remains available
+ * when several independent selector props contribute attributes to a part. */
+export const AttrsByPropFieldSchema = z.union([
+  AttrsByPropSchema,
+  z.array(AttrsByPropSchema).min(1),
+]);
+
+/** A Tab's roving focus is owned by the composing tablist, never by the Tab
+ * leaf itself.  This names that composition requirement without inventing a
+ * TabList component or leaking a free-form keyboard-behavior DSL into the
+ * component contract.  `idProp` ties the required external owner to an
+ * explicit code-only scalar on the Tab. */
+export const ExternalTabContextSchema = z.strictObject({
+  owner: z.literal('external'),
+  role: z.literal('tablist'),
+  rovingFocus: z.literal(true),
+  idProp: z.string(),
+  minTabs: z.number().int().min(2).max(32),
+});
+
+/** A narrowly reviewable exception for an observed mismatch caused by
+ * sub-pixel text metrics in different rendering engines. It never changes
+ * layout: every affected root/part delta has an explicit absolute bound and
+ * any other geometry mismatch still fails. */
+export const TypographyGeometryJustificationSchema = z.strictObject({
+  cause: z.literal('typographic-subpixel-rounding'),
+  reason: z.string().min(1),
+  bounds: z.strictObject({
+    root: z.strictObject({
+      x: z.number().finite().nonnegative(),
+      y: z.number().finite().nonnegative(),
+      width: z.number().finite().nonnegative(),
+      height: z.number().finite().nonnegative(),
+    }).optional(),
+    parts: z.record(z.string(), z.strictObject({
+      x: z.number().finite().nonnegative(),
+      y: z.number().finite().nonnegative(),
+      width: z.number().finite().nonnegative(),
+      height: z.number().finite().nonnegative(),
+    })).optional(),
+  }),
+});
+
 /** Conditional part visibility (schema v4, gap G1): the part renders only
  *  when the prop matches. Boolean props map to Figma visibility bindings;
  *  enum conditions resolve per variant. */
@@ -637,6 +733,50 @@ export const VisibleWhenSchema = z.strictObject({
 export const HiddenWhenSchema = z.strictObject({
   prop: z.string(),
   equals: z.string(),
+});
+
+/** State-derived attributes forwarded to the actual control supplied through
+ * a slot. `null` is deliberate omission for that selector value (for example
+ * aria-describedby outside an error state), rather than the string "null". */
+export const SlotControlAttributeSchema = z.strictObject({
+  /** An enum or boolean prop on the owning contract. */
+  prop: z.string(),
+  /** Selector value → attribute value, or null to omit the attribute. */
+  values: z.record(z.string(), z.string().nullable()),
+});
+
+/** A narrowly bounded visual fact forwarded to the actual slotted control.
+ *  Values may be governed token references or already-observed literals;
+ *  `null` deliberately leaves the child style untouched for that state. */
+export const SlotControlStyleSchema = z.strictObject({
+  /** An enum or boolean prop on the owning contract. */
+  prop: z.string(),
+  /** Selector value → CSS value, or null to omit that inline style key. */
+  values: z.record(z.string(), z.string().nullable()),
+});
+
+/** The only child-paint channels a parent slot may own.  This preserves the
+ * child component's anatomy while allowing a Field-like owner to forward an
+ * observed validation color to its real form control. */
+export const SLOT_CONTROL_STYLE_CHANNELS = new Set([
+  'background-color',
+  'border-color',
+  'color',
+  'outline-color',
+]);
+
+/** The small, portable contract surface for a slotted form control. It is an
+ * annotation on the SLOT, never a styling escape hatch for arbitrary child
+ * anatomy: the one geometry fact is cross-axis width fill, and attributes
+ * are explicitly selected by declared parent props. */
+export const SlotControlSchema = z.strictObject({
+  /** The supplied/default control fills the slot's available width. */
+  fill: z.literal('width').optional(),
+  /** Attribute name → state-derived attribute declaration. */
+  attributes: z.record(z.string(), SlotControlAttributeSchema).optional(),
+  /** Narrow, state-derived visual facts applied to the actual control rather
+   * than the slot wrapper (for example a Field error border). */
+  styles: z.record(z.string(), SlotControlStyleSchema).optional(),
 });
 
 /** Design-time default content for a slot (Curtis's fifth slot property).
@@ -668,6 +808,9 @@ export const SlotSchema = z.strictObject({
   required: z.boolean().optional(),
   /** Figma property name. Default: PascalCase(name). */
   figmaProperty: z.string().optional(),
+  /** Optional semantics forwarded to the accepted control itself, rather than
+   * the presentational slot wrapper. */
+  control: SlotControlSchema.optional(),
   /** Sample content (see SlotContentItemSchema). Items must be drawn from
    *  `accepts` when accepts is present. NOTE: a slot whose default content
    *  has MULTIPLE items is a multi-child slot — inexpressible as a Figma
@@ -676,15 +819,20 @@ export const SlotSchema = z.strictObject({
   defaultContent: z.array(SlotContentItemSchema).optional(),
 });
 
+/** The scalar values a parent may fix or thread into a directly composed
+ * child. A string of the form `{parentProp}` is a live parent→child mapping;
+ * the build referee verifies both ends' declared scalar types. */
+export const ComponentScalarValueSchema = z.union([z.string(), z.boolean(), z.number()]);
+
 /** A fixed instance of another contract, embedded in this component. */
 export const ComponentRefSchema = z.strictObject({
   /** The child contract's id, e.g. "ds.avatar". */
   id: z.string(),
-  /** Fixed prop values, spelled canonically; mapped through the CHILD
+  /** Fixed scalar prop values, spelled canonically; mapped through the CHILD
    *  contract's bindings on each surface. A string value of the form
-   *  "{parentProp}" maps the PARENT's enum prop into the child per variant
-   *  (code: `childProp={parentProp}`; Figma: resolved per variant combo). */
-  props: z.record(z.string(), z.union([z.string(), z.boolean()])).optional(),
+   *  "{parentProp}" maps a PARENT scalar prop live into the child (code:
+   *  `childProp={parentProp}`; Figma resolves only design-side mappings). */
+  props: z.record(z.string(), ComponentScalarValueSchema).optional(),
   /** Overrides the child's `children` text prop (code: JSX children;
    *  Figma: TEXT property override on the instance). */
   text: z.string().optional(),
@@ -706,6 +854,9 @@ export interface Part {
   layoutByProp?: z.infer<typeof LayoutByPropSchema>;
   /** v7: conditional literal styles (code-side; canvas fidelity limit). */
   stylesWhen?: Array<z.infer<typeof StylesWhenSchema>>;
+  /** Conditional visual adjustment of an inline icon/vector SVG only. The
+   * wrapper remains the measured anatomy box. */
+  glyphStylesWhen?: Array<z.infer<typeof StylesWhenSchema>>;
   /** v7: out-of-flow edge attachment (tooltip/popup anatomy). */
   overlay?: z.infer<typeof OverlaySchema>;
   /** v9: parametric leaf decor (triangle/ellipse/rotated rect — #42). */
@@ -749,12 +900,12 @@ export interface Part {
    *  slot parts, and non-color channels refuse by name (validateContract). */
   states?: Record<string, Record<string, string>>;
   /** Text content bound to a flat text or structured rich-text prop.
-   *  A rich-text part declares the token governing its semantic <strong>
-   *  ranges; flat text keeps the historical `{ prop }` spelling. */
+ *  A rich-text part declares the governed style of its semantic <strong>
+ *  ranges; flat text keeps the historical `{ prop }` spelling. */
   content?: {
     prop: string;
     marks?: {
-      strong: string;
+      strong: z.infer<typeof RichTextStrongMarkSchema>;
     };
   };
   /** Static literal text (a page number, an ellipsis) — same on both
@@ -775,6 +926,14 @@ export interface Part {
   repeat?: z.infer<typeof RepeatSchema>;
   icon?: { asset: string; size?: number };
   attrs?: Record<string, string>;
+  /** Attribute values/presence selected by a boolean or enum prop. */
+  attrsByProp?: z.infer<typeof AttrsByPropFieldSchema>;
+  /** Required external controller context for a native Tab leaf. This is
+   * metadata on the component boundary, not emitted wrapper anatomy. */
+  tabContext?: z.infer<typeof ExternalTabContextSchema>;
+  /** Bounded typography-engine geometry exception. It never emits CSS or
+   * changes component layout; campaign receipts alone may consume it. */
+  geometryJustification?: z.infer<typeof TypographyGeometryJustificationSchema>;
   visibleWhen?: z.infer<typeof VisibleWhenSchema>;
   /** Removes a part for one enum value (inverse of visibleWhen). */
   hiddenWhen?: z.infer<typeof HiddenWhenSchema>;
@@ -795,6 +954,8 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
     layoutByProp: LayoutByPropSchema.optional(),
     /** v7. */
     stylesWhen: z.array(StylesWhenSchema).optional(),
+    /** Icon/vector SVG-only conditional styling. */
+    glyphStylesWhen: z.array(StylesWhenSchema).optional(),
     /** v7. */
     overlay: OverlaySchema.optional(),
     /** v9. */
@@ -819,7 +980,7 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
     content: z
       .strictObject({
         prop: z.string(),
-        marks: z.strictObject({ strong: TokenRefSchema }).optional(),
+        marks: z.strictObject({ strong: RichTextStrongMarkSchema }).optional(),
       })
       .optional(),
     text: z.string().optional(),
@@ -836,6 +997,12 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
     /** v4, gap G2: HTML/ARIA attributes on this part's element — literal
      *  strings or '{prop}' references. Code-side surface; Figma ignores. */
     attrs: z.record(z.string(), z.string()).optional(),
+    /** Attribute values/presence selected by a boolean or enum prop. */
+    attrsByProp: AttrsByPropFieldSchema.optional(),
+    /** Contractual external roving-focus owner for a Tab leaf. */
+    tabContext: ExternalTabContextSchema.optional(),
+    /** Bounded non-layout exception consumed only by geometry receipts. */
+    geometryJustification: TypographyGeometryJustificationSchema.optional(),
     /** v4, gap G1. */
     visibleWhen: VisibleWhenSchema.optional(),
     /** Enum-specific absent anatomy (the inverse of visibleWhen). */

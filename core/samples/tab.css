@@ -1,4 +1,4 @@
-/* Tab — from ds.tab v1.0.0 (core/emit-html.ts) */
+/* Tab — from ds.tab v2.0.0 (core/emit-html.ts) */
 
 .tab, .tab *, .tab *::before, .tab *::after {
   box-sizing: border-box;
@@ -21,6 +21,7 @@
   padding-bottom: 8px;
   padding-left: 0px;
   line-height: 25px;
+  text-transform: uppercase;
 }
 
 .tab--etat-selectionne {

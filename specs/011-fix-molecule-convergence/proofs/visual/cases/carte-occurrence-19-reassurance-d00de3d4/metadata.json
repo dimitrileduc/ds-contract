@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-19-reassurance-d00de3d4",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:3723;2114:3616",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance",
+      "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+      "Titre": "Moteur performant"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.d00de3d48206b57be5125a2d01e8595d3eca56de",
+      "carte.content.fc2c1d8a50d3d261",
+      "carte.occurrence.f74e364236ecb357"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 781936,
+      "contrastPixels": 597579,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1036
+      },
+      "imagePixels": 529596,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 805412,
+      "contrastPixels": 622259,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 774,
+        "height": 1042
+      },
+      "imagePixels": 529544,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-d00de3d48206",
+      "expectedSha256": "355b95d1960f03fb09911a3390929d27406e336d783a422aed38343697a89e21",
+      "actualSha256": "355b95d1960f03fb09911a3390929d27406e336d783a422aed38343697a89e21",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1080,
+      "naturalHeight": 1080,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 65536,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "reassuranceImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.017959625689234142,
+    "maskedDiagnosticPct": 0,
+    "maskCoveragePct": 10.64630527610914,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 728,
+          "height": 728
+        },
+        "totalPixels": 529984,
+        "mismatchedPixels": 0,
+        "diffPct": 0,
+        "referenceSignalPixels": 529596,
+        "generatedSignalPixels": 529544,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 728,
+          "height": 172
+        },
+        "totalPixels": 125216,
+        "mismatchedPixels": 134,
+        "diffPct": 0.10701507794531051,
+        "referenceSignalPixels": 11894,
+        "generatedSignalPixels": 12391,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 738,
+          "height": 1011
+        },
+        "totalPixels": 746118,
+        "mismatchedPixels": 134,
+        "diffPct": 0.017959625689234142,
+        "referenceSignalPixels": 559762,
+        "generatedSignalPixels": 562965,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.017959625689234142,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-19-reassurance-d00de3d4/figma.png",
+    "cases/carte-occurrence-19-reassurance-d00de3d4/generated.png",
+    "cases/carte-occurrence-19-reassurance-d00de3d4/diff.png",
+    "cases/carte-occurrence-19-reassurance-d00de3d4/triptych.png"
+  ]
+}

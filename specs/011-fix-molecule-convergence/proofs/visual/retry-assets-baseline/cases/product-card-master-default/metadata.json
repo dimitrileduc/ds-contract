@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "caseId": "product-card-master-default",
+  "subjectId": "product-card",
+  "figma": {
+    "nodeId": "2068:1972",
+    "setNodeId": "2068:1972",
+    "version": "2381229993207753432",
+    "observedProperties": {}
+  },
+  "contract": {
+    "id": "ds.product-card",
+    "version": "1.0.0",
+    "factIds": [
+      "product-card.bouton.false",
+      "product-card.image.1ba972fd8df54b3eafdfd9c97b169cfd57c17e8c"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 238621,
+      "contrastPixels": 80384,
+      "paintedBounds": {
+        "x": 45,
+        "y": 0,
+        "width": 637,
+        "height": 621
+      },
+      "imagePixels": 0,
+      "probative": false,
+      "reason": "figma-image-missing",
+      "failures": [
+        "figma-image-missing"
+      ]
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 239619,
+      "contrastPixels": 81160,
+      "paintedBounds": {
+        "x": 63,
+        "y": 64,
+        "width": 639,
+        "height": 619
+      },
+      "imagePixels": 0,
+      "probative": false,
+      "reason": "generated-image-missing",
+      "failures": [
+        "generated-image-missing"
+      ]
+    }
+  },
+  "images": [
+    {
+      "assetId": "product-card-default",
+      "expectedSha256": "1eec25df58e75f0dfdc23b1545bd7c2b115722af7a59094597e84c0ccf3584a0",
+      "actualSha256": "1eec25df58e75f0dfdc23b1545bd7c2b115722af7a59094597e84c0ccf3584a0",
+      "complete": false,
+      "decoded": true,
+      "naturalWidth": 1080,
+      "naturalHeight": 1080,
+      "renderedWidth": 240,
+      "renderedHeight": 240,
+      "visiblePixels": 65536,
+      "verdict": "fail",
+      "failures": [
+        "image-not-complete"
+      ]
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 624
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 638.03125,
+      "height": 624
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": -89.96875,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Image": {
+        "figma": null,
+        "generated": null,
+        "delta": null,
+        "verdict": "fail"
+      },
+      "Titre": {
+        "figma": null,
+        "generated": null,
+        "delta": null,
+        "verdict": "fail"
+      },
+      "Prix": {
+        "figma": null,
+        "generated": null,
+        "delta": null,
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "root",
+      "part:Image",
+      "part:Titre",
+      "part:Prix"
+    ],
+    "verdict": "fail",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 1.5843088556731735,
+    "maskedDiagnosticPct": 1.5766499986186702,
+    "maskCoveragePct": 8.639114786041322,
+    "thresholdPct": 2.5,
+    "regions": {},
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "title-price"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "region:image:missing",
+      "region:title-price:missing",
+      "region:whole:missing"
+    ]
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 1.5843088556731735,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "required-region-missing",
+      "required-region-missing",
+      "required-region-missing",
+      "visibility-receipt-failed",
+      "geometry-receipt-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "product-card-bouton-true-no-immutable-reference",
+    "product-card-image-census-not-yet-pinned"
+  ],
+  "regionError": "image: generated required part \"Image\" is absent",
+  "artifactPaths": [
+    "cases/product-card-master-default/figma.png",
+    "cases/product-card-master-default/generated.png",
+    "cases/product-card-master-default/diff.png",
+    "cases/product-card-master-default/triptych.png"
+  ]
+}

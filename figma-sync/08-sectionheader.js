@@ -94,9 +94,9 @@ const COMPONENTS = [
               "contentProp": "Titre"
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Bouton",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {
                 "Style": "Outline noir",
                 "Libelle": "Voir les produits"

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v1.0.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v1.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -11,12 +11,15 @@ import styles from './ProductCard.module.css';
 export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   titre?: string;
   prix?: string;
+  /** Code-supplied product-image URL. Figma exposes the visible value as an IMAGE fill through an instance override, not as a component property; the empty runtime default is intentional and comparison assets are injected only by the campaign. */
   imageUrl?: string;
+  /** Code-supplied text alternative paired with imageUrl. Figma has no corresponding component property, so the empty runtime default is intentional. */
   imageAlt?: string;
+  /** The immutable ProductCard master observes BOOLEAN `Bouton` as false by default. */
   bouton?: boolean;
 }
 
-/** Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides. */
+/** Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. The fixed 364px frame and full-width text planes are observed geometry; product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides. */
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(function ProductCard(
   {
     bouton = false,

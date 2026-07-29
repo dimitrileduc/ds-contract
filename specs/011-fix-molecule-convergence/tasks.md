@@ -58,19 +58,20 @@ description: "Executable task list for the 011 molecule-convergence campaign"
 
 ### Tests for User Story 1
 
-- [ ] T012 [P] [US1] Create the exact-seven-subject, fact-union, asset-reference, immutable-node, and alias-equality coverage test in evals/fixtures/visual-campaign-011-coverage-check.ts
-- [ ] T013 [US1] Register the 011 coverage fixture in evals/run.ts
+- [X] T012 [P] [US1] Create the exact-seven-subject, fact-union, asset-reference, immutable-node, and alias-equality coverage test in evals/fixtures/visual-campaign-011-coverage-check.ts
+- [X] T013 [US1] Register the 011 coverage fixture in evals/run.ts
 
 ### Implementation for User Story 1
 
 - [ ] T014 [US1] Populate the immutable seven-subject case matrix, canonical case IDs, explicit aliases with fact/image/geometry/semantic equality fingerprints, observed Figma properties, code presets, required regions, semantic assertions, and attribution pins in specs/011-fix-molecule-convergence/contracts/visual-campaign.json
-- [ ] T015 [P] [US1] Validate the pinned Figma file version, concrete node IDs, and observed case properties with read-only GET receipts in extract/figma/visual-parity/figma-api.ts
-- [ ] T016 [P] [US1] Extend the test-only image receipt inventory for every required Carte, MemberCard, ProductCard, and Realisation case in extract/figma/visual-parity/fixture-assets/manifest.json
-- [ ] T017 [US1] Verify byte length, media type, SHA-256, decoded dimensions, and bounded writes while materializing only campaign fixture assets in extract/figma/visual-parity/fixture-assets/fetch.mjs
-- [ ] T018 [US1] Resolve campaign $asset values into comparison-only props and reject absent, undecodable, or invisible required images in extract/figma/visual-parity/render.ts
-- [ ] T019 [US1] Compute the declared Figma/contract fact union and reject missing or unexpected cases plus aliases without exact equality fingerprints in extract/figma/visual-parity/campaign.ts
-- [ ] T020 [US1] Write per-case reference, generated, diff, triptych, metadata, deterministic result.json, the traceability REPORT.md, and the seven-verdict review index under specs/011-fix-molecule-convergence/proofs/visual/ from extract/figma/visual-parity/run.ts
-- [ ] T021 [US1] Execute the initial read-only feature campaign and retain its exact coverage, evidence, and named blocked conditions in specs/011-fix-molecule-convergence/proofs/visual/result.json
+  - Census reconciliation: all real Carte (36), MemberCard (16), ProductCard (8, all Bouton=false), and Realisation (27) occurrences are explicit cases and all 74 subject/image refs are materialized from bounded GET receipts. Carte’s nested CTA labels and glyphs are now projected from the read-only occurrence census through contract code-only props. T014 remains open for eight absent Field combinations, unproved observed Saisie content, MemberPicture’s non-bindable shared base plane, and ProductCard Bouton=true without an immutable instance. Nav/Tab references are pinned; no unproved aliases are declared.
+- [X] T015 [P] [US1] Validate the pinned Figma file version, concrete node IDs, and observed case properties with read-only GET receipts in extract/figma/visual-parity/figma-api.ts
+- [X] T016 [P] [US1] Extend the test-only image receipt inventory for every required Carte, MemberCard, ProductCard, and Realisation case in extract/figma/visual-parity/fixture-assets/manifest.json
+- [X] T017 [US1] Verify byte length, media type, SHA-256, decoded dimensions, and bounded writes while materializing only campaign fixture assets in extract/figma/visual-parity/fixture-assets/fetch.mjs
+- [X] T018 [US1] Resolve campaign $asset values into comparison-only props and reject absent, undecodable, or invisible required images in extract/figma/visual-parity/render.ts
+- [X] T019 [US1] Compute the declared Figma/contract fact union and reject missing or unexpected cases plus aliases without exact equality fingerprints in extract/figma/visual-parity/campaign.ts
+- [X] T020 [US1] Write per-case reference, generated, diff, triptych, metadata, deterministic result.json, the traceability REPORT.md, and the seven-verdict review index under specs/011-fix-molecule-convergence/proofs/visual/ from extract/figma/visual-parity/run.ts
+- [X] T021 [US1] Execute the initial read-only feature campaign and retain its exact coverage, evidence, and named blocked conditions in specs/011-fix-molecule-convergence/proofs/visual/result.json
 
 **Checkpoint**: The seven targets have a complete, inspectable proof campaign; missing Figma instances such as ProductCard bouton=true remain explicitly blocked rather than silently waived.
 
@@ -84,24 +85,24 @@ description: "Executable task list for the 011 molecule-convergence campaign"
 
 ### Tests for User Story 2
 
-- [ ] T022 [P] [US2] Create a fixture-first regression for a Field slotted control receiving fill width and state-derived ARIA attributes in evals/fixtures/field-slotted-control-semantics-check.ts
-- [ ] T023 [P] [US2] Create a fixture-first regression for contract-declared attribute mappings used by NavItem and Tab in evals/fixtures/semantic-attribute-map-check.ts
-- [ ] T024 [P] [US2] Create a fixture-first regression for scalar parent-to-child propagation while preserving the child component boundary in evals/fixtures/component-scalar-propagation-check.ts
-- [ ] T025 [US2] Register the new emitter and semantic fixtures in evals/run.ts
+- [X] T022 [P] [US2] Create a fixture-first regression for a Field slotted control receiving fill width and state-derived ARIA attributes in evals/fixtures/field-slotted-control-semantics-check.ts
+- [X] T023 [P] [US2] Create a fixture-first regression for contract-declared attribute mappings used by NavItem and Tab in evals/fixtures/semantic-attribute-map-check.ts
+- [X] T024 [P] [US2] Create a fixture-first regression for scalar parent-to-child propagation while preserving the child component boundary in evals/fixtures/component-scalar-propagation-check.ts
+- [X] T025 [US2] Register the new emitter and semantic fixtures in evals/run.ts
 
 ### Implementation for User Story 2
 
-- [ ] T026 [US2] Add only optional schema vocabulary for typed attribute mappings and scalar composed-child props in packages/schema/src/contract-schema.ts
-- [ ] T027 [US2] Emit validated attribute mappings, slotted-control semantics, and scalar composed-child props consistently across core/emit-react.ts, core/emit-react-inline.ts, core/emit-html.ts, and core/emit-figma-script.ts
-- [ ] T028 [P] [US2] Promote Carte’s two dispositions, fluid geometry, CTA content, and typed rich-text segments with a semver-major version change in contracts/carte.contract.json
-- [ ] T029 [P] [US2] Promote Field’s restricted child slot, FILL behavior, state semantics, and 12-case inputs in contracts/field.contract.json
-- [ ] T030 [P] [US2] Preserve MemberPicture composition while adding explicit code-only photo props and parent-to-child propagation in contracts/member-card.contract.json and contracts/member-picture.contract.json
-- [ ] T031 [P] [US2] Define NavItem’s href, active-state aria-current, chevron/active facts, and dark-surface-compatible composition in contracts/nav-item.contract.json
-- [ ] T032 [P] [US2] Define ProductCard’s image and alt facts with bouton=false as the observed default and no runtime fixture default in contracts/product-card.contract.json
-- [ ] T033 [P] [US2] Define Realisation’s size-specific image/alt facts and preserve its image-bearing anatomy in contracts/realisation.contract.json
-- [ ] T034 [P] [US2] Define Tab’s selected state, panel identity, aria-selected, aria-controls, tabIndex, and bounded tablist/roving-focus context in contracts/tab.contract.json
-- [ ] T035 [US2] Document the new public optional schema vocabulary and semver rules in docs/02-contract-spec.md
-- [ ] T036 [US2] Regenerate the schema and all contract-derived outputs from sources only in contracts/contract.schema.json, src/components/, figma-sync/, catalog/, and core/samples/
+- [X] T026 [US2] Add only optional schema vocabulary for typed attribute mappings and scalar composed-child props in packages/schema/src/contract-schema.ts
+- [X] T027 [US2] Emit validated attribute mappings, slotted-control semantics, and scalar composed-child props consistently across core/emit-react.ts, core/emit-react-inline.ts, core/emit-html.ts, and core/emit-figma-script.ts
+- [X] T028 [P] [US2] Promote Carte’s two dispositions, fluid geometry, CTA content, and typed rich-text segments with a semver-major version change in contracts/carte.contract.json
+- [X] T029 [P] [US2] Promote Field’s restricted child slot, FILL behavior, state semantics, and 12-case inputs in contracts/field.contract.json
+- [X] T030 [P] [US2] Preserve MemberPicture composition while adding explicit code-only photo props and parent-to-child propagation in contracts/member-card.contract.json and contracts/member-picture.contract.json
+- [X] T031 [P] [US2] Define NavItem’s href, active-state aria-current, chevron/active facts, and dark-surface-compatible composition in contracts/nav-item.contract.json
+- [X] T032 [P] [US2] Define ProductCard’s image and alt facts with bouton=false as the observed default and no runtime fixture default in contracts/product-card.contract.json
+- [X] T033 [P] [US2] Define Realisation’s size-specific image/alt facts and preserve its image-bearing anatomy in contracts/realisation.contract.json
+- [X] T034 [P] [US2] Define Tab’s selected state, panel identity, aria-selected, aria-controls, tabIndex, and bounded tablist/roving-focus context in contracts/tab.contract.json
+- [X] T035 [US2] Document the new public optional schema vocabulary and semver rules in docs/02-contract-spec.md
+- [X] T036 [US2] Regenerate the schema and all contract-derived outputs from sources only in contracts/contract.schema.json, src/components/, figma-sync/, catalog/, and core/samples/
 
 **Checkpoint**: Contract diffs, not generated-file edits, fully explain the component and semantic changes needed by the campaign.
 
@@ -115,17 +116,17 @@ description: "Executable task list for the 011 molecule-convergence campaign"
 
 ### Tests for User Story 3
 
-- [ ] T037 [P] [US3] Create a blank-or-invisible-side and missing-image-signal rejection fixture in evals/fixtures/visual-probative-evidence-check.ts
-- [ ] T038 [P] [US3] Create a signal-preserving text-region, required-region threshold, and geometry-justification fixture in evals/fixtures/visual-regions-geometry-check.ts
-- [ ] T039 [US3] Register the new measurement fixtures in evals/run.ts
+- [X] T037 [P] [US3] Create a blank-or-invisible-side and missing-image-signal rejection fixture in evals/fixtures/visual-probative-evidence-check.ts
+- [X] T038 [P] [US3] Create a signal-preserving text-region, required-region threshold, and geometry-justification fixture in evals/fixtures/visual-regions-geometry-check.ts
+- [X] T039 [US3] Register the new measurement fixtures in evals/run.ts
 
 ### Implementation for User Story 3
 
-- [ ] T040 [US3] Add declared-region scoring and signal-preserving text measurement while retaining masked values as diagnostic-only in extract/figma/visual-parity/img.ts
-- [ ] T041 [US3] Implement visibility, image, root/part geometry, pixel-region, semantic, artifact-hash, and aggregate verdict receipts in extract/figma/visual-parity/evidence.ts
-- [ ] T042 [US3] Make the authoritative gate require a non-masked global score and every required region, visibility, geometry, and semantic receipt in extract/figma/visual-parity/gate.ts
-- [ ] T043 [US3] Capture root and named-part rectangles, DOM semantics, image decode state, and visible signal from the generated comparison page in extract/figma/visual-parity/render.ts
-- [ ] T044 [US3] Map evidence failures to deterministic pass, fail, or blocked results and exit codes 0, 1, or 2 without modifying legacy baseline policy in extract/figma/visual-parity/run.ts
+- [X] T040 [US3] Add declared-region scoring and signal-preserving text measurement while retaining masked values as diagnostic-only in extract/figma/visual-parity/img.ts
+- [X] T041 [US3] Implement visibility, image, root/part geometry, pixel-region, semantic, artifact-hash, and aggregate verdict receipts in extract/figma/visual-parity/evidence.ts
+- [X] T042 [US3] Make the authoritative gate require a non-masked global score and every required region, visibility, geometry, and semantic receipt in extract/figma/visual-parity/gate.ts
+- [X] T043 [US3] Capture root and named-part rectangles, DOM semantics, image decode state, and visible signal from the generated comparison page in extract/figma/visual-parity/render.ts
+- [X] T044 [US3] Map evidence failures to deterministic pass, fail, or blocked results and exit codes 0, 1, or 2 without modifying legacy baseline policy in extract/figma/visual-parity/run.ts
 
 **Checkpoint**: The visual score cannot hide a missing signal, bad geometry, omitted case, stale reference, or invalid asset.
 
@@ -139,13 +140,13 @@ description: "Executable task list for the 011 molecule-convergence campaign"
 
 ### Tests for User Story 4
 
-- [ ] T045 [P] [US4] Create a regression fixture for attribution boundaries, generated-output provenance, terminal self-receipt exclusions, and forbidden Figma-write command detection in evals/fixtures/visual-attribution-audit-check.ts
-- [ ] T046 [US4] Register the attribution-audit fixture in evals/run.ts
+- [X] T045 [P] [US4] Create a regression fixture for attribution boundaries, generated-output provenance, terminal self-receipt exclusions, and forbidden Figma-write command detection in evals/fixtures/visual-attribution-audit-check.ts
+- [X] T046 [US4] Register the attribution-audit fixture in evals/run.ts
 
 ### Implementation for User Story 4
 
-- [ ] T047 [US4] Implement a read-only checkpoint/WIP/final diff and path-hash auditor with a fixed two-path self-receipt allowlist in scripts/verify-011-attribution.mjs
-- [ ] T048 [US4] Implement a deterministic terminal closure orchestrator that runs gates then attribution from one frozen manifest in scripts/verify-011-closure.mjs
+- [X] T047 [US4] Implement a read-only checkpoint/WIP/final diff and path-hash auditor with a fixed two-path self-receipt allowlist in scripts/verify-011-attribution.mjs
+- [X] T048 [US4] Implement a deterministic terminal closure orchestrator that runs gates then attribution from one frozen manifest in scripts/verify-011-closure.mjs
 
 **Checkpoint**: Closure machinery refuses unexplained changes, Figma writes, direct generated-output edits, red inherited gates, and any self-exclusion outside its two declared receipt files.
 
@@ -155,10 +156,11 @@ description: "Executable task list for the 011 molecule-convergence campaign"
 
 **Purpose**: Reproduce derived artifacts deterministically, execute the campaign against final sources, make the review evidence ready, then create the only final attribution and closure receipts.
 
-- [ ] T049 Regenerate all approved derived artifacts through their source commands and verify no direct edits remain in src/components/, figma-sync/, catalog/, core/samples/, and contracts/contract.schema.json
-- [ ] T050 Update approved deterministic expectations only through the repository generator in evals/golden.json
+- [X] T049 Regenerate all approved derived artifacts through their source commands and verify no direct edits remain in src/components/, figma-sync/, catalog/, core/samples/, and contracts/contract.schema.json
+- [X] T050 Update approved deterministic expectations only through the repository generator in evals/golden.json
 - [ ] T051 Execute the final read-only 011 campaign after T036, T044, T049, and T050; require exit 0 and retain the final result.json plus all case artifacts under specs/011-fix-molecule-convergence/proofs/visual/
-- [ ] T052 Run the feature’s post-campaign reviewer walkthrough, record its ≤10-minute checklist, seven verdicts, evidence paths, result.json verdicts, and named blocked limits in specs/011-fix-molecule-convergence/proofs/visual/REPORT.md and specs/011-fix-molecule-convergence/proofs/closure/review.json
+  - Final authoritative replay captured and scored all 98 cases with exact 227/227 fact coverage and no missing artifact, but remains exit 2: Carte and NavItem have honest pixel failures; Field, MemberCard, and ProductCard retain named immutable-reference limits. Realisation and Tab pass.
+- [X] T052 Run the feature’s post-campaign reviewer walkthrough, record its ≤10-minute checklist, seven verdicts, evidence paths, result.json verdicts, and named blocked limits in specs/011-fix-molecule-convergence/proofs/visual/REPORT.md and specs/011-fix-molecule-convergence/proofs/closure/review.json
 - [ ] T053 Execute the terminal closure orchestrator only after T052; write the final attribution ledger to specs/011-fix-molecule-convergence/proofs/attribution/final.json and gate receipt to specs/011-fix-molecule-convergence/proofs/closure/gates.json, then verify no further source/output changes occur
 
 ---

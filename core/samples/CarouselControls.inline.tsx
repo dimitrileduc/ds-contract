@@ -37,7 +37,7 @@ export const CarouselControls = forwardRef<HTMLElement, CarouselControlsProps>(f
   ref,
 ) {
   return (
-    <nav ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <nav ref={ref} style={{ ...S.root, ...style }}  aria-label="Navigation du carrousel" {...rest}>
       <Button iconLeftGlyph="chevron-left" variant="iconOnly">Précédent</Button>
 <Button iconLeftGlyph="chevron-right" variant="iconOnly">Suivant</Button>
     </nav>

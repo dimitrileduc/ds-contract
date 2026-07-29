@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "caseId": "nav-item-master-default",
+  "subjectId": "nav-item",
+  "figma": {
+    "nodeId": "2152:5554",
+    "setNodeId": "2152:5554",
+    "version": "2381229993207753432",
+    "observedProperties": {}
+  },
+  "contract": {
+    "id": "ds.nav-item",
+    "version": "1.1.0",
+    "factIds": [
+      "nav-item.chevron.true",
+      "nav-item.actif.false"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "dark",
+      "alphaPixels": 3328,
+      "contrastPixels": 3328,
+      "paintedBounds": {
+        "x": 3,
+        "y": 5,
+        "width": 380,
+        "height": 24
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "dark",
+      "alphaPixels": 4419,
+      "contrastPixels": 4419,
+      "paintedBounds": {
+        "x": 64,
+        "y": 66,
+        "width": 381,
+        "height": 29
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 388,
+      "height": 32
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 386.78125,
+      "height": 32
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": -1.21875,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "libell": {
+        "figma": null,
+        "generated": null,
+        "delta": null,
+        "verdict": "fail"
+      },
+      "OcticonChevronDown12": {
+        "figma": null,
+        "generated": null,
+        "delta": null,
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "root",
+      "part:libell",
+      "part:OcticonChevronDown12"
+    ],
+    "verdict": "fail",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 26.616117429765723,
+    "maskedDiagnosticPct": 0.5446623093681917,
+    "maskCoveragePct": 91.0761154855643,
+    "thresholdPct": 2.5,
+    "regions": {},
+    "requiredRegionIds": [
+      "whole",
+      "label",
+      "chevron"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "raw-threshold-exceeded",
+      "region:chevron:missing",
+      "region:label:missing",
+      "region:whole:missing"
+    ]
+  },
+  "semantics": [
+    {
+      "id": "nav-item-is-link",
+      "selector": "a",
+      "assertion": "element",
+      "contractPointer": "/semantics/element",
+      "contractResolved": true,
+      "expected": "a",
+      "actual": "a",
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-href",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrs/href",
+      "contractResolved": true,
+      "expected": {
+        "href": "/portes-de-garage"
+      },
+      "actual": {
+        "href": "/portes-de-garage"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-inactive-aria-current-absent",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrsByProp",
+      "contractResolved": true,
+      "expected": {
+        "aria-current": null
+      },
+      "actual": {
+        "aria-current": null
+      },
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "gate": {
+    "scorePct": 26.616117429765723,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "global-score-exceeds-threshold",
+      "required-region-missing",
+      "required-region-missing",
+      "required-region-missing",
+      "geometry-receipt-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "nav-item-boolean-cross-product-not-yet-pinned"
+  ],
+  "regionError": "label: generated required part \"libell\" is absent",
+  "artifactPaths": [
+    "cases/nav-item-master-default/figma.png",
+    "cases/nav-item-master-default/generated.png",
+    "cases/nav-item-master-default/diff.png",
+    "cases/nav-item-master-default/triptych.png"
+  ]
+}

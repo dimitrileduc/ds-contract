@@ -48,7 +48,7 @@
   color: var(--color-blanc);
 }
 
-/* NavItem — from ds.nav-item v1.0.0 (core/emit-html.ts) */
+/* NavItem — from ds.nav-item v1.1.0 (core/emit-html.ts) */
 
 .nav-item, .nav-item *, .nav-item *::before, .nav-item *::after {
   box-sizing: border-box;
@@ -66,6 +66,8 @@
   line-height: 16px;
   position: relative;
   text-transform: uppercase;
+  text-decoration-line: none;
+  text-rendering: geometricprecision;
 }
 
 .nav-item__libell {
@@ -83,6 +85,10 @@
   flex-shrink: 0;
 }
 
+.nav-item[data-chevron] .nav-item__OcticonChevronDown12 svg {
+  transform: translateY(-1px);
+}
+
 .nav-item__Soulignement {
   background-color: var(--color-blanc);
   height: 2px;
@@ -91,7 +97,7 @@
 
 .nav-item[data-actif] .nav-item__Soulignement {
   right: 0px;
-  bottom: 0px;
+  top: 22px;
   left: 0px;
 }
 

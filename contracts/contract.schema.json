@@ -155,6 +155,10 @@
               },
               {
                 "type": "string",
+                "const": "rich-text"
+              },
+              {
+                "type": "string",
                 "const": "number"
               },
               {
@@ -208,6 +212,25 @@
               },
               {
                 "type": "number"
+              },
+              {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string"
+                    },
+                    "strong": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ],
+                  "additionalProperties": false
+                }
               }
             ]
           },
@@ -648,6 +671,34 @@
             "additionalProperties": false
           }
         },
+        "glyphStylesWhen": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "prop": {
+                "type": "string"
+              },
+              "equals": {
+                "type": "string"
+              },
+              "styles": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "prop",
+              "styles"
+            ],
+            "additionalProperties": false
+          }
+        },
         "overlay": {
           "type": "object",
           "properties": {
@@ -905,6 +956,52 @@
           "properties": {
             "prop": {
               "type": "string"
+            },
+            "marks": {
+              "type": "object",
+              "properties": {
+                "strong": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "font-weight": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                            },
+                            {
+                              "type": "string",
+                              "pattern": "^[1-9]00$"
+                            }
+                          ]
+                        },
+                        "font-size": {
+                          "type": "string",
+                          "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                        },
+                        "line-height": {
+                          "type": "string",
+                          "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                        }
+                      },
+                      "required": [
+                        "font-weight"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "strong"
+              ],
+              "additionalProperties": false
             }
           },
           "required": [
@@ -974,6 +1071,86 @@
             "figmaProperty": {
               "type": "string"
             },
+            "control": {
+              "type": "object",
+              "properties": {
+                "fill": {
+                  "type": "string",
+                  "const": "width"
+                },
+                "attributes": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "prop": {
+                        "type": "string"
+                      },
+                      "values": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "prop",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "styles": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "prop": {
+                        "type": "string"
+                      },
+                      "values": {
+                        "type": "object",
+                        "propertyNames": {
+                          "type": "string"
+                        },
+                        "additionalProperties": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "prop",
+                      "values"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            },
             "defaultContent": {
               "type": "array",
               "items": {
@@ -1032,6 +1209,9 @@
                   },
                   {
                     "type": "boolean"
+                  },
+                  {
+                    "type": "number"
                   }
                 ]
               }
@@ -1104,6 +1284,190 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "attrsByProp": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "prop": {
+                  "type": "string"
+                },
+                "map": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "prop",
+                "map"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "prop": {
+                    "type": "string"
+                  },
+                  "map": {
+                    "type": "object",
+                    "propertyNames": {
+                      "type": "string"
+                    },
+                    "additionalProperties": {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string"
+                      },
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "prop",
+                  "map"
+                ],
+                "additionalProperties": false
+              }
+            }
+          ]
+        },
+        "tabContext": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "string",
+              "const": "external"
+            },
+            "role": {
+              "type": "string",
+              "const": "tablist"
+            },
+            "rovingFocus": {
+              "type": "boolean",
+              "const": true
+            },
+            "idProp": {
+              "type": "string"
+            },
+            "minTabs": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 32
+            }
+          },
+          "required": [
+            "owner",
+            "role",
+            "rovingFocus",
+            "idProp",
+            "minTabs"
+          ],
+          "additionalProperties": false
+        },
+        "geometryJustification": {
+          "type": "object",
+          "properties": {
+            "cause": {
+              "type": "string",
+              "const": "typographic-subpixel-rounding"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "bounds": {
+              "type": "object",
+              "properties": {
+                "root": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "y": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "width": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "height": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y",
+                    "width",
+                    "height"
+                  ],
+                  "additionalProperties": false
+                },
+                "parts": {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string"
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "x": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "y": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "width": {
+                        "type": "number",
+                        "minimum": 0
+                      },
+                      "height": {
+                        "type": "number",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "x",
+                      "y",
+                      "width",
+                      "height"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "cause",
+            "reason",
+            "bounds"
+          ],
+          "additionalProperties": false
         },
         "visibleWhen": {
           "type": "object",

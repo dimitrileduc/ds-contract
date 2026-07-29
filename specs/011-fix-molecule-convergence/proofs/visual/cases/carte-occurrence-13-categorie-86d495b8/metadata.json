@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-13-categorie-86d495b8",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:4324;2115:4205",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie",
+      "Texte": "RotaMatic (Battant) & LineaMatic (Coulissant). Fiabilité absolue et détection d'obstacles pour la sécurité de votre famille.",
+      "Titre": "Pour portails d'entrée"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.86d495b8740234d36d9148c355e6a89a89dd1a94",
+      "carte.content.486b5ecd0ced88b0",
+      "carte.occurrence.234ea62d7631e52e"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 546998,
+      "contrastPixels": 546998,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 948,
+        "height": 982
+      },
+      "imagePixels": 504336,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 639010,
+      "contrastPixels": 639010,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 994,
+        "height": 1040
+      },
+      "imagePixels": 504336,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-86d495b87402",
+      "expectedSha256": "5909b8212e4c995ee4c9f43c9ded03b1ddc3a0ba1354e5b1bdfba3b0590a9b58",
+      "actualSha256": "5909b8212e4c995ee4c9f43c9ded03b1ddc3a0ba1354e5b1bdfba3b0590a9b58",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1000,
+      "naturalHeight": 750,
+      "renderedWidth": 474,
+      "renderedHeight": 266,
+      "visiblePixels": 49152,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 948,
+      "height": 994
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 948,
+      "height": 994
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "categorieImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.5352112676056338
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.5352112676056338
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.5995975855130785,
+          "width": 1,
+          "height": 0.27565392354124746
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.5995975855130785,
+          "width": 1,
+          "height": 0.27565392354124746
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Bouton": {
+        "figma": {
+          "x": 0,
+          "y": 0.9396378269617707,
+          "width": 0.6962025316455697,
+          "height": 0.060362173038229376
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9396378269617707,
+          "width": 0.6946861814345991,
+          "height": 0.060362173038229376
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.0015163502109705185,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Bouton"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 1.224435218908387,
+    "maskedDiagnosticPct": 1.482026704599493,
+    "maskCoveragePct": 23.009258080126326,
+    "thresholdPct": 2.5,
+    "regions": {
+      "cta": {
+        "id": "cta",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 934,
+          "width": 659,
+          "height": 60
+        },
+        "totalPixels": 39540,
+        "mismatchedPixels": 514,
+        "diffPct": 1.2999494183105715,
+        "referenceSignalPixels": 6055,
+        "generatedSignalPixels": 6678,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 948,
+          "height": 532
+        },
+        "totalPixels": 504336,
+        "mismatchedPixels": 10738,
+        "diffPct": 2.1291361314679103,
+        "referenceSignalPixels": 504336,
+        "generatedSignalPixels": 504336,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 596,
+          "width": 948,
+          "height": 274
+        },
+        "totalPixels": 259752,
+        "mismatchedPixels": 305,
+        "diffPct": 0.11741969262989312,
+        "referenceSignalPixels": 36607,
+        "generatedSignalPixels": 37644,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 948,
+          "height": 994
+        },
+        "totalPixels": 942312,
+        "mismatchedPixels": 11538,
+        "diffPct": 1.224435218908387,
+        "referenceSignalPixels": 546998,
+        "generatedSignalPixels": 548658,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text",
+      "cta"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 1.224435218908387,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-13-categorie-86d495b8/figma.png",
+    "cases/carte-occurrence-13-categorie-86d495b8/generated.png",
+    "cases/carte-occurrence-13-categorie-86d495b8/diff.png",
+    "cases/carte-occurrence-13-categorie-86d495b8/triptych.png"
+  ]
+}

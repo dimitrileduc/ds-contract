@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "caseId": "member-card-master-default",
+  "subjectId": "member-card",
+  "figma": {
+    "nodeId": "2074:2072",
+    "setNodeId": "2074:2072",
+    "version": "2381229993207753432",
+    "observedProperties": {}
+  },
+  "contract": {
+    "id": "ds.member-card",
+    "version": "1.2.0",
+    "factIds": [
+      "member-card.image.c60f37abee2a78de43e7b189e77356ab1a16c7e4",
+      "member-card.content.cecilia-piqueray"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 424300,
+      "contrastPixels": 424300,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 728,
+        "height": 888
+      },
+      "imagePixels": 416244,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 426707,
+      "contrastPixels": 426707,
+      "paintedBounds": {
+        "x": 64,
+        "y": 64,
+        "width": 728,
+        "height": 887
+      },
+      "imagePixels": 417306,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "member-card-normal",
+      "expectedSha256": "7253598106cfb978042c7eb7a9aa06585a6857d3fc8e5f20d962e62401fa2746",
+      "actualSha256": "7253598106cfb978042c7eb7a9aa06585a6857d3fc8e5f20d962e62401fa2746",
+      "complete": true,
+      "decoded": false,
+      "naturalWidth": 2048,
+      "naturalHeight": 2048,
+      "renderedWidth": null,
+      "renderedHeight": null,
+      "visiblePixels": 65536,
+      "verdict": "fail",
+      "failures": [
+        "image-not-decoded"
+      ]
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 895
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 895
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "MemberPicture": {
+        "figma": {
+          "x": 0.0006868131868131869,
+          "y": 0,
+          "width": 0.9986263736263736,
+          "height": 0.8122905027932961
+        },
+        "generated": {
+          "x": 0.0006868131868131869,
+          "y": 0,
+          "width": 0.9986263736263736,
+          "height": 0.8122905027932961
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0.1510989010989011,
+          "y": 0.8480446927374302,
+          "width": 0.6978021978021978,
+          "height": 0.15195530726256984
+        },
+        "generated": {
+          "x": 0.1510989010989011,
+          "y": 0.8480446927374302,
+          "width": 0.6978021978021978,
+          "height": 0.15195530726256984
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.2019767941555651,
+    "maskedDiagnosticPct": 0.15869477704548252,
+    "maskCoveragePct": 7.736202345140892,
+    "thresholdPct": 2.5,
+    "regions": {
+      "portrait": {
+        "id": "portrait",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 727
+        },
+        "totalPixels": 529256,
+        "mismatchedPixels": 978,
+        "diffPct": 0.1847877019816497,
+        "referenceSignalPixels": 416244,
+        "generatedSignalPixels": 417306,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 110,
+          "y": 759,
+          "width": 508,
+          "height": 136
+        },
+        "totalPixels": 69088,
+        "mismatchedPixels": 364,
+        "diffPct": 0.5268642890226957,
+        "referenceSignalPixels": 8056,
+        "generatedSignalPixels": 9347,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 895
+        },
+        "totalPixels": 651560,
+        "mismatchedPixels": 1316,
+        "diffPct": 0.2019767941555651,
+        "referenceSignalPixels": 424300,
+        "generatedSignalPixels": 426707,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "portrait",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.2019767941555651,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "member-card-portrait-census-not-yet-pinned"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/member-card-master-default/figma.png",
+    "cases/member-card-master-default/generated.png",
+    "cases/member-card-master-default/diff.png",
+    "cases/member-card-master-default/triptych.png"
+  ]
+}

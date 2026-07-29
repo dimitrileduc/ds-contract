@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "caseId": "member-card-occurrence-04-a78a8174",
+  "subjectId": "member-card",
+  "figma": {
+    "nodeId": "I2115:4044;2115:3934",
+    "setNodeId": "2074:2072",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Nom": "Florian",
+      "Poste": "Monteur"
+    }
+  },
+  "contract": {
+    "id": "ds.member-card",
+    "version": "1.2.0",
+    "factIds": [
+      "member-card.image.base.508388d688080236a8ce2c4bfc27ce3dd7d724e9",
+      "member-card.image.portrait.a78a817411f671584c151bc22f41efa9843adbe6",
+      "member-card.content.5a02e0676c8a91d3",
+      "member-card.occurrence.6d46649fc2330b22"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 420418,
+      "contrastPixels": 420418,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 728,
+        "height": 888
+      },
+      "imagePixels": 416244,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 420973,
+      "contrastPixels": 420973,
+      "paintedBounds": {
+        "x": 65,
+        "y": 64,
+        "width": 727,
+        "height": 887
+      },
+      "imagePixels": 416145,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "member-card-portrait-a78a817411f6",
+      "expectedSha256": "d30ff283e49fb52ce37b8a66bccd86ed1c7838865de7ec19eb87ee3a01ad12e2",
+      "actualSha256": "d30ff283e49fb52ce37b8a66bccd86ed1c7838865de7ec19eb87ee3a01ad12e2",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1200,
+      "naturalHeight": 1200,
+      "renderedWidth": 363.5,
+      "renderedHeight": 363.5,
+      "visiblePixels": 65536,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 895
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 895
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "MemberPicture": {
+        "figma": {
+          "x": 0.0006868131868131869,
+          "y": 0,
+          "width": 0.9986263736263736,
+          "height": 0.8122905027932961
+        },
+        "generated": {
+          "x": 0.0006868131868131869,
+          "y": 0,
+          "width": 0.9986263736263736,
+          "height": 0.8122905027932961
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0.3475274725274725,
+          "y": 0.8480446927374302,
+          "width": 0.30494505494505497,
+          "height": 0.15195530726256984
+        },
+        "generated": {
+          "x": 0.3480425824175824,
+          "y": 0.8480446927374302,
+          "width": 0.30391483516483514,
+          "height": 0.15195530726256984
+        },
+        "delta": {
+          "x": 0.0005151098901098883,
+          "y": 0,
+          "width": -0.001030219780219832,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:text"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.11096445453987354,
+    "maskedDiagnosticPct": 0.09277328129498705,
+    "maskCoveragePct": 4.0487445515378475,
+    "thresholdPct": 2.5,
+    "regions": {
+      "portrait": {
+        "id": "portrait",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 727
+        },
+        "totalPixels": 529256,
+        "mismatchedPixels": 584,
+        "diffPct": 0.11034357664343908,
+        "referenceSignalPixels": 416244,
+        "generatedSignalPixels": 416145,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 253,
+          "y": 759,
+          "width": 222,
+          "height": 136
+        },
+        "totalPixels": 30192,
+        "mismatchedPixels": 143,
+        "diffPct": 0.4736354001059883,
+        "referenceSignalPixels": 4174,
+        "generatedSignalPixels": 4828,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 895
+        },
+        "totalPixels": 651560,
+        "mismatchedPixels": 723,
+        "diffPct": 0.11096445453987354,
+        "referenceSignalPixels": 420418,
+        "generatedSignalPixels": 420973,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "portrait",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.11096445453987354,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "member-card-shared-base-image-unbindable"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/member-card-occurrence-04-a78a8174/figma.png",
+    "cases/member-card-occurrence-04-a78a8174/generated.png",
+    "cases/member-card-occurrence-04-a78a8174/diff.png",
+    "cases/member-card-occurrence-04-a78a8174/triptych.png"
+  ]
+}

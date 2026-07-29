@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/member-card.contract.json (ds.member-card v1.0.0)
+ * Source of truth: contracts/member-card.contract.json (ds.member-card v1.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -21,7 +21,8 @@ const S: Record<string, CSSProperties> = {
     "alignItems": "center",
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "gap": "16px"
+    "gap": "16px",
+    "width": "364px"
   },
   "text": {
     "display": "flex",
@@ -49,16 +50,18 @@ const V: Record<string, CSSProperties> = {};
 export interface MemberCardProps extends HTMLAttributes<HTMLDivElement> {
   nom?: string;
   poste?: string;
+  imageUrl?: string;
+  imageAlt?: string;
 }
 
-/** Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides remain an explicit runtime boundary until a governed image API is adopted. */
+/** Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides are explicit code-only photo data, propagated to the composed MemberPicture without flattening its image anatomy. */
 export const MemberCard = forwardRef<HTMLDivElement, MemberCardProps>(function MemberCard(
-  { nom = 'Cécilia Piqueray', poste = 'Gérante', style, children, ...rest },
+  { nom = 'Cécilia Piqueray', poste = 'Gérante', imageUrl = '', imageAlt = '', style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
-      <MemberPicture etat="defaut" />
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
+      <MemberPicture etat="defaut" taille="member-card" src={imageUrl} alt={imageAlt} />
 <div style={{ ...S.text }}>
 <span style={{ ...S.Nom }}>{nom}</span>
 <span style={{ ...S.Poste }}>{poste}</span>

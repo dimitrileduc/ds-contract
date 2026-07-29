@@ -32,7 +32,12 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
       />
       <div className={styles.items}>
         {items?.map((item, index) => (
-          <Carte key={index} disposition="reassurance" texte={item.texte} titre={item.titre} />
+          <Carte
+            key={index}
+            disposition="reassurance"
+            texte={[{ text: item.texte }]}
+            titre={item.titre}
+          />
         ))}
       </div>
       {disposition === '5Cartes' ? <Button>Contactez-nous</Button> : null}

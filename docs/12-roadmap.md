@@ -29,6 +29,7 @@ Close the honesty gaps the PoC itself documented, so every claim survives advers
 - [ ] **Live token re-extraction in the loop** — the token snapshot is periodically re-extracted from the design tool, not only derived from `tokens/` (verified manually 264/264 on 2026-07-03; make it automatic)
 - [ ] **Visual regression baseline** — screenshot-per-variant-grid comparison, so the class of defect found in the July 2026 visual audit is caught mechanically
 - [ ] **Close the declared schema gaps** ([docs/08](08-composition-and-spec.md)): nested-part states, parent→child prop mapping, slot `min`/`max` + `restrict` enforcement, slot default content
+- [ ] **No phantom `children` on closed components** — when a contract has neither a default slot nor a text prop bound to React `children`, the React emitter must remove `children` from inherited DOM attributes. JSX children must fail type-checking instead of being accepted and then silently discarded; cover both the refusal case and a real default-slot control with eval fixtures.
 
 **Exit criterion:** the differ (not a human with a screenshot) catches a hand-made change to a part's layout inside one variant; ~~a blank file rebuilds to parity in one run~~ *(✅ done — 2026-07-06, verified by diagnose)*.
 

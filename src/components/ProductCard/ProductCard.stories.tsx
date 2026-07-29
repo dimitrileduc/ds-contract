@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v1.0.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v1.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.',
+          'Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. The fixed 364px frame and full-width text planes are observed geometry; product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.',
       },
     },
   },
@@ -22,9 +22,21 @@ const meta = {
   argTypes: {
     titre: { control: 'text' },
     prix: { control: 'text' },
-    imageUrl: { control: 'text' },
-    imageAlt: { control: 'text' },
-    bouton: { control: 'boolean' },
+    imageUrl: {
+      control: 'text',
+      description:
+        'Code-supplied product-image URL. Figma exposes the visible value as an IMAGE fill through an instance override, not as a component property; the empty runtime default is intentional and comparison assets are injected only by the campaign.',
+    },
+    imageAlt: {
+      control: 'text',
+      description:
+        'Code-supplied text alternative paired with imageUrl. Figma has no corresponding component property, so the empty runtime default is intentional.',
+    },
+    bouton: {
+      control: 'boolean',
+      description:
+        'The immutable ProductCard master observes BOOLEAN `Bouton` as false by default.',
+    },
   },
   args: {
     titre: 'Télécommande Hörmann HSE4-868BS',

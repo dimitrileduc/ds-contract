@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-21-categorie-f08d845e",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:4438;2115:4177",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie",
+      "Texte": "La référence confort. S'ouvre à la verticale pour un gain de place maximal. Isolation thermique supérieure et design moderne.",
+      "Titre": "Porte sectionnelle"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+      "carte.content.dc8b6b2c204b4ba0",
+      "carte.occurrence.fc67c36931a0fad1"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 1280339,
+      "contrastPixels": 1280339,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1486,
+        "height": 1232
+      },
+      "imagePixels": 1242296,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 1408526,
+      "contrastPixels": 1408525,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 1532,
+        "height": 1290
+      },
+      "imagePixels": 1242295,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-f08d845ee4ed",
+      "expectedSha256": "3eef67aa7de640ce6bdd187974e8f059dd9b243bd2c13d5b2d2c0210fd7518df",
+      "actualSha256": "3eef67aa7de640ce6bdd187974e8f059dd9b243bd2c13d5b2d2c0210fd7518df",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 3508,
+      "naturalHeight": 1665,
+      "renderedWidth": 743,
+      "renderedHeight": 418,
+      "visiblePixels": 31232,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "categorieImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Bouton": {
+        "figma": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.4952893674293405,
+          "height": 0.04823151125401929
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.49481620121130554,
+          "height": 0.04823151125401929
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.0004731662180349483,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Bouton"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.1308569153470981,
+    "maskedDiagnosticPct": 0.06119389846092149,
+    "maskCoveragePct": 11.511513677495856,
+    "thresholdPct": 2.5,
+    "regions": {
+      "cta": {
+        "id": "cta",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 1184,
+          "width": 736,
+          "height": 60
+        },
+        "totalPixels": 44160,
+        "mismatchedPixels": 606,
+        "diffPct": 1.3722826086956523,
+        "referenceSignalPixels": 6704,
+        "generatedSignalPixels": 7516,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 836
+        },
+        "totalPixels": 1242296,
+        "mismatchedPixels": 968,
+        "diffPct": 0.07792023801090883,
+        "referenceSignalPixels": 1242296,
+        "generatedSignalPixels": 1242295,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 900,
+          "width": 1486,
+          "height": 220
+        },
+        "totalPixels": 326920,
+        "mismatchedPixels": 845,
+        "diffPct": 0.25847302092254987,
+        "referenceSignalPixels": 31339,
+        "generatedSignalPixels": 32114,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 1244
+        },
+        "totalPixels": 1848584,
+        "mismatchedPixels": 2419,
+        "diffPct": 0.1308569153470981,
+        "referenceSignalPixels": 1280339,
+        "generatedSignalPixels": 1281925,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text",
+      "cta"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.1308569153470981,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-21-categorie-f08d845e/figma.png",
+    "cases/carte-occurrence-21-categorie-f08d845e/generated.png",
+    "cases/carte-occurrence-21-categorie-f08d845e/diff.png",
+    "cases/carte-occurrence-21-categorie-f08d845e/triptych.png"
+  ]
+}

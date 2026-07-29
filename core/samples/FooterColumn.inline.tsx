@@ -50,7 +50,7 @@ export const FooterColumn = forwardRef<HTMLDivElement, FooterColumnProps>(functi
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <span style={{ ...S.Titre }}>{titre}</span>
 <span style={{ ...S.Texte }}>{texte}</span>
     </div>

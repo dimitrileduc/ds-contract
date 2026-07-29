@@ -1,5 +1,5 @@
 <!--
-  Tab — static HTML+CSS emitted from contract ds.tab v1.0.0 by core/emit-html.ts.
+  Tab — static HTML+CSS emitted from contract ds.tab v2.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,14 +9,14 @@
 <section class="showcase showcase--tab">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <button class="tab tab--etat-defaut" role="tab">
-      <span class="tab__libell">Onglet</span>
+    <button class="tab tab--etat-defaut" data-part="root" type="button" data-tablist-id="" aria-selected="false" aria-controls="" tabIndex="-1" role="tab">
+      <span class="tab__libell" data-part="libell">Onglet</span>
     </button>
   </div>
   <div class="showcase__item">
     <p class="showcase__label">etat=selectionne</p>
-    <button class="tab tab--etat-selectionne" role="tab">
-      <span class="tab__libell">Onglet</span>
+    <button class="tab tab--etat-selectionne" data-part="root" type="button" data-tablist-id="" aria-selected="true" aria-controls="" tabIndex="0" role="tab">
+      <span class="tab__libell" data-part="libell">Onglet</span>
     </button>
   </div>
 </section>

@@ -29,7 +29,7 @@ export const RadioButton = forwardRef<HTMLSpanElement, RadioButtonProps>(functio
 ) {
   const classes = [styles.root, styles[`checked-${checked}`], className].filter(Boolean).join(' ');
   return (
-    <span ref={ref} className={classes} data-label-hidden={labelHidden || undefined} data-disabled={disabled || undefined} {...rest}>
+    <span ref={ref} className={classes} data-label-hidden={labelHidden || undefined} data-disabled={disabled || undefined}  {...rest}>
       <span className={styles.choice__control}>
 <span className={styles.radiobutton}>
 <input className={styles.input} type="radio" name={String(name)} value={String(value)} defaultChecked={checked === 'checked'}>

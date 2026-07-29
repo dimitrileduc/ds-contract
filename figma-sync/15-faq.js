@@ -34,9 +34,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Questions fréquentes",
                 "Accroche": "FAQ",
@@ -53,9 +53,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Grand",
                     "Contenu": "Réponse",
@@ -63,9 +63,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 2",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Grand",
                     "Contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
@@ -73,9 +73,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 3",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Grand",
                     "Contenu": "Réponse",
@@ -85,9 +85,9 @@ const COMPONENTS = [
               ]
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Bouton",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {}
             }
           ]

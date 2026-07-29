@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.realisation",
   "name": "Realisation",
-  "version": "1.0.0",
-  "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. IMAGE fills are instance overrides in Figma; src/alt are explicit code semantics.",
+  "version": "1.1.0",
+  "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. Figma IMAGE FILL maps to object-fit: cover; IMAGE fills are instance overrides in Figma and src/alt are explicit code semantics.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -11,6 +11,7 @@
   "props": [
     {
       "name": "taille",
+      "description": "Observed Figma VARIANT `Taille`: Grand has a 743×743 image plane and Petit has a 339.5×339.5 image plane. This axis selects image geometry only; the visible IMAGE fill remains an instance override.",
       "type": {
         "enum": [
           "grand",
@@ -34,6 +35,7 @@
     },
     {
       "name": "imageUrl",
+      "description": "Code-supplied URL for the visible IMAGE fill at either selected size. Figma stores the 27 observed photos as instance fill overrides (3 Grand and 24 Petit), not as a component property; the empty runtime default is intentional and does not substitute an image.",
       "type": "text",
       "default": "",
       "bindings": {
@@ -47,6 +49,7 @@
     },
     {
       "name": "imageAlt",
+      "description": "Code-supplied text alternative paired with imageUrl for either selected size. Figma IMAGE fills expose no corresponding alt component property, so the empty runtime default is intentional.",
       "type": "text",
       "default": "",
       "bindings": {
@@ -64,6 +67,7 @@
     "root": {
       "parts": {
         "Image": {
+          "description": "The image-bearing plane is preserved as an img with code-supplied src and alt. Its observed Grand dimensions are 743×743; taille=petit overrides both dimensions to 339.5×339.5.",
           "element": "img",
           "attrs": {
             "src": "{imageUrl}",
@@ -72,6 +76,9 @@
           "literals": {
             "width": "743px",
             "height": "743px"
+          },
+          "declared": {
+            "object-fit": "cover"
           },
           "literalsByProp": [
             {

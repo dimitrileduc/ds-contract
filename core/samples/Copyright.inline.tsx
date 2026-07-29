@@ -41,7 +41,7 @@ export const Copyright = forwardRef<HTMLDivElement, CopyrightProps>(function Cop
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <span style={{ ...S.Texte }}>{texte}</span>
     </div>
   );

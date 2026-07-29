@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-18-reassurance-8d05df20",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:3723;2114:3615",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance",
+      "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+      "Titre": "Intégration parfaite"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.8d05df2058fe88fa4b14e4472c9746f03fd100a2",
+      "carte.content.6964335cdf710ea1",
+      "carte.occurrence.edee80f75a501849"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 781936,
+      "contrastPixels": 599012,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1036
+      },
+      "imagePixels": 529984,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 805412,
+      "contrastPixels": 623697,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 774,
+        "height": 1042
+      },
+      "imagePixels": 529984,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-8d05df2058fe",
+      "expectedSha256": "7ddaa7c0c577ea4c82816ded6f89189b191c5b51f7f6ac208c5d288a7e64942a",
+      "actualSha256": "7ddaa7c0c577ea4c82816ded6f89189b191c5b51f7f6ac208c5d288a7e64942a",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1744,
+      "naturalHeight": 1440,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 54016,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "reassuranceImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.2179279953036919,
+    "maskedDiagnosticPct": 0.21536198597208284,
+    "maskCoveragePct": 11.068490506863524,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 728,
+          "height": 728
+        },
+        "totalPixels": 529984,
+        "mismatchedPixels": 1429,
+        "diffPct": 0.2696307813066055,
+        "referenceSignalPixels": 529984,
+        "generatedSignalPixels": 529984,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 728,
+          "height": 172
+        },
+        "totalPixels": 125216,
+        "mismatchedPixels": 197,
+        "diffPct": 0.15732813697929976,
+        "referenceSignalPixels": 12939,
+        "generatedSignalPixels": 13389,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 738,
+          "height": 1011
+        },
+        "totalPixels": 746118,
+        "mismatchedPixels": 1626,
+        "diffPct": 0.2179279953036919,
+        "referenceSignalPixels": 561195,
+        "generatedSignalPixels": 564403,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.2179279953036919,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-18-reassurance-8d05df20/figma.png",
+    "cases/carte-occurrence-18-reassurance-8d05df20/generated.png",
+    "cases/carte-occurrence-18-reassurance-8d05df20/diff.png",
+    "cases/carte-occurrence-18-reassurance-8d05df20/triptych.png"
+  ]
+}

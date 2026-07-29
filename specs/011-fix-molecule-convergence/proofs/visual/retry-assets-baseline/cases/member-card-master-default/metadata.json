@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "caseId": "member-card-master-default",
+  "subjectId": "member-card",
+  "figma": {
+    "nodeId": "2074:2072",
+    "setNodeId": "2074:2072",
+    "version": "2381229993207753432",
+    "observedProperties": {}
+  },
+  "contract": {
+    "id": "ds.member-card",
+    "version": "1.1.0",
+    "factIds": [
+      "member-card.image.c60f37abee2a78de43e7b189e77356ab1a16c7e4",
+      "member-card.content.cecilia-piqueray"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 424300,
+      "contrastPixels": 424300,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 728,
+        "height": 888
+      },
+      "imagePixels": 0,
+      "probative": false,
+      "reason": "figma-image-missing",
+      "failures": [
+        "figma-image-missing"
+      ]
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 426720,
+      "contrastPixels": 426720,
+      "paintedBounds": {
+        "x": 64,
+        "y": 64,
+        "width": 728,
+        "height": 887
+      },
+      "imagePixels": 0,
+      "probative": false,
+      "reason": "generated-image-missing",
+      "failures": [
+        "generated-image-missing"
+      ]
+    }
+  },
+  "images": [
+    {
+      "assetId": "member-card-normal",
+      "expectedSha256": "7253598106cfb978042c7eb7a9aa06585a6857d3fc8e5f20d962e62401fa2746",
+      "actualSha256": "7253598106cfb978042c7eb7a9aa06585a6857d3fc8e5f20d962e62401fa2746",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 2048,
+      "naturalHeight": 2048,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 65536,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 895
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 896
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 1
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "MemberPicture": {
+        "figma": null,
+        "generated": null,
+        "delta": null,
+        "verdict": "fail"
+      },
+      "text": {
+        "figma": null,
+        "generated": null,
+        "delta": null,
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "root",
+      "part:MemberPicture",
+      "part:text"
+    ],
+    "verdict": "fail",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.20496114246114247,
+    "maskedDiagnosticPct": 0.1597535040273289,
+    "maskCoveragePct": 7.62517325017325,
+    "thresholdPct": 2.5,
+    "regions": {},
+    "requiredRegionIds": [
+      "whole",
+      "portrait",
+      "text"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "region:portrait:missing",
+      "region:text:missing",
+      "region:whole:missing"
+    ]
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.20496114246114247,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "required-region-missing",
+      "required-region-missing",
+      "required-region-missing",
+      "visibility-receipt-failed",
+      "geometry-receipt-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "member-card-portrait-census-not-yet-pinned"
+  ],
+  "regionError": "portrait: generated required part \"MemberPicture\" is absent",
+  "artifactPaths": [
+    "cases/member-card-master-default/figma.png",
+    "cases/member-card-master-default/generated.png",
+    "cases/member-card-master-default/diff.png",
+    "cases/member-card-master-default/triptych.png"
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "011-fix-molecule-convergence",
+  "reviewKind": "read-only automated post-campaign walkthrough",
+  "elapsedSeconds": 184,
+  "result": {
+    "path": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+    "sha256": "95a977b71c4317c6714c289080fe00bf541b7f1eded5500c0fd5357deb89c682",
+    "verdict": "blocked",
+    "exitCode": 2,
+    "coverage": {
+      "expected": 227,
+      "observed": 227,
+      "missing": 0,
+      "unexpected": 0
+    },
+    "caseCount": 98,
+    "unscoredCaseCount": 0
+  },
+  "checklist": [
+    {
+      "target": "carte",
+      "reviewed": true,
+      "verdict": "fail",
+      "counts": {
+        "passing": 33,
+        "failing": 3,
+        "blocked": 0
+      },
+      "reviewedCaseIds": [
+        "carte-occurrence-03-reassurance-23930c61",
+        "carte-occurrence-08-reassurance-23389291",
+        "carte-occurrence-11-reassurance-dfaa8d20"
+      ],
+      "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-03-reassurance-23930c61/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-08-reassurance-23389291/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/carte-occurrence-11-reassurance-dfaa8d20/metadata.json"
+      ],
+      "namedBlockedLimits": []
+    },
+    {
+      "target": "field",
+      "reviewed": true,
+      "verdict": "blocked",
+      "counts": {
+        "passing": 0,
+        "failing": 0,
+        "blocked": 5
+      },
+      "reviewedCaseIds": [
+        "field-master-normal-input",
+        "field-normal-input-optionnel",
+        "field-normal-input-required",
+        "field-normal-select-required",
+        "field-normal-textarea-required"
+      ],
+      "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/field-normal-input-optionnel/metadata.json"
+      ],
+      "namedBlockedLimits": [
+        "field-contract-combinations-without-immutable-instance",
+        "field-observed-saisie-rendering-unproved"
+      ]
+    },
+    {
+      "target": "member-card",
+      "reviewed": true,
+      "verdict": "blocked",
+      "counts": {
+        "passing": 0,
+        "failing": 0,
+        "blocked": 16
+      },
+      "reviewedCaseIds": [
+        "member-card-occurrence-01-c60f37ab",
+        "member-card-occurrence-09-73c9099f",
+        "member-card-occurrence-16-c79c91e1"
+      ],
+      "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/member-card-occurrence-09-73c9099f/metadata.json"
+      ],
+      "namedBlockedLimits": [
+        "member-card-shared-base-image-unbindable"
+      ]
+    },
+    {
+      "target": "nav-item",
+      "reviewed": true,
+      "verdict": "fail",
+      "counts": {
+        "passing": 1,
+        "failing": 3,
+        "blocked": 0
+      },
+      "reviewedCaseIds": [
+        "nav-item-chevron-true-actif-false",
+        "nav-item-chevron-false-actif-true",
+        "nav-item-chevron-true-actif-true"
+      ],
+      "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/nav-item-chevron-true-actif-false/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/nav-item-chevron-false-actif-true/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/nav-item-chevron-true-actif-true/metadata.json"
+      ],
+      "namedBlockedLimits": []
+    },
+    {
+      "target": "product-card",
+      "reviewed": true,
+      "verdict": "blocked",
+      "counts": {
+        "passing": 0,
+        "failing": 0,
+        "blocked": 8
+      },
+      "reviewedCaseIds": [
+        "product-card-occurrence-01-1ba972fd",
+        "product-card-occurrence-08-cfd3b777"
+      ],
+      "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/product-card-occurrence-01-1ba972fd/metadata.json"
+      ],
+      "namedBlockedLimits": [
+        "product-card-contract-bouton-true-without-immutable-instance"
+      ]
+    },
+    {
+      "target": "realisation",
+      "reviewed": true,
+      "verdict": "pass",
+      "counts": {
+        "passing": 27,
+        "failing": 0,
+        "blocked": 0
+      },
+      "reviewedCaseIds": [
+        "realisation-grand-01-94f7de29",
+        "realisation-petit-18-99c604ed"
+      ],
+      "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/realisation-grand-01-94f7de29/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/realisation-petit-18-99c604ed/metadata.json"
+      ],
+      "namedBlockedLimits": []
+    },
+    {
+      "target": "tab",
+      "reviewed": true,
+      "verdict": "pass",
+      "counts": {
+        "passing": 2,
+        "failing": 0,
+        "blocked": 0
+      },
+      "reviewedCaseIds": [
+        "tab-etat-defaut",
+        "tab-etat-selectionne"
+      ],
+      "evidencePaths": [
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/tab-etat-defaut/metadata.json",
+        "specs/011-fix-molecule-convergence/proofs/visual/cases/tab-etat-selectionne/metadata.json"
+      ],
+      "namedBlockedLimits": []
+    }
+  ],
+  "conclusion": "All 98 cases and seven target verdicts were reviewed with exact 227/227 fact coverage and no unscored case. Realisation and Tab pass. Carte and NavItem retain explicit pixel failures. Field, MemberCard, and ProductCard retain named immutable-reference limits. The blocked exit is preserved and terminal closure is not authorized."
+}

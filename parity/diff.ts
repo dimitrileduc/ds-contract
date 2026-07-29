@@ -33,6 +33,7 @@ import {
   type Prop,
 } from '../scripts/contract-schema.js';
 import { extractCode, type CodeExtract } from './extract-code.js';
+import { richTextDefaultText, richTextDefaultsEqual } from './defaults.js';
 
 const ROOT = process.cwd();
 
@@ -59,6 +60,15 @@ const pending: Array<{ subject: string; detail: string; remedy: string }> = [];
 const isEnum = (p: Prop): p is Prop & { type: { enum: string[] } } =>
   typeof p.type === 'object' && 'enum' in p.type;
 const pascal = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const sameCodeDefault = (p: Prop, codeDefault: unknown): boolean =>
+  p.type === 'rich-text'
+    ? richTextDefaultsEqual(p.default, codeDefault)
+    : String(p.default ?? '') === String(codeDefault ?? '');
+const figmaDefault = (p: Prop): string | boolean | undefined => {
+  if (p.type === 'boolean') return Boolean(p.default);
+  if (p.type === 'rich-text') return richTextDefaultText(p.default);
+  return p.default === undefined ? undefined : String(p.default);
+};
 
 // ---------------------------------------------------------------------------
 // Load inputs
@@ -234,7 +244,7 @@ for (const contract of contracts) {
     // not a pass. Event-toggled props are exempt — their default lives in
     // the uncontrolled useState, which extraction cannot see.
     const isToggled = (contract.events ?? []).some((e) => e.toggles?.prop === p.name);
-    if (!isToggled && String(p.default ?? '') !== String(found.default ?? '')) {
+    if (!isToggled && !sameCodeDefault(p, found.default)) {
       add({
         surface: 'code',
         classification: 'mismatch',
@@ -369,7 +379,8 @@ for (const contract of contracts) {
     // BOOLEAN/TEXT defaults were presence-only (red-team finding): flipping
     // every boolean default on the canvas passed "parity clean".
     if (!isEnum(p) && p.default !== undefined && def.defaultValue !== undefined) {
-      const want = p.type === 'boolean' ? Boolean(p.default) : String(p.default);
+      const want = figmaDefault(p);
+      if (want === undefined) continue;
       const got = p.type === 'boolean' ? Boolean(def.defaultValue) : String(def.defaultValue);
       if (want !== got) {
         add({

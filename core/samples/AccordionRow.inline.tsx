@@ -160,7 +160,7 @@ export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(functi
   const etat = etatProp ?? etatUncontrolled;
   const handleToggle = () => { setEtatUncontrolled(etat === 'ouvert' ? 'ferme' : 'ouvert'); onToggle?.(); };
   return (
-    <div ref={ref} style={{ ...S.root, ...(V[`taille-${taille}:root`] ?? {}), ...(V[`etat-${etat}:root`] ?? {}), ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...(V[`taille-${taille}:root`] ?? {}), ...(V[`etat-${etat}:root`] ?? {}), ...style }}  {...rest}>
       {etat === 'ouvert' ? (<div style={{ ...S.title }}>
 {etat === 'ouvert' ? (<span style={{ ...S.TitreOuvert, ...(V[`taille-${taille}:TitreOuvert`] ?? {}) }}>{titre}</span>) : null}
 {etat === 'ouvert' ? (<span style={{ ...S.ChevronUp, ...(V[`taille-${taille}:ChevronUp`] ?? {}) }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-up"] }} />) : null}

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/product-card.contract.json (ds.product-card v1.0.0)
+ * Source of truth: contracts/product-card.contract.json (ds.product-card v1.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -21,7 +21,9 @@ const S: Record<string, CSSProperties> = {
     "alignItems": "center",
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "gap": "16px"
+    "gap": "16px",
+    "width": "364px",
+    "textRendering": "geometricprecision"
   },
   "Image": {
     "width": "240px",
@@ -32,14 +34,16 @@ const S: Record<string, CSSProperties> = {
     "fontSize": "16px",
     "fontWeight": 600,
     "lineHeight": "20px",
-    "textAlign": "center"
+    "textAlign": "center",
+    "alignSelf": "stretch"
   },
   "Prix": {
     "color": "#143A84",
     "fontSize": "16px",
     "fontWeight": 600,
     "lineHeight": "20px",
-    "textAlign": "center"
+    "textAlign": "center",
+    "alignSelf": "stretch"
   }
 };
 
@@ -49,18 +53,21 @@ const V: Record<string, CSSProperties> = {};
 export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   titre?: string;
   prix?: string;
+  /** Code-supplied product-image URL. Figma exposes the visible value as an IMAGE fill through an instance override, not as a component property; the empty runtime default is intentional and comparison assets are injected only by the campaign. */
   imageUrl?: string;
+  /** Code-supplied text alternative paired with imageUrl. Figma has no corresponding component property, so the empty runtime default is intentional. */
   imageAlt?: string;
+  /** The immutable ProductCard master observes BOOLEAN `Bouton` as false by default. */
   bouton?: boolean;
 }
 
-/** Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides. */
+/** Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. The fixed 364px frame and full-width text planes are observed geometry; product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides. */
 export const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(function ProductCard(
   { bouton = false, titre = 'Télécommande Hörmann HSE4-868BS', prix = '74,99€', imageUrl = '', imageAlt = '', style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} data-bouton={bouton || undefined} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }} data-bouton={bouton || undefined}  {...rest}>
       <img style={{ ...S.Image }} src={String(imageUrl)} alt={String(imageAlt)}>
 
 </img>

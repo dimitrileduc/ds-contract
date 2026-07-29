@@ -46,7 +46,7 @@ export const Devis = forwardRef<HTMLDivElement, DevisProps>(function Devis(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.Container }}>
 <span style={{ ...S.Titre }}>{titre}</span>
 <Button>Contactez-nous</Button>

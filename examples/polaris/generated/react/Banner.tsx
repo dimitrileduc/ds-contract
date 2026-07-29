@@ -39,7 +39,7 @@ export const Banner = forwardRef<HTMLDivElement, BannerProps>(function Banner(
 ) {
   const classes = [styles.root, styles[`tone-${tone}`], className].filter(Boolean).join(' ');
   return (
-    <div ref={ref} className={classes} data-hide-icon={hideIcon || undefined} data-stop-announcements={stopAnnouncements || undefined} data-dismissible={dismissible || undefined} data-with-action={withAction || undefined} role={ROLE_MAP[tone]} {...rest}>
+    <div ref={ref} className={classes} data-hide-icon={hideIcon || undefined} data-stop-announcements={stopAnnouncements || undefined} data-dismissible={dismissible || undefined} data-with-action={withAction || undefined} role={ROLE_MAP[tone]}  {...rest}>
       <div className={styles.box}>
 <div className={styles.blockstack}>
 <div className={styles["box-2"]}>

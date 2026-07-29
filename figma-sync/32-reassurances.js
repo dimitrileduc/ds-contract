@@ -29,9 +29,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -49,9 +49,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -59,9 +59,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 2",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -69,9 +69,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 3",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -79,9 +79,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 4",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -89,9 +89,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 5",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
@@ -101,9 +101,9 @@ const COMPONENTS = [
               ]
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "BoutonQuatreCartes",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {}
             }
           ]
@@ -123,9 +123,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -143,9 +143,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -153,9 +153,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 2",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -163,9 +163,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 3",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -173,9 +173,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 4",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -183,9 +183,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 5",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
@@ -205,15 +205,15 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Bouton",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "BoutonSecondaire",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 }
               ]
@@ -235,9 +235,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -255,9 +255,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -265,9 +265,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 2",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -275,9 +275,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 3",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -285,9 +285,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 4",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -295,9 +295,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 5",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
@@ -307,9 +307,9 @@ const COMPONENTS = [
               ]
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "BoutonCinqCartes",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {}
             }
           ]

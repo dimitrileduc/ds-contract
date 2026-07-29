@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-25-reassurance-dd8df2d9",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:3861;2114:3616",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance",
+      "Texte": "Finitions Woodgrain, Silkgrain ou Decograin. Adaptez les couleurs et motifs pour créer votre porte idéale.",
+      "Titre": "Personnalisation"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.dd8df2d97b9e4a7e1ab81990750af8f40b7c1dcb",
+      "carte.content.2e495483195a7cc9",
+      "carte.occurrence.895fb86705d9dc12"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 818519,
+      "contrastPixels": 598010,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1084
+      },
+      "imagePixels": 526474,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 842564,
+      "contrastPixels": 623162,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 774,
+        "height": 1090
+      },
+      "imagePixels": 526241,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-dd8df2d97b9e",
+      "expectedSha256": "6b8da9fd830e815aa9e02f4484b52ac60cec6453d0ab073cb7361216ece8acab",
+      "actualSha256": "6b8da9fd830e815aa9e02f4484b52ac60cec6453d0ab073cb7361216ece8acab",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 2000,
+      "naturalHeight": 750,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 24576,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 1044
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 1044
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "reassuranceImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6973180076628352
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6973180076628352
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7432950191570882,
+          "width": 1,
+          "height": 0.210727969348659
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7432950191570882,
+          "width": 1,
+          "height": 0.210727969348659
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.02162391784446645,
+    "maskedDiagnosticPct": 0.001010661030065722,
+    "maskCoveragePct": 11.378275255840377,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 728,
+          "height": 728
+        },
+        "totalPixels": 529984,
+        "mismatchedPixels": 7,
+        "diffPct": 0.0013207945900253592,
+        "referenceSignalPixels": 526474,
+        "generatedSignalPixels": 526241,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 728,
+          "height": 220
+        },
+        "totalPixels": 160160,
+        "mismatchedPixels": 162,
+        "diffPct": 0.10114885114885115,
+        "referenceSignalPixels": 13784,
+        "generatedSignalPixels": 14389,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 738,
+          "height": 1059
+        },
+        "totalPixels": 781542,
+        "mismatchedPixels": 169,
+        "diffPct": 0.02162391784446645,
+        "referenceSignalPixels": 558914,
+        "generatedSignalPixels": 562140,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.02162391784446645,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-25-reassurance-dd8df2d9/figma.png",
+    "cases/carte-occurrence-25-reassurance-dd8df2d9/generated.png",
+    "cases/carte-occurrence-25-reassurance-dd8df2d9/diff.png",
+    "cases/carte-occurrence-25-reassurance-dd8df2d9/triptych.png"
+  ]
+}

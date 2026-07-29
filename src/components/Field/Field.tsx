@@ -1,9 +1,9 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/field.contract.json (ds.field v1.0.0)
+ * Source of truth: contracts/field.contract.json (ds.field v2.0.0)
  * Regenerate with: npm run generate
  */
-import { forwardRef } from 'react';
+import { forwardRef, cloneElement, isValidElement } from 'react';
 import type { HTMLAttributes } from 'react';
 import styles from './Field.module.css';
 
@@ -19,6 +19,29 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
   { etat = 'normal', optionnel = false, label = 'Libellé', className, children, ...rest },
   ref,
 ) {
+  const slotControl0 = isValidElement<Record<string, unknown>>(children)
+    ? cloneElement(children, {
+        'aria-invalid': etat === 'normal' ? 'false' : etat === 'erreur' ? 'true' : undefined,
+        'aria-describedby':
+          etat === 'normal' ? undefined : etat === 'erreur' ? 'field-error-message' : undefined,
+        style: {
+          ...((children.props.style as Record<string, unknown> | undefined) ?? {}),
+          width: '100%',
+          borderColor:
+            etat === 'normal'
+              ? 'var(--color-bleu-gris)'
+              : etat === 'erreur'
+                ? '#D32F2F'
+                : undefined,
+          '--dsc-border-color':
+            etat === 'normal'
+              ? 'var(--color-bleu-gris)'
+              : etat === 'erreur'
+                ? '#D32F2F'
+                : undefined,
+        },
+      })
+    : children;
   const classes = [styles.root, styles[`etat-${etat}`], className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} data-optionnel={optionnel || undefined} {...rest}>
@@ -26,8 +49,12 @@ export const Field = forwardRef<HTMLDivElement, FieldProps>(function Field(
         <span className={styles.Label}>{label}</span>
         {optionnel ? <span className={styles.MentionOptionnelle}>(optionnel)</span> : null}
       </div>
-      <div className={styles.Saisie}>{children}</div>
-      {etat === 'erreur' ? <span className={styles.messageErreur}>Message d’erreur</span> : null}
+      <div className={styles.Saisie}>{slotControl0}</div>
+      {etat === 'erreur' ? (
+        <span className={styles.messageErreur} id="field-error-message">
+          Message d’erreur
+        </span>
+      ) : null}
     </div>
   );
 });

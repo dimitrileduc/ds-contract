@@ -29,9 +29,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "prcdent",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {
                 "Glyphe gauche": "ChevronLeft",
                 "Icone droite": false,
@@ -41,9 +41,9 @@ const COMPONENTS = [
               }
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Suivant",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {
                 "Glyphe gauche": "ChevronRight",
                 "Icone droite": false,

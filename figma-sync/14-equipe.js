@@ -41,144 +41,144 @@ const COMPONENTS = [
               "grow": true,
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Gérante",
                     "Nom": "Cécilia Piqueray"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 2",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Gérant",
                     "Nom": "Florian Piqueray"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 3",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Jordan"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 4",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Florian"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 5",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Dépanneur",
                     "Nom": "Hervé"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 6",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Poste",
                     "Nom": "Prénom"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 7",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Poste",
                     "Nom": "Prénom"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 8",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Poste",
                     "Nom": "Prénom"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 9",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Collaboratrice admin & comptabilité",
                     "Nom": "Sandra Magermans"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 10",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Collaborateur admin & gestion SAV",
                     "Nom": "Arnaud Dahmen"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 11",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Peintre",
                     "Nom": "Ricardo"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 12",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Préparateur",
                     "Nom": "Quentin"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 13",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Marc"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 14",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "André"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 15",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Laurent"
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "MemberCard 16",
-                  "dep": "MemberCard",
+                  "dep":"MemberCard",
                   "depProps": {
                     "Poste": "Monteur",
                     "Nom": "Grégory"

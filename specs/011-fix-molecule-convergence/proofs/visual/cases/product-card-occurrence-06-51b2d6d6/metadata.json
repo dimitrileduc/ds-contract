@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "caseId": "product-card-occurrence-06-51b2d6d6",
+  "subjectId": "product-card",
+  "figma": {
+    "nodeId": "I2116:4595;2116:4471",
+    "setNodeId": "2068:1972",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Bouton": false,
+      "Prix": "139,99€",
+      "Titre": "Clavier à code Hörmann FCT3-1BS"
+    }
+  },
+  "contract": {
+    "id": "ds.product-card",
+    "version": "1.1.0",
+    "factIds": [
+      "product-card.bouton.false",
+      "product-card.image.51b2d6d67c7fa001e5f9c60835be516e26a35a89",
+      "product-card.content.cfeee227f5d5c305",
+      "product-card.occurrence.ae14c6e202e0c19d"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 237615,
+      "contrastPixels": 167991,
+      "paintedBounds": {
+        "x": 88,
+        "y": 0,
+        "width": 552,
+        "height": 621
+      },
+      "imagePixels": 160776,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 237784,
+      "contrastPixels": 167947,
+      "paintedBounds": {
+        "x": 152,
+        "y": 64,
+        "width": 552,
+        "height": 620
+      },
+      "imagePixels": 160563,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "product-card-image-51b2d6d67c7f",
+      "expectedSha256": "1541f7bc042c19c53ef32081649bfd3e7bad2833683501d43992e5faf7aa3b38",
+      "actualSha256": "1541f7bc042c19c53ef32081649bfd3e7bad2833683501d43992e5faf7aa3b38",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1440,
+      "naturalHeight": 1440,
+      "renderedWidth": 240,
+      "renderedHeight": 240,
+      "visiblePixels": 65536,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 624
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 624
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Image": {
+        "figma": {
+          "x": 0.17032967032967034,
+          "y": 0,
+          "width": 0.6593406593406593,
+          "height": 0.7692307692307693
+        },
+        "generated": {
+          "x": 0.17032967032967034,
+          "y": 0,
+          "width": 0.6593406593406593,
+          "height": 0.7692307692307693
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Titre": {
+        "figma": {
+          "x": 0,
+          "y": 0.8205128205128205,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.8205128205128205,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Prix": {
+        "figma": {
+          "x": 0,
+          "y": 0.9358974358974359,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9358974358974359,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.051510989010989015,
+    "maskedDiagnosticPct": 0,
+    "maskCoveragePct": 7.10279304029304,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 124,
+          "y": 0,
+          "width": 480,
+          "height": 480
+        },
+        "totalPixels": 230400,
+        "mismatchedPixels": 0,
+        "diffPct": 0,
+        "referenceSignalPixels": 160776,
+        "generatedSignalPixels": 160563,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "title-price": {
+        "id": "title-price",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 511,
+          "width": 728,
+          "height": 113
+        },
+        "totalPixels": 82264,
+        "mismatchedPixels": 234,
+        "diffPct": 0.28445006321112515,
+        "referenceSignalPixels": 7215,
+        "generatedSignalPixels": 7384,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 624
+        },
+        "totalPixels": 454272,
+        "mismatchedPixels": 234,
+        "diffPct": 0.051510989010989015,
+        "referenceSignalPixels": 167991,
+        "generatedSignalPixels": 167947,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "title-price"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.051510989010989015,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "product-card-contract-bouton-true-without-immutable-instance"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/product-card-occurrence-06-51b2d6d6/figma.png",
+    "cases/product-card-occurrence-06-51b2d6d6/generated.png",
+    "cases/product-card-occurrence-06-51b2d6d6/diff.png",
+    "cases/product-card-occurrence-06-51b2d6d6/triptych.png"
+  ]
+}

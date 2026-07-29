@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "caseId": "product-card-master-default",
+  "subjectId": "product-card",
+  "figma": {
+    "nodeId": "2068:1972",
+    "setNodeId": "2068:1972",
+    "version": "2381229993207753432",
+    "observedProperties": {}
+  },
+  "contract": {
+    "id": "ds.product-card",
+    "version": "1.1.0",
+    "factIds": [
+      "product-card.bouton.false",
+      "product-card.image.1ba972fd8df54b3eafdfd9c97b169cfd57c17e8c"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 238621,
+      "contrastPixels": 80384,
+      "paintedBounds": {
+        "x": 45,
+        "y": 0,
+        "width": 637,
+        "height": 621
+      },
+      "imagePixels": 72163,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 238854,
+      "contrastPixels": 80395,
+      "paintedBounds": {
+        "x": 109,
+        "y": 64,
+        "width": 637,
+        "height": 619
+      },
+      "imagePixels": 71941,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "product-card-default",
+      "expectedSha256": "1eec25df58e75f0dfdc23b1545bd7c2b115722af7a59094597e84c0ccf3584a0",
+      "actualSha256": "1eec25df58e75f0dfdc23b1545bd7c2b115722af7a59094597e84c0ccf3584a0",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1080,
+      "naturalHeight": 1080,
+      "renderedWidth": 240,
+      "renderedHeight": 240,
+      "visiblePixels": 65536,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 624
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 624
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Image": {
+        "figma": {
+          "x": 0.17032967032967034,
+          "y": 0,
+          "width": 0.6593406593406593,
+          "height": 0.7692307692307693
+        },
+        "generated": {
+          "x": 0.17032967032967034,
+          "y": 0,
+          "width": 0.6593406593406593,
+          "height": 0.7692307692307693
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Titre": {
+        "figma": {
+          "x": 0,
+          "y": 0.8205128205128205,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.8205128205128205,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Prix": {
+        "figma": {
+          "x": 0,
+          "y": 0.9358974358974359,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9358974358974359,
+          "width": 1,
+          "height": 0.0641025641025641
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.4114275147928994,
+    "maskedDiagnosticPct": 0.002147243654895,
+    "maskCoveragePct": 7.733252324598479,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 124,
+          "y": 0,
+          "width": 480,
+          "height": 480
+        },
+        "totalPixels": 230400,
+        "mismatchedPixels": 9,
+        "diffPct": 0.00390625,
+        "referenceSignalPixels": 72163,
+        "generatedSignalPixels": 71941,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "title-price": {
+        "id": "title-price",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 511,
+          "width": 728,
+          "height": 113
+        },
+        "totalPixels": 82264,
+        "mismatchedPixels": 1860,
+        "diffPct": 2.2610133229602254,
+        "referenceSignalPixels": 8221,
+        "generatedSignalPixels": 8454,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 728,
+          "height": 624
+        },
+        "totalPixels": 454272,
+        "mismatchedPixels": 1869,
+        "diffPct": 0.4114275147928994,
+        "referenceSignalPixels": 80384,
+        "generatedSignalPixels": 80395,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "title-price"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.4114275147928994,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "product-card-bouton-true-no-immutable-reference",
+    "product-card-image-census-not-yet-pinned"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/product-card-master-default/figma.png",
+    "cases/product-card-master-default/generated.png",
+    "cases/product-card-master-default/diff.png",
+    "cases/product-card-master-default/triptych.png"
+  ]
+}

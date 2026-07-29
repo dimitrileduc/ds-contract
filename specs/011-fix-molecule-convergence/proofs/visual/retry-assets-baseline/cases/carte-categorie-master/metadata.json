@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-categorie-master",
+  "subjectId": "carte",
+  "status": "blocked-before-capture",
+  "admissionFailures": [
+    "coverage-incomplete",
+    "render-refused"
+  ],
+  "namedBlockedConditions": [
+    "carte-occurrence-census-not-yet-pinned"
+  ],
+  "figma": {
+    "nodeId": "2063:1611",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie"
+    },
+    "error": "Refused — 1 contract violation(s):\n  - ds.carte: rich-text prop \"texte\" default must be a segment array (got \"SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.\")"
+  }
+}

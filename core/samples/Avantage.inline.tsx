@@ -66,7 +66,7 @@ export const Avantage = forwardRef<HTMLDivElement, AvantageProps>(function Avant
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <span style={{ ...S.Piqueray }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["piqueray"] }} />
 <div style={{ ...S.text }}>
 <span style={{ ...S.Titre }}>{titre}</span>

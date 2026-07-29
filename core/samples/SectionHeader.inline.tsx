@@ -68,7 +68,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...(V[`disposition-${disposition}:root`] ?? {}), ...style }} data-accroche2={accroche2 || undefined} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...(V[`disposition-${disposition}:root`] ?? {}), ...style }} data-accroche2={accroche2 || undefined}  {...rest}>
       {disposition === 'standard' ? (<span style={{ ...S.Accroche }}>{accroche}</span>) : null}
 <span style={{ ...S.Titre, ...(V[`disposition-${disposition}:Titre`] ?? {}) }}>{titre}</span>
 {disposition === 'avecCta' ? (<Button variant="outilneNoir">Voir les produits</Button>) : null}

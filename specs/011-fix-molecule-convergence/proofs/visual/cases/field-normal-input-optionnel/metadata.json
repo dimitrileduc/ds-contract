@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "caseId": "field-normal-input-optionnel",
+  "subjectId": "field",
+  "figma": {
+    "nodeId": "I2096:2714;2096:2555",
+    "setNodeId": "2056:1278",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Etat": "Normal",
+      "Label": "Téléphone",
+      "Optionnel": true,
+      "Saisie": "2053:1245"
+    }
+  },
+  "contract": {
+    "id": "ds.field",
+    "version": "2.0.0",
+    "factIds": [
+      "field.etat.normal.optionnel.true.saisie.input"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 57708,
+      "contrastPixels": 7924,
+      "paintedBounds": {
+        "x": 0,
+        "y": 7,
+        "width": 560,
+        "height": 155
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 58384,
+      "contrastPixels": 8853,
+      "paintedBounds": {
+        "x": 63,
+        "y": 69,
+        "width": 561,
+        "height": 157
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 679,
+      "height": 162
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 679,
+      "height": 162
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "label": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 0.5596465390279823,
+          "height": 0.30864197530864196
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 0.5566089837997055,
+          "height": 0.30864197530864196
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.003037555228276867,
+          "height": 0
+        },
+        "verdict": "fail"
+      },
+      "Saisie": {
+        "figma": {
+          "x": 0,
+          "y": 0.4074074074074074,
+          "width": 0.8247422680412371,
+          "height": 0.5925925925925926
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.4074074074074074,
+          "width": 0.8247422680412371,
+          "height": 0.5925925925925926
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [
+      "part:label"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.7827415043909889,
+    "maskedDiagnosticPct": 0.07948862319080581,
+    "maskCoveragePct": 17.653957344678993,
+    "thresholdPct": 2.5,
+    "regions": {
+      "control": {
+        "id": "control",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 66,
+          "width": 560,
+          "height": 96
+        },
+        "totalPixels": 53760,
+        "mismatchedPixels": 72,
+        "diffPct": 0.13392857142857142,
+        "referenceSignalPixels": 3976,
+        "generatedSignalPixels": 4252,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "label": {
+        "id": "label",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 378,
+          "height": 50
+        },
+        "totalPixels": 18900,
+        "mismatchedPixels": 789,
+        "diffPct": 4.174603174603175,
+        "referenceSignalPixels": 3948,
+        "generatedSignalPixels": 4596,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 679,
+          "height": 162
+        },
+        "totalPixels": 109998,
+        "mismatchedPixels": 861,
+        "diffPct": 0.7827415043909889,
+        "referenceSignalPixels": 7924,
+        "generatedSignalPixels": 8848,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "label",
+      "control"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "region:label:region-threshold-exceeded"
+    ]
+  },
+  "semantics": [
+    {
+      "id": "field-optionnel-control-fills-cross-axis",
+      "selector": "[data-part='Saisie'] > input",
+      "assertion": "relationship",
+      "contractPointer": "/anatomy/root/parts/Saisie/slot/control/fill",
+      "contractResolved": true,
+      "expected": {
+        "width": "fill"
+      },
+      "actual": {
+        "width": "fill"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "field-optionnel-normal-aria-invalid",
+      "selector": "[data-part='Saisie'] > input",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/parts/Saisie/slot/control/attributes/aria-invalid",
+      "contractResolved": true,
+      "expected": {
+        "aria-invalid": "false"
+      },
+      "actual": {
+        "aria-invalid": "false"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "field-optionnel-normal-aria-describedby-absent",
+      "selector": "[data-part='Saisie'] > input",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/parts/Saisie/slot/control/attributes/aria-describedby",
+      "contractResolved": true,
+      "expected": {
+        "aria-describedby": null
+      },
+      "actual": {
+        "aria-describedby": null
+      },
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "gate": {
+    "scorePct": 0.7827415043909889,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "required-region-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "field-contract-combinations-without-immutable-instance",
+    "field-observed-saisie-rendering-unproved"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/field-normal-input-optionnel/figma.png",
+    "cases/field-normal-input-optionnel/generated.png",
+    "cases/field-normal-input-optionnel/diff.png",
+    "cases/field-normal-input-optionnel/triptych.png"
+  ]
+}

@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* ProductCard — from ds.product-card v1.0.0 (core/emit-html.ts) */
+/* ProductCard — from ds.product-card v1.1.0 (core/emit-html.ts) */
 
 .product-card, .product-card *, .product-card *::before, .product-card *::after {
   box-sizing: border-box;
@@ -126,6 +126,8 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: 16px;
+  width: 364px;
+  text-rendering: geometricprecision;
 }
 
 .product-card__Image {
@@ -139,6 +141,7 @@
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
   text-align: center;
+  align-self: stretch;
 }
 
 .product-card__Prix {
@@ -147,6 +150,7 @@
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
   text-align: center;
+  align-self: stretch;
 }
 
 /* showcase chrome */

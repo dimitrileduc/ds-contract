@@ -50,9 +50,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "SectionHeader",
-                  "dep": "SectionHeader",
+                  "dep":"SectionHeader",
                   "depProps": {
                     "Titre": "Nos coordonnées",
                     "Accroche": "Contact",

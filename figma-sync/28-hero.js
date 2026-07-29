@@ -50,9 +50,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "SectionHeader",
-                      "dep": "SectionHeader",
+                      "dep":"SectionHeader",
                       "depProps": {
                         "Titre": "Portes de garage industrielles",
                         "Accroche": "Plus de 50 ans d’expérience",
@@ -78,9 +78,9 @@ const COMPONENTS = [
                           "fontFamily": "Montserrat"
                         },
                         {
-                          "type": "instance",
+                          "type":"instance",
                           "name": "Bouton",
-                          "dep": "Button",
+                          "dep":"Button",
                           "depProps": {}
                         }
                       ]

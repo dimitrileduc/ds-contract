@@ -1,4 +1,4 @@
-/* Realisation — from ds.realisation v1.0.0 (core/emit-html.ts) */
+/* Realisation — from ds.realisation v1.1.0 (core/emit-html.ts) */
 
 .realisation, .realisation *, .realisation *::before, .realisation *::after {
   box-sizing: border-box;
@@ -15,6 +15,7 @@
 .realisation__Image {
   width: 743px;
   height: 743px;
+  object-fit: cover;
 }
 
 .realisation--taille-petit .realisation__Image {

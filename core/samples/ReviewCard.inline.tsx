@@ -180,7 +180,7 @@ export const ReviewCard = forwardRef<HTMLElement, ReviewCardProps>(function Revi
   ref,
 ) {
   return (
-    <article ref={ref} style={{ ...S.root, ...style }} data-tronque={tronque || undefined} data-initiale-visible={initialeVisible || undefined} data-photo={photo || undefined} data-verifie={verifie || undefined} {...rest}>
+    <article ref={ref} style={{ ...S.root, ...style }} data-tronque={tronque || undefined} data-initiale-visible={initialeVisible || undefined} data-photo={photo || undefined} data-verifie={verifie || undefined}  {...rest}>
       <div style={{ ...S.entete }}>
 <div style={{ ...S.profil }}>
 {initialeVisible ? (<div style={{ ...S.avatarInitiale }}>

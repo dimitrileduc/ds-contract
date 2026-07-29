@@ -1,9 +1,15 @@
 # Feature Specification: Réparer la convergence des dernières molécules
 
-**Feature Branch**: `check-branch-commit`  
+**Feature Branch**: `011-fix-molecule-convergence`
 **Created**: 2026-07-28  
-**Status**: Draft  
+**Status**: Implemented with honest blocked visual verdict (2026-07-29)
 **Input**: Reprendre le chantier de convergence Figma → contrat → code depuis le checkpoint historique `45e2a7d5a950e3d6ccc2a0dd62982b7c288210c5`, préserver le WIP partagé, réparer les sept molécules encore non validées et produire une comparaison visuelle probante sans aucune mutation de Figma ni correction directe des sorties générées.
+
+## État d'implémentation (2026-07-29)
+
+La campagne finale a comparé 98/98 cas avec 227/227 faits couverts et aucune référence Figma manquante. La suite de dépôt est verte (153/153 évaluations), mais la validation visuelle reste volontairement bloquée : 91 cas sont sous le seuil pixel de 2,5 % et 7 cas restent rouges (Carte 03/08/11, Field optionnel et trois NavItem). Les limites Figma non prouvables restent nommées pour les variantes Field absentes, le plan d'image partagé MemberCard et ProductCard `Bouton=true`.
+
+La décision est donc `blocked` (code 2), conformément à FR-016, FR-017, FR-021 et FR-023. Le détail inspectable se trouve dans `proofs/visual/REPORT.md` et `proofs/visual/result.json`; `T051` et la clôture terminale `T053` restent volontairement ouvertes tant qu'un verdict visuel positif n'est pas démontré.
 
 ## User Scenarios & Testing *(mandatory)*
 

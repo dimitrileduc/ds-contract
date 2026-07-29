@@ -76,11 +76,157 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'visual-layout-context-size',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-layout-context-size-check.ts']);
+      if (r.status !== 0) throw new Error(`Visual layout-context size check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-parity-font-faces',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-parity-font-face-check.ts']);
+      if (r.status !== 0 || !r.out.includes('real Montserrat 700 face')) {
+        throw new Error(`Visual parity font-face check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'figma-render-bounds-alignment',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-render-bounds-alignment-check.ts']);
+      if (r.status !== 0) throw new Error(`Figma render-bounds alignment check failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'visual-evidence-integrity-guards',
     claim: 'C2-refusal',
     run: () => {
       const r = run(TSX, ['evals/fixtures/visual-evidence-integrity-check.ts']);
       if (r.status !== 0) throw new Error(`Visual evidence integrity guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-campaign-011-exact-coverage',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-campaign-011-coverage-check.ts']);
+      if (r.status !== 0) throw new Error(`011 visual campaign coverage guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-campaign-slot-comparison',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-campaign-slot-comparison-check.ts']);
+      if (r.status !== 0) throw new Error(`Visual campaign restricted-slot comparison guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'field-slotted-control-semantics',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/field-slotted-control-semantics-check.ts']);
+      if (r.status !== 0) throw new Error(`Field slotted-control semantics check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'declared-object-position',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/object-position-declared-check.ts']);
+      if (r.status !== 0) throw new Error(`Declared object-position check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'semantic-attribute-map',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/semantic-attribute-map-check.ts']);
+      if (r.status !== 0) throw new Error(`Semantic attribute mapping check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'tab-external-roving-context',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/tab-external-roving-context-check.ts']);
+      if (r.status !== 0) throw new Error(`External Tab roving-context check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'icon-glyph-geometry',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/icon-glyph-geometry-check.ts']);
+      if (r.status !== 0) throw new Error(`Icon glyph geometry check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'bounded-typography-geometry-justification',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/bounded-typography-geometry-justification-check.ts']);
+      if (r.status !== 0) throw new Error(`Bounded typography geometry justification check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-scalar-propagation',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/component-scalar-propagation-check.ts']);
+      if (r.status !== 0) throw new Error(`Component scalar propagation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-probative-evidence',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-probative-evidence-check.ts']);
+      if (r.status !== 0) throw new Error(`Visual probative-evidence check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'fractional-image-receipt',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/fractional-image-receipt-check.ts']);
+      if (r.status !== 0) throw new Error(`Fractional image receipt check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'campaign-capture-scale',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/campaign-capture-scale-check.ts']);
+      if (r.status !== 0) throw new Error(`Campaign capture-scale check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'jpeg-exif-orientation-dimensions',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/jpeg-exif-orientation-dimensions-check.ts']);
+      if (r.status !== 0) throw new Error(`JPEG EXIF orientation dimension check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-regions-and-geometry',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-regions-geometry-check.ts']);
+      if (r.status !== 0) throw new Error(`Visual regions/geometry check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'visual-attribution-audit',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-attribution-audit-check.ts']);
+      if (r.status !== 0) throw new Error(`Visual attribution audit check failed:\n${r.out}`);
     },
   },
   {
@@ -791,7 +937,7 @@ const cases: Case[] = [
         const p = c.props.find((x: any) => typeof x.type === 'object' && x.bindings.figma.values);
         delete p.bindings.figma.values[p.type.enum[0]];
       });
-      expectRefusal('required-text-no-default', 'must declare a string default', (c) => {
+      expectRefusal('required-text-no-default', 'must declare a default', (c) => {
         c.props.push({ name: 'must', type: 'text', required: true,
           bindings: { figma: { kind: 'TEXT', property: 'Must' }, code: { prop: 'must' } } });
       });
@@ -1150,6 +1296,26 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'component-children-prop-emission',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/component-children-prop-emission-check.ts']);
+      if (r.status !== 0 || !r.out.includes('composed children prop mappings emit one JSX child')) {
+        throw new Error(`component children prop emission check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'single-value-enum-code-extraction',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/single-value-enum-code-extraction-check.ts']);
+      if (r.status !== 0 || !r.out.includes('one-value enum')) {
+        throw new Error(`single-value enum code extraction check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
     // Independent harness regression: text ink can rasterize to different
     // alpha bboxes without moving the component's shared geometric frame.
     id: 'visual-root-alignment',
@@ -1222,6 +1388,28 @@ const cases: Case[] = [
       const r = run(TSX, ['evals/fixtures/structured-rich-text-check.ts']);
       if (r.status !== 0 || !r.out.includes('structured rich-text stays typed and marked')) {
         throw new Error(`structured rich-text check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    // Parity must retain the typed code default while comparing the same
+    // rich-text value as a flat native Figma TEXT property.
+    id: 'rich-text-parity-projection',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/rich-text-parity-projection-check.ts']);
+      if (r.status !== 0 || !r.out.includes('rich-text parity preserves code marks')) {
+        throw new Error(`rich-text parity projection check failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'rich-text-mark-styles',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/rich-text-mark-style-check.ts']);
+      if (r.status !== 0 || !r.out.includes('rich-text strong mark styles are governed')) {
+        throw new Error(`rich-text mark style check failed:\n${r.out}`);
       }
     },
   },

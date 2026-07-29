@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.product-card",
   "name": "ProductCard",
-  "version": "1.0.0",
-  "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.",
+  "version": "1.1.0",
+  "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. The fixed 364px frame and full-width text planes are observed geometry; product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -39,6 +39,7 @@
     },
     {
       "name": "imageUrl",
+      "description": "Code-supplied product-image URL. Figma exposes the visible value as an IMAGE fill through an instance override, not as a component property; the empty runtime default is intentional and comparison assets are injected only by the campaign.",
       "type": "text",
       "default": "",
       "bindings": {
@@ -52,6 +53,7 @@
     },
     {
       "name": "imageAlt",
+      "description": "Code-supplied text alternative paired with imageUrl. Figma has no corresponding component property, so the empty runtime default is intentional.",
       "type": "text",
       "default": "",
       "bindings": {
@@ -65,6 +67,7 @@
     },
     {
       "name": "bouton",
+      "description": "The immutable ProductCard master observes BOOLEAN `Bouton` as false by default.",
       "type": "boolean",
       "default": false,
       "bindings": {
@@ -111,7 +114,8 @@
             "line-height": "20px"
           },
           "declared": {
-            "text-align": "center"
+            "text-align": "center",
+            "align-self": "stretch"
           }
         },
         "Prix": {
@@ -127,7 +131,8 @@
             "line-height": "20px"
           },
           "declared": {
-            "text-align": "center"
+            "text-align": "center",
+            "align-self": "stretch"
           }
         },
         "Bouton": {
@@ -146,10 +151,14 @@
         }
       },
       "literals": {
-        "gap": "16px"
+        "gap": "16px",
+        "width": "364px"
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"
+      },
+      "declared": {
+        "text-rendering": "geometricprecision"
       }
     }
   },

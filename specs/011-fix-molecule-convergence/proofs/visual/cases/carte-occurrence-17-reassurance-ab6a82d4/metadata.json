@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-17-reassurance-ab6a82d4",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:3723;2114:3614",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance",
+      "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+      "Titre": "Sécurité et conformité"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.ab6a82d4b83b657d48c90b5e253f82459fd505bf",
+      "carte.content.41b96cb975803ea7",
+      "carte.occurrence.e5948ae5456843ce"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 781936,
+      "contrastPixels": 598906,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1036
+      },
+      "imagePixels": 529983,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 805412,
+      "contrastPixels": 623587,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 774,
+        "height": 1042
+      },
+      "imagePixels": 529977,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-ab6a82d4b83b",
+      "expectedSha256": "0be3c59b805b5468b3a67d4153dfe6072c6151cc055dc1d45774dbeff7325794",
+      "actualSha256": "0be3c59b805b5468b3a67d4153dfe6072c6151cc055dc1d45774dbeff7325794",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1024,
+      "naturalHeight": 859,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 55040,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 996
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "reassuranceImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.023722789156674952,
+    "maskedDiagnosticPct": 0.00015077089156859022,
+    "maskCoveragePct": 11.105481974701052,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 728,
+          "height": 728
+        },
+        "totalPixels": 529984,
+        "mismatchedPixels": 1,
+        "diffPct": 0.00018868494143219416,
+        "referenceSignalPixels": 529983,
+        "generatedSignalPixels": 529977,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 728,
+          "height": 172
+        },
+        "totalPixels": 125216,
+        "mismatchedPixels": 176,
+        "diffPct": 0.14055711730130335,
+        "referenceSignalPixels": 12834,
+        "generatedSignalPixels": 13286,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 738,
+          "height": 1011
+        },
+        "totalPixels": 746118,
+        "mismatchedPixels": 177,
+        "diffPct": 0.023722789156674952,
+        "referenceSignalPixels": 561089,
+        "generatedSignalPixels": 564293,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.023722789156674952,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-17-reassurance-ab6a82d4/figma.png",
+    "cases/carte-occurrence-17-reassurance-ab6a82d4/generated.png",
+    "cases/carte-occurrence-17-reassurance-ab6a82d4/diff.png",
+    "cases/carte-occurrence-17-reassurance-ab6a82d4/triptych.png"
+  ]
+}

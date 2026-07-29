@@ -82,7 +82,7 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.Background }}>
 
 </div>

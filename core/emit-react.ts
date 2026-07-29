@@ -31,6 +31,7 @@ import {
   type Contract,
   type Part,
   type Prop,
+  SLOT_CONTROL_STYLE_CHANNELS,
 } from '../scripts/contract-schema.js';
 
 /** v11 SEMANTIC LINT — roles that RE-CREATE a control the platform already
@@ -220,6 +221,22 @@ export function richTextPlain(
   return value?.map((segment) => segment.text).join('') ?? '';
 }
 
+/** Resolve the backward-compatible scalar strong mark and the richer Figma
+ * mixed-style spelling into CSS/inline-style names.  The weight stays a token
+ * reference; optional size and line-height are already bounded literals in
+ * the contract schema. */
+export function richTextStrongStyle(
+  mark: string | { 'font-weight': string; 'font-size'?: string; 'line-height'?: string } | undefined,
+): { fontWeight?: string; fontSize?: string; lineHeight?: string } {
+  if (!mark) return {};
+  const source = typeof mark === 'string' ? { 'font-weight': mark } : mark;
+  return {
+    fontWeight: source['font-weight'],
+    fontSize: source['font-size'],
+    lineHeight: source['line-height'],
+  };
+}
+
 export function enumProps(contract: Contract) {
   return contract.props.filter(isEnum);
 }
@@ -321,9 +338,18 @@ export function validateContract(
   errors: string[],
   iconAssets: Map<string, string>,
 ) {
-  const enumNames = new Set(enumProps(contract).map((p) => p.name));
   const hasChildrenText = (dep: Contract) =>
     dep.props.some((p) => p.type === 'text' && p.bindings.code.prop === 'children');
+  const scalarKind = (prop: Prop): 'boolean' | 'number' | 'text' | 'enum' | null => {
+    if (prop.type === 'boolean' || prop.type === 'number' || prop.type === 'text') return prop.type;
+    return isEnum(prop) ? 'enum' : null;
+  };
+  const compatibleScalarProps = (parent: Prop, child: Prop): boolean => {
+    const parentKind = scalarKind(parent);
+    const childKind = scalarKind(child);
+    if (!parentKind || !childKind || parentKind !== childKind) return false;
+    return !isEnum(parent) || !isEnum(child) || parent.type.enum.every((value) => child.type.enum.includes(value));
+  };
   const seen = new Set<string>();
   for (const { name, path: p, part } of walkAnatomy(contract)) {
     if (seen.has(name)) errors.push(`${contract.id}: duplicate anatomy part name "${name}"`);
@@ -344,14 +370,26 @@ export function validateContract(
           errors.push(`${contract.id}: part "${name}" sets unknown ${dep.id} prop "${propName}"`);
         }
         const depProp = dep?.props.find((dp) => dp.name === propName);
-        if (depProp && isArrayType(depProp)) {
-          errors.push(`${contract.id}: part "${name}" sets ${dep!.id} arrayOf prop "${propName}" — structured values cannot be fixed in anatomy`);
+        if (depProp && !scalarKind(depProp)) {
+          errors.push(`${contract.id}: part "${name}" sets non-scalar ${dep!.id} prop "${propName}" — composed-child props must be text, number, boolean, or enum scalars`);
         }
         const parentRef = typeof value === 'string' ? value.match(/^\{([a-z][\w-]*)\}$/) : null;
-        if (parentRef && !enumNames.has(parentRef[1])) {
-          errors.push(
-            `${contract.id}: part "${name}" maps "{${parentRef[1]}}" but no enum prop "${parentRef[1]}" exists on this contract`,
-          );
+        if (parentRef) {
+          const parentProp = contract.props.find((pr) => pr.name === parentRef[1]);
+          if (!parentProp) {
+            errors.push(`${contract.id}: part "${name}" maps "{${parentRef[1]}}" but no parent prop "${parentRef[1]}" exists`);
+          } else if (depProp && !compatibleScalarProps(parentProp, depProp)) {
+            errors.push(`${contract.id}: part "${name}" maps parent prop "${parentRef[1]}" (${scalarKind(parentProp) ?? 'structured'}) to incompatible ${dep!.id} prop "${propName}" (${scalarKind(depProp) ?? 'structured'})`);
+          }
+        } else if (depProp) {
+          const kind = scalarKind(depProp);
+          const valid =
+            (kind === 'boolean' && typeof value === 'boolean') ||
+            (kind === 'number' && typeof value === 'number') ||
+            ((kind === 'text' || kind === 'enum') && typeof value === 'string' && (!isEnum(depProp) || depProp.type.enum.includes(value)));
+          if (!valid) {
+            errors.push(`${contract.id}: part "${name}" sets ${dep!.id} prop "${propName}" to an incompatible scalar value`);
+          }
         }
       }
       if (part.component.text !== undefined && dep && !hasChildrenText(dep)) {
@@ -373,6 +411,41 @@ export function validateContract(
         errors.push(
           `${contract.id}: slot "${part.slot!.name}" defaultContent sets text but ${dep.id} has no children text prop`,
         );
+      }
+    }
+    if (part.slot?.control) {
+      if ((part.slot.accepts?.length ?? 0) === 0) {
+        errors.push(`${contract.id}: slot "${part.slot.name}" declares control semantics but accepts no constrained control contract`);
+      }
+      for (const [kind, declarations] of [
+        ['attribute', part.slot.control.attributes ?? {}],
+        ['style', part.slot.control.styles ?? {}],
+      ] as const) {
+        for (const [attr, declaration] of Object.entries(declarations)) {
+          if (kind === 'style' && !SLOT_CONTROL_STYLE_CHANNELS.has(attr)) {
+            errors.push(`${contract.id}: slot "${part.slot.name}" control style "${attr}" is outside the bounded child-paint vocabulary (${[...SLOT_CONTROL_STYLE_CHANNELS].join(', ')})`);
+          }
+        const selector = contract.props.find((pr) => pr.name === declaration.prop);
+        if (!selector) {
+          errors.push(`${contract.id}: slot "${part.slot.name}" control ${kind} "${attr}" references unknown prop "${declaration.prop}"`);
+          continue;
+        }
+        const values = isEnum(selector) ? selector.type.enum : selector.type === 'boolean' ? ['true', 'false'] : null;
+        if (!values) {
+          errors.push(`${contract.id}: slot "${part.slot.name}" control ${kind} "${attr}" selector "${declaration.prop}" must be a boolean or enum prop`);
+          continue;
+        }
+        for (const value of values) {
+          if (!(value in declaration.values)) {
+            errors.push(`${contract.id}: slot "${part.slot.name}" control ${kind} "${attr}" is missing selector value "${value}"`);
+          }
+        }
+        for (const value of Object.keys(declaration.values)) {
+          if (!values.includes(value)) {
+            errors.push(`${contract.id}: slot "${part.slot.name}" control ${kind} "${attr}" has invalid selector value "${value}" for prop "${declaration.prop}"`);
+          }
+        }
+        }
       }
     }
     if (p.length > 1) {
@@ -682,6 +755,37 @@ export function validateContract(
         }
       }
     }
+    // Icon/vector wrappers are the measured anatomy boxes. A visual optical
+    // adjustment therefore belongs to their SVG glyph, never to wrapper CSS.
+    if (part.glyphStylesWhen && !part.icon && !part.vectorAsset) {
+      errors.push(`${contract.id}: part "${name}" glyphStylesWhen requires an icon or vectorAsset SVG target`);
+    }
+    for (const sw of part.glyphStylesWhen ?? []) {
+      const swProp = contract.props.find((pr) => pr.name === sw.prop);
+      if (!swProp) {
+        errors.push(`${contract.id}: part "${name}" glyphStylesWhen references unknown prop "${sw.prop}"`);
+      } else if (isEnum(swProp)) {
+        if (sw.equals === undefined) {
+          errors.push(`${contract.id}: part "${name}" glyphStylesWhen on enum prop "${sw.prop}" requires "equals"`);
+        } else if (!swProp.type.enum.includes(sw.equals)) {
+          errors.push(`${contract.id}: part "${name}" glyphStylesWhen.equals "${sw.equals}" is not a value of prop "${sw.prop}"`);
+        }
+      } else if (swProp.type === 'boolean') {
+        if (sw.equals !== undefined) {
+          errors.push(`${contract.id}: part "${name}" glyphStylesWhen on boolean prop "${sw.prop}" must omit "equals"`);
+        }
+      } else {
+        errors.push(`${contract.id}: part "${name}" glyphStylesWhen prop "${sw.prop}" must be a boolean or enum prop`);
+      }
+      for (const [cssProp, value] of Object.entries(sw.styles)) {
+        if (cssProp !== 'transform' || !/^translate[XY]\(-?(?:0|[1-9]\d*)(?:\.\d+)?px\)$/.test(value)) {
+          errors.push(`${contract.id}: part "${name}" glyphStylesWhen permits only pixel translateX/translateY transforms on its SVG`);
+        }
+      }
+    }
+    if ((part.icon || part.vectorAsset) && (part.stylesWhen ?? []).some((sw) => 'transform' in sw.styles)) {
+      errors.push(`${contract.id}: part "${name}" stylesWhen must not transform an icon/vector wrapper — use glyphStylesWhen so the measured wrapper box stays stable`);
+    }
     // v9 shape: a parametric leaf decor — anything that would give it
     // children or content contradicts the leaf-ness and is refused by name.
     if (part.shape) {
@@ -713,7 +817,10 @@ export function validateContract(
     // v12 repeat (P9): the item template must be mechanically renderable on
     // every surface — a component-ref template, an arrayOf prop to map, and
     // fields that map BY NAME onto the child contract's props with matching
-    // scalar types. Everything else refuses by name.
+    // scalar types. A record's flat text field may also supply a rich-text
+    // child prop: each record value becomes one unmarked segment, while the
+    // child remains free to use structured segments when called directly.
+    // Everything else refuses by name.
     if (part.repeat) {
       if (!part.component) {
         errors.push(`${contract.id}: part "${name}" declares repeat but no component — the item template is a component ref (v12; text/frame templates have no vocabulary)`);
@@ -742,7 +849,11 @@ export function validateContract(
           const depProp = dep.props.find((dp) => dp.name === field);
           if (!depProp) {
             errors.push(`${contract.id}: part "${name}" repeat field "${field}" names no ${dep.id} prop`);
-          } else if (depProp.type !== FIELD_TO_PROP[ftype]) {
+          } else if (
+            (ftype === 'text'
+              ? depProp.type !== 'text' && depProp.type !== 'rich-text'
+              : depProp.type !== FIELD_TO_PROP[ftype])
+          ) {
             errors.push(
               `${contract.id}: part "${name}" repeat field "${field}" (${ftype}) does not match ${dep.id} prop "${field}" (${typeof depProp.type === 'object' ? JSON.stringify(depProp.type) : depProp.type}) — per-item enum differences are P10 and stay receipted`,
             );
@@ -811,6 +922,52 @@ export function validateContract(
       if (ref && !contract.props.some((pr) => pr.name === ref[1])) {
         errors.push(`${contract.id}: part "${name}" attrs references unknown prop "${ref[1]}"`);
       }
+    }
+    const attrsByProp = part.attrsByProp
+      ? (Array.isArray(part.attrsByProp) ? part.attrsByProp : [part.attrsByProp])
+      : [];
+    for (const entry of attrsByProp) {
+      const selector = contract.props.find((pr) => pr.name === entry.prop);
+      if (!selector) {
+        errors.push(`${contract.id}: part "${name}" attrsByProp references unknown prop "${entry.prop}"`);
+        continue;
+      }
+      const values = isEnum(selector) ? selector.type.enum : selector.type === 'boolean' ? ['true', 'false'] : null;
+      if (!values) {
+        errors.push(`${contract.id}: part "${name}" attrsByProp prop "${entry.prop}" must be a boolean or enum prop`);
+      } else {
+        for (const value of Object.keys(entry.map)) {
+          if (!values.includes(value)) {
+            errors.push(`${contract.id}: part "${name}" attrsByProp map key "${value}" is not a value of prop "${entry.prop}"`);
+          }
+        }
+      }
+      for (const attrs of Object.values(entry.map)) {
+        for (const value of Object.values(attrs)) {
+          const ref = value.match(/^\{([a-z][\w-]*)\}$/);
+          if (ref && !contract.props.some((pr) => pr.name === ref[1])) {
+            errors.push(`${contract.id}: part "${name}" attrsByProp references unknown prop "${ref[1]}"`);
+          }
+        }
+      }
+    }
+    if (part.tabContext) {
+      if (p.length !== 1) {
+        errors.push(`${contract.id}: part "${name}" declares tabContext below the component root — an external tablist can govern only the Tab root`);
+      }
+      if (contract.semantics.role !== 'tab') {
+        errors.push(`${contract.id}: part "${name}" declares tabContext but the component semantics must be role "tab"`);
+      }
+      const idProp = contract.props.find((prop) => prop.name === part.tabContext!.idProp);
+      if (!idProp || idProp.type !== 'text') {
+        errors.push(`${contract.id}: part "${name}" tabContext.idProp "${part.tabContext.idProp}" must name a text prop`);
+      }
+      if (part.attrs?.['data-tablist-id'] !== `{${part.tabContext.idProp}}`) {
+        errors.push(`${contract.id}: part "${name}" tabContext must bind data-tablist-id to "{${part.tabContext.idProp}}"`);
+      }
+    }
+    if (part.geometryJustification && p.length !== 1) {
+      errors.push(`${contract.id}: part "${name}" declares geometryJustification below the component root — receipt exceptions must name the root composition boundary`);
     }
   }
   // Multi-root: an anatomy is ≥1 top-level root. A single-root contract's one
@@ -1134,7 +1291,13 @@ export function validateContract(
 /** v7 stylesWhen rules for one part. Boolean conditions select on the
  *  root's existing per-boolean data attribute (native disabled uses
  *  :disabled); enum conditions select on the root's enum class. */
-function stylesWhenRules(contract: Contract, partName: string, part: Part, isRootPart: boolean): string[] {
+function stylesWhenRules(
+  contract: Contract,
+  partName: string,
+  part: Part,
+  isRootPart: boolean,
+  target = '',
+): string[] {
   const rules: string[] = [];
   for (const sw of part.stylesWhen ?? []) {
     const prop = contract.props.find((pr) => pr.name === sw.prop);
@@ -1148,7 +1311,7 @@ function stylesWhenRules(contract: Contract, partName: string, part: Part, isRoo
       const dataName = prop.name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
       base = nativeDisabled ? '.root:disabled' : `.root[data-${dataName}]`;
     }
-    const selector = isRootPart ? base : `${base} .${partName}`;
+    const selector = `${isRootPart ? base : `${base} .${partName}`}${target}`;
     const decls = Object.entries(sw.styles)
       .map(([k, v]) => `  ${k}: ${v};`)
       .join('\n');
@@ -1224,11 +1387,15 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       if (decls.length > 0) {
         lines.push('', `.${name} {`, ...decls.map((d) => `  ${d};`), '}');
       }
-      const strongRef = part.content?.marks?.strong;
-      if (strongRef) {
-        const tokenPath = stripBraces(strongRef);
-        if (checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
-          lines.push('', `.${name} > strong {`, `  font-weight: ${cssVar(tokenPath)};`, '}');
+      const strong = richTextStrongStyle(part.content?.marks?.strong);
+      if (strong.fontWeight) {
+        const tokenPath = strong.fontWeight.startsWith('{') ? stripBraces(strong.fontWeight) : null;
+        if (!tokenPath || checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
+          const weight = tokenPath ? cssVar(tokenPath) : strong.fontWeight;
+          const declarations = [`  font-weight: ${weight};`];
+          if (strong.fontSize) declarations.push(`  font-size: ${strong.fontSize};`);
+          if (strong.lineHeight) declarations.push(`  line-height: ${strong.lineHeight};`);
+          lines.push('', `.${name} > strong {`, ...declarations, '}');
         }
       }
     }
@@ -1663,12 +1830,16 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       }
     }
     const nestedSubRules: string[] = [];
-    const strongRef = part.content?.marks?.strong;
-    if (strongRef) {
-      const tokenPath = stripBraces(strongRef);
-      if (checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
+    const strong = richTextStrongStyle(part.content?.marks?.strong);
+    if (strong.fontWeight) {
+      const tokenPath = strong.fontWeight.startsWith('{') ? stripBraces(strong.fontWeight) : null;
+      if (!tokenPath || checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
+        const weight = tokenPath ? cssVar(tokenPath) : strong.fontWeight;
+        const declarations = [`  font-weight: ${weight};`];
+        if (strong.fontSize) declarations.push(`  font-size: ${strong.fontSize};`);
+        if (strong.lineHeight) declarations.push(`  line-height: ${strong.lineHeight};`);
         nestedSubRules.push(
-          `\n.${name} > strong {\n  font-weight: ${cssVar(tokenPath)};\n}`,
+          `\n.${name} > strong {\n${declarations.join('\n')}\n}`,
         );
       }
     }
@@ -1835,6 +2006,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     }
     // v7 stylesWhen on a nested part.
     nestedSubRules.push(...stylesWhenRules(contract, name, part, false));
+    nestedSubRules.push(...stylesWhenRules(contract, name, { ...part, stylesWhen: part.glyphStylesWhen }, false, ' svg'));
     if (decls.length === 0 && nestedSubRules.length === 0) continue;
     if (decls.length > 0) {
       lines.push('', `.${name} {`);
@@ -1912,17 +2084,31 @@ export const NATIVE_TEXT_CONTROLS = new Set(['input', 'textarea']);
 
 const PARENT_PROP_REF = /^\{([a-z][\w-]*)\}$/;
 
+/** Story/sample-only value for a required identity that deliberately has no
+ * contract default because it exists solely in consuming code. This never
+ * reaches the component's runtime defaults; it only makes generated examples
+ * concrete and type-correct. */
+function codeOnlyRequiredTextSample(prop: Prop): string {
+  return `${prop.bindings.code.prop}-sample`;
+}
+
 function depAttrString(
   dep: Contract,
-  fixedProps: Record<string, string | boolean>,
+  fixedProps: Record<string, string | boolean | number>,
   parent?: Contract,
+  omitChildren = false,
 ): string {
   const parts: string[] = [];
   for (const [propName, value] of Object.entries(fixedProps)) {
     const depProp = dep.props.find((p) => p.name === propName);
+    if (omitChildren && depProp?.bindings.code.prop === 'children') continue;
     const codeName = depProp?.bindings.code.prop ?? propName;
     if (typeof value === 'boolean') {
       parts.push(value ? ` ${codeName}` : '');
+      continue;
+    }
+    if (typeof value === 'number') {
+      parts.push(` ${codeName}={${value}}`);
       continue;
     }
     const parentRef = value.match(PARENT_PROP_REF);
@@ -1937,6 +2123,30 @@ function depAttrString(
   return parts.join('');
 }
 
+/** A composed child exposes its text API as JSX children, not an attribute.
+ * Keep that representation when a parent threads a value into the child's
+ * children-bound prop so the mapping does not collide with the child's
+ * declared default text. */
+function componentChildrenJsx(
+  dep: Contract,
+  fixedProps: Record<string, string | boolean | number>,
+  parent?: Contract,
+): string | undefined {
+  for (const [propName, value] of Object.entries(fixedProps)) {
+    const depProp = dep.props.find((p) => p.name === propName);
+    if (depProp?.bindings.code.prop !== 'children') continue;
+    if (typeof value === 'string') {
+      const parentRef = value.match(PARENT_PROP_REF);
+      if (parentRef && parent) {
+        const parentProp = parent.props.find((p) => p.name === parentRef[1]);
+        return `{${parentProp?.bindings.code.prop ?? parentRef[1]}}`;
+      }
+    }
+    return String(value);
+  }
+  return undefined;
+}
+
 /** Sample JSX for slot defaultContent — recursive: an item whose contract has
  *  its own default-slot defaultContent renders that too (Table → Row → Cell). */
 export function sampleJSX(
@@ -1948,7 +2158,18 @@ export function sampleJSX(
   return items
     .map((item) => {
       const dep = byId.get(item.id)!;
-      const attrs = depAttrString(dep, item.props ?? {});
+      const sampleProps = { ...(item.props ?? {}) };
+      for (const prop of dep.props) {
+        if (
+          prop.type === 'text' &&
+          prop.required &&
+          prop.bindings.figma.kind === 'NONE' &&
+          sampleProps[prop.name] === undefined
+        ) {
+          sampleProps[prop.name] = codeOnlyRequiredTextSample(prop);
+        }
+      }
+      const attrs = depAttrString(dep, sampleProps);
       const childrenText = textProps(dep).find((p) => p.bindings.code.prop === 'children');
       const nestedDefault = slotsOf(dep).find(
         (s) => s.slot.name === 'children' && (s.slot.defaultContent?.length ?? 0) > 0,
@@ -2189,7 +2410,7 @@ export function generateTsx(
   if (
     !elementByProp &&
     contract.semantics.element === 'button' &&
-    contract.anatomy.root.attrs?.type === undefined
+    contract.anatomy.root?.attrs?.type === undefined
   ) {
     elementAttrs.push('type="button"');
   }
@@ -2255,6 +2476,20 @@ export function generateTsx(
     JS_IDENT_RE.test(cls) ? `styles.${cls}` : `styles[${JSON.stringify(cls)}]`;
 
   const NUMERIC_ATTRS = new Set(['rows', 'cols', 'tabIndex', 'colSpan', 'rowSpan']);
+  const NUMERIC_ATTR_VALUE = /^-?\d+(?:\.\d+)?$/;
+  const isNumericAttrValue = (attr: string, value: string): boolean =>
+    NUMERIC_ATTRS.has(attr) && NUMERIC_ATTR_VALUE.test(value);
+  const attrValueExpression = (attr: string, value: string): string => {
+    const ref = value.match(/^\{([a-z][\w-]*)\}$/);
+    if (ref) {
+      const code = codePropOf(ref[1]);
+      // React numeric DOM attributes must remain numbers rather than their
+      // serialized HTML representation. This also keeps {prop} mappings
+      // assignable when the referenced prop is textual.
+      return NUMERIC_ATTRS.has(attr) ? `Number(${code})` : `String(${code})`;
+    }
+    return isNumericAttrValue(attr, value) ? value : JSON.stringify(value);
+  };
   const controlIdAttrFor = (partName: string): string => {
     const idVar = controlIdByPart.get(partName);
     return idVar ? ` id={${idVar}}` : '';
@@ -2263,12 +2498,93 @@ export function generateTsx(
   const partAttrString = (part: Part): string =>
     Object.entries(part.attrs ?? {})
       .map(([attr, value]) => {
-        const ref = value.match(/^\{([a-z][\w-]*)\}$/);
-        if (ref) return ` ${attr}={String(${codePropOf(ref[1])})}`;
-        if (NUMERIC_ATTRS.has(attr) && /^\d+$/.test(value)) return ` ${attr}={${value}}`;
-        return ` ${attr}=${JSON.stringify(value)}`;
+        const isExpression = /^\{([a-z][\w-]*)\}$/.test(value) || isNumericAttrValue(attr, value);
+        const expression = attrValueExpression(attr, value);
+        return isExpression ? ` ${attr}={${expression}}` : ` ${attr}=${expression}`;
       })
       .join('');
+
+  const attrsByPropString = (part: Part): string => {
+    const entries = part.attrsByProp
+      ? (Array.isArray(part.attrsByProp) ? part.attrsByProp : [part.attrsByProp])
+      : [];
+    return entries
+      .map((entry) => {
+        const map = Object.entries(entry.map)
+          .map(([selector, attrs]) => {
+            const values = Object.entries(attrs)
+              .map(([attr, value]) => {
+                return `${JSON.stringify(attr)}: ${attrValueExpression(attr, value)}`;
+              })
+              .join(', ');
+            return `${JSON.stringify(selector)}: { ${values} }`;
+          })
+          .join(', ');
+        const selector = codePropOf(entry.prop);
+        const selectorProp = contract.props.find((p) => p.name === entry.prop);
+        // Keep map values literal (`"false"` is React's Booleanish value,
+        // `-1` is a numeric tabIndex) instead of widening them to string.
+        // The runtime fallback deliberately permits a sparse selector map.
+        const keyType = Object.keys(entry.map).map((value) => JSON.stringify(value)).join(' | ') || 'never';
+        const key = selectorProp?.type === 'boolean'
+          ? `String(${selector}) as ${keyType}`
+          : `${selector} as ${keyType}`;
+        return ` {...(({ ${map} } as const)[${key}] ?? {})}`;
+      })
+      .join('');
+  };
+  const renderedPartAttrs = (part: Part): string => partAttrString(part) + attrsByPropString(part);
+
+  const slotControlValueByPart = new Map<string, string>();
+  const controlledSlots = walkAnatomy(contract).filter((w) => w.part.slot?.control);
+  const cssStyleKey = (property: string): string => property.replace(/-([a-z])/g, (_, letter: string) => letter.toUpperCase());
+  const cssStyleValue = (value: string): string => {
+    const token = value.match(/^\{([^}]+)\}$/);
+    return token ? JSON.stringify(cssVar(token[1])) : JSON.stringify(value);
+  };
+  for (const [index, { name: partName, part }] of controlledSlots.entries()) {
+    const slot = part.slot!;
+    const source = slot.name === 'children' ? 'children' : slot.name;
+    const forwarded = `slotControl${index}`;
+    const attrs = Object.entries(slot.control!.attributes ?? {})
+      .map(([attr, declaration]) => {
+        const code = codePropOf(declaration.prop);
+        const selected = Object.entries(declaration.values).reduceRight(
+          (fallback, [value, resolved]) =>
+            `${code} === ${JSON.stringify(value)} ? ${resolved === null ? 'undefined' : JSON.stringify(resolved)} : ${fallback}`,
+          'undefined',
+        );
+        return `${JSON.stringify(attr)}: ${selected}`;
+      });
+    const styles = [`...((${source}.props.style as Record<string, unknown> | undefined) ?? {})`];
+    if (slot.control!.fill === 'width') styles.push(`width: '100%'`);
+    for (const [property, declaration] of Object.entries(slot.control!.styles ?? {})) {
+      const code = codePropOf(declaration.prop);
+      const selected = Object.entries(declaration.values).reduceRight(
+        (fallback, [value, resolved]) =>
+          `${code} === ${JSON.stringify(value)} ? ${resolved === null ? 'undefined' : cssStyleValue(resolved)} : ${fallback}`,
+        'undefined',
+      );
+      styles.push(`${JSON.stringify(cssStyleKey(property))}: ${selected}`);
+      // Governed borders render through the non-layout-affecting inset
+      // border plan. Mirror a forwarded border color onto its custom
+      // property so a Field can color the *actual* slotted Input border
+      // without knowing or restyling the Input's anatomy.
+      if (property === 'border-color') styles.push(`"--dsc-border-color": ${selected}`);
+    }
+    if (styles.length > 1) attrs.push(`style: { ${styles.join(', ')} }`);
+    prelude.push(
+      `  const ${forwarded} = isValidElement<Record<string, unknown>>(${source}) ? cloneElement(${source}, { ${attrs.join(', ')} }) : ${source};`,
+    );
+    slotControlValueByPart.set(partName, forwarded);
+  }
+  const restIndex = elementAttrs.indexOf('{...rest}');
+  // A multi-root composite deliberately has no synthetic `root` entry.
+  // Its top-level parts carry their own attrs when rendered below; only the
+  // single-root wrapper receives root attrs in `elementAttrs`.
+  if (contract.anatomy.root) {
+    elementAttrs.splice(restIndex, 0, renderedPartAttrs(contract.anatomy.root));
+  }
 
   const wrapPresence = (part: Part, jsx: string): string => {
     if (part.visibleWhen) {
@@ -2298,11 +2614,11 @@ export function generateTsx(
       // semantic carrier without inventing a second DOM/Figma anatomy node.
       // An explicit element keeps the existing nested-glyph form so its own
       // semantics/events remain isolated from the decorative SVG.
-      const hasAttrs = Object.keys(part.attrs ?? {}).length > 0;
+      const hasAttrs = Object.keys(part.attrs ?? {}).length > 0 || part.attrsByProp !== undefined;
       const node = part.element
-        ? `<${part.element} className={${stylesRef(partName)}}${partAttrString(part)}${eventAttrsFor(partName, part, part.element)}><span aria-hidden="true" className={${stylesRef(`${partName}Glyph`)}} ${glyph} /></${part.element}>`
+        ? `<${part.element} className={${stylesRef(partName)}}${renderedPartAttrs(part)}${eventAttrsFor(partName, part, part.element)}><span aria-hidden="true" className={${stylesRef(`${partName}Glyph`)}} ${glyph} /></${part.element}>`
         : hasAttrs
-          ? `<span className={${stylesRef(partName)}}${partAttrString(part)} ${glyph} />`
+          ? `<span className={${stylesRef(partName)}}${renderedPartAttrs(part)} ${glyph} />`
           : `<span className={${stylesRef(partName)}} aria-hidden="true" ${glyph} />`;
       return wrapPresence(part, node);
     }
@@ -2318,26 +2634,35 @@ export function generateTsx(
       const codeName = rp.bindings.code.prop;
       const fixedAttrs = depAttrString(dep, part.component.props ?? {}, contract);
       let childrenField: string | null = null;
+      let childrenExpr: string | null = null;
       const fieldAttrs = Object.keys((rp.type as { arrayOf: Record<string, string> }).arrayOf)
         .map((field) => {
           const depProp = dep.props.find((p) => p.name === field)!;
           if (depProp.bindings.code.prop === 'children') {
             childrenField = field;
+            childrenExpr = isRichText(depProp)
+              ? `[{ text: item.${field} }]`
+              : `item.${field}`;
             return '';
+          }
+          if (isRichText(depProp)) {
+            return ` ${depProp.bindings.code.prop}={[{ text: item.${field} }]}`;
           }
           return ` ${depProp.bindings.code.prop}={item.${field}}`;
         })
         .join('');
-      const node = childrenField
-        ? `<${dep.name} key={index}${fixedAttrs}${fieldAttrs}>{item.${childrenField}}</${dep.name}>`
+      const node = childrenField && childrenExpr
+        ? `<${dep.name} key={index}${fixedAttrs}${fieldAttrs}>{${childrenExpr}}</${dep.name}>`
         : `<${dep.name} key={index}${fixedAttrs}${fieldAttrs} />`;
       return wrapPresence(part, `{${codeName}?.map((item, index) => (${node}))}`);
     }
     if (part.component) {
       const dep = byId.get(part.component.id)!;
-      const attrs = depAttrString(dep, part.component.props ?? {}, contract);
+      const fixedProps = part.component.props ?? {};
+      const mappedChildren = componentChildrenJsx(dep, fixedProps, contract);
+      const attrs = depAttrString(dep, fixedProps, contract, mappedChildren !== undefined);
       const depChildren = textProps(dep).find((p) => p.bindings.code.prop === 'children');
-      const text = part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
+      const text = mappedChildren ?? part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
       const node = text !== undefined
         ? `<${dep.name}${attrs}>${text}</${dep.name}>`
         : `<${dep.name}${attrs} />`;
@@ -2346,7 +2671,8 @@ export function generateTsx(
     if (part.slot) {
       const el = part.element ?? 'div';
       const expr = part.slot.name === 'children' ? 'children' : part.slot.name;
-      const node = `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}>{${expr}}</${el}>`;
+      const value = slotControlValueByPart.get(partName) ?? expr;
+      const node = `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${renderedPartAttrs(part)}>{${value}}</${el}>`;
       return part.optional ? `{${expr} != null ? ${node} : null}` : wrapPresence(part, node);
     }
     if (part.content) {
@@ -2367,14 +2693,14 @@ export function generateTsx(
           : `{${prop.bindings.code.prop}}`;
       return wrapPresence(
         part,
-        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
+        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${renderedPartAttrs(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
       );
     }
     if (part.text !== undefined) {
       const el = part.element ?? 'span';
       return wrapPresence(
         part,
-        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}>${part.text}</${el}>`,
+        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${renderedPartAttrs(part)}>${part.text}</${el}>`,
       );
     }
     if (part.meter) {
@@ -2391,7 +2717,7 @@ export function generateTsx(
       .join('\n');
     return wrapPresence(
       part,
-      `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${partAttrString(part)}${nativeCheckedAttr(partName, part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
+      `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${renderedPartAttrs(part)}${nativeCheckedAttr(partName, part)}${eventAttrsFor(partName, part, el)}>\n${inner}\n</${el}>`,
     );
   };
 
@@ -2436,16 +2762,6 @@ export function ${name}({ ${destructured.join(', ')} }: ${name}Props) {
   }
 
   const root = contract.anatomy.root;
-  // v17 (spec 004): the root element renders its own `attrs` — the same
-  // mechanism nested parts use (partAttrString) — so a native form control at
-  // the root (e.g. `<input type="text" defaultValue={String(value)}>`) carries
-  // its attributes. Inserted before `{...rest}` so consumer props still win.
-  const rootAttrStr = partAttrString(root).trim();
-  if (rootAttrStr) {
-    const restIdx = elementAttrs.indexOf('{...rest}');
-    if (restIdx >= 0) elementAttrs.splice(restIdx, 0, rootAttrStr);
-    else elementAttrs.push(rootAttrStr);
-  }
   const rootElement = contract.semantics.element;
   // A native text control (`<input>`, `<textarea>`) cannot host its value as a
   // child text node: the canvas draws that text child, but code renders the
@@ -2490,7 +2806,7 @@ export function ${name}({ ${destructured.join(', ')} }: ${name}Props) {
  * Source of truth: contracts/${contract.id.replace(/^[^.]+\./, '')}.contract.json (${contract.id} v${contract.version})
  * Regenerate with: npm run generate
  */
-import { forwardRef${events.some((e) => e.toggles) ? ', useState' : ''}${controlIdByPart.size > 0 ? ', useId' : ''} } from 'react';
+import { forwardRef${events.some((e) => e.toggles) ? ', useState' : ''}${controlIdByPart.size > 0 ? ', useId' : ''}${controlledSlots.length > 0 ? ', cloneElement, isValidElement' : ''} } from 'react';
 import type { ${typeImports} } from 'react';
 ${depImports}${depImports ? '\n' : ''}import styles from './${name}.module.css';
 
@@ -2570,9 +2886,9 @@ export function generateStories(contract: Contract, byId: Map<string, Contract>)
       if (typeof p.default === 'string') args.push(`    ${codeName}: '${p.default}',`);
       else if (p.required && p.bindings.figma.kind === 'NONE') {
         // Code-only required scalars have no canvas default by definition.
-        // Give Storybook an explicit empty sample so its Meta type remains
-        // honest without manufacturing a runtime default in the component.
-        args.push(`    ${codeName}: '',`);
+        // Give Storybook a concrete sample without manufacturing a runtime
+        // default in the component.
+        args.push(`    ${codeName}: ${JSON.stringify(codeOnlyRequiredTextSample(p))},`);
       }
     }
   }
@@ -2632,8 +2948,11 @@ export const ${storyName}: Story = {
       const dep = byId.get(acceptedId)!;
       slotSampleImports.add(dep.name);
       const requiredAttrs = dep.props
-        .filter((p) => p.type === 'text' && p.required && p.bindings.code.prop !== 'children' && typeof p.default === 'string')
-        .map((p) => ` ${p.bindings.code.prop}="${p.default}"`)
+        .filter((p) => p.type === 'text' && p.required && p.bindings.code.prop !== 'children')
+        .map((p) => {
+          const value = typeof p.default === 'string' ? p.default : codeOnlyRequiredTextSample(p);
+          return ` ${p.bindings.code.prop}=${JSON.stringify(value)}`;
+        })
         .join('');
       const hasChildren = dep.props.some((p) => p.type === 'text' && p.bindings.code.prop === 'children');
       sample = hasChildren
@@ -2685,10 +3004,14 @@ export const With${pascal(slot.name)}: Story = {
     }
     // Required text props must appear in every cell or the story won't
     // typecheck. Children-bound text props are excluded — they arrive as JSX
-    // children below (a `children` attribute would duplicate them).
+    // children below (a `children` attribute would duplicate them). Required
+    // code-only identities get an example value here, never a contract default.
     const requiredTextAttrs = contract.props
-      .filter((p) => p.type === 'text' && p.required && typeof p.default === 'string' && p.bindings.code.prop !== 'children')
-      .map((p) => `${p.bindings.code.prop}="${p.default}"`);
+      .filter((p) => p.type === 'text' && p.required && p.bindings.code.prop !== 'children')
+      .map((p) => {
+        const value = typeof p.default === 'string' ? p.default : codeOnlyRequiredTextSample(p);
+        return `${p.bindings.code.prop}=${JSON.stringify(value)}`;
+      });
     const cells: string[] = [];
     for (const row of rowProp.type.enum) {
       const rowCells = colCombos

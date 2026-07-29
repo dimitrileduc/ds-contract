@@ -68,7 +68,7 @@ export const SAV = forwardRef<HTMLDivElement, SAVProps>(function SAV(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.section }}>
 <div style={{ ...S.background }}>
 

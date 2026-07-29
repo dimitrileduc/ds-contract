@@ -1,5 +1,5 @@
 <!--
-  Realisation — static HTML+CSS emitted from contract ds.realisation v1.0.0 by core/emit-html.ts.
+  Realisation — static HTML+CSS emitted from contract ds.realisation v1.1.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,14 +9,14 @@
 <section class="showcase showcase--realisation">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <div class="realisation realisation--taille-grand">
-      <img class="realisation__Image" src="" alt=""></img>
+    <div class="realisation realisation--taille-grand" data-part="root">
+      <img class="realisation__Image" src="" alt="" data-part="Image"></img>
     </div>
   </div>
   <div class="showcase__item">
     <p class="showcase__label">taille=petit</p>
-    <div class="realisation realisation--taille-petit">
-      <img class="realisation__Image" src="" alt=""></img>
+    <div class="realisation realisation--taille-petit" data-part="root">
+      <img class="realisation__Image" src="" alt="" data-part="Image"></img>
     </div>
   </div>
 </section>

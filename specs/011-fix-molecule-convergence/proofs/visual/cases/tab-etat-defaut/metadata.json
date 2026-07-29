@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "caseId": "tab-etat-defaut",
+  "subjectId": "tab",
+  "figma": {
+    "nodeId": "2061:1594",
+    "setNodeId": "2061:1588",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Etat": "Defaut",
+      "Libelle": "Porte d’entrée"
+    }
+  },
+  "contract": {
+    "id": "ds.tab",
+    "version": "2.0.0",
+    "factIds": [
+      "tab.etat.defaut"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 4870,
+      "contrastPixels": 4870,
+      "paintedBounds": {
+        "x": 3,
+        "y": 20,
+        "width": 357,
+        "height": 37
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 5426,
+      "contrastPixels": 5426,
+      "paintedBounds": {
+        "x": 67,
+        "y": 82,
+        "width": 357,
+        "height": 38
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 362,
+      "height": 82
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 362,
+      "height": 82
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "libell": {
+        "figma": {
+          "x": 0,
+          "y": 0.1951219512195122,
+          "width": 1,
+          "height": 0.6097560975609756
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.1951219512195122,
+          "width": 0.9994820441988951,
+          "height": 0.6097560975609756
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.000517955801104919,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:libell"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 1.4014283789246733,
+    "maskedDiagnosticPct": 0,
+    "maskCoveragePct": 69.51219512195121,
+    "thresholdPct": 2.5,
+    "regions": {
+      "label": {
+        "id": "label",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 16,
+          "width": 362,
+          "height": 50
+        },
+        "totalPixels": 18100,
+        "mismatchedPixels": 416,
+        "diffPct": 2.298342541436464,
+        "referenceSignalPixels": 4870,
+        "generatedSignalPixels": 5426,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 362,
+          "height": 82
+        },
+        "totalPixels": 29684,
+        "mismatchedPixels": 416,
+        "diffPct": 1.4014283789246733,
+        "referenceSignalPixels": 4870,
+        "generatedSignalPixels": 5426,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "label"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [
+    {
+      "id": "tab-is-button",
+      "selector": "button",
+      "assertion": "element",
+      "contractPointer": "/semantics/element",
+      "contractResolved": true,
+      "expected": "button",
+      "actual": "button",
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "tab-role",
+      "selector": "button",
+      "assertion": "attribute",
+      "contractPointer": "/semantics/role",
+      "contractResolved": true,
+      "expected": {
+        "role": "tab"
+      },
+      "actual": {
+        "role": "tab"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "tab-default-aria-selected",
+      "selector": "button",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrsByProp",
+      "contractResolved": true,
+      "expected": {
+        "aria-selected": "false",
+        "aria-controls": "campaign-tab-panel",
+        "tabIndex": "-1"
+      },
+      "actual": {
+        "aria-controls": "campaign-tab-panel",
+        "aria-selected": "false",
+        "tabIndex": "-1"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "tab-roving-context",
+      "selector": "[role='tablist']",
+      "assertion": "keyboard-context",
+      "contractPointer": "/anatomy/root/tabContext",
+      "contractResolved": true,
+      "expected": {
+        "id": "campaign-tablist",
+        "rovingFocus": true
+      },
+      "actual": {
+        "id": "campaign-tablist",
+        "rovingFocus": true
+      },
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "gate": {
+    "scorePct": 1.4014283789246733,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/tab-etat-defaut/figma.png",
+    "cases/tab-etat-defaut/generated.png",
+    "cases/tab-etat-defaut/diff.png",
+    "cases/tab-etat-defaut/triptych.png"
+  ]
+}

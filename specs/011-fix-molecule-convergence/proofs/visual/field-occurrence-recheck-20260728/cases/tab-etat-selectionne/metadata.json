@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "caseId": "tab-etat-selectionne",
+  "subjectId": "tab",
+  "status": "blocked-before-capture",
+  "admissionFailures": [
+    "render-refused"
+  ],
+  "namedBlockedConditions": [],
+  "figma": {
+    "nodeId": "2061:1592",
+    "setNodeId": "2061:1588",
+    "error": "[\n  {\n    \"origin\": \"string\",\n    \"code\": \"invalid_format\",\n    \"format\": \"regex\",\n    \"pattern\": \"/^(-?\\\\d+(\\\\.\\\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\\\([\\\\d ,./%]+\\\\))$/\",\n    \"path\": [\n      \"anatomy\",\n      \"root\",\n      \"literals\",\n      \"text-rendering\"\n    ],\n    \"message\": \"Literal value must be a px/rem/em/number, hex or rgb()/rgba() color, or transparent/inherit/currentColor\"\n  }\n]"
+  }
+}

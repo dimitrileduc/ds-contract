@@ -50,9 +50,9 @@ const COMPONENTS = [
               "grow": true,
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "SectionHeader",
-                  "dep": "SectionHeader",
+                  "dep":"SectionHeader",
                   "depProps": {
                     "Titre": "Prenez contact avec nous dès maintenant !",
                     "Accroche": "Une demande de devis ? Une réparation ?",
@@ -70,36 +70,36 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
                         "Titre": "Conseils personnalisés"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage 2",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Marque Hormann renommée, qualité allemande",
                         "Titre": "Produits de qualité"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage 3",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais",
                         "Titre": "Dépannage et SAV"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage 4",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
                         "Titre": "Expérience et savoir-faire"
@@ -118,15 +118,15 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormArgumentBoutonA",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormArgumentBoutonB",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]
@@ -156,18 +156,18 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow1FieldA",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Prénom",
                         "Etat": "Normal"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow1FieldB",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Nom",
                         "Etat": "Normal"
@@ -186,18 +186,18 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow2FieldA",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Email",
                         "Etat": "Normal"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow2FieldB",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Téléphone",
                         "Etat": "Normal"
@@ -216,9 +216,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow3Field",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Adresse",
                         "Etat": "Normal"
@@ -237,9 +237,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow4Field",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Sujet",
                         "Etat": "Normal"
@@ -258,9 +258,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow5Field",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Message",
                         "Etat": "Normal"
@@ -278,9 +278,9 @@ const COMPONENTS = [
                   "contentProp": "Consentement"
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FormulaireBouton",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 }
               ]

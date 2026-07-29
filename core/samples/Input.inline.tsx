@@ -53,7 +53,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   ref,
 ) {
   return (
-    <input ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <input ref={ref} style={{ ...S.root, ...style }}  type="text" {...rest}>
       <span style={{ ...S.texteDeSaisie }}>{value}</span>
     </input>
   );

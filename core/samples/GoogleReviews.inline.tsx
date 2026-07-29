@@ -222,7 +222,7 @@ export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(functio
   ref,
 ) {
   return (
-    <section ref={ref} style={{ ...S.root, ...style }} data-montrer-controles={montrerControles || undefined} {...rest}>
+    <section ref={ref} style={{ ...S.root, ...style }} data-montrer-controles={montrerControles || undefined}  {...rest}>
       <div style={{ ...S.resume }}>
 <div style={{ ...S.infos }}>
 <span style={{ ...S.marque }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["google-wordmark"] }} />

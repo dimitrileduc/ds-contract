@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "45e2a7d",
+    "gitCommit": "7f9e395",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -334,10 +334,10 @@
     {
       "id": "ds.carte",
       "name": "Carte",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
       "figma": {
         "representation": "component",
         "componentSetKey": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24"
@@ -369,7 +369,39 @@
         {
           "name": "texte",
           "type": "string",
-          "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+          "default": [
+            {
+              "text": "SupraMatic & ProMatic.",
+              "strong": true
+            },
+            {
+              "text": " Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."
+            }
+          ],
+          "description": "The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token."
+        },
+        {
+          "name": "ctaLabel",
+          "type": "string",
+          "default": "Contactez-nous",
+          "description": "Nested Categorie Link Button label. The source Carte component does not expose it as a top-level Figma property, so immutable occurrence values come from the nested Button TEXT property retained by the campaign census."
+        },
+        {
+          "name": "ctaIconLeftGlyph",
+          "type": [
+            "pdf"
+          ],
+          "default": "pdf",
+          "description": "Nested Categorie Link Button leading glyph retained from the concrete nested Figma instance."
+        },
+        {
+          "name": "ctaIconRightGlyph",
+          "type": [
+            "arrow-right",
+            "download"
+          ],
+          "default": "download",
+          "description": "Nested Categorie Link Button trailing glyph retained from the concrete nested Figma instance."
         }
       ],
       "children": {
@@ -524,10 +556,10 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.0.1",
+      "version": "1.2.0",
       "status": "draft",
       "category": "atom",
-      "description": "Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius.\n\n† A5 technical placeholder: the source IMAGE pixels of funIa and normal are unavailable to the contract→canvas transport. Both layers therefore use the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma, and this contract makes no full inner-photo pixel-parity claim.",
+      "description": "Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius. The visible normal plane receives its code-only src and alt scalars from its composed parent.\n\n† A5 technical placeholder: the source IMAGE pixels of funIa are unavailable to the contract→canvas transport. That hidden-under-normal layer therefore keeps the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma, and the survol-only funIa plane remains outside the runtime photo API.",
       "figma": {
         "representation": "component",
         "componentSetKey": "70fdd040214e23fd7b5709b1009638a711b4080f"
@@ -541,6 +573,25 @@
           ],
           "default": "defaut",
           "description": "Visual state: default (no overlay) or hover (overlay visible). Extracted from the VARIANT property « Etat » on the Figma master."
+        },
+        {
+          "name": "taille",
+          "type": [
+            "standard",
+            "member-card"
+          ],
+          "default": "standard",
+          "description": "Code-side geometry selector for observed composed placements. The MemberCard instance is explicitly resized to 363.5px inside its 364px parent frame; the standalone atom keeps the 364px master geometry by default."
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "default": ""
         }
       ],
       "children": {
@@ -551,10 +602,10 @@
     {
       "id": "ds.member-card",
       "name": "MemberCard",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides remain an explicit runtime boundary until a governed image API is adopted.",
+      "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides are explicit code-only photo data, propagated to the composed MemberPicture without flattening its image anatomy.",
       "figma": {
         "representation": "component",
         "componentSetKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8"
@@ -569,6 +620,16 @@
           "name": "poste",
           "type": "string",
           "default": "Gérante"
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "default": ""
         }
       ],
       "children": {
@@ -708,7 +769,7 @@
     {
       "id": "ds.field",
       "name": "Field",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
       "description": "Piqueray Field. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
@@ -744,7 +805,7 @@
           "Select",
           "Textarea"
         ],
-        "acceptsMode": "prefer"
+        "acceptsMode": "restrict"
       },
       "slots": []
     },
@@ -1006,10 +1067,10 @@
     {
       "id": "ds.nav-item",
       "name": "NavItem",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; the active underline remains a Figma visual fact.",
+      "description": "Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; chevron and active are Figma BOOLEAN facts, and the transparent white-ink composition is intended for a dark Header/photo surface.",
       "figma": {
         "representation": "component",
         "componentSetKey": "bb5fff155aa25e719d1b9e38dedc767d677b4471"
@@ -1131,10 +1192,10 @@
     {
       "id": "ds.product-card",
       "name": "ProductCard",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.",
+      "description": "Piqueray ProductCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. The fixed 364px frame and full-width text planes are observed geometry; product image URL/alt are code semantics because Figma supplies IMAGE fills through instance overrides.",
       "figma": {
         "representation": "component",
         "componentSetKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7"
@@ -1153,17 +1214,20 @@
         {
           "name": "imageUrl",
           "type": "string",
-          "default": ""
+          "default": "",
+          "description": "Code-supplied product-image URL. Figma exposes the visible value as an IMAGE fill through an instance override, not as a component property; the empty runtime default is intentional and comparison assets are injected only by the campaign."
         },
         {
           "name": "imageAlt",
           "type": "string",
-          "default": ""
+          "default": "",
+          "description": "Code-supplied text alternative paired with imageUrl. Figma has no corresponding component property, so the empty runtime default is intentional."
         },
         {
           "name": "bouton",
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "The immutable ProductCard master observes BOOLEAN `Bouton` as false by default."
         }
       ],
       "children": {
@@ -1174,10 +1238,10 @@
     {
       "id": "ds.realisation",
       "name": "Realisation",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. IMAGE fills are instance overrides in Figma; src/alt are explicit code semantics.",
+      "description": "Piqueray Realisation. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. Figma IMAGE FILL maps to object-fit: cover; IMAGE fills are instance overrides in Figma and src/alt are explicit code semantics.",
       "figma": {
         "representation": "component",
         "componentSetKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43"
@@ -1189,17 +1253,20 @@
             "grand",
             "petit"
           ],
-          "default": "grand"
+          "default": "grand",
+          "description": "Observed Figma VARIANT `Taille`: Grand has a 743×743 image plane and Petit has a 339.5×339.5 image plane. This axis selects image geometry only; the visible IMAGE fill remains an instance override."
         },
         {
           "name": "imageUrl",
           "type": "string",
-          "default": ""
+          "default": "",
+          "description": "Code-supplied URL for the visible IMAGE fill at either selected size. Figma stores the 27 observed photos as instance fill overrides (3 Grand and 24 Petit), not as a component property; the empty runtime default is intentional and does not substitute an image."
         },
         {
           "name": "imageAlt",
           "type": "string",
-          "default": ""
+          "default": "",
+          "description": "Code-supplied text alternative paired with imageUrl for either selected size. Figma IMAGE fills expose no corresponding alt component property, so the empty runtime default is intentional."
         }
       ],
       "children": {
@@ -1270,10 +1337,10 @@
     {
       "id": "ds.tab",
       "name": "Tab",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
-      "description": "Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
+      "description": "Piqueray Tab. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. Panel and tablist identities are code-only semantics: every Tab belongs to an existing tablist, whose controller owns the bounded roving-focus behavior and keeps exactly one Tab selected/focusable; this contract does not invent a TabList molecule or a panel. Version 2.0.0 is breaking because panelId and tablistId are now required for an accessible Tab relationship.",
       "figma": {
         "representation": "component",
         "componentSetKey": "c5fa537d17c544114dc780ba11bbf1157fedba37"
@@ -1291,6 +1358,18 @@
           "name": "libelle",
           "type": "string",
           "default": "Onglet"
+        },
+        {
+          "name": "panelId",
+          "type": "string",
+          "required": true,
+          "description": "Code-only id of the panel controlled by this Tab."
+        },
+        {
+          "name": "tablistId",
+          "type": "string",
+          "required": true,
+          "description": "Code-only id of the owning tablist. Its controller supplies the bounded arrow-key roving-focus behavior; exactly one sibling Tab is selected and has tabIndex 0."
         }
       ],
       "children": {

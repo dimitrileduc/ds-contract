@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v1.0.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v2.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -10,20 +10,33 @@
   border: 0;
   background-color: var(--color-blanc);
   font-family: var(--font-family-montserrat);
+  width: 364px;
   gap: 24px;
   padding-bottom: 24px;
-  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  text-rendering: geometricprecision;
 }
 
 .disposition-categorie {
+  width: 743px;
   background-color: transparent;
   gap: 32px;
   padding-bottom: 0px;
-  border-radius: 0px;
 }
 
-.img {
+.reassuranceImage {
   height: 364px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.categorieImage {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 418px;
+  min-height: 0px;
+  object-fit: cover;
 }
 
 .text {
@@ -33,6 +46,7 @@
   gap: 8px;
   padding-right: 16px;
   padding-left: 16px;
+  text-rendering: geometricprecision;
 }
 
 .disposition-categorie .text {
@@ -41,44 +55,51 @@
   padding-left: 0px;
 }
 
-.Titre {
+.TitreReassurance {
   color: var(--color-noir-bleute);
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-regular);
   line-height: 30px;
+  text-align: center;
 }
 
-.disposition-categorie .Titre {
+.TitreCategorie {
+  color: var(--color-noir-bleute);
   font-size: var(--font-size-32);
-}
-
-.disposition-categorie .Titre {
   font-weight: var(--font-weight-medium);
-}
-
-.disposition-categorie .Titre {
   line-height: 40px;
+  text-align: left;
+  text-transform: uppercase;
 }
 
-.Texte {
+.TexteReassurance {
   color: var(--color-noir);
   font-size: var(--font-size-14);
-  font-weight: var(--font-weight-medium);
-  line-height: 24px;
-}
-
-.disposition-categorie .Texte {
-  color: var(--color-noir-bleute);
-}
-
-.disposition-categorie .Texte {
-  font-size: var(--font-size-18);
-}
-
-.disposition-categorie .Texte {
   font-weight: var(--font-weight-regular);
+  line-height: 24px;
+  text-align: center;
 }
 
-.disposition-categorie .Texte {
+.TexteReassurance > strong {
+  font-weight: 700;
+  font-size: 18px;
   line-height: 27px;
+}
+
+.TexteCategorie {
+  color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
+  text-align: left;
+}
+
+.TexteCategorie > strong {
+  font-weight: 700;
+}
+
+.Bouton {
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
 }

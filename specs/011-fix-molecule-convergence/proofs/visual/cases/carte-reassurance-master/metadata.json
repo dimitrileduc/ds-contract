@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-reassurance-master",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "2063:1606",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.d62d8bf32a1935f6f709cd2a9be8081b7c7bfb96"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 823026,
+      "contrastPixels": 605608,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 1090
+      },
+      "imagePixels": 529983,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 847208,
+      "contrastPixels": 631234,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 774,
+        "height": 1096
+      },
+      "imagePixels": 529984,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-reassurance",
+      "expectedSha256": "00ac72d30d1f3a0c1d37d4f4bb3a8024e01de9aa13a7f8c76f10d1fba96213a9",
+      "actualSha256": "00ac72d30d1f3a0c1d37d4f4bb3a8024e01de9aa13a7f8c76f10d1fba96213a9",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 3024,
+      "naturalHeight": 4032,
+      "renderedWidth": 364,
+      "renderedHeight": 364,
+      "visiblePixels": 49152,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 1050
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 728,
+      "height": 1050
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "img": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6933333333333334
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6933333333333334
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7390476190476191,
+          "width": 1,
+          "height": 0.21523809523809523
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7390476190476191,
+          "width": 1,
+          "height": 0.21523809523809523
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 1.9597440105856456,
+    "maskedDiagnosticPct": 1.7551580874586297,
+    "maskCoveragePct": 13.27302568800336,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 728,
+          "height": 728
+        },
+        "totalPixels": 529984,
+        "mismatchedPixels": 11976,
+        "diffPct": 2.2596908585919575,
+        "referenceSignalPixels": 529983,
+        "generatedSignalPixels": 529984,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 728,
+          "height": 226
+        },
+        "totalPixels": 164528,
+        "mismatchedPixels": 3439,
+        "diffPct": 2.0902217251774777,
+        "referenceSignalPixels": 17735,
+        "generatedSignalPixels": 18442,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 738,
+          "height": 1065
+        },
+        "totalPixels": 785970,
+        "mismatchedPixels": 15403,
+        "diffPct": 1.9597440105856456,
+        "referenceSignalPixels": 566422,
+        "generatedSignalPixels": 569996,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 1.9597440105856456,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [
+    "carte-census-image-content-inventory-unmaterialized"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-reassurance-master/figma.png",
+    "cases/carte-reassurance-master/generated.png",
+    "cases/carte-reassurance-master/diff.png",
+    "cases/carte-reassurance-master/triptych.png"
+  ]
+}

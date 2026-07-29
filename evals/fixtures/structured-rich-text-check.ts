@@ -76,12 +76,12 @@ const inline = emitReactInline(fixture, {
   contracts,
   mode: 'light',
 }).tsx;
-if (!inline.includes('body.map((segment, index)') || !inline.includes('fontWeight: 700')) {
+if (!inline.includes('body.map(') || !inline.includes('<strong key={index}') || !inline.includes('fontWeight: 700')) {
   throw new Error('React inline did not render structured strong segments with the resolved token');
 }
 
 const html = emitHtml(fixture, ctx);
-if (!html.html.includes('Measured <strong>emphasis</strong> stays structured.')) {
+if (!html.html.includes('<strong>emphasis</strong>') || html.html.includes('&lt;strong&gt;emphasis&lt;/strong&gt;')) {
   throw new Error('HTML flattened or escaped the structured strong segment');
 }
 if (!html.css.includes('.structured-rich-text__Body > strong') || !html.css.includes('font-weight: var(--fixture-weight-bold)')) {
@@ -93,7 +93,7 @@ const figma = emitFigmaScript(fixture, {
   icons: new Map(),
   contracts,
 });
-if (!figma.includes('"characters":"Measured emphasis stays structured."')) {
+if (!figma.includes('"characters": "Measured emphasis stays structured."')) {
   throw new Error('Figma TEXT default did not flatten structured segments to its native string value');
 }
 if (figma.includes('[object Object]')) {

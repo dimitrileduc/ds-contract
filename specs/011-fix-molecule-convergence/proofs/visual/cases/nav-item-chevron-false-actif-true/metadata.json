@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "caseId": "nav-item-chevron-false-actif-true",
+  "subjectId": "nav-item",
+  "figma": {
+    "nodeId": "I274:2702;2152:5586",
+    "setNodeId": "2152:5554",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Chevron": false,
+      "Actif": true
+    }
+  },
+  "contract": {
+    "id": "ds.nav-item",
+    "version": "1.1.0",
+    "factIds": [
+      "nav-item.chevron.false.actif.true"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "dark",
+      "alphaPixels": 2570,
+      "contrastPixels": 2570,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 177,
+        "height": 49
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "dark",
+      "alphaPixels": 2442,
+      "contrastPixels": 2442,
+      "paintedBounds": {
+        "x": 64,
+        "y": 62,
+        "width": 175,
+        "height": 50
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 176,
+      "height": 32
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 174.828125,
+      "height": 32
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": -1.171875,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "libell": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Soulignement": {
+        "figma": {
+          "x": 0,
+          "y": 1.375,
+          "width": 1,
+          "height": 0.125
+        },
+        "generated": {
+          "x": 0,
+          "y": 1.375,
+          "width": 1,
+          "height": 0.125
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [
+      "root"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 4.440677966101695,
+    "maskedDiagnosticPct": 33.70998116760829,
+    "maskCoveragePct": 94,
+    "thresholdPct": 2.5,
+    "regions": {
+      "label": {
+        "id": "label",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 1,
+          "y": 2,
+          "width": 175,
+          "height": 32
+        },
+        "totalPixels": 5600,
+        "mismatchedPixels": 35,
+        "diffPct": 0.625,
+        "referenceSignalPixels": 1672,
+        "generatedSignalPixels": 1730,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "soulignement": {
+        "id": "soulignement",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 1,
+          "y": 46,
+          "width": 175,
+          "height": 4
+        },
+        "totalPixels": 700,
+        "mismatchedPixels": 175,
+        "diffPct": 25,
+        "referenceSignalPixels": 525,
+        "generatedSignalPixels": 700,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 177,
+          "height": 50
+        },
+        "totalPixels": 8850,
+        "mismatchedPixels": 393,
+        "diffPct": 4.440677966101695,
+        "referenceSignalPixels": 2570,
+        "generatedSignalPixels": 2442,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "label",
+      "soulignement"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "raw-threshold-exceeded",
+      "region:soulignement:region-threshold-exceeded",
+      "region:whole:region-threshold-exceeded"
+    ]
+  },
+  "semantics": [
+    {
+      "id": "nav-item-chevron-false-actif-true-is-link",
+      "selector": "a",
+      "assertion": "element",
+      "contractPointer": "/semantics/element",
+      "contractResolved": true,
+      "expected": "a",
+      "actual": "a",
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-chevron-false-actif-true-href",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrs/href",
+      "contractResolved": true,
+      "expected": {
+        "href": "/a-propos"
+      },
+      "actual": {
+        "href": "/a-propos"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-chevron-false-actif-true-aria-current",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrsByProp",
+      "contractResolved": true,
+      "expected": {
+        "aria-current": "page"
+      },
+      "actual": {
+        "aria-current": "page"
+      },
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "gate": {
+    "scorePct": 4.440677966101695,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "global-score-exceeds-threshold",
+      "required-region-failed",
+      "required-region-failed"
+    ]
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/nav-item-chevron-false-actif-true/figma.png",
+    "cases/nav-item-chevron-false-actif-true/generated.png",
+    "cases/nav-item-chevron-false-actif-true/diff.png",
+    "cases/nav-item-chevron-false-actif-true/triptych.png"
+  ]
+}

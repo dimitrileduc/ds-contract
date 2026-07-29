@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-31-reassurance-79e37f4c",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:3794;2114:3691",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Reassurance",
+      "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
+      "Titre": "Expérience"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.reassurance",
+      "carte.image.79e37f4c0d4e8d9cddc48ad6234eb5f3e227c59d",
+      "carte.content.855f29c24014bd11",
+      "carte.occurrence.1cfb77beef03b3df"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 619354,
+      "contrastPixels": 475235,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 610,
+        "height": 1036
+      },
+      "imagePixels": 414885,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 640776,
+      "contrastPixels": 497726,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 616,
+        "height": 1042
+      },
+      "imagePixels": 414800,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-79e37f4c0d4e",
+      "expectedSha256": "13cdbe88e1a97ea7b4317e4f1f97b9f7d5c057b3dd8975f244a5bcbf62ca299e",
+      "actualSha256": "13cdbe88e1a97ea7b4317e4f1f97b9f7d5c057b3dd8975f244a5bcbf62ca299e",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 3000,
+      "naturalHeight": 2000,
+      "renderedWidth": 285,
+      "renderedHeight": 364,
+      "visiblePixels": 43776,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 570,
+      "height": 996
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 570,
+      "height": 996
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "reassuranceImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.7309236947791165
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7791164658634538,
+          "width": 1,
+          "height": 0.17269076305220885
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      }
+    },
+    "mismatches": [],
+    "verdict": "pass",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 0.05423104471503121,
+    "maskedDiagnosticPct": 0.038434022862535576,
+    "maskCoveragePct": 10.369385040417477,
+    "thresholdPct": 2.5,
+    "regions": {
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 5,
+          "y": 0,
+          "width": 570,
+          "height": 728
+        },
+        "totalPixels": 414960,
+        "mismatchedPixels": 202,
+        "diffPct": 0.04867939078465394,
+        "referenceSignalPixels": 414885,
+        "generatedSignalPixels": 414800,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 5,
+          "y": 776,
+          "width": 570,
+          "height": 172
+        },
+        "totalPixels": 98040,
+        "mismatchedPixels": 116,
+        "diffPct": 0.11831905344757243,
+        "referenceSignalPixels": 9464,
+        "generatedSignalPixels": 9870,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 580,
+          "height": 1011
+        },
+        "totalPixels": 586380,
+        "mismatchedPixels": 318,
+        "diffPct": 0.05423104471503121,
+        "referenceSignalPixels": 440409,
+        "generatedSignalPixels": 443330,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.05423104471503121,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-31-reassurance-79e37f4c/figma.png",
+    "cases/carte-occurrence-31-reassurance-79e37f4c/generated.png",
+    "cases/carte-occurrence-31-reassurance-79e37f4c/diff.png",
+    "cases/carte-occurrence-31-reassurance-79e37f4c/triptych.png"
+  ]
+}

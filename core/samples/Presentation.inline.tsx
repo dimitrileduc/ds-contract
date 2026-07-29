@@ -48,7 +48,7 @@ export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(functi
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} data-bouton={bouton || undefined} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }} data-bouton={bouton || undefined}  {...rest}>
       <SectionHeader titre="Piqueray, une histoire de famille " accroche="Plus de 50 ans d’expérience" disposition="standard" />
 <div style={{ ...S.wrapper }}>
 <span style={{ ...S.Texte }}>{texte}</span>

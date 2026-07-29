@@ -52,8 +52,8 @@ Anatomy is a **nested tree** of named parts (CEM's slots/parts, Curtis's anatomy
 
 | Part field | Meaning | Code output | Canvas output |
 |---|---|---|---|
-| `component: { id, props? }` | Fixed instance of another contract; `props` spelled canonically, mapped through the *child's* bindings | imported `<Child prop="…">` | nested instance with properties set |
-| `slot: { name, accepts?, acceptsMode?, min?, max?, required?, designProperty? }` | Constrained insertion point; `accepts` lists contract IDs resolved via anchors | `children` / `ReactNode` prop | instance-swap slot property (Slot-utility default) whose preferred values are the accepted contracts' component keys; optional parts get a `Show X` boolean |
+| `component: { id, props? }` | Fixed instance of another contract; `props` uses canonical child prop names and scalar literal or `{parentProp}` values | imported `<Child prop="…">` | nested instance with properties set through the child's bindings |
+| `slot: { name, accepts?, acceptsMode?, min?, max?, required?, figmaProperty?, control? }` | Constrained insertion point; `accepts` lists contract IDs resolved via anchors; optional `control` describes the supplied form control, not the wrapper | `children` / `ReactNode` prop | instance-swap slot property (Slot-utility default) whose preferred values are the accepted contracts' component keys; optional parts get a `Show X` boolean |
 | `content: { prop }` | Text bound to a declared text prop | `{title}` in the part's element | text node linked to the text property |
 | `vectorAsset: { asset, width, height, position? }` | Governed arbitrary SVG (logo/illustration), not an icon | inline SVG asset; token `color` drives `currentColor` | `createNodeFromSvg`, resized to the declared rectangle; monochrome paint is rebound to the token variable |
 
@@ -75,6 +75,33 @@ Parts with none of these are structural (frames/elements containing `parts`). `o
   "icon": { "slot": true, "optional": true }
 }
 ```
+
+### Conditional semantics and scalar composition
+
+These optional fields are additive: contracts that omit them retain their existing shape and output.
+
+**`attrsByProp`.** A part may select DOM attributes from one boolean or enum prop with `{ prop, map }`; use an ordered non-empty array when independent selectors contribute attributes. Each `map` key is a selector value and each value is an attribute-name → string map. An absent selector value or attribute means omission; attribute strings may reference another declared prop as `{prop}`. Code emitters apply the resolved attributes; the canvas has no DOM-attribute equivalent.
+
+```jsonc
+"attrsByProp": {
+  "prop": "actif",
+  "map": { "true": { "aria-current": "page" } }
+}
+```
+
+The build refuses an unknown selector or referenced prop, a non-boolean/non-enum selector, or a map key outside the selector's values.
+
+**`slot.control`.** A constrained slot may declare semantics for the element supplied to it, without reaching into child anatomy. `fill: "width"` makes that control fill the slot's available width. `attributes` maps each attribute to `{ prop, values }`, where `prop` is a boolean or enum on the owning contract and `values` covers every selector value; `null` deliberately omits the attribute. A control declaration requires a non-empty `accepts` list. Code emitters forward these facts to the supplied control rather than its presentational slot wrapper.
+
+**`tabContext`.** A root with native `role: "tab"` may declare the *external* composition boundary that owns roving focus: `{ owner: "external", role: "tablist", rovingFocus: true, idProp, minTabs }`. `idProp` must name a text prop and the Tab root must bind it as `data-tablist-id`. This does not create a TabList component, wrapper, or keyboard handler inside generated Tab output. The visual campaign may render the declared controller context solely to inspect the relationship, using the explicitly supplied `idProp` value; a missing id fails the receipt rather than receiving a harness default.
+
+**`geometryJustification`.** Root-only receipt metadata can name the narrow `typographic-subpixel-rounding` exception when Figma and the browser round the same observed glyph advances differently. It requires a non-empty reason plus non-negative absolute bounds for the root and every affected named part. It emits no CSS and cannot change HUG/FILL behavior, width, spacing, transforms, pixels, thresholds, or masks. A campaign must point to the object and publish an explanation; the geometry gate accepts it only if every actual mismatch is inside its own bound. Any unbounded or non-typographic mismatch still fails.
+
+**Rich text and `marks.strong`.** A `rich-text` prop is a non-empty array of `{ text, strong? }` segments and still binds to one native Figma `TEXT` property; the canvas receives the concatenated text while code preserves segment boundaries as semantic `<strong>` ranges. A content part may govern those ranges with `marks.strong` as either a legacy weight token reference or `{ "font-weight": token-ref | "100"…"900", "font-size"?, "line-height"? }`. The optional size and leading are bounded literals; the weight is always required, so browser-default bold is never an unstated style fact.
+
+**Declared image crop focus.** `declared: { "object-fit": "cover", "object-position": "50% 51%" }` carries an observed Figma IMAGE FILL scale mode and non-default focal point on the emitted HTML image. `object-position` accepts only one or two basic position keywords or numeric `px`/`%` values; it is code-rendered and canvas-annotated because Figma retains the native fill transform. Omit it for FILL's observed centered default rather than using it as a pixel-alignment offset.
+
+**Scalar composed-child props.** `component.props` fixes or forwards only text, number, boolean, or enum child props. A literal fixes the child value; `"{parentProp}"` is a live parent-to-child mapping. Both props must exist and have compatible scalar types (a forwarded enum's values must be accepted by the child); structured child props are refused. The child remains a component instance—its anatomy is never flattened—and a code-only child prop is forwarded only on code surfaces.
 
 **Substitution:** a `{propName}` placeholder inside a token path expands over that enum prop's values. `{color.action.{variant}.background}` with `variant: primary|secondary|danger` produces three CSS rules (`.variant-primary { … }` etc.). One placeholder per reference in phase 1.
 
@@ -217,7 +244,7 @@ The anatomy side reuses the **existing** enum-substitution convention (`icon.ass
 
 ## Versioning & change policy
 
-- Any change to `props`, `states`, `anatomy`, or `a11y` bumps `version` (semver semantics: added optional prop = minor; removed/renamed prop or value = major).
+- Any change to `props`, `states`, `anatomy`, or `a11y` bumps `version`. Additive optional API or vocabulary (including a non-restrictive `attrsByProp`, `slot.control`, `tabContext`, `geometryJustification`, rich-text mark styling, declared crop facts, or scalar child mapping) is minor; removing, renaming, narrowing, or making a prop, enum value, slot acceptance/arity, or scalar mapping incompatible is major. A prop-shape change (for example `text` → `rich-text`) is major; patch is reserved for a backwards-compatible correction with no declared API or semantic change.
 - Contract changes land as PRs. The PR diff *is* the design-system change review — one artifact, reviewable by designers and engineers alike.
 - Phase 3's promotion flow generates these PRs from drift detected on either surface.
 

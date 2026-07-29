@@ -9,9 +9,6 @@
 <section class="showcase showcase--input">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <!-- root element "input" cannot host the drawn anatomy (void element — children would hoist out of the box); box projected as <div>, element inference stays on the contract -->
-    <div class="input">
-      <span class="input__texteDeSaisie">Texte de saisie</span>
-    </div>
+    <input class="input" data-part="root" type="text" value="Texte de saisie">
   </div>
 </section>

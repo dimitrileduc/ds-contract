@@ -46,7 +46,7 @@ export const Equipe = forwardRef<HTMLDivElement, EquipeProps>(function Equipe(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.grid }}>
 <MemberCard poste="Gérante" nom="Cécilia Piqueray" />
 <MemberCard poste="Gérant" nom="Florian Piqueray" />

@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-07-categorie-a578caed",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:4411;2115:4178",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie",
+      "Texte": "ThermoSafe, la référence en aluminium. Design affleurant et serrures 5 points de série.",
+      "Titre": "Portes en aluminium"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.a578caed28b176c68c12383f883357df7167749a",
+      "carte.content.3799f2fe65700d19",
+      "carte.occurrence.8d07673eb1e9e743"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 1276143,
+      "contrastPixels": 1276143,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1486,
+        "height": 1232
+      },
+      "imagePixels": 1242296,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 1403842,
+      "contrastPixels": 1403842,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 1532,
+        "height": 1290
+      },
+      "imagePixels": 1242296,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-a578caed28b1",
+      "expectedSha256": "e8490fe14324c82923362abee91ee48324d10cad5873e7b44e324dc60c9c6dca",
+      "actualSha256": "e8490fe14324c82923362abee91ee48324d10cad5873e7b44e324dc60c9c6dca",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 820,
+      "naturalHeight": 615,
+      "renderedWidth": 743,
+      "renderedHeight": 418,
+      "visiblePixels": 49152,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "categorieImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Bouton": {
+        "figma": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.3728129205921938,
+          "height": 0.04823151125401929
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.37265519851951545,
+          "height": 0.04823151125401929
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.0001577220726783346,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Bouton"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.14984442145988497,
+    "maskedDiagnosticPct": 0.13065048430165827,
+    "maskCoveragePct": 9.323676933263513,
+    "thresholdPct": 2.5,
+    "regions": {
+      "cta": {
+        "id": "cta",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 1184,
+          "width": 554,
+          "height": 60
+        },
+        "totalPixels": 33240,
+        "mismatchedPixels": 376,
+        "diffPct": 1.131167268351384,
+        "referenceSignalPixels": 5083,
+        "generatedSignalPixels": 5549,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 836
+        },
+        "totalPixels": 1242296,
+        "mismatchedPixels": 2186,
+        "diffPct": 0.17596450443372594,
+        "referenceSignalPixels": 1242296,
+        "generatedSignalPixels": 1242296,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 900,
+          "width": 1486,
+          "height": 220
+        },
+        "totalPixels": 326920,
+        "mismatchedPixels": 208,
+        "diffPct": 0.0636241282270892,
+        "referenceSignalPixels": 28764,
+        "generatedSignalPixels": 29397,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 1244
+        },
+        "totalPixels": 1848584,
+        "mismatchedPixels": 2770,
+        "diffPct": 0.14984442145988497,
+        "referenceSignalPixels": 1276143,
+        "generatedSignalPixels": 1277242,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text",
+      "cta"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.14984442145988497,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-07-categorie-a578caed/figma.png",
+    "cases/carte-occurrence-07-categorie-a578caed/generated.png",
+    "cases/carte-occurrence-07-categorie-a578caed/diff.png",
+    "cases/carte-occurrence-07-categorie-a578caed/triptych.png"
+  ]
+}

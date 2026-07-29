@@ -95,7 +95,7 @@ const ctx = { tokens: {} as never, icons: new Map<string, string>(), contracts: 
   if (!out.html.includes('cannot host the drawn anatomy')) {
     fail('the content-model projection is not NAMED in an emitted comment');
   }
-  if (!out.html.includes('<div class="eval-input-label">')) {
+  if (!out.html.includes('<div class="eval-input-label"')) {
     fail('linked-child markup is not rendered as real structure');
   }
   if (out.html.includes('&lt;div')) {

@@ -49,7 +49,7 @@ export const FAQ = forwardRef<HTMLDivElement, FAQProps>(function FAQ(
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} data-ligne3={ligne3 || undefined} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }} data-ligne3={ligne3 || undefined}  {...rest}>
       <SectionHeader titre="Questions fréquentes" accroche="FAQ" disposition="standard" />
 <div style={{ ...S.accordion }}>
 <AccordionRow taille="grand" contenu="Réponse" titre="Nos portes répondent-elles aux normes des bâtiments publics ?" />

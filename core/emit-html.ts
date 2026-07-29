@@ -46,8 +46,11 @@ import {
   INSET_BORDER_SHADOW,
   isEnum,
   isMultiRoot,
+  isRichText,
   rootBorderPlan,
   rootElementsOf,
+  richTextStrongStyle,
+  richTextPlain,
   textProps,
   topRoots,
   UA_MARGIN_ELEMENTS,
@@ -599,6 +602,16 @@ function componentCss(contract: Contract): string[] {
       ]);
     }
     rule(partCls(name), decls);
+    const strong = richTextStrongStyle(part.content?.marks?.strong);
+    if (strong.fontWeight) {
+      const weight = strong.fontWeight.startsWith('{')
+        ? cssVar(stripBraces(strong.fontWeight))
+        : strong.fontWeight;
+      const strongDecls = [`font-weight: ${weight}`];
+      if (strong.fontSize) strongDecls.push(`font-size: ${strong.fontSize}`);
+      if (strong.lineHeight) strongDecls.push(`line-height: ${strong.lineHeight}`);
+      rule(`${partCls(name)} > strong`, strongDecls);
+    }
     for (const [sel, d] of subRules) rule(sel, d);
     // v10 tokensByProp on a nested part: descendant rule under the root's
     // enum modifier class — the nested-token-substitution rule shape.
@@ -653,6 +666,15 @@ function componentCss(contract: Contract): string[] {
       }
     }
     emitStylesWhen(part, partCls(name), false);
+    // The icon/vector wrapper is the declared anatomy box. Glyph-only
+    // adjustments target its inline SVG so the wrapper's geometry stays
+    // measurable and stable.
+    for (const sw of part.glyphStylesWhen ?? []) {
+      const prop = contract.props.find((pr) => pr.name === sw.prop);
+      if (!prop) continue; // validateContract names malformed declarations
+      const base = isEnum(prop) ? enumCls(sw.prop, sw.equals ?? '') : condBase(sw.prop)!;
+      rule(`${base} ${partCls(name)} svg`, Object.entries(sw.styles).map(([kk, v]) => `${kk}: ${v}`));
+    }
     if (part.icon && part.element) rule(`${partCls(name)}-glyph`, ['display: inline-flex']);
   }
 
@@ -683,21 +705,57 @@ function renderComponentHtml(
   state: RenderState,
   indent: string,
   extraText?: string,
+  forwardedAttrs?: Record<string, string>,
+  rootPartName = 'root',
 ): string {
   const k = kebab(contract.name);
   const root = contract.anatomy.root;
   const textDefaultOf = (c: Contract): string => {
-    const t = textProps(c).find((p) => p.bindings.code.prop === 'children');
-    return typeof t?.default === 'string' ? t.default : c.name;
+    const t = c.props.find(
+      (p) => (p.type === 'text' || p.type === 'rich-text') && p.bindings.code.prop === 'children',
+    );
+    return t && isRichText(t)
+      ? richTextPlain(t.default)
+      : typeof t?.default === 'string'
+        ? t.default
+        : c.name;
   };
-  const propValue = (name: string): string | undefined => state.subst[name];
+  const propValue = (name: string): string | undefined => {
+    if (state.subst[name] !== undefined) return state.subst[name];
+    if (state.bools[name] !== undefined) return String(state.bools[name]);
+    const prop = contract.props.find((p) => p.name === name);
+    return typeof prop?.default === 'string' || typeof prop?.default === 'number'
+      ? String(prop.default)
+      : undefined;
+  };
   const textValue = (propName: string): string => {
-    const prop = contract.props.find((p) => p.type === 'text' && p.bindings.code.prop === propName);
+    const prop = contract.props.find(
+      (p) => (p.type === 'text' || p.type === 'rich-text') && p.bindings.code.prop === propName,
+    );
     // A component-ref parent may have set this text prop's value (fixed or
     // "{parentProp}"-threaded) — it rides state.subst keyed by prop NAME,
     // exactly like enum substitutions; the contract default is the fallback.
     if (prop && state.subst[prop.name] !== undefined) return state.subst[prop.name];
-    return typeof prop?.default === 'string' ? prop.default : contract.name;
+    return prop && isRichText(prop)
+      ? richTextPlain(prop.default)
+      : typeof prop?.default === 'string'
+        ? prop.default
+        : contract.name;
+  };
+  const contentHtml = (propName: string, extra?: string): string => {
+    if (propName === 'children' && extra !== undefined) return escapeHtml(extra);
+    const prop = contract.props.find(
+      (p) => (p.type === 'text' || p.type === 'rich-text') && p.bindings.code.prop === propName,
+    );
+    if (prop && isRichText(prop) && Array.isArray(prop.default)) {
+      return prop.default
+        .map((segment) => {
+          const text = escapeHtml(segment.text);
+          return segment.strong ? `<strong>${text}</strong>` : `<span>${text}</span>`;
+        })
+        .join('');
+    }
+    return escapeHtml(textValue(propName));
   };
   const visible = (part: Part): boolean => {
     if (part.visibleWhen) {
@@ -710,20 +768,59 @@ function renderComponentHtml(
     return true;
   };
 
+  const attributeValue = (value: string): string => {
+    const ref = value.match(/^\{([a-z][\w-]*)\}$/);
+    if (!ref) return value;
+    const prop = contract.props.find((p) => p.name === ref[1]);
+    return propValue(ref[1]) ?? (prop?.default !== undefined ? String(prop.default) : '');
+  };
+  const selectedAttrs = (part: Part): Record<string, string> => {
+    const out: Record<string, string> = { ...(part.attrs ?? {}) };
+    const entries = part.attrsByProp
+      ? (Array.isArray(part.attrsByProp) ? part.attrsByProp : [part.attrsByProp])
+      : [];
+    for (const entry of entries) {
+      const attrs = entry.map[propValue(entry.prop) ?? ''];
+      if (attrs) Object.assign(out, attrs);
+    }
+    return out;
+  };
   const attrString = (part: Part): string =>
-    Object.entries(part.attrs ?? {})
+    Object.entries(selectedAttrs(part))
       .map(([attr, value]) => {
-        const ref = value.match(/^\{([a-z][\w-]*)\}$/);
-        if (!ref) return ` ${attr}="${escapeHtml(value)}"`;
-        const prop = contract.props.find((p) => p.name === ref[1]);
-        const v = propValue(ref[1]) ?? (prop?.default !== undefined ? String(prop.default) : '');
-        return ` ${attr}="${escapeHtml(v)}"`;
+        return ` ${attr}="${escapeHtml(attributeValue(value))}"`;
       })
       .join('');
+
+  const slotControlAttrs = (part: Part): Record<string, string> | undefined => {
+    const control = part.slot?.control;
+    if (!control) return undefined;
+    const out: Record<string, string> = {};
+    for (const [attr, declaration] of Object.entries(control.attributes ?? {})) {
+      const value = declaration.values[propValue(declaration.prop) ?? ''];
+      if (value !== null && value !== undefined) out[attr] = value;
+    }
+    const style = control.fill === 'width' ? ['width: 100%'] : [];
+    const styleValue = (value: string): string => {
+      const token = value.match(/^\{([^}]+)\}$/);
+      return token ? `var(--${token[1].split('.').join('-')})` : value;
+    };
+    for (const [property, declaration] of Object.entries(control.styles ?? {})) {
+      const value = declaration.values[propValue(declaration.prop) ?? ''];
+      if (value !== null && value !== undefined) {
+        const resolved = styleValue(value);
+        style.push(`${property}: ${resolved}`);
+        if (property === 'border-color') style.push(`--dsc-border-color: ${resolved}`);
+      }
+    }
+    if (style.length > 0) out.style = `${style.join('; ')};`;
+    return out;
+  };
 
   const renderPart = (name: string, part: Part, pad: string, parentEl = 'div'): string => {
     if (!visible(part)) return '';
     const cls = `${k}__${name}`;
+    const partAttr = ` data-part="${escapeHtml(name)}"`;
     // Content-model honesty: HTML parsers drop anything but <option>/<optgroup>
     // inside a <select>, so a content/text part with NO authored element
     // defaults to "option" there instead of "span" (an authored element is
@@ -731,19 +828,19 @@ function renderComponentHtml(
     const textEl = part.element ?? (parentEl === 'select' ? 'option' : 'span');
     if (part.vectorAsset) {
       const svg = ctx.icons.get(part.vectorAsset.asset) ?? '';
-      return `${pad}<span class="${cls}" aria-hidden="true">${svg}</span>`;
+      return `${pad}<span class="${cls}" aria-hidden="true"${partAttr}>${svg}</span>`;
     }
     if (part.icon) {
       const ref = part.icon.asset.match(/^\{([a-z][\w-]*)\}$/);
       const asset = ref ? (propValue(ref[1]) ?? String(contract.props.find((p) => p.name === ref[1])?.default ?? '')) : part.icon.asset;
       const svg = ctx.icons.get(asset) ?? '';
       if (part.element) {
-        return `${pad}<${part.element} class="${cls}"${attrString(part)}><span class="${cls}-glyph" aria-hidden="true">${svg}</span></${part.element}>`;
+        return `${pad}<${part.element} class="${cls}"${attrString(part)}${partAttr}><span class="${cls}-glyph" aria-hidden="true">${svg}</span></${part.element}>`;
       }
       if (Object.keys(part.attrs ?? {}).length > 0) {
-        return `${pad}<span class="${cls}"${attrString(part)}>${svg}</span>`;
+        return `${pad}<span class="${cls}"${attrString(part)}${partAttr}>${svg}</span>`;
       }
-      return `${pad}<span class="${cls}" aria-hidden="true">${svg}</span>`;
+      return `${pad}<span class="${cls}" aria-hidden="true"${partAttr}>${svg}</span>`;
     }
     if (part.repeat && part.component) {
       // v12 repeat (P9): the static surface renders the contract's OBSERVED
@@ -757,8 +854,8 @@ function renderComponentHtml(
           for (const p of boolProps(dep)) depState.bools[p.name] = p.default === true;
           for (const [pn, v] of Object.entries(part.component!.props ?? {})) {
             if (typeof v === 'boolean') { depState.bools[pn] = v; continue; }
-            const parentRef = v.match(/^\{([a-z][\w-]*)\}$/);
-            depState.subst[pn] = parentRef ? (propValue(parentRef[1]) ?? v) : v;
+            const parentRef = typeof v === 'string' ? v.match(/^\{([a-z][\w-]*)\}$/) : null;
+            depState.subst[pn] = parentRef ? (propValue(parentRef[1]) ?? String(v)) : String(v);
           }
           let itemText: string | undefined;
           for (const [field, v] of Object.entries(rec)) {
@@ -778,10 +875,18 @@ function renderComponentHtml(
       for (const p of boolProps(dep)) depState.bools[p.name] = p.default === true;
       for (const [pn, v] of Object.entries(part.component.props ?? {})) {
         if (typeof v === 'boolean') { depState.bools[pn] = v; continue; }
-        const parentRef = v.match(/^\{([a-z][\w-]*)\}$/);
-        depState.subst[pn] = parentRef ? (propValue(parentRef[1]) ?? v) : v;
+        const parentRef = typeof v === 'string' ? v.match(/^\{([a-z][\w-]*)\}$/) : null;
+        depState.subst[pn] = parentRef ? (propValue(parentRef[1]) ?? String(v)) : String(v);
       }
-      return renderComponentHtml(dep, ctx, depState, pad, part.component.text ?? undefined);
+      return renderComponentHtml(
+        dep,
+        ctx,
+        depState,
+        pad,
+        part.component.text ?? undefined,
+        undefined,
+        name,
+      );
     }
     if (part.slot) {
       const el = part.element ?? 'div';
@@ -793,7 +898,7 @@ function renderComponentHtml(
       // every visual-parity row 55-97%). The absence is named in the emitted
       // header comment, never painted.
       if (items.length === 0) {
-        return `${pad}<${el} class="${cls}"${attrString(part)}><!-- ${part.slot.name} slot: no content --></${el}>`;
+        return `${pad}<${el} class="${cls}"${attrString(part)}${partAttr}><!-- ${part.slot.name} slot: no content --></${el}>`;
       }
       const inner = items
         .map((item) => {
@@ -805,17 +910,16 @@ function renderComponentHtml(
             if (typeof v === 'boolean') depState.bools[pn] = v;
             else depState.subst[pn] = v;
           }
-          return renderComponentHtml(dep, ctx, depState, pad + '  ', item.text);
+          return renderComponentHtml(dep, ctx, depState, pad + '  ', item.text, slotControlAttrs(part));
         })
         .join('\n');
-      return `${pad}<${el} class="${cls}"${attrString(part)}>\n${inner}\n${pad}</${el}>`;
+      return `${pad}<${el} class="${cls}"${attrString(part)}${partAttr}>\n${inner}\n${pad}</${el}>`;
     }
     if (part.content) {
-      const value = part.content.prop === 'children' && extraText !== undefined ? extraText : textValue(part.content.prop);
-      return `${pad}<${textEl} class="${cls}"${attrString(part)}>${escapeHtml(value)}</${textEl}>`;
+      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${contentHtml(part.content.prop, extraText)}</${textEl}>`;
     }
     if (part.text !== undefined) {
-      return `${pad}<${textEl} class="${cls}"${attrString(part)}>${escapeHtml(part.text)}</${textEl}>`;
+      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${escapeHtml(part.text)}</${textEl}>`;
     }
     if (part.meter) {
       const num = (propName: string, fallback: number) => {
@@ -823,7 +927,7 @@ function renderComponentHtml(
         return typeof pr?.default === 'number' ? pr.default : fallback;
       };
       const pct = Math.min(100, Math.max(0, (num(part.meter.valueProp, 0) / (num(part.meter.maxProp, 100) || 100)) * 100));
-      return `${pad}<div class="${cls}" style="width: ${pct}%"></div>`;
+      return `${pad}<div class="${cls}" style="width: ${pct}%"${partAttr}></div>`;
     }
     // Native checkable input: a REAL void <input> — focusable and keyboard-
     // togglable even in a script-less page. `checked` renders as the HTML
@@ -843,7 +947,7 @@ function renderComponentHtml(
           note = `\n${pad}<!-- value "${v}" is a DOM property (el.indeterminate = true), not an attribute — static HTML shows it via the glyph only. AT reads this input as unchecked here: a script-less surface cannot set the property (declared fidelity limit); the React surface sets it via callback ref -->`;
         }
       }
-      return `${pad}<input class="${cls}"${attrString(part)}${checked}>${note}`;
+      return `${pad}<input class="${cls}"${attrString(part)}${checked}${partAttr}>${note}`;
     }
     const el = part.element ?? 'div';
     const inner = Object.entries(part.parts ?? {})
@@ -851,8 +955,8 @@ function renderComponentHtml(
       .filter(Boolean)
       .join('\n');
     return inner
-      ? `${pad}<${el} class="${cls}"${attrString(part)}>\n${inner}\n${pad}</${el}>`
-      : `${pad}<${el} class="${cls}"${attrString(part)}></${el}>`;
+      ? `${pad}<${el} class="${cls}"${attrString(part)}${partAttr}>\n${inner}\n${pad}</${el}>`
+      : `${pad}<${el} class="${cls}"${attrString(part)}${partAttr}></${el}>`;
   };
 
   // MULTI-ROOT composite: render each top-level root as a SIBLING via the same
@@ -897,10 +1001,32 @@ function renderComponentHtml(
     p.meter !== undefined ||
     (p.element !== undefined && p.element !== 'option' && p.element !== 'optgroup');
   const rootParts = Object.entries(root.parts ?? {});
+  // A native text <input> is a real control even when Figma's extracted
+  // anatomy names its displayed value as a child text part.  HTML cannot put
+  // that child inside the void host, but replacing the host with a <div>
+  // loses the control's own semantics (including Field's forwarded ARIA).
+  // Preserve the native host when the anatomy is exactly one text projection;
+  // its value is carried through the native `value` attribute instead.  More
+  // complex anatomy remains explicitly projected rather than silently
+  // dropping an icon, slot, or nested structure.
+  const nativeTextInputCandidate = rootParts[0]?.[1];
+  const nativeTextInputPart =
+    inferredEl === 'input' &&
+    rootParts.length === 1 &&
+    nativeTextInputCandidate?.content !== undefined &&
+    nativeTextInputCandidate.parts === undefined &&
+    nativeTextInputCandidate.component === undefined &&
+    nativeTextInputCandidate.icon === undefined &&
+    nativeTextInputCandidate.vectorAsset === undefined &&
+    nativeTextInputCandidate.slot === undefined &&
+    nativeTextInputCandidate.repeat === undefined &&
+    nativeTextInputCandidate.meter === undefined
+      ? nativeTextInputCandidate
+      : undefined;
   const projected =
     rootParts.length > 0 &&
     (inferredEl === 'textarea' ||
-      VOID_ELEMENTS.has(inferredEl) ||
+      (VOID_ELEMENTS.has(inferredEl) && !nativeTextInputPart) ||
       (inferredEl === 'select' && rootParts.some(([, p]) => hostsStructure(p))));
   const el = projected ? 'div' : inferredEl;
   const projectionComment = projected
@@ -919,7 +1045,14 @@ function renderComponentHtml(
       .filter((p) => state.subst[p.name] !== undefined)
       .map((p) => `${k}--${p.name}-${state.subst[p.name]}`),
   ];
-  const attrs: string[] = [`class="${classes.join(' ')}"`];
+  const attrs: string[] = [
+    `class="${classes.join(' ')}"`,
+    `data-part="${escapeHtml(rootPartName)}"`,
+  ];
+  const rootAttrs = `${attrString(root)}${Object.entries(forwardedAttrs ?? {})
+    .map(([attr, value]) => ` ${attr}="${escapeHtml(value)}"`)
+    .join('')}`.trim();
+  if (rootAttrs) attrs.push(rootAttrs);
   if (el === 'button' && root.attrs?.type === undefined) attrs.push('type="button"');
   const supportsDisabled = ['button', 'input', 'textarea', 'select', 'fieldset'].includes(el);
   for (const p of boolProps(contract)) {
@@ -940,7 +1073,17 @@ function renderComponentHtml(
   // <option> wrapper is the only faithful rendering of a select's default
   // content. (Authored anatomies should carry explicit element:"option"
   // parts; this covers the part-less text fallback.)
-  const rootText = escapeHtml(extraText ?? textDefaultOf(contract));
+  const rootText = escapeHtml(
+    nativeTextInputPart
+      ? nativeTextInputPart.content!.prop === 'children' && extraText !== undefined
+        ? extraText
+        : textValue(nativeTextInputPart.content!.prop)
+      : extraText ?? textDefaultOf(contract),
+  );
+  if (nativeTextInputPart) {
+    attrs.push(`value="${rootText}"`);
+    return `${indent}<${el} ${attrs.join(' ')}>`;
+  }
   const rootInner = root.parts
     ? Object.entries(root.parts)
         .map(([childName, child]) => renderPart(childName, child, indent + '  ', el))

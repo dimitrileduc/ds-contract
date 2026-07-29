@@ -178,6 +178,20 @@ function expectOutputRejected(
 
 expectAccepted(validCampaign, "the complete pinned campaign fixture");
 
+// A comparison may reconstruct an occurrence's containing layout from the
+// same pinned GET child geometry used by the geometry receipt.  It cannot
+// name arbitrary selectors or numbers: every requested part must already be
+// pinned by a Figma descendant id.
+const measuredLayoutContext = clone(validCampaign) as any;
+const measuredField = measuredLayoutContext.subjects.find((subject: any) => subject.id === "field").cases[0];
+measuredField.figmaPartNodeIds = { Saisie: "I2056:1265;2056:1269" };
+measuredField.layoutContext = { rootWidth: "figma-root", partWidths: ["Saisie"] };
+expectAccepted(measuredLayoutContext, "pinned Figma part-width comparison context");
+
+const unpinnedPartWidth = clone(measuredLayoutContext) as any;
+unpinnedPartWidth.subjects.find((subject: any) => subject.id === "field").cases[0].layoutContext.partWidths = ["not-a-pinned-part"];
+expectRejected(unpinnedPartWidth, "case-shape", "part-width context without a pinned Figma descendant");
+
 // Versioning must be explicit and strict: accepting an unknown version risks
 // silently changing a validation meaning when the schema evolves.
 for (const schemaVersion of [undefined, 0, 2, "1"] as const) {

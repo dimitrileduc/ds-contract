@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-14-categorie-715170bb",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:4324;2115:4206",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie",
+      "Texte": "Vérifiez si votre porte est fermée depuis votre lieu de vacances. Le système radio BiSecur utilise un cryptage de niveau bancaire pour une sécurité totale.",
+      "Titre": "Pilotez à distance"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.715170bb427ebdecc5438dc0b056ebf3c862099e",
+      "carte.content.7d8282726c6c2d3b",
+      "carte.occurrence.dd7063d266b58a99"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 541479,
+      "contrastPixels": 541476,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 948,
+        "height": 1036
+      },
+      "imagePixels": 504333,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 635872,
+      "contrastPixels": 635868,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 994,
+        "height": 1094
+      },
+      "imagePixels": 504332,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-715170bb427e",
+      "expectedSha256": "0db3eea3c163080b21dea562ea1110bdbad068ac53bc92128fac26a61bda75dc",
+      "actualSha256": "0db3eea3c163080b21dea562ea1110bdbad068ac53bc92128fac26a61bda75dc",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1000,
+      "naturalHeight": 700,
+      "renderedWidth": 474,
+      "renderedHeight": 266,
+      "visiblePixels": 45824,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 948,
+      "height": 1048
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 948,
+      "height": 1048
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "categorieImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.5076335877862596
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.5076335877862596
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.5687022900763359,
+          "width": 1,
+          "height": 0.31297709923664124
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.5687022900763359,
+          "width": 1,
+          "height": 0.31297709923664124
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Bouton": {
+        "figma": {
+          "x": 0,
+          "y": 0.9427480916030534,
+          "width": 0.5822784810126582,
+          "height": 0.05725190839694656
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9427480916030534,
+          "width": 0.5810752900843882,
+          "height": 0.05725190839694656
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.001203190928270037,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Bouton"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.06703546236351339,
+    "maskedDiagnosticPct": 0.006099626365440296,
+    "maskCoveragePct": 22.44228508390505,
+    "thresholdPct": 2.5,
+    "regions": {
+      "cta": {
+        "id": "cta",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 988,
+          "width": 551,
+          "height": 60
+        },
+        "totalPixels": 33060,
+        "mismatchedPixels": 341,
+        "diffPct": 1.0314579552329097,
+        "referenceSignalPixels": 4938,
+        "generatedSignalPixels": 5509,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 948,
+          "height": 532
+        },
+        "totalPixels": 504336,
+        "mismatchedPixels": 14,
+        "diffPct": 0.00277592715967133,
+        "referenceSignalPixels": 504333,
+        "generatedSignalPixels": 504332,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 596,
+          "width": 948,
+          "height": 328
+        },
+        "totalPixels": 310944,
+        "mismatchedPixels": 311,
+        "diffPct": 0.10001800967376763,
+        "referenceSignalPixels": 32205,
+        "generatedSignalPixels": 33191,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 948,
+          "height": 1048
+        },
+        "totalPixels": 993504,
+        "mismatchedPixels": 666,
+        "diffPct": 0.06703546236351339,
+        "referenceSignalPixels": 541476,
+        "generatedSignalPixels": 543032,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text",
+      "cta"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.06703546236351339,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-14-categorie-715170bb/figma.png",
+    "cases/carte-occurrence-14-categorie-715170bb/generated.png",
+    "cases/carte-occurrence-14-categorie-715170bb/diff.png",
+    "cases/carte-occurrence-14-categorie-715170bb/triptych.png"
+  ]
+}

@@ -48,9 +48,9 @@ const COMPONENTS = [
               "grow": true,
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "SectionHeader",
-                  "dep": "SectionHeader",
+                  "dep":"SectionHeader",
                   "depProps": {
                     "Titre": "Prenez contact avec nous dès maintenant !",
                     "Accroche": "Une demande de devis ? Une réparation ?",
@@ -68,36 +68,36 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
                         "Titre": "Conseils personnalisés"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage 2",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Marque Hormann renommée, qualité allemande",
                         "Titre": "Produits de qualité"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage 3",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais",
                         "Titre": "Dépannage et SAV"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Avantage 4",
-                      "dep": "Avantage",
+                      "dep":"Avantage",
                       "depProps": {
                         "Texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
                         "Titre": "Expérience et savoir-faire"
@@ -116,15 +116,15 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormArgumentBoutonA",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormArgumentBoutonB",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]
@@ -154,18 +154,18 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow1FieldA",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Prénom",
                         "Etat": "Normal"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow1FieldB",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Nom",
                         "Etat": "Normal"
@@ -184,18 +184,18 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow2FieldA",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Email",
                         "Etat": "Normal"
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow2FieldB",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Téléphone",
                         "Etat": "Normal"
@@ -214,9 +214,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow3Field",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Adresse",
                         "Etat": "Normal"
@@ -235,9 +235,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow4Field",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Sujet",
                         "Etat": "Normal"
@@ -256,9 +256,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "FormRow5Field",
-                      "dep": "Field",
+                      "dep":"Field",
                       "depProps": {
                         "Label": "Message",
                         "Etat": "Normal"
@@ -276,9 +276,9 @@ const COMPONENTS = [
                   "contentProp": "Consentement"
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "FormulaireBouton",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 }
               ]
@@ -846,9 +846,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -863,9 +863,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 2",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -880,9 +880,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 3",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -897,9 +897,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 4",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -914,9 +914,9 @@ const COMPONENTS = [
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "carte 5",
-                      "dep": "ReviewCard",
+                      "dep":"ReviewCard",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -987,7 +987,7 @@ const COMPONENTS = [
     "setName": "NavItem",
     "contractId": "ds.nav-item",
     "anchorKey": "bb5fff155aa25e719d1b9e38dedc767d677b4471",
-    "description": "NavItem — generated from contract ds.nav-item v1.0.0 †",
+    "description": "NavItem — generated from contract ds.nav-item v1.1.0 †",
     "isSet": false,
     "boolProps": [
       {
@@ -999,14 +999,7 @@ const COMPONENTS = [
         "default": false
       }
     ],
-    "textProps": [
-      {
-        "default": "Portes de garage"
-      },
-      {
-        "default": ""
-      }
-    ],
+    "textProps": [],
     "fontStyles": [
       "Medium"
     ],
@@ -1036,6 +1029,7 @@ const COMPONENTS = [
               "textFill": "color/blanc",
               "lineHeight": 16,
               "textCase": "UPPER",
+              "textDecoration": "NONE",
               "fontFamily": "Montserrat"
             },
             {
@@ -1094,9 +1088,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "PiquerayLogo",
-              "dep": "PiquerayLogo",
+              "dep":"PiquerayLogo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -1120,45 +1114,45 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 2",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 3",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 4",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Bouton",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]
@@ -1211,9 +1205,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "PiquerayLogo",
-              "dep": "PiquerayLogo",
+              "dep":"PiquerayLogo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -1237,45 +1231,45 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 2",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 3",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "NavItem 4",
-                      "dep": "NavItem",
+                      "dep":"NavItem",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
                       }
                     },
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "Bouton",
-                      "dep": "Button",
+                      "dep":"Button",
                       "depProps": {}
                     }
                   ]
@@ -1364,9 +1358,9 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type": "instance",
+                      "type":"instance",
                       "name": "SectionHeader",
-                      "dep": "SectionHeader",
+                      "dep":"SectionHeader",
                       "depProps": {
                         "Titre": "Portes de garage industrielles",
                         "Accroche": "Plus de 50 ans d’expérience",
@@ -1392,9 +1386,9 @@ const COMPONENTS = [
                           "fontFamily": "Montserrat"
                         },
                         {
-                          "type": "instance",
+                          "type":"instance",
                           "name": "Bouton",
-                          "dep": "Button",
+                          "dep":"Button",
                           "depProps": {}
                         }
                       ]
@@ -1446,9 +1440,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Piqueray, une histoire de famille ",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -1476,9 +1470,9 @@ const COMPONENTS = [
                   "contentProp": "Texte"
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Bouton",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {},
                   "visibleProp": "Bouton",
                   "visibleDefault": false
@@ -1495,7 +1489,7 @@ const COMPONENTS = [
     "setName": "ProductCard",
     "contractId": "ds.product-card",
     "anchorKey": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
-    "description": "ProductCard — generated from contract ds.product-card v1.0.0 †",
+    "description": "ProductCard — generated from contract ds.product-card v1.1.0 †",
     "isSet": false,
     "boolProps": [
       {
@@ -1503,14 +1497,7 @@ const COMPONENTS = [
         "default": false
       }
     ],
-    "textProps": [
-      {
-        "default": ""
-      },
-      {
-        "default": ""
-      }
-    ],
+    "textProps": [],
     "fontStyles": [
       "Medium",
       "Semi Bold"
@@ -1529,7 +1516,8 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "lits": {
-            "itemSpacing": 16
+            "itemSpacing": 16,
+            "width": 364
           },
           "children": [
             {
@@ -1577,9 +1565,9 @@ const COMPONENTS = [
               "contentProp": "Prix"
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "Bouton",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {
                 "Style": "Default",
                 "Icone gauche": true,
@@ -1599,17 +1587,10 @@ const COMPONENTS = [
     "setName": "Realisation",
     "contractId": "ds.realisation",
     "anchorKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43",
-    "description": "Realisation — generated from contract ds.realisation v1.0.0 †",
+    "description": "Realisation — generated from contract ds.realisation v1.1.0 †",
     "isSet": true,
     "boolProps": [],
-    "textProps": [
-      {
-        "default": ""
-      },
-      {
-        "default": ""
-      }
-    ],
+    "textProps": [],
     "fontStyles": [
       "Medium"
     ],
@@ -1715,9 +1696,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -1735,9 +1716,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -1745,9 +1726,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 2",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -1755,9 +1736,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 3",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -1765,9 +1746,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 4",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -1775,9 +1756,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 5",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
@@ -1787,9 +1768,9 @@ const COMPONENTS = [
               ]
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "BoutonQuatreCartes",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {}
             }
           ]
@@ -1809,9 +1790,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -1829,9 +1810,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -1839,9 +1820,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 2",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -1849,9 +1830,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 3",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -1859,9 +1840,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 4",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -1869,9 +1850,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 5",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
@@ -1891,15 +1872,15 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Bouton",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "BoutonSecondaire",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 }
               ]
@@ -1921,9 +1902,9 @@ const COMPONENTS = [
           },
           "children": [
             {
-              "type": "instance",
+              "type":"instance",
               "name": "SectionHeader",
-              "dep": "SectionHeader",
+              "dep":"SectionHeader",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -1941,9 +1922,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -1951,9 +1932,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 2",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -1961,9 +1942,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 3",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -1971,9 +1952,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 4",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -1981,9 +1962,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Carte 5",
-                  "dep": "Carte",
+                  "dep":"Carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
@@ -1993,9 +1974,9 @@ const COMPONENTS = [
               ]
             },
             {
-              "type": "instance",
+              "type":"instance",
               "name": "BoutonCinqCartes",
-              "dep": "Button",
+              "dep":"Button",
               "depProps": {}
             }
           ]
@@ -2094,9 +2075,9 @@ const COMPONENTS = [
                           },
                           "children": [
                             {
-                              "type": "instance",
+                              "type":"instance",
                               "name": "SectionHeader",
-                              "dep": "SectionHeader",
+                              "dep":"SectionHeader",
                               "depProps": {
                                 "Titre": "Dépannage / SAV",
                                 "Accroche": "Plus de 50 ans d’expérience",
@@ -2113,9 +2094,9 @@ const COMPONENTS = [
                               "fontFamily": "Montserrat"
                             },
                             {
-                              "type": "instance",
+                              "type":"instance",
                               "name": "Bouton",
-                              "dep": "Button",
+                              "dep":"Button",
                               "depProps": {}
                             }
                           ]
@@ -2168,7 +2149,7 @@ const COMPONENTS = [
     "setName": "Tab",
     "contractId": "ds.tab",
     "anchorKey": "c5fa537d17c544114dc780ba11bbf1157fedba37",
-    "description": "Tab — generated from contract ds.tab v1.0.0",
+    "description": "Tab — generated from contract ds.tab v2.0.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -2205,6 +2186,7 @@ const COMPONENTS = [
               "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Libelle"
             }
@@ -2242,6 +2224,7 @@ const COMPONENTS = [
               "fontStyle": "Semi Bold",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
+              "textCase": "UPPER",
               "fontFamily": "Montserrat",
               "contentProp": "Libelle"
             }
@@ -2287,9 +2270,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "SectionHeader",
-                  "dep": "SectionHeader",
+                  "dep":"SectionHeader",
                   "depProps": {
                     "Titre": "Visitez notre showroom à Pepinster ou contactez-nous",
                     "Accroche": "Plus de 50 ans d’expérience",
@@ -2349,9 +2332,9 @@ const COMPONENTS = [
               },
               "children": [
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Réponse",
@@ -2359,9 +2342,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 2",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
@@ -2369,9 +2352,9 @@ const COMPONENTS = [
                   }
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "AccordionRow 3",
-                  "dep": "AccordionRow",
+                  "dep":"AccordionRow",
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Réponse",

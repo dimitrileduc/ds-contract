@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v1.0.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -22,12 +22,24 @@ const S: Record<string, CSSProperties> = {
     "border": 0,
     "backgroundColor": "#FFFFFF",
     "fontFamily": "Montserrat, sans-serif",
+    "width": "364px",
     "gap": "24px",
     "paddingBottom": "24px",
-    "borderRadius": "10px"
+    "boxShadow": "0px 5px 10px rgba(0, 0, 0, 0.2)",
+    "textRendering": "geometricprecision"
   },
-  "img": {
-    "height": "364px"
+  "reassuranceImage": {
+    "height": "364px",
+    "objectFit": "cover",
+    "objectPosition": "50% 50%"
+  },
+  "categorieImage": {
+    "display": "flex",
+    "flex": "1 1 auto",
+    "minWidth": 0,
+    "height": "418px",
+    "minHeight": "0px",
+    "objectFit": "cover"
   },
   "text": {
     "display": "flex",
@@ -35,45 +47,57 @@ const S: Record<string, CSSProperties> = {
     "alignItems": "stretch",
     "gap": "8px",
     "paddingRight": "16px",
-    "paddingLeft": "16px"
+    "paddingLeft": "16px",
+    "textRendering": "geometricprecision"
   },
-  "Titre": {
+  "TitreReassurance": {
     "color": "#26282C",
     "fontSize": "24px",
     "fontWeight": 400,
-    "lineHeight": "30px"
+    "lineHeight": "30px",
+    "textAlign": "center"
   },
-  "Texte": {
+  "TitreCategorie": {
+    "color": "#26282C",
+    "fontSize": "32px",
+    "fontWeight": 500,
+    "lineHeight": "40px",
+    "textAlign": "left",
+    "textTransform": "uppercase"
+  },
+  "TexteReassurance": {
     "color": "#37373B",
     "fontSize": "14px",
-    "fontWeight": 500,
-    "lineHeight": "24px"
+    "fontWeight": 400,
+    "lineHeight": "24px",
+    "textAlign": "center"
+  },
+  "TexteCategorie": {
+    "color": "#26282C",
+    "fontSize": "18px",
+    "fontWeight": 400,
+    "lineHeight": "27px",
+    "textAlign": "left"
+  },
+  "Bouton": {
+    "display": "flex",
+    "alignItems": "flex-start",
+    "alignSelf": "flex-start"
   }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
 const V: Record<string, CSSProperties> = {
   "disposition-categorie:root": {
+    "width": "743px",
     "backgroundColor": "transparent",
     "gap": "32px",
-    "paddingBottom": "0px",
-    "borderRadius": "0px"
+    "paddingBottom": "0px"
   },
   "disposition-categorie:text": {
     "gap": "16px",
     "paddingRight": "0px",
     "paddingLeft": "0px"
-  },
-  "disposition-categorie:Titre": {
-    "fontSize": "32px",
-    "fontWeight": 500,
-    "lineHeight": "40px"
-  },
-  "disposition-categorie:Texte": {
-    "color": "#26282C",
-    "fontSize": "18px",
-    "fontWeight": 400,
-    "lineHeight": "27px"
   }
 };
 
@@ -82,24 +106,40 @@ export interface CarteProps extends HTMLAttributes<HTMLDivElement> {
   titre?: string;
   imageUrl?: string;
   imageAlt?: string;
-  texte?: string;
+  /** The first sentence is the strong range observed in both immutable master variants (Figma Bold/700); concatenate segments for the native Figma TEXT value. The inventory has no 700-weight token, so this bounded mark carries the observed 700 literal rather than inventing a token. */
+  texte?: Array<{ text: string; strong?: boolean }>;
+  /** Nested Categorie Link Button label. The source Carte component does not expose it as a top-level Figma property, so immutable occurrence values come from the nested Button TEXT property retained by the campaign census. */
+  ctaLabel?: string;
+  /** Nested Categorie Link Button leading glyph retained from the concrete nested Figma instance. */
+  ctaIconLeftGlyph?: 'pdf';
+  /** Nested Categorie Link Button trailing glyph retained from the concrete nested Figma instance. */
+  ctaIconRightGlyph?: 'arrow-right' | 'download';
 }
 
-/** Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. */
+/** Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.
+
+Version 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML. */
 export const Carte = forwardRef<HTMLDivElement, CarteProps>(function Carte(
-  { disposition = 'reassurance', titre = 'Pour portes de garage', imageUrl = '', imageAlt = '', texte = 'SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.', style, children, ...rest },
+  { disposition = 'reassurance', ctaIconLeftGlyph = 'pdf', ctaIconRightGlyph = 'download', titre = 'Pour portes de garage', imageUrl = '', imageAlt = '', ctaLabel = 'Contactez-nous', texte = [{"text":"SupraMatic & ProMatic.","strong":true},{"text":" Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté."}], style, children, ...rest },
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...(V[`disposition-${disposition}:root`] ?? {}), ...style }} {...rest}>
-      <img style={{ ...S.img }} src={String(imageUrl)} alt={String(imageAlt)}>
+    <div ref={ref} style={{ ...S.root, ...(V[`disposition-${disposition}:root`] ?? {}), ...style }}  {...rest}>
+      {disposition === 'reassurance' ? (<img style={{ ...S.reassuranceImage }} src={String(imageUrl)} alt={String(imageAlt)}>
 
-</img>
+</img>) : null}
+{disposition === 'categorie' ? (<img style={{ ...S.categorieImage }} src={String(imageUrl)} alt={String(imageAlt)}>
+
+</img>) : null}
 <div style={{ ...S.text, ...(V[`disposition-${disposition}:text`] ?? {}) }}>
-<span style={{ ...S.Titre, ...(V[`disposition-${disposition}:Titre`] ?? {}) }}>{titre}</span>
-<span style={{ ...S.Texte, ...(V[`disposition-${disposition}:Texte`] ?? {}) }}>{texte}</span>
+{disposition === 'reassurance' ? (<span style={{ ...S.TitreReassurance }}>{titre}</span>) : null}
+{disposition === 'categorie' ? (<span style={{ ...S.TitreCategorie }}>{titre}</span>) : null}
+{disposition === 'reassurance' ? (<span style={{ ...S.TexteReassurance }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: "700", fontSize: "18px", lineHeight: "27px" }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
+{disposition === 'categorie' ? (<span style={{ ...S.TexteCategorie }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: "700" }}>{text}</strong> : <span key={index}>{text}</span>)}</span>) : null}
 </div>
-{disposition === 'categorie' ? (<Button>Contactez-nous</Button>) : null}
+{disposition === 'categorie' ? (<div style={{ ...S.Bouton }}>
+<Button variant="link" iconLeft iconRight iconLeftGlyph={ctaIconLeftGlyph} iconRightGlyph={ctaIconRightGlyph}>{ctaLabel}</Button>
+</div>) : null}
     </div>
   );
 });

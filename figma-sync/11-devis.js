@@ -49,9 +49,9 @@ const COMPONENTS = [
                   "contentProp": "Titre"
                 },
                 {
-                  "type": "instance",
+                  "type":"instance",
                   "name": "Bouton",
-                  "dep": "Button",
+                  "dep":"Button",
                   "depProps": {}
                 }
               ]

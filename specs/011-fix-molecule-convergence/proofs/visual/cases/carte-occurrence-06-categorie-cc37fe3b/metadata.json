@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "caseId": "carte-occurrence-06-categorie-cc37fe3b",
+  "subjectId": "carte",
+  "figma": {
+    "nodeId": "I2115:4411;2115:4177",
+    "setNodeId": "2063:1622",
+    "version": "2381229993207753432",
+    "observedProperties": {
+      "Disposition": "Categorie",
+      "Texte": "Thermo65, l'entrée de gamme en acier. Excellent rapport qualité/prix (Ud jusqu'à 0,87 W/m²K).",
+      "Titre": "Portes en acier"
+    }
+  },
+  "contract": {
+    "id": "ds.carte",
+    "version": "2.0.0",
+    "factIds": [
+      "carte.disposition.categorie",
+      "carte.image.cc37fe3bc6f00b7621d88304cb907e250050b67e",
+      "carte.content.6a411185ba549386",
+      "carte.occurrence.b1496a7677bad5b3"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "light",
+      "alphaPixels": 1273841,
+      "contrastPixels": 1273731,
+      "paintedBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1486,
+        "height": 1232
+      },
+      "imagePixels": 1242186,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "light",
+      "alphaPixels": 1401527,
+      "contrastPixels": 1401385,
+      "paintedBounds": {
+        "x": 41,
+        "y": 51,
+        "width": 1532,
+        "height": 1290
+      },
+      "imagePixels": 1242154,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [
+    {
+      "assetId": "carte-image-cc37fe3bc6f0",
+      "expectedSha256": "169d0c53d780ab152f20fa2d53ebd9a98b6c25d197bdfeaec2e00cf04e9aebae",
+      "actualSha256": "169d0c53d780ab152f20fa2d53ebd9a98b6c25d197bdfeaec2e00cf04e9aebae",
+      "complete": true,
+      "decoded": true,
+      "naturalWidth": 1200,
+      "naturalHeight": 1082,
+      "renderedWidth": 743,
+      "renderedHeight": 418,
+      "visiblePixels": 59136,
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 1486,
+      "height": 1244
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "categorieImage": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 0.6720257234726688
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "text": {
+        "figma": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.7234726688102894,
+          "width": 1,
+          "height": 0.17684887459807075
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "Bouton": {
+        "figma": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.34185733512786004,
+          "height": 0.04823151125401929
+        },
+        "generated": {
+          "x": 0,
+          "y": 0.9517684887459807,
+          "width": 0.34106872476446837,
+          "height": 0.04823151125401929
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": -0.000788610363391673,
+          "height": 0
+        },
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "part:Bouton"
+    ],
+    "verdict": "justified",
+    "contractJustification": "/anatomy/root/geometryJustification"
+  },
+  "pixels": {
+    "rawPct": 0.04078797609413475,
+    "maskedDiagnosticPct": 0.01445116660595992,
+    "maskCoveragePct": 8.662792710528707,
+    "thresholdPct": 2.5,
+    "regions": {
+      "cta": {
+        "id": "cta",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 1184,
+          "width": 507,
+          "height": 60
+        },
+        "totalPixels": 30420,
+        "mismatchedPixels": 335,
+        "diffPct": 1.101249178172255,
+        "referenceSignalPixels": 4706,
+        "generatedSignalPixels": 5116,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "image": {
+        "id": "image",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 836
+        },
+        "totalPixels": 1242296,
+        "mismatchedPixels": 211,
+        "diffPct": 0.016984679979650582,
+        "referenceSignalPixels": 1242186,
+        "generatedSignalPixels": 1242154,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "text": {
+        "id": "text",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 900,
+          "width": 1486,
+          "height": 220
+        },
+        "totalPixels": 326920,
+        "mismatchedPixels": 208,
+        "diffPct": 0.0636241282270892,
+        "referenceSignalPixels": 26839,
+        "generatedSignalPixels": 27515,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1486,
+          "height": 1244
+        },
+        "totalPixels": 1848584,
+        "mismatchedPixels": 754,
+        "diffPct": 0.04078797609413475,
+        "referenceSignalPixels": 1273731,
+        "generatedSignalPixels": 1274785,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "image",
+      "text",
+      "cta"
+    ],
+    "verdict": "pass",
+    "failures": []
+  },
+  "semantics": [],
+  "gate": {
+    "scorePct": 0.04078797609413475,
+    "basis": "unmasked",
+    "passed": true,
+    "verdict": "pass",
+    "failures": []
+  },
+  "namedBlockedConditions": [],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/carte-occurrence-06-categorie-cc37fe3b/figma.png",
+    "cases/carte-occurrence-06-categorie-cc37fe3b/generated.png",
+    "cases/carte-occurrence-06-categorie-cc37fe3b/diff.png",
+    "cases/carte-occurrence-06-categorie-cc37fe3b/triptych.png"
+  ]
+}

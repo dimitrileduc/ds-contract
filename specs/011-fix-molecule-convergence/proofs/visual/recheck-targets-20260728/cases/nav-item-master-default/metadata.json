@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "caseId": "nav-item-master-default",
+  "subjectId": "nav-item",
+  "figma": {
+    "nodeId": "2152:5554",
+    "setNodeId": "2152:5554",
+    "version": "2381229993207753432",
+    "observedProperties": {}
+  },
+  "contract": {
+    "id": "ds.nav-item",
+    "version": "1.1.0",
+    "factIds": [
+      "nav-item.chevron.true",
+      "nav-item.actif.false"
+    ]
+  },
+  "visibility": {
+    "figma": {
+      "side": "figma",
+      "surface": "dark",
+      "alphaPixels": 3328,
+      "contrastPixels": 3328,
+      "paintedBounds": {
+        "x": 3,
+        "y": 5,
+        "width": 380,
+        "height": 24
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    },
+    "generated": {
+      "side": "generated",
+      "surface": "dark",
+      "alphaPixels": 3370,
+      "contrastPixels": 3370,
+      "paintedBounds": {
+        "x": 67,
+        "y": 67,
+        "width": 378,
+        "height": 24
+      },
+      "imagePixels": null,
+      "probative": true,
+      "reason": null,
+      "failures": []
+    }
+  },
+  "images": [],
+  "geometry": {
+    "rootFigma": {
+      "x": 64,
+      "y": 64,
+      "width": 388,
+      "height": 32
+    },
+    "rootGenerated": {
+      "x": 64,
+      "y": 64,
+      "width": 386.78125,
+      "height": 32
+    },
+    "rootDelta": {
+      "x": 0,
+      "y": 0,
+      "width": -1.21875,
+      "height": 0
+    },
+    "parts": {
+      "root": {
+        "figma": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 1,
+          "height": 1
+        },
+        "delta": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "libell": {
+        "figma": null,
+        "generated": {
+          "x": 0,
+          "y": 0,
+          "width": 0.8758988446311707,
+          "height": 1
+        },
+        "delta": null,
+        "verdict": "fail"
+      },
+      "OcticonChevronDown12": {
+        "figma": null,
+        "generated": {
+          "x": 0.9172658964207805,
+          "y": 0,
+          "width": 0.08273410357921952,
+          "height": 1
+        },
+        "delta": null,
+        "verdict": "fail"
+      }
+    },
+    "mismatches": [
+      "root",
+      "part:libell",
+      "part:OcticonChevronDown12"
+    ],
+    "verdict": "fail",
+    "contractJustification": null
+  },
+  "pixels": {
+    "rawPct": 1.513157894736842,
+    "maskedDiagnosticPct": 3.2828282828282833,
+    "maskCoveragePct": 91.3157894736842,
+    "thresholdPct": 2.5,
+    "regions": {
+      "chevron": {
+        "id": "chevron",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 352,
+          "y": 0,
+          "width": 28,
+          "height": 24
+        },
+        "totalPixels": 672,
+        "mismatchedPixels": 26,
+        "diffPct": 3.869047619047619,
+        "referenceSignalPixels": 160,
+        "generatedSignalPixels": 136,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": [
+          "region-threshold-exceeded"
+        ]
+      },
+      "label": {
+        "id": "label",
+        "metric": "signal-preserving-text",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 337,
+          "height": 24
+        },
+        "totalPixels": 8088,
+        "mismatchedPixels": 112,
+        "diffPct": 1.3847675568743818,
+        "referenceSignalPixels": 3168,
+        "generatedSignalPixels": 3234,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      },
+      "whole": {
+        "id": "whole",
+        "metric": "raw-pixel",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 380,
+          "height": 24
+        },
+        "totalPixels": 9120,
+        "mismatchedPixels": 138,
+        "diffPct": 1.513157894736842,
+        "referenceSignalPixels": 3328,
+        "generatedSignalPixels": 3370,
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1,
+        "failures": []
+      }
+    },
+    "requiredRegionIds": [
+      "whole",
+      "label",
+      "chevron"
+    ],
+    "verdict": "fail",
+    "failures": [
+      "region:chevron:region-threshold-exceeded"
+    ]
+  },
+  "semantics": [
+    {
+      "id": "nav-item-is-link",
+      "selector": "a",
+      "assertion": "element",
+      "contractPointer": "/semantics/element",
+      "contractResolved": true,
+      "expected": "a",
+      "actual": "a",
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-href",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrs/href",
+      "contractResolved": true,
+      "expected": {
+        "href": "/portes-de-garage"
+      },
+      "actual": {
+        "href": "/portes-de-garage"
+      },
+      "verdict": "pass",
+      "failures": []
+    },
+    {
+      "id": "nav-item-inactive-aria-current-absent",
+      "selector": "a",
+      "assertion": "attribute",
+      "contractPointer": "/anatomy/root/attrsByProp",
+      "contractResolved": true,
+      "expected": {
+        "aria-current": null
+      },
+      "actual": {
+        "aria-current": null
+      },
+      "verdict": "pass",
+      "failures": []
+    }
+  ],
+  "gate": {
+    "scorePct": 1.513157894736842,
+    "basis": "unmasked",
+    "passed": false,
+    "verdict": "fail",
+    "failures": [
+      "required-region-failed",
+      "geometry-receipt-failed"
+    ]
+  },
+  "namedBlockedConditions": [
+    "nav-item-boolean-cross-product-not-yet-pinned"
+  ],
+  "regionError": null,
+  "artifactPaths": [
+    "cases/nav-item-master-default/figma.png",
+    "cases/nav-item-master-default/generated.png",
+    "cases/nav-item-master-default/diff.png",
+    "cases/nav-item-master-default/triptych.png"
+  ]
+}

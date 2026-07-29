@@ -63,7 +63,7 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...style }} {...rest}>
+    <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.h2 }}>
 <SectionHeader titre="Visitez notre showroom à Pepinster ou contactez-nous" accroche="Plus de 50 ans d’expérience" disposition="standard" />
 </div>
