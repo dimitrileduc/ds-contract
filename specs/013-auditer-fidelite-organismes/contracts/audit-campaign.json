@@ -137,9 +137,1168 @@
         "deriveFromFigma": true,
         "deriveFromContract": true,
         "deriveFromGeneratedProjection": true,
-        "requiredFactIds": []
+        "requiredFactIds": [
+          "coordonnees.structure.root",
+          "coordonnees.structure.wrapper",
+          "coordonnees.structure.google-map",
+          "coordonnees.structure.colonnes-ordre",
+          "coordonnees.structure.gap-wrapper",
+          "coordonnees.structure.padding-block-wrapper",
+          "coordonnees.structure.padding-inline-wrapper",
+          "coordonnees.structure.width-wrapper",
+          "coordonnees.structure.gap-adresse",
+          "coordonnees.structure.gap-horaires",
+          "coordonnees.structure.gap-contact",
+          "coordonnees.structure.gap-suivez-nous",
+          "coordonnees.structure.gap-reseaux-sociaux",
+          "coordonnees.property.accroche",
+          "coordonnees.property.titre",
+          "coordonnees.content.accroche",
+          "coordonnees.content.titre",
+          "coordonnees.content.adresse-etiquette",
+          "coordonnees.visual.adresse-etiquette-font-size",
+          "coordonnees.visual.adresse-etiquette-line-height",
+          "coordonnees.content.adresse-valeur",
+          "coordonnees.visual.adresse-valeur-font-size",
+          "coordonnees.visual.adresse-valeur-line-height",
+          "coordonnees.content.horaires-etiquette",
+          "coordonnees.visual.horaires-etiquette-font-size",
+          "coordonnees.visual.horaires-etiquette-line-height",
+          "coordonnees.content.horaires-valeur",
+          "coordonnees.visual.horaires-valeur-font-size",
+          "coordonnees.visual.horaires-valeur-line-height",
+          "coordonnees.content.contact-etiquette",
+          "coordonnees.visual.contact-etiquette-font-size",
+          "coordonnees.visual.contact-etiquette-line-height",
+          "coordonnees.content.contact-valeur",
+          "coordonnees.visual.contact-valeur-font-size",
+          "coordonnees.visual.contact-valeur-line-height",
+          "coordonnees.content.suivez-nous-etiquette",
+          "coordonnees.visual.suivez-nous-etiquette-font-size",
+          "coordonnees.visual.suivez-nous-etiquette-line-height",
+          "coordonnees.composition.section-header",
+          "coordonnees.composition.section-header-props",
+          "coordonnees.composition.section-header-accroche",
+          "coordonnees.composition.icone-facebook",
+          "coordonnees.composition.icone-instagram",
+          "coordonnees.visual.root",
+          "coordonnees.visual.root-background",
+          "coordonnees.semantic.contact-valeur"
+        ]
       },
-      "cases": []
+      "cases": [
+        {
+          "id": "coordonnees-master-defaults",
+          "figmaNodeId": "2104:2904",
+          "observedProperties": {
+            "Accroche#2104:57": "Contact",
+            "Titre#2104:58": "Nos coordonnées"
+          },
+          "reactProps": {},
+          "factIds": [
+            "coordonnees.structure.root",
+            "coordonnees.structure.wrapper",
+            "coordonnees.structure.google-map",
+            "coordonnees.structure.colonnes-ordre",
+            "coordonnees.structure.gap-wrapper",
+            "coordonnees.structure.padding-block-wrapper",
+            "coordonnees.structure.padding-inline-wrapper",
+            "coordonnees.structure.width-wrapper",
+            "coordonnees.structure.gap-adresse",
+            "coordonnees.structure.gap-horaires",
+            "coordonnees.structure.gap-contact",
+            "coordonnees.structure.gap-suivez-nous",
+            "coordonnees.structure.gap-reseaux-sociaux",
+            "coordonnees.property.accroche",
+            "coordonnees.property.titre",
+            "coordonnees.content.accroche",
+            "coordonnees.content.titre",
+            "coordonnees.content.adresse-etiquette",
+            "coordonnees.visual.adresse-etiquette-font-size",
+            "coordonnees.visual.adresse-etiquette-line-height",
+            "coordonnees.content.adresse-valeur",
+            "coordonnees.visual.adresse-valeur-font-size",
+            "coordonnees.visual.adresse-valeur-line-height",
+            "coordonnees.content.horaires-etiquette",
+            "coordonnees.visual.horaires-etiquette-font-size",
+            "coordonnees.visual.horaires-etiquette-line-height",
+            "coordonnees.content.horaires-valeur",
+            "coordonnees.visual.horaires-valeur-font-size",
+            "coordonnees.visual.horaires-valeur-line-height",
+            "coordonnees.content.contact-etiquette",
+            "coordonnees.visual.contact-etiquette-font-size",
+            "coordonnees.visual.contact-etiquette-line-height",
+            "coordonnees.content.contact-valeur",
+            "coordonnees.visual.contact-valeur-font-size",
+            "coordonnees.visual.contact-valeur-line-height",
+            "coordonnees.content.suivez-nous-etiquette",
+            "coordonnees.visual.suivez-nous-etiquette-font-size",
+            "coordonnees.visual.suivez-nous-etiquette-line-height",
+            "coordonnees.composition.section-header",
+            "coordonnees.composition.section-header-props",
+            "coordonnees.composition.section-header-accroche",
+            "coordonnees.composition.icone-facebook",
+            "coordonnees.composition.icone-instagram",
+            "coordonnees.visual.root",
+            "coordonnees.visual.root-background",
+            "coordonnees.semantic.contact-valeur"
+          ],
+          "fixtureAssetIds": [],
+          "requiredParts": [
+            "root",
+            "wrapper",
+            "SectionHeader",
+            "Adresse",
+            "Horaires",
+            "Contact",
+            "suivezNous",
+            "rseauxSociaux",
+            "googleMap"
+          ],
+          "requiredRegions": [
+            {
+              "id": "whole",
+              "source": "root",
+              "kind": "whole",
+              "metric": "raw-pixel",
+              "maxDiffPct": 2.5,
+              "minSignalPixels": 1
+            }
+          ],
+          "semanticAssertions": [
+            {
+              "id": "accroche-defaut",
+              "selector": "[class*=\"SectionHeader__Accroche\"]",
+              "contractPointer": "/props/0/default",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Contact"
+              }
+            },
+            {
+              "id": "titre-defaut",
+              "selector": "[class*=\"SectionHeader__Titre\"]",
+              "contractPointer": "/props/1/default",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Nos coordonnées"
+              }
+            },
+            {
+              "id": "adresse-valeur",
+              "selector": "[class*=\"Coordonnees__AdresseValeur\"]",
+              "contractPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Rue Alfred Drèze 7, 4860 Pepinster"
+              }
+            },
+            {
+              "id": "horaires-valeur",
+              "selector": "[class*=\"Coordonnees__HorairesValeur\"]",
+              "contractPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00"
+              }
+            },
+            {
+              "id": "contact-valeur",
+              "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]",
+              "contractPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be"
+              }
+            },
+            {
+              "id": "suivez-nous-etiquette",
+              "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]",
+              "contractPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Suivez-nous"
+              }
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "coordonnees.structure.root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "detail": "COMPONENT root 1728x597, layoutMode=GRID (2 colonnes) > [google-map RECTANGLE 2104:2899 en colonne gauche (x=40, 1152x597), wrapper FRAME 2104:2879 en colonne droite (x=1192, 576x589)]"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__root\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.wrapper",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2879",
+            "detail": "FRAME wrapper 576x589, layoutMode=VERTICAL, layoutSizingHorizontal=FIXED > [SectionHeader 2169:6216, Adresse 2104:2883, Horaires 2104:2886, Contact 2104:2889, Suivez-nous 2104:2892]"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__wrapper\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.google-map",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "2104:2899",
+            "detail": "RECTANGLE google-map 1152x597 (66,7 % de la largeur du composant), fills=[IMAGE] — colonne gauche de la grille",
+            "channel": "fills[0].type=IMAGE"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/googleMap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__googleMap\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.colonnes-ordre",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "channel": "children absoluteBoundingBox.x",
+            "detail": "google-map 2104:2899 x=40 (colonne gauche) ; wrapper 2104:2879 x=1192 (colonne droite). Le contrat ordonne parts = [wrapper, googleMap] et layout.direction = \"row\" : le rendu place le wrapper à gauche."
+          },
+          "figmaExpectation": {
+            "channel": "root.visualColumnOrder",
+            "value": "row-reverse"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/layout/direction"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__root\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.gap-wrapper",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2879",
+            "channel": "itemSpacing"
+          },
+          "figmaExpectation": {
+            "channel": "wrapper.itemSpacing",
+            "value": "16px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__wrapper\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.padding-block-wrapper",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2879",
+            "channel": "paddingTop+paddingBottom"
+          },
+          "figmaExpectation": {
+            "channel": "wrapper.paddingTop+paddingBottom",
+            "value": "48px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/literals/padding-block"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__wrapper\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.padding-inline-wrapper",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2879",
+            "channel": "paddingLeft+paddingRight"
+          },
+          "figmaExpectation": {
+            "channel": "wrapper.paddingLeft+paddingRight",
+            "value": "48px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/literals/padding-inline"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__wrapper\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.width-wrapper",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2879",
+            "channel": "absoluteBoundingBox"
+          },
+          "figmaExpectation": {
+            "channel": "wrapper.absoluteBoundingBox.width",
+            "value": "576px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/literals/width"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__wrapper\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.gap-adresse",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2883",
+            "channel": "itemSpacing"
+          },
+          "figmaExpectation": {
+            "channel": "Adresse.itemSpacing",
+            "value": "8px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__Adresse\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.gap-horaires",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2886",
+            "channel": "itemSpacing"
+          },
+          "figmaExpectation": {
+            "channel": "Horaires.itemSpacing",
+            "value": "8px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__Horaires\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.gap-contact",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2889",
+            "channel": "itemSpacing"
+          },
+          "figmaExpectation": {
+            "channel": "Contact.itemSpacing",
+            "value": "8px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__Contact\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.gap-suivez-nous",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2892",
+            "channel": "itemSpacing"
+          },
+          "figmaExpectation": {
+            "channel": "suivezNous.itemSpacing",
+            "value": "8px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__suivezNous\"]"
+          }
+        },
+        {
+          "id": "coordonnees.structure.gap-reseaux-sociaux",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2894",
+            "channel": "itemSpacing"
+          },
+          "figmaExpectation": {
+            "channel": "rseauxSociaux.itemSpacing",
+            "value": "16px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__rseauxSociaux\"]"
+          }
+        },
+        {
+          "id": "coordonnees.property.accroche",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "property": "Accroche#2104:57",
+            "detail": "Propriété TEXT du COMPONENT racine (defaultValue \"Contact\"). MESURÉ : aucun nœud du sous-arbre ne la référence — le dump ne contient que deux componentPropertyReferences, toutes deux INTERNES à l'instance SectionHeader (I2169:6216;2090:2386 -> Accroche#2090:46 / Accroche2#2169:64, I2169:6216;2090:2387 -> Titre#2090:47). La propriété racine est donc inerte côté canvas aussi."
+          },
+          "contractReference": {
+            "jsonPointer": "/props/0",
+            "bindingProperty": "Accroche"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          },
+          "projectionProbe": {
+            "kind": "non-default-prop",
+            "prop": "accroche",
+            "value": "PREUVE-013 — ACCROCHE 4a1e"
+          }
+        },
+        {
+          "id": "coordonnees.property.titre",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "property": "Titre#2104:58",
+            "detail": "Propriété TEXT du COMPONENT racine (defaultValue \"Nos coordonnées\"). MESURÉ : inerte côté canvas — voir coordonnees.property.accroche pour le relevé complet des componentPropertyReferences."
+          },
+          "contractReference": {
+            "jsonPointer": "/props/1",
+            "bindingProperty": "Titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          },
+          "projectionProbe": {
+            "kind": "non-default-prop",
+            "prop": "titre",
+            "value": "PREUVE-013 — TITRE 4a1e"
+          }
+        },
+        {
+          "id": "coordonnees.content.accroche",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "property": "Accroche#2104:57",
+            "textLayer": "I2169:6216;2090:2386"
+          },
+          "contractReference": {
+            "jsonPointer": "/props/0/default",
+            "bindingProperty": "Accroche"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "property": "Titre#2104:58",
+            "textLayer": "I2169:6216;2090:2387"
+          },
+          "contractReference": {
+            "jsonPointer": "/props/1/default",
+            "bindingProperty": "Titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.adresse-etiquette",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2884",
+            "detail": "TEXT layer AdresseEtiquette",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__AdresseEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.adresse-etiquette-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2884",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "AdresseEtiquette.font-size",
+            "value": "24px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__AdresseEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.adresse-etiquette-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2884",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "AdresseEtiquette.line-height",
+            "value": "30px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__AdresseEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.adresse-valeur",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2885",
+            "detail": "TEXT layer AdresseValeur",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__AdresseValeur\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.adresse-valeur-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2885",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "AdresseValeur.font-size",
+            "value": "18px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__AdresseValeur\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.adresse-valeur-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2885",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "AdresseValeur.line-height",
+            "value": "27px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__AdresseValeur\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.horaires-etiquette",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2887",
+            "detail": "TEXT layer HorairesEtiquette",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__HorairesEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.horaires-etiquette-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2887",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "HorairesEtiquette.font-size",
+            "value": "24px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__HorairesEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.horaires-etiquette-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2887",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "HorairesEtiquette.line-height",
+            "value": "30px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__HorairesEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.horaires-valeur",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2888",
+            "detail": "TEXT layer HorairesValeur",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__HorairesValeur\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.horaires-valeur-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2888",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "HorairesValeur.font-size",
+            "value": "18px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__HorairesValeur\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.horaires-valeur-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2888",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "HorairesValeur.line-height",
+            "value": "27px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__HorairesValeur\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.contact-etiquette",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2890",
+            "detail": "TEXT layer ContactEtiquette",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__ContactEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.contact-etiquette-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2890",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "ContactEtiquette.font-size",
+            "value": "24px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__ContactEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.contact-etiquette-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2890",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "ContactEtiquette.line-height",
+            "value": "30px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__ContactEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.contact-valeur",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2891",
+            "detail": "TEXT layer ContactValeur",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.contact-valeur-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2891",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "ContactValeur.font-size",
+            "value": "18px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.contact-valeur-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2891",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "ContactValeur.line-height",
+            "value": "27px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+          }
+        },
+        {
+          "id": "coordonnees.content.suivez-nous-etiquette",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2893",
+            "detail": "TEXT layer SuivezNousEtiquette",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.suivez-nous-etiquette-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2893",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "SuivezNousEtiquette.font-size",
+            "value": "24px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.suivez-nous-etiquette-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2893",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "SuivezNousEtiquette.line-height",
+            "value": "30px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]"
+          }
+        },
+        {
+          "id": "coordonnees.composition.section-header",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6216",
+            "mainComponent": "2090:2385",
+            "observedInstanceProperties": {
+              "Accroche2#2169:64": true,
+              "Titre#2090:47": "Nos coordonnées",
+              "Accroche#2090:46": "Contact",
+              "Disposition": "Standard"
+            }
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/SectionHeader/component",
+            "childContractId": "ds.section-header"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"SectionHeader__root\"]"
+          }
+        },
+        {
+          "id": "coordonnees.composition.section-header-props",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "property": "Titre#2104:58",
+            "channel": "componentPropertyDefinitions",
+            "detail": "Le master racine expose Titre#2104:58 (TEXT). L'instance SectionHeader 2169:6216 porte la MÊME valeur \"Nos coordonnées\" mais en override littéral (componentProperties Titre#2090:47), sans référence à la propriété racine — mesuré, 0 componentPropertyReferences vers Titre#2104:58. Le contrat reconduit ce littéral au lieu de router la prop via \"{titre}\" (ComponentScalarValueSchema, motif vivant dans ds.carte : props.children = \"{ctaLabel}\"). Le routage est le seul remède qui rende la prop publique effective sur les deux surfaces."
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.props.titre",
+            "value": "{titre}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/SectionHeader/component/props/titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "coordonnees.composition.section-header-accroche",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "property": "Accroche#2104:57",
+            "channel": "componentPropertyDefinitions",
+            "detail": "Même constat mesuré que coordonnees.composition.section-header-props, canal Accroche."
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.props.accroche",
+            "value": "{accroche}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/SectionHeader/component/props/accroche"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "coordonnees.composition.icone-facebook",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2900",
+            "mainComponent": "2053:1259",
+            "detail": "INSTANCE Facebook 32x31.857126235961914 > VECTOR I2104:2900;2053:1258, fill {color.noir-bleute}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/parts/Facebook/icon"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__Facebook\"]"
+          }
+        },
+        {
+          "id": "coordonnees.composition.icone-instagram",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2902",
+            "mainComponent": "2053:1261",
+            "detail": "INSTANCE Instagram 32x32 > VECTOR I2104:2902;2053:1260, fill {color.noir-bleute}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/parts/Instagram/icon"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__Instagram\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.root",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "export": "png@2x"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__root\"]"
+          }
+        },
+        {
+          "id": "coordonnees.visual.root-background",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2904",
+            "channel": "fills[0]",
+            "detail": "SOLID #F4F6FA lié à VariableID:5:63 — le token {color.bleu-clair} vaut #F4F6FA (tokens/primitives.tokens.json)"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/tokens/background-color"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__root\"]"
+          }
+        },
+        {
+          "id": "coordonnees.semantic.contact-valeur",
+          "kind": "semantic",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2104:2891",
+            "detail": "TEXT ContactValeur — contient deux caractères invisibles : U+000D (CR) puis U+2028 (LINE SEPARATOR)",
+            "channel": "characters"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+            "export": "Coordonnees",
+            "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+          }
+        }
+      ]
     },
     {
       "id": "devis",
@@ -159,9 +1318,575 @@
         "deriveFromFigma": true,
         "deriveFromContract": true,
         "deriveFromGeneratedProjection": true,
-        "requiredFactIds": []
+        "requiredFactIds": [
+          "devis.structure.root",
+          "devis.structure.container",
+          "devis.structure.root-flex-direction",
+          "devis.structure.root-align-items",
+          "devis.structure.root-padding",
+          "devis.structure.container-gap",
+          "devis.content.titre",
+          "devis.property.titre",
+          "devis.composition.button",
+          "devis.composition.button-libelle",
+          "devis.composition.button-style",
+          "devis.composition.button-icone-droite",
+          "devis.visual.root",
+          "devis.visual.root-background-image",
+          "devis.visual.root-scrim-color",
+          "devis.visual.root-scrim-opacity",
+          "devis.visual.titre-font-size",
+          "devis.visual.titre-line-height",
+          "devis.visual.titre-text-align",
+          "devis.visual.titre-width",
+          "devis.semantic.titre-element"
+        ]
       },
-      "cases": []
+      "cases": [
+        {
+          "id": "devis-master-defaults",
+          "figmaNodeId": "2096:2524",
+          "observedProperties": {
+            "Titre#2096:49": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+          },
+          "reactProps": {},
+          "factIds": [
+            "devis.structure.root",
+            "devis.structure.container",
+            "devis.structure.root-flex-direction",
+            "devis.structure.root-align-items",
+            "devis.structure.root-padding",
+            "devis.structure.container-gap",
+            "devis.content.titre",
+            "devis.property.titre",
+            "devis.composition.button",
+            "devis.composition.button-libelle",
+            "devis.composition.button-style",
+            "devis.composition.button-icone-droite",
+            "devis.visual.root",
+            "devis.visual.root-background-image",
+            "devis.visual.root-scrim-color",
+            "devis.visual.root-scrim-opacity",
+            "devis.visual.titre-font-size",
+            "devis.visual.titre-line-height",
+            "devis.visual.titre-text-align",
+            "devis.visual.titre-width",
+            "devis.semantic.titre-element"
+          ],
+          "fixtureAssetIds": [],
+          "requiredParts": [
+            "root",
+            "Container",
+            "Titre",
+            "Bouton"
+          ],
+          "requiredRegions": [
+            {
+              "id": "whole",
+              "source": "root",
+              "kind": "whole",
+              "metric": "raw-pixel",
+              "maxDiffPct": 2.5,
+              "minSignalPixels": 1
+            }
+          ],
+          "semanticAssertions": [
+            {
+              "id": "titre-element",
+              "selector": "[class*=\"Devis__Titre\"]",
+              "contractPointer": "/anatomy/root/parts/Container/parts/Titre/content/prop",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+              }
+            },
+            {
+              "id": "bouton-label-derive-du-contrat-enfant",
+              "selector": "[class*=\"Button__label\"]",
+              "contractPointer": "/anatomy/root/parts/Container/parts/Bouton/component",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Contactez-nous"
+              }
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "devis.structure.root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "detail": "COMPONENT root (standalone, pas un COMPONENT_SET — 1 seule variante nommée « Devis ») > [FRAME Container 2096:2525 > [TEXT Titre 2096:2526, INSTANCE Bouton 2096:2527]]. layoutMode=VERTICAL, sizing=FIXED(1728)xHUG(378)."
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.structure.container",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2525",
+            "detail": "FRAME « Container », layoutMode=VERTICAL, counterAxisAlignItems=CENTER, sizing=FIXED(1550)xHUG(186), aucun padding."
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Container\"]"
+          }
+        },
+        {
+          "id": "devis.structure.root-flex-direction",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "channel": "layoutMode",
+            "figmaRawValue": "VERTICAL"
+          },
+          "figmaExpectation": {
+            "channel": "root.flex-direction",
+            "value": "column"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/layout/direction"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.structure.root-align-items",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "channel": "counterAxisAlignItems",
+            "figmaRawValue": "CENTER"
+          },
+          "figmaExpectation": {
+            "channel": "root.align-items",
+            "value": "center"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/layout/align"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.structure.root-padding",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "channel": "paddingTop",
+            "detail": "paddingTop=96, paddingBottom=96, paddingLeft absent (0), paddingRight absent (0)."
+          },
+          "figmaExpectation": {
+            "channel": "root.paddingTop",
+            "value": 96
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/layout/padding"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.structure.container-gap",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2525",
+            "channel": "itemSpacing",
+            "detail": "Le root 2096:2524 n'expose PAS d'itemSpacing (un seul enfant) — le seul gap mesurable de l'organisme est celui du Container."
+          },
+          "figmaExpectation": {
+            "channel": "Container.itemSpacing",
+            "value": 32
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/layout/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Container\"]"
+          }
+        },
+        {
+          "id": "devis.content.titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "property": "Titre#2096:49",
+            "textLayer": "2096:2526",
+            "detail": "componentPropertyDefinitions.defaultValue et characters du calque TEXT sont identiques au défaut du contrat, octet pour octet (71 caractères, aucune apostrophe)."
+          },
+          "contractReference": {
+            "jsonPointer": "/props/0/default",
+            "bindingProperty": "Titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Titre\"]"
+          }
+        },
+        {
+          "id": "devis.property.titre",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "property": "Titre#2096:49",
+            "detail": "TEXT property, seule propriété de composant déclarée par le master."
+          },
+          "contractReference": {
+            "jsonPointer": "/props/0",
+            "bindingProperty": "Titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Titre\"]"
+          },
+          "projectionProbe": {
+            "kind": "non-default-prop",
+            "prop": "titre",
+            "value": "PREUVE-013 — TITRE devis 4b91"
+          }
+        },
+        {
+          "id": "devis.composition.button",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2527",
+            "mainComponent": "6:135",
+            "observedInstanceProperties": {
+              "Libelle#2044:28": "Prendre rendez-vous",
+              "Style": "Outline blanc",
+              "Icone gauche#2024:0": false,
+              "Icone droite#2024:7": true,
+              "Glyphe gauche#2028:14": "6:99",
+              "Glyphe droite#2028:21": "6:104"
+            }
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component",
+            "childContractId": "ds.button"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "devis.composition.button-libelle",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2527",
+            "property": "Libelle#2044:28",
+            "textLayer": "I2096:2527;6:137",
+            "detail": "Le calque TEXT de l'instance porte characters=\"Prendre rendez-vous\". Le contrat ne passe AUCUNE prop à ds.button, donc le code rend le défaut du contrat enfant (« Contactez-nous »)."
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.Libelle",
+            "value": "Prendre rendez-vous"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component/props/children"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Button__label\"]"
+          }
+        },
+        {
+          "id": "devis.composition.button-style",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2527",
+            "property": "Style",
+            "figmaRawValue": "Outline blanc",
+            "detail": "VARIANT appliquée sur l'instance. La valeur attendue « outlineBlanc » est la valeur code-side lue dans contracts/button.contract.json (props[0].bindings.figma.values.outlineBlanc === \"Outline blanc\") — pas une invention. Le code rend variant=\"default\"."
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.Style",
+            "value": "outlineBlanc"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component/props/variant"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "devis.composition.button-icone-droite",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2527",
+            "property": "Icone droite#2024:7",
+            "figmaRawValue": true,
+            "detail": "L'instance I2096:2527;6:138 « ArrowRight » est visible sur le master (renderBounds non nul, 20×20 à x=1004). Le code rend iconRight=false : la flèche n'existe pas côté React."
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.iconRight",
+            "value": true
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "devis.visual.root",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "export": "png@2x",
+            "detail": "absoluteBoundingBox 1728×378 ; absoluteRenderBounds identique."
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.visual.root-background-image",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "channel": "fills[0]",
+            "figmaRawValue": "{\"blendMode\":\"NORMAL\",\"type\":\"IMAGE\",\"scaleMode\":\"FILL\",\"imageRef\":\"7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa\"}",
+            "detail": "docs/FIGMA-CAPABILITY-MATRIX.md ligne 91 : `background-image: url()` = CARRY-BOTH (add — § a.7), lacune nommée A5 encore ouverte (addendum 2026-07-26). Le contrat ne porte aucun canal image."
+          },
+          "figmaExpectation": {
+            "channel": "root.fills[0].type",
+            "value": "IMAGE"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/tokens/background-image"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.visual.root-scrim-color",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "channel": "fills[1].color",
+            "figmaRawValue": "{\"r\":0,\"g\":0,\"b\":0,\"a\":1}",
+            "detail": "Voile SOLID noir pur posé PAR-DESSUS le fill IMAGE, couleur liée à VariableID:2165:5840 (identifiant non résoluble : parity/snapshots/figma-tokens.json indexe les variables par NOM, pas par ID). Le contrat porte un unique background-color opaque {color.noir-bleute} = #26282C — ce n'est ni la photo ni le voile."
+          },
+          "figmaExpectation": {
+            "channel": "root.fills[1].color",
+            "value": "#000000"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/tokens/background-color"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.visual.root-scrim-opacity",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2524",
+            "channel": "fills[1].opacity",
+            "detail": "docs/FIGMA-CAPABILITY-MATRIX.md ligne 87 : `background-color` + alpha = CARRY-BOTH, porté (A1) sous forme de variable hex 8 chiffres. Le contrat ne porte aucun canal d'opacité."
+          },
+          "figmaExpectation": {
+            "channel": "root.fills[1].opacity",
+            "value": 0.3019607961177826
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/tokens/background-overlay-opacity"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__root\"]"
+          }
+        },
+        {
+          "id": "devis.visual.titre-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2526",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "Titre.font-size",
+            "value": "40px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Titre\"]"
+          }
+        },
+        {
+          "id": "devis.visual.titre-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2526",
+            "channel": "style.lineHeightPx",
+            "detail": "lineHeightUnit=PIXELS, lineHeightPercent=102.54 — la valeur en pixels est celle qui fait foi."
+          },
+          "figmaExpectation": {
+            "channel": "Titre.line-height",
+            "value": "50px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Titre\"]"
+          }
+        },
+        {
+          "id": "devis.visual.titre-text-align",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2526",
+            "channel": "style.textAlignHorizontal",
+            "figmaRawValue": "CENTER",
+            "detail": "docs/FIGMA-CAPABILITY-MATRIX.md ligne 132 : `text-align` = CARRY-BOTH (add — § a.2), et l'addendum 2026-07-19 le déclare DÉSORMAIS PORTÉ par le schéma v15. L'omission est donc bien une lacune du contrat, pas une limite du moteur."
+          },
+          "figmaExpectation": {
+            "channel": "Titre.text-align",
+            "value": "center"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/tokens/text-align"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Titre\"]"
+          }
+        },
+        {
+          "id": "devis.visual.titre-width",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2526",
+            "channel": "absoluteBoundingBox.width",
+            "detail": "layoutSizingHorizontal=FIXED à 900 px dans un Container de 1550 px : c'est cette largeur fixe qui produit le retour à la ligne du titre sur le master. Le contrat ne porte aucune largeur."
+          },
+          "figmaExpectation": {
+            "channel": "Titre.width",
+            "value": "900px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/layout/width"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Titre\"]"
+          }
+        },
+        {
+          "id": "devis.semantic.titre-element",
+          "kind": "semantic",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2096:2526",
+            "detail": "TEXT layer « Titre », lié à la propriété Titre#2096:49 via componentPropertyReferences.characters."
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/content/prop"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Devis/Devis.tsx",
+            "export": "Devis",
+            "selector": "[class*=\"Devis__Titre\"]"
+          }
+        }
+      ]
     },
     {
       "id": "hero",
@@ -188,9 +1913,998 @@
         "deriveFromFigma": true,
         "deriveFromContract": true,
         "deriveFromGeneratedProjection": true,
-        "requiredFactIds": []
+        "requiredFactIds": [
+          "hero.structure.root",
+          "hero.property.aucune-propriete-exposee",
+          "hero.structure.bloc-texte",
+          "hero.structure.titres",
+          "hero.structure.wrapper",
+          "hero.content.sous-titre",
+          "hero.semantic.sous-titre-element",
+          "hero.composition.section-header",
+          "hero.composition.button",
+          "hero.visual.root",
+          "hero.structure.gap-root",
+          "hero.structure.gap-bloc-texte",
+          "hero.structure.gap-titres",
+          "hero.structure.gap-wrapper",
+          "hero.structure.padding-titres-top",
+          "hero.structure.padding-titres-bottom",
+          "hero.structure.padding-titres-left",
+          "hero.structure.padding-titres-right",
+          "hero.structure.root-height",
+          "hero.structure.sous-titre-grow",
+          "hero.structure.section-header-fill",
+          "hero.visual.sous-titre-font-size",
+          "hero.visual.sous-titre-line-height",
+          "hero.visual.root-image-fill",
+          "hero.visual.root-gradient-overlay",
+          "hero.visual.titres-gradient",
+          "hero.composition.section-header-titre",
+          "hero.composition.section-header-accroche",
+          "hero.composition.section-header-disposition",
+          "hero.composition.section-header-accroche2",
+          "hero.visual.section-header-titre-color",
+          "hero.visual.section-header-titre-font-size",
+          "hero.visual.section-header-titre-line-height",
+          "hero.visual.section-header-titre-font-weight",
+          "hero.composition.button-libelle",
+          "hero.composition.button-variant",
+          "hero.composition.button-icone-droite"
+        ]
       },
-      "cases": []
+      "cases": [
+        {
+          "id": "hero-master-defaults",
+          "figmaNodeId": "2111:3382",
+          "observedProperties": {},
+          "reactProps": {},
+          "factIds": [
+            "hero.structure.root",
+            "hero.property.aucune-propriete-exposee",
+            "hero.structure.bloc-texte",
+            "hero.structure.titres",
+            "hero.structure.wrapper",
+            "hero.content.sous-titre",
+            "hero.semantic.sous-titre-element",
+            "hero.composition.section-header",
+            "hero.composition.button",
+            "hero.visual.root",
+            "hero.structure.gap-root",
+            "hero.structure.gap-bloc-texte",
+            "hero.structure.gap-titres",
+            "hero.structure.gap-wrapper",
+            "hero.structure.padding-titres-top",
+            "hero.structure.padding-titres-bottom",
+            "hero.structure.padding-titres-left",
+            "hero.structure.padding-titres-right",
+            "hero.structure.root-height",
+            "hero.structure.sous-titre-grow",
+            "hero.structure.section-header-fill",
+            "hero.visual.sous-titre-font-size",
+            "hero.visual.sous-titre-line-height",
+            "hero.visual.root-image-fill",
+            "hero.visual.root-gradient-overlay",
+            "hero.visual.titres-gradient",
+            "hero.composition.section-header-titre",
+            "hero.composition.section-header-accroche",
+            "hero.composition.section-header-disposition",
+            "hero.composition.section-header-accroche2",
+            "hero.visual.section-header-titre-color",
+            "hero.visual.section-header-titre-font-size",
+            "hero.visual.section-header-titre-line-height",
+            "hero.visual.section-header-titre-font-weight",
+            "hero.composition.button-libelle",
+            "hero.composition.button-variant",
+            "hero.composition.button-icone-droite"
+          ],
+          "fixtureAssetIds": [],
+          "requiredParts": [
+            "root",
+            "blocTexte",
+            "Titres",
+            "SectionHeader",
+            "wrapper",
+            "sousTitre",
+            "Bouton"
+          ],
+          "requiredRegions": [
+            {
+              "id": "whole",
+              "source": "root",
+              "kind": "whole",
+              "metric": "raw-pixel",
+              "maxDiffPct": 2.5,
+              "minSignalPixels": 1
+            }
+          ],
+          "semanticAssertions": [
+            {
+              "id": "sous-titre-element",
+              "selector": "[class*=\"Hero__sousTitre\"]",
+              "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale."
+              }
+            },
+            {
+              "id": "section-header-titre",
+              "selector": "[class*=\"SectionHeader__Titre\"]",
+              "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/titre",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Portes de garage industrielles"
+              }
+            },
+            {
+              "id": "section-header-accroche-rendue",
+              "selector": "[class*=\"SectionHeader__Accroche\"]",
+              "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Plus de 50 ans d’expérience"
+              }
+            },
+            {
+              "id": "button-libelle-defaut-de-l-enfant",
+              "selector": "[class*=\"Button__root\"]",
+              "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component",
+              "expect": {
+                "tag": "button",
+                "textEquals": "Contactez-nous"
+              }
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "hero.structure.root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3382",
+            "detail": "COMPONENT autonome \"Hero\" (aucun COMPONENT_SET, une seule variante) 1728x640 FIXED/FIXED, layoutMode=HORIZONTAL primaryAxis=SPACE_BETWEEN counterAxis=MAX itemSpacing=10 > [Bloc texte 2111:3376 > Titres 2111:3377 > [SectionHeader 2169:6264, wrapper 2111:3379 > [Sous-titre 2111:3380, Bouton 2111:3381]]]"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__root\"]"
+          }
+        },
+        {
+          "id": "hero.property.aucune-propriete-exposee",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3382",
+            "detail": "componentPropertyDefinitions ABSENT du master (clés du node : absoluteBoundingBox, absoluteRenderBounds, background, backgroundColor, blendMode, children, clipsContent, complexStrokeProperties, constraints, counterAxisAlignItems, counterAxisSizingMode, effects, fills, id, interactions, itemSpacing, layoutMode, layoutSizingHorizontal, layoutSizingVertical, layoutWrap, name, primaryAxisAlignItems, primaryAxisSizingMode, scrollBehavior, strokeAlign, strokeWeight, strokes, type) — le master n'expose AUCUNE propriété de composant, donc aucune projectionProbe n'est possible sur ce sujet",
+            "property": "componentPropertyDefinitions"
+          },
+          "contractReference": {
+            "jsonPointer": "/props"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__root\"]"
+          }
+        },
+        {
+          "id": "hero.structure.bloc-texte",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3376",
+            "detail": "FRAME \"Bloc texte\" 1728x292, layoutMode=VERTICAL layoutGrow=1 layoutSizingHorizontal=FILL layoutSizingVertical=HUG"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__blocTexte\"]"
+          }
+        },
+        {
+          "id": "hero.structure.titres",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3377",
+            "detail": "FRAME \"Titres\" 1728x292, layoutMode=VERTICAL layoutAlign=STRETCH layoutSizingHorizontal=FILL layoutSizingVertical=HUG"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__Titres\"]"
+          }
+        },
+        {
+          "id": "hero.structure.wrapper",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3379",
+            "detail": "FRAME \"wrapper\" 1550x64, layoutMode=HORIZONTAL primaryAxis=CENTER counterAxis=MAX layoutAlign=STRETCH"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__wrapper\"]"
+          }
+        },
+        {
+          "id": "hero.content.sous-titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3380",
+            "detail": "TEXT \"Sous-titre\" — characters littéraux du master (aucune propriété TEXT ne les pilote)",
+            "textLayer": "2111:3380"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__sousTitre\"]"
+          }
+        },
+        {
+          "id": "hero.semantic.sous-titre-element",
+          "kind": "semantic",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3380",
+            "detail": "TEXT layer \"Sous-titre\" — projeté en <span> par l'émetteur react (part sans element déclaré)"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__sousTitre\"]"
+          }
+        },
+        {
+          "id": "hero.composition.section-header",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6264",
+            "mainComponent": "2090:2385",
+            "observedInstanceProperties": {
+              "Accroche2#2169:64": false,
+              "Titre#2090:47": "Portes de garage industrielles",
+              "Accroche#2090:46": "Plus de 50 ans d’expérience",
+              "Disposition": "Standard"
+            },
+            "instanceOverrides": [
+              "I2169:6264;2090:2387 (Titre) : fills, fontFamily, fontPostScriptName, fontSize, fontWeight, inheritTextStyleId, italic, letterSpacing, lineHeightPercent, lineHeightPercentFontSize, lineHeightPx, lineHeightUnit, openTypeFlags, text, textAlignHorizontal, textDecorationSkipInk",
+              "I2169:6264;2090:2386 (Accroche) : textAlignHorizontal"
+            ]
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component",
+            "childContractId": "ds.section-header"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__root\"]"
+          }
+        },
+        {
+          "id": "hero.composition.button",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3381",
+            "mainComponent": "6:135",
+            "observedInstanceProperties": {
+              "Libelle#2044:28": "Demander un devis gratuit",
+              "Style": "Outline blanc",
+              "Icone droite#2024:7": true,
+              "Icone gauche#2024:0": false,
+              "Glyphe droite#2028:21": "6:104",
+              "Glyphe gauche#2028:14": "6:99"
+            }
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component",
+            "childContractId": "ds.button"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "hero.visual.root",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3382",
+            "export": "png@2x"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__root\"]"
+          }
+        },
+        {
+          "id": "hero.structure.gap-root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3382",
+            "channel": "itemSpacing",
+            "raw": 10
+          },
+          "figmaExpectation": {
+            "channel": "root.gap",
+            "value": "10px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__root\"]"
+          }
+        },
+        {
+          "id": "hero.structure.gap-bloc-texte",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3376",
+            "channel": "itemSpacing",
+            "raw": 16
+          },
+          "figmaExpectation": {
+            "channel": "blocTexte.gap",
+            "value": "16px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__blocTexte\"]"
+          }
+        },
+        {
+          "id": "hero.structure.gap-titres",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3377",
+            "channel": "itemSpacing",
+            "raw": 16
+          },
+          "figmaExpectation": {
+            "channel": "Titres.gap",
+            "value": "16px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__Titres\"]"
+          }
+        },
+        {
+          "id": "hero.structure.gap-wrapper",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3379",
+            "channel": "itemSpacing",
+            "raw": 32
+          },
+          "figmaExpectation": {
+            "channel": "wrapper.gap",
+            "value": "32px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/literals/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__wrapper\"]"
+          }
+        },
+        {
+          "id": "hero.structure.padding-titres-top",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3377",
+            "channel": "paddingTop",
+            "raw": 96
+          },
+          "figmaExpectation": {
+            "channel": "Titres.padding-top",
+            "value": "96px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-top"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__Titres\"]"
+          }
+        },
+        {
+          "id": "hero.structure.padding-titres-bottom",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3377",
+            "channel": "paddingBottom",
+            "raw": 48
+          },
+          "figmaExpectation": {
+            "channel": "Titres.padding-bottom",
+            "value": "48px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-bottom"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__Titres\"]"
+          }
+        },
+        {
+          "id": "hero.structure.padding-titres-left",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3377",
+            "channel": "paddingLeft",
+            "raw": 89
+          },
+          "figmaExpectation": {
+            "channel": "Titres.padding-left",
+            "value": "89px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-left"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__Titres\"]"
+          }
+        },
+        {
+          "id": "hero.structure.padding-titres-right",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3377",
+            "channel": "paddingRight",
+            "raw": 89
+          },
+          "figmaExpectation": {
+            "channel": "Titres.padding-right",
+            "value": "89px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-right"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__Titres\"]"
+          }
+        },
+        {
+          "id": "hero.structure.root-height",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3382",
+            "channel": "absoluteBoundingBox.height / layoutSizingVertical=FIXED",
+            "raw": 640
+          },
+          "figmaExpectation": {
+            "channel": "root.height",
+            "value": "640px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/literals/height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__root\"]"
+          }
+        },
+        {
+          "id": "hero.structure.sous-titre-grow",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3380",
+            "channel": "layoutGrow / layoutSizingHorizontal",
+            "raw": "layoutGrow=1, layoutSizingHorizontal=FILL (1164px des 1550px du wrapper)"
+          },
+          "figmaExpectation": {
+            "channel": "sousTitre.layout.grow",
+            "value": true
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/layout/grow"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__sousTitre\"]"
+          }
+        },
+        {
+          "id": "hero.structure.section-header-fill",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6264",
+            "channel": "layoutSizingHorizontal",
+            "raw": "FILL (layoutAlign=STRETCH, layoutGrow=0)",
+            "detail": "les 1550px de l'instance sont la largeur RÉSOLUE (1728 − paddingLeft 89 − paddingRight 89), pas une largeur fixe ; ds.section-header gèle pourtant literals.width = \"1550px\" et le contrat hero ne pose aucun override. Conséquence mesurée : SectionHeader déborde tout conteneur plus étroit que 1550px, et le harnais 013 refuse la capture de Hero comme de SectionHeader avec exactement le même dépassement de 92 device px — master FIXED contre usage FILL (corollaire §VIII)"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.layoutSizingHorizontal",
+            "value": "FILL"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/literals/width"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__root\"]"
+          }
+        },
+        {
+          "id": "hero.visual.sous-titre-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3380",
+            "channel": "style.fontSize",
+            "raw": 24
+          },
+          "figmaExpectation": {
+            "channel": "sousTitre.font-size",
+            "value": "24px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__sousTitre\"]"
+          }
+        },
+        {
+          "id": "hero.visual.sous-titre-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3380",
+            "channel": "style.lineHeightPx",
+            "raw": 32
+          },
+          "figmaExpectation": {
+            "channel": "sousTitre.line-height",
+            "value": "32px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__sousTitre\"]"
+          }
+        },
+        {
+          "id": "hero.visual.root-image-fill",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3382",
+            "channel": "fills[0]",
+            "property": "IMAGE",
+            "imageRef": "b9ae58d2e309c55241eb843c1a36d90d087c1483",
+            "scaleMode": "FILL",
+            "detail": "peinture IMAGE visible sur le master ; AUCUN asset correspondant dans extract/figma/visual-parity/fixture-assets/manifest.json (ni par id \"hero\", ni par cet imageRef) — D10 : aucun fixtureAssetId ni chemin de prop de comparaison n'est déclaré, le fait reste donc non positif tant que la projection n'existe pas"
+          },
+          "figmaExpectation": {
+            "channel": "root.fills[0].IMAGE.imageRef",
+            "value": "b9ae58d2e309c55241eb843c1a36d90d087c1483"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/literals/background-image"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__root\"]"
+          }
+        },
+        {
+          "id": "hero.visual.root-gradient-overlay",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3382",
+            "channel": "fills[2]",
+            "property": "GRADIENT_LINEAR",
+            "raw": "gradientHandlePositions [{x:0.5,y:1},{x:0.5,y:0},{x:1,y:1}] (bas → haut) ; gradientStops [rgba(0,0,0,0) @0.75, rgba(0,0,0,0.5) @1]",
+            "detail": "fills[1] est un second GRADIENT_LINEAR avec visible=false — non déclaré ici car non rendu"
+          },
+          "figmaExpectation": {
+            "channel": "root.fills[2].GRADIENT_LINEAR",
+            "value": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/literals/background-image"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__root\"]"
+          }
+        },
+        {
+          "id": "hero.visual.titres-gradient",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3377",
+            "channel": "fills[0]",
+            "property": "GRADIENT_LINEAR",
+            "raw": "gradientHandlePositions [{x:0.5,y:0},{x:0.5,y:1},{x:0.486,y:0}] (haut → bas) ; gradientStops [rgba(0,0,0,0) @0, rgba(0,0,0,0.5) @0.6]"
+          },
+          "figmaExpectation": {
+            "channel": "Titres.fills[0].GRADIENT_LINEAR",
+            "value": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%)"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/literals/background-image"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Hero__Titres\"]"
+          }
+        },
+        {
+          "id": "hero.composition.section-header-titre",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6264",
+            "property": "Titre#2090:47",
+            "textLayer": "I2169:6264;2090:2387"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre",
+            "value": "Portes de garage industrielles"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/titre",
+            "bindingProperty": "Titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "hero.composition.section-header-accroche",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6264",
+            "property": "Accroche#2090:46",
+            "textLayer": "I2169:6264;2090:2386"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Accroche",
+            "value": "Plus de 50 ans d’expérience"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche",
+            "bindingProperty": "Accroche"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "hero.composition.section-header-disposition",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6264",
+            "property": "Disposition",
+            "raw": "Standard"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Disposition (VARIANT \"Standard\" → valeur d'enum contractuelle \"standard\", mappage déclaré par ds.section-header /props/0/bindings/figma/values)",
+            "value": "standard"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/disposition",
+            "bindingProperty": "Disposition"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__root\"]"
+          }
+        },
+        {
+          "id": "hero.composition.section-header-accroche2",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6264",
+            "property": "Accroche2#2169:64",
+            "textLayer": "I2169:6264;2090:2386",
+            "detail": "l'instance met Accroche2=false et le calque TEXT \"Accroche\" porte visible=false ; le contrat hero ne passe pas accroche2, donc SectionHeader.tsx retombe sur son défaut accroche2=true et rend l'accroche"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Accroche2 (BOOLEAN)",
+            "value": false
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche2",
+            "bindingProperty": "Accroche2"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "hero.visual.section-header-titre-color",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "I2169:6264;2090:2387",
+            "channel": "fills[0].color",
+            "raw": "{r:1,g:1,b:1,a:1} = #FFFFFF, boundVariables.fills = VariableID:4:29 — override d'instance (fills ∈ overriddenFields)",
+            "detail": "ds.section-header lie Titre.color à {color.noir-bleute} (#26282C) ; le contrat hero ne porte aucun override, le React rend donc un titre sombre là où Figma le rend blanc sur photo"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre.color",
+            "value": "{color.blanc}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/color"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "hero.visual.section-header-titre-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "I2169:6264;2090:2387",
+            "channel": "style.fontSize",
+            "raw": 54,
+            "detail": "override d'instance (fontSize ∈ overriddenFields) ; ds.section-header porte {font.size.40}"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre.font-size",
+            "value": "54px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "hero.visual.section-header-titre-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "I2169:6264;2090:2387",
+            "channel": "style.lineHeightPx",
+            "raw": 68,
+            "detail": "override d'instance (lineHeightPx ∈ overriddenFields) ; ds.section-header porte literals.line-height = 50px"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre.line-height",
+            "value": "68px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "hero.visual.section-header-titre-font-weight",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "I2169:6264;2090:2387",
+            "channel": "style.fontWeight",
+            "raw": 700,
+            "detail": "override d'instance (fontWeight ∈ overriddenFields) ; ds.section-header porte {font.weight.regular}"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre.font-weight",
+            "value": "700"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-weight"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "hero.composition.button-libelle",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3381",
+            "property": "Libelle#2044:28",
+            "textLayer": "I2111:3381;6:137",
+            "detail": "le contrat hero écrit { \"id\": \"ds.button\" } sans text ; Hero.tsx rend donc le défaut de ds.button (\"Contactez-nous\")"
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.Libelle",
+            "value": "Demander un devis gratuit"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/text",
+            "bindingProperty": "Libelle"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "hero.composition.button-variant",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3381",
+            "property": "Style",
+            "raw": "Outline blanc",
+            "detail": "le contrat hero ne passe aucune prop au bouton ; Button.tsx retombe sur variant=\"default\""
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.Style (VARIANT \"Outline blanc\" → valeur d'enum contractuelle \"outlineBlanc\", mappage déclaré par ds.button /props/0/bindings/figma/values)",
+            "value": "outlineBlanc"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/variant",
+            "bindingProperty": "Style"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "hero.composition.button-icone-droite",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2111:3381",
+            "property": "Icone droite#2024:7",
+            "raw": true,
+            "detail": "l'instance rend ArrowRight (I2111:3381;6:138, visible) ; le contrat hero ne passe pas iconRight, Button.tsx retombe sur false et n'émet aucune icône"
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.Icone droite (BOOLEAN)",
+            "value": true
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/iconRight",
+            "bindingProperty": "Icone droite"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/Hero/Hero.tsx",
+            "export": "Hero",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        }
+      ]
     },
     {
       "id": "presentation",
@@ -594,9 +3308,510 @@
         "deriveFromFigma": true,
         "deriveFromContract": true,
         "deriveFromGeneratedProjection": true,
-        "requiredFactIds": []
+        "requiredFactIds": [
+          "sav.structure.root",
+          "sav.content.texte",
+          "sav.property.titre",
+          "sav.composition.section-header",
+          "sav.composition.button",
+          "sav.visual.root",
+          "sav.semantic.texte-element",
+          "sav.structure.gap-root",
+          "sav.structure.gap-inner",
+          "sav.visual.texte-font-size",
+          "sav.visual.texte-line-height",
+          "sav.visual.background-image",
+          "sav.visual.img-image",
+          "sav.composition.section-header-titre",
+          "sav.composition.section-header-accroche",
+          "sav.composition.section-header-accroche2",
+          "sav.composition.button-libelle",
+          "sav.composition.button-icon-right"
+        ]
       },
-      "cases": []
+      "cases": [
+        {
+          "id": "sav-master-defaults",
+          "figmaNodeId": "2108:3105",
+          "observedProperties": {
+            "Titre#2108:60": "Dépannage / SAV"
+          },
+          "reactProps": {},
+          "factIds": [
+            "sav.structure.root",
+            "sav.content.texte",
+            "sav.property.titre",
+            "sav.composition.section-header",
+            "sav.composition.button",
+            "sav.visual.root",
+            "sav.semantic.texte-element",
+            "sav.structure.gap-root",
+            "sav.structure.gap-inner",
+            "sav.visual.texte-font-size",
+            "sav.visual.texte-line-height",
+            "sav.visual.background-image",
+            "sav.visual.img-image",
+            "sav.composition.section-header-titre",
+            "sav.composition.section-header-accroche",
+            "sav.composition.section-header-accroche2",
+            "sav.composition.button-libelle",
+            "sav.composition.button-icon-right"
+          ],
+          "fixtureAssetIds": [],
+          "requiredParts": [
+            "root",
+            "section",
+            "background",
+            "row",
+            "wrapper",
+            "WrapperBackground",
+            "inner",
+            "SectionHeader",
+            "vousRencontrezUnProblmeA",
+            "Bouton",
+            "imgGroup",
+            "ImgGroupBackground",
+            "img"
+          ],
+          "requiredRegions": [
+            {
+              "id": "whole",
+              "source": "root",
+              "kind": "whole",
+              "metric": "raw-pixel",
+              "maxDiffPct": 2.5,
+              "minSignalPixels": 1
+            }
+          ],
+          "semanticAssertions": [
+            {
+              "id": "texte-element",
+              "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+              "contractPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+              }
+            },
+            {
+              "id": "titre-element",
+              "selector": "[class*=\"SectionHeader__Titre\"]",
+              "contractPointer": "/props/0/default",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Dépannage / SAV"
+              }
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "sav.structure.root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3105",
+            "detail": "COMPONENT root > section 2169:6222 > [background 2108:3094, row 2169:6200 > [wrapper 2169:6188 > [WrapperBackground 2108:3100, inner 2108:3101 > [SectionHeader 2169:6258, Texte 2108:3103, Bouton 2108:3104]], img-group 2169:5846 > [ImgGroupBackground 2108:3097, img 2108:3098]]]"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__root\"]"
+          }
+        },
+        {
+          "id": "sav.content.texte",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3103",
+            "property": "characters",
+            "textLayer": "2108:3103"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+          }
+        },
+        {
+          "id": "sav.property.titre",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3105",
+            "property": "Titre#2108:60"
+          },
+          "contractReference": {
+            "jsonPointer": "/props/0",
+            "bindingProperty": "Titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          },
+          "projectionProbe": {
+            "kind": "non-default-prop",
+            "prop": "titre",
+            "value": "PREUVE-013 — TITRE SAV b48e"
+          }
+        },
+        {
+          "id": "sav.composition.section-header",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6258",
+            "mainComponent": "2090:2385",
+            "observedInstanceProperties": {
+              "Accroche2#2169:64": false,
+              "Titre#2090:47": "Dépannage / SAV",
+              "Accroche#2090:46": "Plus de 50 ans d’expérience",
+              "Disposition": "Standard"
+            }
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component",
+            "childContractId": "ds.section-header"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SectionHeader__root\"]"
+          }
+        },
+        {
+          "id": "sav.composition.button",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3104",
+            "mainComponent": "6:107",
+            "observedInstanceProperties": {
+              "Libelle#2044:28": "Demander de l’aide",
+              "Style": "Default",
+              "Icone droite#2024:7": true,
+              "Icone gauche#2024:0": false
+            }
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component",
+            "childContractId": "ds.button"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "sav.visual.root",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3105",
+            "export": "png@2x"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__root\"]"
+          }
+        },
+        {
+          "id": "sav.semantic.texte-element",
+          "kind": "semantic",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3103",
+            "detail": "TEXT layer, 2 paragraphes separes par un saut de ligne dur"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+          }
+        },
+        {
+          "id": "sav.structure.gap-root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3105",
+            "channel": "itemSpacing",
+            "layoutMode": "HORIZONTAL"
+          },
+          "figmaExpectation": {
+            "channel": "root.itemSpacing",
+            "value": 10
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/layout/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__root\"]"
+          }
+        },
+        {
+          "id": "sav.structure.gap-inner",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3101",
+            "channel": "itemSpacing",
+            "layoutMode": "VERTICAL"
+          },
+          "figmaExpectation": {
+            "channel": "inner.itemSpacing",
+            "value": 32
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/layout/gap"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__inner\"]"
+          }
+        },
+        {
+          "id": "sav.visual.texte-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3103",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "vousRencontrezUnProblmeA.font-size",
+            "value": "18px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+          }
+        },
+        {
+          "id": "sav.visual.texte-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3103",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "vousRencontrezUnProblmeA.line-height",
+            "value": "27px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+          }
+        },
+        {
+          "id": "sav.visual.background-image",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "2108:3094",
+            "channel": "fills[0]",
+            "paint": {
+              "type": "IMAGE",
+              "scaleMode": "FILL",
+              "imageRef": "3e173874828861c294938a12deea5a5a7a1799dd"
+            },
+            "namedLimit": "A5 (docs/FIGMA-CAPABILITY-MATRIX.md ligne 91) — background-image: url() est natif des deux cotes, le vocabulaire de contrat reste un gap nomme ouvert"
+          },
+          "figmaExpectation": {
+            "channel": "background.fills[0].imageRef",
+            "value": "3e173874828861c294938a12deea5a5a7a1799dd"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/background/tokens/background-image"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__background\"]"
+          }
+        },
+        {
+          "id": "sav.visual.img-image",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "2108:3098",
+            "channel": "fills[0]",
+            "paint": {
+              "type": "IMAGE",
+              "scaleMode": "FIT",
+              "imageRef": "429c615cb090b3aa0800188acda4bc59cc6445b0"
+            },
+            "namedLimit": "A5 (docs/FIGMA-CAPABILITY-MATRIX.md ligne 91) — meme gap nomme que sav.visual.background-image"
+          },
+          "figmaExpectation": {
+            "channel": "img.fills[0].imageRef",
+            "value": "429c615cb090b3aa0800188acda4bc59cc6445b0"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/tokens/background-image"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SAV__img\"]"
+          }
+        },
+        {
+          "id": "sav.composition.section-header-titre",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6258",
+            "property": "Titre#2090:47"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre",
+            "value": "Dépannage / SAV"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "sav.composition.section-header-accroche",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6258",
+            "property": "Accroche#2090:46"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Accroche",
+            "value": "Plus de 50 ans d’expérience"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "sav.composition.section-header-accroche2",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6258",
+            "property": "Accroche2#2169:64",
+            "effect": "masque le calque TEXT Accroche I2169:6258;2090:2386 (visible=false dans le dump)"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Accroche2",
+            "value": false
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche2"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "sav.composition.button-libelle",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3104",
+            "property": "Libelle#2044:28"
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.Libelle",
+            "value": "Demander de l’aide"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/children"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        },
+        {
+          "id": "sav.composition.button-icon-right",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3104",
+            "property": "Icone droite#2024:7",
+            "effect": "rend visible l instance ArrowRight I2108:3104;6:106"
+          },
+          "figmaExpectation": {
+            "channel": "Bouton.Icone droite",
+            "value": true
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/iconRight"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/SAV/SAV.tsx",
+            "export": "SAV",
+            "selector": "[class*=\"Button__root\"]"
+          }
+        }
+      ]
     },
     {
       "id": "texte-seo",
@@ -629,9 +3844,1037 @@
         "deriveFromFigma": true,
         "deriveFromContract": true,
         "deriveFromGeneratedProjection": true,
-        "requiredFactIds": []
+        "requiredFactIds": [
+          "texte-seo.structure.root",
+          "texte-seo.structure.h2",
+          "texte-seo.structure.p",
+          "texte-seo.structure.h3",
+          "texte-seo.structure.accordion",
+          "texte-seo.structure.gap-root",
+          "texte-seo.structure.padding-inline-root",
+          "texte-seo.structure.width-root",
+          "texte-seo.content.paragraphe",
+          "texte-seo.content.sous-titre",
+          "texte-seo.composition.section-header",
+          "texte-seo.content.section-header-titre",
+          "texte-seo.content.section-header-accroche",
+          "texte-seo.content.section-header-disposition",
+          "texte-seo.composition.section-header-accroche2",
+          "texte-seo.content.section-header-titre-rich-text",
+          "texte-seo.visual.section-header-titre-font-size",
+          "texte-seo.visual.section-header-titre-line-height",
+          "texte-seo.visual.paragraphe-font-size",
+          "texte-seo.visual.paragraphe-line-height",
+          "texte-seo.visual.sous-titre-font-size",
+          "texte-seo.visual.sous-titre-line-height",
+          "texte-seo.visual.sous-titre-font-weight",
+          "texte-seo.visual.paragraphe-color",
+          "texte-seo.visual.sous-titre-color",
+          "texte-seo.visual.root-font-family",
+          "texte-seo.property.items",
+          "texte-seo.property.items-default",
+          "texte-seo.composition.accordion-row",
+          "texte-seo.composition.accordion-repeat",
+          "texte-seo.property.accordion-row-taille",
+          "texte-seo.content.accordion-row-1-titre",
+          "texte-seo.content.accordion-row-2-titre",
+          "texte-seo.content.accordion-row-3-titre",
+          "texte-seo.content.accordion-row-2-contenu",
+          "texte-seo.structure.accordion-row-2-etat",
+          "texte-seo.visual.root",
+          "texte-seo.semantic.paragraphe-element",
+          "texte-seo.semantic.sous-titre-element"
+        ]
       },
-      "cases": []
+      "cases": [
+        {
+          "id": "texte-seo-master-defaults",
+          "figmaNodeId": "2108:3123",
+          "observedProperties": {},
+          "reactProps": {},
+          "factIds": [
+            "texte-seo.structure.root",
+            "texte-seo.structure.h2",
+            "texte-seo.structure.p",
+            "texte-seo.structure.h3",
+            "texte-seo.structure.accordion",
+            "texte-seo.structure.gap-root",
+            "texte-seo.structure.padding-inline-root",
+            "texte-seo.structure.width-root",
+            "texte-seo.content.paragraphe",
+            "texte-seo.content.sous-titre",
+            "texte-seo.composition.section-header",
+            "texte-seo.content.section-header-titre",
+            "texte-seo.content.section-header-accroche",
+            "texte-seo.content.section-header-disposition",
+            "texte-seo.composition.section-header-accroche2",
+            "texte-seo.content.section-header-titre-rich-text",
+            "texte-seo.visual.section-header-titre-font-size",
+            "texte-seo.visual.section-header-titre-line-height",
+            "texte-seo.visual.paragraphe-font-size",
+            "texte-seo.visual.paragraphe-line-height",
+            "texte-seo.visual.sous-titre-font-size",
+            "texte-seo.visual.sous-titre-line-height",
+            "texte-seo.visual.sous-titre-font-weight",
+            "texte-seo.visual.paragraphe-color",
+            "texte-seo.visual.sous-titre-color",
+            "texte-seo.visual.root-font-family",
+            "texte-seo.property.items",
+            "texte-seo.property.items-default",
+            "texte-seo.composition.accordion-row",
+            "texte-seo.composition.accordion-repeat",
+            "texte-seo.property.accordion-row-taille",
+            "texte-seo.content.accordion-row-1-titre",
+            "texte-seo.content.accordion-row-2-titre",
+            "texte-seo.content.accordion-row-3-titre",
+            "texte-seo.content.accordion-row-2-contenu",
+            "texte-seo.structure.accordion-row-2-etat",
+            "texte-seo.visual.root",
+            "texte-seo.semantic.paragraphe-element",
+            "texte-seo.semantic.sous-titre-element"
+          ],
+          "fixtureAssetIds": [],
+          "requiredParts": [
+            "root",
+            "h2",
+            "SectionHeader",
+            "p",
+            "Paragraphe",
+            "h3",
+            "SousTitre",
+            "accordion",
+            "AccordionRow"
+          ],
+          "requiredRegions": [
+            {
+              "id": "whole",
+              "source": "root",
+              "kind": "whole",
+              "metric": "raw-pixel",
+              "maxDiffPct": 2.5,
+              "minSignalPixels": 1
+            }
+          ],
+          "semanticAssertions": [
+            {
+              "id": "paragraphe-element",
+              "selector": "[class*=\"TexteSEO__Paragraphe\"]",
+              "contractPointer": "/anatomy/root/parts/p/parts/Paragraphe/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
+              }
+            },
+            {
+              "id": "sous-titre-element",
+              "selector": "[class*=\"TexteSEO__SousTitre\"]",
+              "contractPointer": "/anatomy/root/parts/h3/parts/SousTitre/text",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Infos pratiques"
+              }
+            },
+            {
+              "id": "section-header-titre",
+              "selector": "[class*=\"SectionHeader__Titre\"]",
+              "contractPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
+              "expect": {
+                "tag": "span",
+                "textEquals": "Visitez notre showroom à Pepinster ou contactez-nous"
+              }
+            }
+          ]
+        }
+      ],
+      "facts": [
+        {
+          "id": "texte-seo.structure.root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3123",
+            "detail": "COMPONENT root (VERTICAL, itemSpacing 32, paddingLeft/Right 89, 1728x383) > [h2 2169:6291 > SectionHeader 2170:6361, p 2170:6308 > Paragraphe 2108:3116, h3 2170:6309 > SousTitre 2108:3118, accordion 2108:3119 > AccordionRow ×3]",
+            "componentPropertyDefinitions": null,
+            "componentPropertyDefinitionsNote": "le master n’expose AUCUNE propriété de composant (clé absente du dump REST)"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.h2",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2169:6291",
+            "name": "h2",
+            "layoutMode": "NONE",
+            "itemSpacing": 0,
+            "size": "1550x30"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__h2\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.p",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2170:6308",
+            "name": "p",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 0,
+            "size": "1550x72"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/p"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__p\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.h3",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2170:6309",
+            "name": "h3",
+            "layoutMode": "NONE",
+            "itemSpacing": 0,
+            "size": "1550x25"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h3"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__h3\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.accordion",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3119",
+            "name": "accordion",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": 0,
+            "size": "1550x160"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__accordion\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.gap-root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3123",
+            "channel": "itemSpacing"
+          },
+          "figmaExpectation": {
+            "channel": "root.itemSpacing",
+            "value": 32
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/tokens/gap",
+            "note": "site du correctif : {space.32} existe déjà dans tokens/primitives.tokens.json"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.padding-inline-root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3123",
+            "channel": "paddingLeft/paddingRight"
+          },
+          "figmaExpectation": {
+            "channel": "root.paddingInline",
+            "value": 89
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/tokens/padding-inline",
+            "note": "site du correctif : {space.89} existe déjà dans tokens/primitives.tokens.json"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.width-root",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3123",
+            "channel": "absoluteBoundingBox.width",
+            "layoutSizingHorizontal": "FIXED"
+          },
+          "figmaExpectation": {
+            "channel": "root.width",
+            "value": 1728
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/literals/width",
+            "note": "idiome du dépôt : ds.section-header et ds.accordion-row portent width sous literals"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.paragraphe",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "2108:3116",
+            "detail": "TEXT Paragraphe — 4 séquences Montserrat-Bold dans un calque unique (« Notre showroom », « à Pepinster », « portes de garage, motorisations et portes d’entrée », « Hörmann ») que le champ text plat du contrat ne peut pas porter — dette rich-text B1",
+            "characterStyleOverrideRuns": 4
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.sous-titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3118",
+            "characters": "Infos pratiques"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__SousTitre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.composition.section-header",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2170:6361",
+            "mainComponent": "2090:2385",
+            "observedInstanceProperties": {
+              "Accroche2#2169:64": false,
+              "Titre#2090:47": "Visitez notre showroom à Pepinster ou contactez-nous",
+              "Accroche#2090:46": "Plus de 50 ans d’expérience",
+              "Disposition": "Standard"
+            }
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component",
+            "childContractId": "ds.section-header"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.section-header-titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2170:6361",
+            "property": "Titre#2090:47"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre",
+            "value": "Visitez notre showroom à Pepinster ou contactez-nous"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
+            "bindingProperty": "Titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.section-header-accroche",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2170:6361",
+            "property": "Accroche#2090:46"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Accroche",
+            "value": "Plus de 50 ans d’expérience"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche",
+            "bindingProperty": "Accroche"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.section-header-disposition",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2170:6361",
+            "property": "Disposition",
+            "figmaValue": "Standard"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Disposition",
+            "value": "standard"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/disposition",
+            "bindingProperty": "Disposition",
+            "note": "valeur côté contrat de l’enum ; ds.section-header mappe standard → \"Standard\""
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.composition.section-header-accroche2",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2170:6361",
+            "property": "Accroche2#2169:64",
+            "textLayer": "I2170:6361;2090:2386",
+            "detail": "l’instance masque l’accroche (BOOLEAN false ; calque TEXT visible=false) ; le contrat ne transmet pas accroche2, dont le défaut est true dans ds.section-header"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Accroche2",
+            "value": false
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche2"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__Accroche\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.section-header-titre-rich-text",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "I2170:6361;2090:2387",
+            "detail": "TEXT Titre de l’instance — « showroom à Pepinster » (offsets 14..33) en Montserrat-Bold dans un calque unique ; la prop titre du contrat est une chaîne plate — dette rich-text B1"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.section-header-titre-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "I2170:6361;2090:2387",
+            "channel": "style.fontSize",
+            "detail": "surcharge d’instance : le master ds.section-header 2090:2385 (Disposition=Standard) porte 40px/50px, l’instance dans TexteSEO porte 24px/30px ; la composition component.props ne transporte que des valeurs de props, jamais une surcharge typographique de l’enfant"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre.font-size",
+            "value": "24px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/tokens/font-size",
+            "note": "aucun site existant côté contrat ; {font.size.24} et {font.line-height.30} existent dans les tokens"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.section-header-titre-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "I2170:6361;2090:2387",
+            "channel": "style.lineHeightPx",
+            "detail": "surcharge d’instance : le master ds.section-header 2090:2385 (Disposition=Standard) porte 40px/50px, l’instance dans TexteSEO porte 24px/30px ; la composition component.props ne transporte que des valeurs de props, jamais une surcharge typographique de l’enfant"
+          },
+          "figmaExpectation": {
+            "channel": "SectionHeader.Titre.line-height",
+            "value": "30px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/tokens/line-height",
+            "note": "aucun site existant côté contrat ; {font.size.24} et {font.line-height.30} existent dans les tokens"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"SectionHeader__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.paragraphe-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3116",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "Paragraphe.font-size",
+            "value": "14px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.paragraphe-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3116",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "Paragraphe.line-height",
+            "value": "24px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.sous-titre-font-size",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3118",
+            "channel": "style.fontSize"
+          },
+          "figmaExpectation": {
+            "channel": "SousTitre.font-size",
+            "value": "20px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/font-size"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__SousTitre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.sous-titre-line-height",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3118",
+            "channel": "style.lineHeightPx"
+          },
+          "figmaExpectation": {
+            "channel": "SousTitre.line-height",
+            "value": "25px"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/line-height"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__SousTitre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.sous-titre-font-weight",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3118",
+            "channel": "style.fontWeight",
+            "fontPostScriptName": "Montserrat-SemiBold"
+          },
+          "figmaExpectation": {
+            "channel": "SousTitre.font-weight",
+            "value": 600
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/font-weight",
+            "note": "{font.weight.semibold} = 600 existe déjà dans les tokens"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__SousTitre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.paragraphe-color",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3116",
+            "channel": "fills[0].color",
+            "figmaValue": "#37373b",
+            "variableId": "VariableID:24:52"
+          },
+          "figmaExpectation": {
+            "channel": "Paragraphe.color",
+            "value": "{color.noir}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/tokens/color"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.sous-titre-color",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3118",
+            "channel": "fills[0].color",
+            "figmaValue": "#26282c",
+            "variableId": "VariableID:5:40"
+          },
+          "figmaExpectation": {
+            "channel": "SousTitre.color",
+            "value": "{color.noir-bleute}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/color"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__SousTitre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.root-font-family",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3116",
+            "channel": "style.fontFamily",
+            "figmaValue": "Montserrat",
+            "detail": "chaque calque TEXT du master porte fontFamily \"Montserrat\" ; le contrat le porte une fois à la racine"
+          },
+          "figmaExpectation": {
+            "channel": "root.font-family",
+            "value": "{font.family.montserrat}"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/tokens/font-family"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.property.items",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3119",
+            "detail": "la collection n’a AUCUN pendant Figma : le master fige 3 instances AccordionRow, le contrat déclare bindings.figma.kind = NONE",
+            "projectionProbeOmittedBecause": "probe NON déclarée à dessein — pilot.ts compare String(probe.value) au texte du DOM, or String(<tableau d’objets>) vaut \"[object Object],[object Object]\" et ne peut jamais égaler le texte rendu : la probe accuserait à tort le composant de ne pas projeter alors que TexteSEO.tsx fait bien items?.map(...) → <AccordionRow titre contenu>. De plus le rendu de la probe lève (voir le rapport : AccordionRow fait 1550 px de large, au-dessus du plafond du harnais)."
+          },
+          "contractReference": {
+            "jsonPointer": "/props/0"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.property.items-default",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3119",
+            "channel": "children.length",
+            "detail": "le master peint 3 AccordionRow (160 px) ; la prop items n’a pas de default, donc items?.map sur undefined ne rend AUCUNE ligne (accordion mesuré à 0 px de haut)"
+          },
+          "figmaExpectation": {
+            "channel": "accordion.rowCount",
+            "value": 3
+          },
+          "contractReference": {
+            "jsonPointer": "/props/0/default",
+            "note": "repeat.sample porte déjà les 3 entrées, mais sample n’est pas un default : l’émetteur react ne l’émet pas"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__accordion\"]"
+          }
+        },
+        {
+          "id": "texte-seo.composition.accordion-row",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3120",
+            "mainComponent": "2059:1383",
+            "observedInstanceProperties": [
+              {
+                "nodeId": "2108:3120",
+                "mainComponent": "2059:1383",
+                "properties": {
+                  "Contenu#2059:18": "Réponse",
+                  "Titre#2059:13": "Accès et parking",
+                  "Taille": "Petit",
+                  "Etat": "Ferme"
+                }
+              },
+              {
+                "nodeId": "2108:3121",
+                "mainComponent": "2059:1411",
+                "properties": {
+                  "Contenu#2059:18": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+                  "Titre#2059:13": "Faut-il prendre rendez-vous ?",
+                  "Taille": "Petit",
+                  "Etat": "Ouvert"
+                }
+              },
+              {
+                "nodeId": "2108:3122",
+                "mainComponent": "2059:1383",
+                "properties": {
+                  "Contenu#2059:18": "Réponse",
+                  "Titre#2059:13": "Zones de déplacement pour devis",
+                  "Taille": "Petit",
+                  "Etat": "Ferme"
+                }
+              }
+            ]
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/component",
+            "childContractId": "ds.accordion-row"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.composition.accordion-repeat",
+          "kind": "composition",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3119",
+            "detail": "3 instances AccordionRow empilées en auto-layout VERTICAL"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/itemsProp"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.property.accordion-row-taille",
+          "kind": "property",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3120",
+            "property": "Taille",
+            "figmaValue": "Petit"
+          },
+          "figmaExpectation": {
+            "channel": "AccordionRow.Taille",
+            "value": "petit"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
+            "bindingProperty": "Taille",
+            "note": "valeur côté contrat ; ds.accordion-row mappe petit → \"Petit\""
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.accordion-row-1-titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3120",
+            "property": "Titre#2059:13"
+          },
+          "figmaExpectation": {
+            "channel": "AccordionRow[0].Titre",
+            "value": "Accès et parking"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/0/titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.accordion-row-2-titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3121",
+            "property": "Titre#2059:13"
+          },
+          "figmaExpectation": {
+            "channel": "AccordionRow[1].Titre",
+            "value": "Faut-il prendre rendez-vous ?"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.accordion-row-3-titre",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3122",
+            "property": "Titre#2059:13"
+          },
+          "figmaExpectation": {
+            "channel": "AccordionRow[2].Titre",
+            "value": "Zones de déplacement pour devis"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/2/titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__Titre\"]"
+          }
+        },
+        {
+          "id": "texte-seo.content.accordion-row-2-contenu",
+          "kind": "content",
+          "required": true,
+          "representability": "carry-with-named-limit",
+          "figmaReference": {
+            "nodeId": "2108:3121",
+            "property": "Contenu#2059:18",
+            "textLayer": "I2108:3121;2059:1416",
+            "detail": "« prise de rendez-vous » (offsets 141..160) en Montserrat-Bold dans un calque unique — dette rich-text B1"
+          },
+          "figmaExpectation": {
+            "channel": "AccordionRow[1].Contenu",
+            "value": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée."
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/contenu"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__Contenu\"]"
+          }
+        },
+        {
+          "id": "texte-seo.structure.accordion-row-2-etat",
+          "kind": "structure",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3121",
+            "property": "Etat",
+            "figmaValue": "Ouvert",
+            "detail": "la 2e ligne est OUVERTE sur le master (80 px, titre + contenu) ; les lignes 1 et 3 sont fermées (40 px). Ni repeat.sample ni component.props ne portent etat, donc les 3 lignes générées seraient fermées"
+          },
+          "figmaExpectation": {
+            "channel": "AccordionRow[1].Etat",
+            "value": "ouvert"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/etat",
+            "note": "ds.accordion-row expose bien etat (ferme|ouvert) ; le type de items ne déclare que contenu et titre"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"AccordionRow__TitreOuvert\"]"
+          }
+        },
+        {
+          "id": "texte-seo.visual.root",
+          "kind": "visual",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3123",
+            "export": "png@2x"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__root\"]"
+          }
+        },
+        {
+          "id": "texte-seo.semantic.paragraphe-element",
+          "kind": "semantic",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3116",
+            "detail": "TEXT layer Paragraphe"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+          }
+        },
+        {
+          "id": "texte-seo.semantic.sous-titre-element",
+          "kind": "semantic",
+          "required": true,
+          "representability": "carry-both",
+          "figmaReference": {
+            "nodeId": "2108:3118",
+            "detail": "TEXT layer SousTitre"
+          },
+          "contractReference": {
+            "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/text"
+          },
+          "generatedReference": {
+            "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+            "export": "TexteSEO",
+            "selector": "[class*=\"TexteSEO__SousTitre\"]"
+          }
+        }
+      ]
     },
     {
       "id": "faq",

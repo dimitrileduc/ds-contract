@@ -1,0 +1,1251 @@
+{
+  "id": "devis",
+  "displayName": "Devis",
+  "wave": 1,
+  "contract": {
+    "id": "ds.devis",
+    "version": "1.0.0",
+    "path": "contracts/devis.contract.json"
+  },
+  "figmaSetNodeId": "2096:2524",
+  "coverage": {
+    "expected": [
+      "devis.composition.button",
+      "devis.composition.button-icone-droite",
+      "devis.composition.button-libelle",
+      "devis.composition.button-style",
+      "devis.content.titre",
+      "devis.property.titre",
+      "devis.semantic.titre-element",
+      "devis.structure.container",
+      "devis.structure.container-gap",
+      "devis.structure.root",
+      "devis.structure.root-align-items",
+      "devis.structure.root-flex-direction",
+      "devis.structure.root-padding",
+      "devis.visual.root",
+      "devis.visual.root-background-image",
+      "devis.visual.root-scrim-color",
+      "devis.visual.root-scrim-opacity",
+      "devis.visual.titre-font-size",
+      "devis.visual.titre-line-height",
+      "devis.visual.titre-text-align",
+      "devis.visual.titre-width"
+    ],
+    "observed": [
+      "devis.composition.button",
+      "devis.composition.button-icone-droite",
+      "devis.composition.button-libelle",
+      "devis.composition.button-style",
+      "devis.content.titre",
+      "devis.property.titre",
+      "devis.semantic.titre-element",
+      "devis.structure.container",
+      "devis.structure.container-gap",
+      "devis.structure.root",
+      "devis.structure.root-align-items",
+      "devis.structure.root-flex-direction",
+      "devis.structure.root-padding",
+      "devis.visual.root",
+      "devis.visual.root-background-image",
+      "devis.visual.root-scrim-color",
+      "devis.visual.root-scrim-opacity",
+      "devis.visual.titre-font-size",
+      "devis.visual.titre-line-height",
+      "devis.visual.titre-text-align",
+      "devis.visual.titre-width"
+    ],
+    "missing": [],
+    "unexpected": []
+  },
+  "dependency": null,
+  "facts": [
+    {
+      "id": "devis.structure.root",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2096:2524\",\"detail\":\"COMPONENT root (standalone, pas un COMPONENT_SET — 1 seule variante nommée « Devis ») > [FRAME Container 2096:2525 > [TEXT Titre 2096:2526, INSTANCE Bouton 2096:2527]]. layoutMode=VERTICAL, sizing=FIXED(1728)xHUG(378).\"}",
+        "observedValue": {
+          "nodeId": "2096:2524",
+          "detail": "COMPONENT root (standalone, pas un COMPONENT_SET — 1 seule variante nommée « Devis ») > [FRAME Container 2096:2525 > [TEXT Titre 2096:2526, INSTANCE Bouton 2096:2527]]. layoutMode=VERTICAL, sizing=FIXED(1728)xHUG(378)."
+        },
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "Container": {
+              "layout": {
+                "direction": "column",
+                "align": "center"
+              },
+              "parts": {
+                "Titre": {
+                  "content": {
+                    "prop": "titre"
+                  },
+                  "tokens": {
+                    "color": "{color.blanc}"
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button"
+                  }
+                }
+              }
+            }
+          },
+          "tokens": {
+            "background-color": "{color.noir-bleute}",
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.structure.container",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2096:2525\",\"detail\":\"FRAME « Container », layoutMode=VERTICAL, counterAxisAlignItems=CENTER, sizing=FIXED(1550)xHUG(186), aucun padding.\"}",
+        "observedValue": {
+          "nodeId": "2096:2525",
+          "detail": "FRAME « Container », layoutMode=VERTICAL, counterAxisAlignItems=CENTER, sizing=FIXED(1550)xHUG(186), aucun padding."
+        },
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container",
+        "observedValue": {
+          "layout": {
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "Titre": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.blanc}"
+              }
+            },
+            "Bouton": {
+              "component": {
+                "id": "ds.button"
+              }
+            }
+          }
+        },
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Container\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.structure.root-flex-direction",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#root.flex-direction",
+        "observedValue": "column",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/layout/direction",
+        "observedValue": "column",
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.structure.root-align-items",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#root.align-items",
+        "observedValue": "center",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/layout/align",
+        "observedValue": "center",
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.structure.root-padding",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#root.paddingTop",
+        "observedValue": 96,
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/layout/padding",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/layout/padding"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.paddingTop=96"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.structure.container-gap",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Container.itemSpacing",
+        "observedValue": 32,
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/layout/gap",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/layout/gap"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Container\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Container.itemSpacing=32"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.content.titre",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2096:2524\",\"property\":\"Titre#2096:49\",\"textLayer\":\"2096:2526\",\"detail\":\"componentPropertyDefinitions.defaultValue et characters du calque TEXT sont identiques au défaut du contrat, octet pour octet (71 caractères, aucune apostrophe).\"}",
+        "observedValue": {
+          "nodeId": "2096:2524",
+          "property": "Titre#2096:49",
+          "textLayer": "2096:2526",
+          "detail": "componentPropertyDefinitions.defaultValue et characters du calque TEXT sont identiques au défaut du contrat, octet pour octet (71 caractères, aucune apostrophe)."
+        },
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/props/0/default",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.property.titre",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2096:2524\",\"property\":\"Titre#2096:49\",\"detail\":\"TEXT property, seule propriété de composant déclarée par le master.\"}",
+        "observedValue": {
+          "nodeId": "2096:2524",
+          "property": "Titre#2096:49",
+          "detail": "TEXT property, seule propriété de composant déclarée par le master."
+        },
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/props/0",
+        "observedValue": {
+          "name": "titre",
+          "type": "text",
+          "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+          "bindings": {
+            "figma": {
+              "kind": "TEXT",
+              "property": "Titre"
+            },
+            "code": {
+              "prop": "titre"
+            }
+          }
+        },
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
+        "observedValue": "PREUVE-013 — TITRE devis 4b91",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.composition.button",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2096:2527\",\"mainComponent\":\"6:135\",\"observedInstanceProperties\":{\"Libelle#2044:28\":\"Prendre rendez-vous\",\"Style\":\"Outline blanc\",\"Icone gauche#2024:0\":false,\"Icone droite#2024:7\":true,\"Glyphe gauche#2028:14\":\"6:99\",\"Glyphe droite#2028:21\":\"6:104\"}}",
+        "observedValue": {
+          "nodeId": "2096:2527",
+          "mainComponent": "6:135",
+          "observedInstanceProperties": {
+            "Libelle#2044:28": "Prendre rendez-vous",
+            "Style": "Outline blanc",
+            "Icone gauche#2024:0": false,
+            "Icone droite#2024:7": true,
+            "Glyphe gauche#2028:14": "6:99",
+            "Glyphe droite#2028:21": "6:104"
+          }
+        },
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component",
+        "observedValue": {
+          "id": "ds.button"
+        },
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.composition.button-libelle",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Bouton.Libelle",
+        "observedValue": "Prendre rendez-vous",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component/props/children",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/parts/Bouton/component/props/children"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__label\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.Libelle=\"Prendre rendez-vous\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.composition.button-style",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Bouton.Style",
+        "observedValue": "outlineBlanc",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component/props/variant",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/parts/Bouton/component/props/variant"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.Style=\"outlineBlanc\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.composition.button-icone-droite",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Bouton.iconRight",
+        "observedValue": true,
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.iconRight=true"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.root",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2096:2524\",\"export\":\"png@2x\",\"detail\":\"absoluteBoundingBox 1728×378 ; absoluteRenderBounds identique.\"}",
+        "observedValue": {
+          "nodeId": "2096:2524",
+          "export": "png@2x",
+          "detail": "absoluteBoundingBox 1728×378 ; absoluteRenderBounds identique."
+        },
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "Container": {
+              "layout": {
+                "direction": "column",
+                "align": "center"
+              },
+              "parts": {
+                "Titre": {
+                  "content": {
+                    "prop": "titre"
+                  },
+                  "tokens": {
+                    "color": "{color.blanc}"
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button"
+                  }
+                }
+              }
+            }
+          },
+          "tokens": {
+            "background-color": "{color.noir-bleute}",
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "comparison",
+      "reasons": [
+        "raw-over-threshold:81.49388227513228>2.5",
+        "region-over-budget:whole:81.49388227513228>2.5"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.root-background-image",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#root.fills[0].type",
+        "observedValue": "IMAGE",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/tokens/background-image",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/tokens/background-image"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.fills[0].type=\"IMAGE\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.root-scrim-color",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#root.fills[1].color",
+        "observedValue": "#000000",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/tokens/background-color",
+        "observedValue": "{color.noir-bleute}",
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-value-differs:root.fills[1].color:\"{color.noir-bleute}\"!=\"#000000\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.root-scrim-opacity",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#root.fills[1].opacity",
+        "observedValue": 0.3019607961177826,
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/tokens/background-overlay-opacity",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/tokens/background-overlay-opacity"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.fills[1].opacity=0.3019607961177826"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.titre-font-size",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Titre.font-size",
+        "observedValue": "40px",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/tokens/font-size",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/tokens/font-size"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Titre.font-size=\"40px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.titre-line-height",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Titre.line-height",
+        "observedValue": "50px",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/tokens/line-height",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/tokens/line-height"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Titre.line-height=\"50px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.titre-text-align",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Titre.text-align",
+        "observedValue": "center",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/tokens/text-align",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/tokens/text-align"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Titre.text-align=\"center\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.visual.titre-width",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2096:2524#Titre.width",
+        "observedValue": "900px",
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/layout/width",
+        "observedValue": null,
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/layout/width"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Titre.width=\"900px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "devis.semantic.titre-element",
+      "subjectId": "devis",
+      "caseId": "devis-master-defaults",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2096:2526\",\"detail\":\"TEXT layer « Titre », lié à la propriété Titre#2096:49 via componentPropertyReferences.characters.\"}",
+        "observedValue": {
+          "nodeId": "2096:2526",
+          "detail": "TEXT layer « Titre », lié à la propriété Titre#2096:49 via componentPropertyReferences.characters."
+        },
+        "sourceHash": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/content/prop",
+        "observedValue": "titre",
+        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
+        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "devis-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    }
+  ],
+  "cases": [
+    {
+      "id": "devis-master-defaults",
+      "subjectId": "devis",
+      "verdict": "fail",
+      "probative": true,
+      "reasons": [
+        "raw-over-threshold:81.49388227513228>2.5",
+        "region-over-budget:whole:81.49388227513228>2.5"
+      ],
+      "figma": {
+        "nodeId": "2096:2524",
+        "setNodeId": "2096:2524",
+        "fileVersion": "2381581871281042338",
+        "observedProperties": {
+          "Titre#2096:49": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+        },
+        "pngSha256": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+        "width": 3456,
+        "height": 756
+      },
+      "contract": {
+        "id": "ds.devis",
+        "version": "1.0.0",
+        "factIds": [
+          "devis.structure.root",
+          "devis.structure.container",
+          "devis.structure.root-flex-direction",
+          "devis.structure.root-align-items",
+          "devis.structure.root-padding",
+          "devis.structure.container-gap",
+          "devis.content.titre",
+          "devis.property.titre",
+          "devis.composition.button",
+          "devis.composition.button-libelle",
+          "devis.composition.button-style",
+          "devis.composition.button-icone-droite",
+          "devis.visual.root",
+          "devis.visual.root-background-image",
+          "devis.visual.root-scrim-color",
+          "devis.visual.root-scrim-opacity",
+          "devis.visual.titre-font-size",
+          "devis.visual.titre-line-height",
+          "devis.visual.titre-text-align",
+          "devis.visual.titre-width",
+          "devis.semantic.titre-element"
+        ],
+        "reactProps": {}
+      },
+      "generated": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "bundleSha256": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "harnessConfigSha256": "59014e9f5b1ab0013d0ee31d55d13c0206682fc9c469a6c9cf6e4b821d09f86f",
+        "fontsLoaded": true
+      },
+      "visibility": {
+        "figma": {
+          "signalPixels": 2575964,
+          "width": 3456,
+          "height": 756
+        },
+        "generated": {
+          "signalPixels": 501620,
+          "width": 3648,
+          "height": 339
+        },
+        "contrastOk": true
+      },
+      "geometry": {
+        "figmaRoot": {
+          "width": 3456,
+          "height": 756
+        },
+        "generatedRoot": {
+          "width": 3456,
+          "height": 147
+        },
+        "deltaPx": {
+          "width": 0,
+          "height": -609
+        },
+        "verdict": "fail"
+      },
+      "pixels": {
+        "rawPct": 81.49388227513228,
+        "maskedDiagnosticPct": 91.78154079620386,
+        "thresholdPct": 2.5,
+        "regions": [
+          {
+            "id": "whole",
+            "score": 81.49388227513228,
+            "maxDiffPct": 2.5,
+            "signalPixels": 501620
+          }
+        ],
+        "verdict": "fail"
+      },
+      "semantics": [
+        {
+          "id": "titre-element",
+          "selector": "[class*=\"Devis__Titre\"]",
+          "contractPointer": "/anatomy/root/parts/Container/parts/Titre/content/prop",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "bouton-label-derive-du-contrat-enfant",
+          "selector": "[class*=\"Button__label\"]",
+          "contractPointer": "/anatomy/root/parts/Container/parts/Bouton/component",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Contactez-nous"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Contactez-nous"
+          },
+          "verdict": "pass"
+        }
+      ],
+      "domProbes": [
+        {
+          "factId": "devis.property.titre",
+          "prop": "titre",
+          "probeValue": "PREUVE-013 — TITRE devis 4b91",
+          "observedDomValue": "PREUVE-013 — TITRE devis 4b91",
+          "projected": true
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "devis-master-defaults.figma",
+          "kind": "figma",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/figma.png",
+          "sha256": "586f840389330630a7627098e3cf92b9e8cc7b0854e6a85d5cfb3e5e184c0717",
+          "mediaType": "image/png",
+          "width": 3456,
+          "height": 756,
+          "bytes": 2929253
+        },
+        {
+          "id": "devis-master-defaults.generated",
+          "kind": "generated",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/generated.png",
+          "sha256": "05917fb23355e2dd190e11f469929fe078edd91c0e18e80479b6eb20340a40e6",
+          "mediaType": "image/png",
+          "width": 3456,
+          "height": 756,
+          "bytes": 46055
+        },
+        {
+          "id": "devis-master-defaults.diff",
+          "kind": "diff",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/diff.png",
+          "sha256": "ee9cea20223afe0b9b37224a58ff28bd98f607d0e986f406f61ec32af617ce4a",
+          "mediaType": "image/png",
+          "width": 3456,
+          "height": 756,
+          "bytes": 299947
+        },
+        {
+          "id": "devis-master-defaults.triptych",
+          "kind": "triptych",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/triptych.png",
+          "sha256": "e99a2141a4a5730028be6f19d3c2c8d03eab7e85d3503d17c74049d37b0b7e80",
+          "mediaType": "image/png",
+          "width": null,
+          "height": null,
+          "bytes": 3450482
+        },
+        {
+          "id": "devis-master-defaults.metadata",
+          "kind": "metadata",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/metadata.json",
+          "sha256": "7a164ddd08f69d071749e492b1e726263865a1a58ea2e8d0802e2cc8844cda3b",
+          "mediaType": "application/json",
+          "width": null,
+          "height": null,
+          "bytes": 3750
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "devis-master-defaults.figma",
+      "kind": "figma",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/figma.png",
+      "sha256": "586f840389330630a7627098e3cf92b9e8cc7b0854e6a85d5cfb3e5e184c0717",
+      "mediaType": "image/png",
+      "width": 3456,
+      "height": 756,
+      "bytes": 2929253
+    },
+    {
+      "id": "devis-master-defaults.generated",
+      "kind": "generated",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/generated.png",
+      "sha256": "05917fb23355e2dd190e11f469929fe078edd91c0e18e80479b6eb20340a40e6",
+      "mediaType": "image/png",
+      "width": 3456,
+      "height": 756,
+      "bytes": 46055
+    },
+    {
+      "id": "devis-master-defaults.diff",
+      "kind": "diff",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/diff.png",
+      "sha256": "ee9cea20223afe0b9b37224a58ff28bd98f607d0e986f406f61ec32af617ce4a",
+      "mediaType": "image/png",
+      "width": 3456,
+      "height": 756,
+      "bytes": 299947
+    },
+    {
+      "id": "devis-master-defaults.triptych",
+      "kind": "triptych",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/triptych.png",
+      "sha256": "e99a2141a4a5730028be6f19d3c2c8d03eab7e85d3503d17c74049d37b0b7e80",
+      "mediaType": "image/png",
+      "width": null,
+      "height": null,
+      "bytes": 3450482
+    },
+    {
+      "id": "devis-master-defaults.metadata",
+      "kind": "metadata",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/metadata.json",
+      "sha256": "7a164ddd08f69d071749e492b1e726263865a1a58ea2e8d0802e2cc8844cda3b",
+      "mediaType": "application/json",
+      "width": null,
+      "height": null,
+      "bytes": 3750
+    }
+  ],
+  "verdict": "divergent",
+  "reasons": [
+    "divergent-facts:13",
+    "failed-cases:1"
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "id": "sav-master-defaults",
+  "subjectId": "sav",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:42.20191070662791>2.5",
+    "region-over-budget:whole:42.20191070662791>2.5"
+  ],
+  "figma": {
+    "nodeId": "2108:3105",
+    "setNodeId": "2108:3105",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {
+      "Titre#2108:60": "Dépannage / SAV"
+    },
+    "pngSha256": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+    "width": 3100,
+    "height": 1354
+  },
+  "contract": {
+    "id": "ds.sav",
+    "version": "1.0.0",
+    "factIds": [
+      "sav.structure.root",
+      "sav.content.texte",
+      "sav.property.titre",
+      "sav.composition.section-header",
+      "sav.composition.button",
+      "sav.visual.root",
+      "sav.semantic.texte-element",
+      "sav.structure.gap-root",
+      "sav.structure.gap-inner",
+      "sav.visual.texte-font-size",
+      "sav.visual.texte-line-height",
+      "sav.visual.background-image",
+      "sav.visual.img-image",
+      "sav.composition.section-header-titre",
+      "sav.composition.section-header-accroche",
+      "sav.composition.section-header-accroche2",
+      "sav.composition.button-libelle",
+      "sav.composition.button-icon-right"
+    ],
+    "reactProps": {}
+  },
+  "generated": {
+    "componentFile": "src/components/SAV/SAV.tsx",
+    "export": "SAV",
+    "bundleSha256": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+    "harnessConfigSha256": "32cd31e276df3ef79abbfe906d8fbbd2c77fa3116aa21131a5fca745d9f4a562",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 2575702,
+      "width": 3100,
+      "height": 1354
+    },
+    "generated": {
+      "signalPixels": 396993,
+      "width": 3292,
+      "height": 544
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 3100,
+      "height": 1354
+    },
+    "generatedRoot": {
+      "width": 3100,
+      "height": 352
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": -1002
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 42.20191070662791,
+    "maskedDiagnosticPct": 37.96297137664698,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 42.20191070662791,
+        "maxDiffPct": 2.5,
+        "signalPixels": 396993
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "texte-element",
+      "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+      "contractPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+      },
+      "verdict": "fail"
+    },
+    {
+      "id": "titre-element",
+      "selector": "[class*=\"SectionHeader__Titre\"]",
+      "contractPointer": "/props/0/default",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Dépannage / SAV"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Dépannage / SAV"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "domProbes": [
+    {
+      "factId": "sav.property.titre",
+      "prop": "titre",
+      "probeValue": "PREUVE-013 — TITRE SAV b48e",
+      "observedDomValue": "Dépannage / SAV",
+      "projected": false
+    }
+  ],
+  "artifacts": []
+}

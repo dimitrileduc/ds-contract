@@ -1,0 +1,172 @@
+{
+  "id": "hero-master-defaults",
+  "subjectId": "hero",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:86.93381980613427>2.5",
+    "region-over-budget:whole:86.93381980613427>2.5"
+  ],
+  "figma": {
+    "nodeId": "2111:3382",
+    "setNodeId": "2111:3382",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {},
+    "pngSha256": "dfb4ac2b8fa2c582b2afd7237f9d8f35ae02dee891ed069a368aa628d84e3c0a",
+    "width": 3456,
+    "height": 1280
+  },
+  "contract": {
+    "id": "ds.hero",
+    "version": "1.0.0",
+    "factIds": [
+      "hero.structure.root",
+      "hero.property.aucune-propriete-exposee",
+      "hero.structure.bloc-texte",
+      "hero.structure.titres",
+      "hero.structure.wrapper",
+      "hero.content.sous-titre",
+      "hero.semantic.sous-titre-element",
+      "hero.composition.section-header",
+      "hero.composition.button",
+      "hero.visual.root",
+      "hero.structure.gap-root",
+      "hero.structure.gap-bloc-texte",
+      "hero.structure.gap-titres",
+      "hero.structure.gap-wrapper",
+      "hero.structure.padding-titres-top",
+      "hero.structure.padding-titres-bottom",
+      "hero.structure.padding-titres-left",
+      "hero.structure.padding-titres-right",
+      "hero.structure.root-height",
+      "hero.structure.sous-titre-grow",
+      "hero.structure.section-header-fill",
+      "hero.visual.sous-titre-font-size",
+      "hero.visual.sous-titre-line-height",
+      "hero.visual.root-image-fill",
+      "hero.visual.root-gradient-overlay",
+      "hero.visual.titres-gradient",
+      "hero.composition.section-header-titre",
+      "hero.composition.section-header-accroche",
+      "hero.composition.section-header-disposition",
+      "hero.composition.section-header-accroche2",
+      "hero.visual.section-header-titre-color",
+      "hero.visual.section-header-titre-font-size",
+      "hero.visual.section-header-titre-line-height",
+      "hero.visual.section-header-titre-font-weight",
+      "hero.composition.button-libelle",
+      "hero.composition.button-variant",
+      "hero.composition.button-icone-droite"
+    ],
+    "reactProps": {}
+  },
+  "generated": {
+    "componentFile": "src/components/Hero/Hero.tsx",
+    "export": "Hero",
+    "bundleSha256": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+    "harnessConfigSha256": "3ab7405c66bcf8d707626557f4ecea39ee1771f0dbc86e5a97f7a474577c2c17",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 4349312,
+      "width": 3456,
+      "height": 1280
+    },
+    "generated": {
+      "signalPixels": 73453,
+      "width": 3648,
+      "height": 466
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 3456,
+      "height": 1280
+    },
+    "generatedRoot": {
+      "width": 3456,
+      "height": 274
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": -1006
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 86.93381980613427,
+    "maskedDiagnosticPct": 86.51637766273286,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 86.93381980613427,
+        "maxDiffPct": 2.5,
+        "signalPixels": 73453
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "sous-titre-element",
+      "selector": "[class*=\"Hero__sousTitre\"]",
+      "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/text",
+      "expected": {
+        "tag": "span",
+        "textEquals": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale."
+      },
+      "observed": {
+        "tag": "span",
+        "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale."
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "section-header-titre",
+      "selector": "[class*=\"SectionHeader__Titre\"]",
+      "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/titre",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Portes de garage industrielles"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Portes de garage industrielles"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "section-header-accroche-rendue",
+      "selector": "[class*=\"SectionHeader__Accroche\"]",
+      "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Plus de 50 ans d’expérience"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Plus de 50 ans d’expérience"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "button-libelle-defaut-de-l-enfant",
+      "selector": "[class*=\"Button__root\"]",
+      "contractPointer": "/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component",
+      "expected": {
+        "tag": "button",
+        "textEquals": "Contactez-nous"
+      },
+      "observed": {
+        "tag": "button",
+        "text": "Contactez-nous"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "domProbes": [],
+  "artifacts": []
+}

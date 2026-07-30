@@ -1,0 +1,138 @@
+{
+  "id": "devis-master-defaults",
+  "subjectId": "devis",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:81.49388227513228>2.5",
+    "region-over-budget:whole:81.49388227513228>2.5"
+  ],
+  "figma": {
+    "nodeId": "2096:2524",
+    "setNodeId": "2096:2524",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {
+      "Titre#2096:49": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+    },
+    "pngSha256": "18ca822d3e732150842410006638da57bd6496a711b22a7d5bfdf46c2426e3d7",
+    "width": 3456,
+    "height": 756
+  },
+  "contract": {
+    "id": "ds.devis",
+    "version": "1.0.0",
+    "factIds": [
+      "devis.structure.root",
+      "devis.structure.container",
+      "devis.structure.root-flex-direction",
+      "devis.structure.root-align-items",
+      "devis.structure.root-padding",
+      "devis.structure.container-gap",
+      "devis.content.titre",
+      "devis.property.titre",
+      "devis.composition.button",
+      "devis.composition.button-libelle",
+      "devis.composition.button-style",
+      "devis.composition.button-icone-droite",
+      "devis.visual.root",
+      "devis.visual.root-background-image",
+      "devis.visual.root-scrim-color",
+      "devis.visual.root-scrim-opacity",
+      "devis.visual.titre-font-size",
+      "devis.visual.titre-line-height",
+      "devis.visual.titre-text-align",
+      "devis.visual.titre-width",
+      "devis.semantic.titre-element"
+    ],
+    "reactProps": {}
+  },
+  "generated": {
+    "componentFile": "src/components/Devis/Devis.tsx",
+    "export": "Devis",
+    "bundleSha256": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+    "harnessConfigSha256": "59014e9f5b1ab0013d0ee31d55d13c0206682fc9c469a6c9cf6e4b821d09f86f",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 2575964,
+      "width": 3456,
+      "height": 756
+    },
+    "generated": {
+      "signalPixels": 501620,
+      "width": 3648,
+      "height": 339
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 3456,
+      "height": 756
+    },
+    "generatedRoot": {
+      "width": 3456,
+      "height": 147
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": -609
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 81.49388227513228,
+    "maskedDiagnosticPct": 91.78154079620386,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 81.49388227513228,
+        "maxDiffPct": 2.5,
+        "signalPixels": 501620
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "titre-element",
+      "selector": "[class*=\"Devis__Titre\"]",
+      "contractPointer": "/anatomy/root/parts/Container/parts/Titre/content/prop",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "bouton-label-derive-du-contrat-enfant",
+      "selector": "[class*=\"Button__label\"]",
+      "contractPointer": "/anatomy/root/parts/Container/parts/Bouton/component",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Contactez-nous"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Contactez-nous"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "domProbes": [
+    {
+      "factId": "devis.property.titre",
+      "prop": "titre",
+      "probeValue": "PREUVE-013 — TITRE devis 4b91",
+      "observedDomValue": "PREUVE-013 — TITRE devis 4b91",
+      "projected": true
+    }
+  ],
+  "artifacts": []
+}

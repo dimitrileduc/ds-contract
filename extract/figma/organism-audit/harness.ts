@@ -53,7 +53,16 @@ export { chromiumExecutable };
  */
 const CLIP_MARGIN = 48;
 
-/** Layout width the organism is measured at, in CSS px (pre-zoom). */
+/**
+ * FLOOR for the layout width, in CSS px (pre-zoom) — not a fixed viewport.
+ *
+ * The Piqueray organisms are full-page sections: most masters are 1728 px wide,
+ * `sav` is 1550.  A fixed 1600 px viewport clipped every one of them, and the
+ * harness (correctly) refused rather than photographing a truncated organism.
+ * The effective width is therefore derived from the pinned Figma root plus the
+ * clip margin on both sides, and only falls back to this floor when no
+ * reference width is supplied.
+ */
 const VIEWPORT_CSS_WIDTH = 1600;
 /** Starting viewport height in CSS px; grown, never silently truncated. */
 const VIEWPORT_CSS_HEIGHT = 1200;
@@ -622,8 +631,15 @@ export async function renderHarnessCase(input: {
   const consoleErrors: string[] = [];
   const browser = await launchBrowser();
   try {
+    // The organism must fit its own layout width plus the clip margin on both
+    // sides, or the painted box overflows the viewport and the capture is
+    // refused.  Derived from the reference, never from a convenient constant.
+    const viewportCssWidth =
+      input.rootWidthCss === undefined
+        ? VIEWPORT_CSS_WIDTH
+        : Math.max(VIEWPORT_CSS_WIDTH, Math.ceil(input.rootWidthCss) + CLIP_MARGIN * 2);
     const page = await browser.newPage(
-      campaignCapturePageOptions({ width: VIEWPORT_CSS_WIDTH, height: VIEWPORT_CSS_HEIGHT }, scale),
+      campaignCapturePageOptions({ width: viewportCssWidth, height: VIEWPORT_CSS_HEIGHT }, scale),
     );
     // Attached before navigation: an error thrown while the entry module
     // evaluates is exactly the one worth catching.

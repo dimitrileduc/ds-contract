@@ -1,0 +1,160 @@
+{
+  "id": "texte-seo-master-defaults",
+  "subjectId": "texte-seo",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:4.7389954918240385>2.5",
+    "region-over-budget:whole:4.7389954918240385>2.5"
+  ],
+  "figma": {
+    "nodeId": "2108:3123",
+    "setNodeId": "2108:3123",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {},
+    "pngSha256": "f917774e723372ac35efc83fe48b967e6d939c923003c58eb06d4f800f63b3be",
+    "width": 3456,
+    "height": 766
+  },
+  "contract": {
+    "id": "ds.texte-seo",
+    "version": "1.0.0",
+    "factIds": [
+      "texte-seo.structure.root",
+      "texte-seo.structure.h2",
+      "texte-seo.structure.p",
+      "texte-seo.structure.h3",
+      "texte-seo.structure.accordion",
+      "texte-seo.structure.gap-root",
+      "texte-seo.structure.padding-inline-root",
+      "texte-seo.structure.width-root",
+      "texte-seo.content.paragraphe",
+      "texte-seo.content.sous-titre",
+      "texte-seo.composition.section-header",
+      "texte-seo.content.section-header-titre",
+      "texte-seo.content.section-header-accroche",
+      "texte-seo.content.section-header-disposition",
+      "texte-seo.composition.section-header-accroche2",
+      "texte-seo.content.section-header-titre-rich-text",
+      "texte-seo.visual.section-header-titre-font-size",
+      "texte-seo.visual.section-header-titre-line-height",
+      "texte-seo.visual.paragraphe-font-size",
+      "texte-seo.visual.paragraphe-line-height",
+      "texte-seo.visual.sous-titre-font-size",
+      "texte-seo.visual.sous-titre-line-height",
+      "texte-seo.visual.sous-titre-font-weight",
+      "texte-seo.visual.paragraphe-color",
+      "texte-seo.visual.sous-titre-color",
+      "texte-seo.visual.root-font-family",
+      "texte-seo.property.items",
+      "texte-seo.property.items-default",
+      "texte-seo.composition.accordion-row",
+      "texte-seo.composition.accordion-repeat",
+      "texte-seo.property.accordion-row-taille",
+      "texte-seo.content.accordion-row-1-titre",
+      "texte-seo.content.accordion-row-2-titre",
+      "texte-seo.content.accordion-row-3-titre",
+      "texte-seo.content.accordion-row-2-contenu",
+      "texte-seo.structure.accordion-row-2-etat",
+      "texte-seo.visual.root",
+      "texte-seo.semantic.paragraphe-element",
+      "texte-seo.semantic.sous-titre-element"
+    ],
+    "reactProps": {}
+  },
+  "generated": {
+    "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+    "export": "TexteSEO",
+    "bundleSha256": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+    "harnessConfigSha256": "d6d969ef1fda804f51c41c527118fcb95b8bf4b5c61456dc244398ca6e03980d",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 116120,
+      "width": 3456,
+      "height": 766
+    },
+    "generated": {
+      "signalPixels": 109702,
+      "width": 3648,
+      "height": 514
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 3456,
+      "height": 766
+    },
+    "generatedRoot": {
+      "width": 3456,
+      "height": 322
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": -444
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 4.7389954918240385,
+    "maskedDiagnosticPct": 3.663320217212763,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 4.7389954918240385,
+        "maxDiffPct": 2.5,
+        "signalPixels": 109702
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "paragraphe-element",
+      "selector": "[class*=\"TexteSEO__Paragraphe\"]",
+      "contractPointer": "/anatomy/root/parts/p/parts/Paragraphe/text",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "sous-titre-element",
+      "selector": "[class*=\"TexteSEO__SousTitre\"]",
+      "contractPointer": "/anatomy/root/parts/h3/parts/SousTitre/text",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Infos pratiques"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Infos pratiques"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "section-header-titre",
+      "selector": "[class*=\"SectionHeader__Titre\"]",
+      "contractPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Visitez notre showroom à Pepinster ou contactez-nous"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Visitez notre showroom à Pepinster ou contactez-nous"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "domProbes": [],
+  "artifacts": []
+}

@@ -330,7 +330,7 @@ lire le code source.
 
 ### Implémentation for User Story 1
 
-- [ ] T029 [US1] Déclarer dans `contracts/audit-campaign.json` les `requiredFactIds` et
+- [X] T029 [US1] Déclarer dans `contracts/audit-campaign.json` les `requiredFactIds` et
       les `cases` des six sujets de la vague 1 : chaque cas cite un **node d'occurrence
       Figma réel** de la version pinée (aucun node muté, aucune variante inventée), ses
       `observedProperties` relues, ses `reactProps` valides contre le contrat, ses
@@ -344,28 +344,28 @@ lire le code source.
       `docs/FIGMA-CAPABILITY-MATRIX.md` via auggie (§IX — dégradation levée le
       2026-07-30), jamais ré-dérivée depuis le code. Les `knownLimits` du sujet (T023) se
       retrouvent ici en faits `limited` **déclarés**, pas en surprises de capture.
-- [ ] T030 [US1] Exécuter `npm run audit:organisms -- --campaign <manifeste> --out <proofs>
+- [X] T030 [US1] Exécuter `npm run audit:organisms -- --campaign <manifeste> --out <proofs>
       --inventory --wave 1` jusqu'à `missing == []` et `unexpected == []` pour les six
       sujets ; vérifier via le `jq` du quickstart §2. Un trou de couverture se **comble
       dans la déclaration**, jamais en retirant le fait de la liste attendue.
-- [ ] T031 [P] [US1] Auditer `coordonnees` (`ds.coordonnees@1.0.0`, node `2104:2904`) :
+- [X] T031 [P] [US1] Auditer `coordonnees` (`ds.coordonnees@1.0.0`, node `2104:2904`) :
       `--wave 1 --refresh`, puis classifier et écrire le dossier complet
       `proofs/organisms/coordonnees/` (result.json, REPORT.md, 5 artefacts par cas). Tout
       constat relevant d'une conversion littéral→token ou d'une fondation de tokens est
       enregistré comme `DeferredWorkItem` avec son `verdictImpact` — **jamais** converti
       en pass.
-- [ ] T032 [P] [US1] Auditer `devis` (`ds.devis@1.0.0`, node `2096:2524`) — même protocole
+- [X] T032 [P] [US1] Auditer `devis` (`ds.devis@1.0.0`, node `2096:2524`) — même protocole
       et même règle de travail reporté que T031 ; dossier `proofs/organisms/devis/`.
-- [ ] T033 [P] [US1] Auditer `hero` (`ds.hero@1.0.0`, node `2111:3382`) — même protocole ;
+- [X] T033 [P] [US1] Auditer `hero` (`ds.hero@1.0.0`, node `2111:3382`) — même protocole ;
       dossier `proofs/organisms/hero/`. Porte des faits image : la jambe générée doit
       décoder l'asset, avoir une taille naturelle et des pixels visibles, sinon le fait
       n'est pas prouvé (D10).
-- [ ] T034 [P] [US1] Auditer `presentation` (`ds.presentation@1.0.0`, node `2103:2824`) —
+- [X] T034 [P] [US1] Auditer `presentation` (`ds.presentation@1.0.0`, node `2103:2824`) —
       même protocole ; dossier `proofs/organisms/presentation/`. Le quickstart §7 en fait
       son exemple de chaîne complète : ce dossier doit être inspectable de bout en bout.
-- [ ] T035 [P] [US1] Auditer `sav` (`ds.sav@1.0.0`, node `2108:3105`) — même protocole ;
+- [X] T035 [P] [US1] Auditer `sav` (`ds.sav@1.0.0`, node `2108:3105`) — même protocole ;
       dossier `proofs/organisms/sav/`. Porte également des faits image (D10).
-- [ ] T036 [P] [US1] Auditer `texte-seo` (`ds.texte-seo@1.0.0`, node `2108:3123`) — même
+- [X] T036 [P] [US1] Auditer `texte-seo` (`ds.texte-seo@1.0.0`, node `2108:3123`) — même
       protocole ; dossier `proofs/organisms/texte-seo/`.
 - [ ] T037 [US1] **Conditionnel** — remédiation locale bornée (D11) pour toute divergence
       de la vague 1 dont la source est localisée ET dans le périmètre : (1) conserver le
@@ -380,7 +380,7 @@ lire le code source.
       `figma-sync/plugin/engine.receipt.json` (`npm run plugin:check`), (6) réauditer
       l'organisme et conserver initial **et** final dans le dossier. Toute correction non
       locale devient un `DeferredWorkItem` — arrêt, pas d'élargissement de périmètre.
-- [ ] T038 [US1] Reçu de classification de la vague 1 dans `proofs/organisms/` +
+- [X] T038 [US1] Reçu de classification de la vague 1 dans `proofs/organisms/` +
       `waves[0]` du résultat : les six sujets ont un verdict final **honnête** (pas
       nécessairement positif), `classified: true`. Un fait rouge n'est jamais omis pour
       laisser la vague finir (quickstart §4).

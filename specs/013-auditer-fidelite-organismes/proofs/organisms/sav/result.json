@@ -1,0 +1,1198 @@
+{
+  "id": "sav",
+  "displayName": "SAV",
+  "wave": 1,
+  "contract": {
+    "id": "ds.sav",
+    "version": "1.0.0",
+    "path": "contracts/sav.contract.json"
+  },
+  "figmaSetNodeId": "2108:3105",
+  "coverage": {
+    "expected": [
+      "sav.composition.button",
+      "sav.composition.button-icon-right",
+      "sav.composition.button-libelle",
+      "sav.composition.section-header",
+      "sav.composition.section-header-accroche",
+      "sav.composition.section-header-accroche2",
+      "sav.composition.section-header-titre",
+      "sav.content.texte",
+      "sav.property.titre",
+      "sav.semantic.texte-element",
+      "sav.structure.gap-inner",
+      "sav.structure.gap-root",
+      "sav.structure.root",
+      "sav.visual.background-image",
+      "sav.visual.img-image",
+      "sav.visual.root",
+      "sav.visual.texte-font-size",
+      "sav.visual.texte-line-height"
+    ],
+    "observed": [
+      "sav.composition.button",
+      "sav.composition.button-icon-right",
+      "sav.composition.button-libelle",
+      "sav.composition.section-header",
+      "sav.composition.section-header-accroche",
+      "sav.composition.section-header-accroche2",
+      "sav.composition.section-header-titre",
+      "sav.content.texte",
+      "sav.property.titre",
+      "sav.semantic.texte-element",
+      "sav.structure.gap-inner",
+      "sav.structure.gap-root",
+      "sav.structure.root",
+      "sav.visual.background-image",
+      "sav.visual.img-image",
+      "sav.visual.root",
+      "sav.visual.texte-font-size",
+      "sav.visual.texte-line-height"
+    ],
+    "missing": [],
+    "unexpected": []
+  },
+  "dependency": null,
+  "facts": [
+    {
+      "id": "sav.structure.root",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3105\",\"detail\":\"COMPONENT root > section 2169:6222 > [background 2108:3094, row 2169:6200 > [wrapper 2169:6188 > [WrapperBackground 2108:3100, inner 2108:3101 > [SectionHeader 2169:6258, Texte 2108:3103, Bouton 2108:3104]], img-group 2169:5846 > [ImgGroupBackground 2108:3097, img 2108:3098]]]\"}",
+        "observedValue": {
+          "nodeId": "2108:3105",
+          "detail": "COMPONENT root > section 2169:6222 > [background 2108:3094, row 2169:6200 > [wrapper 2169:6188 > [WrapperBackground 2108:3100, inner 2108:3101 > [SectionHeader 2169:6258, Texte 2108:3103, Bouton 2108:3104]], img-group 2169:5846 > [ImgGroupBackground 2108:3097, img 2108:3098]]]"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "parts": {
+            "section": {
+              "parts": {
+                "background": {},
+                "row": {
+                  "layout": {
+                    "direction": "row"
+                  },
+                  "parts": {
+                    "wrapper": {
+                      "parts": {
+                        "WrapperBackground": {
+                          "tokens": {
+                            "background-color": "{color.blanc}"
+                          }
+                        },
+                        "inner": {
+                          "layout": {
+                            "direction": "column",
+                            "align": "stretch"
+                          },
+                          "parts": {
+                            "SectionHeader": {
+                              "component": {
+                                "id": "ds.section-header",
+                                "props": {
+                                  "titre": "Dépannage / SAV",
+                                  "accroche": "Plus de 50 ans d’expérience",
+                                  "disposition": "standard"
+                                }
+                              }
+                            },
+                            "vousRencontrezUnProblmeA": {
+                              "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                              "tokens": {
+                                "color": "{color.noir}"
+                              }
+                            },
+                            "Bouton": {
+                              "component": {
+                                "id": "ds.button"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "imgGroup": {
+                      "parts": {
+                        "ImgGroupBackground": {
+                          "tokens": {
+                            "background-color": "{color.bleu-clair}"
+                          }
+                        },
+                        "img": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__root\"]",
+        "observedValue": "Plus de 50 ans d’expérienceDépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Contactez-nous",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.content.texte",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3103\",\"property\":\"characters\",\"textLayer\":\"2108:3103\"}",
+        "observedValue": {
+          "nodeId": "2108:3103",
+          "property": "characters",
+          "textLayer": "2108:3103"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.property.titre",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3105\",\"property\":\"Titre#2108:60\"}",
+        "observedValue": {
+          "nodeId": "2108:3105",
+          "property": "Titre#2108:60"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/props/0",
+        "observedValue": {
+          "name": "titre",
+          "type": "text",
+          "default": "Dépannage / SAV",
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass).",
+          "bindings": {
+            "figma": {
+              "kind": "TEXT",
+              "property": "Titre"
+            },
+            "code": {
+              "prop": "titre"
+            }
+          }
+        },
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "generated",
+      "reasons": [
+        "probe-not-projected:child-renders-a-literal"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2169:6258\",\"mainComponent\":\"2090:2385\",\"observedInstanceProperties\":{\"Accroche2#2169:64\":false,\"Titre#2090:47\":\"Dépannage / SAV\",\"Accroche#2090:46\":\"Plus de 50 ans d’expérience\",\"Disposition\":\"Standard\"}}",
+        "observedValue": {
+          "nodeId": "2169:6258",
+          "mainComponent": "2090:2385",
+          "observedInstanceProperties": {
+            "Accroche2#2169:64": false,
+            "Titre#2090:47": "Dépannage / SAV",
+            "Accroche#2090:46": "Plus de 50 ans d’expérience",
+            "Disposition": "Standard"
+          }
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component",
+        "observedValue": {
+          "id": "ds.section-header",
+          "props": {
+            "titre": "Dépannage / SAV",
+            "accroche": "Plus de 50 ans d’expérience",
+            "disposition": "standard"
+          }
+        },
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__root\"]",
+        "observedValue": "Plus de 50 ans d’expérienceDépannage / SAV",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.button",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3104\",\"mainComponent\":\"6:107\",\"observedInstanceProperties\":{\"Libelle#2044:28\":\"Demander de l’aide\",\"Style\":\"Default\",\"Icone droite#2024:7\":true,\"Icone gauche#2024:0\":false}}",
+        "observedValue": {
+          "nodeId": "2108:3104",
+          "mainComponent": "6:107",
+          "observedInstanceProperties": {
+            "Libelle#2044:28": "Demander de l’aide",
+            "Style": "Default",
+            "Icone droite#2024:7": true,
+            "Icone gauche#2024:0": false
+          }
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component",
+        "observedValue": {
+          "id": "ds.button"
+        },
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.root",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3105\",\"export\":\"png@2x\"}",
+        "observedValue": {
+          "nodeId": "2108:3105",
+          "export": "png@2x"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "parts": {
+            "section": {
+              "parts": {
+                "background": {},
+                "row": {
+                  "layout": {
+                    "direction": "row"
+                  },
+                  "parts": {
+                    "wrapper": {
+                      "parts": {
+                        "WrapperBackground": {
+                          "tokens": {
+                            "background-color": "{color.blanc}"
+                          }
+                        },
+                        "inner": {
+                          "layout": {
+                            "direction": "column",
+                            "align": "stretch"
+                          },
+                          "parts": {
+                            "SectionHeader": {
+                              "component": {
+                                "id": "ds.section-header",
+                                "props": {
+                                  "titre": "Dépannage / SAV",
+                                  "accroche": "Plus de 50 ans d’expérience",
+                                  "disposition": "standard"
+                                }
+                              }
+                            },
+                            "vousRencontrezUnProblmeA": {
+                              "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                              "tokens": {
+                                "color": "{color.noir}"
+                              }
+                            },
+                            "Bouton": {
+                              "component": {
+                                "id": "ds.button"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "imgGroup": {
+                      "parts": {
+                        "ImgGroupBackground": {
+                          "tokens": {
+                            "background-color": "{color.bleu-clair}"
+                          }
+                        },
+                        "img": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__root\"]",
+        "observedValue": "Plus de 50 ans d’expérienceDépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Contactez-nous",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "comparison",
+      "reasons": [
+        "raw-over-threshold:42.20191070662791>2.5",
+        "region-over-budget:whole:42.20191070662791>2.5"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.semantic.texte-element",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3103\",\"detail\":\"TEXT layer, 2 paragraphes separes par un saut de ligne dur\"}",
+        "observedValue": {
+          "nodeId": "2108:3103",
+          "detail": "TEXT layer, 2 paragraphes separes par un saut de ligne dur"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA",
+        "observedValue": {
+          "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+          "tokens": {
+            "color": "{color.noir}"
+          }
+        },
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.structure.gap-root",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#root.itemSpacing",
+        "observedValue": 10,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/layout/gap",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/layout/gap"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__root\"]",
+        "observedValue": "Plus de 50 ans d’expérienceDépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Contactez-nous",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.itemSpacing=10"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.structure.gap-inner",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#inner.itemSpacing",
+        "observedValue": 32,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/layout/gap",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/layout/gap"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__inner\"]",
+        "observedValue": "Plus de 50 ans d’expérienceDépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Contactez-nous",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:inner.itemSpacing=32"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.texte-font-size",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#vousRencontrezUnProblmeA.font-size",
+        "observedValue": "18px",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/font-size",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/font-size"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:vousRencontrezUnProblmeA.font-size=\"18px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.texte-line-height",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#vousRencontrezUnProblmeA.line-height",
+        "observedValue": "27px",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/line-height",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/line-height"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:vousRencontrezUnProblmeA.line-height=\"27px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.background-image",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figma": {
+        "reference": "2108:3105#background.fills[0].imageRef",
+        "observedValue": "3e173874828861c294938a12deea5a5a7a1799dd",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/background/tokens/background-image",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/background/tokens/background-image"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__background\"]",
+        "observedValue": null,
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:background.fills[0].imageRef=\"3e173874828861c294938a12deea5a5a7a1799dd\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.img-image",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figma": {
+        "reference": "2108:3105#img.fills[0].imageRef",
+        "observedValue": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/tokens/background-image",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/tokens/background-image"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__img\"]",
+        "observedValue": "",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:img.fills[0].imageRef=\"429c615cb090b3aa0800188acda4bc59cc6445b0\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header-titre",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#SectionHeader.Titre",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/titre",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header-accroche",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#SectionHeader.Accroche",
+        "observedValue": "Plus de 50 ans d’expérience",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche",
+        "observedValue": "Plus de 50 ans d’expérience",
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": "Plus de 50 ans d’expérience",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header-accroche2",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#SectionHeader.Accroche2",
+        "observedValue": false,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche2",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche2"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": "Plus de 50 ans d’expérience",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:SectionHeader.Accroche2=false"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.button-libelle",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#Bouton.Libelle",
+        "observedValue": "Demander de l’aide",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/children",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/children"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.Libelle=\"Demander de l’aide\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.button-icon-right",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#Bouton.Icone droite",
+        "observedValue": true,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.0.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/iconRight",
+        "observedValue": null,
+        "sourceHash": "fecc468dd41715b72c219c10eb647521f2f923adea19d302abc307f9b51242c8",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/iconRight"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.Icone droite=true"
+      ],
+      "deferredWorkId": null
+    }
+  ],
+  "cases": [
+    {
+      "id": "sav-master-defaults",
+      "subjectId": "sav",
+      "verdict": "fail",
+      "probative": true,
+      "reasons": [
+        "raw-over-threshold:42.20191070662791>2.5",
+        "region-over-budget:whole:42.20191070662791>2.5"
+      ],
+      "figma": {
+        "nodeId": "2108:3105",
+        "setNodeId": "2108:3105",
+        "fileVersion": "2381581871281042338",
+        "observedProperties": {
+          "Titre#2108:60": "Dépannage / SAV"
+        },
+        "pngSha256": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "width": 3100,
+        "height": 1354
+      },
+      "contract": {
+        "id": "ds.sav",
+        "version": "1.0.0",
+        "factIds": [
+          "sav.structure.root",
+          "sav.content.texte",
+          "sav.property.titre",
+          "sav.composition.section-header",
+          "sav.composition.button",
+          "sav.visual.root",
+          "sav.semantic.texte-element",
+          "sav.structure.gap-root",
+          "sav.structure.gap-inner",
+          "sav.visual.texte-font-size",
+          "sav.visual.texte-line-height",
+          "sav.visual.background-image",
+          "sav.visual.img-image",
+          "sav.composition.section-header-titre",
+          "sav.composition.section-header-accroche",
+          "sav.composition.section-header-accroche2",
+          "sav.composition.button-libelle",
+          "sav.composition.button-icon-right"
+        ],
+        "reactProps": {}
+      },
+      "generated": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "bundleSha256": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+        "harnessConfigSha256": "32cd31e276df3ef79abbfe906d8fbbd2c77fa3116aa21131a5fca745d9f4a562",
+        "fontsLoaded": true
+      },
+      "visibility": {
+        "figma": {
+          "signalPixels": 2575702,
+          "width": 3100,
+          "height": 1354
+        },
+        "generated": {
+          "signalPixels": 396993,
+          "width": 3292,
+          "height": 544
+        },
+        "contrastOk": true
+      },
+      "geometry": {
+        "figmaRoot": {
+          "width": 3100,
+          "height": 1354
+        },
+        "generatedRoot": {
+          "width": 3100,
+          "height": 352
+        },
+        "deltaPx": {
+          "width": 0,
+          "height": -1002
+        },
+        "verdict": "fail"
+      },
+      "pixels": {
+        "rawPct": 42.20191070662791,
+        "maskedDiagnosticPct": 37.96297137664698,
+        "thresholdPct": 2.5,
+        "regions": [
+          {
+            "id": "whole",
+            "score": 42.20191070662791,
+            "maxDiffPct": 2.5,
+            "signalPixels": 396993
+          }
+        ],
+        "verdict": "fail"
+      },
+      "semantics": [
+        {
+          "id": "texte-element",
+          "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+          "contractPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+          },
+          "verdict": "fail"
+        },
+        {
+          "id": "titre-element",
+          "selector": "[class*=\"SectionHeader__Titre\"]",
+          "contractPointer": "/props/0/default",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Dépannage / SAV"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Dépannage / SAV"
+          },
+          "verdict": "pass"
+        }
+      ],
+      "domProbes": [
+        {
+          "factId": "sav.property.titre",
+          "prop": "titre",
+          "probeValue": "PREUVE-013 — TITRE SAV b48e",
+          "observedDomValue": "Dépannage / SAV",
+          "projected": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "sav-master-defaults.figma",
+          "kind": "figma",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/figma.png",
+          "sha256": "316b6717cf2e7a189e30d857fd4b421205e7e2f947e03503ad8ecc6fadf40737",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 1354,
+          "bytes": 2729161
+        },
+        {
+          "id": "sav-master-defaults.generated",
+          "kind": "generated",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/generated.png",
+          "sha256": "73e358c31aeb8b24933478be51bdfb77fae24cbdbcae467f319d8e0b40d8645c",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 1354,
+          "bytes": 168626
+        },
+        {
+          "id": "sav-master-defaults.diff",
+          "kind": "diff",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/diff.png",
+          "sha256": "191081e2e7d83e60daab821462f135bda75bb0edca5c01d212f5c723d5d9484f",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 1354,
+          "bytes": 315170
+        },
+        {
+          "id": "sav-master-defaults.triptych",
+          "kind": "triptych",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/triptych.png",
+          "sha256": "d6c8b810543d72ef357944506ab887240e5b4bcbc41170ded8d1f61b2a6ce269",
+          "mediaType": "image/png",
+          "width": null,
+          "height": null,
+          "bytes": 3424325
+        },
+        {
+          "id": "sav-master-defaults.metadata",
+          "kind": "metadata",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/metadata.json",
+          "sha256": "ce3bcf7c41d8a719085a57ef4576fea872def3bbfd78ea832d7a7264dcbab251",
+          "mediaType": "application/json",
+          "width": null,
+          "height": null,
+          "bytes": 4076
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "sav-master-defaults.figma",
+      "kind": "figma",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/figma.png",
+      "sha256": "316b6717cf2e7a189e30d857fd4b421205e7e2f947e03503ad8ecc6fadf40737",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 1354,
+      "bytes": 2729161
+    },
+    {
+      "id": "sav-master-defaults.generated",
+      "kind": "generated",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/generated.png",
+      "sha256": "73e358c31aeb8b24933478be51bdfb77fae24cbdbcae467f319d8e0b40d8645c",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 1354,
+      "bytes": 168626
+    },
+    {
+      "id": "sav-master-defaults.diff",
+      "kind": "diff",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/diff.png",
+      "sha256": "191081e2e7d83e60daab821462f135bda75bb0edca5c01d212f5c723d5d9484f",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 1354,
+      "bytes": 315170
+    },
+    {
+      "id": "sav-master-defaults.triptych",
+      "kind": "triptych",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/triptych.png",
+      "sha256": "d6c8b810543d72ef357944506ab887240e5b4bcbc41170ded8d1f61b2a6ce269",
+      "mediaType": "image/png",
+      "width": null,
+      "height": null,
+      "bytes": 3424325
+    },
+    {
+      "id": "sav-master-defaults.metadata",
+      "kind": "metadata",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/metadata.json",
+      "sha256": "ce3bcf7c41d8a719085a57ef4576fea872def3bbfd78ea832d7a7264dcbab251",
+      "mediaType": "application/json",
+      "width": null,
+      "height": null,
+      "bytes": 4076
+    }
+  ],
+  "verdict": "divergent",
+  "reasons": [
+    "divergent-facts:11",
+    "failed-cases:1"
+  ]
+}
