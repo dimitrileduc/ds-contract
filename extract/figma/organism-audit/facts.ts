@@ -19,6 +19,61 @@
 import type { FactOutcome, LocalizedSource } from './verdict.js';
 
 // ---------------------------------------------------------------------------
+// Contract pin
+// ---------------------------------------------------------------------------
+
+export interface ContractPinInput {
+  subject: { id: string; contractId: string; contractVersion: string };
+  contract: { id?: unknown; version?: unknown };
+}
+
+export interface ContractPinVerdict {
+  ok: boolean;
+  reasons: string[];
+}
+
+/**
+ * The manifest DECLARES which contract version a dossier audits; only the file
+ * on disk can confirm it.  When the two disagree the audit still runs — every
+ * JSON Pointer resolves against the parsed contract — and the dossier is then
+ * signed `ds.coordonnees@2.1.0` while having measured 2.2.0.  Nothing is red
+ * and nothing is missing; the receipt is simply false, which is worse than a
+ * refusal.
+ *
+ * The CLI catches this in `verifyAgainstDisk`, but the capture tools call
+ * `auditOrganism` directly, so the check has to live where the contract bytes
+ * are read.  Fail-closed: an absent or blank version is refused, never read as
+ * "close enough".
+ */
+export function assertContractPinFresh(input: ContractPinInput): ContractPinVerdict {
+  const { subject, contract } = input;
+  const reasons: string[] = [];
+
+  const onDiskId = typeof contract.id === 'string' ? contract.id : null;
+  if (onDiskId !== subject.contractId) {
+    reasons.push(
+      `contract-id-drift:${subject.id}: manifest declares "${subject.contractId}", disk holds "${String(onDiskId)}"`,
+    );
+  }
+
+  const onDiskVersion =
+    typeof contract.version === 'string' && contract.version.trim() !== ''
+      ? contract.version.trim()
+      : null;
+  if (onDiskVersion === null) {
+    reasons.push(
+      `contract-version-absent:${subject.contractId}: manifest pins v${subject.contractVersion}, disk carries no readable version`,
+    );
+  } else if (onDiskVersion !== subject.contractVersion) {
+    reasons.push(
+      `contract-version-drift:${subject.contractId}: manifest pins v${subject.contractVersion}, disk is at v${onDiskVersion} — re-pin the manifest and re-audit before publishing a dossier`,
+    );
+  }
+
+  return { ok: reasons.length === 0, reasons };
+}
+
+// ---------------------------------------------------------------------------
 // Coverage
 // ---------------------------------------------------------------------------
 

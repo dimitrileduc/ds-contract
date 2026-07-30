@@ -84,6 +84,46 @@ const MODULE_CLASSES = allModuleClasses();
 const KINDS = new Set(['content', 'structure', 'property', 'composition', 'visual', 'semantic']);
 const REPRESENTABILITY = new Set(['carry-both', 'carry-with-named-limit', 'carry-code-only']);
 
+/**
+ * L'état de la porte de dépendance d'un sujet, LU dans son reçu — jamais
+ * supposé.  `unknown` (sujet dépendant dont le reçu n'a pas encore été produit)
+ * n'ouvre rien : il laisse le contrôle de cas dans son état par défaut plutôt
+ * que d'inventer une permission.
+ */
+function gateStateFor(subject: any): 'none' | 'open' | 'closed' | 'unknown' {
+  if (!subject.dependencyId) return 'none';
+  const receipt = path.join(
+    REPO,
+    'specs/013-auditer-fidelite-organismes/proofs/dependencies',
+    `${subject.id}.json`,
+  );
+  if (!existsSync(receipt)) return 'unknown';
+  const parsed = JSON.parse(readFileSync(receipt, 'utf8')) as { open?: boolean };
+  return parsed.open === true ? 'open' : 'closed';
+}
+
+/** Ligne de synthèse d'un sujet ; renvoie son nombre de problèmes. */
+function summarise(
+  subjectId: string,
+  decl: any,
+  contractPropNames: Set<unknown>,
+  problems: string[],
+  notes: string[],
+  suffix: string | null,
+): number {
+  const facts = decl.facts ?? [];
+  const probes = facts.filter((f: any) => f.projectionProbe).length;
+  const expectations = facts.filter((f: any) => f.figmaExpectation).length;
+  const header = problems.length === 0 ? `✓ ${subjectId}` : `✗ ${subjectId}`;
+  console.log(
+    `\n${header} — ${facts.length} faits (${probes} probes, ${expectations} attentes Figma)` +
+      `${suffix ? ` [${suffix}]` : ''}, props du contrat : ${[...contractPropNames].join(', ') || 'aucune'}`,
+  );
+  for (const note of notes) console.log(`   · ${note}`);
+  for (const problem of problems) console.log(`   ✗ ${problem}`);
+  return problems.length;
+}
+
 let totalProblems = 0;
 
 for (const file of readdirSync(DECL_DIR).filter((f) => f.endsWith('.json') && !f.startsWith('_')).sort()) {
@@ -115,7 +155,22 @@ for (const file of readdirSync(DECL_DIR).filter((f) => f.endsWith('.json') && !f
   else if (version !== PINNED_VERSION) problems.push(`census à la version ${version}, manifeste piné sur ${PINNED_VERSION}`);
 
   if (!Array.isArray(decl.facts) || decl.facts.length === 0) problems.push('facts vide ou absent');
-  if (!decl.case || typeof decl.case !== 'object') problems.push('case absent');
+
+  // Un parent dont la porte de dépendance est FERMÉE ne déclare AUCUN cas : un
+  // cas fabriqué produirait des mesures qui ressemblent à des preuves pour un
+  // composant dont le prérequis n'est pas prouvé.  L'exigence s'inverse donc
+  // au lieu de disparaître — l'invariant est le même que celui que la fixture
+  // `organism-audit-blocked-parent-check` pine au niveau du dossier.
+  const gate = gateStateFor(subject);
+  if (gate === 'closed') {
+    if (decl.case !== undefined) {
+      problems.push(
+        'case déclaré alors que la porte de dépendance est FERMÉE — aucun cas parent ne peut être fabriqué sous porte fermée',
+      );
+    }
+  } else if (!decl.case || typeof decl.case !== 'object') {
+    problems.push('case absent');
+  }
 
   const seenFactIds = new Set<string>();
   const contractPropNames = new Set((contract.props ?? []).map((p: any) => p.name));
@@ -203,8 +258,13 @@ for (const file of readdirSync(DECL_DIR).filter((f) => f.endsWith('.json') && !f
     }
   }
 
-  // Le cas
-  const c = decl.case ?? {};
+  // Le cas — sous porte fermée il n'y en a pas, et son absence est l'invariant
+  // vérifié plus haut, pas un trou à combler ici.
+  const c = gate === 'closed' ? null : (decl.case ?? {});
+  if (c === null) {
+    totalProblems += summarise(subjectId, decl, contractPropNames, problems, notes, 'porte fermée, aucun cas');
+    continue;
+  }
   if (typeof c.figmaNodeId === 'string' && nodeIds.size > 0 && !nodeIds.has(c.figmaNodeId)) {
     problems.push(`case: node "${c.figmaNodeId}" absent du census`);
   }
@@ -229,15 +289,7 @@ for (const file of readdirSync(DECL_DIR).filter((f) => f.endsWith('.json') && !f
     if (!resolved.ok) problems.push(`case: assertion ${a.id} — pointeur "${a.contractPointer}" ne résout pas`);
   }
 
-  const probes = (decl.facts ?? []).filter((f: any) => f.projectionProbe).length;
-  const expectations = (decl.facts ?? []).filter((f: any) => f.figmaExpectation).length;
-  const header = problems.length === 0 ? `✓ ${subjectId}` : `✗ ${subjectId}`;
-  console.log(
-    `\n${header} — ${(decl.facts ?? []).length} faits (${probes} probes, ${expectations} attentes Figma), props du contrat : ${[...contractPropNames].join(', ') || 'aucune'}`,
-  );
-  for (const note of notes) console.log(`   · ${note}`);
-  for (const problem of problems) console.log(`   ✗ ${problem}`);
-  totalProblems += problems.length;
+  totalProblems += summarise(subjectId, decl, contractPropNames, problems, notes, null);
 }
 
 console.log(`\n${'='.repeat(60)}`);

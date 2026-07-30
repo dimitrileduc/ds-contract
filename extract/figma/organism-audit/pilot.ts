@@ -37,7 +37,12 @@ import { fetchNodePngs, fetchSetInfos } from '../visual-parity/figma-api.js';
 
 import { buildHarness, renderHarnessCase, type HarnessRenderResult } from './harness.js';
 import { resolveGeneratedComponent } from './render-react.js';
-import { computeCoverageDelta, evaluatePropProjection, resolveContractPointer } from './facts.js';
+import {
+  assertContractPinFresh,
+  computeCoverageDelta,
+  evaluatePropProjection,
+  resolveContractPointer,
+} from './facts.js';
 import {
   aggregateOrganismVerdict,
   deriveFactOutcome,
@@ -156,6 +161,14 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
   const contractBytes = readFileSync(path.join(repoRoot, subject.contractPath));
   const contract = JSON.parse(contractBytes.toString('utf8')) as Record<string, unknown>;
   const contractSha = sha256(contractBytes);
+
+  // The dossier is signed with the MANIFEST's version while every pointer below
+  // resolves against THIS parsed file.  Let the two drift and the receipt names
+  // a version it never read — a silent mislabel, not an absence.  The CLI
+  // refuses it in `verifyAgainstDisk`; the capture tools come straight here, so
+  // the same refusal has to stand at the point the bytes are read.
+  const pin = assertContractPinFresh({ subject, contract });
+  if (!pin.ok) throw new Error(`${subject.id}: ${pin.reasons.join('; ')}`);
 
   // ---- the generated React surface (D4) --------------------------------
   const resolved = resolveGeneratedComponent({

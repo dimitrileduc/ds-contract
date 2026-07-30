@@ -20,9 +20,16 @@ for (const file of readdirSync(DECL).filter((f) => f.endsWith('.json') && !f.sta
   if (subject.facts?.length) { console.log(`= ${id} déjà déclaré (${subject.facts.length} faits) — inchangé`); continue; }
   const decl = JSON.parse(readFileSync(path.join(DECL, file), 'utf8'));
   subject.facts = decl.facts;
-  subject.cases = [decl.case];
+  // Sous porte de dépendance FERMÉE la déclaration ne porte aucun cas, et le
+  // manifeste n'en fabrique pas : `cases: []` est le résultat correct, pas un
+  // trou. Les faits, eux, restent déclarés — c'est ce qui rend le blocage
+  // lisible plutôt qu'un dossier vide.
+  subject.cases = decl.case ? [decl.case] : [];
   subject.coverage.requiredFactIds = decl.facts.map((f: any) => f.id);
-  console.log(`+ ${id} : ${decl.facts.length} faits, 1 cas`);
+  console.log(
+    `+ ${id} : ${decl.facts.length} faits, ${subject.cases.length} cas` +
+      (subject.cases.length === 0 ? ' (porte fermée — aucun cas parent fabriqué)' : ''),
+  );
   merged += 1;
 }
 

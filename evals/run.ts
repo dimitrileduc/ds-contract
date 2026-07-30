@@ -190,6 +190,14 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'organism-audit-contract-pin',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-contract-pin-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit contract-pin guard failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'organism-audit-react-capture',
     claim: 'C3-detection',
     run: () => {

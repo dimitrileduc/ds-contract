@@ -1,0 +1,1183 @@
+{
+  "facts": [
+    {
+      "id": "header.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "detail": "COMPONENT « Fond=Solid » du COMPONENT_SET Header 84:285 — la variante que Figma déclare defaultValue de l'axe Fond et que le défaut contractuel « solid » désigne. 1728x86 layoutMode=HORIZONTAL primaryAxis=SPACE_BETWEEN counterAxis=CENTER sizeH=FIXED sizeV=HUG padding 16/89/16/89, fills=[SOLID blanc lié à VariableID:4:29], effects=[DROP_SHADOW], clipsContent=false > [PiquerayLogo 84:256 (INSTANCE), nav-wrapper 95:224 (FRAME)]. La seconde variante « Fond=Transparent » 84:286 a exactement le même squelette > [PiquerayLogo 84:287, nav-wrapper 95:225] et ne diffère que par des canaux de peinture et de composition, énumérés un à un plus bas"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.structure.root-direction",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "layoutMode",
+        "raw": "HORIZONTAL"
+      },
+      "figmaExpectation": {
+        "channel": "root.flex-direction",
+        "value": "row"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/direction"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.structure.root-justify",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "primaryAxisAlignItems",
+        "raw": "SPACE_BETWEEN"
+      },
+      "figmaExpectation": {
+        "channel": "root.justify-content",
+        "value": "space-between"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/justify"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.structure.root-align",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "counterAxisAlignItems",
+        "raw": "CENTER"
+      },
+      "figmaExpectation": {
+        "channel": "root.align-items",
+        "value": "center"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/align"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.structure.root-gap-inerte",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "itemSpacing",
+        "raw": 392,
+        "detail": "le census rapporte itemSpacing=392 sur le root, mais sous primaryAxisAlignItems=SPACE_BETWEEN cette valeur est INERTE : Figma la conserve comme dernier réglage manuel et calcule l'écart réel. Mesure : le logo 84:256 finit à x=329 (149+180) et nav-wrapper 95:224 commence à x=549, soit un écart rendu de 220px, pas 392. Le contrat ne porte donc à juste titre AUCUN gap sur le root, et Header.module.css n'écrit aucun gap — la concordance passe par justify-content: space-between. Ce fait est déclaré pour qu'un futur relevé ne lise pas le 392 comme une divergence de gap"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.structure.root-padding",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "paddingTop / paddingRight / paddingBottom / paddingLeft",
+        "raw": "16 / 89 / 16 / 89",
+        "detail": "identique sur la variante Transparent 84:286. Le contrat ne porte ni literals.padding ni tokens de padding sur le root : Header.module.css n'écrit aucune gouttière et .root colle ses enfants aux bords. C'est aussi ce qui fait disparaître les 178px de marge latérale qui, côté Figma, ramènent la boîte utile de 1728 à 1550px"
+      },
+      "figmaExpectation": {
+        "channel": "root.padding",
+        "value": "16px 89px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.structure.root-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal=FIXED",
+        "raw": 1728,
+        "detail": "root FIXED 1728x86 (layoutSizingVertical=HUG, hauteur 86 = 54 de contenu + 2x16 de padding). Le contrat ne porte aucun literals.width, .root n'a donc aucune largeur en CSS : dans un flux normal il prend la largeur de son parent, et space-between répartit sur une base différente de celle de Figma. La combinaison largeur absente + padding absent est la première cause de dérive géométrique attendue sur ce sujet"
+      },
+      "figmaExpectation": {
+        "channel": "root.width",
+        "value": "1728px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.structure.nav-wrapper",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:224",
+        "detail": "FRAME « nav-wrapper » 1150x54 layoutMode=HORIZONTAL primaryAxis=MAX counterAxis=CENTER itemSpacing=64 sizeH=HUG sizeV=HUG fills=[] > [nav 84:257 (FRAME), icons-nav 95:247 (FRAME)]. Contrepartie sur la variante Transparent : 95:225"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__navWrapper\"]"
+      }
+    },
+    {
+      "id": "header.structure.nav-wrapper-justify",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:224",
+        "channel": "primaryAxisAlignItems",
+        "raw": "MAX"
+      },
+      "figmaExpectation": {
+        "channel": "navWrapper.justify-content",
+        "value": "flex-end"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/layout/justify"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__navWrapper\"]"
+      }
+    },
+    {
+      "id": "header.structure.nav-wrapper-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:224",
+        "channel": "itemSpacing",
+        "raw": 64,
+        "detail": "primaryAxis=MAX (pas SPACE_BETWEEN) : ici les 64px sont bien rendus, contrairement au 392 du root. Le contrat ne porte aucun gap sur navWrapper — nav et icons-nav se retrouvent collés côté React"
+      },
+      "figmaExpectation": {
+        "channel": "navWrapper.gap",
+        "value": "64px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__navWrapper\"]"
+      }
+    },
+    {
+      "id": "header.structure.nav",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:257",
+        "detail": "FRAME « nav » 982x54 layoutMode=HORIZONTAL primaryAxis=CENTER counterAxis=CENTER itemSpacing=32 sizeH=HUG sizeV=HUG fills=[] > [NavItem 2152:5558, NavItem 2152:5562, NavItem 2152:5566, NavItem 2152:5570, Bouton 84:266]. Contrepartie sur la variante Transparent : 84:288"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__nav\"]"
+      }
+    },
+    {
+      "id": "header.structure.nav-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:257",
+        "channel": "itemSpacing",
+        "raw": 32,
+        "detail": "le contrat ne porte aucun gap sur nav : les 4 NavItem et le Bouton sont émis sans espacement, alors que Figma les sépare de 32px. Sur une barre de navigation c'est la divergence la plus visible à l'œil"
+      },
+      "figmaExpectation": {
+        "channel": "nav.gap",
+        "value": "32px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__nav\"]"
+      }
+    },
+    {
+      "id": "header.structure.icons-nav",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:247",
+        "detail": "FRAME « icons-nav » 104x24 layoutMode=HORIZONTAL counterAxis=CENTER itemSpacing=16 sizeH=HUG sizeV=HUG fills=[], primaryAxisAlignItems absent (donc MIN) > [Search 95:254, User 95:243, Cart 95:248] — ordre identique aux trois parts Search/User/Cart du contrat. Contrepartie sur la variante Transparent : 95:256 > [95:257, 95:258, 95:259]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/iconsNav"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__iconsNav\"]"
+      }
+    },
+    {
+      "id": "header.structure.icons-nav-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:247",
+        "channel": "itemSpacing",
+        "raw": 16,
+        "detail": "le contrat ne porte aucun gap sur iconsNav : les trois glyphes sortent jointifs côté React (3x32px sans séparation) là où Figma tient 3x24px espacés de 16px"
+      },
+      "figmaExpectation": {
+        "channel": "iconsNav.gap",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/iconsNav/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__iconsNav\"]"
+      }
+    },
+    {
+      "id": "header.structure.nav-item-count",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:257",
+        "channel": "children[type=INSTANCE, componentId=2152:5554].length",
+        "raw": 4,
+        "detail": "les 4 instances 2152:5558, 2152:5562, 2152:5566, 2152:5570 sont matérialisées sur la variante Solid (et 2152:5574, 2152:5578, 2152:5582, 2152:5586 sur Transparent). Le contrat les modélise en UNE part NavItem portant repeat.itemsProp = \"items\" et un sample de 4 entrées ; mais le nombre rendu ne vient pas du sample, il vient de la prop items — que le contrat ne dote d'aucun défaut (voir header.property.items-sans-defaut)"
+      },
+      "figmaExpectation": {
+        "channel": "nav.materialised-nav-item-count",
+        "value": 4
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/sample"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__nav\"]"
+      }
+    },
+    {
+      "id": "header.structure.noms-de-calques",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:224",
+        "channel": "name",
+        "raw": "nav-wrapper",
+        "detail": "les FRAMEs Figma s'appellent « nav-wrapper » (95:224) et « icons-nav » (95:247) ; les clés d'anatomie correspondantes sont navWrapper et iconsNav. Le nom de calque est un canal porté des deux côtés (l'émetteur figma-script nomme le frame d'après la clé de part), donc un aller-retour contrat→canvas renommerait ces deux calques. La part « nav » (84:257) et la part « PiquerayLogo » (84:256) concordent déjà exactement"
+      },
+      "figmaExpectation": {
+        "channel": "parts.figma-layer-names",
+        "value": {
+          "navWrapper": "nav-wrapper",
+          "iconsNav": "icons-nav"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__navWrapper\"]"
+      }
+    },
+    {
+      "id": "header.content.nav-item-1-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2152:5558",
+        "mainComponent": "2152:5554",
+        "textLayer": "I2152:5558;2152:5555",
+        "detail": "le libellé N'EST PAS une propriété de composant : componentProperties de l'instance ne contient que Actif#2156:63 et Chevron#2152:62. Le texte est un override direct du calque, ce que ds.nav-item assume en déclarant libelle avec bindings.figma = NONE"
+      },
+      "figmaExpectation": {
+        "channel": "nav[0].NavItem.libelle",
+        "value": "Portes de garage"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/sample/0/libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__libell\"]"
+      }
+    },
+    {
+      "id": "header.content.nav-item-2-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2152:5562",
+        "mainComponent": "2152:5554",
+        "textLayer": "I2152:5562;2152:5555",
+        "detail": "apostrophe typographique U+2019, identique dans le sample du contrat"
+      },
+      "figmaExpectation": {
+        "channel": "nav[1].NavItem.libelle",
+        "value": "Portes d’entrée"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/sample/1/libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__libell\"]"
+      }
+    },
+    {
+      "id": "header.content.nav-item-3-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2152:5566",
+        "mainComponent": "2152:5554",
+        "textLayer": "I2152:5566;2152:5555",
+        "detail": "DIVERGENCE DE CONTENU : le calque Figma porte « Dépannage/SAV » (largeur 145px, confirmé à l'identique sur la variante Transparent, calque I2152:5582;2152:5555), alors que repeat.sample[2] du contrat écrit « Motorisation » — et son href « /motorisation ». Aucune des deux variantes du set ne contient le mot « Motorisation ». La valeur contractuelle n'est donc pas une extraction de ce master : c'est une saisie qui n'a jamais existé côté source"
+      },
+      "figmaExpectation": {
+        "channel": "nav[2].NavItem.libelle",
+        "value": "Dépannage/SAV"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/sample/2/libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__libell\"]"
+      }
+    },
+    {
+      "id": "header.content.nav-item-4-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2152:5570",
+        "mainComponent": "2152:5554",
+        "textLayer": "I2152:5570;2152:5555"
+      },
+      "figmaExpectation": {
+        "channel": "nav[3].NavItem.libelle",
+        "value": "À propos"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/sample/3/libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__libell\"]"
+      }
+    },
+    {
+      "id": "header.content.bouton-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:266",
+        "mainComponent": "6:107",
+        "property": "Libelle#2044:28",
+        "textLayer": "I84:266;6:95",
+        "detail": "le contrat n'écrit aucun text sur la part Bouton ; Header.tsx émet <Button>Contactez-nous</Button>, valeur qui vient du défaut de ds.button (/props/1/default), pas du contrat header. Concordance PAR COÏNCIDENCE : changer le défaut de ds.button ferait dériver le header en silence"
+      },
+      "figmaExpectation": {
+        "channel": "nav.Bouton.Libelle",
+        "value": "Contactez-nous"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/Bouton/component/text",
+        "bindingProperty": "Libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "header.content.nav-item-href",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2152:5558",
+        "mainComponent": "2152:5554",
+        "detail": "Figma n'a AUCUN canal de destination de lien : ni propriété de composant, ni champ natif sur l'INSTANCE (componentProperties = { Actif, Chevron } seulement). Les quatre href du sample (/portes-de-garage, /portes-entree, /motorisation, /a-propos) sont donc une sémantique purement code, jamais prouvable des deux côtés — ce que ds.nav-item assume déjà en déclarant href avec bindings.figma = NONE. À noter que le troisième href suit le libellé erroné (voir header.content.nav-item-3-libelle)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/sample/0/href"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__root\"]"
+      }
+    },
+    {
+      "id": "header.property.fond",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:285",
+        "property": "Fond",
+        "raw": "Solid | Transparent",
+        "detail": "seul axe du set (componentPropertyDefinitions = { Fond: VARIANT }). Header.tsx calcule classes = [styles.root, styles[`fond-${fond}`], className] mais Header.module.css ne déclare QUE .root, .navWrapper, .nav, .iconsNav, .Search, .User, .Cart : styles['fond-solid'] et styles['fond-transparent'] valent tous deux undefined. L'enum ne touche donc AUCUN style — fond=\"solid\" et fond=\"transparent\" rendent un DOM strictement identique, là où Figma fait varier le fond, l'ombre portée, la couleur du logo, la variante du bouton et la couleur des trois glyphes. C'est la divergence de fond de ce sujet : un axe de variante déclaré mais entièrement non projeté"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0",
+        "bindingProperty": "Fond"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.property.fond-defaut",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:285",
+        "property": "Fond",
+        "raw": "Solid",
+        "detail": "defaultValue déclaré par le set ; correspond au node 84:284"
+      },
+      "figmaExpectation": {
+        "channel": "Fond.defaultValue (VARIANT « Solid » → valeur d'enum contractuelle, mappage /props/0/bindings/figma/values)",
+        "value": "solid"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default",
+        "bindingProperty": "Fond"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.property.fond-valeurs",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:285",
+        "property": "Fond",
+        "raw": "Solid | Transparent",
+        "detail": "les deux variantOptions correspondent aux nodes 84:284 (Solid) et 84:286 (Transparent) — le mappage du contrat est exact et exhaustif"
+      },
+      "figmaExpectation": {
+        "channel": "Fond.variantOptions (mappage enum ↔ VARIANT)",
+        "value": {
+          "solid": "Solid",
+          "transparent": "Transparent"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/bindings/figma/values",
+        "bindingProperty": "Fond"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.property.items-binding-none",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "84:285",
+        "property": "componentPropertyDefinitions",
+        "detail": "Figma n'a aucune propriété de composant de type collection : le set n'expose que Fond (VARIANT). Le NONE de /props/1/bindings/figma est justifié sur les trois pieds — anatomie (repeat.itemsProp = \"items\"), sample (4 entrées) et occurrence (4 INSTANCE NavItem matérialisées dans 84:257) — mais un NONE justifié reste une limite nommée : côté canvas la collection ne s'exprime que comme N instances matérialisées, jamais comme une propriété pilotable"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1/bindings/figma/kind"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__nav\"]"
+      }
+    },
+    {
+      "id": "header.property.items-sans-defaut",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:257",
+        "channel": "children[].componentProperties + calques de libellé",
+        "detail": "les 4 instances portent des valeurs concrètes, mais /props/1 (items) n'a AUCUN default : Header.tsx écrit items?.map(...), donc le composant tel qu'il est livré rend ZÉRO NavItem — une barre de navigation vide, réduite au logo et au bouton. repeat.sample n'est pas un défaut React, il n'alimente que les args Storybook (Header.stories.tsx, où les 4 entrées sont réinjectées à la main). Sous porte de dépendance fermée aucun cas ne vient corriger ce défaut, le fait est donc déclaré seul"
+      },
+      "figmaExpectation": {
+        "channel": "items.default",
+        "value": [
+          { "libelle": "Portes de garage", "chevron": true },
+          { "libelle": "Portes d’entrée", "chevron": true },
+          { "libelle": "Dépannage/SAV", "chevron": false },
+          { "libelle": "À propos", "chevron": false }
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1/default"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__nav\"]"
+      }
+    },
+    {
+      "id": "header.composition.piqueray-logo",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:256",
+        "mainComponent": "4:13",
+        "observedInstanceProperties": {
+          "Couleur": "Default"
+        },
+        "detail": "INSTANCE 180x34, fills[0].visible=false (aucun fond propre) > [Marque (VECTOR), Texte (GROUP de 8 VECTOR)]. Le contrat compose ds.piqueray-logo avec props.couleur = \"default\" et Header.tsx émet <PiquerayLogo couleur=\"default\" /> : concordance exacte sur la variante Solid"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/PiquerayLogo/component",
+        "childContractId": "ds.piqueray-logo"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"PiquerayLogo__root\"]"
+      }
+    },
+    {
+      "id": "header.composition.piqueray-logo-couleur-figee",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:287",
+        "mainComponent": "4:15",
+        "property": "Couleur",
+        "raw": "Blanc",
+        "detail": "sur la variante Transparent le logo n'est pas la même INSTANCE ni le même master : 84:287 pointe 4:15 (Couleur=Blanc), là où la Solid pointe 4:13 (Couleur=Default). Le contrat gèle couleur = \"default\" en dur dans le ComponentRef ; il n'existe pas de canal pour faire suivre un axe parent (ComponentRefSchema n'accepte qu'un scalaire figé ou un renvoi \"{propParent}\" à valeur identique, pas une table de correspondance solid→default / transparent→blanc). React rend donc le logo sombre dans les DEUX cas"
+      },
+      "figmaExpectation": {
+        "channel": "PiquerayLogo.Couleur@Fond=Transparent",
+        "value": "blanc"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/PiquerayLogo/component/props/couleur",
+        "bindingProperty": "Couleur"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"PiquerayLogo__couleur-blanc\"]"
+      }
+    },
+    {
+      "id": "header.composition.nav-item-repeat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2152:5558",
+        "mainComponent": "2152:5554",
+        "detail": "les 4 INSTANCE NavItem de la variante Solid (2152:5558, 2152:5562, 2152:5566, 2152:5570) partagent le master 2152:5554, et les 4 de la variante Transparent (2152:5574, 2152:5578, 2152:5582, 2152:5586) aussi — le même master sert les deux fonds. Chaque instance est HORIZONTAL gap 8, HUG, hauteur 16 > [Libellé (TEXT), OcticonChevronDown12 (INSTANCE de 6:119), Soulignement (RECTANGLE)]. Le contrat les modélise en une seule part composant ds.nav-item avec repeat.itemsProp = \"items\""
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/itemsProp",
+        "childContractId": "ds.nav-item"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__root\"]"
+      }
+    },
+    {
+      "id": "header.composition.nav-item-chevron",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:257",
+        "property": "Chevron#2152:62",
+        "raw": "true, true, false, false",
+        "detail": "relevé instance par instance : 2152:5558 true, 2152:5562 true, 2152:5566 false, 2152:5570 false — et les calques de chevron suivent (I2152:5566;2152:5556 et I2152:5570;2152:5556 ont visible=false). Les 4 entrées de repeat.sample portent exactement la même séquence, et Header.tsx la fait bien descendre via chevron={item.chevron}. C'est le seul canal Figma de NavItem que ce contrat transporte réellement"
+      },
+      "figmaExpectation": {
+        "channel": "nav[*].NavItem.Chevron (BOOLEAN)",
+        "value": [true, true, false, false]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/repeat/sample/0/chevron",
+        "bindingProperty": "Chevron"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__OcticonChevronDown12\"]"
+      }
+    },
+    {
+      "id": "header.composition.nav-item-actif",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:257",
+        "property": "Actif#2156:63",
+        "raw": "false, false, false, false",
+        "detail": "les 8 instances des deux variantes portent Actif=false et leur RECTANGLE Soulignement a visible=false. Le contrat fige actif = false dans le ComponentRef et Header.tsx émet actif={false} en dur : la concordance est exacte SUR CE MASTER, mais l'axe est inatteignable — le type de /props/1 est arrayOf { libelle, href, chevron }, sans champ actif, donc aucune entrée d'items ne peut jamais activer un onglet. Un header dont aucun lien ne peut être marqué courant"
+      },
+      "figmaExpectation": {
+        "channel": "nav[*].NavItem.Actif (BOOLEAN)",
+        "value": [false, false, false, false]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/component/props/actif",
+        "bindingProperty": "Actif"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__Soulignement\"]"
+      }
+    },
+    {
+      "id": "header.composition.nav-item-dette-item-8",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2152:5554",
+        "detail": "limite DÉJÀ NOMMÉE, sources specs/010-extract-molecules-organisms/audit-reuse-map.md (« NavItem | 005 L4 | Dette item 8 ouverte (named) » et « Header | 005 V1/L4 | Shares NavItem dette item 8 ») et research.md ligne 127 (« NavItem : dette item 8 (souligné actif/couleur, reportée à l'extraction Header — ouverte, nommée) »). Elle porte précisément sur les deux canaux relevés ici : le SOULIGNÉ actif (header.composition.nav-item-actif) et la COULEUR d'encre (header.visual.nav-item-encre-blanche). Le manifeste de campagne la reprend sous l'id header.nav-item.dette-item-8 avec expectedVerdictImpact = blocked. Elle est déclarée comme fait pour ressortir en limite explicite et non en divergence anonyme"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__root\"]"
+      }
+    },
+    {
+      "id": "header.composition.bouton",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:266",
+        "mainComponent": "6:107",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Contactez-nous",
+          "Style": "Default",
+          "Icone gauche#2024:0": false,
+          "Icone droite#2024:7": true,
+          "Glyphe gauche#2028:14": "6:99",
+          "Glyphe droite#2028:21": "6:104"
+        },
+        "detail": "INSTANCE 249x54 HUG gap 10 padding 16/32/16/32, fills=[SOLID #26282C lié à VariableID:5:40] > [ArrowLeft I84:266;6:105 (visible=false), Libellé I84:266;6:95, ArrowRight I84:266;6:106]. Le contrat écrit { \"id\": \"ds.button\" } NU : aucune des six propriétés relevées ne franchit le contrat. Contrepartie Transparent : 84:297, master 6:129"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/Bouton/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "header.composition.bouton-style-par-variante",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:297",
+        "mainComponent": "6:129",
+        "property": "Style",
+        "raw": "Blanc",
+        "detail": "le bouton change de VARIANTE avec le fond : Style=Default sur 84:266 (fond #26282C, libellé blanc) et Style=Blanc sur 84:297 (fond blanc lié à VariableID:4:29, libellé #26282C lié à VariableID:5:40). Le contrat ne passe aucune prop au bouton : Button.tsx retombe sur variant=\"default\" et émet .variant-default dans les deux cas. Concordance par coïncidence sur Solid, divergence pleine sur Transparent"
+      },
+      "figmaExpectation": {
+        "channel": "nav.Bouton.Style@Fond=Transparent (VARIANT « Blanc » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)",
+        "value": "blanc"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/Bouton/component/props/variant",
+        "bindingProperty": "Style"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Button__variant-blanc\"]"
+      }
+    },
+    {
+      "id": "header.composition.bouton-icone-droite",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:266",
+        "property": "Icone droite#2024:7",
+        "raw": true,
+        "detail": "l'instance rend ArrowRight (I84:266;6:106, visible, componentId 6:104) ; le contrat ne passe pas iconRight, Button.tsx retombe sur false et n'émet AUCUNE icône — le sélecteur ne matchera donc rien, ce qui est le constat. Identique sur la variante Transparent (I84:297;6:132)"
+      },
+      "figmaExpectation": {
+        "channel": "nav.Bouton.Icone droite (BOOLEAN)",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/Bouton/component/props/iconRight",
+        "bindingProperty": "Icone droite"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Button__iconRight\"]"
+      }
+    },
+    {
+      "id": "header.composition.bouton-glyphe-droite",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:266",
+        "property": "Glyphe droite#2028:21",
+        "raw": "6:104",
+        "detail": "INSTANCE_SWAP vers 6:104, master de l'icône ArrowRight (I84:266;6:106 porte bien componentId 6:104) ; ds.button mappe cette valeur sur l'enum iconRightGlyph \"arrow-right\". Le contrat header ne la porte pas"
+      },
+      "figmaExpectation": {
+        "channel": "nav.Bouton.Glyphe droite (INSTANCE_SWAP)",
+        "value": "arrow-right"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/Bouton/component/props/iconRightGlyph",
+        "bindingProperty": "Glyphe droite"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Button__iconRight\"]"
+      }
+    },
+    {
+      "id": "header.composition.bouton-icone-gauche",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:266",
+        "property": "Icone gauche#2024:0",
+        "raw": false,
+        "detail": "ArrowLeft I84:266;6:105 porte visible=false : le glyphe gauche est bien masqué côté canvas. Le contrat ne porte pas iconLeft, Button.tsx retombe sur false — concordance, mais par défaut d'enfant et non par valeur portée. Le Glyphe gauche relevé (INSTANCE_SWAP 6:99, ArrowLeft) reste lui aussi hors contrat"
+      },
+      "figmaExpectation": {
+        "channel": "nav.Bouton.Icone gauche (BOOLEAN)",
+        "value": false
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/Bouton/component/props/iconLeft",
+        "bindingProperty": "Icone gauche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Button__iconLeft\"]"
+      }
+    },
+    {
+      "id": "header.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "export": "png@2x"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.visual.fond-solid-remplissage",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "fills[0]",
+        "raw": "SOLID {r:1,g:1,b:1,a:1} = #FFFFFF, boundVariables.color = VariableID:4:29, visible (non surchargé)",
+        "detail": "le contrat ne porte aucun token de fond sur le root — /anatomy/root/tokens ne contient que font-family — donc Header.module.css n'écrit aucun background-color et .root est transparent en CSS, sur les DEUX valeurs de fond"
+      },
+      "figmaExpectation": {
+        "channel": "root.background-color@Fond=Solid",
+        "value": "{color.blanc}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/background-color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.visual.fond-transparent-remplissage",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:286",
+        "channel": "fills[0].visible",
+        "raw": "false (même peinture SOLID blanche liée à VariableID:4:29, mais masquée)",
+        "detail": "la variante Transparent obtient sa transparence en MASQUANT la peinture, pas en la supprimant. Le schéma dispose du canal qu'il faudrait (tokensByProp : des tokens surchargés par valeur de prop), mais le contrat ne le porte pas : aucune des deux valeurs de fond ne produit de background en CSS, donc le rendu React est identique — ce qui, ici, tombe juste sur Transparent et faux sur Solid"
+      },
+      "figmaExpectation": {
+        "channel": "root.background-color@Fond=Transparent",
+        "value": "transparent"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokensByProp"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.visual.ombre-portee",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "channel": "effects[0]",
+        "raw": "DROP_SHADOW visible color {r:0,g:0,b:0,a:0.2} offset {x:0,y:0} radius 20 showShadowBehindNode=false",
+        "detail": "présente sur Solid, ABSENTE sur Transparent (84:286 a effects=[]). Le contrat ne porte aucun box-shadow ; Header.module.css n'écrit aucune ombre. docs/FIGMA-CAPABILITY-MATRIX.md classe box-shadow (single outer) en CARRY-BOTH — DROP_SHADOW natif, aujourd'hui porté comme token box-shadow littéral. Le canal existe donc bel et bien des deux côtés : c'est une omission du contrat, pas une limite du moteur"
+      },
+      "figmaExpectation": {
+        "channel": "root.box-shadow@Fond=Solid",
+        "value": "0 0 20px rgba(0, 0, 0, 0.2)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/box-shadow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.visual.icones-taille",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:254",
+        "mainComponent": "95:252",
+        "channel": "absoluteBoundingBox",
+        "raw": "24x24 (idem User 95:243, Cart 95:248, et les trois de la variante Transparent 95:257/95:258/95:259)",
+        "detail": "les trois parts du contrat déclarent icon.size = 32, valeur qui vient du registre d'icônes (contracts/icons.registry.json donne size 32 pour search/user/cart, avec exactement les nodeIds relevés ici : 95:252, 95:216, 27:70). Mais DANS CE HEADER les instances sont redimensionnées à 24. Header.module.css écrit width/height 32px sur les svg : 8px de trop par glyphe, 24px sur la rangée, plus le décalage vertical induit"
+      },
+      "figmaExpectation": {
+        "channel": "iconsNav.Search.icon.size",
+        "value": 24
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/iconsNav/parts/Search/icon/size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__Search\"]"
+      }
+    },
+    {
+      "id": "header.visual.icones-couleur-par-variante",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "95:247",
+        "channel": "children[].vector.fills[0].color",
+        "raw": "Solid : I95:254;95:253, I95:243;95:217, I95:243;95:218 et I95:248;274:3733 = #26282C lié à VariableID:5:40 — Transparent : I95:257;95:253, I95:258;95:217, I95:258;95:218 et I95:259;274:3733 = #FFFFFF lié à VariableID:4:29",
+        "detail": "l'encre des trois glyphes bascule avec le fond. Les SVG inlinés par Header.tsx utilisent fill=\"currentColor\", mais ni .iconsNav ni .Search/.User/.Cart ne posent de color, et .root n'en pose pas non plus : la couleur héritée est celle du contexte d'accueil, jamais une valeur portée par le contrat. Sur Solid le rendu par défaut d'un navigateur approche par hasard le #26282C attendu ; sur Transparent il en est à l'opposé"
+      },
+      "figmaExpectation": {
+        "channel": "iconsNav.color@Fond=Solid",
+        "value": "{color.noir-bleute}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/iconsNav/tokens/color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__iconsNav\"]"
+      }
+    },
+    {
+      "id": "header.visual.nav-item-encre-blanche",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "I2152:5558;2152:5555",
+        "detail": "DÉFAUT DE SOURCE, à décider côté Figma et non contourner en code (constitution §VIII). Les 4 calques Libellé de la variante SOLID sont blancs (#FFFFFF lié à VariableID:4:29) SUR UN FOND BLANC lui-même lié à VariableID:4:29 — donc invisibles sur le master 84:284 ; leurs chevrons le sont aussi (I2152:5558;2152:5556 fill blanc). Ce n'est pas un accident isolé : ds.nav-item décrit explicitement « the transparent white-ink composition is intended for a dark Header/photo surface » et gèle color = {color.blanc} sur sa part libell. La variante Solid réemploie donc telle quelle une molécule pensée pour un fond sombre. C'est exactement la moitié « couleur » de la dette item 8 (voir header.composition.nav-item-dette-item-8) ; côté React le même blanc sort, avec le même résultat"
+      },
+      "figmaExpectation": {
+        "channel": "nav[*].NavItem.libell.color@Fond=Solid",
+        "value": "{color.blanc}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/component"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__libell\"]"
+      }
+    },
+    {
+      "id": "header.visual.font-family",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2152:5558;2152:5555",
+        "channel": "style.fontFamily",
+        "raw": "Montserrat",
+        "detail": "les 6 calques TEXT du set (4 Libellé de NavItem + les 2 Libellé de Bouton) rapportent tous fontFamily=Montserrat. Le contrat pose font-family = {font.family.montserrat} sur le root et Header.module.css l'écrit bien en var(--font-family-montserrat) : c'est le seul token que ce contrat porte"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/font-family"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.visual.nav-item-typographie",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2152:5558;2152:5555",
+        "channel": "style.fontSize / style.lineHeightPx / style.fontWeight / style.textCase",
+        "raw": "16 / 16 / 500 / UPPER (identique sur les 8 calques Libellé des deux variantes)",
+        "detail": "ces quatre canaux sont portés par ds.nav-item (font-size {font.size.16}, font-weight {font.weight.medium}, literals.line-height 16px, declared.text-transform uppercase) et non par ds.header — ce qui est correct, mais signifie que la typographie de la barre de navigation n'est prouvable qu'à travers la dépendance, dont la porte est FERMÉE"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/component/id",
+        "childContractId": "ds.nav-item"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__libell\"]"
+      }
+    },
+    {
+      "id": "header.visual.bouton-style-de-texte-asymetrique",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "84:297",
+        "textLayer": "I84:297;6:131",
+        "channel": "styles.text",
+        "raw": "2162:5834",
+        "detail": "ASYMÉTRIE DE SOURCE relevée, non encore inscrite dans le backlog de nettoyage Figma : le calque Libellé du bouton de la variante Transparent référence un STYLE de texte partagé (styles.text = 2162:5834), tandis que son homologue de la variante Solid (I84:266;6:95) n'en référence AUCUN alors que ses valeurs relevées sont identiques (Montserrat 500, 16/22, UPPER). Un style partagé d'un côté seulement veut dire qu'une future édition du style ferait bouger une variante et pas l'autre. Aucun canal du contrat header ne peut exprimer une référence de style Figma — le contrat porte des tokens, pas des styles — d'où la limite nommée"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/Bouton"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "header.semantic.root-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "84:284",
+        "detail": "COMPONENT frame sans sémantique de document — Figma n'a aucune notion d'élément HTML, ce canal est donc structurellement CARRY-CODE-ONLY (jamais prouvable des deux côtés). Le contrat déclare semantics.element = \"div\" et Header.tsx rend bien un <div>, cohérent entre contrat et code. Mais pour l'en-tête d'un site, la valeur attendue serait <header> : le repère ARIA banner n'existe nulle part dans la sortie, et le contrat ne porte aucun bloc a11y"
+      },
+      "contractReference": {
+        "jsonPointer": "/semantics/element"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__root\"]"
+      }
+    },
+    {
+      "id": "header.semantic.nav-landmark",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "84:257",
+        "detail": "le FRAME s'appelle « nav » et contient exactement les liens de navigation ; Figma s'arrête au nom du calque et ne peut pas exprimer davantage. Côté code, la part nav ne déclare aucun element : Header.tsx émet un <div>, donc aucun repère <nav> ni role=\"navigation\". Le contrat dispose du canal (Part.element) et ne l'utilise pas — c'est une omission de contrat sur un canal purement code"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__nav\"]"
+      }
+    },
+    {
+      "id": "header.semantic.nav-item-lien",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2152:5558",
+        "mainComponent": "2152:5554",
+        "detail": "Figma ne peut exprimer ni l'élément <a>, ni href, ni aria-current. Côté code ds.nav-item déclare semantics.element = \"a\" avec attrs.href = \"{href}\" et attrsByProp posant aria-current=\"page\" quand actif : NavItem.tsx rend bien un <a href>. La navigation est donc correctement liante en code — mais comme actif est gelé à false (header.composition.nav-item-actif), aria-current n'est jamais émis, et comme items n'a pas de défaut (header.property.items-sans-defaut), aucun <a> n'est rendu par défaut"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem/component",
+        "childContractId": "ds.nav-item"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"NavItem__root\"]"
+      }
+    },
+    {
+      "id": "header.semantic.icones-decoratives",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "95:247",
+        "detail": "les trois glyphes sont des INSTANCE d'icônes (masters 95:252, 95:216, 27:70) sans texte ni propriété : côté canvas rien ne distingue une icône décorative d'une commande. Côté code les trois parts sont des icon parts : Header.tsx émet trois <span aria-hidden=\"true\"> sans nom accessible, sans <button> ni <a>. Recherche, compte et panier — trois affordances qui, dans un en-tête, sont des commandes — sortent donc invisibles aux technologies d'assistance et non atteignables au clavier. Le canal est CARRY-CODE-ONLY (Figma n'exprime pas l'interactivité), le constat reste entier"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/navWrapper/parts/iconsNav/parts/Search/icon"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Header/Header.tsx",
+        "export": "Header",
+        "selector": "[class*=\"Header__Search\"]"
+      }
+    }
+  ]
+}
