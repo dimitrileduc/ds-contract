@@ -46,19 +46,40 @@ const EnumTypeSchema = z.strictObject({
  *  limit: the canvas has no list-of-records property type, so the figma
  *  binding kind is 'NONE' and every design-side consumer skips the prop.
  *  Code renders `Array<{ field: type; … }>` with no default (an optional
- *  array — undefined means "not provided", never a silent []). */
+ *  array — undefined means "not provided", never a silent []).
+ *
+ *  v16 (additive): a field may also be an ENUM (`{ enum: [...] }`) — records
+ *  that differ by STATE, not only by text (the TexteSEO accordion draws its
+ *  second row open, the others closed). The field emits a literal union in
+ *  code (`'ferme' | 'ouvert'`, never a widened `string`) and each record's
+ *  value maps through the CHILD contract's own `bindings.figma.values` on the
+ *  canvas — so unlike the record itself, a per-item enum IS carried on both
+ *  surfaces. The referee (validateContract) holds the field's enum to a
+ *  subset of the child prop's enum and refuses out-of-enum sample values by
+ *  name. No existing field type changes meaning. */
 const ArrayTypeSchema = z.strictObject({
-  arrayOf: z.record(z.string(), z.enum(['text', 'number', 'boolean'])),
+  arrayOf: z.record(
+    z.string(),
+    z.union([z.enum(['text', 'number', 'boolean']), EnumTypeSchema]),
+  ),
 });
 
 /** Structured inline text for code while preserving the canvas's native TEXT
  * property. Segments are data (never raw HTML): `strong` is the first bounded
  * mark because it is the independently observed mixed-style gap. The Figma
  * projection flattens `text` fields to the property's native string value;
- * code emitters retain the segment boundaries and render semantic <strong>. */
+ * code emitters retain the segment boundaries and render semantic <strong>.
+ *
+ * v19: `underline` is the second bounded mark — the observed per-RANGE
+ * `textDecoration: UNDERLINE` (coordonnees' contact value underlines the phone
+ * number and the address but not their labels, node 2104:2891). Unlike weight
+ * it carries no token: `text-decoration-line` is a keyword channel, so the
+ * emitters declare the decoration explicitly rather than inherit a UA default.
+ * The marks compose (a range may be both). */
 export const RichTextSegmentSchema = z.strictObject({
   text: z.string(),
   strong: z.boolean().optional(),
+  underline: z.boolean().optional(),
 });
 
 export const PropSchema = z
@@ -824,6 +845,20 @@ export const SlotSchema = z.strictObject({
  * the build referee verifies both ends' declared scalar types. */
 export const ComponentScalarValueSchema = z.union([z.string(), z.boolean(), z.number()]);
 
+/** v19 (additive): a parent may ALSO fix a child's RICH-TEXT prop to its
+ *  observed segments. A molecule's mixed-style TEXT property (ds.section-header
+ *  `titre`, drawn « Piqueray, » bold + regular remainder on one consumer and
+ *  bold mid-sentence on another) was otherwise inexpressible from the consumer
+ *  side: the child could be rich-text, but every parent could only hand it one
+ *  flat string. Segment arrays are legal ONLY against a rich-text child prop —
+ *  the referee (validateContract) refuses a misdirected array by name. The
+ *  Figma projection flattens them like every other text field: one native TEXT
+ *  value, the concatenation. */
+export const ComponentPropValueSchema = z.union([
+  ComponentScalarValueSchema,
+  z.array(RichTextSegmentSchema).min(1),
+]);
+
 /** A fixed instance of another contract, embedded in this component. */
 export const ComponentRefSchema = z.strictObject({
   /** The child contract's id, e.g. "ds.avatar". */
@@ -831,8 +866,9 @@ export const ComponentRefSchema = z.strictObject({
   /** Fixed scalar prop values, spelled canonically; mapped through the CHILD
    *  contract's bindings on each surface. A string value of the form
    *  "{parentProp}" maps a PARENT scalar prop live into the child (code:
-   *  `childProp={parentProp}`; Figma resolves only design-side mappings). */
-  props: z.record(z.string(), ComponentScalarValueSchema).optional(),
+   *  `childProp={parentProp}`; Figma resolves only design-side mappings).
+   *  v19: a value may also be a segment array for a rich-text child prop. */
+  props: z.record(z.string(), ComponentPropValueSchema).optional(),
   /** Overrides the child's `children` text prop (code: JSX children;
    *  Figma: TEXT property override on the instance). */
   text: z.string().optional(),
@@ -911,6 +947,21 @@ export interface Part {
   /** Static literal text (a page number, an ellipsis) — same on both
    *  surfaces, not bound to any prop. */
   text?: string;
+  /** v19: the SAME `text`, split into the mixed-style ranges its Figma source
+   *  actually draws. Piqueray's hero sub-title and SAV card copy carry
+   *  mid-sentence bold on masters that expose no component property at all —
+   *  there is nothing to bind a rich-text prop to, so the literal carries the
+   *  marks. `text` stays the flat canonical string (what the canvas draws and
+   *  what every existing reader reads, unchanged); the code emitters render
+   *  these segments as semantic <strong>. The referee holds
+   *  `textSegments.map(s => s.text).join('') === text`, so the two spellings
+   *  can never diverge. */
+  textSegments?: Array<z.infer<typeof RichTextSegmentSchema>>;
+  /** v19: the governed style of `textSegments`' strong ranges — the literal
+   *  sibling of content.marks, same refusal ("marked weight is governed"). */
+  textMarks?: {
+    strong: z.infer<typeof RichTextStrongMarkSchema>;
+  };
   /** Progress fill: width = (valueProp / maxProp) as a percentage of the
    *  parent track. Code computes live; the canvas renders the defaults'
    *  fraction (its honest static state). */
@@ -984,6 +1035,9 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
       })
       .optional(),
     text: z.string().optional(),
+    /** v19: `text`'s observed strong ranges (see the Part interface doc). */
+    textSegments: z.array(RichTextSegmentSchema).min(1).optional(),
+    textMarks: z.strictObject({ strong: RichTextStrongMarkSchema }).optional(),
     meter: z.strictObject({ valueProp: z.string(), maxProp: z.string() }).optional(),
     animation: z.enum(['spin', 'pulse']).optional(),
     slot: SlotSchema.optional(),
@@ -1173,6 +1227,9 @@ export type RichTextSegment = z.infer<typeof RichTextSegmentSchema>;
 export type ContractEvent = z.infer<typeof EventSchema>;
 export type Slot = z.infer<typeof SlotSchema>;
 export type ComponentRef = z.infer<typeof ComponentRefSchema>;
+/** A value a parent may fix on a composed child: a scalar, or (v19) the
+ *  segments of a rich-text child prop. */
+export type ComponentPropValue = z.infer<typeof ComponentPropValueSchema>;
 export type Repeat = z.infer<typeof RepeatSchema>;
 export type Layout = z.infer<typeof LayoutSchema>;
 export type VariantLayout = z.infer<typeof VariantLayoutSchema>;

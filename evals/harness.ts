@@ -66,10 +66,25 @@ export function resetScratch() {
   // figma-sync rides along for the plugin-engine evals: the engine entry,
   // ui.html (embedded dump script + engine slot), and the committed
   // engine.receipt.json the zip build drift-guards against.
+  // The two GITIGNORED scratch roots under extract/ are skipped: PNG captures
+  // and Figma dumps, tens of MB that grow with every audit run, re-copied for
+  // every case because cpSync does not honour .gitignore. No eval reads them.
+  // Listed explicitly rather than matched on a basename of "out" — extract/out,
+  // extract/computed/out, extract/fidelity-matrix/out and extract/pilots/*/out
+  // hold hundreds of TRACKED files the evals do read.
+  const extractScratchRoots = new Set([
+    path.join(ROOT, 'extract', 'figma', 'visual-parity', 'out'),
+    path.join(ROOT, 'extract', 'figma', 'organism-audit', 'out'),
+  ]);
   for (const dir of ['contracts', 'tokens', 'scripts', 'core', 'parity', 'src', 'catalog', 'context', 'assets', 'extract', 'playground', 'workers', 'packages', 'figma-sync']) {
     cpSync(path.join(ROOT, dir), path.join(SCRATCH, dir), {
       recursive: true,
-      filter: dir === 'packages' ? (src) => path.basename(src) !== 'dist' : undefined,
+      filter:
+        dir === 'packages'
+          ? (src) => path.basename(src) !== 'dist'
+          : dir === 'extract'
+            ? (src) => !extractScratchRoots.has(src)
+            : undefined,
     });
   }
   cpSync(path.join(ROOT, 'evals', 'fixtures'), path.join(SCRATCH, 'evals', 'fixtures'), {

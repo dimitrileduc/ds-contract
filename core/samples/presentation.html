@@ -1,5 +1,5 @@
 <!--
-  Presentation — static HTML+CSS emitted from contract ds.presentation v1.0.0 by core/emit-html.ts.
+  Presentation — static HTML+CSS emitted from contract ds.presentation v2.1.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -10,24 +10,22 @@
   <div class="showcase__item">
     <p class="showcase__label">default</p>
     <div class="presentation" data-part="root">
-      <div class="section-header section-header--disposition-standard" data-part="SectionHeader" data-accroche2="true">
-        <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
-        <span class="section-header__Titre" data-part="Titre">Piqueray, une histoire de famille </span>
+      <div class="section-header section-header--disposition-standard section-header--emphase-moyen section-header--alignement-gauche" data-part="SectionHeader">
+        <span class="section-header__Titre" data-part="Titre"><strong>Piqueray, </strong><span>une histoire de famille </span></span>
       </div>
       <div class="presentation__wrapper" data-part="wrapper">
-        <span class="presentation__Texte" data-part="Texte">Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.</span>
+        <span class="presentation__Texte" data-part="Texte"><strong>Depuis plus de 50 ans,</strong><span> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de </span><strong>proximité et d'excellence technique</strong><span>. Dépositaire officiel </span><strong>Hörmann</strong><span>, nous allions la force d'un leader mondial à </span><strong>la souplesse d'une PME locale</strong><span>.</span></span>
       </div>
     </div>
   </div>
   <div class="showcase__item">
     <p class="showcase__label">bouton=true</p>
     <div class="presentation" data-part="root" data-bouton="true">
-      <div class="section-header section-header--disposition-standard" data-part="SectionHeader" data-accroche2="true">
-        <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
-        <span class="section-header__Titre" data-part="Titre">Piqueray, une histoire de famille </span>
+      <div class="section-header section-header--disposition-standard section-header--emphase-moyen section-header--alignement-gauche" data-part="SectionHeader">
+        <span class="section-header__Titre" data-part="Titre"><strong>Piqueray, </strong><span>une histoire de famille </span></span>
       </div>
       <div class="presentation__wrapper" data-part="wrapper">
-        <span class="presentation__Texte" data-part="Texte">Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.</span>
+        <span class="presentation__Texte" data-part="Texte"><strong>Depuis plus de 50 ans,</strong><span> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de </span><strong>proximité et d'excellence technique</strong><span>. Dépositaire officiel </span><strong>Hörmann</strong><span>, nous allions la force d'un leader mondial à </span><strong>la souplesse d'une PME locale</strong><span>.</span></span>
         <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
           <span class="button__label" data-part="label">Contactez-nous</span>
         </button>

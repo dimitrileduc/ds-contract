@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v1.0.0)
+ * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v2.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -16,25 +16,43 @@ const ICONS: Record<string, string> = {
 };
 
 export interface CoordonneesProps extends HTMLAttributes<HTMLDivElement> {
+  /** URL fournie par le code pour le paint IMAGE du plan Google (RECTANGLE Figma 2104:2899, imageRef efdebf1941d13dbd5a2ab421aaeac49d352a87b2) — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : Figma range ces pixels dans un paint du master, jamais dans une propriété de composant, et le contrat n'a aucun canal background-image ; l'imageRef est donc consigné ici et jamais lié. Le défaut vide est intentionnel et ne substitue aucune image. */
+  mapUrl?: string;
+  /** Équivalent textuel fourni par le code, apparié à mapUrl. Un paint IMAGE Figma n'expose aucune propriété de composant correspondante, donc le défaut vide est intentionnel. */
+  mapAlt?: string;
   /** Extracted from Figma "Accroche" TEXT property (added by sync pass). */
   accroche?: string;
-  /** Extracted from Figma "Titre" TEXT property (added by sync pass). */
-  titre?: string;
+  /** Extracted from Figma "Titre" TEXT property (added by sync pass). Type rich-text depuis section-header 2.0.0 : la propriété est transmise VIVANTE à l'enfant (titre: "{titre}"), et un mapping vers une prop rich-text exige une prop rich-text côté parent — sinon les graisses que l'enfant sait désormais porter seraient aplaties au passage. Le titre observé (I2169:6216;2090:2387) est UNIFORME : un seul segment. */
+  titre?: Array<{ text: string; strong?: boolean }>;
 }
 
 /** Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function Coordonnees(
-  { accroche = 'Contact', titre = 'Nos coordonnées', className, children, ...rest },
+  {
+    mapUrl = '',
+    mapAlt = '',
+    accroche = 'Contact',
+    titre = [{ text: 'Nos coordonnées' }],
+    className,
+    children,
+    ...rest
+  },
   ref,
 ) {
   const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} {...rest}>
+      <img className={styles.googleMap} src={String(mapUrl)} alt={String(mapAlt)}></img>
       <div className={styles.wrapper}>
-        <SectionHeader titre="Nos coordonnées" accroche="Contact" disposition="standard" />
+        <SectionHeader
+          titre={titre}
+          accroche={accroche}
+          disposition="standard"
+          alignement="gauche"
+        />
         <div className={styles.Adresse}>
           <span className={styles.AdresseEtiquette}>Adresse</span>
-          <span className={styles.AdresseValeur}>Rue Alfred Drèze 7, 4860 Pepinster</span>
+          <span className={styles.AdresseValeur}>{'Rue Alfred Drèze 7,\n4860 Pepinster'}</span>
         </div>
         <div className={styles.Horaires}>
           <span className={styles.HorairesEtiquette}>Horaires</span>
@@ -45,7 +63,11 @@ export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function
         <div className={styles.Contact}>
           <span className={styles.ContactEtiquette}>Contact</span>
           <span className={styles.tl32087463266EmailInfopi}>
-            Tél : +32 (0)87 46 32 66  Email: info@piqueray.be
+            {'Tél : '}
+            <u>{'+32 (0)87 46 32 66'}</u>
+            {'\n'}
+            {'Email: '}
+            <u>{'info@piqueray.be'}</u>
           </span>
         </div>
         <div className={styles.suivezNous}>
@@ -64,7 +86,6 @@ export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function
           </div>
         </div>
       </div>
-      <div className={styles.googleMap}></div>
     </div>
   );
 });

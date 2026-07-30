@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "Formulaire",
     "contractId": "ds.formulaire",
     "anchorKey": "b588bcccec2ae782382324bcda5fc257b91defd5",
-    "description": "Formulaire — generated from contract ds.formulaire v1.0.0",
+    "description": "Formulaire — generated from contract ds.formulaire v1.1.0",
     "isSet": false,
     "boolProps": [],
     "textProps": [
@@ -1315,7 +1315,7 @@ const COMPONENTS = [
     "setName": "Hero",
     "contractId": "ds.hero",
     "anchorKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
-    "description": "Hero — generated from contract ds.hero v1.0.0",
+    "description": "Hero — generated from contract ds.hero v1.3.0 †",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -1335,7 +1335,29 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "MAX"
           },
+          "lits": {
+            "height": 640,
+            "itemSpacing": 10
+          },
           "children": [
+            {
+              "type": "frame",
+              "name": "Background",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "imgPlaceholder": true,
+              "lits": {
+                "fillColor": {
+                  "r": 0.8509803921568627,
+                  "g": 0.8509803921568627,
+                  "b": 0.8509803921568627
+                }
+              },
+              "children": []
+            },
             {
               "type": "frame",
               "name": "blocTexte",
@@ -1346,6 +1368,9 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
+              "lits": {
+                "itemSpacing": 16
+              },
               "children": [
                 {
                   "type": "frame",
@@ -1356,6 +1381,13 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 16,
+                    "paddingTop": 96,
+                    "paddingRight": 89,
+                    "paddingBottom": 48,
+                    "paddingLeft": 89
+                  },
                   "children": [
                     {
                       "type":"instance",
@@ -1364,6 +1396,7 @@ const COMPONENTS = [
                       "depProps": {
                         "Titre": "Portes de garage industrielles",
                         "Accroche": "Plus de 50 ans d’expérience",
+                        "Accroche2": false,
                         "Disposition": "Standard"
                       }
                     },
@@ -1375,21 +1408,32 @@ const COMPONENTS = [
                         "primary": "CENTER",
                         "counter": "MAX"
                       },
+                      "lits": {
+                        "itemSpacing": 32
+                      },
                       "children": [
                         {
                           "type": "text",
                           "name": "sousTitre",
+                          "lits": {
+                            "width": 1164
+                          },
                           "characters": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-                          "fontSize": 14,
+                          "fontSize": 24,
                           "fontStyle": "Medium",
                           "textFill": "color/blanc",
+                          "lineHeight": 32,
                           "fontFamily": "Montserrat"
                         },
                         {
                           "type":"instance",
                           "name": "Bouton",
                           "dep":"Button",
-                          "depProps": {}
+                          "depProps": {
+                            "Style": "Outline blanc",
+                            "Icone droite": true,
+                            "Libelle": "Demander un devis gratuit"
+                          }
                         }
                       ]
                     }
@@ -1407,7 +1451,7 @@ const COMPONENTS = [
     "setName": "Presentation",
     "contractId": "ds.presentation",
     "anchorKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
-    "description": "Presentation — generated from contract ds.presentation v1.0.0",
+    "description": "Presentation — generated from contract ds.presentation v2.1.0",
     "isSet": false,
     "boolProps": [
       {
@@ -1434,9 +1478,11 @@ const COMPONENTS = [
           "name": "Presentation",
           "layout": {
             "mode": "HORIZONTAL",
-            "primary": "MIN",
-            "counter": "MIN",
-            "stretchChildren": true
+            "primary": "SPACE_BETWEEN",
+            "counter": "MIN"
+          },
+          "lits": {
+            "itemSpacing": 32
           },
           "children": [
             {
@@ -1446,7 +1492,8 @@ const COMPONENTS = [
               "depProps": {
                 "Titre": "Piqueray, une histoire de famille ",
                 "Accroche": "Plus de 50 ans d’expérience",
-                "Disposition": "Standard"
+                "Disposition": "Standard",
+                "Accroche2": false
               }
             },
             {
@@ -1458,14 +1505,19 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "lits": {
+                "itemSpacing": 16,
+                "width": 627
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Texte",
-                  "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-                  "fontSize": 16,
+                  "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+                  "fontSize": 14,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
+                  "lineHeight": 24,
                   "fontFamily": "Montserrat",
                   "contentProp": "Texte"
                 },
@@ -1656,7 +1708,7 @@ const COMPONENTS = [
     "setName": "Reassurances",
     "contractId": "ds.reassurances",
     "anchorKey": "a303bd661e06746baa62828633b5c6132714a8c8",
-    "description": "Reassurances — generated from contract ds.reassurances v1.0.0",
+    "description": "Reassurances — generated from contract ds.reassurances v1.1.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1971,7 +2023,7 @@ const COMPONENTS = [
     "setName": "SAV",
     "contractId": "ds.sav",
     "anchorKey": "bf5e147a9b56206eba9c73045d533c9868b445b2",
-    "description": "SAV — generated from contract ds.sav v1.0.0",
+    "description": "SAV — generated from contract ds.sav v1.2.0 †",
     "isSet": false,
     "boolProps": [],
     "textProps": [
@@ -1996,14 +2048,21 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "itemSpacing": 10
+          },
           "children": [
             {
               "type": "frame",
               "name": "section",
               "layout": {
                 "mode": "HORIZONTAL",
-                "primary": "MIN",
+                "primary": "CENTER",
                 "counter": "MIN"
+              },
+              "lits": {
+                "width": 1550,
+                "height": 677
               },
               "children": [
                 {
@@ -2014,6 +2073,16 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN"
                   },
+                  "lits": {
+                    "width": 1550,
+                    "height": 475,
+                    "fillColor": {
+                      "r": 0.8509803921568627,
+                      "g": 0.8509803921568627,
+                      "b": 0.8509803921568627
+                    }
+                  },
+                  "imgPlaceholder": true,
                   "children": []
                 },
                 {
@@ -2025,14 +2094,25 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "width": 1288,
+                    "height": 561
+                  },
                   "children": [
                     {
                       "type": "frame",
                       "name": "wrapper",
                       "layout": {
                         "mode": "HORIZONTAL",
-                        "primary": "MIN",
+                        "primary": "CENTER",
                         "counter": "MIN"
+                      },
+                      "lits": {
+                        "width": 546,
+                        "height": 513,
+                        "paddingTop": 48,
+                        "paddingLeft": 48,
+                        "paddingRight": 47
                       },
                       "children": [
                         {
@@ -2044,6 +2124,10 @@ const COMPONENTS = [
                             "counter": "MIN"
                           },
                           "fill": "color/blanc",
+                          "lits": {
+                            "width": 641,
+                            "height": 561
+                          },
                           "children": []
                         },
                         {
@@ -2052,8 +2136,11 @@ const COMPONENTS = [
                           "layout": {
                             "mode": "VERTICAL",
                             "primary": "MIN",
-                            "counter": "MIN",
-                            "stretchChildren": true
+                            "counter": "MIN"
+                          },
+                          "lits": {
+                            "itemSpacing": 32,
+                            "width": 546
                           },
                           "children": [
                             {
@@ -2063,23 +2150,31 @@ const COMPONENTS = [
                               "depProps": {
                                 "Titre": "Dépannage / SAV",
                                 "Accroche": "Plus de 50 ans d’expérience",
+                                "Accroche2": false,
                                 "Disposition": "Standard"
                               }
                             },
                             {
                               "type": "text",
                               "name": "vousRencontrezUnProblmeA",
+                              "lits": {
+                                "height": 197
+                              },
                               "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
-                              "fontSize": 14,
+                              "fontSize": 18,
                               "fontStyle": "Medium",
                               "textFill": "color/noir",
+                              "lineHeight": 27,
                               "fontFamily": "Montserrat"
                             },
                             {
                               "type":"instance",
                               "name": "Bouton",
                               "dep":"Button",
-                              "depProps": {}
+                              "depProps": {
+                                "Libelle": "Demander de l’aide",
+                                "Icone droite": true
+                              }
                             }
                           ]
                         }
@@ -2091,7 +2186,12 @@ const COMPONENTS = [
                       "layout": {
                         "mode": "HORIZONTAL",
                         "primary": "MIN",
-                        "counter": "MIN"
+                        "counter": "MAX"
+                      },
+                      "lits": {
+                        "width": 644,
+                        "height": 561,
+                        "paddingLeft": 3
                       },
                       "children": [
                         {
@@ -2103,6 +2203,10 @@ const COMPONENTS = [
                             "counter": "MIN"
                           },
                           "fill": "color/bleu-clair",
+                          "lits": {
+                            "width": 647,
+                            "height": 478
+                          },
                           "children": []
                         },
                         {
@@ -2113,6 +2217,16 @@ const COMPONENTS = [
                             "primary": "MIN",
                             "counter": "MIN"
                           },
+                          "lits": {
+                            "width": 563,
+                            "height": 504,
+                            "fillColor": {
+                              "r": 0.8509803921568627,
+                              "g": 0.8509803921568627,
+                              "b": 0.8509803921568627
+                            }
+                          },
+                          "imgPlaceholder": true,
                           "children": []
                         }
                       ]
@@ -2220,12 +2334,13 @@ const COMPONENTS = [
     "setName": "TexteSEO",
     "contractId": "ds.texte-seo",
     "anchorKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
-    "description": "TexteSEO — generated from contract ds.texte-seo v1.0.0",
+    "description": "TexteSEO — generated from contract ds.texte-seo v2.1.0 †",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Semi Bold"
     ],
     "variants": [
       {
@@ -2240,6 +2355,11 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN",
             "stretchChildren": true
+          },
+          "bindings": {
+            "itemSpacing": "space/32",
+            "paddingLeft": "space/89",
+            "paddingRight": "space/89"
           },
           "children": [
             {
@@ -2258,7 +2378,8 @@ const COMPONENTS = [
                   "depProps": {
                     "Titre": "Visitez notre showroom à Pepinster ou contactez-nous",
                     "Accroche": "Plus de 50 ans d’expérience",
-                    "Disposition": "Standard"
+                    "Disposition": "Standard",
+                    "Accroche2": false
                   }
                 }
               ]
@@ -2280,6 +2401,7 @@ const COMPONENTS = [
                   "fontSize": 14,
                   "fontStyle": "Medium",
                   "textFill": "color/noir",
+                  "lineHeight": 24,
                   "fontFamily": "Montserrat"
                 }
               ]
@@ -2297,9 +2419,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "SousTitre",
                   "characters": "Infos pratiques",
-                  "fontSize": 14,
-                  "fontStyle": "Medium",
+                  "fontSize": 20,
+                  "fontStyle": "Semi Bold",
                   "textFill": "color/noir-bleute",
+                  "lineHeight": 25,
                   "fontFamily": "Montserrat"
                 }
               ]
@@ -2320,6 +2443,7 @@ const COMPONENTS = [
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Réponse",
+                    "Etat": "Ferme",
                     "Titre": "Accès et parking"
                   }
                 },
@@ -2330,6 +2454,7 @@ const COMPONENTS = [
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+                    "Etat": "Ouvert",
                     "Titre": "Faut-il prendre rendez-vous ?"
                   }
                 },
@@ -2340,6 +2465,7 @@ const COMPONENTS = [
                   "depProps": {
                     "Taille": "Petit",
                     "Contenu": "Réponse",
+                    "Etat": "Ferme",
                     "Titre": "Zones de déplacement pour devis"
                   }
                 }

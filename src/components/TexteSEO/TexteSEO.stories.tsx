@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v1.0.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v2.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -20,17 +20,22 @@ const meta = {
   },
   render: (args) => <TexteSEO key={JSON.stringify(args)} {...args} />,
   argTypes: {
-    items: { control: false },
+    items: {
+      control: false,
+      description:
+        "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli.",
+    },
   },
   args: {
     items: [
-      { contenu: 'Réponse', titre: 'Accès et parking' },
+      { contenu: 'Réponse', etat: 'ferme', titre: 'Accès et parking' },
       {
         contenu:
           'Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.',
+        etat: 'ouvert',
         titre: 'Faut-il prendre rendez-vous ?',
       },
-      { contenu: 'Réponse', titre: 'Zones de déplacement pour devis' },
+      { contenu: 'Réponse', etat: 'ferme', titre: 'Zones de déplacement pour devis' },
     ],
   },
 } satisfies Meta<typeof TexteSEO>;

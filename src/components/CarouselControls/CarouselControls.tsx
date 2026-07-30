@@ -16,10 +16,10 @@ export const CarouselControls = forwardRef<HTMLElement, CarouselControlsProps>(
     const classes = [styles.root, className].filter(Boolean).join(' ');
     return (
       <nav ref={ref} className={classes} aria-label="Navigation du carrousel" {...rest}>
-        <Button iconLeftGlyph="chevron-left" variant="iconOnly">
+        <Button iconLeftGlyph="chevron-left" iconRight={false} iconLeft={false} variant="iconOnly">
           Précédent
         </Button>
-        <Button iconLeftGlyph="chevron-right" variant="iconOnly">
+        <Button iconLeftGlyph="chevron-right" iconRight={false} iconLeft={false} variant="iconOnly">
           Suivant
         </Button>
       </nav>

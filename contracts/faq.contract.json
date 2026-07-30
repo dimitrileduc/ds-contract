@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.faq",
   "name": "FAQ",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -55,7 +55,11 @@
           "component": {
             "id": "ds.section-header",
             "props": {
-              "titre": "Questions fréquentes",
+              "titre": [
+                {
+                  "text": "Questions fréquentes"
+                }
+              ],
               "accroche": "FAQ",
               "disposition": "standard"
             }

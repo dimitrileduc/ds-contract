@@ -32,18 +32,24 @@ import {
   slotsOf,
   tokensByPropEntries,
   walkAnatomy,
+  type ComponentPropValue,
   type Contract,
   type Part,
 } from '../scripts/contract-schema.js';
 import { flattenTokens, makeResolveLiteral, type TokenTreeInput } from './tokens.js';
 import {
+  arrayFieldTsType,
   arrayProps,
+  HAS_LINE_SEPARATOR,
+  normalizeLineSeparators,
   boolProps,
   enumProps,
   isArrayType,
   isEnum,
   isRichText,
   isMultiRoot,
+  isStructural,
+  literalSegmentsJsx,
   namedRichTextProps,
   namedSlots,
   namedTextProps,
@@ -89,11 +95,6 @@ const placeholdersIn = (refPath: string): string[] =>
   [...refPath.matchAll(/\{([a-z][\w-]*)\}/g)].map((m) => m[1]);
 const camel = (cssProp: string) => cssProp.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
 
-const isStructural = (part: Part) =>
-  Boolean(part.parts || part.slot || part.layout || part.layoutByProp) &&
-  !part.content &&
-  !part.component;
-
 type StyleRecord = Record<string, string | number>;
 
 export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): EmitReactInlineResult {
@@ -114,6 +115,22 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
   const resolveValue = (tokenPath: string): string | number => {
     const v = resolveLiteral(tokenPath);
     return typeof v === 'number' ? v : String(v);
+  };
+  /** The governed <strong> style, resolved to literals for this surface — the
+   *  inline sibling of the `.part > strong` CSS rule. Shared by the rich-text
+   *  PROP path (content.marks) and the v19 LITERAL path (textMarks). */
+  const strongStyleAttr = (
+    mark: Parameters<typeof richTextStrongStyle>[0],
+  ): string => {
+    const strong = richTextStrongStyle(mark);
+    if (!strong.fontWeight) return '';
+    return ` style={{ ${[
+      `fontWeight: ${JSON.stringify(strong.fontWeight.startsWith('{') ? resolveValue(stripBraces(strong.fontWeight)) : strong.fontWeight)}`,
+      strong.fontSize ? `fontSize: ${JSON.stringify(strong.fontSize)}` : null,
+      strong.lineHeight ? `lineHeight: ${JSON.stringify(strong.lineHeight)}` : null,
+    ]
+      .filter(Boolean)
+      .join(', ')} }}`;
   };
 
   const name = contract.name;
@@ -405,7 +422,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       propLines.push(`${doc}  ${p.bindings.code.prop}?: ${p.type.enum.map((v) => `'${v}'`).join(' | ')};`);
     } else if (isArrayType(p)) {
       const fields = Object.entries(p.type.arrayOf)
-        .map(([f, t]) => `${f}: ${t === 'text' ? 'string' : t}`)
+        .map(([f, t]) => `${f}: ${arrayFieldTsType(t)}`)
         .join('; ');
       propLines.push(`${doc}  ${p.bindings.code.prop}?: Array<{ ${fields} }>;`);
     } else if (isRichText(p)) {
@@ -701,7 +718,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
 
   const depAttrString = (
     dep: Contract,
-    fixedProps: Record<string, string | boolean | number>,
+    fixedProps: Record<string, ComponentPropValue>,
     omitChildren = false,
   ): string => {
     const parts: string[] = [];
@@ -709,8 +726,16 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       const depProp = dep.props.find((p) => p.name === propName);
       if (omitChildren && depProp?.bindings.code.prop === 'children') continue;
       const codeName = depProp?.bindings.code.prop ?? propName;
+      // v19: see emit-react.ts — a rich-text child prop takes its segments as
+      // prop data; the referee has refused an array anywhere else.
+      if (Array.isArray(value)) {
+        parts.push(` ${codeName}={${JSON.stringify(value)}}`);
+        continue;
+      }
       if (typeof value === 'boolean') {
-        parts.push(value ? ` ${codeName}` : '');
+        // See emit-react.ts: an omitted `false` falls back to the child's own
+        // default, which inverts the contract fact when that default is `true`.
+        parts.push(value ? ` ${codeName}` : ` ${codeName}={false}`);
         continue;
       }
       if (typeof value === 'number') {
@@ -733,11 +758,13 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
   // and then rendering the child's text default creates duplicate children.
   const componentChildrenJsx = (
     dep: Contract,
-    fixedProps: Record<string, string | boolean | number>,
+    fixedProps: Record<string, ComponentPropValue>,
   ): string | undefined => {
     for (const [propName, value] of Object.entries(fixedProps)) {
       const depProp = dep.props.find((p) => p.name === propName);
       if (depProp?.bindings.code.prop !== 'children') continue;
+      // Segments stay DATA — String() here would emit "[object Object]".
+      if (Array.isArray(value)) return `{${JSON.stringify(value)}}`;
       if (typeof value === 'string') {
         const parentRef = value.match(/^\{([a-z][\w-]*)\}$/);
         if (parentRef) {
@@ -828,14 +855,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
           (p.type === 'text' || p.type === 'rich-text') &&
           p.bindings.code.prop === part.content!.prop,
       )!;
-      const strong = richTextStrongStyle(part.content.marks?.strong);
-      const strongStyle = strong.fontWeight
-        ? ` style={{ ${[
-            `fontWeight: ${JSON.stringify(strong.fontWeight.startsWith('{') ? resolveValue(stripBraces(strong.fontWeight)) : strong.fontWeight)}`,
-            strong.fontSize ? `fontSize: ${JSON.stringify(strong.fontSize)}` : null,
-            strong.lineHeight ? `lineHeight: ${JSON.stringify(strong.lineHeight)}` : null,
-          ].filter(Boolean).join(', ')} }}`
-        : '';
+      const strongStyle = strongStyleAttr(part.content.marks?.strong);
       const inner =
         prop.type === 'rich-text'
           ? `{${prop.bindings.code.prop}.map(({ text, strong }, index) => strong ? <strong key={index}${strongStyle}>{text}</strong> : <span key={index}>{text}</span>)}`
@@ -843,6 +863,30 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       return wrapPresence(
         part,
         `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}${eventAttrsFor(partName, part, el)}>${inner}</${el}>`,
+      );
+    }
+    if (part.textSegments) {
+      // v19: the literal's observed strong ranges. Every range is a string
+      // expression, so a "\n" inside one survives compilation.
+      const el = part.element ?? 'span';
+      return wrapPresence(
+        part,
+        `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}>${literalSegmentsJsx(
+          part.textSegments,
+          strongStyleAttr(part.textMarks?.strong),
+          // This surface has no stylesheet, so the declared decoration rides
+          // the element itself instead of a `.part u` rule.
+          " style={{ textDecorationLine: 'underline' }}",
+        )}</${el}>`,
+      );
+    }
+    if (part.text !== undefined && HAS_LINE_SEPARATOR.test(part.text)) {
+      // See emit-react.ts: raw JSX children collapse "\n" at compile time, and
+      // Figma also spells breaks as "\r" / U+2028 — normalized to "\n" here.
+      const el = part.element ?? 'span';
+      return wrapPresence(
+        part,
+        `<${el} style=${styleExpr(partName, false, stylesWhenExprs(part))}${renderedPartAttrs(part)}>{${JSON.stringify(normalizeLineSeparators(part.text))}}</${el}>`,
       );
     }
     if (part.text !== undefined) {

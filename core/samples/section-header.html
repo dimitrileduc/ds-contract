@@ -1,5 +1,5 @@
 <!--
-  SectionHeader — static HTML+CSS emitted from contract ds.section-header v1.0.0 by core/emit-html.ts.
+  SectionHeader — static HTML+CSS emitted from contract ds.section-header v2.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,18 +9,47 @@
 <section class="showcase showcase--section-header">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <div class="section-header section-header--disposition-standard" data-part="root" data-accroche2="true">
+    <div class="section-header section-header--disposition-standard section-header--emphase-standard section-header--alignement-centre" data-part="root" data-accroche2="true">
       <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
-      <span class="section-header__Titre" data-part="Titre">Pourquoi choisir Piqueray ?</span>
+      <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
     </div>
   </div>
   <div class="showcase__item">
     <p class="showcase__label">disposition=avecCta</p>
-    <div class="section-header section-header--disposition-avecCta" data-part="root" data-accroche2="true">
-      <span class="section-header__Titre" data-part="Titre">Pourquoi choisir Piqueray ?</span>
+    <div class="section-header section-header--disposition-avecCta section-header--emphase-standard section-header--alignement-centre" data-part="root" data-accroche2="true">
+      <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
+      <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
       <button class="button button--variant-outilneNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
         <span class="button__label" data-part="label">Voir les produits</span>
       </button>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">emphase=hero</p>
+    <div class="section-header section-header--disposition-standard section-header--emphase-hero section-header--alignement-centre" data-part="root" data-accroche2="true">
+      <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
+      <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">emphase=moyen</p>
+    <div class="section-header section-header--disposition-standard section-header--emphase-moyen section-header--alignement-centre" data-part="root" data-accroche2="true">
+      <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
+      <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">emphase=compact</p>
+    <div class="section-header section-header--disposition-standard section-header--emphase-compact section-header--alignement-centre" data-part="root" data-accroche2="true">
+      <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
+      <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
+    </div>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">alignement=gauche</p>
+    <div class="section-header section-header--disposition-standard section-header--emphase-standard section-header--alignement-gauche" data-part="root" data-accroche2="true">
+      <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
+      <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
     </div>
   </div>
 </section>

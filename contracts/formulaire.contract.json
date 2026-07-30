@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.formulaire",
   "name": "Formulaire",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -89,7 +89,11 @@
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": "Prenez contact avec nous dès maintenant !",
+                  "titre": [
+                    {
+                      "text": "Prenez contact avec nous dès maintenant !"
+                    }
+                  ],
                   "accroche": "Une demande de devis ? Une réparation ?",
                   "disposition": "standard"
                 }

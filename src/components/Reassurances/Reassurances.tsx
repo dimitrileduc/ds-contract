@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.0.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -26,7 +26,7 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
   return (
     <div ref={ref} className={classes} {...rest}>
       <SectionHeader
-        titre="Pourquoi choisir nos portes de garage industrielles ?"
+        titre={[{ text: 'Pourquoi choisir nos portes de garage industrielles ?' }]}
         accroche="Plus de 50 ans d’expérience"
         disposition="standard"
       />

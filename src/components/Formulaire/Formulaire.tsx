@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/formulaire.contract.json (ds.formulaire v1.0.0)
+ * Source of truth: contracts/formulaire.contract.json (ds.formulaire v1.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -38,7 +38,7 @@ export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function F
     <div ref={ref} className={classes} {...rest}>
       <div className={styles.column}>
         <SectionHeader
-          titre="Prenez contact avec nous dès maintenant !"
+          titre={[{ text: 'Prenez contact avec nous dès maintenant !' }]}
           accroche="Une demande de devis ? Une réparation ?"
           disposition="standard"
         />

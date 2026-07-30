@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.devis",
   "name": "Devis",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -22,21 +22,119 @@
           "prop": "titre"
         }
       }
+    },
+    {
+      "name": "backgroundUrl",
+      "type": "text",
+      "default": "",
+      "description": "URL fournie par le code pour la peinture IMAGE pleine largeur du root (fills[0], scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa). Figma range ces pixels dans une PEINTURE du master, jamais dans une propriété de composant : la liaison figma est donc NONE et le défaut vide est intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "backgroundUrl"
+        }
+      }
+    },
+    {
+      "name": "backgroundAlt",
+      "type": "text",
+      "default": "",
+      "description": "Alternative textuelle appariée à backgroundUrl. Une peinture IMAGE Figma n'expose aucune propriété d'alternative textuelle : le défaut vide est intentionnel (plan décoratif).",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "backgroundAlt"
+        }
+      }
+    },
+    {
+      "name": "fond",
+      "type": "boolean",
+      "default": true,
+      "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux peintures vivent sur le root du master, pas sur une propriété : liaison NONE, défaut true (l'état du master). Ce booléen est AUSSI le seul porteur possible des insets des deux plans : la grammaire n'expose `top/right/bottom/left` que dans `stylesWhen` (STYLES_WHEN_ALLOWED), qui exige une prop conditionnante — précédents dans le dépôt : nav-item `Soulignement` conditionné par `actif`, member-picture (deux plans photo) conditionnés par `etat`. À false, les deux plans disparaissent et seul le `background-color` du root subsiste.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "fond"
+        }
+      }
     }
   ],
   "states": [],
   "anatomy": {
     "root": {
+      "description": "Aplat pleine largeur, et bloc conteneur positionné (`position: relative`) des deux plans de fond. Le master 2096:2524 empile DEUX peintures sur son root : fills[0] = peinture IMAGE (scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa) et fills[1] = voile SOLID #000000 à 0,3019607961177826 d'opacité. Aucun canal de contrat ne porte une peinture IMAGE (`tokens.background-image` n'accepte qu'un dégradé CSS, parsé par parseCssGradient dans core/emit-figma-script.ts) ni une opacité de peinture (`opacity` n'est ni dans LITERAL_CHANNELS ni dans DECLARED_CHANNELS) : les deux peintures sont donc portées comme DEUX PLANS D'ANATOMIE superposés — `Background` (porteur `img` + `src`/`alt` code-only + `object-fit: cover`, orthographe CSS du scaleMode FILL ; convention sav/carte/product-card/realisation) puis `Voile` (littéral `#0000004D` : la couleur ET l'opacité en un seul canal, 0x4D = 77/255 = 0,3019607961177826 exactement — la valeur Figma, pas un arrondi). Le root garde `background-color: {color.noir-pur}` comme plan de BASE sous les deux autres : c'est ce qui s'affiche quand `backgroundUrl` est vide (le défaut) ou quand `fond` est false. LIMITE NOMMÉE, non contournée : le retour vers le canvas (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md) — une part `img` dont l'URL est code-only ne se re-pousse pas en peinture IMAGE, et l'opacité du voile s'y re-pousse comme couleur alpha, pas comme opacité de peinture.",
       "layout": {
         "display": "flex",
         "direction": "column",
         "align": "center"
       },
       "parts": {
+        "Background": {
+          "description": "Plan photo — fills[0] du root (peinture IMAGE, scaleMode FILL). Porté par un `img` dont `src`/`alt` viennent du code : Figma range ces pixels dans une peinture du master, pas dans une propriété de composant. `object-fit: cover` est l'orthographe CSS du scaleMode FILL observé. Les quatre insets à 0 (le plan couvre exactement la boîte de padding du root, padding compris) n'ont de porteur QUE dans `stylesWhen` — d'où la condition sur `fond`.",
+          "element": "img",
+          "attrs": {
+            "src": "{backgroundUrl}",
+            "alt": "{backgroundAlt}"
+          },
+          "declared": {
+            "position": "absolute",
+            "object-fit": "cover"
+          },
+          "stylesWhen": [
+            {
+              "prop": "fond",
+              "styles": {
+                "top": "0px",
+                "right": "0px",
+                "bottom": "0px",
+                "left": "0px"
+              }
+            }
+          ],
+          "visibleWhen": {
+            "prop": "fond"
+          }
+        },
+        "Voile": {
+          "description": "Plan voile — fills[1] du root (SOLID #000000, opacité 0,3019607961177826), peint PAR-DESSUS le plan photo et SOUS le contenu. `#0000004D` porte la couleur et l'opacité en un seul canal (0x4D = 77 = round(0,3019607961177826 × 255), la valeur Figma exacte). L'empilement ne repose sur aucun z-index : entre éléments positionnés de même contexte, l'ordre du DOM EST l'ordre de peinture — `Background`, puis `Voile`, puis `Container` (lui aussi `position: relative`, donc positionné et peint au-dessus des deux plans).",
+          "declared": {
+            "position": "absolute"
+          },
+          "literals": {
+            "background-color": "#0000004D"
+          },
+          "stylesWhen": [
+            {
+              "prop": "fond",
+              "styles": {
+                "top": "0px",
+                "right": "0px",
+                "bottom": "0px",
+                "left": "0px"
+              }
+            }
+          ],
+          "visibleWhen": {
+            "prop": "fond"
+          }
+        },
         "Container": {
           "layout": {
             "direction": "column",
             "align": "center"
+          },
+          "declared": {
+            "position": "relative"
+          },
+          "literals": {
+            "gap": "32px"
           },
           "parts": {
             "Titre": {
@@ -44,20 +142,40 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.blanc}"
+                "color": "{color.blanc}",
+                "font-size": "{font.size.40}"
+              },
+              "literals": {
+                "line-height": "50px",
+                "width": "900px"
+              },
+              "declared": {
+                "text-align": "center"
               }
             },
             "Bouton": {
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "props": {
+                  "children": "Prendre rendez-vous",
+                  "variant": "outlineBlanc",
+                  "iconRight": true
+                }
               }
             }
           }
         }
       },
       "tokens": {
-        "background-color": "{color.noir-bleute}",
+        "background-color": "{color.noir-pur}",
         "font-family": "{font.family.montserrat}"
+      },
+      "literals": {
+        "padding-top": "96px",
+        "padding-bottom": "96px"
+      },
+      "declared": {
+        "position": "relative"
       }
     }
   },

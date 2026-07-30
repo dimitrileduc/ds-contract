@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* Devis — from ds.devis v1.0.0 (core/emit-html.ts) */
+/* Devis — from ds.devis v1.2.0 (core/emit-html.ts) */
 
 .devis, .devis *, .devis *::before, .devis *::after {
   box-sizing: border-box;
@@ -124,18 +124,53 @@
   flex-direction: column;
   align-items: center;
   border: 0;
-  background-color: var(--color-noir-bleute);
+  background-color: var(--color-noir-pur);
   font-family: var(--font-family-montserrat);
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+}
+
+.devis__Background {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.devis[data-fond] .devis__Background {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.devis__Voile {
+  background-color: #0000004D;
+  position: absolute;
+}
+
+.devis[data-fond] .devis__Voile {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 }
 
 .devis__Container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px;
+  position: relative;
 }
 
 .devis__Titre {
   color: var(--color-blanc);
+  font-size: var(--font-size-40);
+  line-height: 50px;
+  width: 900px;
+  text-align: center;
 }
 
 /* showcase chrome */

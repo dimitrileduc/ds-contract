@@ -2,13 +2,41 @@
   "$schema": "./contract.schema.json",
   "id": "ds.coordonnees",
   "name": "Coordonnees",
-  "version": "1.0.0",
+  "version": "2.2.0",
   "description": "Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
   },
   "props": [
+    {
+      "name": "mapUrl",
+      "type": "text",
+      "default": "",
+      "description": "URL fournie par le code pour le paint IMAGE du plan Google (RECTANGLE Figma 2104:2899, imageRef efdebf1941d13dbd5a2ab421aaeac49d352a87b2) — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : Figma range ces pixels dans un paint du master, jamais dans une propriété de composant, et le contrat n'a aucun canal background-image ; l'imageRef est donc consigné ici et jamais lié. Le défaut vide est intentionnel et ne substitue aucune image.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "mapUrl"
+        }
+      }
+    },
+    {
+      "name": "mapAlt",
+      "type": "text",
+      "default": "",
+      "description": "Équivalent textuel fourni par le code, apparié à mapUrl. Un paint IMAGE Figma n'expose aucune propriété de composant correspondante, donc le défaut vide est intentionnel.",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "mapAlt"
+        }
+      }
+    },
     {
       "name": "accroche",
       "type": "text",
@@ -26,9 +54,13 @@
     },
     {
       "name": "titre",
-      "type": "text",
-      "default": "Nos coordonnées",
-      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass).",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Nos coordonnées"
+        }
+      ],
+      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Type rich-text depuis section-header 2.0.0 : la propriété est transmise VIVANTE à l'enfant (titre: \"{titre}\"), et un mapping vers une prop rich-text exige une prop rich-text côté parent — sinon les graisses que l'enfant sait désormais porter seraient aplaties au passage. Le titre observé (I2169:6216;2090:2387) est UNIFORME : un seul segment.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -48,6 +80,22 @@
         "direction": "row"
       },
       "parts": {
+        "googleMap": {
+          "description": "Plan Google de la section (RECTANGLE Figma 2104:2899, 1152×597 FIXED/FIXED, layoutGrow 0). Son fills[0] est un paint IMAGE de scaleMode STRETCH porteur d'un imageTransform [[1,0,0],[0,0.9913,0.00434]] : un recadrage centré à ratio conservé de la source 1142×597 vers la boîte 1152×597 — object-fit: cover en est l'orthographe CSS exacte (même facteur 1.00875, mêmes 2,6 px rognés en haut et en bas). PREMIÈRE part du root : l'ordre du DOM est ici l'ordre VISUEL de Figma (plan à GAUCHE en x=40, wrapper à DROITE en x=1192). Le root Figma est un GRID 3 colonnes à gouttière 0 dont les enfants sont positionnés MANUAL et rangés plan-puis-wrapper dans l'ordre visuel ; l'ordre d'auteur du calque est un artefact sans portée, le contrat décrit le résultat. min-width porte le FIXED de Figma : sans lui l'img flex-shrink:1 se laisse rétrécir par le wrapper et le plan perd 61 px.",
+          "element": "img",
+          "attrs": {
+            "src": "{mapUrl}",
+            "alt": "{mapAlt}"
+          },
+          "literals": {
+            "width": "1152px",
+            "min-width": "1152px",
+            "height": "597px"
+          },
+          "declared": {
+            "object-fit": "cover"
+          }
+        },
         "wrapper": {
           "layout": {
             "direction": "column",
@@ -55,12 +103,14 @@
           },
           "parts": {
             "SectionHeader": {
+              "description": "Instance SectionHeader (Figma 2169:6216). `titre`/`accroche` sont ROUTÉS depuis les props publiques du root (motif vivant : ds.carte props.children = \"{ctaLabel}\") au lieu de reconduire le littéral de l'override d'instance : sans ce routage les propriétés TEXT racines Titre#2104:58 et Accroche#2104:57 n'ont aucun effet côté code, exactement comme elles n'en ont aucun côté canvas (0 componentPropertyReferences mesuré). Les valeurs rendues par défaut sont inchangées — ce sont les defaults des props.",
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": "Nos coordonnées",
-                  "accroche": "Contact",
-                  "disposition": "standard"
+                  "titre": "{titre}",
+                  "accroche": "{accroche}",
+                  "disposition": "standard",
+                  "alignement": "gauche"
                 }
               }
             },
@@ -72,15 +122,26 @@
                 "AdresseEtiquette": {
                   "text": "Adresse",
                   "tokens": {
-                    "color": "{color.orange}"
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
                   }
                 },
                 "AdresseValeur": {
                   "text": "Rue Alfred Drèze 7, 4860 Pepinster",
                   "tokens": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.18}",
+                    "line-height": "{font.line-height.27}"
+                  },
+                  "declared": {
+                    "white-space": "pre-line",
+                    "text-decoration-line": "underline"
                   }
                 }
+              },
+              "literals": {
+                "gap": "8px"
               }
             },
             "Horaires": {
@@ -91,15 +152,22 @@
                 "HorairesEtiquette": {
                   "text": "Horaires",
                   "tokens": {
-                    "color": "{color.orange}"
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
                   }
                 },
                 "HorairesValeur": {
                   "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
                   "tokens": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.18}",
+                    "line-height": "{font.line-height.27}"
                   }
                 }
+              },
+              "literals": {
+                "gap": "8px"
               }
             },
             "Contact": {
@@ -110,15 +178,41 @@
                 "ContactEtiquette": {
                   "text": "Contact",
                   "tokens": {
-                    "color": "{color.orange}"
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
                   }
                 },
                 "tl32087463266EmailInfopi": {
                   "text": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
                   "tokens": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.18}",
+                    "line-height": "{font.line-height.27}"
+                  },
+                  "textSegments": [
+                    {
+                      "text": "Tél : "
+                    },
+                    {
+                      "text": "+32 (0)87 46 32 66\r",
+                      "underline": true
+                    },
+                    {
+                      "text": " Email: "
+                    },
+                    {
+                      "text": "info@piqueray.be",
+                      "underline": true
+                    }
+                  ],
+                  "declared": {
+                    "white-space": "pre-line"
                   }
                 }
+              },
+              "literals": {
+                "gap": "8px"
               }
             },
             "suivezNous": {
@@ -129,7 +223,9 @@
                 "SuivezNousEtiquette": {
                   "text": "Suivez-nous",
                   "tokens": {
-                    "color": "{color.orange}"
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
                   }
                 },
                 "rseauxSociaux": {
@@ -150,13 +246,24 @@
                         "size": 32
                       }
                     }
+                  },
+                  "literals": {
+                    "gap": "16px"
                   }
                 }
+              },
+              "literals": {
+                "gap": "8px"
               }
             }
+          },
+          "literals": {
+            "gap": "16px",
+            "padding-block": "48px",
+            "padding-inline": "48px",
+            "width": "576px"
           }
-        },
-        "googleMap": {}
+        }
       },
       "tokens": {
         "background-color": "{color.bleu-clair}",

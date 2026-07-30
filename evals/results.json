@@ -1,6 +1,6 @@
 {
-  "passed": 164,
-  "total": 164,
+  "passed": 169,
+  "total": 169,
   "quarantined": 48,
   "results": [
     {
@@ -140,6 +140,31 @@
     },
     {
       "id": "component-scalar-propagation",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "component-boolean-false-propagation",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "literal-text-newline-preservation",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "component-rich-text-prop-value",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "part-literal-rich-text",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "repeat-enum-item-field",
       "claim": "C3-detection",
       "pass": true
     },

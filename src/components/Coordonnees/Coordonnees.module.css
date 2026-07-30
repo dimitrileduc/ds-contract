@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v1.0.0)
+ * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v2.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -11,64 +11,101 @@
   font-family: var(--font-family-montserrat);
 }
 
+.googleMap {
+  width: 1152px;
+  min-width: 1152px;
+  height: 597px;
+  object-fit: cover;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 16px;
+  padding-block: 48px;
+  padding-inline: 48px;
+  width: 576px;
 }
 
 .Adresse {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .AdresseEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .AdresseValeur {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
+  white-space: pre-line;
+  text-decoration-line: underline;
 }
 
 .Horaires {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .HorairesEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .HorairesValeur {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
 }
 
 .Contact {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .ContactEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .tl32087463266EmailInfopi {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
+  white-space: pre-line;
+}
+
+.tl32087463266EmailInfopi u {
+  text-decoration-line: underline;
 }
 
 .suivezNous {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .SuivezNousEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .rseauxSociaux {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 16px;
 }
 
 .Facebook svg {

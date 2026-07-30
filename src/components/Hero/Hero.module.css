@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v1.0.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v1.3.0)
  * Regenerate with: npm run generate
  */
 
@@ -10,6 +10,16 @@
   justify-content: space-between;
   border: 0;
   font-family: var(--font-family-montserrat);
+  height: 640px;
+  gap: 10px;
+  position: relative;
+}
+
+.Background {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .blocTexte {
@@ -18,12 +28,19 @@
   align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
+  gap: 16px;
+  position: relative;
 }
 
 .Titres {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 16px;
+  padding-top: 96px;
+  padding-right: 89px;
+  padding-bottom: 48px;
+  padding-left: 89px;
 }
 
 .wrapper {
@@ -31,8 +48,18 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
+  gap: 32px;
 }
 
 .sousTitre {
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--color-blanc);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-32);
+  width: 1164px;
+}
+
+.sousTitre > strong {
+  font-weight: var(--font-weight-bold);
 }

@@ -2,13 +2,42 @@
   "$schema": "./contract.schema.json",
   "id": "ds.hero",
   "name": "Hero",
-  "version": "1.0.0",
-  "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "1.3.0",
+  "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.2.0 carries the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483, scaleMode FILL) as an absolutely-positioned `img` plane painted UNDER the content block — the same superposed-planes vocabulary ds.member-picture already uses, with DOM order alone deciding the stacking (no z-index channel exists, and none is needed: two positioned siblings paint in tree order). The bitmap reaches the coded surface through code-only `backgroundUrl` / `backgroundAlt` scalars (bindings.figma NONE) because `background-image: url()` is still the OPEN A5 / §a.7 gap of docs/FIGMA-CAPABILITY-MATRIX.md: the canvas side keeps the engine's generic image placeholder while the React surface renders the real pixels — the same split spec 006 documented for ds.review-card's avatarPhoto.\n\nTWO NAMED LIMITS REMAIN, both GRADIENT_LINEAR paints: the root's darkening overlay (fills[2] — `linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)`) and the Titres scrim (fills[0] — `linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%)`). Gradients are expressible in principle (§a.3: `tokens['background-image']` is parsed into a native GRADIENT_LINEAR) but that channel resolves ONLY through a DTCG token reference, and the Piqueray foundation defines no gradient token; `literals` refuses the channel by name (`background-image` is not in LITERAL_CHANNELS) and its value grammar admits no gradient syntax. The weight is measured, not guessed: the two veils darken 452 of the root's 640 px rows and account for 28.07 % of the master's pixels at the comparator's own threshold — on this organism they ARE the residual pixel gap. A single flat rgba() veil substituted over the same two bands was measured too, and bottoms out near 12 % residual, so approximating them would both invent a Figma fact and still fail.\n\nThe instance restyle of the SectionHeader child's Titre (blanc / 54 px / 68 px / 700) is no longer a limit here: it is carried by that child contract's own `emphase: \"hero\"` axis since section-header v1.1.0.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
   },
-  "props": [],
+  "props": [
+    {
+      "name": "backgroundUrl",
+      "description": "Code-only source of the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483). The master exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "backgroundUrl"
+        }
+      }
+    },
+    {
+      "name": "backgroundAlt",
+      "description": "Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "backgroundAlt"
+        }
+      }
+    }
+  ],
   "states": [],
   "anatomy": {
     "root": {
@@ -19,11 +48,29 @@
         "align": "end"
       },
       "parts": {
+        "Background": {
+          "description": "The root's fills[0] IMAGE paint as a photo plane. Out of flow (position: absolute) so it does not join the root's flex row; the emitter's replaced-element chrome then sizes it to the full inset box, which is the faithful statement — a Figma paint fills its NODE rather than occupying a box of its own, so no fixed 1728×640 is restated here. object-fit: cover reproduces scaleMode FILL (centered; the paint carries no imageTransform). Declared FIRST so the later positioned sibling paints over it.",
+          "element": "img",
+          "attrs": {
+            "src": "{backgroundUrl}",
+            "alt": "{backgroundAlt}"
+          },
+          "declared": {
+            "position": "absolute",
+            "object-fit": "cover"
+          }
+        },
         "blocTexte": {
           "layout": {
             "direction": "column",
             "align": "stretch",
             "grow": true
+          },
+          "literals": {
+            "gap": "16px"
+          },
+          "declared": {
+            "position": "relative"
           },
           "parts": {
             "Titres": {
@@ -31,14 +78,32 @@
                 "direction": "column",
                 "align": "stretch"
               },
+              "literals": {
+                "gap": "16px",
+                "padding-top": "96px",
+                "padding-right": "89px",
+                "padding-bottom": "48px",
+                "padding-left": "89px"
+              },
               "parts": {
                 "SectionHeader": {
                   "component": {
                     "id": "ds.section-header",
                     "props": {
-                      "titre": "Portes de garage industrielles",
+                      "titre": [
+                        {
+                          "text": "Portes de garage",
+                          "strong": true
+                        },
+                        {
+                          "text": " industrielles"
+                        }
+                      ],
                       "accroche": "Plus de 50 ans d’expérience",
-                      "disposition": "standard"
+                      "accroche2": false,
+                      "disposition": "standard",
+                      "emphase": "hero",
+                      "alignement": "gauche"
                     }
                   }
                 },
@@ -48,16 +113,55 @@
                     "justify": "center",
                     "align": "end"
                   },
+                  "literals": {
+                    "gap": "32px"
+                  },
                   "parts": {
                     "sousTitre": {
-                      "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                      "description": "DEUX LIMITES NOMMÉES sur cette part.\n\n(1) GRAS NON PORTÉ. Figma met deux plages en 700 sur le node 2111:3380 (`styleOverrideTable` clé 16 = Montserrat-Bold ; `characterStyleOverrides` 3→13 = « performance », 162→179 = « la solution idéale »), sur une base Montserrat 400. Le seul vocabulaire de texte riche du schéma est `Part.content`, un `strictObject` dont le champ `prop` est OBLIGATOIRE : le gras ne peut donc voyager qu'à travers une prop rich-text, et une prop rich-text exige une liaison TEXT native — or le master Hero n'expose AUCUNE propriété de composant (`componentPropertyDefinitions` absent, fait déjà acquitté par hero.property.aucune-propriete-exposee). Inventer une liaison TEXT pour faire passer le gras fabriquerait une propriété Figma inexistante. La part reste donc en `text` littéral, chaîne exacte du census. CORRECTIF DE FOND CÔTÉ FIGMA : exposer une propriété Texte sur le master, après quoi le gras redevient une plage gouvernée portée par la prop — jamais un contournement en code.\n\n(2) LARGEUR LITTÉRALE MESURÉE, pas une grille. Figma dit FILL (layoutGrow=1) et calcule 1164 = 1550 (wrapper FILL) − 32 (itemSpacing) − 354 (Bouton HUG) ; le census confirme la boîte à 1164 px. `layout.grow` émet `flex: 1 1 auto`, dont la base reste le CONTENU (jamais `flex-basis: 0`), donc la base dépasse le conteneur et le retrait négatif se répartit sur les DEUX enfants : le Bouton se faisait comprimer sous sa largeur HUG et son libellé passait sur deux lignes. Le littéral fixe la base à la valeur observée ; `flex-grow: 1` reste actif, donc la sémantique FILL survit vers le haut. Même technique et même reçu que `literals.width: \"282px\"` sur la racine de ds.review-card (spec 006, decisions.md § contournement vérifié par la prior-art rule) et que ds.avatar-group dans l'archive demo-51. À RECALCULER si l'itemSpacing du wrapper, le padding de Titres ou la largeur HUG du Bouton changent. Le vrai correctif est moteur (une base FILL qui n'est pas le contenu) et reste au backlog — `core/` non modifié, Constitution VII.",
+                      "layout": {
+                        "grow": true
+                      },
+                      "literals": {
+                        "width": "1164px"
+                      },
                       "tokens": {
-                        "color": "{color.blanc}"
+                        "color": "{color.blanc}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.32}"
+                      },
+                      "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                      "textSegments": [
+                        {
+                          "text": "La "
+                        },
+                        {
+                          "text": "performance",
+                          "strong": true
+                        },
+                        {
+                          "text": " sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "
+                        },
+                        {
+                          "text": "la solution idéale",
+                          "strong": true
+                        },
+                        {
+                          "text": "."
+                        }
+                      ],
+                      "textMarks": {
+                        "strong": "{font.weight.bold}"
                       }
                     },
                     "Bouton": {
                       "component": {
-                        "id": "ds.button"
+                        "id": "ds.button",
+                        "text": "Demander un devis gratuit",
+                        "props": {
+                          "variant": "outlineBlanc",
+                          "iconRight": true
+                        }
                       }
                     }
                   }
@@ -69,6 +173,13 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"
+      },
+      "literals": {
+        "height": "640px",
+        "gap": "10px"
+      },
+      "declared": {
+        "position": "relative"
       }
     }
   },

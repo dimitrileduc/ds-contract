@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v1.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -126,12 +126,16 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: 8px;
-  width: 1550px;
+  align-self: stretch;
 }
 
 .section-header--disposition-avecCta {
   flex-direction: row;
   justify-content: space-between;
+}
+
+.section-header--alignement-gauche {
+  align-items: start;
 }
 
 .section-header__Accroche {
@@ -150,15 +154,45 @@
   line-height: 50px;
 }
 
+.section-header__Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .section-header--disposition-avecCta .section-header__Titre {
   line-height: 40px;
+}
+
+.section-header--emphase-hero .section-header__Titre {
+  line-height: 68px;
+  font-weight: 300;
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  line-height: 40px;
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  line-height: 30px;
 }
 
 .section-header--disposition-avecCta .section-header__Titre {
   font-size: var(--font-size-32);
 }
 
-/* Presentation — from ds.presentation v1.0.0 (core/emit-html.ts) */
+.section-header--emphase-hero .section-header__Titre {
+  color: var(--color-blanc);
+  font-size: var(--font-size-54);
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  font-size: var(--font-size-32);
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  font-size: var(--font-size-24);
+}
+
+/* Presentation — from ds.presentation v2.1.0 (core/emit-html.ts) */
 
 .presentation, .presentation *, .presentation *::before, .presentation *::after {
   box-sizing: border-box;
@@ -167,18 +201,29 @@
 .presentation {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 32px;
 }
 
 .presentation__wrapper {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 16px;
+  width: 627px;
 }
 
 .presentation__Texte {
   color: var(--color-noir);
+  font-size: var(--font-size-14);
+  line-height: 24px;
+}
+
+.presentation__Texte > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 /* showcase chrome */

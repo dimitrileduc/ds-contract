@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.0.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -53,7 +53,7 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
-      <SectionHeader titre="Pourquoi choisir nos portes de garage industrielles ?" accroche="Plus de 50 ans d’expérience" disposition="standard" />
+      <SectionHeader titre={[{"text":"Pourquoi choisir nos portes de garage industrielles ?"}]} accroche="Plus de 50 ans d’expérience" disposition="standard" />
 <div style={{ ...S.items }}>
 <Carte disposition="reassurance" texte={[{ text: "Respectent les normes des bâtiments publics et les réglementations pompiers." }]} titre="Sécurité et conformité" />
 <Carte disposition="reassurance" texte={[{ text: "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit)." }]} titre="Intégration parfaite" />

@@ -186,11 +186,31 @@
                       "type": "string"
                     },
                     "additionalProperties": {
-                      "type": "string",
-                      "enum": [
-                        "text",
-                        "number",
-                        "boolean"
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "text",
+                            "number",
+                            "boolean"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "enum": {
+                              "minItems": 1,
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "enum"
+                          ],
+                          "additionalProperties": false
+                        }
                       ]
                     }
                   }
@@ -223,6 +243,9 @@
                       "type": "string"
                     },
                     "strong": {
+                      "type": "boolean"
+                    },
+                    "underline": {
                       "type": "boolean"
                     }
                   },
@@ -1012,6 +1035,74 @@
         "text": {
           "type": "string"
         },
+        "textSegments": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "strong": {
+                "type": "boolean"
+              },
+              "underline": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "textMarks": {
+          "type": "object",
+          "properties": {
+            "strong": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "font-weight": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^\\{[a-z0-9.{}-]+\\}$"
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^[1-9]00$"
+                        }
+                      ]
+                    },
+                    "font-size": {
+                      "type": "string",
+                      "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                    },
+                    "line-height": {
+                      "type": "string",
+                      "pattern": "^(-?\\d+(\\.\\d+)?(px|rem|em)?|transparent|inherit|currentColor|#[0-9a-fA-F]{3,8}|rgba?\\([\\d ,./%]+\\))$"
+                    }
+                  },
+                  "required": [
+                    "font-weight"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [
+            "strong"
+          ],
+          "additionalProperties": false
+        },
         "meter": {
           "type": "object",
           "properties": {
@@ -1205,13 +1296,39 @@
               "additionalProperties": {
                 "anyOf": [
                   {
-                    "type": "string"
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
                   },
                   {
-                    "type": "boolean"
-                  },
-                  {
-                    "type": "number"
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "strong": {
+                          "type": "boolean"
+                        },
+                        "underline": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    }
                   }
                 ]
               }

@@ -1,5 +1,5 @@
 <!--
-  Devis — static HTML+CSS emitted from contract ds.devis v1.0.0 by core/emit-html.ts.
+  Devis — static HTML+CSS emitted from contract ds.devis v1.2.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,11 +9,16 @@
 <section class="showcase showcase--devis">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <div class="devis" data-part="root">
+    <div class="devis" data-part="root" data-fond="true">
+      <img class="devis__Background" src="" alt="" data-part="Background"></img>
+      <div class="devis__Voile" data-part="Voile"></div>
       <div class="devis__Container" data-part="Container">
         <span class="devis__Titre" data-part="Titre">Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous</span>
-        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
-          <span class="button__label" data-part="label">Contactez-nous</span>
+        <button class="button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
+          <span class="button__label" data-part="label">Prendre rendez-vous</span>
+          <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
         </button>
       </div>
     </div>

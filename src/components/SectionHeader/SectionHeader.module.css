@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/section-header.contract.json (ds.section-header v1.0.0)
+ * Source of truth: contracts/section-header.contract.json (ds.section-header v2.0.0)
  * Regenerate with: npm run generate
  */
 
@@ -10,12 +10,16 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: 8px;
-  width: 1550px;
+  align-self: stretch;
 }
 
 .disposition-avecCta {
   flex-direction: row;
   justify-content: space-between;
+}
+
+.alignement-gauche {
+  align-items: start;
 }
 
 .Accroche {
@@ -34,10 +38,43 @@
   line-height: 50px;
 }
 
+.Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .disposition-avecCta .Titre {
   font-size: var(--font-size-32);
 }
 
+.emphase-hero .Titre {
+  color: var(--color-blanc);
+}
+
+.emphase-hero .Titre {
+  font-size: var(--font-size-54);
+}
+
+.emphase-moyen .Titre {
+  font-size: var(--font-size-32);
+}
+
+.emphase-compact .Titre {
+  font-size: var(--font-size-24);
+}
+
 .disposition-avecCta .Titre {
   line-height: 40px;
+}
+
+.emphase-hero .Titre {
+  line-height: 68px;
+  font-weight: 300;
+}
+
+.emphase-moyen .Titre {
+  line-height: 40px;
+}
+
+.emphase-compact .Titre {
+  line-height: 30px;
 }

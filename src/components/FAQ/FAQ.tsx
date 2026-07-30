@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/faq.contract.json (ds.faq v1.0.0)
+ * Source of truth: contracts/faq.contract.json (ds.faq v1.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -24,7 +24,11 @@ export const FAQ = forwardRef<HTMLDivElement, FAQProps>(function FAQ(
   const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} data-ligne3={ligne3 || undefined} {...rest}>
-      <SectionHeader titre="Questions fréquentes" accroche="FAQ" disposition="standard" />
+      <SectionHeader
+        titre={[{ text: 'Questions fréquentes' }]}
+        accroche="FAQ"
+        disposition="standard"
+      />
       <div className={styles.accordion}>
         {items?.map((item, index) => (
           <AccordionRow key={index} taille="grand" contenu={item.contenu} titre={item.titre} />

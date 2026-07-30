@@ -270,6 +270,46 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'component-boolean-false-propagation',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/component-boolean-false-propagation-check.ts']);
+      if (r.status !== 0) throw new Error(`Component boolean-false propagation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'literal-text-newline-preservation',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/literal-text-newline-preservation-check.ts']);
+      if (r.status !== 0) throw new Error(`Literal-text newline preservation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-rich-text-prop-value',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/component-rich-text-prop-value-check.ts']);
+      if (r.status !== 0) throw new Error(`Component rich-text prop-value check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'part-literal-rich-text',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/part-literal-rich-text-check.ts']);
+      if (r.status !== 0) throw new Error(`Part literal rich-text check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'repeat-enum-item-field',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/repeat-enum-item-field-check.ts']);
+      if (r.status !== 0) throw new Error(`Repeat enum item-field check failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'visual-probative-evidence',
     claim: 'C2-refusal',
     run: () => {

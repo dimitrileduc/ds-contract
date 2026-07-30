@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v1.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -126,12 +126,16 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: 8px;
-  width: 1550px;
+  align-self: stretch;
 }
 
 .section-header--disposition-avecCta {
   flex-direction: row;
   justify-content: space-between;
+}
+
+.section-header--alignement-gauche {
+  align-items: start;
 }
 
 .section-header__Accroche {
@@ -150,12 +154,42 @@
   line-height: 50px;
 }
 
+.section-header__Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .section-header--disposition-avecCta .section-header__Titre {
   line-height: 40px;
 }
 
+.section-header--emphase-hero .section-header__Titre {
+  line-height: 68px;
+  font-weight: 300;
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  line-height: 40px;
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  line-height: 30px;
+}
+
 .section-header--disposition-avecCta .section-header__Titre {
   font-size: var(--font-size-32);
+}
+
+.section-header--emphase-hero .section-header__Titre {
+  color: var(--color-blanc);
+  font-size: var(--font-size-54);
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  font-size: var(--font-size-32);
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  font-size: var(--font-size-24);
 }
 
 /* Carte — from ds.carte v2.0.0 (core/emit-html.ts) */
@@ -265,7 +299,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v1.0.0 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v1.1.0 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;

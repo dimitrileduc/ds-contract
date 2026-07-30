@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v1.0.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -20,7 +20,7 @@ const meta = {
   },
   render: (args) => <Presentation key={JSON.stringify(args)} {...args} />,
   argTypes: {
-    texte: { control: 'text' },
+    texte: { control: false },
     bouton: { control: 'boolean' },
     titre: {
       control: 'text',
@@ -28,8 +28,18 @@ const meta = {
     },
   },
   args: {
-    texte:
-      'Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.',
+    texte: [
+      { text: 'Depuis plus de 50 ans,', strong: true },
+      {
+        text: " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de ",
+      },
+      { text: "proximité et d'excellence technique", strong: true },
+      { text: '. Dépositaire officiel ' },
+      { text: 'Hörmann', strong: true },
+      { text: ", nous allions la force d'un leader mondial à " },
+      { text: "la souplesse d'une PME locale", strong: true },
+      { text: '.' },
+    ],
     bouton: false,
     titre: 'Piqueray, une histoire de famille ',
   },

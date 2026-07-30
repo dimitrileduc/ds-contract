@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v1.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -126,12 +126,16 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: 8px;
-  width: 1550px;
+  align-self: stretch;
 }
 
 .section-header--disposition-avecCta {
   flex-direction: row;
   justify-content: space-between;
+}
+
+.section-header--alignement-gauche {
+  align-items: start;
 }
 
 .section-header__Accroche {
@@ -150,15 +154,45 @@
   line-height: 50px;
 }
 
+.section-header__Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .section-header--disposition-avecCta .section-header__Titre {
   line-height: 40px;
+}
+
+.section-header--emphase-hero .section-header__Titre {
+  line-height: 68px;
+  font-weight: 300;
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  line-height: 40px;
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  line-height: 30px;
 }
 
 .section-header--disposition-avecCta .section-header__Titre {
   font-size: var(--font-size-32);
 }
 
-/* Coordonnees — from ds.coordonnees v1.0.0 (core/emit-html.ts) */
+.section-header--emphase-hero .section-header__Titre {
+  color: var(--color-blanc);
+  font-size: var(--font-size-54);
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  font-size: var(--font-size-32);
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  font-size: var(--font-size-24);
+}
+
+/* Coordonnees — from ds.coordonnees v2.2.0 (core/emit-html.ts) */
 
 .coordonnees, .coordonnees *, .coordonnees *::before, .coordonnees *::after {
   box-sizing: border-box;
@@ -172,64 +206,101 @@
   font-family: var(--font-family-montserrat);
 }
 
+.coordonnees__googleMap {
+  width: 1152px;
+  min-width: 1152px;
+  height: 597px;
+  object-fit: cover;
+}
+
 .coordonnees__wrapper {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 16px;
+  padding-block: 48px;
+  padding-inline: 48px;
+  width: 576px;
 }
 
 .coordonnees__Adresse {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .coordonnees__AdresseEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .coordonnees__AdresseValeur {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
+  white-space: pre-line;
+  text-decoration-line: underline;
 }
 
 .coordonnees__Horaires {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .coordonnees__HorairesEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .coordonnees__HorairesValeur {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
 }
 
 .coordonnees__Contact {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .coordonnees__ContactEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .coordonnees__tl32087463266EmailInfopi {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
+  white-space: pre-line;
+}
+
+.coordonnees__tl32087463266EmailInfopi u {
+  text-decoration-line: underline;
 }
 
 .coordonnees__suivezNous {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .coordonnees__SuivezNousEtiquette {
   color: var(--color-orange);
+  font-size: var(--font-size-24);
+  line-height: var(--font-line-height-30);
 }
 
 .coordonnees__rseauxSociaux {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 16px;
 }
 
 .coordonnees__Facebook svg {

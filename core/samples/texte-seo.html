@@ -1,5 +1,5 @@
 <!--
-  TexteSEO — static HTML+CSS emitted from contract ds.texte-seo v1.0.0 by core/emit-html.ts.
+  TexteSEO — static HTML+CSS emitted from contract ds.texte-seo v2.1.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -11,9 +11,8 @@
     <p class="showcase__label">default</p>
     <div class="texte-seo" data-part="root">
       <div class="texte-seo__h2" data-part="h2">
-        <div class="section-header section-header--disposition-standard" data-part="SectionHeader" data-accroche2="true">
-          <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
-          <span class="section-header__Titre" data-part="Titre">Visitez notre showroom à Pepinster ou contactez-nous</span>
+        <div class="section-header section-header--disposition-standard section-header--emphase-compact section-header--alignement-gauche" data-part="SectionHeader">
+          <span class="section-header__Titre" data-part="Titre"><span>Visitez notre </span><strong>showroom à Pepinster</strong><span> ou contactez-nous</span></span>
         </div>
       </div>
       <div class="texte-seo__p" data-part="p">
@@ -30,11 +29,14 @@
 </svg></span>
           <button class="accordion-row__trigger" aria-label="Accès et parking" data-part="trigger"></button>
         </div>
-        <div class="accordion-row accordion-row--taille-petit accordion-row--etat-ferme" data-part="root">
-          <span class="accordion-row__Titre" data-part="Titre">Faut-il prendre rendez-vous ?</span>
-          <span class="accordion-row__ChevronDown" aria-hidden="true" data-part="ChevronDown"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z" fill="currentColor"/>
+        <div class="accordion-row accordion-row--taille-petit accordion-row--etat-ouvert" data-part="root">
+          <div class="accordion-row__title" data-part="title">
+            <span class="accordion-row__TitreOuvert" data-part="TitreOuvert">Faut-il prendre rendez-vous ?</span>
+            <span class="accordion-row__ChevronUp" aria-hidden="true" data-part="ChevronUp"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z" fill="currentColor"/>
 </svg></span>
+          </div>
+          <span class="accordion-row__Contenu" data-part="Contenu">Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.</span>
           <button class="accordion-row__trigger" aria-label="Faut-il prendre rendez-vous ?" data-part="trigger"></button>
         </div>
         <div class="accordion-row accordion-row--taille-petit accordion-row--etat-ferme" data-part="root">

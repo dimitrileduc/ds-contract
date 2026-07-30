@@ -34,8 +34,10 @@ import {
   slotsOf,
   tokensByPropEntries,
   walkAnatomy,
+  type ComponentPropValue,
   type Contract,
   type Part,
+  type RichTextSegment,
 } from '../scripts/contract-schema.js';
 import { kebab } from '../extract/types.js';
 import {
@@ -47,9 +49,12 @@ import {
   isEnum,
   isMultiRoot,
   isRichText,
+  isStructural,
   rootBorderPlan,
   rootElementsOf,
   richTextStrongStyle,
+  hasUnderlinedSegment,
+  normalizeLineSeparators,
   richTextPlain,
   textProps,
   topRoots,
@@ -98,11 +103,6 @@ function layoutOverrideDecls(o: {
   if (o.justify) d.push(`justify-content: ${JUSTIFY_CSS[o.justify]}`);
   return d;
 }
-
-const isStructural = (part: Part) =>
-  Boolean(part.parts || part.slot || part.layout || part.layoutByProp) &&
-  !part.content &&
-  !part.component;
 
 function layoutDecls(part: Part): string[] {
   const d: string[] = [];
@@ -602,7 +602,7 @@ function componentCss(contract: Contract): string[] {
       ]);
     }
     rule(partCls(name), decls);
-    const strong = richTextStrongStyle(part.content?.marks?.strong);
+    const strong = richTextStrongStyle(part.content?.marks?.strong ?? part.textMarks?.strong);
     if (strong.fontWeight) {
       const weight = strong.fontWeight.startsWith('{')
         ? cssVar(stripBraces(strong.fontWeight))
@@ -611,6 +611,11 @@ function componentCss(contract: Contract): string[] {
       if (strong.fontSize) strongDecls.push(`font-size: ${strong.fontSize}`);
       if (strong.lineHeight) strongDecls.push(`line-height: ${strong.lineHeight}`);
       rule(`${partCls(name)} > strong`, strongDecls);
+    }
+    // v19: the declared decoration for <u> ranges — explicit, never the UA
+    // default (see underlineRule in emit-react.ts).
+    if (hasUnderlinedSegment(part)) {
+      rule(`${partCls(name)} u`, ['text-decoration-line: underline']);
     }
     for (const [sel, d] of subRules) rule(sel, d);
     // v10 tokensByProp on a nested part: descendant rule under the root's
@@ -697,6 +702,10 @@ const escapeHtml = (s: string) =>
 interface RenderState {
   subst: Record<string, string>;          // enum prop → showcased value
   bools: Record<string, boolean>;         // boolean prop → showcased value
+  /** v19: rich-text prop → the SEGMENTS a component-ref parent fixed. Flat
+   *  `subst` would keep only the concatenation, so the parent's marks would
+   *  vanish on this surface while the React one showed them. */
+  segs?: Record<string, RichTextSegment[]>;
 }
 
 function renderComponentHtml(
@@ -728,6 +737,34 @@ function renderComponentHtml(
       ? String(prop.default)
       : undefined;
   };
+  /** A composed child's render state: its OWN enum/bool defaults first, then
+   *  the values the parent fixed on this instance. The `repeat` path and the
+   *  plain `component` path differ only in where those props come from, so
+   *  they share this — a value kind added in one was previously added twice.
+   *  The `slot` path deliberately does NOT route through here: slot content
+   *  props are `string | boolean` only, with no "{parentProp}" threading and
+   *  no segments, and widening them here would be a silent capability change. */
+  const depStateFor = (
+    dep: Contract,
+    fixedProps: Record<string, ComponentPropValue> = {},
+  ): RenderState => {
+    const depState: RenderState = { subst: {}, bools: {} };
+    for (const p of enumProps(dep)) depState.subst[p.name] = String(p.default ?? p.type.enum[0]);
+    for (const p of boolProps(dep)) depState.bools[p.name] = p.default === true;
+    for (const [pn, v] of Object.entries(fixedProps)) {
+      if (typeof v === 'boolean') { depState.bools[pn] = v; continue; }
+      // v19: segments stay segments. `String(v)` here would render
+      // "[object Object]" into the child's text — silent destruction.
+      if (Array.isArray(v)) {
+        (depState.segs ??= {})[pn] = v;
+        depState.subst[pn] = richTextPlain(v);
+        continue;
+      }
+      const parentRef = typeof v === 'string' ? v.match(/^\{([a-z][\w-]*)\}$/) : null;
+      depState.subst[pn] = parentRef ? (propValue(parentRef[1]) ?? String(v)) : String(v);
+    }
+    return depState;
+  };
   const textValue = (propName: string): string => {
     const prop = contract.props.find(
       (p) => (p.type === 'text' || p.type === 'rich-text') && p.bindings.code.prop === propName,
@@ -747,8 +784,12 @@ function renderComponentHtml(
     const prop = contract.props.find(
       (p) => (p.type === 'text' || p.type === 'rich-text') && p.bindings.code.prop === propName,
     );
-    if (prop && isRichText(prop) && Array.isArray(prop.default)) {
-      return prop.default
+    // A component-ref parent may have fixed this rich-text prop to its own
+    // observed segments — those win over the child's default, exactly as the
+    // flat `subst` override does for a plain text prop.
+    const segments = (prop && state.segs?.[prop.name]) ?? (prop && isRichText(prop) ? prop.default : undefined);
+    if (prop && isRichText(prop) && Array.isArray(segments)) {
+      return segments
         .map((segment) => {
           const text = escapeHtml(segment.text);
           return segment.strong ? `<strong>${text}</strong>` : `<span>${text}</span>`;
@@ -757,6 +798,18 @@ function renderComponentHtml(
     }
     return escapeHtml(textValue(propName));
   };
+  /** v19: a LITERAL part text rendered with its observed marked ranges. Breaks
+   *  are normalized like every other code surface (the HTML parser folds "\r"
+   *  to LF but U+2028 is not a CSS segment break at all); marks compose with
+   *  `strong` outside `<u>`, matching the React surfaces. */
+  const literalSegmentsHtml = (segments: RichTextSegment[]): string =>
+    segments
+      .map((segment) => {
+        let inner = escapeHtml(normalizeLineSeparators(segment.text));
+        if (segment.underline) inner = `<u>${inner}</u>`;
+        return segment.strong ? `<strong>${inner}</strong>` : inner;
+      })
+      .join('');
   const visible = (part: Part): boolean => {
     if (part.visibleWhen) {
       const vw = part.visibleWhen;
@@ -849,14 +902,7 @@ function renderComponentHtml(
       const dep = ctx.contracts.get(part.component.id)!;
       return part.repeat.sample
         .map((rec) => {
-          const depState: RenderState = { subst: {}, bools: {} };
-          for (const p of enumProps(dep)) depState.subst[p.name] = String(p.default ?? p.type.enum[0]);
-          for (const p of boolProps(dep)) depState.bools[p.name] = p.default === true;
-          for (const [pn, v] of Object.entries(part.component!.props ?? {})) {
-            if (typeof v === 'boolean') { depState.bools[pn] = v; continue; }
-            const parentRef = typeof v === 'string' ? v.match(/^\{([a-z][\w-]*)\}$/) : null;
-            depState.subst[pn] = parentRef ? (propValue(parentRef[1]) ?? String(v)) : String(v);
-          }
+          const depState = depStateFor(dep, part.component!.props ?? {});
           let itemText: string | undefined;
           for (const [field, v] of Object.entries(rec)) {
             const depProp = dep.props.find((p) => p.name === field);
@@ -870,14 +916,7 @@ function renderComponentHtml(
     }
     if (part.component) {
       const dep = ctx.contracts.get(part.component.id)!;
-      const depState: RenderState = { subst: {}, bools: {} };
-      for (const p of enumProps(dep)) depState.subst[p.name] = String(p.default ?? p.type.enum[0]);
-      for (const p of boolProps(dep)) depState.bools[p.name] = p.default === true;
-      for (const [pn, v] of Object.entries(part.component.props ?? {})) {
-        if (typeof v === 'boolean') { depState.bools[pn] = v; continue; }
-        const parentRef = typeof v === 'string' ? v.match(/^\{([a-z][\w-]*)\}$/) : null;
-        depState.subst[pn] = parentRef ? (propValue(parentRef[1]) ?? String(v)) : String(v);
-      }
+      const depState = depStateFor(dep, part.component.props ?? {});
       return renderComponentHtml(
         dep,
         ctx,
@@ -919,7 +958,10 @@ function renderComponentHtml(
       return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${contentHtml(part.content.prop, extraText)}</${textEl}>`;
     }
     if (part.text !== undefined) {
-      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${escapeHtml(part.text)}</${textEl}>`;
+      const literal = part.textSegments
+        ? literalSegmentsHtml(part.textSegments)   // v19: observed strong ranges
+        : escapeHtml(part.text);
+      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${literal}</${textEl}>`;
     }
     if (part.meter) {
       const num = (propName: string, fallback: number) => {

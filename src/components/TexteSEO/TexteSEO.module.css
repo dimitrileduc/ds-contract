@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v1.0.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v2.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -9,6 +9,9 @@
   align-items: stretch;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: var(--space-32);
+  padding-inline: var(--space-89);
+  align-self: stretch;
 }
 
 .h2 {
@@ -23,6 +26,8 @@
 
 .Paragraphe {
   color: var(--color-noir);
+  font-size: var(--font-size-14);
+  line-height: var(--font-line-height-24);
 }
 
 .h3 {
@@ -31,6 +36,9 @@
 
 .SousTitre {
   color: var(--color-noir-bleute);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-25);
 }
 
 .accordion {

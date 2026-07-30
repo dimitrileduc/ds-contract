@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.presentation",
   "name": "Presentation",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -11,8 +11,37 @@
   "props": [
     {
       "name": "texte",
-      "type": "text",
-      "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Depuis plus de 50 ans,",
+          "strong": true
+        },
+        {
+          "text": " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "
+        },
+        {
+          "text": "proximité et d'excellence technique",
+          "strong": true
+        },
+        {
+          "text": ". Dépositaire officiel "
+        },
+        {
+          "text": "Hörmann",
+          "strong": true
+        },
+        {
+          "text": ", nous allions la force d'un leader mondial à "
+        },
+        {
+          "text": "la souplesse d'une PME locale",
+          "strong": true
+        },
+        {
+          "text": "."
+        }
+      ],
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -58,16 +87,29 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "row"
+        "direction": "row",
+        "align": "start",
+        "justify": "space-between"
       },
       "parts": {
         "SectionHeader": {
           "component": {
             "id": "ds.section-header",
             "props": {
-              "titre": "Piqueray, une histoire de famille ",
+              "titre": [
+                {
+                  "text": "Piqueray, ",
+                  "strong": true
+                },
+                {
+                  "text": "une histoire de famille "
+                }
+              ],
               "accroche": "Plus de 50 ans d’expérience",
-              "disposition": "standard"
+              "disposition": "standard",
+              "accroche2": false,
+              "emphase": "moyen",
+              "alignement": "gauche"
             }
           }
         },
@@ -76,13 +118,24 @@
             "direction": "column",
             "align": "stretch"
           },
+          "literals": {
+            "gap": "16px",
+            "width": "627px"
+          },
           "parts": {
             "Texte": {
               "content": {
-                "prop": "texte"
+                "prop": "texte",
+                "marks": {
+                  "strong": "{font.weight.bold}"
+                }
               },
               "tokens": {
-                "color": "{color.noir}"
+                "color": "{color.noir}",
+                "font-size": "{font.size.14}"
+              },
+              "literals": {
+                "line-height": "24px"
               }
             },
             "Bouton": {
@@ -98,6 +151,9 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}"
+      },
+      "literals": {
+        "gap": "32px"
       }
     }
   },

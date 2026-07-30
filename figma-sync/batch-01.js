@@ -1200,7 +1200,7 @@ const COMPONENTS = [
     "setName": "SectionHeader",
     "contractId": "ds.section-header",
     "anchorKey": "770d5801af6e899b9547461ea2c714a66e0fa356",
-    "description": "SectionHeader — generated from contract ds.section-header v1.0.0",
+    "description": "SectionHeader — generated from contract ds.section-header v2.0.0 †",
     "isSet": true,
     "boolProps": [
       {
@@ -1227,8 +1227,7 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "lits": {
-            "itemSpacing": 8,
-            "width": 1550
+            "itemSpacing": 8
           },
           "children": [
             {
@@ -1242,7 +1241,9 @@ const COMPONENTS = [
               "letterSpacing": 3,
               "textCase": "UPPER",
               "fontFamily": "Montserrat",
-              "contentProp": "Accroche"
+              "contentProp": "Accroche",
+              "visibleProp": "Accroche2",
+              "visibleDefault": true
             },
             {
               "type": "text",
@@ -1271,10 +1272,24 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "lits": {
-            "itemSpacing": 8,
-            "width": 1550
+            "itemSpacing": 8
           },
           "children": [
+            {
+              "type": "text",
+              "name": "Accroche",
+              "characters": "Plus de 50 ans d’expérience",
+              "fontSize": 20,
+              "fontStyle": "Regular",
+              "textFill": "color/noir-bleute",
+              "lineHeight": 25,
+              "letterSpacing": 3,
+              "textCase": "UPPER",
+              "fontFamily": "Montserrat",
+              "contentProp": "Accroche",
+              "visibleProp": "Accroche2",
+              "visibleDefault": true
+            },
             {
               "type": "text",
               "name": "Titre",
@@ -1305,7 +1320,7 @@ const COMPONENTS = [
     "setName": "Coordonnees",
     "contractId": "ds.coordonnees",
     "anchorKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
-    "description": "Coordonnees — generated from contract ds.coordonnees v1.0.0",
+    "description": "Coordonnees — generated from contract ds.coordonnees v2.2.0 †",
     "isSet": false,
     "boolProps": [],
     "textProps": [
@@ -1339,12 +1354,41 @@ const COMPONENTS = [
           "children": [
             {
               "type": "frame",
+              "name": "googleMap",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "lits": {
+                "width": 1152,
+                "minWidth": 1152,
+                "height": 597,
+                "fillColor": {
+                  "r": 0.8509803921568627,
+                  "g": 0.8509803921568627,
+                  "b": 0.8509803921568627
+                }
+              },
+              "imgPlaceholder": true,
+              "children": []
+            },
+            {
+              "type": "frame",
               "name": "wrapper",
               "layout": {
                 "mode": "VERTICAL",
                 "primary": "MIN",
                 "counter": "MIN",
                 "stretchChildren": true
+              },
+              "lits": {
+                "itemSpacing": 16,
+                "paddingTop": 48,
+                "paddingBottom": 48,
+                "paddingLeft": 48,
+                "paddingRight": 48,
+                "width": 576
               },
               "children": [
                 {
@@ -1366,23 +1410,29 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 8
+                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "AdresseEtiquette",
                       "characters": "Adresse",
-                      "fontSize": 14,
+                      "fontSize": 24,
                       "fontStyle": "Medium",
                       "textFill": "color/orange",
+                      "lineHeight": 30,
                       "fontFamily": "Montserrat"
                     },
                     {
                       "type": "text",
                       "name": "AdresseValeur",
                       "characters": "Rue Alfred Drèze 7, 4860 Pepinster",
-                      "fontSize": 14,
+                      "fontSize": 18,
                       "fontStyle": "Medium",
                       "textFill": "color/noir-bleute",
+                      "lineHeight": 27,
+                      "textDecoration": "UNDERLINE",
                       "fontFamily": "Montserrat"
                     }
                   ]
@@ -1396,23 +1446,28 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 8
+                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "HorairesEtiquette",
                       "characters": "Horaires",
-                      "fontSize": 14,
+                      "fontSize": 24,
                       "fontStyle": "Medium",
                       "textFill": "color/orange",
+                      "lineHeight": 30,
                       "fontFamily": "Montserrat"
                     },
                     {
                       "type": "text",
                       "name": "HorairesValeur",
                       "characters": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
-                      "fontSize": 14,
+                      "fontSize": 18,
                       "fontStyle": "Medium",
                       "textFill": "color/noir-bleute",
+                      "lineHeight": 27,
                       "fontFamily": "Montserrat"
                     }
                   ]
@@ -1426,23 +1481,28 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 8
+                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "ContactEtiquette",
                       "characters": "Contact",
-                      "fontSize": 14,
+                      "fontSize": 24,
                       "fontStyle": "Medium",
                       "textFill": "color/orange",
+                      "lineHeight": 30,
                       "fontFamily": "Montserrat"
                     },
                     {
                       "type": "text",
                       "name": "tl32087463266EmailInfopi",
                       "characters": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
-                      "fontSize": 14,
+                      "fontSize": 18,
                       "fontStyle": "Medium",
                       "textFill": "color/noir-bleute",
+                      "lineHeight": 27,
                       "fontFamily": "Montserrat"
                     }
                   ]
@@ -1456,14 +1516,18 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "lits": {
+                    "itemSpacing": 8
+                  },
                   "children": [
                     {
                       "type": "text",
                       "name": "SuivezNousEtiquette",
                       "characters": "Suivez-nous",
-                      "fontSize": 14,
+                      "fontSize": 24,
                       "fontStyle": "Medium",
                       "textFill": "color/orange",
+                      "lineHeight": 30,
                       "fontFamily": "Montserrat"
                     },
                     {
@@ -1473,6 +1537,9 @@ const COMPONENTS = [
                         "mode": "HORIZONTAL",
                         "primary": "MIN",
                         "counter": "CENTER"
+                      },
+                      "lits": {
+                        "itemSpacing": 16
                       },
                       "children": [
                         {
@@ -1492,16 +1559,6 @@ const COMPONENTS = [
                   ]
                 }
               ]
-            },
-            {
-              "type": "frame",
-              "name": "googleMap",
-              "layout": {
-                "mode": "HORIZONTAL",
-                "primary": "MIN",
-                "counter": "MIN"
-              },
-              "children": []
             }
           ]
         }
@@ -1557,7 +1614,7 @@ const COMPONENTS = [
     "setName": "Devis",
     "contractId": "ds.devis",
     "anchorKey": "0caac7487988d0da129211e64a40545163149a6f",
-    "description": "Devis — generated from contract ds.devis v1.0.0",
+    "description": "Devis — generated from contract ds.devis v1.2.0 †",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -1577,8 +1634,50 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "fill": "color/noir-bleute",
+          "fill": "color/noir-pur",
+          "lits": {
+            "paddingTop": 96,
+            "paddingBottom": 96
+          },
           "children": [
+            {
+              "type": "frame",
+              "name": "Background",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "imgPlaceholder": true,
+              "lits": {
+                "fillColor": {
+                  "r": 0.8509803921568627,
+                  "g": 0.8509803921568627,
+                  "b": 0.8509803921568627
+                }
+              },
+              "children": [],
+              "visibleDefault": true
+            },
+            {
+              "type": "frame",
+              "name": "Voile",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "lits": {
+                "fillColor": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.30196078431372547
+                }
+              },
+              "children": [],
+              "visibleDefault": true
+            },
             {
               "type": "frame",
               "name": "Container",
@@ -1587,14 +1686,22 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
+              "lits": {
+                "itemSpacing": 32
+              },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
+                  "lits": {
+                    "width": 900
+                  },
                   "characters": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-                  "fontSize": 16,
+                  "fontSize": 40,
                   "fontStyle": "Medium",
                   "textFill": "color/blanc",
+                  "lineHeight": 50,
+                  "textAlignH": "CENTER",
                   "fontFamily": "Montserrat",
                   "contentProp": "Titre"
                 },
@@ -1602,7 +1709,11 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Bouton",
                   "dep":"Button",
-                  "depProps": {}
+                  "depProps": {
+                    "Libelle": "Prendre rendez-vous",
+                    "Style": "Outline blanc",
+                    "Icone droite": true
+                  }
                 }
               ]
             }
@@ -2043,7 +2154,7 @@ const COMPONENTS = [
     "setName": "FAQ",
     "contractId": "ds.faq",
     "anchorKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
-    "description": "FAQ — generated from contract ds.faq v1.0.0",
+    "description": "FAQ — generated from contract ds.faq v1.1.0",
     "isSet": false,
     "boolProps": [
       {

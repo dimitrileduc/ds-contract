@@ -1,5 +1,5 @@
 <!--
-  SAV — static HTML+CSS emitted from contract ds.sav v1.0.0 by core/emit-html.ts.
+  SAV — static HTML+CSS emitted from contract ds.sav v1.2.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -11,25 +11,27 @@
     <p class="showcase__label">default</p>
     <div class="sav" data-part="root">
       <div class="sav__section" data-part="section">
-        <div class="sav__background" data-part="background"></div>
+        <img class="sav__background" src="" alt="" data-part="background"></img>
         <div class="sav__row" data-part="row">
           <div class="sav__wrapper" data-part="wrapper">
             <div class="sav__WrapperBackground" data-part="WrapperBackground"></div>
             <div class="sav__inner" data-part="inner">
-              <div class="section-header section-header--disposition-standard" data-part="SectionHeader" data-accroche2="true">
-                <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
-                <span class="section-header__Titre" data-part="Titre">Dépannage / SAV</span>
+              <div class="section-header section-header--disposition-standard section-header--emphase-standard section-header--alignement-gauche" data-part="SectionHeader">
+                <span class="section-header__Titre" data-part="Titre"><span>Dépannage / SAV</span></span>
               </div>
-              <span class="sav__vousRencontrezUnProblmeA" data-part="vousRencontrezUnProblmeA">Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?
-Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !</span>
-              <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
-                <span class="button__label" data-part="label">Contactez-nous</span>
+              <span class="sav__vousRencontrezUnProblmeA" data-part="vousRencontrezUnProblmeA">Vous rencontrez un problème avec <strong>votre installation </strong>Hörmann à Liège ? Il y a une panne de courant et <strong>votre porte de garage</strong> ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?
+Pas de panique, Piqueray, <strong>votre distributeur Hörmann en province de Liège</strong> est là pour vous aider !</span>
+              <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
+                <span class="button__label" data-part="label">Demander de l’aide</span>
+                <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
               </button>
             </div>
           </div>
           <div class="sav__imgGroup" data-part="imgGroup">
             <div class="sav__ImgGroupBackground" data-part="ImgGroupBackground"></div>
-            <div class="sav__img" data-part="img"></div>
+            <img class="sav__img" src="" alt="" data-part="img"></img>
           </div>
         </div>
       </div>
