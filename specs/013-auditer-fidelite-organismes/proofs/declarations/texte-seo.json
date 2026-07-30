@@ -1,0 +1,989 @@
+{
+  "facts": [
+    {
+      "id": "texte-seo.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3123",
+        "detail": "COMPONENT root (VERTICAL, itemSpacing 32, paddingLeft/Right 89, 1728x383) > [h2 2169:6291 > SectionHeader 2170:6361, p 2170:6308 > Paragraphe 2108:3116, h3 2170:6309 > SousTitre 2108:3118, accordion 2108:3119 > AccordionRow ×3]",
+        "componentPropertyDefinitions": null,
+        "componentPropertyDefinitionsNote": "le master n’expose AUCUNE propriété de composant (clé absente du dump REST)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.h2",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6291",
+        "name": "h2",
+        "layoutMode": "NONE",
+        "itemSpacing": 0,
+        "size": "1550x30"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__h2\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.p",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:6308",
+        "name": "p",
+        "layoutMode": "VERTICAL",
+        "itemSpacing": 0,
+        "size": "1550x72"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/p"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__p\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.h3",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:6309",
+        "name": "h3",
+        "layoutMode": "NONE",
+        "itemSpacing": 0,
+        "size": "1550x25"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h3"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__h3\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.accordion",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3119",
+        "name": "accordion",
+        "layoutMode": "VERTICAL",
+        "itemSpacing": 0,
+        "size": "1550x160"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__accordion\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.gap-root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3123",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "root.itemSpacing",
+        "value": 32
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/gap",
+        "note": "site du correctif : {space.32} existe déjà dans tokens/primitives.tokens.json"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.padding-inline-root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3123",
+        "channel": "paddingLeft/paddingRight"
+      },
+      "figmaExpectation": {
+        "channel": "root.paddingInline",
+        "value": 89
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/padding-inline",
+        "note": "site du correctif : {space.89} existe déjà dans tokens/primitives.tokens.json"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.width-root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3123",
+        "channel": "absoluteBoundingBox.width",
+        "layoutSizingHorizontal": "FIXED"
+      },
+      "figmaExpectation": {
+        "channel": "root.width",
+        "value": 1728
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/width",
+        "note": "idiome du dépôt : ds.section-header et ds.accordion-row portent width sous literals"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.paragraphe",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2108:3116",
+        "detail": "TEXT Paragraphe — 4 séquences Montserrat-Bold dans un calque unique (« Notre showroom », « à Pepinster », « portes de garage, motorisations et portes d’entrée », « Hörmann ») que le champ text plat du contrat ne peut pas porter — dette rich-text B1",
+        "characterStyleOverrideRuns": 4
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.sous-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3118",
+        "characters": "Infos pratiques"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__SousTitre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.composition.section-header",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:6361",
+        "mainComponent": "2090:2385",
+        "observedInstanceProperties": {
+          "Accroche2#2169:64": false,
+          "Titre#2090:47": "Visitez notre showroom à Pepinster ou contactez-nous",
+          "Accroche#2090:46": "Plus de 50 ans d’expérience",
+          "Disposition": "Standard"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component",
+        "childContractId": "ds.section-header"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.section-header-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:6361",
+        "property": "Titre#2090:47"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Titre",
+        "value": "Visitez notre showroom à Pepinster ou contactez-nous"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.section-header-accroche",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:6361",
+        "property": "Accroche#2090:46"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche",
+        "value": "Plus de 50 ans d’expérience"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche",
+        "bindingProperty": "Accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.section-header-disposition",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:6361",
+        "property": "Disposition",
+        "figmaValue": "Standard"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Disposition",
+        "value": "standard"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/disposition",
+        "bindingProperty": "Disposition",
+        "note": "valeur côté contrat de l’enum ; ds.section-header mappe standard → \"Standard\""
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.composition.section-header-accroche2",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:6361",
+        "property": "Accroche2#2169:64",
+        "textLayer": "I2170:6361;2090:2386",
+        "detail": "l’instance masque l’accroche (BOOLEAN false ; calque TEXT visible=false) ; le contrat ne transmet pas accroche2, dont le défaut est true dans ds.section-header"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche2",
+        "value": false
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche2"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.section-header-titre-rich-text",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "I2170:6361;2090:2387",
+        "detail": "TEXT Titre de l’instance — « showroom à Pepinster » (offsets 14..33) en Montserrat-Bold dans un calque unique ; la prop titre du contrat est une chaîne plate — dette rich-text B1"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.section-header-titre-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "I2170:6361;2090:2387",
+        "channel": "style.fontSize",
+        "detail": "surcharge d’instance : le master ds.section-header 2090:2385 (Disposition=Standard) porte 40px/50px, l’instance dans TexteSEO porte 24px/30px ; la composition component.props ne transporte que des valeurs de props, jamais une surcharge typographique de l’enfant"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Titre.font-size",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/tokens/font-size",
+        "note": "aucun site existant côté contrat ; {font.size.24} et {font.line-height.30} existent dans les tokens"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.section-header-titre-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "I2170:6361;2090:2387",
+        "channel": "style.lineHeightPx",
+        "detail": "surcharge d’instance : le master ds.section-header 2090:2385 (Disposition=Standard) porte 40px/50px, l’instance dans TexteSEO porte 24px/30px ; la composition component.props ne transporte que des valeurs de props, jamais une surcharge typographique de l’enfant"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Titre.line-height",
+        "value": "30px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h2/parts/SectionHeader/tokens/line-height",
+        "note": "aucun site existant côté contrat ; {font.size.24} et {font.line-height.30} existent dans les tokens"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.paragraphe-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3116",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "Paragraphe.font-size",
+        "value": "14px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.paragraphe-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3116",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "Paragraphe.line-height",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.sous-titre-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3118",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "SousTitre.font-size",
+        "value": "20px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__SousTitre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.sous-titre-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3118",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "SousTitre.line-height",
+        "value": "25px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__SousTitre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.sous-titre-font-weight",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3118",
+        "channel": "style.fontWeight",
+        "fontPostScriptName": "Montserrat-SemiBold"
+      },
+      "figmaExpectation": {
+        "channel": "SousTitre.font-weight",
+        "value": 600
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/font-weight",
+        "note": "{font.weight.semibold} = 600 existe déjà dans les tokens"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__SousTitre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.paragraphe-color",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3116",
+        "channel": "fills[0].color",
+        "figmaValue": "#37373b",
+        "variableId": "VariableID:24:52"
+      },
+      "figmaExpectation": {
+        "channel": "Paragraphe.color",
+        "value": "{color.noir}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/tokens/color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.sous-titre-color",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3118",
+        "channel": "fills[0].color",
+        "figmaValue": "#26282c",
+        "variableId": "VariableID:5:40"
+      },
+      "figmaExpectation": {
+        "channel": "SousTitre.color",
+        "value": "{color.noir-bleute}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/tokens/color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__SousTitre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.root-font-family",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3116",
+        "channel": "style.fontFamily",
+        "figmaValue": "Montserrat",
+        "detail": "chaque calque TEXT du master porte fontFamily \"Montserrat\" ; le contrat le porte une fois à la racine"
+      },
+      "figmaExpectation": {
+        "channel": "root.font-family",
+        "value": "{font.family.montserrat}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/font-family"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.property.items",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3119",
+        "detail": "la collection n’a AUCUN pendant Figma : le master fige 3 instances AccordionRow, le contrat déclare bindings.figma.kind = NONE",
+        "projectionProbeOmittedBecause": "probe NON déclarée à dessein — pilot.ts compare String(probe.value) au texte du DOM, or String(<tableau d’objets>) vaut \"[object Object],[object Object]\" et ne peut jamais égaler le texte rendu : la probe accuserait à tort le composant de ne pas projeter alors que TexteSEO.tsx fait bien items?.map(...) → <AccordionRow titre contenu>. De plus le rendu de la probe lève (voir le rapport : AccordionRow fait 1550 px de large, au-dessus du plafond du harnais)."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.property.items-default",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3119",
+        "channel": "children.length",
+        "detail": "le master peint 3 AccordionRow (160 px) ; la prop items n’a pas de default, donc items?.map sur undefined ne rend AUCUNE ligne (accordion mesuré à 0 px de haut)"
+      },
+      "figmaExpectation": {
+        "channel": "accordion.rowCount",
+        "value": 3
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default",
+        "note": "repeat.sample porte déjà les 3 entrées, mais sample n’est pas un default : l’émetteur react ne l’émet pas"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__accordion\"]"
+      }
+    },
+    {
+      "id": "texte-seo.composition.accordion-row",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3120",
+        "mainComponent": "2059:1383",
+        "observedInstanceProperties": [
+          {
+            "nodeId": "2108:3120",
+            "mainComponent": "2059:1383",
+            "properties": {
+              "Contenu#2059:18": "Réponse",
+              "Titre#2059:13": "Accès et parking",
+              "Taille": "Petit",
+              "Etat": "Ferme"
+            }
+          },
+          {
+            "nodeId": "2108:3121",
+            "mainComponent": "2059:1411",
+            "properties": {
+              "Contenu#2059:18": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+              "Titre#2059:13": "Faut-il prendre rendez-vous ?",
+              "Taille": "Petit",
+              "Etat": "Ouvert"
+            }
+          },
+          {
+            "nodeId": "2108:3122",
+            "mainComponent": "2059:1383",
+            "properties": {
+              "Contenu#2059:18": "Réponse",
+              "Titre#2059:13": "Zones de déplacement pour devis",
+              "Taille": "Petit",
+              "Etat": "Ferme"
+            }
+          }
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/component",
+        "childContractId": "ds.accordion-row"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.composition.accordion-repeat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3119",
+        "detail": "3 instances AccordionRow empilées en auto-layout VERTICAL"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/itemsProp"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.property.accordion-row-taille",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3120",
+        "property": "Taille",
+        "figmaValue": "Petit"
+      },
+      "figmaExpectation": {
+        "channel": "AccordionRow.Taille",
+        "value": "petit"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
+        "bindingProperty": "Taille",
+        "note": "valeur côté contrat ; ds.accordion-row mappe petit → \"Petit\""
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.accordion-row-1-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3120",
+        "property": "Titre#2059:13"
+      },
+      "figmaExpectation": {
+        "channel": "AccordionRow[0].Titre",
+        "value": "Accès et parking"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/0/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.accordion-row-2-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3121",
+        "property": "Titre#2059:13"
+      },
+      "figmaExpectation": {
+        "channel": "AccordionRow[1].Titre",
+        "value": "Faut-il prendre rendez-vous ?"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.accordion-row-3-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3122",
+        "property": "Titre#2059:13"
+      },
+      "figmaExpectation": {
+        "channel": "AccordionRow[2].Titre",
+        "value": "Zones de déplacement pour devis"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/2/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__Titre\"]"
+      }
+    },
+    {
+      "id": "texte-seo.content.accordion-row-2-contenu",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2108:3121",
+        "property": "Contenu#2059:18",
+        "textLayer": "I2108:3121;2059:1416",
+        "detail": "« prise de rendez-vous » (offsets 141..160) en Montserrat-Bold dans un calque unique — dette rich-text B1"
+      },
+      "figmaExpectation": {
+        "channel": "AccordionRow[1].Contenu",
+        "value": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/contenu"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__Contenu\"]"
+      }
+    },
+    {
+      "id": "texte-seo.structure.accordion-row-2-etat",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3121",
+        "property": "Etat",
+        "figmaValue": "Ouvert",
+        "detail": "la 2e ligne est OUVERTE sur le master (80 px, titre + contenu) ; les lignes 1 et 3 sont fermées (40 px). Ni repeat.sample ni component.props ne portent etat, donc les 3 lignes générées seraient fermées"
+      },
+      "figmaExpectation": {
+        "channel": "AccordionRow[1].Etat",
+        "value": "ouvert"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/etat",
+        "note": "ds.accordion-row expose bien etat (ferme|ouvert) ; le type de items ne déclare que contenu et titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"AccordionRow__TitreOuvert\"]"
+      }
+    },
+    {
+      "id": "texte-seo.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3123",
+        "export": "png@2x"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__root\"]"
+      }
+    },
+    {
+      "id": "texte-seo.semantic.paragraphe-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3116",
+        "detail": "TEXT layer Paragraphe"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/p/parts/Paragraphe/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__Paragraphe\"]"
+      }
+    },
+    {
+      "id": "texte-seo.semantic.sous-titre-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3118",
+        "detail": "TEXT layer SousTitre"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/h3/parts/SousTitre/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
+        "export": "TexteSEO",
+        "selector": "[class*=\"TexteSEO__SousTitre\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "texte-seo-master-defaults",
+    "figmaNodeId": "2108:3123",
+    "observedProperties": {},
+    "reactProps": {},
+    "factIds": [
+      "texte-seo.structure.root",
+      "texte-seo.structure.h2",
+      "texte-seo.structure.p",
+      "texte-seo.structure.h3",
+      "texte-seo.structure.accordion",
+      "texte-seo.structure.gap-root",
+      "texte-seo.structure.padding-inline-root",
+      "texte-seo.structure.width-root",
+      "texte-seo.content.paragraphe",
+      "texte-seo.content.sous-titre",
+      "texte-seo.composition.section-header",
+      "texte-seo.content.section-header-titre",
+      "texte-seo.content.section-header-accroche",
+      "texte-seo.content.section-header-disposition",
+      "texte-seo.composition.section-header-accroche2",
+      "texte-seo.content.section-header-titre-rich-text",
+      "texte-seo.visual.section-header-titre-font-size",
+      "texte-seo.visual.section-header-titre-line-height",
+      "texte-seo.visual.paragraphe-font-size",
+      "texte-seo.visual.paragraphe-line-height",
+      "texte-seo.visual.sous-titre-font-size",
+      "texte-seo.visual.sous-titre-line-height",
+      "texte-seo.visual.sous-titre-font-weight",
+      "texte-seo.visual.paragraphe-color",
+      "texte-seo.visual.sous-titre-color",
+      "texte-seo.visual.root-font-family",
+      "texte-seo.property.items",
+      "texte-seo.property.items-default",
+      "texte-seo.composition.accordion-row",
+      "texte-seo.composition.accordion-repeat",
+      "texte-seo.property.accordion-row-taille",
+      "texte-seo.content.accordion-row-1-titre",
+      "texte-seo.content.accordion-row-2-titre",
+      "texte-seo.content.accordion-row-3-titre",
+      "texte-seo.content.accordion-row-2-contenu",
+      "texte-seo.structure.accordion-row-2-etat",
+      "texte-seo.visual.root",
+      "texte-seo.semantic.paragraphe-element",
+      "texte-seo.semantic.sous-titre-element"
+    ],
+    "fixtureAssetIds": [],
+    "requiredParts": [
+      "root",
+      "h2",
+      "SectionHeader",
+      "p",
+      "Paragraphe",
+      "h3",
+      "SousTitre",
+      "accordion",
+      "AccordionRow"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "paragraphe-element",
+        "selector": "[class*=\"TexteSEO__Paragraphe\"]",
+        "contractPointer": "/anatomy/root/parts/p/parts/Paragraphe/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
+        }
+      },
+      {
+        "id": "sous-titre-element",
+        "selector": "[class*=\"TexteSEO__SousTitre\"]",
+        "contractPointer": "/anatomy/root/parts/h3/parts/SousTitre/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Infos pratiques"
+        }
+      },
+      {
+        "id": "section-header-titre",
+        "selector": "[class*=\"SectionHeader__Titre\"]",
+        "contractPointer": "/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Visitez notre showroom à Pepinster ou contactez-nous"
+        }
+      }
+    ]
+  }
+}

@@ -63,6 +63,98 @@ le résultat correct — pas trois lignes manquantes, pas trois passes.
 
 ---
 
+## ÉTAT DE REPRISE — 2026-07-30 (à lire en premier, contexte vidé)
+
+**38/71 tâches faites.** Phases 1, 2 et 3 (vague 1) closes. Toutes les portes du dépôt
+sont vertes ; le dépôt est propre hors du dossier de spec.
+
+### Ce qui existe déjà et fonctionne
+
+| Quoi | Où |
+|---|---|
+| L'instrument (10 modules) | `extract/figma/organism-audit/*.ts` |
+| Outils de campagne (durables) | `extract/figma/organism-audit/tools/*.mts` |
+| Manifeste (6/12 sujets déclarés) | `specs/013-.../contracts/audit-campaign.json` |
+| 6 dossiers de preuve + 42 artefacts | `specs/013-.../proofs/organisms/<id>/` |
+| Déclarations brutes des agents | `specs/013-.../proofs/declarations/*.json` |
+| 11 fixtures adversariales enregistrées | `evals/fixtures/organism-audit-*.ts` |
+
+### PIÈGES À NE PAS REDÉCOUVRIR
+
+1. **`PLAYWRIGHT_CHROMIUM_PATH` est obligatoire** sur toute commande qui lance Chromium :
+   ```bash
+   export PLAYWRIGHT_CHROMIUM_PATH="$HOME/Library/Caches/ms-playwright/chromium-1228/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+   ```
+   Sans lui, `chromiumExecutable()` retombe sur le **Chrome système** (le cache contient des
+   builds `chrome-mac-x64`, ce Node tourne en x64, et le résolveur ne sonde que
+   `chrome-mac-arm64/`). Chrome système se met à jour tout seul : les mesures pixel ne sont
+   plus déterministes.
+2. **`extract/figma/organism-audit/out/` est gitignoré** — scratch uniquement. Tout ce qui doit
+   survivre va dans `tools/` ou sous `proofs/`.
+3. **`npm run audit:organisms` (run.ts) ne sait pas encore capturer** : ses modes `--wave`,
+   `--refresh`, `--verify-report`, `--verify-deferred-scope` REFUSENT par nom (exit 2). C'est la
+   campagne complète (T063) qui reste à câbler. La capture se lance aujourd'hui par
+   `tools/run-wave1.mts` / `tools/run-pilot.mts`.
+4. **`audit-campaign.json` est un goulot** : un seul écrivain. Les agents déclarent chacun dans
+   leur fichier sous `proofs/declarations/`, puis `tools/merge-declarations.mts` fusionne.
+5. **auggie répond « 402 Payment Required »** — `research.md` prétend à tort qu'il est rétabli
+   depuis le 2026-07-30. Lire les docs directement (`docs/FIGMA-CAPABILITY-MATRIX.md`).
+6. **L'inventaire vivant compte 214 littéraux, pas 89** (le chiffre de la prose). L'inventaire fait
+   autorité (quickstart §3) ; l'écart est nommé, pas ajusté.
+
+### Méthode qui a marché pour une vague (à rejouer telle quelle)
+
+1. Un agent par organisme, en parallèle, avec le brief
+   `specs/013-.../proofs/declarations/_MODELE-presentation.json` comme exemple. Chaque agent
+   fait son census Figma (GET, cache partagé, fichiers disjoints), lit contrat + composant, et
+   écrit **son seul** fichier `proofs/declarations/<id>.json` (`{facts, case}`).
+2. `npx tsx extract/figma/organism-audit/tools/verify-declarations.mts` — recoupe CHAQUE pointeur
+   JSON, node Figma et sélecteur CSS avec le dépôt et le census. Refuse la fusion si un seul
+   échoue. **Ne jamais fusionner sans ça** : un agent peut produire du JSON parfait et faux.
+3. `npx tsx extract/figma/organism-audit/tools/merge-declarations.mts` — fusionne (idempotent :
+   saute les sujets déjà déclarés).
+4. `npx tsx extract/figma/organism-audit/tools/run-wave1.mts` — lance le pilote et résume.
+5. Vérifier **à l'œil** au moins un triptyque par vague : un score de 80 % peut aussi être un
+   défaut d'instrument (ça m'est arrivé deux fois — voir plus bas).
+
+### Deux mécanismes de déclaration, à comprendre avant de déclarer
+
+- **`projectionProbe`** — injecte une valeur non-défaut dans une prop et lit le DOM. C'est le seul
+  moyen de voir une prop *exposée mais non projetée* (une capture d'écran ne la voit pas, et
+  l'interface TypeScript non plus : la prop *existe*).
+- **`figmaExpectation`** — déclare une valeur que Figma porte. Si le pointeur contractuel ne
+  résout pas, c'est une **divergence localisée dans le contrat**, pas un « non prouvé ».
+
+### Résultat de la vague 1 (référence pour la suite)
+
+Les 6 sont `divergent` — 174 faits, 68 prouvés, 99 divergents, 2 limités, 5 non prouvés.
+Divergences par source : **contrat 88**, comparaison 7, généré 4.
+Le défaut est **systématique** : 6/6 organismes perdent leurs `gap` ET leur typographie ;
+4/6 leurs paddings ; 3/6 une image de fond ; 3/6 un libellé de bouton ; 3/6 ont une prop
+exposée non projetée. `devis` est le témoin : sa prop `titre` est correctement projetée.
+
+**Constat inattendu à ne pas perdre** : `SAV.tsx` référence `styles.background` et `styles.img`,
+`Coordonnees.tsx` référence `styles.googleMap` — ces classes **n'existent pas** dans leur
+`.module.css`. `styles.X` vaut donc `undefined` et le nœud est rendu sans aucune classe ni style :
+la « div vide » que D10 nomme, là où Figma porte une vraie image.
+
+**Deux faux constats déjà corrigés** (l'instrument fabriquait la divergence qu'il devait détecter) :
+troncature du texte à 300 caractères dans le harnais (défaut de `presentation` : 314) ; et viewport
+figé à 1600 px CSS alors que les masters font 1728 (1550 pour `sav`). La largeur vient maintenant
+de la boîte Figma pinée.
+
+### Prochaine étape
+
+Vague 2 — `faq`, `footer`, `reassurances` (T049-T055), même méthode. Puis vague 3 (T057-T062,
+3 dossiers `blocked` attendus, portes déjà vérifiées fermées), puis US4 (synthèse) et Polish.
+
+**Décision en attente de l'owner** : remédier ou reporter. La spec autorise une remédiation locale
+bornée (D11) mais seulement APRÈS classement — le classement de la vague 1 existe désormais.
+Recommandation : finir les 12 avant de corriger, parce qu'un défaut présent sur 6/6 se corrige une
+fois à la source (l'extraction) et non contrat par contrat.
+
+---
+
 ## Phase 1 : Setup
 
 **But** : la session est prête à lire Figma et à exécuter les portes, avant tout geste.
@@ -204,26 +296,26 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
       dérivation de `probative` depuis les cas requis, et le **mappage normatif** v1→013.
       `requiredVerdict` reste `proved` mais n'est jamais exigé littéralement d'un reçu v1
       qui ne peut pas le contenir. Passe T007 au vert.
-- [ ] T016 Créer `extract/figma/organism-audit/render-react.ts` : harnais déterministe de
+- [X] T016 Créer `extract/figma/organism-audit/render-react.ts` : harnais déterministe de
       capture du React généré (D4) — résolution fichier/export sous `src/components/**`,
       preset de props ou story, hash de bundle, relevé DOM/parts par sélecteur,
       `deviceScaleFactor` identique des deux côtés. Réutilise `chromiumExecutable()` et le
       lancement Playwright de `extract/figma/visual-parity/render.ts` (lignes 451-493) sans
       les dupliquer. Aucun repli `emit-html`. Passe T008 au vert.
-- [ ] T017 Créer `extract/figma/organism-audit/facts.ts` : la chaîne
+- [X] T017 Créer `extract/figma/organism-audit/facts.ts` : la chaîne
       `fait Figma piné → contrat id/version/JSON Pointer → fait React généré → preuve`
       (D1) et le calcul de couverture `expected = union(Figma pinée, contrat, projections
       React non-défaut)` (D6), avec `missing`/`unexpected` exacts. Résout les JSON
       Pointers contre le contrat parsé ; une jambe indisponible est **typée absente**,
       jamais assimilée à conforme. Passe T009 au vert.
-- [ ] T018 Câbler les reçus 011 (visibilité, géométrie, pixels, sémantique, images) aux
+- [X] T018 Câbler les reçus 011 (visibilité, géométrie, pixels, sémantique, images) aux
       seuils 013 dans `extract/figma/organism-audit/run.ts` — réutiliser
       `visual-parity/{evidence,gate,img,match,tolerance}.ts` **tels quels**, sans élargir
       le seuil global historique du comparateur, sans resampling ni registration des
       rectangles, régions déclarées **avant** le diff. Le diagnostic masqué et la baseline
       restent hors du calcul autoritaire. Passe T010 au vert — et, avec T016 (résolution
       du chemin de prop d'asset déclaré), **T028**.
-- [ ] T019 Créer `extract/figma/organism-audit/report.ts` — **périmètre de cette tâche :
+- [X] T019 Créer `extract/figma/organism-audit/report.ts` — **périmètre de cette tâche :
       le dossier par organisme seulement** (`proofs/organisms/<id>/result.json`,
       `REPORT.md` selon les 9 rubriques de `campaign-report.interface.md`, et les 5
       artefacts par cas : `figma.png`, `generated.png`, `diff.png`, `triptych.png`,
@@ -231,7 +323,13 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
       synthèse de campagne est US4 (T041-T042). Avec T015 (`DependencyGateResult`), passe
       **T056** au vert : la forme du dossier d'un parent bloqué — gate complet, aucun cas
       parent fabriqué — est émise ici.
-- [ ] T020 Créer `extract/figma/organism-audit/run.ts` (CLI) et enregistrer
+- [ ] T020 **PARTIEL** — le CLI existe, est enregistré (`npm run audit:organisms`) et refuse
+      correctement ; `--check`, `--inventory`, `--check-dependencies` et `--capture-baseline`
+      fonctionnent. Restent NON implémentés, et ils refusent par nom avec exit 2 plutôt que de
+      rapporter un succès non mérité : `--wave`, `--refresh`, `--verify-report`,
+      `--verify-deferred-scope`. La capture se lance aujourd'hui par
+      `extract/figma/organism-audit/tools/run-wave1.mts`. Texte d'origine ci-dessous.
+      Créer `extract/figma/organism-audit/run.ts` (CLI) et enregistrer
       `"audit:organisms": "tsx extract/figma/organism-audit/run.ts"` dans `package.json`
       (absent aujourd'hui). Modes : `--campaign`, `--out`, `--check`, `--inventory`,
       `--wave 1|2|3`, `--refresh`, `--check-dependencies`, `--capture-baseline`,
