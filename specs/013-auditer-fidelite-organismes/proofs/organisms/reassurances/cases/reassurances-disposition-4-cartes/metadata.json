@@ -1,0 +1,222 @@
+{
+  "id": "reassurances-disposition-4-cartes",
+  "subjectId": "reassurances",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:38.87919222236722>2.5",
+    "region-over-budget:whole:38.87919222236722>2.5"
+  ],
+  "figma": {
+    "nodeId": "2114:3619",
+    "setNodeId": "2114:3721",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {
+      "Disposition": "4 cartes"
+    },
+    "pngSha256": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+    "width": 3104,
+    "height": 4902
+  },
+  "contract": {
+    "id": "ds.reassurances",
+    "version": "1.1.0",
+    "factIds": [
+      "reassurances.structure.root",
+      "reassurances.structure.root-gap",
+      "reassurances.structure.root-width",
+      "reassurances.structure.items",
+      "reassurances.structure.items-gap",
+      "reassurances.structure.items-fill",
+      "reassurances.structure.carte-count",
+      "reassurances.structure.carte-largeur-quatre-cartes",
+      "reassurances.structure.carte-largeur-cinq-cartes",
+      "reassurances.content.section-header-titre",
+      "reassurances.content.section-header-accroche",
+      "reassurances.content.carte-1-titre",
+      "reassurances.content.carte-2-titre",
+      "reassurances.content.carte-3-titre",
+      "reassurances.content.carte-4-titre",
+      "reassurances.content.carte-1-texte",
+      "reassurances.content.carte-2-texte",
+      "reassurances.content.carte-3-texte",
+      "reassurances.content.carte-4-texte",
+      "reassurances.content.sample-entree-orpheline",
+      "reassurances.property.disposition",
+      "reassurances.property.disposition-defaut",
+      "reassurances.property.disposition-valeurs",
+      "reassurances.property.items-sans-defaut",
+      "reassurances.property.items-binding-none",
+      "reassurances.composition.section-header",
+      "reassurances.composition.section-header-disposition",
+      "reassurances.composition.section-header-accroche2",
+      "reassurances.composition.section-header-rename-accroche2-pendant",
+      "reassurances.composition.carte-repeat",
+      "reassurances.composition.carte-disposition",
+      "reassurances.composition.carte-texte-propriete-partagee",
+      "reassurances.composition.bouton-quatre-cartes",
+      "reassurances.composition.bouton-visible-when",
+      "reassurances.composition.bouton-libelle",
+      "reassurances.composition.bouton-variant",
+      "reassurances.composition.bouton-icone-droite",
+      "reassurances.composition.bouton-glyphe-droite",
+      "reassurances.visual.root",
+      "reassurances.visual.carte-images",
+      "reassurances.visual.bouton-contour",
+      "reassurances.semantic.root-element",
+      "reassurances.semantic.section-header-titre-sans-titre-de-niveau",
+      "reassurances.semantic.carte-texte-segments"
+    ],
+    "reactProps": {
+      "items": [
+        {
+          "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+          "titre": "Sécurité et conformité"
+        },
+        {
+          "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+          "titre": "Intégration parfaite"
+        },
+        {
+          "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+          "titre": "Moteur performant"
+        },
+        {
+          "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
+          "titre": "SAV & maintenance dédiés"
+        }
+      ]
+    }
+  },
+  "generated": {
+    "componentFile": "src/components/Reassurances/Reassurances.tsx",
+    "export": "Reassurances",
+    "bundleSha256": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+    "harnessConfigSha256": "74123f296201c2af67f312d1d0088b8f9d8ff3950ab5bde79f4765d571123ede",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 7180924,
+      "width": 3104,
+      "height": 4902
+    },
+    "generated": {
+      "signalPixels": 348770,
+      "width": 3296,
+      "height": 1462
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 3104,
+      "height": 4902
+    },
+    "generatedRoot": {
+      "width": 3104,
+      "height": 1270
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": -3632
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 38.87919222236722,
+    "maskedDiagnosticPct": 35.55730086290369,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 38.87919222236722,
+        "maxDiffPct": 2.5,
+        "signalPixels": 348770
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "section-header-titre",
+      "selector": "[class*=\"SectionHeader__Titre\"]",
+      "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/titre",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Pourquoi choisir nos portes de garage industrielles ?"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Pourquoi choisir nos portes de garage industrielles ?"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "section-header-accroche",
+      "selector": "[class*=\"SectionHeader__Accroche\"]",
+      "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Plus de 50 ans d’expérience"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Plus de 50 ans d’expérience"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "carte-1-titre",
+      "selector": "[class*=\"Carte__TitreReassurance\"]",
+      "contractPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/0/titre",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Sécurité et conformité"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Sécurité et conformité"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "carte-1-texte",
+      "selector": "[class*=\"Carte__TexteReassurance\"]",
+      "contractPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Respectent les normes des bâtiments publics et les réglementations pompiers."
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Respectent les normes des bâtiments publics et les réglementations pompiers."
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "bouton-libelle-defaut-de-l-enfant",
+      "selector": "[class*=\"Button__root\"]",
+      "contractPointer": "/anatomy/root/parts/BoutonQuatreCartes/component",
+      "expected": {
+        "tag": "button",
+        "textEquals": "Contactez-nous"
+      },
+      "observed": {
+        "tag": "button",
+        "text": "Contactez-nous"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "domProbes": [
+    {
+      "factId": "reassurances.property.disposition",
+      "prop": "disposition",
+      "probeValue": "5Cartes",
+      "observedDomValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
+      "projected": false
+    }
+  ],
+  "artifacts": []
+}

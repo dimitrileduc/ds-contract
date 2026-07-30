@@ -1,0 +1,202 @@
+{
+  "id": "footer-master-defaults",
+  "subjectId": "footer",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:96.91433672234325>2.5",
+    "region-over-budget:whole:96.91433672234325>2.5"
+  ],
+  "figma": {
+    "nodeId": "2120:4785",
+    "setNodeId": "2120:4785",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {},
+    "pngSha256": "2f36972b1bf42218c4c3035790a532d2964650cec79a9957a9e151f9f104eb8e",
+    "width": 3456,
+    "height": 918
+  },
+  "contract": {
+    "id": "ds.footer",
+    "version": "1.0.0",
+    "factIds": [
+      "footer.structure.root",
+      "footer.structure.root-gap",
+      "footer.structure.root-width",
+      "footer.structure.padding-root-top",
+      "footer.structure.padding-root-right",
+      "footer.structure.padding-root-bottom",
+      "footer.structure.padding-root-left",
+      "footer.visual.background-color",
+      "footer.structure.background-absolute",
+      "footer.structure.background-size",
+      "footer.structure.row",
+      "footer.structure.row-no-autolayout",
+      "footer.structure.row-width",
+      "footer.structure.row-visual-order",
+      "footer.structure.col5",
+      "footer.structure.gap-col5",
+      "footer.content.titre-reseaux",
+      "footer.visual.titre-reseaux-color",
+      "footer.visual.titre-reseaux-font-size",
+      "footer.visual.titre-reseaux-line-height",
+      "footer.semantic.titre-reseaux-element",
+      "footer.structure.reseaux-sociaux",
+      "footer.structure.gap-reseaux-sociaux",
+      "footer.composition.icone-facebook",
+      "footer.composition.icone-instagram",
+      "footer.visual.icones-couleur",
+      "footer.structure.facebook-hauteur",
+      "footer.composition.footer-column-repeat",
+      "footer.structure.repeat-sample-non-projete",
+      "footer.structure.footer-column-width",
+      "footer.content.footer-column-titres",
+      "footer.content.footer-column-textes",
+      "footer.semantic.footer-column-texte-underline",
+      "footer.semantic.footer-column-texte-caracteres-invisibles",
+      "footer.property.items",
+      "footer.property.items-binding-none",
+      "footer.structure.col1",
+      "footer.structure.col1-axe",
+      "footer.structure.col1-gap",
+      "footer.composition.piqueray-logo",
+      "footer.composition.piqueray-logo-couleur",
+      "footer.structure.piqueray-logo-size",
+      "footer.composition.button",
+      "footer.composition.button-variant",
+      "footer.composition.button-libelle",
+      "footer.composition.button-icones",
+      "footer.structure.spacer-height",
+      "footer.structure.spacer2-height",
+      "footer.visual.separator-color",
+      "footer.visual.separator-width",
+      "footer.semantic.separator-line",
+      "footer.structure.separator-largeur",
+      "footer.composition.copyright",
+      "footer.composition.copyright-texte",
+      "footer.visual.root-font-family",
+      "footer.semantic.root-element",
+      "footer.visual.root"
+    ],
+    "reactProps": {}
+  },
+  "generated": {
+    "componentFile": "src/components/Footer/Footer.tsx",
+    "export": "Footer",
+    "bundleSha256": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+    "harnessConfigSha256": "9f54bbe96116c8ee70b1818d79eecf213a4e870ecd84fcbf1fac9c23ae79e7dd",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 3142422,
+      "width": 3456,
+      "height": 918
+    },
+    "generated": {
+      "signalPixels": 54184,
+      "width": 3648,
+      "height": 360
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 3456,
+      "height": 918
+    },
+    "generatedRoot": {
+      "width": 3456,
+      "height": 168
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": -750
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 96.91433672234325,
+    "maskedDiagnosticPct": 98.84142270639911,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 96.91433672234325,
+        "maxDiffPct": 2.5,
+        "signalPixels": 54184
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "titre-reseaux",
+      "selector": "[class*=\"Footer__TitreReseaux\"]",
+      "contractPointer": "/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/text",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Suivez-nous"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Suivez-nous"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "copyright-texte-route",
+      "selector": "[class*=\"Copyright__Texte\"]",
+      "contractPointer": "/anatomy/root/parts/Copyright/component/props/texte",
+      "expected": {
+        "tag": "span",
+        "textEquals": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+      },
+      "verdict": "fail"
+    },
+    {
+      "id": "button-libelle-defaut-de-l-enfant",
+      "selector": "[class*=\"Button__label\"]",
+      "contractPointer": "/anatomy/root/parts/Row/parts/col1/parts/Bouton/component",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Contactez-nous"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Contactez-nous"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "footer-column-titre-premiere-colonne",
+      "selector": "[class*=\"FooterColumn__Titre\"]",
+      "contractPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/titre",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Contact"
+      },
+      "observed": null,
+      "verdict": "fail"
+    }
+  ],
+  "domProbes": [
+    {
+      "factId": "footer.property.items",
+      "prop": "items",
+      "probeValue": [
+        {
+          "titre": "PREUVE-013 — TITRE b7d2",
+          "texte": "PREUVE-013 — TEXTE b7d2"
+        }
+      ],
+      "observedDomValue": "PREUVE-013 — TITRE b7d2",
+      "projected": false
+    }
+  ],
+  "artifacts": []
+}

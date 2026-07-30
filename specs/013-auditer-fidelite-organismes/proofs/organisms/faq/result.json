@@ -1,0 +1,2020 @@
+{
+  "id": "faq",
+  "displayName": "FAQ",
+  "wave": 2,
+  "contract": {
+    "id": "ds.faq",
+    "version": "1.1.0",
+    "path": "contracts/faq.contract.json"
+  },
+  "figmaSetNodeId": "2104:2914",
+  "coverage": {
+    "expected": [
+      "faq.composition.accordion-row",
+      "faq.composition.accordion-row-etat",
+      "faq.composition.accordion-row-taille",
+      "faq.composition.button",
+      "faq.composition.button-icone-droite",
+      "faq.composition.button-libelle",
+      "faq.composition.button-variant",
+      "faq.composition.section-header",
+      "faq.composition.section-header-accroche",
+      "faq.composition.section-header-accroche2",
+      "faq.composition.section-header-disposition",
+      "faq.composition.section-header-titre",
+      "faq.content.accordion-rows-default",
+      "faq.content.accordion-rows-sample",
+      "faq.property.items",
+      "faq.property.ligne3",
+      "faq.semantic.root-element",
+      "faq.structure.accordion",
+      "faq.structure.accordion-align",
+      "faq.structure.accordion-direction",
+      "faq.structure.accordion-fill",
+      "faq.structure.accordion-row-fill",
+      "faq.structure.button-libelle-carrier",
+      "faq.structure.gap-root",
+      "faq.structure.ligne3-cible-visibilite",
+      "faq.structure.padding-root-left",
+      "faq.structure.padding-root-right",
+      "faq.structure.root",
+      "faq.structure.root-align",
+      "faq.structure.root-direction",
+      "faq.structure.root-width",
+      "faq.structure.section-header-height",
+      "faq.visual.root",
+      "faq.visual.root-font-family"
+    ],
+    "observed": [
+      "faq.composition.accordion-row",
+      "faq.composition.accordion-row-etat",
+      "faq.composition.accordion-row-taille",
+      "faq.composition.button",
+      "faq.composition.button-icone-droite",
+      "faq.composition.button-libelle",
+      "faq.composition.button-variant",
+      "faq.composition.section-header",
+      "faq.composition.section-header-accroche",
+      "faq.composition.section-header-accroche2",
+      "faq.composition.section-header-disposition",
+      "faq.composition.section-header-titre",
+      "faq.content.accordion-rows-default",
+      "faq.content.accordion-rows-sample",
+      "faq.property.items",
+      "faq.property.ligne3",
+      "faq.semantic.root-element",
+      "faq.structure.accordion",
+      "faq.structure.accordion-align",
+      "faq.structure.accordion-direction",
+      "faq.structure.accordion-fill",
+      "faq.structure.accordion-row-fill",
+      "faq.structure.button-libelle-carrier",
+      "faq.structure.gap-root",
+      "faq.structure.ligne3-cible-visibilite",
+      "faq.structure.padding-root-left",
+      "faq.structure.padding-root-right",
+      "faq.structure.root",
+      "faq.structure.root-align",
+      "faq.structure.root-direction",
+      "faq.structure.root-width",
+      "faq.structure.section-header-height",
+      "faq.visual.root",
+      "faq.visual.root-font-family"
+    ],
+    "missing": [],
+    "unexpected": []
+  },
+  "dependency": null,
+  "facts": [
+    {
+      "id": "faq.structure.root",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2914\",\"detail\":\"COMPONENT autonome \\\"FAQ\\\" (aucun COMPONENT_SET — 003 le note : « pas de variant réel, juste une propriété booléenne pour le nombre de lignes ») 1728x448, layoutMode=VERTICAL counterAxisAlignItems=CENTER counterAxisSizingMode=FIXED itemSpacing=48 paddingLeft/Right=89 (aucun paddingTop/Bottom → 0), layoutSizingHorizontal=FIXED layoutSizingVertical=HUG, clipsContent=false > [SectionHeader instance 2104:2907, accordion frame 2104:2908 > [AccordionRow 2104:2909 (Ferme), AccordionRow 2104:2910 (Ouvert), AccordionRow 2104:2911 (Ferme, pilotée par Ligne 3)], Bouton instance 2104:2912]. fills[0] est un SOLID visible=false lié à VariableID:5:63 : AUCUN fond n'est peint, et le contrat n'en porte aucun — les deux surfaces sont donc muettes sur ce canal, aucun fait de fond n'est déclaré. componentPropertyDefinitions = { \\\"Ligne 3#2104:59\\\": BOOLEAN, defaultValue true }.\"}",
+        "observedValue": {
+          "nodeId": "2104:2914",
+          "detail": "COMPONENT autonome \"FAQ\" (aucun COMPONENT_SET — 003 le note : « pas de variant réel, juste une propriété booléenne pour le nombre de lignes ») 1728x448, layoutMode=VERTICAL counterAxisAlignItems=CENTER counterAxisSizingMode=FIXED itemSpacing=48 paddingLeft/Right=89 (aucun paddingTop/Bottom → 0), layoutSizingHorizontal=FIXED layoutSizingVertical=HUG, clipsContent=false > [SectionHeader instance 2104:2907, accordion frame 2104:2908 > [AccordionRow 2104:2909 (Ferme), AccordionRow 2104:2910 (Ouvert), AccordionRow 2104:2911 (Ferme, pilotée par Ligne 3)], Bouton instance 2104:2912]. fills[0] est un SOLID visible=false lié à VariableID:5:63 : AUCUN fond n'est peint, et le contrat n'en porte aucun — les deux surfaces sont donc muettes sur ce canal, aucun fait de fond n'est déclaré. componentPropertyDefinitions = { \"Ligne 3#2104:59\": BOOLEAN, defaultValue true }."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "SectionHeader": {
+              "component": {
+                "id": "ds.section-header",
+                "props": {
+                  "titre": [
+                    {
+                      "text": "Questions fréquentes"
+                    }
+                  ],
+                  "accroche": "FAQ",
+                  "disposition": "standard"
+                }
+              }
+            },
+            "accordion": {
+              "layout": {
+                "direction": "column",
+                "align": "center"
+              },
+              "parts": {
+                "AccordionRow": {
+                  "component": {
+                    "id": "ds.accordion-row",
+                    "props": {
+                      "taille": "grand"
+                    }
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "contenu": "Réponse",
+                        "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+                      },
+                      {
+                        "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+                        "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+                      },
+                      {
+                        "contenu": "Réponse",
+                        "titre": "Assurez-vous la maintenance après l'installation ?"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "Bouton": {
+              "component": {
+                "id": "ds.button"
+              }
+            }
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.root-direction",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#root.layoutMode",
+        "observedValue": "column",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/layout/direction",
+        "observedValue": "column",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.root-align",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#root.counterAxisAlignItems",
+        "observedValue": "center",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/layout/align",
+        "observedValue": "center",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.gap-root",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#root.gap",
+        "observedValue": "48px",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/literals/gap",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/literals/gap"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.gap=\"48px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.padding-root-left",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#root.padding-left",
+        "observedValue": "89px",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/literals/padding-left",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/literals/padding-left"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.padding-left=\"89px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.padding-root-right",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#root.padding-right",
+        "observedValue": "89px",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/literals/padding-right",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/literals/padding-right"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.padding-right=\"89px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.root-width",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#root.width",
+        "observedValue": "1728px",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/literals/width",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/literals/width"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.width=\"1728px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.accordion",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2908\",\"detail\":\"FRAME \\\"accordion\\\" 1550x248 (= 64 + 120 + 64, les trois lignes sans écart), layoutMode=VERTICAL counterAxisAlignItems=CENTER layoutAlign=STRETCH layoutGrow=0 layoutSizingHorizontal=FILL layoutSizingVertical=HUG, fills=[] strokes=[]. itemSpacing ABSENT du node → 0 ; .accordion n'émet aucun gap non plus, donc les deux surfaces valent 0 sur ce canal et aucun fait de gap n'est déclaré ici (le déclarer avec un pointeur non résolvant fabriquerait une divergence qui n'existe pas). Wrapper de pure disposition, sans master propre (003 : « même famille que tabs/row(Field) »).\"}",
+        "observedValue": {
+          "nodeId": "2104:2908",
+          "detail": "FRAME \"accordion\" 1550x248 (= 64 + 120 + 64, les trois lignes sans écart), layoutMode=VERTICAL counterAxisAlignItems=CENTER layoutAlign=STRETCH layoutGrow=0 layoutSizingHorizontal=FILL layoutSizingVertical=HUG, fills=[] strokes=[]. itemSpacing ABSENT du node → 0 ; .accordion n'émet aucun gap non plus, donc les deux surfaces valent 0 sur ce canal et aucun fait de gap n'est déclaré ici (le déclarer avec un pointeur non résolvant fabriquerait une divergence qui n'existe pas). Wrapper de pure disposition, sans master propre (003 : « même famille que tabs/row(Field) »)."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion",
+        "observedValue": {
+          "layout": {
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "AccordionRow": {
+              "component": {
+                "id": "ds.accordion-row",
+                "props": {
+                  "taille": "grand"
+                }
+              },
+              "repeat": {
+                "itemsProp": "items",
+                "sample": [
+                  {
+                    "contenu": "Réponse",
+                    "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+                  },
+                  {
+                    "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+                    "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+                  },
+                  {
+                    "contenu": "Réponse",
+                    "titre": "Assurez-vous la maintenance après l'installation ?"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
+        "observedValue": "",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.accordion-direction",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.layoutMode",
+        "observedValue": "column",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/layout/direction",
+        "observedValue": "column",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
+        "observedValue": "",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.accordion-align",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.counterAxisAlignItems",
+        "observedValue": "center",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/layout/align",
+        "observedValue": "center",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
+        "observedValue": "",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.accordion-fill",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.layoutSizingHorizontal=FILL",
+        "observedValue": true,
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/layout/grow",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/accordion/layout/grow"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
+        "observedValue": "",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:accordion.layoutSizingHorizontal=FILL=true"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.accordion-row-fill",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.AccordionRow[*].layoutSizingHorizontal",
+        "observedValue": "FILL",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/literals/width",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/accordion/parts/AccordionRow/literals/width"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:accordion.AccordionRow[*].layoutSizingHorizontal=\"FILL\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.section-header-height",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#SectionHeader.height (layoutSizingVertical=FIXED)",
+        "observedValue": "50px",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/literals/height",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/SectionHeader/literals/height"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__root\"]",
+        "observedValue": "FAQQuestions fréquentes",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:SectionHeader.height (layoutSizingVertical=FIXED)=\"50px\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.ligne3-cible-visibilite",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.AccordionRow[2].visible ← Ligne 3#2104:59",
+        "observedValue": {
+          "prop": "ligne3",
+          "equals": true
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/visibleWhen",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/accordion/parts/AccordionRow/visibleWhen"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:accordion.AccordionRow[2].visible ← Ligne 3#2104:59={\"prop\":\"ligne3\",\"equals\":true}"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.structure.button-libelle-carrier",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"I2104:2912;28:116\",\"detail\":\"TEXT \\\"Libellé\\\" 155x22 HUG/HUG, characters=\\\"Contactez-nous\\\", style Montserrat Medium 16 / lineHeightPx 22 / textCase UPPER / letterSpacing 0, fills liés à VariableID:5:40, styles.text = \\\"2162:5834\\\". Vérifié côté surface générée : Button.tsx rend ce nœud en <span className={styles.label}> et Button.module.css DÉCLARE bien .label — uniquement en sélecteur descendant, à la règle « .variant-iconOnly .label { display: none } » (ligne 99). CSS Modules exporte donc la classe, styles.label vaut \\\"Button__label\\\", et le span la porte : le nœud est atteignable et nommé. La seule règle qui lui est attachée est le masquage iconOnly, inapplicable à variant-default ; toute la typographie lui arrive par héritage de .root (font-family, font-size, font-weight, line-height, color, text-transform: uppercase y sont posés). Ces canaux sont gouvernés par ds.button, pas par ds.faq — aucun n'est déclaré ici contre un pointeur de ds.faq, qui produirait un rouge fabriqué.\"}",
+        "observedValue": {
+          "nodeId": "I2104:2912;28:116",
+          "detail": "TEXT \"Libellé\" 155x22 HUG/HUG, characters=\"Contactez-nous\", style Montserrat Medium 16 / lineHeightPx 22 / textCase UPPER / letterSpacing 0, fills liés à VariableID:5:40, styles.text = \"2162:5834\". Vérifié côté surface générée : Button.tsx rend ce nœud en <span className={styles.label}> et Button.module.css DÉCLARE bien .label — uniquement en sélecteur descendant, à la règle « .variant-iconOnly .label { display: none } » (ligne 99). CSS Modules exporte donc la classe, styles.label vaut \"Button__label\", et le span la porte : le nœud est atteignable et nommé. La seule règle qui lui est attachée est le masquage iconOnly, inapplicable à variant-default ; toute la typographie lui arrive par héritage de .root (font-family, font-size, font-weight, line-height, color, text-transform: uppercase y sont posés). Ces canaux sont gouvernés par ds.button, pas par ds.faq — aucun n'est déclaré ici contre un pointeur de ds.faq, qui produirait un rouge fabriqué."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component",
+        "observedValue": {
+          "id": "ds.button"
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__label\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.property.ligne3",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2914\",\"property\":\"Ligne 3#2104:59\",\"raw\":\"BOOLEAN, defaultValue true\",\"detail\":\"côté Figma la propriété pilote la visibilité de la 3e ligne (2104:2911) et la géométrie recalcule (448↔384px). Côté React FAQ.tsx n'en fait qu'un attribut : data-ligne3={ligne3 || undefined} sur le div racine — aucune part, aucune ligne, aucun style n'en dépend. La prop est donc EXPOSÉE mais non PROJETÉE : ni l'interface TypeScript ni une capture ne le montrent, seule la sonde le voit. Sonde à false : Figma laisserait les lignes 1-2 debout, le React n'affiche aucune ligne du tout (voir faq.content.accordion-rows-default pour la seconde cause, items sans défaut).\"}",
+        "observedValue": {
+          "nodeId": "2104:2914",
+          "property": "Ligne 3#2104:59",
+          "raw": "BOOLEAN, defaultValue true",
+          "detail": "côté Figma la propriété pilote la visibilité de la 3e ligne (2104:2911) et la géométrie recalcule (448↔384px). Côté React FAQ.tsx n'en fait qu'un attribut : data-ligne3={ligne3 || undefined} sur le div racine — aucune part, aucune ligne, aucun style n'en dépend. La prop est donc EXPOSÉE mais non PROJETÉE : ni l'interface TypeScript ni une capture ne le montrent, seule la sonde le voit. Sonde à false : Figma laisserait les lignes 1-2 debout, le React n'affiche aucune ligne du tout (voir faq.content.accordion-rows-default pour la seconde cause, items sans défaut)."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/props/1",
+        "observedValue": {
+          "name": "ligne3",
+          "type": "boolean",
+          "default": true,
+          "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass).",
+          "bindings": {
+            "figma": {
+              "kind": "BOOLEAN",
+              "property": "Ligne 3"
+            },
+            "code": {
+              "prop": "ligne3"
+            }
+          }
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "generated",
+      "reasons": [
+        "boolean-prop-did-not-materialise-its-subtree"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.property.items",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2914\",\"property\":\"componentPropertyDefinitions\",\"raw\":\"AUCUNE propriété de collection — le master n'expose que \\\"Ligne 3#2104:59\\\" (BOOLEAN)\",\"detail\":\"items est déclaré bindings.figma.kind: \\\"NONE\\\", et c'est fidèle : Figma n'a pas de propriété de composant de type tableau, la répétition n'existe sur le canevas que comme N instances sœurs compilées. Ce qui EXISTE côté contrat et peut être cité : la part /anatomy/root/parts/accordion/parts/AccordionRow avec repeat.itemsProp = \\\"items\\\", son sample de 3 entrées (identique aux 3 lignes du census, cf. faq.content.accordion-rows-sample), et les occurrences relevées par 003 (2 ou 3 lignes selon la maquette). Ce qui reste NON PROUVÉ et n'est donc pas revendiqué comme conforme : le nombre de lignes est gelé à la compilation par la longueur du sample, aucun porteur canevas ne transporte le tableau, et la limite est nommée plutôt que discutée. LIMITE DE L'INSTRUMENT, nommée ici pour que le rouge soit lu correctement : pilot.ts compare String(probe.value) au textContent observé ; une valeur non scalaire se stringifie en \\\"[object Object]\\\", donc cette sonde ne peut PAS lire vert même si la projection fonctionne — l'observation à lire est domProbes[].observedDomValue, qui dit si le marqueur a atteint le DOM.\"}",
+        "observedValue": {
+          "nodeId": "2104:2914",
+          "property": "componentPropertyDefinitions",
+          "raw": "AUCUNE propriété de collection — le master n'expose que \"Ligne 3#2104:59\" (BOOLEAN)",
+          "detail": "items est déclaré bindings.figma.kind: \"NONE\", et c'est fidèle : Figma n'a pas de propriété de composant de type tableau, la répétition n'existe sur le canevas que comme N instances sœurs compilées. Ce qui EXISTE côté contrat et peut être cité : la part /anatomy/root/parts/accordion/parts/AccordionRow avec repeat.itemsProp = \"items\", son sample de 3 entrées (identique aux 3 lignes du census, cf. faq.content.accordion-rows-sample), et les occurrences relevées par 003 (2 ou 3 lignes selon la maquette). Ce qui reste NON PROUVÉ et n'est donc pas revendiqué comme conforme : le nombre de lignes est gelé à la compilation par la longueur du sample, aucun porteur canevas ne transporte le tableau, et la limite est nommée plutôt que discutée. LIMITE DE L'INSTRUMENT, nommée ici pour que le rouge soit lu correctement : pilot.ts compare String(probe.value) au textContent observé ; une valeur non scalaire se stringifie en \"[object Object]\", donc cette sonde ne peut PAS lire vert même si la projection fonctionne — l'observation à lire est domProbes[].observedDomValue, qui dit si le marqueur a atteint le DOM."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/props/0",
+        "observedValue": {
+          "name": "items",
+          "type": {
+            "arrayOf": {
+              "contenu": "text",
+              "titre": "text"
+            }
+          },
+          "bindings": {
+            "figma": {
+              "kind": "NONE"
+            },
+            "code": {
+              "prop": "items"
+            }
+          }
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__Titre\"]",
+        "observedValue": "PREUVE-013 — QUESTION 4b1e",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "generated",
+      "reasons": [
+        "probe-not-projected:child-renders-a-literal"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.content.accordion-rows-default",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figma": {
+        "reference": "2104:2914#accordion.children.count (défaut du master)",
+        "observedValue": 3,
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/props/0/default",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/props/0/default"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:accordion.children.count (défaut du master)=3"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.content.accordion-rows-sample",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.AccordionRow[0..2].{Contenu, Titre}",
+        "observedValue": [
+          {
+            "contenu": "Réponse",
+            "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+          },
+          {
+            "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+            "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+          },
+          {
+            "contenu": "Réponse",
+            "titre": "Assurez-vous la maintenance après l'installation ?"
+          }
+        ],
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample",
+        "observedValue": [
+          {
+            "contenu": "Réponse",
+            "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+          },
+          {
+            "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+            "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+          },
+          {
+            "contenu": "Réponse",
+            "titre": "Assurez-vous la maintenance après l'installation ?"
+          }
+        ],
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__Titre\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.accordion-row",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2909\",\"mainComponent\":\"2059:1373\",\"observedInstanceProperties\":{\"Contenu#2059:18\":\"Réponse\",\"Titre#2059:13\":\"Nos portes répondent-elles aux normes des bâtiments publics ?\",\"Taille\":\"Grand\",\"Etat\":\"Ferme\"},\"detail\":\"la composition est portée par la part /anatomy/root/parts/accordion/parts/AccordionRow, qui compose le contrat enfant ds.accordion-row ET porte le repeat { itemsProp: \\\"items\\\", sample: 3 entrées } — c'est ce repeat, pas une part par ligne, qui produit les trois instances. Les trois masters ne sont pas les mêmes : 2104:2909 → 2059:1373 (Etat=Ferme), 2104:2910 → 2059:1405 (Etat=Ouvert), 2104:2911 → 2059:1373 (Etat=Ferme). Chaque instance porte aussi une interaction de prototype ON_CLICK → CHANGE_TO vers l'autre variante (transitionDuration 300, EASE_OUT) : hors périmètre pixel, et ds.accordion-row porte déjà son propre events.toggle. Sélecteur non satisfait avec les défauts du contrat, puisque items est undefined et qu'aucune ligne n'est rendue.\"}",
+        "observedValue": {
+          "nodeId": "2104:2909",
+          "mainComponent": "2059:1373",
+          "observedInstanceProperties": {
+            "Contenu#2059:18": "Réponse",
+            "Titre#2059:13": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+            "Taille": "Grand",
+            "Etat": "Ferme"
+          },
+          "detail": "la composition est portée par la part /anatomy/root/parts/accordion/parts/AccordionRow, qui compose le contrat enfant ds.accordion-row ET porte le repeat { itemsProp: \"items\", sample: 3 entrées } — c'est ce repeat, pas une part par ligne, qui produit les trois instances. Les trois masters ne sont pas les mêmes : 2104:2909 → 2059:1373 (Etat=Ferme), 2104:2910 → 2059:1405 (Etat=Ouvert), 2104:2911 → 2059:1373 (Etat=Ferme). Chaque instance porte aussi une interaction de prototype ON_CLICK → CHANGE_TO vers l'autre variante (transitionDuration 300, EASE_OUT) : hors périmètre pixel, et ds.accordion-row porte déjà son propre events.toggle. Sélecteur non satisfait avec les défauts du contrat, puisque items est undefined et qu'aucune ligne n'est rendue."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component",
+        "observedValue": {
+          "id": "ds.accordion-row",
+          "props": {
+            "taille": "grand"
+          }
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "leg-unavailable:generated",
+        "agreement-unknown"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.accordion-row-taille",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.AccordionRow[*].Taille",
+        "observedValue": "grand",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
+        "observedValue": "grand",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.accordion-row-etat",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#accordion.AccordionRow[1].Etat",
+        "observedValue": "ouvert",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/etat",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/accordion/parts/AccordionRow/component/props/etat"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:accordion.AccordionRow[1].Etat=\"ouvert\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.section-header",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2907\",\"mainComponent\":\"2090:2385\",\"observedInstanceProperties\":{\"Accroche2#2169:64\":true,\"Titre#2090:47\":\"Questions fréquentes\",\"Accroche#2090:46\":\"FAQ\",\"Disposition\":\"Standard\"},\"instanceOverrides\":[\"2104:2907 : height, primaryAxisSizingMode, width\"],\"detail\":\"overrides ne contient QUE de la géométrie : aucune surcharge de peinture ni de typographie sur l'instance ni sur ses deux calques TEXT (I2104:2907;2090:2386 Accroche, I2104:2907;2090:2387 Titre). Tous les canaux typographiques observés — Titre Montserrat Regular 40 / lineHeightPx 50 / textAlign CENTER, Accroche Montserrat Regular 20 / lineHeightPx 25 / letterSpacing 3 / textCase UPPER, tous deux fills liés à VariableID:5:40 — restent donc gouvernés par ds.section-header, pas par ds.faq : aucun fait de typographie n'est déclaré contre un pointeur de ds.faq, qui produirait un rouge fabriqué.\"}",
+        "observedValue": {
+          "nodeId": "2104:2907",
+          "mainComponent": "2090:2385",
+          "observedInstanceProperties": {
+            "Accroche2#2169:64": true,
+            "Titre#2090:47": "Questions fréquentes",
+            "Accroche#2090:46": "FAQ",
+            "Disposition": "Standard"
+          },
+          "instanceOverrides": [
+            "2104:2907 : height, primaryAxisSizingMode, width"
+          ],
+          "detail": "overrides ne contient QUE de la géométrie : aucune surcharge de peinture ni de typographie sur l'instance ni sur ses deux calques TEXT (I2104:2907;2090:2386 Accroche, I2104:2907;2090:2387 Titre). Tous les canaux typographiques observés — Titre Montserrat Regular 40 / lineHeightPx 50 / textAlign CENTER, Accroche Montserrat Regular 20 / lineHeightPx 25 / letterSpacing 3 / textCase UPPER, tous deux fills liés à VariableID:5:40 — restent donc gouvernés par ds.section-header, pas par ds.faq : aucun fait de typographie n'est déclaré contre un pointeur de ds.faq, qui produirait un rouge fabriqué."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component",
+        "observedValue": {
+          "id": "ds.section-header",
+          "props": {
+            "titre": [
+              {
+                "text": "Questions fréquentes"
+              }
+            ],
+            "accroche": "FAQ",
+            "disposition": "standard"
+          }
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__root\"]",
+        "observedValue": "FAQQuestions fréquentes",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.section-header-titre",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#SectionHeader.Titre",
+        "observedValue": "Questions fréquentes",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/titre",
+        "observedValue": [
+          {
+            "text": "Questions fréquentes"
+          }
+        ],
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "Questions fréquentes",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-value-differs:SectionHeader.Titre:[{\"text\":\"Questions fréquentes\"}]!=\"Questions fréquentes\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.section-header-accroche",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#SectionHeader.Accroche",
+        "observedValue": "FAQ",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/accroche",
+        "observedValue": "FAQ",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": "FAQ",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.section-header-disposition",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#SectionHeader.Disposition",
+        "observedValue": "standard",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/disposition",
+        "observedValue": "standard",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__root\"]",
+        "observedValue": "FAQQuestions fréquentes",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.section-header-accroche2",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#SectionHeader.Accroche2 (BOOLEAN)",
+        "observedValue": true,
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/accroche2",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/SectionHeader/component/props/accroche2"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": "FAQ",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:SectionHeader.Accroche2 (BOOLEAN)=true"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.button",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2912\",\"mainComponent\":\"28:114\",\"observedInstanceProperties\":{\"Libelle#2044:28\":\"Contactez-nous\",\"Style\":\"Outline noir\",\"Icone droite#2024:7\":true,\"Icone gauche#2024:0\":false,\"Glyphe droite#2028:21\":\"6:104\",\"Glyphe gauche#2028:14\":\"6:99\"},\"instanceOverrides\":[\"2104:2912 : height, width\",\"I2104:2912;28:117 (ArrowRight) : visible\"],\"detail\":\"INSTANCE 249x54 HUG/HUG, layoutMode=HORIZONTAL primaryAxis=CENTER counterAxis=CENTER, padding 32/16, itemSpacing 10, strokeWeight 2 lié à VariableID:2027:974 (4 côtés), strokes SOLID #26282C lié à VariableID:5:40, fills[0] SOLID blanc visible=false. Le contrat écrit { \\\"id\\\": \\\"ds.button\\\" } sans aucune prop : deux canaux coïncident avec les défauts de ds.button et ne sont donc PAS déclarés en divergence — Icone gauche=false (défaut iconLeft=false, ArrowLeft I2104:2912;28:115 porte visible=false) et Glyphe droite=6:104 (défaut iconRightGlyph=\\\"arrow-right\\\") — ils restent lisibles ici dans observedInstanceProperties. La largeur 249px est notée par 003 comme un écart d'1px non investigué contre les 250px des trois autres sites (dérive historique probable, mesurée avant tout geste).\"}",
+        "observedValue": {
+          "nodeId": "2104:2912",
+          "mainComponent": "28:114",
+          "observedInstanceProperties": {
+            "Libelle#2044:28": "Contactez-nous",
+            "Style": "Outline noir",
+            "Icone droite#2024:7": true,
+            "Icone gauche#2024:0": false,
+            "Glyphe droite#2028:21": "6:104",
+            "Glyphe gauche#2028:14": "6:99"
+          },
+          "instanceOverrides": [
+            "2104:2912 : height, width",
+            "I2104:2912;28:117 (ArrowRight) : visible"
+          ],
+          "detail": "INSTANCE 249x54 HUG/HUG, layoutMode=HORIZONTAL primaryAxis=CENTER counterAxis=CENTER, padding 32/16, itemSpacing 10, strokeWeight 2 lié à VariableID:2027:974 (4 côtés), strokes SOLID #26282C lié à VariableID:5:40, fills[0] SOLID blanc visible=false. Le contrat écrit { \"id\": \"ds.button\" } sans aucune prop : deux canaux coïncident avec les défauts de ds.button et ne sont donc PAS déclarés en divergence — Icone gauche=false (défaut iconLeft=false, ArrowLeft I2104:2912;28:115 porte visible=false) et Glyphe droite=6:104 (défaut iconRightGlyph=\"arrow-right\") — ils restent lisibles ici dans observedInstanceProperties. La largeur 249px est notée par 003 comme un écart d'1px non investigué contre les 250px des trois autres sites (dérive historique probable, mesurée avant tout geste)."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component",
+        "observedValue": {
+          "id": "ds.button"
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.button-libelle",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#Bouton.Libelle",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component/text",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Bouton/component/text"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.Libelle=\"Contactez-nous\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.button-variant",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#Bouton.Style",
+        "observedValue": "outilneNoir",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component/props/variant",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Bouton/component/props/variant"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.Style=\"outilneNoir\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.composition.button-icone-droite",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#Bouton.Icone droite (BOOLEAN)",
+        "observedValue": true,
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component/props/iconRight",
+        "observedValue": null,
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/Bouton/component/props/iconRight"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__iconRight\"]",
+        "observedValue": null,
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:Bouton.Icone droite (BOOLEAN)=true"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.visual.root",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2914\",\"export\":\"png@2x\",\"detail\":\"référence pixel du master entier, 1728x448 à deviceScaleFactor 2. Limite connue déclarée au manifeste — faq.couverture-pixel-003-2-sur-4, source specs/010-extract-molecules-organisms/audit-reuse-map.md : la couverture pixel de l'audit 003 est à 2/4. Cause nommée par specs/003-externalize-figma-components/audits/faq.md : sur les 4 occurrences relevées, la 4e (Dépannage/SAV, FAQ 249:1609 dans le composite Hero et FAQ) NE REÇOIT PAS d'instance du master — gabarit différent (itemSpacing 64, nesting supplémentaire pour loger 4 Tab) et brief explicite de ne pas intégrer les onglets au master ; elle est capturée avant/après par prudence mais sans mutation. Attente de verdict : limited.\"}",
+        "observedValue": {
+          "nodeId": "2104:2914",
+          "export": "png@2x",
+          "detail": "référence pixel du master entier, 1728x448 à deviceScaleFactor 2. Limite connue déclarée au manifeste — faq.couverture-pixel-003-2-sur-4, source specs/010-extract-molecules-organisms/audit-reuse-map.md : la couverture pixel de l'audit 003 est à 2/4. Cause nommée par specs/003-externalize-figma-components/audits/faq.md : sur les 4 occurrences relevées, la 4e (Dépannage/SAV, FAQ 249:1609 dans le composite Hero et FAQ) NE REÇOIT PAS d'instance du master — gabarit différent (itemSpacing 64, nesting supplémentaire pour loger 4 Tab) et brief explicite de ne pas intégrer les onglets au master ; elle est capturée avant/après par prudence mais sans mutation. Attente de verdict : limited."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "column",
+            "align": "center"
+          },
+          "parts": {
+            "SectionHeader": {
+              "component": {
+                "id": "ds.section-header",
+                "props": {
+                  "titre": [
+                    {
+                      "text": "Questions fréquentes"
+                    }
+                  ],
+                  "accroche": "FAQ",
+                  "disposition": "standard"
+                }
+              }
+            },
+            "accordion": {
+              "layout": {
+                "direction": "column",
+                "align": "center"
+              },
+              "parts": {
+                "AccordionRow": {
+                  "component": {
+                    "id": "ds.accordion-row",
+                    "props": {
+                      "taille": "grand"
+                    }
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "contenu": "Réponse",
+                        "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+                      },
+                      {
+                        "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+                        "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+                      },
+                      {
+                        "contenu": "Réponse",
+                        "titre": "Assurez-vous la maintenance après l'installation ?"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "Bouton": {
+              "component": {
+                "id": "ds.button"
+              }
+            }
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "comparison",
+      "reasons": [
+        "raw-over-threshold:4.366393293238564>2.5",
+        "region-over-budget:whole:4.366393293238564>2.5"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.visual.root-font-family",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2914#root.font-family (fontName de chaque calque TEXT descendant)",
+        "observedValue": "{font.family.montserrat}",
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/anatomy/root/tokens/font-family",
+        "observedValue": "{font.family.montserrat}",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "faq.semantic.root-element",
+      "subjectId": "faq",
+      "caseId": "faq-master-defaults",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2914\",\"detail\":\"La matrice ne comporte AUCUNE ligne pour le choix de l'élément HTML : un node Figma n'a pas de notion de balise, donc le canal est code-only par construction (verdict lu, non dérivé — §10 « content / text content » ne couvre que characters). Ce que Figma énonce ici est le type de node : COMPONENT, une frame auto-layout, dont l'équivalent générique côté code est un conteneur de bloc. Le contrat déclare semantics.element = \\\"div\\\" et FAQ.tsx rend bien un <div> — la FAQ n'expose ni landmark, ni heading, ni groupe ARIA, ni relation aria-controls au niveau organisme (les rôles de disclosure vivent dans ds.accordion-row, qui porte son button + aria-expanded + aria-controls).\"}",
+        "observedValue": {
+          "nodeId": "2104:2914",
+          "detail": "La matrice ne comporte AUCUNE ligne pour le choix de l'élément HTML : un node Figma n'a pas de notion de balise, donc le canal est code-only par construction (verdict lu, non dérivé — §10 « content / text content » ne couvre que characters). Ce que Figma énonce ici est le type de node : COMPONENT, une frame auto-layout, dont l'équivalent générique côté code est un conteneur de bloc. Le contrat déclare semantics.element = \"div\" et FAQ.tsx rend bien un <div> — la FAQ n'expose ni landmark, ni heading, ni groupe ARIA, ni relation aria-controls au niveau organisme (les rôles de disclosure vivent dans ds.accordion-row, qui porte son button + aria-expanded + aria-controls)."
+        },
+        "sourceHash": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.faq@1.1.0#/semantics/element",
+        "observedValue": "div",
+        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
+        "observedValue": "FAQQuestions fréquentesContactez-nous",
+        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "outcome": "limited",
+      "localizedSource": null,
+      "reasons": [
+        "representability:carry-code-only"
+      ],
+      "deferredWorkId": null
+    }
+  ],
+  "cases": [
+    {
+      "id": "faq-master-defaults",
+      "subjectId": "faq",
+      "verdict": "fail",
+      "probative": true,
+      "reasons": [
+        "raw-over-threshold:4.366393293238564>2.5",
+        "region-over-budget:whole:4.366393293238564>2.5"
+      ],
+      "figma": {
+        "nodeId": "2104:2914",
+        "setNodeId": "2104:2914",
+        "fileVersion": "2381581871281042338",
+        "observedProperties": {
+          "Ligne 3#2104:59": true
+        },
+        "pngSha256": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+        "width": 3456,
+        "height": 896
+      },
+      "contract": {
+        "id": "ds.faq",
+        "version": "1.1.0",
+        "factIds": [
+          "faq.structure.root",
+          "faq.structure.root-direction",
+          "faq.structure.root-align",
+          "faq.structure.gap-root",
+          "faq.structure.padding-root-left",
+          "faq.structure.padding-root-right",
+          "faq.structure.root-width",
+          "faq.structure.accordion",
+          "faq.structure.accordion-direction",
+          "faq.structure.accordion-align",
+          "faq.structure.accordion-fill",
+          "faq.structure.accordion-row-fill",
+          "faq.structure.section-header-height",
+          "faq.structure.ligne3-cible-visibilite",
+          "faq.structure.button-libelle-carrier",
+          "faq.property.ligne3",
+          "faq.property.items",
+          "faq.content.accordion-rows-default",
+          "faq.content.accordion-rows-sample",
+          "faq.composition.accordion-row",
+          "faq.composition.accordion-row-taille",
+          "faq.composition.accordion-row-etat",
+          "faq.composition.section-header",
+          "faq.composition.section-header-titre",
+          "faq.composition.section-header-accroche",
+          "faq.composition.section-header-disposition",
+          "faq.composition.section-header-accroche2",
+          "faq.composition.button",
+          "faq.composition.button-libelle",
+          "faq.composition.button-variant",
+          "faq.composition.button-icone-droite",
+          "faq.visual.root",
+          "faq.visual.root-font-family",
+          "faq.semantic.root-element"
+        ],
+        "reactProps": {}
+      },
+      "generated": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "bundleSha256": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "harnessConfigSha256": "eebab9ee95008825d6146051442f9a83281b0e5172fc74992c79f6ab34266557",
+        "fontsLoaded": true
+      },
+      "visibility": {
+        "figma": {
+          "signalPixels": 103781,
+          "width": 3456,
+          "height": 896
+        },
+        "generated": {
+          "signalPixels": 61468,
+          "width": 3648,
+          "height": 466
+        },
+        "contrastOk": true
+      },
+      "geometry": {
+        "figmaRoot": {
+          "width": 3456,
+          "height": 896
+        },
+        "generatedRoot": {
+          "width": 3456,
+          "height": 274
+        },
+        "deltaPx": {
+          "width": 0,
+          "height": -622
+        },
+        "verdict": "fail"
+      },
+      "pixels": {
+        "rawPct": 4.366393293238564,
+        "maskedDiagnosticPct": 2.1771786230139623,
+        "thresholdPct": 2.5,
+        "regions": [
+          {
+            "id": "whole",
+            "score": 4.366393293238564,
+            "maxDiffPct": 2.5,
+            "signalPixels": 61468
+          }
+        ],
+        "verdict": "fail"
+      },
+      "semantics": [
+        {
+          "id": "root-element",
+          "selector": "[class*=\"FAQ__root\"]",
+          "contractPointer": "/semantics/element",
+          "expected": {
+            "tag": "div"
+          },
+          "observed": {
+            "tag": "div",
+            "text": "FAQQuestions fréquentesContactez-nous"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "accordion-vide-avec-les-defauts-du-contrat",
+          "selector": "[class*=\"FAQ__accordion\"]",
+          "contractPointer": "/anatomy/root/parts/accordion",
+          "expected": {
+            "tag": "div",
+            "textEquals": ""
+          },
+          "observed": {
+            "tag": "div",
+            "text": ""
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "section-header-titre",
+          "selector": "[class*=\"SectionHeader__Titre\"]",
+          "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/titre",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Questions fréquentes"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Questions fréquentes"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "section-header-accroche",
+          "selector": "[class*=\"SectionHeader__Accroche\"]",
+          "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche",
+          "expected": {
+            "tag": "span",
+            "textEquals": "FAQ"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "FAQ"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "button-libelle-defaut-de-l-enfant",
+          "selector": "[class*=\"Button__root\"]",
+          "contractPointer": "/anatomy/root/parts/Bouton/component",
+          "expected": {
+            "tag": "button",
+            "textEquals": "Contactez-nous"
+          },
+          "observed": {
+            "tag": "button",
+            "text": "Contactez-nous"
+          },
+          "verdict": "pass"
+        }
+      ],
+      "domProbes": [
+        {
+          "factId": "faq.property.ligne3",
+          "prop": "ligne3",
+          "probeValue": false,
+          "observedDomValue": null,
+          "projected": false
+        },
+        {
+          "factId": "faq.property.items",
+          "prop": "items",
+          "probeValue": [
+            {
+              "contenu": "PREUVE-013 — RÉPONSE 4b1e",
+              "titre": "PREUVE-013 — QUESTION 4b1e"
+            }
+          ],
+          "observedDomValue": "PREUVE-013 — QUESTION 4b1e",
+          "projected": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "faq-master-defaults.figma",
+          "kind": "figma",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/figma.png",
+          "sha256": "303b0f4d6a9edd434fca49575c2b1e14949273eccc44bc0a4222434918eb2417",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 885,
+          "bytes": 153466
+        },
+        {
+          "id": "faq-master-defaults.generated",
+          "kind": "generated",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/generated.png",
+          "sha256": "cf8eae55fdb3010a13ee089064dbbe104e03ca782777b16760f7ce65e466afa5",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 885,
+          "bytes": 44622
+        },
+        {
+          "id": "faq-master-defaults.diff",
+          "kind": "diff",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/diff.png",
+          "sha256": "3890e8a739ce6188da73113d8957b69464cd0d1883b559c92e1e81ac67b5c850",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 885,
+          "bytes": 64182
+        },
+        {
+          "id": "faq-master-defaults.triptych",
+          "kind": "triptych",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/triptych.png",
+          "sha256": "38096fa4652244734299e8c6fd1894cfab6b5ceb8a2a2d6e8215d056c8b2530a",
+          "mediaType": "image/png",
+          "width": null,
+          "height": null,
+          "bytes": 270692
+        },
+        {
+          "id": "faq-master-defaults.metadata",
+          "kind": "metadata",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/metadata.json",
+          "sha256": "b5f584b0e431375a55b092db1e013ee9adbc510e886770b4529f95fa51dd3d88",
+          "mediaType": "application/json",
+          "width": null,
+          "height": null,
+          "bytes": 5409
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "faq-master-defaults.figma",
+      "kind": "figma",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/figma.png",
+      "sha256": "303b0f4d6a9edd434fca49575c2b1e14949273eccc44bc0a4222434918eb2417",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 885,
+      "bytes": 153466
+    },
+    {
+      "id": "faq-master-defaults.generated",
+      "kind": "generated",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/generated.png",
+      "sha256": "cf8eae55fdb3010a13ee089064dbbe104e03ca782777b16760f7ce65e466afa5",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 885,
+      "bytes": 44622
+    },
+    {
+      "id": "faq-master-defaults.diff",
+      "kind": "diff",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/diff.png",
+      "sha256": "3890e8a739ce6188da73113d8957b69464cd0d1883b559c92e1e81ac67b5c850",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 885,
+      "bytes": 64182
+    },
+    {
+      "id": "faq-master-defaults.triptych",
+      "kind": "triptych",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/triptych.png",
+      "sha256": "38096fa4652244734299e8c6fd1894cfab6b5ceb8a2a2d6e8215d056c8b2530a",
+      "mediaType": "image/png",
+      "width": null,
+      "height": null,
+      "bytes": 270692
+    },
+    {
+      "id": "faq-master-defaults.metadata",
+      "kind": "metadata",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/metadata.json",
+      "sha256": "b5f584b0e431375a55b092db1e013ee9adbc510e886770b4529f95fa51dd3d88",
+      "mediaType": "application/json",
+      "width": null,
+      "height": null,
+      "bytes": 5409
+    }
+  ],
+  "verdict": "divergent",
+  "reasons": [
+    "divergent-facts:18",
+    "failed-cases:1"
+  ]
+}

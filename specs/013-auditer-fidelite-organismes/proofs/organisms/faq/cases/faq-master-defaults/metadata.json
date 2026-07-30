@@ -1,0 +1,204 @@
+{
+  "id": "faq-master-defaults",
+  "subjectId": "faq",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:4.366393293238564>2.5",
+    "region-over-budget:whole:4.366393293238564>2.5"
+  ],
+  "figma": {
+    "nodeId": "2104:2914",
+    "setNodeId": "2104:2914",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {
+      "Ligne 3#2104:59": true
+    },
+    "pngSha256": "9702432e988e73b7388df32be24c2cb323f830088be4db27c859cc538c38c7f2",
+    "width": 3456,
+    "height": 896
+  },
+  "contract": {
+    "id": "ds.faq",
+    "version": "1.1.0",
+    "factIds": [
+      "faq.structure.root",
+      "faq.structure.root-direction",
+      "faq.structure.root-align",
+      "faq.structure.gap-root",
+      "faq.structure.padding-root-left",
+      "faq.structure.padding-root-right",
+      "faq.structure.root-width",
+      "faq.structure.accordion",
+      "faq.structure.accordion-direction",
+      "faq.structure.accordion-align",
+      "faq.structure.accordion-fill",
+      "faq.structure.accordion-row-fill",
+      "faq.structure.section-header-height",
+      "faq.structure.ligne3-cible-visibilite",
+      "faq.structure.button-libelle-carrier",
+      "faq.property.ligne3",
+      "faq.property.items",
+      "faq.content.accordion-rows-default",
+      "faq.content.accordion-rows-sample",
+      "faq.composition.accordion-row",
+      "faq.composition.accordion-row-taille",
+      "faq.composition.accordion-row-etat",
+      "faq.composition.section-header",
+      "faq.composition.section-header-titre",
+      "faq.composition.section-header-accroche",
+      "faq.composition.section-header-disposition",
+      "faq.composition.section-header-accroche2",
+      "faq.composition.button",
+      "faq.composition.button-libelle",
+      "faq.composition.button-variant",
+      "faq.composition.button-icone-droite",
+      "faq.visual.root",
+      "faq.visual.root-font-family",
+      "faq.semantic.root-element"
+    ],
+    "reactProps": {}
+  },
+  "generated": {
+    "componentFile": "src/components/FAQ/FAQ.tsx",
+    "export": "FAQ",
+    "bundleSha256": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+    "harnessConfigSha256": "eebab9ee95008825d6146051442f9a83281b0e5172fc74992c79f6ab34266557",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 103781,
+      "width": 3456,
+      "height": 896
+    },
+    "generated": {
+      "signalPixels": 61468,
+      "width": 3648,
+      "height": 466
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 3456,
+      "height": 896
+    },
+    "generatedRoot": {
+      "width": 3456,
+      "height": 274
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": -622
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 4.366393293238564,
+    "maskedDiagnosticPct": 2.1771786230139623,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 4.366393293238564,
+        "maxDiffPct": 2.5,
+        "signalPixels": 61468
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "root-element",
+      "selector": "[class*=\"FAQ__root\"]",
+      "contractPointer": "/semantics/element",
+      "expected": {
+        "tag": "div"
+      },
+      "observed": {
+        "tag": "div",
+        "text": "FAQQuestions fréquentesContactez-nous"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "accordion-vide-avec-les-defauts-du-contrat",
+      "selector": "[class*=\"FAQ__accordion\"]",
+      "contractPointer": "/anatomy/root/parts/accordion",
+      "expected": {
+        "tag": "div",
+        "textEquals": ""
+      },
+      "observed": {
+        "tag": "div",
+        "text": ""
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "section-header-titre",
+      "selector": "[class*=\"SectionHeader__Titre\"]",
+      "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/titre",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Questions fréquentes"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Questions fréquentes"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "section-header-accroche",
+      "selector": "[class*=\"SectionHeader__Accroche\"]",
+      "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche",
+      "expected": {
+        "tag": "span",
+        "textEquals": "FAQ"
+      },
+      "observed": {
+        "tag": "span",
+        "text": "FAQ"
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "button-libelle-defaut-de-l-enfant",
+      "selector": "[class*=\"Button__root\"]",
+      "contractPointer": "/anatomy/root/parts/Bouton/component",
+      "expected": {
+        "tag": "button",
+        "textEquals": "Contactez-nous"
+      },
+      "observed": {
+        "tag": "button",
+        "text": "Contactez-nous"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "domProbes": [
+    {
+      "factId": "faq.property.ligne3",
+      "prop": "ligne3",
+      "probeValue": false,
+      "observedDomValue": null,
+      "projected": false
+    },
+    {
+      "factId": "faq.property.items",
+      "prop": "items",
+      "probeValue": [
+        {
+          "contenu": "PREUVE-013 — RÉPONSE 4b1e",
+          "titre": "PREUVE-013 — QUESTION 4b1e"
+        }
+      ],
+      "observedDomValue": "PREUVE-013 — QUESTION 4b1e",
+      "projected": false
+    }
+  ],
+  "artifacts": []
+}

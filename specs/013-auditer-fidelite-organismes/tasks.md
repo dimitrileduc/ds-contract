@@ -558,23 +558,43 @@ mêmes critères de traçabilité et de fidélité que la vague 1.
       sémantiques citant un JSON Pointer). `reassurances` porte un axe `Disposition` et
       une composition `Carte` répétée : le cas cite le contrat enfant et la part/`repeat`
       qui la porte (invariant « une composition obligatoire cite… »).
-- [ ] T050 [US2] Exécuter `--inventory --wave 2` jusqu'à `missing == []` et
-      `unexpected == []` pour les trois sujets.
-- [ ] T051 [P] [US2] Auditer `faq` (`ds.faq@1.0.0`, node `2104:2914`) : `--wave 2
+- [X] T050 [US2] **FAIT 2026-07-30** — couverture exacte pour les trois sujets :
+      `missing == []` et `unexpected == []` (lu dans `proofs/organisms/<id>/result.json`,
+      champ `coverage`). Le CLI `--wave` restant non implémenté (T020), la capture passe
+      par `tools/run-wave.mts 2`, qui applique la règle d'entrée de vague AVANT toute
+      capture via `evaluateWaveEntry` — la règle est donc bien portée par l'outil.
+- [X] T051 [P] [US2] Auditer `faq` (`ds.faq@1.0.0`, node `2104:2914`) : `--wave 2
       --refresh`, classifier, dossier complet `proofs/organisms/faq/`. Travaux reportés
       enregistrés, jamais convertis en pass.
-- [ ] T052 [P] [US2] Auditer `footer` (`ds.footer@1.0.0`, node `2120:4785`) — même
+      **FAIT** → `divergent` · 34 faits (14 prouvés / 18 divergents / 1 limité / 1 non
+      prouvé) · pixels 4,37 %.
+- [X] T052 [P] [US2] Auditer `footer` (`ds.footer@1.0.0`, node `2120:4785`) — même
       protocole ; dossier `proofs/organisms/footer/`. `auditRefs` résolus via 010 (le
       fichier réel est `audits/footer-devis.md`).
-- [ ] T053 [P] [US2] Auditer `reassurances` (`ds.reassurances@1.0.0`, node `2114:3721`) —
+      **FAIT** → `divergent` · 57 faits (20 prouvés / 36 divergents / 1 non prouvé) ·
+      pixels 96,91 % — le plus gros écart de la campagne, cause dominante
+      `contract-does-not-carry-figma-fact` (le contrat est mince face à Figma :
+      paddings, largeur de root, Background absolu, Row sans auto-layout).
+- [X] T053 [P] [US2] Auditer `reassurances` (`ds.reassurances@1.0.0`, node `2114:3721`) —
       même protocole ; dossier `proofs/organisms/reassurances/`.
-- [ ] T054 [US2] **Conditionnel** — remédiation locale bornée pour la vague 2, protocole
-      identique à T037 (fixture rouge d'abord, source autorisée seule, régénération,
-      **double re-pin** `evals/golden.json` + `figma-sync/plugin/engine.receipt.json`,
-      réaudit, initial et final conservés).
-- [ ] T055 [US2] Reçu de classification de la vague 2 (`waves[1]`, `classified: true`) et
-      contrôle explicite qu'aucun verdict de la vague 2 ne dépend d'un verdict implicite
-      de `MemberCard`, `Field` ou `NavItem` (FR/US2 scénario 1).
+      **FAIT** → `divergent` · 44 faits (22 prouvés / 18 divergents / 4 limités) ·
+      pixels 38,88 %.
+- [ ] T054 [US2] **Conditionnel — NON DÉCLENCHÉ, en attente d'arbitrage owner.** Les trois
+      sujets sont classifiés `divergent` ; la remédiation au pixel serait un chantier de
+      l'ampleur de T037 (une journée pour la vague 1). L'ordre validé avec l'owner le
+      2026-07-30 dit « capture vague 2 → 3 dossiers bloqués vague 3 → US4/T063+ », donc la
+      campagne continue sans remédier. Protocole si déclenchée : identique à T037 (fixture
+      rouge d'abord, source autorisée seule, régénération, **triple re-pin**
+      `evals/golden.json` + `figma-sync/plugin/engine.receipt.json` + `examples/polaris/`
+      si l'émetteur bouge, réaudit, initial et final conservés).
+- [X] T055 [US2] **FAIT 2026-07-30** — reçu dérivé
+      `proofs/organisms/wave-2-classification.json` (nouvel outil
+      `tools/classify-wave.mts`, jamais saisi à la main) : `classified: true`,
+      `independenceFromGatedDependencies: true` — aucun fait des trois sujets ne mentionne
+      `ds.member-card`, `ds.field` ni `ds.nav-item`, donc aucun verdict de la vague 2 ne
+      dépend d'un verdict implicite d'une molécule bloquée (US2 scénario 1).
+      `positiveVerdictsUnderClosedGate: 0`. Le même outil a produit rétroactivement
+      `wave-1-classification.json`, que T038 n'avait laissé que sous forme de six dossiers.
 
 **Checkpoint** : neuf dossiers classifiés, vagues 1 et 2 consignées dans l'ordre.
 

@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "013-auditer-fidelite-organismes",
+  "wave": 1,
+  "waveIndex": 0,
+  "reference": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileVersion": "2381581871281042338",
+    "readOnly": true
+  },
+  "expectedSubjectIds": [
+    "coordonnees",
+    "devis",
+    "hero",
+    "presentation",
+    "sav",
+    "texte-seo"
+  ],
+  "subjects": [
+    {
+      "id": "coordonnees",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 46,
+      "proved": 30,
+      "divergent": 15,
+      "limited": 1,
+      "notProven": 0,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:15"
+      ]
+    },
+    {
+      "id": "devis",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 21,
+      "proved": 12,
+      "divergent": 9,
+      "limited": 0,
+      "notProven": 0,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:9"
+      ]
+    },
+    {
+      "id": "hero",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 37,
+      "proved": 25,
+      "divergent": 12,
+      "limited": 0,
+      "notProven": 0,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:12",
+        "failed-cases:1"
+      ]
+    },
+    {
+      "id": "presentation",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 13,
+      "proved": 8,
+      "divergent": 4,
+      "limited": 0,
+      "notProven": 1,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:4"
+      ]
+    },
+    {
+      "id": "sav",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 18,
+      "proved": 10,
+      "divergent": 8,
+      "limited": 0,
+      "notProven": 0,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:8"
+      ]
+    },
+    {
+      "id": "texte-seo",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 39,
+      "proved": 25,
+      "divergent": 12,
+      "limited": 2,
+      "notProven": 0,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:12"
+      ]
+    }
+  ],
+  "classified": true,
+  "positiveVerdictsUnderClosedGate": 0,
+  "independenceFromGatedDependencies": true,
+  "note": "classified = verdict final honnête, PAS verdict positif. Un dossier divergent classifié ouvre la vague suivante."
+}
