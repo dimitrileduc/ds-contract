@@ -126,6 +126,94 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'visual-campaign-scope-additive',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-campaign-scope-additive-check.ts']);
+      if (r.status !== 0) throw new Error(`Additive campaign scope guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-campaign-scope',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-campaign-scope-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit campaign scope guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-wave-entry',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-wave-entry-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit wave-entry guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-verdict-algebra',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-verdict-algebra-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit verdict algebra guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-probative-evidence',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-probative-evidence-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit probative/pixel guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-dependency-mapping',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-dependency-mapping-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit dependency mapping guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-blocked-parent',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-blocked-parent-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit blocked-parent dossier guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-non-conversion',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-non-conversion-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit non-conversion receipt guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-react-capture',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-react-capture-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit React capture guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-prop-projection',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-prop-projection-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit prop-projection guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-image-prop-path',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-image-prop-path-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit image prop-path guard failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'field-slotted-control-semantics',
     claim: 'C3-detection',
     run: () => {

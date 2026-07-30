@@ -181,25 +181,25 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
 
 ### Implémentation
 
-- [ ] T012 Ajouter le champ **optionnel** `scope` (`{ expectedSubjectIds, contractIdsBySubject }`)
+- [X] T012 Ajouter le champ **optionnel** `scope` (`{ expectedSubjectIds, contractIdsBySubject }`)
       à `extract/figma/visual-parity/campaign.ts` — absent : comportement 011 strictement
       inchangé (`REQUIRED_CAMPAIGN_SUBJECT_IDS`, sept sujets, ligne 11) ; présent :
       ensemble exact fourni avec mapping explicite. Évolution **additive** seulement
       (§VI) : aucun champ existant n'est repurposé, aucune valeur ne change de sens.
       Passe T004 au vert. Ne PAS ajouter les organismes à l'enum 011 — cela réécrirait
       rétrospectivement le sens d'une preuve pinée.
-- [ ] T013 Créer `extract/figma/organism-audit/campaign.ts` : les types des 14 entités de
+- [X] T013 Créer `extract/figma/organism-audit/campaign.ts` : les types des 14 entités de
       `data-model.md` (`AuditCampaign`, `FigmaReference`, `AuditWave`, `OrganismTarget`,
       `DependencyGate`/`DependencyGateResult`, `AuditCase`, `AuditedFact`/`FactLeg`, `VisualEvidence`,
       `ArtifactReceipt`, `DeferredWorkItem`, `OrganismAuditResult`, `CampaignAuditResult`)
       **plus** le validateur de manifeste, pur et sans effet de bord (même discipline que
       `visual-parity/campaign.ts` : ni fetch, ni Chromium, ni `mkdir`), avec des codes
       d'issue typés refusant **par nom**. Passe T005 au vert.
-- [ ] T014 Créer `extract/figma/organism-audit/verdict.ts` : l'algèbre fail-closed des
+- [X] T014 Créer `extract/figma/organism-audit/verdict.ts` : l'algèbre fail-closed des
       faits (`proved|divergent|limited|not-proven`) et des organismes (+ `blocked`), plus
       le verdict de campagne (`complete|complete-with-blocks|invalid`). Les verdicts sont
       **dérivés**, jamais saisis. Passe T006 au vert.
-- [ ] T015 Créer `extract/figma/organism-audit/dependencies.ts` : lecture du reçu,
+- [X] T015 Créer `extract/figma/organism-audit/dependencies.ts` : lecture du reçu,
       contrôle de fraîcheur (hash SHA-256 des octets, version de contrat, version Figma),
       dérivation de `probative` depuis les cas requis, et le **mappage normatif** v1→013.
       `requiredVerdict` reste `proved` mais n'est jamais exigé littéralement d'un reçu v1
@@ -250,7 +250,7 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
       `proofs/baseline/react-bundle.json` et les reçus Figma/dépendances pinés. **L'inventaire
       vivant est l'autorité — le nombre « 89 » de la prose ne sert jamais à masquer un
       écart d'inventaire** (quickstart §3). Passe T011 au vert.
-- [ ] T022 Enregistrer les huit fixtures T004-T011 comme cas d'eval dans `evals/run.ts`
+- [X] T022 Enregistrer les huit fixtures T004-T011 comme cas d'eval dans `evals/run.ts`
       (bloc `claim: 'C2-refusal'` pour les refus, `'C3-detection'` pour T009, suivant le
       motif existant : `run(TSX, ['evals/fixtures/<nom>-check.ts'])` puis `throw` si
       `status !== 0`). Vérifier que `npm run eval` passe et **imprimer** le nouveau `N/N`
@@ -317,7 +317,7 @@ lire le code source.
 
 ### Tests for User Story 1
 
-- [ ] T028 [P] [US1] Fixture rouge des faits image (D10) dans
+- [X] T028 [P] [US1] Fixture rouge des faits image (D10) dans
       `evals/fixtures/organism-audit-image-prop-path-check.ts` : les octets IMAGE utiles
       ne sont injectés que par un **chemin de prop de comparaison déclaré**
       (`{"$asset":"id"}` résolvant vers un asset hashé du manifeste) ; une injection par
@@ -486,7 +486,7 @@ mêmes critères de traçabilité et de fidélité que la vague 1.
 
 ### Tests for User Story 2
 
-- [ ] T048 [P] [US2] Fixture rouge de la règle d'entrée de vague dans
+- [X] T048 [P] [US2] Fixture rouge de la règle d'entrée de vague dans
       `evals/fixtures/organism-audit-wave-entry-check.ts` : `--wave 2` est **refusé avec
       exit 2** tant qu'un dossier de la vague 1 manque ou n'est pas classifié
       (quickstart §5) ; `previous-wave-classified` signifie « verdict final honnête », pas
@@ -542,7 +542,7 @@ ouverte, la fidélité de sa propre structure, contenu et rendu.
 
 ### Tests for User Story 3
 
-- [ ] T056 [P] [US3] Fixture rouge du dossier de parent bloqué dans
+- [X] T056 [P] [US3] Fixture rouge du dossier de parent bloqué dans
       `evals/fixtures/organism-audit-blocked-parent-check.ts` : un parent bloqué reçoit un
       dossier **complet** portant son `DependencyGateResult` (chemin du reçu, hash,
       version de contrat, version Figma, `receiptVerdict`, `probative` dérivé,
