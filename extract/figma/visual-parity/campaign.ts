@@ -71,6 +71,24 @@ export interface VisualCampaignValidationOptions {
   assetManifest?: CampaignAssetManifest | null;
 }
 
+/**
+ * Optional, additive perimeter declaration (§VI).
+ *
+ * Absent, the campaign means exactly what it meant in 011: the seven historical
+ * molecules, with contract ids derived as `ds.<id>`.  Present, the declared set
+ * becomes the requirement — in the declared order — and `contractIdsBySubject`
+ * *replaces* the derivation, which is what lets a campaign name subjects whose
+ * id is not the tail of their contract id.
+ *
+ * Adding new targets to `REQUIRED_CAMPAIGN_SUBJECT_IDS` instead would rewrite
+ * the meaning of every already-pinned 011 receipt.  This field cannot: a
+ * scope-less campaign is validated by the identical code path as before.
+ */
+export interface VisualCampaignScope {
+  expectedSubjectIds: string[];
+  contractIdsBySubject: Record<string, string>;
+}
+
 export interface VisualCampaign {
   schemaVersion: typeof VISUAL_CAMPAIGN_SCHEMA_VERSION;
   id: string;
@@ -81,6 +99,7 @@ export interface VisualCampaign {
     deviceScaleFactor?: number;
   };
   assetsManifest: string;
+  scope?: VisualCampaignScope;
   subjects: CampaignSubject[];
   attribution?: { checkpointCommit: string; wipCommit: string };
   acceptance?: {
@@ -95,7 +114,8 @@ export interface VisualCampaign {
 }
 
 export interface CampaignSubject {
-  id: CampaignSubjectId;
+  /** A scope-less campaign is closed over the seven 011 ids; a scoped one declares its own. */
+  id: CampaignSubjectId | (string & {});
   contractId: string;
   contractVersion: string;
   figmaSetNodeId: string;
@@ -289,17 +309,79 @@ export function validateVisualCampaign(
     }
   }
 
+  // The optional scope is parsed BEFORE the subjects so the subject walk knows
+  // which perimeter it is checking against.  A malformed scope is refused
+  // outright rather than silently falling back to the 011 seven, which would
+  // audit a different set than the document declares.
+  let scope: VisualCampaignScope | null = null;
+  if (candidate.scope !== undefined) {
+    const raw = candidate.scope;
+    const validShape =
+      isRecord(raw) &&
+      isStringArray(raw.expectedSubjectIds) &&
+      raw.expectedSubjectIds.length > 0 &&
+      unique(raw.expectedSubjectIds) &&
+      isRecord(raw.contractIdsBySubject) &&
+      Object.values(raw.contractIdsBySubject).every(isNonEmptyString);
+    if (!validShape) {
+      push(
+        issues,
+        'subject-id',
+        '$.scope',
+        'scope must declare a unique non-empty expectedSubjectIds array and a string contractIdsBySubject map',
+      );
+    } else {
+      scope = {
+        expectedSubjectIds: raw.expectedSubjectIds as string[],
+        contractIdsBySubject: raw.contractIdsBySubject as Record<string, string>,
+      };
+    }
+  }
+  const expectedSubjectIds: readonly string[] = scope
+    ? scope.expectedSubjectIds
+    : REQUIRED_CAMPAIGN_SUBJECT_IDS;
+
   const subjects = candidate.subjects;
   if (!Array.isArray(subjects)) {
-    push(issues, 'subject-id', '$.subjects', 'subjects must be the exact seven-target array');
+    push(
+      issues,
+      'subject-id',
+      '$.subjects',
+      scope
+        ? `subjects must be the exact declared array: ${expectedSubjectIds.join(', ')}`
+        : 'subjects must be the exact seven-target array',
+    );
   } else {
     const ids = subjects.map((subject) => (isRecord(subject) && isNonEmptyString(subject.id) ? subject.id : ''));
-    const exactSubjects =
-      ids.length === REQUIRED_CAMPAIGN_SUBJECT_IDS.length &&
-      unique(ids) &&
-      ids.every((id) => SUBJECT_IDS.has(id));
-    if (!exactSubjects) {
-      push(issues, 'subject-id', '$.subjects', 'subjects must contain each required target exactly once');
+    if (scope) {
+      // Positional comparison: order is part of the declaration because waves
+      // and reports read this array by index.  Walking positionally names the
+      // offender for every shape of violation — omission, surnumerary entry,
+      // reorder and duplicate alike — so a scope error is never anonymous.
+      const width = Math.max(ids.length, expectedSubjectIds.length);
+      for (let index = 0; index < width; index += 1) {
+        const expected = expectedSubjectIds[index];
+        const observed = ids[index];
+        if (expected === observed) continue;
+        const detail =
+          expected === undefined
+            ? `subject "${observed}" is not declared by scope.expectedSubjectIds`
+            : observed === undefined || observed === ''
+              ? `declared subject "${expected}" is missing`
+              : `expected declared subject "${expected}" at position ${index}, found "${observed}"`;
+        push(issues, 'subject-id', `$.subjects[${index}]`, detail);
+      }
+      for (const duplicated of ids.filter((id, index) => id !== '' && ids.indexOf(id) !== index)) {
+        push(issues, 'subject-id', '$.subjects', `subject "${duplicated}" is declared more than once`);
+      }
+    } else {
+      const exactSubjects =
+        ids.length === REQUIRED_CAMPAIGN_SUBJECT_IDS.length &&
+        unique(ids) &&
+        ids.every((id) => SUBJECT_IDS.has(id));
+      if (!exactSubjects) {
+        push(issues, 'subject-id', '$.subjects', 'subjects must contain each required target exactly once');
+      }
     }
 
     const allCaseIds = new Set<string>();
@@ -317,8 +399,25 @@ export function validateVisualCampaign(
         continue;
       }
       const subjectId = isNonEmptyString(subject.id) ? subject.id : '';
-      if (!isNonEmptyString(subject.contractId) || subject.contractId !== `ds.${subjectId}` || !isNonEmptyString(subject.contractVersion)) {
-        push(issues, 'subject-contract', subjectPath, 'subject contract id/version must match its campaign id');
+      // Without a scope the contract id is derived (`ds.<id>`).  A scope
+      // supersedes that derivation with an explicit mapping, and leaving a
+      // declared subject unmapped is an error rather than a quiet fallback to
+      // the derivation the scope exists to replace.
+      const mapped = scope ? scope.contractIdsBySubject[subjectId] : `ds.${subjectId}`;
+      if (scope && !isNonEmptyString(mapped)) {
+        push(
+          issues,
+          'subject-contract',
+          subjectPath,
+          `scope.contractIdsBySubject has no mapping for declared subject "${subjectId}"`,
+        );
+      } else if (!isNonEmptyString(subject.contractId) || subject.contractId !== mapped || !isNonEmptyString(subject.contractVersion)) {
+        push(
+          issues,
+          'subject-contract',
+          subjectPath,
+          `subject contract id/version must match its declared mapping (expected "${mapped}")`,
+        );
       }
       if (!isNonEmptyString(subject.figmaSetNodeId)) {
         push(issues, 'subject-set-node', `${subjectPath}.figmaSetNodeId`, 'figmaSetNodeId is required');
