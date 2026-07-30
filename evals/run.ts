@@ -286,6 +286,14 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'img-paint-preserved-on-amend',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/img-paint-preserved-on-amend-check.ts']);
+      if (r.status !== 0) throw new Error(`Img-paint preservation check failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'component-rich-text-prop-value',
     claim: 'C3-detection',
     run: () => {
