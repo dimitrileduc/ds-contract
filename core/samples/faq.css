@@ -372,7 +372,7 @@
   top: 0px;
 }
 
-/* FAQ — from ds.faq v1.1.0 (core/emit-html.ts) */
+/* FAQ — from ds.faq v1.2.0 (core/emit-html.ts) */
 
 .faq, .faq *, .faq *::before, .faq *::after {
   box-sizing: border-box;
@@ -384,12 +384,19 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: 1550px;
+  padding-left: 89px;
+  padding-right: 89px;
+  gap: 48px;
 }
 
 .faq__accordion {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: stretch;
 }
 
 /* showcase chrome */

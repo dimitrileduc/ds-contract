@@ -230,6 +230,14 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'organism-audit-token-resolution',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-token-resolution-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit token-resolution guard failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'field-slotted-control-semantics',
     claim: 'C3-detection',
     run: () => {

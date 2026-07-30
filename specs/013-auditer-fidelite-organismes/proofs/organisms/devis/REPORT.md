@@ -46,9 +46,9 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `devis.composition.button-icone-droite` | composition | carry-both | 2096:2524#Bouton.iconRight | ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight | src/components/Devis/Devis.tsx#[class*="Button__root"] | **proved** | — | — |
 | `devis.visual.root` | visual | carry-both | {"nodeId":"2096:2524","export":"png@2x","detail":"absoluteBoundingBox 1728×378 ; absoluteRenderBounds identique."} | ds.devis@1.2.0#/anatomy/root | src/components/Devis/Devis.tsx#[class*="Devis__root"] | **proved** | — | — |
 | `devis.visual.root-background-image` | visual | carry-both | 2096:2524#root.fills[0].type | ds.devis@1.2.0#/anatomy/root/tokens/background-image | src/components/Devis/Devis.tsx#[class*="Devis__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:root.fills[0].type="IMAGE" |
-| `devis.visual.root-scrim-color` | visual | carry-both | 2096:2524#root.fills[1].color | ds.devis@1.2.0#/anatomy/root/tokens/background-color | src/components/Devis/Devis.tsx#[class*="Devis__root"] | **divergent** | contract | contract-value-differs:root.fills[1].color:"{color.noir-pur}"!="#000000" |
+| `devis.visual.root-scrim-color` | visual | carry-both | 2096:2524#root.fills[1].color | ds.devis@1.2.0#/anatomy/root/tokens/background-color | src/components/Devis/Devis.tsx#[class*="Devis__root"] | **proved** | — | — |
 | `devis.visual.root-scrim-opacity` | visual | carry-both | 2096:2524#root.fills[1].opacity | ds.devis@1.2.0#/anatomy/root/tokens/background-overlay-opacity | src/components/Devis/Devis.tsx#[class*="Devis__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:root.fills[1].opacity=0.3019607961177826 |
-| `devis.visual.titre-font-size` | visual | carry-both | 2096:2524#Titre.font-size | ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/tokens/font-size | src/components/Devis/Devis.tsx#[class*="Devis__Titre"] | **divergent** | contract | contract-value-differs:Titre.font-size:"{font.size.40}"!="40px" |
+| `devis.visual.titre-font-size` | visual | carry-both | 2096:2524#Titre.font-size | ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/tokens/font-size | src/components/Devis/Devis.tsx#[class*="Devis__Titre"] | **proved** | — | — |
 | `devis.visual.titre-line-height` | visual | carry-both | 2096:2524#Titre.line-height | ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/tokens/line-height | src/components/Devis/Devis.tsx#[class*="Devis__Titre"] | **divergent** | contract | contract-does-not-carry-figma-fact:Titre.line-height="50px" |
 | `devis.visual.titre-text-align` | visual | carry-both | 2096:2524#Titre.text-align | ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/tokens/text-align | src/components/Devis/Devis.tsx#[class*="Devis__Titre"] | **divergent** | contract | contract-does-not-carry-figma-fact:Titre.text-align="center" |
 | `devis.visual.titre-width` | visual | carry-both | 2096:2524#Titre.width | ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/layout/width | src/components/Devis/Devis.tsx#[class*="Devis__Titre"] | **divergent** | contract | contract-does-not-carry-figma-fact:Titre.width="900px" |
@@ -91,16 +91,14 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 - **Divergence** `devis.structure.root-padding` — source : **contract** — contract-does-not-carry-figma-fact:root.paddingTop=96
 - **Divergence** `devis.structure.container-gap` — source : **contract** — contract-does-not-carry-figma-fact:Container.itemSpacing=32
 - **Divergence** `devis.visual.root-background-image` — source : **contract** — contract-does-not-carry-figma-fact:root.fills[0].type="IMAGE"
-- **Divergence** `devis.visual.root-scrim-color` — source : **contract** — contract-value-differs:root.fills[1].color:"{color.noir-pur}"!="#000000"
 - **Divergence** `devis.visual.root-scrim-opacity` — source : **contract** — contract-does-not-carry-figma-fact:root.fills[1].opacity=0.3019607961177826
-- **Divergence** `devis.visual.titre-font-size` — source : **contract** — contract-value-differs:Titre.font-size:"{font.size.40}"!="40px"
 - **Divergence** `devis.visual.titre-line-height` — source : **contract** — contract-does-not-carry-figma-fact:Titre.line-height="50px"
 - **Divergence** `devis.visual.titre-text-align` — source : **contract** — contract-does-not-carry-figma-fact:Titre.text-align="center"
 - **Divergence** `devis.visual.titre-width` — source : **contract** — contract-does-not-carry-figma-fact:Titre.width="900px"
 
 ## 8. Verdict
 
-**`divergent`** — motifs : `divergent-facts:9`
+**`divergent`** — motifs : `divergent-facts:7`
 
 Règle d'agrégation appliquée (fail-closed, data-model §10) :
 

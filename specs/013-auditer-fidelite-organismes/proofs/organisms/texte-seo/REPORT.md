@@ -37,8 +37,8 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `texte-seo.structure.p` | structure | carry-both | {"nodeId":"2170:6308","name":"p","layoutMode":"VERTICAL","itemSpacing":0,"size":"1550x72"} | ds.texte-seo@2.1.0#/anatomy/root/parts/p | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__p"] | **proved** | — | — |
 | `texte-seo.structure.h3` | structure | carry-both | {"nodeId":"2170:6309","name":"h3","layoutMode":"NONE","itemSpacing":0,"size":"1550x25"} | ds.texte-seo@2.1.0#/anatomy/root/parts/h3 | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__h3"] | **proved** | — | — |
 | `texte-seo.structure.accordion` | structure | carry-both | {"nodeId":"2108:3119","name":"accordion","layoutMode":"VERTICAL","itemSpacing":0,"size":"1550x160"} | ds.texte-seo@2.1.0#/anatomy/root/parts/accordion | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__accordion"] | **proved** | — | — |
-| `texte-seo.structure.gap-root` | structure | carry-both | 2108:3123#root.itemSpacing | ds.texte-seo@2.1.0#/anatomy/root/tokens/gap | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__root"] | **divergent** | contract | contract-value-differs:root.itemSpacing:"{space.32}"!=32 |
-| `texte-seo.structure.padding-inline-root` | structure | carry-both | 2108:3123#root.paddingInline | ds.texte-seo@2.1.0#/anatomy/root/tokens/padding-inline | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__root"] | **divergent** | contract | contract-value-differs:root.paddingInline:"{space.89}"!=89 |
+| `texte-seo.structure.gap-root` | structure | carry-both | 2108:3123#root.itemSpacing | ds.texte-seo@2.1.0#/anatomy/root/tokens/gap | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__root"] | **divergent** | contract | contract-value-differs:root.itemSpacing:{space.32}→"32px"!=32 |
+| `texte-seo.structure.padding-inline-root` | structure | carry-both | 2108:3123#root.paddingInline | ds.texte-seo@2.1.0#/anatomy/root/tokens/padding-inline | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__root"] | **divergent** | contract | contract-value-differs:root.paddingInline:{space.89}→"89px"!=89 |
 | `texte-seo.structure.width-root` | structure | carry-both | 2108:3123#root.width | ds.texte-seo@2.1.0#/anatomy/root/literals/width | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:root.width=1728 |
 | `texte-seo.content.paragraphe` | content | carry-with-named-limit | {"nodeId":"2108:3116","detail":"TEXT Paragraphe — 4 séquences Montserrat-Bold dans un calque unique (« Notre showroom », | ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/text | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__Paragraphe"] | **limited** | — | representability:carry-with-named-limit |
 | `texte-seo.content.sous-titre` | content | carry-both | {"nodeId":"2108:3118","characters":"Infos pratiques"} | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/text | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **proved** | — | — |
@@ -50,11 +50,11 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `texte-seo.content.section-header-titre-rich-text` | content | carry-with-named-limit | {"nodeId":"I2170:6361;2090:2387","detail":"TEXT Titre de l’instance — « showroom à Pepinster » (offsets 14..33) en Monts | ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre | src/components/TexteSEO/TexteSEO.tsx#[class*="SectionHeader__Titre"] | **limited** | — | representability:carry-with-named-limit |
 | `texte-seo.visual.section-header-titre-font-size` | visual | carry-with-named-limit | 2108:3123#SectionHeader.Titre.font-size | ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/tokens/font-size | src/components/TexteSEO/TexteSEO.tsx#[class*="SectionHeader__Titre"] | **divergent** | contract | contract-does-not-carry-figma-fact:SectionHeader.Titre.font-size="24px" |
 | `texte-seo.visual.section-header-titre-line-height` | visual | carry-with-named-limit | 2108:3123#SectionHeader.Titre.line-height | ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/tokens/line-height | src/components/TexteSEO/TexteSEO.tsx#[class*="SectionHeader__Titre"] | **divergent** | contract | contract-does-not-carry-figma-fact:SectionHeader.Titre.line-height="30px" |
-| `texte-seo.visual.paragraphe-font-size` | visual | carry-both | 2108:3123#Paragraphe.font-size | ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/font-size | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__Paragraphe"] | **divergent** | contract | contract-value-differs:Paragraphe.font-size:"{font.size.14}"!="14px" |
-| `texte-seo.visual.paragraphe-line-height` | visual | carry-both | 2108:3123#Paragraphe.line-height | ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/line-height | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__Paragraphe"] | **divergent** | contract | contract-value-differs:Paragraphe.line-height:"{font.line-height.24}"!="24px" |
-| `texte-seo.visual.sous-titre-font-size` | visual | carry-both | 2108:3123#SousTitre.font-size | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-size | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **divergent** | contract | contract-value-differs:SousTitre.font-size:"{font.size.20}"!="20px" |
-| `texte-seo.visual.sous-titre-line-height` | visual | carry-both | 2108:3123#SousTitre.line-height | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/line-height | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **divergent** | contract | contract-value-differs:SousTitre.line-height:"{font.line-height.25}"!="25px" |
-| `texte-seo.visual.sous-titre-font-weight` | visual | carry-both | 2108:3123#SousTitre.font-weight | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-weight | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **divergent** | contract | contract-value-differs:SousTitre.font-weight:"{font.weight.semibold}"!=600 |
+| `texte-seo.visual.paragraphe-font-size` | visual | carry-both | 2108:3123#Paragraphe.font-size | ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/font-size | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__Paragraphe"] | **proved** | — | — |
+| `texte-seo.visual.paragraphe-line-height` | visual | carry-both | 2108:3123#Paragraphe.line-height | ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/line-height | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__Paragraphe"] | **proved** | — | — |
+| `texte-seo.visual.sous-titre-font-size` | visual | carry-both | 2108:3123#SousTitre.font-size | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-size | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **proved** | — | — |
+| `texte-seo.visual.sous-titre-line-height` | visual | carry-both | 2108:3123#SousTitre.line-height | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/line-height | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **proved** | — | — |
+| `texte-seo.visual.sous-titre-font-weight` | visual | carry-both | 2108:3123#SousTitre.font-weight | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-weight | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **proved** | — | — |
 | `texte-seo.visual.paragraphe-color` | visual | carry-both | 2108:3123#Paragraphe.color | ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/color | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__Paragraphe"] | **proved** | — | — |
 | `texte-seo.visual.sous-titre-color` | visual | carry-both | 2108:3123#SousTitre.color | ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/color | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__SousTitre"] | **proved** | — | — |
 | `texte-seo.visual.root-font-family` | visual | carry-both | 2108:3123#root.font-family | ds.texte-seo@2.1.0#/anatomy/root/tokens/font-family | src/components/TexteSEO/TexteSEO.tsx#[class*="TexteSEO__root"] | **proved** | — | — |
@@ -103,17 +103,12 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 
 ## 7. Divergences, limites nommées et travaux reportés
 
-- **Divergence** `texte-seo.structure.gap-root` — source : **contract** — contract-value-differs:root.itemSpacing:"{space.32}"!=32
-- **Divergence** `texte-seo.structure.padding-inline-root` — source : **contract** — contract-value-differs:root.paddingInline:"{space.89}"!=89
+- **Divergence** `texte-seo.structure.gap-root` — source : **contract** — contract-value-differs:root.itemSpacing:{space.32}→"32px"!=32
+- **Divergence** `texte-seo.structure.padding-inline-root` — source : **contract** — contract-value-differs:root.paddingInline:{space.89}→"89px"!=89
 - **Divergence** `texte-seo.structure.width-root` — source : **contract** — contract-does-not-carry-figma-fact:root.width=1728
 - **Divergence** `texte-seo.content.section-header-titre` — source : **contract** — contract-value-differs:SectionHeader.Titre:[{"text":"Visitez notre "},{"text":"showroom à Pepinster","strong":true},{"text":" ou contactez-nous"}]!="Visitez notre showroom à Pepinster ou contactez-nous"
 - **Divergence** `texte-seo.visual.section-header-titre-font-size` — source : **contract** — contract-does-not-carry-figma-fact:SectionHeader.Titre.font-size="24px"
 - **Divergence** `texte-seo.visual.section-header-titre-line-height` — source : **contract** — contract-does-not-carry-figma-fact:SectionHeader.Titre.line-height="30px"
-- **Divergence** `texte-seo.visual.paragraphe-font-size` — source : **contract** — contract-value-differs:Paragraphe.font-size:"{font.size.14}"!="14px"
-- **Divergence** `texte-seo.visual.paragraphe-line-height` — source : **contract** — contract-value-differs:Paragraphe.line-height:"{font.line-height.24}"!="24px"
-- **Divergence** `texte-seo.visual.sous-titre-font-size` — source : **contract** — contract-value-differs:SousTitre.font-size:"{font.size.20}"!="20px"
-- **Divergence** `texte-seo.visual.sous-titre-line-height` — source : **contract** — contract-value-differs:SousTitre.line-height:"{font.line-height.25}"!="25px"
-- **Divergence** `texte-seo.visual.sous-titre-font-weight` — source : **contract** — contract-value-differs:SousTitre.font-weight:"{font.weight.semibold}"!=600
 - **Divergence** `texte-seo.property.items-default` — source : **contract** — contract-does-not-carry-figma-fact:accordion.rowCount=3
 - **Limite** `texte-seo.content.paragraphe` — representability:carry-with-named-limit
 - **Limite** `texte-seo.content.section-header-titre-rich-text` — representability:carry-with-named-limit
@@ -122,7 +117,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 
 ## 8. Verdict
 
-**`divergent`** — motifs : `divergent-facts:12`
+**`divergent`** — motifs : `divergent-facts:7`
 
 Règle d'agrégation appliquée (fail-closed, data-model §10) :
 

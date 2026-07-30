@@ -4,8 +4,8 @@
   "verdict": "fail",
   "probative": true,
   "reasons": [
-    "raw-over-threshold:38.87919222236722>2.5",
-    "region-over-budget:whole:38.87919222236722>2.5"
+    "raw-over-threshold:38.613450729282505>2.5",
+    "region-over-budget:whole:38.613450729282505>2.5"
   ],
   "figma": {
     "nodeId": "2114:3619",
@@ -20,7 +20,7 @@
   },
   "contract": {
     "id": "ds.reassurances",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "factIds": [
       "reassurances.structure.root",
       "reassurances.structure.root-gap",
@@ -71,19 +71,31 @@
       "items": [
         {
           "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-          "titre": "Sécurité et conformité"
+          "titre": "Sécurité et conformité",
+          "imageUrl": {
+            "$asset": "carte-image-ab6a82d4b83b"
+          }
         },
         {
           "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-          "titre": "Intégration parfaite"
+          "titre": "Intégration parfaite",
+          "imageUrl": {
+            "$asset": "carte-image-8d05df2058fe"
+          }
         },
         {
           "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-          "titre": "Moteur performant"
+          "titre": "Moteur performant",
+          "imageUrl": {
+            "$asset": "carte-image-d00de3d48206"
+          }
         },
         {
           "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-          "titre": "SAV & maintenance dédiés"
+          "titre": "SAV & maintenance dédiés",
+          "imageUrl": {
+            "$asset": "carte-image-7bd2daf5061e"
+          }
         }
       ]
     }
@@ -91,7 +103,7 @@
   "generated": {
     "componentFile": "src/components/Reassurances/Reassurances.tsx",
     "export": "Reassurances",
-    "bundleSha256": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+    "bundleSha256": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
     "harnessConfigSha256": "74123f296201c2af67f312d1d0088b8f9d8ff3950ab5bde79f4765d571123ede",
     "fontsLoaded": true
   },
@@ -102,9 +114,9 @@
       "height": 4902
     },
     "generated": {
-      "signalPixels": 348770,
-      "width": 3296,
-      "height": 1462
+      "signalPixels": 389100,
+      "width": 3292,
+      "height": 1654
     },
     "contrastOk": true
   },
@@ -114,25 +126,25 @@
       "height": 4902
     },
     "generatedRoot": {
-      "width": 3104,
-      "height": 1270
+      "width": 3100,
+      "height": 1462
     },
     "deltaPx": {
-      "width": 0,
-      "height": -3632
+      "width": -4,
+      "height": -3440
     },
     "verdict": "fail"
   },
   "pixels": {
-    "rawPct": 38.87919222236722,
-    "maskedDiagnosticPct": 35.55730086290369,
+    "rawPct": 38.613450729282505,
+    "maskedDiagnosticPct": 37.322538779934774,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 38.87919222236722,
+        "score": 38.613450729282505,
         "maxDiffPct": 2.5,
-        "signalPixels": 348770
+        "signalPixels": 389100
       }
     ],
     "verdict": "fail"

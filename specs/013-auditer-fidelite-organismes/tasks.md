@@ -478,7 +478,8 @@ n'atterrit nécessairement qu'après US3 (voir T063).
 
 ### Implémentation for User Story 4
 
-- [ ] T041 [US4] Assembler le résultat machine autoritaire
+- [X] T041 [US4] **FAIT 2026-07-30** — `proofs/result.json` assemblé par le nouvel outil `tools/build-campaign.mts` : 12 sujets ordonnés, 3 vagues, hashes d'entrée (campagne/contrats/tokens/dépendances) et hash d'arbre généré, `summary` DÉRIVÉ, verdict et exitCode dérivés par `deriveCampaignVerdict`. Horodatages exclus des hashes. Résultat : **`complete-with-blocks`, exit 1** — 497 faits, 229 prouvés / 71 divergents / 8 limités / 189 non prouvés. Texte d'origine ci-dessous.
+      Assembler le résultat machine autoritaire
       `proofs/result.json` dans `extract/figma/organism-audit/report.ts` :
       `schemaVersion: 1`, `campaignId`, `reference`, `generatedSurface` (+ `bundleSha256`,
       `generatedTreeSha256`), `inputHashes` (campagne, contrats, assets, dépendances,
@@ -487,7 +488,8 @@ n'atterrit nécessairement qu'après US3 (voir T063).
       `verdict`, `exitCode`, `reasons`. Les timestamps sont informatifs et **exclus** des
       hashes déterministes : deux runs à entrées identiques produisent mêmes faits,
       scores, verdicts, artefacts et hashes.
-- [ ] T042 [US4] Générer `proofs/REPORT.md` **depuis** `result.json` (jamais à la main —
+- [X] T042 [US4] **FAIT** — `proofs/REPORT.md` RENDU depuis `result.json`, 10 rubriques, index de douze lignes dans l'ordre des vagues avec dépendance (brute→mappée) et lien de dossier. La matrice fait-par-fait n'est PAS recopiée : elle vit dans chaque dossier, et la recopier créerait une seconde autorité. Texte d'origine ci-dessous.
+      Générer `proofs/REPORT.md` **depuis** `result.json` (jamais à la main —
       le Markdown n'est jamais l'autorité) avec les dix rubriques obligatoires de
       `campaign-report.interface.md` : Provenance (dont la confirmation « zéro commande
       Figma write/push/update »), index des douze verdicts, exécution des vagues,
@@ -496,12 +498,14 @@ n'atterrit nécessairement qu'après US3 (voir T063).
       reportés, portes dépôt+campagne, reçu de revue. La colonne `dossier` pointe vers
       `organisms/<id>/REPORT.md` ; un parent bloqué **cite son reçu de dépendance**, pas
       seulement le nom de sa dépendance.
-- [ ] T043 [US4] Implémenter `--verify-report` : le vérificateur **recalcule** tout depuis
+- [X] T043 [US4] **FAIT** — mode `--verify` de `build-campaign.mts` : recalcule tout depuis les dossiers et compare octet à octet au `result.json` ET au `REPORT.md` sur disque ; toute divergence sort **2**. Vert au moment du commit. Texte d'origine ci-dessous.
+      Implémenter `--verify-report` : le vérificateur **recalcule** tout depuis
       le JSON et compare au Markdown (liste exhaustive : « Result↔report consistency »).
       Toute divergence ⇒ `invalid`, exit `2`. Vérifie aussi que chaque
       `organisms/<id>/REPORT.md` égale son `organisms/<id>/result.json` et la ligne de
       synthèse correspondante. Passe T039 au vert.
-- [ ] T044 [US4] Implémenter le registre `proofs/deferred/work.json` et le mode
+- [X] T044 [US4] **PARTIEL — registre écrit, `--verify-deferred-scope` non implémenté.** `proofs/deferred/work.json` porte 6 entrées typées, dont **DW-004** (la géométrie portée en LITTÉRAUX au lieu de tokens — la dette la plus structurante, cf. la règle ajoutée à CLAUDE.md le 2026-07-30) et **DW-006** (défaut d'instrument : le pilote photographie le SET alors que `reassurances` est le seul sujet dont le set ≠ le node du cas, d'où un 38,61 % qui n'est PAS une mesure de fidélité). Aucune entrée ne porte `verdictImpact: proved`. Texte d'origine ci-dessous.
+      Implémenter le registre `proofs/deferred/work.json` et le mode
       `--verify-deferred-scope`, plus `proofs/closure/hardcoded-values-final.json` (même
       forme que la baseline T021, en diff typé contre elle). Un `DeferredWorkItem` porte
       `subjectId`, `factId`, `category` (fermée : `hardcoded-value-conversion` |

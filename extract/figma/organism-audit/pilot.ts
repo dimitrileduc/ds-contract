@@ -18,7 +18,7 @@
  * never widens the comparator's.
  */
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 import { PNG } from 'pngjs';
@@ -39,6 +39,8 @@ import { buildHarness, renderHarnessCase, type HarnessRenderResult } from './har
 import { resolveGeneratedComponent } from './render-react.js';
 import {
   assertContractPinFresh,
+  buildTokenResolver,
+  compareFigmaExpectation,
   computeCoverageDelta,
   evaluatePropProjection,
   resolveContractPointer,
@@ -169,6 +171,28 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
   // the same refusal has to stand at the point the bytes are read.
   const pin = assertContractPinFresh({ subject, contract });
   if (!pin.ok) throw new Error(`${subject.id}: ${pin.reasons.join('; ')}`);
+
+  // ---- the DTCG source, so `{font.size.24}` can be read as 24px ----------
+  // A contract that BINDS a token was counted divergent from a Figma
+  // expectation of "24px" as long as the comparison was a raw string equality
+  // — the instrument penalised the governed path.  The trees are read here (the
+  // pilot owns the filesystem) and handed to the pure resolver as data.
+  const tokensDir = path.join(repoRoot, 'tokens');
+  const tokenTrees = [
+    path.join(tokensDir, 'primitives.tokens.json'),
+    path.join(tokensDir, 'semantic.tokens.json'),
+    // Modes participate too: a mode file can redefine a semantic alias, and a
+    // resolver that ignored them would resolve to a value nothing renders.
+    ...(existsSync(path.join(tokensDir, 'modes'))
+      ? readdirSync(path.join(tokensDir, 'modes'))
+          .filter((file) => file.endsWith('.tokens.json'))
+          .sort()
+          .map((file) => path.join(tokensDir, 'modes', file))
+      : []),
+  ]
+    .filter((file) => existsSync(file))
+    .map((file) => JSON.parse(readFileSync(file, 'utf8')) as Record<string, unknown>);
+  const resolveToken = buildTokenResolver(tokenTrees);
 
   // ---- the generated React surface (D4) --------------------------------
   const resolved = resolveGeneratedComponent({
@@ -425,8 +449,19 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
     // contract — not a hole in the evidence.
     if (declaration.figmaExpectation !== undefined) {
       const carried = pointer.ok && pointer.value !== undefined && pointer.value !== null;
-      const agrees =
-        carried && JSON.stringify(pointer.value) === JSON.stringify(declaration.figmaExpectation.value);
+      // Inside a `tokens` map the two legs are compared on RESOLVED values, so
+      // a governed binding is not penalised for being governed.  Fail-closed:
+      // a reference that resolves to nothing is a divergence naming the token,
+      // never a pass and never a silent fall-back to the raw text.
+      const comparison = compareFigmaExpectation({
+        channel: declaration.figmaExpectation.channel,
+        jsonPointer: declaration.contractReference.jsonPointer,
+        carried,
+        contractValue: pointer.ok ? pointer.value : undefined,
+        expectedValue: declaration.figmaExpectation.value,
+        resolve: resolveToken,
+      });
+      const agrees = comparison.agrees;
       return {
         id: declaration.id,
         subjectId: subject.id,
@@ -440,18 +475,15 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
           referenceSha,
           true,
         ),
-        contract: contractLeg,
+        // A pass obtained THROUGH a token carries its receipt: the dossier says
+        // which reference resolved to which literal, so nobody has to trust
+        // that "{font.size.24}" and "24px" were the same thing.
+        contract: { ...contractLeg, notes: [...contractLeg.notes, ...comparison.notes] },
         generated: generatedLeg,
         evidenceIds: [caseDecl.id],
         outcome: agrees ? 'proved' : 'divergent',
         localizedSource: agrees ? null : 'contract',
-        reasons: agrees
-          ? []
-          : [
-              carried
-                ? `contract-value-differs:${declaration.figmaExpectation.channel}:${JSON.stringify(pointer.value)}!=${JSON.stringify(declaration.figmaExpectation.value)}`
-                : `contract-does-not-carry-figma-fact:${declaration.figmaExpectation.channel}=${JSON.stringify(declaration.figmaExpectation.value)}`,
-            ],
+        reasons: comparison.reasons,
         deferredWorkId: null,
       };
     }

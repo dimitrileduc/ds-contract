@@ -771,7 +771,9 @@
         "observedValue": "{font.size.14}",
         "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:Texte.font-size:{font.size.14}→\"14px\"==\"14px\""
+        ]
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__Texte\"]",
@@ -783,11 +785,9 @@
       "evidenceIds": [
         "presentation-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:Texte.font-size:\"{font.size.14}\"!=\"14px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1067,6 +1067,6 @@
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:4"
+    "divergent-facts:3"
   ]
 }

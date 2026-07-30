@@ -902,7 +902,9 @@
         "observedValue": "{color.noir-pur}",
         "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:root.fills[1].color:{color.noir-pur}→\"#000000\"==\"#000000\""
+        ]
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
@@ -914,11 +916,9 @@
       "evidenceIds": [
         "devis-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:root.fills[1].color:\"{color.noir-pur}\"!=\"#000000\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -980,7 +980,9 @@
         "observedValue": "{font.size.40}",
         "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:Titre.font-size:{font.size.40}→\"40px\"==\"40px\""
+        ]
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
@@ -992,11 +994,9 @@
       "evidenceIds": [
         "devis-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:Titre.font-size:\"{font.size.40}\"!=\"40px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1404,6 +1404,6 @@
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:9"
+    "divergent-facts:7"
   ]
 }

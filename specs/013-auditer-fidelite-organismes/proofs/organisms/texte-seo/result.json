@@ -537,7 +537,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:root.itemSpacing:\"{space.32}\"!=32"
+        "contract-value-differs:root.itemSpacing:{space.32}→\"32px\"!=32"
       ],
       "deferredWorkId": null
     },
@@ -575,7 +575,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:root.paddingInline:\"{space.89}\"!=89"
+        "contract-value-differs:root.paddingInline:{space.89}→\"89px\"!=89"
       ],
       "deferredWorkId": null
     },
@@ -1078,7 +1078,9 @@
         "observedValue": "{font.size.14}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:Paragraphe.font-size:{font.size.14}→\"14px\"==\"14px\""
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
@@ -1090,11 +1092,9 @@
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:Paragraphe.font-size:\"{font.size.14}\"!=\"14px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1116,7 +1116,9 @@
         "observedValue": "{font.line-height.24}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:Paragraphe.line-height:{font.line-height.24}→\"24px\"==\"24px\""
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
@@ -1128,11 +1130,9 @@
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:Paragraphe.line-height:\"{font.line-height.24}\"!=\"24px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1154,7 +1154,9 @@
         "observedValue": "{font.size.20}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:SousTitre.font-size:{font.size.20}→\"20px\"==\"20px\""
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
@@ -1166,11 +1168,9 @@
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:SousTitre.font-size:\"{font.size.20}\"!=\"20px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1192,7 +1192,9 @@
         "observedValue": "{font.line-height.25}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:SousTitre.line-height:{font.line-height.25}→\"25px\"==\"25px\""
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
@@ -1204,11 +1206,9 @@
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:SousTitre.line-height:\"{font.line-height.25}\"!=\"25px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1230,7 +1230,9 @@
         "observedValue": "{font.weight.semibold}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:SousTitre.font-weight:{font.weight.semibold}→600==600"
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
@@ -1242,11 +1244,9 @@
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:SousTitre.font-weight:\"{font.weight.semibold}\"!=600"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1268,7 +1268,9 @@
         "observedValue": "{color.noir}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:Paragraphe.color:{color.noir}→\"#37373B\"=={color.noir}→\"#37373B\""
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
@@ -1304,7 +1306,9 @@
         "observedValue": "{color.noir-bleute}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:SousTitre.color:{color.noir-bleute}→\"#26282C\"=={color.noir-bleute}→\"#26282C\""
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
@@ -1340,7 +1344,9 @@
         "observedValue": "{font.family.montserrat}",
         "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:root.font-family:{font.family.montserrat}→\"Montserrat, sans-serif\"=={font.family.montserrat}→\"Montserrat, sans-serif\""
+        ]
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__root\"]",
@@ -2300,6 +2306,6 @@
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:12"
+    "divergent-facts:7"
   ]
 }

@@ -43,7 +43,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `presentation.semantic.texte-element` | semantic | carry-both | {"nodeId":"2103:2821","detail":"TEXT layer Texte"} | ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Texte/content/prop | src/components/Presentation/Presentation.tsx#[class*="Presentation__Texte"] | **proved** | — | — |
 | `presentation.structure.gap-root` | structure | carry-both | 2103:2824#root.itemSpacing | ds.presentation@2.1.0#/anatomy/root/literals/gap | src/components/Presentation/Presentation.tsx#[class*="Presentation__root"] | **divergent** | contract | contract-value-differs:root.itemSpacing:"32px"!=32 |
 | `presentation.structure.gap-wrapper` | structure | carry-both | 2103:2824#wrapper.itemSpacing | ds.presentation@2.1.0#/anatomy/root/parts/wrapper/literals/gap | src/components/Presentation/Presentation.tsx#[class*="Presentation__wrapper"] | **divergent** | contract | contract-value-differs:wrapper.itemSpacing:"16px"!=16 |
-| `presentation.visual.texte-font-size` | visual | carry-both | 2103:2824#Texte.font-size | ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Texte/tokens/font-size | src/components/Presentation/Presentation.tsx#[class*="Presentation__Texte"] | **divergent** | contract | contract-value-differs:Texte.font-size:"{font.size.14}"!="14px" |
+| `presentation.visual.texte-font-size` | visual | carry-both | 2103:2824#Texte.font-size | ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Texte/tokens/font-size | src/components/Presentation/Presentation.tsx#[class*="Presentation__Texte"] | **proved** | — | — |
 | `presentation.visual.texte-line-height` | visual | carry-both | 2103:2824#Texte.line-height | ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Texte/literals/line-height | src/components/Presentation/Presentation.tsx#[class*="Presentation__Texte"] | **proved** | — | — |
 
 ## 6. Cas et artefacts
@@ -84,13 +84,12 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 - **Divergence** `presentation.property.titre` — source : **generated** — probe-not-projected:child-renders-a-literal
 - **Divergence** `presentation.structure.gap-root` — source : **contract** — contract-value-differs:root.itemSpacing:"32px"!=32
 - **Divergence** `presentation.structure.gap-wrapper` — source : **contract** — contract-value-differs:wrapper.itemSpacing:"16px"!=16
-- **Divergence** `presentation.visual.texte-font-size` — source : **contract** — contract-value-differs:Texte.font-size:"{font.size.14}"!="14px"
 - **Non prouvé** `presentation.composition.button` — leg-unavailable:generated ; agreement-unknown
 - **Limite déclarée d'avance** `presentation.section-header.accroche2-rename` (impact attendu : limited) — Rename Accroche2 en attente sur SectionHeader, composé par Presentation.
 
 ## 8. Verdict
 
-**`divergent`** — motifs : `divergent-facts:4`
+**`divergent`** — motifs : `divergent-facts:3`
 
 Règle d'agrégation appliquée (fail-closed, data-model §10) :
 

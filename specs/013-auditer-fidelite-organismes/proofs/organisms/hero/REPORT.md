@@ -41,7 +41,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `hero.semantic.sous-titre-element` | semantic | carry-both | {"nodeId":"2111:3380","detail":"TEXT layer \"Sous-titre\" — projeté en <span> par l'émetteur react (part sans element dé | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre | src/components/Hero/Hero.tsx#[class*="Hero__sousTitre"] | **proved** | — | — |
 | `hero.composition.section-header` | composition | carry-both | {"nodeId":"2169:6264","mainComponent":"2090:2385","observedInstanceProperties":{"Accroche2#2169:64":false,"Titre#2090:47 | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component | src/components/Hero/Hero.tsx#[class*="SectionHeader__root"] | **proved** | — | — |
 | `hero.composition.button` | composition | carry-both | {"nodeId":"2111:3381","mainComponent":"6:135","observedInstanceProperties":{"Libelle#2044:28":"Demander un devis gratuit | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component | src/components/Hero/Hero.tsx#[class*="Button__root"] | **proved** | — | — |
-| `hero.visual.root` | visual | carry-both | {"nodeId":"2111:3382","export":"png@2x"} | ds.hero@1.3.0#/anatomy/root | src/components/Hero/Hero.tsx#[class*="Hero__root"] | **divergent** | comparison | raw-over-threshold:27.82854998553241>2.5; region-over-budget:whole:27.82854998553241>2.5 |
+| `hero.visual.root` | visual | carry-both | {"nodeId":"2111:3382","export":"png@2x"} | ds.hero@1.3.0#/anatomy/root | src/components/Hero/Hero.tsx#[class*="Hero__root"] | **divergent** | comparison | raw-over-threshold:27.82904730902778>2.5; region-over-budget:whole:27.82904730902778>2.5 |
 | `hero.structure.gap-root` | structure | carry-both | 2111:3382#root.gap | ds.hero@1.3.0#/anatomy/root/literals/gap | src/components/Hero/Hero.tsx#[class*="Hero__root"] | **proved** | — | — |
 | `hero.structure.gap-bloc-texte` | structure | carry-both | 2111:3382#blocTexte.gap | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/literals/gap | src/components/Hero/Hero.tsx#[class*="Hero__blocTexte"] | **proved** | — | — |
 | `hero.structure.gap-titres` | structure | carry-both | 2111:3382#Titres.gap | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/gap | src/components/Hero/Hero.tsx#[class*="Hero__Titres"] | **proved** | — | — |
@@ -53,8 +53,8 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `hero.structure.root-height` | structure | carry-both | 2111:3382#root.height | ds.hero@1.3.0#/anatomy/root/literals/height | src/components/Hero/Hero.tsx#[class*="Hero__root"] | **proved** | — | — |
 | `hero.structure.sous-titre-grow` | structure | carry-both | 2111:3382#sousTitre.layout.grow | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/layout/grow | src/components/Hero/Hero.tsx#[class*="Hero__sousTitre"] | **proved** | — | — |
 | `hero.structure.section-header-fill` | structure | carry-both | 2111:3382#SectionHeader.layoutSizingHorizontal | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/literals/width | src/components/Hero/Hero.tsx#[class*="SectionHeader__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:SectionHeader.layoutSizingHorizontal="FILL" |
-| `hero.visual.sous-titre-font-size` | visual | carry-both | 2111:3382#sousTitre.font-size | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/font-size | src/components/Hero/Hero.tsx#[class*="Hero__sousTitre"] | **divergent** | contract | contract-value-differs:sousTitre.font-size:"{font.size.24}"!="24px" |
-| `hero.visual.sous-titre-line-height` | visual | carry-both | 2111:3382#sousTitre.line-height | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/line-height | src/components/Hero/Hero.tsx#[class*="Hero__sousTitre"] | **divergent** | contract | contract-value-differs:sousTitre.line-height:"{font.line-height.32}"!="32px" |
+| `hero.visual.sous-titre-font-size` | visual | carry-both | 2111:3382#sousTitre.font-size | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/font-size | src/components/Hero/Hero.tsx#[class*="Hero__sousTitre"] | **proved** | — | — |
+| `hero.visual.sous-titre-line-height` | visual | carry-both | 2111:3382#sousTitre.line-height | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/line-height | src/components/Hero/Hero.tsx#[class*="Hero__sousTitre"] | **proved** | — | — |
 | `hero.visual.root-image-fill` | visual | carry-both | 2111:3382#root.fills[0].IMAGE.imageRef | ds.hero@1.3.0#/anatomy/root/literals/background-image | src/components/Hero/Hero.tsx#[class*="Hero__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:root.fills[0].IMAGE.imageRef="b9ae58d2e309c55241eb843c1a36d90d087c1483" |
 | `hero.visual.root-gradient-overlay` | visual | carry-both | 2111:3382#root.fills[2].GRADIENT_LINEAR | ds.hero@1.3.0#/anatomy/root/literals/background-image | src/components/Hero/Hero.tsx#[class*="Hero__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:root.fills[2].GRADIENT_LINEAR="linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0, |
 | `hero.visual.titres-gradient` | visual | carry-both | 2111:3382#Titres.fills[0].GRADIENT_LINEAR | ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/background-image | src/components/Hero/Hero.tsx#[class*="Hero__Titres"] | **divergent** | contract | contract-does-not-carry-figma-fact:Titres.fills[0].GRADIENT_LINEAR="linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0, |
@@ -83,7 +83,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | Régions | `whole` 27.829 %/2.5 % (4336683 px signal) |
 | Géométrie racine | Figma 3456×1280 vs généré 3456×1280 (Δ 0×0) — pass |
 | Visibilité | signal Figma 4349312 px · généré 4336683 px · contraste ok |
-| Motifs | `raw-over-threshold:27.82854998553241>2.5`, `region-over-budget:whole:27.82854998553241>2.5` |
+| Motifs | `raw-over-threshold:27.82904730902778>2.5`, `region-over-budget:whole:27.82904730902778>2.5` |
 
 | Assertion sémantique | Sélecteur | Pointeur contractuel | Verdict |
 |---|---|---|---|
@@ -95,17 +95,15 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | Artefact | Chemin | sha256 | Taille |
 |---|---|---|---|
 | figma | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/figma.png` | `595fa3df930b` | 3456×1280, 3992283 o |
-| generated | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/generated.png` | `4fbb91a5fe6c` | 3456×1280, 3801902 o |
-| diff | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/diff.png` | `f79e25bd39e0` | 3456×1280, 689402 o |
-| triptych | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/triptych.png` | `59ae589b7ce9` | 8787820 o |
-| metadata | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/metadata.json` | `4d13e85eea5a` | 5473 o |
+| generated | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/generated.png` | `14c7bb50de3f` | 3456×1280, 3801862 o |
+| diff | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/diff.png` | `e8ecd9e3bc56` | 3456×1280, 689250 o |
+| triptych | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/triptych.png` | `4d3920a80415` | 8787631 o |
+| metadata | `specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/metadata.json` | `f4f37173250e` | 5473 o |
 
 ## 7. Divergences, limites nommées et travaux reportés
 
-- **Divergence** `hero.visual.root` — source : **comparison** — raw-over-threshold:27.82854998553241>2.5 ; region-over-budget:whole:27.82854998553241>2.5
+- **Divergence** `hero.visual.root` — source : **comparison** — raw-over-threshold:27.82904730902778>2.5 ; region-over-budget:whole:27.82904730902778>2.5
 - **Divergence** `hero.structure.section-header-fill` — source : **contract** — contract-does-not-carry-figma-fact:SectionHeader.layoutSizingHorizontal="FILL"
-- **Divergence** `hero.visual.sous-titre-font-size` — source : **contract** — contract-value-differs:sousTitre.font-size:"{font.size.24}"!="24px"
-- **Divergence** `hero.visual.sous-titre-line-height` — source : **contract** — contract-value-differs:sousTitre.line-height:"{font.line-height.32}"!="32px"
 - **Divergence** `hero.visual.root-image-fill` — source : **contract** — contract-does-not-carry-figma-fact:root.fills[0].IMAGE.imageRef="b9ae58d2e309c55241eb843c1a36d90d087c1483"
 - **Divergence** `hero.visual.root-gradient-overlay` — source : **contract** — contract-does-not-carry-figma-fact:root.fills[2].GRADIENT_LINEAR="linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)"
 - **Divergence** `hero.visual.titres-gradient` — source : **contract** — contract-does-not-carry-figma-fact:Titres.fills[0].GRADIENT_LINEAR="linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%)"
@@ -118,7 +116,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 
 ## 8. Verdict
 
-**`divergent`** — motifs : `divergent-facts:12`, `failed-cases:1`
+**`divergent`** — motifs : `divergent-facts:10`, `failed-cases:1`
 
 Règle d'agrégation appliquée (fail-closed, data-model §10) :
 

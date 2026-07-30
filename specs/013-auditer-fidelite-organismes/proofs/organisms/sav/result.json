@@ -981,7 +981,9 @@
         "observedValue": "{font.size.18}",
         "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:vousRencontrezUnProblmeA.font-size:{font.size.18}→\"18px\"==\"18px\""
+        ]
       },
       "generated": {
         "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
@@ -993,11 +995,9 @@
       "evidenceIds": [
         "sav-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:vousRencontrezUnProblmeA.font-size:\"{font.size.18}\"!=\"18px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1019,7 +1019,9 @@
         "observedValue": "{font.line-height.27}",
         "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:vousRencontrezUnProblmeA.line-height:{font.line-height.27}→\"27px\"==\"27px\""
+        ]
       },
       "generated": {
         "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
@@ -1031,11 +1033,9 @@
       "evidenceIds": [
         "sav-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:vousRencontrezUnProblmeA.line-height:\"{font.line-height.27}\"!=\"27px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1553,6 +1553,6 @@
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:8"
+    "divergent-facts:6"
   ]
 }

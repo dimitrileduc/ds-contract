@@ -1939,7 +1939,7 @@ const COMPONENTS = [
     "setName": "Reassurances",
     "contractId": "ds.reassurances",
     "anchorKey": "a303bd661e06746baa62828633b5c6132714a8c8",
-    "description": "Reassurances — generated from contract ds.reassurances v1.1.0",
+    "description": "Reassurances — generated from contract ds.reassurances v1.2.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1959,6 +1959,10 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "width": 1550,
+            "itemSpacing": 48
+          },
           "children": [
             {
               "type":"instance",
@@ -1967,6 +1971,7 @@ const COMPONENTS = [
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
+                "Accroche2": true,
                 "Disposition": "Standard"
               }
             },
@@ -1978,6 +1983,9 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
+              },
+              "lits": {
+                "itemSpacing": 32
               },
               "children": [
                 {
@@ -2019,16 +2027,6 @@ const COMPONENTS = [
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
                     "Titre": "SAV & maintenance dédiés"
                   }
-                },
-                {
-                  "type":"instance",
-                  "name": "Carte 5",
-                  "dep":"Carte",
-                  "depProps": {
-                    "Disposition": "Reassurance",
-                    "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                    "Titre": "Expérience"
-                  }
                 }
               ]
             },
@@ -2036,7 +2034,12 @@ const COMPONENTS = [
               "type":"instance",
               "name": "BoutonQuatreCartes",
               "dep":"Button",
-              "depProps": {}
+              "depProps": {
+                "Style": "Outline noir",
+                "Icone droite": true,
+                "Glyphe droite": "ArrowRight",
+                "Libelle": "Contactez-nous"
+              }
             }
           ]
         }
@@ -2053,6 +2056,10 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "width": 1550,
+            "itemSpacing": 48
+          },
           "children": [
             {
               "type":"instance",
@@ -2061,6 +2068,7 @@ const COMPONENTS = [
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
+                "Accroche2": true,
                 "Disposition": "Standard"
               }
             },
@@ -2072,6 +2080,9 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
+              },
+              "lits": {
+                "itemSpacing": 32
               },
               "children": [
                 {
@@ -2113,16 +2124,6 @@ const COMPONENTS = [
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
                     "Titre": "SAV & maintenance dédiés"
                   }
-                },
-                {
-                  "type":"instance",
-                  "name": "Carte 5",
-                  "dep":"Carte",
-                  "depProps": {
-                    "Disposition": "Reassurance",
-                    "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                    "Titre": "Expérience"
-                  }
                 }
               ]
             },
@@ -2135,18 +2136,33 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
+              "lits": {
+                "itemSpacing": 16
+              },
               "children": [
                 {
                   "type":"instance",
                   "name": "Bouton",
                   "dep":"Button",
-                  "depProps": {}
+                  "depProps": {
+                    "Style": "Outline noir",
+                    "Icone gauche": true,
+                    "Glyphe gauche": "Pdf",
+                    "Icone droite": true,
+                    "Glyphe droite": "Download",
+                    "Libelle": "Motifs disponibles"
+                  }
                 },
                 {
                   "type":"instance",
                   "name": "BoutonSecondaire",
                   "dep":"Button",
-                  "depProps": {}
+                  "depProps": {
+                    "Style": "Outline noir",
+                    "Icone droite": true,
+                    "Glyphe droite": "ArrowRight",
+                    "Libelle": "Contactez-nous"
+                  }
                 }
               ]
             }
@@ -2165,6 +2181,10 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "width": 1550,
+            "itemSpacing": 48
+          },
           "children": [
             {
               "type":"instance",
@@ -2173,6 +2193,7 @@ const COMPONENTS = [
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
+                "Accroche2": true,
                 "Disposition": "Standard"
               }
             },
@@ -2184,6 +2205,9 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN",
                 "stretchChildren": true
+              },
+              "lits": {
+                "itemSpacing": 32
               },
               "children": [
                 {
@@ -2225,16 +2249,6 @@ const COMPONENTS = [
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
                     "Titre": "SAV & maintenance dédiés"
                   }
-                },
-                {
-                  "type":"instance",
-                  "name": "Carte 5",
-                  "dep":"Carte",
-                  "depProps": {
-                    "Disposition": "Reassurance",
-                    "Texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                    "Titre": "Expérience"
-                  }
                 }
               ]
             },
@@ -2242,7 +2256,12 @@ const COMPONENTS = [
               "type":"instance",
               "name": "BoutonCinqCartes",
               "dep":"Button",
-              "depProps": {}
+              "depProps": {
+                "Style": "Outline noir",
+                "Icone droite": true,
+                "Glyphe droite": "ArrowRight",
+                "Libelle": "Contactez-nous"
+              }
             }
           ]
         }

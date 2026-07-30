@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.1.0)
+ * Source of truth: contracts/reassurances.contract.json (ds.reassurances v1.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -9,15 +9,20 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: 1550px;
+  gap: 48px;
 }
 
 .items {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 32px;
+  align-self: stretch;
 }
 
 .Boutons {
   display: flex;
   flex-direction: row;
+  gap: 16px;
 }

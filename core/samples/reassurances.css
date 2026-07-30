@@ -299,7 +299,7 @@
   align-self: flex-start;
 }
 
-/* Reassurances — from ds.reassurances v1.1.0 (core/emit-html.ts) */
+/* Reassurances — from ds.reassurances v1.2.0 (core/emit-html.ts) */
 
 .reassurances, .reassurances *, .reassurances *::before, .reassurances *::after {
   box-sizing: border-box;
@@ -311,17 +311,22 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: 1550px;
+  gap: 48px;
 }
 
 .reassurances__items {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  gap: 32px;
+  align-self: stretch;
 }
 
 .reassurances__Boutons {
   display: flex;
   flex-direction: row;
+  gap: 16px;
 }
 
 /* showcase chrome */

@@ -16,6 +16,8 @@
  * of Figma + contract + projection), D10 (images are comparison fixtures, never
  * defaults); contracts/audit-campaign.interface.md (Case/Fact declaration).
  */
+import { flattenTokens } from '../../../core/tokens.js';
+
 import type { FactOutcome, LocalizedSource } from './verdict.js';
 
 // ---------------------------------------------------------------------------
@@ -129,6 +131,234 @@ export function resolveContractPointer(
     return { ok: false, reason: `pointer-unresolved:${jsonPointer}` };
   }
   return { ok: true, value: cursor };
+}
+
+// ---------------------------------------------------------------------------
+// Token resolution
+// ---------------------------------------------------------------------------
+
+/**
+ * A `{dot.path}` reference, and nothing that merely resembles one.
+ *
+ * Anchored end to end, one pair of braces, no whitespace: `"{"`, `"{}"`,
+ * `"{a b}"`, `"texte {avec} accolades"` and `"{font.size.24} et autre"` are
+ * plain strings, not tokens.
+ */
+const TOKEN_REFERENCE = /^\{([A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*)\}$/;
+
+export type TokenResolutionKind =
+  | 'literal'
+  | 'resolved'
+  | 'unresolved'
+  | 'cycle'
+  | 'depth-exceeded';
+
+export interface TokenResolution {
+  kind: TokenResolutionKind;
+  /** The reference that was followed — `null` for a plain literal. */
+  reference: string | null;
+  /** The resolved literal; the untouched input when `kind === 'literal'`. */
+  value: unknown;
+  hops: number;
+  /** Named failure, `null` on success.  Never a silent pass-through. */
+  reason: string | null;
+}
+
+export type TokenResolver = (value: unknown) => TokenResolution;
+
+/** The reference a value carries, or `null` when it is a plain literal. */
+export function tokenReferenceOf(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  return TOKEN_REFERENCE.exec(value)?.[1] ?? null;
+}
+
+/**
+ * Build a resolver over parsed DTCG trees (primitives + semantic + modes).
+ *
+ * Objects in, never paths: this module stays pure, and the caller that owns a
+ * filesystem hands over what it read.  Aliases are followed — a token whose
+ * `$value` is itself `{another.ref}` — under a hard depth bound, because a
+ * cyclic token file must produce a NAMED error rather than wedge an audit.
+ */
+export function buildTokenResolver(
+  trees: readonly unknown[],
+  options: { maxAliasDepth?: number } = {},
+): TokenResolver {
+  const maxAliasDepth = options.maxAliasDepth ?? 8;
+  const table = new Map<string, { value: unknown; type: string }>();
+  for (const tree of trees) {
+    if (isRecord(tree)) flattenTokens(tree, [], '', table);
+  }
+
+  return (value: unknown): TokenResolution => {
+    const entry = tokenReferenceOf(value);
+    if (entry === null) {
+      return { kind: 'literal', reference: null, value, hops: 0, reason: null };
+    }
+
+    const chain: string[] = [];
+    let reference = entry;
+    let hops = 0;
+    for (;;) {
+      if (chain.includes(reference)) {
+        return {
+          kind: 'cycle',
+          reference: entry,
+          value: null,
+          hops,
+          reason: `token-alias-cycle:${[...chain, reference].map((r) => `{${r}}`).join('→')}`,
+        };
+      }
+      chain.push(reference);
+      hops += 1;
+
+      const found = table.get(reference);
+      if (found === undefined) {
+        const path = chain.length > 1 ? chain.map((r) => `{${r}}`).join('→') : `{${reference}}`;
+        return {
+          kind: 'unresolved',
+          reference: entry,
+          value: null,
+          hops,
+          reason: `token-unresolved:${path}:absent-from-the-DTCG-source`,
+        };
+      }
+
+      const next = tokenReferenceOf(found.value);
+      if (next === null) {
+        return { kind: 'resolved', reference: entry, value: found.value, hops, reason: null };
+      }
+      if (hops >= maxAliasDepth) {
+        return {
+          kind: 'depth-exceeded',
+          reference: entry,
+          value: null,
+          hops,
+          reason: `token-alias-depth-exceeded:{${entry}}:more-than-${maxAliasDepth}-hops`,
+        };
+      }
+      reference = next;
+    }
+  };
+}
+
+/**
+ * Is this contract JSON Pointer a TOKEN channel?
+ *
+ * `{ref}` means a token only inside a part's `tokens` map — the schema types it
+ * that way (`tokens: z.record(z.string(), TokenRefSchema)`).  Everywhere else
+ * the same syntax means something else entirely: `{titre}` under
+ * `component/props` is a PROP reference, and resolving it as a token would
+ * fabricate a divergence on facts that are correct today.
+ *
+ * A part may itself be NAMED `tokens` (`/anatomy/root/parts/tokens/…`); the
+ * `parts` parent is what tells the two apart.
+ *
+ * Named limit: `tokensByProp` overrides are not a token channel here — no
+ * declared fact points into one, and inventing a resolution rule for a shape
+ * nothing exercises would be a claim without an eval behind it.
+ */
+export function isTokenChannelPointer(jsonPointer: string): boolean {
+  const segments = jsonPointer.split('/');
+  return segments.some(
+    (segment, index) =>
+      segment === 'tokens' && index < segments.length - 1 && segments[index - 1] !== 'parts',
+  );
+}
+
+export interface FigmaExpectationInput {
+  /** The Figma-side channel, for the reason strings. */
+  channel: string;
+  /** Where the contract leg was read — decides whether `{x}` is a token. */
+  jsonPointer: string;
+  /** Did the contract pointer resolve to something at all? */
+  carried: boolean;
+  contractValue: unknown;
+  expectedValue: unknown;
+  /** Absent ⇒ raw comparison only; a missing token source is never guessed at. */
+  resolve?: TokenResolver | null;
+}
+
+export interface FigmaExpectationVerdict {
+  agrees: boolean;
+  reasons: string[];
+  /** Receipt for a pass obtained BY RESOLUTION — never silent. */
+  notes: string[];
+}
+
+const display = (resolution: TokenResolution): string =>
+  resolution.reference === null
+    ? JSON.stringify(resolution.value)
+    : `{${resolution.reference}}→${JSON.stringify(resolution.value)}`;
+
+/**
+ * Compare the contract leg to the pinned Figma expectation.
+ *
+ * The comparison used to be a raw string equality, which counted a contract
+ * binding `{font.size.24}` as DIVERGENT from a Figma expectation of `"24px"` —
+ * penalising the governed path and pushing contract authors toward raw
+ * literals, the exact opposite of the doctrine the audit enforces.
+ *
+ * Inside a token channel the comparison is therefore made on RESOLVED values.
+ * It is fail-closed on both legs: a reference that cannot be resolved, or that
+ * cycles, is a typed divergence NAMING the token — never a pass, not even when
+ * both legs carry the same broken string, and never a silent fall-back to the
+ * raw text.
+ */
+export function compareFigmaExpectation(input: FigmaExpectationInput): FigmaExpectationVerdict {
+  const { channel, jsonPointer, carried, contractValue, expectedValue } = input;
+
+  if (!carried) {
+    return {
+      agrees: false,
+      reasons: [`contract-does-not-carry-figma-fact:${channel}=${JSON.stringify(expectedValue)}`],
+      notes: [],
+    };
+  }
+
+  const rawEqual = JSON.stringify(contractValue) === JSON.stringify(expectedValue);
+  const rawDivergence = `contract-value-differs:${channel}:${JSON.stringify(contractValue)}!=${JSON.stringify(expectedValue)}`;
+
+  const resolve = input.resolve ?? null;
+  if (resolve === null || !isTokenChannelPointer(jsonPointer)) {
+    // Outside a token channel — and with no token source at all — the pre-013
+    // raw comparison stands, reason string included.
+    return { agrees: rawEqual, reasons: rawEqual ? [] : [rawDivergence], notes: [] };
+  }
+
+  const contractSide = resolve(contractValue);
+  const expectedSide = resolve(expectedValue);
+
+  // Fail-closed FIRST, before any equality: two identical unresolvable
+  // references agree on their text and on nothing else.
+  const refusals: string[] = [];
+  if (contractSide.kind !== 'literal' && contractSide.kind !== 'resolved') {
+    refusals.push(`contract-token-unresolved:${channel}:${contractSide.reason}`);
+  }
+  if (expectedSide.kind !== 'literal' && expectedSide.kind !== 'resolved') {
+    refusals.push(`figma-expectation-token-unresolved:${channel}:${expectedSide.reason}`);
+  }
+  if (refusals.length > 0) return { agrees: false, reasons: refusals, notes: [] };
+
+  if (JSON.stringify(contractSide.value) !== JSON.stringify(expectedSide.value)) {
+    return {
+      agrees: false,
+      reasons: [
+        // The reference alone is unreadable in a report: cite what it resolved to.
+        `contract-value-differs:${channel}:${display(contractSide)}!=${display(expectedSide)}`,
+      ],
+      notes: [],
+    };
+  }
+
+  const resolved = contractSide.reference !== null || expectedSide.reference !== null;
+  return {
+    agrees: true,
+    reasons: [],
+    notes: resolved
+      ? [`token-resolved:${channel}:${display(contractSide)}==${display(expectedSide)}`]
+      : [],
+  };
 }
 
 // ---------------------------------------------------------------------------

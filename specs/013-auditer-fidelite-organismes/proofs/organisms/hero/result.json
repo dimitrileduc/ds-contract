@@ -1133,8 +1133,8 @@
       "outcome": "divergent",
       "localizedSource": "comparison",
       "reasons": [
-        "raw-over-threshold:27.82854998553241>2.5",
-        "region-over-budget:whole:27.82854998553241>2.5"
+        "raw-over-threshold:27.82904730902778>2.5",
+        "region-over-budget:whole:27.82904730902778>2.5"
       ],
       "deferredWorkId": null
     },
@@ -1557,7 +1557,9 @@
         "observedValue": "{font.size.24}",
         "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:sousTitre.font-size:{font.size.24}→\"24px\"==\"24px\""
+        ]
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__sousTitre\"]",
@@ -1569,11 +1571,9 @@
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:sousTitre.font-size:\"{font.size.24}\"!=\"24px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1595,7 +1595,9 @@
         "observedValue": "{font.line-height.32}",
         "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:sousTitre.line-height:{font.line-height.32}→\"32px\"==\"32px\""
+        ]
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__sousTitre\"]",
@@ -1607,11 +1609,9 @@
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:sousTitre.line-height:\"{font.line-height.32}\"!=\"32px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2168,8 +2168,8 @@
       "verdict": "fail",
       "probative": true,
       "reasons": [
-        "raw-over-threshold:27.82854998553241>2.5",
-        "region-over-budget:whole:27.82854998553241>2.5"
+        "raw-over-threshold:27.82904730902778>2.5",
+        "region-over-budget:whole:27.82904730902778>2.5"
       ],
       "figma": {
         "nodeId": "2111:3382",
@@ -2263,13 +2263,13 @@
         "verdict": "pass"
       },
       "pixels": {
-        "rawPct": 27.82854998553241,
+        "rawPct": 27.82904730902778,
         "maskedDiagnosticPct": null,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 27.82854998553241,
+            "score": 27.82904730902778,
             "maxDiffPct": 2.5,
             "signalPixels": 4336683
           }
@@ -2347,37 +2347,37 @@
           "id": "hero-master-defaults.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/generated.png",
-          "sha256": "4fbb91a5fe6cb951d235d3309ef6829491dcd2022e26029d1662e1d7fa9fdd1f",
+          "sha256": "14c7bb50de3f5960e1cb751efdb4118164c69978f17f855effc106623ebd6b64",
           "mediaType": "image/png",
           "width": 3456,
           "height": 1280,
-          "bytes": 3801902
+          "bytes": 3801862
         },
         {
           "id": "hero-master-defaults.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/diff.png",
-          "sha256": "f79e25bd39e03c5150d00337f4d568db4e0eba415bfcd163ac1949d37d03b522",
+          "sha256": "e8ecd9e3bc561ce4bcfd0fc77f17b80ca47ff365dc71f4179c6f7586e80e62a7",
           "mediaType": "image/png",
           "width": 3456,
           "height": 1280,
-          "bytes": 689402
+          "bytes": 689250
         },
         {
           "id": "hero-master-defaults.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/triptych.png",
-          "sha256": "59ae589b7ce9cff5da9c3c76cc928c184d5a52acb4086205d014deaabd872299",
+          "sha256": "4d3920a80415c6304fd58c857294f92c8fe79d1e18218104b6af619e1d3f5708",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 8787820
+          "bytes": 8787631
         },
         {
           "id": "hero-master-defaults.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/metadata.json",
-          "sha256": "4d13e85eea5a91c29c7dee77da431c9448b8b597a80c1cf8d2d3dd05ab3f571d",
+          "sha256": "f4f37173250e3fdbe11d5c403e09c5c5c969c39994d6c39a78b3d1c028d18be7",
           "mediaType": "application/json",
           "width": null,
           "height": null,
@@ -2401,37 +2401,37 @@
       "id": "hero-master-defaults.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/generated.png",
-      "sha256": "4fbb91a5fe6cb951d235d3309ef6829491dcd2022e26029d1662e1d7fa9fdd1f",
+      "sha256": "14c7bb50de3f5960e1cb751efdb4118164c69978f17f855effc106623ebd6b64",
       "mediaType": "image/png",
       "width": 3456,
       "height": 1280,
-      "bytes": 3801902
+      "bytes": 3801862
     },
     {
       "id": "hero-master-defaults.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/diff.png",
-      "sha256": "f79e25bd39e03c5150d00337f4d568db4e0eba415bfcd163ac1949d37d03b522",
+      "sha256": "e8ecd9e3bc561ce4bcfd0fc77f17b80ca47ff365dc71f4179c6f7586e80e62a7",
       "mediaType": "image/png",
       "width": 3456,
       "height": 1280,
-      "bytes": 689402
+      "bytes": 689250
     },
     {
       "id": "hero-master-defaults.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/triptych.png",
-      "sha256": "59ae589b7ce9cff5da9c3c76cc928c184d5a52acb4086205d014deaabd872299",
+      "sha256": "4d3920a80415c6304fd58c857294f92c8fe79d1e18218104b6af619e1d3f5708",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 8787820
+      "bytes": 8787631
     },
     {
       "id": "hero-master-defaults.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/metadata.json",
-      "sha256": "4d13e85eea5a91c29c7dee77da431c9448b8b597a80c1cf8d2d3dd05ab3f571d",
+      "sha256": "f4f37173250e3fdbe11d5c403e09c5c5c969c39994d6c39a78b3d1c028d18be7",
       "mediaType": "application/json",
       "width": null,
       "height": null,
@@ -2440,7 +2440,7 @@
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:12",
+    "divergent-facts:10",
     "failed-cases:1"
   ]
 }

@@ -2154,7 +2154,7 @@ const COMPONENTS = [
     "setName": "FAQ",
     "contractId": "ds.faq",
     "anchorKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
-    "description": "FAQ — generated from contract ds.faq v1.1.0",
+    "description": "FAQ — generated from contract ds.faq v1.2.0 †",
     "isSet": false,
     "boolProps": [
       {
@@ -2179,6 +2179,12 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
+          "lits": {
+            "width": 1550,
+            "paddingLeft": 89,
+            "paddingRight": 89,
+            "itemSpacing": 48
+          },
           "children": [
             {
               "type":"instance",
@@ -2187,6 +2193,7 @@ const COMPONENTS = [
               "depProps": {
                 "Titre": "Questions fréquentes",
                 "Accroche": "FAQ",
+                "Accroche2": true,
                 "Disposition": "Standard"
               }
             },
@@ -2198,6 +2205,7 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
+              "grow": true,
               "children": [
                 {
                   "type":"instance",
@@ -2235,7 +2243,11 @@ const COMPONENTS = [
               "type":"instance",
               "name": "Bouton",
               "dep":"Button",
-              "depProps": {}
+              "depProps": {
+                "Style": "Outline noir",
+                "Icone droite": true,
+                "Libelle": "Contactez-nous"
+              }
             }
           ]
         }

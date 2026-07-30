@@ -4,7 +4,7 @@
   "wave": 2,
   "contract": {
     "id": "ds.faq",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "path": "contracts/faq.contract.json"
   },
   "figmaSetNodeId": "2104:2914",
@@ -104,15 +104,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root",
+        "reference": "ds.faq@1.2.0#/anatomy/root",
         "observedValue": {
+          "description": "COMPONENT « FAQ » 2104:2914, 1728×448, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing 48, padding 0/89/0/89 (aucun paddingTop/Bottom), layoutSizingHorizontal FIXED / Vertical HUG, clipsContent false. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés ; la feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav et ds.footer). fills[0] est un SOLID visible=false : aucun fond n'est peint, le contrat n'en porte donc aucun.",
           "layout": {
             "display": "flex",
             "direction": "column",
             "align": "center"
           },
+          "literals": {
+            "width": "1550px",
+            "padding-left": "89px",
+            "padding-right": "89px",
+            "gap": "48px"
+          },
           "parts": {
             "SectionHeader": {
+              "description": "Instance 2104:2907 de ds.section-header, REDIMENSIONNÉE par le master : layoutSizingVertical FIXED à 50px alors que son contenu en demande 83 (Accroche 25 + itemSpacing 8 + Titre 50) — clipsContent=false, le Titre déborde donc de 33px dans le gap de 48. LIMITE NOMMÉE / TRAVAIL REPORTÉ : une part qui est une instance de composant ne peut pas être restylée par son parent (validateContract refuse literals sur une part `component`), la hauteur devrait vivre sur le root de ds.section-header, contrat partagé avec presentation/equipe/realisation/google-reviews — non touché ici. Conséquence mesurable : tout ce qui suit le SectionHeader descend de 33px dans le rendu généré. Le titre est épelé en segments parce que ds.section-header.titre est un prop rich-text ; le schéma refuse la chaîne nue par nom, et c'est la seule orthographe possible du fait.",
               "component": {
                 "id": "ds.section-header",
                 "props": {
@@ -122,17 +130,24 @@
                     }
                   ],
                   "accroche": "FAQ",
+                  "accroche2": true,
                   "disposition": "standard"
                 }
               }
             },
             "accordion": {
+              "description": "FRAME 2104:2908, 1550×248, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing absent (0), layoutSizingHorizontal FILL (layoutAlign STRETCH, layoutGrow 0). Le FILL est ici sur l'axe TRANSVERSE d'un parent vertical : la ligne de matrice pour ce canal est layout.grow, portée ci-dessous, mais l'équivalent CSS exact est align-self: stretch — les deux sont déclarés, le second est celui qui produit réellement les 1550px face au align-items: center du root.",
               "layout": {
                 "direction": "column",
-                "align": "center"
+                "align": "center",
+                "grow": true
+              },
+              "declared": {
+                "align-self": "stretch"
               },
               "parts": {
                 "AccordionRow": {
+                  "description": "Les trois instances du census (2104:2909 Ferme, 2104:2910 Ouvert, 2104:2911 Ferme) naissent de ce `repeat`. DEUX LIMITES NOMMÉES. (1) largeur : les 1550px des instances sont une largeur RÉSOLUE (FILL de accordion, lui-même FILL du root) ; une part `component` refuse literals, et ds.accordion-row gèle déjà literals.width = \"1550px\" sur son propre root — le chiffre coïncide, la nature du fait non, et le canal n'a pas d'orthographe « FILL » dans la grammaire des littéraux. (2) état : le motif du canevas est Fermé → Ouvert → Fermé. Le porter comme prop fixe sur l'instance composée ouvrirait les TROIS lignes ; le porter par item exigerait un champ `etat` dans arrayOf ET dans le sample, ce qui contredirait le sample relevé (deux champs, contenu + titre). Aucune des deux orthographes n'est fidèle : le fait est nommé, la 2e ligne est rendue fermée, l'accordéon mesure 3×64 au lieu de 64+120+64.",
                   "component": {
                     "id": "ds.accordion-row",
                     "props": {
@@ -160,8 +175,14 @@
               }
             },
             "Bouton": {
+              "description": "Instance 2104:2912 de ds.button, 249×54 : Style = « Outline noir » (valeur d'enum contractuelle \"outilneNoir\", coquille assumée par ds.button), Libelle = « Contactez-nous », Icone droite = true (ArrowRight 20×20, gap 10), Icone gauche = false. Le contrat portait la seule référence à ds.button : le rendu retombait sur variant=\"default\" (fond noir-bleuté, texte blanc) là où Figma dessine un contour 2px sur fond transparent, et n'émettait pas la flèche.",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconRight": true
+                }
               }
             }
           },
@@ -169,14 +190,14 @@
             "font-family": "{font.family.montserrat}"
           }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -203,16 +224,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/layout/direction",
+        "reference": "ds.faq@1.2.0#/anatomy/root/layout/direction",
         "observedValue": "column",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -239,16 +260,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/layout/align",
+        "reference": "ds.faq@1.2.0#/anatomy/root/layout/align",
         "observedValue": "center",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -275,29 +296,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/literals/gap",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/gap"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/literals/gap",
+        "observedValue": "48px",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.gap=\"48px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -315,29 +332,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/literals/padding-left",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/padding-left"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/literals/padding-left",
+        "observedValue": "89px",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.padding-left=\"89px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -355,29 +368,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/literals/padding-right",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/padding-right"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/literals/padding-right",
+        "observedValue": "89px",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.padding-right=\"89px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -395,18 +404,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/literals/width",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/width"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/literals/width",
+        "observedValue": "1550px",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -416,7 +423,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:root.width=\"1728px\""
+        "contract-value-differs:root.width:\"1550px\"!=\"1728px\""
       ],
       "deferredWorkId": null
     },
@@ -438,14 +445,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion",
         "observedValue": {
+          "description": "FRAME 2104:2908, 1550×248, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing absent (0), layoutSizingHorizontal FILL (layoutAlign STRETCH, layoutGrow 0). Le FILL est ici sur l'axe TRANSVERSE d'un parent vertical : la ligne de matrice pour ce canal est layout.grow, portée ci-dessous, mais l'équivalent CSS exact est align-self: stretch — les deux sont déclarés, le second est celui qui produit réellement les 1550px face au align-items: center du root.",
           "layout": {
             "direction": "column",
-            "align": "center"
+            "align": "center",
+            "grow": true
+          },
+          "declared": {
+            "align-self": "stretch"
           },
           "parts": {
             "AccordionRow": {
+              "description": "Les trois instances du census (2104:2909 Ferme, 2104:2910 Ouvert, 2104:2911 Ferme) naissent de ce `repeat`. DEUX LIMITES NOMMÉES. (1) largeur : les 1550px des instances sont une largeur RÉSOLUE (FILL de accordion, lui-même FILL du root) ; une part `component` refuse literals, et ds.accordion-row gèle déjà literals.width = \"1550px\" sur son propre root — le chiffre coïncide, la nature du fait non, et le canal n'a pas d'orthographe « FILL » dans la grammaire des littéraux. (2) état : le motif du canevas est Fermé → Ouvert → Fermé. Le porter comme prop fixe sur l'instance composée ouvrirait les TROIS lignes ; le porter par item exigerait un champ `etat` dans arrayOf ET dans le sample, ce qui contredirait le sample relevé (deux champs, contenu + titre). Aucune des deux orthographes n'est fidèle : le fait est nommé, la 2e ligne est rendue fermée, l'accordéon mesure 3×64 au lieu de 64+120+64.",
               "component": {
                 "id": "ds.accordion-row",
                 "props": {
@@ -472,14 +485,14 @@
             }
           }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
-        "observedValue": "",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -506,16 +519,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/layout/direction",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/layout/direction",
         "observedValue": "column",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
-        "observedValue": "",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -542,16 +555,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/layout/align",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/layout/align",
         "observedValue": "center",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
-        "observedValue": "",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -578,29 +591,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/layout/grow",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/accordion/layout/grow"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/layout/grow",
+        "observedValue": true,
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__accordion\"]",
-        "observedValue": "",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:accordion.layoutSizingHorizontal=FILL=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -618,9 +627,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/literals/width",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/parts/AccordionRow/literals/width",
         "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/accordion/parts/AccordionRow/literals/width"
@@ -628,12 +637,10 @@
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
@@ -660,9 +667,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/literals/height",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/SectionHeader/literals/height",
         "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/SectionHeader/literals/height"
@@ -671,7 +678,7 @@
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__root\"]",
         "observedValue": "FAQQuestions fréquentes",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -703,9 +710,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/visibleWhen",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/parts/AccordionRow/visibleWhen",
         "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/accordion/parts/AccordionRow/visibleWhen"
@@ -713,12 +720,10 @@
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
@@ -748,18 +753,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/Bouton/component",
         "observedValue": {
-          "id": "ds.button"
+          "id": "ds.button",
+          "text": "Contactez-nous",
+          "props": {
+            "variant": "outilneNoir",
+            "iconRight": true
+          }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__label\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -791,12 +801,12 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/props/1",
+        "reference": "ds.faq@1.2.0#/props/1",
         "observedValue": {
           "name": "ligne3",
           "type": "boolean",
           "default": true,
-          "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass).",
+          "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass). LIMITE NOMMÉE : côté Figma cette propriété pilote la visibilité de la SEULE 3e instance (2104:2911), et la géométrie recalcule 448 ↔ 384px. Côté contrat les trois lignes naissent d'un `repeat` : `visibleWhen` s'applique à la part, donc à TOUTES les lignes répétées, jamais à la dernière seule. Le vocabulaire n'a pas de visibilité par index dans un repeat ; poser `visibleWhen: { prop: \"ligne3\" }` ferait disparaître les trois lignes là où Figma en garde deux. Le fait est donc EXPOSÉ mais non PROJETÉ, et nommé plutôt que contourné par un modèle faux.",
           "bindings": {
             "figma": {
               "kind": "BOOLEAN",
@@ -807,25 +817,23 @@
             }
           }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
+        "observedValue": "3 element(s)",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "generated",
-      "reasons": [
-        "boolean-prop-did-not-materialise-its-subtree"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -848,7 +856,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/props/0",
+        "reference": "ds.faq@1.2.0#/props/0",
         "observedValue": {
           "name": "items",
           "type": {
@@ -857,6 +865,7 @@
               "titre": "text"
             }
           },
+          "description": "Les lignes de la FAQ. LIMITE NOMMÉE (inchangée depuis 010) : Figma n'a pas de propriété de composant de type tableau — la répétition n'existe sur le canevas que comme N instances sœurs compilées, d'où bindings.figma.kind NONE. Le schéma refuse aussi un default sur un prop arrayOf (« an optional array — undefined means \"not provided\", never a silent [] ») : le master rend trois lignes par défaut, le composant généré n'en rend aucune sans données. C'est pourquoi le cas d'audit alimente items par un override, comme ds.footer.",
           "bindings": {
             "figma": {
               "kind": "NONE"
@@ -866,14 +875,14 @@
             }
           }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__Titre\"]",
         "observedValue": "PREUVE-013 — QUESTION 4b1e",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -902,9 +911,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/props/0/default",
+        "reference": "ds.faq@1.2.0#/props/0/default",
         "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": false,
         "notes": [
           "pointer-unresolved:/props/0/default"
@@ -912,12 +921,10 @@
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
@@ -957,7 +964,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample",
         "observedValue": [
           {
             "contenu": "Réponse",
@@ -972,18 +979,16 @@
             "titre": "Assurez-vous la maintenance après l'installation ?"
           }
         ],
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__Titre\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
@@ -1018,35 +1023,30 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/parts/AccordionRow/component",
         "observedValue": {
           "id": "ds.accordion-row",
           "props": {
             "taille": "grand"
           }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "not-proven",
+      "outcome": "proved",
       "localizedSource": null,
-      "reasons": [
-        "leg-unavailable:generated",
-        "agreement-unknown"
-      ],
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1064,20 +1064,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
         "observedValue": "grand",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
@@ -1102,9 +1100,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/etat",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/etat",
         "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/accordion/parts/AccordionRow/component/props/etat"
@@ -1112,12 +1110,10 @@
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
@@ -1157,7 +1153,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/SectionHeader/component",
         "observedValue": {
           "id": "ds.section-header",
           "props": {
@@ -1167,17 +1163,18 @@
               }
             ],
             "accroche": "FAQ",
+            "accroche2": true,
             "disposition": "standard"
           }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__root\"]",
         "observedValue": "FAQQuestions fréquentes",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1204,20 +1201,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/titre",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/SectionHeader/component/props/titre",
         "observedValue": [
           {
             "text": "Questions fréquentes"
           }
         ],
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Questions fréquentes",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1246,16 +1243,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/accroche",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/SectionHeader/component/props/accroche",
         "observedValue": "FAQ",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__Accroche\"]",
         "observedValue": "FAQ",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1282,16 +1279,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/disposition",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/SectionHeader/component/props/disposition",
         "observedValue": "standard",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__root\"]",
         "observedValue": "FAQQuestions fréquentes",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1318,29 +1315,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/SectionHeader/component/props/accroche2",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/SectionHeader/component/props/accroche2"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/SectionHeader/component/props/accroche2",
+        "observedValue": true,
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"SectionHeader__Accroche\"]",
         "observedValue": "FAQ",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:SectionHeader.Accroche2 (BOOLEAN)=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1374,18 +1367,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component",
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/Bouton/component",
         "observedValue": {
-          "id": "ds.button"
+          "id": "ds.button",
+          "text": "Contactez-nous",
+          "props": {
+            "variant": "outilneNoir",
+            "iconRight": true
+          }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1412,29 +1410,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component/text",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Bouton/component/text"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/Bouton/component/text",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Libelle=\"Contactez-nous\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1452,29 +1446,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component/props/variant",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Bouton/component/props/variant"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/Bouton/component/props/variant",
+        "observedValue": "outilneNoir",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Style=\"outilneNoir\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1492,31 +1482,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/parts/Bouton/component/props/iconRight",
-        "observedValue": null,
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Bouton/component/props/iconRight"
-        ]
+        "reference": "ds.faq@1.2.0#/anatomy/root/parts/Bouton/component/props/iconRight",
+        "observedValue": true,
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"Button__iconRight\"]",
-        "observedValue": null,
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "faq-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Icone droite (BOOLEAN)=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1538,15 +1522,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root",
+        "reference": "ds.faq@1.2.0#/anatomy/root",
         "observedValue": {
+          "description": "COMPONENT « FAQ » 2104:2914, 1728×448, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing 48, padding 0/89/0/89 (aucun paddingTop/Bottom), layoutSizingHorizontal FIXED / Vertical HUG, clipsContent false. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés ; la feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav et ds.footer). fills[0] est un SOLID visible=false : aucun fond n'est peint, le contrat n'en porte donc aucun.",
           "layout": {
             "display": "flex",
             "direction": "column",
             "align": "center"
           },
+          "literals": {
+            "width": "1550px",
+            "padding-left": "89px",
+            "padding-right": "89px",
+            "gap": "48px"
+          },
           "parts": {
             "SectionHeader": {
+              "description": "Instance 2104:2907 de ds.section-header, REDIMENSIONNÉE par le master : layoutSizingVertical FIXED à 50px alors que son contenu en demande 83 (Accroche 25 + itemSpacing 8 + Titre 50) — clipsContent=false, le Titre déborde donc de 33px dans le gap de 48. LIMITE NOMMÉE / TRAVAIL REPORTÉ : une part qui est une instance de composant ne peut pas être restylée par son parent (validateContract refuse literals sur une part `component`), la hauteur devrait vivre sur le root de ds.section-header, contrat partagé avec presentation/equipe/realisation/google-reviews — non touché ici. Conséquence mesurable : tout ce qui suit le SectionHeader descend de 33px dans le rendu généré. Le titre est épelé en segments parce que ds.section-header.titre est un prop rich-text ; le schéma refuse la chaîne nue par nom, et c'est la seule orthographe possible du fait.",
               "component": {
                 "id": "ds.section-header",
                 "props": {
@@ -1556,17 +1548,24 @@
                     }
                   ],
                   "accroche": "FAQ",
+                  "accroche2": true,
                   "disposition": "standard"
                 }
               }
             },
             "accordion": {
+              "description": "FRAME 2104:2908, 1550×248, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing absent (0), layoutSizingHorizontal FILL (layoutAlign STRETCH, layoutGrow 0). Le FILL est ici sur l'axe TRANSVERSE d'un parent vertical : la ligne de matrice pour ce canal est layout.grow, portée ci-dessous, mais l'équivalent CSS exact est align-self: stretch — les deux sont déclarés, le second est celui qui produit réellement les 1550px face au align-items: center du root.",
               "layout": {
                 "direction": "column",
-                "align": "center"
+                "align": "center",
+                "grow": true
+              },
+              "declared": {
+                "align-self": "stretch"
               },
               "parts": {
                 "AccordionRow": {
+                  "description": "Les trois instances du census (2104:2909 Ferme, 2104:2910 Ouvert, 2104:2911 Ferme) naissent de ce `repeat`. DEUX LIMITES NOMMÉES. (1) largeur : les 1550px des instances sont une largeur RÉSOLUE (FILL de accordion, lui-même FILL du root) ; une part `component` refuse literals, et ds.accordion-row gèle déjà literals.width = \"1550px\" sur son propre root — le chiffre coïncide, la nature du fait non, et le canal n'a pas d'orthographe « FILL » dans la grammaire des littéraux. (2) état : le motif du canevas est Fermé → Ouvert → Fermé. Le porter comme prop fixe sur l'instance composée ouvrirait les TROIS lignes ; le porter par item exigerait un champ `etat` dans arrayOf ET dans le sample, ce qui contredirait le sample relevé (deux champs, contenu + titre). Aucune des deux orthographes n'est fidèle : le fait est nommé, la 2e ligne est rendue fermée, l'accordéon mesure 3×64 au lieu de 64+120+64.",
                   "component": {
                     "id": "ds.accordion-row",
                     "props": {
@@ -1594,8 +1593,14 @@
               }
             },
             "Bouton": {
+              "description": "Instance 2104:2912 de ds.button, 249×54 : Style = « Outline noir » (valeur d'enum contractuelle \"outilneNoir\", coquille assumée par ds.button), Libelle = « Contactez-nous », Icone droite = true (ArrowRight 20×20, gap 10), Icone gauche = false. Le contrat portait la seule référence à ds.button : le rendu retombait sur variant=\"default\" (fond noir-bleuté, texte blanc) là où Figma dessine un contour 2px sur fond transparent, et n'émettait pas la flèche.",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconRight": true
+                }
               }
             }
           },
@@ -1603,14 +1608,14 @@
             "font-family": "{font.family.montserrat}"
           }
         },
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1620,8 +1625,8 @@
       "outcome": "divergent",
       "localizedSource": "comparison",
       "reasons": [
-        "raw-over-threshold:4.366393293238564>2.5",
-        "region-over-budget:whole:4.366393293238564>2.5"
+        "raw-over-threshold:3.672346488508598>2.5",
+        "region-over-budget:whole:3.672346488508598>2.5"
       ],
       "deferredWorkId": null
     },
@@ -1640,16 +1645,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/anatomy/root/tokens/font-family",
+        "reference": "ds.faq@1.2.0#/anatomy/root/tokens/font-family",
         "observedValue": "{font.family.montserrat}",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
-        "notes": []
+        "notes": [
+          "token-resolved:root.font-family (fontName de chaque calque TEXT descendant):{font.family.montserrat}→\"Montserrat, sans-serif\"=={font.family.montserrat}→\"Montserrat, sans-serif\""
+        ]
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1679,16 +1686,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.faq@1.1.0#/semantics/element",
+        "reference": "ds.faq@1.2.0#/semantics/element",
         "observedValue": "div",
-        "sourceHash": "a179886356b4e35f7d98c28decb931d885911c2d7c03aaa49d0a19acd8e3cb6b",
+        "sourceHash": "fed6962fcb5cce7c8553aaa6f25ddcb6317440e486093f288ac8840953e209da",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/FAQ/FAQ.tsx#[class*=\"FAQ__root\"]",
-        "observedValue": "FAQQuestions fréquentesContactez-nous",
-        "sourceHash": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "observedValue": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous",
+        "sourceHash": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "available": true,
         "notes": []
       },
@@ -1710,8 +1717,8 @@
       "verdict": "fail",
       "probative": true,
       "reasons": [
-        "raw-over-threshold:4.366393293238564>2.5",
-        "region-over-budget:whole:4.366393293238564>2.5"
+        "raw-over-threshold:3.672346488508598>2.5",
+        "region-over-budget:whole:3.672346488508598>2.5"
       ],
       "figma": {
         "nodeId": "2104:2914",
@@ -1726,7 +1733,7 @@
       },
       "contract": {
         "id": "ds.faq",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "factIds": [
           "faq.structure.root",
           "faq.structure.root-direction",
@@ -1763,12 +1770,27 @@
           "faq.visual.root-font-family",
           "faq.semantic.root-element"
         ],
-        "reactProps": {}
+        "reactProps": {
+          "items": [
+            {
+              "contenu": "Réponse",
+              "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+            },
+            {
+              "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+              "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+            },
+            {
+              "contenu": "Réponse",
+              "titre": "Assurez-vous la maintenance après l'installation ?"
+            }
+          ]
+        }
       },
       "generated": {
         "componentFile": "src/components/FAQ/FAQ.tsx",
         "export": "FAQ",
-        "bundleSha256": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+        "bundleSha256": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
         "harnessConfigSha256": "eebab9ee95008825d6146051442f9a83281b0e5172fc74992c79f6ab34266557",
         "fontsLoaded": true
       },
@@ -1779,9 +1801,9 @@
           "height": 896
         },
         "generated": {
-          "signalPixels": 61468,
+          "signalPixels": 92888,
           "width": 3648,
-          "height": 466
+          "height": 1042
         },
         "contrastOk": true
       },
@@ -1792,24 +1814,24 @@
         },
         "generatedRoot": {
           "width": 3456,
-          "height": 274
+          "height": 850
         },
         "deltaPx": {
           "width": 0,
-          "height": -622
+          "height": -46
         },
         "verdict": "fail"
       },
       "pixels": {
-        "rawPct": 4.366393293238564,
-        "maskedDiagnosticPct": 2.1771786230139623,
+        "rawPct": 3.672346488508598,
+        "maskedDiagnosticPct": 1.7239278752436649,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 4.366393293238564,
+            "score": 3.672346488508598,
             "maxDiffPct": 2.5,
-            "signalPixels": 61468
+            "signalPixels": 92888
           }
         ],
         "verdict": "fail"
@@ -1824,7 +1846,7 @@
           },
           "observed": {
             "tag": "div",
-            "text": "FAQQuestions fréquentesContactez-nous"
+            "text": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous"
           },
           "verdict": "pass"
         },
@@ -1838,9 +1860,9 @@
           },
           "observed": {
             "tag": "div",
-            "text": ""
+            "text": "Nos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?"
           },
-          "verdict": "pass"
+          "verdict": "fail"
         },
         {
           "id": "section-header-titre",
@@ -1890,8 +1912,8 @@
           "factId": "faq.property.ligne3",
           "prop": "ligne3",
           "probeValue": false,
-          "observedDomValue": null,
-          "projected": false
+          "observedDomValue": "3 element(s)",
+          "projected": true
         },
         {
           "factId": "faq.property.items",
@@ -1911,51 +1933,51 @@
           "id": "faq-master-defaults.figma",
           "kind": "figma",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/figma.png",
-          "sha256": "303b0f4d6a9edd434fca49575c2b1e14949273eccc44bc0a4222434918eb2417",
+          "sha256": "1a8d6c776bbdcf94069585d0b209b1f93e4c3c7fae74f252c7f16797c01c3527",
           "mediaType": "image/png",
-          "width": 3100,
-          "height": 885,
-          "bytes": 153466
+          "width": 3456,
+          "height": 896,
+          "bytes": 155838
         },
         {
           "id": "faq-master-defaults.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/generated.png",
-          "sha256": "cf8eae55fdb3010a13ee089064dbbe104e03ca782777b16760f7ce65e466afa5",
+          "sha256": "d9c8fd0a07dae0a6307894bd727fc077e0da194d151e1c8bdeb57a991b4b061b",
           "mediaType": "image/png",
-          "width": 3100,
-          "height": 885,
-          "bytes": 44622
+          "width": 3456,
+          "height": 896,
+          "bytes": 130974
         },
         {
           "id": "faq-master-defaults.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/diff.png",
-          "sha256": "3890e8a739ce6188da73113d8957b69464cd0d1883b559c92e1e81ac67b5c850",
+          "sha256": "1679e4614749f62aeb8e369ac729e22c5ec90658d363159658afb31e6b7c3d58",
           "mediaType": "image/png",
-          "width": 3100,
-          "height": 885,
-          "bytes": 64182
+          "width": 3456,
+          "height": 896,
+          "bytes": 95620
         },
         {
           "id": "faq-master-defaults.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/triptych.png",
-          "sha256": "38096fa4652244734299e8c6fd1894cfab6b5ceb8a2a2d6e8215d056c8b2530a",
+          "sha256": "6647166cfcdccdfe2f175c5af977603134fafc11299574621c875c1fc06ad035",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 270692
+          "bytes": 397515
         },
         {
           "id": "faq-master-defaults.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/metadata.json",
-          "sha256": "b5f584b0e431375a55b092db1e013ee9adbc510e886770b4529f95fa51dd3d88",
+          "sha256": "0ad6e5b39e4947edb6b544061b61d1eab2babb68e8a06ecfc9ff9200d9ea5b2a",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 5409
+          "bytes": 6428
         }
       ]
     }
@@ -1965,56 +1987,56 @@
       "id": "faq-master-defaults.figma",
       "kind": "figma",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/figma.png",
-      "sha256": "303b0f4d6a9edd434fca49575c2b1e14949273eccc44bc0a4222434918eb2417",
+      "sha256": "1a8d6c776bbdcf94069585d0b209b1f93e4c3c7fae74f252c7f16797c01c3527",
       "mediaType": "image/png",
-      "width": 3100,
-      "height": 885,
-      "bytes": 153466
+      "width": 3456,
+      "height": 896,
+      "bytes": 155838
     },
     {
       "id": "faq-master-defaults.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/generated.png",
-      "sha256": "cf8eae55fdb3010a13ee089064dbbe104e03ca782777b16760f7ce65e466afa5",
+      "sha256": "d9c8fd0a07dae0a6307894bd727fc077e0da194d151e1c8bdeb57a991b4b061b",
       "mediaType": "image/png",
-      "width": 3100,
-      "height": 885,
-      "bytes": 44622
+      "width": 3456,
+      "height": 896,
+      "bytes": 130974
     },
     {
       "id": "faq-master-defaults.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/diff.png",
-      "sha256": "3890e8a739ce6188da73113d8957b69464cd0d1883b559c92e1e81ac67b5c850",
+      "sha256": "1679e4614749f62aeb8e369ac729e22c5ec90658d363159658afb31e6b7c3d58",
       "mediaType": "image/png",
-      "width": 3100,
-      "height": 885,
-      "bytes": 64182
+      "width": 3456,
+      "height": 896,
+      "bytes": 95620
     },
     {
       "id": "faq-master-defaults.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/triptych.png",
-      "sha256": "38096fa4652244734299e8c6fd1894cfab6b5ceb8a2a2d6e8215d056c8b2530a",
+      "sha256": "6647166cfcdccdfe2f175c5af977603134fafc11299574621c875c1fc06ad035",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 270692
+      "bytes": 397515
     },
     {
       "id": "faq-master-defaults.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/faq/cases/faq-master-defaults/metadata.json",
-      "sha256": "b5f584b0e431375a55b092db1e013ee9adbc510e886770b4529f95fa51dd3d88",
+      "sha256": "0ad6e5b39e4947edb6b544061b61d1eab2babb68e8a06ecfc9ff9200d9ea5b2a",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 5409
+      "bytes": 6428
     }
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:18",
+    "divergent-facts:9",
     "failed-cases:1"
   ]
 }

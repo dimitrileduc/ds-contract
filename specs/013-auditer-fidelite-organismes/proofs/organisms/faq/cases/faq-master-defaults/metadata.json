@@ -4,8 +4,8 @@
   "verdict": "fail",
   "probative": true,
   "reasons": [
-    "raw-over-threshold:4.366393293238564>2.5",
-    "region-over-budget:whole:4.366393293238564>2.5"
+    "raw-over-threshold:3.672346488508598>2.5",
+    "region-over-budget:whole:3.672346488508598>2.5"
   ],
   "figma": {
     "nodeId": "2104:2914",
@@ -20,7 +20,7 @@
   },
   "contract": {
     "id": "ds.faq",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "factIds": [
       "faq.structure.root",
       "faq.structure.root-direction",
@@ -57,12 +57,27 @@
       "faq.visual.root-font-family",
       "faq.semantic.root-element"
     ],
-    "reactProps": {}
+    "reactProps": {
+      "items": [
+        {
+          "contenu": "Réponse",
+          "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+        },
+        {
+          "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+          "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+        },
+        {
+          "contenu": "Réponse",
+          "titre": "Assurez-vous la maintenance après l'installation ?"
+        }
+      ]
+    }
   },
   "generated": {
     "componentFile": "src/components/FAQ/FAQ.tsx",
     "export": "FAQ",
-    "bundleSha256": "7c29cebab8d5e0168fcdbbb967bfcfeed3cf750cedfb4a7ab35614d95d6e1245",
+    "bundleSha256": "43f16daa98f3ae00929c1c12689edd1e9da5fc909cee92fb0d52c0ed178be62e",
     "harnessConfigSha256": "eebab9ee95008825d6146051442f9a83281b0e5172fc74992c79f6ab34266557",
     "fontsLoaded": true
   },
@@ -73,9 +88,9 @@
       "height": 896
     },
     "generated": {
-      "signalPixels": 61468,
+      "signalPixels": 92888,
       "width": 3648,
-      "height": 466
+      "height": 1042
     },
     "contrastOk": true
   },
@@ -86,24 +101,24 @@
     },
     "generatedRoot": {
       "width": 3456,
-      "height": 274
+      "height": 850
     },
     "deltaPx": {
       "width": 0,
-      "height": -622
+      "height": -46
     },
     "verdict": "fail"
   },
   "pixels": {
-    "rawPct": 4.366393293238564,
-    "maskedDiagnosticPct": 2.1771786230139623,
+    "rawPct": 3.672346488508598,
+    "maskedDiagnosticPct": 1.7239278752436649,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 4.366393293238564,
+        "score": 3.672346488508598,
         "maxDiffPct": 2.5,
-        "signalPixels": 61468
+        "signalPixels": 92888
       }
     ],
     "verdict": "fail"
@@ -118,7 +133,7 @@
       },
       "observed": {
         "tag": "div",
-        "text": "FAQQuestions fréquentesContactez-nous"
+        "text": "FAQQuestions fréquentesNos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?\n\nContactez-nous"
       },
       "verdict": "pass"
     },
@@ -132,9 +147,9 @@
       },
       "observed": {
         "tag": "div",
-        "text": ""
+        "text": "Nos portes répondent-elles aux normes des bâtiments publics ?\n\nQuels types de bardages peuvent être intégrés sur les portes ?\n\nAssurez-vous la maintenance après l'installation ?"
       },
-      "verdict": "pass"
+      "verdict": "fail"
     },
     {
       "id": "section-header-titre",
@@ -184,8 +199,8 @@
       "factId": "faq.property.ligne3",
       "prop": "ligne3",
       "probeValue": false,
-      "observedDomValue": null,
-      "projected": false
+      "observedDomValue": "3 element(s)",
+      "projected": true
     },
     {
       "factId": "faq.property.items",

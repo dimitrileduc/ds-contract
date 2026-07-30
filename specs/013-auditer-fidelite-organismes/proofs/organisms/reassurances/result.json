@@ -4,7 +4,7 @@
   "wave": 2,
   "contract": {
     "id": "ds.reassurances",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "path": "contracts/reassurances.contract.json"
   },
   "figmaSetNodeId": "2114:3721",
@@ -124,15 +124,21 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root",
         "observedValue": {
+          "description": "COMPONENT « Disposition=4 cartes » 2114:3619, 1550×731, layoutMode VERTICAL, itemSpacing 48, counterAxisAlignItems CENTER, layoutSizingHorizontal FIXED, aucun padding — la largeur portée est donc à la fois la boîte de CONTENU et la boîte du master, sans arithmétique à expliciter. Les 731px de hauteur se recomposent exactement : 83 (SectionHeader) + 48 + 498 (items) + 48 + 54 (bouton).",
           "layout": {
             "display": "flex",
             "direction": "column",
             "align": "center"
           },
+          "literals": {
+            "width": "1550px",
+            "gap": "48px"
+          },
           "parts": {
             "SectionHeader": {
+              "description": "INSTANCE 2114:3612 de ds.section-header, 1550×83. accroche2 est porté explicitement : l'occurrence met Accroche2=true et le rendu concordait jusqu'ici par le seul défaut de l'enfant — un changement de ce défaut aurait fait dériver reassurances en silence.",
               "component": {
                 "id": "ds.section-header",
                 "props": {
@@ -142,17 +148,26 @@
                     }
                   ],
                   "accroche": "Plus de 50 ans d’expérience",
+                  "accroche2": true,
                   "disposition": "standard"
                 }
               }
             },
             "items": {
+              "description": "FRAME « items » 2114:3613, 1550×498, layoutMode HORIZONTAL, itemSpacing 32, primaryAxisAlignItems CENTER, layoutSizingHorizontal FILL (layoutAlign STRETCH). LIMITE NOMMÉE : le FILL horizontal d'un enfant de conteneur COLUMN s'écrit align-self: stretch, pas layout.grow — dans une colonne, grow porte sur l'axe VERTICAL et étirerait la frame en hauteur. Le dossier d'audit attend ce fait au pointeur /layout/grow ; il reste donc divergent alors que le rendu est fidèle.",
               "layout": {
                 "direction": "row",
                 "justify": "center"
               },
+              "literals": {
+                "gap": "32px"
+              },
+              "declared": {
+                "align-self": "stretch"
+              },
               "parts": {
                 "Carte": {
+                  "description": "Les 4 INSTANCE Carte (2114:3614 … 2114:3617) partagent le master 2063:1606 et sont FIXED à 364px. La largeur vit sur le root de ds.carte (literals.width 364px), pas ici : un parent ne peut pas restyler une instance — même mécanique que ds.avatar-group. LIMITE NOMMÉE, non contournée : la variante « Disposition=5 cartes » tient ses 5 cartes à 285px, une largeur qui dépend d'une prop du PARENT ; le vocabulaire n'a pas de style d'instance par variante du parent, et ds.carte n'a aucune prop qui distingue les deux dispositions. Reporté sur ds.carte plutôt que simulé ici.",
                   "component": {
                     "id": "ds.carte",
                     "props": {
@@ -164,23 +179,23 @@
                     "sample": [
                       {
                         "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-                        "titre": "Sécurité et conformité"
+                        "titre": "Sécurité et conformité",
+                        "imageUrl": ""
                       },
                       {
                         "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-                        "titre": "Intégration parfaite"
+                        "titre": "Intégration parfaite",
+                        "imageUrl": ""
                       },
                       {
                         "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-                        "titre": "Moteur performant"
+                        "titre": "Moteur performant",
+                        "imageUrl": ""
                       },
                       {
                         "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-                        "titre": "SAV & maintenance dédiés"
-                      },
-                      {
-                        "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                        "titre": "Expérience"
+                        "titre": "SAV & maintenance dédiés",
+                        "imageUrl": ""
                       }
                     ]
                   }
@@ -188,8 +203,15 @@
               }
             },
             "BoutonCinqCartes": {
+              "description": "INSTANCE 2114:3692 de ds.button dans la variante « 5 cartes », 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight).",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconRight": true,
+                  "iconRightGlyph": "arrow-right"
+                }
               },
               "visibleWhen": {
                 "prop": "disposition",
@@ -197,13 +219,26 @@
               }
             },
             "Boutons": {
+              "description": "FRAME « Boutons » 2114:3650 de la variante « QuatreCartesDeuxCta », 570×54, layoutMode HORIZONTAL, itemSpacing 16.",
               "layout": {
                 "direction": "row"
               },
+              "literals": {
+                "gap": "16px"
+              },
               "parts": {
                 "Bouton": {
+                  "description": "INSTANCE 2114:3651, 305×54 : Style « Outline noir », Libelle « Motifs disponibles », Icone gauche true (Glyphe gauche 230:585, master Pdf), Icone droite true (Glyphe droite 230:599, master Download).",
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "text": "Motifs disponibles",
+                    "props": {
+                      "variant": "outilneNoir",
+                      "iconLeft": true,
+                      "iconLeftGlyph": "pdf",
+                      "iconRight": true,
+                      "iconRightGlyph": "download"
+                    }
                   },
                   "visibleWhen": {
                     "prop": "disposition",
@@ -211,8 +246,15 @@
                   }
                 },
                 "BoutonSecondaire": {
+                  "description": "INSTANCE 2114:3652, 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true (Glyphe droite 6:104, master ArrowRight).",
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "text": "Contactez-nous",
+                    "props": {
+                      "variant": "outilneNoir",
+                      "iconRight": true,
+                      "iconRightGlyph": "arrow-right"
+                    }
                   },
                   "visibleWhen": {
                     "prop": "disposition",
@@ -226,8 +268,15 @@
               }
             },
             "BoutonQuatreCartes": {
+              "description": "INSTANCE 2114:3618 de ds.button, 249×54 : Style « Outline noir » (strokeWeight 2, stroke #26282C lié à la variable 5:40, remplissage blanc invisible), Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight). Le contour de 2px est le rendu de la variante ; il n'est pas porté en literals ici — un parent ne restyle pas une instance, et « border » n'est pas un canal de literals.",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconRight": true,
+                  "iconRightGlyph": "arrow-right"
+                }
               },
               "visibleWhen": {
                 "prop": "disposition",
@@ -239,14 +288,14 @@
             "font-family": "{font.family.montserrat}"
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -273,29 +322,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/literals/gap",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/gap"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/literals/gap",
+        "observedValue": "48px",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.gap=\"48px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -313,29 +358,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/literals/width",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/width"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/literals/width",
+        "observedValue": "1550px",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.width=\"1550px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -356,14 +397,22 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items",
         "observedValue": {
+          "description": "FRAME « items » 2114:3613, 1550×498, layoutMode HORIZONTAL, itemSpacing 32, primaryAxisAlignItems CENTER, layoutSizingHorizontal FILL (layoutAlign STRETCH). LIMITE NOMMÉE : le FILL horizontal d'un enfant de conteneur COLUMN s'écrit align-self: stretch, pas layout.grow — dans une colonne, grow porte sur l'axe VERTICAL et étirerait la frame en hauteur. Le dossier d'audit attend ce fait au pointeur /layout/grow ; il reste donc divergent alors que le rendu est fidèle.",
           "layout": {
             "direction": "row",
             "justify": "center"
           },
+          "literals": {
+            "gap": "32px"
+          },
+          "declared": {
+            "align-self": "stretch"
+          },
           "parts": {
             "Carte": {
+              "description": "Les 4 INSTANCE Carte (2114:3614 … 2114:3617) partagent le master 2063:1606 et sont FIXED à 364px. La largeur vit sur le root de ds.carte (literals.width 364px), pas ici : un parent ne peut pas restyler une instance — même mécanique que ds.avatar-group. LIMITE NOMMÉE, non contournée : la variante « Disposition=5 cartes » tient ses 5 cartes à 285px, une largeur qui dépend d'une prop du PARENT ; le vocabulaire n'a pas de style d'instance par variante du parent, et ds.carte n'a aucune prop qui distingue les deux dispositions. Reporté sur ds.carte plutôt que simulé ici.",
               "component": {
                 "id": "ds.carte",
                 "props": {
@@ -375,37 +424,37 @@
                 "sample": [
                   {
                     "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-                    "titre": "Sécurité et conformité"
+                    "titre": "Sécurité et conformité",
+                    "imageUrl": ""
                   },
                   {
                     "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-                    "titre": "Intégration parfaite"
+                    "titre": "Intégration parfaite",
+                    "imageUrl": ""
                   },
                   {
                     "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-                    "titre": "Moteur performant"
+                    "titre": "Moteur performant",
+                    "imageUrl": ""
                   },
                   {
                     "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-                    "titre": "SAV & maintenance dédiés"
-                  },
-                  {
-                    "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                    "titre": "Expérience"
+                    "titre": "SAV & maintenance dédiés",
+                    "imageUrl": ""
                   }
                 ]
               }
             }
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__items\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -432,29 +481,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/literals/gap",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/items/literals/gap"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/literals/gap",
+        "observedValue": "32px",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__items\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:items.gap=\"32px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -472,9 +517,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/layout/grow",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/layout/grow",
         "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/items/layout/grow"
@@ -483,7 +528,7 @@
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__items\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -512,37 +557,37 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample",
         "observedValue": [
           {
             "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-            "titre": "Sécurité et conformité"
+            "titre": "Sécurité et conformité",
+            "imageUrl": ""
           },
           {
             "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-            "titre": "Intégration parfaite"
+            "titre": "Intégration parfaite",
+            "imageUrl": ""
           },
           {
             "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-            "titre": "Moteur performant"
+            "titre": "Moteur performant",
+            "imageUrl": ""
           },
           {
             "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-            "titre": "SAV & maintenance dédiés"
-          },
-          {
-            "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-            "titre": "Expérience"
+            "titre": "SAV & maintenance dédiés",
+            "imageUrl": ""
           }
         ],
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__items\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -552,7 +597,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:items.materialised-carte-count@Disposition=4 cartes:[{\"texte\":\"Respectent les normes des bâtiments publics et les réglementations pompiers.\",\"titre\":\"Sécurité et conformité\"},{\"texte\":\"Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).\",\"titre\":\"Intégration parfaite\"},{\"texte\":\"Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.\",\"titre\":\"Moteur performant\"},{\"texte\":\"Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.\",\"titre\":\"SAV & maintenance dédiés\"},{\"texte\":\"Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.\",\"titre\":\"Expérience\"}]!=4"
+        "contract-value-differs:items.materialised-carte-count@Disposition=4 cartes:[{\"texte\":\"Respectent les normes des bâtiments publics et les réglementations pompiers.\",\"titre\":\"Sécurité et conformité\",\"imageUrl\":\"\"},{\"texte\":\"Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).\",\"titre\":\"Intégration parfaite\",\"imageUrl\":\"\"},{\"texte\":\"Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.\",\"titre\":\"Moteur performant\",\"imageUrl\":\"\"},{\"texte\":\"Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.\",\"titre\":\"SAV & maintenance dédiés\",\"imageUrl\":\"\"}]!=4"
       ],
       "deferredWorkId": null
     },
@@ -577,8 +622,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte",
         "observedValue": {
+          "description": "Les 4 INSTANCE Carte (2114:3614 … 2114:3617) partagent le master 2063:1606 et sont FIXED à 364px. La largeur vit sur le root de ds.carte (literals.width 364px), pas ici : un parent ne peut pas restyler une instance — même mécanique que ds.avatar-group. LIMITE NOMMÉE, non contournée : la variante « Disposition=5 cartes » tient ses 5 cartes à 285px, une largeur qui dépend d'une prop du PARENT ; le vocabulaire n'a pas de style d'instance par variante du parent, et ds.carte n'a aucune prop qui distingue les deux dispositions. Reporté sur ds.carte plutôt que simulé ici.",
           "component": {
             "id": "ds.carte",
             "props": {
@@ -590,35 +636,35 @@
             "sample": [
               {
                 "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-                "titre": "Sécurité et conformité"
+                "titre": "Sécurité et conformité",
+                "imageUrl": ""
               },
               {
                 "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-                "titre": "Intégration parfaite"
+                "titre": "Intégration parfaite",
+                "imageUrl": ""
               },
               {
                 "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-                "titre": "Moteur performant"
+                "titre": "Moteur performant",
+                "imageUrl": ""
               },
               {
                 "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-                "titre": "SAV & maintenance dédiés"
-              },
-              {
-                "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                "titre": "Expérience"
+                "titre": "SAV & maintenance dédiés",
+                "imageUrl": ""
               }
             ]
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__root\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -645,9 +691,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/literalsByProp",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/literalsByProp",
         "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/items/parts/Carte/literalsByProp"
@@ -656,7 +702,7 @@
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__root\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -685,20 +731,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/SectionHeader/component/props/titre",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/SectionHeader/component/props/titre",
         "observedValue": [
           {
             "text": "Pourquoi choisir nos portes de garage industrielles ?"
           }
         ],
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Pourquoi choisir nos portes de garage industrielles ?",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -727,16 +773,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/SectionHeader/component/props/accroche",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/SectionHeader/component/props/accroche",
         "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"SectionHeader__Accroche\"]",
         "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -763,16 +809,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/0/titre",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/0/titre",
         "observedValue": "Sécurité et conformité",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TitreReassurance\"]",
         "observedValue": "Sécurité et conformité",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -799,16 +845,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/1/titre",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/1/titre",
         "observedValue": "Intégration parfaite",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TitreReassurance\"]",
         "observedValue": "Sécurité et conformité",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -835,16 +881,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/2/titre",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/2/titre",
         "observedValue": "Moteur performant",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TitreReassurance\"]",
         "observedValue": "Sécurité et conformité",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -871,16 +917,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/3/titre",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/3/titre",
         "observedValue": "SAV & maintenance dédiés",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TitreReassurance\"]",
         "observedValue": "Sécurité et conformité",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -907,16 +953,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TexteReassurance\"]",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -943,16 +989,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/1/texte",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/1/texte",
         "observedValue": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TexteReassurance\"]",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -979,16 +1025,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/2/texte",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/2/texte",
         "observedValue": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TexteReassurance\"]",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1015,16 +1061,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/3/texte",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/3/texte",
         "observedValue": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TexteReassurance\"]",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1051,19 +1097,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/4",
-        "observedValue": {
-          "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-          "titre": "Expérience"
-        },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": true,
-        "notes": []
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/4",
+        "observedValue": null,
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": false,
+        "notes": [
+          "pointer-index-out-of-range:/anatomy/root/parts/items/parts/Carte/repeat/sample/4"
+        ]
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TitreReassurance\"]",
         "observedValue": "Sécurité et conformité",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1073,7 +1118,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:items.sample[4].variante-d-origine:{\"texte\":\"Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.\",\"titre\":\"Expérience\"}!=\"Disposition=5 cartes\""
+        "contract-does-not-carry-figma-fact:items.sample[4].variante-d-origine=\"Disposition=5 cartes\""
       ],
       "deferredWorkId": null
     },
@@ -1097,7 +1142,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/props/0",
+        "reference": "ds.reassurances@1.2.0#/props/0",
         "observedValue": {
           "name": "disposition",
           "type": {
@@ -1123,14 +1168,14 @@
             }
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1159,16 +1204,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/props/0/default",
+        "reference": "ds.reassurances@1.2.0#/props/0/default",
         "observedValue": "4Cartes",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1199,20 +1244,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/props/0/bindings/figma/values",
+        "reference": "ds.reassurances@1.2.0#/props/0/bindings/figma/values",
         "observedValue": {
           "4Cartes": "4 cartes",
           "quatrecartesdeuxcta": "QuatreCartesDeuxCta",
           "5Cartes": "5 cartes"
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1256,9 +1301,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/props/1/default",
+        "reference": "ds.reassurances@1.2.0#/props/1/default",
         "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": false,
         "notes": [
           "pointer-unresolved:/props/1/default"
@@ -1267,7 +1312,7 @@
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__items\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1300,16 +1345,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/props/1/bindings/figma/kind",
+        "reference": "ds.reassurances@1.2.0#/props/1/bindings/figma/kind",
         "observedValue": "NONE",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__items\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1351,7 +1396,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/SectionHeader/component",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/SectionHeader/component",
         "observedValue": {
           "id": "ds.section-header",
           "props": {
@@ -1361,17 +1406,18 @@
               }
             ],
             "accroche": "Plus de 50 ans d’expérience",
+            "accroche2": true,
             "disposition": "standard"
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"SectionHeader__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1398,16 +1444,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/SectionHeader/component/props/disposition",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/SectionHeader/component/props/disposition",
         "observedValue": "standard",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"SectionHeader__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1434,29 +1480,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/SectionHeader/component/props/accroche2",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/SectionHeader/component/props/accroche2"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/SectionHeader/component/props/accroche2",
+        "observedValue": true,
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"SectionHeader__Accroche\"]",
         "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:SectionHeader.Accroche2 (BOOLEAN)=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1478,8 +1520,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/SectionHeader",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/SectionHeader",
         "observedValue": {
+          "description": "INSTANCE 2114:3612 de ds.section-header, 1550×83. accroche2 est porté explicitement : l'occurrence met Accroche2=true et le rendu concordait jusqu'ici par le seul défaut de l'enfant — un changement de ce défaut aurait fait dériver reassurances en silence.",
           "component": {
             "id": "ds.section-header",
             "props": {
@@ -1489,18 +1532,19 @@
                 }
               ],
               "accroche": "Plus de 50 ans d’expérience",
+              "accroche2": true,
               "disposition": "standard"
             }
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"SectionHeader__Accroche\"]",
         "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1533,16 +1577,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/itemsProp",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/itemsProp",
         "observedValue": "items",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__root\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1569,16 +1613,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/component/props/disposition",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/component/props/disposition",
         "observedValue": "reassurance",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__root\"]",
         "observedValue": "Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1609,21 +1653,21 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/component",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/component",
         "observedValue": {
           "id": "ds.carte",
           "props": {
             "disposition": "reassurance"
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TexteReassurance\"]",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1668,18 +1712,24 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/BoutonQuatreCartes/component",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component",
         "observedValue": {
-          "id": "ds.button"
+          "id": "ds.button",
+          "text": "Contactez-nous",
+          "props": {
+            "variant": "outilneNoir",
+            "iconRight": true,
+            "iconRightGlyph": "arrow-right"
+          }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1709,19 +1759,19 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/BoutonQuatreCartes/visibleWhen",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/visibleWhen",
         "observedValue": {
           "prop": "disposition",
           "equals": "4Cartes"
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -1748,29 +1798,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/BoutonQuatreCartes/component/text",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/BoutonQuatreCartes/component/text"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component/text",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:BoutonQuatreCartes.Libelle=\"Contactez-nous\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1788,29 +1834,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/variant",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/BoutonQuatreCartes/component/props/variant"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/variant",
+        "observedValue": "outilneNoir",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:BoutonQuatreCartes.Style (VARIANT « Outline noir » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)=\"outilneNoir\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1828,31 +1870,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRight",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRight"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRight",
+        "observedValue": true,
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Button__iconRight\"]",
-        "observedValue": null,
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:BoutonQuatreCartes.Icone droite (BOOLEAN)=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1870,31 +1906,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRightGlyph",
-        "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRightGlyph"
-        ]
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRightGlyph",
+        "observedValue": "arrow-right",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Button__iconRight\"]",
-        "observedValue": null,
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "reassurances-disposition-4-cartes"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:BoutonQuatreCartes.Glyphe droite (INSTANCE_SWAP)=\"arrow-right\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1915,15 +1945,21 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root",
         "observedValue": {
+          "description": "COMPONENT « Disposition=4 cartes » 2114:3619, 1550×731, layoutMode VERTICAL, itemSpacing 48, counterAxisAlignItems CENTER, layoutSizingHorizontal FIXED, aucun padding — la largeur portée est donc à la fois la boîte de CONTENU et la boîte du master, sans arithmétique à expliciter. Les 731px de hauteur se recomposent exactement : 83 (SectionHeader) + 48 + 498 (items) + 48 + 54 (bouton).",
           "layout": {
             "display": "flex",
             "direction": "column",
             "align": "center"
           },
+          "literals": {
+            "width": "1550px",
+            "gap": "48px"
+          },
           "parts": {
             "SectionHeader": {
+              "description": "INSTANCE 2114:3612 de ds.section-header, 1550×83. accroche2 est porté explicitement : l'occurrence met Accroche2=true et le rendu concordait jusqu'ici par le seul défaut de l'enfant — un changement de ce défaut aurait fait dériver reassurances en silence.",
               "component": {
                 "id": "ds.section-header",
                 "props": {
@@ -1933,17 +1969,26 @@
                     }
                   ],
                   "accroche": "Plus de 50 ans d’expérience",
+                  "accroche2": true,
                   "disposition": "standard"
                 }
               }
             },
             "items": {
+              "description": "FRAME « items » 2114:3613, 1550×498, layoutMode HORIZONTAL, itemSpacing 32, primaryAxisAlignItems CENTER, layoutSizingHorizontal FILL (layoutAlign STRETCH). LIMITE NOMMÉE : le FILL horizontal d'un enfant de conteneur COLUMN s'écrit align-self: stretch, pas layout.grow — dans une colonne, grow porte sur l'axe VERTICAL et étirerait la frame en hauteur. Le dossier d'audit attend ce fait au pointeur /layout/grow ; il reste donc divergent alors que le rendu est fidèle.",
               "layout": {
                 "direction": "row",
                 "justify": "center"
               },
+              "literals": {
+                "gap": "32px"
+              },
+              "declared": {
+                "align-self": "stretch"
+              },
               "parts": {
                 "Carte": {
+                  "description": "Les 4 INSTANCE Carte (2114:3614 … 2114:3617) partagent le master 2063:1606 et sont FIXED à 364px. La largeur vit sur le root de ds.carte (literals.width 364px), pas ici : un parent ne peut pas restyler une instance — même mécanique que ds.avatar-group. LIMITE NOMMÉE, non contournée : la variante « Disposition=5 cartes » tient ses 5 cartes à 285px, une largeur qui dépend d'une prop du PARENT ; le vocabulaire n'a pas de style d'instance par variante du parent, et ds.carte n'a aucune prop qui distingue les deux dispositions. Reporté sur ds.carte plutôt que simulé ici.",
                   "component": {
                     "id": "ds.carte",
                     "props": {
@@ -1955,23 +2000,23 @@
                     "sample": [
                       {
                         "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-                        "titre": "Sécurité et conformité"
+                        "titre": "Sécurité et conformité",
+                        "imageUrl": ""
                       },
                       {
                         "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-                        "titre": "Intégration parfaite"
+                        "titre": "Intégration parfaite",
+                        "imageUrl": ""
                       },
                       {
                         "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-                        "titre": "Moteur performant"
+                        "titre": "Moteur performant",
+                        "imageUrl": ""
                       },
                       {
                         "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-                        "titre": "SAV & maintenance dédiés"
-                      },
-                      {
-                        "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                        "titre": "Expérience"
+                        "titre": "SAV & maintenance dédiés",
+                        "imageUrl": ""
                       }
                     ]
                   }
@@ -1979,8 +2024,15 @@
               }
             },
             "BoutonCinqCartes": {
+              "description": "INSTANCE 2114:3692 de ds.button dans la variante « 5 cartes », 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight).",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconRight": true,
+                  "iconRightGlyph": "arrow-right"
+                }
               },
               "visibleWhen": {
                 "prop": "disposition",
@@ -1988,13 +2040,26 @@
               }
             },
             "Boutons": {
+              "description": "FRAME « Boutons » 2114:3650 de la variante « QuatreCartesDeuxCta », 570×54, layoutMode HORIZONTAL, itemSpacing 16.",
               "layout": {
                 "direction": "row"
               },
+              "literals": {
+                "gap": "16px"
+              },
               "parts": {
                 "Bouton": {
+                  "description": "INSTANCE 2114:3651, 305×54 : Style « Outline noir », Libelle « Motifs disponibles », Icone gauche true (Glyphe gauche 230:585, master Pdf), Icone droite true (Glyphe droite 230:599, master Download).",
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "text": "Motifs disponibles",
+                    "props": {
+                      "variant": "outilneNoir",
+                      "iconLeft": true,
+                      "iconLeftGlyph": "pdf",
+                      "iconRight": true,
+                      "iconRightGlyph": "download"
+                    }
                   },
                   "visibleWhen": {
                     "prop": "disposition",
@@ -2002,8 +2067,15 @@
                   }
                 },
                 "BoutonSecondaire": {
+                  "description": "INSTANCE 2114:3652, 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true (Glyphe droite 6:104, master ArrowRight).",
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "text": "Contactez-nous",
+                    "props": {
+                      "variant": "outilneNoir",
+                      "iconRight": true,
+                      "iconRightGlyph": "arrow-right"
+                    }
                   },
                   "visibleWhen": {
                     "prop": "disposition",
@@ -2017,8 +2089,15 @@
               }
             },
             "BoutonQuatreCartes": {
+              "description": "INSTANCE 2114:3618 de ds.button, 249×54 : Style « Outline noir » (strokeWeight 2, stroke #26282C lié à la variable 5:40, remplissage blanc invisible), Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight). Le contour de 2px est le rendu de la variante ; il n'est pas porté en literals ici — un parent ne restyle pas une instance, et « border » n'est pas un canal de literals.",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconRight": true,
+                  "iconRightGlyph": "arrow-right"
+                }
               },
               "visibleWhen": {
                 "prop": "disposition",
@@ -2030,14 +2109,14 @@
             "font-family": "{font.family.montserrat}"
           }
         },
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -2047,8 +2126,8 @@
       "outcome": "divergent",
       "localizedSource": "comparison",
       "reasons": [
-        "raw-over-threshold:38.87919222236722>2.5",
-        "region-over-budget:whole:38.87919222236722>2.5"
+        "raw-over-threshold:38.613450729282505>2.5",
+        "region-over-budget:whole:38.613450729282505>2.5"
       ],
       "deferredWorkId": null
     },
@@ -2072,9 +2151,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/component/props/imageUrl",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/component/props/imageUrl",
         "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/items/parts/Carte/component/props/imageUrl"
@@ -2083,7 +2162,7 @@
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__reassuranceImage\"]",
         "observedValue": "",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -2112,9 +2191,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/BoutonQuatreCartes/literals/border",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/literals/border",
         "observedValue": null,
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/BoutonQuatreCartes/literals/border"
@@ -2123,7 +2202,7 @@
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -2155,16 +2234,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/semantics/element",
+        "reference": "ds.reassurances@1.2.0#/semantics/element",
         "observedValue": "div",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Reassurances__root\"]",
         "observedValue": "Plus de 50 ans d’expériencePourquoi choisir nos portes de garage industrielles ?Sécurité et conformitéRespectent les normes des bâtiments publics et les réglementations pompiers.Intégration parfaiteConçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).Moteur performantOuverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.SAV & maintenance dédiésRéactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.Contactez-nous",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -2194,20 +2273,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/SectionHeader/component/props/titre",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/SectionHeader/component/props/titre",
         "observedValue": [
           {
             "text": "Pourquoi choisir nos portes de garage industrielles ?"
           }
         ],
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Pourquoi choisir nos portes de garage industrielles ?",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -2239,16 +2318,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.reassurances@1.1.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte",
+        "reference": "ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "c17db5d7ac1432903a1479df29ac818725f5866941371fec4d8832610a11b4a5",
+        "sourceHash": "ef30a879194a286a0babe827c9210d21e2ac07ced114fab818a82b4285c12e3a",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Reassurances/Reassurances.tsx#[class*=\"Carte__TexteReassurance\"]",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "sourceHash": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "available": true,
         "notes": []
       },
@@ -2268,8 +2347,8 @@
       "verdict": "fail",
       "probative": true,
       "reasons": [
-        "raw-over-threshold:38.87919222236722>2.5",
-        "region-over-budget:whole:38.87919222236722>2.5"
+        "raw-over-threshold:38.613450729282505>2.5",
+        "region-over-budget:whole:38.613450729282505>2.5"
       ],
       "figma": {
         "nodeId": "2114:3619",
@@ -2284,7 +2363,7 @@
       },
       "contract": {
         "id": "ds.reassurances",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "factIds": [
           "reassurances.structure.root",
           "reassurances.structure.root-gap",
@@ -2335,19 +2414,31 @@
           "items": [
             {
               "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-              "titre": "Sécurité et conformité"
+              "titre": "Sécurité et conformité",
+              "imageUrl": {
+                "$asset": "carte-image-ab6a82d4b83b"
+              }
             },
             {
               "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-              "titre": "Intégration parfaite"
+              "titre": "Intégration parfaite",
+              "imageUrl": {
+                "$asset": "carte-image-8d05df2058fe"
+              }
             },
             {
               "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-              "titre": "Moteur performant"
+              "titre": "Moteur performant",
+              "imageUrl": {
+                "$asset": "carte-image-d00de3d48206"
+              }
             },
             {
               "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-              "titre": "SAV & maintenance dédiés"
+              "titre": "SAV & maintenance dédiés",
+              "imageUrl": {
+                "$asset": "carte-image-7bd2daf5061e"
+              }
             }
           ]
         }
@@ -2355,7 +2446,7 @@
       "generated": {
         "componentFile": "src/components/Reassurances/Reassurances.tsx",
         "export": "Reassurances",
-        "bundleSha256": "cbcbf285b9c99a1ac4504e6d95a631ad6f78d29cca03ee22bbde25a570f0b0ea",
+        "bundleSha256": "341a2ea1d3be7e2f2ac50cec74904dd98f20b8e3b773d756e33300a1dfc2a31e",
         "harnessConfigSha256": "74123f296201c2af67f312d1d0088b8f9d8ff3950ab5bde79f4765d571123ede",
         "fontsLoaded": true
       },
@@ -2366,9 +2457,9 @@
           "height": 4902
         },
         "generated": {
-          "signalPixels": 348770,
-          "width": 3296,
-          "height": 1462
+          "signalPixels": 389100,
+          "width": 3292,
+          "height": 1654
         },
         "contrastOk": true
       },
@@ -2378,25 +2469,25 @@
           "height": 4902
         },
         "generatedRoot": {
-          "width": 3104,
-          "height": 1270
+          "width": 3100,
+          "height": 1462
         },
         "deltaPx": {
-          "width": 0,
-          "height": -3632
+          "width": -4,
+          "height": -3440
         },
         "verdict": "fail"
       },
       "pixels": {
-        "rawPct": 38.87919222236722,
-        "maskedDiagnosticPct": 35.55730086290369,
+        "rawPct": 38.613450729282505,
+        "maskedDiagnosticPct": 37.322538779934774,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 38.87919222236722,
+            "score": 38.613450729282505,
             "maxDiffPct": 2.5,
-            "signalPixels": 348770
+            "signalPixels": 389100
           }
         ],
         "verdict": "fail"
@@ -2487,51 +2578,51 @@
           "id": "reassurances-disposition-4-cartes.figma",
           "kind": "figma",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/figma.png",
-          "sha256": "b51a214eb958b6b8dd794cf2dd39c0e8b8ebae45a879a744969af8ccef392cca",
+          "sha256": "3406e9233385a2b0bae2121f9580046fe49712581a6b954b62620fdd0df5c731",
           "mediaType": "image/png",
-          "width": 3104,
+          "width": 3110,
           "height": 4898,
-          "bytes": 9928185
+          "bytes": 9932797
         },
         {
           "id": "reassurances-disposition-4-cartes.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/generated.png",
-          "sha256": "307021342c166e559647b02da047a446df86f13a904f67c96ff208d65a7451dc",
+          "sha256": "a2286b469be1d689607039c78c01b4cd594017bb4afc50042274a7f78a00a2e6",
           "mediaType": "image/png",
-          "width": 3104,
+          "width": 3110,
           "height": 4898,
-          "bytes": 295148
+          "bytes": 300854
         },
         {
           "id": "reassurances-disposition-4-cartes.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/diff.png",
-          "sha256": "78b1537e01637410ba642866c598e584bebcb3c416250b7426056207787977bb",
+          "sha256": "a405724eae294ee56e413489e9c972cb76fd0ca57e3cd80204adc6f01274657f",
           "mediaType": "image/png",
-          "width": 3104,
+          "width": 3110,
           "height": 4898,
-          "bytes": 749000
+          "bytes": 749734
         },
         {
           "id": "reassurances-disposition-4-cartes.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/triptych.png",
-          "sha256": "b8b28a50f73e1b15fa1a41b652c5c1cbe8e1e8c191be1e76c16c21f1745f4b4a",
+          "sha256": "cb7f12b7db0a242e81eac0dd47b8725182d19def97da063a5f94ac29caa0a92a",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 11299054
+          "bytes": 11302160
         },
         {
           "id": "reassurances-disposition-4-cartes.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/metadata.json",
-          "sha256": "e195cc6eba35569a04d069cd1047919a623bde82aa7210cfb97207fc09415a24",
+          "sha256": "f877a14d132a5a3e4548ca52813e7ebe64c2271188233983d8bb6f7d7cae279d",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 7666
+          "bytes": 8016
         }
       ]
     }
@@ -2541,56 +2632,56 @@
       "id": "reassurances-disposition-4-cartes.figma",
       "kind": "figma",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/figma.png",
-      "sha256": "b51a214eb958b6b8dd794cf2dd39c0e8b8ebae45a879a744969af8ccef392cca",
+      "sha256": "3406e9233385a2b0bae2121f9580046fe49712581a6b954b62620fdd0df5c731",
       "mediaType": "image/png",
-      "width": 3104,
+      "width": 3110,
       "height": 4898,
-      "bytes": 9928185
+      "bytes": 9932797
     },
     {
       "id": "reassurances-disposition-4-cartes.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/generated.png",
-      "sha256": "307021342c166e559647b02da047a446df86f13a904f67c96ff208d65a7451dc",
+      "sha256": "a2286b469be1d689607039c78c01b4cd594017bb4afc50042274a7f78a00a2e6",
       "mediaType": "image/png",
-      "width": 3104,
+      "width": 3110,
       "height": 4898,
-      "bytes": 295148
+      "bytes": 300854
     },
     {
       "id": "reassurances-disposition-4-cartes.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/diff.png",
-      "sha256": "78b1537e01637410ba642866c598e584bebcb3c416250b7426056207787977bb",
+      "sha256": "a405724eae294ee56e413489e9c972cb76fd0ca57e3cd80204adc6f01274657f",
       "mediaType": "image/png",
-      "width": 3104,
+      "width": 3110,
       "height": 4898,
-      "bytes": 749000
+      "bytes": 749734
     },
     {
       "id": "reassurances-disposition-4-cartes.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/triptych.png",
-      "sha256": "b8b28a50f73e1b15fa1a41b652c5c1cbe8e1e8c191be1e76c16c21f1745f4b4a",
+      "sha256": "cb7f12b7db0a242e81eac0dd47b8725182d19def97da063a5f94ac29caa0a92a",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 11299054
+      "bytes": 11302160
     },
     {
       "id": "reassurances-disposition-4-cartes.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/metadata.json",
-      "sha256": "e195cc6eba35569a04d069cd1047919a623bde82aa7210cfb97207fc09415a24",
+      "sha256": "f877a14d132a5a3e4548ca52813e7ebe64c2271188233983d8bb6f7d7cae279d",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 7666
+      "bytes": 8016
     }
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:18",
+    "divergent-facts:10",
     "failed-cases:1"
   ]
 }

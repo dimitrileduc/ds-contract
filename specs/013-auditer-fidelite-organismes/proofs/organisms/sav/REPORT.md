@@ -41,8 +41,8 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `sav.semantic.texte-element` | semantic | carry-both | {"nodeId":"2108:3103","detail":"TEXT layer, 2 paragraphes separes par un saut de ligne dur"} | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA | src/components/SAV/SAV.tsx#[class*="SAV__vousRencontrezUnProblmeA"] | **proved** | — | — |
 | `sav.structure.gap-root` | structure | carry-both | 2108:3105#root.itemSpacing | ds.sav@1.2.0#/anatomy/root/layout/gap | src/components/SAV/SAV.tsx#[class*="SAV__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:root.itemSpacing=10 |
 | `sav.structure.gap-inner` | structure | carry-both | 2108:3105#inner.itemSpacing | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/layout/gap | src/components/SAV/SAV.tsx#[class*="SAV__inner"] | **divergent** | contract | contract-does-not-carry-figma-fact:inner.itemSpacing=32 |
-| `sav.visual.texte-font-size` | visual | carry-both | 2108:3105#vousRencontrezUnProblmeA.font-size | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/font- | src/components/SAV/SAV.tsx#[class*="SAV__vousRencontrezUnProblmeA"] | **divergent** | contract | contract-value-differs:vousRencontrezUnProblmeA.font-size:"{font.size.18}"!="18px" |
-| `sav.visual.texte-line-height` | visual | carry-both | 2108:3105#vousRencontrezUnProblmeA.line-height | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/line- | src/components/SAV/SAV.tsx#[class*="SAV__vousRencontrezUnProblmeA"] | **divergent** | contract | contract-value-differs:vousRencontrezUnProblmeA.line-height:"{font.line-height.27}"!="27px" |
+| `sav.visual.texte-font-size` | visual | carry-both | 2108:3105#vousRencontrezUnProblmeA.font-size | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/font- | src/components/SAV/SAV.tsx#[class*="SAV__vousRencontrezUnProblmeA"] | **proved** | — | — |
+| `sav.visual.texte-line-height` | visual | carry-both | 2108:3105#vousRencontrezUnProblmeA.line-height | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/line- | src/components/SAV/SAV.tsx#[class*="SAV__vousRencontrezUnProblmeA"] | **proved** | — | — |
 | `sav.visual.background-image` | visual | carry-with-named-limit | 2108:3105#background.fills[0].imageRef | ds.sav@1.2.0#/anatomy/root/parts/section/parts/background/tokens/background-image | src/components/SAV/SAV.tsx#[class*="SAV__background"] | **divergent** | contract | contract-does-not-carry-figma-fact:background.fills[0].imageRef="3e173874828861c294938a12deea5a5a7a1799dd" |
 | `sav.visual.img-image` | visual | carry-with-named-limit | 2108:3105#img.fills[0].imageRef | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/tokens/background-image | src/components/SAV/SAV.tsx#[class*="SAV__img"] | **divergent** | contract | contract-does-not-carry-figma-fact:img.fills[0].imageRef="429c615cb090b3aa0800188acda4bc59cc6445b0" |
 | `sav.composition.section-header-titre` | composition | carry-both | 2108:3105#SectionHeader.Titre | ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/titre | src/components/SAV/SAV.tsx#[class*="SectionHeader__Titre"] | **divergent** | contract | contract-value-differs:SectionHeader.Titre:[{"text":"Dépannage / SAV"}]!="Dépannage / SAV" |
@@ -88,15 +88,13 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 - **Divergence** `sav.property.titre` — source : **generated** — probe-not-projected:child-renders-a-literal
 - **Divergence** `sav.structure.gap-root` — source : **contract** — contract-does-not-carry-figma-fact:root.itemSpacing=10
 - **Divergence** `sav.structure.gap-inner` — source : **contract** — contract-does-not-carry-figma-fact:inner.itemSpacing=32
-- **Divergence** `sav.visual.texte-font-size` — source : **contract** — contract-value-differs:vousRencontrezUnProblmeA.font-size:"{font.size.18}"!="18px"
-- **Divergence** `sav.visual.texte-line-height` — source : **contract** — contract-value-differs:vousRencontrezUnProblmeA.line-height:"{font.line-height.27}"!="27px"
 - **Divergence** `sav.visual.background-image` — source : **contract** — contract-does-not-carry-figma-fact:background.fills[0].imageRef="3e173874828861c294938a12deea5a5a7a1799dd"
 - **Divergence** `sav.visual.img-image` — source : **contract** — contract-does-not-carry-figma-fact:img.fills[0].imageRef="429c615cb090b3aa0800188acda4bc59cc6445b0"
 - **Divergence** `sav.composition.section-header-titre` — source : **contract** — contract-value-differs:SectionHeader.Titre:[{"text":"Dépannage / SAV"}]!="Dépannage / SAV"
 
 ## 8. Verdict
 
-**`divergent`** — motifs : `divergent-facts:8`
+**`divergent`** — motifs : `divergent-facts:6`
 
 Règle d'agrégation appliquée (fail-closed, data-model §10) :
 
