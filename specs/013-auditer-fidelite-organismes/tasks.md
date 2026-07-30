@@ -579,17 +579,26 @@ mêmes critères de traçabilité et de fidélité que la vague 1.
       même protocole ; dossier `proofs/organisms/reassurances/`.
       **FAIT** → `divergent` · 44 faits (22 prouvés / 18 divergents / 4 limités) ·
       pixels 38,88 %.
-- [~] T054 [US2] **PARTIEL —  remédié le 2026-07-30,  et  non.**
-       : 96,91 % → **1,04 %** de pixels (sous le seuil), 20 → 39 faits prouvés,
-      36 → 18 divergents, en ~1 h. Cause racine unique, isolée par l'audit : le moteur ne
-      savait pas exprimer les **insets** d'une part en absolu, donc le plan de fond se
-      posait à l'origine de la boîte de CONTENU (décalé des 89 px de padding) et débordait
-      du viewport de capture. Capacité ajoutée fixture d'abord (,
-      C2-refusal) : canaux , grammaire bornée, refus par nom d'un
-      inset sur une part non positionnée. Contrats  1.1.0 et 
-      1.1.0 ; override de cas  (le master matérialise 3 colonnes, React n'en rend
-      aucune sans données — l'écart mesurait l'absence de données, pas l'infidélité).
-      **Reste NON déclenché pour  et .** Texte d'origine ci-dessous.
+- [~] T054 [US2] **PARTIEL — `footer` remédié le 2026-07-30 ; `faq` et `reassurances` NON.**
+      `footer` : 96,91 % → **1,04 %** de pixels (sous le seuil de 2,5), 20 → 39 faits
+      prouvés, 36 → 18 divergents, en ~1 h. **Cause racine unique**, isolée par l'audit
+      plutôt que cherchée à l'œil : le moteur savait dire `position: absolute` mais **pas
+      les insets**, donc le plan de fond se posait à son origine STATIQUE — le coin de la
+      boîte de CONTENU du root — décalé des 89 px de padding horizontal, et débordait du
+      viewport de capture d'exactement ces 89 px. Rendu visible : fond blanc, textes blancs
+      sur blanc. Capacité ajoutée **fixture d'abord** (`declared-inset-channels`,
+      C2-refusal) : canaux `top`/`right`/`bottom`/`left`, grammaire bornée, refus **par
+      nom** d'un inset sur une part non positionnée — CSS le laisserait tomber en silence,
+      et un fait silencieusement ignoré est un faux reçu.
+      Contrats `ds.footer` 1.1.0 et `ds.footer-column` 1.1.0 (largeur 310 px sur le root de
+      l'ENFANT : un parent ne peut pas restyler une instance). Override de cas `items` — le
+      master matérialise 3 colonnes, React n'en rend aucune sans données, donc sans lui
+      l'écart pixel mesurait une absence de données et non une infidélité.
+      Limites nommées, non contournées : largeur du `PiquerayLogo` non portée (contrat
+      partagé avec `ds.header`), `Row` reconstruit en flexbox alors que le master n'a pas
+      d'auto-layout, ordre visuel porté par l'ordre des parts faute de `row-reverse` dans
+      le vocabulaire déclaré.
+      **Non déclenché pour `faq` et `reassurances`.** Texte d'origine ci-dessous.
       **Conditionnel — en attente d'arbitrage owner.** Les trois
       sujets sont classifiés `divergent` ; la remédiation au pixel serait un chantier de
       l'ampleur de T037 (une journée pour la vague 1). L'ordre validé avec l'owner le
