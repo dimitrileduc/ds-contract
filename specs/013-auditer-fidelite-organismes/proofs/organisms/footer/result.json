@@ -4,7 +4,7 @@
   "wave": 2,
   "contract": {
     "id": "ds.footer",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "path": "contracts/footer.contract.json"
   },
   "figmaSetNodeId": "2120:4785",
@@ -150,78 +150,65 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root",
+        "reference": "ds.footer@1.1.0#/anatomy/root",
         "observedValue": {
+          "description": "COMPONENT « Footer » 2120:4785, 1728×619, layoutMode VERTICAL, itemSpacing 0, padding 128/89/32/89. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés. La feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav).",
           "layout": {
             "display": "flex",
             "direction": "column"
           },
+          "literals": {
+            "width": "1550px",
+            "padding-top": "128px",
+            "padding-right": "89px",
+            "padding-bottom": "32px",
+            "padding-left": "89px",
+            "gap": "0px"
+          },
+          "declared": {
+            "position": "relative"
+          },
           "parts": {
             "Background": {
+              "description": "Plan de fond ABSOLU du master (layoutPositioning ABSOLUTE, 1728×459 posé en (0,0)). Les insets sont portés explicitement : sans eux le plan se poserait à son origine STATIQUE, c'est-à-dire au coin de la boîte de CONTENU du root, décalé des 89px de padding horizontal — il débordait alors du viewport de capture de ces 89px exactement.",
+              "declared": {
+                "position": "absolute",
+                "top": "0",
+                "left": "0",
+                "right": "0"
+              },
+              "literals": {
+                "height": "459px"
+              },
               "tokens": {
                 "background-color": "{color.noir-bleute}"
               }
             },
             "Row": {
+              "description": "FRAME 2120:4779 de 1385px, layoutMode ABSENT dans Figma : ses enfants y sont positionnés en absolu. Le code les remet en flux. L'ordre visuel du master est l'INVERSE de son ordre document (col5, FooterColumn, col1) ; il est porté ici par l'ordre des parts et non par flex-direction: row-reverse, qui n'est pas un canal déclaré ET qui inverserait aussi les trois colonnes répétées entre elles. LIMITE NOMMÉE : reconstruction flexbox d'une frame sans auto-layout.",
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "justify": "space-between",
+                "align": "start"
+              },
+              "literals": {
+                "width": "1385px"
+              },
+              "declared": {
+                "position": "relative"
+              },
               "parts": {
-                "col5": {
+                "col1": {
                   "layout": {
                     "direction": "column"
                   },
-                  "parts": {
-                    "TitreReseaux": {
-                      "text": "Suivez-nous",
-                      "tokens": {
-                        "color": "{color.orange}"
-                      }
-                    },
-                    "rseauxSociaux": {
-                      "layout": {
-                        "direction": "row",
-                        "align": "center"
-                      },
-                      "parts": {
-                        "Facebook": {
-                          "icon": {
-                            "asset": "facebook",
-                            "size": 32
-                          }
-                        },
-                        "Instagram": {
-                          "icon": {
-                            "asset": "instagram",
-                            "size": 32
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "FooterColumn": {
-                  "component": {
-                    "id": "ds.footer-column"
+                  "literals": {
+                    "gap": "32px"
                   },
-                  "repeat": {
-                    "itemsProp": "items",
-                    "sample": [
-                      {
-                        "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-                        "titre": "Contact"
-                      },
-                      {
-                        "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
-                        "titre": "Horaires"
-                      },
-                      {
-                        "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
-                        "titre": "Adresse"
-                      }
-                    ]
-                  }
-                },
-                "col1": {
                   "parts": {
                     "PiquerayLogo": {
+                      "description": "Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.",
                       "component": {
                         "id": "ds.piqueray-logo",
                         "props": {
@@ -231,25 +218,117 @@
                     },
                     "Bouton": {
                       "component": {
-                        "id": "ds.button"
+                        "id": "ds.button",
+                        "text": "Contactez-nous",
+                        "props": {
+                          "variant": "outlineBlanc",
+                          "iconRight": false
+                        }
+                      }
+                    }
+                  }
+                },
+                "FooterColumn": {
+                  "description": "Trois instances de ds.footer-column dans le master, chacune de 310px. La largeur vit sur le root de l'ENFANT (ds.footer-column) : le contrat parent ne peut pas restyler une instance, et footer en est le seul consommateur.",
+                  "component": {
+                    "id": "ds.footer-column"
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                        "titre": "Contact"
+                      },
+                      {
+                        "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                        "titre": "Horaires"
+                      },
+                      {
+                        "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                        "titre": "Adresse"
+                      }
+                    ]
+                  }
+                },
+                "col5": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "literals": {
+                    "gap": "16px"
+                  },
+                  "parts": {
+                    "TitreReseaux": {
+                      "text": "Suivez-nous",
+                      "tokens": {
+                        "color": "{color.orange}"
+                      },
+                      "literals": {
+                        "font-size": "24px",
+                        "line-height": "30px"
+                      }
+                    },
+                    "rseauxSociaux": {
+                      "layout": {
+                        "direction": "row",
+                        "align": "center"
+                      },
+                      "literals": {
+                        "gap": "16px"
+                      },
+                      "parts": {
+                        "Facebook": {
+                          "description": "Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.",
+                          "icon": {
+                            "asset": "facebook",
+                            "size": 31.857126235961914
+                          },
+                          "tokens": {
+                            "color": "{color.noir-bleute}"
+                          }
+                        },
+                        "Instagram": {
+                          "icon": {
+                            "asset": "instagram",
+                            "size": 31.857126235961914
+                          },
+                          "tokens": {
+                            "color": "{color.noir-bleute}"
+                          }
+                        }
                       }
                     }
                   }
                 }
               }
             },
-            "Spacer": {},
-            "Separator": {
-              "tokens": {
-                "border-color": "{color.blanc}"
+            "Spacer": {
+              "literals": {
+                "height": "121px"
               }
             },
-            "spacer2": {},
+            "Separator": {
+              "layout": {
+                "grow": true
+              },
+              "tokens": {
+                "border-color": "{color.blanc}"
+              },
+              "literals": {
+                "border-width": "1px"
+              }
+            },
+            "spacer2": {
+              "literals": {
+                "height": "27px"
+              }
+            },
             "Copyright": {
               "component": {
                 "id": "ds.copyright",
                 "props": {
-                  "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+                  "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
                 }
               }
             }
@@ -258,14 +337,14 @@
             "font-family": "{font.family.montserrat}"
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -292,19 +371,19 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/layout",
+        "reference": "ds.footer@1.1.0#/anatomy/root/layout",
         "observedValue": {
           "display": "flex",
           "direction": "column"
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -333,18 +412,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/literals/width",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/width"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/literals/width",
+        "observedValue": "1550px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -354,7 +431,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:root.width=\"1728px\""
+        "contract-value-differs:root.width:\"1550px\"!=\"1728px\""
       ],
       "deferredWorkId": null
     },
@@ -373,29 +450,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/literals/padding-top",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/padding-top"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/literals/padding-top",
+        "observedValue": "128px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.padding-top=\"128px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -413,29 +486,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/literals/padding-right",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/padding-right"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/literals/padding-right",
+        "observedValue": "89px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.padding-right=\"89px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -453,29 +522,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/literals/padding-bottom",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/padding-bottom"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/literals/padding-bottom",
+        "observedValue": "32px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.padding-bottom=\"32px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -493,29 +558,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/literals/padding-left",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/padding-left"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/literals/padding-left",
+        "observedValue": "89px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.padding-left=\"89px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -533,16 +594,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Background/tokens/background-color",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Background/tokens/background-color",
         "observedValue": "{color.noir-bleute}",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Background\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -569,9 +630,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Background/layout/position",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Background/layout/position",
         "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Background/layout/position"
@@ -580,7 +641,7 @@
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Background\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -609,29 +670,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Background/literals/height",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Background/literals/height"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Background/literals/height",
+        "observedValue": "459px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Background\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Background.height=\"459px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -652,67 +709,32 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row",
         "observedValue": {
+          "description": "FRAME 2120:4779 de 1385px, layoutMode ABSENT dans Figma : ses enfants y sont positionnés en absolu. Le code les remet en flux. L'ordre visuel du master est l'INVERSE de son ordre document (col5, FooterColumn, col1) ; il est porté ici par l'ordre des parts et non par flex-direction: row-reverse, qui n'est pas un canal déclaré ET qui inverserait aussi les trois colonnes répétées entre elles. LIMITE NOMMÉE : reconstruction flexbox d'une frame sans auto-layout.",
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "justify": "space-between",
+            "align": "start"
+          },
+          "literals": {
+            "width": "1385px"
+          },
+          "declared": {
+            "position": "relative"
+          },
           "parts": {
-            "col5": {
+            "col1": {
               "layout": {
                 "direction": "column"
               },
-              "parts": {
-                "TitreReseaux": {
-                  "text": "Suivez-nous",
-                  "tokens": {
-                    "color": "{color.orange}"
-                  }
-                },
-                "rseauxSociaux": {
-                  "layout": {
-                    "direction": "row",
-                    "align": "center"
-                  },
-                  "parts": {
-                    "Facebook": {
-                      "icon": {
-                        "asset": "facebook",
-                        "size": 32
-                      }
-                    },
-                    "Instagram": {
-                      "icon": {
-                        "asset": "instagram",
-                        "size": 32
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "FooterColumn": {
-              "component": {
-                "id": "ds.footer-column"
+              "literals": {
+                "gap": "32px"
               },
-              "repeat": {
-                "itemsProp": "items",
-                "sample": [
-                  {
-                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-                    "titre": "Contact"
-                  },
-                  {
-                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
-                    "titre": "Horaires"
-                  },
-                  {
-                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
-                    "titre": "Adresse"
-                  }
-                ]
-              }
-            },
-            "col1": {
               "parts": {
                 "PiquerayLogo": {
+                  "description": "Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.",
                   "component": {
                     "id": "ds.piqueray-logo",
                     "props": {
@@ -722,21 +744,99 @@
                 },
                 "Bouton": {
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "text": "Contactez-nous",
+                    "props": {
+                      "variant": "outlineBlanc",
+                      "iconRight": false
+                    }
+                  }
+                }
+              }
+            },
+            "FooterColumn": {
+              "description": "Trois instances de ds.footer-column dans le master, chacune de 310px. La largeur vit sur le root de l'ENFANT (ds.footer-column) : le contrat parent ne peut pas restyler une instance, et footer en est le seul consommateur.",
+              "component": {
+                "id": "ds.footer-column"
+              },
+              "repeat": {
+                "itemsProp": "items",
+                "sample": [
+                  {
+                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                    "titre": "Contact"
+                  },
+                  {
+                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                    "titre": "Horaires"
+                  },
+                  {
+                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                    "titre": "Adresse"
+                  }
+                ]
+              }
+            },
+            "col5": {
+              "layout": {
+                "direction": "column"
+              },
+              "literals": {
+                "gap": "16px"
+              },
+              "parts": {
+                "TitreReseaux": {
+                  "text": "Suivez-nous",
+                  "tokens": {
+                    "color": "{color.orange}"
+                  },
+                  "literals": {
+                    "font-size": "24px",
+                    "line-height": "30px"
+                  }
+                },
+                "rseauxSociaux": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "literals": {
+                    "gap": "16px"
+                  },
+                  "parts": {
+                    "Facebook": {
+                      "description": "Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.",
+                      "icon": {
+                        "asset": "facebook",
+                        "size": 31.857126235961914
+                      },
+                      "tokens": {
+                        "color": "{color.noir-bleute}"
+                      }
+                    },
+                    "Instagram": {
+                      "icon": {
+                        "asset": "instagram",
+                        "size": 31.857126235961914
+                      },
+                      "tokens": {
+                        "color": "{color.noir-bleute}"
+                      }
+                    }
                   }
                 }
               }
             }
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Row\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -763,18 +863,21 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/layout",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/layout"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/layout",
+        "observedValue": {
+          "display": "flex",
+          "direction": "row",
+          "justify": "space-between",
+          "align": "start"
+        },
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Row\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -784,7 +887,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:Row.layoutMode=\"absent (aucun auto-layout — enfants positionnés en absolu)\""
+        "contract-value-differs:Row.layoutMode:{\"display\":\"flex\",\"direction\":\"row\",\"justify\":\"space-between\",\"align\":\"start\"}!=\"absent (aucun auto-layout — enfants positionnés en absolu)\""
       ],
       "deferredWorkId": null
     },
@@ -803,29 +906,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/literals/width",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/literals/width"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/literals/width",
+        "observedValue": "1385px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Row\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Row.width=\"1385px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -843,66 +942,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts",
         "observedValue": {
-          "col5": {
+          "col1": {
             "layout": {
               "direction": "column"
             },
-            "parts": {
-              "TitreReseaux": {
-                "text": "Suivez-nous",
-                "tokens": {
-                  "color": "{color.orange}"
-                }
-              },
-              "rseauxSociaux": {
-                "layout": {
-                  "direction": "row",
-                  "align": "center"
-                },
-                "parts": {
-                  "Facebook": {
-                    "icon": {
-                      "asset": "facebook",
-                      "size": 32
-                    }
-                  },
-                  "Instagram": {
-                    "icon": {
-                      "asset": "instagram",
-                      "size": 32
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "FooterColumn": {
-            "component": {
-              "id": "ds.footer-column"
+            "literals": {
+              "gap": "32px"
             },
-            "repeat": {
-              "itemsProp": "items",
-              "sample": [
-                {
-                  "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-                  "titre": "Contact"
-                },
-                {
-                  "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
-                  "titre": "Horaires"
-                },
-                {
-                  "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
-                  "titre": "Adresse"
-                }
-              ]
-            }
-          },
-          "col1": {
             "parts": {
               "PiquerayLogo": {
+                "description": "Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.",
                 "component": {
                   "id": "ds.piqueray-logo",
                   "props": {
@@ -912,20 +963,98 @@
               },
               "Bouton": {
                 "component": {
-                  "id": "ds.button"
+                  "id": "ds.button",
+                  "text": "Contactez-nous",
+                  "props": {
+                    "variant": "outlineBlanc",
+                    "iconRight": false
+                  }
+                }
+              }
+            }
+          },
+          "FooterColumn": {
+            "description": "Trois instances de ds.footer-column dans le master, chacune de 310px. La largeur vit sur le root de l'ENFANT (ds.footer-column) : le contrat parent ne peut pas restyler une instance, et footer en est le seul consommateur.",
+            "component": {
+              "id": "ds.footer-column"
+            },
+            "repeat": {
+              "itemsProp": "items",
+              "sample": [
+                {
+                  "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                  "titre": "Contact"
+                },
+                {
+                  "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                  "titre": "Horaires"
+                },
+                {
+                  "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                  "titre": "Adresse"
+                }
+              ]
+            }
+          },
+          "col5": {
+            "layout": {
+              "direction": "column"
+            },
+            "literals": {
+              "gap": "16px"
+            },
+            "parts": {
+              "TitreReseaux": {
+                "text": "Suivez-nous",
+                "tokens": {
+                  "color": "{color.orange}"
+                },
+                "literals": {
+                  "font-size": "24px",
+                  "line-height": "30px"
+                }
+              },
+              "rseauxSociaux": {
+                "layout": {
+                  "direction": "row",
+                  "align": "center"
+                },
+                "literals": {
+                  "gap": "16px"
+                },
+                "parts": {
+                  "Facebook": {
+                    "description": "Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.",
+                    "icon": {
+                      "asset": "facebook",
+                      "size": 31.857126235961914
+                    },
+                    "tokens": {
+                      "color": "{color.noir-bleute}"
+                    }
+                  },
+                  "Instagram": {
+                    "icon": {
+                      "asset": "instagram",
+                      "size": 31.857126235961914
+                    },
+                    "tokens": {
+                      "color": "{color.noir-bleute}"
+                    }
+                  }
                 }
               }
             }
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Row\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -935,7 +1064,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:Row.visualColumnOrder:{\"col5\":{\"layout\":{\"direction\":\"column\"},\"parts\":{\"TitreReseaux\":{\"text\":\"Suivez-nous\",\"tokens\":{\"color\":\"{color.orange}\"}},\"rseauxSociaux\":{\"layout\":{\"direction\":\"row\",\"align\":\"center\"},\"parts\":{\"Facebook\":{\"icon\":{\"asset\":\"facebook\",\"size\":32}},\"Instagram\":{\"icon\":{\"asset\":\"instagram\",\"size\":32}}}}}},\"FooterColumn\":{\"component\":{\"id\":\"ds.footer-column\"},\"repeat\":{\"itemsProp\":\"items\",\"sample\":[{\"texte\":\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\",\"titre\":\"Contact\"},{\"texte\":\"Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00\",\"titre\":\"Horaires\"},{\"texte\":\"Rue Alfred Drèze 7,  4860 Pepinster\",\"titre\":\"Adresse\"}]}},\"col1\":{\"parts\":{\"PiquerayLogo\":{\"component\":{\"id\":\"ds.piqueray-logo\",\"props\":{\"couleur\":\"blanc\"}}},\"Bouton\":{\"component\":{\"id\":\"ds.button\"}}}}}!=\"row-reverse\""
+        "contract-value-differs:Row.visualColumnOrder:{\"col1\":{\"layout\":{\"direction\":\"column\"},\"literals\":{\"gap\":\"32px\"},\"parts\":{\"PiquerayLogo\":{\"description\":\"Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.\",\"component\":{\"id\":\"ds.piqueray-logo\",\"props\":{\"couleur\":\"blanc\"}}},\"Bouton\":{\"component\":{\"id\":\"ds.button\",\"text\":\"Contactez-nous\",\"props\":{\"variant\":\"outlineBlanc\",\"iconRight\":false}}}}},\"FooterColumn\":{\"description\":\"Trois instances de ds.footer-column dans le master, chacune de 310px. La largeur vit sur le root de l'ENFANT (ds.footer-column) : le contrat parent ne peut pas restyler une instance, et footer en est le seul consommateur.\",\"component\":{\"id\":\"ds.footer-column\"},\"repeat\":{\"itemsProp\":\"items\",\"sample\":[{\"texte\":\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\",\"titre\":\"Contact\"},{\"texte\":\"Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00\",\"titre\":\"Horaires\"},{\"texte\":\"Rue Alfred Drèze 7,  4860 Pepinster\",\"titre\":\"Adresse\"}]}},\"col5\":{\"layout\":{\"direction\":\"column\"},\"literals\":{\"gap\":\"16px\"},\"parts\":{\"TitreReseaux\":{\"text\":\"Suivez-nous\",\"tokens\":{\"color\":\"{color.orange}\"},\"literals\":{\"font-size\":\"24px\",\"line-height\":\"30px\"}},\"rseauxSociaux\":{\"layout\":{\"direction\":\"row\",\"align\":\"center\"},\"literals\":{\"gap\":\"16px\"},\"parts\":{\"Facebook\":{\"description\":\"Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.\",\"icon\":{\"asset\":\"facebook\",\"size\":31.857126235961914},\"tokens\":{\"color\":\"{color.noir-bleute}\"}},\"Instagram\":{\"icon\":{\"asset\":\"instagram\",\"size\":31.857126235961914},\"tokens\":{\"color\":\"{color.noir-bleute}\"}}}}}}}!=\"row-reverse\""
       ],
       "deferredWorkId": null
     },
@@ -957,16 +1086,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5",
         "observedValue": {
           "layout": {
             "direction": "column"
+          },
+          "literals": {
+            "gap": "16px"
           },
           "parts": {
             "TitreReseaux": {
               "text": "Suivez-nous",
               "tokens": {
                 "color": "{color.orange}"
+              },
+              "literals": {
+                "font-size": "24px",
+                "line-height": "30px"
               }
             },
             "rseauxSociaux": {
@@ -974,31 +1110,41 @@
                 "direction": "row",
                 "align": "center"
               },
+              "literals": {
+                "gap": "16px"
+              },
               "parts": {
                 "Facebook": {
+                  "description": "Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.",
                   "icon": {
                     "asset": "facebook",
-                    "size": 32
+                    "size": 31.857126235961914
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}"
                   }
                 },
                 "Instagram": {
                   "icon": {
                     "asset": "instagram",
-                    "size": 32
+                    "size": 31.857126235961914
+                  },
+                  "tokens": {
+                    "color": "{color.noir-bleute}"
                   }
                 }
               }
             }
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__col5\"]",
         "observedValue": "Suivez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1025,29 +1171,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/literals/gap",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col5/literals/gap"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/literals/gap",
+        "observedValue": "16px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__col5\"]",
         "observedValue": "Suivez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:col5.gap=\"16px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1070,16 +1212,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/text",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/text",
         "observedValue": "Suivez-nous",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__TitreReseaux\"]",
         "observedValue": "Suivez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1106,16 +1248,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/color",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/color",
         "observedValue": "{color.orange}",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__TitreReseaux\"]",
         "observedValue": "Suivez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1142,9 +1284,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/font-size",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/font-size",
         "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/font-size"
@@ -1153,7 +1295,7 @@
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__TitreReseaux\"]",
         "observedValue": "Suivez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1182,9 +1324,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/line-height",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/line-height",
         "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/line-height"
@@ -1193,7 +1335,7 @@
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__TitreReseaux\"]",
         "observedValue": "Suivez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1225,21 +1367,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux",
         "observedValue": {
           "text": "Suivez-nous",
           "tokens": {
             "color": "{color.orange}"
+          },
+          "literals": {
+            "font-size": "24px",
+            "line-height": "30px"
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__TitreReseaux\"]",
         "observedValue": "Suivez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1271,19 +1417,19 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/layout",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/layout",
         "observedValue": {
           "direction": "row",
           "align": "center"
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__rseauxSociaux\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1310,29 +1456,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap",
+        "observedValue": "16px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__rseauxSociaux\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:rseauxSociaux.gap=\"16px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1354,19 +1496,19 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/icon",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/icon",
         "observedValue": {
           "asset": "facebook",
-          "size": 32
+          "size": 31.857126235961914
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Facebook\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1397,19 +1539,19 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Instagram/icon",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Instagram/icon",
         "observedValue": {
           "asset": "instagram",
-          "size": 32
+          "size": 31.857126235961914
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Instagram\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1436,29 +1578,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/tokens/color",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/tokens/color"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/tokens/color",
+        "observedValue": "{color.noir-bleute}",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Facebook\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Facebook.Tracé.fills[0]=\"{color.noir-bleute}\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1476,16 +1614,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/icon/size",
-        "observedValue": 32,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/icon/size",
+        "observedValue": 31.857126235961914,
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Facebook\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1495,7 +1633,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:Facebook.height:32!=\"31.857126235961914px\""
+        "contract-value-differs:Facebook.height:31.857126235961914!=\"31.857126235961914px\""
       ],
       "deferredWorkId": null
     },
@@ -1514,22 +1652,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/FooterColumn/component",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/FooterColumn/component",
         "observedValue": {
           "id": "ds.footer-column"
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__root\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "ContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
@@ -1556,33 +1692,31 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample",
         "observedValue": [
           {
-            "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+            "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
             "titre": "Contact"
           },
           {
-            "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+            "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
             "titre": "Horaires"
           },
           {
-            "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+            "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
             "titre": "Adresse"
           }
         ],
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__root\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "ContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
@@ -1590,7 +1724,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:FooterColumn.renderedCount@defaults:[{\"texte\":\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\",\"titre\":\"Contact\"},{\"texte\":\"Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00\",\"titre\":\"Horaires\"},{\"texte\":\"Rue Alfred Drèze 7,  4860 Pepinster\",\"titre\":\"Adresse\"}]!=3"
+        "contract-value-differs:FooterColumn.renderedCount@defaults:[{\"texte\":\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\",\"titre\":\"Contact\"},{\"texte\":\"Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00\",\"titre\":\"Horaires\"},{\"texte\":\"Rue Alfred Drèze 7,  4860 Pepinster\",\"titre\":\"Adresse\"}]!=3"
       ],
       "deferredWorkId": null
     },
@@ -1609,36 +1743,34 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat",
         "observedValue": {
           "itemsProp": "items",
           "sample": [
             {
-              "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+              "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
               "titre": "Contact"
             },
             {
-              "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+              "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
               "titre": "Horaires"
             },
             {
-              "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+              "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
               "titre": "Adresse"
             }
           ]
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__root\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "ContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
@@ -1646,7 +1778,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:FooterColumn.width:{\"itemsProp\":\"items\",\"sample\":[{\"texte\":\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\",\"titre\":\"Contact\"},{\"texte\":\"Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00\",\"titre\":\"Horaires\"},{\"texte\":\"Rue Alfred Drèze 7,  4860 Pepinster\",\"titre\":\"Adresse\"}]}!=\"310px\""
+        "contract-value-differs:FooterColumn.width:{\"itemsProp\":\"items\",\"sample\":[{\"texte\":\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\",\"titre\":\"Contact\"},{\"texte\":\"Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00\",\"titre\":\"Horaires\"},{\"texte\":\"Rue Alfred Drèze 7,  4860 Pepinster\",\"titre\":\"Adresse\"}]}!=\"310px\""
       ],
       "deferredWorkId": null
     },
@@ -1665,20 +1797,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/titre",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/titre",
         "observedValue": "Contact",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__Titre\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Contact",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
@@ -1703,29 +1833,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte",
-        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte",
+        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__Texte\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:FooterColumn[2120:4779].Texte#2079:39:\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\"!=\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1743,20 +1869,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte",
-        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte",
+        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__Texte\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
@@ -1764,7 +1888,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:FooterColumn[2120:4779].Texte.styleOverrideTable[\"2\"].textDecoration:\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\"!=\"UNDERLINE\""
+        "contract-value-differs:FooterColumn[2120:4779].Texte.styleOverrideTable[\"2\"].textDecoration:\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\"!=\"UNDERLINE\""
       ],
       "deferredWorkId": null
     },
@@ -1788,30 +1912,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte",
-        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte",
+        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__Texte\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "not-proven",
+      "outcome": "proved",
       "localizedSource": null,
-      "reasons": [
-        "leg-unavailable:generated",
-        "agreement-unknown"
-      ],
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1833,7 +1952,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/props/0",
+        "reference": "ds.footer@1.1.0#/props/0",
         "observedValue": {
           "name": "items",
           "type": {
@@ -1851,14 +1970,14 @@
             }
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__Titre\"]",
         "observedValue": "PREUVE-013 — TITRE b7d2",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1887,20 +2006,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/props/0/bindings/figma/kind",
+        "reference": "ds.footer@1.1.0#/props/0/bindings/figma/kind",
         "observedValue": "NONE",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"FooterColumn__root\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "ContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
@@ -1930,10 +2047,17 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1",
         "observedValue": {
+          "layout": {
+            "direction": "column"
+          },
+          "literals": {
+            "gap": "32px"
+          },
           "parts": {
             "PiquerayLogo": {
+              "description": "Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.",
               "component": {
                 "id": "ds.piqueray-logo",
                 "props": {
@@ -1943,19 +2067,24 @@
             },
             "Bouton": {
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outlineBlanc",
+                  "iconRight": false
+                }
               }
             }
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__col1\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -1982,18 +2111,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/layout",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col1/layout"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/layout",
+        "observedValue": {
+          "direction": "column"
+        },
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__col1\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2003,7 +2132,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:col1.flex-direction=\"column\""
+        "contract-value-differs:col1.flex-direction:{\"direction\":\"column\"}!=\"column\""
       ],
       "deferredWorkId": null
     },
@@ -2022,29 +2151,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/literals/gap",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col1/literals/gap"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/literals/gap",
+        "observedValue": "32px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__col1\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:col1.gap=\"32px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2069,21 +2194,21 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/component",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/component",
         "observedValue": {
           "id": "ds.piqueray-logo",
           "props": {
             "couleur": "blanc"
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"PiquerayLogo__root\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2110,16 +2235,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/component/props/couleur",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/component/props/couleur",
         "observedValue": "blanc",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"PiquerayLogo__couleur-blanc\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2146,9 +2271,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/literals/width",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/literals/width",
         "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/literals/width"
@@ -2157,7 +2282,7 @@
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"PiquerayLogo__root\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2198,18 +2323,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component",
         "observedValue": {
-          "id": "ds.button"
+          "id": "ds.button",
+          "text": "Contactez-nous",
+          "props": {
+            "variant": "outlineBlanc",
+            "iconRight": false
+          }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Button__root\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2236,31 +2366,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/variant",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/variant"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/variant",
+        "observedValue": "outlineBlanc",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Button__variant-outlineBlanc\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Contactez-nous",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Style (VARIANT \"Outline blanc\" → valeur d'enum contractuelle \"outlineBlanc\", mappage déclaré par ds.button /props/0/bindings/figma/values)=\"outlineBlanc\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2278,29 +2402,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/text",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/text"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/text",
+        "observedValue": "Contactez-nous",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Button__label\"]",
         "observedValue": "Contactez-nous",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Libelle=\"Contactez-nous\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2318,18 +2438,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/iconRight",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/iconRight"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/iconRight",
+        "observedValue": false,
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Button__iconRight\"]",
         "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": false,
         "notes": [
           "selector-matched-no-element"
@@ -2338,11 +2456,9 @@
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Icone droite (BOOLEAN)=false"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2360,31 +2476,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Spacer/literals/height",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Spacer/literals/height"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Spacer/literals/height",
+        "observedValue": "121px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Spacer\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Spacer.height=\"121px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2402,31 +2512,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/spacer2/literals/height",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/spacer2/literals/height"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/spacer2/literals/height",
+        "observedValue": "27px",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__spacer2\"]",
-        "observedValue": null,
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:spacer2.height=\"27px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2444,16 +2548,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Separator/tokens/border-color",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Separator/tokens/border-color",
         "observedValue": "{color.blanc}",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Separator\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2480,9 +2584,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Separator/tokens/border-width",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Separator/tokens/border-width",
         "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Separator/tokens/border-width"
@@ -2491,7 +2595,7 @@
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Separator\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2525,20 +2629,26 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Separator",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Separator",
         "observedValue": {
+          "layout": {
+            "grow": true
+          },
           "tokens": {
             "border-color": "{color.blanc}"
+          },
+          "literals": {
+            "border-width": "1px"
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Separator\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2565,18 +2675,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Separator/layout/grow",
-        "observedValue": null,
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Separator/layout/grow"
-        ]
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Separator/layout/grow",
+        "observedValue": true,
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__Separator\"]",
         "observedValue": "",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2586,7 +2694,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:Separator.layoutSizingHorizontal=\"FILL\""
+        "contract-value-differs:Separator.layoutSizingHorizontal:true!=\"FILL\""
       ],
       "deferredWorkId": null
     },
@@ -2612,21 +2720,21 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Copyright/component",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Copyright/component",
         "observedValue": {
           "id": "ds.copyright",
           "props": {
-            "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+            "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Copyright__root\"]",
-        "observedValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2653,27 +2761,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/parts/Copyright/component/props/texte",
-        "observedValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "reference": "ds.footer@1.1.0#/anatomy/root/parts/Copyright/component/props/texte",
+        "observedValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Copyright__Texte\"]",
-        "observedValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-value-differs:Copyright.Texte#2086:40:\"© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb\"!=\"© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -2691,16 +2797,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root/tokens/font-family",
+        "reference": "ds.footer@1.1.0#/anatomy/root/tokens/font-family",
         "observedValue": "{font.family.montserrat}",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2730,16 +2836,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/semantics/element",
+        "reference": "ds.footer@1.1.0#/semantics/element",
         "observedValue": "div",
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
@@ -2769,78 +2875,65 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.footer@1.0.0#/anatomy/root",
+        "reference": "ds.footer@1.1.0#/anatomy/root",
         "observedValue": {
+          "description": "COMPONENT « Footer » 2120:4785, 1728×619, layoutMode VERTICAL, itemSpacing 0, padding 128/89/32/89. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés. La feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav).",
           "layout": {
             "display": "flex",
             "direction": "column"
           },
+          "literals": {
+            "width": "1550px",
+            "padding-top": "128px",
+            "padding-right": "89px",
+            "padding-bottom": "32px",
+            "padding-left": "89px",
+            "gap": "0px"
+          },
+          "declared": {
+            "position": "relative"
+          },
           "parts": {
             "Background": {
+              "description": "Plan de fond ABSOLU du master (layoutPositioning ABSOLUTE, 1728×459 posé en (0,0)). Les insets sont portés explicitement : sans eux le plan se poserait à son origine STATIQUE, c'est-à-dire au coin de la boîte de CONTENU du root, décalé des 89px de padding horizontal — il débordait alors du viewport de capture de ces 89px exactement.",
+              "declared": {
+                "position": "absolute",
+                "top": "0",
+                "left": "0",
+                "right": "0"
+              },
+              "literals": {
+                "height": "459px"
+              },
               "tokens": {
                 "background-color": "{color.noir-bleute}"
               }
             },
             "Row": {
+              "description": "FRAME 2120:4779 de 1385px, layoutMode ABSENT dans Figma : ses enfants y sont positionnés en absolu. Le code les remet en flux. L'ordre visuel du master est l'INVERSE de son ordre document (col5, FooterColumn, col1) ; il est porté ici par l'ordre des parts et non par flex-direction: row-reverse, qui n'est pas un canal déclaré ET qui inverserait aussi les trois colonnes répétées entre elles. LIMITE NOMMÉE : reconstruction flexbox d'une frame sans auto-layout.",
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "justify": "space-between",
+                "align": "start"
+              },
+              "literals": {
+                "width": "1385px"
+              },
+              "declared": {
+                "position": "relative"
+              },
               "parts": {
-                "col5": {
+                "col1": {
                   "layout": {
                     "direction": "column"
                   },
-                  "parts": {
-                    "TitreReseaux": {
-                      "text": "Suivez-nous",
-                      "tokens": {
-                        "color": "{color.orange}"
-                      }
-                    },
-                    "rseauxSociaux": {
-                      "layout": {
-                        "direction": "row",
-                        "align": "center"
-                      },
-                      "parts": {
-                        "Facebook": {
-                          "icon": {
-                            "asset": "facebook",
-                            "size": 32
-                          }
-                        },
-                        "Instagram": {
-                          "icon": {
-                            "asset": "instagram",
-                            "size": 32
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "FooterColumn": {
-                  "component": {
-                    "id": "ds.footer-column"
+                  "literals": {
+                    "gap": "32px"
                   },
-                  "repeat": {
-                    "itemsProp": "items",
-                    "sample": [
-                      {
-                        "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-                        "titre": "Contact"
-                      },
-                      {
-                        "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
-                        "titre": "Horaires"
-                      },
-                      {
-                        "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
-                        "titre": "Adresse"
-                      }
-                    ]
-                  }
-                },
-                "col1": {
                   "parts": {
                     "PiquerayLogo": {
+                      "description": "Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.",
                       "component": {
                         "id": "ds.piqueray-logo",
                         "props": {
@@ -2850,25 +2943,117 @@
                     },
                     "Bouton": {
                       "component": {
-                        "id": "ds.button"
+                        "id": "ds.button",
+                        "text": "Contactez-nous",
+                        "props": {
+                          "variant": "outlineBlanc",
+                          "iconRight": false
+                        }
+                      }
+                    }
+                  }
+                },
+                "FooterColumn": {
+                  "description": "Trois instances de ds.footer-column dans le master, chacune de 310px. La largeur vit sur le root de l'ENFANT (ds.footer-column) : le contrat parent ne peut pas restyler une instance, et footer en est le seul consommateur.",
+                  "component": {
+                    "id": "ds.footer-column"
+                  },
+                  "repeat": {
+                    "itemsProp": "items",
+                    "sample": [
+                      {
+                        "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                        "titre": "Contact"
+                      },
+                      {
+                        "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                        "titre": "Horaires"
+                      },
+                      {
+                        "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                        "titre": "Adresse"
+                      }
+                    ]
+                  }
+                },
+                "col5": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "literals": {
+                    "gap": "16px"
+                  },
+                  "parts": {
+                    "TitreReseaux": {
+                      "text": "Suivez-nous",
+                      "tokens": {
+                        "color": "{color.orange}"
+                      },
+                      "literals": {
+                        "font-size": "24px",
+                        "line-height": "30px"
+                      }
+                    },
+                    "rseauxSociaux": {
+                      "layout": {
+                        "direction": "row",
+                        "align": "center"
+                      },
+                      "literals": {
+                        "gap": "16px"
+                      },
+                      "parts": {
+                        "Facebook": {
+                          "description": "Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.",
+                          "icon": {
+                            "asset": "facebook",
+                            "size": 31.857126235961914
+                          },
+                          "tokens": {
+                            "color": "{color.noir-bleute}"
+                          }
+                        },
+                        "Instagram": {
+                          "icon": {
+                            "asset": "instagram",
+                            "size": 31.857126235961914
+                          },
+                          "tokens": {
+                            "color": "{color.noir-bleute}"
+                          }
+                        }
                       }
                     }
                   }
                 }
               }
             },
-            "Spacer": {},
-            "Separator": {
-              "tokens": {
-                "border-color": "{color.blanc}"
+            "Spacer": {
+              "literals": {
+                "height": "121px"
               }
             },
-            "spacer2": {},
+            "Separator": {
+              "layout": {
+                "grow": true
+              },
+              "tokens": {
+                "border-color": "{color.blanc}"
+              },
+              "literals": {
+                "border-width": "1px"
+              }
+            },
+            "spacer2": {
+              "literals": {
+                "height": "27px"
+              }
+            },
             "Copyright": {
               "component": {
                 "id": "ds.copyright",
                 "props": {
-                  "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+                  "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
                 }
               }
             }
@@ -2877,26 +3062,23 @@
             "font-family": "{font.family.montserrat}"
           }
         },
-        "sourceHash": "6e7288a6950eb4cb6ac8b9e248b415b9dc21b8bbe22763aa319d0da28e866a2f",
+        "sourceHash": "d864bae16192271bb8c0727984f96ce1bf006dbbd31d985cafb39daf91acb6c6",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Footer/Footer.tsx#[class*=\"Footer__root\"]",
-        "observedValue": "Suivez-nous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContactez-nous© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
-        "sourceHash": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "observedValue": "Contactez-nousContactTél : +32 (0)87 46 32 66\r  Email: info@piqueray.beHorairesDu lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00AdresseRue Alfred Drèze 7,  4860 PepinsterSuivez-nous\n\n\n\n© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
+        "sourceHash": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "footer-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "comparison",
-      "reasons": [
-        "raw-over-threshold:96.91433672234325>2.5",
-        "region-over-budget:whole:96.91433672234325>2.5"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     }
   ],
@@ -2904,12 +3086,9 @@
     {
       "id": "footer-master-defaults",
       "subjectId": "footer",
-      "verdict": "fail",
+      "verdict": "pass",
       "probative": true,
-      "reasons": [
-        "raw-over-threshold:96.91433672234325>2.5",
-        "region-over-budget:whole:96.91433672234325>2.5"
-      ],
+      "reasons": [],
       "figma": {
         "nodeId": "2120:4785",
         "setNodeId": "2120:4785",
@@ -2921,7 +3100,7 @@
       },
       "contract": {
         "id": "ds.footer",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "factIds": [
           "footer.structure.root",
           "footer.structure.root-gap",
@@ -2981,12 +3160,27 @@
           "footer.semantic.root-element",
           "footer.visual.root"
         ],
-        "reactProps": {}
+        "reactProps": {
+          "items": [
+            {
+              "titre": "Contact",
+              "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be"
+            },
+            {
+              "titre": "Horaires",
+              "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00"
+            },
+            {
+              "titre": "Adresse",
+              "texte": "Rue Alfred Drèze 7,  4860 Pepinster"
+            }
+          ]
+        }
       },
       "generated": {
         "componentFile": "src/components/Footer/Footer.tsx",
         "export": "Footer",
-        "bundleSha256": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+        "bundleSha256": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
         "harnessConfigSha256": "9f54bbe96116c8ee70b1818d79eecf213a4e870ecd84fcbf1fac9c23ae79e7dd",
         "fontsLoaded": true
       },
@@ -2997,9 +3191,9 @@
           "height": 918
         },
         "generated": {
-          "signalPixels": 54184,
+          "signalPixels": 3148312,
           "width": 3648,
-          "height": 360
+          "height": 1110
         },
         "contrastOk": true
       },
@@ -3010,27 +3204,27 @@
         },
         "generatedRoot": {
           "width": 3456,
-          "height": 168
+          "height": 908
         },
         "deltaPx": {
           "width": 0,
-          "height": -750
+          "height": -10
         },
         "verdict": "fail"
       },
       "pixels": {
-        "rawPct": 96.91433672234325,
-        "maskedDiagnosticPct": 98.84142270639911,
+        "rawPct": 1.0439991325748406,
+        "maskedDiagnosticPct": 0,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 96.91433672234325,
+            "score": 1.0439991325748406,
             "maxDiffPct": 2.5,
-            "signalPixels": 54184
+            "signalPixels": 3142422
           }
         ],
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "semantics": [
         {
@@ -3057,9 +3251,9 @@
           },
           "observed": {
             "tag": "span",
-            "text": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+            "text": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
           },
-          "verdict": "fail"
+          "verdict": "pass"
         },
         {
           "id": "button-libelle-defaut-de-l-enfant",
@@ -3083,8 +3277,11 @@
             "tag": "span",
             "textEquals": "Contact"
           },
-          "observed": null,
-          "verdict": "fail"
+          "observed": {
+            "tag": "span",
+            "text": "Contact"
+          },
+          "verdict": "pass"
         }
       ],
       "domProbes": [
@@ -3116,41 +3313,41 @@
           "id": "footer-master-defaults.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/generated.png",
-          "sha256": "f961c98444009f6e96d1255f7977e8e6b5cd6aa07a263fc8ee5c6b060aa3a579",
+          "sha256": "252db1ca42cab7dfd0ef98bd6245729f25b900e1573acb854d5fdc182a02c1a5",
           "mediaType": "image/png",
           "width": 3456,
           "height": 918,
-          "bytes": 30731
+          "bytes": 105712
         },
         {
           "id": "footer-master-defaults.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/diff.png",
-          "sha256": "9975023a1b51ace93f1dd63cc2580b0b593ce8a26c1ec0afd944ff6d8b49ea78",
+          "sha256": "556124b914b16580e9999edd3acd5ca61db33eeec5137eb01bf562b583fb9da9",
           "mediaType": "image/png",
           "width": 3456,
           "height": 918,
-          "bytes": 48773
+          "bytes": 82282
         },
         {
           "id": "footer-master-defaults.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/triptych.png",
-          "sha256": "ec94070b5b5eb3b60ebd49051b527aee04bd7ed792d8fc0a99f0a417b65e3ced",
+          "sha256": "667b10404d18c96290fd650a5f61c1d41b298e026cfdc89fa3c0f9673444611e",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 198455
+          "bytes": 314975
         },
         {
           "id": "footer-master-defaults.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/metadata.json",
-          "sha256": "0e8a00f70035cf4657981ce695d95c59f741edbf1bd5cf3d6ef4e35a48bb7ffa",
+          "sha256": "2f864ccf20e7d4eda042a80655c67dd409af41beeab3f4d52e85d4b286d57f5c",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 6091
+          "bytes": 6427
         }
       ]
     }
@@ -3170,46 +3367,45 @@
       "id": "footer-master-defaults.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/generated.png",
-      "sha256": "f961c98444009f6e96d1255f7977e8e6b5cd6aa07a263fc8ee5c6b060aa3a579",
+      "sha256": "252db1ca42cab7dfd0ef98bd6245729f25b900e1573acb854d5fdc182a02c1a5",
       "mediaType": "image/png",
       "width": 3456,
       "height": 918,
-      "bytes": 30731
+      "bytes": 105712
     },
     {
       "id": "footer-master-defaults.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/diff.png",
-      "sha256": "9975023a1b51ace93f1dd63cc2580b0b593ce8a26c1ec0afd944ff6d8b49ea78",
+      "sha256": "556124b914b16580e9999edd3acd5ca61db33eeec5137eb01bf562b583fb9da9",
       "mediaType": "image/png",
       "width": 3456,
       "height": 918,
-      "bytes": 48773
+      "bytes": 82282
     },
     {
       "id": "footer-master-defaults.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/triptych.png",
-      "sha256": "ec94070b5b5eb3b60ebd49051b527aee04bd7ed792d8fc0a99f0a417b65e3ced",
+      "sha256": "667b10404d18c96290fd650a5f61c1d41b298e026cfdc89fa3c0f9673444611e",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 198455
+      "bytes": 314975
     },
     {
       "id": "footer-master-defaults.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/footer/cases/footer-master-defaults/metadata.json",
-      "sha256": "0e8a00f70035cf4657981ce695d95c59f741edbf1bd5cf3d6ef4e35a48bb7ffa",
+      "sha256": "2f864ccf20e7d4eda042a80655c67dd409af41beeab3f4d52e85d4b286d57f5c",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 6091
+      "bytes": 6427
     }
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:36",
-    "failed-cases:1"
+    "divergent-facts:18"
   ]
 }

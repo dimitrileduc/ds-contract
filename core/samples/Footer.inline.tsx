@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v1.0.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v1.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -15,9 +15,9 @@
  */
 import { forwardRef } from 'react';
 import type { CSSProperties, HTMLAttributes } from 'react';
-import { FooterColumn } from './FooterColumn';
 import { PiquerayLogo } from './PiquerayLogo';
 import { Button } from './Button';
+import { FooterColumn } from './FooterColumn';
 import { Copyright } from './Copyright';
 
 const ICONS: Record<string, string> = {
@@ -30,43 +30,76 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "width": "1550px",
+    "paddingTop": "128px",
+    "paddingRight": "89px",
+    "paddingBottom": "32px",
+    "paddingLeft": "89px",
+    "gap": "0px",
+    "position": "relative"
   },
   "Background": {
-    "backgroundColor": "#26282C"
+    "backgroundColor": "#26282C",
+    "height": "459px",
+    "position": "absolute",
+    "top": "0",
+    "left": "0",
+    "right": "0"
   },
   "Row": {
-    "display": "flex"
+    "display": "flex",
+    "flexDirection": "row",
+    "alignItems": "flex-start",
+    "justifyContent": "space-between",
+    "width": "1385px",
+    "position": "relative"
+  },
+  "col1": {
+    "display": "flex",
+    "flexDirection": "column",
+    "gap": "32px"
   },
   "col5": {
     "display": "flex",
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "gap": "16px"
   },
   "TitreReseaux": {
-    "color": "#F98A0B"
+    "color": "#F98A0B",
+    "fontSize": "24px",
+    "lineHeight": "30px"
   },
   "rseauxSociaux": {
     "display": "flex",
     "flexDirection": "row",
-    "alignItems": "center"
+    "alignItems": "center",
+    "gap": "16px"
   },
   "Facebook": {
     "display": "inline-flex",
-    "flexShrink": 0
+    "flexShrink": 0,
+    "color": "#26282C"
   },
   "Instagram": {
     "display": "inline-flex",
-    "flexShrink": 0
+    "flexShrink": 0,
+    "color": "#26282C"
   },
-  "col1": {
-    "display": "flex"
+  "Spacer": {
+    "height": "121px"
   },
-  "Spacer": {},
   "Separator": {
+    "display": "flex",
+    "flex": "1 1 auto",
+    "minWidth": 0,
     "borderStyle": "solid",
-    "borderColor": "#FFFFFF"
+    "borderColor": "#FFFFFF",
+    "borderWidth": "1px"
   },
-  "spacer2": {}
+  "spacer2": {
+    "height": "27px"
+  }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
@@ -76,7 +109,7 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
   items?: Array<{ texte: string; titre: string }>;
 }
 
-/** Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
+/** Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé. */
 export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
   { items, style, children, ...rest },
   ref,
@@ -87,19 +120,19 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
 
 </div>
 <div style={{ ...S.Row }}>
+<div style={{ ...S.col1 }}>
+<PiquerayLogo couleur="blanc" />
+<Button variant="outlineBlanc" iconRight={false}>Contactez-nous</Button>
+</div>
+<FooterColumn texte="Tél : +32 (0)87 46 32 66  Email: info@piqueray.be" titre="Contact" />
+<FooterColumn texte="Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00" titre="Horaires" />
+<FooterColumn texte="Rue Alfred Drèze 7,  4860 Pepinster" titre="Adresse" />
 <div style={{ ...S.col5 }}>
 <span style={{ ...S.TitreReseaux }}>Suivez-nous</span>
 <div style={{ ...S.rseauxSociaux }}>
 <span style={{ ...S.Facebook }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["facebook"] }} />
 <span style={{ ...S.Instagram }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["instagram"] }} />
 </div>
-</div>
-<FooterColumn texte="Tél : +32 (0)87 46 32 66  Email: info@piqueray.be" titre="Contact" />
-<FooterColumn texte="Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00" titre="Horaires" />
-<FooterColumn texte="Rue Alfred Drèze 7,  4860 Pepinster" titre="Adresse" />
-<div style={{ ...S.col1 }}>
-<PiquerayLogo couleur="blanc" />
-<Button>Contactez-nous</Button>
 </div>
 </div>
 <div style={{ ...S.Spacer }}>
@@ -111,7 +144,7 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
 <div style={{ ...S.spacer2 }}>
 
 </div>
-<Copyright texte="© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb" />
+<Copyright texte="© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb" />
     </div>
   );
 });

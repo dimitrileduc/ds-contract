@@ -370,6 +370,27 @@ export const DECLARED_CHANNELS: Record<string, DeclaredChannelSpec> = {
     canvas: 'annotate',
     note: 'Positioning context (relative) or an inset overlay (absolute, lowered to absolute positioning on canvas); fixed/sticky have no carried spelling.',
   },
+  // -- inset channels (013 / ds.footer): `absolute` alone leaves a plane at
+  //    its STATIC origin, which is the parent's CONTENT-box corner — offset by
+  //    the parent's padding.  Figma's Background plane sits at (0,0) of the
+  //    frame, so a footer with 89px of horizontal padding painted its plane
+  //    89px off and overflowed the capture viewport.  Before these channels
+  //    the insets could only ride a `stylesWhen` block gated on a prop
+  //    (ds.devis' Voile rides `fond`), which a plane without a governing prop
+  //    cannot use — the contract then had to choose between a faithful render
+  //    and a faithful declaration.  The canvas already lowers the inset-0
+  //    pattern to layoutPositioning ABSOLUTE (emit-figma-script
+  //    isInsetOverlay), so the fact is carried on both surfaces. -----------
+  ...Object.fromEntries(
+    (['top', 'right', 'bottom', 'left'] as const).map((side) => [
+      side,
+      {
+        value: /^(auto|-?\d+(\.\d+)?(px|%|rem|em)|0)$/,
+        canvas: 'draw',
+        note: `Inset (${side}) of an absolutely positioned plane; the canvas lowers it to absolute positioning.`,
+      } satisfies DeclaredChannelSpec,
+    ]),
+  ),
   // -- intrinsic aspect (round 4): the real component keeps a square (or
   //    fixed-ratio) box via pseudo-element padding hacks the anatomy cannot
   //    carry — the RATIO is the fact (Avatar/Thumbnail 1:1), observed as

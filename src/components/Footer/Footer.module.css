@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v1.0.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v1.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -8,56 +8,93 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: 1550px;
+  padding-top: 128px;
+  padding-right: 89px;
+  padding-bottom: 32px;
+  padding-left: 89px;
+  gap: 0px;
+  position: relative;
 }
 
 .Background {
   background-color: var(--color-noir-bleute);
+  height: 459px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .Row {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 1385px;
+  position: relative;
+}
+
+.col1 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .col5 {
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .TitreReseaux {
   color: var(--color-orange);
+  font-size: 24px;
+  line-height: 30px;
 }
 
 .rseauxSociaux {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 16px;
 }
 
 .Facebook svg {
-  width: 32px;
-  height: 32px;
+  width: 31.857126235961914px;
+  height: 31.857126235961914px;
 }
 
 .Facebook {
   display: inline-flex;
   flex-shrink: 0;
+  color: var(--color-noir-bleute);
 }
 
 .Instagram svg {
-  width: 32px;
-  height: 32px;
+  width: 31.857126235961914px;
+  height: 31.857126235961914px;
 }
 
 .Instagram {
   display: inline-flex;
   flex-shrink: 0;
+  color: var(--color-noir-bleute);
 }
 
-.col1 {
-  display: flex;
+.Spacer {
+  height: 121px;
 }
 
 .Separator {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
   border-color: var(--color-blanc);
   border-style: solid;
+  border-width: 1px;
+}
+
+.spacer2 {
+  height: 27px;
 }

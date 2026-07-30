@@ -36,6 +36,10 @@ import {
   SLOT_CONTROL_STYLE_CHANNELS,
 } from '../scripts/contract-schema.js';
 
+/** Inset channels — meaningless (and silently dropped by CSS) on a part
+ *  that is not absolutely positioned. */
+const INSET_CHANNELS = ['top', 'right', 'bottom', 'left'] as const;
+
 /** v11 SEMANTIC LINT — roles that RE-CREATE a control the platform already
  *  ships. A contract claiming one of these roles (semantics.role, a
  *  roleByProp value, or a part's attrs.role) on an element outside the
@@ -847,6 +851,15 @@ export function validateContract(
           `${contract.id}: part "${name}" carries channel "${cssProp}" as BOTH a literal and a declared fact — ambiguous, refused by name`,
         );
       }
+    }
+    // An inset on a part CSS never positions is a fact that renders nowhere —
+    // the browser drops it silently, so the contract would carry a receipt for
+    // something the surface does not do. Refuse by name instead.
+    const insets = INSET_CHANNELS.filter((side) => (part.declared ?? {})[side] !== undefined);
+    if (insets.length > 0 && (part.declared ?? {}).position !== 'absolute') {
+      errors.push(
+        `${contract.id}: part "${name}" declares inset ${insets.map((s) => `"${s}"`).join(', ')} without \`position: "absolute"\` — CSS ignores insets on a static part, so the fact would never render`,
+      );
     }
     for (const [state, overrides] of Object.entries(part.declaredStates ?? {})) {
       if (!(state in STATE_SELECTORS)) {

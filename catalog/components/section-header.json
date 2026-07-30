@@ -1,7 +1,7 @@
 {
   "id": "ds.section-header",
   "name": "SectionHeader",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "molecule",
   "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
@@ -26,13 +26,38 @@
     {
       "name": "titre",
       "type": "string",
-      "default": "Pourquoi choisir Piqueray ?"
+      "default": [
+        {
+          "text": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas reste UNE valeur TEXT native : la concaténation à plat."
     },
     {
       "name": "accroche2",
       "type": "boolean",
       "default": true,
       "description": "Extracted from Figma \"Accroche2\" BOOLEAN property (added by sync pass)."
+    },
+    {
+      "name": "emphase",
+      "type": [
+        "standard",
+        "hero",
+        "moyen",
+        "compact"
+      ],
+      "default": "standard",
+      "description": "LIMITE NOMMÉE — abstraction code-side sur des surcharges d'instance Figma ad hoc. Le master 2090:2385 porte 40px/50px ; les usages surchargent la typographie du Titre par instance (hero 2169:6264 : 54/68/blanc, poids 300 sur la plage NON marquée — voir ci-dessous ; presentation 2169:6246 : 32/40 ; texte-seo 2170:6361 : 24/30 ; coordonnees, faq, sav et reassurances restent à 40/50 = defaut) au lieu de la porter en variantes gouvernées. Le poids du hero : le nœud Figma a un style de BASE Bold 700 avec une surcharge Light 300 sur « industrielles » ; le modèle du contrat porte l'inverse strictement équivalent en pixels — la plage non marquée prend le poids de base (300, littéral : aucun token Light dans la fondation) et la plage marquée prend content.marks.strong (token font.weight.bold). `component.props` ne transporte que des valeurs de props, jamais une surcharge typographique de l'enfant — cet axe est donc le seul moyen de porter le fait sans retoucher la sortie générée. Le correctif de fond appartient à Figma : promouvoir ces surcharges en variantes réelles, après quoi cet axe redevient un VARIANT lié."
+    },
+    {
+      "name": "alignement",
+      "type": [
+        "centre",
+        "gauche"
+      ],
+      "default": "centre",
+      "description": "LIMITE NOMMÉE — le master 2090:2385 centre (textAlign CENTER) mais 5 usages sur 7 le surchargent en LEFT par instance (coordonnees, presentation, sav, texte-seo, hero) quand faq et reassurances suivent le master. Cet axe code-side porte ce fait d’usage ; le correctif de fond appartient à Figma (promouvoir l’alignement en variante gouvernée du master)."
     }
   ],
   "children": {

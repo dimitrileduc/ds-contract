@@ -1,12 +1,9 @@
 {
   "id": "footer-master-defaults",
   "subjectId": "footer",
-  "verdict": "fail",
+  "verdict": "pass",
   "probative": true,
-  "reasons": [
-    "raw-over-threshold:96.91433672234325>2.5",
-    "region-over-budget:whole:96.91433672234325>2.5"
-  ],
+  "reasons": [],
   "figma": {
     "nodeId": "2120:4785",
     "setNodeId": "2120:4785",
@@ -18,7 +15,7 @@
   },
   "contract": {
     "id": "ds.footer",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "factIds": [
       "footer.structure.root",
       "footer.structure.root-gap",
@@ -78,12 +75,27 @@
       "footer.semantic.root-element",
       "footer.visual.root"
     ],
-    "reactProps": {}
+    "reactProps": {
+      "items": [
+        {
+          "titre": "Contact",
+          "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be"
+        },
+        {
+          "titre": "Horaires",
+          "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00"
+        },
+        {
+          "titre": "Adresse",
+          "texte": "Rue Alfred Drèze 7,  4860 Pepinster"
+        }
+      ]
+    }
   },
   "generated": {
     "componentFile": "src/components/Footer/Footer.tsx",
     "export": "Footer",
-    "bundleSha256": "fab00f03b13c1437b3ff8bb0e099549244213ee4fdeaffa3544f789083ff9078",
+    "bundleSha256": "529be724ebe3aeb52b6d1e7e5da2966dc67ebd86531be1a3804478cb29ac24df",
     "harnessConfigSha256": "9f54bbe96116c8ee70b1818d79eecf213a4e870ecd84fcbf1fac9c23ae79e7dd",
     "fontsLoaded": true
   },
@@ -94,9 +106,9 @@
       "height": 918
     },
     "generated": {
-      "signalPixels": 54184,
+      "signalPixels": 3148312,
       "width": 3648,
-      "height": 360
+      "height": 1110
     },
     "contrastOk": true
   },
@@ -107,27 +119,27 @@
     },
     "generatedRoot": {
       "width": 3456,
-      "height": 168
+      "height": 908
     },
     "deltaPx": {
       "width": 0,
-      "height": -750
+      "height": -10
     },
     "verdict": "fail"
   },
   "pixels": {
-    "rawPct": 96.91433672234325,
-    "maskedDiagnosticPct": 98.84142270639911,
+    "rawPct": 1.0439991325748406,
+    "maskedDiagnosticPct": 0,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 96.91433672234325,
+        "score": 1.0439991325748406,
         "maxDiffPct": 2.5,
-        "signalPixels": 54184
+        "signalPixels": 3142422
       }
     ],
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "semantics": [
     {
@@ -154,9 +166,9 @@
       },
       "observed": {
         "tag": "span",
-        "text": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+        "text": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
       },
-      "verdict": "fail"
+      "verdict": "pass"
     },
     {
       "id": "button-libelle-defaut-de-l-enfant",
@@ -180,8 +192,11 @@
         "tag": "span",
         "textEquals": "Contact"
       },
-      "observed": null,
-      "verdict": "fail"
+      "observed": {
+        "tag": "span",
+        "text": "Contact"
+      },
+      "verdict": "pass"
     }
   ],
   "domProbes": [

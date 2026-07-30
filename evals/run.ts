@@ -190,6 +190,14 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'declared-inset-channels',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/declared-inset-channels-check.ts']);
+      if (r.status !== 0) throw new Error(`Declared inset-channel check failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'organism-audit-contract-pin',
     claim: 'C2-refusal',
     run: () => {

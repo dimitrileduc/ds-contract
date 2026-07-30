@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.footer",
   "name": "Footer",
-  "version": "1.0.0",
-  "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "1.1.0",
+  "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -30,76 +30,63 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "COMPONENT « Footer » 2120:4785, 1728×619, layoutMode VERTICAL, itemSpacing 0, padding 128/89/32/89. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés. La feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav).",
       "layout": {
         "display": "flex",
         "direction": "column"
       },
+      "literals": {
+        "width": "1550px",
+        "padding-top": "128px",
+        "padding-right": "89px",
+        "padding-bottom": "32px",
+        "padding-left": "89px",
+        "gap": "0px"
+      },
+      "declared": {
+        "position": "relative"
+      },
       "parts": {
         "Background": {
+          "description": "Plan de fond ABSOLU du master (layoutPositioning ABSOLUTE, 1728×459 posé en (0,0)). Les insets sont portés explicitement : sans eux le plan se poserait à son origine STATIQUE, c'est-à-dire au coin de la boîte de CONTENU du root, décalé des 89px de padding horizontal — il débordait alors du viewport de capture de ces 89px exactement.",
+          "declared": {
+            "position": "absolute",
+            "top": "0",
+            "left": "0",
+            "right": "0"
+          },
+          "literals": {
+            "height": "459px"
+          },
           "tokens": {
             "background-color": "{color.noir-bleute}"
           }
         },
         "Row": {
+          "description": "FRAME 2120:4779 de 1385px, layoutMode ABSENT dans Figma : ses enfants y sont positionnés en absolu. Le code les remet en flux. L'ordre visuel du master est l'INVERSE de son ordre document (col5, FooterColumn, col1) ; il est porté ici par l'ordre des parts et non par flex-direction: row-reverse, qui n'est pas un canal déclaré ET qui inverserait aussi les trois colonnes répétées entre elles. LIMITE NOMMÉE : reconstruction flexbox d'une frame sans auto-layout.",
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "justify": "space-between",
+            "align": "start"
+          },
+          "literals": {
+            "width": "1385px"
+          },
+          "declared": {
+            "position": "relative"
+          },
           "parts": {
-            "col5": {
+            "col1": {
               "layout": {
                 "direction": "column"
               },
-              "parts": {
-                "TitreReseaux": {
-                  "text": "Suivez-nous",
-                  "tokens": {
-                    "color": "{color.orange}"
-                  }
-                },
-                "rseauxSociaux": {
-                  "layout": {
-                    "direction": "row",
-                    "align": "center"
-                  },
-                  "parts": {
-                    "Facebook": {
-                      "icon": {
-                        "asset": "facebook",
-                        "size": 32
-                      }
-                    },
-                    "Instagram": {
-                      "icon": {
-                        "asset": "instagram",
-                        "size": 32
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "FooterColumn": {
-              "component": {
-                "id": "ds.footer-column"
+              "literals": {
+                "gap": "32px"
               },
-              "repeat": {
-                "itemsProp": "items",
-                "sample": [
-                  {
-                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-                    "titre": "Contact"
-                  },
-                  {
-                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
-                    "titre": "Horaires"
-                  },
-                  {
-                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
-                    "titre": "Adresse"
-                  }
-                ]
-              }
-            },
-            "col1": {
               "parts": {
                 "PiquerayLogo": {
+                  "description": "Largeur relevée 180.0985565185547px sur le master. NON PORTÉE : ds.piqueray-logo est partagé avec ds.header, une largeur fixe sur son root vaudrait pour les deux consommateurs. Enregistré en travail reporté plutôt que corrigé de travers.",
                   "component": {
                     "id": "ds.piqueray-logo",
                     "props": {
@@ -109,25 +96,117 @@
                 },
                 "Bouton": {
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "text": "Contactez-nous",
+                    "props": {
+                      "variant": "outlineBlanc",
+                      "iconRight": false
+                    }
+                  }
+                }
+              }
+            },
+            "FooterColumn": {
+              "description": "Trois instances de ds.footer-column dans le master, chacune de 310px. La largeur vit sur le root de l'ENFANT (ds.footer-column) : le contrat parent ne peut pas restyler une instance, et footer en est le seul consommateur.",
+              "component": {
+                "id": "ds.footer-column"
+              },
+              "repeat": {
+                "itemsProp": "items",
+                "sample": [
+                  {
+                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                    "titre": "Contact"
+                  },
+                  {
+                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                    "titre": "Horaires"
+                  },
+                  {
+                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                    "titre": "Adresse"
+                  }
+                ]
+              }
+            },
+            "col5": {
+              "layout": {
+                "direction": "column"
+              },
+              "literals": {
+                "gap": "16px"
+              },
+              "parts": {
+                "TitreReseaux": {
+                  "text": "Suivez-nous",
+                  "tokens": {
+                    "color": "{color.orange}"
+                  },
+                  "literals": {
+                    "font-size": "24px",
+                    "line-height": "30px"
+                  }
+                },
+                "rseauxSociaux": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "literals": {
+                    "gap": "16px"
+                  },
+                  "parts": {
+                    "Facebook": {
+                      "description": "Hauteur relevée 31.857126235961914px sur le master — mesure Figma non arrondie, transcrite telle quelle plutôt que ramenée à 32 pour que le fait cite la source et non une valeur d'appoint.",
+                      "icon": {
+                        "asset": "facebook",
+                        "size": 31.857126235961914
+                      },
+                      "tokens": {
+                        "color": "{color.noir-bleute}"
+                      }
+                    },
+                    "Instagram": {
+                      "icon": {
+                        "asset": "instagram",
+                        "size": 31.857126235961914
+                      },
+                      "tokens": {
+                        "color": "{color.noir-bleute}"
+                      }
+                    }
                   }
                 }
               }
             }
           }
         },
-        "Spacer": {},
-        "Separator": {
-          "tokens": {
-            "border-color": "{color.blanc}"
+        "Spacer": {
+          "literals": {
+            "height": "121px"
           }
         },
-        "spacer2": {},
+        "Separator": {
+          "layout": {
+            "grow": true
+          },
+          "tokens": {
+            "border-color": "{color.blanc}"
+          },
+          "literals": {
+            "border-width": "1px"
+          }
+        },
+        "spacer2": {
+          "literals": {
+            "height": "27px"
+          }
+        },
         "Copyright": {
           "component": {
             "id": "ds.copyright",
             "props": {
-              "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+              "texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
             }
           }
         }

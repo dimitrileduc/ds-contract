@@ -1,7 +1,7 @@
 {
   "id": "ds.devis",
   "name": "Devis",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "status": "draft",
   "category": "section",
   "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -14,6 +14,24 @@
       "name": "titre",
       "type": "string",
       "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+    },
+    {
+      "name": "backgroundUrl",
+      "type": "string",
+      "default": "",
+      "description": "URL fournie par le code pour la peinture IMAGE pleine largeur du root (fills[0], scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa). Figma range ces pixels dans une PEINTURE du master, jamais dans une propriété de composant : la liaison figma est donc NONE et le défaut vide est intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl."
+    },
+    {
+      "name": "backgroundAlt",
+      "type": "string",
+      "default": "",
+      "description": "Alternative textuelle appariée à backgroundUrl. Une peinture IMAGE Figma n'expose aucune propriété d'alternative textuelle : le défaut vide est intentionnel (plan décoratif)."
+    },
+    {
+      "name": "fond",
+      "type": "boolean",
+      "default": true,
+      "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux peintures vivent sur le root du master, pas sur une propriété : liaison NONE, défaut true (l'état du master). Ce booléen est AUSSI le seul porteur possible des insets des deux plans : la grammaire n'expose `top/right/bottom/left` que dans `stylesWhen` (STYLES_WHEN_ALLOWED), qui exige une prop conditionnante — précédents dans le dépôt : nav-item `Soulignement` conditionné par `actif`, member-picture (deux plans photo) conditionnés par `etat`. À false, les deux plans disparaissent et seul le `background-color` du root subsiste."
     }
   ],
   "children": {

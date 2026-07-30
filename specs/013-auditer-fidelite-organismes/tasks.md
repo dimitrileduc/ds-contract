@@ -44,7 +44,7 @@ mutation Figma, zéro retouche de sortie générée.
 | Surface prouvée (D4) | le **React réellement généré** sous `src/components/**` — `core/emit-html` n'est jamais autoritaire |
 | Sweep complet F1 | `npm run build && npm run parity && npm run eval && npm run plugin:check && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs && npx tsc --noEmit && npx tsc -p tsconfig.build.json` |
 | Portes de clôture ajoutées | `npm run emitters:check`, `npm run catalog && npm run verify:catalog`, `npm run images:selftest`, campagne 013 |
-| Re-pins qui dérivent à toute édition de contrat | `evals/golden.json` (`npm run golden:update`) **et** `figma-sync/plugin/engine.receipt.json` (`npm run plugin:check` — re-pin distinct, à ne pas oublier) |
+| Re-pins qui dérivent à toute édition de contrat | `evals/golden.json` (`npm run golden:update`, **après `npm run figma:plan`** — sinon les scripts Figma ne sont pas régénérés et le pin est faux : vécu le 2026-07-30, 4 fichiers `figma-sync/` en dérive) **et** `figma-sync/plugin/engine.receipt.json` — dont la commande de re-pin est **`node scripts/build-plugin-zip.mjs --update-engine-receipt`**, PAS `npm run plugin:check`, qui ne fait que vérifier |
 | Re-pin qui dérive à toute édition d'**émetteur** (`core/emit-*.ts`) | **`examples/polaris/figma/*.figma.js`** — régénérer par `npx tsx examples/polaris/generate.ts` (sans `--check`). Troisième reçu, découvert le 2026-07-30 au sweep du 2′ : l'eval `polaris-showcase-reproducible` (C1-determinism) était le seul rouge de `169/170`, parce que les deux re-pins habituels ne couvrent QUE les contrats. Une édition d'émetteur change les octets de tout script Figma généré, showcase Polaris compris |
 | Interdits absolus (SC-005/SC-008) | 0 conversion littéral→token, 0 mutation `tokens/**`, 0 écriture Figma, 0 retouche de `src/components/`, `figma-sync/`, `catalog/`, `core/samples/` |
 | Inventaire des 12 sujets | vagues + nodes masters + dépendances : `data-model.md` §3, « Inventaire stable » (les 12 ancres de contrat ont été vérifiées conformes) |
@@ -579,7 +579,18 @@ mêmes critères de traçabilité et de fidélité que la vague 1.
       même protocole ; dossier `proofs/organisms/reassurances/`.
       **FAIT** → `divergent` · 44 faits (22 prouvés / 18 divergents / 4 limités) ·
       pixels 38,88 %.
-- [ ] T054 [US2] **Conditionnel — NON DÉCLENCHÉ, en attente d'arbitrage owner.** Les trois
+- [~] T054 [US2] **PARTIEL —  remédié le 2026-07-30,  et  non.**
+       : 96,91 % → **1,04 %** de pixels (sous le seuil), 20 → 39 faits prouvés,
+      36 → 18 divergents, en ~1 h. Cause racine unique, isolée par l'audit : le moteur ne
+      savait pas exprimer les **insets** d'une part en absolu, donc le plan de fond se
+      posait à l'origine de la boîte de CONTENU (décalé des 89 px de padding) et débordait
+      du viewport de capture. Capacité ajoutée fixture d'abord (,
+      C2-refusal) : canaux , grammaire bornée, refus par nom d'un
+      inset sur une part non positionnée. Contrats  1.1.0 et 
+      1.1.0 ; override de cas  (le master matérialise 3 colonnes, React n'en rend
+      aucune sans données — l'écart mesurait l'absence de données, pas l'infidélité).
+      **Reste NON déclenché pour  et .** Texte d'origine ci-dessous.
+      **Conditionnel — en attente d'arbitrage owner.** Les trois
       sujets sont classifiés `divergent` ; la remédiation au pixel serait un chantier de
       l'ampleur de T037 (une journée pour la vague 1). L'ordre validé avec l'owner le
       2026-07-30 dit « capture vague 2 → 3 dossiers bloqués vague 3 → US4/T063+ », donc la
