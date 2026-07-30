@@ -1,0 +1,428 @@
+{
+  "schemaVersion": 1,
+  "id": "013-auditer-fidelite-organismes",
+  "reference": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileVersion": "2381581871281042338",
+    "readOnly": true,
+    "deviceScaleFactor": 2
+  },
+  "generatedSurface": {
+    "kind": "react-storybook",
+    "sourceRoot": "src/components",
+    "bundleReceipt": "specs/013-auditer-fidelite-organismes/proofs/baseline/react-bundle.json"
+  },
+  "acceptance": {
+    "maxRawDiffPct": 2.5,
+    "maxRegionDiffPct": 2.5,
+    "baselineEpsilonPp": 0.1,
+    "requireExactCoverage": true,
+    "requireVisibleEvidence": true,
+    "requireGeometryPass": true,
+    "requireSemanticPass": true
+  },
+  "expectedSubjectIds": [
+    "coordonnees",
+    "devis",
+    "hero",
+    "presentation",
+    "sav",
+    "texte-seo",
+    "faq",
+    "footer",
+    "reassurances",
+    "equipe",
+    "formulaire",
+    "header"
+  ],
+  "waves": [
+    {
+      "number": 1,
+      "subjectIds": ["coordonnees", "devis", "hero", "presentation", "sav", "texte-seo"],
+      "startsAfter": null,
+      "entryRule": "previous-wave-classified"
+    },
+    {
+      "number": 2,
+      "subjectIds": ["faq", "footer", "reassurances"],
+      "startsAfter": 1,
+      "entryRule": "previous-wave-classified"
+    },
+    {
+      "number": 3,
+      "subjectIds": ["equipe", "formulaire", "header"],
+      "startsAfter": 2,
+      "entryRule": "dependencies-proved"
+    }
+  ],
+  "dependencyGates": [
+    {
+      "parentSubjectId": "equipe",
+      "dependencyContractId": "ds.member-card",
+      "receiptSchema": "visual-campaign-v1",
+      "requiredVerdict": "proved",
+      "resultPath": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+      "resultSha256": "f68a3606b82af5a79a3aac731ed6d04dcb96730043134463e1148168e6d46e4c",
+      "expectedContractVersion": "1.2.0",
+      "expectedFigmaFileVersion": "2381568261081914456",
+      "requireProbative": true
+    },
+    {
+      "parentSubjectId": "formulaire",
+      "dependencyContractId": "ds.field",
+      "receiptSchema": "visual-campaign-v1",
+      "requiredVerdict": "proved",
+      "resultPath": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+      "resultSha256": "f68a3606b82af5a79a3aac731ed6d04dcb96730043134463e1148168e6d46e4c",
+      "expectedContractVersion": "2.0.0",
+      "expectedFigmaFileVersion": "2381568261081914456",
+      "requireProbative": true
+    },
+    {
+      "parentSubjectId": "header",
+      "dependencyContractId": "ds.nav-item",
+      "receiptSchema": "visual-campaign-v1",
+      "requiredVerdict": "proved",
+      "resultPath": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+      "resultSha256": "f68a3606b82af5a79a3aac731ed6d04dcb96730043134463e1148168e6d46e4c",
+      "expectedContractVersion": "1.1.0",
+      "expectedFigmaFileVersion": "2381568261081914456",
+      "requireProbative": true
+    }
+  ],
+  "assetsManifest": "extract/figma/visual-parity/fixture-assets/manifest.json",
+  "deferredPolicy": {
+    "forbidHardcodedValueConversion": true,
+    "forbidTokenFoundationChanges": true,
+    "baselineReceipt": "specs/013-auditer-fidelite-organismes/proofs/baseline/hardcoded-values.json"
+  },
+  "subjects": [
+    {
+      "id": "coordonnees",
+      "displayName": "Coordonnees",
+      "wave": 1,
+      "contractId": "ds.coordonnees",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/coordonnees.contract.json",
+      "figmaSetNodeId": "2104:2904",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/coordonnees.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "coordonnees.residu-88px",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Résidu 88 px nommé par l'audit 003 + 005 L5.",
+          "expectedVerdictImpact": "limited"
+        }
+      ],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "devis",
+      "displayName": "Devis",
+      "wave": 1,
+      "contractId": "ds.devis",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/devis.contract.json",
+      "figmaSetNodeId": "2096:2524",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/devis-cta.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "hero",
+      "displayName": "Hero",
+      "wave": 1,
+      "contractId": "ds.hero",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/hero.contract.json",
+      "figmaSetNodeId": "2111:3382",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/hero.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "hero.section-header.accroche2-rename",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Rename Accroche2 en attente sur SectionHeader, composé par Hero.",
+          "expectedVerdictImpact": "limited"
+        }
+      ],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "presentation",
+      "displayName": "Presentation",
+      "wave": 1,
+      "contractId": "ds.presentation",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/presentation.contract.json",
+      "figmaSetNodeId": "2103:2824",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/presentation.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "presentation.section-header.accroche2-rename",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Rename Accroche2 en attente sur SectionHeader, composé par Presentation.",
+          "expectedVerdictImpact": "limited"
+        }
+      ],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "sav",
+      "displayName": "SAV",
+      "wave": 1,
+      "contractId": "ds.sav",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/sav.contract.json",
+      "figmaSetNodeId": "2108:3105",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/sav.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "texte-seo",
+      "displayName": "TexteSEO",
+      "wave": 1,
+      "contractId": "ds.texte-seo",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/texte-seo.contract.json",
+      "figmaSetNodeId": "2108:3123",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/texte-seo.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "texte-seo.residu-3351px",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Résidu 3 351 px nommé par l'audit 003 + 005 cycle 14.",
+          "expectedVerdictImpact": "limited"
+        },
+        {
+          "id": "texte-seo.dette-rich-text-b1",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Dette rich-text B1 ouverte et nommée.",
+          "expectedVerdictImpact": "limited"
+        }
+      ],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "faq",
+      "displayName": "FAQ",
+      "wave": 2,
+      "contractId": "ds.faq",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/faq.contract.json",
+      "figmaSetNodeId": "2104:2914",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/faq.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "faq.couverture-pixel-003-2-sur-4",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Couverture pixel de l'audit 003 à 2/4, cause racine nommée.",
+          "expectedVerdictImpact": "limited"
+        }
+      ],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "footer",
+      "displayName": "Footer",
+      "wave": 2,
+      "contractId": "ds.footer",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/footer.contract.json",
+      "figmaSetNodeId": "2120:4785",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/footer-devis.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "reassurances",
+      "displayName": "Reassurances",
+      "wave": 2,
+      "contractId": "ds.reassurances",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/reassurances.contract.json",
+      "figmaSetNodeId": "2114:3721",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/reassurances.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "reassurances.carte.residu-canvas-3488px",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Résidu canvas 3 488 px de Carte, composée en répétition par Reassurances.",
+          "expectedVerdictImpact": "limited"
+        }
+      ],
+      "dependencyId": null,
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "equipe",
+      "displayName": "Equipe",
+      "wave": 3,
+      "contractId": "ds.equipe",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/equipe.contract.json",
+      "figmaSetNodeId": "2115:3947",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/equipe.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "equipe.member-card.2e-plan-photo-non-branche",
+          "source": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+          "statement": "Le 2e plan photo de MemberCard n'est pas branché — limite assumée en 011, NON périmée.",
+          "expectedVerdictImpact": "blocked"
+        }
+      ],
+      "dependencyId": "ds.member-card",
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "formulaire",
+      "displayName": "Formulaire",
+      "wave": 3,
+      "contractId": "ds.formulaire",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/formulaire.contract.json",
+      "figmaSetNodeId": "2096:2564",
+      "auditRefs": [
+        "specs/003-externalize-figma-components/audits/formulaire.md",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [],
+      "dependencyId": "ds.field",
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    },
+    {
+      "id": "header",
+      "displayName": "Header",
+      "wave": 3,
+      "contractId": "ds.header",
+      "contractVersion": "1.0.0",
+      "contractPath": "contracts/header.contract.json",
+      "figmaSetNodeId": "84:285",
+      "auditRefs": [
+        "specs/005-figma-source-cleanup/releves/structure-header-nav.json",
+        "specs/005-figma-source-cleanup/releves/instances-l4-verification.json",
+        "specs/010-extract-molecules-organisms/audit-reuse-map.md"
+      ],
+      "knownLimits": [
+        {
+          "id": "header.nav-item.dette-item-8",
+          "source": "specs/010-extract-molecules-organisms/audit-reuse-map.md",
+          "statement": "Dette NavItem item 8 ouverte, partagée avec la dépendance ds.nav-item.",
+          "expectedVerdictImpact": "blocked"
+        }
+      ],
+      "dependencyId": "ds.nav-item",
+      "coverage": {
+        "deriveFromFigma": true,
+        "deriveFromContract": true,
+        "deriveFromGeneratedProjection": true,
+        "requiredFactIds": []
+      },
+      "cases": []
+    }
+  ]
+}

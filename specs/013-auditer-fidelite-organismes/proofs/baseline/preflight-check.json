@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "task": "T025",
+  "campaignId": "013-auditer-fidelite-organismes",
+  "command": "npx tsx extract/figma/organism-audit/run.ts --campaign specs/013-auditer-fidelite-organismes/contracts/audit-campaign.json --out specs/013-auditer-fidelite-organismes/proofs --check --inventory",
+  "expected": "refus exit 2 sur les faits/cas obligatoires non encore déclarés — comportement fail-closed correct, qui vaut reçu",
+  "validatedBeforeRefusal": {
+    "shapeAndPerimeter": true,
+    "subjects": 12,
+    "waves": 3,
+    "dependencyGates": 3,
+    "contractIdsVersionsPathsResolved": true,
+    "figmaAnchorsMatchManifest": true,
+    "generatedReactComponentResolvedForEverySubject": true,
+    "referenceReadOnly": true,
+    "referenceFileVersionPinned": "2381581871281042338",
+    "acceptanceThresholdsWithinBounds": true,
+    "receiptSchemasKnown": true,
+    "outputPathBounded": "specs/013-auditer-fidelite-organismes/proofs",
+    "auditRefsExist": true
+  },
+  "refusal": {
+    "exitCode": 2,
+    "issueCodes": [
+      "coverage-missing",
+      "case-shape"
+    ],
+    "issueCount": 21,
+    "issues": [
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[0].coverage.requiredFactIds",
+        "message": "coordonnees declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[0].cases",
+        "message": "coordonnees declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[1].coverage.requiredFactIds",
+        "message": "devis declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[1].cases",
+        "message": "devis declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[2].coverage.requiredFactIds",
+        "message": "hero declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[2].cases",
+        "message": "hero declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[3].coverage.requiredFactIds",
+        "message": "presentation declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[3].cases",
+        "message": "presentation declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[4].coverage.requiredFactIds",
+        "message": "sav declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[4].cases",
+        "message": "sav declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[5].coverage.requiredFactIds",
+        "message": "texte-seo declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[5].cases",
+        "message": "texte-seo declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[6].coverage.requiredFactIds",
+        "message": "faq declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[6].cases",
+        "message": "faq declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[7].coverage.requiredFactIds",
+        "message": "footer declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[7].cases",
+        "message": "footer declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[8].coverage.requiredFactIds",
+        "message": "reassurances declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "case-shape",
+        "path": "$.subjects[8].cases",
+        "message": "reassurances declares no audit case"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[9].coverage.requiredFactIds",
+        "message": "equipe declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[10].coverage.requiredFactIds",
+        "message": "formulaire declares no required fact — nothing would be proved"
+      },
+      {
+        "code": "coverage-missing",
+        "path": "$.subjects[11].coverage.requiredFactIds",
+        "message": "header declares no required fact — nothing would be proved"
+      }
+    ]
+  },
+  "proofArtifactsWritten": 0,
+  "figmaWriteCommands": [],
+  "inputHashes": {
+    "campaign": "82496f0cfe781be2aef840a72e5ba2c657c95dddc40e9d9ca9c9dc2f62141ff6"
+  }
+}

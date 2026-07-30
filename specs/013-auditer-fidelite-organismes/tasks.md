@@ -243,7 +243,7 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
       par convention : `--wave 2|3` refusé **exit 2** tant que la vague précédente n'est
       pas classifiée, `previous-wave-classified` signifiant « verdict final honnête » et
       non « que des passes ». Passe **T048** au vert.
-- [ ] T021 Implémenter `--capture-baseline` : écrire
+- [X] T021 Implémenter `--capture-baseline` : écrire
       `proofs/baseline/hardcoded-values.json` (hash du tree `contracts/` et de
       `tokens/**`, inventaire canonique des `literals`/`literalsByProp` et des liaisons de
       tokens, diff typé, `literalToTokenConversions: []`, `tokenFoundationChanges: []`),
@@ -255,7 +255,7 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
       motif existant : `run(TSX, ['evals/fixtures/<nom>-check.ts'])` puis `throw` si
       `status !== 0`). Vérifier que `npm run eval` passe et **imprimer** le nouveau `N/N`
       vivant — ne le recopier dans aucune doc vivante.
-- [ ] T023 Créer le manifeste
+- [X] T023 Créer le manifeste
       `specs/013-auditer-fidelite-organismes/contracts/audit-campaign.json` : les douze
       sujets dans l'ordre des trois vagues, les trois vagues
       (`startsAfter: null|1|2`, `entryRule`), les trois `dependencyGates`
@@ -278,11 +278,11 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
       rename `Accroche2` en attente de `section-header`. Une limite **déjà connue** qui
       ressortirait en divergence anonyme, ou qui passerait sous le seuil sans être nommée,
       est un défaut de déclaration — pas une découverte de la campagne.
-- [ ] T024 Épingler `reference.fileVersion` dans le manifeste depuis le GET de T003, et
+- [X] T024 Épingler `reference.fileVersion` dans le manifeste depuis le GET de T003, et
       vérifier que les douze `figmaSetNodeId` égalent bien `anchors.figma.nodeId` de leur
       contrat (les douze ancres ont été relevées conformes à `data-model.md` §3 ; toute
       divergence exige une justification typée, pas un silence).
-- [ ] T025 Exécuter le préflight `--check --inventory` — la forme exacte qu'exige la
+- [X] T025 Exécuter le préflight `--check --inventory` — la forme exacte qu'exige la
       table « Gates » de `campaign-report.interface.md`, celle qui devra sortir `0` en
       clôture (T065) — et consigner son reçu dans
       `proofs/baseline/preflight-check.json`. **Attendu à ce stade : refus, exit `2`**,
@@ -291,12 +291,12 @@ après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge
       « Refusal and safety rules »). Vérifier dans le même reçu que forme, périmètre
       12/3/3, IDs/versions/chemins de contrat, `readOnly`, seuils, `receiptSchema` connus
       et bornage de sortie sont tous validés **avant** ce refus.
-- [ ] T026 Écrire le reçu de sûreté `proofs/baseline/no-write-path.json` : relevé statique
+- [X] T026 Écrire le reçu de sûreté `proofs/baseline/no-write-path.json` : relevé statique
       de `extract/figma/organism-audit/**` prouvant qu'aucun verbe d'écriture Figma
       (`POST`/`PUT`/`PATCH`/`DELETE`, `figma_execute`, writeback, push) n'y figure et que
       la seule route vers Figma est un GET. C'est le mécanisme qui rendra SC-008
       vérifiable en clôture (T067) plutôt qu'affirmé.
-- [ ] T027 Sweep complet F1 après l'instrument — les huit commandes à `0`, plus
+- [X] T027 Sweep complet F1 après l'instrument — les huit commandes à `0`, plus
       `npx tsc --noEmit && npx tsc -p tsconfig.build.json` couvrant le nouveau module.
       Consigner dans `proofs/baseline/repository-gates-foundational.json`. Un rouge ici se
       corrige AVANT toute capture : une porte technique rouge bloque la clôture (D14).

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "task": "T026",
+  "campaignId": "013-auditer-fidelite-organismes",
+  "statement": "No Figma write path exists in extract/figma/organism-audit/**. The only route to Figma is an HTTP GET.",
+  "scanMethod": "comments stripped before matching — the receipt describes executable code, not prose",
+  "scannedDirectory": "extract/figma/organism-audit",
+  "fileCount": 8,
+  "forbiddenPatterns": [
+    "http-post",
+    "http-put",
+    "http-patch",
+    "http-delete",
+    "figma-execute",
+    "plugin-bridge",
+    "writeback",
+    "figma-global",
+    "anchors-writeback"
+  ],
+  "violations": [],
+  "getRouteHits": 0,
+  "ok": true,
+  "files": [
+    {
+      "file": "extract/figma/organism-audit/baseline.ts",
+      "bytes": 10416,
+      "sha256": "76ff0373afca5a94293641f6958042aec306ab60166733953d30e607e52b4765",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    },
+    {
+      "file": "extract/figma/organism-audit/campaign.ts",
+      "bytes": 28923,
+      "sha256": "4bc36166de1b25fd6c660ad43196c8263f7d9f1497bfb1b361c3ca555926bc33",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    },
+    {
+      "file": "extract/figma/organism-audit/dependencies.ts",
+      "bytes": 9992,
+      "sha256": "08b1d914f949e52605312ccafcc2d587e77d7e9f96dcdc99f2912876b129ef45",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    },
+    {
+      "file": "extract/figma/organism-audit/facts.ts",
+      "bytes": 10274,
+      "sha256": "854537f0aff35664feb4ad7652c0dd558ac124e26d138908eeae934b86ef4def",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    },
+    {
+      "file": "extract/figma/organism-audit/render-react.ts",
+      "bytes": 6952,
+      "sha256": "7c0cc6e3b988b42832a01e7afc9fc162b7237de8f9559b37f840de864760f222",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    },
+    {
+      "file": "extract/figma/organism-audit/report.ts",
+      "bytes": 6269,
+      "sha256": "3260328abbebd9eed6217719f55d8a25b5661490ba52987ea2c9cb973a9bdfb4",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    },
+    {
+      "file": "extract/figma/organism-audit/run.ts",
+      "bytes": 16812,
+      "sha256": "b30f1a964d13e85e94cfe8bab1ca78eac89b9cceda7c192e1fe21d1946a1c006",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    },
+    {
+      "file": "extract/figma/organism-audit/verdict.ts",
+      "bytes": 13044,
+      "sha256": "4144edb3aafcb867d41d584b4a94f4a541c6db5f42546ebdab7e9461b9537cb8",
+      "forbiddenHits": [],
+      "getRouteHits": 0
+    }
+  ],
+  "note": "Static scan of the audit module only. The campaign runner never imports a Figma bridge; the network capture layer (not yet built) is contractually GET-only per FR-009."
+}
