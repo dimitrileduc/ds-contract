@@ -1,0 +1,132 @@
+{
+  "id": "presentation-master-defaults",
+  "subjectId": "presentation",
+  "verdict": "fail",
+  "probative": true,
+  "reasons": [
+    "raw-over-threshold:11.644894457394457>2.5",
+    "region-over-budget:whole:11.644894457394457>2.5"
+  ],
+  "figma": {
+    "nodeId": "2103:2824",
+    "setNodeId": "2103:2824",
+    "fileVersion": "2381581871281042338",
+    "observedProperties": {
+      "Titre#2103:53": "Piqueray, une histoire de famille ",
+      "Texte#2103:54": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+      "Bouton#2103:55": false
+    },
+    "pngSha256": "a02293e1418880957a1f50c733739256983bcd31459259a25ebcce4acdc06f9b",
+    "width": 2574,
+    "height": 192
+  },
+  "contract": {
+    "id": "ds.presentation",
+    "version": "1.0.0",
+    "factIds": [
+      "presentation.structure.root",
+      "presentation.content.texte",
+      "presentation.property.titre",
+      "presentation.property.texte",
+      "presentation.property.bouton",
+      "presentation.composition.section-header",
+      "presentation.composition.button",
+      "presentation.visual.root",
+      "presentation.semantic.texte-element",
+      "presentation.structure.gap-root",
+      "presentation.structure.gap-wrapper",
+      "presentation.visual.texte-font-size",
+      "presentation.visual.texte-line-height"
+    ],
+    "reactProps": {}
+  },
+  "generated": {
+    "componentFile": "src/components/Presentation/Presentation.tsx",
+    "export": "Presentation",
+    "bundleSha256": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+    "harnessConfigSha256": "addea51e83303073117ebc3c2465b6e83b77fd52fa238b503c68c5063ed7bb3d",
+    "fontsLoaded": true
+  },
+  "visibility": {
+    "figma": {
+      "signalPixels": 49664,
+      "width": 2574,
+      "height": 192
+    },
+    "generated": {
+      "signalPixels": 66534,
+      "width": 2766,
+      "height": 458
+    },
+    "contrastOk": true
+  },
+  "geometry": {
+    "figmaRoot": {
+      "width": 2574,
+      "height": 192
+    },
+    "generatedRoot": {
+      "width": 2574,
+      "height": 266
+    },
+    "deltaPx": {
+      "width": 0,
+      "height": 74
+    },
+    "verdict": "fail"
+  },
+  "pixels": {
+    "rawPct": 11.644894457394457,
+    "maskedDiagnosticPct": null,
+    "thresholdPct": 2.5,
+    "regions": [
+      {
+        "id": "whole",
+        "score": 11.644894457394457,
+        "maxDiffPct": 2.5,
+        "signalPixels": 49664
+      }
+    ],
+    "verdict": "fail"
+  },
+  "semantics": [
+    {
+      "id": "texte-element",
+      "selector": "[class*=\"Presentation__Texte\"]",
+      "contractPointer": "/anatomy/root/parts/wrapper/parts/Texte/content/prop",
+      "expected": {
+        "tag": "span",
+        "textEquals": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale."
+      },
+      "observed": {
+        "tag": "span",
+        "text": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale."
+      },
+      "verdict": "pass"
+    }
+  ],
+  "domProbes": [
+    {
+      "factId": "presentation.property.titre",
+      "prop": "titre",
+      "probeValue": "PREUVE-013 — TITRE 7f3c",
+      "observedDomValue": "Piqueray, une histoire de famille",
+      "projected": false
+    },
+    {
+      "factId": "presentation.property.texte",
+      "prop": "texte",
+      "probeValue": "PREUVE-013 — TEXTE 7f3c",
+      "observedDomValue": "PREUVE-013 — TEXTE 7f3c",
+      "projected": true
+    },
+    {
+      "factId": "presentation.property.bouton",
+      "prop": "bouton",
+      "probeValue": true,
+      "observedDomValue": "1 element(s)",
+      "projected": true
+    }
+  ],
+  "artifacts": []
+}
