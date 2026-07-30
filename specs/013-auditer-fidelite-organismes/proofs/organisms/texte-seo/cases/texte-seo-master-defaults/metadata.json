@@ -1,12 +1,9 @@
 {
   "id": "texte-seo-master-defaults",
   "subjectId": "texte-seo",
-  "verdict": "fail",
+  "verdict": "pass",
   "probative": true,
-  "reasons": [
-    "raw-over-threshold:4.7389954918240385>2.5",
-    "region-over-budget:whole:4.7389954918240385>2.5"
-  ],
+  "reasons": [],
   "figma": {
     "nodeId": "2108:3123",
     "setNodeId": "2108:3123",
@@ -18,7 +15,7 @@
   },
   "contract": {
     "id": "ds.texte-seo",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "factIds": [
       "texte-seo.structure.root",
       "texte-seo.structure.h2",
@@ -60,12 +57,30 @@
       "texte-seo.semantic.paragraphe-element",
       "texte-seo.semantic.sous-titre-element"
     ],
-    "reactProps": {}
+    "reactProps": {
+      "items": [
+        {
+          "contenu": "Réponse",
+          "etat": "ferme",
+          "titre": "Accès et parking"
+        },
+        {
+          "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+          "etat": "ouvert",
+          "titre": "Faut-il prendre rendez-vous ?"
+        },
+        {
+          "contenu": "Réponse",
+          "etat": "ferme",
+          "titre": "Zones de déplacement pour devis"
+        }
+      ]
+    }
   },
   "generated": {
     "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
     "export": "TexteSEO",
-    "bundleSha256": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+    "bundleSha256": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
     "harnessConfigSha256": "d6d969ef1fda804f51c41c527118fcb95b8bf4b5c61456dc244398ca6e03980d",
     "fontsLoaded": true
   },
@@ -76,9 +91,9 @@
       "height": 766
     },
     "generated": {
-      "signalPixels": 109702,
+      "signalPixels": 126646,
       "width": 3648,
-      "height": 514
+      "height": 958
     },
     "contrastOk": true
   },
@@ -89,27 +104,27 @@
     },
     "generatedRoot": {
       "width": 3456,
-      "height": 322
+      "height": 766
     },
     "deltaPx": {
       "width": 0,
-      "height": -444
+      "height": 0
     },
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "pixels": {
-    "rawPct": 4.7389954918240385,
-    "maskedDiagnosticPct": 3.663320217212763,
+    "rawPct": 1.8376109056184122,
+    "maskedDiagnosticPct": null,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 4.7389954918240385,
+        "score": 1.8376109056184122,
         "maxDiffPct": 2.5,
-        "signalPixels": 109702
+        "signalPixels": 116120
       }
     ],
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "semantics": [
     {

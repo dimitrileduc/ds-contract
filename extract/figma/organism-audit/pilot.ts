@@ -201,6 +201,9 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
   if (!referencePngPath) throw new Error(`${subject.id}: Figma declined the PNG export`);
   const referenceBytes = readFileSync(referencePngPath);
   const referencePng = readPng(referenceBytes);
+  // Hashed ONCE: the receipt below cites it per fact, and hero's 3.9 MB
+  // reference × 37 declared facts is 145 MB of redundant hashing per organism.
+  const referenceSha = sha256(referenceBytes);
 
   // ---- build the harness once, render many times -----------------------
   const built = await buildHarness({
@@ -311,8 +314,14 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
     }
 
     const observed = matched.length > 0 ? matched[0].text : null;
+    // A rich-text probe injects SEGMENTS; the DOM renders their concatenation.
+    // String([...]) would stringify to "[object Object]" and fabricate a
+    // not-projected verdict out of the instrument itself.
+    const expectedText = Array.isArray(probe.value)
+      ? probe.value.map((segment) => String((segment as { text?: unknown })?.text ?? '')).join('')
+      : String(probe.value);
     const projection = evaluatePropProjection({
-      probeValue: String(probe.value),
+      probeValue: expectedText,
       observedDomValue: observed,
       interfaceExposesProp: true,
     });
@@ -353,7 +362,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
     const figmaLeg = leg(
       JSON.stringify(declaration.figmaReference),
       declaration.figmaReference,
-      sha256(referenceBytes),
+      referenceSha,
       true,
     );
     const contractLeg = leg(
@@ -415,7 +424,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
         figma: leg(
           `${subject.figmaSetNodeId}#${declaration.figmaExpectation.channel}`,
           declaration.figmaExpectation.value,
-          sha256(referenceBytes),
+          referenceSha,
           true,
         ),
         contract: contractLeg,
@@ -529,7 +538,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
       setNodeId: subject.figmaSetNodeId,
       fileVersion: setInfo.version,
       observedProperties: caseDecl.observedProperties,
-      pngSha256: sha256(referenceBytes),
+      pngSha256: referenceSha,
       width: referencePng.width,
       height: referencePng.height,
     },

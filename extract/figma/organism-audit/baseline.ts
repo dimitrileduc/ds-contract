@@ -85,6 +85,14 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 /** RFC 6901 escaping, so a `/` inside a CSS property name cannot break a pointer. */
 const escapeToken = (token: string): string => token.replace(/~/g, '~0').replace(/\//g, '~1');
 
+/** Stable site order. The receipts are COMMITTED, so the inventory and the diff
+ *  must order identically — as two copies they could be tie-broken apart with
+ *  nothing failing to show it. */
+const bySite = <T extends { contractId: string; pointer: string }>(a: T, b: T): number =>
+  a.contractId === b.contractId
+    ? a.pointer.localeCompare(b.pointer)
+    : a.contractId.localeCompare(b.contractId);
+
 /**
  * Inventory the two protected surfaces of one contract set.
  *
@@ -160,12 +168,6 @@ export function inventoryLiterals(contractsById: Record<string, unknown>): Liter
   for (const contractId of Object.keys(contractsById).sort()) {
     walk(contractId, contractsById[contractId], '');
   }
-
-  // The receipt is committed, so the inventory must be byte-stable.
-  const bySite = <T extends { contractId: string; pointer: string }>(a: T, b: T): number =>
-    a.contractId === b.contractId
-      ? a.pointer.localeCompare(b.pointer)
-      : a.contractId.localeCompare(b.contractId);
 
   return {
     literalInventory: literalInventory.sort(bySite),
@@ -261,11 +263,6 @@ export function diffBaseline(before: Baseline, after: Baseline): BaselineDiff {
       after: current,
     });
   }
-
-  const bySite = <T extends { contractId: string; pointer: string }>(a: T, b: T): number =>
-    a.contractId === b.contractId
-      ? a.pointer.localeCompare(b.pointer)
-      : a.contractId.localeCompare(b.contractId);
 
   return {
     literalToTokenConversions: literalToTokenConversions.sort(bySite),

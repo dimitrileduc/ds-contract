@@ -4,7 +4,7 @@
   "wave": 1,
   "contract": {
     "id": "ds.texte-seo",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "path": "contracts/texte-seo.contract.json"
   },
   "figmaSetNodeId": "2108:3123",
@@ -116,7 +116,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root",
         "observedValue": {
           "layout": {
             "display": "flex",
@@ -130,9 +130,23 @@
                   "component": {
                     "id": "ds.section-header",
                     "props": {
-                      "titre": "Visitez notre showroom à Pepinster ou contactez-nous",
+                      "titre": [
+                        {
+                          "text": "Visitez notre "
+                        },
+                        {
+                          "text": "showroom à Pepinster",
+                          "strong": true
+                        },
+                        {
+                          "text": " ou contactez-nous"
+                        }
+                      ],
                       "accroche": "Plus de 50 ans d’expérience",
-                      "disposition": "standard"
+                      "disposition": "standard",
+                      "accroche2": false,
+                      "emphase": "compact",
+                      "alignement": "gauche"
                     }
                   }
                 }
@@ -147,7 +161,9 @@
                 "Paragraphe": {
                   "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
                   "tokens": {
-                    "color": "{color.noir}"
+                    "color": "{color.noir}",
+                    "font-size": "{font.size.14}",
+                    "line-height": "{font.line-height.24}"
                   }
                 }
               }
@@ -157,7 +173,10 @@
                 "SousTitre": {
                   "text": "Infos pratiques",
                   "tokens": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.20}",
+                    "font-weight": "{font.weight.semibold}",
+                    "line-height": "{font.line-height.25}"
                   }
                 }
               }
@@ -180,14 +199,17 @@
                     "sample": [
                       {
                         "contenu": "Réponse",
+                        "etat": "ferme",
                         "titre": "Accès et parking"
                       },
                       {
                         "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+                        "etat": "ouvert",
                         "titre": "Faut-il prendre rendez-vous ?"
                       },
                       {
                         "contenu": "Réponse",
+                        "etat": "ferme",
                         "titre": "Zones de déplacement pour devis"
                       }
                     ]
@@ -197,17 +219,22 @@
             }
           },
           "tokens": {
-            "font-family": "{font.family.montserrat}"
+            "font-family": "{font.family.montserrat}",
+            "gap": "{space.32}",
+            "padding-inline": "{space.89}"
+          },
+          "declared": {
+            "align-self": "stretch"
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiquesAccès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -240,29 +267,43 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2",
         "observedValue": {
           "parts": {
             "SectionHeader": {
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": "Visitez notre showroom à Pepinster ou contactez-nous",
+                  "titre": [
+                    {
+                      "text": "Visitez notre "
+                    },
+                    {
+                      "text": "showroom à Pepinster",
+                      "strong": true
+                    },
+                    {
+                      "text": " ou contactez-nous"
+                    }
+                  ],
                   "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard"
+                  "disposition": "standard",
+                  "accroche2": false,
+                  "emphase": "compact",
+                  "alignement": "gauche"
                 }
               }
             }
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__h2\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -295,7 +336,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/p",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/p",
         "observedValue": {
           "layout": {
             "direction": "column",
@@ -305,19 +346,21 @@
             "Paragraphe": {
               "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
               "tokens": {
-                "color": "{color.noir}"
+                "color": "{color.noir}",
+                "font-size": "{font.size.14}",
+                "line-height": "{font.line-height.24}"
               }
             }
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__p\"]",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -350,25 +393,28 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h3",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h3",
         "observedValue": {
           "parts": {
             "SousTitre": {
               "text": "Infos pratiques",
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.20}",
+                "font-weight": "{font.weight.semibold}",
+                "line-height": "{font.line-height.25}"
               }
             }
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__h3\"]",
         "observedValue": "Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -401,7 +447,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion",
         "observedValue": {
           "layout": {
             "direction": "column",
@@ -420,14 +466,17 @@
                 "sample": [
                   {
                     "contenu": "Réponse",
+                    "etat": "ferme",
                     "titre": "Accès et parking"
                   },
                   {
                     "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+                    "etat": "ouvert",
                     "titre": "Faut-il prendre rendez-vous ?"
                   },
                   {
                     "contenu": "Réponse",
+                    "etat": "ferme",
                     "titre": "Zones de déplacement pour devis"
                   }
                 ]
@@ -435,14 +484,14 @@
             }
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__accordion\"]",
-        "observedValue": "",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Accès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -469,18 +518,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/tokens/gap",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/tokens/gap"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/tokens/gap",
+        "observedValue": "{space.32}",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiquesAccès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -490,7 +537,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:root.itemSpacing=32"
+        "contract-value-differs:root.itemSpacing:\"{space.32}\"!=32"
       ],
       "deferredWorkId": null
     },
@@ -509,18 +556,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/tokens/padding-inline",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/tokens/padding-inline"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/tokens/padding-inline",
+        "observedValue": "{space.89}",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiquesAccès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -530,7 +575,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:root.paddingInline=89"
+        "contract-value-differs:root.paddingInline:\"{space.89}\"!=89"
       ],
       "deferredWorkId": null
     },
@@ -549,9 +594,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/literals/width",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/literals/width",
         "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/literals/width"
@@ -559,8 +604,8 @@
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiquesAccès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -593,16 +638,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/p/parts/Paragraphe/text",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/text",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -634,16 +679,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h3/parts/SousTitre/text",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/text",
         "observedValue": "Infos pratiques",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
         "observedValue": "Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -679,23 +724,37 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/component",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/component",
         "observedValue": {
           "id": "ds.section-header",
           "props": {
-            "titre": "Visitez notre showroom à Pepinster ou contactez-nous",
+            "titre": [
+              {
+                "text": "Visitez notre "
+              },
+              {
+                "text": "showroom à Pepinster",
+                "strong": true
+              },
+              {
+                "text": " ou contactez-nous"
+              }
+            ],
             "accroche": "Plus de 50 ans d’expérience",
-            "disposition": "standard"
+            "disposition": "standard",
+            "accroche2": false,
+            "emphase": "compact",
+            "alignement": "gauche"
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -722,25 +781,38 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
-        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
+        "observedValue": [
+          {
+            "text": "Visitez notre "
+          },
+          {
+            "text": "showroom à Pepinster",
+            "strong": true
+          },
+          {
+            "text": " ou contactez-nous"
+          }
+        ],
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "proved",
-      "localizedSource": null,
-      "reasons": [],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-value-differs:SectionHeader.Titre:[{\"text\":\"Visitez notre \"},{\"text\":\"showroom à Pepinster\",\"strong\":true},{\"text\":\" ou contactez-nous\"}]!=\"Visitez notre showroom à Pepinster ou contactez-nous\""
+      ],
       "deferredWorkId": null
     },
     {
@@ -758,18 +830,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche",
         "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__Accroche\"]",
-        "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": true,
-        "notes": []
+        "observedValue": null,
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
@@ -794,16 +868,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/disposition",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/disposition",
         "observedValue": "standard",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -830,29 +904,27 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche2",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche2"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/accroche2",
+        "observedValue": false,
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__Accroche\"]",
-        "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": true,
-        "notes": []
+        "observedValue": null,
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:SectionHeader.Accroche2=false"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -873,16 +945,27 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
-        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/component/props/titre",
+        "observedValue": [
+          {
+            "text": "Visitez notre "
+          },
+          {
+            "text": "showroom à Pepinster",
+            "strong": true
+          },
+          {
+            "text": " ou contactez-nous"
+          }
+        ],
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -911,9 +994,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/tokens/font-size",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/tokens/font-size",
         "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/h2/parts/SectionHeader/tokens/font-size"
@@ -922,7 +1005,7 @@
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -951,9 +1034,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h2/parts/SectionHeader/tokens/line-height",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h2/parts/SectionHeader/tokens/line-height",
         "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/h2/parts/SectionHeader/tokens/line-height"
@@ -962,7 +1045,7 @@
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Visitez notre showroom à Pepinster ou contactez-nous",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -991,18 +1074,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/font-size",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/p/parts/Paragraphe/tokens/font-size"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/font-size",
+        "observedValue": "{font.size.14}",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1012,7 +1093,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:Paragraphe.font-size=\"14px\""
+        "contract-value-differs:Paragraphe.font-size:\"{font.size.14}\"!=\"14px\""
       ],
       "deferredWorkId": null
     },
@@ -1031,18 +1112,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/line-height",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/p/parts/Paragraphe/tokens/line-height"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/line-height",
+        "observedValue": "{font.line-height.24}",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1052,7 +1131,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:Paragraphe.line-height=\"24px\""
+        "contract-value-differs:Paragraphe.line-height:\"{font.line-height.24}\"!=\"24px\""
       ],
       "deferredWorkId": null
     },
@@ -1071,18 +1150,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-size",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/h3/parts/SousTitre/tokens/font-size"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-size",
+        "observedValue": "{font.size.20}",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
         "observedValue": "Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1092,7 +1169,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:SousTitre.font-size=\"20px\""
+        "contract-value-differs:SousTitre.font-size:\"{font.size.20}\"!=\"20px\""
       ],
       "deferredWorkId": null
     },
@@ -1111,18 +1188,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/line-height",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/h3/parts/SousTitre/tokens/line-height"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/line-height",
+        "observedValue": "{font.line-height.25}",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
         "observedValue": "Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1132,7 +1207,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:SousTitre.line-height=\"25px\""
+        "contract-value-differs:SousTitre.line-height:\"{font.line-height.25}\"!=\"25px\""
       ],
       "deferredWorkId": null
     },
@@ -1151,18 +1226,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-weight",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/h3/parts/SousTitre/tokens/font-weight"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/font-weight",
+        "observedValue": "{font.weight.semibold}",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
         "observedValue": "Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1172,7 +1245,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:SousTitre.font-weight=600"
+        "contract-value-differs:SousTitre.font-weight:\"{font.weight.semibold}\"!=600"
       ],
       "deferredWorkId": null
     },
@@ -1191,16 +1264,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/color",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/tokens/color",
         "observedValue": "{color.noir}",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1227,16 +1300,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/color",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/tokens/color",
         "observedValue": "{color.noir-bleute}",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
         "observedValue": "Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1263,16 +1336,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/tokens/font-family",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/tokens/font-family",
         "observedValue": "{font.family.montserrat}",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiquesAccès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1303,12 +1376,19 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/props/0",
+        "reference": "ds.texte-seo@2.1.0#/props/0",
         "observedValue": {
           "name": "items",
+          "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli.",
           "type": {
             "arrayOf": {
               "contenu": "text",
+              "etat": {
+                "enum": [
+                  "ferme",
+                  "ouvert"
+                ]
+              },
               "titre": "text"
             }
           },
@@ -1321,28 +1401,23 @@
             }
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__Titre\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Accès et parking",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "not-proven",
+      "outcome": "proved",
       "localizedSource": null,
-      "reasons": [
-        "leg-unavailable:generated",
-        "agreement-unknown"
-      ],
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1360,9 +1435,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/props/0/default",
+        "reference": "ds.texte-seo@2.1.0#/props/0/default",
         "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": false,
         "notes": [
           "pointer-unresolved:/props/0/default"
@@ -1370,8 +1445,8 @@
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__accordion\"]",
-        "observedValue": "",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Accès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1435,35 +1510,30 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/component",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component",
         "observedValue": {
           "id": "ds.accordion-row",
           "props": {
             "taille": "petit"
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Accès et parking",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "not-proven",
+      "outcome": "proved",
       "localizedSource": null,
-      "reasons": [
-        "leg-unavailable:generated",
-        "agreement-unknown"
-      ],
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1484,30 +1554,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/itemsProp",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/itemsProp",
         "observedValue": "items",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Accès et parking",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "not-proven",
+      "outcome": "proved",
       "localizedSource": null,
-      "reasons": [
-        "leg-unavailable:generated",
-        "agreement-unknown"
-      ],
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1525,20 +1590,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
         "observedValue": "petit",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__root\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Accès et parking",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
@@ -1563,20 +1626,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/0/titre",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/0/titre",
         "observedValue": "Accès et parking",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__Titre\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Accès et parking",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
@@ -1601,20 +1662,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/titre",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/titre",
         "observedValue": "Faut-il prendre rendez-vous ?",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__Titre\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Accès et parking",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
@@ -1639,20 +1698,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/2/titre",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/2/titre",
         "observedValue": "Zones de déplacement pour devis",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__Titre\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Accès et parking",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
@@ -1677,20 +1734,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/contenu",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/contenu",
         "observedValue": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__Contenu\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
@@ -1715,31 +1770,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/etat",
-        "observedValue": null,
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/etat"
-        ]
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample/1/etat",
+        "observedValue": "ouvert",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"AccordionRow__TitreOuvert\"]",
-        "observedValue": null,
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
-        "available": false,
-        "notes": [
-          "selector-matched-no-element"
-        ]
+        "observedValue": "Faut-il prendre rendez-vous ?",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
+        "available": true,
+        "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:AccordionRow[1].Etat=\"ouvert\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1760,7 +1809,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root",
         "observedValue": {
           "layout": {
             "display": "flex",
@@ -1774,9 +1823,23 @@
                   "component": {
                     "id": "ds.section-header",
                     "props": {
-                      "titre": "Visitez notre showroom à Pepinster ou contactez-nous",
+                      "titre": [
+                        {
+                          "text": "Visitez notre "
+                        },
+                        {
+                          "text": "showroom à Pepinster",
+                          "strong": true
+                        },
+                        {
+                          "text": " ou contactez-nous"
+                        }
+                      ],
                       "accroche": "Plus de 50 ans d’expérience",
-                      "disposition": "standard"
+                      "disposition": "standard",
+                      "accroche2": false,
+                      "emphase": "compact",
+                      "alignement": "gauche"
                     }
                   }
                 }
@@ -1791,7 +1854,9 @@
                 "Paragraphe": {
                   "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
                   "tokens": {
-                    "color": "{color.noir}"
+                    "color": "{color.noir}",
+                    "font-size": "{font.size.14}",
+                    "line-height": "{font.line-height.24}"
                   }
                 }
               }
@@ -1801,7 +1866,10 @@
                 "SousTitre": {
                   "text": "Infos pratiques",
                   "tokens": {
-                    "color": "{color.noir-bleute}"
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.20}",
+                    "font-weight": "{font.weight.semibold}",
+                    "line-height": "{font.line-height.25}"
                   }
                 }
               }
@@ -1824,14 +1892,17 @@
                     "sample": [
                       {
                         "contenu": "Réponse",
+                        "etat": "ferme",
                         "titre": "Accès et parking"
                       },
                       {
                         "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+                        "etat": "ouvert",
                         "titre": "Faut-il prendre rendez-vous ?"
                       },
                       {
                         "contenu": "Réponse",
+                        "etat": "ferme",
                         "titre": "Zones de déplacement pour devis"
                       }
                     ]
@@ -1841,29 +1912,31 @@
             }
           },
           "tokens": {
-            "font-family": "{font.family.montserrat}"
+            "font-family": "{font.family.montserrat}",
+            "gap": "{space.32}",
+            "padding-inline": "{space.89}"
+          },
+          "declared": {
+            "align-self": "stretch"
           }
         },
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__root\"]",
-        "observedValue": "Plus de 50 ans d’expérienceVisitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "observedValue": "Visitez notre showroom à Pepinster ou contactez-nousRien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.Infos pratiquesAccès et parking\n\nFaut-il prendre rendez-vous ?\n\nPour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.Zones de déplacement pour devis",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "texte-seo-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "comparison",
-      "reasons": [
-        "raw-over-threshold:4.7389954918240385>2.5",
-        "region-over-budget:whole:4.7389954918240385>2.5"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1884,16 +1957,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/p/parts/Paragraphe/text",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/p/parts/Paragraphe/text",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__Paragraphe\"]",
         "observedValue": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1923,16 +1996,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.texte-seo@1.0.0#/anatomy/root/parts/h3/parts/SousTitre/text",
+        "reference": "ds.texte-seo@2.1.0#/anatomy/root/parts/h3/parts/SousTitre/text",
         "observedValue": "Infos pratiques",
-        "sourceHash": "b9df0f8addaf281a167d8a2bedb3c8d0353f8462edb67a29f5c733c35af5d614",
+        "sourceHash": "73b184a4488148a4dd1643ad23d509a5010a97fe859ebb1fee8fab3c17e21ad8",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/TexteSEO/TexteSEO.tsx#[class*=\"TexteSEO__SousTitre\"]",
         "observedValue": "Infos pratiques",
-        "sourceHash": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "sourceHash": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "available": true,
         "notes": []
       },
@@ -1949,12 +2022,9 @@
     {
       "id": "texte-seo-master-defaults",
       "subjectId": "texte-seo",
-      "verdict": "fail",
+      "verdict": "pass",
       "probative": true,
-      "reasons": [
-        "raw-over-threshold:4.7389954918240385>2.5",
-        "region-over-budget:whole:4.7389954918240385>2.5"
-      ],
+      "reasons": [],
       "figma": {
         "nodeId": "2108:3123",
         "setNodeId": "2108:3123",
@@ -1966,7 +2036,7 @@
       },
       "contract": {
         "id": "ds.texte-seo",
-        "version": "1.0.0",
+        "version": "2.1.0",
         "factIds": [
           "texte-seo.structure.root",
           "texte-seo.structure.h2",
@@ -2008,12 +2078,30 @@
           "texte-seo.semantic.paragraphe-element",
           "texte-seo.semantic.sous-titre-element"
         ],
-        "reactProps": {}
+        "reactProps": {
+          "items": [
+            {
+              "contenu": "Réponse",
+              "etat": "ferme",
+              "titre": "Accès et parking"
+            },
+            {
+              "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+              "etat": "ouvert",
+              "titre": "Faut-il prendre rendez-vous ?"
+            },
+            {
+              "contenu": "Réponse",
+              "etat": "ferme",
+              "titre": "Zones de déplacement pour devis"
+            }
+          ]
+        }
       },
       "generated": {
         "componentFile": "src/components/TexteSEO/TexteSEO.tsx",
         "export": "TexteSEO",
-        "bundleSha256": "0375d39ed8aa06589534c6f0dd7fccac1035283f13ac2eb15e60baba3e0f343b",
+        "bundleSha256": "8f0077cbfd628bab66d1c166752057d38f505b407c0438c72b2f095c45a824f2",
         "harnessConfigSha256": "d6d969ef1fda804f51c41c527118fcb95b8bf4b5c61456dc244398ca6e03980d",
         "fontsLoaded": true
       },
@@ -2024,9 +2112,9 @@
           "height": 766
         },
         "generated": {
-          "signalPixels": 109702,
+          "signalPixels": 126646,
           "width": 3648,
-          "height": 514
+          "height": 958
         },
         "contrastOk": true
       },
@@ -2037,27 +2125,27 @@
         },
         "generatedRoot": {
           "width": 3456,
-          "height": 322
+          "height": 766
         },
         "deltaPx": {
           "width": 0,
-          "height": -444
+          "height": 0
         },
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "pixels": {
-        "rawPct": 4.7389954918240385,
-        "maskedDiagnosticPct": 3.663320217212763,
+        "rawPct": 1.8376109056184122,
+        "maskedDiagnosticPct": null,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 4.7389954918240385,
+            "score": 1.8376109056184122,
             "maxDiffPct": 2.5,
-            "signalPixels": 109702
+            "signalPixels": 116120
           }
         ],
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "semantics": [
         {
@@ -2109,51 +2197,51 @@
           "id": "texte-seo-master-defaults.figma",
           "kind": "figma",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/figma.png",
-          "sha256": "afceb73e38286501e96effff0603748be60bdb9d818e991f234e5277d4ade51e",
+          "sha256": "6c4ae1636d399ec482d9ad19aa4a607c95bb57ab8047f36b2d1b14a9b0ff0c49",
           "mediaType": "image/png",
-          "width": 3447,
-          "height": 756,
-          "bytes": 212217
+          "width": 3456,
+          "height": 766,
+          "bytes": 212476
         },
         {
           "id": "texte-seo-master-defaults.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/generated.png",
-          "sha256": "34dea8bd3d7e6a7be464cb327afdad8b1c2cdaafaf164a002f8272b714c2e553",
+          "sha256": "cf4a2e48ba64e0252d2383fdffe0bff214f3cb7d97a90a43a85cec452a9a6f5a",
           "mediaType": "image/png",
-          "width": 3447,
-          "height": 756,
-          "bytes": 240828
+          "width": 3456,
+          "height": 766,
+          "bytes": 277724
         },
         {
           "id": "texte-seo-master-defaults.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/diff.png",
-          "sha256": "ec965774b19193064bb4a40e05ff38d070b3afbf4c1f856eea74a164aa25d4e5",
+          "sha256": "6993cf16c273a3d29eec9919b835b00d9cc33901d406ddd88712468b9f7905fa",
           "mediaType": "image/png",
-          "width": 3447,
-          "height": 756,
-          "bytes": 146008
+          "width": 3456,
+          "height": 766,
+          "bytes": 169071
         },
         {
           "id": "texte-seo-master-defaults.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/triptych.png",
-          "sha256": "3140465703a8507821319c02f0b7f8a5a4faacd51c1be11322a46220cf47b400",
+          "sha256": "7e412a1f84fdd5ea60a57c6c0ccdc1f35669bab8d30e0077f0f56285ba1088aa",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 646055
+          "bytes": 703984
         },
         {
           "id": "texte-seo-master-defaults.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/metadata.json",
-          "sha256": "a36188ee6470eec6c90bc80f0eba328abf5e28a8b1e9ac1f2dd8a43e629c1a7f",
+          "sha256": "19a3a2aa7e3803cc35275ec9cdddef326a467068b3a0a1a73c581c38ad66a5cf",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 5717
+          "bytes": 6185
         }
       ]
     }
@@ -2163,56 +2251,55 @@
       "id": "texte-seo-master-defaults.figma",
       "kind": "figma",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/figma.png",
-      "sha256": "afceb73e38286501e96effff0603748be60bdb9d818e991f234e5277d4ade51e",
+      "sha256": "6c4ae1636d399ec482d9ad19aa4a607c95bb57ab8047f36b2d1b14a9b0ff0c49",
       "mediaType": "image/png",
-      "width": 3447,
-      "height": 756,
-      "bytes": 212217
+      "width": 3456,
+      "height": 766,
+      "bytes": 212476
     },
     {
       "id": "texte-seo-master-defaults.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/generated.png",
-      "sha256": "34dea8bd3d7e6a7be464cb327afdad8b1c2cdaafaf164a002f8272b714c2e553",
+      "sha256": "cf4a2e48ba64e0252d2383fdffe0bff214f3cb7d97a90a43a85cec452a9a6f5a",
       "mediaType": "image/png",
-      "width": 3447,
-      "height": 756,
-      "bytes": 240828
+      "width": 3456,
+      "height": 766,
+      "bytes": 277724
     },
     {
       "id": "texte-seo-master-defaults.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/diff.png",
-      "sha256": "ec965774b19193064bb4a40e05ff38d070b3afbf4c1f856eea74a164aa25d4e5",
+      "sha256": "6993cf16c273a3d29eec9919b835b00d9cc33901d406ddd88712468b9f7905fa",
       "mediaType": "image/png",
-      "width": 3447,
-      "height": 756,
-      "bytes": 146008
+      "width": 3456,
+      "height": 766,
+      "bytes": 169071
     },
     {
       "id": "texte-seo-master-defaults.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/triptych.png",
-      "sha256": "3140465703a8507821319c02f0b7f8a5a4faacd51c1be11322a46220cf47b400",
+      "sha256": "7e412a1f84fdd5ea60a57c6c0ccdc1f35669bab8d30e0077f0f56285ba1088aa",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 646055
+      "bytes": 703984
     },
     {
       "id": "texte-seo-master-defaults.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/cases/texte-seo-master-defaults/metadata.json",
-      "sha256": "a36188ee6470eec6c90bc80f0eba328abf5e28a8b1e9ac1f2dd8a43e629c1a7f",
+      "sha256": "19a3a2aa7e3803cc35275ec9cdddef326a467068b3a0a1a73c581c38ad66a5cf",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 5717
+      "bytes": 6185
     }
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:14",
-    "failed-cases:1"
+    "divergent-facts:12"
   ]
 }

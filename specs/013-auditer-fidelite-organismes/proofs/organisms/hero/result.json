@@ -4,7 +4,7 @@
   "wave": 1,
   "contract": {
     "id": "ds.hero",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "path": "contracts/hero.contract.json"
   },
   "figmaSetNodeId": "2111:3382",
@@ -110,7 +110,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root",
+        "reference": "ds.hero@1.3.0#/anatomy/root",
         "observedValue": {
           "layout": {
             "display": "flex",
@@ -119,11 +119,29 @@
             "align": "end"
           },
           "parts": {
+            "Background": {
+              "description": "The root's fills[0] IMAGE paint as a photo plane. Out of flow (position: absolute) so it does not join the root's flex row; the emitter's replaced-element chrome then sizes it to the full inset box, which is the faithful statement — a Figma paint fills its NODE rather than occupying a box of its own, so no fixed 1728×640 is restated here. object-fit: cover reproduces scaleMode FILL (centered; the paint carries no imageTransform). Declared FIRST so the later positioned sibling paints over it.",
+              "element": "img",
+              "attrs": {
+                "src": "{backgroundUrl}",
+                "alt": "{backgroundAlt}"
+              },
+              "declared": {
+                "position": "absolute",
+                "object-fit": "cover"
+              }
+            },
             "blocTexte": {
               "layout": {
                 "direction": "column",
                 "align": "stretch",
                 "grow": true
+              },
+              "literals": {
+                "gap": "16px"
+              },
+              "declared": {
+                "position": "relative"
               },
               "parts": {
                 "Titres": {
@@ -131,14 +149,32 @@
                     "direction": "column",
                     "align": "stretch"
                   },
+                  "literals": {
+                    "gap": "16px",
+                    "padding-top": "96px",
+                    "padding-right": "89px",
+                    "padding-bottom": "48px",
+                    "padding-left": "89px"
+                  },
                   "parts": {
                     "SectionHeader": {
                       "component": {
                         "id": "ds.section-header",
                         "props": {
-                          "titre": "Portes de garage industrielles",
+                          "titre": [
+                            {
+                              "text": "Portes de garage",
+                              "strong": true
+                            },
+                            {
+                              "text": " industrielles"
+                            }
+                          ],
                           "accroche": "Plus de 50 ans d’expérience",
-                          "disposition": "standard"
+                          "accroche2": false,
+                          "disposition": "standard",
+                          "emphase": "hero",
+                          "alignement": "gauche"
                         }
                       }
                     },
@@ -148,16 +184,55 @@
                         "justify": "center",
                         "align": "end"
                       },
+                      "literals": {
+                        "gap": "32px"
+                      },
                       "parts": {
                         "sousTitre": {
-                          "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                          "description": "DEUX LIMITES NOMMÉES sur cette part.\n\n(1) GRAS NON PORTÉ. Figma met deux plages en 700 sur le node 2111:3380 (`styleOverrideTable` clé 16 = Montserrat-Bold ; `characterStyleOverrides` 3→13 = « performance », 162→179 = « la solution idéale »), sur une base Montserrat 400. Le seul vocabulaire de texte riche du schéma est `Part.content`, un `strictObject` dont le champ `prop` est OBLIGATOIRE : le gras ne peut donc voyager qu'à travers une prop rich-text, et une prop rich-text exige une liaison TEXT native — or le master Hero n'expose AUCUNE propriété de composant (`componentPropertyDefinitions` absent, fait déjà acquitté par hero.property.aucune-propriete-exposee). Inventer une liaison TEXT pour faire passer le gras fabriquerait une propriété Figma inexistante. La part reste donc en `text` littéral, chaîne exacte du census. CORRECTIF DE FOND CÔTÉ FIGMA : exposer une propriété Texte sur le master, après quoi le gras redevient une plage gouvernée portée par la prop — jamais un contournement en code.\n\n(2) LARGEUR LITTÉRALE MESURÉE, pas une grille. Figma dit FILL (layoutGrow=1) et calcule 1164 = 1550 (wrapper FILL) − 32 (itemSpacing) − 354 (Bouton HUG) ; le census confirme la boîte à 1164 px. `layout.grow` émet `flex: 1 1 auto`, dont la base reste le CONTENU (jamais `flex-basis: 0`), donc la base dépasse le conteneur et le retrait négatif se répartit sur les DEUX enfants : le Bouton se faisait comprimer sous sa largeur HUG et son libellé passait sur deux lignes. Le littéral fixe la base à la valeur observée ; `flex-grow: 1` reste actif, donc la sémantique FILL survit vers le haut. Même technique et même reçu que `literals.width: \"282px\"` sur la racine de ds.review-card (spec 006, decisions.md § contournement vérifié par la prior-art rule) et que ds.avatar-group dans l'archive demo-51. À RECALCULER si l'itemSpacing du wrapper, le padding de Titres ou la largeur HUG du Bouton changent. Le vrai correctif est moteur (une base FILL qui n'est pas le contenu) et reste au backlog — `core/` non modifié, Constitution VII.",
+                          "layout": {
+                            "grow": true
+                          },
+                          "literals": {
+                            "width": "1164px"
+                          },
                           "tokens": {
-                            "color": "{color.blanc}"
+                            "color": "{color.blanc}",
+                            "font-size": "{font.size.24}",
+                            "line-height": "{font.line-height.32}"
+                          },
+                          "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                          "textSegments": [
+                            {
+                              "text": "La "
+                            },
+                            {
+                              "text": "performance",
+                              "strong": true
+                            },
+                            {
+                              "text": " sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "
+                            },
+                            {
+                              "text": "la solution idéale",
+                              "strong": true
+                            },
+                            {
+                              "text": "."
+                            }
+                          ],
+                          "textMarks": {
+                            "strong": "{font.weight.bold}"
                           }
                         },
                         "Bouton": {
                           "component": {
-                            "id": "ds.button"
+                            "id": "ds.button",
+                            "text": "Demander un devis gratuit",
+                            "props": {
+                              "variant": "outlineBlanc",
+                              "iconRight": true
+                            }
                           }
                         }
                       }
@@ -169,16 +244,23 @@
           },
           "tokens": {
             "font-family": "{font.family.montserrat}"
+          },
+          "literals": {
+            "height": "640px",
+            "gap": "10px"
+          },
+          "declared": {
+            "position": "relative"
           }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -209,16 +291,45 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/props",
-        "observedValue": [],
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "reference": "ds.hero@1.3.0#/props",
+        "observedValue": [
+          {
+            "name": "backgroundUrl",
+            "description": "Code-only source of the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483). The master exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder.",
+            "type": "text",
+            "default": "",
+            "bindings": {
+              "figma": {
+                "kind": "NONE"
+              },
+              "code": {
+                "prop": "backgroundUrl"
+              }
+            }
+          },
+          {
+            "name": "backgroundAlt",
+            "description": "Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state.",
+            "type": "text",
+            "default": "",
+            "bindings": {
+              "figma": {
+                "kind": "NONE"
+              },
+              "code": {
+                "prop": "backgroundAlt"
+              }
+            }
+          }
+        ],
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -248,12 +359,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte",
         "observedValue": {
           "layout": {
             "direction": "column",
             "align": "stretch",
             "grow": true
+          },
+          "literals": {
+            "gap": "16px"
+          },
+          "declared": {
+            "position": "relative"
           },
           "parts": {
             "Titres": {
@@ -261,14 +378,32 @@
                 "direction": "column",
                 "align": "stretch"
               },
+              "literals": {
+                "gap": "16px",
+                "padding-top": "96px",
+                "padding-right": "89px",
+                "padding-bottom": "48px",
+                "padding-left": "89px"
+              },
               "parts": {
                 "SectionHeader": {
                   "component": {
                     "id": "ds.section-header",
                     "props": {
-                      "titre": "Portes de garage industrielles",
+                      "titre": [
+                        {
+                          "text": "Portes de garage",
+                          "strong": true
+                        },
+                        {
+                          "text": " industrielles"
+                        }
+                      ],
                       "accroche": "Plus de 50 ans d’expérience",
-                      "disposition": "standard"
+                      "accroche2": false,
+                      "disposition": "standard",
+                      "emphase": "hero",
+                      "alignement": "gauche"
                     }
                   }
                 },
@@ -278,16 +413,55 @@
                     "justify": "center",
                     "align": "end"
                   },
+                  "literals": {
+                    "gap": "32px"
+                  },
                   "parts": {
                     "sousTitre": {
-                      "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                      "description": "DEUX LIMITES NOMMÉES sur cette part.\n\n(1) GRAS NON PORTÉ. Figma met deux plages en 700 sur le node 2111:3380 (`styleOverrideTable` clé 16 = Montserrat-Bold ; `characterStyleOverrides` 3→13 = « performance », 162→179 = « la solution idéale »), sur une base Montserrat 400. Le seul vocabulaire de texte riche du schéma est `Part.content`, un `strictObject` dont le champ `prop` est OBLIGATOIRE : le gras ne peut donc voyager qu'à travers une prop rich-text, et une prop rich-text exige une liaison TEXT native — or le master Hero n'expose AUCUNE propriété de composant (`componentPropertyDefinitions` absent, fait déjà acquitté par hero.property.aucune-propriete-exposee). Inventer une liaison TEXT pour faire passer le gras fabriquerait une propriété Figma inexistante. La part reste donc en `text` littéral, chaîne exacte du census. CORRECTIF DE FOND CÔTÉ FIGMA : exposer une propriété Texte sur le master, après quoi le gras redevient une plage gouvernée portée par la prop — jamais un contournement en code.\n\n(2) LARGEUR LITTÉRALE MESURÉE, pas une grille. Figma dit FILL (layoutGrow=1) et calcule 1164 = 1550 (wrapper FILL) − 32 (itemSpacing) − 354 (Bouton HUG) ; le census confirme la boîte à 1164 px. `layout.grow` émet `flex: 1 1 auto`, dont la base reste le CONTENU (jamais `flex-basis: 0`), donc la base dépasse le conteneur et le retrait négatif se répartit sur les DEUX enfants : le Bouton se faisait comprimer sous sa largeur HUG et son libellé passait sur deux lignes. Le littéral fixe la base à la valeur observée ; `flex-grow: 1` reste actif, donc la sémantique FILL survit vers le haut. Même technique et même reçu que `literals.width: \"282px\"` sur la racine de ds.review-card (spec 006, decisions.md § contournement vérifié par la prior-art rule) et que ds.avatar-group dans l'archive demo-51. À RECALCULER si l'itemSpacing du wrapper, le padding de Titres ou la largeur HUG du Bouton changent. Le vrai correctif est moteur (une base FILL qui n'est pas le contenu) et reste au backlog — `core/` non modifié, Constitution VII.",
+                      "layout": {
+                        "grow": true
+                      },
+                      "literals": {
+                        "width": "1164px"
+                      },
                       "tokens": {
-                        "color": "{color.blanc}"
+                        "color": "{color.blanc}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.32}"
+                      },
+                      "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                      "textSegments": [
+                        {
+                          "text": "La "
+                        },
+                        {
+                          "text": "performance",
+                          "strong": true
+                        },
+                        {
+                          "text": " sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "
+                        },
+                        {
+                          "text": "la solution idéale",
+                          "strong": true
+                        },
+                        {
+                          "text": "."
+                        }
+                      ],
+                      "textMarks": {
+                        "strong": "{font.weight.bold}"
                       }
                     },
                     "Bouton": {
                       "component": {
-                        "id": "ds.button"
+                        "id": "ds.button",
+                        "text": "Demander un devis gratuit",
+                        "props": {
+                          "variant": "outlineBlanc",
+                          "iconRight": true
+                        }
                       }
                     }
                   }
@@ -296,14 +470,14 @@
             }
           }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__blocTexte\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -333,20 +507,38 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres",
         "observedValue": {
           "layout": {
             "direction": "column",
             "align": "stretch"
+          },
+          "literals": {
+            "gap": "16px",
+            "padding-top": "96px",
+            "padding-right": "89px",
+            "padding-bottom": "48px",
+            "padding-left": "89px"
           },
           "parts": {
             "SectionHeader": {
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": "Portes de garage industrielles",
+                  "titre": [
+                    {
+                      "text": "Portes de garage",
+                      "strong": true
+                    },
+                    {
+                      "text": " industrielles"
+                    }
+                  ],
                   "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard"
+                  "accroche2": false,
+                  "disposition": "standard",
+                  "emphase": "hero",
+                  "alignement": "gauche"
                 }
               }
             },
@@ -356,30 +548,69 @@
                 "justify": "center",
                 "align": "end"
               },
+              "literals": {
+                "gap": "32px"
+              },
               "parts": {
                 "sousTitre": {
-                  "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                  "description": "DEUX LIMITES NOMMÉES sur cette part.\n\n(1) GRAS NON PORTÉ. Figma met deux plages en 700 sur le node 2111:3380 (`styleOverrideTable` clé 16 = Montserrat-Bold ; `characterStyleOverrides` 3→13 = « performance », 162→179 = « la solution idéale »), sur une base Montserrat 400. Le seul vocabulaire de texte riche du schéma est `Part.content`, un `strictObject` dont le champ `prop` est OBLIGATOIRE : le gras ne peut donc voyager qu'à travers une prop rich-text, et une prop rich-text exige une liaison TEXT native — or le master Hero n'expose AUCUNE propriété de composant (`componentPropertyDefinitions` absent, fait déjà acquitté par hero.property.aucune-propriete-exposee). Inventer une liaison TEXT pour faire passer le gras fabriquerait une propriété Figma inexistante. La part reste donc en `text` littéral, chaîne exacte du census. CORRECTIF DE FOND CÔTÉ FIGMA : exposer une propriété Texte sur le master, après quoi le gras redevient une plage gouvernée portée par la prop — jamais un contournement en code.\n\n(2) LARGEUR LITTÉRALE MESURÉE, pas une grille. Figma dit FILL (layoutGrow=1) et calcule 1164 = 1550 (wrapper FILL) − 32 (itemSpacing) − 354 (Bouton HUG) ; le census confirme la boîte à 1164 px. `layout.grow` émet `flex: 1 1 auto`, dont la base reste le CONTENU (jamais `flex-basis: 0`), donc la base dépasse le conteneur et le retrait négatif se répartit sur les DEUX enfants : le Bouton se faisait comprimer sous sa largeur HUG et son libellé passait sur deux lignes. Le littéral fixe la base à la valeur observée ; `flex-grow: 1` reste actif, donc la sémantique FILL survit vers le haut. Même technique et même reçu que `literals.width: \"282px\"` sur la racine de ds.review-card (spec 006, decisions.md § contournement vérifié par la prior-art rule) et que ds.avatar-group dans l'archive demo-51. À RECALCULER si l'itemSpacing du wrapper, le padding de Titres ou la largeur HUG du Bouton changent. Le vrai correctif est moteur (une base FILL qui n'est pas le contenu) et reste au backlog — `core/` non modifié, Constitution VII.",
+                  "layout": {
+                    "grow": true
+                  },
+                  "literals": {
+                    "width": "1164px"
+                  },
                   "tokens": {
-                    "color": "{color.blanc}"
+                    "color": "{color.blanc}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.32}"
+                  },
+                  "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                  "textSegments": [
+                    {
+                      "text": "La "
+                    },
+                    {
+                      "text": "performance",
+                      "strong": true
+                    },
+                    {
+                      "text": " sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "
+                    },
+                    {
+                      "text": "la solution idéale",
+                      "strong": true
+                    },
+                    {
+                      "text": "."
+                    }
+                  ],
+                  "textMarks": {
+                    "strong": "{font.weight.bold}"
                   }
                 },
                 "Bouton": {
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "text": "Demander un devis gratuit",
+                    "props": {
+                      "variant": "outlineBlanc",
+                      "iconRight": true
+                    }
                   }
                 }
               }
             }
           }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__Titres\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -409,35 +640,74 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper",
         "observedValue": {
           "layout": {
             "direction": "row",
             "justify": "center",
             "align": "end"
           },
+          "literals": {
+            "gap": "32px"
+          },
           "parts": {
             "sousTitre": {
-              "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+              "description": "DEUX LIMITES NOMMÉES sur cette part.\n\n(1) GRAS NON PORTÉ. Figma met deux plages en 700 sur le node 2111:3380 (`styleOverrideTable` clé 16 = Montserrat-Bold ; `characterStyleOverrides` 3→13 = « performance », 162→179 = « la solution idéale »), sur une base Montserrat 400. Le seul vocabulaire de texte riche du schéma est `Part.content`, un `strictObject` dont le champ `prop` est OBLIGATOIRE : le gras ne peut donc voyager qu'à travers une prop rich-text, et une prop rich-text exige une liaison TEXT native — or le master Hero n'expose AUCUNE propriété de composant (`componentPropertyDefinitions` absent, fait déjà acquitté par hero.property.aucune-propriete-exposee). Inventer une liaison TEXT pour faire passer le gras fabriquerait une propriété Figma inexistante. La part reste donc en `text` littéral, chaîne exacte du census. CORRECTIF DE FOND CÔTÉ FIGMA : exposer une propriété Texte sur le master, après quoi le gras redevient une plage gouvernée portée par la prop — jamais un contournement en code.\n\n(2) LARGEUR LITTÉRALE MESURÉE, pas une grille. Figma dit FILL (layoutGrow=1) et calcule 1164 = 1550 (wrapper FILL) − 32 (itemSpacing) − 354 (Bouton HUG) ; le census confirme la boîte à 1164 px. `layout.grow` émet `flex: 1 1 auto`, dont la base reste le CONTENU (jamais `flex-basis: 0`), donc la base dépasse le conteneur et le retrait négatif se répartit sur les DEUX enfants : le Bouton se faisait comprimer sous sa largeur HUG et son libellé passait sur deux lignes. Le littéral fixe la base à la valeur observée ; `flex-grow: 1` reste actif, donc la sémantique FILL survit vers le haut. Même technique et même reçu que `literals.width: \"282px\"` sur la racine de ds.review-card (spec 006, decisions.md § contournement vérifié par la prior-art rule) et que ds.avatar-group dans l'archive demo-51. À RECALCULER si l'itemSpacing du wrapper, le padding de Titres ou la largeur HUG du Bouton changent. Le vrai correctif est moteur (une base FILL qui n'est pas le contenu) et reste au backlog — `core/` non modifié, Constitution VII.",
+              "layout": {
+                "grow": true
+              },
+              "literals": {
+                "width": "1164px"
+              },
               "tokens": {
-                "color": "{color.blanc}"
+                "color": "{color.blanc}",
+                "font-size": "{font.size.24}",
+                "line-height": "{font.line-height.32}"
+              },
+              "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+              "textSegments": [
+                {
+                  "text": "La "
+                },
+                {
+                  "text": "performance",
+                  "strong": true
+                },
+                {
+                  "text": " sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "
+                },
+                {
+                  "text": "la solution idéale",
+                  "strong": true
+                },
+                {
+                  "text": "."
+                }
+              ],
+              "textMarks": {
+                "strong": "{font.weight.bold}"
               }
             },
             "Bouton": {
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Demander un devis gratuit",
+                "props": {
+                  "variant": "outlineBlanc",
+                  "iconRight": true
+                }
               }
             }
           }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__wrapper\"]",
-        "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -468,16 +738,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/text",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/text",
         "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__sousTitre\"]",
         "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -507,21 +777,52 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre",
         "observedValue": {
-          "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+          "description": "DEUX LIMITES NOMMÉES sur cette part.\n\n(1) GRAS NON PORTÉ. Figma met deux plages en 700 sur le node 2111:3380 (`styleOverrideTable` clé 16 = Montserrat-Bold ; `characterStyleOverrides` 3→13 = « performance », 162→179 = « la solution idéale »), sur une base Montserrat 400. Le seul vocabulaire de texte riche du schéma est `Part.content`, un `strictObject` dont le champ `prop` est OBLIGATOIRE : le gras ne peut donc voyager qu'à travers une prop rich-text, et une prop rich-text exige une liaison TEXT native — or le master Hero n'expose AUCUNE propriété de composant (`componentPropertyDefinitions` absent, fait déjà acquitté par hero.property.aucune-propriete-exposee). Inventer une liaison TEXT pour faire passer le gras fabriquerait une propriété Figma inexistante. La part reste donc en `text` littéral, chaîne exacte du census. CORRECTIF DE FOND CÔTÉ FIGMA : exposer une propriété Texte sur le master, après quoi le gras redevient une plage gouvernée portée par la prop — jamais un contournement en code.\n\n(2) LARGEUR LITTÉRALE MESURÉE, pas une grille. Figma dit FILL (layoutGrow=1) et calcule 1164 = 1550 (wrapper FILL) − 32 (itemSpacing) − 354 (Bouton HUG) ; le census confirme la boîte à 1164 px. `layout.grow` émet `flex: 1 1 auto`, dont la base reste le CONTENU (jamais `flex-basis: 0`), donc la base dépasse le conteneur et le retrait négatif se répartit sur les DEUX enfants : le Bouton se faisait comprimer sous sa largeur HUG et son libellé passait sur deux lignes. Le littéral fixe la base à la valeur observée ; `flex-grow: 1` reste actif, donc la sémantique FILL survit vers le haut. Même technique et même reçu que `literals.width: \"282px\"` sur la racine de ds.review-card (spec 006, decisions.md § contournement vérifié par la prior-art rule) et que ds.avatar-group dans l'archive demo-51. À RECALCULER si l'itemSpacing du wrapper, le padding de Titres ou la largeur HUG du Bouton changent. Le vrai correctif est moteur (une base FILL qui n'est pas le contenu) et reste au backlog — `core/` non modifié, Constitution VII.",
+          "layout": {
+            "grow": true
+          },
+          "literals": {
+            "width": "1164px"
+          },
           "tokens": {
-            "color": "{color.blanc}"
+            "color": "{color.blanc}",
+            "font-size": "{font.size.24}",
+            "line-height": "{font.line-height.32}"
+          },
+          "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+          "textSegments": [
+            {
+              "text": "La "
+            },
+            {
+              "text": "performance",
+              "strong": true
+            },
+            {
+              "text": " sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "
+            },
+            {
+              "text": "la solution idéale",
+              "strong": true
+            },
+            {
+              "text": "."
+            }
+          ],
+          "textMarks": {
+            "strong": "{font.weight.bold}"
           }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__sousTitre\"]",
         "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -561,23 +862,34 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component",
         "observedValue": {
           "id": "ds.section-header",
           "props": {
-            "titre": "Portes de garage industrielles",
+            "titre": [
+              {
+                "text": "Portes de garage",
+                "strong": true
+              },
+              {
+                "text": " industrielles"
+              }
+            ],
             "accroche": "Plus de 50 ans d’expérience",
-            "disposition": "standard"
+            "accroche2": false,
+            "disposition": "standard",
+            "emphase": "hero",
+            "alignement": "gauche"
           }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industrielles",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -615,18 +927,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component",
         "observedValue": {
-          "id": "ds.button"
+          "id": "ds.button",
+          "text": "Demander un devis gratuit",
+          "props": {
+            "variant": "outlineBlanc",
+            "iconRight": true
+          }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Button__root\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -656,7 +973,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root",
+        "reference": "ds.hero@1.3.0#/anatomy/root",
         "observedValue": {
           "layout": {
             "display": "flex",
@@ -665,11 +982,29 @@
             "align": "end"
           },
           "parts": {
+            "Background": {
+              "description": "The root's fills[0] IMAGE paint as a photo plane. Out of flow (position: absolute) so it does not join the root's flex row; the emitter's replaced-element chrome then sizes it to the full inset box, which is the faithful statement — a Figma paint fills its NODE rather than occupying a box of its own, so no fixed 1728×640 is restated here. object-fit: cover reproduces scaleMode FILL (centered; the paint carries no imageTransform). Declared FIRST so the later positioned sibling paints over it.",
+              "element": "img",
+              "attrs": {
+                "src": "{backgroundUrl}",
+                "alt": "{backgroundAlt}"
+              },
+              "declared": {
+                "position": "absolute",
+                "object-fit": "cover"
+              }
+            },
             "blocTexte": {
               "layout": {
                 "direction": "column",
                 "align": "stretch",
                 "grow": true
+              },
+              "literals": {
+                "gap": "16px"
+              },
+              "declared": {
+                "position": "relative"
               },
               "parts": {
                 "Titres": {
@@ -677,14 +1012,32 @@
                     "direction": "column",
                     "align": "stretch"
                   },
+                  "literals": {
+                    "gap": "16px",
+                    "padding-top": "96px",
+                    "padding-right": "89px",
+                    "padding-bottom": "48px",
+                    "padding-left": "89px"
+                  },
                   "parts": {
                     "SectionHeader": {
                       "component": {
                         "id": "ds.section-header",
                         "props": {
-                          "titre": "Portes de garage industrielles",
+                          "titre": [
+                            {
+                              "text": "Portes de garage",
+                              "strong": true
+                            },
+                            {
+                              "text": " industrielles"
+                            }
+                          ],
                           "accroche": "Plus de 50 ans d’expérience",
-                          "disposition": "standard"
+                          "accroche2": false,
+                          "disposition": "standard",
+                          "emphase": "hero",
+                          "alignement": "gauche"
                         }
                       }
                     },
@@ -694,16 +1047,55 @@
                         "justify": "center",
                         "align": "end"
                       },
+                      "literals": {
+                        "gap": "32px"
+                      },
                       "parts": {
                         "sousTitre": {
-                          "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                          "description": "DEUX LIMITES NOMMÉES sur cette part.\n\n(1) GRAS NON PORTÉ. Figma met deux plages en 700 sur le node 2111:3380 (`styleOverrideTable` clé 16 = Montserrat-Bold ; `characterStyleOverrides` 3→13 = « performance », 162→179 = « la solution idéale »), sur une base Montserrat 400. Le seul vocabulaire de texte riche du schéma est `Part.content`, un `strictObject` dont le champ `prop` est OBLIGATOIRE : le gras ne peut donc voyager qu'à travers une prop rich-text, et une prop rich-text exige une liaison TEXT native — or le master Hero n'expose AUCUNE propriété de composant (`componentPropertyDefinitions` absent, fait déjà acquitté par hero.property.aucune-propriete-exposee). Inventer une liaison TEXT pour faire passer le gras fabriquerait une propriété Figma inexistante. La part reste donc en `text` littéral, chaîne exacte du census. CORRECTIF DE FOND CÔTÉ FIGMA : exposer une propriété Texte sur le master, après quoi le gras redevient une plage gouvernée portée par la prop — jamais un contournement en code.\n\n(2) LARGEUR LITTÉRALE MESURÉE, pas une grille. Figma dit FILL (layoutGrow=1) et calcule 1164 = 1550 (wrapper FILL) − 32 (itemSpacing) − 354 (Bouton HUG) ; le census confirme la boîte à 1164 px. `layout.grow` émet `flex: 1 1 auto`, dont la base reste le CONTENU (jamais `flex-basis: 0`), donc la base dépasse le conteneur et le retrait négatif se répartit sur les DEUX enfants : le Bouton se faisait comprimer sous sa largeur HUG et son libellé passait sur deux lignes. Le littéral fixe la base à la valeur observée ; `flex-grow: 1` reste actif, donc la sémantique FILL survit vers le haut. Même technique et même reçu que `literals.width: \"282px\"` sur la racine de ds.review-card (spec 006, decisions.md § contournement vérifié par la prior-art rule) et que ds.avatar-group dans l'archive demo-51. À RECALCULER si l'itemSpacing du wrapper, le padding de Titres ou la largeur HUG du Bouton changent. Le vrai correctif est moteur (une base FILL qui n'est pas le contenu) et reste au backlog — `core/` non modifié, Constitution VII.",
+                          "layout": {
+                            "grow": true
+                          },
+                          "literals": {
+                            "width": "1164px"
+                          },
                           "tokens": {
-                            "color": "{color.blanc}"
+                            "color": "{color.blanc}",
+                            "font-size": "{font.size.24}",
+                            "line-height": "{font.line-height.32}"
+                          },
+                          "text": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+                          "textSegments": [
+                            {
+                              "text": "La "
+                            },
+                            {
+                              "text": "performance",
+                              "strong": true
+                            },
+                            {
+                              "text": " sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons "
+                            },
+                            {
+                              "text": "la solution idéale",
+                              "strong": true
+                            },
+                            {
+                              "text": "."
+                            }
+                          ],
+                          "textMarks": {
+                            "strong": "{font.weight.bold}"
                           }
                         },
                         "Bouton": {
                           "component": {
-                            "id": "ds.button"
+                            "id": "ds.button",
+                            "text": "Demander un devis gratuit",
+                            "props": {
+                              "variant": "outlineBlanc",
+                              "iconRight": true
+                            }
                           }
                         }
                       }
@@ -715,16 +1107,23 @@
           },
           "tokens": {
             "font-family": "{font.family.montserrat}"
+          },
+          "literals": {
+            "height": "640px",
+            "gap": "10px"
+          },
+          "declared": {
+            "position": "relative"
           }
         },
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -734,8 +1133,8 @@
       "outcome": "divergent",
       "localizedSource": "comparison",
       "reasons": [
-        "raw-over-threshold:86.93381980613427>2.5",
-        "region-over-budget:whole:86.93381980613427>2.5"
+        "raw-over-threshold:27.82854998553241>2.5",
+        "region-over-budget:whole:27.82854998553241>2.5"
       ],
       "deferredWorkId": null
     },
@@ -754,29 +1153,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/literals/gap",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/gap"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/literals/gap",
+        "observedValue": "10px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.gap=\"10px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -794,29 +1189,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/literals/gap",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/literals/gap"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/literals/gap",
+        "observedValue": "16px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__blocTexte\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:blocTexte.gap=\"16px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -834,29 +1225,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/gap",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/literals/gap"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/gap",
+        "observedValue": "16px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__Titres\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Titres.gap=\"16px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -874,29 +1261,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/literals/gap",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/literals/gap"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/literals/gap",
+        "observedValue": "32px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__wrapper\"]",
-        "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:wrapper.gap=\"32px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -914,29 +1297,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-top",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-top"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-top",
+        "observedValue": "96px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__Titres\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Titres.padding-top=\"96px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -954,29 +1333,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-bottom",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-bottom"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-bottom",
+        "observedValue": "48px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__Titres\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Titres.padding-bottom=\"48px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -994,29 +1369,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-left",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-left"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-left",
+        "observedValue": "89px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__Titres\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Titres.padding-left=\"89px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1034,29 +1405,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-right",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-right"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-right",
+        "observedValue": "89px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__Titres\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Titres.padding-right=\"89px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1074,29 +1441,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/literals/height",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/literals/height"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/literals/height",
+        "observedValue": "640px",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:root.height=\"640px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1114,29 +1477,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/layout/grow",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/layout/grow"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/layout/grow",
+        "observedValue": true,
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__sousTitre\"]",
         "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:sousTitre.layout.grow=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1154,9 +1513,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/literals/width",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/literals/width",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/literals/width"
@@ -1164,8 +1523,8 @@
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industrielles",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1194,18 +1553,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/font-size",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/font-size"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/font-size",
+        "observedValue": "{font.size.24}",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__sousTitre\"]",
         "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1215,7 +1572,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:sousTitre.font-size=\"24px\""
+        "contract-value-differs:sousTitre.font-size:\"{font.size.24}\"!=\"24px\""
       ],
       "deferredWorkId": null
     },
@@ -1234,18 +1591,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/line-height",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/line-height"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/tokens/line-height",
+        "observedValue": "{font.line-height.32}",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__sousTitre\"]",
         "observedValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1255,7 +1610,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:sousTitre.line-height=\"32px\""
+        "contract-value-differs:sousTitre.line-height:\"{font.line-height.32}\"!=\"32px\""
       ],
       "deferredWorkId": null
     },
@@ -1274,9 +1629,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/literals/background-image",
+        "reference": "ds.hero@1.3.0#/anatomy/root/literals/background-image",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/literals/background-image"
@@ -1284,8 +1639,8 @@
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1314,9 +1669,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/literals/background-image",
+        "reference": "ds.hero@1.3.0#/anatomy/root/literals/background-image",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/literals/background-image"
@@ -1324,8 +1679,8 @@
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1354,9 +1709,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/background-image",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/literals/background-image",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/literals/background-image"
@@ -1364,8 +1719,8 @@
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Hero__Titres\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industriellesLa performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1394,25 +1749,35 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/titre",
-        "observedValue": "Portes de garage industrielles",
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/titre",
+        "observedValue": [
+          {
+            "text": "Portes de garage",
+            "strong": true
+          },
+          {
+            "text": " industrielles"
+          }
+        ],
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Portes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "proved",
-      "localizedSource": null,
-      "reasons": [],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-value-differs:SectionHeader.Titre:[{\"text\":\"Portes de garage\",\"strong\":true},{\"text\":\" industrielles\"}]!=\"Portes de garage industrielles\""
+      ],
       "deferredWorkId": null
     },
     {
@@ -1430,18 +1795,20 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche",
         "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__Accroche\"]",
-        "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
-        "available": true,
-        "notes": []
+        "observedValue": null,
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
       },
       "evidenceIds": [
         "hero-master-defaults"
@@ -1466,16 +1833,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/disposition",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/disposition",
         "observedValue": "standard",
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePortes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Portes de garage industrielles",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1502,29 +1869,27 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche2",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche2"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/component/props/accroche2",
+        "observedValue": false,
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__Accroche\"]",
-        "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
-        "available": true,
-        "notes": []
+        "observedValue": null,
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:SectionHeader.Accroche2 (BOOLEAN)=false"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1542,9 +1907,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/color",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/color",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/color"
@@ -1553,7 +1918,7 @@
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Portes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1582,9 +1947,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-size",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-size",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-size"
@@ -1593,7 +1958,7 @@
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Portes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1622,9 +1987,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/line-height",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/line-height",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/line-height"
@@ -1633,7 +1998,7 @@
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Portes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1662,9 +2027,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-weight",
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-weight",
         "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/SectionHeader/tokens/font-weight"
@@ -1673,7 +2038,7 @@
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Portes de garage industrielles",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
@@ -1702,29 +2067,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/text",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/text"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/text",
+        "observedValue": "Demander un devis gratuit",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Button__root\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Libelle=\"Demander un devis gratuit\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1742,29 +2103,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/variant",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/variant"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/variant",
+        "observedValue": "outlineBlanc",
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Button__root\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Style (VARIANT \"Outline blanc\" → valeur d'enum contractuelle \"outlineBlanc\", mappage déclaré par ds.button /props/0/bindings/figma/values)=\"outlineBlanc\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -1782,29 +2139,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.hero@1.0.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/iconRight",
-        "observedValue": null,
-        "sourceHash": "ca562235696aec69a138211fbdb7031349779751f9df7c1333a0ac5f208e40fa",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/iconRight"
-        ]
+        "reference": "ds.hero@1.3.0#/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/Bouton/component/props/iconRight",
+        "observedValue": true,
+        "sourceHash": "e029f93986ad22b2a53b7be4a21714c50ef4b9b22c04c4ddce3c09ebf1191144",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Hero/Hero.tsx#[class*=\"Button__root\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "observedValue": "Demander un devis gratuit",
+        "sourceHash": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "hero-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Icone droite (BOOLEAN)=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     }
   ],
@@ -1815,8 +2168,8 @@
       "verdict": "fail",
       "probative": true,
       "reasons": [
-        "raw-over-threshold:86.93381980613427>2.5",
-        "region-over-budget:whole:86.93381980613427>2.5"
+        "raw-over-threshold:27.82854998553241>2.5",
+        "region-over-budget:whole:27.82854998553241>2.5"
       ],
       "figma": {
         "nodeId": "2111:3382",
@@ -1829,7 +2182,7 @@
       },
       "contract": {
         "id": "ds.hero",
-        "version": "1.0.0",
+        "version": "1.3.0",
         "factIds": [
           "hero.structure.root",
           "hero.property.aucune-propriete-exposee",
@@ -1869,12 +2222,15 @@
           "hero.composition.button-variant",
           "hero.composition.button-icone-droite"
         ],
-        "reactProps": {}
+        "reactProps": {
+          "backgroundUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/hero--background--b9ae58d2e309.jpg",
+          "backgroundAlt": ""
+        }
       },
       "generated": {
         "componentFile": "src/components/Hero/Hero.tsx",
         "export": "Hero",
-        "bundleSha256": "48f631cf4b7aa5a826994531d3b57d32930cac10d48d3abcb99f6372378f1ca0",
+        "bundleSha256": "ca7b7c8a91d1204ba43f679460e2e1f41eac8541c41aa52382f1b66dbfa67803",
         "harnessConfigSha256": "3ab7405c66bcf8d707626557f4ecea39ee1771f0dbc86e5a97f7a474577c2c17",
         "fontsLoaded": true
       },
@@ -1885,9 +2241,9 @@
           "height": 1280
         },
         "generated": {
-          "signalPixels": 73453,
+          "signalPixels": 4336683,
           "width": 3648,
-          "height": 466
+          "height": 1472
         },
         "contrastOk": true
       },
@@ -1898,24 +2254,24 @@
         },
         "generatedRoot": {
           "width": 3456,
-          "height": 274
+          "height": 1280
         },
         "deltaPx": {
           "width": 0,
-          "height": -1006
+          "height": 0
         },
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "pixels": {
-        "rawPct": 86.93381980613427,
-        "maskedDiagnosticPct": 86.51637766273286,
+        "rawPct": 27.82854998553241,
+        "maskedDiagnosticPct": null,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 86.93381980613427,
+            "score": 27.82854998553241,
             "maxDiffPct": 2.5,
-            "signalPixels": 73453
+            "signalPixels": 4336683
           }
         ],
         "verdict": "fail"
@@ -1957,11 +2313,8 @@
             "tag": "span",
             "textEquals": "Plus de 50 ans d’expérience"
           },
-          "observed": {
-            "tag": "span",
-            "text": "Plus de 50 ans d’expérience"
-          },
-          "verdict": "pass"
+          "observed": null,
+          "verdict": "fail"
         },
         {
           "id": "button-libelle-defaut-de-l-enfant",
@@ -1973,9 +2326,9 @@
           },
           "observed": {
             "tag": "button",
-            "text": "Contactez-nous"
+            "text": "Demander un devis gratuit"
           },
-          "verdict": "pass"
+          "verdict": "fail"
         }
       ],
       "domProbes": [],
@@ -1994,41 +2347,41 @@
           "id": "hero-master-defaults.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/generated.png",
-          "sha256": "4d7a4e9c186553c63b7a12c74270cb259942c6e2e238c88271cb10892dcc8588",
+          "sha256": "4fbb91a5fe6cb951d235d3309ef6829491dcd2022e26029d1662e1d7fa9fdd1f",
           "mediaType": "image/png",
           "width": 3456,
           "height": 1280,
-          "bytes": 68499
+          "bytes": 3801902
         },
         {
           "id": "hero-master-defaults.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/diff.png",
-          "sha256": "6077125117a972e1681bc90d47b2e7b2cb0caa3e4972354c435a9422aed4af55",
+          "sha256": "f79e25bd39e03c5150d00337f4d568db4e0eba415bfcd163ac1949d37d03b522",
           "mediaType": "image/png",
           "width": 3456,
           "height": 1280,
-          "bytes": 716037
+          "bytes": 689402
         },
         {
           "id": "hero-master-defaults.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/triptych.png",
-          "sha256": "a6f21fb1d142e7b53ab1652a223ecd1668fa283b11d5ed19d1afc5c97be0d5d4",
+          "sha256": "59ae589b7ce9cff5da9c3c76cc928c184d5a52acb4086205d014deaabd872299",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 5108695
+          "bytes": 8787820
         },
         {
           "id": "hero-master-defaults.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/metadata.json",
-          "sha256": "110e47b0b93c92e0bd094b29cc2684a13a97f3d4634d6064b3223386484b7115",
+          "sha256": "4d13e85eea5a91c29c7dee77da431c9448b8b597a80c1cf8d2d3dd05ab3f571d",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 5361
+          "bytes": 5473
         }
       ]
     }
@@ -2048,46 +2401,46 @@
       "id": "hero-master-defaults.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/generated.png",
-      "sha256": "4d7a4e9c186553c63b7a12c74270cb259942c6e2e238c88271cb10892dcc8588",
+      "sha256": "4fbb91a5fe6cb951d235d3309ef6829491dcd2022e26029d1662e1d7fa9fdd1f",
       "mediaType": "image/png",
       "width": 3456,
       "height": 1280,
-      "bytes": 68499
+      "bytes": 3801902
     },
     {
       "id": "hero-master-defaults.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/diff.png",
-      "sha256": "6077125117a972e1681bc90d47b2e7b2cb0caa3e4972354c435a9422aed4af55",
+      "sha256": "f79e25bd39e03c5150d00337f4d568db4e0eba415bfcd163ac1949d37d03b522",
       "mediaType": "image/png",
       "width": 3456,
       "height": 1280,
-      "bytes": 716037
+      "bytes": 689402
     },
     {
       "id": "hero-master-defaults.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/triptych.png",
-      "sha256": "a6f21fb1d142e7b53ab1652a223ecd1668fa283b11d5ed19d1afc5c97be0d5d4",
+      "sha256": "59ae589b7ce9cff5da9c3c76cc928c184d5a52acb4086205d014deaabd872299",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 5108695
+      "bytes": 8787820
     },
     {
       "id": "hero-master-defaults.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/cases/hero-master-defaults/metadata.json",
-      "sha256": "110e47b0b93c92e0bd094b29cc2684a13a97f3d4634d6064b3223386484b7115",
+      "sha256": "4d13e85eea5a91c29c7dee77da431c9448b8b597a80c1cf8d2d3dd05ab3f571d",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 5361
+      "bytes": 5473
     }
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:25",
+    "divergent-facts:12",
     "failed-cases:1"
   ]
 }

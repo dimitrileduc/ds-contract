@@ -1,12 +1,9 @@
 {
   "id": "sav-master-defaults",
   "subjectId": "sav",
-  "verdict": "fail",
+  "verdict": "pass",
   "probative": true,
-  "reasons": [
-    "raw-over-threshold:42.20191070662791>2.5",
-    "region-over-budget:whole:42.20191070662791>2.5"
-  ],
+  "reasons": [],
   "figma": {
     "nodeId": "2108:3105",
     "setNodeId": "2108:3105",
@@ -20,7 +17,7 @@
   },
   "contract": {
     "id": "ds.sav",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "factIds": [
       "sav.structure.root",
       "sav.content.texte",
@@ -41,12 +38,17 @@
       "sav.composition.button-libelle",
       "sav.composition.button-icon-right"
     ],
-    "reactProps": {}
+    "reactProps": {
+      "backgroundUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/sav--background--3e1738748288.jpg",
+      "backgroundAlt": "",
+      "imageUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/sav--img--429c615cb090.png",
+      "imageAlt": ""
+    }
   },
   "generated": {
     "componentFile": "src/components/SAV/SAV.tsx",
     "export": "SAV",
-    "bundleSha256": "cd4821dc52485484b7ccf46f4edeff44d3b3a5f3a5a659fac7137f716346f9f1",
+    "bundleSha256": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
     "harnessConfigSha256": "32cd31e276df3ef79abbfe906d8fbbd2c77fa3116aa21131a5fca745d9f4a562",
     "fontsLoaded": true
   },
@@ -57,9 +59,9 @@
       "height": 1354
     },
     "generated": {
-      "signalPixels": 396993,
+      "signalPixels": 2588393,
       "width": 3292,
-      "height": 544
+      "height": 1546
     },
     "contrastOk": true
   },
@@ -70,27 +72,27 @@
     },
     "generatedRoot": {
       "width": 3100,
-      "height": 352
+      "height": 1354
     },
     "deltaPx": {
       "width": 0,
-      "height": -1002
+      "height": 0
     },
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "pixels": {
-    "rawPct": 42.20191070662791,
-    "maskedDiagnosticPct": 37.96297137664698,
+    "rawPct": 0.6652451517606137,
+    "maskedDiagnosticPct": null,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 42.20191070662791,
+        "score": 0.6652451517606137,
         "maxDiffPct": 2.5,
-        "signalPixels": 396993
+        "signalPixels": 2575702
       }
     ],
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "semantics": [
     {
@@ -103,9 +105,9 @@
       },
       "observed": {
         "tag": "span",
-        "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+        "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
       },
-      "verdict": "fail"
+      "verdict": "pass"
     },
     {
       "id": "titre-element",

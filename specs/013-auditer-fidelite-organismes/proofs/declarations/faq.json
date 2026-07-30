@@ -1,0 +1,956 @@
+{
+  "facts": [
+    {
+      "id": "faq.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "detail": "COMPONENT autonome \"FAQ\" (aucun COMPONENT_SET — 003 le note : « pas de variant réel, juste une propriété booléenne pour le nombre de lignes ») 1728x448, layoutMode=VERTICAL counterAxisAlignItems=CENTER counterAxisSizingMode=FIXED itemSpacing=48 paddingLeft/Right=89 (aucun paddingTop/Bottom → 0), layoutSizingHorizontal=FIXED layoutSizingVertical=HUG, clipsContent=false > [SectionHeader instance 2104:2907, accordion frame 2104:2908 > [AccordionRow 2104:2909 (Ferme), AccordionRow 2104:2910 (Ouvert), AccordionRow 2104:2911 (Ferme, pilotée par Ligne 3)], Bouton instance 2104:2912]. fills[0] est un SOLID visible=false lié à VariableID:5:63 : AUCUN fond n'est peint, et le contrat n'en porte aucun — les deux surfaces sont donc muettes sur ce canal, aucun fait de fond n'est déclaré. componentPropertyDefinitions = { \"Ligne 3#2104:59\": BOOLEAN, defaultValue true }."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.root-direction",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "channel": "layoutMode",
+        "raw": "VERTICAL"
+      },
+      "figmaExpectation": {
+        "channel": "root.layoutMode",
+        "value": "column"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/direction"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.root-align",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "channel": "counterAxisAlignItems",
+        "raw": "CENTER"
+      },
+      "figmaExpectation": {
+        "channel": "root.counterAxisAlignItems",
+        "value": "center"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/align"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.gap-root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "channel": "itemSpacing",
+        "raw": 48,
+        "detail": "les 48px séparent SectionHeader / accordion / Bouton (mesurables : SectionHeader finit à y=15329, accordion commence à y=15377). Le contrat ne porte ni literals.gap ni layout.gap sur root, et FAQ.module.css .root n'émet aucun gap → les trois enfants sont collés côté React."
+      },
+      "figmaExpectation": {
+        "channel": "root.gap",
+        "value": "48px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.padding-root-left",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "channel": "paddingLeft",
+        "raw": 89
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-left",
+        "value": "89px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-left"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.padding-root-right",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "channel": "paddingRight",
+        "raw": 89
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-right",
+        "value": "89px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-right"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.root-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal=FIXED",
+        "raw": 1728,
+        "detail": "1728 − 89 − 89 = 1550, la largeur résolue de tous les enfants (SectionHeader, accordion, chaque AccordionRow le mesurent). Le contrat ne fige aucune largeur sur root ; le harnais impose #root{width:1728px} depuis la boîte Figma pinée, donc la largeur du root React vient du conteneur, pas du contrat."
+      },
+      "figmaExpectation": {
+        "channel": "root.width",
+        "value": "1728px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.accordion",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2908",
+        "detail": "FRAME \"accordion\" 1550x248 (= 64 + 120 + 64, les trois lignes sans écart), layoutMode=VERTICAL counterAxisAlignItems=CENTER layoutAlign=STRETCH layoutGrow=0 layoutSizingHorizontal=FILL layoutSizingVertical=HUG, fills=[] strokes=[]. itemSpacing ABSENT du node → 0 ; .accordion n'émet aucun gap non plus, donc les deux surfaces valent 0 sur ce canal et aucun fait de gap n'est déclaré ici (le déclarer avec un pointeur non résolvant fabriquerait une divergence qui n'existe pas). Wrapper de pure disposition, sans master propre (003 : « même famille que tabs/row(Field) »)."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__accordion\"]"
+      }
+    },
+    {
+      "id": "faq.structure.accordion-direction",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2908",
+        "channel": "layoutMode",
+        "raw": "VERTICAL"
+      },
+      "figmaExpectation": {
+        "channel": "accordion.layoutMode",
+        "value": "column"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/layout/direction"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__accordion\"]"
+      }
+    },
+    {
+      "id": "faq.structure.accordion-align",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2908",
+        "channel": "counterAxisAlignItems",
+        "raw": "CENTER"
+      },
+      "figmaExpectation": {
+        "channel": "accordion.counterAxisAlignItems",
+        "value": "center"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/layout/align"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__accordion\"]"
+      }
+    },
+    {
+      "id": "faq.structure.accordion-fill",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2908",
+        "channel": "layoutSizingHorizontal / layoutAlign",
+        "raw": "FILL (layoutAlign=STRETCH, layoutGrow=0) → 1550px résolus",
+        "detail": "FILL sur l'axe TRANSVERSE d'un parent VERTICAL : l'équivalent CSS est align-self: stretch, pas flex-grow. La matrice ne connaît qu'une ligne pour ce canal — « flex-grow / flex: 1 → layoutGrow / layoutSizingHorizontal|Vertical: FILL », verdict CARRY-BOTH, portée par layout.grow — c'est donc ce pointeur qui est cité ; le schéma offre aussi Part.declared[\"align-self\"] (DECLARED_CHANNELS, canvas: annotate). Le contrat ne porte NI l'un NI l'autre, et .root pose align-items: center : le div .accordion est donc large comme son contenu côté React, jamais 1550px."
+      },
+      "figmaExpectation": {
+        "channel": "accordion.layoutSizingHorizontal=FILL",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__accordion\"]"
+      }
+    },
+    {
+      "id": "faq.structure.accordion-row-fill",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2909",
+        "channel": "layoutSizingHorizontal / layoutAlign",
+        "raw": "FILL (layoutAlign=STRETCH, layoutGrow=0) sur les trois instances (2104:2909, 2104:2910, 2104:2911) → 1550px résolus",
+        "detail": "Corollaire §VIII, même classe que Hero/SectionHeader : les 1550px des instances sont une largeur RÉSOLUE (FILL de accordion, lui-même FILL des 1728 − 178 du root), pas une largeur fixe — or ds.accordion-row gèle literals.width = \"1550px\" sur son propre root et le contrat faq ne pose aucun override. Conséquence : chaque ligne rendue mesure 1550px en dur, quelle que soit la largeur du conteneur."
+      },
+      "figmaExpectation": {
+        "channel": "accordion.AccordionRow[*].layoutSizingHorizontal",
+        "value": "FILL"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.section-header-height",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2907",
+        "channel": "absoluteBoundingBox.height / layoutSizingVertical=FIXED",
+        "raw": 50,
+        "detail": "overrides de l'instance = { 2104:2907: [height, primaryAxisSizingMode, width] } — hauteur FIGÉE à 50px et largeur figée à 1550px (cette dernière coïncide avec le literals.width de ds.section-header, donc sans effet mesurable ; seule la hauteur est déclarée ici). Le contenu demande 83px (Accroche 25 + itemSpacing 8 + Titre 50) et clipsContent=false : absoluteRenderBounds.height = 79.76 dépasse la boîte de 50 et empiète sur le gap de 48. 003 (specs/003-externalize-figma-components/audits/faq.md) nomme ce 50px comme un piège DÉJÀ documenté à l'audit SectionHeader et porté correctement par les instances FAQ — donc source adoptée, pas défaut neuf. Le contrat faq ne porte aucune hauteur sur cette part."
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.height (layoutSizingVertical=FIXED)",
+        "value": "50px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/literals/height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.ligne3-cible-visibilite",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2911",
+        "channel": "componentPropertyReferences.visible",
+        "raw": "Ligne 3#2104:59",
+        "detail": "la 3e ligne porte componentPropertyReferences = { visible: \"Ligne 3#2104:59\" } : la propriété BOOLEAN du master pilote SA VISIBILITÉ. 003 l'a mesuré bout en bout avant adoption — Ligne 3=false → accordion 248px→184px et FAQ 448px→384px, exactement la hauteur des deux sites à 2 lignes. Aucune part du contrat faq ne porte de visibleWhen : le canal existe pourtant (matrice §7 « visibility: hidden → native visible (BOOLEAN bindable) », porté par visibleWhen, CARRY-BOTH)."
+      },
+      "figmaExpectation": {
+        "channel": "accordion.AccordionRow[2].visible ← Ligne 3#2104:59",
+        "value": {
+          "prop": "ligne3",
+          "equals": true
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/visibleWhen"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "faq.structure.button-libelle-carrier",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2104:2912;28:116",
+        "detail": "TEXT \"Libellé\" 155x22 HUG/HUG, characters=\"Contactez-nous\", style Montserrat Medium 16 / lineHeightPx 22 / textCase UPPER / letterSpacing 0, fills liés à VariableID:5:40, styles.text = \"2162:5834\". Vérifié côté surface générée : Button.tsx rend ce nœud en <span className={styles.label}> et Button.module.css DÉCLARE bien .label — uniquement en sélecteur descendant, à la règle « .variant-iconOnly .label { display: none } » (ligne 99). CSS Modules exporte donc la classe, styles.label vaut \"Button__label\", et le span la porte : le nœud est atteignable et nommé. La seule règle qui lui est attachée est le masquage iconOnly, inapplicable à variant-default ; toute la typographie lui arrive par héritage de .root (font-family, font-size, font-weight, line-height, color, text-transform: uppercase y sont posés). Ces canaux sont gouvernés par ds.button, pas par ds.faq — aucun n'est déclaré ici contre un pointeur de ds.faq, qui produirait un rouge fabriqué."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Bouton/component"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"Button__label\"]"
+      }
+    },
+    {
+      "id": "faq.property.ligne3",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "property": "Ligne 3#2104:59",
+        "raw": "BOOLEAN, defaultValue true",
+        "detail": "côté Figma la propriété pilote la visibilité de la 3e ligne (2104:2911) et la géométrie recalcule (448↔384px). Côté React FAQ.tsx n'en fait qu'un attribut : data-ligne3={ligne3 || undefined} sur le div racine — aucune part, aucune ligne, aucun style n'en dépend. La prop est donc EXPOSÉE mais non PROJETÉE : ni l'interface TypeScript ni une capture ne le montrent, seule la sonde le voit. Sonde à false : Figma laisserait les lignes 1-2 debout, le React n'affiche aucune ligne du tout (voir faq.content.accordion-rows-default pour la seconde cause, items sans défaut)."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1",
+        "bindingProperty": "Ligne 3"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "ligne3",
+        "value": false
+      }
+    },
+    {
+      "id": "faq.property.items",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "property": "componentPropertyDefinitions",
+        "raw": "AUCUNE propriété de collection — le master n'expose que \"Ligne 3#2104:59\" (BOOLEAN)",
+        "detail": "items est déclaré bindings.figma.kind: \"NONE\", et c'est fidèle : Figma n'a pas de propriété de composant de type tableau, la répétition n'existe sur le canevas que comme N instances sœurs compilées. Ce qui EXISTE côté contrat et peut être cité : la part /anatomy/root/parts/accordion/parts/AccordionRow avec repeat.itemsProp = \"items\", son sample de 3 entrées (identique aux 3 lignes du census, cf. faq.content.accordion-rows-sample), et les occurrences relevées par 003 (2 ou 3 lignes selon la maquette). Ce qui reste NON PROUVÉ et n'est donc pas revendiqué comme conforme : le nombre de lignes est gelé à la compilation par la longueur du sample, aucun porteur canevas ne transporte le tableau, et la limite est nommée plutôt que discutée. LIMITE DE L'INSTRUMENT, nommée ici pour que le rouge soit lu correctement : pilot.ts compare String(probe.value) au textContent observé ; une valeur non scalaire se stringifie en \"[object Object]\", donc cette sonde ne peut PAS lire vert même si la projection fonctionne — l'observation à lire est domProbes[].observedDomValue, qui dit si le marqueur a atteint le DOM."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__Titre\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "items",
+        "value": [
+          {
+            "contenu": "PREUVE-013 — RÉPONSE 4b1e",
+            "titre": "PREUVE-013 — QUESTION 4b1e"
+          }
+        ]
+      }
+    },
+    {
+      "id": "faq.content.accordion-rows-default",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2104:2908",
+        "channel": "children.length",
+        "raw": 3,
+        "detail": "l'état par défaut du master rend TROIS lignes (2104:2909 Ferme, 2104:2910 Ouvert, 2104:2911 Ferme). Le contrat ne donne AUCUN default à items ; FAQ.tsx écrit { ligne3 = true, items, ... } puis {items?.map(...)} → avec les défauts du contrat, items vaut undefined et le div .accordion sort VIDE. Le sample du repeat n'alimente que l'émetteur Figma et les args Storybook (FAQ.stories.tsx les recopie), jamais un défaut de composant. C'est la divergence maîtresse du sujet : trois lignes sur le canevas, zéro dans le rendu généré à l'identique du contrat."
+      },
+      "figmaExpectation": {
+        "channel": "accordion.children.count (défaut du master)",
+        "value": 3
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "faq.content.accordion-rows-sample",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2908",
+        "channel": "AccordionRow[0..2].componentProperties{Contenu#2059:18, Titre#2059:13}",
+        "raw": [
+          {
+            "contenu": "Réponse",
+            "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+          },
+          {
+            "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+            "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+          },
+          {
+            "contenu": "Réponse",
+            "titre": "Assurez-vous la maintenance après l'installation ?"
+          }
+        ],
+        "detail": "les trois paires question/réponse relues sur 2104:2909 / 2104:2910 / 2104:2911, dans l'ordre du canevas. Comparaison faite : le repeat.sample du contrat leur est IDENTIQUE (JSON.stringify, ordre des clés compris) — le contenu du canevas est bien gouverné, seule sa projection en défaut React manque (faq.content.accordion-rows-default)."
+      },
+      "figmaExpectation": {
+        "channel": "accordion.AccordionRow[0..2].{Contenu, Titre}",
+        "value": [
+          {
+            "contenu": "Réponse",
+            "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+          },
+          {
+            "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+            "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+          },
+          {
+            "contenu": "Réponse",
+            "titre": "Assurez-vous la maintenance après l'installation ?"
+          }
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/repeat/sample"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__Titre\"]"
+      }
+    },
+    {
+      "id": "faq.composition.accordion-row",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2909",
+        "mainComponent": "2059:1373",
+        "observedInstanceProperties": {
+          "Contenu#2059:18": "Réponse",
+          "Titre#2059:13": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+          "Taille": "Grand",
+          "Etat": "Ferme"
+        },
+        "detail": "la composition est portée par la part /anatomy/root/parts/accordion/parts/AccordionRow, qui compose le contrat enfant ds.accordion-row ET porte le repeat { itemsProp: \"items\", sample: 3 entrées } — c'est ce repeat, pas une part par ligne, qui produit les trois instances. Les trois masters ne sont pas les mêmes : 2104:2909 → 2059:1373 (Etat=Ferme), 2104:2910 → 2059:1405 (Etat=Ouvert), 2104:2911 → 2059:1373 (Etat=Ferme). Chaque instance porte aussi une interaction de prototype ON_CLICK → CHANGE_TO vers l'autre variante (transitionDuration 300, EASE_OUT) : hors périmètre pixel, et ds.accordion-row porte déjà son propre events.toggle. Sélecteur non satisfait avec les défauts du contrat, puisque items est undefined et qu'aucune ligne n'est rendue."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/component",
+        "childContractId": "ds.accordion-row"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.accordion-row-taille",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2909",
+        "property": "Taille",
+        "raw": "Grand (identique sur 2104:2910 et 2104:2911)",
+        "detail": "VARIANT \"Grand\" → valeur d'enum contractuelle \"grand\", mappage déclaré par ds.accordion-row /props/0/bindings/figma/values."
+      },
+      "figmaExpectation": {
+        "channel": "accordion.AccordionRow[*].Taille",
+        "value": "grand"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/component/props/taille",
+        "bindingProperty": "Taille"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.accordion-row-etat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2910",
+        "property": "Etat",
+        "raw": "Ouvert (mainComponent 2059:1405) — les lignes 1 et 3 sont Ferme (2059:1373)",
+        "detail": "le motif du canevas est Fermé → Ouvert → Fermé, relevé identique dans 003 sur les trois maquettes. Le repeat du contrat ne passe QUE { taille: \"grand\" } : aucune entrée du sample ne porte etat, et AccordionRow.tsx retombe sur son défaut etat=\"ferme\" (etatProp ?? useState(\"ferme\")). Les trois lignes générées seraient donc toutes fermées — la 2e perdrait son TitreOuvert, son Contenu et son ChevronUp, là où Figma mesure 120px pour la ligne ouverte contre 64px pour les deux fermées. Fait mesurable dès que items sera alimenté ; ici le sélecteur ne matche rien."
+      },
+      "figmaExpectation": {
+        "channel": "accordion.AccordionRow[1].Etat",
+        "value": "ouvert"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/accordion/parts/AccordionRow/component/props/etat",
+        "bindingProperty": "Etat"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"AccordionRow__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.section-header",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2907",
+        "mainComponent": "2090:2385",
+        "observedInstanceProperties": {
+          "Accroche2#2169:64": true,
+          "Titre#2090:47": "Questions fréquentes",
+          "Accroche#2090:46": "FAQ",
+          "Disposition": "Standard"
+        },
+        "instanceOverrides": [
+          "2104:2907 : height, primaryAxisSizingMode, width"
+        ],
+        "detail": "overrides ne contient QUE de la géométrie : aucune surcharge de peinture ni de typographie sur l'instance ni sur ses deux calques TEXT (I2104:2907;2090:2386 Accroche, I2104:2907;2090:2387 Titre). Tous les canaux typographiques observés — Titre Montserrat Regular 40 / lineHeightPx 50 / textAlign CENTER, Accroche Montserrat Regular 20 / lineHeightPx 25 / letterSpacing 3 / textCase UPPER, tous deux fills liés à VariableID:5:40 — restent donc gouvernés par ds.section-header, pas par ds.faq : aucun fait de typographie n'est déclaré contre un pointeur de ds.faq, qui produirait un rouge fabriqué."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component",
+        "childContractId": "ds.section-header"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.section-header-titre",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2907",
+        "property": "Titre#2090:47",
+        "textLayer": "I2104:2907;2090:2387",
+        "raw": "Questions fréquentes"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Titre",
+        "value": "Questions fréquentes"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "faq.composition.section-header-accroche",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2907",
+        "property": "Accroche#2090:46",
+        "textLayer": "I2104:2907;2090:2386",
+        "raw": "FAQ",
+        "detail": "le calque rend \"FAQ\" avec textCase UPPER ; textContent n'est pas affecté par text-transform, l'assertion sémantique compare donc bien la même chaîne des deux côtés."
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche",
+        "value": "FAQ"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche",
+        "bindingProperty": "Accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "faq.composition.section-header-disposition",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2907",
+        "property": "Disposition",
+        "raw": "Standard",
+        "detail": "VARIANT \"Standard\" → valeur d'enum contractuelle \"standard\", mappage déclaré par ds.section-header /props/0/bindings/figma/values. En \"standard\", SectionHeader.tsx rend l'Accroche et n'émet pas le Bouton interne."
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Disposition",
+        "value": "standard"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/disposition",
+        "bindingProperty": "Disposition"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.section-header-accroche2",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2907",
+        "property": "Accroche2#2169:64",
+        "raw": true,
+        "detail": "l'instance met Accroche2=true et le calque Accroche est donc visible. Le contrat faq ne passe pas accroche2 : SectionHeader.tsx retombe sur son défaut accroche2=true, le rendu coïncide — mais par le défaut de l'enfant, pas parce que le contrat porte le fait. Aucun effet pixel ; la divergence est de gouvernance."
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche2 (BOOLEAN)",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche2",
+        "bindingProperty": "Accroche2"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "faq.composition.button",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2912",
+        "mainComponent": "28:114",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Contactez-nous",
+          "Style": "Outline noir",
+          "Icone droite#2024:7": true,
+          "Icone gauche#2024:0": false,
+          "Glyphe droite#2028:21": "6:104",
+          "Glyphe gauche#2028:14": "6:99"
+        },
+        "instanceOverrides": [
+          "2104:2912 : height, width",
+          "I2104:2912;28:117 (ArrowRight) : visible"
+        ],
+        "detail": "INSTANCE 249x54 HUG/HUG, layoutMode=HORIZONTAL primaryAxis=CENTER counterAxis=CENTER, padding 32/16, itemSpacing 10, strokeWeight 2 lié à VariableID:2027:974 (4 côtés), strokes SOLID #26282C lié à VariableID:5:40, fills[0] SOLID blanc visible=false. Le contrat écrit { \"id\": \"ds.button\" } sans aucune prop : deux canaux coïncident avec les défauts de ds.button et ne sont donc PAS déclarés en divergence — Icone gauche=false (défaut iconLeft=false, ArrowLeft I2104:2912;28:115 porte visible=false) et Glyphe droite=6:104 (défaut iconRightGlyph=\"arrow-right\") — ils restent lisibles ici dans observedInstanceProperties. La largeur 249px est notée par 003 comme un écart d'1px non investigué contre les 250px des trois autres sites (dérive historique probable, mesurée avant tout geste)."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Bouton/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.button-libelle",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2912",
+        "property": "Libelle#2044:28",
+        "textLayer": "I2104:2912;28:116",
+        "raw": "Contactez-nous",
+        "detail": "le contrat faq écrit { \"id\": \"ds.button\" } sans text ; FAQ.tsx rend <Button>Contactez-nous</Button>, c'est-à-dire le défaut de ds.button /props/1/default. Même valeur, mais portée par l'enfant et non par ce contrat."
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Libelle",
+        "value": "Contactez-nous"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Bouton/component/text",
+        "bindingProperty": "Libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.button-variant",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2912",
+        "property": "Style",
+        "raw": "Outline noir",
+        "detail": "VARIANT \"Outline noir\" → valeur d'enum contractuelle \"outilneNoir\" (coquille assumée dans ds.button /props/0/bindings/figma/values, citée telle quelle pour que la comparaison porte sur la vraie valeur du contrat). Le contrat faq ne passe aucune prop : Button.tsx retombe sur variant=\"default\", donc .variant-default → background-color: var(--color-noir-bleute) et color: var(--color-blanc) héritée de .root. Figma dessine l'inverse : fond transparent (fills[0] visible=false), contour 2px #26282C, texte #26282C. Divergence pixel franche sur les 249x54 du bouton."
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Style",
+        "value": "outilneNoir"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Bouton/component/props/variant",
+        "bindingProperty": "Style"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "faq.composition.button-icone-droite",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2912",
+        "property": "Icone droite#2024:7",
+        "raw": true,
+        "detail": "l'instance rend ArrowRight (I2104:2912;28:117, 20x20, aucun visible=false — la surcharge visible listée dans overrides le REND visible ; à comparer à ArrowLeft I2104:2912;28:115 qui porte explicitement visible=false). Le contrat faq ne passe pas iconRight : Button.tsx retombe sur false et n'émet ni le span .iconRight ni le glyphe — 20px + 10px de gap manquants dans la largeur du bouton."
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Icone droite (BOOLEAN)",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Bouton/component/props/iconRight",
+        "bindingProperty": "Icone droite"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"Button__iconRight\"]"
+      }
+    },
+    {
+      "id": "faq.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "export": "png@2x",
+        "detail": "référence pixel du master entier, 1728x448 à deviceScaleFactor 2. Limite connue déclarée au manifeste — faq.couverture-pixel-003-2-sur-4, source specs/010-extract-molecules-organisms/audit-reuse-map.md : la couverture pixel de l'audit 003 est à 2/4. Cause nommée par specs/003-externalize-figma-components/audits/faq.md : sur les 4 occurrences relevées, la 4e (Dépannage/SAV, FAQ 249:1609 dans le composite Hero et FAQ) NE REÇOIT PAS d'instance du master — gabarit différent (itemSpacing 64, nesting supplémentaire pour loger 4 Tab) et brief explicite de ne pas intégrer les onglets au master ; elle est capturée avant/après par prudence mais sans mutation. Attente de verdict : limited."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.visual.root-font-family",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2104:2907;2090:2387",
+        "channel": "style.fontFamily",
+        "raw": "Montserrat sur les 5 calques TEXT descendants (I2104:2907;2090:2386, I2104:2907;2090:2387, I2104:2909;2059:1374, I2104:2910;2059:1407, I2104:2910;2059:1410, I2104:2911;2059:1374, I2104:2912;28:116)",
+        "detail": "Figma énonce la famille PAR CALQUE TEXT (fontName), jamais sur la frame racine ; le contrat l'énonce une fois sur root et laisse l'héritage CSS la distribuer (.root { font-family: var(--font-family-montserrat) }). L'attente est donc écrite dans le vocabulaire du contrat — matrice §5 : font-family → native fontName, bindable fontFamily (STRING), CARRY-BOTH."
+      },
+      "figmaExpectation": {
+        "channel": "root.font-family (fontName de chaque calque TEXT descendant)",
+        "value": "{font.family.montserrat}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/font-family"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    },
+    {
+      "id": "faq.semantic.root-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2104:2914",
+        "detail": "La matrice ne comporte AUCUNE ligne pour le choix de l'élément HTML : un node Figma n'a pas de notion de balise, donc le canal est code-only par construction (verdict lu, non dérivé — §10 « content / text content » ne couvre que characters). Ce que Figma énonce ici est le type de node : COMPONENT, une frame auto-layout, dont l'équivalent générique côté code est un conteneur de bloc. Le contrat déclare semantics.element = \"div\" et FAQ.tsx rend bien un <div> — la FAQ n'expose ni landmark, ni heading, ni groupe ARIA, ni relation aria-controls au niveau organisme (les rôles de disclosure vivent dans ds.accordion-row, qui porte son button + aria-expanded + aria-controls)."
+      },
+      "contractReference": {
+        "jsonPointer": "/semantics/element"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/FAQ/FAQ.tsx",
+        "export": "FAQ",
+        "selector": "[class*=\"FAQ__root\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "faq-master-defaults",
+    "figmaNodeId": "2104:2914",
+    "observedProperties": {
+      "Ligne 3#2104:59": true
+    },
+    "reactProps": {},
+    "factIds": [
+      "faq.structure.root",
+      "faq.structure.root-direction",
+      "faq.structure.root-align",
+      "faq.structure.gap-root",
+      "faq.structure.padding-root-left",
+      "faq.structure.padding-root-right",
+      "faq.structure.root-width",
+      "faq.structure.accordion",
+      "faq.structure.accordion-direction",
+      "faq.structure.accordion-align",
+      "faq.structure.accordion-fill",
+      "faq.structure.accordion-row-fill",
+      "faq.structure.section-header-height",
+      "faq.structure.ligne3-cible-visibilite",
+      "faq.structure.button-libelle-carrier",
+      "faq.property.ligne3",
+      "faq.property.items",
+      "faq.content.accordion-rows-default",
+      "faq.content.accordion-rows-sample",
+      "faq.composition.accordion-row",
+      "faq.composition.accordion-row-taille",
+      "faq.composition.accordion-row-etat",
+      "faq.composition.section-header",
+      "faq.composition.section-header-titre",
+      "faq.composition.section-header-accroche",
+      "faq.composition.section-header-disposition",
+      "faq.composition.section-header-accroche2",
+      "faq.composition.button",
+      "faq.composition.button-libelle",
+      "faq.composition.button-variant",
+      "faq.composition.button-icone-droite",
+      "faq.visual.root",
+      "faq.visual.root-font-family",
+      "faq.semantic.root-element"
+    ],
+    "fixtureAssetIds": [],
+    "requiredParts": [
+      "root",
+      "SectionHeader",
+      "accordion",
+      "AccordionRow",
+      "Bouton"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "root-element",
+        "selector": "[class*=\"FAQ__root\"]",
+        "contractPointer": "/semantics/element",
+        "expect": {
+          "tag": "div"
+        }
+      },
+      {
+        "id": "accordion-vide-avec-les-defauts-du-contrat",
+        "selector": "[class*=\"FAQ__accordion\"]",
+        "contractPointer": "/anatomy/root/parts/accordion",
+        "expect": {
+          "tag": "div",
+          "textEquals": ""
+        }
+      },
+      {
+        "id": "section-header-titre",
+        "selector": "[class*=\"SectionHeader__Titre\"]",
+        "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/titre",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Questions fréquentes"
+        }
+      },
+      {
+        "id": "section-header-accroche",
+        "selector": "[class*=\"SectionHeader__Accroche\"]",
+        "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche",
+        "expect": {
+          "tag": "span",
+          "textEquals": "FAQ"
+        }
+      },
+      {
+        "id": "button-libelle-defaut-de-l-enfant",
+        "selector": "[class*=\"Button__root\"]",
+        "contractPointer": "/anatomy/root/parts/Bouton/component",
+        "expect": {
+          "tag": "button",
+          "textEquals": "Contactez-nous"
+        }
+      }
+    ]
+  }
+}

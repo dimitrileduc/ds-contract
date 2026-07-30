@@ -34,24 +34,10 @@ import {
   CAMPAIGN_CAPTURE_SCALE,
   campaignCapturePageOptions,
   campaignCaptureScaleCss,
-  chromiumExecutable,
+  CLIP_MARGIN,
   embeddedFontFaces,
   launchBrowser,
 } from '../visual-parity/render.js';
-
-/** Re-exported so a preflight can prove the browser exists before a full run
- *  rather than discovering it missing on organism 7 of 12.  `launchBrowser`
- *  calls it internally; the resolution order (PLAYWRIGHT_CHROMIUM_PATH, then
- *  the ms-playwright cache, then a system Chrome) is 011's, unmodified. */
-export { chromiumExecutable };
-
-/**
- * px around the painted union box, for shadows and outlines that paint outside
- * the layout box.  Mirrors `CLIP_MARGIN` in visual-parity/render.ts, which is
- * module-private there; the two must stay equal for the two harnesses to crop
- * the same way.
- */
-const CLIP_MARGIN = 48;
 
 /**
  * FLOOR for the layout width, in CSS px (pre-zoom) — not a fixed viewport.
@@ -498,7 +484,9 @@ window.renderHarness = async (props) => {
 // ---------------------------------------------------------------------------
 
 interface HarnessMeasurement {
-  found: boolean;
+  /** Children under the mount. Exactly 1 is the only valid state — the two
+   *  readers below check that directly, so no separate `found` flag can
+   *  disagree with it inside the string-serialized page script. */
   rootCount: number;
   clip: { x: number; y: number; width: number; height: number };
   rootRect: { x: number; y: number; width: number; height: number };
@@ -535,7 +523,7 @@ async function measureHarnessPage(page: Page, scale: number): Promise<HarnessMea
     const fontChecks = args.fontQueries.map((query) => ({ query, loaded: document.fonts.check(query) }));
     const viewport = { width: window.innerWidth, height: window.innerHeight };
     if (roots.length !== 1) {
-      return { found: false, rootCount: roots.length, clip: empty, rootRect: empty, elements: [],
+      return { rootCount: roots.length, clip: empty, rootRect: empty, elements: [],
                rootText: '', fontChecks, viewport, devicePixelRatio: window.devicePixelRatio };
     }
     const el = roots[0];
@@ -578,7 +566,6 @@ async function measureHarnessPage(page: Page, scale: number): Promise<HarnessMea
 
     const rootBox = el.getBoundingClientRect();
     return {
-      found: true,
       rootCount: roots.length,
       clip,
       rootRect: { x: rootBox.left - clip.x, y: rootBox.top - clip.y, width: rootBox.width, height: rootBox.height },
@@ -684,7 +671,7 @@ export async function renderHarnessCase(input: {
     await page.mouse.move(0, 0);
 
     let measurement = await measureHarnessPage(page, scale);
-    if (!measurement.found) {
+    if (measurement.rootCount !== 1) {
       throw new Error(
         `harness: expected exactly one root element under ${HARNESS_MOUNT_SELECTOR}, found ${measurement.rootCount}`,
       );
@@ -707,7 +694,7 @@ export async function renderHarnessCase(input: {
       // Re-render to settle layout at the new size before re-measuring.
       await page.evaluate(`window.renderHarness(${propsJson})`);
       measurement = await measureHarnessPage(page, scale);
-      if (!measurement.found) {
+      if (measurement.rootCount !== 1) {
         throw new Error(`harness: root element disappeared after the grow-to-fit resize`);
       }
     }

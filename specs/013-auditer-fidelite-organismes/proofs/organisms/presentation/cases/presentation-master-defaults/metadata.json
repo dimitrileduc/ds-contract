@@ -1,12 +1,9 @@
 {
   "id": "presentation-master-defaults",
   "subjectId": "presentation",
-  "verdict": "fail",
+  "verdict": "pass",
   "probative": true,
-  "reasons": [
-    "raw-over-threshold:11.644894457394457>2.5",
-    "region-over-budget:whole:11.644894457394457>2.5"
-  ],
+  "reasons": [],
   "figma": {
     "nodeId": "2103:2824",
     "setNodeId": "2103:2824",
@@ -22,7 +19,7 @@
   },
   "contract": {
     "id": "ds.presentation",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "factIds": [
       "presentation.structure.root",
       "presentation.content.texte",
@@ -43,7 +40,7 @@
   "generated": {
     "componentFile": "src/components/Presentation/Presentation.tsx",
     "export": "Presentation",
-    "bundleSha256": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+    "bundleSha256": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
     "harnessConfigSha256": "addea51e83303073117ebc3c2465b6e83b77fd52fa238b503c68c5063ed7bb3d",
     "fontsLoaded": true
   },
@@ -54,9 +51,9 @@
       "height": 192
     },
     "generated": {
-      "signalPixels": 66534,
+      "signalPixels": 57489,
       "width": 2766,
-      "height": 458
+      "height": 384
     },
     "contrastOk": true
   },
@@ -67,27 +64,27 @@
     },
     "generatedRoot": {
       "width": 2574,
-      "height": 266
+      "height": 192
     },
     "deltaPx": {
       "width": 0,
-      "height": 74
+      "height": 0
     },
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "pixels": {
-    "rawPct": 11.644894457394457,
+    "rawPct": 0.3530901968401968,
     "maskedDiagnosticPct": null,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 11.644894457394457,
+        "score": 0.3530901968401968,
         "maxDiffPct": 2.5,
         "signalPixels": 49664
       }
     ],
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "semantics": [
     {
@@ -100,9 +97,9 @@
       },
       "observed": {
         "tag": "span",
-        "text": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale."
+        "text": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale."
       },
-      "verdict": "pass"
+      "verdict": "fail"
     }
   ],
   "domProbes": [
@@ -116,7 +113,11 @@
     {
       "factId": "presentation.property.texte",
       "prop": "texte",
-      "probeValue": "PREUVE-013 — TEXTE 7f3c",
+      "probeValue": [
+        {
+          "text": "PREUVE-013 — TEXTE 7f3c"
+        }
+      ],
       "observedDomValue": "PREUVE-013 — TEXTE 7f3c",
       "projected": true
     },

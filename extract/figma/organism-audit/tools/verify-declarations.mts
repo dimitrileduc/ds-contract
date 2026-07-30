@@ -8,8 +8,12 @@
  */
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const REPO = '/Users/dlstudio/.superset/projects/ds-contract';
+// Le dépôt est déduit de l'emplacement de CE fichier : lancés depuis un
+// worktree (Worktree Gates F1), ces outils doivent auditer l'arbre courant,
+// jamais le checkout principal.
+const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const DECL_DIR = path.join(REPO, 'specs/013-auditer-fidelite-organismes/proofs/declarations');
 const CACHE = path.join(REPO, 'extract/figma/visual-parity/out/_cache');
 const FILE_KEY = 'd9FYAUcqdcNtsuaMgLefvJ';

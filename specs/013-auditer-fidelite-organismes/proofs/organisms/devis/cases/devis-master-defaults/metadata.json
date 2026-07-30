@@ -1,12 +1,9 @@
 {
   "id": "devis-master-defaults",
   "subjectId": "devis",
-  "verdict": "fail",
+  "verdict": "pass",
   "probative": true,
-  "reasons": [
-    "raw-over-threshold:81.49388227513228>2.5",
-    "region-over-budget:whole:81.49388227513228>2.5"
-  ],
+  "reasons": [],
   "figma": {
     "nodeId": "2096:2524",
     "setNodeId": "2096:2524",
@@ -20,7 +17,7 @@
   },
   "contract": {
     "id": "ds.devis",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "factIds": [
       "devis.structure.root",
       "devis.structure.container",
@@ -44,12 +41,15 @@
       "devis.visual.titre-width",
       "devis.semantic.titre-element"
     ],
-    "reactProps": {}
+    "reactProps": {
+      "backgroundUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/carte--image--7825ba2d393a.jpg",
+      "backgroundAlt": ""
+    }
   },
   "generated": {
     "componentFile": "src/components/Devis/Devis.tsx",
     "export": "Devis",
-    "bundleSha256": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+    "bundleSha256": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
     "harnessConfigSha256": "59014e9f5b1ab0013d0ee31d55d13c0206682fc9c469a6c9cf6e4b821d09f86f",
     "fontsLoaded": true
   },
@@ -60,9 +60,9 @@
       "height": 756
     },
     "generated": {
-      "signalPixels": 501620,
+      "signalPixels": 2570774,
       "width": 3648,
-      "height": 339
+      "height": 948
     },
     "contrastOk": true
   },
@@ -73,27 +73,27 @@
     },
     "generatedRoot": {
       "width": 3456,
-      "height": 147
+      "height": 756
     },
     "deltaPx": {
       "width": 0,
-      "height": -609
+      "height": 0
     },
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "pixels": {
-    "rawPct": 81.49388227513228,
-    "maskedDiagnosticPct": 91.78154079620386,
+    "rawPct": 0.1353753306878307,
+    "maskedDiagnosticPct": null,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 81.49388227513228,
+        "score": 0.1353753306878307,
         "maxDiffPct": 2.5,
-        "signalPixels": 501620
+        "signalPixels": 2570774
       }
     ],
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "semantics": [
     {
@@ -120,9 +120,9 @@
       },
       "observed": {
         "tag": "span",
-        "text": "Contactez-nous"
+        "text": "Prendre rendez-vous"
       },
-      "verdict": "pass"
+      "verdict": "fail"
     }
   ],
   "domProbes": [

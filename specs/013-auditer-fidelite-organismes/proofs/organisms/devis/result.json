@@ -4,7 +4,7 @@
   "wave": 1,
   "contract": {
     "id": "ds.devis",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "path": "contracts/devis.contract.json"
   },
   "figmaSetNodeId": "2096:2524",
@@ -78,18 +78,74 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root",
+        "reference": "ds.devis@1.2.0#/anatomy/root",
         "observedValue": {
+          "description": "Aplat pleine largeur, et bloc conteneur positionné (`position: relative`) des deux plans de fond. Le master 2096:2524 empile DEUX peintures sur son root : fills[0] = peinture IMAGE (scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa) et fills[1] = voile SOLID #000000 à 0,3019607961177826 d'opacité. Aucun canal de contrat ne porte une peinture IMAGE (`tokens.background-image` n'accepte qu'un dégradé CSS, parsé par parseCssGradient dans core/emit-figma-script.ts) ni une opacité de peinture (`opacity` n'est ni dans LITERAL_CHANNELS ni dans DECLARED_CHANNELS) : les deux peintures sont donc portées comme DEUX PLANS D'ANATOMIE superposés — `Background` (porteur `img` + `src`/`alt` code-only + `object-fit: cover`, orthographe CSS du scaleMode FILL ; convention sav/carte/product-card/realisation) puis `Voile` (littéral `#0000004D` : la couleur ET l'opacité en un seul canal, 0x4D = 77/255 = 0,3019607961177826 exactement — la valeur Figma, pas un arrondi). Le root garde `background-color: {color.noir-pur}` comme plan de BASE sous les deux autres : c'est ce qui s'affiche quand `backgroundUrl` est vide (le défaut) ou quand `fond` est false. LIMITE NOMMÉE, non contournée : le retour vers le canvas (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md) — une part `img` dont l'URL est code-only ne se re-pousse pas en peinture IMAGE, et l'opacité du voile s'y re-pousse comme couleur alpha, pas comme opacité de peinture.",
           "layout": {
             "display": "flex",
             "direction": "column",
             "align": "center"
           },
           "parts": {
+            "Background": {
+              "description": "Plan photo — fills[0] du root (peinture IMAGE, scaleMode FILL). Porté par un `img` dont `src`/`alt` viennent du code : Figma range ces pixels dans une peinture du master, pas dans une propriété de composant. `object-fit: cover` est l'orthographe CSS du scaleMode FILL observé. Les quatre insets à 0 (le plan couvre exactement la boîte de padding du root, padding compris) n'ont de porteur QUE dans `stylesWhen` — d'où la condition sur `fond`.",
+              "element": "img",
+              "attrs": {
+                "src": "{backgroundUrl}",
+                "alt": "{backgroundAlt}"
+              },
+              "declared": {
+                "position": "absolute",
+                "object-fit": "cover"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "fond",
+                  "styles": {
+                    "top": "0px",
+                    "right": "0px",
+                    "bottom": "0px",
+                    "left": "0px"
+                  }
+                }
+              ],
+              "visibleWhen": {
+                "prop": "fond"
+              }
+            },
+            "Voile": {
+              "description": "Plan voile — fills[1] du root (SOLID #000000, opacité 0,3019607961177826), peint PAR-DESSUS le plan photo et SOUS le contenu. `#0000004D` porte la couleur et l'opacité en un seul canal (0x4D = 77 = round(0,3019607961177826 × 255), la valeur Figma exacte). L'empilement ne repose sur aucun z-index : entre éléments positionnés de même contexte, l'ordre du DOM EST l'ordre de peinture — `Background`, puis `Voile`, puis `Container` (lui aussi `position: relative`, donc positionné et peint au-dessus des deux plans).",
+              "declared": {
+                "position": "absolute"
+              },
+              "literals": {
+                "background-color": "#0000004D"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "fond",
+                  "styles": {
+                    "top": "0px",
+                    "right": "0px",
+                    "bottom": "0px",
+                    "left": "0px"
+                  }
+                }
+              ],
+              "visibleWhen": {
+                "prop": "fond"
+              }
+            },
             "Container": {
               "layout": {
                 "direction": "column",
                 "align": "center"
+              },
+              "declared": {
+                "position": "relative"
+              },
+              "literals": {
+                "gap": "32px"
               },
               "parts": {
                 "Titre": {
@@ -97,30 +153,50 @@
                     "prop": "titre"
                   },
                   "tokens": {
-                    "color": "{color.blanc}"
+                    "color": "{color.blanc}",
+                    "font-size": "{font.size.40}"
+                  },
+                  "literals": {
+                    "line-height": "50px",
+                    "width": "900px"
+                  },
+                  "declared": {
+                    "text-align": "center"
                   }
                 },
                 "Bouton": {
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "props": {
+                      "children": "Prendre rendez-vous",
+                      "variant": "outlineBlanc",
+                      "iconRight": true
+                    }
                   }
                 }
               }
             }
           },
           "tokens": {
-            "background-color": "{color.noir-bleute}",
+            "background-color": "{color.noir-pur}",
             "font-family": "{font.family.montserrat}"
+          },
+          "literals": {
+            "padding-top": "96px",
+            "padding-bottom": "96px"
+          },
+          "declared": {
+            "position": "relative"
           }
         },
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -150,11 +226,17 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container",
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container",
         "observedValue": {
           "layout": {
             "direction": "column",
             "align": "center"
+          },
+          "declared": {
+            "position": "relative"
+          },
+          "literals": {
+            "gap": "32px"
           },
           "parts": {
             "Titre": {
@@ -162,24 +244,37 @@
                 "prop": "titre"
               },
               "tokens": {
-                "color": "{color.blanc}"
+                "color": "{color.blanc}",
+                "font-size": "{font.size.40}"
+              },
+              "literals": {
+                "line-height": "50px",
+                "width": "900px"
+              },
+              "declared": {
+                "text-align": "center"
               }
             },
             "Bouton": {
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "props": {
+                  "children": "Prendre rendez-vous",
+                  "variant": "outlineBlanc",
+                  "iconRight": true
+                }
               }
             }
           }
         },
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Container\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -206,16 +301,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/layout/direction",
+        "reference": "ds.devis@1.2.0#/anatomy/root/layout/direction",
         "observedValue": "column",
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -242,16 +337,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/layout/align",
+        "reference": "ds.devis@1.2.0#/anatomy/root/layout/align",
         "observedValue": "center",
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -278,9 +373,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/layout/padding",
+        "reference": "ds.devis@1.2.0#/anatomy/root/layout/padding",
         "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/layout/padding"
@@ -288,8 +383,8 @@
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -318,9 +413,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/layout/gap",
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/layout/gap",
         "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Container/layout/gap"
@@ -328,8 +423,8 @@
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Container\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -363,16 +458,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/props/0/default",
+        "reference": "ds.devis@1.2.0#/props/0/default",
         "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
         "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -403,7 +498,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/props/0",
+        "reference": "ds.devis@1.2.0#/props/0",
         "observedValue": {
           "name": "titre",
           "type": "text",
@@ -418,14 +513,14 @@
             }
           }
         },
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
         "observedValue": "PREUVE-013 — TITRE devis 4b91",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -463,18 +558,23 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component",
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Bouton/component",
         "observedValue": {
-          "id": "ds.button"
+          "id": "ds.button",
+          "props": {
+            "children": "Prendre rendez-vous",
+            "variant": "outlineBlanc",
+            "iconRight": true
+          }
         },
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__root\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -501,29 +601,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component/props/children",
-        "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Container/parts/Bouton/component/props/children"
-        ]
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Bouton/component/props/children",
+        "observedValue": "Prendre rendez-vous",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__label\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "devis-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Libelle=\"Prendre rendez-vous\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -541,29 +637,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component/props/variant",
-        "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Container/parts/Bouton/component/props/variant"
-        ]
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Bouton/component/props/variant",
+        "observedValue": "outlineBlanc",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__root\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "devis-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.Style=\"outlineBlanc\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -581,29 +673,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight",
-        "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight"
-        ]
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight",
+        "observedValue": true,
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Button__root\"]",
-        "observedValue": "Contactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "devis-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Bouton.iconRight=true"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -625,18 +713,74 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root",
+        "reference": "ds.devis@1.2.0#/anatomy/root",
         "observedValue": {
+          "description": "Aplat pleine largeur, et bloc conteneur positionné (`position: relative`) des deux plans de fond. Le master 2096:2524 empile DEUX peintures sur son root : fills[0] = peinture IMAGE (scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa) et fills[1] = voile SOLID #000000 à 0,3019607961177826 d'opacité. Aucun canal de contrat ne porte une peinture IMAGE (`tokens.background-image` n'accepte qu'un dégradé CSS, parsé par parseCssGradient dans core/emit-figma-script.ts) ni une opacité de peinture (`opacity` n'est ni dans LITERAL_CHANNELS ni dans DECLARED_CHANNELS) : les deux peintures sont donc portées comme DEUX PLANS D'ANATOMIE superposés — `Background` (porteur `img` + `src`/`alt` code-only + `object-fit: cover`, orthographe CSS du scaleMode FILL ; convention sav/carte/product-card/realisation) puis `Voile` (littéral `#0000004D` : la couleur ET l'opacité en un seul canal, 0x4D = 77/255 = 0,3019607961177826 exactement — la valeur Figma, pas un arrondi). Le root garde `background-color: {color.noir-pur}` comme plan de BASE sous les deux autres : c'est ce qui s'affiche quand `backgroundUrl` est vide (le défaut) ou quand `fond` est false. LIMITE NOMMÉE, non contournée : le retour vers le canvas (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md) — une part `img` dont l'URL est code-only ne se re-pousse pas en peinture IMAGE, et l'opacité du voile s'y re-pousse comme couleur alpha, pas comme opacité de peinture.",
           "layout": {
             "display": "flex",
             "direction": "column",
             "align": "center"
           },
           "parts": {
+            "Background": {
+              "description": "Plan photo — fills[0] du root (peinture IMAGE, scaleMode FILL). Porté par un `img` dont `src`/`alt` viennent du code : Figma range ces pixels dans une peinture du master, pas dans une propriété de composant. `object-fit: cover` est l'orthographe CSS du scaleMode FILL observé. Les quatre insets à 0 (le plan couvre exactement la boîte de padding du root, padding compris) n'ont de porteur QUE dans `stylesWhen` — d'où la condition sur `fond`.",
+              "element": "img",
+              "attrs": {
+                "src": "{backgroundUrl}",
+                "alt": "{backgroundAlt}"
+              },
+              "declared": {
+                "position": "absolute",
+                "object-fit": "cover"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "fond",
+                  "styles": {
+                    "top": "0px",
+                    "right": "0px",
+                    "bottom": "0px",
+                    "left": "0px"
+                  }
+                }
+              ],
+              "visibleWhen": {
+                "prop": "fond"
+              }
+            },
+            "Voile": {
+              "description": "Plan voile — fills[1] du root (SOLID #000000, opacité 0,3019607961177826), peint PAR-DESSUS le plan photo et SOUS le contenu. `#0000004D` porte la couleur et l'opacité en un seul canal (0x4D = 77 = round(0,3019607961177826 × 255), la valeur Figma exacte). L'empilement ne repose sur aucun z-index : entre éléments positionnés de même contexte, l'ordre du DOM EST l'ordre de peinture — `Background`, puis `Voile`, puis `Container` (lui aussi `position: relative`, donc positionné et peint au-dessus des deux plans).",
+              "declared": {
+                "position": "absolute"
+              },
+              "literals": {
+                "background-color": "#0000004D"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "fond",
+                  "styles": {
+                    "top": "0px",
+                    "right": "0px",
+                    "bottom": "0px",
+                    "left": "0px"
+                  }
+                }
+              ],
+              "visibleWhen": {
+                "prop": "fond"
+              }
+            },
             "Container": {
               "layout": {
                 "direction": "column",
                 "align": "center"
+              },
+              "declared": {
+                "position": "relative"
+              },
+              "literals": {
+                "gap": "32px"
               },
               "parts": {
                 "Titre": {
@@ -644,42 +788,59 @@
                     "prop": "titre"
                   },
                   "tokens": {
-                    "color": "{color.blanc}"
+                    "color": "{color.blanc}",
+                    "font-size": "{font.size.40}"
+                  },
+                  "literals": {
+                    "line-height": "50px",
+                    "width": "900px"
+                  },
+                  "declared": {
+                    "text-align": "center"
                   }
                 },
                 "Bouton": {
                   "component": {
-                    "id": "ds.button"
+                    "id": "ds.button",
+                    "props": {
+                      "children": "Prendre rendez-vous",
+                      "variant": "outlineBlanc",
+                      "iconRight": true
+                    }
                   }
                 }
               }
             }
           },
           "tokens": {
-            "background-color": "{color.noir-bleute}",
+            "background-color": "{color.noir-pur}",
             "font-family": "{font.family.montserrat}"
+          },
+          "literals": {
+            "padding-top": "96px",
+            "padding-bottom": "96px"
+          },
+          "declared": {
+            "position": "relative"
           }
         },
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "devis-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "comparison",
-      "reasons": [
-        "raw-over-threshold:81.49388227513228>2.5",
-        "region-over-budget:whole:81.49388227513228>2.5"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -697,9 +858,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/tokens/background-image",
+        "reference": "ds.devis@1.2.0#/anatomy/root/tokens/background-image",
         "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/tokens/background-image"
@@ -707,8 +868,8 @@
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -737,16 +898,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/tokens/background-color",
-        "observedValue": "{color.noir-bleute}",
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "reference": "ds.devis@1.2.0#/anatomy/root/tokens/background-color",
+        "observedValue": "{color.noir-pur}",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -756,7 +917,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-value-differs:root.fills[1].color:\"{color.noir-bleute}\"!=\"#000000\""
+        "contract-value-differs:root.fills[1].color:\"{color.noir-pur}\"!=\"#000000\""
       ],
       "deferredWorkId": null
     },
@@ -775,9 +936,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/tokens/background-overlay-opacity",
+        "reference": "ds.devis@1.2.0#/anatomy/root/tokens/background-overlay-opacity",
         "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/tokens/background-overlay-opacity"
@@ -785,8 +946,8 @@
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__root\"]",
-        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousContactez-nous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vousPrendre rendez-vous",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -815,18 +976,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/tokens/font-size",
-        "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/tokens/font-size"
-        ]
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/tokens/font-size",
+        "observedValue": "{font.size.40}",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
         "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -836,7 +995,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:Titre.font-size=\"40px\""
+        "contract-value-differs:Titre.font-size:\"{font.size.40}\"!=\"40px\""
       ],
       "deferredWorkId": null
     },
@@ -855,9 +1014,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/tokens/line-height",
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/tokens/line-height",
         "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/tokens/line-height"
@@ -866,7 +1025,7 @@
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
         "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -895,9 +1054,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/tokens/text-align",
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/tokens/text-align",
         "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/tokens/text-align"
@@ -906,7 +1065,7 @@
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
         "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -935,9 +1094,9 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/layout/width",
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/layout/width",
         "observedValue": null,
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": false,
         "notes": [
           "pointer-unresolved:/anatomy/root/parts/Container/parts/Titre/layout/width"
@@ -946,7 +1105,7 @@
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
         "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -978,16 +1137,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.devis@1.0.0#/anatomy/root/parts/Container/parts/Titre/content/prop",
+        "reference": "ds.devis@1.2.0#/anatomy/root/parts/Container/parts/Titre/content/prop",
         "observedValue": "titre",
-        "sourceHash": "6dd6501c6d6b0981261c66664420551cdbacaac07b962b8c0c447e9c7d4d6e3a",
+        "sourceHash": "452212016d17a39e54b5e1299f7f14ba83118bc6a5960f8a1bc184065de6d70d",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Devis/Devis.tsx#[class*=\"Devis__Titre\"]",
         "observedValue": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
-        "sourceHash": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "sourceHash": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "available": true,
         "notes": []
       },
@@ -1004,12 +1163,9 @@
     {
       "id": "devis-master-defaults",
       "subjectId": "devis",
-      "verdict": "fail",
+      "verdict": "pass",
       "probative": true,
-      "reasons": [
-        "raw-over-threshold:81.49388227513228>2.5",
-        "region-over-budget:whole:81.49388227513228>2.5"
-      ],
+      "reasons": [],
       "figma": {
         "nodeId": "2096:2524",
         "setNodeId": "2096:2524",
@@ -1023,7 +1179,7 @@
       },
       "contract": {
         "id": "ds.devis",
-        "version": "1.0.0",
+        "version": "1.2.0",
         "factIds": [
           "devis.structure.root",
           "devis.structure.container",
@@ -1047,12 +1203,15 @@
           "devis.visual.titre-width",
           "devis.semantic.titre-element"
         ],
-        "reactProps": {}
+        "reactProps": {
+          "backgroundUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/carte--image--7825ba2d393a.jpg",
+          "backgroundAlt": ""
+        }
       },
       "generated": {
         "componentFile": "src/components/Devis/Devis.tsx",
         "export": "Devis",
-        "bundleSha256": "21791ecff2706f8d9f0d68b0a68aa4ef3a5ba90919370af3c91217ae6483d30e",
+        "bundleSha256": "62db8b1c28448b81260c3da91bd5fa9ade5355bbf66825f80f5ba129b2cc404e",
         "harnessConfigSha256": "59014e9f5b1ab0013d0ee31d55d13c0206682fc9c469a6c9cf6e4b821d09f86f",
         "fontsLoaded": true
       },
@@ -1063,9 +1222,9 @@
           "height": 756
         },
         "generated": {
-          "signalPixels": 501620,
+          "signalPixels": 2570774,
           "width": 3648,
-          "height": 339
+          "height": 948
         },
         "contrastOk": true
       },
@@ -1076,27 +1235,27 @@
         },
         "generatedRoot": {
           "width": 3456,
-          "height": 147
+          "height": 756
         },
         "deltaPx": {
           "width": 0,
-          "height": -609
+          "height": 0
         },
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "pixels": {
-        "rawPct": 81.49388227513228,
-        "maskedDiagnosticPct": 91.78154079620386,
+        "rawPct": 0.1353753306878307,
+        "maskedDiagnosticPct": null,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 81.49388227513228,
+            "score": 0.1353753306878307,
             "maxDiffPct": 2.5,
-            "signalPixels": 501620
+            "signalPixels": 2570774
           }
         ],
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "semantics": [
         {
@@ -1123,9 +1282,9 @@
           },
           "observed": {
             "tag": "span",
-            "text": "Contactez-nous"
+            "text": "Prendre rendez-vous"
           },
-          "verdict": "pass"
+          "verdict": "fail"
         }
       ],
       "domProbes": [
@@ -1152,41 +1311,41 @@
           "id": "devis-master-defaults.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/generated.png",
-          "sha256": "05917fb23355e2dd190e11f469929fe078edd91c0e18e80479b6eb20340a40e6",
+          "sha256": "18e075df7a44d45873b60052e8ab8007601ace8e975b8d83dc35b448ccc97c08",
           "mediaType": "image/png",
           "width": 3456,
           "height": 756,
-          "bytes": 46055
+          "bytes": 2904194
         },
         {
           "id": "devis-master-defaults.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/diff.png",
-          "sha256": "ee9cea20223afe0b9b37224a58ff28bd98f607d0e986f406f61ec32af617ce4a",
+          "sha256": "fac8082b1e94a50675454a0d3e64ba16dcb646727ece9c2622f0f5e3b883fc72",
           "mediaType": "image/png",
           "width": 3456,
           "height": 756,
-          "bytes": 299947
+          "bytes": 675840
         },
         {
           "id": "devis-master-defaults.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/triptych.png",
-          "sha256": "e99a2141a4a5730028be6f19d3c2c8d03eab7e85d3503d17c74049d37b0b7e80",
+          "sha256": "15b4f221a5e71c76054f73458c890bd9f88061e9013adb2811a6d1b319f9370b",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 3450482
+          "bytes": 6646475
         },
         {
           "id": "devis-master-defaults.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/metadata.json",
-          "sha256": "7a164ddd08f69d071749e492b1e726263865a1a58ea2e8d0802e2cc8844cda3b",
+          "sha256": "aa1599dcd9ef3a4b47df6a71352ce0b4a5244e1424c7cd8ee0048f79ebf546bb",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 3750
+          "bytes": 3824
         }
       ]
     }
@@ -1206,46 +1365,45 @@
       "id": "devis-master-defaults.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/generated.png",
-      "sha256": "05917fb23355e2dd190e11f469929fe078edd91c0e18e80479b6eb20340a40e6",
+      "sha256": "18e075df7a44d45873b60052e8ab8007601ace8e975b8d83dc35b448ccc97c08",
       "mediaType": "image/png",
       "width": 3456,
       "height": 756,
-      "bytes": 46055
+      "bytes": 2904194
     },
     {
       "id": "devis-master-defaults.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/diff.png",
-      "sha256": "ee9cea20223afe0b9b37224a58ff28bd98f607d0e986f406f61ec32af617ce4a",
+      "sha256": "fac8082b1e94a50675454a0d3e64ba16dcb646727ece9c2622f0f5e3b883fc72",
       "mediaType": "image/png",
       "width": 3456,
       "height": 756,
-      "bytes": 299947
+      "bytes": 675840
     },
     {
       "id": "devis-master-defaults.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/triptych.png",
-      "sha256": "e99a2141a4a5730028be6f19d3c2c8d03eab7e85d3503d17c74049d37b0b7e80",
+      "sha256": "15b4f221a5e71c76054f73458c890bd9f88061e9013adb2811a6d1b319f9370b",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 3450482
+      "bytes": 6646475
     },
     {
       "id": "devis-master-defaults.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/metadata.json",
-      "sha256": "7a164ddd08f69d071749e492b1e726263865a1a58ea2e8d0802e2cc8844cda3b",
+      "sha256": "aa1599dcd9ef3a4b47df6a71352ce0b4a5244e1424c7cd8ee0048f79ebf546bb",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 3750
+      "bytes": 3824
     }
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:13",
-    "failed-cases:1"
+    "divergent-facts:9"
   ]
 }

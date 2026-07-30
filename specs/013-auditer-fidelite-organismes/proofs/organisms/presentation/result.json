@@ -4,7 +4,7 @@
   "wave": 1,
   "contract": {
     "id": "ds.presentation",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "path": "contracts/presentation.contract.json"
   },
   "figmaSetNodeId": "2103:2824",
@@ -62,20 +62,33 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root",
+        "reference": "ds.presentation@2.1.0#/anatomy/root",
         "observedValue": {
           "layout": {
             "display": "flex",
-            "direction": "row"
+            "direction": "row",
+            "align": "start",
+            "justify": "space-between"
           },
           "parts": {
             "SectionHeader": {
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": "Piqueray, une histoire de famille ",
+                  "titre": [
+                    {
+                      "text": "Piqueray, ",
+                      "strong": true
+                    },
+                    {
+                      "text": "une histoire de famille "
+                    }
+                  ],
                   "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard"
+                  "disposition": "standard",
+                  "accroche2": false,
+                  "emphase": "moyen",
+                  "alignement": "gauche"
                 }
               }
             },
@@ -84,13 +97,24 @@
                 "direction": "column",
                 "align": "stretch"
               },
+              "literals": {
+                "gap": "16px",
+                "width": "627px"
+              },
               "parts": {
                 "Texte": {
                   "content": {
-                    "prop": "texte"
+                    "prop": "texte",
+                    "marks": {
+                      "strong": "{font.weight.bold}"
+                    }
                   },
                   "tokens": {
-                    "color": "{color.noir}"
+                    "color": "{color.noir}",
+                    "font-size": "{font.size.14}"
+                  },
+                  "literals": {
+                    "line-height": "24px"
                   }
                 },
                 "Bouton": {
@@ -106,16 +130,19 @@
           },
           "tokens": {
             "font-family": "{font.family.montserrat}"
+          },
+          "literals": {
+            "gap": "32px"
           }
         },
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePiqueray, une histoire de famille Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Piqueray, une histoire de famille Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -146,16 +173,45 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/props/0/default",
-        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "reference": "ds.presentation@2.1.0#/props/0/default",
+        "observedValue": [
+          {
+            "text": "Depuis plus de 50 ans,",
+            "strong": true
+          },
+          {
+            "text": " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "
+          },
+          {
+            "text": "proximité et d'excellence technique",
+            "strong": true
+          },
+          {
+            "text": ". Dépositaire officiel "
+          },
+          {
+            "text": "Hörmann",
+            "strong": true
+          },
+          {
+            "text": ", nous allions la force d'un leader mondial à "
+          },
+          {
+            "text": "la souplesse d'une PME locale",
+            "strong": true
+          },
+          {
+            "text": "."
+          }
+        ],
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__Texte\"]",
-        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -185,7 +241,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/props/2",
+        "reference": "ds.presentation@2.1.0#/props/2",
         "observedValue": {
           "name": "titre",
           "type": "text",
@@ -201,14 +257,14 @@
             }
           }
         },
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"SectionHeader__Titre\"]",
         "observedValue": "Piqueray, une histoire de famille",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -240,11 +296,40 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/props/0",
+        "reference": "ds.presentation@2.1.0#/props/0",
         "observedValue": {
           "name": "texte",
-          "type": "text",
-          "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
+          "type": "rich-text",
+          "default": [
+            {
+              "text": "Depuis plus de 50 ans,",
+              "strong": true
+            },
+            {
+              "text": " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "
+            },
+            {
+              "text": "proximité et d'excellence technique",
+              "strong": true
+            },
+            {
+              "text": ". Dépositaire officiel "
+            },
+            {
+              "text": "Hörmann",
+              "strong": true
+            },
+            {
+              "text": ", nous allions la force d'un leader mondial à "
+            },
+            {
+              "text": "la souplesse d'une PME locale",
+              "strong": true
+            },
+            {
+              "text": "."
+            }
+          ],
           "bindings": {
             "figma": {
               "kind": "TEXT",
@@ -255,14 +340,14 @@
             }
           }
         },
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__Texte\"]",
         "observedValue": "PREUVE-013 — TEXTE 7f3c",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -292,7 +377,7 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/props/1",
+        "reference": "ds.presentation@2.1.0#/props/1",
         "observedValue": {
           "name": "bouton",
           "type": "boolean",
@@ -307,14 +392,14 @@
             }
           }
         },
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Button__root\"]",
         "observedValue": "1 element(s)",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -350,23 +435,34 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root/parts/SectionHeader/component",
+        "reference": "ds.presentation@2.1.0#/anatomy/root/parts/SectionHeader/component",
         "observedValue": {
           "id": "ds.section-header",
           "props": {
-            "titre": "Piqueray, une histoire de famille ",
+            "titre": [
+              {
+                "text": "Piqueray, ",
+                "strong": true
+              },
+              {
+                "text": "une histoire de famille "
+              }
+            ],
             "accroche": "Plus de 50 ans d’expérience",
-            "disposition": "standard"
+            "disposition": "standard",
+            "accroche2": false,
+            "emphase": "moyen",
+            "alignement": "gauche"
           }
         },
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"SectionHeader__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePiqueray, une histoire de famille",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Piqueray, une histoire de famille",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -403,18 +499,18 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root/parts/wrapper/parts/Bouton/component",
+        "reference": "ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Bouton/component",
         "observedValue": {
           "id": "ds.button"
         },
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Button__root\"]",
         "observedValue": null,
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": false,
         "notes": [
           "selector-matched-no-element"
@@ -449,20 +545,33 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root",
+        "reference": "ds.presentation@2.1.0#/anatomy/root",
         "observedValue": {
           "layout": {
             "display": "flex",
-            "direction": "row"
+            "direction": "row",
+            "align": "start",
+            "justify": "space-between"
           },
           "parts": {
             "SectionHeader": {
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": "Piqueray, une histoire de famille ",
+                  "titre": [
+                    {
+                      "text": "Piqueray, ",
+                      "strong": true
+                    },
+                    {
+                      "text": "une histoire de famille "
+                    }
+                  ],
                   "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard"
+                  "disposition": "standard",
+                  "accroche2": false,
+                  "emphase": "moyen",
+                  "alignement": "gauche"
                 }
               }
             },
@@ -471,13 +580,24 @@
                 "direction": "column",
                 "align": "stretch"
               },
+              "literals": {
+                "gap": "16px",
+                "width": "627px"
+              },
               "parts": {
                 "Texte": {
                   "content": {
-                    "prop": "texte"
+                    "prop": "texte",
+                    "marks": {
+                      "strong": "{font.weight.bold}"
+                    }
                   },
                   "tokens": {
-                    "color": "{color.noir}"
+                    "color": "{color.noir}",
+                    "font-size": "{font.size.14}"
+                  },
+                  "literals": {
+                    "line-height": "24px"
                   }
                 },
                 "Bouton": {
@@ -493,28 +613,28 @@
           },
           "tokens": {
             "font-family": "{font.family.montserrat}"
+          },
+          "literals": {
+            "gap": "32px"
           }
         },
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePiqueray, une histoire de famille Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Piqueray, une histoire de famille Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "presentation-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "comparison",
-      "reasons": [
-        "raw-over-threshold:11.644894457394457>2.5",
-        "region-over-budget:whole:11.644894457394457>2.5"
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     },
     {
@@ -535,16 +655,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root/parts/wrapper/parts/Texte/content/prop",
+        "reference": "ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Texte/content/prop",
         "observedValue": "texte",
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
         "available": true,
         "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__Texte\"]",
-        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -571,18 +691,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root/layout/gap",
-        "observedValue": null,
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/layout/gap"
-        ]
+        "reference": "ds.presentation@2.1.0#/anatomy/root/literals/gap",
+        "observedValue": "32px",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__root\"]",
-        "observedValue": "Plus de 50 ans d’expériencePiqueray, une histoire de famille Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Piqueray, une histoire de famille Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -592,7 +710,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:root.itemSpacing=32"
+        "contract-value-differs:root.itemSpacing:\"32px\"!=32"
       ],
       "deferredWorkId": null
     },
@@ -611,18 +729,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root/parts/wrapper/layout/gap",
-        "observedValue": null,
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/wrapper/layout/gap"
-        ]
+        "reference": "ds.presentation@2.1.0#/anatomy/root/parts/wrapper/literals/gap",
+        "observedValue": "16px",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__wrapper\"]",
-        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -632,7 +748,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:wrapper.itemSpacing=16"
+        "contract-value-differs:wrapper.itemSpacing:\"16px\"!=16"
       ],
       "deferredWorkId": null
     },
@@ -651,18 +767,16 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root/parts/wrapper/parts/Texte/tokens/font-size",
-        "observedValue": null,
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/wrapper/parts/Texte/tokens/font-size"
-        ]
+        "reference": "ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Texte/tokens/font-size",
+        "observedValue": "{font.size.14}",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__Texte\"]",
-        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
@@ -672,7 +786,7 @@
       "outcome": "divergent",
       "localizedSource": "contract",
       "reasons": [
-        "contract-does-not-carry-figma-fact:Texte.font-size=\"14px\""
+        "contract-value-differs:Texte.font-size:\"{font.size.14}\"!=\"14px\""
       ],
       "deferredWorkId": null
     },
@@ -691,29 +805,25 @@
         "notes": []
       },
       "contract": {
-        "reference": "ds.presentation@1.0.0#/anatomy/root/parts/wrapper/parts/Texte/tokens/line-height",
-        "observedValue": null,
-        "sourceHash": "f6c4026d902f40e0ab3bd2650db286c3515a4998472cc1db9fdd989acba4d694",
-        "available": false,
-        "notes": [
-          "pointer-unresolved:/anatomy/root/parts/wrapper/parts/Texte/tokens/line-height"
-        ]
+        "reference": "ds.presentation@2.1.0#/anatomy/root/parts/wrapper/parts/Texte/literals/line-height",
+        "observedValue": "24px",
+        "sourceHash": "5a65715512195de28a474fc63f0c0ae111a32bc2942f5ef265da0ded1faac76e",
+        "available": true,
+        "notes": []
       },
       "generated": {
         "reference": "src/components/Presentation/Presentation.tsx#[class*=\"Presentation__Texte\"]",
-        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.",
-        "sourceHash": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "observedValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+        "sourceHash": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "available": true,
         "notes": []
       },
       "evidenceIds": [
         "presentation-master-defaults"
       ],
-      "outcome": "divergent",
-      "localizedSource": "contract",
-      "reasons": [
-        "contract-does-not-carry-figma-fact:Texte.line-height=\"24px\""
-      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
       "deferredWorkId": null
     }
   ],
@@ -721,12 +831,9 @@
     {
       "id": "presentation-master-defaults",
       "subjectId": "presentation",
-      "verdict": "fail",
+      "verdict": "pass",
       "probative": true,
-      "reasons": [
-        "raw-over-threshold:11.644894457394457>2.5",
-        "region-over-budget:whole:11.644894457394457>2.5"
-      ],
+      "reasons": [],
       "figma": {
         "nodeId": "2103:2824",
         "setNodeId": "2103:2824",
@@ -742,7 +849,7 @@
       },
       "contract": {
         "id": "ds.presentation",
-        "version": "1.0.0",
+        "version": "2.1.0",
         "factIds": [
           "presentation.structure.root",
           "presentation.content.texte",
@@ -763,7 +870,7 @@
       "generated": {
         "componentFile": "src/components/Presentation/Presentation.tsx",
         "export": "Presentation",
-        "bundleSha256": "5ba376a9026f0200339f46e32badd808dafc5aa0a17054f142e74caa9b645966",
+        "bundleSha256": "86e1f8c60cc8f86fdf55a6dd7a6b79b8423591cd6608d01e378eb3c26e6b7b00",
         "harnessConfigSha256": "addea51e83303073117ebc3c2465b6e83b77fd52fa238b503c68c5063ed7bb3d",
         "fontsLoaded": true
       },
@@ -774,9 +881,9 @@
           "height": 192
         },
         "generated": {
-          "signalPixels": 66534,
+          "signalPixels": 57489,
           "width": 2766,
-          "height": 458
+          "height": 384
         },
         "contrastOk": true
       },
@@ -787,27 +894,27 @@
         },
         "generatedRoot": {
           "width": 2574,
-          "height": 266
+          "height": 192
         },
         "deltaPx": {
           "width": 0,
-          "height": 74
+          "height": 0
         },
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "pixels": {
-        "rawPct": 11.644894457394457,
+        "rawPct": 0.3530901968401968,
         "maskedDiagnosticPct": null,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 11.644894457394457,
+            "score": 0.3530901968401968,
             "maxDiffPct": 2.5,
             "signalPixels": 49664
           }
         ],
-        "verdict": "fail"
+        "verdict": "pass"
       },
       "semantics": [
         {
@@ -820,9 +927,9 @@
           },
           "observed": {
             "tag": "span",
-            "text": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale."
+            "text": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale."
           },
-          "verdict": "pass"
+          "verdict": "fail"
         }
       ],
       "domProbes": [
@@ -836,7 +943,11 @@
         {
           "factId": "presentation.property.texte",
           "prop": "texte",
-          "probeValue": "PREUVE-013 — TEXTE 7f3c",
+          "probeValue": [
+            {
+              "text": "PREUVE-013 — TEXTE 7f3c"
+            }
+          ],
           "observedDomValue": "PREUVE-013 — TEXTE 7f3c",
           "projected": true
         },
@@ -863,41 +974,41 @@
           "id": "presentation-master-defaults.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/generated.png",
-          "sha256": "54d7513fef56116a32a248916856fff7b1560be3f7bc6dd595b9e8a7794ce7eb",
+          "sha256": "1d1531e4cb710fa985c2c0e2265c93858918b8c5e3981e4feba7753af51821df",
           "mediaType": "image/png",
           "width": 2574,
           "height": 192,
-          "bytes": 141809
+          "bytes": 116802
         },
         {
           "id": "presentation-master-defaults.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/diff.png",
-          "sha256": "1a29c9804cb022ca35abb5d28c87aa4f9745bec03ef4f6a15ed37f559d3974b3",
+          "sha256": "79a2995f6a9d56062cee8e0bd5fd8e3a7cafae8370a2a56ac865971550f8e726",
           "mediaType": "image/png",
           "width": 2574,
           "height": 192,
-          "bytes": 77058
+          "bytes": 74025
         },
         {
           "id": "presentation-master-defaults.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/triptych.png",
-          "sha256": "4e3763a3afef86b5a824050a875abe7d80f9f01921a554af84c321920dfac6f8",
+          "sha256": "ca79fd64eb1eeb277e4a2e3c7c2f1fd2d1caef3e20abfe5f72846cbf1cffdc0e",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 343236
+          "bytes": 301150
         },
         {
           "id": "presentation-master-defaults.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/metadata.json",
-          "sha256": "8edf00eb350b55faaa83bff76a8a42c61ce71142ab6f2577111aedbbba9b53c3",
+          "sha256": "8aac93114bba9b3e537da8e67c1b899bb456772b3e2af1085fb5d7bc384a1c2d",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 4390
+          "bytes": 4321
         }
       ]
     }
@@ -917,46 +1028,45 @@
       "id": "presentation-master-defaults.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/generated.png",
-      "sha256": "54d7513fef56116a32a248916856fff7b1560be3f7bc6dd595b9e8a7794ce7eb",
+      "sha256": "1d1531e4cb710fa985c2c0e2265c93858918b8c5e3981e4feba7753af51821df",
       "mediaType": "image/png",
       "width": 2574,
       "height": 192,
-      "bytes": 141809
+      "bytes": 116802
     },
     {
       "id": "presentation-master-defaults.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/diff.png",
-      "sha256": "1a29c9804cb022ca35abb5d28c87aa4f9745bec03ef4f6a15ed37f559d3974b3",
+      "sha256": "79a2995f6a9d56062cee8e0bd5fd8e3a7cafae8370a2a56ac865971550f8e726",
       "mediaType": "image/png",
       "width": 2574,
       "height": 192,
-      "bytes": 77058
+      "bytes": 74025
     },
     {
       "id": "presentation-master-defaults.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/triptych.png",
-      "sha256": "4e3763a3afef86b5a824050a875abe7d80f9f01921a554af84c321920dfac6f8",
+      "sha256": "ca79fd64eb1eeb277e4a2e3c7c2f1fd2d1caef3e20abfe5f72846cbf1cffdc0e",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 343236
+      "bytes": 301150
     },
     {
       "id": "presentation-master-defaults.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/cases/presentation-master-defaults/metadata.json",
-      "sha256": "8edf00eb350b55faaa83bff76a8a42c61ce71142ab6f2577111aedbbba9b53c3",
+      "sha256": "8aac93114bba9b3e537da8e67c1b899bb456772b3e2af1085fb5d7bc384a1c2d",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 4390
+      "bytes": 4321
     }
   ],
   "verdict": "divergent",
   "reasons": [
-    "divergent-facts:6",
-    "failed-cases:1"
+    "divergent-facts:4"
   ]
 }

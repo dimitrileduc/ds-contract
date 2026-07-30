@@ -1,8 +1,12 @@
 /** Fusionne les déclarations VÉRIFIÉES dans le manifeste (goulot : un seul écrivain). */
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const REPO = '/Users/dlstudio/.superset/projects/ds-contract';
+// Le dépôt est déduit de l'emplacement de CE fichier : lancés depuis un
+// worktree (Worktree Gates F1), ces outils doivent auditer l'arbre courant,
+// jamais le checkout principal.
+const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const DECL = path.join(REPO, 'specs/013-auditer-fidelite-organismes/proofs/declarations');
 const MANIFEST = path.join(REPO, 'specs/013-auditer-fidelite-organismes/contracts/audit-campaign.json');
 

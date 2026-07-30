@@ -22,26 +22,6 @@ import type { FactOutcome, LocalizedSource } from './verdict.js';
 // Coverage
 // ---------------------------------------------------------------------------
 
-export interface ExpectedCoverageInput {
-  figmaFactIds: string[];
-  contractFactIds: string[];
-  generatedProjectionFactIds: string[];
-}
-
-/**
- * D6 — expected coverage is the UNION of all three derivations, never the
- * intersection and never "whatever the defaults happen to render".  A fact that
- * only one surface knows about is precisely the one worth auditing.
- */
-export function computeExpectedCoverage(input: ExpectedCoverageInput): { expected: string[] } {
-  const expected = new Set<string>([
-    ...input.figmaFactIds,
-    ...input.contractFactIds,
-    ...input.generatedProjectionFactIds,
-  ]);
-  return { expected: [...expected].sort() };
-}
-
 export interface CoverageDelta {
   expected: string[];
   observed: string[];

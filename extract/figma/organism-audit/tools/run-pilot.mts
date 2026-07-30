@@ -1,9 +1,13 @@
 /** Lance le pilote d'audit sur un sujet déclaré du manifeste. */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { auditOrganism } from '../pilot.js';
 
-const REPO = '/Users/dlstudio/.superset/projects/ds-contract';
+// Le dépôt est déduit de l'emplacement de CE fichier : lancés depuis un
+// worktree (Worktree Gates F1), ces outils doivent auditer l'arbre courant,
+// jamais le checkout principal.
+const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const SUBJECT_ID = process.argv[2] ?? 'presentation';
 
 const campaign = JSON.parse(

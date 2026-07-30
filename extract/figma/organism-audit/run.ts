@@ -425,19 +425,17 @@ if (cli.captureBaseline && mayWrite) {
 const allIssues = [...issues, ...censusIssues];
 const exitCode = allIssues.length > 0 || unimplemented.length > 0 ? 2 : 0;
 
+const { campaign: _campaignArg, out: _outArg, ...reportedMode } = cli;
+
 const report = {
   schemaVersion: 1,
   campaignId: campaign.id ?? null,
-  mode: {
-    check: cli.check,
-    inventory: cli.inventory,
-    wave: cli.wave,
-    refresh: cli.refresh,
-    checkDependencies: cli.checkDependencies,
-    captureBaseline: cli.captureBaseline,
-    verifyReport: cli.verifyReport,
-    verifyDeferredScope: cli.verifyDeferredScope,
-  },
+  // Every flag EXCEPT the two path arguments. Derived rather than re-listed:
+  // a re-listed literal drops a newly added flag from the receipt silently,
+  // and the receipt is what a reviewer reads to know which mode ran. `cli` is
+  // built as one literal in declaration order, so the emitted key order is
+  // unchanged.
+  mode: reportedMode,
   reference: {
     fileKey: campaign.reference?.fileKey ?? null,
     fileVersion: campaign.reference?.fileVersion ?? null,

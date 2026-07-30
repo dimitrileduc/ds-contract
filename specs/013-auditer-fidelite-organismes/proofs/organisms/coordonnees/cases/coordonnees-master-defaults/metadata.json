@@ -1,12 +1,9 @@
 {
   "id": "coordonnees-master-defaults",
   "subjectId": "coordonnees",
-  "verdict": "fail",
+  "verdict": "pass",
   "probative": true,
-  "reasons": [
-    "raw-over-threshold:8.989682207332962>2.5",
-    "region-over-budget:whole:8.989682207332962>2.5"
-  ],
+  "reasons": [],
   "figma": {
     "nodeId": "2104:2904",
     "setNodeId": "2104:2904",
@@ -21,7 +18,7 @@
   },
   "contract": {
     "id": "ds.coordonnees",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "factIds": [
       "coordonnees.structure.root",
       "coordonnees.structure.wrapper",
@@ -70,12 +67,15 @@
       "coordonnees.visual.root-background",
       "coordonnees.semantic.contact-valeur"
     ],
-    "reactProps": {}
+    "reactProps": {
+      "mapUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/coordonnees--google-map--efdebf1941d1.png",
+      "mapAlt": ""
+    }
   },
   "generated": {
     "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
     "export": "Coordonnees",
-    "bundleSha256": "ad3218cf80827e0bcf8f80f4368a1b0ee242c43e1ae41ca2266917f053bc31e3",
+    "bundleSha256": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
     "harnessConfigSha256": "13e7469d97545e491d8f7ca0ccfbad0c1af546859cc905e851236c2834ed0255",
     "fontsLoaded": true
   },
@@ -86,9 +86,9 @@
       "height": 1194
     },
     "generated": {
-      "signalPixels": 1738368,
+      "signalPixels": 3979216,
       "width": 3648,
-      "height": 695
+      "height": 1386
     },
     "contrastOk": true
   },
@@ -99,27 +99,27 @@
     },
     "generatedRoot": {
       "width": 3456,
-      "height": 503
+      "height": 1194
     },
     "deltaPx": {
       "width": 0,
-      "height": -691
+      "height": 0
     },
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "pixels": {
-    "rawPct": 8.989682207332962,
-    "maskedDiagnosticPct": 8.53825206062578,
+    "rawPct": 0.5222631289161859,
+    "maskedDiagnosticPct": null,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 8.989682207332962,
+        "score": 0.5222631289161859,
         "maxDiffPct": 2.5,
-        "signalPixels": 1738368
+        "signalPixels": 3973172
       }
     ],
-    "verdict": "fail"
+    "verdict": "pass"
   },
   "semantics": [
     {
@@ -160,7 +160,7 @@
       },
       "observed": {
         "tag": "span",
-        "text": "Rue Alfred Drèze 7, 4860 Pepinster"
+        "text": "Rue Alfred Drèze 7,\n4860 Pepinster"
       },
       "verdict": "fail"
     },
@@ -188,7 +188,7 @@
       },
       "observed": {
         "tag": "span",
-        "text": "Tél : +32 (0)87 46 32 66 Email: info@piqueray.be"
+        "text": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be"
       },
       "verdict": "fail"
     },
@@ -212,15 +212,19 @@
       "factId": "coordonnees.property.accroche",
       "prop": "accroche",
       "probeValue": "PREUVE-013 — ACCROCHE 4a1e",
-      "observedDomValue": "Contact",
-      "projected": false
+      "observedDomValue": "PREUVE-013 — ACCROCHE 4a1e",
+      "projected": true
     },
     {
       "factId": "coordonnees.property.titre",
       "prop": "titre",
-      "probeValue": "PREUVE-013 — TITRE 4a1e",
-      "observedDomValue": "Nos coordonnées",
-      "projected": false
+      "probeValue": [
+        {
+          "text": "PREUVE-013 — TITRE 4a1e"
+        }
+      ],
+      "observedDomValue": "PREUVE-013 — TITRE 4a1e",
+      "projected": true
     }
   ],
   "artifacts": []
