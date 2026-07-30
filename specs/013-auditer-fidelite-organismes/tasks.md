@@ -67,7 +67,7 @@ le résultat correct — pas trois lignes manquantes, pas trois passes.
 
 **But** : la session est prête à lire Figma et à exécuter les portes, avant tout geste.
 
-- [ ] T001 [Worktree gates — F1] Rendre ce checkout autonome (Constitution, Development
+- [X] T001 [Worktree gates — F1] Rendre ce checkout autonome (Constitution, Development
       Workflow : Worktree Gates F1). **Dérogation F1 actée** (owner, 2026-07-30, portée
       par plan.md) : contrairement à la norme du
       gabarit, la branche `013-auditer-fidelite-organismes` est checkoutée dans le
@@ -83,7 +83,7 @@ le résultat correct — pas trois lignes manquantes, pas trois passes.
       Chromium : un eval + l'instrument de parité visuelle ; le cache
       `~/Library/Caches/ms-playwright` contient `chromium-1217` mais la version doit
       correspondre au `playwright-core` épinglé — la commande est idempotente).
-- [ ] T002 Baseline verte AVANT tout geste — `git status --porcelain` doit être propre
+- [X] T002 Baseline verte AVANT tout geste — `git status --porcelain` doit être propre
       hors `specs/013-auditer-fidelite-organismes/**` (untracked compris). Tout AUTRE
       fichier modifié → arrêt, checkout sale. **Seule exception admise** : un delta de
       `package-lock.json` attribuable à T001, qui doit alors être consigné et justifié
@@ -94,7 +94,7 @@ le résultat correct — pas trois lignes manquantes, pas trois passes.
       (inclure le `N/N` vivant imprimé par `npm run eval`). C'est le point de référence
       qui rend **attribuable** tout rouge apparu plus tard : sans lui, un échec hérité
       serait imputé à 013. Dépend de T001 (chromium requis par `eval`).
-- [ ] T003 Vérifier l'accès Figma en **lecture seule** : un unique GET de version sur
+- [X] T003 Vérifier l'accès Figma en **lecture seule** : un unique GET de version sur
       `d9FYAUcqdcNtsuaMgLefvJ` via les variables d'environnement déjà utilisées par
       `extract/figma/visual-parity/figma-api.ts`. Consigner dans
       `proofs/baseline/figma-access.json` : fileKey confirmé, version numérique lue,
@@ -124,54 +124,54 @@ sur des mécanismes fondationnels même si leurs sujets relèvent d'une user sto
 de vague) avant T020, **T056** (dossier de parent bloqué) avant T015/T019. Les écrire
 après leur mécanisme violerait §II — une fixture qui n'a jamais été rouge ne prouve rien.
 
-- [ ] T004 [P] Fixture rouge de compatibilité 011 (D3) dans
+- [X] T004 [P] Fixture rouge de compatibilité 011 (D3) dans
       `evals/fixtures/visual-campaign-scope-additive-check.ts` : `scope` **absent** ⇒
       `validateVisualCampaign` continue d'exiger exactement les sept sujets historiques
       (`carte, field, member-card, nav-item, product-card, realisation, tab`) ; `scope`
       **présent** ⇒ l'ensemble exact déclaré est exigé, et un sujet manquant, surnuméraire
       ou réordonné est refusé **par nom**. Prouve qu'aucun résultat 011 déjà retenu ne
       change de sens.
-- [ ] T005 [P] Fixture rouge du périmètre 013 dans
+- [X] T005 [P] Fixture rouge du périmètre 013 dans
       `evals/fixtures/organism-audit-campaign-scope-check.ts` : douze `expectedSubjectIds`
       exacts et ordonnés ; les trois vagues **partitionnent** cet array sans perte,
       doublon ni réordonnancement ; `reference.readOnly !== true` refusé ; seuils hors
       `[0, 2.5]` refusés ; `receiptSchema` inconnu refusé **par nom** ; chemin de sortie
       contenant `..` ou sortant de `proofs/` refusé ; rapprochement par `displayName`
       refusé (D2 — seuls les IDs/clés font foi).
-- [ ] T006 [P] Fixture rouge de l'algèbre de verdict dans
+- [X] T006 [P] Fixture rouge de l'algèbre de verdict dans
       `evals/fixtures/organism-audit-verdict-algebra-check.ts` : priorité fail-closed
       `blocked > divergent > not-proven > limited > proved` (data-model §10) ; un fait
       `limited` ne devient jamais un pass ; une couverture inexacte (`missing` ou
       `unexpected` non vide) force `not-proven` ; `divergent` sans `localizedSource`
       refusé ; `proved` avec un `deferredWorkId` non nul refusé ; un `DeferredWorkItem`
       ne rend jamais son fait ou son organisme `proved`.
-- [ ] T007 [P] Fixture rouge du mappage normatif des reçus dans
+- [X] T007 [P] Fixture rouge du mappage normatif des reçus dans
       `evals/fixtures/organism-audit-dependency-mapping-check.ts` : `probative` est
       **dérivé** (`missing == []` ET chaque `requiredCaseId` résout ET chaque cas requis
       `probative == true`), jamais saisi ; `pass` + `probative` dérivé faux ⇒ **pas**
       `proved` ; `fail → divergent` ; `blocked → blocked` ; sujet absent / valeur inconnue
       / reçu illisible ⇒ `not-proven` ; hash ou version stale ⇒ parent `blocked` avec
       motif typé ; le manifeste **ne peut pas** surcharger le verdict ni la dérivation.
-- [ ] T008 [P] Fixture rouge de la capture React réelle (D4) dans
+- [X] T008 [P] Fixture rouge de la capture React réelle (D4) dans
       `evals/fixtures/organism-audit-react-capture-check.ts` : le harnais capture bien le
       composant généré sous `src/components/**` (fichier, export, preset/story, hash de
       bundle, sélecteurs/parts cités) et **refuse** tout repli sur `core/emit-html` —
       un tel repli rend la preuve `not-proven`, jamais un pass.
-- [ ] T009 [P] Fixture rouge de propagation de props (D6) dans
+- [X] T009 [P] Fixture rouge de propagation de props (D6) dans
       `evals/fixtures/organism-audit-prop-projection-check.ts` : un prop **exposé mais non
       projeté** (enfant recevant encore un littéral) est détecté `divergent` avec
       `localizedSource = generated` ; une preuve d'interface TypeScript ou un screenshot
       du défaut ne suffit jamais ; une collection `bindings.figma.kind: "NONE"` non
       justifiée par anatomie/sample/occurrence reste `limited`/`not-proven` et n'est
       jamais conforme par défaut.
-- [ ] T010 [P] Fixture rouge du caractère probant et de la règle pixel (D7) dans
+- [X] T010 [P] Fixture rouge du caractère probant et de la règle pixel (D7) dans
       `evals/fixtures/organism-audit-probative-evidence-check.ts` :
       `pixelPass = rawPct ≤ threshold ET chaque région requise ≤ son maxDiffPct` — le
       `maskedDiagnosticPct` **n'entre pas** dans l'expression ; référence ou rendu vide,
       invisible, non contrasté ou non équivalent ⇒ `not-proven` ; une région vide ⇒
       non probant ; un score de `0 %` ne suffit **jamais** ; une baseline rouge ne peut
       pas accorder l'acceptation ; une région choisie **après** observation est refusée.
-- [ ] T011 [P] Fixture rouge de non-conversion (D12) dans
+- [X] T011 [P] Fixture rouge de non-conversion (D12) dans
       `evals/fixtures/organism-audit-non-conversion-check.ts` : une conversion
       littéral→token attribuable à 013 est refusée ; une mutation de `tokens/**` est
       refusée ; le reçu exige `literalToTokenConversions == []` et

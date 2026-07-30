@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "label": "baseline-before",
+  "campaignId": "013-auditer-fidelite-organismes",
+  "branch": "013-auditer-fidelite-organismes",
+  "commit": "0f43e14c9edda9746c2a00122b78d12f237e4616",
+  "environment": {
+    "node": "v24.14.0",
+    "nodeArch": "x64",
+    "playwrightCore": "1.61.1",
+    "chromiumExecutable": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1228/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+    "chromiumNote": "PLAYWRIGHT_CHROMIUM_PATH pinned to the playwright-core@1.61.1 revision (chromium-1228). Without it, chromiumExecutable() falls through to system Google Chrome because the cache holds chrome-mac-x64/ builds (this Node runs x64) and the resolver only probes chrome-mac-arm64/ and chrome-mac/."
+  },
+  "gates": [
+    {
+      "gate": "build",
+      "command": "npm run build",
+      "exitCode": 0,
+      "durationMs": 2945,
+      "stdoutTail": "\n> ds-contracts-poc@0.7.0 build\n> npm run tokens && npm run schema && npm run generate\n\n\n> ds-contracts-poc@0.7.0 tokens\n> node scripts/build-tokens.mjs\n\n✔ Tokens built: 139 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default\n\n> ds-contracts-poc@0.7.0 schema\n> tsx scripts/emit-schema.ts\n\n✔ contracts/contract.schema.json emitted from Zod schema\n\n> ds-contracts-poc@0.7.0 generate\n> tsx scripts/generate-components.ts\n\n✔ Generated 34 component(s) from contracts: AccordionRow, Avantage, Button, CarouselControls, Carte, Checkbox, Coordonnees, Copyright, Devis, Equipe, FAQ, Field, Footer, FooterColumn, Formulaire, GoogleReviews, Header, Hero, Input, MemberCard, MemberPicture, NavItem, PiquerayLogo, Presentation, ProductCard, Realisation, Reassurances, ReviewCard, SAV, SectionHeader, Select, Tab, Textarea, TexteSEO\n",
+      "stderrTail": ""
+    },
+    {
+      "gate": "parity",
+      "command": "npm run parity",
+      "exitCode": 0,
+      "durationMs": 1573,
+      "stdoutTail": "\n> ds-contracts-poc@0.7.0 parity\n> tsx parity/diff.ts\n\n⚠ Figma naming bridged (the file does not use this repo's collection/mode names):\n    · mode \"Dark\" does not exist in collection \"Semantic\" — read from its only mode, \"Light\"\n\n✔ No new drift — 5 acknowledged finding(s) remain in parity/baseline.json.\n\n  — acknowledged (baselined, does not fail the check) —\n\n  [figma BEHIND] Carte.Bouton\n    Contract composes ds.button but no Bouton instance exists inside the Figma component\n    → Re-run the component sync script\n\n  [figma MISMATCH] Presentation.Texte (default)\n    Default differs — contract: \"Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale.\", figma: \"Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.\"\n    → Adopt into contract (promotion) or reset the property default\n\n  [figma BEHIND] SectionHeader.Bouton\n    Contract composes ds.button but no Bouton instance exists inside the Figma component\n    → Re-run the component sync script\n\n  [figma-tokens MISMATCH] Primitives/font/family/montserrat [Value]\n    tokens/ says Montserrat, sans-serif, Figma says Montserrat\n    proposed patch: {\"tokenPath\":\"font.family.montserrat\",\"mode\":\"Value\",\"adoptFigmaValue\":\"Montserrat\"}\n    → Adopt into tokens/ (promotion) then npm run tokens — or push tokens/ to Figma via figma_import_tokens\n\n  [icons AHEAD] assets/icons/close.svg\n    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)\n    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset\n\n",
+      "stderrTail": ""
+    },
+    {
+      "gate": "eval",
+      "command": "npm run eval",
+      "exitCode": 0,
+      "durationMs": 373651,
+      "stdoutTail": "  ✔ C3-detection  react-hyphenated-part-names-execute\nsvg-dash-animation-vehicle-pin: 22 committed assets dash-free; committed checkbox capture (dasharray 2px in style) reconstructs to the continuous stroke with the svg-dash-channels-dropped receipt, byte-equal to the committed asset\n  ✔ C3-detection  svg-dash-animation-vehicle-pin\ncanvas-margin-gap-pin: checkbox/radio itemSpacing binds the margin-right variable; badge keeps residual pip margins + applyMarginBox runtime; all four badge corners bind p/border-radius-200 (no size-8 siblings)\n  ✔ C3-detection  canvas-margin-gap-pin\namend-margin-box: badge script carries applyMarginBox on BOTH the create (buildNode) and re-amend (amendSet) top-level child loops — margins now survive a re-amend at source, not a canvas correction\n  ✔ C3-detection  amend-margin-box\ncheckbox-center: an inset-overlay container WITH content compiles to CENTER/CENTER (glyph centered in the control box); empty backdrop overlays untouched\n  ✔ C3-detection  checkbox-center\noptional-adornment-gating-general-fixture: default variant plain (no pip), pip=a variant has it, \"Show Icon\" boolean exposed default OFF (icon node visibleDefault false), unset value enumerated as a real variant\n  ✔ C3-detection  optional-adornment-gating-general-fixture\nportal-capture-modal: current reader ABSENT (0) → 1 portaled root, 3765 B dialog; descends to 2 real roots\n  ✔ C5-extraction  portal-capture-modal\nmulti-root-anatomy: {dialog, backdrop}, 21 parts depth 8 (spike 17/7) — single-root reader returns 0\n  ✔ C5-extraction  multi-root-anatomy\nsimple-component-anatomy-unchanged: Badge/Button/Checkbox descend zero wrappers; multi-root anatomy == single-root anatomy (byte-identical)\n  ✔ C1-determinism  simple-component-anatomy-unchanged\nemitter-multi-root-modal: {dialog, backdrop} emits valid React (bundles+renders headless) + HTML markup + figma-script (referee frame carries both roots, headless-executes) — dialog+backdrop present, Cancel/Save actions render\n  ✔ C8-journey  emitter-multi-root-modal\nsingle-root-golden-invariant: all 34 repo contracts are single-root (0 multi-root); Badge/Button/Card take the untouched forwardRef+.root path, zero multi-root marker — byte authority is golden-generated-output\n  ✔ C1-determinism  single-root-golden-invariant\n  ✔ C5-extraction  vector-asset-figma-capture-proposes-external-geometry\n  ✔ C3-detection  vector-asset-non-square-token-bound\nastryx-dev-journey: 10 flagship contracts → generator byte-stable × 2 runs (44b754c38746…); committed badge.figma.js compiles to the 14-variant Badge set (referee)\n  ✔ C8-journey  astryx-dev-journey\npages-compare-regions-additive: no-flag run carries zero region keys (byte-identity); region-inside → regionDiffCount 1/outsideDiffCount 0; region-outside → regionDiffCount 0/outsideDiffCount 1\n  ✔ C1-determinism  pages-compare-regions-additive\n  ✔ C3-detection  detect-figma-missing-nested-instance\nreview-card-avatar-exclusivity-is-convention-not-schema: initialeVisible and photo gate independently (separate {cond ? (...) : null} per part, no cross-reference) — both true renders BOTH avatars; the exclusion stays a documented convention, never a schema constraint\n  ✔ C3-detection  review-card-avatar-exclusivity-is-convention-not-schema\ngoogle-reviews-repeat-renders-sample-on-static-surfaces: React maps the live \"avis\" array (avis?.map, undefined renders nothing); html + react-inline both render the contract's 5-record OBSERVED sample verbatim, never the real runtime content — the canvas leg of the same claim is proven by scripts/deterministic-roundtrip.mjs (5 nested instances in groupeCartes)\n  ✔ C3-detection  google-reviews-repeat-renders-sample-on-static-surfaces\nimg-part-canvas-placeholder-named: avatarPhoto (element:\"img\") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas, and the component caption carries the † footnote — the A5 gap (real photo pixel = out-of-contract override) stays a NAMED limit, never a silent one\n  ✔ C3-detection  img-part-canvas-placeholder-named\nmember-picture-fixed-circle-and-named-a5-placeholder: rejects a 0×0 root; both 364×364 circular inset layers stack with normal opacity 1→0 and a 300ms transition; unavailable IMAGE pixels render only as the generic technical A5 placeholder, explicitly named (not a Piqueray colour or pixel-parity claim)\n  ✔ C2-refusal  member-picture-fixed-circle-and-named-a5-placeholder\n\n153/153 evals passed — evals/results.json\n48 legacy cases quarantined (not run) — Piqueray has no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-block added nested instances + repeat collections). See evals/REMOVED-CASES.md.\n",
+      "stderrTail": ""
+    },
+    {
+      "gate": "plugin",
+      "command": "npm run plugin:check",
+      "exitCode": 0,
+      "durationMs": 1152,
+      "stdoutTail": "\n> ds-contracts-poc@0.7.0 plugin:check\n> node scripts/plugin-engine-check.mjs\n\n✔ engine bundle fresh vs committed receipt: 482669 bytes minified, 108 inputs, hash 89fa71ee8cd4…\n✔ headless generate: AccordionRow v1.1.0 synced into the mock file (COMPONENT_SET, node 165:166); stored specHash equals the engine mirror (751929878)\n✔ bundle order: ds.carousel-controls plans 2 component scripts, dependencies first (ds.button → ds.carousel-controls)\n⏭ SKIPPED: the update report's \"new — will be created\" row and the \"N new\" count (needs a SECOND contract, so the bundle can carry one the canvas has never seen — Piqueray ships one component). Restore when Piqueray gains a second component.\n✔ update report (before anything applies):\n    • AccordionRow 1.1.0 → 9.9.9: +prop Experimental.\n    1 to update · 0 new · 0 unchanged.\n    Nothing has been applied — review the list, then Apply.\n    • AccordionRow 1.1.0: unchanged — will be skipped.\n✔ apply: AccordionRow amended in place (same node 165:166), +prop Experimental, markers updated to v9.9.9\n✔ propose: mock canvas dumped through the embedded dump script → proposal + bounded diff; a base missing \"taille\" surfaces \"+prop taille\" by name (the canvas spelling of \"Taille\")\n✔ PR dry-run plan: 4 named REST steps, deterministic branch, session-only token note — zero network\n⏭ SKIPPED: packaged-engine composition (needs a contract with nested component instances — Piqueray ships a flat Button). Restore when Piqueray gains a composite.\n⏭ SKIPPED: the reverse journey for that composite (design→code recovery of both roots, the composed INSTANCE and the repeated collection — same missing shape). Restore when Piqueray gains a composite.\nplugin-engine-check: all flows green (bundle, generate, update-report, apply, propose-diff, pr-dry-run) — 3 flow(s) SKIPPED and named above; see evals/REMOVED-CASES.md\n",
+      "stderrTail": ""
+    },
+    {
+      "gate": "determinism",
+      "command": "npx tsx scripts/deterministic-roundtrip.mjs",
+      "exitCode": 0,
+      "durationMs": 1823,
+      "stdoutTail": "\nDETERMINISTIC ROUND-TRIP — ds.google-reviews@1.0.0 (GoogleReviews)\n\n1. contract → canvas  (the plugin engine, run twice)\n  ✔ built GoogleReviews both times; node trees byte-identical (1447 bytes fingerprint) — DETERMINISTIC\n  ✔ the repeat+component produced 5 nested instances in \"groupeCartes\" — dependency depth exercised\n\n2. canvas → contract  (dump attempt; core proof: step 1 byte-identical ×2)\n  ✔ proposeDiff recovered a contract — element: <div>, props: 5\n  ✔ round-trip closes: the anatomy that went to canvas came back (byte-identical ×2 proves the loop)\n\n3. contract → code  (emit React from the contract)\n  ✔ emitted 7585B of React from the same contract — <section> host, repeat+component, text props typed\n\n✔ THE FULL LOOP RAN WITH ZERO AI — pure deterministic functions (the same engine the plugin runs):\n    contract → canvas → contract → code, byte-reproducible.\n  The AI built this tooling; it is NEVER in the conversion. That is the guarantee.\n  ✅ Depth restored (spec 006): repeat+component (5 nested instances) is now exercised.\n\n",
+      "stderrTail": ""
+    },
+    {
+      "gate": "browser-purity",
+      "command": "node scripts/core-browser-check.mjs",
+      "exitCode": 0,
+      "durationMs": 1782,
+      "stdoutTail": "✔ core barrel bundles for platform=browser: 11.87 MB raw, 5.20 MB minified\n✔ all 4 emitters ran in a VM with no node globals (AccordionRow): react=3469+3207+2301B, html=3577+3974B, react-inline=7051B, figma-script=49522B\n",
+      "stderrTail": ""
+    },
+    {
+      "gate": "types-src",
+      "command": "npx tsc --noEmit",
+      "exitCode": 0,
+      "durationMs": 9383,
+      "stdoutTail": "",
+      "stderrTail": ""
+    },
+    {
+      "gate": "types-build",
+      "command": "npx tsc -p tsconfig.build.json",
+      "exitCode": 0,
+      "durationMs": 2154,
+      "stdoutTail": "",
+      "stderrTail": ""
+    }
+  ],
+  "evalLiveCounts": [
+    "17/7",
+    "153/153"
+  ],
+  "allGreen": true
+}
