@@ -1,0 +1,1553 @@
+{
+  "facts": [
+    {
+      "id": "equipe.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "detail": "COMPONENT autonome « Equipe » (aucun COMPONENT_SET parent, aucune variante), 1728x1886, layoutMode=HORIZONTAL primaryAxisSizingMode=FIXED primaryAxisAlignItems=CENTER layoutWrap=NO_WRAP layoutSizingHorizontal=FIXED layoutSizingVertical=HUG, fills=[] clipsContent=false > [grid FRAME 2115:3930 > 16 INSTANCE MemberCard 2115:3931…2115:3946]. Le contrat déclare la même hiérarchie à deux niveaux : /anatomy/root > parts.grid > parts.MemberCard, et Equipe.tsx rend bien <div .root><div .grid>{items?.map(...)}</div></div>."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-display",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "layoutMode",
+        "raw": "HORIZONTAL",
+        "detail": "un layoutMode non nul EST l'auto-layout Figma ; le contrat le rend par layout.display = \"flex\" et Equipe.module.css émet display: flex sur .root."
+      },
+      "figmaExpectation": {
+        "channel": "root.display",
+        "value": "flex"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/display"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-direction",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "layoutMode",
+        "raw": "HORIZONTAL"
+      },
+      "figmaExpectation": {
+        "channel": "root.flex-direction",
+        "value": "row"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/direction"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-justify",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "primaryAxisAlignItems",
+        "raw": "CENTER",
+        "detail": "porté des deux côtés (layout.justify = \"center\" → justify-content: center). HONNÊTETÉ : ce canal n'a aucun effet pixel ici — le seul enfant du root, grid, est en layoutGrow 1 / FILL, donc il occupe déjà tout l'espace disponible et il n'y a rien à centrer. L'accord est réel mais non discriminant."
+      },
+      "figmaExpectation": {
+        "channel": "root.justify-content",
+        "value": "center"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/justify"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-padding-left",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "paddingLeft",
+        "raw": 89,
+        "detail": "vérifié par la géométrie : grid démarre à x=89 (= 0 + 89) et finit à x=1639 (= 1728 − 89). Le contrat ne porte AUCUN literal de padding sur /anatomy/root et le CSS généré n'émet aucune déclaration padding : les 89px de marge latérale de la maquette sont perdus des deux côtés du rendu."
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-left",
+        "value": "89px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-left"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-padding-right",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "paddingRight",
+        "raw": 89,
+        "detail": "vérifié par la géométrie : grid démarre à x=89 (= 0 + 89) et finit à x=1639 (= 1728 − 89). Le contrat ne porte AUCUN literal de padding sur /anatomy/root et le CSS généré n'émet aucune déclaration padding : les 89px de marge latérale de la maquette sont perdus des deux côtés du rendu."
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-right",
+        "value": "89px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-right"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "itemSpacing",
+        "raw": 32,
+        "detail": "le contrat ne porte aucun literals.gap sur /anatomy/root, le CSS généré n'émet aucun gap sur .root : la valeur code vaut 0 contre 32 sur le canvas. HONNÊTETÉ : sans effet pixel — root n'a qu'UN enfant (grid), un gap ne s'applique qu'entre deux enfants. La divergence est de vocabulaire, pas de rendu ; elle est déclarée pour que le silence ne passe pas pour un accord."
+      },
+      "figmaExpectation": {
+        "channel": "root.gap",
+        "value": 32
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal",
+        "raw": "1728 / FIXED",
+        "detail": "le master est FIXED à la largeur de maquette 1728. Le contrat ne porte aucun literals.width et .root sort en <div> de largeur automatique : la boîte du rendu suit son conteneur au lieu d'imposer 1728px. Rappel de la mémoire du dépôt : sans box-sizing: border-box, un literals.width serait de toute façon une largeur de CONTENU, pas la boîte FIXED de Figma — la remédiation n'est donc pas un simple ajout de 1728px."
+      },
+      "figmaExpectation": {
+        "channel": "root.width",
+        "value": "1728px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.root-height",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "absoluteBoundingBox.height / layoutSizingVertical",
+        "raw": "1886 / HUG",
+        "detail": "HUG vertical des deux côtés (aucune hauteur imposée, ni sur le canvas ni dans le contrat), donc rien à porter. Arithmétique vérifiée : 1886 = 4 rangées × 447.5 + 3 gouttières × 32. Cette hauteur n'est atteignable en code que si les 16 cartes se répartissent sur 4 rangées — ce que le rendu actuel ne fait pas (cf. equipe.structure.grid-layout-mode et equipe.structure.grid-no-wrap)."
+      },
+      "figmaExpectation": {
+        "channel": "root.height",
+        "value": 1886
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.clips-content",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "clipsContent",
+        "raw": false,
+        "detail": "root et grid (2115:3930) valent tous deux clipsContent=false. Le contrat ne porte aucun canal de débordement et le CSS généré n'émet aucun overflow : la valeur par défaut CSS est visible, donc les deux surfaces concordent. Accord mesuré, mais par défaut des deux côtés (A25 de la matrice : clipsContent reste un défaut de frame non examiné) — pas par une décision portée."
+      },
+      "figmaExpectation": {
+        "channel": "root.clipsContent",
+        "value": false
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.single-child",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "children",
+        "raw": "1 enfant : grid 2115:3930",
+        "detail": "complétude MESURÉE sur le sous-arbre entier du census : typeCounts = COMPONENT 1, FRAME 17 (grid + les 16 frames « text » des cartes), INSTANCE 32 (16 MemberCard + 16 MemberPicture), RECTANGLE 32 (16 « fun-ia » + 16 « normal »), TEXT 32 (16 « Nom » + 16 « Poste ») ; aucun nœud orphelin, tout se rattache à grid + les 16 cartes. Le contrat déclare exactement une part sous root (grid) et une part sous grid (MemberCard)."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "detail": "FRAME « grid » 1550x1886 @89, layoutMode=GRID gridColumnCount=4 gridRowCount=4 gridColumnGap=32 gridRowGap=32 gridColumnsSizing=repeat(4,minmax(0,1fr)) gridRowsSizing=repeat(4,fit-content(100%)) gridAutoTracks=NONE gridItemsPositioning=MANUAL layoutGrow=1 layoutSizingHorizontal=FILL layoutSizingVertical=HUG, aucun padding, fills=[]. La part /anatomy/root/parts/grid existe bien et Equipe.tsx rend <div className={styles.grid}> — l'existence de la boîte est portée, son mode de disposition ne l'est pas (faits suivants)."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-layout-mode",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "layoutMode",
+        "raw": "GRID",
+        "detail": "DIVERGENCE MAÎTRESSE DU SUJET. Le canvas dispose les 16 cartes en GRILLE NATIVE Figma 4x4. docs/FIGMA-CAPABILITY-MATRIX.md §1 classe « display: grid + fixed templates » en CARRY-BOTH (sous-ensemble borné de gabarits, natif via layoutMode: GRID + gridRowCount/gridColumnCount), et §c.8 nomme GRID mode comme une capacité Figma DISPONIBLE mais NON UTILISÉE (« the layout vocabulary stops at single-axis no-wrap flex »). MESURÉ côté vocabulaire : LayoutSchema (packages/schema/src/contract-schema.ts) est un z.strictObject dont display n'accepte que \"flex\" | \"inline-flex\" — la grille est littéralement inexprimable dans le contrat aujourd'hui. Le contrat retombe donc sur layout.direction = \"row\" et le CSS généré sort display: flex; flex-direction: row sans wrap : les 16 cartes de 364px s'alignent sur UNE seule ligne de 5824px dans une boîte de 1550px, au lieu de 4 rangées de 4. Ce n'est pas un défaut de source Figma — la grille EST la maquette ; c'est un manque de vocabulaire côté contrat."
+      },
+      "figmaExpectation": {
+        "channel": "grid.layoutMode",
+        "value": "GRID"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/layout/display"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-column-count",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "gridColumnCount / gridColumnsSizing",
+        "raw": "4 / repeat(4,minmax(0,1fr))",
+        "detail": "quatre colonnes égales. NOTE DE LECTURE DES DOCS, non tranchée ici : la matrice §1 range « minmax(), auto-fit/fill, grid areas, subgrid » en CARRY-CODE-ONLY (« no responsive track functions »), alors que le census montre Figma sérialisant lui-même repeat(4,minmax(0,1fr)) dans gridColumnsSizing. Le fait est classé sur la ligne CARRY-BOTH « display: grid + fixed templates », qui est celle du gabarit fixe à quatre pistes égales observé ici ; la tension entre les deux lignes de la matrice est signalée, pas arbitrée. Le contrat ne porte aucune notion de piste : le pointeur ne résout pas."
+      },
+      "figmaExpectation": {
+        "channel": "grid.gridColumnCount",
+        "value": 4
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/layout/columns"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-row-count",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "gridRowCount / gridRowsSizing",
+        "raw": "4 / repeat(4,fit-content(100%))",
+        "detail": "quatre rangées en fit-content(100%) — donc à hauteur de contenu, ce que le HUG vertical du grid confirme (layoutSizingVertical=HUG, hauteur 1886). Aucune notion de rangée dans le contrat."
+      },
+      "figmaExpectation": {
+        "channel": "grid.gridRowCount",
+        "value": 4
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/layout/rows"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-column-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "gridColumnGap",
+        "raw": 32,
+        "detail": "gouttière horizontale, bindable côté Figma (matrice [S5] : gridColumnGap est un champ liable par variable). Le contrat ne pose aucun literals.gap sur la part grid et le CSS généré n'émet aucun gap : la valeur code vaut 0 contre 32. Vérifié par la géométrie : les colonnes démarrent à x = 89, 484.5, 880, 1275.5 — un pas de 395.5 = 363.5 (piste) + 32 (gouttière)."
+      },
+      "figmaExpectation": {
+        "channel": "grid.column-gap",
+        "value": 32
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-row-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "gridRowGap",
+        "raw": 32,
+        "detail": "gouttière verticale, distincte de la gouttière horizontale dans le modèle Figma. La matrice §1 classe « row-gap ≠ column-gap » en CARRY-BOTH (counterAxisSpacing en mode wrap, gridRowGap en mode GRID — tous deux bindables [S5]) ; le schéma du contrat ne connaît qu'un literal gap unique, il n'a donc aucune clé pour une gouttière de rangée. Les deux gouttières valant 32 ici, un seul gap suffirait — mais aucun n'est posé."
+      },
+      "figmaExpectation": {
+        "channel": "grid.row-gap",
+        "value": 32
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/literals/row-gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-grow",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "layoutGrow / layoutSizingHorizontal",
+        "raw": "1 / FILL",
+        "detail": "seul canal de disposition de la part grid réellement porté des deux côtés : layout.grow = true → flex: 1 1 auto + min-width: 0 dans Equipe.module.css, FILL horizontal côté canvas. Matrice §1, ligne « flex-grow / flex: 1 » : CARRY-BOTH."
+      },
+      "figmaExpectation": {
+        "channel": "grid.flex-grow",
+        "value": 1
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-direction",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "layoutMode",
+        "raw": "GRID",
+        "detail": "le contrat pose layout.direction = \"row\" sur la part grid, mais un FRAME en layoutMode GRID n'a NI HORIZONTAL NI VERTICAL : il n'y a aucun axe principal à comparer. Cette valeur du contrat n'est donc pas une lecture de la source, c'est le repli imposé par un vocabulaire qui ne connaît que le flex à un axe. Déclaré séparément de grid-layout-mode pour que « row » ne soit pas lu comme un canal vérifié conforme."
+      },
+      "figmaExpectation": {
+        "channel": "grid.layoutMode",
+        "value": "GRID (aucun axe principal à comparer avec direction: \"row\")"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/layout/direction"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-no-wrap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "gridRowCount",
+        "raw": 4,
+        "detail": "PISTE DE REMÉDIATION LA PLUS PROCHE, nommée ici parce qu'elle est déjà dans le vocabulaire. LayoutSchema porte layout.wrap depuis v15 (matrice §a.8, flex-wrap ↔ layoutWrap: WRAP, CARRY-BOTH). Le contrat ne pose PAS wrap: true sur la part grid, donc les 16 cartes de 364px tiennent sur une ligne unique de 5824px au lieu de retomber en 4 rangées. Un flex wrap + gap 32 dans une boîte de 1550px reproduirait 4 colonnes (4x364 + 3x32 = 1552 > 1550 : il faudrait aussi régler la largeur de carte, cf. equipe.structure.grid-track-width) — approximation, pas égalité, et c'est pour cela que la vraie réponse reste le mode GRID."
+      },
+      "figmaExpectation": {
+        "channel": "grid.flex-wrap",
+        "value": "wrap (4 rangées attendues)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/layout/wrap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-track-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "absoluteBoundingBox.width",
+        "raw": 1550,
+        "detail": "MESURÉ : la piste vaut (1550 − 3 × 32) / 4 = 363.5 px, tandis que chaque carte est FIXED à 364 px (literals.width de ds.member-card). La carte déborde donc sa piste de 0.5 px, ce que confirme le MemberPicture imbriqué, redimensionné à 363.5 (ds.member-picture porte une taille « member-card » explicitement pour ça). C'est la même demi-pixel que la justification géométrique de ds.member-card ; elle est citée ici parce qu'elle explique pourquoi un simple wrap flex à 364px ne redonnerait pas 4 colonnes."
+      },
+      "figmaExpectation": {
+        "channel": "grid.width",
+        "value": "1550px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.structure.grid-item-order",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "gridItemsPositioning / gridRowAnchorIndex + gridColumnAnchorIndex",
+        "raw": "MANUAL",
+        "detail": "les 16 cartes sont ANCRÉES manuellement (span 1x1 chacune) et l'ordre des enfants dans l'arbre n'est PAS l'ordre visuel. Ordre des enfants (= ordre de l'échantillon du contrat, index 0→15) : 0:Cécilia Piqueray@(r0,c0), 1:Florian Piqueray@(r0,c1), 2:Jordan@(r2,c2), 3:Florian@(r2,c3), 4:Hervé@(r3,c0), 5:Prénom@(r3,c1), 6:Prénom@(r3,c2), 7:Prénom@(r3,c3), 8:Sandra Magermans@(r0,c2), 9:Arnaud Dahmen@(r0,c3), 10:Ricardo@(r1,c0), 11:Quentin@(r1,c1), 12:Marc@(r1,c2), 13:André@(r1,c3), 14:Laurent@(r2,c1), 15:Grégory@(r2,c0). Ordre de LECTURE de la grille (rangée par rangée) : Cécilia Piqueray(idx 0) → Florian Piqueray(idx 1) → Sandra Magermans(idx 8) → Arnaud Dahmen(idx 9) → Ricardo(idx 10) → Quentin(idx 11) → Marc(idx 12) → André(idx 13) → Grégory(idx 15) → Laurent(idx 14) → Jordan(idx 2) → Florian(idx 3) → Hervé(idx 4) → Prénom(idx 5) → Prénom(idx 6) → Prénom(idx 7). Un rendu flex suit l'ordre du DOM, donc l'ordre de l'échantillon : les deux ordres coïncident sur les deux premières cartes puis divergent à partir de la troisième. Matrice §1, ligne « order » : approx — index d'enfant, compilé par variante — CARRY-WITH-NAMED-LIMIT (quand observé) ; la ligne voisine « grid areas / placement » est, elle, classée CARRY-CODE-ONLY. La limite est nommée plutôt que corrigée : remettre l'échantillon dans l'ordre de lecture changerait le contenu du contrat sans porter le canal d'ancrage."
+      },
+      "figmaExpectation": {
+        "channel": "grid.gridItemsPositioning",
+        "value": "MANUAL"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    },
+    {
+      "id": "equipe.property.items",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "property": "componentPropertyDefinitions",
+        "raw": "clé absente du node",
+        "detail": "MESURÉ : la chaîne « componentPropertyDefinitions » n'apparaît AUCUNE fois dans le census du sous-arbre — ni sur le master Equipe, ni ailleurs. Le master n'expose donc zéro propriété de composant, ce que l'audit 003 avait déjà relevé (« 0 propriété formelle au niveau Équipe ; contenu baké, occurrence unique »). La collection n'a aucun porteur sur le canvas : Figma exprime les 16 membres comme 16 INSTANCE sœurs, jamais comme une propriété tableau. Côté React la prop existe (items?: Array<{ poste: string; nom: string }>) mais sans défaut. C'est la classe de défaut « master sans propriétés » déjà portée au backlog de nettoyage Figma par 013."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.property.items-binding-none",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "componentPropertyDefinitions",
+        "raw": "clé absente du node",
+        "detail": "le contrat déclare props[0].bindings.figma.kind = \"NONE\" sans citer l'anatomie, l'échantillon ni les 16 instances qui portent réellement la collection sur le canvas. La liaison NONE est FIDÈLE à la source (il n'y a effectivement rien à lier), mais elle reste non justifiée dans le document : rien dans /props/0 ne renvoie au repeat de /anatomy/root/parts/grid/parts/MemberCard. Fail-closed, même traitement que footer.property.items-binding-none : une liaison NONE non justifiée n'est pas conforme par défaut."
+      },
+      "figmaExpectation": {
+        "channel": "root.componentPropertyDefinitions",
+        "value": "absent — le master n'expose aucune propriété de composant"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/bindings/figma/kind"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.property.items-shape",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3931",
+        "property": "componentProperties",
+        "raw": "Poste#2074:37 (TEXT), Nom#2074:36 (TEXT)",
+        "detail": "la forme arrayOf { poste: \"text\", nom: \"text\" } reprend exactement les DEUX propriétés TEXT que chaque instance MemberCard porte, et rien d'autre : les 16 instances ont un jeu de propriétés strictement identique (vérifié sur les 16). Aucun champ inventé, aucun champ observable omis à ce niveau — la seule donnée d'instance qui échappe à cette forme est la photo, qui n'est pas une propriété de composant mais un override de peinture (cf. equipe.visual.member-photos)."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/type/arrayOf"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.content.member-count",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "children.length",
+        "raw": 16,
+        "detail": "les 16 instances du census et les 16 entrées de l'échantillon du repeat se correspondent une à une, dans le même ordre. Vérifié par le générateur de cette déclaration, qui refuse d'écrire si une seule paire (nom, poste) diverge."
+      },
+      "figmaExpectation": {
+        "channel": "grid.children.count",
+        "value": 16
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.content.items-default-absent",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "children.length",
+        "raw": 16,
+        "detail": "DIVERGENCE MAÎTRESSE, même classe que faq.content.accordion-rows-default. L'état par défaut du master rend SEIZE cartes. Le contrat ne donne AUCUN default à items ; Equipe.tsx écrit { items, ... } puis {items?.map(...)} → avec les défauts du contrat, items vaut undefined et le <div .grid> sort VIDE. L'échantillon du repeat n'alimente que l'émetteur Figma et les args Storybook (Equipe.stories.tsx les recopie mot pour mot), jamais un défaut de composant. Seize cartes sur le canvas, zéro dans le rendu généré à l'identique du contrat."
+      },
+      "figmaExpectation": {
+        "channel": "grid.children.count (défaut du master)",
+        "value": 16
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.content.roster",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "children[].componentProperties",
+        "raw": "Cécilia Piqueray / Gérante | Florian Piqueray / Gérant | Jordan / Monteur | Florian / Monteur | Hervé / Dépanneur | Prénom / Poste | Prénom / Poste | Prénom / Poste | Sandra Magermans / Collaboratrice admin & comptabilité | Arnaud Dahmen / Collaborateur admin & gestion SAV | Ricardo / Peintre | Quentin / Préparateur | Marc / Monteur | André / Monteur | Laurent / Monteur | Grégory / Monteur",
+        "detail": "l'effectif complet, relevé instance par instance et recopié verbatim dans l'échantillon du contrat — accents, esperluettes et placeholders compris. Aucun nom n'est inventé ni corrigé. Le détail carte par carte est déclaré par les faits equipe.composition.card-00 à card-15."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.content.placeholders",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3936",
+        "channel": "componentProperties",
+        "raw": "Nom=\"Prénom\", Poste=\"Poste\"",
+        "detail": "TROIS des seize cartes (index 5, 6 et 7 de l'échantillon = 2115:3936, 2115:3937, 2115:3938, ancrées en r3c1, r3c2, r3c3) portent le texte littéral « Prénom » / « Poste ». Ce sont de vrais trous de source, déjà nommés par l'audit 003 (« 13 réels + 3 placeholders… un vrai manque de source… reproduit tel quel, jamais inventé »). Ils portent malgré tout une photo réelle et distincte. Le contrat les reconduit verbatim : fidélité à la source, y compris à son défaut — la correction relève du nettoyage Figma, pas du code."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[5,6,7].Nom",
+        "value": "Prénom"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/5"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.member-card",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3931",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Gérante",
+          "Nom#2074:36": "Cécilia Piqueray"
+        },
+        "detail": "les 16 instances résolvent TOUTES le même master 2074:2072 (ds.member-card) — vérifié sur les 16, aucune instance remote, aucune dépendance tierce (audit 003 : 0 instance remote sur le sous-arbre). La composition est portée par /anatomy/root/parts/grid/parts/MemberCard/component et Equipe.tsx importe bien MemberCard depuis ../MemberCard."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/component",
+        "childContractId": "ds.member-card"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.repeat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "children",
+        "raw": "16 INSTANCE sœurs du même master",
+        "detail": "la répétition n'existe sur le canvas que comme N instances sœurs compilées : Figma n'a pas de propriété de composant de type tableau. Le contrat porte repeat { itemsProp: \"items\", sample: 16 entrées } et l'émetteur react produit items?.map((item, index) => <MemberCard …>). Limite nommée : le nombre de cartes est gelé à la compilation par la longueur de l'échantillon côté canvas, et aucun porteur canevas ne transporte le tableau. C'est aussi le PREMIER composite repeat + component du dépôt côté Piqueray (règle d'antériorité : repeat n'était exercé par aucun des 51 contrats démo archivés)."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/itemsProp"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.member-card-geometry",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3931",
+        "channel": "layoutMode / itemSpacing / counterAxisAlignItems / layoutSizing*",
+        "raw": "VERTICAL / 16 / CENTER / FIXED+HUG / 364x447.5",
+        "detail": "signature STRICTEMENT identique sur les 16 instances (vérifié : une seule signature distincte). Ces canaux sont gouvernés par ds.member-card (literals.width 364px, literals.gap 16px, layout.direction column, layout.align center), pas par ds.equipe : aucun fait de géométrie de carte n'est déclaré contre un pointeur de ds.equipe, ce qui fabriquerait un rouge. Déclaré ici uniquement pour nommer ce que la composition entraîne."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[*].width",
+        "value": "364px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/component"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.member-card-overrides",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2115:3931",
+        "channel": "overrides",
+        "raw": "[{ id: \"I2115:3931;2074:2073;274:2386\", overriddenFields: [\"fills\"] }]",
+        "detail": "chaque instance ne porte QU'UNE surcharge, et c'est toujours la même : fills sur le rectangle « normal » imbriqué dans le MemberPicture (suffixe de chemin ;2074:2073;274:2386). Autrement dit tout ce qui distingue une carte d'une autre, hors les deux propriétés TEXT, est une PHOTO. Aucune surcharge de typographie, de peinture de texte ni de géométrie. C'est exactement le canal que la porte de dépendance FERMÉE de ce sujet met en cause."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[*].overrides",
+        "value": "fills @ …;2074:2073;274:2386 (les 16)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/component"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.member-picture",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2115:3931;2074:2073",
+        "mainComponent": "274:2388",
+        "observedInstanceProperties": {
+          "Etat": "Defaut"
+        },
+        "detail": "chaque carte imbrique un MemberPicture (master 274:2388) en variante Etat=\"Defaut\", redimensionné à 363.5x363.5 dans une carte de 364 — identique sur les 16. Composition de second niveau : elle est gouvernée par ds.member-card (part MemberPicture, props etat=\"defaut\" et taille=\"member-card\"), donc ds.equipe n'a aucun pointeur pour elle. Déclarée pour que la chaîne equipe → member-card → member-picture soit lisible, et parce que c'est au bout de cette chaîne que la photo se perd."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[*].MemberPicture.mainComponent",
+        "value": "274:2388"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/component/id"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberPicture__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.member-picture-hover",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "I2115:3931;2074:2073",
+        "channel": "interactions / transitionNodeID",
+        "raw": "ON_HOVER → NODE 274:2390, CHANGE_TO, SMART_ANIMATE, 300ms, EASE_OUT",
+        "detail": "chacun des 16 MemberPicture porte une interaction de prototype au survol vers la variante Etat=Survol. ds.equipe déclare states: [] — comme les 34 contrats Piqueray — et ds.member-card passe etat=\"defaut\" en dur : le survol n'existe donc ni sur le rendu React d'Equipe ni dans le contrat. Matrice §b, ligne « live states » : CARRY-CODE-ONLY (« Hover/press/focus render live in code; the State variants here are static previews ») — sauf qu'ici il n'est rendu nulle part. Hors périmètre pixel, déclaré pour ne pas taire un canal observé."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[*].MemberPicture.interactions",
+        "value": "ON_HOVER → 274:2390"
+      },
+      "contractReference": {
+        "jsonPointer": "/states"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberPicture__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-00",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3931",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Gérante",
+          "Nom#2074:36": "Cécilia Piqueray"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r0c0, span 1x1, bbox 364x447.5 @89,11413",
+        "detail": "enfant n°0 de grid, donc entrée n°0 de l'échantillon du repeat — { poste: \"Gérante\", nom: \"Cécilia Piqueray\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 0, colonne 0), soit la 1re position en ordre de lecture ; en flex elle sortirait 1re — les deux coïncident pour cette carte."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[0]",
+        "value": {
+          "nom": "Cécilia Piqueray",
+          "poste": "Gérante",
+          "row": 0,
+          "column": 0
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/0"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-01",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3932",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Gérant",
+          "Nom#2074:36": "Florian Piqueray"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r0c1, span 1x1, bbox 364x447.5 @484.5,11413",
+        "detail": "enfant n°1 de grid, donc entrée n°1 de l'échantillon du repeat — { poste: \"Gérant\", nom: \"Florian Piqueray\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 0, colonne 1), soit la 2e position en ordre de lecture ; en flex elle sortirait 2e — les deux coïncident pour cette carte."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[1]",
+        "value": {
+          "nom": "Florian Piqueray",
+          "poste": "Gérant",
+          "row": 0,
+          "column": 1
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/1"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-02",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3933",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Monteur",
+          "Nom#2074:36": "Jordan"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r2c2, span 1x1, bbox 364x447.5 @880,12372",
+        "detail": "enfant n°2 de grid, donc entrée n°2 de l'échantillon du repeat — { poste: \"Monteur\", nom: \"Jordan\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 2, colonne 2), soit la 11e position en ordre de lecture ; en flex elle sortirait 3e, soit 8 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[2]",
+        "value": {
+          "nom": "Jordan",
+          "poste": "Monteur",
+          "row": 2,
+          "column": 2
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/2"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-03",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3934",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Monteur",
+          "Nom#2074:36": "Florian"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r2c3, span 1x1, bbox 364x447.5 @1275.5,12372",
+        "detail": "enfant n°3 de grid, donc entrée n°3 de l'échantillon du repeat — { poste: \"Monteur\", nom: \"Florian\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 2, colonne 3), soit la 12e position en ordre de lecture ; en flex elle sortirait 4e, soit 8 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[3]",
+        "value": {
+          "nom": "Florian",
+          "poste": "Monteur",
+          "row": 2,
+          "column": 3
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/3"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-04",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3935",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Dépanneur",
+          "Nom#2074:36": "Hervé"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r3c0, span 1x1, bbox 364x447.5 @89,12851.5",
+        "detail": "enfant n°4 de grid, donc entrée n°4 de l'échantillon du repeat — { poste: \"Dépanneur\", nom: \"Hervé\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 3, colonne 0), soit la 13e position en ordre de lecture ; en flex elle sortirait 5e, soit 8 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[4]",
+        "value": {
+          "nom": "Hervé",
+          "poste": "Dépanneur",
+          "row": 3,
+          "column": 0
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/4"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-05",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3936",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Poste",
+          "Nom#2074:36": "Prénom"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r3c1, span 1x1, bbox 364x447.5 @484.5,12851.5",
+        "detail": "enfant n°5 de grid, donc entrée n°5 de l'échantillon du repeat — { poste: \"Poste\", nom: \"Prénom\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 3, colonne 1), soit la 14e position en ordre de lecture ; en flex elle sortirait 6e, soit 8 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[5]",
+        "value": {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "row": 3,
+          "column": 1
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/5"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-06",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3937",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Poste",
+          "Nom#2074:36": "Prénom"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r3c2, span 1x1, bbox 364x447.5 @880,12851.5",
+        "detail": "enfant n°6 de grid, donc entrée n°6 de l'échantillon du repeat — { poste: \"Poste\", nom: \"Prénom\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 3, colonne 2), soit la 15e position en ordre de lecture ; en flex elle sortirait 7e, soit 8 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[6]",
+        "value": {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "row": 3,
+          "column": 2
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/6"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-07",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3938",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Poste",
+          "Nom#2074:36": "Prénom"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r3c3, span 1x1, bbox 364x447.5 @1275.5,12851.5",
+        "detail": "enfant n°7 de grid, donc entrée n°7 de l'échantillon du repeat — { poste: \"Poste\", nom: \"Prénom\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 3, colonne 3), soit la 16e position en ordre de lecture ; en flex elle sortirait 8e, soit 8 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[7]",
+        "value": {
+          "nom": "Prénom",
+          "poste": "Poste",
+          "row": 3,
+          "column": 3
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/7"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-08",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3939",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Collaboratrice admin & comptabilité",
+          "Nom#2074:36": "Sandra Magermans"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r0c2, span 1x1, bbox 364x447.5 @880,11413",
+        "detail": "enfant n°8 de grid, donc entrée n°8 de l'échantillon du repeat — { poste: \"Collaboratrice admin & comptabilité\", nom: \"Sandra Magermans\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 0, colonne 2), soit la 3e position en ordre de lecture ; en flex elle sortirait 9e, soit 6 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[8]",
+        "value": {
+          "nom": "Sandra Magermans",
+          "poste": "Collaboratrice admin & comptabilité",
+          "row": 0,
+          "column": 2
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/8"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-09",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3940",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Collaborateur admin & gestion SAV",
+          "Nom#2074:36": "Arnaud Dahmen"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r0c3, span 1x1, bbox 364x447.5 @1275.5,11413",
+        "detail": "enfant n°9 de grid, donc entrée n°9 de l'échantillon du repeat — { poste: \"Collaborateur admin & gestion SAV\", nom: \"Arnaud Dahmen\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 0, colonne 3), soit la 4e position en ordre de lecture ; en flex elle sortirait 10e, soit 6 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[9]",
+        "value": {
+          "nom": "Arnaud Dahmen",
+          "poste": "Collaborateur admin & gestion SAV",
+          "row": 0,
+          "column": 3
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/9"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-10",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3941",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Peintre",
+          "Nom#2074:36": "Ricardo"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r1c0, span 1x1, bbox 364x447.5 @89,11892.5",
+        "detail": "enfant n°10 de grid, donc entrée n°10 de l'échantillon du repeat — { poste: \"Peintre\", nom: \"Ricardo\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 1, colonne 0), soit la 5e position en ordre de lecture ; en flex elle sortirait 11e, soit 6 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[10]",
+        "value": {
+          "nom": "Ricardo",
+          "poste": "Peintre",
+          "row": 1,
+          "column": 0
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/10"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-11",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3942",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Préparateur",
+          "Nom#2074:36": "Quentin"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r1c1, span 1x1, bbox 364x447.5 @484.5,11892.5",
+        "detail": "enfant n°11 de grid, donc entrée n°11 de l'échantillon du repeat — { poste: \"Préparateur\", nom: \"Quentin\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 1, colonne 1), soit la 6e position en ordre de lecture ; en flex elle sortirait 12e, soit 6 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[11]",
+        "value": {
+          "nom": "Quentin",
+          "poste": "Préparateur",
+          "row": 1,
+          "column": 1
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/11"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-12",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3943",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Monteur",
+          "Nom#2074:36": "Marc"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r1c2, span 1x1, bbox 364x447.5 @880,11892.5",
+        "detail": "enfant n°12 de grid, donc entrée n°12 de l'échantillon du repeat — { poste: \"Monteur\", nom: \"Marc\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 1, colonne 2), soit la 7e position en ordre de lecture ; en flex elle sortirait 13e, soit 6 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[12]",
+        "value": {
+          "nom": "Marc",
+          "poste": "Monteur",
+          "row": 1,
+          "column": 2
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/12"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-13",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3944",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Monteur",
+          "Nom#2074:36": "André"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r1c3, span 1x1, bbox 364x447.5 @1275.5,11892.5",
+        "detail": "enfant n°13 de grid, donc entrée n°13 de l'échantillon du repeat — { poste: \"Monteur\", nom: \"André\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 1, colonne 3), soit la 8e position en ordre de lecture ; en flex elle sortirait 14e, soit 6 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[13]",
+        "value": {
+          "nom": "André",
+          "poste": "Monteur",
+          "row": 1,
+          "column": 3
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/13"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-14",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3945",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Monteur",
+          "Nom#2074:36": "Laurent"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r2c1, span 1x1, bbox 364x447.5 @484.5,12372",
+        "detail": "enfant n°14 de grid, donc entrée n°14 de l'échantillon du repeat — { poste: \"Monteur\", nom: \"Laurent\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 2, colonne 1), soit la 10e position en ordre de lecture ; en flex elle sortirait 15e, soit 5 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[14]",
+        "value": {
+          "nom": "Laurent",
+          "poste": "Monteur",
+          "row": 2,
+          "column": 1
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/14"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.composition.card-15",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3946",
+        "mainComponent": "2074:2072",
+        "observedInstanceProperties": {
+          "Poste#2074:37": "Monteur",
+          "Nom#2074:36": "Grégory"
+        },
+        "channel": "gridRowAnchorIndex / gridColumnAnchorIndex",
+        "raw": "r2c0, span 1x1, bbox 364x447.5 @89,12372",
+        "detail": "enfant n°15 de grid, donc entrée n°15 de l'échantillon du repeat — { poste: \"Monteur\", nom: \"Grégory\" }, recopiée verbatim. Sur le canvas cette carte occupe la case (rangée 2, colonne 0), soit la 9e position en ordre de lecture ; en flex elle sortirait 16e, soit 7 rangs d'écart."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[15]",
+        "value": {
+          "nom": "Grégory",
+          "poste": "Monteur",
+          "row": 2,
+          "column": 0
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/repeat/sample/15"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberCard__root\"]"
+      }
+    },
+    {
+      "id": "equipe.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "export": "png@2x",
+        "detail": "la comparaison pixel du nœud entier serait la mesure de synthèse du sujet. AUCUNE NE SERA FAITE POUR CETTE VAGUE : la porte de dépendance de ds.member-card est FERMÉE (reçu proofs/dependencies/equipe.json, verdict blocked), donc cette déclaration ne porte pas de cas, pas de région requise et pas d'actif de fixture. Le fait est déclaré pour dire ce qui serait mesuré, pas pour laisser croire que ça l'a été."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.visual.root-no-fill",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "fills / backgroundColor",
+        "raw": "fills=[] , backgroundColor rgba(0,0,0,0)",
+        "detail": "le master ne peint aucun fond (grid non plus). Le contrat ne pose aucun token de fond et le CSS généré n'émet aucun background-color sur .root : accord mesuré. Le seul « fond » visible du rendu vient de plus bas dans la chaîne — le #D9D9D9 de ds.member-picture, cf. equipe.visual.fun-ia-plane."
+      },
+      "figmaExpectation": {
+        "channel": "root.fills",
+        "value": "[] (aucune peinture)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.visual.font-family",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2115:3931;2074:2077",
+        "channel": "style.fontFamily",
+        "raw": "Montserrat",
+        "detail": "seul token porté par /anatomy/root de ds.equipe. Les 32 calques TEXT du sous-arbre sont TOUS en Montserrat (Nom : Regular 400 / 32 / lineHeight 40 ; Poste : SemiBold 600 / 16 / lineHeight 20 — deux signatures typographiques distinctes, aucune autre). Le CSS généré émet font-family: var(--font-family-montserrat) sur .root et l'héritage fait le reste. Matrice §a.6 : font-family est CARRY-BOTH côté canvas au prix d'un fontName littéral (la montée en liaison STRING reste différée). Les autres canaux typographiques sont gouvernés par ds.member-card : aucun n'est déclaré contre un pointeur de ds.equipe."
+      },
+      "figmaExpectation": {
+        "channel": "root.font-family",
+        "value": "Montserrat"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/font-family"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.visual.member-photos",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "I2115:3931;2074:2073;274:2386",
+        "channel": "fills[0]",
+        "property": "IMAGE",
+        "raw": "c60f37abee2a78de43e7b189e77356ab1a16c7e4, 23844d60213a07a0b9c2222a84d83d9242dd3734, 2b1776d2cba4a074ecfbc042e8ab703e5989b48f, a78a817411f671584c151bc22f41efa9843adbe6, a28495eb025084d3759e42a0340b1d55c87b0a81, 1698fca87096970997a21a51f9e1235ce7908d9c, da474ccd23ed13eac0e769c9bca5a5689e21dc95, 748bcfe796c48a064b8a0d8212f37cb5ee3c7cb1, 73c9099fb242cdce22cf1c51429215390b333cbe, 05dd99256f8f2004a98e7a098231bf6622faf963, 71678f9a328311b907df8f579f554315a30407fc, aef3d5113546cae6dba16503efed360b134669db, 3f7f0470aae89ef6dac799583a17254f9e52acf1, a7b30a10546cc49d8d1849f68b31cb0e9ffcbcac, 7e26bd519ec854af6389d7afb9a66c1b8c5deba3, c79c91e14549438fecc995d4c4cae66b71b076dd",
+        "detail": "MESURÉ : les 16 rectangles « normal » portent 16 imageRef DISTINCTS (aucun doublon), scaleMode=FILL, cornerRadius 500, chacun posé par un override d'instance sur fills. Aucune route de projection n'existe côté contrat : le type de /props/0 est arrayOf { poste, nom } — pas de champ image — donc Equipe.tsx ne passe que poste et nom à MemberCard, dont imageUrl retombe sur \"\" et se propage vide jusqu'au <img class=normal>. Les 16 photos sortent avec src=\"\". Matrice §3 : « background-image: url() » est natif côté Figma (ImagePaint) et classé CARRY-BOTH sous réserve de l'ajout §a.7, qui n'a pas atterri ; ds.member-picture nomme déjà cette limite (« A5 technical placeholder: the source IMAGE pixels … are unavailable to the contract→canvas transport »). D'où carry-with-named-limit : le canal est représentable en principe, pas transporté aujourd'hui."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[*].MemberPicture.normal.fills[0].imageRef",
+        "value": [
+          "c60f37abee2a78de43e7b189e77356ab1a16c7e4",
+          "23844d60213a07a0b9c2222a84d83d9242dd3734",
+          "2b1776d2cba4a074ecfbc042e8ab703e5989b48f",
+          "a78a817411f671584c151bc22f41efa9843adbe6",
+          "a28495eb025084d3759e42a0340b1d55c87b0a81",
+          "1698fca87096970997a21a51f9e1235ce7908d9c",
+          "da474ccd23ed13eac0e769c9bca5a5689e21dc95",
+          "748bcfe796c48a064b8a0d8212f37cb5ee3c7cb1",
+          "73c9099fb242cdce22cf1c51429215390b333cbe",
+          "05dd99256f8f2004a98e7a098231bf6622faf963",
+          "71678f9a328311b907df8f579f554315a30407fc",
+          "aef3d5113546cae6dba16503efed360b134669db",
+          "3f7f0470aae89ef6dac799583a17254f9e52acf1",
+          "a7b30a10546cc49d8d1849f68b31cb0e9ffcbcac",
+          "7e26bd519ec854af6389d7afb9a66c1b8c5deba3",
+          "c79c91e14549438fecc995d4c4cae66b71b076dd"
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/component/props/imageUrl"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberPicture__normal\"]"
+      }
+    },
+    {
+      "id": "equipe.visual.fun-ia-plane",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "I2115:3931;2074:2073;274:2385",
+        "channel": "fills[0]",
+        "property": "IMAGE",
+        "raw": "508388d688080236a8ce2c4bfc27ce3dd7d724e9",
+        "detail": "MESURÉ : le rectangle « fun-ia » porte le MÊME imageRef 508388d688080236a8ce2c4bfc27ce3dd7d724e9 sur les 16 cartes, sous le rectangle « normal » qui l'occulte à 100 % (même position, même taille, même rayon 500). Sur le canvas il pèse zéro pixel — l'audit 003 le documente comme un calque mort, un essai IA abandonné, « reproduit tel quel, aucune action requise ». Côté code la conséquence n'est PAS neutre : ds.member-picture rend deux <img> superposés sans src (imageUrl vide) au-dessus d'un .root en background-color #D9D9D9 — donc là où Figma montre 16 portraits, le rendu montre 16 disques gris uniformes. Le #D9D9D9 est le lavis générique du moteur, pas une couleur Piqueray extraite de Figma. C'est la limite « 2e plan photo de MemberCard non branché » assumée en 011, NON périmée — et la raison pour laquelle la porte de dépendance de ce sujet est fermée."
+      },
+      "figmaExpectation": {
+        "channel": "grid.MemberCard[*].MemberPicture.funIa.fills[0].imageRef",
+        "value": "508388d688080236a8ce2c4bfc27ce3dd7d724e9"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/grid/parts/MemberCard/component"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"MemberPicture__funIa\"]"
+      }
+    },
+    {
+      "id": "equipe.semantic.root-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "detail": "COMPONENT frame sans sémantique de document (Figma n'a aucune notion d'élément HTML) ; le contrat déclare semantics.element = \"div\" et Equipe.tsx rend bien un <div>, malgré la catégorie \"section\" du contrat."
+      },
+      "contractReference": {
+        "jsonPointer": "/semantics/element"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.semantic.aucun-section-header",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2115:3947",
+        "channel": "children (TEXT hors instance)",
+        "raw": "[] — aucun calque TEXT hors instance dans tout le sous-arbre",
+        "detail": "MESURÉ sur le census : les 32 calques TEXT du sous-arbre sont TOUS à l'intérieur d'une instance MemberCard. Zéro titre, zéro accroche, zéro bouton, aucune instance de SectionHeader — contrairement à presentation, faq ou reassurances. L'audit 003 avait déjà vérifié ce point en live (rawTextsOutsideInstances = []). Le contrat est donc fidèle en ne déclarant AUCUNE part de titre : c'est une absence confirmée, pas un oubli d'extraction."
+      },
+      "figmaExpectation": {
+        "channel": "root.rawTextsOutsideInstances",
+        "value": []
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__root\"]"
+      }
+    },
+    {
+      "id": "equipe.semantic.aucune-semantique-de-liste",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2115:3930",
+        "channel": "type",
+        "raw": "FRAME GRID contenant 16 INSTANCE sœurs",
+        "detail": "un effectif de 16 membres est une liste, et le rendu généré la produit comme 16 <div> frères sans <ul>/<li>, sans role=\"list\" et sans aucun bloc a11y dans le contrat (ds.equipe n'a pas de clé a11y). Figma ne peut de toute façon rien exprimer ici : aucune divergence entre surfaces, donc rien à mesurer — mais l'écart d'accessibilité est NOMMÉ plutôt que tu. Canal CARRY-CODE-ONLY : rendu en code seulement, jamais prouvable des deux côtés."
+      },
+      "contractReference": {
+        "jsonPointer": "/semantics"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Equipe/Equipe.tsx",
+        "export": "Equipe",
+        "selector": "[class*=\"Equipe__grid\"]"
+      }
+    }
+  ]
+}

@@ -741,8 +741,9 @@
       "required": true,
       "representability": "carry-with-named-limit",
       "figmaReference": {
-        "nodeId": "2152:5554",
-        "detail": "limite DÉJÀ NOMMÉE, sources specs/010-extract-molecules-organisms/audit-reuse-map.md (« NavItem | 005 L4 | Dette item 8 ouverte (named) » et « Header | 005 V1/L4 | Shares NavItem dette item 8 ») et research.md ligne 127 (« NavItem : dette item 8 (souligné actif/couleur, reportée à l'extraction Header — ouverte, nommée) »). Elle porte précisément sur les deux canaux relevés ici : le SOULIGNÉ actif (header.composition.nav-item-actif) et la COULEUR d'encre (header.visual.nav-item-encre-blanche). Le manifeste de campagne la reprend sous l'id header.nav-item.dette-item-8 avec expectedVerdictImpact = blocked. Elle est déclarée comme fait pour ressortir en limite explicite et non en divergence anonyme"
+        "nodeId": "2152:5558",
+        "mainComponent": "2152:5554",
+        "detail": "limite DÉJÀ NOMMÉE portée par le master NavItem 2152:5554 (hors du set header, cité ici via l'instance 2152:5558 qui en dépend), sources specs/010-extract-molecules-organisms/audit-reuse-map.md (« NavItem | 005 L4 | Dette item 8 ouverte (named) » et « Header | 005 V1/L4 | Shares NavItem dette item 8 ») et research.md ligne 127 (« NavItem : dette item 8 (souligné actif/couleur, reportée à l'extraction Header — ouverte, nommée) »). Elle porte précisément sur les deux canaux relevés ici : le SOULIGNÉ actif (header.composition.nav-item-actif) et la COULEUR d'encre (header.visual.nav-item-encre-blanche). Le manifeste de campagne la reprend sous l'id header.nav-item.dette-item-8 avec expectedVerdictImpact = blocked. Elle est déclarée comme fait pour ressortir en limite explicite et non en divergence anonyme"
       },
       "contractReference": {
         "jsonPointer": "/anatomy/root/parts/navWrapper/parts/nav/parts/NavItem"
@@ -1052,7 +1053,7 @@
         "nodeId": "I2152:5558;2152:5555",
         "channel": "style.fontFamily",
         "raw": "Montserrat",
-        "detail": "les 6 calques TEXT du set (4 Libellé de NavItem + les 2 Libellé de Bouton) rapportent tous fontFamily=Montserrat. Le contrat pose font-family = {font.family.montserrat} sur le root et Header.module.css l'écrit bien en var(--font-family-montserrat) : c'est le seul token que ce contrat porte"
+        "detail": "les 10 calques TEXT du set (2 x 4 Libellé de NavItem + les 2 Libellé de Bouton) rapportent tous fontFamily=Montserrat. Le contrat pose font-family = {font.family.montserrat} sur le root et Header.module.css l'écrit bien en var(--font-family-montserrat) : c'est le seul token que ce contrat porte"
       },
       "contractReference": {
         "jsonPointer": "/anatomy/root/tokens/font-family"

@@ -629,14 +629,25 @@ ouverte, la fidélité de sa propre structure, contenu et rendu.
 
 ### Implémentation for User Story 3
 
-- [ ] T057 [US3] Exécuter `--check-dependencies` et écrire les trois reçus sous
+- [X] T057 [US3] **FAIT 2026-07-30** — CLI `--check-dependencies` à exit `0`, trois reçus
+      écrits et dérivés (aucun de `receiptVerdict`/`probative`/`actualVerdict` saisi) :
+      `equipe→ds.member-card blocked→blocked`, `formulaire→ds.field blocked→blocked`,
+      `header→ds.nav-item fail→divergent`. Les trois portes fermées, chacune avec son
+      motif de péremption `figma-file-version-moved`. Texte d'origine ci-dessous.
+      Exécuter `--check-dependencies` et écrire les trois reçus sous
       `proofs/dependencies/` : lecture de
       `specs/011-fix-molecule-convergence/proofs/visual/result.json`, hash SHA-256 des
       octets, contrôle de version de contrat (`1.2.0` / `2.0.0` / `1.1.0`) et de fraîcheur
       de la version Figma, dérivation de `probative` depuis les cas requis, puis mappage
       normatif. Les trois lignes sont obligatoires **même si les trois sont fermées**.
       Aucun de `receiptVerdict`, `probative`, `actualVerdict` n'est saisi à la main.
-- [ ] T058 [US3] Déclarer les trois sujets de la vague 3 dans
+- [X] T058 [US3] **FAIT 2026-07-30** — 188 faits déclarés au census (equipe 59, formulaire 77,
+      header 52), vérifiés par `verify-declarations` puis fusionnés ; `cases: []` partout,
+      **aucun cas parent fabriqué**. Deux outils adaptés pour rendre l'invariant exécutoire
+      plutôt que conventionnel : `verify-declarations` INVERSE son exigence sous porte
+      fermée (un `case` déclaré y devient un refus) et `merge-declarations` accepte une
+      déclaration sans cas. Texte d'origine ci-dessous.
+      Déclarer les trois sujets de la vague 3 dans
       `contracts/audit-campaign.json` : `dependencyId` renseigné, `requiredFactIds`
       calculés au census (les faits restent déclarés même sous porte fermée — c'est ce qui
       rend le blocage lisible), et **aucun cas parent fabriqué** tant que la porte est
@@ -646,19 +657,19 @@ ouverte, la fidélité de sa propre structure, contenu et rendu.
       suit **le protocole de T037 à l'identique** — fixture rouge d'abord, source autorisée
       seule, régénération, double re-pin, réaudit, résultats initial ET final conservés —
       et T071 étend son périmètre de diff attendu en conséquence.
-- [ ] T059 [P] [US3] Produire le dossier de `equipe` (`ds.equipe@1.0.0`, node `2115:3947`,
+- [X] T059 [P] [US3] **FAIT** → `blocked`, 59 faits obligatoires tous `not-proven`, reçu ds.member-card cité (limite 2e plan photo non périmée). Produire le dossier de `equipe` (`ds.equipe@1.0.0`, node `2115:3947`,
       dépendance `ds.member-card`) sous `proofs/organisms/equipe/` : verdict `blocked`,
       `reasons: ["dependency:ds.member-card:…"]`, reçu cité. **Attention limite nommée
       non périmée** : le 2e plan photo de MemberCard n'est pas branché (limite assumée en
       011) — ce blocage reste valide et ne doit pas être traité comme obsolète.
-- [ ] T060 [P] [US3] Produire le dossier de `formulaire` (`ds.formulaire@1.0.0`, node
+- [X] T060 [P] [US3] **FAIT** → `blocked`, 77 faits obligatoires tous `not-proven`, reçu ds.field cité. Produire le dossier de `formulaire` (`ds.formulaire@1.0.0`, node
       `2096:2564`, dépendance `ds.field@2.0.0`) sous `proofs/organisms/formulaire/` :
       verdict `blocked`, reçu et motif typé cités.
-- [ ] T061 [P] [US3] Produire le dossier de `header` (`ds.header@1.0.0`, node `84:285`,
+- [X] T061 [P] [US3] **FAIT** → `blocked`, 52 faits obligatoires tous `not-proven` ; brut `fail` ET mappé `divergent` apparaissent tous deux. Produire le dossier de `header` (`ds.header@1.0.0`, node `84:285`,
       dépendance `ds.nav-item@1.1.0`) sous `proofs/organisms/header/` : le reçu brut dit
       `fail`, le verdict mappé est `divergent`, donc la porte est fermée et le parent est
       `blocked` — les deux valeurs apparaissent, la brute et la mappée.
-- [ ] T062 [US3] Reçu de classification de la vague 3 (`waves[2]`, `classified: true`) +
+- [X] T062 [US3] **FAIT** — `wave-3-classification.json` : classified true, `positiveVerdictsUnderClosedGate: 0`, les 3 parents `blocked` avec cause précise. Reçu de classification de la vague 3 (`waves[2]`, `classified: true`) +
       contrôle qu'**aucun** verdict positif n'a fui : les trois parents sont `blocked`
       avec cause précise, et `summary.blocked >= 3`. Vérifier via le `jq` du quickstart §6
       que les trois lignes de dépendance existent bien.

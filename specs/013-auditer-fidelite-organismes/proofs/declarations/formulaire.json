@@ -1,0 +1,1818 @@
+{
+  "facts": [
+    {
+      "id": "formulaire.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "detail": "COMPONENT « Formulaire » 1550x723, layoutMode=HORIZONTAL itemSpacing=32 primaryAxisSizingMode=FIXED sizeH=FIXED sizeV=HUG, fills=[] strokes=[] effects=[] clipsContent=false, aucun padding > [column 2096:2537 (FRAME, colonne gauche), form 2096:2549 (FRAME, colonne droite)]. Le contrat modélise exactement ces deux enfants sous /anatomy/root/parts"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.root-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "channel": "itemSpacing",
+        "raw": 32,
+        "detail": "le contrat ne porte ni literals.gap ni tokens.gap sur le root ; Formulaire.module.css écrit .root { display:flex; flex-direction:row } sans aucun gap, les deux colonnes se touchent"
+      },
+      "figmaExpectation": {
+        "channel": "root.gap",
+        "value": "32px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.root-largeur",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal=FIXED",
+        "raw": 1550,
+        "detail": "le root est FIXED à 1550px sur le canvas ; le contrat ne porte aucun literals.width, .root est donc HUG en CSS. Même classe de divergence que reassurances.structure.root-width"
+      },
+      "figmaExpectation": {
+        "channel": "root.width",
+        "value": "1550px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.root-sans-fond",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "channel": "fills",
+        "raw": "[] (backgroundColor rgba(0,0,0,0), strokes=[], effects=[])",
+        "detail": "le root n'a aucune peinture ; le contrat ne déclare aucun background-color sur /anatomy/root/tokens (seul font-family y figure) et le CSS n'en écrit aucun — concordance positive"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.column",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2537",
+        "detail": "FRAME « column » 759x679, layoutMode=VERTICAL itemSpacing=48 counterAxisSizingMode=FIXED sizeH=FILL sizeV=HUG layoutGrow=1, fills=[] > [SectionHeader 2169:6240 (INSTANCE), features 2096:2541 (FRAME), buttons 2096:2546 (FRAME)] — les trois enfants et leur ordre sont exactement ceux de /anatomy/root/parts/column/parts"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__column\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.column-fill",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2537",
+        "channel": "layoutGrow / layoutSizingHorizontal",
+        "raw": "layoutGrow=1, layoutSizingHorizontal=FILL (759px des 1550px du root)",
+        "detail": "le contrat porte layout.grow = true sur la part column ; Formulaire.module.css écrit .column { flex: 1 1 auto; min-width: 0 } — concordance positive"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__column\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.column-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2537",
+        "channel": "itemSpacing",
+        "raw": 48
+      },
+      "figmaExpectation": {
+        "channel": "column.gap",
+        "value": "48px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__column\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.features",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2541",
+        "detail": "FRAME « features » 759x396, layoutMode=VERTICAL itemSpacing=32 sizeH=FILL sizeV=HUG layoutAlign=STRETCH, fills=[] > 4 INSTANCE Avantage (2096:2542, 2096:2543, 2096:2544, 2096:2545)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__features\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.features-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2541",
+        "channel": "itemSpacing",
+        "raw": 32
+      },
+      "figmaExpectation": {
+        "channel": "features.gap",
+        "value": "32px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__features\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.buttons",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2546",
+        "detail": "FRAME « buttons » 569x54, layoutMode=HORIZONTAL itemSpacing=16 sizeH=HUG sizeV=HUG, fills=[] > [FormArgumentBoutonA 2096:2547, FormArgumentBoutonB 2096:2548]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__buttons\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.buttons-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2546",
+        "channel": "itemSpacing",
+        "raw": 16
+      },
+      "figmaExpectation": {
+        "channel": "buttons.gap",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__buttons\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.form",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2549",
+        "detail": "FRAME « form » 759x723, layoutMode=VERTICAL itemSpacing=16 padding 32/32/32/32 counterAxisSizingMode=FIXED sizeH=FILL sizeV=HUG layoutGrow=1 > [row 2096:2550, row 2096:2553, row 2096:2556, row 2096:2558, row 2096:2560, TexteConsentement 2096:2562 (TEXT), FormulaireBouton 2096:2563 (INSTANCE)]. C'est la seule frame de l'organisme qui porte une identité visuelle propre (fond + padding), les autres sont des wrappers de pure disposition — constat déjà établi par specs/003-externalize-figma-components/audits/formulaire.md"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__form\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.form-fill",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2549",
+        "channel": "layoutGrow / layoutSizingHorizontal",
+        "raw": "layoutGrow=1, layoutSizingHorizontal=FILL (759px des 1550px du root)",
+        "detail": "le contrat porte layout.grow = true sur la part form ; .form { flex: 1 1 auto; min-width: 0 } — concordance positive"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__form\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.form-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2549",
+        "channel": "itemSpacing",
+        "raw": 16
+      },
+      "figmaExpectation": {
+        "channel": "form.gap",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__form\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.form-padding",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2549",
+        "channel": "paddingTop / paddingRight / paddingBottom / paddingLeft",
+        "raw": "32 / 32 / 32 / 32",
+        "detail": "le contrat porte le fond bleu-clair de cette frame mais pas son padding ; le bloc coloré est donc rendu sans marge intérieure, les Field collent au bord du fond"
+      },
+      "figmaExpectation": {
+        "channel": "form.padding",
+        "value": "32px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/literals/padding"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__form\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.rows-homonymes",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2550",
+        "channel": "name",
+        "raw": "les 5 frames de lignes s'appellent TOUTES « row » sur le canvas : 2096:2550, 2096:2553, 2096:2556, 2096:2558, 2096:2560",
+        "detail": "un Record<string, Part> ne peut pas porter cinq clés homonymes : le contrat désambiguïse en row / row2 / row3 / row4 / row5. La correspondance est positionnelle (ordre des enfants de form), jamais nominale — c'est exactement la règle « scanné par POSITION, jamais par nom » de §VIII appliquée à la lecture du contrat. Aucun défaut de code : le nom Figma dupliqué est un point de source à connaître pour toute relecture future"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__row\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.row-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2550",
+        "channel": "itemSpacing",
+        "raw": 16,
+        "detail": "les 5 lignes portent le même itemSpacing 16 (2096:2550, 2096:2553, 2096:2556, 2096:2558, 2096:2560) ; aucune des 5 parts row* du contrat ne porte de gap, .row à .row5 sont cinq règles identiques display:flex; flex-direction:row sans espacement"
+      },
+      "figmaExpectation": {
+        "channel": "row.gap",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__row\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.field-fill",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "channel": "layoutGrow / layoutSizingHorizontal",
+        "raw": "layoutGrow=1, layoutSizingHorizontal=FILL — 340px sur les 695px de la ligne (2096:2551 et 2096:2552 se partagent la largeur à parts égales) ; idem pour 2096:2554, 2096:2555, 2096:2557 (695px), 2096:2559 (695px), 2096:2561 (695px)",
+        "detail": "les 7 Field sont FILL. Le contrat ne porte aucun layout.grow sur ces parts, et il ne le pourrait pas utilement : une part qui compose un enfant est émise SANS wrapper (Formulaire.tsx écrit <Field label=\"Prénom\" etat=\"normal\" /> nu), il n'y a donc aucun élément parent-side sur lequel poser flex:1. Le remède appartient soit au root de ds.field, soit à une capacité de largeur portée par la part — pas au CSS de Formulaire"
+      },
+      "figmaExpectation": {
+        "channel": "FormRow1FieldA.layoutSizingHorizontal",
+        "value": "FILL"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.row5-hauteur",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2560",
+        "channel": "absoluteBoundingBox.height",
+        "raw": 161,
+        "detail": "la 5e ligne est deux fois plus haute que les autres (161px contre 81px) parce que son Field 2096:2561 est sizeV=FIXED avec un Saisie FILL/FILL de 695x128 (la zone de texte). Le contrat ne porte aucune hauteur sur row5 ni sur FormRow5Field : côté React la ligne est HUG, et comme le slot n'est pas rempli (voir formulaire.composition.saisie-slot-non-rempli) il n'y a même pas de zone de texte pour lui donner sa hauteur"
+      },
+      "figmaExpectation": {
+        "channel": "row5.height",
+        "value": "161px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row5/literals/height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__row5\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.saisie-largeur-fixe",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "channel": "children.Saisie.layoutSizingHorizontal",
+        "raw": "I2096:2551;2056:1269 = FIXED 280x48, dans un Field large de 340px",
+        "detail": "point de SOURCE Figma, à trancher avant tout contournement code (§VIII) : les Saisie des lignes 1 à 4 sont FIXED 280px alors que leur Field est FILL (340px ou 695px) — la saisie ne remplit donc PAS son champ sur le canvas, sauf ligne 5 où I2096:2561;2056:1269 est FILL/FILL. Côté contrat, ds.field déclare l'inverse (slot.control.fill = \"width\") ; les deux modèles ne peuvent pas être vrais en même temps. Le pointeur vise le canal du SLOT, seule route par laquelle la nature et le dimensionnement du contrôle pourraient descendre depuis ce contrat — ds.field n'expose aucune prop de saisie. Non mesurable ici de toute façon, le slot n'étant pas rempli"
+      },
+      "figmaExpectation": {
+        "channel": "FormRow1FieldA.Saisie.width",
+        "value": "280px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/slot"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__Saisie\"]"
+      }
+    },
+    {
+      "id": "formulaire.structure.bouton-envoyer-pleine-largeur",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2563",
+        "channel": "layoutSizingHorizontal / layoutAlign",
+        "raw": "FILL, layoutAlign=STRETCH, 695x54 (primaryAxisSizingMode override d'instance)",
+        "detail": "le bouton Envoyer occupe toute la largeur du bloc formulaire sur le canvas ; le contrat écrit { \"id\": \"ds.button\" } nu, React rend un <button> HUG dimensionné par son libellé"
+      },
+      "figmaExpectation": {
+        "channel": "FormulaireBouton.layoutSizingHorizontal",
+        "value": "FILL"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/FormulaireBouton/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.consentement",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "property": "Consentement#2096:52",
+        "textLayer": "2096:2562",
+        "detail": "propriété TEXT du COMPONENT, defaultValue identique au /props/0/default du contrat ; c'est la SEULE des quatre props du contrat qui est réellement projetée par Formulaire.tsx (<span className={styles.TexteConsentement}>{consentement}</span>)"
+      },
+      "figmaExpectation": {
+        "channel": "Consentement.defaultValue",
+        "value": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default",
+        "bindingProperty": "Consentement"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__TexteConsentement\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.consentement-plage-hyperlien",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2096:2562",
+        "channel": "characterStyleOverrides / styleOverrideTable",
+        "raw": "caractères 59 à 89 (« la politique de confidentialité ») portent le style 13 : hyperlink URL https://www.jonckers-clabots.be/politique-de-confidentialite/ ; les caractères 0 à 58 et 90 portent le style 14 (sans lien)",
+        "detail": "le texte de consentement n'est PAS uniforme : il contient un vrai hyperlien Figma sur une plage. /props/0 est typé \"text\" (chaîne plate) — le contrat n'a aucun canal pour une plage de caractères ni pour une URL, contrairement au type \"rich-text\" qui porte des segments. Le lien est donc perdu intégralement. Point de source déjà signalé et délibérément conservé tel quel par specs/003-externalize-figma-components/audits/formulaire.md : le domaine jonckers-clabots.be n'est pas Piqueray, c'est un résidu de template ; la correction de contenu appartient à l'owner, pas au code"
+      },
+      "figmaExpectation": {
+        "channel": "TexteConsentement.hyperlink[59..89]",
+        "value": "https://www.jonckers-clabots.be/politique-de-confidentialite/"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/type",
+        "bindingProperty": "Consentement"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__TexteConsentement\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.section-header-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6240",
+        "property": "Titre#2090:47",
+        "textLayer": "I2169:6240;2090:2387"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Titre",
+        "value": "Prenez contact avec nous dès maintenant !"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.section-header-accroche",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6240",
+        "property": "Accroche#2090:46",
+        "textLayer": "I2169:6240;2090:2386"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche",
+        "value": "Une demande de devis ? Une réparation ?"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/accroche",
+        "bindingProperty": "Accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-1-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2542",
+        "mainComponent": "2088:2350",
+        "property": "Titre#2088:41",
+        "textLayer": "I2096:2542;2088:2355"
+      },
+      "figmaExpectation": {
+        "channel": "items[0].Avantage.Titre",
+        "value": "Conseils personnalisés"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/0/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-1-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2542",
+        "mainComponent": "2088:2350",
+        "property": "Texte#2088:42",
+        "textLayer": "I2096:2542;2088:2356"
+      },
+      "figmaExpectation": {
+        "channel": "items[0].Avantage.Texte",
+        "value": "Devis gratuits effectués sur place, nous nous déplaçons chez vous"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/0/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Texte\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-2-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2543",
+        "mainComponent": "2088:2350",
+        "property": "Titre#2088:41",
+        "textLayer": "I2096:2543;2088:2355"
+      },
+      "figmaExpectation": {
+        "channel": "items[1].Avantage.Titre",
+        "value": "Produits de qualité"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/1/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-2-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2543",
+        "mainComponent": "2088:2350",
+        "property": "Texte#2088:42",
+        "textLayer": "I2096:2543;2088:2356"
+      },
+      "figmaExpectation": {
+        "channel": "items[1].Avantage.Texte",
+        "value": "Marque Hormann renommée, qualité allemande"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/1/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Texte\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-3-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2544",
+        "mainComponent": "2088:2350",
+        "property": "Titre#2088:41",
+        "textLayer": "I2096:2544;2088:2355"
+      },
+      "figmaExpectation": {
+        "channel": "items[2].Avantage.Titre",
+        "value": "Dépannage et SAV"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/2/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-3-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2544",
+        "mainComponent": "2088:2350",
+        "property": "Texte#2088:42",
+        "textLayer": "I2096:2544;2088:2356"
+      },
+      "figmaExpectation": {
+        "channel": "items[2].Avantage.Texte",
+        "value": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/2/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Texte\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-4-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2545",
+        "mainComponent": "2088:2350",
+        "property": "Titre#2088:41",
+        "textLayer": "I2096:2545;2088:2355"
+      },
+      "figmaExpectation": {
+        "channel": "items[3].Avantage.Titre",
+        "value": "Expérience et savoir-faire"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/3/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.avantage-4-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2545",
+        "mainComponent": "2088:2350",
+        "property": "Texte#2088:42",
+        "textLayer": "I2096:2545;2088:2356"
+      },
+      "figmaExpectation": {
+        "channel": "items[3].Avantage.Texte",
+        "value": "Nous cumulons plus de 50 ans d’expérience sur trois générations"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/sample/3/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__Texte\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.field-labels",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "property": "Label#2056:4",
+        "textLayer": "I2096:2551;2056:1267",
+        "detail": "les 7 libellés relevés sur les 7 instances Field, dans l'ordre du canvas : 2096:2551 « Prénom », 2096:2552 « Nom », 2096:2554 « Email », 2096:2555 « Téléphone », 2096:2557 « Adresse », 2096:2559 « Sujet », 2096:2561 « Message ». Le contrat les porte tous les sept en props.label sur les parts correspondantes — concordance positive et complète, c'est le canal le mieux transmis de cet organisme"
+      },
+      "figmaExpectation": {
+        "channel": "Field[*].Label",
+        "value": [
+          "Prénom",
+          "Nom",
+          "Email",
+          "Téléphone",
+          "Adresse",
+          "Sujet",
+          "Message"
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/props/label",
+        "bindingProperty": "Label"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__Label\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.saisie-valeurs",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "channel": "Saisie.Valeur.characters",
+        "raw": "I2096:2551;2056:1269;2053:1246 « Prénom », I2096:2552;… « Nom », I2096:2554;… « nom@entreprise.com », I2096:2555;… « +32 4 234 56 78 », I2096:2557;… « Rue n°, CP Ville », I2096:2559;…;2053:1250 « Demande de devis », I2096:2561;…;2053:1248 « Écrivez votre message ici... »",
+        "detail": "chaque Saisie porte un texte de valeur/placeholder distinct, tous en override d'instance. Aucun ne franchit le contrat : la part Field ne passe que label et etat, et le contenu du slot Saisie n'est pas modélisable depuis le parent (voir formulaire.composition.saisie-slot-non-rempli). Le pointeur vise ce slot — ds.field n'a aucune prop de valeur, la chaîne appartiendrait à la prop value du ds.input placé dans le slot. Les 7 valeurs sont donc absentes du DOM"
+      },
+      "figmaExpectation": {
+        "channel": "Field[*].Saisie.Valeur",
+        "value": [
+          "Prénom",
+          "Nom",
+          "nom@entreprise.com",
+          "+32 4 234 56 78",
+          "Rue n°, CP Ville",
+          "Demande de devis",
+          "Écrivez votre message ici..."
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/slot"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__Saisie\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.bouton-a-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2547",
+        "property": "Libelle#2044:28",
+        "textLayer": "I2096:2547;6:95",
+        "detail": "le contrat écrit { \"id\": \"ds.button\" } nu ; Formulaire.tsx rend le défaut de ds.button (« Contactez-nous ») à la place"
+      },
+      "figmaExpectation": {
+        "channel": "FormArgumentBoutonA.Libelle",
+        "value": "Appeler pour une urgence"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonA/component/text",
+        "bindingProperty": "Libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.bouton-b-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2548",
+        "property": "Libelle#2044:28",
+        "textLayer": "I2096:2548;28:116"
+      },
+      "figmaExpectation": {
+        "channel": "FormArgumentBoutonB.Libelle",
+        "value": "Voir la FAQ"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonB/component/text",
+        "bindingProperty": "Libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.content.bouton-envoyer-libelle",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2563",
+        "property": "Libelle#2044:28",
+        "textLayer": "I2096:2563;28:116",
+        "detail": "le verbe d'action du formulaire. Les trois boutons de l'organisme rendent le même « Contactez-nous » en React : le libellé du bouton de soumission est perdu comme les deux autres"
+      },
+      "figmaExpectation": {
+        "channel": "FormulaireBouton.Libelle",
+        "value": "Envoyer"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/FormulaireBouton/component/text",
+        "bindingProperty": "Libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.property.consentement-binding",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "property": "Consentement#2096:52",
+        "raw": "type TEXT",
+        "detail": "liaison TEXT ↔ prop code consentement ; c'est la seule des quatre props du contrat dont la valeur atteint réellement le DOM"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/bindings",
+        "bindingProperty": "Consentement"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__TexteConsentement\"]"
+      }
+    },
+    {
+      "id": "formulaire.property.accroche-inerte",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "property": "Accroche#2096:50",
+        "raw": "TEXT, defaultValue « Une demande de devis ? Une réparation ? »",
+        "detail": "le contrat déclare la prop accroche (/props/2, liée à cette propriété Figma) MAIS l'anatomie écrit une chaîne littérale dans SectionHeader.component.props.accroche au lieu du mappage \"{accroche}\" que ComponentRefSchema documente (« A string value of the form \"{parentProp}\" maps a PARENT scalar prop live into the child »). Conséquence mesurable : Formulaire.tsx déstructure accroche puis ne l'utilise jamais — <SectionHeader accroche=\"Une demande de devis ? Une réparation ?\" /> est en dur. Passer accroche=\"X\" au composant ne change rien au rendu. La valeur concorde avec Figma par recopie, pas par projection"
+      },
+      "figmaExpectation": {
+        "channel": "accroche.projection",
+        "value": "{accroche}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/accroche",
+        "bindingProperty": "Accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "formulaire.property.titre-inerte",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "property": "Titre#2096:51",
+        "raw": "TEXT, defaultValue « Prenez contact avec nous dès maintenant ! »",
+        "detail": "même défaut que formulaire.property.accroche-inerte : /props/3 est déclarée et liée, mais l'anatomie écrit [{ \"text\": \"Prenez contact avec nous dès maintenant !\" }] en dur. Formulaire.tsx déstructure titre sans jamais le lire. Difficulté supplémentaire ici : la prop parente est typée \"text\" alors que ds.section-header attend \"rich-text\" (tableau de segments) — un simple \"{titre}\" ne suffirait donc pas, il faudrait aligner les types (voir formulaire.property.titre-type)"
+      },
+      "figmaExpectation": {
+        "channel": "titre.projection",
+        "value": "{titre}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.property.titre-type",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2169:6240;2090:2387",
+        "channel": "characterStyleOverrides",
+        "raw": "absent — aucune plage de style sur le Titre de cette instance",
+        "detail": "l'occurrence formulaire n'a AUCUNE graisse mixte sur son titre (contrairement à presentation, texte-seo et hero, cités dans la documentation de la prop titre de ds.section-header). Le type \"text\" du contrat parent est donc suffisant pour la valeur observée ; il reste incompatible avec le type \"rich-text\" de l'enfant, ce qui est la cause technique de formulaire.property.titre-inerte"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/3/type",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.property.items-sans-defaut",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2541",
+        "channel": "children.length",
+        "raw": 4,
+        "detail": "le canvas matérialise 4 INSTANCE Avantage ; /props/1 (items) n'a AUCUN default et Formulaire.tsx écrit items?.map(...) — le composant tel qu'il est livré rend ZÉRO avantage. repeat.sample n'est pas un défaut React, il n'alimente que les args Storybook. Même classe que reassurances.property.items-sans-defaut, à ceci près qu'ici les 4 entrées du sample correspondent exactement, dans l'ordre, aux 4 instances du canvas"
+      },
+      "figmaExpectation": {
+        "channel": "items.default",
+        "value": [
+          {
+            "texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
+            "titre": "Conseils personnalisés"
+          },
+          {
+            "texte": "Marque Hormann renommée, qualité allemande",
+            "titre": "Produits de qualité"
+          },
+          {
+            "texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais",
+            "titre": "Dépannage et SAV"
+          },
+          {
+            "texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
+            "titre": "Expérience et savoir-faire"
+          }
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1/default"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__features\"]"
+      }
+    },
+    {
+      "id": "formulaire.property.items-binding-none",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "property": "componentPropertyDefinitions",
+        "raw": "Accroche#2096:50 (TEXT), Titre#2096:51 (TEXT), Consentement#2096:52 (TEXT)",
+        "detail": "le COMPONENT n'expose que trois propriétés, toutes TEXT : Figma n'a aucune propriété de type collection. Le NONE de /props/1/bindings/figma est justifié sur ses trois pieds — anatomie (repeat.itemsProp = \"items\"), sample (4 entrées) et occurrence (4 INSTANCE Avantage matérialisées dans 2096:2541) — mais un NONE justifié reste une limite nommée : côté canvas la collection ne s'exprime que comme N instances matérialisées, jamais comme une propriété pilotable"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1/bindings/figma/kind"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__features\"]"
+      }
+    },
+    {
+      "id": "formulaire.property.aucune-propriete-de-champ",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "property": "componentPropertyDefinitions",
+        "raw": "3 propriétés TEXT au niveau du COMPONENT ; aucune ne concerne les 7 champs ni les 3 boutons",
+        "detail": "constat de SOURCE : sur le canvas, les libellés de champ, les valeurs de saisie, les variantes de saisie et les libellés de bouton sont tous des overrides d'instance, jamais des propriétés du master. Un organisme dont le contenu principal n'est pas pilotable par propriété est fidèlement transcrit par un contrat à 4 props — mais c'est bien la source qui plafonne ici la surface pilotable, pas le contrat. À rapprocher du backlog de nettoyage Figma de 013"
+      },
+      "contractReference": {
+        "jsonPointer": "/props"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.section-header",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6240",
+        "mainComponent": "2090:2385",
+        "observedInstanceProperties": {
+          "Accroche2#2169:64": true,
+          "Titre#2090:47": "Prenez contact avec nous dès maintenant !",
+          "Accroche#2090:46": "Une demande de devis ? Une réparation ?",
+          "Disposition": "Standard"
+        },
+        "detail": "INSTANCE 759x133, VERTICAL itemSpacing 8, counterAxisAlignItems=CENTER, sizeH=FILL layoutAlign=STRETCH, fills=[]. overrides : 2169:6240 { height, width } ; les deux calques de texte portent chacun ~17 champs surchargés (fontSize, lineHeight, letterSpacing, textAlignHorizontal, boundVariables…). Métriques relevées : Accroche 20px/25px letterSpacing 3 textCase UPPER, Titre 40px/50px — soit exactement ce que porte ds.section-header par défaut, donc rien à surcharger côté typographie"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component",
+        "childContractId": "ds.section-header"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.section-header-disposition",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6240",
+        "property": "Disposition",
+        "raw": "Standard"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Disposition (VARIANT « Standard » → valeur d'enum contractuelle, mappage déclaré par ds.section-header /props/0/bindings/figma/values)",
+        "value": "standard"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/disposition",
+        "bindingProperty": "Disposition"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.section-header-accroche2",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6240",
+        "property": "Accroche2#2169:64",
+        "raw": true,
+        "textLayer": "I2169:6240;2090:2386",
+        "detail": "l'occurrence met Accroche2=true et le calque Accroche est visible ; le contrat ne passe pas accroche2, SectionHeader.tsx retombe sur son défaut true et le rendu concorde PAR COÏNCIDENCE. Changer le défaut de ds.section-header ferait dériver formulaire en silence. Même constat que reassurances.composition.section-header-accroche2, y compris le fait que côté React accroche2 pilote la présence du <span> alors que côté Figma c'est un BOOLEAN de visibilité de calque"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche2 (BOOLEAN)",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/accroche2",
+        "bindingProperty": "Accroche2"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.section-header-alignement",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2169:6240",
+        "channel": "children[].style.textAlignHorizontal",
+        "raw": "LEFT sur I2169:6240;2090:2386 (Accroche) ET I2169:6240;2090:2387 (Titre) — textAlignHorizontal figure dans overriddenFields des deux calques, c'est donc bien une surcharge d'instance et non le réglage du master",
+        "detail": "ds.section-header porte un axe code-side alignement (centre|gauche, binding NONE) dont la documentation de prop décrit la limite : « le master 2090:2385 centre mais 5 usages sur 7 le surchargent en LEFT par instance (coordonnees, presentation, sav, texte-seo, hero) ». formulaire n'y figure pas alors que son instance surcharge bien en LEFT — l'inventaire de la limite est donc incomplet d'au moins ce consommateur (constat tiré du census 2096:2564 ; je n'ai pas relu les autres consommateurs, le décompte « 5 sur 7 » n'est ni confirmé ni infirmé au-delà de ce point). Conséquence rendue : le contrat ne passe pas alignement, SectionHeader.tsx retombe sur \"centre\" et applique align-items:center là où Figma aligne à gauche"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.alignement",
+        "value": "gauche"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/alignement"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__alignement-gauche\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.avantage-repeat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2542",
+        "mainComponent": "2088:2350",
+        "detail": "les 4 INSTANCE Avantage 2096:2542, 2096:2543, 2096:2544, 2096:2545 partagent le master 2088:2350 ; le contrat les modélise en une seule part /anatomy/root/parts/column/parts/features/parts/Avantage composant ds.avantage avec repeat.itemsProp = \"items\". Chaque instance est HORIZONTAL gap 8, HUG/HUG, avec une INSTANCE d'icône Piqueray 64x64 (master 274:2934) et une frame text FIXED 687px. Aucune instance ne porte d'override structurel : seuls les deux calques de texte sont surchargés"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/features/parts/Avantage/repeat/itemsProp",
+        "childContractId": "ds.avantage"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Avantage__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-a",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2547",
+        "mainComponent": "6:107",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Appeler pour une urgence",
+          "Style": "Default",
+          "Icone gauche#2024:0": true,
+          "Icone droite#2024:7": false,
+          "Glyphe gauche#2028:14": "263:2120",
+          "Glyphe droite#2028:21": "6:104"
+        },
+        "detail": "INSTANCE 353x54 HUG/HUG gap 10 padding 16/32/16/32. overrides : 2096:2547 { boundVariables, height, itemSpacing, name, padding×4, width }, I2096:2547;6:105 { visible } (l'icône Phone est rendue visible), I2096:2547;6:105;263:2119 { fills }. Le contrat écrit { \"id\": \"ds.button\" } nu : aucune des six propriétés relevées ne franchit le contrat"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonA/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-a-variant",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2547",
+        "property": "Style",
+        "raw": "Default",
+        "detail": "seul des trois boutons à être en Style=Default ; ds.button a précisément \"default\" pour défaut, Button.tsx émet donc .variant-default et le rendu concorde PAR COÏNCIDENCE — la valeur n'est portée nulle part dans ce contrat"
+      },
+      "figmaExpectation": {
+        "channel": "FormArgumentBoutonA.Style (VARIANT « Default » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)",
+        "value": "default"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonA/component/props/variant",
+        "bindingProperty": "Style"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__variant-default\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-a-icone-gauche",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2547",
+        "property": "Icone gauche#2024:0",
+        "raw": true,
+        "detail": "l'instance rend l'icône Phone à gauche (I2096:2547;6:105, componentId 263:2120, visible par override) ; le contrat ne passe ni iconLeft ni iconLeftGlyph, Button.tsx retombe sur iconLeft=false et n'émet aucune icône — le sélecteur ne matchera rien, ce qui EST le constat"
+      },
+      "figmaExpectation": {
+        "channel": "FormArgumentBoutonA.Icone gauche (BOOLEAN) + Glyphe gauche (INSTANCE_SWAP)",
+        "value": {
+          "iconLeft": true,
+          "iconLeftGlyph": "phone"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonA/component/props/iconLeft",
+        "bindingProperty": "Icone gauche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__iconLeft\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-b",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2548",
+        "mainComponent": "28:114",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Voir la FAQ",
+          "Style": "Outline noir",
+          "Icone droite#2024:7": true,
+          "Icone gauche#2024:0": false,
+          "Glyphe droite#2028:21": "6:104",
+          "Glyphe gauche#2028:14": "263:2120"
+        },
+        "detail": "INSTANCE 200x54 HUG/HUG gap 10 padding 16/32/16/32 ; l'icône ArrowRight I2096:2548;28:117 est visible, le Phone gauche I2096:2548;28:115 est visible=false. Contrat { \"id\": \"ds.button\" } nu"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonB/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-b-variant",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2548",
+        "property": "Style",
+        "raw": "Outline noir",
+        "detail": "le contrat ne passe aucune prop ; Button.tsx retombe sur variant=\"default\" (fond plein) là où Figma tient un contour noir bleuté sans remplissage"
+      },
+      "figmaExpectation": {
+        "channel": "FormArgumentBoutonB.Style (VARIANT « Outline noir » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)",
+        "value": "outilneNoir"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonB/component/props/variant",
+        "bindingProperty": "Style"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__variant-outilneNoir\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-b-icone-droite",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2548",
+        "property": "Icone droite#2024:7",
+        "raw": true,
+        "detail": "INSTANCE_SWAP Glyphe droite = 6:104, master de l'icône ArrowRight ; ds.button mappe cette valeur sur l'enum iconRightGlyph \"arrow-right\" (/props/5/bindings/figma/values). Non porté par le contrat formulaire"
+      },
+      "figmaExpectation": {
+        "channel": "FormArgumentBoutonB.Icone droite (BOOLEAN) + Glyphe droite (INSTANCE_SWAP)",
+        "value": {
+          "iconRight": true,
+          "iconRightGlyph": "arrow-right"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/buttons/parts/FormArgumentBoutonB/component/props/iconRight",
+        "bindingProperty": "Icone droite"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__iconRight\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-envoyer",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2563",
+        "mainComponent": "28:114",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Envoyer",
+          "Style": "Outline noir",
+          "Icone droite#2024:7": true,
+          "Icone gauche#2024:0": false,
+          "Glyphe droite#2028:21": "6:104",
+          "Glyphe gauche#2028:14": "6:99"
+        },
+        "detail": "INSTANCE 695x54, HORIZONTAL gap 10 padding 16/32/16/32, sizeH=FILL layoutAlign=STRETCH. overrides : 2096:2563 { height, name, primaryAxisSizingMode, width }, I2096:2563;28:117 { visible }. Le bouton de soumission du formulaire, modélisé par un { \"id\": \"ds.button\" } nu : ni libellé, ni variante, ni icône, ni pleine largeur ne franchissent le contrat"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/FormulaireBouton/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.bouton-envoyer-variant",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2563",
+        "property": "Style",
+        "raw": "Outline noir",
+        "detail": "constat de SOURCE autant que de code : le bouton de soumission principal est en variante secondaire (contour) sur le canvas, alors que le bouton d'argument secondaire « Appeler pour une urgence » est en Default (plein). Hiérarchie visuelle inversée dans la maquette — signalé, jamais corrigé en silence. Côté React les trois boutons rendent la même variante default"
+      },
+      "figmaExpectation": {
+        "channel": "FormulaireBouton.Style (VARIANT « Outline noir » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)",
+        "value": "outilneNoir"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/FormulaireBouton/component/props/variant",
+        "bindingProperty": "Style"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__variant-outilneNoir\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.field-sept-instances",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "mainComponent": "2056:1265",
+        "detail": "les 7 INSTANCE Field partagent le master 2056:1265 : 2096:2551 (Prénom), 2096:2552 (Nom), 2096:2554 (Email), 2096:2555 (Téléphone), 2096:2557 (Adresse), 2096:2559 (Sujet), 2096:2561 (Message). Le contrat les modélise en 7 parts distinctes (pas un repeat) réparties dans 5 lignes, ce qui est fidèle : chaque champ a un libellé propre et une variante de saisie propre. Recoupement indépendant de specs/003 : Field n'a aucun autre consommateur dans le fichier"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/id",
+        "childContractId": "ds.field"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.field-etat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "property": "Etat",
+        "raw": "Normal — les 7 instances portent la même valeur",
+        "detail": "le contrat passe etat: \"normal\" sur les 7 parts ; ds.field mappe \"normal\" → VARIANT « Normal ». Concordance positive et explicite (pas par défaut d'enfant : la valeur est réellement écrite dans l'anatomie)"
+      },
+      "figmaExpectation": {
+        "channel": "Field[*].Etat (VARIANT « Normal » → valeur d'enum contractuelle, mappage déclaré par ds.field /props/0/bindings/figma/values)",
+        "value": "normal"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/props/etat",
+        "bindingProperty": "Etat"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.field-optionnel-telephone",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2555",
+        "property": "Optionnel#2056:7",
+        "raw": true,
+        "textLayer": "I2096:2555;2056:1268",
+        "detail": "UN seul des 7 champs porte Optionnel=true — Téléphone : son calque MentionOptionnelle « (optionnel) » est visible (77x17), tandis que les six autres l'ont à visible=false. Le contrat ne passe optionnel sur aucune part, Field.tsx retombe sur false pour les sept et n'émet jamais le <span>. Résultat rendu : le seul champ facultatif du formulaire est présenté comme obligatoire"
+      },
+      "figmaExpectation": {
+        "channel": "FormRow2FieldB.Optionnel (BOOLEAN)",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row2/parts/FormRow2FieldB/component/props/optionnel",
+        "bindingProperty": "Optionnel"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__MentionOptionnelle\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.saisie-slot-non-rempli",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "property": "Saisie#2056:10",
+        "raw": "INSTANCE_SWAP = 2053:1245",
+        "detail": "LE fait central de cet organisme. ds.field expose un slot Saisie (name \"children\", accepts [ds.input, ds.select, ds.textarea], min 1, required true, figmaProperty \"Saisie\"). Le contrat parent ne le remplit pour aucun des 7 champs — et ne le PEUT pas : ComponentRefSchema est un z.strictObject limité à { id, props, text }, il n'a aucun canal pour le contenu de slot d'un enfant. Conséquence mesurable : Field.tsx rend <div className={styles.Saisie}>{children}</div> avec children undefined ; defaultContent n'est pas matérialisé côté React. Les 7 champs sortent donc avec un conteneur de saisie VIDE — zéro <input>, <select> ou <textarea> dans le DOM du formulaire. C'est aussi ce que la porte de dépendance fermée sur ds.field protège : mesurer ce sujet aujourd'hui produirait des chiffres sur un formulaire sans champ de saisie"
+      },
+      "figmaExpectation": {
+        "channel": "Field[*].Saisie (INSTANCE_SWAP)",
+        "value": [
+          "2053:1245",
+          "2053:1245",
+          "2053:1245",
+          "2053:1245",
+          "2053:1245",
+          "2053:1249",
+          "2053:1247"
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/slot",
+        "bindingProperty": "Saisie"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__Saisie\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.saisie-trois-variantes",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2559",
+        "property": "Saisie#2056:10",
+        "raw": "2053:1249 (Sujet) — à comparer à 2053:1245 (Prénom, Nom, Email, Téléphone, Adresse) et 2053:1247 (Message)",
+        "detail": "les 7 champs ne swappent pas la même saisie : cinq portent une saisie simple (2053:1245, 280x48, un TEXT « Valeur »), Sujet porte une saisie à chevron (2053:1249 : TEXT « Valeur » + INSTANCE ChevronDown 24x24, master 226:373 — un select), Message porte une saisie haute (2053:1247, FILL/FILL 695x128 — une zone de texte). Ces trois natures de contrôle sont exactement l'énumération accepts du slot de ds.field ([ds.input, ds.select, ds.textarea]). Aucune ne franchit le contrat parent : les 7 champs sont contractuellement indiscernables"
+      },
+      "figmaExpectation": {
+        "channel": "Field[*].Saisie.nature",
+        "value": {
+          "FormRow1FieldA": "ds.input",
+          "FormRow1FieldB": "ds.input",
+          "FormRow2FieldA": "ds.input",
+          "FormRow2FieldB": "ds.input",
+          "FormRow3Field": "ds.input",
+          "FormRow4Field": "ds.select",
+          "FormRow5Field": "ds.textarea"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row4/parts/FormRow4Field/component/slot"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__Saisie\"]"
+      }
+    },
+    {
+      "id": "formulaire.composition.dependance-field-porte-fermee",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "mainComponent": "2056:1265",
+        "detail": "cet organisme compose ds.field (7 fois) et la porte de dépendance de ds.field est FERMÉE — reçu vérifié specs/013-auditer-fidelite-organismes/proofs/dependencies/formulaire.json : receiptVerdict \"blocked\", open false, reasons [receipt-verdict-blocked, dependency-not-proved:ds.field, figma-file-version-moved:2381568261081914456->2381581871281042338]. Aucun cas parent n'est donc déclaré dans ce fichier : un cas fabriqué produirait des mesures ressemblant à des preuves pour un composant dont le prérequis n'est pas prouvé. Les faits ci-dessus restent déclarés pour que le blocage soit LISIBLE — un dossier vide ressemblerait à une absence de test lue comme une validation"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component",
+        "childContractId": "ds.field"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "export": "png@2x",
+        "detail": "la comparaison pixel du rendu complet est l'affirmation de fidélité de plus haut niveau de cet organisme. Elle n'est PAS mesurée dans cette vague : sous porte de dépendance fermée aucun cas n'existe, donc aucune capture ni aucun diff n'est produit. Le fait est déclaré pour ce qu'il est — attendu, non mesuré — jamais pour être lu comme un résultat"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.visual.form-fond",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2549",
+        "channel": "fills[0]",
+        "raw": "SOLID {r:0.95686274766922, g:0.9647058844566345, b:0.9803921580314636, a:1} = #F4F6FA, boundVariables.color = VariableID:5:63",
+        "detail": "seule identité visuelle propre de l'organisme, portée par une variable Figma (zéro couleur brute). Le contrat écrit background-color: {color.bleu-clair} et tokens/primitives.tokens.json résout bleu-clair à #F4F6FA — concordance positive, valeur ET token"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/tokens/background-color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__form\"]"
+      }
+    },
+    {
+      "id": "formulaire.visual.font-family",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2562",
+        "channel": "style.fontFamily",
+        "raw": "Montserrat (fontPostScriptName Montserrat-Regular) — valeur relevée sur tous les calques TEXT du sous-arbre",
+        "detail": "le contrat porte font-family: {font.family.montserrat} sur le root et Formulaire.module.css écrit .root { font-family: var(--font-family-montserrat) } — concordance positive"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/font-family"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.visual.consentement-typographie",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2562",
+        "channel": "style.fontSize / style.lineHeightPx / style.fontWeight",
+        "raw": "14 / 24 / 400, textAlignHorizontal LEFT, letterSpacing 0, textAutoResize WIDTH_AND_HEIGHT, 607x24",
+        "detail": "la part TexteConsentement du contrat ne porte NI tokens NI literals — le générateur n'émet donc aucune règle .TexteConsentement dans Formulaire.module.css, alors que Formulaire.tsx référence styles.TexteConsentement. styles.TexteConsentement vaut undefined : le <span> sort sans aucune classe ni style, la « div vide » nommée par D10. Ni la taille 14px, ni l'interligne 24px, ni la couleur ne sont portés"
+      },
+      "figmaExpectation": {
+        "channel": "TexteConsentement.font-size / line-height",
+        "value": "14px / 24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/TexteConsentement/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__TexteConsentement\"]"
+      }
+    },
+    {
+      "id": "formulaire.visual.consentement-couleur-de-base",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2562",
+        "channel": "styleOverrideTable.14.fills[0] / boundVariables.textRangeFills",
+        "raw": "SOLID {r:0.21568627655506134, g:0.21568627655506134, b:0.23137255012989044, a:1} = #37373B, boundVariables.color = VariableID:24:52 (le fills du nœud lui-même reste #000000, mais les 91 caractères portent tous un override de plage)",
+        "detail": "attention au piège de lecture : lire fills[0] au niveau du nœud donne du noir pur, alors que la couleur RÉELLEMENT rendue vient des plages de caractères. #37373B est la valeur de {color.noir} dans tokens/primitives.tokens.json (je constate l'égalité de valeur ; je n'ai pas résolu le NOM de la variable Figma 24:52). Le contrat ne porte aucune couleur sur TexteConsentement : le <span> hérite, et .root ne déclare pas de color"
+      },
+      "figmaExpectation": {
+        "channel": "TexteConsentement.color",
+        "value": "#37373B"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/TexteConsentement/tokens/color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__TexteConsentement\"]"
+      }
+    },
+    {
+      "id": "formulaire.visual.consentement-plage-lien",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2096:2562",
+        "channel": "styleOverrideTable.13",
+        "raw": "textDecoration UNDERLINE + fills SOLID {r:0.9761117696762085, g:0.5403028726577759, b:0.0422356054186821, a:1} = #F98A0B, boundVariables.color = VariableID:4:28, sur les caractères 59 à 89",
+        "detail": "#F98A0B est la valeur de {color.orange} — le même token que le CTA du Bouton ; recoupement indépendant par échantillonnage de pixels dans specs/003-externalize-figma-components/audits/formulaire.md (23 pixels exactement rgb(249,138,11)). Le type \"text\" de /props/0 ne peut porter ni le soulignement ni la couleur d'une PLAGE : le rendu React est une chaîne uniforme, sans segment distinct. Le type \"rich-text\" du schéma porte des segments avec marks.strong mais aucun canal de couleur ni de lien — la limite est donc nommée et double (type de prop, et vocabulaire de marks)"
+      },
+      "figmaExpectation": {
+        "channel": "TexteConsentement.range[59..89].textDecoration + color",
+        "value": "UNDERLINE + #F98A0B"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/TexteConsentement/content/marks"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__TexteConsentement\"]"
+      }
+    },
+    {
+      "id": "formulaire.semantic.root-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "detail": "Figma n'a aucune notion d'élément de document — canal CARRY-CODE-ONLY, jamais prouvable des deux côtés. Le contrat déclare semantics.element = \"div\" et Formulaire.tsx rend bien un <div>, ce qui est cohérent contrat↔code. Mais c'est un formulaire : l'élément juste est <form>, qui seul apporte la soumission, la validation native et le rôle implicite. La catégorie \"section\" du contrat ne change rien à cet arbitrage"
+      },
+      "contractReference": {
+        "jsonPointer": "/semantics/element"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.semantic.aucun-controle-natif",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2096:2551",
+        "detail": "conséquence sémantique directe de formulaire.composition.saisie-slot-non-rempli : le DOM du formulaire ne contient AUCUN contrôle natif (ni input, ni select, ni textarea) — sept <div class=Saisie> vides. Rien n'est focusable, rien n'est saisissable, rien n'est soumis. C'est la classe de défaut la plus grave de cet organisme, et Figma ne peut ni l'exprimer ni la contredire : le canvas dessine des rectangles de saisie, la nature de contrôle est un fait purement code-side"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/id"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__Saisie\"]"
+      }
+    },
+    {
+      "id": "formulaire.semantic.label-sans-association",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "I2096:2551;2056:1267",
+        "detail": "calque TEXT « Label » — Figma ne peut exprimer aucune association libellé↔contrôle. Côté code, ds.field ne déclare pas element sur la part Label : Field.tsx projette <span className={styles.Label}>, pas un <label for=…>. Même sans le slot vide, les sept libellés de ce formulaire ne seraient donc annoncés par aucun lecteur d'écran comme le nom accessible de leur champ"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/row/parts/FormRow1FieldA/component/props/label"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Field__Label\"]"
+      }
+    },
+    {
+      "id": "formulaire.semantic.bouton-envoyer-sans-soumission",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2096:2563",
+        "detail": "ds.button déclare semantics.element = \"button\" et role \"button\" : l'élément est correct isolément. Mais sans <form> englobant (voir formulaire.semantic.root-element) et sans type=\"submit\", le bouton « Envoyer » n'a rien à soumettre — et il n'affiche même pas ce libellé (voir formulaire.content.bouton-envoyer-libelle). Canal purement code-side : Figma n'exprime aucune sémantique de soumission"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/FormulaireBouton/component"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "formulaire.semantic.consentement-sans-ancre",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2096:2562",
+        "detail": "le canvas porte un vrai hyperlink Figma sur « la politique de confidentialité » (voir formulaire.content.consentement-plage-hyperlien). Côté DOM, la part TexteConsentement rend un <span> plat : aucun <a href>, donc aucun élément focusable, aucune cible cliquable, et la mention légale du consentement RGPD n'est pas atteignable au clavier. Le lien lui-même est un canal que Figma exprime nativement, mais son ÉLÉMENT de document ne l'est pas — d'où CARRY-CODE-ONLY sur ce fait précis"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/form/parts/TexteConsentement/content/prop"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__TexteConsentement\"]"
+      }
+    },
+    {
+      "id": "formulaire.semantic.titre-sans-niveau",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "I2169:6240;2090:2387",
+        "detail": "calque TEXT « Titre » du SectionHeader — Figma ne peut exprimer aucun niveau de titre. Côté code, ds.section-header ne déclare pas element sur la part Titre : SectionHeader.tsx projette un <span>, donc cet organisme de catégorie \"section\" ne rend aucun h1–h6. Identique à reassurances.semantic.section-header-titre-sans-titre-de-niveau : c'est une dette héritée de l'enfant, pas propre à formulaire"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/column/parts/SectionHeader/component/props/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "formulaire.semantic.aucun-etat-interactif",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2096:2564",
+        "channel": "componentPropertyDefinitions",
+        "raw": "aucune propriété d'état ; les 7 Field portent un VARIANT Etat (Normal|Erreur) mais tous à Normal",
+        "detail": "le contrat déclare states: [] — aucun :hover, :focus-visible ni :active n'est généré, pour un organisme entièrement composé de contrôles de saisie et de trois boutons. La matrice de capacité classe les états vivants en CARRY-WITH-NAMED-LIMIT (« states render only as opt-in preview variants ») : le canvas ne peut de toute façon en montrer qu'une image figée, mais le CÔTÉ CODE, lui, devrait les rendre et ne les rend pas. À noter aussi que la variante Erreur de ds.field n'est exercée par aucun des 7 champs de cette occurrence"
+      },
+      "contractReference": {
+        "jsonPointer": "/states"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Formulaire/Formulaire.tsx",
+        "export": "Formulaire",
+        "selector": "[class*=\"Formulaire__root\"]"
+      }
+    }
+  ]
+}
