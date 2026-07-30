@@ -63,97 +63,53 @@ le résultat correct — pas trois lignes manquantes, pas trois passes.
 
 ---
 
-## ÉTAT DE REPRISE — 2026-07-30 (à lire en premier, contexte vidé)
+## ÉTAT DE REPRISE — 2026-07-30 soir (à lire en premier)
 
-**38/71 tâches faites.** Phases 1, 2 et 3 (vague 1) closes. Toutes les portes du dépôt
-sont vertes ; le dépôt est propre hors du dossier de spec.
+**Phases 1-3 closes + REMÉDIATION VAGUE 1 EXÉCUTÉE (T037) sur redirection owner.**
+L'owner a inversé la reco « finir les 12 d'abord » : la journée a été passée à corriger
+la vague 1 au pixel au lieu de capturer les vagues 2-3. Résultat prouvé :
 
-### Ce qui existe déjà et fonctionne
+| sujet | avant | après | |
+|---|---:|---:|---|
+| devis | 72 % | 0,14 % | ✅ |
+| presentation | 7,8 % | 0,35 % | ✅ |
+| sav | 42 % | 0,67 % | ✅ |
+| coordonnees | 8,4 % | 0,77 % | ✅ |
+| texte-seo | 4,2 % | 1,84 % | ✅ |
+| hero | 87,9 % | ~28 % | mur nommé : 2 dégradés (décision owner : reportés) |
 
-| Quoi | Où |
-|---|---|
-| L'instrument (10 modules) | `extract/figma/organism-audit/*.ts` |
-| Outils de campagne (durables) | `extract/figma/organism-audit/tools/*.mts` |
-| Manifeste (6/12 sujets déclarés) | `specs/013-.../contracts/audit-campaign.json` |
-| 6 dossiers de preuve + 42 artefacts | `specs/013-.../proofs/organisms/<id>/` |
-| Déclarations brutes des agents | `specs/013-.../proofs/declarations/*.json` |
-| 11 fixtures adversariales enregistrées | `evals/fixtures/organism-audit-*.ts` |
+Commits : `36833b4` (moteur + contrats + régénération), `ea3cebb` (instrument + preuves).
+Toutes les portes vertes au moment du commit (`npm run eval` imprime le N/N vivant).
 
-### PIÈGES À NE PAS REDÉCOUVRIR
+### Ce que la remédiation a produit (au-delà du plan)
 
-1. **`PLAYWRIGHT_CHROMIUM_PATH` est obligatoire** sur toute commande qui lance Chromium :
-   ```bash
-   export PLAYWRIGHT_CHROMIUM_PATH="$HOME/Library/Caches/ms-playwright/chromium-1228/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
-   ```
-   Sans lui, `chromiumExecutable()` retombe sur le **Chrome système** (le cache contient des
-   builds `chrome-mac-x64`, ce Node tourne en x64, et le résolveur ne sonde que
-   `chrome-mac-arm64/`). Chrome système se met à jour tout seul : les mesures pixel ne sont
-   plus déterministes.
-2. **`extract/figma/organism-audit/out/` est gitignoré** — scratch uniquement. Tout ce qui doit
-   survivre va dans `tools/` ou sous `proofs/`.
-3. **`npm run audit:organisms` (run.ts) ne sait pas encore capturer** : ses modes `--wave`,
-   `--refresh`, `--verify-report`, `--verify-deferred-scope` REFUSENT par nom (exit 2). C'est la
-   campagne complète (T063) qui reste à câbler. La capture se lance aujourd'hui par
-   `tools/run-wave1.mts` / `tools/run-pilot.mts`.
-4. **`audit-campaign.json` est un goulot** : un seul écrivain. Les agents déclarent chacun dans
-   leur fichier sous `proofs/declarations/`, puis `tools/merge-declarations.mts` fusionne.
-5. **auggie répond « 402 Payment Required »** — `research.md` prétend à tort qu'il est rétabli
-   depuis le 2026-07-30. Lire les docs directement (`docs/FIGMA-CAPABILITY-MATRIX.md`).
-6. **L'inventaire vivant compte 214 littéraux, pas 89** (le chiffre de la prose). L'inventaire fait
-   autorité (quickstart §3) ; l'écart est nommé, pas ajusté.
+- **6 capacités moteur, fixture rouge d'abord** : booléen `false` de composition passé
+  explicitement ; `\n`/`\r`/U+2028 normalisés jusqu'au DOM ; champs d'item **enum**
+  dans `arrayOf` ; segments rich-text en valeurs de composition ; littéraux de part à
+  marks gras/souligné gouvernés ; une part TEXT n'est plus un conteneur flex.
+- Contrats vague 1 + `section-header` 2.0.0 (titre rich-text, axes `alignement`/`emphase`
+  — limites nommées : surcharges d'instance Figma) + photos en plans absolus.
+- Outils durables : `tools/{run-one,run-wave,overrides,with-build-lock,fetch-census,fetch-image-fills}`.
+- **Backlog de nettoyage Figma** (8 défauts de source) : voir la mémoire projet
+  `figma-cleanup-backlog-013`.
+- **NON COMMITÉ** : 2′ — préservation du paint IMAGE à l'amend (`emit-figma-script`,
+  fixture `img-paint-preserved-on-amend` verte, receipts re-pinés, eval complet non relancé).
 
-### Méthode qui a marché pour une vague (à rejouer telle quelle)
+### Analyse de régénération (propose sur les 58 sets du fichier)
 
-1. Un agent par organisme, en parallèle, avec le brief
-   `specs/013-.../proofs/declarations/_MODELE-presentation.json` comme exemple. Chaque agent
-   fait son census Figma (GET, cache partagé, fichiers disjoints), lit contrat + composant, et
-   écrit **son seul** fichier `proofs/declarations/<id>.json` (`{facts, case}`).
-2. `npx tsx extract/figma/organism-audit/tools/verify-declarations.mts` — recoupe CHAQUE pointeur
-   JSON, node Figma et sélecteur CSS avec le dépôt et le census. Refuse la fusion si un seul
-   échoue. **Ne jamais fusionner sans ça** : un agent peut produire du JSON parfait et faux.
-3. `npx tsx extract/figma/organism-audit/tools/merge-declarations.mts` — fusionne (idempotent :
-   saute les sujets déjà déclarés).
-4. `npx tsx extract/figma/organism-audit/tools/run-wave1.mts` — lance le pilote et résume.
-5. Vérifier **à l'œil** au moins un triptyque par vague : un score de 80 % peut aussi être un
-   défaut d'instrument (ça m'est arrivé deux fois — voir plus bas).
+Verdict par composant (comparateur en scratch `out/tmp/compare-propose.mjs`) :
+**17 sûrs** (6 prouvés + section-header + 7 à diff nul + carte/product-card/tab) ·
+**14 à requalifier** (mêmes pertes d'extraction que la vague 1 — gaps/paddings/typo) ·
+risque transversal n°1 : politique de **taille du root** à l'amend (masters artboard
+fixes vs contrats fluides). 4 sections sans contrat (CategoriesPrincipales,
+Realisations, HeroVideo, ProduitsECommerce) : **hors scope, acté owner**.
 
-### Deux mécanismes de déclaration, à comprendre avant de déclarer
+### Prochaine étape (ordre validé avec l'owner)
 
-- **`projectionProbe`** — injecte une valeur non-défaut dans une prop et lit le DOM. C'est le seul
-  moyen de voir une prop *exposée mais non projetée* (une capture d'écran ne la voit pas, et
-  l'interface TypeScript non plus : la prop *existe*).
-- **`figmaExpectation`** — déclare une valeur que Figma porte. Si le pointeur contractuel ne
-  résout pas, c'est une **divergence localisée dans le contrat**, pas un « non prouvé ».
-
-### Résultat de la vague 1 (référence pour la suite)
-
-Les 6 sont `divergent` — 174 faits, 68 prouvés, 99 divergents, 2 limités, 5 non prouvés.
-Divergences par source : **contrat 88**, comparaison 7, généré 4.
-Le défaut est **systématique** : 6/6 organismes perdent leurs `gap` ET leur typographie ;
-4/6 leurs paddings ; 3/6 une image de fond ; 3/6 un libellé de bouton ; 3/6 ont une prop
-exposée non projetée. `devis` est le témoin : sa prop `titre` est correctement projetée.
-
-**Constat inattendu à ne pas perdre** : `SAV.tsx` référence `styles.background` et `styles.img`,
-`Coordonnees.tsx` référence `styles.googleMap` — ces classes **n'existent pas** dans leur
-`.module.css`. `styles.X` vaut donc `undefined` et le nœud est rendu sans aucune classe ni style :
-la « div vide » que D10 nomme, là où Figma porte une vraie image.
-
-**Deux faux constats déjà corrigés** (l'instrument fabriquait la divergence qu'il devait détecter) :
-troncature du texte à 300 caractères dans le harnais (défaut de `presentation` : 314) ; et viewport
-figé à 1600 px CSS alors que les masters font 1728 (1550 pour `sav`). La largeur vient maintenant
-de la boîte Figma pinée.
-
-### Prochaine étape
-
-Vague 2 — `faq`, `footer`, `reassurances` (T049-T055), même méthode. Puis vague 3 (T057-T062,
-3 dossiers `blocked` attendus, portes déjà vérifiées fermées), puis US4 (synthèse) et Polish.
-
-**Décision en attente de l'owner** : remédier ou reporter. La spec autorise une remédiation locale
-bornée (D11) mais seulement APRÈS classement — le classement de la vague 1 existe désormais.
-Recommandation : finir les 12 avant de corriger, parce qu'un défaut présent sur 6/6 se corrige une
-fois à la source (l'extraction) et non contrat par contrat.
-
----
+1. Commit 2′ → 2. **Étape 5 = finir CETTE spec** (T050-T062 : capture vague 2,
+   3 dossiers bloqués vague 3, puis US4/T063+) — c'est AUSSI le gate qui requalifie
+   les 14 pour la régénération → 3. tokens dégradés + bascule VARIANT →
+   4. régénération canvas par anneaux (pilotes : realisation puis presentation).
 
 ## Phase 1 : Setup
 
@@ -465,7 +421,7 @@ lire le code source.
       dossier `proofs/organisms/sav/`. Porte également des faits image (D10).
 - [X] T036 [P] [US1] Auditer `texte-seo` (`ds.texte-seo@1.0.0`, node `2108:3123`) — même
       protocole ; dossier `proofs/organisms/texte-seo/`.
-- [ ] T037 [US1] **Conditionnel** — remédiation locale bornée (D11) pour toute divergence
+- [X] T037 [US1] **EXÉCUTÉ le 2026-07-30 (redirection owner)** — remédiation locale bornée (D11) pour toute divergence
       de la vague 1 dont la source est localisée ET dans le périmètre : (1) conserver le
       résultat initial et ses preuves, (2) fixture rouge d'abord pour tout mécanisme
       générique, (3) éditer **uniquement** la source autorisée (contrat / schéma /
@@ -595,7 +551,7 @@ mêmes critères de traçabilité et de fidélité que la vague 1.
 
 ### Implémentation for User Story 2
 
-- [ ] T049 [US2] Déclarer dans `contracts/audit-campaign.json` les `requiredFactIds` et
+- [X] T049 [US2] **FAIT 2026-07-30** (déclarations agents vérifiées par `verify-declarations` puis fusionnées — 135 faits) — Déclarer dans `contracts/audit-campaign.json` les `requiredFactIds` et
       `cases` de `faq`, `footer`, `reassurances` — même exigence qu'en T029 (nodes
       d'occurrence réels, probes non-défaut, régions déclarées avant le diff, assertions
       sémantiques citant un JSON Pointer). `reassurances` porte un axe `Disposition` et
