@@ -4,7 +4,7 @@
 
 ## 1. Provenance
 
-- campagne : `013-auditer-fidelite-organismes` · hash `00e6586d568eedf9…`
+- campagne : `013-auditer-fidelite-organismes` · hash `f9be2bec5933a623…`
 - Figma : fileKey `d9FYAUcqdcNtsuaMgLefvJ`, version `2381581871281042338`, **readOnly true**
 - contrats : `02daa8877204b688…` · tokens : `f65dad29b6d42dad…`
 - surface prouvée : react-storybook sous `src/components` · arbre `9c579495c814172f…`
@@ -22,7 +22,7 @@
 | 1 | texte-seo | 39 | 30 | 7 | 2 | 0 | 1.84 % | Aucune | **divergent** | [dossier](organisms/texte-seo/REPORT.md) |
 | 2 | faq | 34 | 24 | 9 | 1 | 0 | 3.67 % | Aucune | **divergent** | [dossier](organisms/faq/REPORT.md) |
 | 2 | footer | 57 | 39 | 18 | 0 | 0 | 1.04 % | Aucune | **divergent** | [dossier](organisms/footer/REPORT.md) |
-| 2 | reassurances | 44 | 30 | 10 | 4 | 0 | 38.61 % | Aucune | **divergent** | [dossier](organisms/reassurances/REPORT.md) |
+| 2 | reassurances | 44 | 30 | 10 | 4 | 0 | 39.78 % | Aucune | **divergent** | [dossier](organisms/reassurances/REPORT.md) |
 | 3 | equipe | 59 | 0 | 0 | 0 | 59 | N/A — aucun cas | ds.member-card (blocked→blocked, fermée) | **blocked** | [dossier](organisms/equipe/REPORT.md) |
 | 3 | formulaire | 77 | 0 | 0 | 0 | 77 | N/A — aucun cas | ds.field (blocked→blocked, fermée) | **blocked** | [dossier](organisms/formulaire/REPORT.md) |
 | 3 | header | 52 | 0 | 0 | 0 | 52 | N/A — aucun cas | ds.nav-item (fail→divergent, fermée) | **blocked** | [dossier](organisms/header/REPORT.md) |
