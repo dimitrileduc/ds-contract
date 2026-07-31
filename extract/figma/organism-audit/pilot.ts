@@ -32,7 +32,7 @@ import {
   writeTriptych,
   type DeclaredRegion,
 } from '../visual-parity/img.js';
-import type { Rect } from '../visual-parity/render.js';
+import { resolveComparisonOnlyProps, type Rect } from '../visual-parity/render.js';
 import { fetchNodePngs, fetchSetInfos } from '../visual-parity/figma-api.js';
 
 import { buildHarness, renderHarnessCase, type HarnessRenderResult } from './harness.js';
@@ -102,6 +102,10 @@ interface SubjectDeclaration {
     figmaNodeId: string;
     observedProperties: Record<string, unknown>;
     reactProps: Record<string, unknown>;
+    /** Comparison-only fixture images this case binds through `{$asset:id}`.
+     *  Declared AND bound, both ways — 011's resolver refuses a declared asset
+     *  no prop uses and a `$asset` no declaration covers. */
+    fixtureAssetIds?: string[];
     factIds: string[];
     requiredParts: string[];
     requiredRegions: Array<{
@@ -251,6 +255,34 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
   });
 
   const caseDecl = subject.cases[0];
+
+  // ---- comparison fixtures: {$asset:id} → verified data URL ---------------
+  // A master paints photos through IMAGE fills that expose no component
+  // property, so the pixels can never be a contract default (D10) — the case
+  // supplies them as comparison-only fixtures. Resolution is 011's
+  // `resolveComparisonOnlyProps`, reused rather than re-derived: it deep-walks
+  // arrays (the four `ds.carte` images of `reassurances` ride inside `items`,
+  // where a top-level-only scan renders `src="[object Object]"`), checks the
+  // bytes against the manifest SHA before admitting them, and yields data URLs
+  // the inlined harness document can actually fetch — a `file://` URL cannot.
+  //
+  // It runs HERE, inside `auditOrganism`, so every entry point gets it. As a
+  // helper each runner had to remember to call, one that forgot measured a
+  // render with no photos and reported a fabricated regression (devis: 0.14 %
+  // → 72 % on the omission alone).
+  const fixtures = resolveComparisonOnlyProps({
+    codeProps: caseDecl.reactProps,
+    fixtureAssetIds: caseDecl.fixtureAssetIds ?? [],
+    assetManifest: JSON.parse(
+      readFileSync(
+        path.join(repoRoot, 'extract/figma/visual-parity/fixture-assets/manifest.json'),
+        'utf8',
+      ),
+    ),
+  });
+  if (!fixtures.ok) throw new Error(`${subject.id}: ${fixtures.error}`);
+  const caseProps = fixtures.value.props;
+
   // The comparison context is reconstructed from the PINNED Figma root box, so
   // both sides are laid out at the same width.  Without it an organism with no
   // intrinsic width fills the viewport and the resulting delta measures the
@@ -262,7 +294,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
       : undefined;
   const defaults = await renderHarnessCase({
     indexHtml: built.indexHtml,
-    props: caseDecl.reactProps,
+    props: caseProps,
     rootWidthCss,
   });
 
@@ -326,7 +358,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
     if (probe === undefined) continue;
     const rendered = await renderHarnessCase({
       indexHtml: built.indexHtml,
-      props: { ...caseDecl.reactProps, [probe.prop]: probe.value },
+      props: { ...caseProps, [probe.prop]: probe.value },
       rootWidthCss,
     });
     const matched = selectElements(rendered.elements, fact.generatedReference.selector);
@@ -591,7 +623,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
       id: subject.contractId,
       version: subject.contractVersion,
       factIds: caseDecl.factIds,
-      reactProps: caseDecl.reactProps,
+      reactProps: caseProps,
     },
     generated: {
       componentFile: componentRef.componentFile,

@@ -3,12 +3,13 @@
  *
  *   npx tsx extract/figma/organism-audit/tools/run-one.mts <subjectId>
  *
- * - Fusionne l'override optionnel `out/overrides/<id>.json` dans le CAS du
- *   sujet ({reactProps, fixtureAssetIds}) SANS toucher au manifeste partagé —
- *   un seul écrivain par fichier, pas de goulot.
- * - Résout les valeurs `{"$asset":"id"}` de reactProps en URL file:// depuis
- *   le manifeste fixture-assets, en vérifiant le SHA-256 des octets sur
- *   disque : des octets non pinés ne peuvent pas servir de preuve.
+ * Ce runner ne porte AUCUNE entrée d'audit : tout vient du manifeste commité.
+ * Les entrées de comparaison (`reactProps`, `fixtureAssetIds`) sont déclarées
+ * par le cas, et `auditOrganism` résout lui-même les `{"$asset":"id"}` en URL
+ * `data:` après vérification du SHA-256 — donc un dossier est reproductible
+ * depuis le dépôt seul. Un canal parallèle gitignoré a existé ici ; il rendait
+ * les preuves commitées irreproductibles et un runner qui oubliait de
+ * l'appeler fabriquait une fausse régression (devis 0,14 % → 72 %).
  *
  * Le Chromium épinglé est résolu par `chromiumExecutable()`
  * (visual-parity/render.ts), qui sonde chrome-mac-x64/ comme les autres
@@ -21,7 +22,6 @@ import { fileURLToPath } from 'node:url';
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 
 const { auditOrganism } = await import('../pilot.js');
-const { applySubjectOverrides } = await import('./overrides.mjs');
 
 const id = process.argv[2];
 if (!id) { console.error('usage: run-one.mts <subjectId>'); process.exit(2); }
@@ -31,9 +31,6 @@ const campaign = JSON.parse(readFileSync(
 const subject = campaign.subjects.find((s: any) => s.id === id);
 if (!subject) { console.error(`sujet inconnu : ${id}`); process.exit(2); }
 if (!subject.facts?.length) { console.error(`${id} : aucun fait déclaré`); process.exit(2); }
-
-const notes = applySubjectOverrides(REPO, subject);
-for (const note of notes) console.log(note);
 
 // ---- audit ----------------------------------------------------------------
 const { result } = await auditOrganism({

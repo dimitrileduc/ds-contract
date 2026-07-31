@@ -8,7 +8,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { auditOrganism } from '../pilot.js';
 import { evaluateWaveEntry } from '../campaign.js';
-import { applySubjectOverrides } from './overrides.mjs';
 
 // Le dépôt est déduit de l'emplacement de CE fichier : lancés depuis un
 // worktree (Worktree Gates F1), ces outils doivent auditer l'arbre courant,
@@ -67,7 +66,6 @@ const rows: Array<Record<string, unknown>> = [];
 for (const subject of targets) {
   process.stdout.write(`… ${subject.id}`);
   try {
-    applySubjectOverrides(REPO, subject);
     const { result } = await auditOrganism({
       repoRoot: REPO,
       outRoot: path.join(REPO, 'specs/013-auditer-fidelite-organismes/proofs'),

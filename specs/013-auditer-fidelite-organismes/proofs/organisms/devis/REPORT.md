@@ -84,7 +84,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | generated | `specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/generated.png` | `18e075df7a44` | 3456×756, 2904194 o |
 | diff | `specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/diff.png` | `fac8082b1e94` | 3456×756, 675840 o |
 | triptych | `specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/triptych.png` | `15b4f221a5e7` | 6646475 o |
-| metadata | `specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/metadata.json` | `aa1599dcd9ef` | 3824 o |
+| metadata | `specs/013-auditer-fidelite-organismes/proofs/organisms/devis/cases/devis-master-defaults/metadata.json` | `ec0a9dc22b93` | 4828880 o |
 
 ## 7. Divergences, limites nommées et travaux reportés
 

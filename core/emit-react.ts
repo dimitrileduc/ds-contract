@@ -294,6 +294,51 @@ export const underlineRule = (selector: string): string =>
  *    `pre-line`) makes the decoration's extent depend on how the engine sizes a
  *    forced break, which is a bigger and less predictable error than the tail
  *    it would recover. coordonnees measures 0.52 % with the hoisted spelling. */
+/** One piece of a literal, after break RUNS are collapsed and the breaks are
+ *  hoisted out of the marks. A break carries no glyph, so it is never a range
+ *  of TEXT and never wears a mark. */
+export type LiteralRange =
+  | { break: true }
+  | { break?: false; text: string; strong?: boolean; underline?: boolean };
+
+/** Reduce a literal's segments to those pieces.
+ *
+ *  This is surface-INDEPENDENT: which breaks survive and where the marks stop
+ *  are facts about the Figma source, not about JSX or HTML. Both emitters read
+ *  it, so they can no longer tell different stories about one paragraph — and
+ *  they did: the HTML surface used to normalize each segment on its own, which
+ *  spelled the "\r"+U+2028 straddle as TWO breaks where the source draws one,
+ *  and left the break inside `<u>`. Only the React copy had an eval. */
+export function literalSegmentRanges(segments: Array<RichTextSegment>): LiteralRange[] {
+  const out: LiteralRange[] = [];
+  let pendingBreak = false; // a break owed at this point
+  let emittedAnything = false;
+
+  for (const segment of segments) {
+    const normalized = normalizeLineSeparators(segment.text);
+    const leading = /^\n+/.exec(normalized)?.[0] ?? '';
+    const trailing = normalized.length > leading.length ? (/\n+$/.exec(normalized)?.[0] ?? '') : '';
+    const core = normalized.slice(leading.length, normalized.length - trailing.length);
+
+    if (leading) pendingBreak = true;
+    if (core) {
+      // A leading break before any visible text would push the whole paragraph
+      // down a line — the source never opens with one, and swallowing it here
+      // keeps that honest rather than inventing leading whitespace.
+      if (pendingBreak && emittedAnything) out.push({ break: true });
+      pendingBreak = false;
+      out.push({ text: core, strong: segment.strong, underline: segment.underline });
+      emittedAnything = true;
+    }
+    if (trailing) pendingBreak = true;
+  }
+  // A break left owed at the very END stays unemitted: under `pre-line` it
+  // would add an empty final line to the box, which the source does not draw
+  // (2104:2891 measures 54 px — two lines, not three). A break in the MIDDLE of
+  // a segment is untouched: it belongs to that range's own text.
+  return out;
+}
+
 export function literalSegmentsJsx(
   segments: Array<RichTextSegment>,
   strongAttrs = '',
@@ -304,41 +349,18 @@ export function literalSegmentsJsx(
 ): string {
   const expr = (text: string) => `{${JSON.stringify(text)}}`;
   let out = '';
-  let pendingBreak = false; // a break already emitted, or owed, at this point
-  let emittedAnything = false;
-
-  const flushBreak = () => {
-    if (!pendingBreak) return;
-    // A leading break before any visible text would push the whole paragraph
-    // down a line — the source never opens with one, and swallowing it here
-    // keeps that honest rather than inventing leading whitespace.
-    if (emittedAnything) out += expr('\n');
-    pendingBreak = false;
-  };
-
-  for (const segment of segments) {
-    const normalized = normalizeLineSeparators(segment.text);
-    const leading = /^\n+/.exec(normalized)?.[0] ?? '';
-    const trailing = normalized.length > leading.length ? (/\n+$/.exec(normalized)?.[0] ?? '') : '';
-    const core = normalized.slice(leading.length, normalized.length - trailing.length);
-
-    if (leading) pendingBreak = true;
-    if (core) {
-      flushBreak();
-      let inner = expr(core);
-      // <u> renders the observed underline ranges (coordonnees: the phone and
-      // the email are underlined, their labels are not); marks compose.
-      if (segment.underline) inner = `<u${underlineAttrs}>${inner}</u>`;
-      if (segment.strong) inner = `<strong${strongAttrs}>${inner}</strong>`;
-      out += inner;
-      emittedAnything = true;
+  for (const range of literalSegmentRanges(segments)) {
+    if (range.break) {
+      out += expr('\n');
+      continue;
     }
-    if (trailing) pendingBreak = true;
+    let inner = expr(range.text);
+    // <u> renders the observed underline ranges (coordonnees: the phone and
+    // the email are underlined, their labels are not); marks compose.
+    if (range.underline) inner = `<u${underlineAttrs}>${inner}</u>`;
+    if (range.strong) inner = `<strong${strongAttrs}>${inner}</strong>`;
+    out += inner;
   }
-  // A break left owed at the very END stays unemitted: under `pre-line` it
-  // would add an empty final line to the box, which the source does not draw
-  // (2104:2891 measures 54 px — two lines, not three). A break in the MIDDLE of
-  // a segment is untouched: it belongs to that range's own text.
   return out;
 }
 

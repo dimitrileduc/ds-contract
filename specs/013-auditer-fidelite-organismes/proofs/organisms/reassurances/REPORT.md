@@ -70,7 +70,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | `reassurances.composition.bouton-variant` | composition | carry-both | 2114:3721#BoutonQuatreCartes.Style (VARIANT « Outline noir » → valeur d'enum contractuelle, mappage déclaré par ds.butto | ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/variant | src/components/Reassurances/Reassurances.tsx#[class*="Button__root"] | **proved** | — | — |
 | `reassurances.composition.bouton-icone-droite` | composition | carry-both | 2114:3721#BoutonQuatreCartes.Icone droite (BOOLEAN) | ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRight | src/components/Reassurances/Reassurances.tsx#[class*="Button__iconRight"] | **proved** | — | — |
 | `reassurances.composition.bouton-glyphe-droite` | composition | carry-both | 2114:3721#BoutonQuatreCartes.Glyphe droite (INSTANCE_SWAP) | ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRightGlyph | src/components/Reassurances/Reassurances.tsx#[class*="Button__iconRight"] | **proved** | — | — |
-| `reassurances.visual.root` | visual | carry-both | {"nodeId":"2114:3619","export":"png@2x"} | ds.reassurances@1.2.0#/anatomy/root | src/components/Reassurances/Reassurances.tsx#[class*="Reassurances__root"] | **divergent** | comparison | raw-over-threshold:38.613450729282505>2.5; region-over-budget:whole:38.613450729282505>2.5 |
+| `reassurances.visual.root` | visual | carry-both | {"nodeId":"2114:3619","export":"png@2x"} | ds.reassurances@1.2.0#/anatomy/root | src/components/Reassurances/Reassurances.tsx#[class*="Reassurances__root"] | **divergent** | comparison | raw-over-threshold:39.78437291157622>2.5; region-over-budget:whole:39.78437291157622>2.5 |
 | `reassurances.visual.carte-images` | visual | carry-both | 2114:3721#items[*].Carte.img.fills[0].IMAGE.imageRef | ds.reassurances@1.2.0#/anatomy/root/parts/items/parts/Carte/component/props/imageUrl | src/components/Reassurances/Reassurances.tsx#[class*="Carte__reassuranceImage"] | **divergent** | contract | contract-does-not-carry-figma-fact:items[*].Carte.img.fills[0].IMAGE.imageRef=["ab6a82d4b83b657d48c90b5e253f82459fd505bf |
 | `reassurances.visual.bouton-contour` | visual | carry-both | 2114:3721#BoutonQuatreCartes.border | ds.reassurances@1.2.0#/anatomy/root/parts/BoutonQuatreCartes/literals/border | src/components/Reassurances/Reassurances.tsx#[class*="Button__root"] | **divergent** | contract | contract-does-not-carry-figma-fact:BoutonQuatreCartes.border="2px solid {color.noir-bleute}" |
 | `reassurances.semantic.root-element` | semantic | carry-both | {"nodeId":"2114:3619","detail":"COMPONENT frame sans sémantique de document (Figma n'a pas de notion d'élément HTML) ; l | ds.reassurances@1.2.0#/semantics/element | src/components/Reassurances/Reassurances.tsx#[class*="Reassurances__root"] | **proved** | — | — |
@@ -86,11 +86,11 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | Verdict | **fail** (probant : true) |
 | Node Figma | `2114:3619` @ v`2381581871281042338` — PNG 3104×4902, sha `781f59cb8135` |
 | Rendu généré | `src/components/Reassurances/Reassurances.tsx` export `Reassurances`, bundle `341a2ea1d3be`, fonts chargées |
-| Pixels | brut 38.613 % (seuil 2.5 %) — diagnostic masqué 37.323 % (hors calcul autoritaire) |
-| Régions | `whole` 38.613 %/2.5 % (389100 px signal) |
+| Pixels | brut 39.784 % (seuil 2.5 %) — diagnostic masqué 37.323 % (hors calcul autoritaire) |
+| Régions | `whole` 39.784 %/2.5 % (2505875 px signal) |
 | Géométrie racine | Figma 3104×4902 vs généré 3100×1462 (Δ -4×-3440) — fail |
-| Visibilité | signal Figma 7180924 px · généré 389100 px · contraste ok |
-| Motifs | `raw-over-threshold:38.613450729282505>2.5`, `region-over-budget:whole:38.613450729282505>2.5` |
+| Visibilité | signal Figma 7180924 px · généré 2505875 px · contraste ok |
+| Motifs | `raw-over-threshold:39.78437291157622>2.5`, `region-over-budget:whole:39.78437291157622>2.5` |
 
 | Assertion sémantique | Sélecteur | Pointeur contractuel | Verdict |
 |---|---|---|---|
@@ -107,10 +107,10 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 | Artefact | Chemin | sha256 | Taille |
 |---|---|---|---|
 | figma | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/figma.png` | `3406e9233385` | 3110×4898, 9932797 o |
-| generated | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/generated.png` | `a2286b469be1` | 3110×4898, 300854 o |
-| diff | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/diff.png` | `a405724eae29` | 3110×4898, 749734 o |
-| triptych | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/triptych.png` | `cb7f12b7db0a` | 11302160 o |
-| metadata | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/metadata.json` | `f877a14d132a` | 8016 o |
+| generated | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/generated.png` | `c13449635566` | 3110×4898, 2999243 o |
+| diff | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/diff.png` | `31ea406ef8cf` | 3110×4898, 1026886 o |
+| triptych | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/triptych.png` | `21106486286b` | 14304937 o |
+| metadata | `specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/metadata.json` | `b96b0d8f0c33` | 6982720 o |
 
 ## 7. Divergences, limites nommées et travaux reportés
 
@@ -121,7 +121,7 @@ Aucune — cet organisme ne déclare pas de dépendance de clôture.
 - **Divergence** `reassurances.content.sample-entree-orpheline` — source : **contract** — contract-does-not-carry-figma-fact:items.sample[4].variante-d-origine="Disposition=5 cartes"
 - **Divergence** `reassurances.property.disposition` — source : **generated** — probe-not-projected:child-renders-a-literal
 - **Divergence** `reassurances.property.items-sans-defaut` — source : **contract** — contract-does-not-carry-figma-fact:items.default=[{"texte":"Respectent les normes des bâtiments publics et les réglementations pompiers.","titre":"Sécurité et conformité"},{"texte":"Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).","titre":"Intégration parfaite"},{"texte":"Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.","titre":"Moteur performant"},{"texte":"Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.","titre":"SAV & maintenance dédiés"}]
-- **Divergence** `reassurances.visual.root` — source : **comparison** — raw-over-threshold:38.613450729282505>2.5 ; region-over-budget:whole:38.613450729282505>2.5
+- **Divergence** `reassurances.visual.root` — source : **comparison** — raw-over-threshold:39.78437291157622>2.5 ; region-over-budget:whole:39.78437291157622>2.5
 - **Divergence** `reassurances.visual.carte-images` — source : **contract** — contract-does-not-carry-figma-fact:items[*].Carte.img.fills[0].IMAGE.imageRef=["ab6a82d4b83b657d48c90b5e253f82459fd505bf","8d05df2058fe88fa4b14e4472c9746f03fd100a2","d00de3d48206b57be5125a2d01e8595d3eca56de","7bd2daf5061e3af6ff4a671f8eca2be1bc10b6fb"]
 - **Divergence** `reassurances.visual.bouton-contour` — source : **contract** — contract-does-not-carry-figma-fact:BoutonQuatreCartes.border="2px solid {color.noir-bleute}"
 - **Limite** `reassurances.property.items-binding-none` — representability:carry-with-named-limit

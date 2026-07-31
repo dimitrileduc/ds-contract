@@ -194,7 +194,12 @@
             "Accroche#2104:57": "Contact",
             "Titre#2104:58": "Nos coordonnées"
           },
-          "reactProps": {},
+          "reactProps": {
+            "mapUrl": {
+              "$asset": "coordonnees-google-map-efdebf1941d1"
+            },
+            "mapAlt": ""
+          },
           "factIds": [
             "coordonnees.structure.root",
             "coordonnees.structure.wrapper",
@@ -243,7 +248,9 @@
             "coordonnees.visual.root-background",
             "coordonnees.semantic.contact-valeur"
           ],
-          "fixtureAssetIds": [],
+          "fixtureAssetIds": [
+            "coordonnees-google-map-efdebf1941d1"
+          ],
           "requiredParts": [
             "root",
             "wrapper",
@@ -1353,7 +1360,12 @@
           "observedProperties": {
             "Titre#2096:49": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
           },
-          "reactProps": {},
+          "reactProps": {
+            "backgroundUrl": {
+              "$asset": "carte-image-7825ba2d393a"
+            },
+            "backgroundAlt": ""
+          },
           "factIds": [
             "devis.structure.root",
             "devis.structure.container",
@@ -1377,7 +1389,9 @@
             "devis.visual.titre-width",
             "devis.semantic.titre-element"
           ],
-          "fixtureAssetIds": [],
+          "fixtureAssetIds": [
+            "carte-image-7825ba2d393a"
+          ],
           "requiredParts": [
             "root",
             "Container",
@@ -1962,7 +1976,12 @@
           "id": "hero-master-defaults",
           "figmaNodeId": "2111:3382",
           "observedProperties": {},
-          "reactProps": {},
+          "reactProps": {
+            "backgroundUrl": {
+              "$asset": "hero-background-b9ae58d2e309"
+            },
+            "backgroundAlt": ""
+          },
           "factIds": [
             "hero.structure.root",
             "hero.property.aucune-propriete-exposee",
@@ -2002,7 +2021,9 @@
             "hero.composition.button-variant",
             "hero.composition.button-icone-droite"
           ],
-          "fixtureAssetIds": [],
+          "fixtureAssetIds": [
+            "hero-background-b9ae58d2e309"
+          ],
           "requiredParts": [
             "root",
             "blocTexte",
@@ -3344,7 +3365,16 @@
           "observedProperties": {
             "Titre#2108:60": "Dépannage / SAV"
           },
-          "reactProps": {},
+          "reactProps": {
+            "backgroundUrl": {
+              "$asset": "sav-background-3e1738748288"
+            },
+            "backgroundAlt": "",
+            "imageUrl": {
+              "$asset": "sav-img-429c615cb090"
+            },
+            "imageAlt": ""
+          },
           "factIds": [
             "sav.structure.root",
             "sav.content.texte",
@@ -3365,7 +3395,10 @@
             "sav.composition.button-libelle",
             "sav.composition.button-icon-right"
           ],
-          "fixtureAssetIds": [],
+          "fixtureAssetIds": [
+            "sav-background-3e1738748288",
+            "sav-img-429c615cb090"
+          ],
           "requiredParts": [
             "root",
             "section",
@@ -3899,7 +3932,25 @@
           "id": "texte-seo-master-defaults",
           "figmaNodeId": "2108:3123",
           "observedProperties": {},
-          "reactProps": {},
+          "reactProps": {
+            "items": [
+              {
+                "contenu": "Réponse",
+                "etat": "ferme",
+                "titre": "Accès et parking"
+              },
+              {
+                "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+                "etat": "ouvert",
+                "titre": "Faut-il prendre rendez-vous ?"
+              },
+              {
+                "contenu": "Réponse",
+                "etat": "ferme",
+                "titre": "Zones de déplacement pour devis"
+              }
+            ]
+          },
           "factIds": [
             "texte-seo.structure.root",
             "texte-seo.structure.h2",
@@ -3941,7 +3992,6 @@
             "texte-seo.semantic.paragraphe-element",
             "texte-seo.semantic.sous-titre-element"
           ],
-          "fixtureAssetIds": [],
           "requiredParts": [
             "root",
             "h2",
@@ -4953,7 +5003,22 @@
           "observedProperties": {
             "Ligne 3#2104:59": true
           },
-          "reactProps": {},
+          "reactProps": {
+            "items": [
+              {
+                "contenu": "Réponse",
+                "titre": "Nos portes répondent-elles aux normes des bâtiments publics ?"
+              },
+              {
+                "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
+                "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
+              },
+              {
+                "contenu": "Réponse",
+                "titre": "Assurez-vous la maintenance après l'installation ?"
+              }
+            ]
+          },
           "factIds": [
             "faq.structure.root",
             "faq.structure.root-direction",
@@ -4990,7 +5055,6 @@
             "faq.visual.root-font-family",
             "faq.semantic.root-element"
           ],
-          "fixtureAssetIds": [],
           "requiredParts": [
             "root",
             "SectionHeader",
@@ -5053,7 +5117,8 @@
                 "textEquals": "Contactez-nous"
               }
             }
-          ]
+          ],
+          "fixtureNote": "Le master Figma matérialise ses trois AccordionRow ; React ne les rend que si `items` est fourni (`items?.map(...)` — undefined ne rend rien, et le schéma refuse un default sur un prop arrayOf). Sans cet override le cas comparait une FAQ à trois lignes avec une FAQ qui n'en a aucune, et l'écart pixel mesurait l'absence de DONNÉES, pas l'infidélité du composant. Même geste que overrides/footer.json. Les trois entrées sont celles du sample du contrat, qui sont elles-mêmes les textes relevés sur le master (faq.content.accordion-rows-sample, prouvé). CONSÉQUENCE ASSUMÉE : l'assertion sémantique `accordion-vide-avec-les-defauts-du-contrat` (qui épingle le div .accordion VIDE aux défauts du contrat) passe à 'fail' — c'est exactement le fait que cet override reconnaît, pas un fait qu'il masque."
         }
       ],
       "facts": [
@@ -5986,7 +6051,22 @@
           "id": "footer-master-defaults",
           "figmaNodeId": "2120:4785",
           "observedProperties": {},
-          "reactProps": {},
+          "reactProps": {
+            "items": [
+              {
+                "titre": "Contact",
+                "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be"
+              },
+              {
+                "titre": "Horaires",
+                "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00"
+              },
+              {
+                "titre": "Adresse",
+                "texte": "Rue Alfred Drèze 7,  4860 Pepinster"
+              }
+            ]
+          },
           "factIds": [
             "footer.structure.root",
             "footer.structure.root-gap",
@@ -6046,7 +6126,6 @@
             "footer.semantic.root-element",
             "footer.visual.root"
           ],
-          "fixtureAssetIds": [],
           "requiredParts": [
             "root",
             "Background",
@@ -6112,7 +6191,8 @@
                 "textEquals": "Contact"
               }
             }
-          ]
+          ],
+          "fixtureNote": "Le master Figma matérialise ses trois FooterColumn ; React ne les rend que si `items` est fourni (`items?.map(...)` — undefined ne rend rien, comportement pinné par l'eval google-reviews-repeat-renders-sample-on-static-surfaces). Sans cet override le cas comparait un footer à trois colonnes avec un footer qui n'en a aucune, et l'écart pixel mesurait l'absence de données, pas l'infidélité du composant. Les trois entrées sont celles du sample du contrat, qui sont elles-mêmes les textes relevés sur le master."
         }
       ],
       "facts": [
@@ -7513,19 +7593,31 @@
             "items": [
               {
                 "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-                "titre": "Sécurité et conformité"
+                "titre": "Sécurité et conformité",
+                "imageUrl": {
+                  "$asset": "carte-image-ab6a82d4b83b"
+                }
               },
               {
                 "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-                "titre": "Intégration parfaite"
+                "titre": "Intégration parfaite",
+                "imageUrl": {
+                  "$asset": "carte-image-8d05df2058fe"
+                }
               },
               {
                 "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-                "titre": "Moteur performant"
+                "titre": "Moteur performant",
+                "imageUrl": {
+                  "$asset": "carte-image-d00de3d48206"
+                }
               },
               {
                 "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-                "titre": "SAV & maintenance dédiés"
+                "titre": "SAV & maintenance dédiés",
+                "imageUrl": {
+                  "$asset": "carte-image-7bd2daf5061e"
+                }
               }
             ]
           },
@@ -7576,10 +7668,10 @@
             "reassurances.semantic.carte-texte-segments"
           ],
           "fixtureAssetIds": [
-            "carte-image-ab6a82d4b83b",
+            "carte-image-7bd2daf5061e",
             "carte-image-8d05df2058fe",
-            "carte-image-d00de3d48206",
-            "carte-image-7bd2daf5061e"
+            "carte-image-ab6a82d4b83b",
+            "carte-image-d00de3d48206"
           ],
           "requiredParts": [
             "root",
@@ -7644,7 +7736,8 @@
                 "textEquals": "Contactez-nous"
               }
             }
-          ]
+          ],
+          "fixtureNote": "Les 4 photos des cartes sont des peintures IMAGE du master (imageRef relevés au census sur I2114:3614;2063:1607 … I2114:3617;2063:1607) : Figma n'expose aucune propriété de composant pour ces pixels, donc le contrat porte la ROUTE (items[].imageUrl → ds.carte.imageUrl) et jamais les octets (D10). Sans cet override la comparaison mesure quatre <img src=\"\"> contre quatre photos de 364×364 — soit 47 % de la surface du master — c'est-à-dire une absence de DONNÉES, pas une infidélité du composant. Les textes sont ceux du manifeste (entrées d'occurrence), inchangés.\n\nATTENTION : ces $asset sont IMBRIQUÉS dans un tableau. `tools/overrides.mts` ne résout aujourd'hui que les $asset de PREMIER niveau de reactProps ; tant qu'il ne descend pas dans les tableaux/objets, ces quatre références arrivent telles quelles dans React et sortent en src=\"[object Object]\". Le patch est de trois lignes (résolution récursive) et bénéficie à tout sujet dont les images passent par un repeat."
         }
       ],
       "facts": [

@@ -54,6 +54,7 @@ import {
   rootElementsOf,
   richTextStrongStyle,
   hasUnderlinedSegment,
+  literalSegmentRanges,
   normalizeLineSeparators,
   richTextPlain,
   textProps,
@@ -798,16 +799,20 @@ function renderComponentHtml(
     }
     return escapeHtml(textValue(propName));
   };
-  /** v19: a LITERAL part text rendered with its observed marked ranges. Breaks
-   *  are normalized like every other code surface (the HTML parser folds "\r"
-   *  to LF but U+2028 is not a CSS segment break at all); marks compose with
-   *  `strong` outside `<u>`, matching the React surfaces. */
+  /** v19: a LITERAL part text rendered with its observed marked ranges.
+   *  Which breaks survive, and where the marks stop, is decided by the SHARED
+   *  `literalSegmentRanges` — the same reduction the React surfaces read, so a
+   *  straddling break run collapses to one break here too and is hoisted out
+   *  of `<u>`. This surface only does its own wrapping. */
   const literalSegmentsHtml = (segments: RichTextSegment[]): string =>
-    segments
-      .map((segment) => {
-        let inner = escapeHtml(normalizeLineSeparators(segment.text));
-        if (segment.underline) inner = `<u>${inner}</u>`;
-        return segment.strong ? `<strong>${inner}</strong>` : inner;
+    literalSegmentRanges(segments)
+      .map((range) => {
+        // Under `white-space: pre-line` a literal LF in the markup IS the
+        // break — the JSX surface spells the same thing as {"\n"}.
+        if (range.break) return '\n';
+        let inner = escapeHtml(range.text);
+        if (range.underline) inner = `<u>${inner}</u>`;
+        return range.strong ? `<strong>${inner}</strong>` : inner;
       })
       .join('');
   const visible = (part: Part): boolean => {
