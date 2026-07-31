@@ -43,6 +43,7 @@ import {
   statePreviewLabel,
   statePreviewSubstProps,
   walkAnatomy,
+  type ComponentPropValue,
   type Contract,
   type Part,
   type Prop,
@@ -1652,7 +1653,7 @@ const nativeTextDefault = (prop: Prop | undefined, fallback: string): string => 
  *  contract's bindings. `{parentProp}` values resolve through `subst` first. */
 function mapDepProps(
   dep: Contract,
-  props: Record<string, string | boolean | number>,
+  props: Record<string, ComponentPropValue>,
   subst: Record<string, string>,
   text?: string,
 ): Record<string, string | boolean> {
@@ -1661,6 +1662,13 @@ function mapDepProps(
     const depProp = dep.props.find((p) => p.name === propName);
     if (!depProp) continue;
     if (depProp.bindings.figma.kind === 'NONE') continue; // code-only (v7 arrayOf)
+    // v19: a rich-text prop stays ONE native TEXT property on the canvas — the
+    // parent's segments project as their flat concatenation, the same
+    // documented flattening the prop's own default already goes through.
+    if (Array.isArray(rawValue)) {
+      out[depProp.bindings.figma.property!] = richTextPlain(rawValue);
+      continue;
+    }
     let value: string | boolean = typeof rawValue === 'number' ? String(rawValue) : rawValue;
     if (typeof value === 'string') {
       const parentRef = value.match(PARENT_PROP_REF);
@@ -2245,19 +2253,34 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   const swapDefaults = Object.fromEntries(
     swapEnums.filter((p) => p.default !== undefined).map((p) => [p.name, String(p.default)]),
   );
-  // Code-only scalar props do not become Figma axes or component properties,
-  // but their defaults still determine the static canvas plan when a parent
+  // The prop defaults available for PARENT-PROP RESOLUTION in the static
+  // canvas plan. Code-only scalar props do not become Figma axes or component
+  // properties, but their defaults still determine the plan when a parent
   // threads one into a child's real Figma property (for example a CTA label
   // mapped to a nested Button's TEXT property).
-  const codeOnlyDefaults = Object.fromEntries(
+  //
+  // v19: a prop bound to the parent's OWN Figma TEXT property is just as
+  // threadable — `ds.coordonnees` forwards its `titre` into the SectionHeader
+  // instance so the parent property reaches the rendered surface instead of a
+  // frozen literal. Only code-only defaults were seeded here, so that mapping
+  // threw "Cannot resolve parent prop mapping" and took the whole figma plan
+  // down. The canvas plan is STATIC, so the parent's default is exactly what
+  // the canvas must draw; a rich-text default flattens like every other text
+  // field. Booleans and enums are deliberately NOT widened — their names are
+  // what `visibleWhen` / `stylesWhen` / token substitution look up in `subst`,
+  // and the axis loop below owns those. (The map is no longer code-only: do
+  // not re-narrow it to `kind === 'NONE'` on the strength of a name.)
+  const parentResolvableDefaults = Object.fromEntries(
     contract.props
       .filter(
         (p) =>
-          p.bindings.figma.kind === 'NONE' &&
           p.default !== undefined &&
-          (p.type === 'text' || p.type === 'number' || p.type === 'boolean' || isEnum(p)),
+          ((p.bindings.figma.kind === 'NONE' &&
+            (p.type === 'text' || p.type === 'number' || p.type === 'boolean' || isEnum(p))) ||
+            (p.bindings.figma.kind === 'TEXT' &&
+              (p.type === 'text' || p.type === 'number' || isRichText(p)))),
       )
-      .map((p) => [p.name, String(p.default)]),
+      .map((p) => [p.name, isRichText(p) ? richTextPlain(p.default) : String(p.default)]),
   );
   let combos: number[][] = [[]];
   for (const axis of axes) {
@@ -2272,7 +2295,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   for (const combo of combos) {
     // Every axis's value for this combo feeds BOTH the `{prop}` token
     // substitutions and the visibleWhen part filtering (variantParts).
-    const subst: Record<string, string> = { ...swapDefaults, ...codeOnlyDefaults };
+    const subst: Record<string, string> = { ...swapDefaults, ...parentResolvableDefaults };
     const nameParts: string[] = [];
     let col = 0;
     for (let a = 0; a < axes.length; a++) {
@@ -2381,7 +2404,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     for (let si = 0; si < contract.states.length; si++) {
       const stateName = contract.states[si];
       for (let pi = 0; pi < primaryValues.length; pi++) {
-        const subst: Record<string, string> = { ...swapDefaults, ...codeOnlyDefaults };
+        const subst: Record<string, string> = { ...swapDefaults, ...parentResolvableDefaults };
         const nameParts: string[] = [];
         for (let a = 0; a < axes.length; a++) {
           const { prop, values } = axes[a];
@@ -3472,6 +3495,54 @@ function specHash(C) {
 // instance-level property overrides survive because property IDs do.
 // Destructive changes (extra variants from removed enum values) are
 // REPORTED, never deleted — a human retires those.
+// A real IMAGE paint on the canvas is an OUT-OF-CONTRACT override (capability
+// matrix row 91, 2026-07-26 addendum): the contract carries the img part and
+// its runtime URL prop, never the bytes. Both amend paths rebuild children
+// from the spec, so the client's photos are HARVESTED before the teardown and
+// RESTORED onto the rebuilt img parts — matched by node name first, then by
+// document order (hero's photo is a ROOT fill while its contract models a
+// Background child). Every move is reported; leftovers are named, not lost
+// silently. A contract-carried fill still wins (spec.fill wins, doctrine).
+function harvestImagePaints(node, pool) {
+  const fills = Array.isArray(node.fills) ? node.fills : [];
+  const imgs = fills.filter((f) => f && f.type === 'IMAGE');
+  if (imgs.length > 0) pool.push({ name: node.name, paints: imgs, claimed: false });
+  for (const ch of node.children || []) harvestImagePaints(ch, pool);
+}
+function collectImgSpecTargets(spec, out) {
+  if (spec.imgPlaceholder === true && !spec.fill) out.push(spec.name);
+  for (const ch of spec.children || []) collectImgSpecTargets(ch, out);
+}
+function findDescendantByName(node, name) {
+  if (node.name === name) return node;
+  for (const ch of node.children || []) {
+    const hit = findDescendantByName(ch, name);
+    if (hit) return hit;
+  }
+  return null;
+}
+function restoreImagePaints(spec, rootNode, pool, report) {
+  const targets = [];
+  collectImgSpecTargets(spec, targets);
+  for (const name of targets) {
+    const node = findDescendantByName(rootNode, name);
+    if (!node) continue;
+    let entry = pool.find((e) => !e.claimed && e.name === name);
+    if (!entry) entry = pool.find((e) => !e.claimed);
+    if (!entry) continue;
+    entry.claimed = true;
+    node.fills = entry.paints;
+    report.preservedImages = report.preservedImages || [];
+    report.preservedImages.push(entry.name + ' -> ' + name);
+  }
+  for (const e of pool) {
+    if (!e.claimed) {
+      report.unplacedImages = report.unplacedImages || [];
+      report.unplacedImages.push(e.name);
+    }
+  }
+}
+
 async function amendSet(set, C) {
   set.setSharedPluginData('ds_contracts', 'contractId', C.contractId);
   const hash = specHash(C);
@@ -3531,6 +3602,8 @@ async function amendSet(set, C) {
       set.appendChild(comp);
       report.addedVariants.push(v.name);
     } else {
+      const imagePool = [];
+      harvestImagePaints(comp, imagePool);
       for (const child of [...comp.children]) child.remove();
       applyFrameSpec(comp, v.spec);
       for (const childSpec of v.spec.children || []) {
@@ -3553,6 +3626,7 @@ async function amendSet(set, C) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }${insetOverlayCall(hasInsetOverlay, 'comp, childNode, childSpec')}${marginBoxCall(hasMargins, 'comp, childNode, childSpec')}
       }
+      restoreImagePaints(v.spec, comp, imagePool, report);
       report.rebuiltVariants++;
     }
     for (const t of registry.texts) {
@@ -3666,6 +3740,8 @@ async function amendComponent(comp, C) {
   }
   const v = C.variants[0];
   const registry = { texts: [], slots: [], visibles: [] };
+  const imagePool = [];
+  harvestImagePaints(comp, imagePool);
   for (const child of [...comp.children]) child.remove();
   applyFrameSpec(comp, v.spec);
   for (const childSpec of v.spec.children || []) {
@@ -3688,6 +3764,7 @@ async function amendComponent(comp, C) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }${insetOverlayCall(hasInsetOverlay, 'comp, childNode, childSpec')}
   }
+  restoreImagePaints(v.spec, comp, imagePool, report);
   for (const t of registry.texts) {
     let k = defKey(t.prop);
     if (!k) { k = comp.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }

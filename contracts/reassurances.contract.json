@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.reassurances",
   "name": "Reassurances",
-  "version": "1.0.0",
-  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "1.2.0",
+  "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur la variante « Disposition=4 cartes » (node 2114:3619, version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures — ni les deux gaps de 48px du root, ni le gap de 32px des items, ni la largeur 1550px — et le bouton du master (Outline noir, flèche droite) était rendu par le seul défaut de ds.button, donc juste par coïncidence. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -36,10 +36,12 @@
     },
     {
       "name": "items",
+      "description": "Les cartes de réassurance, fournies par le consommateur. imageUrl alimente ds.carte.imageUrl : le master pose une peinture IMAGE distincte par carte (imageRef ab6a82d4b83b657d48c90b5e253f82459fd505bf, 8d05df2058fe88fa4b14e4472c9746f03fd100a2, d00de3d48206b57be5125a2d01e8595d3eca56de, 7bd2daf5061e3af6ff4a671f8eca2be1bc10b6fb, relevées sur I2114:3614;2063:1607 … I2114:3617;2063:1607) et Figma n'expose aucune propriété de composant pour ces pixels. Le contrat porte donc la ROUTE, jamais les octets — même convention que ds.hero.backgroundUrl et ds.sav.imageUrl, et le sample laisse imageUrl vide parce qu'un imageRef Figma n'est pas une URL.",
       "type": {
         "arrayOf": {
           "texte": "text",
-          "titre": "text"
+          "titre": "text",
+          "imageUrl": "text"
         }
       },
       "bindings": {
@@ -55,29 +57,48 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "COMPONENT « Disposition=4 cartes » 2114:3619, 1550×731, layoutMode VERTICAL, itemSpacing 48, counterAxisAlignItems CENTER, layoutSizingHorizontal FIXED, aucun padding — la largeur portée est donc à la fois la boîte de CONTENU et la boîte du master, sans arithmétique à expliciter. Les 731px de hauteur se recomposent exactement : 83 (SectionHeader) + 48 + 498 (items) + 48 + 54 (bouton).",
       "layout": {
         "display": "flex",
         "direction": "column",
         "align": "center"
       },
+      "literals": {
+        "width": "1550px",
+        "gap": "48px"
+      },
       "parts": {
         "SectionHeader": {
+          "description": "INSTANCE 2114:3612 de ds.section-header, 1550×83. accroche2 est porté explicitement : l'occurrence met Accroche2=true et le rendu concordait jusqu'ici par le seul défaut de l'enfant — un changement de ce défaut aurait fait dériver reassurances en silence.",
           "component": {
             "id": "ds.section-header",
             "props": {
-              "titre": "Pourquoi choisir nos portes de garage industrielles ?",
+              "titre": [
+                {
+                  "text": "Pourquoi choisir nos portes de garage industrielles ?"
+                }
+              ],
               "accroche": "Plus de 50 ans d’expérience",
+              "accroche2": true,
               "disposition": "standard"
             }
           }
         },
         "items": {
+          "description": "FRAME « items » 2114:3613, 1550×498, layoutMode HORIZONTAL, itemSpacing 32, primaryAxisAlignItems CENTER, layoutSizingHorizontal FILL (layoutAlign STRETCH). LIMITE NOMMÉE : le FILL horizontal d'un enfant de conteneur COLUMN s'écrit align-self: stretch, pas layout.grow — dans une colonne, grow porte sur l'axe VERTICAL et étirerait la frame en hauteur. Le dossier d'audit attend ce fait au pointeur /layout/grow ; il reste donc divergent alors que le rendu est fidèle.",
           "layout": {
             "direction": "row",
             "justify": "center"
           },
+          "literals": {
+            "gap": "32px"
+          },
+          "declared": {
+            "align-self": "stretch"
+          },
           "parts": {
             "Carte": {
+              "description": "Les 4 INSTANCE Carte (2114:3614 … 2114:3617) partagent le master 2063:1606 et sont FIXED à 364px. La largeur vit sur le root de ds.carte (literals.width 364px), pas ici : un parent ne peut pas restyler une instance — même mécanique que ds.avatar-group. LIMITE NOMMÉE, non contournée : la variante « Disposition=5 cartes » tient ses 5 cartes à 285px, une largeur qui dépend d'une prop du PARENT ; le vocabulaire n'a pas de style d'instance par variante du parent, et ds.carte n'a aucune prop qui distingue les deux dispositions. Reporté sur ds.carte plutôt que simulé ici.",
               "component": {
                 "id": "ds.carte",
                 "props": {
@@ -89,23 +110,23 @@
                 "sample": [
                   {
                     "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-                    "titre": "Sécurité et conformité"
+                    "titre": "Sécurité et conformité",
+                    "imageUrl": ""
                   },
                   {
                     "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-                    "titre": "Intégration parfaite"
+                    "titre": "Intégration parfaite",
+                    "imageUrl": ""
                   },
                   {
                     "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-                    "titre": "Moteur performant"
+                    "titre": "Moteur performant",
+                    "imageUrl": ""
                   },
                   {
                     "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-                    "titre": "SAV & maintenance dédiés"
-                  },
-                  {
-                    "texte": "Savoir-faire familial transmis depuis plus de 50 ans sur trois générations.",
-                    "titre": "Expérience"
+                    "titre": "SAV & maintenance dédiés",
+                    "imageUrl": ""
                   }
                 ]
               }
@@ -113,8 +134,15 @@
           }
         },
         "BoutonCinqCartes": {
+          "description": "INSTANCE 2114:3692 de ds.button dans la variante « 5 cartes », 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight).",
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "Contactez-nous",
+            "props": {
+              "variant": "outilneNoir",
+              "iconRight": true,
+              "iconRightGlyph": "arrow-right"
+            }
           },
           "visibleWhen": {
             "prop": "disposition",
@@ -122,13 +150,26 @@
           }
         },
         "Boutons": {
+          "description": "FRAME « Boutons » 2114:3650 de la variante « QuatreCartesDeuxCta », 570×54, layoutMode HORIZONTAL, itemSpacing 16.",
           "layout": {
             "direction": "row"
           },
+          "literals": {
+            "gap": "16px"
+          },
           "parts": {
             "Bouton": {
+              "description": "INSTANCE 2114:3651, 305×54 : Style « Outline noir », Libelle « Motifs disponibles », Icone gauche true (Glyphe gauche 230:585, master Pdf), Icone droite true (Glyphe droite 230:599, master Download).",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Motifs disponibles",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconLeft": true,
+                  "iconLeftGlyph": "pdf",
+                  "iconRight": true,
+                  "iconRightGlyph": "download"
+                }
               },
               "visibleWhen": {
                 "prop": "disposition",
@@ -136,8 +177,15 @@
               }
             },
             "BoutonSecondaire": {
+              "description": "INSTANCE 2114:3652, 249×54 : Style « Outline noir », Libelle « Contactez-nous », Icone droite true (Glyphe droite 6:104, master ArrowRight).",
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "text": "Contactez-nous",
+                "props": {
+                  "variant": "outilneNoir",
+                  "iconRight": true,
+                  "iconRightGlyph": "arrow-right"
+                }
               },
               "visibleWhen": {
                 "prop": "disposition",
@@ -151,8 +199,15 @@
           }
         },
         "BoutonQuatreCartes": {
+          "description": "INSTANCE 2114:3618 de ds.button, 249×54 : Style « Outline noir » (strokeWeight 2, stroke #26282C lié à la variable 5:40, remplissage blanc invisible), Libelle « Contactez-nous », Icone droite true, Glyphe droite 6:104 (master ArrowRight). Le contour de 2px est le rendu de la variante ; il n'est pas porté en literals ici — un parent ne restyle pas une instance, et « border » n'est pas un canal de literals.",
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "Contactez-nous",
+            "props": {
+              "variant": "outilneNoir",
+              "iconRight": true,
+              "iconRightGlyph": "arrow-right"
+            }
           },
           "visibleWhen": {
             "prop": "disposition",

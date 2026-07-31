@@ -1,0 +1,1113 @@
+{
+  "facts": [
+    {
+      "id": "coordonnees.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "detail": "COMPONENT root 1728x597, layoutMode=GRID (2 colonnes) > [google-map RECTANGLE 2104:2899 en colonne gauche (x=40, 1152x597), wrapper FRAME 2104:2879 en colonne droite (x=1192, 576x589)]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__root\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.wrapper",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2879",
+        "detail": "FRAME wrapper 576x589, layoutMode=VERTICAL, layoutSizingHorizontal=FIXED > [SectionHeader 2169:6216, Adresse 2104:2883, Horaires 2104:2886, Contact 2104:2889, Suivez-nous 2104:2892]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__wrapper\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.google-map",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2104:2899",
+        "detail": "RECTANGLE google-map 1152x597 (66,7 % de la largeur du composant), fills=[IMAGE] — colonne gauche de la grille",
+        "channel": "fills[0].type=IMAGE"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/googleMap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__googleMap\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.colonnes-ordre",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "channel": "children absoluteBoundingBox.x",
+        "detail": "google-map 2104:2899 x=40 (colonne gauche) ; wrapper 2104:2879 x=1192 (colonne droite). Le contrat ordonne parts = [wrapper, googleMap] et layout.direction = \"row\" : le rendu place le wrapper à gauche."
+      },
+      "figmaExpectation": {
+        "channel": "root.visualColumnOrder",
+        "value": "row-reverse"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/direction"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__root\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.gap-wrapper",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2879",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "wrapper.itemSpacing",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__wrapper\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.padding-block-wrapper",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2879",
+        "channel": "paddingTop+paddingBottom"
+      },
+      "figmaExpectation": {
+        "channel": "wrapper.paddingTop+paddingBottom",
+        "value": "48px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/literals/padding-block"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__wrapper\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.padding-inline-wrapper",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2879",
+        "channel": "paddingLeft+paddingRight"
+      },
+      "figmaExpectation": {
+        "channel": "wrapper.paddingLeft+paddingRight",
+        "value": "48px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/literals/padding-inline"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__wrapper\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.width-wrapper",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2879",
+        "channel": "absoluteBoundingBox"
+      },
+      "figmaExpectation": {
+        "channel": "wrapper.absoluteBoundingBox.width",
+        "value": "576px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__wrapper\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.gap-adresse",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2883",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "Adresse.itemSpacing",
+        "value": "8px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__Adresse\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.gap-horaires",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2886",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "Horaires.itemSpacing",
+        "value": "8px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__Horaires\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.gap-contact",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2889",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "Contact.itemSpacing",
+        "value": "8px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__Contact\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.gap-suivez-nous",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2892",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "suivezNous.itemSpacing",
+        "value": "8px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__suivezNous\"]"
+      }
+    },
+    {
+      "id": "coordonnees.structure.gap-reseaux-sociaux",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2894",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "rseauxSociaux.itemSpacing",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__rseauxSociaux\"]"
+      }
+    },
+    {
+      "id": "coordonnees.property.accroche",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "property": "Accroche#2104:57",
+        "detail": "Propriété TEXT du COMPONENT racine (defaultValue \"Contact\"). MESURÉ : aucun nœud du sous-arbre ne la référence — le dump ne contient que deux componentPropertyReferences, toutes deux INTERNES à l'instance SectionHeader (I2169:6216;2090:2386 -> Accroche#2090:46 / Accroche2#2169:64, I2169:6216;2090:2387 -> Titre#2090:47). La propriété racine est donc inerte côté canvas aussi."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0",
+        "bindingProperty": "Accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "accroche",
+        "value": "PREUVE-013 — ACCROCHE 4a1e"
+      }
+    },
+    {
+      "id": "coordonnees.property.titre",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "property": "Titre#2104:58",
+        "detail": "Propriété TEXT du COMPONENT racine (defaultValue \"Nos coordonnées\"). MESURÉ : inerte côté canvas — voir coordonnees.property.accroche pour le relevé complet des componentPropertyReferences."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "titre",
+        "value": "PREUVE-013 — TITRE 4a1e"
+      }
+    },
+    {
+      "id": "coordonnees.content.accroche",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "property": "Accroche#2104:57",
+        "textLayer": "I2169:6216;2090:2386"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default",
+        "bindingProperty": "Accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "property": "Titre#2104:58",
+        "textLayer": "I2169:6216;2090:2387"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1/default",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.adresse-etiquette",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2884",
+        "detail": "TEXT layer AdresseEtiquette",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__AdresseEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.adresse-etiquette-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2884",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "AdresseEtiquette.font-size",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__AdresseEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.adresse-etiquette-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2884",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "AdresseEtiquette.line-height",
+        "value": "30px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__AdresseEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.adresse-valeur",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2885",
+        "detail": "TEXT layer AdresseValeur",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__AdresseValeur\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.adresse-valeur-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2885",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "AdresseValeur.font-size",
+        "value": "18px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__AdresseValeur\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.adresse-valeur-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2885",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "AdresseValeur.line-height",
+        "value": "27px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__AdresseValeur\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.horaires-etiquette",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2887",
+        "detail": "TEXT layer HorairesEtiquette",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__HorairesEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.horaires-etiquette-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2887",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "HorairesEtiquette.font-size",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__HorairesEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.horaires-etiquette-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2887",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "HorairesEtiquette.line-height",
+        "value": "30px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__HorairesEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.horaires-valeur",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2888",
+        "detail": "TEXT layer HorairesValeur",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__HorairesValeur\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.horaires-valeur-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2888",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "HorairesValeur.font-size",
+        "value": "18px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__HorairesValeur\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.horaires-valeur-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2888",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "HorairesValeur.line-height",
+        "value": "27px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__HorairesValeur\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.contact-etiquette",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2890",
+        "detail": "TEXT layer ContactEtiquette",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__ContactEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.contact-etiquette-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2890",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "ContactEtiquette.font-size",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__ContactEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.contact-etiquette-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2890",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "ContactEtiquette.line-height",
+        "value": "30px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__ContactEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.contact-valeur",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2891",
+        "detail": "TEXT layer ContactValeur",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.contact-valeur-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2891",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "ContactValeur.font-size",
+        "value": "18px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.contact-valeur-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2891",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "ContactValeur.line-height",
+        "value": "27px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+      }
+    },
+    {
+      "id": "coordonnees.content.suivez-nous-etiquette",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2893",
+        "detail": "TEXT layer SuivezNousEtiquette",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.suivez-nous-etiquette-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2893",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "SuivezNousEtiquette.font-size",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.suivez-nous-etiquette-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2893",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "SuivezNousEtiquette.line-height",
+        "value": "30px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]"
+      }
+    },
+    {
+      "id": "coordonnees.composition.section-header",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6216",
+        "mainComponent": "2090:2385",
+        "observedInstanceProperties": {
+          "Accroche2#2169:64": true,
+          "Titre#2090:47": "Nos coordonnées",
+          "Accroche#2090:46": "Contact",
+          "Disposition": "Standard"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/SectionHeader/component",
+        "childContractId": "ds.section-header"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "coordonnees.composition.section-header-props",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "property": "Titre#2104:58",
+        "channel": "componentPropertyDefinitions",
+        "detail": "Le master racine expose Titre#2104:58 (TEXT). L'instance SectionHeader 2169:6216 porte la MÊME valeur \"Nos coordonnées\" mais en override littéral (componentProperties Titre#2090:47), sans référence à la propriété racine — mesuré, 0 componentPropertyReferences vers Titre#2104:58. Le contrat reconduit ce littéral au lieu de router la prop via \"{titre}\" (ComponentScalarValueSchema, motif vivant dans ds.carte : props.children = \"{ctaLabel}\"). Le routage est le seul remède qui rende la prop publique effective sur les deux surfaces."
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.props.titre",
+        "value": "{titre}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/SectionHeader/component/props/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "coordonnees.composition.section-header-accroche",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "property": "Accroche#2104:57",
+        "channel": "componentPropertyDefinitions",
+        "detail": "Même constat mesuré que coordonnees.composition.section-header-props, canal Accroche."
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.props.accroche",
+        "value": "{accroche}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/SectionHeader/component/props/accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "coordonnees.composition.icone-facebook",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2900",
+        "mainComponent": "2053:1259",
+        "detail": "INSTANCE Facebook 32x31.857126235961914 > VECTOR I2104:2900;2053:1258, fill {color.noir-bleute}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/parts/Facebook/icon"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__Facebook\"]"
+      }
+    },
+    {
+      "id": "coordonnees.composition.icone-instagram",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2902",
+        "mainComponent": "2053:1261",
+        "detail": "INSTANCE Instagram 32x32 > VECTOR I2104:2902;2053:1260, fill {color.noir-bleute}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/parts/Instagram/icon"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__Instagram\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "export": "png@2x"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__root\"]"
+      }
+    },
+    {
+      "id": "coordonnees.visual.root-background",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2904",
+        "channel": "fills[0]",
+        "detail": "SOLID #F4F6FA lié à VariableID:5:63 — le token {color.bleu-clair} vaut #F4F6FA (tokens/primitives.tokens.json)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/background-color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__root\"]"
+      }
+    },
+    {
+      "id": "coordonnees.semantic.contact-valeur",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2104:2891",
+        "detail": "TEXT ContactValeur — contient deux caractères invisibles : U+000D (CR) puis U+2028 (LINE SEPARATOR)",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "coordonnees-master-defaults",
+    "figmaNodeId": "2104:2904",
+    "observedProperties": {
+      "Accroche#2104:57": "Contact",
+      "Titre#2104:58": "Nos coordonnées"
+    },
+    "reactProps": {},
+    "factIds": [
+      "coordonnees.structure.root",
+      "coordonnees.structure.wrapper",
+      "coordonnees.structure.google-map",
+      "coordonnees.structure.colonnes-ordre",
+      "coordonnees.structure.gap-wrapper",
+      "coordonnees.structure.padding-block-wrapper",
+      "coordonnees.structure.padding-inline-wrapper",
+      "coordonnees.structure.width-wrapper",
+      "coordonnees.structure.gap-adresse",
+      "coordonnees.structure.gap-horaires",
+      "coordonnees.structure.gap-contact",
+      "coordonnees.structure.gap-suivez-nous",
+      "coordonnees.structure.gap-reseaux-sociaux",
+      "coordonnees.property.accroche",
+      "coordonnees.property.titre",
+      "coordonnees.content.accroche",
+      "coordonnees.content.titre",
+      "coordonnees.content.adresse-etiquette",
+      "coordonnees.visual.adresse-etiquette-font-size",
+      "coordonnees.visual.adresse-etiquette-line-height",
+      "coordonnees.content.adresse-valeur",
+      "coordonnees.visual.adresse-valeur-font-size",
+      "coordonnees.visual.adresse-valeur-line-height",
+      "coordonnees.content.horaires-etiquette",
+      "coordonnees.visual.horaires-etiquette-font-size",
+      "coordonnees.visual.horaires-etiquette-line-height",
+      "coordonnees.content.horaires-valeur",
+      "coordonnees.visual.horaires-valeur-font-size",
+      "coordonnees.visual.horaires-valeur-line-height",
+      "coordonnees.content.contact-etiquette",
+      "coordonnees.visual.contact-etiquette-font-size",
+      "coordonnees.visual.contact-etiquette-line-height",
+      "coordonnees.content.contact-valeur",
+      "coordonnees.visual.contact-valeur-font-size",
+      "coordonnees.visual.contact-valeur-line-height",
+      "coordonnees.content.suivez-nous-etiquette",
+      "coordonnees.visual.suivez-nous-etiquette-font-size",
+      "coordonnees.visual.suivez-nous-etiquette-line-height",
+      "coordonnees.composition.section-header",
+      "coordonnees.composition.section-header-props",
+      "coordonnees.composition.section-header-accroche",
+      "coordonnees.composition.icone-facebook",
+      "coordonnees.composition.icone-instagram",
+      "coordonnees.visual.root",
+      "coordonnees.visual.root-background",
+      "coordonnees.semantic.contact-valeur"
+    ],
+    "fixtureAssetIds": [],
+    "requiredParts": [
+      "root",
+      "wrapper",
+      "SectionHeader",
+      "Adresse",
+      "Horaires",
+      "Contact",
+      "suivezNous",
+      "rseauxSociaux",
+      "googleMap"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "accroche-defaut",
+        "selector": "[class*=\"SectionHeader__Accroche\"]",
+        "contractPointer": "/props/0/default",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Contact"
+        }
+      },
+      {
+        "id": "titre-defaut",
+        "selector": "[class*=\"SectionHeader__Titre\"]",
+        "contractPointer": "/props/1/default",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Nos coordonnées"
+        }
+      },
+      {
+        "id": "adresse-valeur",
+        "selector": "[class*=\"Coordonnees__AdresseValeur\"]",
+        "contractPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Rue Alfred Drèze 7, 4860 Pepinster"
+        }
+      },
+      {
+        "id": "horaires-valeur",
+        "selector": "[class*=\"Coordonnees__HorairesValeur\"]",
+        "contractPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00"
+        }
+      },
+      {
+        "id": "contact-valeur",
+        "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]",
+        "contractPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be"
+        }
+      },
+      {
+        "id": "suivez-nous-etiquette",
+        "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]",
+        "contractPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Suivez-nous"
+        }
+      }
+    ]
+  }
+}

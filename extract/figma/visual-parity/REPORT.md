@@ -31,6 +31,7 @@ moves the gate, explicitly, after review.
   triaged `renderer`.
 - **Font availability** (checked in-page via `document.fonts.check`):
   - "Montserrat": available locally (same face used in the preview)
+  - "Inter": available locally (same face used in the preview)
 - **Antialiasing**: edge pixels differ per renderer. pixelmatch's antialiasing
   detector is ON (its default) — a per-pixel classifier, not a tolerance knob.
 - **Subpixel positioning**: Figma positions nodes on fractional pixels; CSS layout
@@ -57,36 +58,92 @@ moves the gate, explicitly, after review.
 
 | subject | variant | gate/raw | masked diagnostic | mask coverage | surface | size ours vs figma | diagnosis | named cause (triage.ts) | triptych |
 |---|---|---|---|---|---|---|---|---|---|
-| nav-item | NavItem | 1.51% | 3.28% | 91.32% | dark | 378×24 vs 380×24 | diffuse delta — see triptych | — | report-assets/nav-item--navitem.triptych.png |
-| tab | Etat=Defaut | 0.01% | 0.00% | 68.29% | light | 172×82 vs 172×82 | near-identical | renderer: geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization. | report-assets/tab--etat-defaut.triptych.png |
-| tab | Etat=Selectionne | 0.01% | 0.00% | 68.29% | light | 172×82 vs 172×82 | near-identical | renderer: geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization. | report-assets/tab--etat-selectionne.triptych.png |
+| realisation | Taille=Grand | 99.97% | 99.97% | 0.00% | light | 1486×1486 vs 1486×1486 | overall ink differs (ours #bfc0c0 vs figma #e0e0e0) | capture-gap: A5 image boundary: Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty; both variant dimensions are exact, but image pixels are intentionally not transported. | report-assets/realisation--taille-grand.triptych.png |
+| realisation | Taille=Petit | 99.86% | 99.86% | 0.00% | light | 679×679 vs 679×679 | overall ink differs (ours #bdc1c0 vs figma #e0e0e0) | capture-gap: A5 image boundary: Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty; both variant dimensions are exact, but image pixels are intentionally not transported. | report-assets/realisation--taille-petit.triptych.png |
+| member-picture | Etat=Defaut | 64.48% | 64.48% | 0.00% | light | 728×728 vs 727×727 | overall ink differs (ours #d9d9d9 vs figma #aba198) | **UNTRIAGED** | report-assets/member-picture--etat-defaut.triptych.png |
+| carte | Disposition=Reassurance | 64.14% | 73.45% | 13.27% | light | 738×1065 vs 736×1064 | overall ink differs (ours #ababad vs figma #845f61) | engine: open component defect: IMAGE pixels are outside the contract transport and the two layouts still need distinct image sizing; Reassurance also lacks its measured shadow/alignment and Categorie lacks uppercase/rich-text treatment. | report-assets/carte--disposition-reassurance.triptych.png |
+| member-picture | Etat=Survol | 58.33% | 58.33% | 0.00% | light | 728×728 vs 727×727 | overall ink differs (ours #d9d9d9 vs figma #6d6d6c) | **UNTRIAGED** | report-assets/member-picture--etat-survol.triptych.png |
+| carte | Disposition=Categorie | 56.56% | 62.20% | 9.92% | light | 1486×1244 vs 1486×1244 | overall ink differs (ours #4f5154 vs figma #767672) | engine: open component defect: IMAGE pixels are outside the contract transport and the two layouts still need distinct image sizing; Reassurance also lacks its measured shadow/alignment and Categorie lacks uppercase/rich-text treatment. | report-assets/carte--disposition-categorie.triptych.png |
+| member-card | MemberCard | 52.52% | 56.86% | 7.74% | light | 728×895 vs 728×895 | overall ink differs (ours #d7d6d6 vs figma #aa9f97) | capture-gap: A5 image boundary: Figma paints the real portrait while ds.member-picture deliberately renders the documented #D9D9D9 technical placeholder; text and outer geometry agree (height Δ1 device px). | report-assets/member-card--membercard.triptych.png |
+| product-card | ProductCard | 15.64% | 16.51% | 7.73% | light | 728×624 vs 728×624 | overall ink differs (ours #787e85 vs figma #606866) | capture-gap: A5 image boundary: the master carries an IMAGE fill that the code-only imageUrl prop cannot obtain from the contract; the default empty URL leaves the 240px image plane unpainted while text and outer geometry remain near-equal. | report-assets/product-card--productcard.triptych.png |
+| section-header | Disposition=Avec CTA | 8.78% | 6.85% | 41.19% | light | 2174×108 vs 3093×108 | size ours 2174×108 vs figma 3093×108 (Δ-919, Δ0 device px) | **UNTRIAGED** | report-assets/section-header--disposition-avec-cta.triptych.png |
+| tab | Etat=Defaut | 3.60% | 0.00% | 68.29% | light | 172×82 vs 172×82 | text raster/family delta dominates | renderer: geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization. | report-assets/tab--etat-defaut.triptych.png |
+| tab | Etat=Selectionne | 3.60% | 0.00% | 68.29% | light | 172×82 vs 172×82 | text raster/family delta dominates | renderer: geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization. | out/tab/etat-selectionne.triptych.png |
+| google-reviews | Avis Google | 3.32% | 1.51% | 13.89% | light | 3104×656 vs 3104×656 | text raster/family delta dominates | **UNTRIAGED** | out/google-reviews/avis-google.triptych.png |
+| button | Style=Outline noir | 3.14% | 1.27% | 30.83% | light | 436×108 vs 438×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-outline-noir.triptych.png |
+| footer-column | FooterColumn | 2.77% | 0.09% | 71.86% | light | 322×182 vs 338×181 | size ours 322×182 vs figma 338×181 (Δ-16, Δ1 device px); text raster/family delta dominates; diff localized top-left (196×37px) | — | out/footer-column/footercolumn.triptych.png |
+| button | Style=Default | 2.70% | 0.66% | 30.83% | light | 436×108 vs 438×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-default.triptych.png |
+| button | Style=Orange | 2.70% | 0.66% | 30.83% | light | 436×108 vs 438×108 | text raster/family delta dominates | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-orange.triptych.png |
+| checkbox | Coche=Oui | 2.56% | 2.56% | 0.00% | light | 40×40 vs 40×40 | diffuse delta — see triptych | renderer: label advance-width hug (ours Δ-7 device px) shifts the center-padded pair; residual masked ink is the control-box edge ring + Figma label pixels escaping the DOM-derived text mask | out/checkbox/coche-oui.triptych.png |
+| button | Style=Blanc | 2.26% | 0.00% | 30.83% | light | 436×108 vs 438×108 | text raster/family delta dominates; diff localized middle-center (306×25px) | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-blanc.triptych.png |
+| field | Etat=Erreur | 2.20% | 1.24% | 15.18% | light | 560×212 vs 560×212 | diffuse delta — see triptych | engine: open composition defect: the slotted Input keeps intrinsic width and the Field error state cannot yet propagate the measured red border/aria-invalid to the composed control. | out/field/etat-erreur.triptych.png |
+| section-header | Disposition=Standard | 1.91% | 0.00% | 88.82% | light | 1082×158 vs 1081×156 | text raster/family delta dominates | — | out/section-header/disposition-standard.triptych.png |
+| field | Etat=Normal | 1.84% | 1.51% | 8.89% | light | 560×162 vs 560×162 | diffuse delta — see triptych | engine: open composition defect: the slotted Input keeps intrinsic width and the Field error state cannot yet propagate the measured red border/aria-invalid to the composed control. | out/field/etat-normal.triptych.png |
+| avantage | Avantage | 1.81% | 0.00% | 54.59% | light | 1518×150 vs 1518×150 | text raster/family delta dominates | — | out/avantage/avantage.triptych.png |
+| review-card | Review-card | 1.68% | 0.00% | 17.48% | light | 598×478 vs 598×478 | text raster/family delta dominates | — | out/review-card/review-card.triptych.png |
+| nav-item | NavItem | 1.25% | 0.25% | 91.32% | dark | 378×24 vs 380×24 | diffuse delta — see triptych | — | out/nav-item/navitem.triptych.png |
+| button | Style=Link | 0.99% | — | 100.00% | light | 307×24 vs 307×24 | diffuse delta — see triptych | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-link.triptych.png |
+| carousel-controls | CarouselControls | 0.41% | 0.41% | 0.00% | light | 3208×104 vs 3208×104 | diff localized middle-right (72×104px) | — | out/carousel-controls/carouselcontrols.triptych.png |
+| input | Input | 0.17% | 0.17% | 0.00% | light | 560×96 vs 560×96 | diff localized middle-left (179×20px) | — | out/input/input.triptych.png |
+| accordion-row | Taille=Grand, Etat=Ferme | 0.13% | 0.00% | 2.78% | light | 3100×128 vs 3100×128 | diff localized middle-left (182×39px) | — | out/accordion-row/taille-grand_etat-ferme.triptych.png |
+| accordion-row | Taille=Grand, Etat=Ouvert | 0.08% | 0.00% | 2.26% | light | 3100×240 vs 3100×240 | diff localized middle-left (182×144px) | — | out/accordion-row/taille-grand_etat-ouvert.triptych.png |
+| textarea | Textarea | 0.06% | 0.00% | 6.41% | light | 560×256 vs 560×256 | diff localized top-left (179×20px) | — | out/textarea/textarea.triptych.png |
+| accordion-row | Taille=Petit, Etat=Ouvert | 0.02% | 0.00% | 2.43% | light | 3100×160 vs 3100×160 | near-identical | — | out/accordion-row/taille-petit_etat-ouvert.triptych.png |
+| accordion-row | Taille=Petit, Etat=Ferme | 0.00% | 0.00% | 2.52% | light | 3100×80 vs 3100×80 | near-identical | — | out/accordion-row/taille-petit_etat-ferme.triptych.png |
+| button | Style=Outline blanc | 0.00% | 0.00% | 30.83% | light | 436×108 vs 438×108 | near-identical | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-outline-blanc.triptych.png |
+| button | Style=Icône seule | 0.00% | 0.00% | 0.00% | light | 104×104 vs 104×104 | near-identical | renderer: Montserrat kerning: Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440) and the delta rings glyph edges after center-padding; on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc, noted in the header) | out/button/style-ic-ne-seule.triptych.png |
+| checkbox | Coche=Non | 0.00% | 0.00% | 0.00% | light | 40×40 vs 40×40 | near-identical | renderer: label advance-width hug (ours Δ-7 device px) shifts the center-padded pair; residual masked ink is the control-box edge ring + Figma label pixels escaping the DOM-derived text mask | out/checkbox/coche-non.triptych.png |
+| copyright | Copyright | 0.00% | — | 100.00% | light | 1234×28 vs 1233×27 | near-identical | — | out/copyright/copyright.triptych.png |
 
 ## Not diffed (named, never dropped)
 
-_none_
+| subject | variants | status | reason |
+|---|---|---|---|
+| button-with-icons | Property 1=Outilne noir | skipped | axis "Property 1=Outilne noir" has no contract binding (props: Style, Libelle, Icone gauche, Icone droite, Glyphe gauche, Glyphe droite) |
+| piqueray-logo | Couleur=Default, Couleur=Blanc | refused | render refused: Refused — 2 contract violation(s):   - ds.piqueray-logo: part "Marque" needs vector asset "assets/vectors/piqueray-logo-marque.svg" which does not exist |
 
 ## Distribution (authoritative raw score)
 
-- ≤ 1%: 2 variant(s)
-- 1–3%: 1 variant(s)
-- 3–10%: 0 variant(s)
-- > 10%: 0 variant(s)
+- ≤ 1%: 12 variant(s)
+- 1–3%: 11 variant(s)
+- 3–10%: 5 variant(s)
+- > 10%: 8 variant(s)
 
-- diffed: 3 · skipped/refused/declined: 0
+- diffed: 36 · skipped/refused/declined: 3
 
 ## Gate read (triage classes)
 
-- **UNTRIAGED over 3%: 0** — the queue is empty
-- > 10% by class: (empty)
-- 3–10% by class: (empty)
-- open `engine`-class causes: 0 (an engine row is a tracked defect, not an accepted delta)
+- **UNTRIAGED over 3%: 4** — google-reviews :: Avis Google; member-picture :: Etat=Defaut; member-picture :: Etat=Survol; section-header :: Disposition=Avec CTA
+- > 10% by class: capture-gap ×4, UNTRIAGED ×2, engine ×2
+- 3–10% by class: renderer ×3, UNTRIAGED ×2
+- open `engine`-class causes: 4 (an engine row is a tracked defect, not an accepted delta)
 
 ## Subjects
 
 | subject | figma set version | composition | fonts in set |
 |---|---|---|---|
-| nav-item (contract) | v2381229993207753432 | repo tokens only | Montserrat |
-| tab (contract) | v2381229993207753432 | repo tokens only | Montserrat |
+| button (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| checkbox (contract) | v2381581871281042338 | repo tokens only | (none) |
+| review-card (contract) | v2381581871281042338 | repo tokens only | Inter, Montserrat |
+| google-reviews (contract) | v2381581871281042338 | repo tokens only | Inter, Montserrat |
+| input (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| textarea (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| button-with-icons (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| member-picture (contract) | v2381581871281042338 | repo tokens only | (none) |
+| piqueray-logo (contract) | v2381581871281042338 | repo tokens only | (none) |
+| accordion-row (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| avantage (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| carousel-controls (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| carte (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| copyright (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| field (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| footer-column (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| member-card (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| nav-item (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| product-card (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| realisation (contract) | v2381581871281042338 | repo tokens only | (none) |
+| section-header (contract) | v2381581871281042338 | repo tokens only | Montserrat |
+| tab (contract) | v2381581871281042338 | repo tokens only | Montserrat |
 
 ## Reading a triptych
 

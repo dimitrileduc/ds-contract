@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v1.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -126,12 +126,16 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: 8px;
-  width: 1550px;
+  align-self: stretch;
 }
 
 .section-header--disposition-avecCta {
   flex-direction: row;
   justify-content: space-between;
+}
+
+.section-header--alignement-gauche {
+  align-items: start;
 }
 
 .section-header__Accroche {
@@ -150,15 +154,45 @@
   line-height: 50px;
 }
 
+.section-header__Titre > strong {
+  font-weight: var(--font-weight-bold);
+}
+
 .section-header--disposition-avecCta .section-header__Titre {
   line-height: 40px;
+}
+
+.section-header--emphase-hero .section-header__Titre {
+  line-height: 68px;
+  font-weight: 300;
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  line-height: 40px;
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  line-height: 30px;
 }
 
 .section-header--disposition-avecCta .section-header__Titre {
   font-size: var(--font-size-32);
 }
 
-/* SAV — from ds.sav v1.0.0 (core/emit-html.ts) */
+.section-header--emphase-hero .section-header__Titre {
+  color: var(--color-blanc);
+  font-size: var(--font-size-54);
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  font-size: var(--font-size-32);
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  font-size: var(--font-size-24);
+}
+
+/* SAV — from ds.sav v1.2.0 (core/emit-html.ts) */
 
 .sav, .sav *, .sav *::before, .sav *::after {
   box-sizing: border-box;
@@ -170,41 +204,100 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 10px;
 }
 
 .sav__section {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 1550px;
+  height: 677px;
+  position: relative;
+}
+
+.sav__background {
+  width: 1550px;
+  height: 475px;
+  object-fit: cover;
 }
 
 .sav__row {
   display: flex;
   flex-direction: row;
+  width: 1288px;
+  height: 561px;
+  position: absolute;
+  align-self: flex-end;
 }
 
 .sav__wrapper {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 546px;
+  height: 513px;
+  padding-top: 48px;
+  padding-left: 48px;
+  padding-right: 47px;
+  position: relative;
 }
 
 .sav__WrapperBackground {
   background-color: var(--color-blanc);
+  width: 641px;
+  height: 561px;
+  position: absolute;
+  align-self: flex-end;
 }
 
 .sav__inner {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
+  gap: 32px;
+  width: 546px;
+  position: relative;
 }
 
 .sav__vousRencontrezUnProblmeA {
   color: var(--color-noir);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
+  height: 197px;
+  white-space: pre-line;
+}
+
+.sav__vousRencontrezUnProblmeA > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .sav__imgGroup {
   display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 644px;
+  height: 561px;
+  padding-left: 3px;
+  position: relative;
 }
 
 .sav__ImgGroupBackground {
   background-color: var(--color-bleu-clair);
+  width: 647px;
+  height: 478px;
+  position: absolute;
+  align-self: flex-start;
+}
+
+.sav__img {
+  width: 563px;
+  height: 504px;
+  position: relative;
+  object-fit: contain;
 }
 
 /* showcase chrome */

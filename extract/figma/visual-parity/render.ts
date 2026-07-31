@@ -446,7 +446,11 @@ function isRenderRefusal(value: unknown): value is RenderRefusal {
   return isRecord(value) && value.ok === false && typeof value.error === 'string';
 }
 
-const CLIP_MARGIN = 48; // px around the painted union box (shadows, outlines)
+/** px around the painted union box (shadows, outlines). Exported because the
+ *  organism-audit harness crops with the same margin — the two harnesses must
+ *  agree, and a copied constant only diverges silently (each PNG still diffs
+ *  cleanly against its own reference, so nothing fails loudly). */
+export const CLIP_MARGIN = 48;
 
 export function chromiumExecutable(): string {
   if (process.env.PLAYWRIGHT_CHROMIUM_PATH) return process.env.PLAYWRIGHT_CHROMIUM_PATH;
@@ -466,6 +470,11 @@ export function chromiumExecutable(): string {
     for (const m of revs) {
       for (const rel of [
         'chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
+        // An x64 Node on macOS installs here. Without this candidate the whole
+        // cache is skipped and the search falls through to SYSTEM Chrome, which
+        // auto-updates — so the instrument that measures fidelity would drift
+        // under a browser nobody pinned.
+        'chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
         'chrome-mac/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing',
         'chrome-mac/Chromium.app/Contents/MacOS/Chromium',
         'chrome-linux/chrome',

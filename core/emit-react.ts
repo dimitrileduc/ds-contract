@@ -28,11 +28,17 @@ import {
   tokensByPropEntries,
   walkAnatomy,
   CATEGORY_LABELS,
+  type ComponentPropValue,
   type Contract,
   type Part,
   type Prop,
+  type RichTextSegment,
   SLOT_CONTROL_STYLE_CHANNELS,
 } from '../scripts/contract-schema.js';
+
+/** Inset channels — meaningless (and silently dropped by CSS) on a part
+ *  that is not absolutely positioned. */
+const INSET_CHANNELS = ['top', 'right', 'bottom', 'left'] as const;
 
 /** v11 SEMANTIC LINT — roles that RE-CREATE a control the platform already
  *  ships. A contract claiming one of these roles (semantics.role, a
@@ -200,11 +206,25 @@ const JUSTIFY_CSS: Record<string, string> = {
 export const isEnum = (p: Prop): p is Prop & { type: { enum: string[] } } =>
   typeof p.type === 'object' && 'enum' in p.type;
 
-/** v7: structured/array prop — code-only (bindings.figma.kind 'NONE'). */
+/** v7: structured/array prop — code-only (bindings.figma.kind 'NONE').
+ *  v16: a field may be a scalar kind OR an enum (`{ enum: [...] }`). */
+export type ArrayFieldType = 'text' | 'number' | 'boolean' | { enum: string[] };
+
 export const isArrayType = (
   p: Prop,
-): p is Prop & { type: { arrayOf: Record<string, 'text' | 'number' | 'boolean'> } } =>
+): p is Prop & { type: { arrayOf: Record<string, ArrayFieldType> } } =>
   typeof p.type === 'object' && 'arrayOf' in p.type;
+
+/** The TS type an arrayOf field renders as inside `Array<{ … }>`. An enum
+ *  field spells a LITERAL UNION — the whole point of carrying it as an enum
+ *  rather than as free text (a `string` would type any value as valid). */
+export const arrayFieldTsType = (t: ArrayFieldType): string =>
+  typeof t === 'object' ? t.enum.map((v) => `'${v}'`).join(' | ') : t === 'text' ? 'string' : t;
+
+/** A field's name for messages and comparisons: 'text' | 'number' | 'boolean'
+ *  | 'enum' (the enum's own values are spelled where they matter). */
+export const arrayFieldKind = (t: ArrayFieldType): string =>
+  typeof t === 'object' ? `enum ${t.enum.join('|')}` : t;
 
 /** Structured mixed-style text: native TEXT on the canvas, bounded segment
  * data in code. Raw HTML is deliberately not part of the contract surface. */
@@ -219,6 +239,129 @@ export function richTextPlain(
   value: Array<{ text: string; strong?: boolean }> | undefined,
 ): string {
   return value?.map((segment) => segment.text).join('') ?? '';
+}
+
+/** v19: a LITERAL part text split into its observed strong ranges, as JSX.
+ * Every range is a string EXPRESSION — the one spelling JSX cannot reflow, so
+ * a "\n" inside a range reaches the DOM (see literal-text-newline-preservation).
+ * `<strong>` stays a DIRECT child of the part so the governed
+ * `.part > strong` weight rule applies. `strongAttrs` carries the inline
+ * surface's resolved style; the CSS-module surface passes nothing. */
+/** Figma spells line breaks THREE ways in the same file (all observed in the
+ * Piqueray source): "\n", "\r" (contact 2104:2891) and U+2028 LINE SEPARATOR
+ * (adresse 2104:2885 — invisible in every printout). Contracts keep the source
+ * bytes; EMISSION normalizes to "\n", the only separator `white-space:
+ * pre-line` breaks on.
+ *
+ * A RUN of adjacent separators is ONE break — MEASURED, not assumed. Node
+ * 2104:2891 puts "\r" and U+2028 back to back, and Figma draws that node
+ * 54 px tall: exactly 2 × its 27 px line height — one break, with its
+ * paragraphSpacing 8 not applied. Normalizing each separator independently
+ * emits "\n\n" and invents a blank third line. Named consequence: a
+ * deliberately blank line spelled "\n\n" collapses the same way — no
+ * contract carries one (the whole catalog holds exactly ONE separator run,
+ * this node's).
+ */
+export const normalizeLineSeparators = (text: string): string =>
+  text.replace(/[\n\r\u2028\u2029]+/g, '\n');
+export const HAS_LINE_SEPARATOR = /[\n\r\u2028\u2029]/;
+
+/** True when a literal part carries at least one underlined range. */
+export const hasUnderlinedSegment = (part: Part): boolean =>
+  (part.textSegments ?? []).some((segment) => segment.underline);
+
+/** The declared decoration for `<u>` ranges. `text-decoration-line` has no
+ * token vocabulary — it is a keyword channel — so the rule is emitted
+ * EXPLICITLY rather than left to `<u>`'s UA default, the same discipline the
+ * governed `> strong` weight follows. A DESCENDANT selector, because a range
+ * that is both bold and underlined nests `<u>` inside `<strong>`. */
+export const underlineRule = (selector: string): string =>
+  `${selector} u {\n  text-decoration-line: underline;\n}`;
+
+/** Marked-range boundaries and line-break runs are INDEPENDENT in the source,
+ * so a run can straddle them: node 2104:2891 ends its underlined phone range
+ * with "\r" and opens the next range with U+2028. Two things follow, and both
+ * are handled here rather than per segment.
+ *
+ * 1. The run must still collapse to ONE break ACROSS the boundary — normalizing
+ *    each segment on its own would emit "\n" + "\n" and invent the blank line
+ *    the collapse rule exists to prevent.
+ * 2. A break carries no glyph, so it is not a range of TEXT to decorate: the
+ *    breaks are hoisted OUT of the marks and only the visible core stays
+ *    wrapped. NAMED RESIDUAL — Figma does underline the "\r"'s advance, so its
+ *    rule runs about one character past the phone number; the hoisted spelling
+ *    stops at the last digit. The alternative (a break left inside `<u>` under
+ *    `pre-line`) makes the decoration's extent depend on how the engine sizes a
+ *    forced break, which is a bigger and less predictable error than the tail
+ *    it would recover. coordonnees measures 0.52 % with the hoisted spelling. */
+/** One piece of a literal, after break RUNS are collapsed and the breaks are
+ *  hoisted out of the marks. A break carries no glyph, so it is never a range
+ *  of TEXT and never wears a mark. */
+export type LiteralRange =
+  | { break: true }
+  | { break?: false; text: string; strong?: boolean; underline?: boolean };
+
+/** Reduce a literal's segments to those pieces.
+ *
+ *  This is surface-INDEPENDENT: which breaks survive and where the marks stop
+ *  are facts about the Figma source, not about JSX or HTML. Both emitters read
+ *  it, so they can no longer tell different stories about one paragraph — and
+ *  they did: the HTML surface used to normalize each segment on its own, which
+ *  spelled the "\r"+U+2028 straddle as TWO breaks where the source draws one,
+ *  and left the break inside `<u>`. Only the React copy had an eval. */
+export function literalSegmentRanges(segments: Array<RichTextSegment>): LiteralRange[] {
+  const out: LiteralRange[] = [];
+  let pendingBreak = false; // a break owed at this point
+  let emittedAnything = false;
+
+  for (const segment of segments) {
+    const normalized = normalizeLineSeparators(segment.text);
+    const leading = /^\n+/.exec(normalized)?.[0] ?? '';
+    const trailing = normalized.length > leading.length ? (/\n+$/.exec(normalized)?.[0] ?? '') : '';
+    const core = normalized.slice(leading.length, normalized.length - trailing.length);
+
+    if (leading) pendingBreak = true;
+    if (core) {
+      // A leading break before any visible text would push the whole paragraph
+      // down a line — the source never opens with one, and swallowing it here
+      // keeps that honest rather than inventing leading whitespace.
+      if (pendingBreak && emittedAnything) out.push({ break: true });
+      pendingBreak = false;
+      out.push({ text: core, strong: segment.strong, underline: segment.underline });
+      emittedAnything = true;
+    }
+    if (trailing) pendingBreak = true;
+  }
+  // A break left owed at the very END stays unemitted: under `pre-line` it
+  // would add an empty final line to the box, which the source does not draw
+  // (2104:2891 measures 54 px — two lines, not three). A break in the MIDDLE of
+  // a segment is untouched: it belongs to that range's own text.
+  return out;
+}
+
+export function literalSegmentsJsx(
+  segments: Array<RichTextSegment>,
+  strongAttrs = '',
+  /** The inline surface has no stylesheet, so it carries the declared
+   *  decoration on the element; the CSS-module surface passes nothing and
+   *  relies on its `.part u` rule. */
+  underlineAttrs = '',
+): string {
+  const expr = (text: string) => `{${JSON.stringify(text)}}`;
+  let out = '';
+  for (const range of literalSegmentRanges(segments)) {
+    if (range.break) {
+      out += expr('\n');
+      continue;
+    }
+    let inner = expr(range.text);
+    // <u> renders the observed underline ranges (coordonnees: the phone and
+    // the email are underlined, their labels are not); marks compose.
+    if (range.underline) inner = `<u${underlineAttrs}>${inner}</u>`;
+    if (range.strong) inner = `<strong${strongAttrs}>${inner}</strong>`;
+    out += inner;
+  }
+  return out;
 }
 
 /** Resolve the backward-compatible scalar strong mark and the richer Figma
@@ -269,9 +412,22 @@ export function textDefault(contract: Contract): string {
   return typeof text?.default === 'string' ? text.default : contract.name;
 }
 
-const isStructural = (part: Part) =>
+/** A part that lays out BOXES. A part that hosts TEXT does not: `display: flex`
+ *  there turns every inline run into a flex item, so the whitespace between
+ *  them collapses to nothing — `La ` + <strong>performance</strong> renders
+ *  "Laperformance". `content` parts were already excluded for this reason;
+ *  v19 marked literals made the same defect reachable through `text`
+ *  (ds.hero's sub-title declares `layout.grow` on a literal paragraph). The
+ *  part stays a flex ITEM of its parent — `grow` is emitted either way.
+ *
+ *  Classifying a PART is a fact about the contract, not about any one output
+ *  format, so every emitter shares this one definition — `emit-html.ts` and
+ *  `emit-react-inline.ts` import it here. Three private copies drifted apart
+ *  once already: the `text` clause had to be added to each by hand. */
+export const isStructural = (part: Part) =>
   Boolean(part.parts || part.slot || part.layout || part.layoutByProp) &&
   !part.content &&
+  part.text === undefined &&
   !part.component;
 
 /** CSS declarations for a layoutByProp override (v7). Reversed directions
@@ -344,7 +500,15 @@ export function validateContract(
     if (prop.type === 'boolean' || prop.type === 'number' || prop.type === 'text') return prop.type;
     return isEnum(prop) ? 'enum' : null;
   };
+  /** How a prop's shape reads in a refusal message. */
+  const kindLabel = (prop: Prop): string =>
+    isRichText(prop) ? 'rich-text' : (scalarKind(prop) ?? 'structured');
   const compatibleScalarProps = (parent: Prop, child: Prop): boolean => {
+    // v19: a live mapping into a rich-text child prop requires a rich-text
+    // PARENT prop. Threading a flat string in would strip the marks the child
+    // is now able to carry, and threading segments into a flat prop would
+    // stringify them — both directions refuse.
+    if (isRichText(parent) || isRichText(child)) return isRichText(parent) && isRichText(child);
     const parentKind = scalarKind(parent);
     const childKind = scalarKind(child);
     if (!parentKind || !childKind || parentKind !== childKind) return false;
@@ -370,16 +534,36 @@ export function validateContract(
           errors.push(`${contract.id}: part "${name}" sets unknown ${dep.id} prop "${propName}"`);
         }
         const depProp = dep?.props.find((dp) => dp.name === propName);
-        if (depProp && !scalarKind(depProp)) {
-          errors.push(`${contract.id}: part "${name}" sets non-scalar ${dep!.id} prop "${propName}" — composed-child props must be text, number, boolean, or enum scalars`);
+        // v19: a segment array is the ONE non-scalar value a parent may fix,
+        // and only against a rich-text child prop. Anywhere else the array
+        // would be stringified into the child's flat text — the fact silently
+        // destroyed — so it refuses by name.
+        if (Array.isArray(value)) {
+          if (depProp && !isRichText(depProp)) {
+            errors.push(
+              `${contract.id}: part "${name}" sets ${dep!.id} prop "${propName}" to rich-text segments, but that prop is "${kindLabel(depProp)}" — segment arrays are reserved for rich-text child props`,
+            );
+          }
+          continue;
         }
         const parentRef = typeof value === 'string' ? value.match(/^\{([a-z][\w-]*)\}$/) : null;
+        if (depProp && isRichText(depProp) && !parentRef) {
+          // One spelling per fact: a rich-text child prop is fixed by its
+          // segments, never by a bare string that would hide the marks.
+          errors.push(
+            `${contract.id}: part "${name}" sets rich-text ${dep!.id} prop "${propName}" to a plain value — spell it as segments ([{ "text": "…" }], one segment when the range is uniform)`,
+          );
+          continue;
+        }
+        if (depProp && !scalarKind(depProp) && !isRichText(depProp)) {
+          errors.push(`${contract.id}: part "${name}" sets non-scalar ${dep!.id} prop "${propName}" — composed-child props must be text, number, boolean, or enum scalars`);
+        }
         if (parentRef) {
           const parentProp = contract.props.find((pr) => pr.name === parentRef[1]);
           if (!parentProp) {
             errors.push(`${contract.id}: part "${name}" maps "{${parentRef[1]}}" but no parent prop "${parentRef[1]}" exists`);
           } else if (depProp && !compatibleScalarProps(parentProp, depProp)) {
-            errors.push(`${contract.id}: part "${name}" maps parent prop "${parentRef[1]}" (${scalarKind(parentProp) ?? 'structured'}) to incompatible ${dep!.id} prop "${propName}" (${scalarKind(depProp) ?? 'structured'})`);
+            errors.push(`${contract.id}: part "${name}" maps parent prop "${parentRef[1]}" (${kindLabel(parentProp)}) to incompatible ${dep!.id} prop "${propName}" (${kindLabel(depProp)})`);
           }
         } else if (depProp) {
           const kind = scalarKind(depProp);
@@ -485,6 +669,34 @@ export function validateContract(
           `${contract.id}: flat text part "${name}" declares rich-text marks — change the prop to type "rich-text" or remove marks`,
         );
       }
+    }
+    // v19 literal rich text: `text` stays the canonical flat string every
+    // existing reader (canvas, parity, catalog, spec sheet) consumes, and
+    // `textSegments` is the SAME string split into marked ranges. Holding the
+    // concatenation identical is what makes the second spelling safe — the two
+    // can never tell different stories about the same paragraph.
+    if (part.textSegments) {
+      if (part.text === undefined) {
+        errors.push(
+          `${contract.id}: part "${name}" declares textSegments with no "text" — the flat string stays canonical (the canvas draws it); segments only split it`,
+        );
+      } else {
+        const joined = part.textSegments.map((segment) => segment.text).join('');
+        if (joined !== part.text) {
+          errors.push(
+            `${contract.id}: part "${name}" textSegments spell ${JSON.stringify(joined)} but "text" is ${JSON.stringify(part.text)} — the concatenation must be identical`,
+          );
+        }
+      }
+      if (part.textSegments.some((segment) => segment.strong) && !part.textMarks?.strong) {
+        errors.push(
+          `${contract.id}: part "${name}" has strong textSegments but no textMarks.strong — marked weight is governed, never UA-default`,
+        );
+      }
+    } else if (part.textMarks) {
+      errors.push(
+        `${contract.id}: part "${name}" declares textMarks with no textSegments — nothing is marked`,
+      );
     }
     // v7 layoutByProp: the driving prop must be a declared enum and every
     // map key one of its values; component parts lay themselves out via
@@ -661,6 +873,15 @@ export function validateContract(
           `${contract.id}: part "${name}" carries channel "${cssProp}" as BOTH a literal and a declared fact — ambiguous, refused by name`,
         );
       }
+    }
+    // An inset on a part CSS never positions is a fact that renders nowhere —
+    // the browser drops it silently, so the contract would carry a receipt for
+    // something the surface does not do. Refuse by name instead.
+    const insets = INSET_CHANNELS.filter((side) => (part.declared ?? {})[side] !== undefined);
+    if (insets.length > 0 && (part.declared ?? {}).position !== 'absolute') {
+      errors.push(
+        `${contract.id}: part "${name}" declares inset ${insets.map((s) => `"${s}"`).join(', ')} without \`position: "absolute"\` — CSS ignores insets on a static part, so the fact would never render`,
+      );
     }
     for (const [state, overrides] of Object.entries(part.declaredStates ?? {})) {
       if (!(state in STATE_SELECTORS)) {
@@ -849,13 +1070,29 @@ export function validateContract(
           const depProp = dep.props.find((dp) => dp.name === field);
           if (!depProp) {
             errors.push(`${contract.id}: part "${name}" repeat field "${field}" names no ${dep.id} prop`);
+          } else if (typeof ftype === 'object') {
+            // v16: a per-item ENUM field. The child must own the same enum
+            // vocabulary — a field value the child cannot spell would reach
+            // neither the child's code prop nor its Figma variant values.
+            if (!isEnum(depProp)) {
+              errors.push(
+                `${contract.id}: part "${name}" repeat field "${field}" (${arrayFieldKind(ftype)}) does not match ${dep.id} prop "${field}" (${typeof depProp.type === 'object' ? JSON.stringify(depProp.type) : depProp.type}) — a per-item enum field needs an enum prop on the child`,
+              );
+            } else {
+              const foreign = ftype.enum.filter((v) => !depProp.type.enum.includes(v));
+              if (foreign.length > 0) {
+                errors.push(
+                  `${contract.id}: part "${name}" repeat field "${field}" declares value(s) ${foreign.map((v) => `"${v}"`).join(', ')} that ${dep.id} prop "${field}" does not — a field's enum must be a subset of the child's`,
+                );
+              }
+            }
           } else if (
             (ftype === 'text'
               ? depProp.type !== 'text' && depProp.type !== 'rich-text'
               : depProp.type !== FIELD_TO_PROP[ftype])
           ) {
             errors.push(
-              `${contract.id}: part "${name}" repeat field "${field}" (${ftype}) does not match ${dep.id} prop "${field}" (${typeof depProp.type === 'object' ? JSON.stringify(depProp.type) : depProp.type}) — per-item enum differences are P10 and stay receipted`,
+              `${contract.id}: part "${name}" repeat field "${field}" (${ftype}) does not match ${dep.id} prop "${field}" (${typeof depProp.type === 'object' ? JSON.stringify(depProp.type) : depProp.type}) — per-item enum differences ride an enum FIELD (v16), never a mismatched scalar`,
             );
           }
         }
@@ -864,6 +1101,14 @@ export function validateContract(
             const ftype = rp.type.arrayOf[key];
             if (ftype === undefined) {
               errors.push(`${contract.id}: part "${name}" repeat sample[${i}] key "${key}" is not a field of "${part.repeat.itemsProp}"`);
+            } else if (typeof ftype === 'object') {
+              // The enum is enforced on the OBSERVED sample too: it is what the
+              // static surfaces and the canvas actually render.
+              if (typeof value !== 'string' || !ftype.enum.includes(value)) {
+                errors.push(
+                  `${contract.id}: part "${name}" repeat sample[${i}].${key} is ${JSON.stringify(value)} but the field allows ${ftype.enum.join('|')}`,
+                );
+              }
             } else if ((ftype === 'boolean') !== (typeof value === 'boolean') || (ftype === 'number') !== (typeof value === 'number')) {
               errors.push(`${contract.id}: part "${name}" repeat sample[${i}].${key} is a ${typeof value} but the field is ${ftype}`);
             }
@@ -1387,10 +1632,10 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       if (decls.length > 0) {
         lines.push('', `.${name} {`, ...decls.map((d) => `  ${d};`), '}');
       }
-      const strong = richTextStrongStyle(part.content?.marks?.strong);
+      const strong = richTextStrongStyle(part.content?.marks?.strong ?? part.textMarks?.strong);
       if (strong.fontWeight) {
         const tokenPath = strong.fontWeight.startsWith('{') ? stripBraces(strong.fontWeight) : null;
-        if (!tokenPath || checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
+        if (!tokenPath || checkToken(tokenPath, `anatomy.${name}.${part.content ? 'content.marks' : 'textMarks'}.strong`)) {
           const weight = tokenPath ? cssVar(tokenPath) : strong.fontWeight;
           const declarations = [`  font-weight: ${weight};`];
           if (strong.fontSize) declarations.push(`  font-size: ${strong.fontSize};`);
@@ -1398,6 +1643,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
           lines.push('', `.${name} > strong {`, ...declarations, '}');
         }
       }
+      if (hasUnderlinedSegment(part)) lines.push(underlineRule(`.${name}`));
     }
     return lines.join('\n') + '\n';
   }
@@ -1830,10 +2076,10 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       }
     }
     const nestedSubRules: string[] = [];
-    const strong = richTextStrongStyle(part.content?.marks?.strong);
+    const strong = richTextStrongStyle(part.content?.marks?.strong ?? part.textMarks?.strong);
     if (strong.fontWeight) {
       const tokenPath = strong.fontWeight.startsWith('{') ? stripBraces(strong.fontWeight) : null;
-      if (!tokenPath || checkToken(tokenPath, `anatomy.${name}.content.marks.strong`)) {
+      if (!tokenPath || checkToken(tokenPath, `anatomy.${name}.${part.content ? 'content.marks' : 'textMarks'}.strong`)) {
         const weight = tokenPath ? cssVar(tokenPath) : strong.fontWeight;
         const declarations = [`  font-weight: ${weight};`];
         if (strong.fontSize) declarations.push(`  font-size: ${strong.fontSize};`);
@@ -1842,6 +2088,9 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
           `\n.${name} > strong {\n${declarations.join('\n')}\n}`,
         );
       }
+    }
+    if (hasUnderlinedSegment(part)) {
+      nestedSubRules.push('\n' + underlineRule(`.${name}`));
     }
     if (part.animation) {
       decls.push(
@@ -2094,7 +2343,7 @@ function codeOnlyRequiredTextSample(prop: Prop): string {
 
 function depAttrString(
   dep: Contract,
-  fixedProps: Record<string, string | boolean | number>,
+  fixedProps: Record<string, ComponentPropValue>,
   parent?: Contract,
   omitChildren = false,
 ): string {
@@ -2103,8 +2352,17 @@ function depAttrString(
     const depProp = dep.props.find((p) => p.name === propName);
     if (omitChildren && depProp?.bindings.code.prop === 'children') continue;
     const codeName = depProp?.bindings.code.prop ?? propName;
+    // v19: a rich-text child prop receives its segments as prop DATA. The
+    // referee has already refused a segment array anywhere else.
+    if (Array.isArray(value)) {
+      parts.push(` ${codeName}={${JSON.stringify(value)}}`);
+      continue;
+    }
     if (typeof value === 'boolean') {
-      parts.push(value ? ` ${codeName}` : '');
+      // `false` MUST be passed explicitly. Omitting it lets the child fall back
+      // to its OWN default, so a child defaulting to `true` would render true
+      // where the contract declared false — the fact inverted, silently.
+      parts.push(value ? ` ${codeName}` : ` ${codeName}={false}`);
       continue;
     }
     if (typeof value === 'number') {
@@ -2129,12 +2387,15 @@ function depAttrString(
  * declared default text. */
 function componentChildrenJsx(
   dep: Contract,
-  fixedProps: Record<string, string | boolean | number>,
+  fixedProps: Record<string, ComponentPropValue>,
   parent?: Contract,
 ): string | undefined {
   for (const [propName, value] of Object.entries(fixedProps)) {
     const depProp = dep.props.find((p) => p.name === propName);
     if (depProp?.bindings.code.prop !== 'children') continue;
+    // Segments stay DATA through the children position: `String(value)` here
+    // would render "[object Object]" — the fact destroyed without a word.
+    if (Array.isArray(value)) return `{${JSON.stringify(value)}}`;
     if (typeof value === 'string') {
       const parentRef = value.match(PARENT_PROP_REF);
       if (parentRef && parent) {
@@ -2251,7 +2512,7 @@ export function generateTsx(
       propLines.push(`${doc}  ${p.bindings.code.prop}?: ${union};`);
     } else if (isArrayType(p)) {
       const fields = Object.entries(p.type.arrayOf)
-        .map(([f, t]) => `${f}: ${t === 'text' ? 'string' : t}`)
+        .map(([f, t]) => `${f}: ${arrayFieldTsType(t)}`)
         .join('; ');
       propLines.push(`${doc}  ${p.bindings.code.prop}?: Array<{ ${fields} }>;`);
     } else if (isRichText(p)) {
@@ -2635,7 +2896,7 @@ export function generateTsx(
       const fixedAttrs = depAttrString(dep, part.component.props ?? {}, contract);
       let childrenField: string | null = null;
       let childrenExpr: string | null = null;
-      const fieldAttrs = Object.keys((rp.type as { arrayOf: Record<string, string> }).arrayOf)
+      const fieldAttrs = (isArrayType(rp) ? Object.keys(rp.type.arrayOf) : [])
         .map((field) => {
           const depProp = dep.props.find((p) => p.name === field)!;
           if (depProp.bindings.code.prop === 'children') {
@@ -2698,9 +2959,18 @@ export function generateTsx(
     }
     if (part.text !== undefined) {
       const el = part.element ?? 'span';
+      // A "\n" in the literal must reach the DOM: raw JSX children collapse
+      // newlines at COMPILE time, so multi-paragraph text is emitted as a
+      // string EXPRESSION — the one spelling JSX cannot reflow. v19 segments
+      // ride the same spelling per range, so a "\n" INSIDE one survives too.
+      const literal = part.textSegments
+        ? literalSegmentsJsx(part.textSegments)
+        : HAS_LINE_SEPARATOR.test(part.text)
+          ? `{${JSON.stringify(normalizeLineSeparators(part.text))}}`
+          : part.text;
       return wrapPresence(
         part,
-        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${renderedPartAttrs(part)}>${part.text}</${el}>`,
+        `<${el} className={${stylesRef(partName)}}${controlIdAttrFor(partName)}${renderedPartAttrs(part)}>${literal}</${el}>`,
       );
     }
     if (part.meter) {

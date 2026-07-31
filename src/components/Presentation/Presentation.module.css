@@ -1,21 +1,32 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v1.0.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.1.0)
  * Regenerate with: npm run generate
  */
 
 .root {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 32px;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 16px;
+  width: 627px;
 }
 
 .Texte {
   color: var(--color-noir);
+  font-size: var(--font-size-14);
+  line-height: 24px;
+}
+
+.Texte > strong {
+  font-weight: var(--font-weight-bold);
 }

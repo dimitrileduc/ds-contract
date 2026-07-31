@@ -1,0 +1,1448 @@
+{
+  "facts": [
+    {
+      "id": "footer.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "detail": "COMPONENT autonome \"Footer\" (aucun COMPONENT_SET parent, une seule variante) 1728x459 @40,18585, layoutMode=VERTICAL counterAxisSizingMode=FIXED layoutWrap=NO_WRAP layoutSizingHorizontal=FIXED layoutSizingVertical=HUG, fills=[] clipsContent=false > [Background RECTANGLE 2120:4768, Row FRAME 2170:7022, Spacer FRAME 2147:5518, Separator LINE 2120:4770, Spacer FRAME 2147:5519, Copyright INSTANCE 2120:4769]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.root-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "channel": "itemSpacing",
+        "detail": "la clé itemSpacing est ABSENTE du node (REST omet la valeur 0) — les six enfants sont donc collés. Le contrat ne pose aucun gap sur /anatomy/root/layout et le CSS généré n'émet aucune déclaration gap : les deux surfaces valent 0, accord mesuré et non un défaut compensé"
+      },
+      "figmaExpectation": {
+        "channel": "root.itemSpacing",
+        "value": 0
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.root-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal=FIXED",
+        "raw": 1728
+      },
+      "figmaExpectation": {
+        "channel": "root.width",
+        "value": "1728px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.padding-root-top",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "channel": "paddingTop",
+        "raw": 128,
+        "detail": "vérifié par la géométrie : Row 2170:7022 démarre à y=18713 = 18585 + 128"
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-top",
+        "value": "128px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-top"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.padding-root-right",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "channel": "paddingRight",
+        "raw": 89
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-right",
+        "value": "89px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-right"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.padding-root-bottom",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "channel": "paddingBottom",
+        "raw": 32,
+        "detail": "vérifié par la géométrie : Copyright 2120:4769 finit à y=19012 et le master à 18585 + 459 = 19044"
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-bottom",
+        "value": "32px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-bottom"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.padding-root-left",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "channel": "paddingLeft",
+        "raw": 89,
+        "detail": "vérifié par la géométrie : Row 2170:7022 démarre à x=129 = 40 + 89 ; la largeur de contenu résolue est donc 1550 = 1728 − 89 − 89, exactement la largeur FILL des deux Spacer et du Separator"
+      },
+      "figmaExpectation": {
+        "channel": "root.padding-left",
+        "value": "89px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/padding-left"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.visual.background-color",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4768",
+        "channel": "fills[0]",
+        "raw": "SOLID {r:0.148946,g:0.157133,b:0.173077,a:1} = #26282C, boundVariables.fills = VariableID:5:40",
+        "detail": "le master lui-même ne porte aucun fill (fills=[]) : toute la couleur de fond du footer vient de ce rectangle"
+      },
+      "figmaExpectation": {
+        "channel": "Background.fills[0]",
+        "value": "{color.noir-bleute}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Background/tokens/background-color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Background\"]"
+      }
+    },
+    {
+      "id": "footer.structure.background-absolute",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4768",
+        "channel": "layoutPositioning",
+        "raw": "ABSOLUTE",
+        "detail": "le rectangle est SORTI du flux auto-layout vertical (layoutPositioning=ABSOLUTE, constraints TOP/LEFT) : c'est une toile de fond pleine page derrière les cinq autres enfants. Le contrat ne porte aucune position sur cette part, et Footer.tsx émet <div className={styles.Background}></div> comme PREMIER enfant en flux du flex column — une boîte vide de hauteur 0 qui ne peint rien et ne décale rien"
+      },
+      "figmaExpectation": {
+        "channel": "Background.layoutPositioning",
+        "value": "ABSOLUTE"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Background/layout/position"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Background\"]"
+      }
+    },
+    {
+      "id": "footer.structure.background-size",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4768",
+        "channel": "absoluteBoundingBox / layoutSizingHorizontal+Vertical",
+        "raw": "1728x459 @40,18585 — FIXED/FIXED, exactement les bornes du master (débord des paddings compris)"
+      },
+      "figmaExpectation": {
+        "channel": "Background.height",
+        "value": "459px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Background/literals/height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Background\"]"
+      }
+    },
+    {
+      "id": "footer.structure.row",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:7022",
+        "detail": "FRAME \"Row\" 1385x127 @129,18713, layoutSizingHorizontal=FIXED layoutSizingVertical=FIXED layoutGrow=0 layoutAlign=INHERIT > 5 enfants : Col 5 2169:5851, FooterColumn 2120:4779, FooterColumn 2120:4780, FooterColumn 2120:4781, Col 1 2169:5850"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Row\"]"
+      }
+    },
+    {
+      "id": "footer.structure.row-no-autolayout",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2170:7022",
+        "channel": "layoutMode",
+        "raw": "clé ABSENTE du node",
+        "detail": "Row n'a AUCUN auto-layout : ses cinq enfants sont placés par coordonnées absolues (x = 129, 439, 749, 1059, 1369) et aucun ne porte layoutSizingHorizontal/layoutGrow/layoutAlign. Le contrat ne déclare aucun layout sur cette part ; l'émetteur react retombe sur display:flex (direction row par défaut), soit un placement en flux là où Figma place en absolu"
+      },
+      "figmaExpectation": {
+        "channel": "Row.layoutMode",
+        "value": "absent (aucun auto-layout — enfants positionnés en absolu)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/layout"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Row\"]"
+      }
+    },
+    {
+      "id": "footer.structure.row-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:7022",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal=FIXED",
+        "raw": 1385,
+        "detail": "Row est FIXED à 1385px, PAS FILL : il laisse 165px de vide à droite des 1550px de largeur de contenu (129 → 1514, contenu jusqu'à 1679)"
+      },
+      "figmaExpectation": {
+        "channel": "Row.width",
+        "value": "1385px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Row\"]"
+      }
+    },
+    {
+      "id": "footer.structure.row-visual-order",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2170:7022",
+        "channel": "children[].absoluteBoundingBox.x",
+        "raw": "Col 1 2169:5850 x=129 · FooterColumn 2120:4781 (Adresse) x=439 · FooterColumn 2120:4780 (Horaires) x=749 · FooterColumn 2120:4779 (Contact) x=1059 · Col 5 2169:5851 x=1369",
+        "detail": "l'ordre du tableau children (Col 5, Contact, Horaires, Adresse, Col 1) est l'INVERSE de l'ordre visuel gauche→droite. Le contrat reconduit l'ordre du tableau (parts = col5, FooterColumn, col1) et le CSS émet display:flex sans direction : le rendu place col5 à gauche et col1 à droite, soit le miroir de Figma"
+      },
+      "figmaExpectation": {
+        "channel": "Row.visualColumnOrder",
+        "value": "row-reverse"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Row\"]"
+      }
+    },
+    {
+      "id": "footer.structure.col5",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:5851",
+        "detail": "FRAME \"Col 5\" 145x78 @1369,18713, layoutMode=VERTICAL layoutSizingHorizontal=HUG layoutSizingVertical=HUG > [TitreReseaux TEXT 2120:4773, Réseaux sociaux FRAME 2120:4774]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__col5\"]"
+      }
+    },
+    {
+      "id": "footer.structure.gap-col5",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:5851",
+        "channel": "itemSpacing",
+        "raw": 16,
+        "detail": "confirmé par la géométrie : TitreReseaux finit à y=18743, Réseaux sociaux démarre à y=18759"
+      },
+      "figmaExpectation": {
+        "channel": "col5.gap",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__col5\"]"
+      }
+    },
+    {
+      "id": "footer.content.titre-reseaux",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4773",
+        "detail": "TEXT \"TitreReseaux\" — characters littéraux du master (aucune propriété TEXT ne les pilote : le master n'expose aucune propriété de composant)",
+        "textLayer": "2120:4773",
+        "channel": "characters"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__TitreReseaux\"]"
+      }
+    },
+    {
+      "id": "footer.visual.titre-reseaux-color",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4773",
+        "channel": "fills[0].color",
+        "raw": "SOLID {r:0.976112,g:0.540303,b:0.042236,a:1} = #F98A0B, boundVariables.fills = VariableID:4:28"
+      },
+      "figmaExpectation": {
+        "channel": "TitreReseaux.color",
+        "value": "{color.orange}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__TitreReseaux\"]"
+      }
+    },
+    {
+      "id": "footer.visual.titre-reseaux-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4773",
+        "channel": "style.fontSize",
+        "raw": 24,
+        "detail": "Footer.module.css ne pose que color sur .TitreReseaux : ni font-size, ni line-height, ni font-weight ne sont émis"
+      },
+      "figmaExpectation": {
+        "channel": "TitreReseaux.font-size",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__TitreReseaux\"]"
+      }
+    },
+    {
+      "id": "footer.visual.titre-reseaux-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4773",
+        "channel": "style.lineHeightPx",
+        "raw": 30,
+        "detail": "lineHeightUnit=PIXELS, lineHeightPercentFontSize=125 — 30px est bien la valeur résolue"
+      },
+      "figmaExpectation": {
+        "channel": "TitreReseaux.line-height",
+        "value": "30px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__TitreReseaux\"]"
+      }
+    },
+    {
+      "id": "footer.semantic.titre-reseaux-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4773",
+        "detail": "TEXT layer \"TitreReseaux\" — projeté en <span> par l'émetteur react (part avec text et sans element déclaré)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__TitreReseaux\"]"
+      }
+    },
+    {
+      "id": "footer.structure.reseaux-sociaux",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4774",
+        "channel": "layoutMode + counterAxisAlignItems",
+        "raw": "HORIZONTAL, counterAxisAlignItems=CENTER",
+        "detail": "FRAME \"Réseaux sociaux\" 80x32 @1369,18759, HUG/HUG > [Facebook INSTANCE 2147:5474, Instagram INSTANCE 2147:5476]. Le contrat porte layout.direction=row + layout.align=center : les deux canaux sont bien reconduits (CSS flex-direction:row + align-items:center)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/layout"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__rseauxSociaux\"]"
+      }
+    },
+    {
+      "id": "footer.structure.gap-reseaux-sociaux",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4774",
+        "channel": "itemSpacing",
+        "raw": 16,
+        "detail": "confirmé par la géométrie : Facebook finit à x=1401, Instagram démarre à x=1417"
+      },
+      "figmaExpectation": {
+        "channel": "rseauxSociaux.gap",
+        "value": "16px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__rseauxSociaux\"]"
+      }
+    },
+    {
+      "id": "footer.composition.icone-facebook",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2147:5474",
+        "mainComponent": "2053:1259",
+        "detail": "INSTANCE \"Facebook\" 32x31.857126235961914 @1369,18759.072265625, fills du wrapper invisibles (visible=false) > VECTOR \"Tracé\" I2147:5474;2053:1258. Le contrat compose par icon.asset=\"facebook\" (registre gouverné) et Footer.tsx inline le SVG du registre dans un <span aria-hidden> via dangerouslySetInnerHTML"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/icon"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Facebook\"]"
+      }
+    },
+    {
+      "id": "footer.composition.icone-instagram",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2147:5476",
+        "mainComponent": "2053:1261",
+        "detail": "INSTANCE \"Instagram\" 32x32 @1417,18759 > VECTOR \"Tracé\" I2147:5476;2053:1260 ; contrat icon.asset=\"instagram\" size=32"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Instagram/icon"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Instagram\"]"
+      }
+    },
+    {
+      "id": "footer.visual.icones-couleur",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2147:5474;2053:1258",
+        "channel": "fills[0].color",
+        "raw": "SOLID {r:0.148946,g:0.157133,b:0.173077,a:1} = #26282C, boundVariables.fills = VariableID:5:40 — identique sur I2147:5476;2053:1260",
+        "detail": "MESURÉ : les deux tracés d'icône sont peints en {color.noir-bleute}, exactement la couleur du rectangle Background 2120:4768 sur lequel ils reposent — sombre sur sombre côté Figma. Le contrat ne porte AUCUNE couleur sur les parts Facebook/Instagram ; le SVG du registre utilise fill=\"currentColor\" et aucune règle .Facebook/.Instagram ni .root ne pose color, donc le navigateur hérite du noir par défaut. Aucune des deux surfaces ne porte donc de valeur gouvernée pour ce canal"
+      },
+      "figmaExpectation": {
+        "channel": "Facebook.Tracé.fills[0]",
+        "value": "{color.noir-bleute}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/tokens/color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Facebook\"]"
+      }
+    },
+    {
+      "id": "footer.structure.facebook-hauteur",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2147:5474",
+        "channel": "absoluteBoundingBox",
+        "raw": "32 x 31.857126235961914 (targetAspectRatio 47.99529266357422 / 47.781002044677734)",
+        "detail": "l'instance Facebook n'est pas carrée sur le canvas ; le contrat déclare icon.size=32 et Footer.module.css force .Facebook svg { width:32px; height:32px } — écart mesuré de 0.142873764038086px en hauteur. Instagram 2147:5476, lui, est exactement 32x32"
+      },
+      "figmaExpectation": {
+        "channel": "Facebook.height",
+        "value": "31.857126235961914px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/parts/Facebook/icon/size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Facebook\"]"
+      }
+    },
+    {
+      "id": "footer.composition.footer-column-repeat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4779",
+        "mainComponent": "2079:2246",
+        "detail": "TROIS instances du même master 2079:2246 dans Row : 2120:4779 (Contact, 310x100 @1059), 2120:4780 (Horaires, 310x127 @749), 2120:4781 (Adresse, 310x100 @439). Chacune est VERTICAL itemSpacing=16 FIXED/HUG. Le contrat compose l'enfant ds.footer-column via la part /anatomy/root/parts/Row/parts/FooterColumn (component.id) et son repeat (itemsProp=\"items\" + sample de 3 entrées). MESURÉ côté React : Footer.tsx écrit items?.map(...) et items n'a AUCUNE valeur par défaut, donc aux défauts ZÉRO FooterColumn est émis là où Figma en peint trois",
+        "observedInstanceProperties": {
+          "Titre#2079:38": "Contact",
+          "Texte#2079:39": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be"
+        }
+      },
+      "figmaExpectation": {
+        "channel": "Row.FooterColumn.instanceCount",
+        "value": 3
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/FooterColumn/component",
+        "childContractId": "ds.footer-column"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.repeat-sample-non-projete",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2170:7022",
+        "channel": "children[type=INSTANCE, componentId=2079:2246].length",
+        "raw": 3,
+        "detail": "le sample du repeat (3 entrées) est bien projeté dans Footer.stories.tsx (meta.args.items) mais PAS dans Footer.tsx : la signature est items?: Array<{texte,titre}> sans valeur par défaut, et items?.map sur undefined ne rend rien. Aux défauts la surface générée compte 0 colonne contre 3 sur le canvas — l'échantillon contractuel n'est donc pas une preuve de rendu"
+      },
+      "figmaExpectation": {
+        "channel": "FooterColumn.renderedCount@defaults",
+        "value": 3
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.footer-column-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4780",
+        "channel": "layoutSizingHorizontal + absoluteBoundingBox.width",
+        "raw": "FIXED 310px sur les trois instances ; 2120:4780 porte en plus overrides[].overriddenFields = [height, width]",
+        "detail": "ds.footer-column gèle literals.width = \"310px\" sur sa propre racine et le contrat footer ne pose aucun override : la largeur est donc portée, par l'enfant. Le pas de 310px entre les x (439 → 749 → 1059) confirme qu'aucun espace ne sépare les trois colonnes"
+      },
+      "figmaExpectation": {
+        "channel": "FooterColumn.width",
+        "value": "310px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__root\"]"
+      }
+    },
+    {
+      "id": "footer.content.footer-column-titres",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4779",
+        "property": "Titre#2079:38",
+        "textLayer": "I2120:4779;2079:2247",
+        "detail": "les trois titres relevés dans l'ordre du tableau children : 2120:4779 \"Contact\", 2120:4780 \"Horaires\", 2120:4781 \"Adresse\" — exactement l'ordre du sample contractuel. Le calque porte componentPropertyReferences.characters = Titre#2079:38, la propriété est donc réellement câblée côté canvas"
+      },
+      "figmaExpectation": {
+        "channel": "FooterColumn[2120:4779].Titre#2079:38",
+        "value": "Contact"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__Titre\"]"
+      }
+    },
+    {
+      "id": "footer.content.footer-column-textes",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4779",
+        "property": "Texte#2079:39",
+        "textLayer": "I2120:4779;2079:2248",
+        "detail": "les trois textes relevés : 2120:4779 \"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\", 2120:4780 \"Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00\", 2120:4781 \"Rue Alfred Drèze 7,  4860 Pepinster\" — identiques au sample contractuel, doubles espaces compris"
+      },
+      "figmaExpectation": {
+        "channel": "FooterColumn[2120:4779].Texte#2079:39",
+        "value": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__Texte\"]"
+      }
+    },
+    {
+      "id": "footer.semantic.footer-column-texte-underline",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "I2120:4779;2079:2248",
+        "channel": "styleOverrideTable",
+        "raw": "{\"2\":{\"textDecoration\":\"UNDERLINE\"}} appliqué par characterStyleOverrides sur deux plages d'index inclusifs : 6→25 (\"+32 (0)87 46 32 66\\r \") et 34→49 (\"info@piqueray.be\")",
+        "detail": "MESURÉ : les trois instances déclarent overrides[].overriddenFields = [textDecoration] sur leur calque Texte — c'est donc une surcharge de l'USAGE footer, pas un trait du master ds.footer-column. Le numéro de téléphone et l'adresse e-mail sont soulignés sur une PLAGE de caractères ; ni ds.footer ni ds.footer-column ne portent de vocabulaire de style par plage, le rendu React sort donc du texte sans aucun soulignement"
+      },
+      "figmaExpectation": {
+        "channel": "FooterColumn[2120:4779].Texte.styleOverrideTable[\"2\"].textDecoration",
+        "value": "UNDERLINE"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__Texte\"]"
+      }
+    },
+    {
+      "id": "footer.semantic.footer-column-texte-caracteres-invisibles",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2120:4779;2079:2248",
+        "channel": "characters",
+        "raw": "\"Tél : +32 (0)87 46 32 66\\r  Email: info@piqueray.be\" — U+000D (CR) suivi de DEUX espaces",
+        "detail": "même classe que coordonnees.semantic.contact-valeur : le retour chariot nu et les doubles espaces sont reconduits verbatim dans le sample du contrat, puis passés tels quels en enfant JSX. Le CR n'est pas un saut de ligne en HTML (white-space par défaut) : la ligne se replie sur un simple espace, contrairement au canvas qui rompt la ligne"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__Texte\"]"
+      }
+    },
+    {
+      "id": "footer.property.items",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "property": "componentPropertyDefinitions",
+        "detail": "MESURÉ : le master 2120:4785 n'expose AUCUNE propriété de composant (clés du node : id, name, type, scrollBehavior, children, blendMode, clipsContent, background, fills, strokes, strokeWeight, strokeAlign, backgroundColor, layoutMode, counterAxisSizingMode, paddingLeft, paddingRight, paddingTop, paddingBottom, layoutWrap, absoluteBoundingBox, absoluteRenderBounds, constraints, layoutSizingHorizontal, layoutSizingVertical, effects, interactions, complexStrokeProperties). La collection n'a donc aucun porteur sur le canvas : Figma exprime les trois colonnes comme trois INSTANCE sœurs, pas comme une propriété tableau. Côté React la prop existe (items?: Array<{texte,titre}>) mais sans défaut, si bien qu'aucune capture ni interface ne prouve sa propagation — d'où la sonde. LIMITE D'INSTRUMENT NOMMÉE : pilot.ts compare String(probe.value) au textContent du sélecteur ; une sonde de type arrayOf ne peut donc PAS ressortir positive, même quand la projection fonctionne (items?.map émet bien <FooterColumn texte titre>). Le fait reste non positif, et le motif rapporté par l'instrument (probe-not-projected) ne sera pas la cause réelle"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__Titre\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "items",
+        "value": [
+          {
+            "titre": "PREUVE-013 — TITRE b7d2",
+            "texte": "PREUVE-013 — TEXTE b7d2"
+          }
+        ]
+      }
+    },
+    {
+      "id": "footer.property.items-binding-none",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "channel": "componentPropertyDefinitions",
+        "raw": "clé absente du node",
+        "detail": "le contrat déclare props[0].bindings.figma.kind = \"NONE\" sans citer d'anatomie, d'échantillon ni d'occurrence qui justifierait cette absence de liaison. Rien dans /props/0 ne renvoie au repeat ni aux trois instances 2120:4779/4780/4781 qui portent réellement la collection sur le canvas. Fail-closed : une liaison NONE non justifiée reste limited / not-proven, jamais conforme par défaut"
+      },
+      "figmaExpectation": {
+        "channel": "root.componentPropertyDefinitions",
+        "value": "absent — le master n'expose aucune propriété de composant"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/bindings/figma/kind"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"FooterColumn__root\"]"
+      }
+    },
+    {
+      "id": "footer.structure.col1",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:5850",
+        "detail": "FRAME \"Col 1\" 219.5x120 @129,18713 — comme Row, AUCUN layoutMode et aucune clé de dimensionnement auto-layout > [PiquerayLogo INSTANCE 2120:4783 @129,18713, Bouton INSTANCE 2120:4784 @129.5,18779]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__col1\"]"
+      }
+    },
+    {
+      "id": "footer.structure.col1-axe",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:5850",
+        "channel": "children[].absoluteBoundingBox.y",
+        "raw": "PiquerayLogo y=18713 (h=34) au-dessus de Bouton y=18779 (h=54)",
+        "detail": "sur le canvas les deux enfants sont EMPILÉS verticalement. Le contrat ne déclare aucun layout sur col1, donc Footer.module.css n'émet que .col1 { display: flex } : direction row par défaut, le logo et le bouton sortent côte à côte"
+      },
+      "figmaExpectation": {
+        "channel": "col1.flex-direction",
+        "value": "column"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/layout"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__col1\"]"
+      }
+    },
+    {
+      "id": "footer.structure.col1-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:5850",
+        "channel": "children[].absoluteBoundingBox (écart vertical)",
+        "raw": "logo bas = 18713 + 34 = 18747 ; bouton haut = 18779 → 32px",
+        "detail": "col1 n'ayant pas d'auto-layout, l'écart est géométrique et non un itemSpacing ; le contrat n'en porte rien"
+      },
+      "figmaExpectation": {
+        "channel": "col1.gap",
+        "value": "32px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__col1\"]"
+      }
+    },
+    {
+      "id": "footer.composition.piqueray-logo",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4783",
+        "mainComponent": "4:15",
+        "observedInstanceProperties": {
+          "Couleur": "Blanc"
+        },
+        "detail": "INSTANCE \"PiquerayLogo\" 180.0985565185547x34, preserveRatio=true, overrides[].overriddenFields = [height, width] > [VECTOR \"Marque\" I2120:4783;4:16, GROUP \"Texte\" I2120:4783;4:17 de 8 tracés]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/component",
+        "childContractId": "ds.piqueray-logo"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"PiquerayLogo__root\"]"
+      }
+    },
+    {
+      "id": "footer.composition.piqueray-logo-couleur",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4783",
+        "property": "Couleur",
+        "raw": "Blanc",
+        "detail": "le contrat footer passe explicitement props.couleur = \"blanc\" à l'enfant ; PiquerayLogo.tsx applique styles[`couleur-${couleur}`], la classe .couleur-blanc existe bien dans PiquerayLogo.module.css"
+      },
+      "figmaExpectation": {
+        "channel": "PiquerayLogo.Couleur (VARIANT \"Blanc\" → valeur d'enum contractuelle \"blanc\", mappage déclaré par ds.piqueray-logo /props/0/bindings/figma/values)",
+        "value": "blanc"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/component/props/couleur",
+        "bindingProperty": "Couleur"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"PiquerayLogo__couleur-blanc\"]"
+      }
+    },
+    {
+      "id": "footer.structure.piqueray-logo-size",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4783",
+        "channel": "absoluteBoundingBox",
+        "raw": "180.0985565185547 x 34 — width et height figurent dans overriddenFields, l'usage footer redimensionne donc l'instance",
+        "detail": "le contrat footer ne pose aucune dimension sur cette part ; la taille rendue dépendra entièrement de ds.piqueray-logo, jamais de la surcharge d'usage relevée ici"
+      },
+      "figmaExpectation": {
+        "channel": "PiquerayLogo.width",
+        "value": "180.0985565185547px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/parts/PiquerayLogo/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"PiquerayLogo__root\"]"
+      }
+    },
+    {
+      "id": "footer.composition.button",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4784",
+        "mainComponent": "6:135",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Contactez-nous",
+          "Style": "Outline blanc",
+          "Icone droite#2024:7": false,
+          "Icone gauche#2024:0": false,
+          "Glyphe droite#2028:21": "6:104",
+          "Glyphe gauche#2028:14": "6:99"
+        },
+        "detail": "INSTANCE \"Bouton\" 219x54 @129.5,18779, HORIZONTAL itemSpacing=10 padding 16/32/16/32 HUG/HUG primaryAxis=CENTER counterAxis=CENTER ; boundVariables fills et strokes → VariableID:4:29 ({color.blanc}), individualStrokeWeights → VariableID:2027:974. Les deux glyphes I2120:4784;6:136 et I2120:4784;6:138 sont présents mais visible=false. Le contrat écrit { \"id\": \"ds.button\" } sans aucune prop"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/parts/Bouton/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "footer.composition.button-variant",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4784",
+        "property": "Style",
+        "raw": "Outline blanc",
+        "detail": "le contrat footer ne passe aucune prop au bouton ; Button.tsx retombe donc sur variant=\"default\" et applique .variant-default au lieu de .variant-outlineBlanc — un bouton plein là où Figma dessine un contour blanc sur fond sombre"
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Style (VARIANT \"Outline blanc\" → valeur d'enum contractuelle \"outlineBlanc\", mappage déclaré par ds.button /props/0/bindings/figma/values)",
+        "value": "outlineBlanc"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/variant",
+        "bindingProperty": "Style"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Button__variant-outlineBlanc\"]"
+      }
+    },
+    {
+      "id": "footer.composition.button-libelle",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4784",
+        "property": "Libelle#2044:28",
+        "textLayer": "I2120:4784;6:137",
+        "raw": "\"Contactez-nous\" — TEXT 155x22, fontSize 16 lineHeightPx 22 fontWeight 500",
+        "detail": "le contrat footer n'écrit aucun text sur la part Bouton ; Footer.tsx émet <Button>Contactez-nous</Button> parce que ds.button porte lui-même children = \"Contactez-nous\" par défaut. Le libellé rendu COÏNCIDE donc avec Figma, mais par le défaut de l'enfant et non par une valeur portée par ds.footer — si le défaut de ds.button changeait, le footer suivrait silencieusement"
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Libelle",
+        "value": "Contactez-nous"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/text",
+        "bindingProperty": "Libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Button__label\"]"
+      }
+    },
+    {
+      "id": "footer.composition.button-icones",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4784",
+        "property": "Icone droite#2024:7",
+        "raw": false,
+        "detail": "les deux booléens d'icône valent false sur l'instance et les glyphes I2120:4784;6:136 (ArrowLeft) / I2120:4784;6:138 (ArrowRight) portent visible=false. Les défauts de ds.button valent également false, donc le rendu s'accorde — mais le contrat footer ne porte pas ces valeurs, l'accord est une coïncidence de défauts"
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Icone droite (BOOLEAN)",
+        "value": false
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Row/parts/col1/parts/Bouton/component/props/iconRight",
+        "bindingProperty": "Icone droite"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Button__iconRight\"]"
+      }
+    },
+    {
+      "id": "footer.structure.spacer-height",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2147:5518",
+        "channel": "absoluteBoundingBox.height / layoutSizingVertical=FIXED",
+        "raw": 121,
+        "detail": "FRAME \"Spacer\" 1550x121 @129,18840, sans enfant, clipsContent=true. Le contrat déclare la part Spacer comme un objet VIDE ({}) : aucune hauteur portée. CONSTAT AGGRAVANT : .Spacer est absente de Footer.module.css alors que Footer.tsx écrit className={styles.Spacer} — styles.Spacer vaut undefined, le div sort sans classe ni style. Même classe de défaut que celle trouvée en vague 1 sur SAV.tsx et Coordonnees.tsx"
+      },
+      "figmaExpectation": {
+        "channel": "Spacer.height",
+        "value": "121px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Spacer/literals/height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Spacer\"]"
+      }
+    },
+    {
+      "id": "footer.structure.spacer2-height",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2147:5519",
+        "channel": "absoluteBoundingBox.height / layoutSizingVertical=FIXED",
+        "raw": 27,
+        "detail": "second FRAME \"Spacer\" 1550x27 @129,18961, sans enfant, layoutAlign=STRETCH layoutSizingHorizontal=FILL. Le contrat déclare la part spacer2 comme un objet VIDE ({}) et .spacer2 est elle aussi absente de Footer.module.css tout en étant référencée par Footer.tsx → nœud rendu sans classe ni style"
+      },
+      "figmaExpectation": {
+        "channel": "spacer2.height",
+        "value": "27px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/spacer2/literals/height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__spacer2\"]"
+      }
+    },
+    {
+      "id": "footer.visual.separator-color",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4770",
+        "channel": "strokes[0].color",
+        "raw": "SOLID {r:1,g:1,b:1,a:1} = #FFFFFF, boundVariables.strokes = VariableID:4:29",
+        "detail": "le contrat porte border-color = {color.blanc} et Footer.module.css émet border-color: var(--color-blanc) — canal reconduit"
+      },
+      "figmaExpectation": {
+        "channel": "Separator.strokes[0]",
+        "value": "{color.blanc}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Separator/tokens/border-color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Separator\"]"
+      }
+    },
+    {
+      "id": "footer.visual.separator-width",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4770",
+        "channel": "strokeWeight",
+        "raw": "1 (strokeAlign=CENTER)",
+        "detail": "le contrat ne porte AUCUNE largeur de bordure ; Footer.module.css émet .Separator { border-color: var(--color-blanc); border-style: solid; } sans border-width, si bien que la valeur initiale CSS medium (3px sur les navigateurs de référence) s'applique — un trait trois fois trop épais"
+      },
+      "figmaExpectation": {
+        "channel": "Separator.border-width",
+        "value": "1px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Separator/tokens/border-width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Separator\"]"
+      }
+    },
+    {
+      "id": "footer.semantic.separator-line",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4770",
+        "channel": "type",
+        "raw": "LINE 1550x0 — une géométrie à une seule arête, fills=[] et strokes=[SOLID blanc]",
+        "detail": "un LINE Figma est un trait unique ; le contrat le modélise par un couple border-color / border-style sans côté, donc Footer.tsx émet <div className={styles.Separator}></div> dont la bordure peint les QUATRE côtés d'une boîte de hauteur nulle (haut + bas + deux montants), là où le canvas ne peint qu'une arête horizontale"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Separator"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Separator\"]"
+      }
+    },
+    {
+      "id": "footer.structure.separator-largeur",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4770",
+        "channel": "layoutSizingHorizontal / layoutAlign",
+        "raw": "FILL, layoutAlign=STRETCH, layoutGrow=0 → 1550px = 1728 − 89 − 89",
+        "detail": "le contrat ne porte ni largeur ni grow sur cette part ; la largeur rendue vient uniquement du comportement de bloc CSS, jamais d'un canal gouverné"
+      },
+      "figmaExpectation": {
+        "channel": "Separator.layoutSizingHorizontal",
+        "value": "FILL"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Separator/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__Separator\"]"
+      }
+    },
+    {
+      "id": "footer.composition.copyright",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4769",
+        "mainComponent": "2086:2330",
+        "observedInstanceProperties": {
+          "Texte#2086:40": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+        },
+        "detail": "INSTANCE \"Copyright\" 618x24 @129,18988, VERTICAL HUG/HUG, overrides=[] > TEXT I2120:4769;2086:2331 (fontSize 14, lineHeightPx 24, fills → VariableID:4:29 = {color.blanc})"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Copyright/component",
+        "childContractId": "ds.copyright"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Copyright__root\"]"
+      }
+    },
+    {
+      "id": "footer.composition.copyright-texte",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4769",
+        "property": "Texte#2086:40",
+        "textLayer": "I2120:4769;2086:2331",
+        "detail": "89 caractères. Le contrat footer route explicitement la valeur : component.props.texte reprend la chaîne mot pour mot, et Footer.tsx la passe en littéral à <Copyright texte=... /> — canal reconduit sans dépendre du défaut de l'enfant"
+      },
+      "figmaExpectation": {
+        "channel": "Copyright.Texte#2086:40",
+        "value": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Copyright/component/props/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Copyright__Texte\"]"
+      }
+    },
+    {
+      "id": "footer.visual.root-font-family",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4773",
+        "channel": "style.fontFamily",
+        "raw": "Montserrat (fontPostScriptName Montserrat-Regular) — identique sur tous les calques TEXT du sous-arbre",
+        "detail": "le master ne porte pas de police à sa racine (Figma n'a pas d'héritage typographique) : la valeur est relevée sur les calques TEXT. Le contrat porte font-family = {font.family.montserrat} sur /anatomy/root et le CSS l'émet sur .root, d'où l'héritage côté React"
+      },
+      "figmaExpectation": {
+        "channel": "root.font-family",
+        "value": "{font.family.montserrat}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/font-family"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.semantic.root-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "detail": "COMPONENT racine — le contrat déclare semantics.element = \"div\" et semantics.provenance = \"extracted\" ; Footer.tsx émet bien un <div> porteur de forwardRef<HTMLDivElement>. Aucun rôle de repère (contentinfo / <footer>) n'est déclaré alors que le composant EST le pied de page du site : limite d'accessibilité nommée, non un écart Figma"
+      },
+      "contractReference": {
+        "jsonPointer": "/semantics/element"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    },
+    {
+      "id": "footer.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2120:4785",
+        "export": "png@2x"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Footer/Footer.tsx",
+        "export": "Footer",
+        "selector": "[class*=\"Footer__root\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "footer-master-defaults",
+    "figmaNodeId": "2120:4785",
+    "observedProperties": {},
+    "reactProps": {},
+    "factIds": [
+      "footer.structure.root",
+      "footer.structure.root-gap",
+      "footer.structure.root-width",
+      "footer.structure.padding-root-top",
+      "footer.structure.padding-root-right",
+      "footer.structure.padding-root-bottom",
+      "footer.structure.padding-root-left",
+      "footer.visual.background-color",
+      "footer.structure.background-absolute",
+      "footer.structure.background-size",
+      "footer.structure.row",
+      "footer.structure.row-no-autolayout",
+      "footer.structure.row-width",
+      "footer.structure.row-visual-order",
+      "footer.structure.col5",
+      "footer.structure.gap-col5",
+      "footer.content.titre-reseaux",
+      "footer.visual.titre-reseaux-color",
+      "footer.visual.titre-reseaux-font-size",
+      "footer.visual.titre-reseaux-line-height",
+      "footer.semantic.titre-reseaux-element",
+      "footer.structure.reseaux-sociaux",
+      "footer.structure.gap-reseaux-sociaux",
+      "footer.composition.icone-facebook",
+      "footer.composition.icone-instagram",
+      "footer.visual.icones-couleur",
+      "footer.structure.facebook-hauteur",
+      "footer.composition.footer-column-repeat",
+      "footer.structure.repeat-sample-non-projete",
+      "footer.structure.footer-column-width",
+      "footer.content.footer-column-titres",
+      "footer.content.footer-column-textes",
+      "footer.semantic.footer-column-texte-underline",
+      "footer.semantic.footer-column-texte-caracteres-invisibles",
+      "footer.property.items",
+      "footer.property.items-binding-none",
+      "footer.structure.col1",
+      "footer.structure.col1-axe",
+      "footer.structure.col1-gap",
+      "footer.composition.piqueray-logo",
+      "footer.composition.piqueray-logo-couleur",
+      "footer.structure.piqueray-logo-size",
+      "footer.composition.button",
+      "footer.composition.button-variant",
+      "footer.composition.button-libelle",
+      "footer.composition.button-icones",
+      "footer.structure.spacer-height",
+      "footer.structure.spacer2-height",
+      "footer.visual.separator-color",
+      "footer.visual.separator-width",
+      "footer.semantic.separator-line",
+      "footer.structure.separator-largeur",
+      "footer.composition.copyright",
+      "footer.composition.copyright-texte",
+      "footer.visual.root-font-family",
+      "footer.semantic.root-element",
+      "footer.visual.root"
+    ],
+    "fixtureAssetIds": [],
+    "requiredParts": [
+      "root",
+      "Background",
+      "Row",
+      "col5",
+      "TitreReseaux",
+      "rseauxSociaux",
+      "Facebook",
+      "Instagram",
+      "FooterColumn",
+      "col1",
+      "PiquerayLogo",
+      "Bouton",
+      "Spacer",
+      "Separator",
+      "spacer2",
+      "Copyright"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "titre-reseaux",
+        "selector": "[class*=\"Footer__TitreReseaux\"]",
+        "contractPointer": "/anatomy/root/parts/Row/parts/col5/parts/TitreReseaux/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Suivez-nous"
+        }
+      },
+      {
+        "id": "copyright-texte-route",
+        "selector": "[class*=\"Copyright__Texte\"]",
+        "contractPointer": "/anatomy/root/parts/Copyright/component/props/texte",
+        "expect": {
+          "tag": "span",
+          "textEquals": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
+        }
+      },
+      {
+        "id": "button-libelle-defaut-de-l-enfant",
+        "selector": "[class*=\"Button__label\"]",
+        "contractPointer": "/anatomy/root/parts/Row/parts/col1/parts/Bouton/component",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Contactez-nous"
+        }
+      },
+      {
+        "id": "footer-column-titre-premiere-colonne",
+        "selector": "[class*=\"FooterColumn__Titre\"]",
+        "contractPointer": "/anatomy/root/parts/Row/parts/FooterColumn/repeat/sample/0/titre",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Contact"
+        }
+      }
+    ]
+  }
+}

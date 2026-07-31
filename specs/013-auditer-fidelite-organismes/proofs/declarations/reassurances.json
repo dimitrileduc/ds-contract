@@ -1,0 +1,1199 @@
+{
+  "facts": [
+    {
+      "id": "reassurances.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3619",
+        "detail": "COMPONENT « Disposition=4 cartes » du COMPONENT_SET Reassurances 2114:3721 — la variante de l'axe Disposition que le défaut contractuel « 4Cartes » désigne via /props/0/bindings/figma/values (« 4 cartes ») et que le census confirme comme defaultValue du set. 1550x731 layoutMode=VERTICAL counterAxis=CENTER itemSpacing=48 sizeH=FIXED sizeV=HUG, fills=[] (aucun fond) > [SectionHeader 2114:3612 (INSTANCE), items 2114:3613 (FRAME, 4 INSTANCE Carte), BoutonQuatreCartes 2114:3618 (INSTANCE)]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.root-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3619",
+        "channel": "itemSpacing",
+        "raw": 48
+      },
+      "figmaExpectation": {
+        "channel": "root.gap",
+        "value": "48px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.root-width",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3619",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal=FIXED",
+        "raw": 1550,
+        "detail": "le root est FIXED à 1550px ; le contrat ne porte aucun literals.width, Reassurances.module.css n'écrit donc aucune largeur et .root est HUG en CSS"
+      },
+      "figmaExpectation": {
+        "channel": "root.width",
+        "value": "1550px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/literals/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.items",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3613",
+        "detail": "FRAME « items » 1550x498 layoutMode=HORIZONTAL primaryAxis=CENTER itemSpacing=32 sizeH=FILL sizeV=HUG layoutAlign=STRETCH > 4 INSTANCE Carte (2114:3614, 2114:3615, 2114:3616, 2114:3617)"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__items\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.items-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3613",
+        "channel": "itemSpacing",
+        "raw": 32
+      },
+      "figmaExpectation": {
+        "channel": "items.gap",
+        "value": "32px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/literals/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__items\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.items-fill",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3613",
+        "channel": "layoutSizingHorizontal / layoutAlign",
+        "raw": "FILL (layoutAlign=STRETCH, layoutGrow=0) — 1550px des 1550px du root",
+        "detail": "le contrat ne porte ni layout.grow ni align-self sur items ; dans un conteneur column align-items:center, .items est donc HUG côté CSS là où Figma le tient en FILL"
+      },
+      "figmaExpectation": {
+        "channel": "items.layoutSizingHorizontal",
+        "value": "FILL"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/layout/grow"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__items\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.carte-count",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3613",
+        "channel": "children.length",
+        "raw": 4,
+        "detail": "la variante par défaut matérialise 4 INSTANCE Carte, alors que repeat.sample du contrat porte 5 entrées ; les 4 premières sont byte-identiques aux 4 cartes d'occurrence, la cinquième est étrangère à cette variante (voir reassurances.content.sample-entree-orpheline). Le nombre de cartes rendues ne vient d'ailleurs pas de disposition mais de la prop items, que le contrat ne dote d'aucun défaut (voir reassurances.property.items-sans-defaut)"
+      },
+      "figmaExpectation": {
+        "channel": "items.materialised-carte-count@Disposition=4 cartes",
+        "value": 4
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__items\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.carte-largeur-quatre-cartes",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3614",
+        "mainComponent": "2063:1606",
+        "channel": "absoluteBoundingBox.width / layoutSizingHorizontal=FIXED",
+        "raw": 364,
+        "detail": "les 4 instances Carte sont FIXED à 364px (overrides = [\"height\",\"width\"]) ; ds.carte gèle literals.width = \"364px\" sur son propre root, la largeur concorde donc exactement sans que le contrat reassurances porte d'override. Même mécanique que ds.avatar-group : la largeur d'égalité est posée sur le root de l'enfant, pas sur le parent"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.structure.carte-largeur-cinq-cartes",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3687",
+        "channel": "absoluteBoundingBox.width",
+        "raw": 285,
+        "detail": "dans la variante « Disposition=5 cartes » les 5 cartes mesurent 285px, pas 364px : la largeur de carte dépend de la disposition. Le contrat ne porte aucun literalsByProp sur la part Carte et ds.carte gèle 364px pour reassurance, donc React rend 5 cartes de 364px (1948px avec les gaps) là où Figma tient 1550px. C'est la substance de la sous-projection de disposition"
+      },
+      "figmaExpectation": {
+        "channel": "Carte.width@Disposition=5 cartes",
+        "value": "285px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/literalsByProp"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.section-header-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3612",
+        "property": "Titre#2090:47",
+        "textLayer": "I2114:3612;2090:2387"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Titre",
+        "value": "Pourquoi choisir nos portes de garage industrielles ?"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.section-header-accroche",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3612",
+        "property": "Accroche#2090:46",
+        "textLayer": "I2114:3612;2090:2386"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche",
+        "value": "Plus de 50 ans d’expérience"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche",
+        "bindingProperty": "Accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-1-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3614",
+        "mainComponent": "2063:1606",
+        "property": "Titre#2063:26",
+        "textLayer": "I2114:3614;2063:1609"
+      },
+      "figmaExpectation": {
+        "channel": "items[0].Carte.Titre",
+        "value": "Sécurité et conformité"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/0/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TitreReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-2-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3615",
+        "mainComponent": "2063:1606",
+        "property": "Titre#2063:26",
+        "textLayer": "I2114:3615;2063:1609"
+      },
+      "figmaExpectation": {
+        "channel": "items[1].Carte.Titre",
+        "value": "Intégration parfaite"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/1/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TitreReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-3-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3616",
+        "mainComponent": "2063:1606",
+        "property": "Titre#2063:26",
+        "textLayer": "I2114:3616;2063:1609"
+      },
+      "figmaExpectation": {
+        "channel": "items[2].Carte.Titre",
+        "value": "Moteur performant"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/2/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TitreReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-4-titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3617",
+        "mainComponent": "2063:1606",
+        "property": "Titre#2063:26",
+        "textLayer": "I2114:3617;2063:1609"
+      },
+      "figmaExpectation": {
+        "channel": "items[3].Carte.Titre",
+        "value": "SAV & maintenance dédiés"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/3/titre",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TitreReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-1-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3614",
+        "mainComponent": "2063:1606",
+        "property": "Texte#2063:29",
+        "textLayer": "I2114:3614;2063:1610",
+        "detail": "characterStyleOverrides=[] — aucune plage gras dans cette occurrence, la projection rich-text [{text}] de Reassurances.tsx est donc fidèle"
+      },
+      "figmaExpectation": {
+        "channel": "items[0].Carte.Texte",
+        "value": "Respectent les normes des bâtiments publics et les réglementations pompiers."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TexteReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-2-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3615",
+        "mainComponent": "2063:1606",
+        "property": "Texte#2063:29",
+        "textLayer": "I2114:3615;2063:1610",
+        "detail": "characterStyleOverrides=[] — aucune plage gras dans cette occurrence, la projection rich-text [{text}] de Reassurances.tsx est donc fidèle"
+      },
+      "figmaExpectation": {
+        "channel": "items[1].Carte.Texte",
+        "value": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit)."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/1/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TexteReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-3-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3616",
+        "mainComponent": "2063:1606",
+        "property": "Texte#2063:29",
+        "textLayer": "I2114:3616;2063:1610",
+        "detail": "characterStyleOverrides=[] — aucune plage gras dans cette occurrence, la projection rich-text [{text}] de Reassurances.tsx est donc fidèle"
+      },
+      "figmaExpectation": {
+        "channel": "items[2].Carte.Texte",
+        "value": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/2/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TexteReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.carte-4-texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3617",
+        "mainComponent": "2063:1606",
+        "property": "Texte#2063:29",
+        "textLayer": "I2114:3617;2063:1610",
+        "detail": "characterStyleOverrides=[] — aucune plage gras dans cette occurrence, la projection rich-text [{text}] de Reassurances.tsx est donc fidèle"
+      },
+      "figmaExpectation": {
+        "channel": "items[3].Carte.Texte",
+        "value": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/3/texte",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TexteReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.content.sample-entree-orpheline",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3691",
+        "property": "Titre#2063:26",
+        "textLayer": "I2114:3691;2063:1609",
+        "detail": "repeat.sample[4] (« Expérience ») est byte-identique à la CINQUIÈME carte de la variante « Disposition=5 cartes » (node 2114:3691), pas à une carte de la variante auditée. Le sample mélange donc deux variantes du même set : 4 entrées de « 4 cartes » + 1 entrée de « 5 cartes »"
+      },
+      "figmaExpectation": {
+        "channel": "items.sample[4].variante-d-origine",
+        "value": "Disposition=5 cartes"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/4"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TitreReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.property.disposition",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3619",
+        "property": "Disposition",
+        "raw": "4 cartes | QuatreCartesDeuxCta | 5 cartes",
+        "detail": "Reassurances.tsx calcule classes = [styles.root, styles[`disposition-${disposition}`], className] mais Reassurances.module.css ne déclare QUE .root, .items et .Boutons : styles['disposition-4Cartes'] vaut undefined et l'enum ne touche jamais le style. Conséquence mesurable : disposition=\"5Cartes\" et disposition=\"4Cartes\" rendent un DOM identique (même unique <Button>, aucune classe de variante), là où Figma distingue 4 cartes de 364px et 5 cartes de 285px. La sonde non-défaut porte ici sur le root, l'élément qui recevrait la classe de variante ; la sonde non-booléenne du pilote compare String(value) au texte de l'élément, donc l'issue enregistrée sera divergent/generated — ce qui est bien le verdict de fond"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0",
+        "bindingProperty": "Disposition"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "disposition",
+        "value": "5Cartes"
+      }
+    },
+    {
+      "id": "reassurances.property.disposition-defaut",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3721",
+        "property": "Disposition",
+        "raw": "4 cartes"
+      },
+      "figmaExpectation": {
+        "channel": "Disposition.defaultValue (VARIANT « 4 cartes » → valeur d'enum contractuelle, mappage /props/0/bindings/figma/values)",
+        "value": "4Cartes"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default",
+        "bindingProperty": "Disposition"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.property.disposition-valeurs",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3721",
+        "property": "Disposition",
+        "raw": "4 cartes | QuatreCartesDeuxCta | 5 cartes",
+        "detail": "les trois variantOptions du set correspondent aux trois nodes 2114:3619 (4 cartes), 2114:3653 (QuatreCartesDeuxCta) et 2114:3693 (5 cartes)"
+      },
+      "figmaExpectation": {
+        "channel": "Disposition.variantOptions (mappage enum ↔ VARIANT)",
+        "value": {
+          "4Cartes": "4 cartes",
+          "quatrecartesdeuxcta": "QuatreCartesDeuxCta",
+          "5Cartes": "5 cartes"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/bindings/figma/values",
+        "bindingProperty": "Disposition"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.property.items-sans-defaut",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3613",
+        "channel": "children[].componentProperties",
+        "detail": "les 4 cartes de la variante par défaut portent des valeurs concrètes, mais /props/1 (items) n'a AUCUN default : Reassurances.tsx écrit items?.map(...), donc le composant tel qu'il est livré rend zéro carte. repeat.sample n'est pas un défaut React — il n'alimente que les args Storybook. Ce cas fournit donc items explicitement (entrées d'occurrence) pour que les faits Carte soient observables ; le défaut vide reste déclaré ici comme la divergence qu'il est"
+      },
+      "figmaExpectation": {
+        "channel": "items.default",
+        "value": [
+          {
+            "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+            "titre": "Sécurité et conformité"
+          },
+          {
+            "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+            "titre": "Intégration parfaite"
+          },
+          {
+            "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+            "titre": "Moteur performant"
+          },
+          {
+            "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
+            "titre": "SAV & maintenance dédiés"
+          }
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1/default"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__items\"]"
+      }
+    },
+    {
+      "id": "reassurances.property.items-binding-none",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2114:3613",
+        "property": "componentPropertyDefinitions",
+        "detail": "Figma n'a aucune propriété de composant de type collection : le set n'expose que Disposition (VARIANT). Le NONE de /props/1/bindings/figma est justifié sur les trois pieds exigés — anatomie (repeat.itemsProp = \"items\" sur /anatomy/root/parts/items/parts/Carte), sample (5 entrées) et occurrence (4 INSTANCE Carte matérialisées dans 2114:3613) — mais un NONE justifié reste une limite nommée, pas une conformité : côté canvas la collection ne s'exprime que comme N instances matérialisées, jamais comme une propriété pilotable"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1/bindings/figma/kind"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__items\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.section-header",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3612",
+        "mainComponent": "2090:2385",
+        "observedInstanceProperties": {
+          "Accroche2#2169:64": true,
+          "Titre#2090:47": "Pourquoi choisir nos portes de garage industrielles ?",
+          "Accroche#2090:46": "Plus de 50 ans d’expérience",
+          "Disposition": "Standard"
+        },
+        "instanceOverrides": [
+          "2114:3612 : height, width"
+        ],
+        "detail": "l'instance est FIXED 1550x83 et ds.section-header gèle literals.width = \"1550px\" : ici master FIXED et usage concordent exactement (contrairement à hero, où le même gel déborde). Aucun override de style de texte : le Titre est relevé à fontSize 40 / lineHeightPx 50 / fontWeight 400 et l'Accroche à 20 / 25 / 400 letterSpacing 3 textCase UPPER, soit exactement ce que ds.section-header porte — rien à surcharger"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component",
+        "childContractId": "ds.section-header"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.section-header-disposition",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3612",
+        "property": "Disposition",
+        "raw": "Standard"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Disposition (VARIANT « Standard » → valeur d'enum contractuelle, mappage déclaré par ds.section-header /props/0/bindings/figma/values)",
+        "value": "standard"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/disposition",
+        "bindingProperty": "Disposition"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.section-header-accroche2",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3612",
+        "property": "Accroche2#2169:64",
+        "raw": true,
+        "textLayer": "I2114:3612;2090:2386",
+        "detail": "l'occurrence met Accroche2=true et le calque Accroche est visible ; le contrat reassurances ne passe pas accroche2, SectionHeader.tsx retombe donc sur son défaut accroche2=true et le rendu concorde PAR COÏNCIDENCE. La valeur n'est portée nulle part dans ce contrat : changer le défaut de ds.section-header ferait dériver reassurances en silence. À noter aussi que côté React accroche2 ne pilote qu'un attribut data-accroche2 et ne conditionne aucune visibilité, là où le BOOLEAN Figma pilote bien la visibilité du calque"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche2 (BOOLEAN)",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche2",
+        "bindingProperty": "Accroche2"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.section-header-rename-accroche2-pendant",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2114:3612",
+        "property": "Accroche2#2169:64",
+        "detail": "limite déjà nommée, source specs/010-extract-molecules-organisms/audit-reuse-map.md ligne « SectionHeader | 003 + 005 V5/cycle 14 | Rename Accroche2 pending (named) » : le rename cosmétique de la propriété Figma « Accroche2 » reste en attente sur le master 2090:2385. Reassurances hérite de la dette en composant SectionHeader ; elle est déclarée ici pour qu'elle sorte en limite explicite et non en surprise"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.carte-repeat",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3614",
+        "mainComponent": "2063:1606",
+        "detail": "les 4 INSTANCE Carte 2114:3614, 2114:3615, 2114:3616, 2114:3617 partagent le master 2063:1606 ; le contrat les modélise en une seule part /anatomy/root/parts/items/parts/Carte qui compose ds.carte et porte repeat.itemsProp = \"items\". Premier composite repeat+component du dépôt (aucun des 51 contrats démo-51 n'exerçait repeat) ; chaque instance est VERTICAL gap 24 paddingBottom 24, fond SOLID blanc lié à VariableID:4:29"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/itemsProp",
+        "childContractId": "ds.carte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.carte-disposition",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3614",
+        "property": "Disposition",
+        "raw": "Reassurance",
+        "detail": "les 4 instances portent la même valeur"
+      },
+      "figmaExpectation": {
+        "channel": "Carte.Disposition (VARIANT « Reassurance » → valeur d'enum contractuelle, mappage déclaré par ds.carte /props/0/bindings/figma/values)",
+        "value": "reassurance"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/component/props/disposition",
+        "bindingProperty": "Disposition"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.carte-texte-propriete-partagee",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2114:3614",
+        "property": "Texte#2063:29",
+        "detail": "limite déjà nommée, source specs/010-extract-molecules-organisms/audit-reuse-map.md (« Carte | 003 + 007 | Résidu canvas 3 488 px (named) ») et research.md D4 (« propriété TEXT partagée entre variantes, limite structurelle nommée 007 ») : les deux variantes de Carte partagent les mêmes propriétés TEXT Titre#2063:26 / Texte#2063:29, ce qui laisse un résidu canvas de 3 488 px non réductible. Reassurances compose Carte en répétition, le résidu voyage donc avec chaque instance de ce sujet"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/component",
+        "childContractId": "ds.carte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TexteReassurance\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.bouton-quatre-cartes",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3618",
+        "mainComponent": "28:114",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Contactez-nous",
+          "Style": "Outline noir",
+          "Icone droite#2024:7": true,
+          "Icone gauche#2024:0": false,
+          "Glyphe droite#2028:21": "6:104",
+          "Glyphe gauche#2028:14": "6:99"
+        },
+        "instanceOverrides": [
+          "2114:3618 : height, name, width",
+          "I2114:3618;28:117 : visible"
+        ],
+        "detail": "INSTANCE 249x54 HUG/HUG gap 10 padding 16/32/16/32 ; le calque a été renommé (« name » ∈ overriddenFields) de Bouton en BoutonQuatreCartes, et ArrowLeft I2114:3618;28:115 est visible=false tandis qu'ArrowRight I2114:3618;28:117 porte un override de visible. Le contrat écrit { \"id\": \"ds.button\" } nu : aucune des six propriétés relevées ne franchit le contrat"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/BoutonQuatreCartes/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.bouton-visible-when",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3618",
+        "detail": "la variante « 4 cartes » matérialise BoutonQuatreCartes ; le contrat porte visibleWhen { prop: disposition, equals: \"4Cartes\" } et Reassurances.tsx émet bien le bouton sous cette condition"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/BoutonQuatreCartes/visibleWhen"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.bouton-libelle",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3618",
+        "property": "Libelle#2044:28",
+        "textLayer": "I2114:3618;28:116",
+        "detail": "le contrat n'écrit aucun text sur la part ; Reassurances.tsx rend le défaut de ds.button (« Contactez-nous »), qui se trouve égal au libellé Figma — concordance par coïncidence, valeur non portée"
+      },
+      "figmaExpectation": {
+        "channel": "BoutonQuatreCartes.Libelle",
+        "value": "Contactez-nous"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/BoutonQuatreCartes/component/text",
+        "bindingProperty": "Libelle"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.bouton-variant",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3618",
+        "property": "Style",
+        "raw": "Outline noir",
+        "detail": "le contrat ne passe aucune prop au bouton ; Button.tsx retombe sur variant=\"default\" et émet .variant-default là où Figma tient Outline noir"
+      },
+      "figmaExpectation": {
+        "channel": "BoutonQuatreCartes.Style (VARIANT « Outline noir » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)",
+        "value": "outilneNoir"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/BoutonQuatreCartes/component/props/variant",
+        "bindingProperty": "Style"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.bouton-icone-droite",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3618",
+        "property": "Icone droite#2024:7",
+        "raw": true,
+        "detail": "l'instance rend ArrowRight (I2114:3618;28:117, visible) ; le contrat ne passe pas iconRight, Button.tsx retombe sur false et n'émet aucune icône — le sélecteur ne matchera donc rien, ce qui est le constat"
+      },
+      "figmaExpectation": {
+        "channel": "BoutonQuatreCartes.Icone droite (BOOLEAN)",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRight",
+        "bindingProperty": "Icone droite"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Button__iconRight\"]"
+      }
+    },
+    {
+      "id": "reassurances.composition.bouton-glyphe-droite",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3618",
+        "property": "Glyphe droite#2028:21",
+        "raw": "6:104",
+        "detail": "INSTANCE_SWAP vers 6:104, master de l'icône ArrowRight (I2114:3618;28:117 porte componentId 6:104) ; ds.button mappe cette valeur sur l'enum iconRightGlyph \"arrow-right\" (/props/4/bindings/figma/values). Le contrat reassurances ne la porte pas"
+      },
+      "figmaExpectation": {
+        "channel": "BoutonQuatreCartes.Glyphe droite (INSTANCE_SWAP)",
+        "value": "arrow-right"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/BoutonQuatreCartes/component/props/iconRightGlyph",
+        "bindingProperty": "Glyphe droite"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Button__iconRight\"]"
+      }
+    },
+    {
+      "id": "reassurances.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3619",
+        "export": "png@2x"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.visual.carte-images",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3614",
+        "channel": "children[].img.fills[0]",
+        "property": "IMAGE",
+        "raw": "ab6a82d4b83b657d48c90b5e253f82459fd505bf, 8d05df2058fe88fa4b14e4472c9746f03fd100a2, d00de3d48206b57be5125a2d01e8595d3eca56de, 7bd2daf5061e3af6ff4a671f8eca2be1bc10b6fb",
+        "detail": "chaque carte porte une peinture IMAGE distincte scaleMode=FILL sur son calque img (overrides d'instance sur fills : I2114:3614;2063:1607, I2114:3615;2063:1607, I2114:3616;2063:1607, I2114:3617;2063:1607). Les 4 imageRef sont bien présents dans extract/figma/visual-parity/fixture-assets/manifest.json sous subject \"carte\" (carte-image-ab6a82d4b83b, carte-image-8d05df2058fe, carte-image-d00de3d48206, carte-image-7bd2daf5061e), mais AUCUNE route de projection n'existe : le type de /props/1 est arrayOf { texte, titre } — pas de champ image — et Reassurances.tsx passe seulement texte et titre à Carte, dont imageUrl retombe sur \"\". D10 : sans chemin de prop déclaré, les octets ne peuvent pas entrer dans la comparaison ; les 4 <img> sortent avec src=\"\" et ce fait ne peut pas être positif"
+      },
+      "figmaExpectation": {
+        "channel": "items[*].Carte.img.fills[0].IMAGE.imageRef",
+        "value": [
+          "ab6a82d4b83b657d48c90b5e253f82459fd505bf",
+          "8d05df2058fe88fa4b14e4472c9746f03fd100a2",
+          "d00de3d48206b57be5125a2d01e8595d3eca56de",
+          "7bd2daf5061e3af6ff4a671f8eca2be1bc10b6fb"
+        ]
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/component/props/imageUrl"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__reassuranceImage\"]"
+      }
+    },
+    {
+      "id": "reassurances.visual.bouton-contour",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3618",
+        "channel": "strokes[0] / strokeWeight",
+        "raw": "SOLID {r:0.14894600212574005,g:0.15713326632976532,b:0.17307692766189575,a:1} = #26282C, boundVariables.color = VariableID:5:40, strokeWeight 2 ; fills[0] SOLID blanc avec visible=false",
+        "detail": "conséquence rendue de reassurances.composition.bouton-variant : Figma dessine un contour de 2px noir bleuté sans remplissage (Outline noir), React rend .variant-default. Le contrat ne porte ni la variante ni le contour"
+      },
+      "figmaExpectation": {
+        "channel": "BoutonQuatreCartes.border",
+        "value": "2px solid {color.noir-bleute}"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/BoutonQuatreCartes/literals/border"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.semantic.root-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2114:3619",
+        "detail": "COMPONENT frame sans sémantique de document (Figma n'a pas de notion d'élément HTML) ; le contrat déclare semantics.element = \"div\" et Reassurances.tsx rend bien un <div>, malgré la catégorie \"section\" du contrat"
+      },
+      "contractReference": {
+        "jsonPointer": "/semantics/element"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Reassurances__root\"]"
+      }
+    },
+    {
+      "id": "reassurances.semantic.section-header-titre-sans-titre-de-niveau",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-code-only",
+      "figmaReference": {
+        "nodeId": "I2114:3612;2090:2387",
+        "detail": "calque TEXT « Titre » du SectionHeader — Figma ne peut exprimer aucun niveau de titre. Côté code, ds.section-header ne déclare pas element sur la part Titre : SectionHeader.tsx projette un <span>, donc cet organisme de catégorie \"section\" ne rend aucun h1–h6. Canal CARRY-CODE-ONLY : rendu en code, inexprimable sur le canvas, donc jamais prouvable des deux côtés"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component/props/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "reassurances.semantic.carte-texte-segments",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "I2114:3614;2063:1610",
+        "detail": "calque TEXT « Texte » de la première carte, characterStyleOverrides = [] et styleOverrideTable = {} : aucune plage gras. Reassurances.tsx passe texte={[{ text: item.texte }]} à Carte, qui rend un <span> extérieur contenant un unique <span> de segment — pas de <strong>, ce qui correspond bien à l'occurrence"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Reassurances/Reassurances.tsx",
+        "export": "Reassurances",
+        "selector": "[class*=\"Carte__TexteReassurance\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "reassurances-disposition-4-cartes",
+    "figmaNodeId": "2114:3619",
+    "observedProperties": {
+      "Disposition": "4 cartes"
+    },
+    "reactProps": {
+      "items": [
+        {
+          "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
+          "titre": "Sécurité et conformité"
+        },
+        {
+          "texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
+          "titre": "Intégration parfaite"
+        },
+        {
+          "texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
+          "titre": "Moteur performant"
+        },
+        {
+          "texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
+          "titre": "SAV & maintenance dédiés"
+        }
+      ]
+    },
+    "factIds": [
+      "reassurances.structure.root",
+      "reassurances.structure.root-gap",
+      "reassurances.structure.root-width",
+      "reassurances.structure.items",
+      "reassurances.structure.items-gap",
+      "reassurances.structure.items-fill",
+      "reassurances.structure.carte-count",
+      "reassurances.structure.carte-largeur-quatre-cartes",
+      "reassurances.structure.carte-largeur-cinq-cartes",
+      "reassurances.content.section-header-titre",
+      "reassurances.content.section-header-accroche",
+      "reassurances.content.carte-1-titre",
+      "reassurances.content.carte-2-titre",
+      "reassurances.content.carte-3-titre",
+      "reassurances.content.carte-4-titre",
+      "reassurances.content.carte-1-texte",
+      "reassurances.content.carte-2-texte",
+      "reassurances.content.carte-3-texte",
+      "reassurances.content.carte-4-texte",
+      "reassurances.content.sample-entree-orpheline",
+      "reassurances.property.disposition",
+      "reassurances.property.disposition-defaut",
+      "reassurances.property.disposition-valeurs",
+      "reassurances.property.items-sans-defaut",
+      "reassurances.property.items-binding-none",
+      "reassurances.composition.section-header",
+      "reassurances.composition.section-header-disposition",
+      "reassurances.composition.section-header-accroche2",
+      "reassurances.composition.section-header-rename-accroche2-pendant",
+      "reassurances.composition.carte-repeat",
+      "reassurances.composition.carte-disposition",
+      "reassurances.composition.carte-texte-propriete-partagee",
+      "reassurances.composition.bouton-quatre-cartes",
+      "reassurances.composition.bouton-visible-when",
+      "reassurances.composition.bouton-libelle",
+      "reassurances.composition.bouton-variant",
+      "reassurances.composition.bouton-icone-droite",
+      "reassurances.composition.bouton-glyphe-droite",
+      "reassurances.visual.root",
+      "reassurances.visual.carte-images",
+      "reassurances.visual.bouton-contour",
+      "reassurances.semantic.root-element",
+      "reassurances.semantic.section-header-titre-sans-titre-de-niveau",
+      "reassurances.semantic.carte-texte-segments"
+    ],
+    "fixtureAssetIds": [
+      "carte-image-ab6a82d4b83b",
+      "carte-image-8d05df2058fe",
+      "carte-image-d00de3d48206",
+      "carte-image-7bd2daf5061e"
+    ],
+    "requiredParts": [
+      "root",
+      "SectionHeader",
+      "items",
+      "Carte",
+      "BoutonQuatreCartes"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "section-header-titre",
+        "selector": "[class*=\"SectionHeader__Titre\"]",
+        "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/titre",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Pourquoi choisir nos portes de garage industrielles ?"
+        }
+      },
+      {
+        "id": "section-header-accroche",
+        "selector": "[class*=\"SectionHeader__Accroche\"]",
+        "contractPointer": "/anatomy/root/parts/SectionHeader/component/props/accroche",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Plus de 50 ans d’expérience"
+        }
+      },
+      {
+        "id": "carte-1-titre",
+        "selector": "[class*=\"Carte__TitreReassurance\"]",
+        "contractPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/0/titre",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Sécurité et conformité"
+        }
+      },
+      {
+        "id": "carte-1-texte",
+        "selector": "[class*=\"Carte__TexteReassurance\"]",
+        "contractPointer": "/anatomy/root/parts/items/parts/Carte/repeat/sample/0/texte",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Respectent les normes des bâtiments publics et les réglementations pompiers."
+        }
+      },
+      {
+        "id": "bouton-libelle-defaut-de-l-enfant",
+        "selector": "[class*=\"Button__root\"]",
+        "contractPointer": "/anatomy/root/parts/BoutonQuatreCartes/component",
+        "expect": {
+          "tag": "button",
+          "textEquals": "Contactez-nous"
+        }
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 <!--
-  FAQ — static HTML+CSS emitted from contract ds.faq v1.0.0 by core/emit-html.ts.
+  FAQ — static HTML+CSS emitted from contract ds.faq v1.2.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -10,9 +10,9 @@
   <div class="showcase__item">
     <p class="showcase__label">default</p>
     <div class="faq" data-part="root" data-ligne3="true">
-      <div class="section-header section-header--disposition-standard" data-part="SectionHeader" data-accroche2="true">
+      <div class="section-header section-header--disposition-standard section-header--emphase-standard section-header--alignement-centre" data-part="SectionHeader" data-accroche2="true">
         <span class="section-header__Accroche" data-part="Accroche">FAQ</span>
-        <span class="section-header__Titre" data-part="Titre">Questions fréquentes</span>
+        <span class="section-header__Titre" data-part="Titre"><span>Questions fréquentes</span></span>
       </div>
       <div class="faq__accordion" data-part="accordion">
         <div class="accordion-row accordion-row--taille-grand accordion-row--etat-ferme" data-part="root">
@@ -37,8 +37,11 @@
           <button class="accordion-row__trigger" aria-label="Assurez-vous la maintenance après l'installation ?" data-part="trigger"></button>
         </div>
       </div>
-      <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+      <button class="button button--variant-outilneNoir button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
         <span class="button__label" data-part="label">Contactez-nous</span>
+        <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
       </button>
     </div>
   </div>

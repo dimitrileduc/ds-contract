@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v1.0.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v1.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -9,39 +9,98 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  gap: 10px;
 }
 
 .section {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 1550px;
+  height: 677px;
+  position: relative;
+}
+
+.background {
+  width: 1550px;
+  height: 475px;
+  object-fit: cover;
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  width: 1288px;
+  height: 561px;
+  position: absolute;
+  align-self: flex-end;
 }
 
 .wrapper {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 546px;
+  height: 513px;
+  padding-top: 48px;
+  padding-left: 48px;
+  padding-right: 47px;
+  position: relative;
 }
 
 .WrapperBackground {
   background-color: var(--color-blanc);
+  width: 641px;
+  height: 561px;
+  position: absolute;
+  align-self: flex-end;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
+  gap: 32px;
+  width: 546px;
+  position: relative;
 }
 
 .vousRencontrezUnProblmeA {
   color: var(--color-noir);
+  font-size: var(--font-size-18);
+  line-height: var(--font-line-height-27);
+  height: 197px;
+  white-space: pre-line;
+}
+
+.vousRencontrezUnProblmeA > strong {
+  font-weight: var(--font-weight-bold);
 }
 
 .imgGroup {
   display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 644px;
+  height: 561px;
+  padding-left: 3px;
+  position: relative;
 }
 
 .ImgGroupBackground {
   background-color: var(--color-bleu-clair);
+  width: 647px;
+  height: 478px;
+  position: absolute;
+  align-self: flex-start;
+}
+
+.img {
+  width: 563px;
+  height: 504px;
+  position: relative;
+  object-fit: contain;
 }

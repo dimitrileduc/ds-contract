@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "013-auditer-fidelite-organismes",
+  "wave": 2,
+  "waveIndex": 1,
+  "reference": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileVersion": "2381581871281042338",
+    "readOnly": true
+  },
+  "expectedSubjectIds": [
+    "faq",
+    "footer",
+    "reassurances"
+  ],
+  "subjects": [
+    {
+      "id": "faq",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 34,
+      "proved": 14,
+      "divergent": 18,
+      "limited": 1,
+      "notProven": 1,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:18",
+        "failed-cases:1"
+      ]
+    },
+    {
+      "id": "footer",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 57,
+      "proved": 20,
+      "divergent": 36,
+      "limited": 0,
+      "notProven": 1,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:36",
+        "failed-cases:1"
+      ]
+    },
+    {
+      "id": "reassurances",
+      "classified": true,
+      "verdict": "divergent",
+      "facts": 44,
+      "proved": 22,
+      "divergent": 18,
+      "limited": 4,
+      "notProven": 0,
+      "coverageExact": true,
+      "declaredDependency": null,
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "divergent-facts:18",
+        "failed-cases:1"
+      ]
+    }
+  ],
+  "classified": true,
+  "positiveVerdictsUnderClosedGate": 0,
+  "independenceFromGatedDependencies": true,
+  "note": "classified = verdict final honnête, PAS verdict positif. Un dossier divergent classifié ouvre la vague suivante."
+}

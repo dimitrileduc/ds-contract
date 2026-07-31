@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.texte-seo",
   "name": "TexteSEO",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -11,9 +11,16 @@
   "props": [
     {
       "name": "items",
+      "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli.",
       "type": {
         "arrayOf": {
           "contenu": "text",
+          "etat": {
+            "enum": [
+              "ferme",
+              "ouvert"
+            ]
+          },
           "titre": "text"
         }
       },
@@ -42,9 +49,23 @@
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": "Visitez notre showroom à Pepinster ou contactez-nous",
+                  "titre": [
+                    {
+                      "text": "Visitez notre "
+                    },
+                    {
+                      "text": "showroom à Pepinster",
+                      "strong": true
+                    },
+                    {
+                      "text": " ou contactez-nous"
+                    }
+                  ],
                   "accroche": "Plus de 50 ans d’expérience",
-                  "disposition": "standard"
+                  "disposition": "standard",
+                  "accroche2": false,
+                  "emphase": "compact",
+                  "alignement": "gauche"
                 }
               }
             }
@@ -59,7 +80,9 @@
             "Paragraphe": {
               "text": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
               "tokens": {
-                "color": "{color.noir}"
+                "color": "{color.noir}",
+                "font-size": "{font.size.14}",
+                "line-height": "{font.line-height.24}"
               }
             }
           }
@@ -69,7 +92,10 @@
             "SousTitre": {
               "text": "Infos pratiques",
               "tokens": {
-                "color": "{color.noir-bleute}"
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.20}",
+                "font-weight": "{font.weight.semibold}",
+                "line-height": "{font.line-height.25}"
               }
             }
           }
@@ -92,14 +118,17 @@
                 "sample": [
                   {
                     "contenu": "Réponse",
+                    "etat": "ferme",
                     "titre": "Accès et parking"
                   },
                   {
                     "contenu": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+                    "etat": "ouvert",
                     "titre": "Faut-il prendre rendez-vous ?"
                   },
                   {
                     "contenu": "Réponse",
+                    "etat": "ferme",
                     "titre": "Zones de déplacement pour devis"
                   }
                 ]
@@ -109,7 +138,12 @@
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.32}",
+        "padding-inline": "{space.89}"
+      },
+      "declared": {
+        "align-self": "stretch"
       }
     }
   },

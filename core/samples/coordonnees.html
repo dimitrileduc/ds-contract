@@ -1,5 +1,5 @@
 <!--
-  Coordonnees — static HTML+CSS emitted from contract ds.coordonnees v1.0.0 by core/emit-html.ts.
+  Coordonnees — static HTML+CSS emitted from contract ds.coordonnees v2.2.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -10,10 +10,11 @@
   <div class="showcase__item">
     <p class="showcase__label">default</p>
     <div class="coordonnees" data-part="root">
+      <img class="coordonnees__googleMap" src="" alt="" data-part="googleMap"></img>
       <div class="coordonnees__wrapper" data-part="wrapper">
-        <div class="section-header section-header--disposition-standard" data-part="SectionHeader" data-accroche2="true">
+        <div class="section-header section-header--disposition-standard section-header--emphase-standard section-header--alignement-gauche" data-part="SectionHeader" data-accroche2="true">
           <span class="section-header__Accroche" data-part="Accroche">Contact</span>
-          <span class="section-header__Titre" data-part="Titre">Nos coordonnées</span>
+          <span class="section-header__Titre" data-part="Titre"><span>Pourquoi choisir Piqueray ?</span></span>
         </div>
         <div class="coordonnees__Adresse" data-part="Adresse">
           <span class="coordonnees__AdresseEtiquette" data-part="AdresseEtiquette">Adresse</span>
@@ -25,7 +26,8 @@
         </div>
         <div class="coordonnees__Contact" data-part="Contact">
           <span class="coordonnees__ContactEtiquette" data-part="ContactEtiquette">Contact</span>
-          <span class="coordonnees__tl32087463266EmailInfopi" data-part="tl32087463266EmailInfopi">Tél : +32 (0)87 46 32 66 Email: info@piqueray.be</span>
+          <span class="coordonnees__tl32087463266EmailInfopi" data-part="tl32087463266EmailInfopi">Tél : <u>+32 (0)87 46 32 66</u>
+Email: <u>info@piqueray.be</u></span>
         </div>
         <div class="coordonnees__suivezNous" data-part="suivezNous">
           <span class="coordonnees__SuivezNousEtiquette" data-part="SuivezNousEtiquette">Suivez-nous</span>
@@ -39,7 +41,6 @@
           </div>
         </div>
       </div>
-      <div class="coordonnees__googleMap" data-part="googleMap"></div>
     </div>
   </div>
 </section>

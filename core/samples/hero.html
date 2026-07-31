@@ -1,5 +1,5 @@
 <!--
-  Hero — static HTML+CSS emitted from contract ds.hero v1.0.0 by core/emit-html.ts.
+  Hero — static HTML+CSS emitted from contract ds.hero v1.3.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -10,16 +10,19 @@
   <div class="showcase__item">
     <p class="showcase__label">default</p>
     <div class="hero" data-part="root">
+      <img class="hero__Background" src="" alt="" data-part="Background"></img>
       <div class="hero__blocTexte" data-part="blocTexte">
         <div class="hero__Titres" data-part="Titres">
-          <div class="section-header section-header--disposition-standard" data-part="SectionHeader" data-accroche2="true">
-            <span class="section-header__Accroche" data-part="Accroche">Plus de 50 ans d’expérience</span>
-            <span class="section-header__Titre" data-part="Titre">Portes de garage industrielles</span>
+          <div class="section-header section-header--disposition-standard section-header--emphase-hero section-header--alignement-gauche" data-part="SectionHeader">
+            <span class="section-header__Titre" data-part="Titre"><strong>Portes de garage</strong><span> industrielles</span></span>
           </div>
           <div class="hero__wrapper" data-part="wrapper">
-            <span class="hero__sousTitre" data-part="sousTitre">La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.</span>
-            <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
-              <span class="button__label" data-part="label">Contactez-nous</span>
+            <span class="hero__sousTitre" data-part="sousTitre">La <strong>performance</strong> sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons <strong>la solution idéale</strong>.</span>
+            <button class="button button--variant-outlineBlanc button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
+              <span class="button__label" data-part="label">Demander un devis gratuit</span>
+              <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
             </button>
           </div>
         </div>

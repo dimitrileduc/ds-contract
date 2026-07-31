@@ -83,10 +83,10 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
       <PiquerayLogo couleur="default" />
 <div style={{ ...S.navWrapper }}>
 <div style={{ ...S.nav }}>
-<NavItem libelle="Portes de garage" href="/portes-de-garage" chevron />
-<NavItem libelle="Portes d’entrée" href="/portes-entree" chevron />
-<NavItem libelle="Motorisation" href="/motorisation" />
-<NavItem libelle="À propos" href="/a-propos" />
+<NavItem actif={false} libelle="Portes de garage" href="/portes-de-garage" chevron />
+<NavItem actif={false} libelle="Portes d’entrée" href="/portes-entree" chevron />
+<NavItem actif={false} libelle="Motorisation" href="/motorisation" />
+<NavItem actif={false} libelle="À propos" href="/a-propos" />
 <Button>Contactez-nous</Button>
 </div>
 <div style={{ ...S.iconsNav }}>

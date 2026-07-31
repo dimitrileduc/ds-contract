@@ -1,0 +1,2836 @@
+{
+  "id": "coordonnees",
+  "displayName": "Coordonnees",
+  "wave": 1,
+  "contract": {
+    "id": "ds.coordonnees",
+    "version": "2.2.0",
+    "path": "contracts/coordonnees.contract.json"
+  },
+  "figmaSetNodeId": "2104:2904",
+  "coverage": {
+    "expected": [
+      "coordonnees.composition.icone-facebook",
+      "coordonnees.composition.icone-instagram",
+      "coordonnees.composition.section-header",
+      "coordonnees.composition.section-header-accroche",
+      "coordonnees.composition.section-header-props",
+      "coordonnees.content.accroche",
+      "coordonnees.content.adresse-etiquette",
+      "coordonnees.content.adresse-valeur",
+      "coordonnees.content.contact-etiquette",
+      "coordonnees.content.contact-valeur",
+      "coordonnees.content.horaires-etiquette",
+      "coordonnees.content.horaires-valeur",
+      "coordonnees.content.suivez-nous-etiquette",
+      "coordonnees.content.titre",
+      "coordonnees.property.accroche",
+      "coordonnees.property.titre",
+      "coordonnees.semantic.contact-valeur",
+      "coordonnees.structure.colonnes-ordre",
+      "coordonnees.structure.gap-adresse",
+      "coordonnees.structure.gap-contact",
+      "coordonnees.structure.gap-horaires",
+      "coordonnees.structure.gap-reseaux-sociaux",
+      "coordonnees.structure.gap-suivez-nous",
+      "coordonnees.structure.gap-wrapper",
+      "coordonnees.structure.google-map",
+      "coordonnees.structure.padding-block-wrapper",
+      "coordonnees.structure.padding-inline-wrapper",
+      "coordonnees.structure.root",
+      "coordonnees.structure.width-wrapper",
+      "coordonnees.structure.wrapper",
+      "coordonnees.visual.adresse-etiquette-font-size",
+      "coordonnees.visual.adresse-etiquette-line-height",
+      "coordonnees.visual.adresse-valeur-font-size",
+      "coordonnees.visual.adresse-valeur-line-height",
+      "coordonnees.visual.contact-etiquette-font-size",
+      "coordonnees.visual.contact-etiquette-line-height",
+      "coordonnees.visual.contact-valeur-font-size",
+      "coordonnees.visual.contact-valeur-line-height",
+      "coordonnees.visual.horaires-etiquette-font-size",
+      "coordonnees.visual.horaires-etiquette-line-height",
+      "coordonnees.visual.horaires-valeur-font-size",
+      "coordonnees.visual.horaires-valeur-line-height",
+      "coordonnees.visual.root",
+      "coordonnees.visual.root-background",
+      "coordonnees.visual.suivez-nous-etiquette-font-size",
+      "coordonnees.visual.suivez-nous-etiquette-line-height"
+    ],
+    "observed": [
+      "coordonnees.composition.icone-facebook",
+      "coordonnees.composition.icone-instagram",
+      "coordonnees.composition.section-header",
+      "coordonnees.composition.section-header-accroche",
+      "coordonnees.composition.section-header-props",
+      "coordonnees.content.accroche",
+      "coordonnees.content.adresse-etiquette",
+      "coordonnees.content.adresse-valeur",
+      "coordonnees.content.contact-etiquette",
+      "coordonnees.content.contact-valeur",
+      "coordonnees.content.horaires-etiquette",
+      "coordonnees.content.horaires-valeur",
+      "coordonnees.content.suivez-nous-etiquette",
+      "coordonnees.content.titre",
+      "coordonnees.property.accroche",
+      "coordonnees.property.titre",
+      "coordonnees.semantic.contact-valeur",
+      "coordonnees.structure.colonnes-ordre",
+      "coordonnees.structure.gap-adresse",
+      "coordonnees.structure.gap-contact",
+      "coordonnees.structure.gap-horaires",
+      "coordonnees.structure.gap-reseaux-sociaux",
+      "coordonnees.structure.gap-suivez-nous",
+      "coordonnees.structure.gap-wrapper",
+      "coordonnees.structure.google-map",
+      "coordonnees.structure.padding-block-wrapper",
+      "coordonnees.structure.padding-inline-wrapper",
+      "coordonnees.structure.root",
+      "coordonnees.structure.width-wrapper",
+      "coordonnees.structure.wrapper",
+      "coordonnees.visual.adresse-etiquette-font-size",
+      "coordonnees.visual.adresse-etiquette-line-height",
+      "coordonnees.visual.adresse-valeur-font-size",
+      "coordonnees.visual.adresse-valeur-line-height",
+      "coordonnees.visual.contact-etiquette-font-size",
+      "coordonnees.visual.contact-etiquette-line-height",
+      "coordonnees.visual.contact-valeur-font-size",
+      "coordonnees.visual.contact-valeur-line-height",
+      "coordonnees.visual.horaires-etiquette-font-size",
+      "coordonnees.visual.horaires-etiquette-line-height",
+      "coordonnees.visual.horaires-valeur-font-size",
+      "coordonnees.visual.horaires-valeur-line-height",
+      "coordonnees.visual.root",
+      "coordonnees.visual.root-background",
+      "coordonnees.visual.suivez-nous-etiquette-font-size",
+      "coordonnees.visual.suivez-nous-etiquette-line-height"
+    ],
+    "missing": [],
+    "unexpected": []
+  },
+  "dependency": null,
+  "facts": [
+    {
+      "id": "coordonnees.structure.root",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2904\",\"detail\":\"COMPONENT root 1728x597, layoutMode=GRID (2 colonnes) > [google-map RECTANGLE 2104:2899 en colonne gauche (x=40, 1152x597), wrapper FRAME 2104:2879 en colonne droite (x=1192, 576x589)]\"}",
+        "observedValue": {
+          "nodeId": "2104:2904",
+          "detail": "COMPONENT root 1728x597, layoutMode=GRID (2 colonnes) > [google-map RECTANGLE 2104:2899 en colonne gauche (x=40, 1152x597), wrapper FRAME 2104:2879 en colonne droite (x=1192, 576x589)]"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "row"
+          },
+          "parts": {
+            "googleMap": {
+              "description": "Plan Google de la section (RECTANGLE Figma 2104:2899, 1152×597 FIXED/FIXED, layoutGrow 0). Son fills[0] est un paint IMAGE de scaleMode STRETCH porteur d'un imageTransform [[1,0,0],[0,0.9913,0.00434]] : un recadrage centré à ratio conservé de la source 1142×597 vers la boîte 1152×597 — object-fit: cover en est l'orthographe CSS exacte (même facteur 1.00875, mêmes 2,6 px rognés en haut et en bas). PREMIÈRE part du root : l'ordre du DOM est ici l'ordre VISUEL de Figma (plan à GAUCHE en x=40, wrapper à DROITE en x=1192). Le root Figma est un GRID 3 colonnes à gouttière 0 dont les enfants sont positionnés MANUAL et rangés plan-puis-wrapper dans l'ordre visuel ; l'ordre d'auteur du calque est un artefact sans portée, le contrat décrit le résultat. min-width porte le FIXED de Figma : sans lui l'img flex-shrink:1 se laisse rétrécir par le wrapper et le plan perd 61 px.",
+              "element": "img",
+              "attrs": {
+                "src": "{mapUrl}",
+                "alt": "{mapAlt}"
+              },
+              "literals": {
+                "width": "1152px",
+                "min-width": "1152px",
+                "height": "597px"
+              },
+              "declared": {
+                "object-fit": "cover"
+              }
+            },
+            "wrapper": {
+              "layout": {
+                "direction": "column",
+                "align": "stretch"
+              },
+              "parts": {
+                "SectionHeader": {
+                  "description": "Instance SectionHeader (Figma 2169:6216). `titre`/`accroche` sont ROUTÉS depuis les props publiques du root (motif vivant : ds.carte props.children = \"{ctaLabel}\") au lieu de reconduire le littéral de l'override d'instance : sans ce routage les propriétés TEXT racines Titre#2104:58 et Accroche#2104:57 n'ont aucun effet côté code, exactement comme elles n'en ont aucun côté canvas (0 componentPropertyReferences mesuré). Les valeurs rendues par défaut sont inchangées — ce sont les defaults des props.",
+                  "component": {
+                    "id": "ds.section-header",
+                    "props": {
+                      "titre": "{titre}",
+                      "accroche": "{accroche}",
+                      "disposition": "standard",
+                      "alignement": "gauche"
+                    }
+                  }
+                },
+                "Adresse": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "AdresseEtiquette": {
+                      "text": "Adresse",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "AdresseValeur": {
+                      "text": "Rue Alfred Drèze 7, 4860 Pepinster",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{font.size.18}",
+                        "line-height": "{font.line-height.27}"
+                      },
+                      "declared": {
+                        "white-space": "pre-line",
+                        "text-decoration-line": "underline"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                },
+                "Horaires": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "HorairesEtiquette": {
+                      "text": "Horaires",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "HorairesValeur": {
+                      "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{font.size.18}",
+                        "line-height": "{font.line-height.27}"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                },
+                "Contact": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "ContactEtiquette": {
+                      "text": "Contact",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "tl32087463266EmailInfopi": {
+                      "text": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{font.size.18}",
+                        "line-height": "{font.line-height.27}"
+                      },
+                      "textSegments": [
+                        {
+                          "text": "Tél : "
+                        },
+                        {
+                          "text": "+32 (0)87 46 32 66\r",
+                          "underline": true
+                        },
+                        {
+                          "text": " Email: "
+                        },
+                        {
+                          "text": "info@piqueray.be",
+                          "underline": true
+                        }
+                      ],
+                      "declared": {
+                        "white-space": "pre-line"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                },
+                "suivezNous": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "SuivezNousEtiquette": {
+                      "text": "Suivez-nous",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "rseauxSociaux": {
+                      "layout": {
+                        "direction": "row",
+                        "align": "center"
+                      },
+                      "parts": {
+                        "Facebook": {
+                          "icon": {
+                            "asset": "facebook",
+                            "size": 32
+                          }
+                        },
+                        "Instagram": {
+                          "icon": {
+                            "asset": "instagram",
+                            "size": 32
+                          }
+                        }
+                      },
+                      "literals": {
+                        "gap": "16px"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                }
+              },
+              "literals": {
+                "gap": "16px",
+                "padding-block": "48px",
+                "padding-inline": "48px",
+                "width": "576px"
+              }
+            }
+          },
+          "tokens": {
+            "background-color": "{color.bleu-clair}",
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__root\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.wrapper",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2879\",\"detail\":\"FRAME wrapper 576x589, layoutMode=VERTICAL, layoutSizingHorizontal=FIXED > [SectionHeader 2169:6216, Adresse 2104:2883, Horaires 2104:2886, Contact 2104:2889, Suivez-nous 2104:2892]\"}",
+        "observedValue": {
+          "nodeId": "2104:2879",
+          "detail": "FRAME wrapper 576x589, layoutMode=VERTICAL, layoutSizingHorizontal=FIXED > [SectionHeader 2169:6216, Adresse 2104:2883, Horaires 2104:2886, Contact 2104:2889, Suivez-nous 2104:2892]"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper",
+        "observedValue": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch"
+          },
+          "parts": {
+            "SectionHeader": {
+              "description": "Instance SectionHeader (Figma 2169:6216). `titre`/`accroche` sont ROUTÉS depuis les props publiques du root (motif vivant : ds.carte props.children = \"{ctaLabel}\") au lieu de reconduire le littéral de l'override d'instance : sans ce routage les propriétés TEXT racines Titre#2104:58 et Accroche#2104:57 n'ont aucun effet côté code, exactement comme elles n'en ont aucun côté canvas (0 componentPropertyReferences mesuré). Les valeurs rendues par défaut sont inchangées — ce sont les defaults des props.",
+              "component": {
+                "id": "ds.section-header",
+                "props": {
+                  "titre": "{titre}",
+                  "accroche": "{accroche}",
+                  "disposition": "standard",
+                  "alignement": "gauche"
+                }
+              }
+            },
+            "Adresse": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "AdresseEtiquette": {
+                  "text": "Adresse",
+                  "tokens": {
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
+                  }
+                },
+                "AdresseValeur": {
+                  "text": "Rue Alfred Drèze 7, 4860 Pepinster",
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.18}",
+                    "line-height": "{font.line-height.27}"
+                  },
+                  "declared": {
+                    "white-space": "pre-line",
+                    "text-decoration-line": "underline"
+                  }
+                }
+              },
+              "literals": {
+                "gap": "8px"
+              }
+            },
+            "Horaires": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "HorairesEtiquette": {
+                  "text": "Horaires",
+                  "tokens": {
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
+                  }
+                },
+                "HorairesValeur": {
+                  "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.18}",
+                    "line-height": "{font.line-height.27}"
+                  }
+                }
+              },
+              "literals": {
+                "gap": "8px"
+              }
+            },
+            "Contact": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "ContactEtiquette": {
+                  "text": "Contact",
+                  "tokens": {
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
+                  }
+                },
+                "tl32087463266EmailInfopi": {
+                  "text": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
+                  "tokens": {
+                    "color": "{color.noir-bleute}",
+                    "font-size": "{font.size.18}",
+                    "line-height": "{font.line-height.27}"
+                  },
+                  "textSegments": [
+                    {
+                      "text": "Tél : "
+                    },
+                    {
+                      "text": "+32 (0)87 46 32 66\r",
+                      "underline": true
+                    },
+                    {
+                      "text": " Email: "
+                    },
+                    {
+                      "text": "info@piqueray.be",
+                      "underline": true
+                    }
+                  ],
+                  "declared": {
+                    "white-space": "pre-line"
+                  }
+                }
+              },
+              "literals": {
+                "gap": "8px"
+              }
+            },
+            "suivezNous": {
+              "layout": {
+                "direction": "column"
+              },
+              "parts": {
+                "SuivezNousEtiquette": {
+                  "text": "Suivez-nous",
+                  "tokens": {
+                    "color": "{color.orange}",
+                    "font-size": "{font.size.24}",
+                    "line-height": "{font.line-height.30}"
+                  }
+                },
+                "rseauxSociaux": {
+                  "layout": {
+                    "direction": "row",
+                    "align": "center"
+                  },
+                  "parts": {
+                    "Facebook": {
+                      "icon": {
+                        "asset": "facebook",
+                        "size": 32
+                      }
+                    },
+                    "Instagram": {
+                      "icon": {
+                        "asset": "instagram",
+                        "size": 32
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "16px"
+                  }
+                }
+              },
+              "literals": {
+                "gap": "8px"
+              }
+            }
+          },
+          "literals": {
+            "gap": "16px",
+            "padding-block": "48px",
+            "padding-inline": "48px",
+            "width": "576px"
+          }
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__wrapper\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.google-map",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2899\",\"detail\":\"RECTANGLE google-map 1152x597 (66,7 % de la largeur du composant), fills=[IMAGE] — colonne gauche de la grille\",\"channel\":\"fills[0].type=IMAGE\"}",
+        "observedValue": {
+          "nodeId": "2104:2899",
+          "detail": "RECTANGLE google-map 1152x597 (66,7 % de la largeur du composant), fills=[IMAGE] — colonne gauche de la grille",
+          "channel": "fills[0].type=IMAGE"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/googleMap",
+        "observedValue": {
+          "description": "Plan Google de la section (RECTANGLE Figma 2104:2899, 1152×597 FIXED/FIXED, layoutGrow 0). Son fills[0] est un paint IMAGE de scaleMode STRETCH porteur d'un imageTransform [[1,0,0],[0,0.9913,0.00434]] : un recadrage centré à ratio conservé de la source 1142×597 vers la boîte 1152×597 — object-fit: cover en est l'orthographe CSS exacte (même facteur 1.00875, mêmes 2,6 px rognés en haut et en bas). PREMIÈRE part du root : l'ordre du DOM est ici l'ordre VISUEL de Figma (plan à GAUCHE en x=40, wrapper à DROITE en x=1192). Le root Figma est un GRID 3 colonnes à gouttière 0 dont les enfants sont positionnés MANUAL et rangés plan-puis-wrapper dans l'ordre visuel ; l'ordre d'auteur du calque est un artefact sans portée, le contrat décrit le résultat. min-width porte le FIXED de Figma : sans lui l'img flex-shrink:1 se laisse rétrécir par le wrapper et le plan perd 61 px.",
+          "element": "img",
+          "attrs": {
+            "src": "{mapUrl}",
+            "alt": "{mapAlt}"
+          },
+          "literals": {
+            "width": "1152px",
+            "min-width": "1152px",
+            "height": "597px"
+          },
+          "declared": {
+            "object-fit": "cover"
+          }
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__googleMap\"]",
+        "observedValue": "",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "limited",
+      "localizedSource": null,
+      "reasons": [
+        "representability:carry-with-named-limit"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.colonnes-ordre",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#root.visualColumnOrder",
+        "observedValue": "row-reverse",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/layout/direction",
+        "observedValue": "row",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__root\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-value-differs:root.visualColumnOrder:\"row\"!=\"row-reverse\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.gap-wrapper",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#wrapper.itemSpacing",
+        "observedValue": "16px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/literals/gap",
+        "observedValue": "16px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__wrapper\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.padding-block-wrapper",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#wrapper.paddingTop+paddingBottom",
+        "observedValue": "48px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/literals/padding-block",
+        "observedValue": "48px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__wrapper\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.padding-inline-wrapper",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#wrapper.paddingLeft+paddingRight",
+        "observedValue": "48px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/literals/padding-inline",
+        "observedValue": "48px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__wrapper\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.width-wrapper",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#wrapper.absoluteBoundingBox.width",
+        "observedValue": "576px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/literals/width",
+        "observedValue": "576px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__wrapper\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.gap-adresse",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#Adresse.itemSpacing",
+        "observedValue": "8px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Adresse/literals/gap",
+        "observedValue": "8px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__Adresse\"]",
+        "observedValue": "AdresseRue Alfred Drèze 7,\n4860 Pepinster",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.gap-horaires",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#Horaires.itemSpacing",
+        "observedValue": "8px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Horaires/literals/gap",
+        "observedValue": "8px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__Horaires\"]",
+        "observedValue": "HorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.gap-contact",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#Contact.itemSpacing",
+        "observedValue": "8px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/literals/gap",
+        "observedValue": "8px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__Contact\"]",
+        "observedValue": "ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.be",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.gap-suivez-nous",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#suivezNous.itemSpacing",
+        "observedValue": "8px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/suivezNous/literals/gap",
+        "observedValue": "8px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__suivezNous\"]",
+        "observedValue": "Suivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.structure.gap-reseaux-sociaux",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#rseauxSociaux.itemSpacing",
+        "observedValue": "16px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/literals/gap",
+        "observedValue": "16px",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__rseauxSociaux\"]",
+        "observedValue": "",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.property.accroche",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2904\",\"property\":\"Accroche#2104:57\",\"detail\":\"Propriété TEXT du COMPONENT racine (defaultValue \\\"Contact\\\"). MESURÉ : aucun nœud du sous-arbre ne la référence — le dump ne contient que deux componentPropertyReferences, toutes deux INTERNES à l'instance SectionHeader (I2169:6216;2090:2386 -> Accroche#2090:46 / Accroche2#2169:64, I2169:6216;2090:2387 -> Titre#2090:47). La propriété racine est donc inerte côté canvas aussi.\"}",
+        "observedValue": {
+          "nodeId": "2104:2904",
+          "property": "Accroche#2104:57",
+          "detail": "Propriété TEXT du COMPONENT racine (defaultValue \"Contact\"). MESURÉ : aucun nœud du sous-arbre ne la référence — le dump ne contient que deux componentPropertyReferences, toutes deux INTERNES à l'instance SectionHeader (I2169:6216;2090:2386 -> Accroche#2090:46 / Accroche2#2169:64, I2169:6216;2090:2387 -> Titre#2090:47). La propriété racine est donc inerte côté canvas aussi."
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/props/0",
+        "observedValue": {
+          "name": "mapUrl",
+          "type": "text",
+          "default": "",
+          "description": "URL fournie par le code pour le paint IMAGE du plan Google (RECTANGLE Figma 2104:2899, imageRef efdebf1941d13dbd5a2ab421aaeac49d352a87b2) — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : Figma range ces pixels dans un paint du master, jamais dans une propriété de composant, et le contrat n'a aucun canal background-image ; l'imageRef est donc consigné ici et jamais lié. Le défaut vide est intentionnel et ne substitue aucune image.",
+          "bindings": {
+            "figma": {
+              "kind": "NONE"
+            },
+            "code": {
+              "prop": "mapUrl"
+            }
+          }
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": "PREUVE-013 — ACCROCHE 4a1e",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.property.titre",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2904\",\"property\":\"Titre#2104:58\",\"detail\":\"Propriété TEXT du COMPONENT racine (defaultValue \\\"Nos coordonnées\\\"). MESURÉ : inerte côté canvas — voir coordonnees.property.accroche pour le relevé complet des componentPropertyReferences.\"}",
+        "observedValue": {
+          "nodeId": "2104:2904",
+          "property": "Titre#2104:58",
+          "detail": "Propriété TEXT du COMPONENT racine (defaultValue \"Nos coordonnées\"). MESURÉ : inerte côté canvas — voir coordonnees.property.accroche pour le relevé complet des componentPropertyReferences."
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/props/1",
+        "observedValue": {
+          "name": "mapAlt",
+          "type": "text",
+          "default": "",
+          "description": "Équivalent textuel fourni par le code, apparié à mapUrl. Un paint IMAGE Figma n'expose aucune propriété de composant correspondante, donc le défaut vide est intentionnel.",
+          "bindings": {
+            "figma": {
+              "kind": "NONE"
+            },
+            "code": {
+              "prop": "mapAlt"
+            }
+          }
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "PREUVE-013 — TITRE 4a1e",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.accroche",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2904\",\"property\":\"Accroche#2104:57\",\"textLayer\":\"I2169:6216;2090:2386\"}",
+        "observedValue": {
+          "nodeId": "2104:2904",
+          "property": "Accroche#2104:57",
+          "textLayer": "I2169:6216;2090:2386"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/props/0/default",
+        "observedValue": "",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": "Contact",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.titre",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2904\",\"property\":\"Titre#2104:58\",\"textLayer\":\"I2169:6216;2090:2387\"}",
+        "observedValue": {
+          "nodeId": "2104:2904",
+          "property": "Titre#2104:58",
+          "textLayer": "I2169:6216;2090:2387"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/props/1/default",
+        "observedValue": "",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "Nos coordonnées",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.adresse-etiquette",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2884\",\"detail\":\"TEXT layer AdresseEtiquette\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2884",
+          "detail": "TEXT layer AdresseEtiquette",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/text",
+        "observedValue": "Adresse",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__AdresseEtiquette\"]",
+        "observedValue": "Adresse",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.adresse-etiquette-font-size",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#AdresseEtiquette.font-size",
+        "observedValue": "24px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/tokens/font-size",
+        "observedValue": "{font.size.24}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:AdresseEtiquette.font-size:{font.size.24}→\"24px\"==\"24px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__AdresseEtiquette\"]",
+        "observedValue": "Adresse",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.adresse-etiquette-line-height",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#AdresseEtiquette.line-height",
+        "observedValue": "30px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseEtiquette/tokens/line-height",
+        "observedValue": "{font.line-height.30}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:AdresseEtiquette.line-height:{font.line-height.30}→\"30px\"==\"30px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__AdresseEtiquette\"]",
+        "observedValue": "Adresse",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.adresse-valeur",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2885\",\"detail\":\"TEXT layer AdresseValeur\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2885",
+          "detail": "TEXT layer AdresseValeur",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/text",
+        "observedValue": "Rue Alfred Drèze 7, 4860 Pepinster",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__AdresseValeur\"]",
+        "observedValue": "Rue Alfred Drèze 7,\n4860 Pepinster",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.adresse-valeur-font-size",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#AdresseValeur.font-size",
+        "observedValue": "18px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/tokens/font-size",
+        "observedValue": "{font.size.18}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:AdresseValeur.font-size:{font.size.18}→\"18px\"==\"18px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__AdresseValeur\"]",
+        "observedValue": "Rue Alfred Drèze 7,\n4860 Pepinster",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.adresse-valeur-line-height",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#AdresseValeur.line-height",
+        "observedValue": "27px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/tokens/line-height",
+        "observedValue": "{font.line-height.27}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:AdresseValeur.line-height:{font.line-height.27}→\"27px\"==\"27px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__AdresseValeur\"]",
+        "observedValue": "Rue Alfred Drèze 7,\n4860 Pepinster",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.horaires-etiquette",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2887\",\"detail\":\"TEXT layer HorairesEtiquette\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2887",
+          "detail": "TEXT layer HorairesEtiquette",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/text",
+        "observedValue": "Horaires",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__HorairesEtiquette\"]",
+        "observedValue": "Horaires",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.horaires-etiquette-font-size",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#HorairesEtiquette.font-size",
+        "observedValue": "24px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/tokens/font-size",
+        "observedValue": "{font.size.24}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:HorairesEtiquette.font-size:{font.size.24}→\"24px\"==\"24px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__HorairesEtiquette\"]",
+        "observedValue": "Horaires",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.horaires-etiquette-line-height",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#HorairesEtiquette.line-height",
+        "observedValue": "30px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesEtiquette/tokens/line-height",
+        "observedValue": "{font.line-height.30}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:HorairesEtiquette.line-height:{font.line-height.30}→\"30px\"==\"30px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__HorairesEtiquette\"]",
+        "observedValue": "Horaires",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.horaires-valeur",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2888\",\"detail\":\"TEXT layer HorairesValeur\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2888",
+          "detail": "TEXT layer HorairesValeur",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/text",
+        "observedValue": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__HorairesValeur\"]",
+        "observedValue": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.horaires-valeur-font-size",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#HorairesValeur.font-size",
+        "observedValue": "18px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/tokens/font-size",
+        "observedValue": "{font.size.18}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:HorairesValeur.font-size:{font.size.18}→\"18px\"==\"18px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__HorairesValeur\"]",
+        "observedValue": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.horaires-valeur-line-height",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#HorairesValeur.line-height",
+        "observedValue": "27px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/tokens/line-height",
+        "observedValue": "{font.line-height.27}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:HorairesValeur.line-height:{font.line-height.27}→\"27px\"==\"27px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__HorairesValeur\"]",
+        "observedValue": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.contact-etiquette",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2890\",\"detail\":\"TEXT layer ContactEtiquette\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2890",
+          "detail": "TEXT layer ContactEtiquette",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/text",
+        "observedValue": "Contact",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__ContactEtiquette\"]",
+        "observedValue": "Contact",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.contact-etiquette-font-size",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#ContactEtiquette.font-size",
+        "observedValue": "24px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/tokens/font-size",
+        "observedValue": "{font.size.24}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:ContactEtiquette.font-size:{font.size.24}→\"24px\"==\"24px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__ContactEtiquette\"]",
+        "observedValue": "Contact",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.contact-etiquette-line-height",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#ContactEtiquette.line-height",
+        "observedValue": "30px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/parts/ContactEtiquette/tokens/line-height",
+        "observedValue": "{font.line-height.30}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:ContactEtiquette.line-height:{font.line-height.30}→\"30px\"==\"30px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__ContactEtiquette\"]",
+        "observedValue": "Contact",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.contact-valeur",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2891\",\"detail\":\"TEXT layer ContactValeur\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2891",
+          "detail": "TEXT layer ContactValeur",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text",
+        "observedValue": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__tl32087463266EmailInfopi\"]",
+        "observedValue": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.contact-valeur-font-size",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#ContactValeur.font-size",
+        "observedValue": "18px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/tokens/font-size",
+        "observedValue": "{font.size.18}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:ContactValeur.font-size:{font.size.18}→\"18px\"==\"18px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__tl32087463266EmailInfopi\"]",
+        "observedValue": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.contact-valeur-line-height",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#ContactValeur.line-height",
+        "observedValue": "27px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/tokens/line-height",
+        "observedValue": "{font.line-height.27}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:ContactValeur.line-height:{font.line-height.27}→\"27px\"==\"27px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__tl32087463266EmailInfopi\"]",
+        "observedValue": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.content.suivez-nous-etiquette",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2893\",\"detail\":\"TEXT layer SuivezNousEtiquette\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2893",
+          "detail": "TEXT layer SuivezNousEtiquette",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/text",
+        "observedValue": "Suivez-nous",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__SuivezNousEtiquette\"]",
+        "observedValue": "Suivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.suivez-nous-etiquette-font-size",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#SuivezNousEtiquette.font-size",
+        "observedValue": "24px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/tokens/font-size",
+        "observedValue": "{font.size.24}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:SuivezNousEtiquette.font-size:{font.size.24}→\"24px\"==\"24px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__SuivezNousEtiquette\"]",
+        "observedValue": "Suivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.suivez-nous-etiquette-line-height",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#SuivezNousEtiquette.line-height",
+        "observedValue": "30px",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/tokens/line-height",
+        "observedValue": "{font.line-height.30}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": [
+          "token-resolved:SuivezNousEtiquette.line-height:{font.line-height.30}→\"30px\"==\"30px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__SuivezNousEtiquette\"]",
+        "observedValue": "Suivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.composition.section-header",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2169:6216\",\"mainComponent\":\"2090:2385\",\"observedInstanceProperties\":{\"Accroche2#2169:64\":true,\"Titre#2090:47\":\"Nos coordonnées\",\"Accroche#2090:46\":\"Contact\",\"Disposition\":\"Standard\"}}",
+        "observedValue": {
+          "nodeId": "2169:6216",
+          "mainComponent": "2090:2385",
+          "observedInstanceProperties": {
+            "Accroche2#2169:64": true,
+            "Titre#2090:47": "Nos coordonnées",
+            "Accroche#2090:46": "Contact",
+            "Disposition": "Standard"
+          }
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/SectionHeader/component",
+        "observedValue": {
+          "id": "ds.section-header",
+          "props": {
+            "titre": "{titre}",
+            "accroche": "{accroche}",
+            "disposition": "standard",
+            "alignement": "gauche"
+          }
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"SectionHeader__root\"]",
+        "observedValue": "ContactNos coordonnées",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.composition.section-header-props",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#SectionHeader.props.titre",
+        "observedValue": "{titre}",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/SectionHeader/component/props/titre",
+        "observedValue": "{titre}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "Nos coordonnées",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.composition.section-header-accroche",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2104:2904#SectionHeader.props.accroche",
+        "observedValue": "{accroche}",
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/SectionHeader/component/props/accroche",
+        "observedValue": "{accroche}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": "Contact",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.composition.icone-facebook",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2900\",\"mainComponent\":\"2053:1259\",\"detail\":\"INSTANCE Facebook 32x31.857126235961914 > VECTOR I2104:2900;2053:1258, fill {color.noir-bleute}\"}",
+        "observedValue": {
+          "nodeId": "2104:2900",
+          "mainComponent": "2053:1259",
+          "detail": "INSTANCE Facebook 32x31.857126235961914 > VECTOR I2104:2900;2053:1258, fill {color.noir-bleute}"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/parts/Facebook/icon",
+        "observedValue": {
+          "asset": "facebook",
+          "size": 32
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__Facebook\"]",
+        "observedValue": "",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.composition.icone-instagram",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2902\",\"mainComponent\":\"2053:1261\",\"detail\":\"INSTANCE Instagram 32x32 > VECTOR I2104:2902;2053:1260, fill {color.noir-bleute}\"}",
+        "observedValue": {
+          "nodeId": "2104:2902",
+          "mainComponent": "2053:1261",
+          "detail": "INSTANCE Instagram 32x32 > VECTOR I2104:2902;2053:1260, fill {color.noir-bleute}"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/parts/Instagram/icon",
+        "observedValue": {
+          "asset": "instagram",
+          "size": 32
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__Instagram\"]",
+        "observedValue": "",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.root",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2904\",\"export\":\"png@2x\"}",
+        "observedValue": {
+          "nodeId": "2104:2904",
+          "export": "png@2x"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "row"
+          },
+          "parts": {
+            "googleMap": {
+              "description": "Plan Google de la section (RECTANGLE Figma 2104:2899, 1152×597 FIXED/FIXED, layoutGrow 0). Son fills[0] est un paint IMAGE de scaleMode STRETCH porteur d'un imageTransform [[1,0,0],[0,0.9913,0.00434]] : un recadrage centré à ratio conservé de la source 1142×597 vers la boîte 1152×597 — object-fit: cover en est l'orthographe CSS exacte (même facteur 1.00875, mêmes 2,6 px rognés en haut et en bas). PREMIÈRE part du root : l'ordre du DOM est ici l'ordre VISUEL de Figma (plan à GAUCHE en x=40, wrapper à DROITE en x=1192). Le root Figma est un GRID 3 colonnes à gouttière 0 dont les enfants sont positionnés MANUAL et rangés plan-puis-wrapper dans l'ordre visuel ; l'ordre d'auteur du calque est un artefact sans portée, le contrat décrit le résultat. min-width porte le FIXED de Figma : sans lui l'img flex-shrink:1 se laisse rétrécir par le wrapper et le plan perd 61 px.",
+              "element": "img",
+              "attrs": {
+                "src": "{mapUrl}",
+                "alt": "{mapAlt}"
+              },
+              "literals": {
+                "width": "1152px",
+                "min-width": "1152px",
+                "height": "597px"
+              },
+              "declared": {
+                "object-fit": "cover"
+              }
+            },
+            "wrapper": {
+              "layout": {
+                "direction": "column",
+                "align": "stretch"
+              },
+              "parts": {
+                "SectionHeader": {
+                  "description": "Instance SectionHeader (Figma 2169:6216). `titre`/`accroche` sont ROUTÉS depuis les props publiques du root (motif vivant : ds.carte props.children = \"{ctaLabel}\") au lieu de reconduire le littéral de l'override d'instance : sans ce routage les propriétés TEXT racines Titre#2104:58 et Accroche#2104:57 n'ont aucun effet côté code, exactement comme elles n'en ont aucun côté canvas (0 componentPropertyReferences mesuré). Les valeurs rendues par défaut sont inchangées — ce sont les defaults des props.",
+                  "component": {
+                    "id": "ds.section-header",
+                    "props": {
+                      "titre": "{titre}",
+                      "accroche": "{accroche}",
+                      "disposition": "standard",
+                      "alignement": "gauche"
+                    }
+                  }
+                },
+                "Adresse": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "AdresseEtiquette": {
+                      "text": "Adresse",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "AdresseValeur": {
+                      "text": "Rue Alfred Drèze 7, 4860 Pepinster",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{font.size.18}",
+                        "line-height": "{font.line-height.27}"
+                      },
+                      "declared": {
+                        "white-space": "pre-line",
+                        "text-decoration-line": "underline"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                },
+                "Horaires": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "HorairesEtiquette": {
+                      "text": "Horaires",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "HorairesValeur": {
+                      "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{font.size.18}",
+                        "line-height": "{font.line-height.27}"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                },
+                "Contact": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "ContactEtiquette": {
+                      "text": "Contact",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "tl32087463266EmailInfopi": {
+                      "text": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
+                      "tokens": {
+                        "color": "{color.noir-bleute}",
+                        "font-size": "{font.size.18}",
+                        "line-height": "{font.line-height.27}"
+                      },
+                      "textSegments": [
+                        {
+                          "text": "Tél : "
+                        },
+                        {
+                          "text": "+32 (0)87 46 32 66\r",
+                          "underline": true
+                        },
+                        {
+                          "text": " Email: "
+                        },
+                        {
+                          "text": "info@piqueray.be",
+                          "underline": true
+                        }
+                      ],
+                      "declared": {
+                        "white-space": "pre-line"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                },
+                "suivezNous": {
+                  "layout": {
+                    "direction": "column"
+                  },
+                  "parts": {
+                    "SuivezNousEtiquette": {
+                      "text": "Suivez-nous",
+                      "tokens": {
+                        "color": "{color.orange}",
+                        "font-size": "{font.size.24}",
+                        "line-height": "{font.line-height.30}"
+                      }
+                    },
+                    "rseauxSociaux": {
+                      "layout": {
+                        "direction": "row",
+                        "align": "center"
+                      },
+                      "parts": {
+                        "Facebook": {
+                          "icon": {
+                            "asset": "facebook",
+                            "size": 32
+                          }
+                        },
+                        "Instagram": {
+                          "icon": {
+                            "asset": "instagram",
+                            "size": 32
+                          }
+                        }
+                      },
+                      "literals": {
+                        "gap": "16px"
+                      }
+                    }
+                  },
+                  "literals": {
+                    "gap": "8px"
+                  }
+                }
+              },
+              "literals": {
+                "gap": "16px",
+                "padding-block": "48px",
+                "padding-inline": "48px",
+                "width": "576px"
+              }
+            }
+          },
+          "tokens": {
+            "background-color": "{color.bleu-clair}",
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__root\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.visual.root-background",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2904\",\"channel\":\"fills[0]\",\"detail\":\"SOLID #F4F6FA lié à VariableID:5:63 — le token {color.bleu-clair} vaut #F4F6FA (tokens/primitives.tokens.json)\"}",
+        "observedValue": {
+          "nodeId": "2104:2904",
+          "channel": "fills[0]",
+          "detail": "SOLID #F4F6FA lié à VariableID:5:63 — le token {color.bleu-clair} vaut #F4F6FA (tokens/primitives.tokens.json)"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/tokens/background-color",
+        "observedValue": "{color.bleu-clair}",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__root\"]",
+        "observedValue": "ContactNos coordonnéesAdresseRue Alfred Drèze 7,\n4860 PepinsterHorairesDu lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ContactTél : +32 (0)87 46 32 66\nEmail: info@piqueray.beSuivez-nous",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "coordonnees.semantic.contact-valeur",
+      "subjectId": "coordonnees",
+      "caseId": "coordonnees-master-defaults",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2104:2891\",\"detail\":\"TEXT ContactValeur — contient deux caractères invisibles : U+000D (CR) puis U+2028 (LINE SEPARATOR)\",\"channel\":\"characters\"}",
+        "observedValue": {
+          "nodeId": "2104:2891",
+          "detail": "TEXT ContactValeur — contient deux caractères invisibles : U+000D (CR) puis U+2028 (LINE SEPARATOR)",
+          "channel": "characters"
+        },
+        "sourceHash": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.coordonnees@2.2.0#/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text",
+        "observedValue": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be",
+        "sourceHash": "41db7a1658f4d983332d4f1f7d615d00863ae9a8a3b0fb5611abace58471a0f8",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/Coordonnees/Coordonnees.tsx#[class*=\"Coordonnees__tl32087463266EmailInfopi\"]",
+        "observedValue": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be",
+        "sourceHash": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "coordonnees-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    }
+  ],
+  "cases": [
+    {
+      "id": "coordonnees-master-defaults",
+      "subjectId": "coordonnees",
+      "verdict": "pass",
+      "probative": true,
+      "reasons": [],
+      "figma": {
+        "nodeId": "2104:2904",
+        "setNodeId": "2104:2904",
+        "fileVersion": "2381581871281042338",
+        "observedProperties": {
+          "Accroche#2104:57": "Contact",
+          "Titre#2104:58": "Nos coordonnées"
+        },
+        "pngSha256": "869e55fa76f22e5865f7efce89b85bd2e597eb48fa76df2ad2f2fc637785bce1",
+        "width": 3456,
+        "height": 1194
+      },
+      "contract": {
+        "id": "ds.coordonnees",
+        "version": "2.2.0",
+        "factIds": [
+          "coordonnees.structure.root",
+          "coordonnees.structure.wrapper",
+          "coordonnees.structure.google-map",
+          "coordonnees.structure.colonnes-ordre",
+          "coordonnees.structure.gap-wrapper",
+          "coordonnees.structure.padding-block-wrapper",
+          "coordonnees.structure.padding-inline-wrapper",
+          "coordonnees.structure.width-wrapper",
+          "coordonnees.structure.gap-adresse",
+          "coordonnees.structure.gap-horaires",
+          "coordonnees.structure.gap-contact",
+          "coordonnees.structure.gap-suivez-nous",
+          "coordonnees.structure.gap-reseaux-sociaux",
+          "coordonnees.property.accroche",
+          "coordonnees.property.titre",
+          "coordonnees.content.accroche",
+          "coordonnees.content.titre",
+          "coordonnees.content.adresse-etiquette",
+          "coordonnees.visual.adresse-etiquette-font-size",
+          "coordonnees.visual.adresse-etiquette-line-height",
+          "coordonnees.content.adresse-valeur",
+          "coordonnees.visual.adresse-valeur-font-size",
+          "coordonnees.visual.adresse-valeur-line-height",
+          "coordonnees.content.horaires-etiquette",
+          "coordonnees.visual.horaires-etiquette-font-size",
+          "coordonnees.visual.horaires-etiquette-line-height",
+          "coordonnees.content.horaires-valeur",
+          "coordonnees.visual.horaires-valeur-font-size",
+          "coordonnees.visual.horaires-valeur-line-height",
+          "coordonnees.content.contact-etiquette",
+          "coordonnees.visual.contact-etiquette-font-size",
+          "coordonnees.visual.contact-etiquette-line-height",
+          "coordonnees.content.contact-valeur",
+          "coordonnees.visual.contact-valeur-font-size",
+          "coordonnees.visual.contact-valeur-line-height",
+          "coordonnees.content.suivez-nous-etiquette",
+          "coordonnees.visual.suivez-nous-etiquette-font-size",
+          "coordonnees.visual.suivez-nous-etiquette-line-height",
+          "coordonnees.composition.section-header",
+          "coordonnees.composition.section-header-props",
+          "coordonnees.composition.section-header-accroche",
+          "coordonnees.composition.icone-facebook",
+          "coordonnees.composition.icone-instagram",
+          "coordonnees.visual.root",
+          "coordonnees.visual.root-background",
+          "coordonnees.semantic.contact-valeur"
+        ],
+        "reactProps": {
+          "mapUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/coordonnees--google-map--efdebf1941d1.png",
+          "mapAlt": ""
+        }
+      },
+      "generated": {
+        "componentFile": "src/components/Coordonnees/Coordonnees.tsx",
+        "export": "Coordonnees",
+        "bundleSha256": "0e51bb9b38bb5253622bd11448ce071625276c95c34a59b6d97f61d24453d371",
+        "harnessConfigSha256": "13e7469d97545e491d8f7ca0ccfbad0c1af546859cc905e851236c2834ed0255",
+        "fontsLoaded": true
+      },
+      "visibility": {
+        "figma": {
+          "signalPixels": 3973172,
+          "width": 3456,
+          "height": 1194
+        },
+        "generated": {
+          "signalPixels": 3979216,
+          "width": 3648,
+          "height": 1386
+        },
+        "contrastOk": true
+      },
+      "geometry": {
+        "figmaRoot": {
+          "width": 3456,
+          "height": 1194
+        },
+        "generatedRoot": {
+          "width": 3456,
+          "height": 1194
+        },
+        "deltaPx": {
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "pixels": {
+        "rawPct": 0.5222631289161859,
+        "maskedDiagnosticPct": null,
+        "thresholdPct": 2.5,
+        "regions": [
+          {
+            "id": "whole",
+            "score": 0.5222631289161859,
+            "maxDiffPct": 2.5,
+            "signalPixels": 3973172
+          }
+        ],
+        "verdict": "pass"
+      },
+      "semantics": [
+        {
+          "id": "accroche-defaut",
+          "selector": "[class*=\"SectionHeader__Accroche\"]",
+          "contractPointer": "/props/0/default",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Contact"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Contact"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "titre-defaut",
+          "selector": "[class*=\"SectionHeader__Titre\"]",
+          "contractPointer": "/props/1/default",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Nos coordonnées"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Nos coordonnées"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "adresse-valeur",
+          "selector": "[class*=\"Coordonnees__AdresseValeur\"]",
+          "contractPointer": "/anatomy/root/parts/wrapper/parts/Adresse/parts/AdresseValeur/text",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Rue Alfred Drèze 7, 4860 Pepinster"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Rue Alfred Drèze 7,\n4860 Pepinster"
+          },
+          "verdict": "fail"
+        },
+        {
+          "id": "horaires-valeur",
+          "selector": "[class*=\"Coordonnees__HorairesValeur\"]",
+          "contractPointer": "/anatomy/root/parts/wrapper/parts/Horaires/parts/HorairesValeur/text",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "contact-valeur",
+          "selector": "[class*=\"Coordonnees__tl32087463266EmailInfopi\"]",
+          "contractPointer": "/anatomy/root/parts/wrapper/parts/Contact/parts/tl32087463266EmailInfopi/text",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Tél : +32 (0)87 46 32 66\r Email: info@piqueray.be"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Tél : +32 (0)87 46 32 66\nEmail: info@piqueray.be"
+          },
+          "verdict": "fail"
+        },
+        {
+          "id": "suivez-nous-etiquette",
+          "selector": "[class*=\"Coordonnees__SuivezNousEtiquette\"]",
+          "contractPointer": "/anatomy/root/parts/wrapper/parts/suivezNous/parts/SuivezNousEtiquette/text",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Suivez-nous"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Suivez-nous"
+          },
+          "verdict": "pass"
+        }
+      ],
+      "domProbes": [
+        {
+          "factId": "coordonnees.property.accroche",
+          "prop": "accroche",
+          "probeValue": "PREUVE-013 — ACCROCHE 4a1e",
+          "observedDomValue": "PREUVE-013 — ACCROCHE 4a1e",
+          "projected": true
+        },
+        {
+          "factId": "coordonnees.property.titre",
+          "prop": "titre",
+          "probeValue": [
+            {
+              "text": "PREUVE-013 — TITRE 4a1e"
+            }
+          ],
+          "observedDomValue": "PREUVE-013 — TITRE 4a1e",
+          "projected": true
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "coordonnees-master-defaults.figma",
+          "kind": "figma",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/figma.png",
+          "sha256": "3d08f1c335836434f9643dfcb72d80d8c1f39691aba1d5c174a8636dedd13bec",
+          "mediaType": "image/png",
+          "width": 3456,
+          "height": 1194,
+          "bytes": 932377
+        },
+        {
+          "id": "coordonnees-master-defaults.generated",
+          "kind": "generated",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/generated.png",
+          "sha256": "e66fb2153715baabd83e67767f4e95738162ebe93e13854379dc095bd1c6984e",
+          "mediaType": "image/png",
+          "width": 3456,
+          "height": 1194,
+          "bytes": 1119511
+        },
+        {
+          "id": "coordonnees-master-defaults.diff",
+          "kind": "diff",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/diff.png",
+          "sha256": "632932730070f9949d5cef20f0654ad17518c4d8b711e4ede77dae2e4c961381",
+          "mediaType": "image/png",
+          "width": 3456,
+          "height": 1194,
+          "bytes": 525019
+        },
+        {
+          "id": "coordonnees-master-defaults.triptych",
+          "kind": "triptych",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/triptych.png",
+          "sha256": "6049bd315684ee145fc516f363877f7e3ff7aad135d6802ade2c9de8afd41077",
+          "mediaType": "image/png",
+          "width": null,
+          "height": null,
+          "bytes": 2589740
+        },
+        {
+          "id": "coordonnees-master-defaults.metadata",
+          "kind": "metadata",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/metadata.json",
+          "sha256": "db3c5217b6220955a56d9bf15753f91954d0d615a9760a6f48ae6ea56fd9b87c",
+          "mediaType": "application/json",
+          "width": null,
+          "height": null,
+          "bytes": 7179
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "coordonnees-master-defaults.figma",
+      "kind": "figma",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/figma.png",
+      "sha256": "3d08f1c335836434f9643dfcb72d80d8c1f39691aba1d5c174a8636dedd13bec",
+      "mediaType": "image/png",
+      "width": 3456,
+      "height": 1194,
+      "bytes": 932377
+    },
+    {
+      "id": "coordonnees-master-defaults.generated",
+      "kind": "generated",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/generated.png",
+      "sha256": "e66fb2153715baabd83e67767f4e95738162ebe93e13854379dc095bd1c6984e",
+      "mediaType": "image/png",
+      "width": 3456,
+      "height": 1194,
+      "bytes": 1119511
+    },
+    {
+      "id": "coordonnees-master-defaults.diff",
+      "kind": "diff",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/diff.png",
+      "sha256": "632932730070f9949d5cef20f0654ad17518c4d8b711e4ede77dae2e4c961381",
+      "mediaType": "image/png",
+      "width": 3456,
+      "height": 1194,
+      "bytes": 525019
+    },
+    {
+      "id": "coordonnees-master-defaults.triptych",
+      "kind": "triptych",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/triptych.png",
+      "sha256": "6049bd315684ee145fc516f363877f7e3ff7aad135d6802ade2c9de8afd41077",
+      "mediaType": "image/png",
+      "width": null,
+      "height": null,
+      "bytes": 2589740
+    },
+    {
+      "id": "coordonnees-master-defaults.metadata",
+      "kind": "metadata",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/cases/coordonnees-master-defaults/metadata.json",
+      "sha256": "db3c5217b6220955a56d9bf15753f91954d0d615a9760a6f48ae6ea56fd9b87c",
+      "mediaType": "application/json",
+      "width": null,
+      "height": null,
+      "bytes": 7179
+    }
+  ],
+  "verdict": "divergent",
+  "reasons": [
+    "divergent-facts:1"
+  ]
+}

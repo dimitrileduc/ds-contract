@@ -465,6 +465,54 @@ function specHash(C) {
 // instance-level property overrides survive because property IDs do.
 // Destructive changes (extra variants from removed enum values) are
 // REPORTED, never deleted — a human retires those.
+// A real IMAGE paint on the canvas is an OUT-OF-CONTRACT override (capability
+// matrix row 91, 2026-07-26 addendum): the contract carries the img part and
+// its runtime URL prop, never the bytes. Both amend paths rebuild children
+// from the spec, so the client's photos are HARVESTED before the teardown and
+// RESTORED onto the rebuilt img parts — matched by node name first, then by
+// document order (hero's photo is a ROOT fill while its contract models a
+// Background child). Every move is reported; leftovers are named, not lost
+// silently. A contract-carried fill still wins (spec.fill wins, doctrine).
+function harvestImagePaints(node, pool) {
+  const fills = Array.isArray(node.fills) ? node.fills : [];
+  const imgs = fills.filter((f) => f && f.type === 'IMAGE');
+  if (imgs.length > 0) pool.push({ name: node.name, paints: imgs, claimed: false });
+  for (const ch of node.children || []) harvestImagePaints(ch, pool);
+}
+function collectImgSpecTargets(spec, out) {
+  if (spec.imgPlaceholder === true && !spec.fill) out.push(spec.name);
+  for (const ch of spec.children || []) collectImgSpecTargets(ch, out);
+}
+function findDescendantByName(node, name) {
+  if (node.name === name) return node;
+  for (const ch of node.children || []) {
+    const hit = findDescendantByName(ch, name);
+    if (hit) return hit;
+  }
+  return null;
+}
+function restoreImagePaints(spec, rootNode, pool, report) {
+  const targets = [];
+  collectImgSpecTargets(spec, targets);
+  for (const name of targets) {
+    const node = findDescendantByName(rootNode, name);
+    if (!node) continue;
+    let entry = pool.find((e) => !e.claimed && e.name === name);
+    if (!entry) entry = pool.find((e) => !e.claimed);
+    if (!entry) continue;
+    entry.claimed = true;
+    node.fills = entry.paints;
+    report.preservedImages = report.preservedImages || [];
+    report.preservedImages.push(entry.name + ' -> ' + name);
+  }
+  for (const e of pool) {
+    if (!e.claimed) {
+      report.unplacedImages = report.unplacedImages || [];
+      report.unplacedImages.push(e.name);
+    }
+  }
+}
+
 async function amendSet(set, C) {
   set.setSharedPluginData('ds_contracts', 'contractId', C.contractId);
   const hash = specHash(C);
@@ -524,6 +572,8 @@ async function amendSet(set, C) {
       set.appendChild(comp);
       report.addedVariants.push(v.name);
     } else {
+      const imagePool = [];
+      harvestImagePaints(comp, imagePool);
       for (const child of [...comp.children]) child.remove();
       applyFrameSpec(comp, v.spec);
       for (const childSpec of v.spec.children || []) {
@@ -546,6 +596,7 @@ async function amendSet(set, C) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
       }
+      restoreImagePaints(v.spec, comp, imagePool, report);
       report.rebuiltVariants++;
     }
     for (const t of registry.texts) {
@@ -659,6 +710,8 @@ async function amendComponent(comp, C) {
   }
   const v = C.variants[0];
   const registry = { texts: [], slots: [], visibles: [] };
+  const imagePool = [];
+  harvestImagePaints(comp, imagePool);
   for (const child of [...comp.children]) child.remove();
   applyFrameSpec(comp, v.spec);
   for (const childSpec of v.spec.children || []) {
@@ -681,6 +734,7 @@ async function amendComponent(comp, C) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
   }
+  restoreImagePaints(v.spec, comp, imagePool, report);
   for (const t of registry.texts) {
     let k = defKey(t.prop);
     if (!k) { k = comp.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }

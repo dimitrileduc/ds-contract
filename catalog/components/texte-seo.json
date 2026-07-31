@@ -1,7 +1,7 @@
 {
   "id": "ds.texte-seo",
   "name": "TexteSEO",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "status": "draft",
   "category": "section",
   "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -15,9 +15,16 @@
       "type": {
         "arrayOf": {
           "contenu": "text",
+          "etat": {
+            "enum": [
+              "ferme",
+              "ouvert"
+            ]
+          },
           "titre": "text"
         }
-      }
+      },
+      "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli."
     }
   ],
   "children": {

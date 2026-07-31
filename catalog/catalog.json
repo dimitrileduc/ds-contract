@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "fd94888",
+    "gitCommit": "99fea19",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -48,27 +48,75 @@
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
+      "--typography-titre-1-line-height",
       "--typography-titre-2-family",
       "--typography-titre-2-size",
       "--typography-titre-2-weight",
+      "--typography-titre-2-line-height",
       "--typography-titre-3-family",
       "--typography-titre-3-size",
       "--typography-titre-3-weight",
+      "--typography-titre-3-line-height",
       "--typography-titre-4-family",
       "--typography-titre-4-size",
       "--typography-titre-4-weight",
+      "--typography-titre-4-line-height",
       "--typography-titre-5-family",
       "--typography-titre-5-size",
       "--typography-titre-5-weight",
+      "--typography-titre-5-line-height",
       "--typography-titre-6-family",
       "--typography-titre-6-size",
       "--typography-titre-6-weight",
+      "--typography-titre-6-line-height",
       "--typography-paragraphe-family",
       "--typography-paragraphe-size",
       "--typography-paragraphe-weight",
+      "--typography-paragraphe-line-height",
       "--typography-lead-family",
       "--typography-lead-size",
-      "--typography-lead-weight"
+      "--typography-lead-weight",
+      "--typography-lead-line-height",
+      "--typography-titre-2-majuscules-family",
+      "--typography-titre-2-majuscules-size",
+      "--typography-titre-2-majuscules-weight",
+      "--typography-titre-2-majuscules-line-height",
+      "--typography-titre-3-majuscules-family",
+      "--typography-titre-3-majuscules-size",
+      "--typography-titre-3-majuscules-weight",
+      "--typography-titre-3-majuscules-line-height",
+      "--typography-titre-hero-family",
+      "--typography-titre-hero-size",
+      "--typography-titre-hero-weight",
+      "--typography-titre-hero-line-height",
+      "--typography-titre-hero-video-family",
+      "--typography-titre-hero-video-size",
+      "--typography-titre-hero-video-weight",
+      "--typography-titre-hero-video-line-height",
+      "--typography-accroche-family",
+      "--typography-accroche-size",
+      "--typography-accroche-weight",
+      "--typography-accroche-line-height",
+      "--typography-accroche-letter-spacing",
+      "--typography-libelle-bouton-family",
+      "--typography-libelle-bouton-size",
+      "--typography-libelle-bouton-weight",
+      "--typography-libelle-bouton-line-height",
+      "--typography-libelle-nav-family",
+      "--typography-libelle-nav-size",
+      "--typography-libelle-nav-weight",
+      "--typography-libelle-nav-line-height",
+      "--typography-note-de-champ-family",
+      "--typography-note-de-champ-size",
+      "--typography-note-de-champ-weight",
+      "--typography-onglet-family",
+      "--typography-onglet-size",
+      "--typography-onglet-weight",
+      "--typography-onglet-line-height",
+      "--typography-paragraphe-gras-family",
+      "--typography-paragraphe-gras-size",
+      "--typography-paragraphe-gras-weight",
+      "--typography-paragraphe-gras-line-height"
     ],
     "allCssVariables": [
       "--color-bleu",
@@ -84,6 +132,8 @@
       "--color-rouge",
       "--color-orange-12",
       "--color-orange-42",
+      "--color-gris-clair",
+      "--color-noir-pur",
       "--nav-state",
       "--opacity-base",
       "--font-family-montserrat",
@@ -94,45 +144,120 @@
       "--font-size-24",
       "--font-size-32",
       "--font-size-40",
+      "--font-size-44",
       "--font-size-48",
+      "--font-size-54",
       "--font-weight-regular",
       "--font-weight-medium",
       "--font-weight-semibold",
+      "--font-weight-bold",
+      "--font-line-height-16",
+      "--font-line-height-20",
       "--font-line-height-22",
+      "--font-line-height-24",
+      "--font-line-height-25",
+      "--font-line-height-27",
+      "--font-line-height-30",
+      "--font-line-height-32",
+      "--font-line-height-40",
+      "--font-line-height-48",
+      "--font-line-height-50",
+      "--font-line-height-60",
+      "--font-line-height-68",
+      "--font-letter-spacing-15",
       "--space-0",
       "--space-4",
+      "--space-8",
       "--space-10",
+      "--space-12",
       "--space-16",
+      "--space-24",
       "--space-32",
+      "--space-48",
+      "--space-64",
+      "--space-89",
+      "--space-96",
+      "--space-128",
+      "--space-392",
+      "--space-597",
       "--size-button-icon-only",
       "--radius-32",
+      "--radius-500",
       "--border-width-0",
       "--border-width-1",
       "--border-width-2",
       "--typography-titre-1-family",
       "--typography-titre-1-size",
       "--typography-titre-1-weight",
+      "--typography-titre-1-line-height",
       "--typography-titre-2-family",
       "--typography-titre-2-size",
       "--typography-titre-2-weight",
+      "--typography-titre-2-line-height",
       "--typography-titre-3-family",
       "--typography-titre-3-size",
       "--typography-titre-3-weight",
+      "--typography-titre-3-line-height",
       "--typography-titre-4-family",
       "--typography-titre-4-size",
       "--typography-titre-4-weight",
+      "--typography-titre-4-line-height",
       "--typography-titre-5-family",
       "--typography-titre-5-size",
       "--typography-titre-5-weight",
+      "--typography-titre-5-line-height",
       "--typography-titre-6-family",
       "--typography-titre-6-size",
       "--typography-titre-6-weight",
+      "--typography-titre-6-line-height",
       "--typography-paragraphe-family",
       "--typography-paragraphe-size",
       "--typography-paragraphe-weight",
+      "--typography-paragraphe-line-height",
       "--typography-lead-family",
       "--typography-lead-size",
-      "--typography-lead-weight"
+      "--typography-lead-weight",
+      "--typography-lead-line-height",
+      "--typography-titre-2-majuscules-family",
+      "--typography-titre-2-majuscules-size",
+      "--typography-titre-2-majuscules-weight",
+      "--typography-titre-2-majuscules-line-height",
+      "--typography-titre-3-majuscules-family",
+      "--typography-titre-3-majuscules-size",
+      "--typography-titre-3-majuscules-weight",
+      "--typography-titre-3-majuscules-line-height",
+      "--typography-titre-hero-family",
+      "--typography-titre-hero-size",
+      "--typography-titre-hero-weight",
+      "--typography-titre-hero-line-height",
+      "--typography-titre-hero-video-family",
+      "--typography-titre-hero-video-size",
+      "--typography-titre-hero-video-weight",
+      "--typography-titre-hero-video-line-height",
+      "--typography-accroche-family",
+      "--typography-accroche-size",
+      "--typography-accroche-weight",
+      "--typography-accroche-line-height",
+      "--typography-accroche-letter-spacing",
+      "--typography-libelle-bouton-family",
+      "--typography-libelle-bouton-size",
+      "--typography-libelle-bouton-weight",
+      "--typography-libelle-bouton-line-height",
+      "--typography-libelle-nav-family",
+      "--typography-libelle-nav-size",
+      "--typography-libelle-nav-weight",
+      "--typography-libelle-nav-line-height",
+      "--typography-note-de-champ-family",
+      "--typography-note-de-champ-size",
+      "--typography-note-de-champ-weight",
+      "--typography-onglet-family",
+      "--typography-onglet-size",
+      "--typography-onglet-weight",
+      "--typography-onglet-line-height",
+      "--typography-paragraphe-gras-family",
+      "--typography-paragraphe-gras-size",
+      "--typography-paragraphe-gras-weight",
+      "--typography-paragraphe-gras-line-height"
     ]
   },
   "components": [
@@ -439,7 +564,7 @@
     {
       "id": "ds.section-header",
       "name": "SectionHeader",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
       "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
@@ -464,13 +589,38 @@
         {
           "name": "titre",
           "type": "string",
-          "default": "Pourquoi choisir Piqueray ?"
+          "default": [
+            {
+              "text": "Pourquoi choisir Piqueray ?"
+            }
+          ],
+          "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas reste UNE valeur TEXT native : la concaténation à plat."
         },
         {
           "name": "accroche2",
           "type": "boolean",
           "default": true,
           "description": "Extracted from Figma \"Accroche2\" BOOLEAN property (added by sync pass)."
+        },
+        {
+          "name": "emphase",
+          "type": [
+            "standard",
+            "hero",
+            "moyen",
+            "compact"
+          ],
+          "default": "standard",
+          "description": "LIMITE NOMMÉE — abstraction code-side sur des surcharges d'instance Figma ad hoc. Le master 2090:2385 porte 40px/50px ; les usages surchargent la typographie du Titre par instance (hero 2169:6264 : 54/68/blanc, poids 300 sur la plage NON marquée — voir ci-dessous ; presentation 2169:6246 : 32/40 ; texte-seo 2170:6361 : 24/30 ; coordonnees, faq, sav et reassurances restent à 40/50 = defaut) au lieu de la porter en variantes gouvernées. Le poids du hero : le nœud Figma a un style de BASE Bold 700 avec une surcharge Light 300 sur « industrielles » ; le modèle du contrat porte l'inverse strictement équivalent en pixels — la plage non marquée prend le poids de base (300, littéral : aucun token Light dans la fondation) et la plage marquée prend content.marks.strong (token font.weight.bold). `component.props` ne transporte que des valeurs de props, jamais une surcharge typographique de l'enfant — cet axe est donc le seul moyen de porter le fait sans retoucher la sortie générée. Le correctif de fond appartient à Figma : promouvoir ces surcharges en variantes réelles, après quoi cet axe redevient un VARIANT lié."
+        },
+        {
+          "name": "alignement",
+          "type": [
+            "centre",
+            "gauche"
+          ],
+          "default": "centre",
+          "description": "LIMITE NOMMÉE — le master 2090:2385 centre (textAlign CENTER) mais 5 usages sur 7 le surchargent en LEFT par instance (coordonnees, presentation, sav, texte-seo, hero) quand faq et reassurances suivent le master. Cet axe code-side porte ce fait d’usage ; le correctif de fond appartient à Figma (promouvoir l’alignement en variante gouvernée du master)."
         }
       ],
       "children": {
@@ -481,7 +631,7 @@
     {
       "id": "ds.coordonnees",
       "name": "Coordonnees",
-      "version": "1.0.0",
+      "version": "2.2.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -491,6 +641,18 @@
       },
       "props": [
         {
+          "name": "mapUrl",
+          "type": "string",
+          "default": "",
+          "description": "URL fournie par le code pour le paint IMAGE du plan Google (RECTANGLE Figma 2104:2899, imageRef efdebf1941d13dbd5a2ab421aaeac49d352a87b2) — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : Figma range ces pixels dans un paint du master, jamais dans une propriété de composant, et le contrat n'a aucun canal background-image ; l'imageRef est donc consigné ici et jamais lié. Le défaut vide est intentionnel et ne substitue aucune image."
+        },
+        {
+          "name": "mapAlt",
+          "type": "string",
+          "default": "",
+          "description": "Équivalent textuel fourni par le code, apparié à mapUrl. Un paint IMAGE Figma n'expose aucune propriété de composant correspondante, donc le défaut vide est intentionnel."
+        },
+        {
           "name": "accroche",
           "type": "string",
           "default": "Contact",
@@ -499,8 +661,12 @@
         {
           "name": "titre",
           "type": "string",
-          "default": "Nos coordonnées",
-          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+          "default": [
+            {
+              "text": "Nos coordonnées"
+            }
+          ],
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Type rich-text depuis section-header 2.0.0 : la propriété est transmise VIVANTE à l'enfant (titre: \"{titre}\"), et un mapping vers une prop rich-text exige une prop rich-text côté parent — sinon les graisses que l'enfant sait désormais porter seraient aplaties au passage. Le titre observé (I2169:6216;2090:2387) est UNIFORME : un seul segment."
         }
       ],
       "children": {
@@ -534,7 +700,7 @@
     {
       "id": "ds.devis",
       "name": "Devis",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Devis. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -547,6 +713,24 @@
           "name": "titre",
           "type": "string",
           "default": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+        },
+        {
+          "name": "backgroundUrl",
+          "type": "string",
+          "default": "",
+          "description": "URL fournie par le code pour la peinture IMAGE pleine largeur du root (fills[0], scaleMode FILL, imageRef 7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa). Figma range ces pixels dans une PEINTURE du master, jamais dans une propriété de composant : la liaison figma est donc NONE et le défaut vide est intentionnel — il ne substitue aucune image. Même provenance et même orthographe que sav.backgroundUrl."
+        },
+        {
+          "name": "backgroundAlt",
+          "type": "string",
+          "default": "",
+          "description": "Alternative textuelle appariée à backgroundUrl. Une peinture IMAGE Figma n'expose aucune propriété d'alternative textuelle : le défaut vide est intentionnel (plan décoratif)."
+        },
+        {
+          "name": "fond",
+          "type": "boolean",
+          "default": true,
+          "description": "Affiche les deux plans de fond du root (photo puis voile). Aucune propriété de composant Figma n'y correspond — les deux peintures vivent sur le root du master, pas sur une propriété : liaison NONE, défaut true (l'état du master). Ce booléen est AUSSI le seul porteur possible des insets des deux plans : la grammaire n'expose `top/right/bottom/left` que dans `stylesWhen` (STYLES_WHEN_ALLOWED), qui exige une prop conditionnante — précédents dans le dépôt : nav-item `Soulignement` conditionné par `actif`, member-picture (deux plans photo) conditionnés par `etat`. À false, les deux plans disparaissent et seul le `background-color` du root subsiste."
         }
       ],
       "children": {
@@ -668,10 +852,10 @@
     {
       "id": "ds.faq",
       "name": "FAQ",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur le master 2104:2914 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures (ni gap, ni padding, ni largeur) et sans aucune des valeurs d'instance du Bouton, ce qui laissait le rendu généré à 4,37 % d'écart pixel. Aucune propriété publique n'a changé.",
       "figma": {
         "representation": "component",
         "componentSetKey": "0df659be188a72700e42e2afbf30e95bb38db5f1"
@@ -684,13 +868,14 @@
               "contenu": "text",
               "titre": "text"
             }
-          }
+          },
+          "description": "Les lignes de la FAQ. LIMITE NOMMÉE (inchangée depuis 010) : Figma n'a pas de propriété de composant de type tableau — la répétition n'existe sur le canevas que comme N instances sœurs compilées, d'où bindings.figma.kind NONE. Le schéma refuse aussi un default sur un prop arrayOf (« an optional array — undefined means \"not provided\", never a silent [] ») : le master rend trois lignes par défaut, le composant généré n'en rend aucune sans données. C'est pourquoi le cas d'audit alimente items par un override, comme ds.footer."
         },
         {
           "name": "ligne3",
           "type": "boolean",
           "default": true,
-          "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass)."
+          "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass). LIMITE NOMMÉE : côté Figma cette propriété pilote la visibilité de la SEULE 3e instance (2104:2911), et la géométrie recalcule 448 ↔ 384px. Côté contrat les trois lignes naissent d'un `repeat` : `visibleWhen` s'applique à la part, donc à TOUTES les lignes répétées, jamais à la dernière seule. Le vocabulaire n'a pas de visibilité par index dans un repeat ; poser `visibleWhen: { prop: \"ligne3\" }` ferait disparaître les trois lignes là où Figma en garde deux. Le fait est donc EXPOSÉ mais non PROJETÉ, et nommé plutôt que contourné par un modèle faux."
         }
       ],
       "children": {
@@ -813,7 +998,7 @@
     {
       "id": "ds.footer-column",
       "name": "FooterColumn",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "molecule",
       "description": "Piqueray FooterColumn. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored.",
@@ -866,10 +1051,10 @@
     {
       "id": "ds.footer",
       "name": "Footer",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé.",
       "figma": {
         "representation": "component",
         "componentSetKey": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b"
@@ -893,7 +1078,7 @@
     {
       "id": "ds.formulaire",
       "name": "Formulaire",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -1142,15 +1327,28 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "1.0.0",
+      "version": "1.3.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.2.0 carries the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483, scaleMode FILL) as an absolutely-positioned `img` plane painted UNDER the content block — the same superposed-planes vocabulary ds.member-picture already uses, with DOM order alone deciding the stacking (no z-index channel exists, and none is needed: two positioned siblings paint in tree order). The bitmap reaches the coded surface through code-only `backgroundUrl` / `backgroundAlt` scalars (bindings.figma NONE) because `background-image: url()` is still the OPEN A5 / §a.7 gap of docs/FIGMA-CAPABILITY-MATRIX.md: the canvas side keeps the engine's generic image placeholder while the React surface renders the real pixels — the same split spec 006 documented for ds.review-card's avatarPhoto.\n\nTWO NAMED LIMITS REMAIN, both GRADIENT_LINEAR paints: the root's darkening overlay (fills[2] — `linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)`) and the Titres scrim (fills[0] — `linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%)`). Gradients are expressible in principle (§a.3: `tokens['background-image']` is parsed into a native GRADIENT_LINEAR) but that channel resolves ONLY through a DTCG token reference, and the Piqueray foundation defines no gradient token; `literals` refuses the channel by name (`background-image` is not in LITERAL_CHANNELS) and its value grammar admits no gradient syntax. The weight is measured, not guessed: the two veils darken 452 of the root's 640 px rows and account for 28.07 % of the master's pixels at the comparator's own threshold — on this organism they ARE the residual pixel gap. A single flat rgba() veil substituted over the same two bands was measured too, and bottoms out near 12 % residual, so approximating them would both invent a Figma fact and still fail.\n\nThe instance restyle of the SectionHeader child's Titre (blanc / 54 px / 68 px / 700) is no longer a limit here: it is carried by that child contract's own `emphase: \"hero\"` axis since section-header v1.1.0.",
       "figma": {
         "representation": "component",
         "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a"
       },
-      "props": [],
+      "props": [
+        {
+          "name": "backgroundUrl",
+          "type": "string",
+          "default": "",
+          "description": "Code-only source of the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483). The master exposes no component property for it — A5 / §a.7 means the bitmap has no contract→canvas transport, so it rides a code-side scalar and the canvas keeps the engine's placeholder."
+        },
+        {
+          "name": "backgroundAlt",
+          "type": "string",
+          "default": "",
+          "description": "Alternative text for the background photo plane. Empty by default: the Figma paint is decorative — it carries no information the surrounding copy does not already state."
+        }
+      ],
       "children": {
         "kind": "none"
       },
@@ -1159,7 +1357,7 @@
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "1.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -1171,7 +1369,36 @@
         {
           "name": "texte",
           "type": "string",
-          "default": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale."
+          "default": [
+            {
+              "text": "Depuis plus de 50 ans,",
+              "strong": true
+            },
+            {
+              "text": " la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "
+            },
+            {
+              "text": "proximité et d'excellence technique",
+              "strong": true
+            },
+            {
+              "text": ". Dépositaire officiel "
+            },
+            {
+              "text": "Hörmann",
+              "strong": true
+            },
+            {
+              "text": ", nous allions la force d'un leader mondial à "
+            },
+            {
+              "text": "la souplesse d'une PME locale",
+              "strong": true
+            },
+            {
+              "text": "."
+            }
+          ]
         },
         {
           "name": "bouton",
@@ -1272,10 +1499,10 @@
     {
       "id": "ds.reassurances",
       "name": "Reassurances",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray Reassurances. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur la variante « Disposition=4 cartes » (node 2114:3619, version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures — ni les deux gaps de 48px du root, ni le gap de 32px des items, ni la largeur 1550px — et le bouton du master (Outline noir, flèche droite) était rendu par le seul défaut de ds.button, donc juste par coïncidence. Le champ items.imageUrl est ajouté pour que les photos des cartes aient une ROUTE de projection (D10 : l'URL n'est jamais un défaut du contrat, elle entre par le consommateur).",
       "figma": {
         "representation": "component",
         "componentSetKey": "a303bd661e06746baa62828633b5c6132714a8c8"
@@ -1295,9 +1522,11 @@
           "type": {
             "arrayOf": {
               "texte": "text",
-              "titre": "text"
+              "titre": "text",
+              "imageUrl": "text"
             }
-          }
+          },
+          "description": "Les cartes de réassurance, fournies par le consommateur. imageUrl alimente ds.carte.imageUrl : le master pose une peinture IMAGE distincte par carte (imageRef ab6a82d4b83b657d48c90b5e253f82459fd505bf, 8d05df2058fe88fa4b14e4472c9746f03fd100a2, d00de3d48206b57be5125a2d01e8595d3eca56de, 7bd2daf5061e3af6ff4a671f8eca2be1bc10b6fb, relevées sur I2114:3614;2063:1607 … I2114:3617;2063:1607) et Figma n'expose aucune propriété de composant pour ces pixels. Le contrat porte donc la ROUTE, jamais les octets — même convention que ds.hero.backgroundUrl et ds.sav.imageUrl, et le sample laisse imageUrl vide parce qu'un imageRef Figma n'est pas une URL."
         }
       ],
       "children": {
@@ -1308,10 +1537,10 @@
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.",
       "figma": {
         "representation": "component",
         "componentSetKey": "bf5e147a9b56206eba9c73045d533c9868b445b2"
@@ -1321,7 +1550,31 @@
           "name": "titre",
           "type": "string",
           "default": "Dépannage / SAV",
-          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Forwarded live into the SectionHeader instance (`titre: \"{titre}\"`) so the parent property reaches the rendered surface instead of the child's literal."
+        },
+        {
+          "name": "backgroundUrl",
+          "type": "string",
+          "default": "",
+          "description": "Code-supplied URL for the full-bleed section IMAGE fill. Figma stores those pixels as a paint on the master (not as a component property) and the contract has no background-image channel; the empty runtime default is intentional and does not substitute an image."
+        },
+        {
+          "name": "backgroundAlt",
+          "type": "string",
+          "default": "",
+          "description": "Code-supplied text alternative paired with backgroundUrl. Figma IMAGE fills expose no corresponding alt component property, so the empty runtime default is intentional (decorative plane)."
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "default": "",
+          "description": "Code-supplied URL for the img-group photo IMAGE fill. Same provenance as backgroundUrl: a master paint, not a component property; the empty runtime default is intentional and does not substitute an image."
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "default": "",
+          "description": "Code-supplied text alternative paired with imageUrl. Figma IMAGE fills expose no corresponding alt component property, so the empty runtime default is intentional."
         }
       ],
       "children": {
@@ -1375,7 +1628,7 @@
     {
       "id": "ds.texte-seo",
       "name": "TexteSEO",
-      "version": "1.0.0",
+      "version": "2.1.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -1389,9 +1642,16 @@
           "type": {
             "arrayOf": {
               "contenu": "text",
+              "etat": {
+                "enum": [
+                  "ferme",
+                  "ouvert"
+                ]
+              },
               "titre": "text"
             }
-          }
+          },
+          "description": "Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli."
         }
       ],
       "children": {

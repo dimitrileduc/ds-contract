@@ -1,0 +1,2339 @@
+{
+  "id": "header",
+  "displayName": "Header",
+  "wave": 3,
+  "contract": {
+    "id": "ds.header",
+    "version": "1.0.0",
+    "path": "contracts/header.contract.json"
+  },
+  "figmaSetNodeId": "84:285",
+  "coverage": {
+    "expected": [
+      "header.composition.bouton",
+      "header.composition.bouton-glyphe-droite",
+      "header.composition.bouton-icone-droite",
+      "header.composition.bouton-icone-gauche",
+      "header.composition.bouton-style-par-variante",
+      "header.composition.nav-item-actif",
+      "header.composition.nav-item-chevron",
+      "header.composition.nav-item-dette-item-8",
+      "header.composition.nav-item-repeat",
+      "header.composition.piqueray-logo",
+      "header.composition.piqueray-logo-couleur-figee",
+      "header.content.bouton-libelle",
+      "header.content.nav-item-1-libelle",
+      "header.content.nav-item-2-libelle",
+      "header.content.nav-item-3-libelle",
+      "header.content.nav-item-4-libelle",
+      "header.content.nav-item-href",
+      "header.property.fond",
+      "header.property.fond-defaut",
+      "header.property.fond-valeurs",
+      "header.property.items-binding-none",
+      "header.property.items-sans-defaut",
+      "header.semantic.icones-decoratives",
+      "header.semantic.nav-item-lien",
+      "header.semantic.nav-landmark",
+      "header.semantic.root-element",
+      "header.structure.icons-nav",
+      "header.structure.icons-nav-gap",
+      "header.structure.nav",
+      "header.structure.nav-gap",
+      "header.structure.nav-item-count",
+      "header.structure.nav-wrapper",
+      "header.structure.nav-wrapper-gap",
+      "header.structure.nav-wrapper-justify",
+      "header.structure.noms-de-calques",
+      "header.structure.root",
+      "header.structure.root-align",
+      "header.structure.root-direction",
+      "header.structure.root-gap-inerte",
+      "header.structure.root-justify",
+      "header.structure.root-padding",
+      "header.structure.root-width",
+      "header.visual.bouton-style-de-texte-asymetrique",
+      "header.visual.fond-solid-remplissage",
+      "header.visual.fond-transparent-remplissage",
+      "header.visual.font-family",
+      "header.visual.icones-couleur-par-variante",
+      "header.visual.icones-taille",
+      "header.visual.nav-item-encre-blanche",
+      "header.visual.nav-item-typographie",
+      "header.visual.ombre-portee",
+      "header.visual.root"
+    ],
+    "observed": [],
+    "missing": [
+      "header.composition.bouton",
+      "header.composition.bouton-glyphe-droite",
+      "header.composition.bouton-icone-droite",
+      "header.composition.bouton-icone-gauche",
+      "header.composition.bouton-style-par-variante",
+      "header.composition.nav-item-actif",
+      "header.composition.nav-item-chevron",
+      "header.composition.nav-item-dette-item-8",
+      "header.composition.nav-item-repeat",
+      "header.composition.piqueray-logo",
+      "header.composition.piqueray-logo-couleur-figee",
+      "header.content.bouton-libelle",
+      "header.content.nav-item-1-libelle",
+      "header.content.nav-item-2-libelle",
+      "header.content.nav-item-3-libelle",
+      "header.content.nav-item-4-libelle",
+      "header.content.nav-item-href",
+      "header.property.fond",
+      "header.property.fond-defaut",
+      "header.property.fond-valeurs",
+      "header.property.items-binding-none",
+      "header.property.items-sans-defaut",
+      "header.semantic.icones-decoratives",
+      "header.semantic.nav-item-lien",
+      "header.semantic.nav-landmark",
+      "header.semantic.root-element",
+      "header.structure.icons-nav",
+      "header.structure.icons-nav-gap",
+      "header.structure.nav",
+      "header.structure.nav-gap",
+      "header.structure.nav-item-count",
+      "header.structure.nav-wrapper",
+      "header.structure.nav-wrapper-gap",
+      "header.structure.nav-wrapper-justify",
+      "header.structure.noms-de-calques",
+      "header.structure.root",
+      "header.structure.root-align",
+      "header.structure.root-direction",
+      "header.structure.root-gap-inerte",
+      "header.structure.root-justify",
+      "header.structure.root-padding",
+      "header.structure.root-width",
+      "header.visual.bouton-style-de-texte-asymetrique",
+      "header.visual.fond-solid-remplissage",
+      "header.visual.fond-transparent-remplissage",
+      "header.visual.font-family",
+      "header.visual.icones-couleur-par-variante",
+      "header.visual.icones-taille",
+      "header.visual.nav-item-encre-blanche",
+      "header.visual.nav-item-typographie",
+      "header.visual.ombre-portee",
+      "header.visual.root"
+    ],
+    "unexpected": []
+  },
+  "dependency": {
+    "parentSubjectId": "header",
+    "dependencyContractId": "ds.nav-item",
+    "receiptSchema": "visual-campaign-v1",
+    "resultPath": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+    "resultSha256": "f68a3606b82af5a79a3aac731ed6d04dcb96730043134463e1148168e6d46e4c",
+    "contractVersion": "1.1.0",
+    "figmaFileVersion": "2381581871281042338",
+    "receiptVerdict": "fail",
+    "probative": true,
+    "actualVerdict": "divergent",
+    "staleReasons": [
+      "figma-file-version-moved:2381568261081914456->2381581871281042338"
+    ],
+    "open": false,
+    "reasons": [
+      "receipt-verdict-fail",
+      "dependency-not-proved:ds.nav-item",
+      "figma-file-version-moved:2381568261081914456->2381581871281042338"
+    ]
+  },
+  "facts": [
+    {
+      "id": "header.structure.root",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.root-direction",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.root-justify",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.root-align",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.root-gap-inerte",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.root-padding",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.root-width",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.nav-wrapper",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.nav-wrapper-justify",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.nav-wrapper-gap",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.nav",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.nav-gap",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.icons-nav",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.icons-nav-gap",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.nav-item-count",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.structure.noms-de-calques",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.content.nav-item-1-libelle",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.content.nav-item-2-libelle",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.content.nav-item-3-libelle",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.content.nav-item-4-libelle",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.content.bouton-libelle",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.content.nav-item-href",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.property.fond",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.property.fond-defaut",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.property.fond-valeurs",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.property.items-binding-none",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.property.items-sans-defaut",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.piqueray-logo",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.piqueray-logo-couleur-figee",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.nav-item-repeat",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.nav-item-chevron",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.nav-item-actif",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.nav-item-dette-item-8",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.bouton",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.bouton-style-par-variante",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.bouton-icone-droite",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.bouton-glyphe-droite",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.composition.bouton-icone-gauche",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.root",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.fond-solid-remplissage",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.fond-transparent-remplissage",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.ombre-portee",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.icones-taille",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.icones-couleur-par-variante",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.nav-item-encre-blanche",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.font-family",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.nav-item-typographie",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.visual.bouton-style-de-texte-asymetrique",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.semantic.root-element",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.semantic.nav-landmark",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.semantic.nav-item-lien",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "header.semantic.icones-decoratives",
+      "subjectId": "header",
+      "caseId": null,
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-captured:dependency-gate-closed"
+        ]
+      },
+      "contract": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-resolved:dependency-gate-closed"
+        ]
+      },
+      "generated": {
+        "reference": null,
+        "observedValue": null,
+        "sourceHash": null,
+        "available": false,
+        "notes": [
+          "not-rendered:dependency-gate-closed"
+        ]
+      },
+      "evidenceIds": [],
+      "outcome": "not-proven",
+      "localizedSource": null,
+      "reasons": [
+        "dependency-gate-closed:ds.nav-item"
+      ],
+      "deferredWorkId": null
+    }
+  ],
+  "cases": [],
+  "artifacts": [],
+  "verdict": "blocked",
+  "reasons": [
+    "dependency:ds.nav-item:divergent",
+    "receipt-verdict-fail",
+    "dependency-not-proved:ds.nav-item",
+    "figma-file-version-moved:2381568261081914456->2381581871281042338"
+  ]
+}

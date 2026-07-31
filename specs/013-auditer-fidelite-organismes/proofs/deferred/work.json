@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "013-auditer-fidelite-organismes",
+  "note": "Registre des travaux que 013 s'interdit d'exécuter (SC-005 : zéro conversion d'une valeur en dur inventoriée, zéro correction globale de tokens) et de tout constat dont la source n'est pas locale au sujet. Une entrée reportée ne peut JAMAIS porter verdictImpact: proved.",
+  "items": [
+    {
+      "id": "DW-001",
+      "subjectId": "footer",
+      "factId": "footer.structure.piqueray-logo-size",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.piqueray-logo",
+      "contractPointer": "/anatomy/root/literals/width",
+      "observedCause": "Le master porte PiquerayLogo à 180.0985565185547px. Un parent ne peut pas restyler une instance de composant ; la largeur devrait vivre sur le root de ds.piqueray-logo, qui est partagé avec ds.header et y prend une autre taille.",
+      "candidateToken": null,
+      "evidenceIds": ["footer-master-defaults"],
+      "verdictImpact": "divergent",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-002",
+      "subjectId": "reassurances",
+      "factId": "reassurances.structure.carte-largeur",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.carte",
+      "contractPointer": "/anatomy/root/literals/min-width",
+      "observedCause": "4×364 + 3×32 = 1552 > 1550px du frame items. Figma laisse déborder, le CSS flex rétrécit les cartes de 0,5px et décale le contenu de 1px. MESURÉ, pas supposé : le patch appliqué temporairement fait REFUSER le harnais (débordement horizontal de 4 device px), donc la correction n'est pas locale.",
+      "candidateToken": null,
+      "evidenceIds": ["reassurances-master-defaults"],
+      "verdictImpact": "divergent",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-003",
+      "subjectId": "faq",
+      "factId": "faq.structure.section-header-height",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.section-header",
+      "contractPointer": "/anatomy/root/literals/height",
+      "observedCause": "L'instance SectionHeader 2104:2907 est figée par le master à 50px alors que son contenu en demande 83 (clipsContent=false). Tout ce qui suit est décalé de 32px. Le fait appartient à l'INSTANCE : sur les 8 instances du census, seule celle de FAQ est FIXED à 50, les autres sont HUG — la valeur ne peut donc pas descendre sur l'enfant. DÉFAUT DE SOURCE FIGMA, à verser au backlog de nettoyage.",
+      "candidateToken": null,
+      "evidenceIds": ["faq-master-defaults"],
+      "verdictImpact": "divergent",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-004",
+      "subjectId": "footer",
+      "factId": "footer.structure.padding-root-left",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.footer",
+      "contractPointer": "/anatomy/root/literals",
+      "observedCause": "GÉOMÉTRIE PORTÉE EN LITTÉRAUX AU LIEU DE TOKENS — la dette la plus structurante du lot. La remédiation de la vague 2 a écrit padding-left/right 89px, padding-top 128px, gap 48px, gap 32px, gap 16px dans ds.footer, ds.faq et ds.reassurances, alors que {space.89}, {space.128}, {space.48}, {space.32} et {space.16} existent déjà (mintés par 012). Or le différentiel surveille la géométrie PAR l'axe des tokens (canvas variables ⟷ tokens/) : un littéral brut ne siège sur aucun axe, donc npm run parity reste vert pendant que les surfaces divergent. Les 52 contrats archivés demo-51 portent zéro literals. Convertir exige de déplacer la valeur ET le pointeur déclaré du fait ensemble (/literals/ → /tokens/), ce qui dépasse le périmètre de 013.",
+      "candidateToken": "{space.89}",
+      "evidenceIds": ["footer-master-defaults", "faq-master-defaults", "reassurances-master-defaults"],
+      "verdictImpact": "limited",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-005",
+      "subjectId": "footer",
+      "factId": "footer.structure.root-width",
+      "category": "global-token-correction",
+      "contractId": "ds.footer",
+      "contractPointer": "/anatomy/root/literals/width",
+      "observedCause": "Les largeurs de cadre relevées (1550px, 1728px, 459px, 310px) n'ont AUCUN token dans la fondation. La doctrine écrite dans tokens/primitives.tokens.json est de minter depuis le dump (« minted from-dump so anatomy references tokens, not literals »), comme l'espacement du Button l'a été. Minter est une correction de fondation de tokens, que SC-005 interdit explicitement à 013.",
+      "candidateToken": null,
+      "evidenceIds": ["footer-master-defaults"],
+      "verdictImpact": "limited",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-006",
+      "subjectId": "reassurances",
+      "factId": "reassurances.visual.root",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.reassurances",
+      "contractPointer": "/anatomy/root",
+      "observedCause": "DÉFAUT D'INSTRUMENT, pas de contrat : le pilote photographie subject.figmaSetNodeId, or reassurances est le seul sujet dont le set (2114:3721, trois variantes empilées, 1552×2451) diffère du node du cas (une variante, 1550×731). Le dossier compare donc une variante rendue à trois variantes photographiées et publie 38,61 %. Mesuré sur la référence correcte : 3,30 %, dont ~1,74 % de plancher de rééchantillonnage des photos. Le chiffre publié n'est PAS une mesure de fidélité et ne doit pas être lu comme telle.",
+      "candidateToken": null,
+      "evidenceIds": ["reassurances-master-defaults"],
+      "verdictImpact": "not-proven",
+      "status": "deferred"
+    }
+  ]
+}

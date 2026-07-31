@@ -126,6 +126,118 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'visual-campaign-scope-additive',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/visual-campaign-scope-additive-check.ts']);
+      if (r.status !== 0) throw new Error(`Additive campaign scope guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-campaign-scope',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-campaign-scope-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit campaign scope guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-wave-entry',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-wave-entry-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit wave-entry guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-verdict-algebra',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-verdict-algebra-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit verdict algebra guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-probative-evidence',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-probative-evidence-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit probative/pixel guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-dependency-mapping',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-dependency-mapping-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit dependency mapping guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-blocked-parent',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-blocked-parent-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit blocked-parent dossier guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-non-conversion',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-non-conversion-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit non-conversion receipt guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'declared-inset-channels',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/declared-inset-channels-check.ts']);
+      if (r.status !== 0) throw new Error(`Declared inset-channel check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-contract-pin',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-contract-pin-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit contract-pin guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-react-capture',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-react-capture-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit React capture guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-prop-projection',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-prop-projection-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit prop-projection guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-image-prop-path',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-image-prop-path-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit image prop-path guard failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'organism-audit-token-resolution',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-token-resolution-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism audit token-resolution guard failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'field-slotted-control-semantics',
     claim: 'C3-detection',
     run: () => {
@@ -179,6 +291,54 @@ const cases: Case[] = [
     run: () => {
       const r = run(TSX, ['evals/fixtures/component-scalar-propagation-check.ts']);
       if (r.status !== 0) throw new Error(`Component scalar propagation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-boolean-false-propagation',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/component-boolean-false-propagation-check.ts']);
+      if (r.status !== 0) throw new Error(`Component boolean-false propagation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'literal-text-newline-preservation',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/literal-text-newline-preservation-check.ts']);
+      if (r.status !== 0) throw new Error(`Literal-text newline preservation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'img-paint-preserved-on-amend',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/img-paint-preserved-on-amend-check.ts']);
+      if (r.status !== 0) throw new Error(`Img-paint preservation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-rich-text-prop-value',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/component-rich-text-prop-value-check.ts']);
+      if (r.status !== 0) throw new Error(`Component rich-text prop-value check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'part-literal-rich-text',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/part-literal-rich-text-check.ts']);
+      if (r.status !== 0) throw new Error(`Part literal rich-text check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'repeat-enum-item-field',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/repeat-enum-item-field-check.ts']);
+      if (r.status !== 0) throw new Error(`Repeat enum item-field check failed:\n${r.out}`);
     },
   },
   {

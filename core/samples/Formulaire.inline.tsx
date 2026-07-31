@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/formulaire.contract.json (ds.formulaire v1.0.0)
+ * Source of truth: contracts/formulaire.contract.json (ds.formulaire v1.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -91,7 +91,7 @@ export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function F
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.column }}>
-<SectionHeader titre="Prenez contact avec nous dès maintenant !" accroche="Une demande de devis ? Une réparation ?" disposition="standard" />
+<SectionHeader titre={[{"text":"Prenez contact avec nous dès maintenant !"}]} accroche="Une demande de devis ? Une réparation ?" disposition="standard" />
 <div style={{ ...S.features }}>
 <Avantage texte="Devis gratuits effectués sur place, nous nous déplaçons chez vous" titre="Conseils personnalisés" />
 <Avantage texte="Marque Hormann renommée, qualité allemande" titre="Produits de qualité" />

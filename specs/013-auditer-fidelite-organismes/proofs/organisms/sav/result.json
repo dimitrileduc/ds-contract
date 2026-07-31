@@ -1,0 +1,1558 @@
+{
+  "id": "sav",
+  "displayName": "SAV",
+  "wave": 1,
+  "contract": {
+    "id": "ds.sav",
+    "version": "1.2.0",
+    "path": "contracts/sav.contract.json"
+  },
+  "figmaSetNodeId": "2108:3105",
+  "coverage": {
+    "expected": [
+      "sav.composition.button",
+      "sav.composition.button-icon-right",
+      "sav.composition.button-libelle",
+      "sav.composition.section-header",
+      "sav.composition.section-header-accroche",
+      "sav.composition.section-header-accroche2",
+      "sav.composition.section-header-titre",
+      "sav.content.texte",
+      "sav.property.titre",
+      "sav.semantic.texte-element",
+      "sav.structure.gap-inner",
+      "sav.structure.gap-root",
+      "sav.structure.root",
+      "sav.visual.background-image",
+      "sav.visual.img-image",
+      "sav.visual.root",
+      "sav.visual.texte-font-size",
+      "sav.visual.texte-line-height"
+    ],
+    "observed": [
+      "sav.composition.button",
+      "sav.composition.button-icon-right",
+      "sav.composition.button-libelle",
+      "sav.composition.section-header",
+      "sav.composition.section-header-accroche",
+      "sav.composition.section-header-accroche2",
+      "sav.composition.section-header-titre",
+      "sav.content.texte",
+      "sav.property.titre",
+      "sav.semantic.texte-element",
+      "sav.structure.gap-inner",
+      "sav.structure.gap-root",
+      "sav.structure.root",
+      "sav.visual.background-image",
+      "sav.visual.img-image",
+      "sav.visual.root",
+      "sav.visual.texte-font-size",
+      "sav.visual.texte-line-height"
+    ],
+    "missing": [],
+    "unexpected": []
+  },
+  "dependency": null,
+  "facts": [
+    {
+      "id": "sav.structure.root",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3105\",\"detail\":\"COMPONENT root > section 2169:6222 > [background 2108:3094, row 2169:6200 > [wrapper 2169:6188 > [WrapperBackground 2108:3100, inner 2108:3101 > [SectionHeader 2169:6258, Texte 2108:3103, Bouton 2108:3104]], img-group 2169:5846 > [ImgGroupBackground 2108:3097, img 2108:3098]]]\"}",
+        "observedValue": {
+          "nodeId": "2108:3105",
+          "detail": "COMPONENT root > section 2169:6222 > [background 2108:3094, row 2169:6200 > [wrapper 2169:6188 > [WrapperBackground 2108:3100, inner 2108:3101 > [SectionHeader 2169:6258, Texte 2108:3103, Bouton 2108:3104]], img-group 2169:5846 > [ImgGroupBackground 2108:3097, img 2108:3098]]]"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "parts": {
+            "section": {
+              "description": "Frame porteur de la section (FRAME Figma 2169:6222, 1550×677, `layoutMode` NONE). Une frame Figma sans auto-layout place ses enfants par coordonnées : `background` en (0,0) et `row` en (131,116). La projection CSS de ce plan libre est le contexte de positionnement (`position: relative`) plus l'alignement flex qui reproduit chaque coordonnée observée : `background` reste EN FLUX (`align: start` → y=0, et sa largeur égale celle de la section → x=0) et c'est `row` qui sort du flux, où `justify: center` lui donne son x=131 ((1550−1288)/2) et `align-self: flex-end` son y=116 (677−561). C'est cette répartition-là et pas l'inverse parce que l'émetteur impose `width/height: 100%` à toute part `img` en `position: absolute` (chrome d'incrustation, core/emit-react.ts) : le plan photo perdrait sa hauteur observée de 475 px.",
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "justify": "center",
+                "align": "start"
+              },
+              "literals": {
+                "width": "1550px",
+                "height": "677px"
+              },
+              "declared": {
+                "position": "relative"
+              },
+              "parts": {
+                "background": {
+                  "description": "Plan image pleine largeur de la section (RECTANGLE Figma 2108:3094, 1550×475 en (0,0) de `section`). Son `fills[0]` est un paint IMAGE, `scaleMode` FILL, `imageRef` 3e173874828861c294938a12deea5a5a7a1799dd — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : `background-image: url()` est natif des deux côtés mais n'a aucun canal de contrat, donc l'`imageRef` est consigné ici et ne peut pas être lié. Porté malgré tout : le porteur `img` avec `src`/`alt` fournis par le code et `object-fit: cover`, orthographe CSS du `scaleMode` FILL observé. Le plan reste EN FLUX et garde sa boîte observée de 1550×475 ; c'est `row` qui sort du flux pour passer devant lui.",
+                  "element": "img",
+                  "attrs": {
+                    "src": "{backgroundUrl}",
+                    "alt": "{backgroundAlt}"
+                  },
+                  "literals": {
+                    "width": "1550px",
+                    "height": "475px"
+                  },
+                  "declared": {
+                    "object-fit": "cover"
+                  }
+                },
+                "row": {
+                  "description": "Rangée de contenu (FRAME Figma 2169:6200, HORIZONTAL, 1288×561, `itemSpacing` 0). Hors flux : sa position statique reproduit ses coordonnées observées (`justify: center` du parent → x=131, `align-self: flex-end` → y=116) et, étant positionnée, elle peint AU-DESSUS du plan photo resté en flux.",
+                  "layout": {
+                    "direction": "row"
+                  },
+                  "literals": {
+                    "width": "1288px",
+                    "height": "561px"
+                  },
+                  "declared": {
+                    "position": "absolute",
+                    "align-self": "flex-end"
+                  },
+                  "parts": {
+                    "wrapper": {
+                      "description": "Colonne de texte (FRAME Figma 2169:6188, 641×561, `layoutMode` NONE). Ses deux enfants observés se superposent : `WrapperBackground` couvre la frame entière en (0,0) et `inner` est posé en (48,48). L'encart de 48 px est porté en `padding`, ce qui place `inner` exactement ; les `literals` `width`/`height` sont donc des mesures de BOÎTE DE CONTENU (546 + 48 + 47 = les 641 px observés ; 513 + 48 = les 561 px observés) — la feuille générée ne déclare pas `box-sizing: border-box`.",
+                      "layout": {
+                        "display": "flex",
+                        "direction": "row",
+                        "justify": "center",
+                        "align": "start"
+                      },
+                      "literals": {
+                        "width": "546px",
+                        "height": "513px",
+                        "padding-top": "48px",
+                        "padding-left": "48px",
+                        "padding-right": "47px"
+                      },
+                      "declared": {
+                        "position": "relative"
+                      },
+                      "parts": {
+                        "WrapperBackground": {
+                          "description": "Plan blanc de la colonne (RECTANGLE Figma 2108:3100, 641×561 en (0,0) de `wrapper`). Hors flux pour passer derrière `inner` ; `align-self: flex-end` annule exactement le `padding-top` de 48 px du parent (48 + (513 − 561) = 0). Limite nommée, résidu mesuré : sur l'axe principal la position statique tombe à x = 0,5 px et non 0 (48 + (546 − 641)/2), soit un liseré d'un demi-pixel au bord gauche — le vocabulaire de contrat n'a aucun canal `top`/`left` hors `stylesWhen`, et `stylesWhen` exige une prop booléenne ou enum que ce master n'expose pas.",
+                          "tokens": {
+                            "background-color": "{color.blanc}"
+                          },
+                          "literals": {
+                            "width": "641px",
+                            "height": "561px"
+                          },
+                          "declared": {
+                            "position": "absolute",
+                            "align-self": "flex-end"
+                          }
+                        },
+                        "inner": {
+                          "description": "Pile de contenu (FRAME Figma 2108:3101, VERTICAL, 546×365, `itemSpacing` 32). `counterAxisAlignItems` est ABSENT sur le master, c'est-à-dire MIN : l'alignement transversal est `start`, pas `stretch` — le `Bouton` observé HUG à 279 px de large, il ne remplit pas la colonne. `position: relative` la remet dans le plan de peinture de `WrapperBackground`, où l'ordre du DOM la fait peindre AU-DESSUS : sans ça le plan blanc, seul positionné, recouvrait titre et texte.",
+                          "layout": {
+                            "direction": "column",
+                            "align": "start"
+                          },
+                          "literals": {
+                            "gap": "32px",
+                            "width": "546px"
+                          },
+                          "declared": {
+                            "position": "relative"
+                          },
+                          "parts": {
+                            "SectionHeader": {
+                              "component": {
+                                "id": "ds.section-header",
+                                "props": {
+                                  "titre": [
+                                    {
+                                      "text": "Dépannage / SAV"
+                                    }
+                                  ],
+                                  "accroche": "Plus de 50 ans d’expérience",
+                                  "accroche2": false,
+                                  "disposition": "standard",
+                                  "alignement": "gauche"
+                                }
+                              }
+                            },
+                            "vousRencontrezUnProblmeA": {
+                              "description": "Paragraphe de la colonne (TEXT Figma 2108:3103, boîte observée 546×197). DEUX LIMITES NOMMÉES sur le contenu de ce calque, toutes deux hors du vocabulaire de contrat : (1) le saut de ligne dur entre les deux paragraphes ne survit pas à l'émission — le texte statique part en nœud de texte JSX, où l'espace blanc est réduit ; (2) les plages en gras du calque Figma (« votre installation », « votre porte de garage », « votre distributeur Hörmann en province de Liège ») ne sont pas portées, le texte enrichi exigeant `content.marks.strong` c'est-à-dire une PROP, alors que la campagne épingle le fait `sav.content.texte` sur `…/text`. Conséquence : la césure des lignes diverge et la hauteur intrinsèque tombe une ligne trop court. La `height` est donc épinglée sur la boîte OBSERVÉE de 197 px, pour que `Bouton` garde son y=311 mesuré dans `inner` au lieu de remonter de 27 px.",
+                              "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                              "literals": {
+                                "height": "197px"
+                              },
+                              "tokens": {
+                                "color": "{color.noir}",
+                                "font-size": "{font.size.18}",
+                                "line-height": "{font.line-height.27}"
+                              },
+                              "declared": {
+                                "white-space": "pre-line"
+                              },
+                              "textSegments": [
+                                {
+                                  "text": "Vous rencontrez un problème avec "
+                                },
+                                {
+                                  "text": "votre installation ",
+                                  "strong": true
+                                },
+                                {
+                                  "text": "Hörmann à Liège ? Il y a une panne de courant et "
+                                },
+                                {
+                                  "text": "votre porte de garage",
+                                  "strong": true
+                                },
+                                {
+                                  "text": " ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "
+                                },
+                                {
+                                  "text": "votre distributeur Hörmann en province de Liège",
+                                  "strong": true
+                                },
+                                {
+                                  "text": " est là pour vous aider !"
+                                }
+                              ],
+                              "textMarks": {
+                                "strong": "{font.weight.bold}"
+                              }
+                            },
+                            "Bouton": {
+                              "component": {
+                                "id": "ds.button",
+                                "props": {
+                                  "children": "Demander de l’aide",
+                                  "iconRight": true
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "imgGroup": {
+                      "description": "Colonne image (FRAME Figma 2169:5846, 647×561, `layoutMode` NONE). Ses deux enfants se superposent : `ImgGroupBackground` en (0,0) sur 647×478 et `img` en (3,57) sur 563×504. `align: end` donne à `img` son y=57 (561 − 504) et le `padding-left` de 3 px son x=3 ; `width` est donc une mesure de BOÎTE DE CONTENU (644 + 3 = les 647 px observés).",
+                      "layout": {
+                        "display": "flex",
+                        "direction": "row",
+                        "justify": "start",
+                        "align": "end"
+                      },
+                      "literals": {
+                        "width": "644px",
+                        "height": "561px",
+                        "padding-left": "3px"
+                      },
+                      "declared": {
+                        "position": "relative"
+                      },
+                      "parts": {
+                        "ImgGroupBackground": {
+                          "description": "Plan bleu clair de la colonne image (RECTANGLE Figma 2108:3097, 647×478 en (0,0) de `img-group`). Hors flux pour passer derrière `img` ; `align-self: flex-start` fixe exactement son y=0. Limite nommée, résidu mesuré : sur l'axe principal sa position statique suit le `padding-left` du parent et tombe à x = 3 px et non 0, soit deux liserés de 3 px (bord gauche manquant, débord de 3 px à droite recouvert par la colonne suivante) — même cause que sur `WrapperBackground` : aucun canal `top`/`left` hors `stylesWhen`.",
+                          "tokens": {
+                            "background-color": "{color.bleu-clair}"
+                          },
+                          "literals": {
+                            "width": "647px",
+                            "height": "478px"
+                          },
+                          "declared": {
+                            "position": "absolute",
+                            "align-self": "flex-start"
+                          }
+                        },
+                        "img": {
+                          "description": "Plan photo dans img-group (RECTANGLE Figma 2108:3098, 563×504 en (3,57) de `img-group`). Son `fills[0]` est un paint IMAGE, `scaleMode` FIT, `imageRef` 429c615cb090b3aa0800188acda4bc59cc6445b0 — même LIMITE NOMMÉE A5 que le fond de section : l'`imageRef` est consigné, jamais lié. `object-fit: contain` est l'orthographe CSS du `scaleMode` FIT observé. `position: relative` le remet dans le plan de peinture de `ImgGroupBackground`, où l'ordre du DOM le fait peindre AU-DESSUS.",
+                          "element": "img",
+                          "attrs": {
+                            "src": "{imageUrl}",
+                            "alt": "{imageAlt}"
+                          },
+                          "literals": {
+                            "width": "563px",
+                            "height": "504px"
+                          },
+                          "declared": {
+                            "position": "relative",
+                            "object-fit": "contain"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "literals": {
+            "gap": "10px"
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__root\"]",
+        "observedValue": "Dépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Demander de l’aide",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.content.texte",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3103\",\"property\":\"characters\",\"textLayer\":\"2108:3103\"}",
+        "observedValue": {
+          "nodeId": "2108:3103",
+          "property": "characters",
+          "textLayer": "2108:3103"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.property.titre",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3105\",\"property\":\"Titre#2108:60\"}",
+        "observedValue": {
+          "nodeId": "2108:3105",
+          "property": "Titre#2108:60"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/props/0",
+        "observedValue": {
+          "name": "titre",
+          "type": "text",
+          "default": "Dépannage / SAV",
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Forwarded live into the SectionHeader instance (`titre: \"{titre}\"`) so the parent property reaches the rendered surface instead of the child's literal.",
+          "bindings": {
+            "figma": {
+              "kind": "TEXT",
+              "property": "Titre"
+            },
+            "code": {
+              "prop": "titre"
+            }
+          }
+        },
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "generated",
+      "reasons": [
+        "probe-not-projected:child-renders-a-literal"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2169:6258\",\"mainComponent\":\"2090:2385\",\"observedInstanceProperties\":{\"Accroche2#2169:64\":false,\"Titre#2090:47\":\"Dépannage / SAV\",\"Accroche#2090:46\":\"Plus de 50 ans d’expérience\",\"Disposition\":\"Standard\"}}",
+        "observedValue": {
+          "nodeId": "2169:6258",
+          "mainComponent": "2090:2385",
+          "observedInstanceProperties": {
+            "Accroche2#2169:64": false,
+            "Titre#2090:47": "Dépannage / SAV",
+            "Accroche#2090:46": "Plus de 50 ans d’expérience",
+            "Disposition": "Standard"
+          }
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component",
+        "observedValue": {
+          "id": "ds.section-header",
+          "props": {
+            "titre": [
+              {
+                "text": "Dépannage / SAV"
+              }
+            ],
+            "accroche": "Plus de 50 ans d’expérience",
+            "accroche2": false,
+            "disposition": "standard",
+            "alignement": "gauche"
+          }
+        },
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__root\"]",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.button",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3104\",\"mainComponent\":\"6:107\",\"observedInstanceProperties\":{\"Libelle#2044:28\":\"Demander de l’aide\",\"Style\":\"Default\",\"Icone droite#2024:7\":true,\"Icone gauche#2024:0\":false}}",
+        "observedValue": {
+          "nodeId": "2108:3104",
+          "mainComponent": "6:107",
+          "observedInstanceProperties": {
+            "Libelle#2044:28": "Demander de l’aide",
+            "Style": "Default",
+            "Icone droite#2024:7": true,
+            "Icone gauche#2024:0": false
+          }
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component",
+        "observedValue": {
+          "id": "ds.button",
+          "props": {
+            "children": "Demander de l’aide",
+            "iconRight": true
+          }
+        },
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Demander de l’aide",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.root",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3105\",\"export\":\"png@2x\"}",
+        "observedValue": {
+          "nodeId": "2108:3105",
+          "export": "png@2x"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root",
+        "observedValue": {
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "parts": {
+            "section": {
+              "description": "Frame porteur de la section (FRAME Figma 2169:6222, 1550×677, `layoutMode` NONE). Une frame Figma sans auto-layout place ses enfants par coordonnées : `background` en (0,0) et `row` en (131,116). La projection CSS de ce plan libre est le contexte de positionnement (`position: relative`) plus l'alignement flex qui reproduit chaque coordonnée observée : `background` reste EN FLUX (`align: start` → y=0, et sa largeur égale celle de la section → x=0) et c'est `row` qui sort du flux, où `justify: center` lui donne son x=131 ((1550−1288)/2) et `align-self: flex-end` son y=116 (677−561). C'est cette répartition-là et pas l'inverse parce que l'émetteur impose `width/height: 100%` à toute part `img` en `position: absolute` (chrome d'incrustation, core/emit-react.ts) : le plan photo perdrait sa hauteur observée de 475 px.",
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "justify": "center",
+                "align": "start"
+              },
+              "literals": {
+                "width": "1550px",
+                "height": "677px"
+              },
+              "declared": {
+                "position": "relative"
+              },
+              "parts": {
+                "background": {
+                  "description": "Plan image pleine largeur de la section (RECTANGLE Figma 2108:3094, 1550×475 en (0,0) de `section`). Son `fills[0]` est un paint IMAGE, `scaleMode` FILL, `imageRef` 3e173874828861c294938a12deea5a5a7a1799dd — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : `background-image: url()` est natif des deux côtés mais n'a aucun canal de contrat, donc l'`imageRef` est consigné ici et ne peut pas être lié. Porté malgré tout : le porteur `img` avec `src`/`alt` fournis par le code et `object-fit: cover`, orthographe CSS du `scaleMode` FILL observé. Le plan reste EN FLUX et garde sa boîte observée de 1550×475 ; c'est `row` qui sort du flux pour passer devant lui.",
+                  "element": "img",
+                  "attrs": {
+                    "src": "{backgroundUrl}",
+                    "alt": "{backgroundAlt}"
+                  },
+                  "literals": {
+                    "width": "1550px",
+                    "height": "475px"
+                  },
+                  "declared": {
+                    "object-fit": "cover"
+                  }
+                },
+                "row": {
+                  "description": "Rangée de contenu (FRAME Figma 2169:6200, HORIZONTAL, 1288×561, `itemSpacing` 0). Hors flux : sa position statique reproduit ses coordonnées observées (`justify: center` du parent → x=131, `align-self: flex-end` → y=116) et, étant positionnée, elle peint AU-DESSUS du plan photo resté en flux.",
+                  "layout": {
+                    "direction": "row"
+                  },
+                  "literals": {
+                    "width": "1288px",
+                    "height": "561px"
+                  },
+                  "declared": {
+                    "position": "absolute",
+                    "align-self": "flex-end"
+                  },
+                  "parts": {
+                    "wrapper": {
+                      "description": "Colonne de texte (FRAME Figma 2169:6188, 641×561, `layoutMode` NONE). Ses deux enfants observés se superposent : `WrapperBackground` couvre la frame entière en (0,0) et `inner` est posé en (48,48). L'encart de 48 px est porté en `padding`, ce qui place `inner` exactement ; les `literals` `width`/`height` sont donc des mesures de BOÎTE DE CONTENU (546 + 48 + 47 = les 641 px observés ; 513 + 48 = les 561 px observés) — la feuille générée ne déclare pas `box-sizing: border-box`.",
+                      "layout": {
+                        "display": "flex",
+                        "direction": "row",
+                        "justify": "center",
+                        "align": "start"
+                      },
+                      "literals": {
+                        "width": "546px",
+                        "height": "513px",
+                        "padding-top": "48px",
+                        "padding-left": "48px",
+                        "padding-right": "47px"
+                      },
+                      "declared": {
+                        "position": "relative"
+                      },
+                      "parts": {
+                        "WrapperBackground": {
+                          "description": "Plan blanc de la colonne (RECTANGLE Figma 2108:3100, 641×561 en (0,0) de `wrapper`). Hors flux pour passer derrière `inner` ; `align-self: flex-end` annule exactement le `padding-top` de 48 px du parent (48 + (513 − 561) = 0). Limite nommée, résidu mesuré : sur l'axe principal la position statique tombe à x = 0,5 px et non 0 (48 + (546 − 641)/2), soit un liseré d'un demi-pixel au bord gauche — le vocabulaire de contrat n'a aucun canal `top`/`left` hors `stylesWhen`, et `stylesWhen` exige une prop booléenne ou enum que ce master n'expose pas.",
+                          "tokens": {
+                            "background-color": "{color.blanc}"
+                          },
+                          "literals": {
+                            "width": "641px",
+                            "height": "561px"
+                          },
+                          "declared": {
+                            "position": "absolute",
+                            "align-self": "flex-end"
+                          }
+                        },
+                        "inner": {
+                          "description": "Pile de contenu (FRAME Figma 2108:3101, VERTICAL, 546×365, `itemSpacing` 32). `counterAxisAlignItems` est ABSENT sur le master, c'est-à-dire MIN : l'alignement transversal est `start`, pas `stretch` — le `Bouton` observé HUG à 279 px de large, il ne remplit pas la colonne. `position: relative` la remet dans le plan de peinture de `WrapperBackground`, où l'ordre du DOM la fait peindre AU-DESSUS : sans ça le plan blanc, seul positionné, recouvrait titre et texte.",
+                          "layout": {
+                            "direction": "column",
+                            "align": "start"
+                          },
+                          "literals": {
+                            "gap": "32px",
+                            "width": "546px"
+                          },
+                          "declared": {
+                            "position": "relative"
+                          },
+                          "parts": {
+                            "SectionHeader": {
+                              "component": {
+                                "id": "ds.section-header",
+                                "props": {
+                                  "titre": [
+                                    {
+                                      "text": "Dépannage / SAV"
+                                    }
+                                  ],
+                                  "accroche": "Plus de 50 ans d’expérience",
+                                  "accroche2": false,
+                                  "disposition": "standard",
+                                  "alignement": "gauche"
+                                }
+                              }
+                            },
+                            "vousRencontrezUnProblmeA": {
+                              "description": "Paragraphe de la colonne (TEXT Figma 2108:3103, boîte observée 546×197). DEUX LIMITES NOMMÉES sur le contenu de ce calque, toutes deux hors du vocabulaire de contrat : (1) le saut de ligne dur entre les deux paragraphes ne survit pas à l'émission — le texte statique part en nœud de texte JSX, où l'espace blanc est réduit ; (2) les plages en gras du calque Figma (« votre installation », « votre porte de garage », « votre distributeur Hörmann en province de Liège ») ne sont pas portées, le texte enrichi exigeant `content.marks.strong` c'est-à-dire une PROP, alors que la campagne épingle le fait `sav.content.texte` sur `…/text`. Conséquence : la césure des lignes diverge et la hauteur intrinsèque tombe une ligne trop court. La `height` est donc épinglée sur la boîte OBSERVÉE de 197 px, pour que `Bouton` garde son y=311 mesuré dans `inner` au lieu de remonter de 27 px.",
+                              "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                              "literals": {
+                                "height": "197px"
+                              },
+                              "tokens": {
+                                "color": "{color.noir}",
+                                "font-size": "{font.size.18}",
+                                "line-height": "{font.line-height.27}"
+                              },
+                              "declared": {
+                                "white-space": "pre-line"
+                              },
+                              "textSegments": [
+                                {
+                                  "text": "Vous rencontrez un problème avec "
+                                },
+                                {
+                                  "text": "votre installation ",
+                                  "strong": true
+                                },
+                                {
+                                  "text": "Hörmann à Liège ? Il y a une panne de courant et "
+                                },
+                                {
+                                  "text": "votre porte de garage",
+                                  "strong": true
+                                },
+                                {
+                                  "text": " ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "
+                                },
+                                {
+                                  "text": "votre distributeur Hörmann en province de Liège",
+                                  "strong": true
+                                },
+                                {
+                                  "text": " est là pour vous aider !"
+                                }
+                              ],
+                              "textMarks": {
+                                "strong": "{font.weight.bold}"
+                              }
+                            },
+                            "Bouton": {
+                              "component": {
+                                "id": "ds.button",
+                                "props": {
+                                  "children": "Demander de l’aide",
+                                  "iconRight": true
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "imgGroup": {
+                      "description": "Colonne image (FRAME Figma 2169:5846, 647×561, `layoutMode` NONE). Ses deux enfants se superposent : `ImgGroupBackground` en (0,0) sur 647×478 et `img` en (3,57) sur 563×504. `align: end` donne à `img` son y=57 (561 − 504) et le `padding-left` de 3 px son x=3 ; `width` est donc une mesure de BOÎTE DE CONTENU (644 + 3 = les 647 px observés).",
+                      "layout": {
+                        "display": "flex",
+                        "direction": "row",
+                        "justify": "start",
+                        "align": "end"
+                      },
+                      "literals": {
+                        "width": "644px",
+                        "height": "561px",
+                        "padding-left": "3px"
+                      },
+                      "declared": {
+                        "position": "relative"
+                      },
+                      "parts": {
+                        "ImgGroupBackground": {
+                          "description": "Plan bleu clair de la colonne image (RECTANGLE Figma 2108:3097, 647×478 en (0,0) de `img-group`). Hors flux pour passer derrière `img` ; `align-self: flex-start` fixe exactement son y=0. Limite nommée, résidu mesuré : sur l'axe principal sa position statique suit le `padding-left` du parent et tombe à x = 3 px et non 0, soit deux liserés de 3 px (bord gauche manquant, débord de 3 px à droite recouvert par la colonne suivante) — même cause que sur `WrapperBackground` : aucun canal `top`/`left` hors `stylesWhen`.",
+                          "tokens": {
+                            "background-color": "{color.bleu-clair}"
+                          },
+                          "literals": {
+                            "width": "647px",
+                            "height": "478px"
+                          },
+                          "declared": {
+                            "position": "absolute",
+                            "align-self": "flex-start"
+                          }
+                        },
+                        "img": {
+                          "description": "Plan photo dans img-group (RECTANGLE Figma 2108:3098, 563×504 en (3,57) de `img-group`). Son `fills[0]` est un paint IMAGE, `scaleMode` FIT, `imageRef` 429c615cb090b3aa0800188acda4bc59cc6445b0 — même LIMITE NOMMÉE A5 que le fond de section : l'`imageRef` est consigné, jamais lié. `object-fit: contain` est l'orthographe CSS du `scaleMode` FIT observé. `position: relative` le remet dans le plan de peinture de `ImgGroupBackground`, où l'ordre du DOM le fait peindre AU-DESSUS.",
+                          "element": "img",
+                          "attrs": {
+                            "src": "{imageUrl}",
+                            "alt": "{imageAlt}"
+                          },
+                          "literals": {
+                            "width": "563px",
+                            "height": "504px"
+                          },
+                          "declared": {
+                            "position": "relative",
+                            "object-fit": "contain"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "literals": {
+            "gap": "10px"
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}"
+          }
+        },
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__root\"]",
+        "observedValue": "Dépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Demander de l’aide",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.semantic.texte-element",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "{\"nodeId\":\"2108:3103\",\"detail\":\"TEXT layer, 2 paragraphes separes par un saut de ligne dur\"}",
+        "observedValue": {
+          "nodeId": "2108:3103",
+          "detail": "TEXT layer, 2 paragraphes separes par un saut de ligne dur"
+        },
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA",
+        "observedValue": {
+          "description": "Paragraphe de la colonne (TEXT Figma 2108:3103, boîte observée 546×197). DEUX LIMITES NOMMÉES sur le contenu de ce calque, toutes deux hors du vocabulaire de contrat : (1) le saut de ligne dur entre les deux paragraphes ne survit pas à l'émission — le texte statique part en nœud de texte JSX, où l'espace blanc est réduit ; (2) les plages en gras du calque Figma (« votre installation », « votre porte de garage », « votre distributeur Hörmann en province de Liège ») ne sont pas portées, le texte enrichi exigeant `content.marks.strong` c'est-à-dire une PROP, alors que la campagne épingle le fait `sav.content.texte` sur `…/text`. Conséquence : la césure des lignes diverge et la hauteur intrinsèque tombe une ligne trop court. La `height` est donc épinglée sur la boîte OBSERVÉE de 197 px, pour que `Bouton` garde son y=311 mesuré dans `inner` au lieu de remonter de 27 px.",
+          "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+          "literals": {
+            "height": "197px"
+          },
+          "tokens": {
+            "color": "{color.noir}",
+            "font-size": "{font.size.18}",
+            "line-height": "{font.line-height.27}"
+          },
+          "declared": {
+            "white-space": "pre-line"
+          },
+          "textSegments": [
+            {
+              "text": "Vous rencontrez un problème avec "
+            },
+            {
+              "text": "votre installation ",
+              "strong": true
+            },
+            {
+              "text": "Hörmann à Liège ? Il y a une panne de courant et "
+            },
+            {
+              "text": "votre porte de garage",
+              "strong": true
+            },
+            {
+              "text": " ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "
+            },
+            {
+              "text": "votre distributeur Hörmann en province de Liège",
+              "strong": true
+            },
+            {
+              "text": " est là pour vous aider !"
+            }
+          ],
+          "textMarks": {
+            "strong": "{font.weight.bold}"
+          }
+        },
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.structure.gap-root",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#root.itemSpacing",
+        "observedValue": 10,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/layout/gap",
+        "observedValue": null,
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/layout/gap"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__root\"]",
+        "observedValue": "Dépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Demander de l’aide",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:root.itemSpacing=10"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.structure.gap-inner",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#inner.itemSpacing",
+        "observedValue": 32,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/layout/gap",
+        "observedValue": null,
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/layout/gap"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__inner\"]",
+        "observedValue": "Dépannage / SAVVous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !Demander de l’aide",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:inner.itemSpacing=32"
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.texte-font-size",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#vousRencontrezUnProblmeA.font-size",
+        "observedValue": "18px",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/font-size",
+        "observedValue": "{font.size.18}",
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": [
+          "token-resolved:vousRencontrezUnProblmeA.font-size:{font.size.18}→\"18px\"==\"18px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.texte-line-height",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#vousRencontrezUnProblmeA.line-height",
+        "observedValue": "27px",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/line-height",
+        "observedValue": "{font.line-height.27}",
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": [
+          "token-resolved:vousRencontrezUnProblmeA.line-height:{font.line-height.27}→\"27px\"==\"27px\""
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "observedValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.background-image",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figma": {
+        "reference": "2108:3105#background.fills[0].imageRef",
+        "observedValue": "3e173874828861c294938a12deea5a5a7a1799dd",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/background/tokens/background-image",
+        "observedValue": null,
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/background/tokens/background-image"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__background\"]",
+        "observedValue": "",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:background.fills[0].imageRef=\"3e173874828861c294938a12deea5a5a7a1799dd\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.visual.img-image",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figma": {
+        "reference": "2108:3105#img.fills[0].imageRef",
+        "observedValue": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/tokens/background-image",
+        "observedValue": null,
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": false,
+        "notes": [
+          "pointer-unresolved:/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/tokens/background-image"
+        ]
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SAV__img\"]",
+        "observedValue": "",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-does-not-carry-figma-fact:img.fills[0].imageRef=\"429c615cb090b3aa0800188acda4bc59cc6445b0\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header-titre",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#SectionHeader.Titre",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/titre",
+        "observedValue": [
+          {
+            "text": "Dépannage / SAV"
+          }
+        ],
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Titre\"]",
+        "observedValue": "Dépannage / SAV",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "divergent",
+      "localizedSource": "contract",
+      "reasons": [
+        "contract-value-differs:SectionHeader.Titre:[{\"text\":\"Dépannage / SAV\"}]!=\"Dépannage / SAV\""
+      ],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header-accroche",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#SectionHeader.Accroche",
+        "observedValue": "Plus de 50 ans d’expérience",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche",
+        "observedValue": "Plus de 50 ans d’expérience",
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": null,
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.section-header-accroche2",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#SectionHeader.Accroche2",
+        "observedValue": false,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche2",
+        "observedValue": false,
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"SectionHeader__Accroche\"]",
+        "observedValue": null,
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": false,
+        "notes": [
+          "selector-matched-no-element"
+        ]
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.button-libelle",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#Bouton.Libelle",
+        "observedValue": "Demander de l’aide",
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/children",
+        "observedValue": "Demander de l’aide",
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Demander de l’aide",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    },
+    {
+      "id": "sav.composition.button-icon-right",
+      "subjectId": "sav",
+      "caseId": "sav-master-defaults",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figma": {
+        "reference": "2108:3105#Bouton.Icone droite",
+        "observedValue": true,
+        "sourceHash": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "available": true,
+        "notes": []
+      },
+      "contract": {
+        "reference": "ds.sav@1.2.0#/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/iconRight",
+        "observedValue": true,
+        "sourceHash": "2d22122a9a5abaabdcbb4ea4a8e5d7f2193824c3433594c631658555ce414466",
+        "available": true,
+        "notes": []
+      },
+      "generated": {
+        "reference": "src/components/SAV/SAV.tsx#[class*=\"Button__root\"]",
+        "observedValue": "Demander de l’aide",
+        "sourceHash": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "available": true,
+        "notes": []
+      },
+      "evidenceIds": [
+        "sav-master-defaults"
+      ],
+      "outcome": "proved",
+      "localizedSource": null,
+      "reasons": [],
+      "deferredWorkId": null
+    }
+  ],
+  "cases": [
+    {
+      "id": "sav-master-defaults",
+      "subjectId": "sav",
+      "verdict": "pass",
+      "probative": true,
+      "reasons": [],
+      "figma": {
+        "nodeId": "2108:3105",
+        "setNodeId": "2108:3105",
+        "fileVersion": "2381581871281042338",
+        "observedProperties": {
+          "Titre#2108:60": "Dépannage / SAV"
+        },
+        "pngSha256": "1213b4e3ce7e7ba095629115c44d74cf52d9b2c58135f932257d64e4cc5177a0",
+        "width": 3100,
+        "height": 1354
+      },
+      "contract": {
+        "id": "ds.sav",
+        "version": "1.2.0",
+        "factIds": [
+          "sav.structure.root",
+          "sav.content.texte",
+          "sav.property.titre",
+          "sav.composition.section-header",
+          "sav.composition.button",
+          "sav.visual.root",
+          "sav.semantic.texte-element",
+          "sav.structure.gap-root",
+          "sav.structure.gap-inner",
+          "sav.visual.texte-font-size",
+          "sav.visual.texte-line-height",
+          "sav.visual.background-image",
+          "sav.visual.img-image",
+          "sav.composition.section-header-titre",
+          "sav.composition.section-header-accroche",
+          "sav.composition.section-header-accroche2",
+          "sav.composition.button-libelle",
+          "sav.composition.button-icon-right"
+        ],
+        "reactProps": {
+          "backgroundUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/sav--background--3e1738748288.jpg",
+          "backgroundAlt": "",
+          "imageUrl": "file:///Users/dlstudio/.superset/projects/ds-contract/extract/figma/visual-parity/fixture-assets/sav--img--429c615cb090.png",
+          "imageAlt": ""
+        }
+      },
+      "generated": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "bundleSha256": "4f143a89f9278e5f041e61a6fb80336b1b7f8f85e1a1eeb4d6dd95da60fef421",
+        "harnessConfigSha256": "32cd31e276df3ef79abbfe906d8fbbd2c77fa3116aa21131a5fca745d9f4a562",
+        "fontsLoaded": true
+      },
+      "visibility": {
+        "figma": {
+          "signalPixels": 2575702,
+          "width": 3100,
+          "height": 1354
+        },
+        "generated": {
+          "signalPixels": 2588393,
+          "width": 3292,
+          "height": 1546
+        },
+        "contrastOk": true
+      },
+      "geometry": {
+        "figmaRoot": {
+          "width": 3100,
+          "height": 1354
+        },
+        "generatedRoot": {
+          "width": 3100,
+          "height": 1354
+        },
+        "deltaPx": {
+          "width": 0,
+          "height": 0
+        },
+        "verdict": "pass"
+      },
+      "pixels": {
+        "rawPct": 0.6652451517606137,
+        "maskedDiagnosticPct": null,
+        "thresholdPct": 2.5,
+        "regions": [
+          {
+            "id": "whole",
+            "score": 0.6652451517606137,
+            "maxDiffPct": 2.5,
+            "signalPixels": 2575702
+          }
+        ],
+        "verdict": "pass"
+      },
+      "semantics": [
+        {
+          "id": "texte-element",
+          "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+          "contractPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+          },
+          "verdict": "pass"
+        },
+        {
+          "id": "titre-element",
+          "selector": "[class*=\"SectionHeader__Titre\"]",
+          "contractPointer": "/props/0/default",
+          "expected": {
+            "tag": "span",
+            "textEquals": "Dépannage / SAV"
+          },
+          "observed": {
+            "tag": "span",
+            "text": "Dépannage / SAV"
+          },
+          "verdict": "pass"
+        }
+      ],
+      "domProbes": [
+        {
+          "factId": "sav.property.titre",
+          "prop": "titre",
+          "probeValue": "PREUVE-013 — TITRE SAV b48e",
+          "observedDomValue": "Dépannage / SAV",
+          "projected": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "sav-master-defaults.figma",
+          "kind": "figma",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/figma.png",
+          "sha256": "316b6717cf2e7a189e30d857fd4b421205e7e2f947e03503ad8ecc6fadf40737",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 1354,
+          "bytes": 2729161
+        },
+        {
+          "id": "sav-master-defaults.generated",
+          "kind": "generated",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/generated.png",
+          "sha256": "3ec5c1e6b50b8682bc85b7273b5fbeab9328025aa5b5b0709b58f3d8da689a10",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 1354,
+          "bytes": 2805736
+        },
+        {
+          "id": "sav-master-defaults.diff",
+          "kind": "diff",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/diff.png",
+          "sha256": "6cb38e124244edd501dc305cd9908d605565ff5a8941332e72dc9bd7de71f61d",
+          "mediaType": "image/png",
+          "width": 3100,
+          "height": 1354,
+          "bytes": 836261
+        },
+        {
+          "id": "sav-master-defaults.triptych",
+          "kind": "triptych",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/triptych.png",
+          "sha256": "75e2ef19b9ad86906c021b606a0e362db5a32e4d1d57fdf8361813482d4b8180",
+          "mediaType": "image/png",
+          "width": null,
+          "height": null,
+          "bytes": 6509224
+        },
+        {
+          "id": "sav-master-defaults.metadata",
+          "kind": "metadata",
+          "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/metadata.json",
+          "sha256": "2754b93a8839d255233cf603ff39815439dc9a45063b6413d7d13835a8c5f8bd",
+          "mediaType": "application/json",
+          "width": null,
+          "height": null,
+          "bytes": 4317
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "sav-master-defaults.figma",
+      "kind": "figma",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/figma.png",
+      "sha256": "316b6717cf2e7a189e30d857fd4b421205e7e2f947e03503ad8ecc6fadf40737",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 1354,
+      "bytes": 2729161
+    },
+    {
+      "id": "sav-master-defaults.generated",
+      "kind": "generated",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/generated.png",
+      "sha256": "3ec5c1e6b50b8682bc85b7273b5fbeab9328025aa5b5b0709b58f3d8da689a10",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 1354,
+      "bytes": 2805736
+    },
+    {
+      "id": "sav-master-defaults.diff",
+      "kind": "diff",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/diff.png",
+      "sha256": "6cb38e124244edd501dc305cd9908d605565ff5a8941332e72dc9bd7de71f61d",
+      "mediaType": "image/png",
+      "width": 3100,
+      "height": 1354,
+      "bytes": 836261
+    },
+    {
+      "id": "sav-master-defaults.triptych",
+      "kind": "triptych",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/triptych.png",
+      "sha256": "75e2ef19b9ad86906c021b606a0e362db5a32e4d1d57fdf8361813482d4b8180",
+      "mediaType": "image/png",
+      "width": null,
+      "height": null,
+      "bytes": 6509224
+    },
+    {
+      "id": "sav-master-defaults.metadata",
+      "kind": "metadata",
+      "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/cases/sav-master-defaults/metadata.json",
+      "sha256": "2754b93a8839d255233cf603ff39815439dc9a45063b6413d7d13835a8c5f8bd",
+      "mediaType": "application/json",
+      "width": null,
+      "height": null,
+      "bytes": 4317
+    }
+  ],
+  "verdict": "divergent",
+  "reasons": [
+    "divergent-facts:6"
+  ]
+}

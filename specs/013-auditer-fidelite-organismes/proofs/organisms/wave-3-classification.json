@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "013-auditer-fidelite-organismes",
+  "wave": 3,
+  "waveIndex": 2,
+  "reference": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileVersion": "2381581871281042338",
+    "readOnly": true
+  },
+  "expectedSubjectIds": [
+    "equipe",
+    "formulaire",
+    "header"
+  ],
+  "subjects": [
+    {
+      "id": "equipe",
+      "classified": true,
+      "verdict": "blocked",
+      "facts": 59,
+      "proved": 0,
+      "divergent": 0,
+      "limited": 0,
+      "notProven": 59,
+      "coverageExact": false,
+      "declaredDependency": "ds.member-card",
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "dependency:ds.member-card:blocked",
+        "receipt-verdict-blocked",
+        "dependency-not-proved:ds.member-card",
+        "figma-file-version-moved:2381568261081914456->2381581871281042338"
+      ]
+    },
+    {
+      "id": "formulaire",
+      "classified": true,
+      "verdict": "blocked",
+      "facts": 77,
+      "proved": 0,
+      "divergent": 0,
+      "limited": 0,
+      "notProven": 77,
+      "coverageExact": false,
+      "declaredDependency": "ds.field",
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "dependency:ds.field:blocked",
+        "receipt-verdict-blocked",
+        "dependency-not-proved:ds.field",
+        "figma-file-version-moved:2381568261081914456->2381581871281042338"
+      ]
+    },
+    {
+      "id": "header",
+      "classified": true,
+      "verdict": "blocked",
+      "facts": 52,
+      "proved": 0,
+      "divergent": 0,
+      "limited": 0,
+      "notProven": 52,
+      "coverageExact": false,
+      "declaredDependency": "ds.nav-item",
+      "gatedDependencyMentions": [],
+      "reportPresent": true,
+      "reasons": [
+        "dependency:ds.nav-item:divergent",
+        "receipt-verdict-fail",
+        "dependency-not-proved:ds.nav-item",
+        "figma-file-version-moved:2381568261081914456->2381581871281042338"
+      ]
+    }
+  ],
+  "classified": true,
+  "positiveVerdictsUnderClosedGate": 0,
+  "independenceFromGatedDependencies": true,
+  "note": "classified = verdict final honnête, PAS verdict positif. Un dossier divergent classifié ouvre la vague suivante."
+}

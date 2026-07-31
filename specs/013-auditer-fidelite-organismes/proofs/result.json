@@ -1,0 +1,544 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "013-auditer-fidelite-organismes",
+  "reference": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileVersion": "2381581871281042338",
+    "readOnly": true,
+    "deviceScaleFactor": 2
+  },
+  "generatedSurface": {
+    "kind": "react-storybook",
+    "sourceRoot": "src/components",
+    "generatedTreeSha256": "9c579495c814172fe097dae34e48063949d091d6f84d425e31ba75c2110704d2"
+  },
+  "inputHashes": {
+    "campaign": "f9be2bec5933a62380ec04e9a1b862d04db9acaa0ae48e7fb3b198d50954504d",
+    "contracts": "02daa8877204b688f7c25220f9376a04e2c1db349b5383cd6a6ca6bcc4533435",
+    "tokens": "f65dad29b6d42dad32237eca8d8a08f15e15cbaa7f3b1cd5ce95d5ad8866ed66",
+    "dependencies": "f589a73037207fc47ff2a45b70a19c8bce3e36b29595f74e0e870a2c6209e3fc"
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "startsAfter": null,
+      "subjectIds": [
+        "coordonnees",
+        "devis",
+        "hero",
+        "presentation",
+        "sav",
+        "texte-seo"
+      ],
+      "classified": true,
+      "receipt": "organisms/wave-1-classification.json",
+      "independenceFromGatedDependencies": true,
+      "positiveVerdictsUnderClosedGate": 0
+    },
+    {
+      "wave": 2,
+      "startsAfter": 1,
+      "subjectIds": [
+        "faq",
+        "footer",
+        "reassurances"
+      ],
+      "classified": true,
+      "receipt": "organisms/wave-2-classification.json",
+      "independenceFromGatedDependencies": true,
+      "positiveVerdictsUnderClosedGate": 0
+    },
+    {
+      "wave": 3,
+      "startsAfter": 2,
+      "subjectIds": [
+        "equipe",
+        "formulaire",
+        "header"
+      ],
+      "classified": true,
+      "receipt": "organisms/wave-3-classification.json",
+      "independenceFromGatedDependencies": true,
+      "positiveVerdictsUnderClosedGate": 0
+    }
+  ],
+  "subjects": [
+    {
+      "id": "coordonnees",
+      "displayName": "Coordonnees",
+      "wave": 1,
+      "contract": {
+        "id": "ds.coordonnees",
+        "version": "2.2.0",
+        "path": "contracts/coordonnees.contract.json"
+      },
+      "figmaSetNodeId": "2104:2904",
+      "requiredFacts": 46,
+      "proved": 44,
+      "divergent": 1,
+      "limited": 1,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 0.5222631289161859,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:1"
+      ],
+      "dossier": "organisms/coordonnees/REPORT.md",
+      "resultSha256": "416367a74184855894cbf2e4c143ce63bb1e01ea76226457784dd0cb5508fcc8",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "devis",
+      "displayName": "Devis",
+      "wave": 1,
+      "contract": {
+        "id": "ds.devis",
+        "version": "1.2.0",
+        "path": "contracts/devis.contract.json"
+      },
+      "figmaSetNodeId": "2096:2524",
+      "requiredFacts": 21,
+      "proved": 14,
+      "divergent": 7,
+      "limited": 0,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 0.1353753306878307,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:7"
+      ],
+      "dossier": "organisms/devis/REPORT.md",
+      "resultSha256": "1c4a0e93bec3cd6c692db39c18f0f0f9d7d619260b6c216850cb1845e53f3e07",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "hero",
+      "displayName": "Hero",
+      "wave": 1,
+      "contract": {
+        "id": "ds.hero",
+        "version": "1.3.0",
+        "path": "contracts/hero.contract.json"
+      },
+      "figmaSetNodeId": "2111:3382",
+      "requiredFacts": 37,
+      "proved": 27,
+      "divergent": 10,
+      "limited": 0,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 27.82904730902778,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:10",
+        "failed-cases:1"
+      ],
+      "dossier": "organisms/hero/REPORT.md",
+      "resultSha256": "bfa9a4171605581ca9bb1f847edb50d3e0e1b2776ee76e95f8614305209d88df",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "presentation",
+      "displayName": "Presentation",
+      "wave": 1,
+      "contract": {
+        "id": "ds.presentation",
+        "version": "2.1.0",
+        "path": "contracts/presentation.contract.json"
+      },
+      "figmaSetNodeId": "2103:2824",
+      "requiredFacts": 13,
+      "proved": 9,
+      "divergent": 3,
+      "limited": 0,
+      "notProven": 1,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 0.3530901968401968,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:3"
+      ],
+      "dossier": "organisms/presentation/REPORT.md",
+      "resultSha256": "ae04cd0566a8315eb623d3006a6cbdf1f0d555b4ee1b5daafa419a394f9081a1",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "sav",
+      "displayName": "SAV",
+      "wave": 1,
+      "contract": {
+        "id": "ds.sav",
+        "version": "1.2.0",
+        "path": "contracts/sav.contract.json"
+      },
+      "figmaSetNodeId": "2108:3105",
+      "requiredFacts": 18,
+      "proved": 12,
+      "divergent": 6,
+      "limited": 0,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 0.6652451517606137,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:6"
+      ],
+      "dossier": "organisms/sav/REPORT.md",
+      "resultSha256": "82a20767ce02d8124eb96cb8579ec292ff0c56fc478dca6904466b5dc478961b",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "texte-seo",
+      "displayName": "TexteSEO",
+      "wave": 1,
+      "contract": {
+        "id": "ds.texte-seo",
+        "version": "2.1.0",
+        "path": "contracts/texte-seo.contract.json"
+      },
+      "figmaSetNodeId": "2108:3123",
+      "requiredFacts": 39,
+      "proved": 30,
+      "divergent": 7,
+      "limited": 2,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 1.8376109056184122,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:7"
+      ],
+      "dossier": "organisms/texte-seo/REPORT.md",
+      "resultSha256": "1ca47a7f0057397cf9e3147693ecde25617e49e92f739c8c353ec29cc048aecb",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "faq",
+      "displayName": "FAQ",
+      "wave": 2,
+      "contract": {
+        "id": "ds.faq",
+        "version": "1.2.0",
+        "path": "contracts/faq.contract.json"
+      },
+      "figmaSetNodeId": "2104:2914",
+      "requiredFacts": 34,
+      "proved": 24,
+      "divergent": 9,
+      "limited": 1,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 3.672346488508598,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:9",
+        "failed-cases:1"
+      ],
+      "dossier": "organisms/faq/REPORT.md",
+      "resultSha256": "4e5e7f96b45ce6b050fc25f3ac264d55548e10f33f07de6d70ed04e93f8b2177",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "footer",
+      "displayName": "Footer",
+      "wave": 2,
+      "contract": {
+        "id": "ds.footer",
+        "version": "1.1.0",
+        "path": "contracts/footer.contract.json"
+      },
+      "figmaSetNodeId": "2120:4785",
+      "requiredFacts": 57,
+      "proved": 39,
+      "divergent": 18,
+      "limited": 0,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 1.0439991325748406,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:18"
+      ],
+      "dossier": "organisms/footer/REPORT.md",
+      "resultSha256": "f1f3a59f082fb71fbece27ec4ffb7acdc7fc4cb417146660199371f0eedb9ea7",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "reassurances",
+      "displayName": "Reassurances",
+      "wave": 2,
+      "contract": {
+        "id": "ds.reassurances",
+        "version": "1.2.0",
+        "path": "contracts/reassurances.contract.json"
+      },
+      "figmaSetNodeId": "2114:3721",
+      "requiredFacts": 44,
+      "proved": 30,
+      "divergent": 10,
+      "limited": 4,
+      "notProven": 0,
+      "coverageExact": true,
+      "dependency": null,
+      "pixelsRawPct": 39.78437291157622,
+      "verdict": "divergent",
+      "reasons": [
+        "divergent-facts:10",
+        "failed-cases:1"
+      ],
+      "dossier": "organisms/reassurances/REPORT.md",
+      "resultSha256": "de85332739a33c1d34fb09e2ed1f3ca0e096954d9678d68def763b2b1f3476c6",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "equipe",
+      "displayName": "Equipe",
+      "wave": 3,
+      "contract": {
+        "id": "ds.equipe",
+        "version": "1.0.0",
+        "path": "contracts/equipe.contract.json"
+      },
+      "figmaSetNodeId": "2115:3947",
+      "requiredFacts": 59,
+      "proved": 0,
+      "divergent": 0,
+      "limited": 0,
+      "notProven": 59,
+      "coverageExact": false,
+      "dependency": {
+        "dependencyContractId": "ds.member-card",
+        "resultPath": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+        "receiptSha256": null,
+        "contractVersion": "1.2.0",
+        "probative": true,
+        "receiptVerdict": "blocked",
+        "actualVerdict": "blocked",
+        "open": false
+      },
+      "pixelsRawPct": null,
+      "verdict": "blocked",
+      "reasons": [
+        "dependency:ds.member-card:blocked",
+        "receipt-verdict-blocked",
+        "dependency-not-proved:ds.member-card",
+        "figma-file-version-moved:2381568261081914456->2381581871281042338"
+      ],
+      "dossier": "organisms/equipe/REPORT.md",
+      "resultSha256": "2a0d7477b69965eff9b7a8f6d1fbfdd291a746f9d1db2fd9140a2b7fe57c7076",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "formulaire",
+      "displayName": "Formulaire",
+      "wave": 3,
+      "contract": {
+        "id": "ds.formulaire",
+        "version": "1.1.0",
+        "path": "contracts/formulaire.contract.json"
+      },
+      "figmaSetNodeId": "2096:2564",
+      "requiredFacts": 77,
+      "proved": 0,
+      "divergent": 0,
+      "limited": 0,
+      "notProven": 77,
+      "coverageExact": false,
+      "dependency": {
+        "dependencyContractId": "ds.field",
+        "resultPath": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+        "receiptSha256": null,
+        "contractVersion": "2.0.0",
+        "probative": true,
+        "receiptVerdict": "blocked",
+        "actualVerdict": "blocked",
+        "open": false
+      },
+      "pixelsRawPct": null,
+      "verdict": "blocked",
+      "reasons": [
+        "dependency:ds.field:blocked",
+        "receipt-verdict-blocked",
+        "dependency-not-proved:ds.field",
+        "figma-file-version-moved:2381568261081914456->2381581871281042338"
+      ],
+      "dossier": "organisms/formulaire/REPORT.md",
+      "resultSha256": "8212cfd5b3b329cf275d79ee71e52eff7d814b89f8bf9e8d813e9ef967b4a728",
+      "reportPresent": true,
+      "missing": false
+    },
+    {
+      "id": "header",
+      "displayName": "Header",
+      "wave": 3,
+      "contract": {
+        "id": "ds.header",
+        "version": "1.0.0",
+        "path": "contracts/header.contract.json"
+      },
+      "figmaSetNodeId": "84:285",
+      "requiredFacts": 52,
+      "proved": 0,
+      "divergent": 0,
+      "limited": 0,
+      "notProven": 52,
+      "coverageExact": false,
+      "dependency": {
+        "dependencyContractId": "ds.nav-item",
+        "resultPath": "specs/011-fix-molecule-convergence/proofs/visual/result.json",
+        "receiptSha256": null,
+        "contractVersion": "1.1.0",
+        "probative": true,
+        "receiptVerdict": "fail",
+        "actualVerdict": "divergent",
+        "open": false
+      },
+      "pixelsRawPct": null,
+      "verdict": "blocked",
+      "reasons": [
+        "dependency:ds.nav-item:divergent",
+        "receipt-verdict-fail",
+        "dependency-not-proved:ds.nav-item",
+        "figma-file-version-moved:2381568261081914456->2381581871281042338"
+      ],
+      "dossier": "organisms/header/REPORT.md",
+      "resultSha256": "6d0e446eb7369d082aa6f27e5af75cdd911d5d73c9a3e377298584e4fc244a99",
+      "reportPresent": true,
+      "missing": false
+    }
+  ],
+  "deferredWork": [
+    {
+      "id": "DW-001",
+      "subjectId": "footer",
+      "factId": "footer.structure.piqueray-logo-size",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.piqueray-logo",
+      "contractPointer": "/anatomy/root/literals/width",
+      "observedCause": "Le master porte PiquerayLogo à 180.0985565185547px. Un parent ne peut pas restyler une instance de composant ; la largeur devrait vivre sur le root de ds.piqueray-logo, qui est partagé avec ds.header et y prend une autre taille.",
+      "candidateToken": null,
+      "evidenceIds": [
+        "footer-master-defaults"
+      ],
+      "verdictImpact": "divergent",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-002",
+      "subjectId": "reassurances",
+      "factId": "reassurances.structure.carte-largeur",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.carte",
+      "contractPointer": "/anatomy/root/literals/min-width",
+      "observedCause": "4×364 + 3×32 = 1552 > 1550px du frame items. Figma laisse déborder, le CSS flex rétrécit les cartes de 0,5px et décale le contenu de 1px. MESURÉ, pas supposé : le patch appliqué temporairement fait REFUSER le harnais (débordement horizontal de 4 device px), donc la correction n'est pas locale.",
+      "candidateToken": null,
+      "evidenceIds": [
+        "reassurances-master-defaults"
+      ],
+      "verdictImpact": "divergent",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-003",
+      "subjectId": "faq",
+      "factId": "faq.structure.section-header-height",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.section-header",
+      "contractPointer": "/anatomy/root/literals/height",
+      "observedCause": "L'instance SectionHeader 2104:2907 est figée par le master à 50px alors que son contenu en demande 83 (clipsContent=false). Tout ce qui suit est décalé de 32px. Le fait appartient à l'INSTANCE : sur les 8 instances du census, seule celle de FAQ est FIXED à 50, les autres sont HUG — la valeur ne peut donc pas descendre sur l'enfant. DÉFAUT DE SOURCE FIGMA, à verser au backlog de nettoyage.",
+      "candidateToken": null,
+      "evidenceIds": [
+        "faq-master-defaults"
+      ],
+      "verdictImpact": "divergent",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-004",
+      "subjectId": "footer",
+      "factId": "footer.structure.padding-root-left",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.footer",
+      "contractPointer": "/anatomy/root/literals",
+      "observedCause": "GÉOMÉTRIE PORTÉE EN LITTÉRAUX AU LIEU DE TOKENS — la dette la plus structurante du lot. La remédiation de la vague 2 a écrit padding-left/right 89px, padding-top 128px, gap 48px, gap 32px, gap 16px dans ds.footer, ds.faq et ds.reassurances, alors que {space.89}, {space.128}, {space.48}, {space.32} et {space.16} existent déjà (mintés par 012). Or le différentiel surveille la géométrie PAR l'axe des tokens (canvas variables ⟷ tokens/) : un littéral brut ne siège sur aucun axe, donc npm run parity reste vert pendant que les surfaces divergent. Les 52 contrats archivés demo-51 portent zéro literals. Convertir exige de déplacer la valeur ET le pointeur déclaré du fait ensemble (/literals/ → /tokens/), ce qui dépasse le périmètre de 013.",
+      "candidateToken": "{space.89}",
+      "evidenceIds": [
+        "footer-master-defaults",
+        "faq-master-defaults",
+        "reassurances-master-defaults"
+      ],
+      "verdictImpact": "limited",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-005",
+      "subjectId": "footer",
+      "factId": "footer.structure.root-width",
+      "category": "global-token-correction",
+      "contractId": "ds.footer",
+      "contractPointer": "/anatomy/root/literals/width",
+      "observedCause": "Les largeurs de cadre relevées (1550px, 1728px, 459px, 310px) n'ont AUCUN token dans la fondation. La doctrine écrite dans tokens/primitives.tokens.json est de minter depuis le dump (« minted from-dump so anatomy references tokens, not literals »), comme l'espacement du Button l'a été. Minter est une correction de fondation de tokens, que SC-005 interdit explicitement à 013.",
+      "candidateToken": null,
+      "evidenceIds": [
+        "footer-master-defaults"
+      ],
+      "verdictImpact": "limited",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-006",
+      "subjectId": "reassurances",
+      "factId": "reassurances.visual.root",
+      "category": "hardcoded-value-conversion",
+      "contractId": "ds.reassurances",
+      "contractPointer": "/anatomy/root",
+      "observedCause": "DÉFAUT D'INSTRUMENT, pas de contrat : le pilote photographie subject.figmaSetNodeId, or reassurances est le seul sujet dont le set (2114:3721, trois variantes empilées, 1552×2451) diffère du node du cas (une variante, 1550×731). Le dossier compare donc une variante rendue à trois variantes photographiées et publie 38,61 %. Mesuré sur la référence correcte : 3,30 %, dont ~1,74 % de plancher de rééchantillonnage des photos. Le chiffre publié n'est PAS une mesure de fidélité et ne doit pas être lu comme telle.",
+      "candidateToken": null,
+      "evidenceIds": [
+        "reassurances-master-defaults"
+      ],
+      "verdictImpact": "not-proven",
+      "status": "deferred"
+    }
+  ],
+  "summary": {
+    "organisms": 12,
+    "proved": 0,
+    "divergent": 9,
+    "limited": 0,
+    "notProven": 0,
+    "blocked": 3,
+    "requiredFacts": 497,
+    "factsProved": 229,
+    "factsDivergent": 71,
+    "factsLimited": 8,
+    "factsNotProven": 189,
+    "deferredWork": 6
+  },
+  "verdict": "complete-with-blocks",
+  "exitCode": 1,
+  "reasons": [
+    "divergent:9",
+    "blocked:3"
+  ]
+}

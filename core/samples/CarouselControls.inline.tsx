@@ -38,8 +38,8 @@ export const CarouselControls = forwardRef<HTMLElement, CarouselControlsProps>(f
 ) {
   return (
     <nav ref={ref} style={{ ...S.root, ...style }}  aria-label="Navigation du carrousel" {...rest}>
-      <Button iconLeftGlyph="chevron-left" variant="iconOnly">Précédent</Button>
-<Button iconLeftGlyph="chevron-right" variant="iconOnly">Suivant</Button>
+      <Button iconLeftGlyph="chevron-left" iconRight={false} iconLeft={false} variant="iconOnly">Précédent</Button>
+<Button iconLeftGlyph="chevron-right" iconRight={false} iconLeft={false} variant="iconOnly">Suivant</Button>
     </nav>
   );
 });

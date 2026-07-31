@@ -1,13 +1,13 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/footer.contract.json (ds.footer v1.0.0)
+ * Source of truth: contracts/footer.contract.json (ds.footer v1.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
 import type { HTMLAttributes } from 'react';
-import { FooterColumn } from '../FooterColumn';
 import { PiquerayLogo } from '../PiquerayLogo';
 import { Button } from '../Button';
+import { FooterColumn } from '../FooterColumn';
 import { Copyright } from '../Copyright';
 import styles from './Footer.module.css';
 
@@ -22,7 +22,7 @@ export interface FooterProps extends HTMLAttributes<HTMLDivElement> {
   items?: Array<{ texte: string; titre: string }>;
 }
 
-/** Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
+/** Piqueray Footer. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.1.0 porte la géométrie relevée au census 013 sur le master 2120:4785 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures, ce qui laissait le rendu généré à 96,91 % d'écart pixel. Aucune propriété publique n'a changé. */
 export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
   { items, className, children, ...rest },
   ref,
@@ -32,6 +32,15 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
     <div ref={ref} className={classes} {...rest}>
       <div className={styles.Background}></div>
       <div className={styles.Row}>
+        <div className={styles.col1}>
+          <PiquerayLogo couleur="blanc" />
+          <Button variant="outlineBlanc" iconRight={false}>
+            Contactez-nous
+          </Button>
+        </div>
+        {items?.map((item, index) => (
+          <FooterColumn key={index} texte={item.texte} titre={item.titre} />
+        ))}
         <div className={styles.col5}>
           <span className={styles.TitreReseaux}>Suivez-nous</span>
           <div className={styles.rseauxSociaux}>
@@ -47,18 +56,11 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
             />
           </div>
         </div>
-        {items?.map((item, index) => (
-          <FooterColumn key={index} texte={item.texte} titre={item.titre} />
-        ))}
-        <div className={styles.col1}>
-          <PiquerayLogo couleur="blanc" />
-          <Button>Contactez-nous</Button>
-        </div>
       </div>
       <div className={styles.Spacer}></div>
       <div className={styles.Separator}></div>
       <div className={styles.spacer2}></div>
-      <Copyright texte="© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb" />
+      <Copyright texte="© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb" />
     </div>
   );
 });

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v1.0.0)
+ * Source of truth: contracts/coordonnees.contract.json (ds.coordonnees v2.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -27,52 +27,84 @@ const S: Record<string, CSSProperties> = {
     "backgroundColor": "#F4F6FA",
     "fontFamily": "Montserrat, sans-serif"
   },
+  "googleMap": {
+    "width": "1152px",
+    "minWidth": "1152px",
+    "height": "597px",
+    "objectFit": "cover"
+  },
   "wrapper": {
     "display": "flex",
     "flexDirection": "column",
-    "alignItems": "stretch"
+    "alignItems": "stretch",
+    "gap": "16px",
+    "paddingBlock": "48px",
+    "paddingInline": "48px",
+    "width": "576px"
   },
   "Adresse": {
     "display": "flex",
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "gap": "8px"
   },
   "AdresseEtiquette": {
-    "color": "#F98A0B"
+    "color": "#F98A0B",
+    "fontSize": "24px",
+    "lineHeight": "30px"
   },
   "AdresseValeur": {
-    "color": "#26282C"
+    "color": "#26282C",
+    "fontSize": "18px",
+    "lineHeight": "27px",
+    "whiteSpace": "pre-line",
+    "textDecorationLine": "underline"
   },
   "Horaires": {
     "display": "flex",
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "gap": "8px"
   },
   "HorairesEtiquette": {
-    "color": "#F98A0B"
+    "color": "#F98A0B",
+    "fontSize": "24px",
+    "lineHeight": "30px"
   },
   "HorairesValeur": {
-    "color": "#26282C"
+    "color": "#26282C",
+    "fontSize": "18px",
+    "lineHeight": "27px"
   },
   "Contact": {
     "display": "flex",
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "gap": "8px"
   },
   "ContactEtiquette": {
-    "color": "#F98A0B"
+    "color": "#F98A0B",
+    "fontSize": "24px",
+    "lineHeight": "30px"
   },
   "tl32087463266EmailInfopi": {
-    "color": "#26282C"
+    "color": "#26282C",
+    "fontSize": "18px",
+    "lineHeight": "27px",
+    "whiteSpace": "pre-line"
   },
   "suivezNous": {
     "display": "flex",
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "gap": "8px"
   },
   "SuivezNousEtiquette": {
-    "color": "#F98A0B"
+    "color": "#F98A0B",
+    "fontSize": "24px",
+    "lineHeight": "30px"
   },
   "rseauxSociaux": {
     "display": "flex",
     "flexDirection": "row",
-    "alignItems": "center"
+    "alignItems": "center",
+    "gap": "16px"
   },
   "Facebook": {
     "display": "inline-flex",
@@ -81,32 +113,38 @@ const S: Record<string, CSSProperties> = {
   "Instagram": {
     "display": "inline-flex",
     "flexShrink": 0
-  },
-  "googleMap": {}
+  }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
 const V: Record<string, CSSProperties> = {};
 
 export interface CoordonneesProps extends HTMLAttributes<HTMLDivElement> {
+  /** URL fournie par le code pour le paint IMAGE du plan Google (RECTANGLE Figma 2104:2899, imageRef efdebf1941d13dbd5a2ab421aaeac49d352a87b2) — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : Figma range ces pixels dans un paint du master, jamais dans une propriété de composant, et le contrat n'a aucun canal background-image ; l'imageRef est donc consigné ici et jamais lié. Le défaut vide est intentionnel et ne substitue aucune image. */
+  mapUrl?: string;
+  /** Équivalent textuel fourni par le code, apparié à mapUrl. Un paint IMAGE Figma n'expose aucune propriété de composant correspondante, donc le défaut vide est intentionnel. */
+  mapAlt?: string;
   /** Extracted from Figma "Accroche" TEXT property (added by sync pass). */
   accroche?: string;
-  /** Extracted from Figma "Titre" TEXT property (added by sync pass). */
-  titre?: string;
+  /** Extracted from Figma "Titre" TEXT property (added by sync pass). Type rich-text depuis section-header 2.0.0 : la propriété est transmise VIVANTE à l'enfant (titre: "{titre}"), et un mapping vers une prop rich-text exige une prop rich-text côté parent — sinon les graisses que l'enfant sait désormais porter seraient aplaties au passage. Le titre observé (I2169:6216;2090:2387) est UNIFORME : un seul segment. */
+  titre?: Array<{ text: string; strong?: boolean }>;
 }
 
 /** Piqueray Coordonnees. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function Coordonnees(
-  { accroche = 'Contact', titre = 'Nos coordonnées', style, children, ...rest },
+  { mapUrl = '', mapAlt = '', accroche = 'Contact', titre = [{"text":"Nos coordonnées"}], style, children, ...rest },
   ref,
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
-      <div style={{ ...S.wrapper }}>
-<SectionHeader titre="Nos coordonnées" accroche="Contact" disposition="standard" />
+      <img style={{ ...S.googleMap }} src={String(mapUrl)} alt={String(mapAlt)}>
+
+</img>
+<div style={{ ...S.wrapper }}>
+<SectionHeader titre={titre} accroche={accroche} disposition="standard" alignement="gauche" />
 <div style={{ ...S.Adresse }}>
 <span style={{ ...S.AdresseEtiquette }}>Adresse</span>
-<span style={{ ...S.AdresseValeur }}>Rue Alfred Drèze 7, 4860 Pepinster</span>
+<span style={{ ...S.AdresseValeur }}>{"Rue Alfred Drèze 7,\n4860 Pepinster"}</span>
 </div>
 <div style={{ ...S.Horaires }}>
 <span style={{ ...S.HorairesEtiquette }}>Horaires</span>
@@ -114,7 +152,7 @@ export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function
 </div>
 <div style={{ ...S.Contact }}>
 <span style={{ ...S.ContactEtiquette }}>Contact</span>
-<span style={{ ...S.tl32087463266EmailInfopi }}>Tél : +32 (0)87 46 32 66 Email: info@piqueray.be</span>
+<span style={{ ...S.tl32087463266EmailInfopi }}>{"Tél : "}<u style={{ textDecorationLine: 'underline' }}>{"+32 (0)87 46 32 66"}</u>{"\n"}{"Email: "}<u style={{ textDecorationLine: 'underline' }}>{"info@piqueray.be"}</u></span>
 </div>
 <div style={{ ...S.suivezNous }}>
 <span style={{ ...S.SuivezNousEtiquette }}>Suivez-nous</span>
@@ -123,9 +161,6 @@ export const Coordonnees = forwardRef<HTMLDivElement, CoordonneesProps>(function
 <span style={{ ...S.Instagram }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["instagram"] }} />
 </div>
 </div>
-</div>
-<div style={{ ...S.googleMap }}>
-
 </div>
     </div>
   );

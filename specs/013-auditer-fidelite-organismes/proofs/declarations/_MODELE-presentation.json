@@ -1,0 +1,342 @@
+{
+  "facts": [
+    {
+      "id": "presentation.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2824",
+        "detail": "COMPONENT root > [SectionHeader instance 2169:6246, wrapper frame 2103:2820 > [Texte 2103:2821, Bouton 2103:2822]]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__root\"]"
+      }
+    },
+    {
+      "id": "presentation.content.texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2824",
+        "property": "Texte#2103:54",
+        "textLayer": "2103:2821"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__Texte\"]"
+      }
+    },
+    {
+      "id": "presentation.property.titre",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2824",
+        "property": "Titre#2103:53"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/2",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "titre",
+        "value": "PREUVE-013 — TITRE 7f3c"
+      }
+    },
+    {
+      "id": "presentation.property.texte",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2824",
+        "property": "Texte#2103:54"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0",
+        "bindingProperty": "Texte"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__Texte\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "texte",
+        "value": "PREUVE-013 — TEXTE 7f3c"
+      }
+    },
+    {
+      "id": "presentation.property.bouton",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2824",
+        "property": "Bouton#2103:55"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/1",
+        "bindingProperty": "Bouton"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Button__root\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "bouton",
+        "value": true
+      }
+    },
+    {
+      "id": "presentation.composition.section-header",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6246",
+        "mainComponent": "2090:2385",
+        "observedInstanceProperties": {
+          "Accroche2#2169:64": false,
+          "Titre#2090:47": "Piqueray, une histoire de famille ",
+          "Accroche#2090:46": "Plus de 50 ans d’expérience",
+          "Disposition": "Standard"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/SectionHeader/component",
+        "childContractId": "ds.section-header"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "presentation.composition.button",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2822",
+        "mainComponent": "9:206",
+        "visibleByDefault": false,
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "En savoir plus",
+          "Style": "Link",
+          "Icone droite#2024:7": true,
+          "Icone gauche#2024:0": false
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Bouton/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "presentation.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2824",
+        "export": "png@2x"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__root\"]"
+      }
+    },
+    {
+      "id": "presentation.semantic.texte-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2821",
+        "detail": "TEXT layer Texte"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Texte/content/prop"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__Texte\"]"
+      }
+    },
+    {
+      "id": "presentation.structure.gap-root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2824",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "root.itemSpacing",
+        "value": 32
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__root\"]"
+      }
+    },
+    {
+      "id": "presentation.structure.gap-wrapper",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2820",
+        "channel": "itemSpacing"
+      },
+      "figmaExpectation": {
+        "channel": "wrapper.itemSpacing",
+        "value": 16
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/layout/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__wrapper\"]"
+      }
+    },
+    {
+      "id": "presentation.visual.texte-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2821",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "Texte.font-size",
+        "value": "14px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Texte/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__Texte\"]"
+      }
+    },
+    {
+      "id": "presentation.visual.texte-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2103:2821",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "Texte.line-height",
+        "value": "24px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/wrapper/parts/Texte/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Presentation/Presentation.tsx",
+        "export": "Presentation",
+        "selector": "[class*=\"Presentation__Texte\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "presentation-master-defaults",
+    "figmaNodeId": "2103:2824",
+    "observedProperties": {
+      "Titre#2103:53": "Piqueray, une histoire de famille ",
+      "Texte#2103:54": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+      "Bouton#2103:55": false
+    },
+    "reactProps": {},
+    "factIds": [
+      "presentation.structure.root",
+      "presentation.content.texte",
+      "presentation.property.titre",
+      "presentation.property.texte",
+      "presentation.property.bouton",
+      "presentation.composition.section-header",
+      "presentation.composition.button",
+      "presentation.visual.root",
+      "presentation.semantic.texte-element",
+      "presentation.structure.gap-root",
+      "presentation.structure.gap-wrapper",
+      "presentation.visual.texte-font-size",
+      "presentation.visual.texte-line-height"
+    ],
+    "fixtureAssetIds": [],
+    "requiredParts": [
+      "root",
+      "SectionHeader",
+      "wrapper",
+      "Texte"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "texte-element",
+        "selector": "[class*=\"Presentation__Texte\"]",
+        "contractPointer": "/anatomy/root/parts/wrapper/parts/Texte/content/prop",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd’hui dirigée par Florian et Cécilia Piqueray, l’entreprise perpétue les valeurs de proximité et d’excellence technique. Dépositaire officiel Hörmann, nous allions la force d’un leader mondial à la souplesse d’une PME locale."
+        }
+      }
+    ]
+  }
+}

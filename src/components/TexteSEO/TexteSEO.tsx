@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v1.0.0)
+ * Source of truth: contracts/texte-seo.contract.json (ds.texte-seo v2.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -10,7 +10,8 @@ import { AccordionRow } from '../AccordionRow';
 import styles from './TexteSEO.module.css';
 
 export interface TexteSEOProps extends HTMLAttributes<HTMLDivElement> {
-  items?: Array<{ contenu: string; titre: string }>;
+  /** Les lignes d'accordéon. `etat` est observé par entrée sur le master Figma (la 2e ligne est ouverte, les deux autres fermées) : le renseigner rend chaque ligne CONTRÔLÉE côté React — la géométrie est fidèle, mais une ligne ne se replie plus d'elle-même tant que le consommateur ne possède pas l'état (le canal `repeat` ne porte pas d'événement par entrée). Limite nommée, pas un oubli. */
+  items?: Array<{ contenu: string; etat: 'ferme' | 'ouvert'; titre: string }>;
 }
 
 /** Piqueray TexteSEO. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
@@ -23,9 +24,16 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
     <div ref={ref} className={classes} {...rest}>
       <div className={styles.h2}>
         <SectionHeader
-          titre="Visitez notre showroom à Pepinster ou contactez-nous"
+          titre={[
+            { text: 'Visitez notre ' },
+            { text: 'showroom à Pepinster', strong: true },
+            { text: ' ou contactez-nous' },
+          ]}
           accroche="Plus de 50 ans d’expérience"
           disposition="standard"
+          accroche2={false}
+          emphase="compact"
+          alignement="gauche"
         />
       </div>
       <div className={styles.p}>
@@ -43,7 +51,13 @@ export const TexteSEO = forwardRef<HTMLDivElement, TexteSEOProps>(function Texte
       </div>
       <div className={styles.accordion}>
         {items?.map((item, index) => (
-          <AccordionRow key={index} taille="petit" contenu={item.contenu} titre={item.titre} />
+          <AccordionRow
+            key={index}
+            taille="petit"
+            contenu={item.contenu}
+            etat={item.etat}
+            titre={item.titre}
+          />
         ))}
       </div>
     </div>

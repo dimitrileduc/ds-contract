@@ -1,0 +1,483 @@
+{
+  "facts": [
+    {
+      "id": "sav.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3105",
+        "detail": "COMPONENT root > section 2169:6222 > [background 2108:3094, row 2169:6200 > [wrapper 2169:6188 > [WrapperBackground 2108:3100, inner 2108:3101 > [SectionHeader 2169:6258, Texte 2108:3103, Bouton 2108:3104]], img-group 2169:5846 > [ImgGroupBackground 2108:3097, img 2108:3098]]]"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__root\"]"
+      }
+    },
+    {
+      "id": "sav.content.texte",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3103",
+        "property": "characters",
+        "textLayer": "2108:3103"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+      }
+    },
+    {
+      "id": "sav.property.titre",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3105",
+        "property": "Titre#2108:60"
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "titre",
+        "value": "PREUVE-013 — TITRE SAV b48e"
+      }
+    },
+    {
+      "id": "sav.composition.section-header",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6258",
+        "mainComponent": "2090:2385",
+        "observedInstanceProperties": {
+          "Accroche2#2169:64": false,
+          "Titre#2090:47": "Dépannage / SAV",
+          "Accroche#2090:46": "Plus de 50 ans d’expérience",
+          "Disposition": "Standard"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component",
+        "childContractId": "ds.section-header"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SectionHeader__root\"]"
+      }
+    },
+    {
+      "id": "sav.composition.button",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3104",
+        "mainComponent": "6:107",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Demander de l’aide",
+          "Style": "Default",
+          "Icone droite#2024:7": true,
+          "Icone gauche#2024:0": false
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "sav.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3105",
+        "export": "png@2x"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__root\"]"
+      }
+    },
+    {
+      "id": "sav.semantic.texte-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3103",
+        "detail": "TEXT layer, 2 paragraphes separes par un saut de ligne dur"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+      }
+    },
+    {
+      "id": "sav.structure.gap-root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3105",
+        "channel": "itemSpacing",
+        "layoutMode": "HORIZONTAL"
+      },
+      "figmaExpectation": {
+        "channel": "root.itemSpacing",
+        "value": 10
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__root\"]"
+      }
+    },
+    {
+      "id": "sav.structure.gap-inner",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3101",
+        "channel": "itemSpacing",
+        "layoutMode": "VERTICAL"
+      },
+      "figmaExpectation": {
+        "channel": "inner.itemSpacing",
+        "value": 32
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/layout/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__inner\"]"
+      }
+    },
+    {
+      "id": "sav.visual.texte-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3103",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "vousRencontrezUnProblmeA.font-size",
+        "value": "18px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+      }
+    },
+    {
+      "id": "sav.visual.texte-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3103",
+        "channel": "style.lineHeightPx"
+      },
+      "figmaExpectation": {
+        "channel": "vousRencontrezUnProblmeA.line-height",
+        "value": "27px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]"
+      }
+    },
+    {
+      "id": "sav.visual.background-image",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2108:3094",
+        "channel": "fills[0]",
+        "paint": {
+          "type": "IMAGE",
+          "scaleMode": "FILL",
+          "imageRef": "3e173874828861c294938a12deea5a5a7a1799dd"
+        },
+        "namedLimit": "A5 (docs/FIGMA-CAPABILITY-MATRIX.md ligne 91) — background-image: url() est natif des deux cotes, le vocabulaire de contrat reste un gap nomme ouvert"
+      },
+      "figmaExpectation": {
+        "channel": "background.fills[0].imageRef",
+        "value": "3e173874828861c294938a12deea5a5a7a1799dd"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/background/tokens/background-image"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__background\"]"
+      }
+    },
+    {
+      "id": "sav.visual.img-image",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-with-named-limit",
+      "figmaReference": {
+        "nodeId": "2108:3098",
+        "channel": "fills[0]",
+        "paint": {
+          "type": "IMAGE",
+          "scaleMode": "FIT",
+          "imageRef": "429c615cb090b3aa0800188acda4bc59cc6445b0"
+        },
+        "namedLimit": "A5 (docs/FIGMA-CAPABILITY-MATRIX.md ligne 91) — meme gap nomme que sav.visual.background-image"
+      },
+      "figmaExpectation": {
+        "channel": "img.fills[0].imageRef",
+        "value": "429c615cb090b3aa0800188acda4bc59cc6445b0"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/tokens/background-image"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SAV__img\"]"
+      }
+    },
+    {
+      "id": "sav.composition.section-header-titre",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6258",
+        "property": "Titre#2090:47"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Titre",
+        "value": "Dépannage / SAV"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SectionHeader__Titre\"]"
+      }
+    },
+    {
+      "id": "sav.composition.section-header-accroche",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6258",
+        "property": "Accroche#2090:46"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche",
+        "value": "Plus de 50 ans d’expérience"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "sav.composition.section-header-accroche2",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2169:6258",
+        "property": "Accroche2#2169:64",
+        "effect": "masque le calque TEXT Accroche I2169:6258;2090:2386 (visible=false dans le dump)"
+      },
+      "figmaExpectation": {
+        "channel": "SectionHeader.Accroche2",
+        "value": false
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/SectionHeader/component/props/accroche2"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"SectionHeader__Accroche\"]"
+      }
+    },
+    {
+      "id": "sav.composition.button-libelle",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3104",
+        "property": "Libelle#2044:28"
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Libelle",
+        "value": "Demander de l’aide"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/children"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "sav.composition.button-icon-right",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2108:3104",
+        "property": "Icone droite#2024:7",
+        "effect": "rend visible l instance ArrowRight I2108:3104;6:106"
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Icone droite",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/Bouton/component/props/iconRight"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/SAV/SAV.tsx",
+        "export": "SAV",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "sav-master-defaults",
+    "figmaNodeId": "2108:3105",
+    "observedProperties": {
+      "Titre#2108:60": "Dépannage / SAV"
+    },
+    "reactProps": {},
+    "factIds": [
+      "sav.structure.root",
+      "sav.content.texte",
+      "sav.property.titre",
+      "sav.composition.section-header",
+      "sav.composition.button",
+      "sav.visual.root",
+      "sav.semantic.texte-element",
+      "sav.structure.gap-root",
+      "sav.structure.gap-inner",
+      "sav.visual.texte-font-size",
+      "sav.visual.texte-line-height",
+      "sav.visual.background-image",
+      "sav.visual.img-image",
+      "sav.composition.section-header-titre",
+      "sav.composition.section-header-accroche",
+      "sav.composition.section-header-accroche2",
+      "sav.composition.button-libelle",
+      "sav.composition.button-icon-right"
+    ],
+    "fixtureAssetIds": [],
+    "requiredParts": [
+      "root",
+      "section",
+      "background",
+      "row",
+      "wrapper",
+      "WrapperBackground",
+      "inner",
+      "SectionHeader",
+      "vousRencontrezUnProblmeA",
+      "Bouton",
+      "imgGroup",
+      "ImgGroupBackground",
+      "img"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "texte-element",
+        "selector": "[class*=\"SAV__vousRencontrezUnProblmeA\"]",
+        "contractPointer": "/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/text",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+        }
+      },
+      {
+        "id": "titre-element",
+        "selector": "[class*=\"SectionHeader__Titre\"]",
+        "contractPointer": "/props/0/default",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Dépannage / SAV"
+        }
+      }
+    ]
+  }
+}

@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.faq",
   "name": "FAQ",
-  "version": "1.0.0",
-  "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "1.2.0",
+  "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur le master 2104:2914 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures (ni gap, ni padding, ni largeur) et sans aucune des valeurs d'instance du Bouton, ce qui laissait le rendu généré à 4,37 % d'écart pixel. Aucune propriété publique n'a changé.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -17,6 +17,7 @@
           "titre": "text"
         }
       },
+      "description": "Les lignes de la FAQ. LIMITE NOMMÉE (inchangée depuis 010) : Figma n'a pas de propriété de composant de type tableau — la répétition n'existe sur le canevas que comme N instances sœurs compilées, d'où bindings.figma.kind NONE. Le schéma refuse aussi un default sur un prop arrayOf (« an optional array — undefined means \"not provided\", never a silent [] ») : le master rend trois lignes par défaut, le composant généré n'en rend aucune sans données. C'est pourquoi le cas d'audit alimente items par un override, comme ds.footer.",
       "bindings": {
         "figma": {
           "kind": "NONE"
@@ -30,7 +31,7 @@
       "name": "ligne3",
       "type": "boolean",
       "default": true,
-      "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass).",
+      "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass). LIMITE NOMMÉE : côté Figma cette propriété pilote la visibilité de la SEULE 3e instance (2104:2911), et la géométrie recalcule 448 ↔ 384px. Côté contrat les trois lignes naissent d'un `repeat` : `visibleWhen` s'applique à la part, donc à TOUTES les lignes répétées, jamais à la dernière seule. Le vocabulaire n'a pas de visibilité par index dans un repeat ; poser `visibleWhen: { prop: \"ligne3\" }` ferait disparaître les trois lignes là où Figma en garde deux. Le fait est donc EXPOSÉ mais non PROJETÉ, et nommé plutôt que contourné par un modèle faux.",
       "bindings": {
         "figma": {
           "kind": "BOOLEAN",
@@ -45,29 +46,48 @@
   "states": [],
   "anatomy": {
     "root": {
+      "description": "COMPONENT « FAQ » 2104:2914, 1728×448, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing 48, padding 0/89/0/89 (aucun paddingTop/Bottom), layoutSizingHorizontal FIXED / Vertical HUG, clipsContent false. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés ; la feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav et ds.footer). fills[0] est un SOLID visible=false : aucun fond n'est peint, le contrat n'en porte donc aucun.",
       "layout": {
         "display": "flex",
         "direction": "column",
         "align": "center"
       },
+      "literals": {
+        "width": "1550px",
+        "padding-left": "89px",
+        "padding-right": "89px",
+        "gap": "48px"
+      },
       "parts": {
         "SectionHeader": {
+          "description": "Instance 2104:2907 de ds.section-header, REDIMENSIONNÉE par le master : layoutSizingVertical FIXED à 50px alors que son contenu en demande 83 (Accroche 25 + itemSpacing 8 + Titre 50) — clipsContent=false, le Titre déborde donc de 33px dans le gap de 48. LIMITE NOMMÉE / TRAVAIL REPORTÉ : une part qui est une instance de composant ne peut pas être restylée par son parent (validateContract refuse literals sur une part `component`), la hauteur devrait vivre sur le root de ds.section-header, contrat partagé avec presentation/equipe/realisation/google-reviews — non touché ici. Conséquence mesurable : tout ce qui suit le SectionHeader descend de 33px dans le rendu généré. Le titre est épelé en segments parce que ds.section-header.titre est un prop rich-text ; le schéma refuse la chaîne nue par nom, et c'est la seule orthographe possible du fait.",
           "component": {
             "id": "ds.section-header",
             "props": {
-              "titre": "Questions fréquentes",
+              "titre": [
+                {
+                  "text": "Questions fréquentes"
+                }
+              ],
               "accroche": "FAQ",
+              "accroche2": true,
               "disposition": "standard"
             }
           }
         },
         "accordion": {
+          "description": "FRAME 2104:2908, 1550×248, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing absent (0), layoutSizingHorizontal FILL (layoutAlign STRETCH, layoutGrow 0). Le FILL est ici sur l'axe TRANSVERSE d'un parent vertical : la ligne de matrice pour ce canal est layout.grow, portée ci-dessous, mais l'équivalent CSS exact est align-self: stretch — les deux sont déclarés, le second est celui qui produit réellement les 1550px face au align-items: center du root.",
           "layout": {
             "direction": "column",
-            "align": "center"
+            "align": "center",
+            "grow": true
+          },
+          "declared": {
+            "align-self": "stretch"
           },
           "parts": {
             "AccordionRow": {
+              "description": "Les trois instances du census (2104:2909 Ferme, 2104:2910 Ouvert, 2104:2911 Ferme) naissent de ce `repeat`. DEUX LIMITES NOMMÉES. (1) largeur : les 1550px des instances sont une largeur RÉSOLUE (FILL de accordion, lui-même FILL du root) ; une part `component` refuse literals, et ds.accordion-row gèle déjà literals.width = \"1550px\" sur son propre root — le chiffre coïncide, la nature du fait non, et le canal n'a pas d'orthographe « FILL » dans la grammaire des littéraux. (2) état : le motif du canevas est Fermé → Ouvert → Fermé. Le porter comme prop fixe sur l'instance composée ouvrirait les TROIS lignes ; le porter par item exigerait un champ `etat` dans arrayOf ET dans le sample, ce qui contredirait le sample relevé (deux champs, contenu + titre). Aucune des deux orthographes n'est fidèle : le fait est nommé, la 2e ligne est rendue fermée, l'accordéon mesure 3×64 au lieu de 64+120+64.",
               "component": {
                 "id": "ds.accordion-row",
                 "props": {
@@ -95,8 +115,14 @@
           }
         },
         "Bouton": {
+          "description": "Instance 2104:2912 de ds.button, 249×54 : Style = « Outline noir » (valeur d'enum contractuelle \"outilneNoir\", coquille assumée par ds.button), Libelle = « Contactez-nous », Icone droite = true (ArrowRight 20×20, gap 10), Icone gauche = false. Le contrat portait la seule référence à ds.button : le rendu retombait sur variant=\"default\" (fond noir-bleuté, texte blanc) là où Figma dessine un contour 2px sur fond transparent, et n'émettait pas la flèche.",
           "component": {
-            "id": "ds.button"
+            "id": "ds.button",
+            "text": "Contactez-nous",
+            "props": {
+              "variant": "outilneNoir",
+              "iconRight": true
+            }
           }
         }
       },

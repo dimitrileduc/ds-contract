@@ -1,0 +1,545 @@
+{
+  "facts": [
+    {
+      "id": "devis.structure.root",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "detail": "COMPONENT root (standalone, pas un COMPONENT_SET — 1 seule variante nommée « Devis ») > [FRAME Container 2096:2525 > [TEXT Titre 2096:2526, INSTANCE Bouton 2096:2527]]. layoutMode=VERTICAL, sizing=FIXED(1728)xHUG(378)."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.structure.container",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2525",
+        "detail": "FRAME « Container », layoutMode=VERTICAL, counterAxisAlignItems=CENTER, sizing=FIXED(1550)xHUG(186), aucun padding."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Container\"]"
+      }
+    },
+    {
+      "id": "devis.structure.root-flex-direction",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "channel": "layoutMode",
+        "figmaRawValue": "VERTICAL"
+      },
+      "figmaExpectation": {
+        "channel": "root.flex-direction",
+        "value": "column"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/direction"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.structure.root-align-items",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "channel": "counterAxisAlignItems",
+        "figmaRawValue": "CENTER"
+      },
+      "figmaExpectation": {
+        "channel": "root.align-items",
+        "value": "center"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/align"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.structure.root-padding",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "channel": "paddingTop",
+        "detail": "paddingTop=96, paddingBottom=96, paddingLeft absent (0), paddingRight absent (0)."
+      },
+      "figmaExpectation": {
+        "channel": "root.paddingTop",
+        "value": 96
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/layout/padding"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.structure.container-gap",
+      "kind": "structure",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2525",
+        "channel": "itemSpacing",
+        "detail": "Le root 2096:2524 n'expose PAS d'itemSpacing (un seul enfant) — le seul gap mesurable de l'organisme est celui du Container."
+      },
+      "figmaExpectation": {
+        "channel": "Container.itemSpacing",
+        "value": 32
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/layout/gap"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Container\"]"
+      }
+    },
+    {
+      "id": "devis.content.titre",
+      "kind": "content",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "property": "Titre#2096:49",
+        "textLayer": "2096:2526",
+        "detail": "componentPropertyDefinitions.defaultValue et characters du calque TEXT sont identiques au défaut du contrat, octet pour octet (71 caractères, aucune apostrophe)."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0/default",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Titre\"]"
+      }
+    },
+    {
+      "id": "devis.property.titre",
+      "kind": "property",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "property": "Titre#2096:49",
+        "detail": "TEXT property, seule propriété de composant déclarée par le master."
+      },
+      "contractReference": {
+        "jsonPointer": "/props/0",
+        "bindingProperty": "Titre"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Titre\"]"
+      },
+      "projectionProbe": {
+        "kind": "non-default-prop",
+        "prop": "titre",
+        "value": "PREUVE-013 — TITRE devis 4b91"
+      }
+    },
+    {
+      "id": "devis.composition.button",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2527",
+        "mainComponent": "6:135",
+        "observedInstanceProperties": {
+          "Libelle#2044:28": "Prendre rendez-vous",
+          "Style": "Outline blanc",
+          "Icone gauche#2024:0": false,
+          "Icone droite#2024:7": true,
+          "Glyphe gauche#2028:14": "6:99",
+          "Glyphe droite#2028:21": "6:104"
+        }
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component",
+        "childContractId": "ds.button"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "devis.composition.button-libelle",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2527",
+        "property": "Libelle#2044:28",
+        "textLayer": "I2096:2527;6:137",
+        "detail": "Le calque TEXT de l'instance porte characters=\"Prendre rendez-vous\". Le contrat ne passe AUCUNE prop à ds.button, donc le code rend le défaut du contrat enfant (« Contactez-nous »)."
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Libelle",
+        "value": "Prendre rendez-vous"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component/props/children"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Button__label\"]"
+      }
+    },
+    {
+      "id": "devis.composition.button-style",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2527",
+        "property": "Style",
+        "figmaRawValue": "Outline blanc",
+        "detail": "VARIANT appliquée sur l'instance. La valeur attendue « outlineBlanc » est la valeur code-side lue dans contracts/button.contract.json (props[0].bindings.figma.values.outlineBlanc === \"Outline blanc\") — pas une invention. Le code rend variant=\"default\"."
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.Style",
+        "value": "outlineBlanc"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component/props/variant"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "devis.composition.button-icone-droite",
+      "kind": "composition",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2527",
+        "property": "Icone droite#2024:7",
+        "figmaRawValue": true,
+        "detail": "L'instance I2096:2527;6:138 « ArrowRight » est visible sur le master (renderBounds non nul, 20×20 à x=1004). Le code rend iconRight=false : la flèche n'existe pas côté React."
+      },
+      "figmaExpectation": {
+        "channel": "Bouton.iconRight",
+        "value": true
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Bouton/component/props/iconRight"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Button__root\"]"
+      }
+    },
+    {
+      "id": "devis.visual.root",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "export": "png@2x",
+        "detail": "absoluteBoundingBox 1728×378 ; absoluteRenderBounds identique."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.visual.root-background-image",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "channel": "fills[0]",
+        "figmaRawValue": "{\"blendMode\":\"NORMAL\",\"type\":\"IMAGE\",\"scaleMode\":\"FILL\",\"imageRef\":\"7825ba2d393a21ddc6d94a7bfd05c1f3bde128aa\"}",
+        "detail": "docs/FIGMA-CAPABILITY-MATRIX.md ligne 91 : `background-image: url()` = CARRY-BOTH (add — § a.7), lacune nommée A5 encore ouverte (addendum 2026-07-26). Le contrat ne porte aucun canal image."
+      },
+      "figmaExpectation": {
+        "channel": "root.fills[0].type",
+        "value": "IMAGE"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/background-image"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.visual.root-scrim-color",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "channel": "fills[1].color",
+        "figmaRawValue": "{\"r\":0,\"g\":0,\"b\":0,\"a\":1}",
+        "detail": "Voile SOLID noir pur posé PAR-DESSUS le fill IMAGE, couleur liée à VariableID:2165:5840 (identifiant non résoluble : parity/snapshots/figma-tokens.json indexe les variables par NOM, pas par ID). Le contrat porte un unique background-color opaque {color.noir-bleute} = #26282C — ce n'est ni la photo ni le voile."
+      },
+      "figmaExpectation": {
+        "channel": "root.fills[1].color",
+        "value": "#000000"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/background-color"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.visual.root-scrim-opacity",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2524",
+        "channel": "fills[1].opacity",
+        "detail": "docs/FIGMA-CAPABILITY-MATRIX.md ligne 87 : `background-color` + alpha = CARRY-BOTH, porté (A1) sous forme de variable hex 8 chiffres. Le contrat ne porte aucun canal d'opacité."
+      },
+      "figmaExpectation": {
+        "channel": "root.fills[1].opacity",
+        "value": 0.3019607961177826
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/tokens/background-overlay-opacity"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__root\"]"
+      }
+    },
+    {
+      "id": "devis.visual.titre-font-size",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2526",
+        "channel": "style.fontSize"
+      },
+      "figmaExpectation": {
+        "channel": "Titre.font-size",
+        "value": "40px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/tokens/font-size"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Titre\"]"
+      }
+    },
+    {
+      "id": "devis.visual.titre-line-height",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2526",
+        "channel": "style.lineHeightPx",
+        "detail": "lineHeightUnit=PIXELS, lineHeightPercent=102.54 — la valeur en pixels est celle qui fait foi."
+      },
+      "figmaExpectation": {
+        "channel": "Titre.line-height",
+        "value": "50px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/tokens/line-height"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Titre\"]"
+      }
+    },
+    {
+      "id": "devis.visual.titre-text-align",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2526",
+        "channel": "style.textAlignHorizontal",
+        "figmaRawValue": "CENTER",
+        "detail": "docs/FIGMA-CAPABILITY-MATRIX.md ligne 132 : `text-align` = CARRY-BOTH (add — § a.2), et l'addendum 2026-07-19 le déclare DÉSORMAIS PORTÉ par le schéma v15. L'omission est donc bien une lacune du contrat, pas une limite du moteur."
+      },
+      "figmaExpectation": {
+        "channel": "Titre.text-align",
+        "value": "center"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/tokens/text-align"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Titre\"]"
+      }
+    },
+    {
+      "id": "devis.visual.titre-width",
+      "kind": "visual",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2526",
+        "channel": "absoluteBoundingBox.width",
+        "detail": "layoutSizingHorizontal=FIXED à 900 px dans un Container de 1550 px : c'est cette largeur fixe qui produit le retour à la ligne du titre sur le master. Le contrat ne porte aucune largeur."
+      },
+      "figmaExpectation": {
+        "channel": "Titre.width",
+        "value": "900px"
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/layout/width"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Titre\"]"
+      }
+    },
+    {
+      "id": "devis.semantic.titre-element",
+      "kind": "semantic",
+      "required": true,
+      "representability": "carry-both",
+      "figmaReference": {
+        "nodeId": "2096:2526",
+        "detail": "TEXT layer « Titre », lié à la propriété Titre#2096:49 via componentPropertyReferences.characters."
+      },
+      "contractReference": {
+        "jsonPointer": "/anatomy/root/parts/Container/parts/Titre/content/prop"
+      },
+      "generatedReference": {
+        "componentFile": "src/components/Devis/Devis.tsx",
+        "export": "Devis",
+        "selector": "[class*=\"Devis__Titre\"]"
+      }
+    }
+  ],
+  "case": {
+    "id": "devis-master-defaults",
+    "figmaNodeId": "2096:2524",
+    "observedProperties": {
+      "Titre#2096:49": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+    },
+    "reactProps": {},
+    "factIds": [
+      "devis.structure.root",
+      "devis.structure.container",
+      "devis.structure.root-flex-direction",
+      "devis.structure.root-align-items",
+      "devis.structure.root-padding",
+      "devis.structure.container-gap",
+      "devis.content.titre",
+      "devis.property.titre",
+      "devis.composition.button",
+      "devis.composition.button-libelle",
+      "devis.composition.button-style",
+      "devis.composition.button-icone-droite",
+      "devis.visual.root",
+      "devis.visual.root-background-image",
+      "devis.visual.root-scrim-color",
+      "devis.visual.root-scrim-opacity",
+      "devis.visual.titre-font-size",
+      "devis.visual.titre-line-height",
+      "devis.visual.titre-text-align",
+      "devis.visual.titre-width",
+      "devis.semantic.titre-element"
+    ],
+    "fixtureAssetIds": [],
+    "requiredParts": [
+      "root",
+      "Container",
+      "Titre",
+      "Bouton"
+    ],
+    "requiredRegions": [
+      {
+        "id": "whole",
+        "source": "root",
+        "kind": "whole",
+        "metric": "raw-pixel",
+        "maxDiffPct": 2.5,
+        "minSignalPixels": 1
+      }
+    ],
+    "semanticAssertions": [
+      {
+        "id": "titre-element",
+        "selector": "[class*=\"Devis__Titre\"]",
+        "contractPointer": "/anatomy/root/parts/Container/parts/Titre/content/prop",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous"
+        }
+      },
+      {
+        "id": "bouton-label-derive-du-contrat-enfant",
+        "selector": "[class*=\"Button__label\"]",
+        "contractPointer": "/anatomy/root/parts/Container/parts/Bouton/component",
+        "expect": {
+          "tag": "span",
+          "textEquals": "Contactez-nous"
+        }
+      }
+    ]
+  }
+}
