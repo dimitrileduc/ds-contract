@@ -90,6 +90,14 @@ export function resetScratch() {
   cpSync(path.join(ROOT, 'evals', 'fixtures'), path.join(SCRATCH, 'evals', 'fixtures'), {
     recursive: true,
   });
+  // site/ is NOT staged wholesale (~31 MB, and resetScratch runs once PER
+  // CASE — 176 of them): triage-vocabulary-check.ts (014) reads exactly one
+  // file, site/src/pages/how.ts, for its property 5 (no retired cause slug
+  // survives in a published surface). Staged narrowly, like
+  // examples/depth-composite below is staged narrowly rather than all of
+  // examples/.
+  mkdirSync(path.join(SCRATCH, 'site', 'src', 'pages'), { recursive: true });
+  cpSync(path.join(ROOT, 'site', 'src', 'pages', 'how.ts'), path.join(SCRATCH, 'site', 'src', 'pages', 'how.ts'));
   // examples/ is otherwise NOT copied (kept out of scratch — see astryx pins,
   // which stage what they need); plugin-engine-check reads the depth-composite
   // contract for its composite-plugin-path flow, so stage that one directory.
