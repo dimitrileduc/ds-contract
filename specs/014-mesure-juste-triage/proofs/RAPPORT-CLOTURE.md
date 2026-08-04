@@ -21,12 +21,12 @@ Agrégé sur les lignes des **deux** instruments et sur le registre des travaux 
 
 | cause | libellé publié | compte | destination |
 |---|---|---:|---|
-| `contract-geometry` | géométrie du contrat | 8 | **015** — géométrie gouvernée |
+| `contract-geometry` | géométrie du contrat | 7 | **015** — géométrie gouvernée |
 | `image-boundary` | frontière image (limite A5) | 11 | **017** — limite nommée jusque-là |
 | `rendering` | rendu/rastérisation | 22 | plancher assumé, jamais toléré au score |
 | `engine` | défaut moteur | 3 | défaut suivi, ouvert |
 | `instrument` | défaut d'instrument | 1 | corrigé **ici** (DW-006) |
-| `figma-source` | défaut de source Figma | 1 | **016** — canvas vrai |
+| `figma-source` | défaut de source Figma | 2 | **016** — canvas vrai |
 
 ## Règles retirées (`RETIRED_RULES`) — une cause qui ne peut plus rien causer
 

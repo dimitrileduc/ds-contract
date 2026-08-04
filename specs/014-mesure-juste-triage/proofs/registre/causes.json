@@ -12,14 +12,18 @@
     {
       "dwId": "DW-002",
       "subjectId": "reassurances",
-      "cause": "contract-geometry",
-      "receiptId": "dw-002-contract-geometry",
+      "cause": "figma-source",
+      "receiptId": "dw-002-reclasse-figma-source",
       "resolvedBy": null,
       "sameDefectAs": {
         "kind": "organismLine",
         "key": "reassurances/reassurances-disposition-4-cartes",
         "note": "Même défaut sous-jacent que la ligne d'organisme reassurances (ds.carte /anatomy/root/literals/min-width). Deux entrées parce qu'elles décrivent deux choses — un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 015 : le comptage par cause doit les dédupliquer, sinon il dimensionne 2 pour 1."
-      }
+      },
+      "reclassedOn": "2026-08-04",
+      "reclassedFrom": "contract-geometry",
+      "reclassReceiptId": "dw-002-reclasse-figma-source",
+      "priorReceiptId": "dw-002-contract-geometry"
     },
     {
       "dwId": "DW-003",
@@ -112,8 +116,8 @@
     {
       "key": "reassurances/reassurances-disposition-4-cartes",
       "rawPct": 3.298885335721438,
-      "cause": "contract-geometry",
-      "receiptId": "org-reassurances-geometry",
+      "cause": "figma-source",
+      "receiptId": "dw-002-reclasse-figma-source",
       "coOccurring": {
         "cause": "image-boundary",
         "fact": "reassurances.visual.carte-images",
@@ -123,7 +127,11 @@
         "kind": "deferredWork",
         "dwId": "DW-002",
         "note": "Même défaut sous-jacent que DW-002 (ds.carte /anatomy/root/literals/min-width). Deux entrées parce qu'elles décrivent deux choses — un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 015 : le comptage par cause doit les dédupliquer, sinon il dimensionne 2 pour 1."
-      }
+      },
+      "reclassedOn": "2026-08-04",
+      "reclassedFrom": "contract-geometry",
+      "reclassReceiptId": "dw-002-reclasse-figma-source",
+      "priorReceiptId": "org-reassurances-geometry"
     }
   ],
   "deferredWork": [
