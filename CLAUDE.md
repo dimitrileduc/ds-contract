@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Last updated**: 2026-08-03
+**Last updated**: 2026-08-04
 
 ## What this is
 
@@ -110,6 +110,8 @@ Degradation is named, never silent. Extraction marks every heuristic (`confidenc
 - JSON sur disque — `tokens/{primitives,semantic}.tokens.json` (seuls fichiers édités, 62 → 139 feuilles), `parity/snapshots/figma-tokens.json` (cliché rafraîchi commité — entrée capturée), `evals/golden.json` (re-pin limité à 2 hashes : `src/styles/tokens.css` + `figma-sync/01-tokens.js`), `specs/012-adopt-figma-tokens/{adoption-report.md,proofs/}` (012-adopt-figma-tokens)
 - TypeScript (pin dépôt `typescript@^6`), Node ≥ 20, ESM exécuté via `tsx` + `playwright-core` (Chromium épinglé via le cache Playwright), `pixelmatch` + `pngjs` (instrument visuel existant), Figma REST API en **LECTURE SEULE** (`FIGMA_TOKEN` — dumps de nodes + export PNG), Zod (`@ds-contracts/schema`, non modifié) (014-mesure-juste-triage)
 - JSON sur disque — `specs/014-…/proofs/` (registre avant/après, reçus de cause, rapport de clôture), `specs/013-…/contracts/audit-campaign.json` (faits de reassurances re-relevés), `extract/figma/visual-parity/{triage.ts,subjects.ts,REPORT.md,baseline.json}` ; **aucun** `contracts/*.contract.json` ni `tokens/*.tokens.json` touché (014-mesure-juste-triage)
+- TypeScript (pin dépôt `typescript@^6`), Node ≥ 20, ESM exécuté via `tsx` + Zod (`@ds-contracts/schema` — seule source du schéma, ajout additif d'un canal littéral), React 19 + CSS Modules (émetteur `react`, le seul dont le CSS change de règle de boîte), `playwright-core` + `pixelmatch`/`pngjs` (instruments de mesure existants), Figma REST **LECTURE SEULE** (`FIGMA_TOKEN` — dumps existants + relevés) ; AUCUNE mutation canvas, AUCUN nouveau framework (015-geometrie-gouvernee)
+- JSON sur disque — `contracts/*.contract.json` (~28 touchés), `contracts/named-literals.registry.json` (NOUVEAU document gouverné), `tokens/primitives.tokens.json` (mints from-dump additifs), `specs/014-…/proofs/registre/causes.json` (registre vivant de la porte : `aggregateOf`, `resolvedBy`, destination DW-014-001), `specs/015-…/proofs/` (registre avant/après, relevés, reçus), `specs/015-…/fixtures/corrections-013.json` (NOUVEAU), re-pins : `evals/golden.json` + `figma-sync/plugin/engine.receipt.json` + `examples/polaris/figma/*.figma.js` (015-geometrie-gouvernee)
 
 ## Recent Changes
 - 003-externalize-figma-components: closed (merged via PR #4, `8f3137d`) — the Piqueray maquettes fully externalized into governed masters (atoms → molecules → sections), each adoption proven byte-identical by a new page-parity instrument; artefacts: `specs/003-externalize-figma-components/` (decisions.md, proofs/)
