@@ -119,7 +119,7 @@
           "nodeId": "2114:3619",
           "detail": "COMPONENT « Disposition=4 cartes » du COMPONENT_SET Reassurances 2114:3721 — la variante de l'axe Disposition que le défaut contractuel « 4Cartes » désigne via /props/0/bindings/figma/values (« 4 cartes ») et que le census confirme comme defaultValue du set. 1550x731 layoutMode=VERTICAL counterAxis=CENTER itemSpacing=48 sizeH=FIXED sizeV=HUG, fills=[] (aucun fond) > [SectionHeader 2114:3612 (INSTANCE), items 2114:3613 (FRAME, 4 INSTANCE Carte), BoutonQuatreCartes 2114:3618 (INSTANCE)]"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -315,9 +315,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#root.gap",
+        "reference": "2114:3619#root.gap",
         "observedValue": "48px",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -351,9 +351,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#root.width",
+        "reference": "2114:3619#root.width",
         "observedValue": "1550px",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -392,7 +392,7 @@
           "nodeId": "2114:3613",
           "detail": "FRAME « items » 1550x498 layoutMode=HORIZONTAL primaryAxis=CENTER itemSpacing=32 sizeH=FILL sizeV=HUG layoutAlign=STRETCH > 4 INSTANCE Carte (2114:3614, 2114:3615, 2114:3616, 2114:3617)"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -474,9 +474,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items.gap",
+        "reference": "2114:3619#items.gap",
         "observedValue": "32px",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -510,9 +510,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items.layoutSizingHorizontal",
+        "reference": "2114:3619#items.layoutSizingHorizontal",
         "observedValue": "FILL",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -550,9 +550,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items.materialised-carte-count@Disposition=4 cartes",
+        "reference": "2114:3619#items.materialised-carte-count@Disposition=4 cartes",
         "observedValue": 4,
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -617,7 +617,7 @@
           "raw": 364,
           "detail": "les 4 instances Carte sont FIXED à 364px (overrides = [\"height\",\"width\"]) ; ds.carte gèle literals.width = \"364px\" sur son propre root, la largeur concorde donc exactement sans que le contrat reassurances porte d'override. Même mécanique que ds.avatar-group : la largeur d'égalité est posée sur le root de l'enfant, pas sur le parent"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -684,9 +684,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#Carte.width@Disposition=5 cartes",
+        "reference": "2114:3619#Carte.width@Disposition=5 cartes",
         "observedValue": "285px",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -724,9 +724,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#SectionHeader.Titre",
+        "reference": "2114:3619#SectionHeader.Titre",
         "observedValue": "Pourquoi choisir nos portes de garage industrielles ?",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -766,9 +766,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#SectionHeader.Accroche",
+        "reference": "2114:3619#SectionHeader.Accroche",
         "observedValue": "Plus de 50 ans d’expérience",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -802,9 +802,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[0].Carte.Titre",
+        "reference": "2114:3619#items[0].Carte.Titre",
         "observedValue": "Sécurité et conformité",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -838,9 +838,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[1].Carte.Titre",
+        "reference": "2114:3619#items[1].Carte.Titre",
         "observedValue": "Intégration parfaite",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -874,9 +874,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[2].Carte.Titre",
+        "reference": "2114:3619#items[2].Carte.Titre",
         "observedValue": "Moteur performant",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -910,9 +910,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[3].Carte.Titre",
+        "reference": "2114:3619#items[3].Carte.Titre",
         "observedValue": "SAV & maintenance dédiés",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -946,9 +946,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[0].Carte.Texte",
+        "reference": "2114:3619#items[0].Carte.Texte",
         "observedValue": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -982,9 +982,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[1].Carte.Texte",
+        "reference": "2114:3619#items[1].Carte.Texte",
         "observedValue": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1018,9 +1018,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[2].Carte.Texte",
+        "reference": "2114:3619#items[2].Carte.Texte",
         "observedValue": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1054,9 +1054,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[3].Carte.Texte",
+        "reference": "2114:3619#items[3].Carte.Texte",
         "observedValue": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1090,9 +1090,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items.sample[4].variante-d-origine",
+        "reference": "2114:3619#items.sample[4].variante-d-origine",
         "observedValue": "Disposition=5 cartes",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1137,7 +1137,7 @@
           "raw": "4 cartes | QuatreCartesDeuxCta | 5 cartes",
           "detail": "Reassurances.tsx calcule classes = [styles.root, styles[`disposition-${disposition}`], className] mais Reassurances.module.css ne déclare QUE .root, .items et .Boutons : styles['disposition-4Cartes'] vaut undefined et l'enum ne touche jamais le style. Conséquence mesurable : disposition=\"5Cartes\" et disposition=\"4Cartes\" rendent un DOM identique (même unique <Button>, aucune classe de variante), là où Figma distingue 4 cartes de 364px et 5 cartes de 285px. La sonde non-défaut porte ici sur le root, l'élément qui recevrait la classe de variante ; la sonde non-booléenne du pilote compare String(value) au texte de l'élément, donc l'issue enregistrée sera divergent/generated — ce qui est bien le verdict de fond"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1197,9 +1197,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#Disposition.defaultValue (VARIANT « 4 cartes » → valeur d'enum contractuelle, mappage /props/0/bindings/figma/values)",
+        "reference": "2114:3619#Disposition.defaultValue (VARIANT « 4 cartes » → valeur d'enum contractuelle, mappage /props/0/bindings/figma/values)",
         "observedValue": "4Cartes",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1233,13 +1233,13 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#Disposition.variantOptions (mappage enum ↔ VARIANT)",
+        "reference": "2114:3619#Disposition.variantOptions (mappage enum ↔ VARIANT)",
         "observedValue": {
           "4Cartes": "4 cartes",
           "quatrecartesdeuxcta": "QuatreCartesDeuxCta",
           "5Cartes": "5 cartes"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1277,7 +1277,7 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items.default",
+        "reference": "2114:3619#items.default",
         "observedValue": [
           {
             "texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -1296,7 +1296,7 @@
             "titre": "SAV & maintenance dédiés"
           }
         ],
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1340,7 +1340,7 @@
           "property": "componentPropertyDefinitions",
           "detail": "Figma n'a aucune propriété de composant de type collection : le set n'expose que Disposition (VARIANT). Le NONE de /props/1/bindings/figma est justifié sur les trois pieds exigés — anatomie (repeat.itemsProp = \"items\" sur /anatomy/root/parts/items/parts/Carte), sample (5 entrées) et occurrence (4 INSTANCE Carte matérialisées dans 2114:3613) — mais un NONE justifié reste une limite nommée, pas une conformité : côté canvas la collection ne s'exprime que comme N instances matérialisées, jamais comme une propriété pilotable"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1391,7 +1391,7 @@
           ],
           "detail": "l'instance est FIXED 1550x83 et ds.section-header gèle literals.width = \"1550px\" : ici master FIXED et usage concordent exactement (contrairement à hero, où le même gel déborde). Aucun override de style de texte : le Titre est relevé à fontSize 40 / lineHeightPx 50 / fontWeight 400 et l'Accroche à 20 / 25 / 400 letterSpacing 3 textCase UPPER, soit exactement ce que ds.section-header porte — rien à surcharger"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1437,9 +1437,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#SectionHeader.Disposition (VARIANT « Standard » → valeur d'enum contractuelle, mappage déclaré par ds.section-header /props/0/bindings/figma/values)",
+        "reference": "2114:3619#SectionHeader.Disposition (VARIANT « Standard » → valeur d'enum contractuelle, mappage déclaré par ds.section-header /props/0/bindings/figma/values)",
         "observedValue": "standard",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1473,9 +1473,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#SectionHeader.Accroche2 (BOOLEAN)",
+        "reference": "2114:3619#SectionHeader.Accroche2 (BOOLEAN)",
         "observedValue": true,
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1515,7 +1515,7 @@
           "property": "Accroche2#2169:64",
           "detail": "limite déjà nommée, source specs/010-extract-molecules-organisms/audit-reuse-map.md ligne « SectionHeader | 003 + 005 V5/cycle 14 | Rename Accroche2 pending (named) » : le rename cosmétique de la propriété Figma « Accroche2 » reste en attente sur le master 2090:2385. Reassurances hérite de la dette en composant SectionHeader ; elle est déclarée ici pour qu'elle sorte en limite explicite et non en surprise"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1572,7 +1572,7 @@
           "mainComponent": "2063:1606",
           "detail": "les 4 INSTANCE Carte 2114:3614, 2114:3615, 2114:3616, 2114:3617 partagent le master 2063:1606 ; le contrat les modélise en une seule part /anatomy/root/parts/items/parts/Carte qui compose ds.carte et porte repeat.itemsProp = \"items\". Premier composite repeat+component du dépôt (aucun des 51 contrats démo-51 n'exerçait repeat) ; chaque instance est VERTICAL gap 24 paddingBottom 24, fond SOLID blanc lié à VariableID:4:29"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1606,9 +1606,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#Carte.Disposition (VARIANT « Reassurance » → valeur d'enum contractuelle, mappage déclaré par ds.carte /props/0/bindings/figma/values)",
+        "reference": "2114:3619#Carte.Disposition (VARIANT « Reassurance » → valeur d'enum contractuelle, mappage déclaré par ds.carte /props/0/bindings/figma/values)",
         "observedValue": "reassurance",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1648,7 +1648,7 @@
           "property": "Texte#2063:29",
           "detail": "limite déjà nommée, source specs/010-extract-molecules-organisms/audit-reuse-map.md (« Carte | 003 + 007 | Résidu canvas 3 488 px (named) ») et research.md D4 (« propriété TEXT partagée entre variantes, limite structurelle nommée 007 ») : les deux variantes de Carte partagent les mêmes propriétés TEXT Titre#2063:26 / Texte#2063:29, ce qui laisse un résidu canvas de 3 488 px non réductible. Reassurances compose Carte en répétition, le résidu voyage donc avec chaque instance de ce sujet"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1707,7 +1707,7 @@
           ],
           "detail": "INSTANCE 249x54 HUG/HUG gap 10 padding 16/32/16/32 ; le calque a été renommé (« name » ∈ overriddenFields) de Bouton en BoutonQuatreCartes, et ArrowLeft I2114:3618;28:115 est visible=false tandis qu'ArrowRight I2114:3618;28:117 porte un override de visible. Le contrat écrit { \"id\": \"ds.button\" } nu : aucune des six propriétés relevées ne franchit le contrat"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1754,7 +1754,7 @@
           "nodeId": "2114:3618",
           "detail": "la variante « 4 cartes » matérialise BoutonQuatreCartes ; le contrat porte visibleWhen { prop: disposition, equals: \"4Cartes\" } et Reassurances.tsx émet bien le bouton sous cette condition"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1791,9 +1791,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#BoutonQuatreCartes.Libelle",
+        "reference": "2114:3619#BoutonQuatreCartes.Libelle",
         "observedValue": "Contactez-nous",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1827,9 +1827,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#BoutonQuatreCartes.Style (VARIANT « Outline noir » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)",
+        "reference": "2114:3619#BoutonQuatreCartes.Style (VARIANT « Outline noir » → valeur d'enum contractuelle, mappage déclaré par ds.button /props/0/bindings/figma/values)",
         "observedValue": "outilneNoir",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1863,9 +1863,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#BoutonQuatreCartes.Icone droite (BOOLEAN)",
+        "reference": "2114:3619#BoutonQuatreCartes.Icone droite (BOOLEAN)",
         "observedValue": true,
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1899,9 +1899,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#BoutonQuatreCartes.Glyphe droite (INSTANCE_SWAP)",
+        "reference": "2114:3619#BoutonQuatreCartes.Glyphe droite (INSTANCE_SWAP)",
         "observedValue": "arrow-right",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -1940,7 +1940,7 @@
           "nodeId": "2114:3619",
           "export": "png@2x"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -2126,8 +2126,8 @@
       "outcome": "divergent",
       "localizedSource": "comparison",
       "reasons": [
-        "raw-over-threshold:39.78437291157622>2.5",
-        "region-over-budget:whole:39.78437291157622>2.5"
+        "raw-over-threshold:3.298885335721438>2.5",
+        "region-over-budget:whole:3.298885335721438>2.5"
       ],
       "deferredWorkId": null
     },
@@ -2139,14 +2139,14 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#items[*].Carte.img.fills[0].IMAGE.imageRef",
+        "reference": "2114:3619#items[*].Carte.img.fills[0].IMAGE.imageRef",
         "observedValue": [
           "ab6a82d4b83b657d48c90b5e253f82459fd505bf",
           "8d05df2058fe88fa4b14e4472c9746f03fd100a2",
           "d00de3d48206b57be5125a2d01e8595d3eca56de",
           "7bd2daf5061e3af6ff4a671f8eca2be1bc10b6fb"
         ],
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -2184,9 +2184,9 @@
       "required": true,
       "representability": "carry-both",
       "figma": {
-        "reference": "2114:3721#BoutonQuatreCartes.border",
+        "reference": "2114:3619#BoutonQuatreCartes.border",
         "observedValue": "2px solid {color.noir-bleute}",
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -2229,7 +2229,7 @@
           "nodeId": "2114:3619",
           "detail": "COMPONENT frame sans sémantique de document (Figma n'a pas de notion d'élément HTML) ; le contrat déclare semantics.element = \"div\" et Reassurances.tsx rend bien un <div>, malgré la catégorie \"section\" du contrat"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -2268,7 +2268,7 @@
           "nodeId": "I2114:3612;2090:2387",
           "detail": "calque TEXT « Titre » du SectionHeader — Figma ne peut exprimer aucun niveau de titre. Côté code, ds.section-header ne déclare pas element sur la part Titre : SectionHeader.tsx projette un <span>, donc cet organisme de catégorie \"section\" ne rend aucun h1–h6. Canal CARRY-CODE-ONLY : rendu en code, inexprimable sur le canvas, donc jamais prouvable des deux côtés"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -2313,7 +2313,7 @@
           "nodeId": "I2114:3614;2063:1610",
           "detail": "calque TEXT « Texte » de la première carte, characterStyleOverrides = [] et styleOverrideTable = {} : aucune plage gras. Reassurances.tsx passe texte={[{ text: item.texte }]} à Carte, qui rend un <span> extérieur contenant un unique <span> de segment — pas de <strong>, ce qui correspond bien à l'occurrence"
         },
-        "sourceHash": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "sourceHash": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "available": true,
         "notes": []
       },
@@ -2347,8 +2347,8 @@
       "verdict": "fail",
       "probative": true,
       "reasons": [
-        "raw-over-threshold:39.78437291157622>2.5",
-        "region-over-budget:whole:39.78437291157622>2.5"
+        "raw-over-threshold:3.298885335721438>2.5",
+        "region-over-budget:whole:3.298885335721438>2.5"
       ],
       "figma": {
         "nodeId": "2114:3619",
@@ -2357,9 +2357,20 @@
         "observedProperties": {
           "Disposition": "4 cartes"
         },
-        "pngSha256": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+        "pngSha256": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
         "width": 3104,
-        "height": 4902
+        "height": 1462
+      },
+      "referenceProvenance": {
+        "caseNodeId": "2114:3619",
+        "setNodeId": "2114:3721",
+        "derivations": {
+          "capture": "2114:3619",
+          "nodeValues": "2114:3619",
+          "imposedWidth": "2114:3619",
+          "alignmentFrame": "2114:3619",
+          "receiptCitation": "2114:3619"
+        }
       },
       "contract": {
         "id": "ds.reassurances",
@@ -2444,12 +2455,12 @@
       },
       "visibility": {
         "figma": {
-          "signalPixels": 7180924,
+          "signalPixels": 2408529,
           "width": 3104,
-          "height": 4902
+          "height": 1462
         },
         "generated": {
-          "signalPixels": 2505875,
+          "signalPixels": 2499665,
           "width": 3292,
           "height": 1654
         },
@@ -2458,7 +2469,7 @@
       "geometry": {
         "figmaRoot": {
           "width": 3104,
-          "height": 4902
+          "height": 1462
         },
         "generatedRoot": {
           "width": 3100,
@@ -2466,20 +2477,20 @@
         },
         "deltaPx": {
           "width": -4,
-          "height": -3440
+          "height": 0
         },
         "verdict": "fail"
       },
       "pixels": {
-        "rawPct": 39.78437291157622,
-        "maskedDiagnosticPct": 37.322538779934774,
+        "rawPct": 3.298885335721438,
+        "maskedDiagnosticPct": null,
         "thresholdPct": 2.5,
         "regions": [
           {
             "id": "whole",
-            "score": 39.78437291157622,
+            "score": 3.298885335721438,
             "maxDiffPct": 2.5,
-            "signalPixels": 2505875
+            "signalPixels": 2408529
           }
         ],
         "verdict": "fail"
@@ -2570,53 +2581,57 @@
           "id": "reassurances-disposition-4-cartes.figma",
           "kind": "figma",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/figma.png",
-          "sha256": "3406e9233385a2b0bae2121f9580046fe49712581a6b954b62620fdd0df5c731",
+          "sha256": "ce0590b6d252eeb6f88261d10c369e79f8d0cdbe43f7dcf1bd9c15d69b027950",
           "mediaType": "image/png",
-          "width": 3110,
-          "height": 4898,
-          "bytes": 9932797
+          "width": 3104,
+          "height": 1462,
+          "bytes": 3087329
         },
         {
           "id": "reassurances-disposition-4-cartes.generated",
           "kind": "generated",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/generated.png",
-          "sha256": "c13449635566b304fecb316c06bbbd2931e1dfa0ac5857d9855a9ebecf477154",
+          "sha256": "b0675bd2f2ee007f30a3951bad506bd91c8f930b3d407d5f6ed43d936e178f16",
           "mediaType": "image/png",
-          "width": 3110,
-          "height": 4898,
-          "bytes": 2999243
+          "width": 3104,
+          "height": 1462,
+          "bytes": 2949289
         },
         {
           "id": "reassurances-disposition-4-cartes.diff",
           "kind": "diff",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/diff.png",
-          "sha256": "31ea406ef8cfb235d43b97108e4fabf4b5d322f3fafc9507d35a952e9ac9579a",
+          "sha256": "3484ca4222d54d538f5c7fce653cb881e99df92c7834e2f50faae949b1ba1e1c",
           "mediaType": "image/png",
-          "width": 3110,
-          "height": 4898,
-          "bytes": 1026886
+          "width": 3104,
+          "height": 1462,
+          "bytes": 1070227
         },
         {
           "id": "reassurances-disposition-4-cartes.triptych",
           "kind": "triptych",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/triptych.png",
-          "sha256": "21106486286b3f881a15c0a0d0c1001965124ec4686663ad355fca12ce3431bc",
+          "sha256": "dfdf99635eecd4ecedf7017e06ee163a8037b064536fda5eb1645318c5a61505",
           "mediaType": "image/png",
           "width": null,
           "height": null,
-          "bytes": 14304937
+          "bytes": 7163610
         },
         {
           "id": "reassurances-disposition-4-cartes.metadata",
           "kind": "metadata",
           "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/metadata.json",
-          "sha256": "b96b0d8f0c339b5e38e98075abc36c6bcdd818361fe0d8ac93c6478efc6e9dcf",
+          "sha256": "fd996022bd9650f54905f48df4a7b45ac0a907f4ff68d060f7e25c4fef34e557",
           "mediaType": "application/json",
           "width": null,
           "height": null,
-          "bytes": 6982720
+          "bytes": 6983223
         }
-      ]
+      ],
+      "browserRevision": {
+        "version": "151.0.7922.34",
+        "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+      }
     }
   ],
   "artifacts": [
@@ -2624,51 +2639,51 @@
       "id": "reassurances-disposition-4-cartes.figma",
       "kind": "figma",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/figma.png",
-      "sha256": "3406e9233385a2b0bae2121f9580046fe49712581a6b954b62620fdd0df5c731",
+      "sha256": "ce0590b6d252eeb6f88261d10c369e79f8d0cdbe43f7dcf1bd9c15d69b027950",
       "mediaType": "image/png",
-      "width": 3110,
-      "height": 4898,
-      "bytes": 9932797
+      "width": 3104,
+      "height": 1462,
+      "bytes": 3087329
     },
     {
       "id": "reassurances-disposition-4-cartes.generated",
       "kind": "generated",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/generated.png",
-      "sha256": "c13449635566b304fecb316c06bbbd2931e1dfa0ac5857d9855a9ebecf477154",
+      "sha256": "b0675bd2f2ee007f30a3951bad506bd91c8f930b3d407d5f6ed43d936e178f16",
       "mediaType": "image/png",
-      "width": 3110,
-      "height": 4898,
-      "bytes": 2999243
+      "width": 3104,
+      "height": 1462,
+      "bytes": 2949289
     },
     {
       "id": "reassurances-disposition-4-cartes.diff",
       "kind": "diff",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/diff.png",
-      "sha256": "31ea406ef8cfb235d43b97108e4fabf4b5d322f3fafc9507d35a952e9ac9579a",
+      "sha256": "3484ca4222d54d538f5c7fce653cb881e99df92c7834e2f50faae949b1ba1e1c",
       "mediaType": "image/png",
-      "width": 3110,
-      "height": 4898,
-      "bytes": 1026886
+      "width": 3104,
+      "height": 1462,
+      "bytes": 1070227
     },
     {
       "id": "reassurances-disposition-4-cartes.triptych",
       "kind": "triptych",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/triptych.png",
-      "sha256": "21106486286b3f881a15c0a0d0c1001965124ec4686663ad355fca12ce3431bc",
+      "sha256": "dfdf99635eecd4ecedf7017e06ee163a8037b064536fda5eb1645318c5a61505",
       "mediaType": "image/png",
       "width": null,
       "height": null,
-      "bytes": 14304937
+      "bytes": 7163610
     },
     {
       "id": "reassurances-disposition-4-cartes.metadata",
       "kind": "metadata",
       "path": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/cases/reassurances-disposition-4-cartes/metadata.json",
-      "sha256": "b96b0d8f0c339b5e38e98075abc36c6bcdd818361fe0d8ac93c6478efc6e9dcf",
+      "sha256": "fd996022bd9650f54905f48df4a7b45ac0a907f4ff68d060f7e25c4fef34e557",
       "mediaType": "application/json",
       "width": null,
       "height": null,
-      "bytes": 6982720
+      "bytes": 6983223
     }
   ],
   "verdict": "divergent",
