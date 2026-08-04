@@ -3,13 +3,20 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: row;
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 10px;
+  gap: var(--space-10);
 }
 
 .section {
@@ -17,22 +24,22 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  width: 1550px;
-  height: 677px;
+  width: var(--size-sav-section-w);
+  height: var(--size-sav-section-h);
   position: relative;
 }
 
 .background {
-  width: 1550px;
-  height: 475px;
+  width: var(--size-sav-background-w);
+  height: var(--size-sav-background-h);
   object-fit: cover;
 }
 
 .row {
   display: flex;
   flex-direction: row;
-  width: 1288px;
-  height: 561px;
+  width: var(--size-sav-row-w);
+  height: var(--size-sav-row-h);
   position: absolute;
   align-self: flex-end;
 }
@@ -42,18 +49,18 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  width: 546px;
-  height: 513px;
-  padding-top: 48px;
-  padding-left: 48px;
-  padding-right: 47px;
+  width: var(--size-sav-wrapper-w);
+  height: var(--size-sav-wrapper-h);
+  padding-top: var(--space-48);
+  padding-left: var(--space-48);
+  padding-right: var(--space-47);
   position: relative;
 }
 
 .WrapperBackground {
   background-color: var(--color-blanc);
-  width: 641px;
-  height: 561px;
+  width: var(--size-sav-wrapper-background-w);
+  height: var(--size-sav-wrapper-background-h);
   position: absolute;
   align-self: flex-end;
 }
@@ -62,8 +69,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
-  width: 546px;
+  gap: var(--space-32);
+  width: var(--size-sav-inner);
   position: relative;
 }
 
@@ -71,7 +78,7 @@
   color: var(--color-noir);
   font-size: var(--font-size-18);
   line-height: var(--font-line-height-27);
-  height: 197px;
+  height: var(--size-sav-vous-rencontrez-un-problme-a);
   white-space: pre-line;
 }
 
@@ -84,23 +91,23 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;
-  width: 644px;
-  height: 561px;
-  padding-left: 3px;
+  width: var(--size-sav-img-group-w);
+  height: var(--size-sav-img-group-h);
+  padding-left: var(--space-3);
   position: relative;
 }
 
 .ImgGroupBackground {
   background-color: var(--color-bleu-clair);
-  width: 647px;
-  height: 478px;
+  width: var(--size-sav-img-group-background-w);
+  height: var(--size-sav-img-group-background-h);
   position: absolute;
   align-self: flex-start;
 }
 
 .img {
-  width: 563px;
-  height: 504px;
+  width: var(--size-sav-img-w);
+  height: var(--size-sav-img-h);
   position: relative;
   object-fit: contain;
 }

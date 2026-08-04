@@ -3,6 +3,13 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: row;
@@ -12,9 +19,9 @@
 }
 
 .googleMap {
-  width: 1152px;
-  min-width: 1152px;
-  height: 597px;
+  width: var(--size-coordonnees-google-map-w);
+  min-width: var(--size-coordonnees-google-map-w);
+  height: var(--size-coordonnees-google-map-h);
   object-fit: cover;
 }
 
@@ -22,16 +29,16 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 16px;
-  padding-block: 48px;
-  padding-inline: 48px;
-  width: 576px;
+  gap: var(--space-16);
+  padding-block: var(--space-48);
+  padding-inline: var(--space-48);
+  width: var(--size-coordonnees-wrapper);
 }
 
 .Adresse {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .AdresseEtiquette {
@@ -51,7 +58,7 @@
 .Horaires {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .HorairesEtiquette {
@@ -69,7 +76,7 @@
 .Contact {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .ContactEtiquette {
@@ -92,7 +99,7 @@
 .suivezNous {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .SuivezNousEtiquette {
@@ -105,7 +112,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 .Facebook svg {

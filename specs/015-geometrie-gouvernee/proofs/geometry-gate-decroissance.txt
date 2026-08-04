@@ -1,0 +1,21 @@
+
+> ds-contracts-poc@0.7.0 geometry:gate
+> tsx extract/geometry-gate/run.ts
+
+geometry:gate — verdict: FAIL (exit 1)
+Comptage (en direct, jamais figé) :
+  contracts 34 · geometric entries 14 · governed refs 207 · named literals 2 · invisible 12
+
+✗ 12 refusal(s):
+  · [invisible-literal] ds.footer/anatomy/root/literals/gap — "ds.footer/anatomy/root/literals/gap" (channel "gap") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/literals/padding-bottom — "ds.footer/anatomy/root/literals/padding-bottom" (channel "padding-bottom") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/literals/padding-left — "ds.footer/anatomy/root/literals/padding-left" (channel "padding-left") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/literals/padding-right — "ds.footer/anatomy/root/literals/padding-right" (channel "padding-right") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/literals/padding-top — "ds.footer/anatomy/root/literals/padding-top" (channel "padding-top") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/literals/width — "ds.footer/anatomy/root/literals/width" (channel "width") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/parts/Row/literals/width — "ds.footer/anatomy/root/parts/Row/literals/width" (channel "width") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/parts/Row/parts/col1/literals/gap — "ds.footer/anatomy/root/parts/Row/parts/col1/literals/gap" (channel "gap") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/parts/Row/parts/col5/literals/gap — "ds.footer/anatomy/root/parts/Row/parts/col5/literals/gap" (channel "gap") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.footer/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap — "ds.footer/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap" (channel "gap") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.piqueray-logo/anatomy/root/literals/height — "ds.piqueray-logo/anatomy/root/literals/height" (channel "height") carries a geometric literal with no matching entry in the named-literals registry
+  · [invisible-literal] ds.piqueray-logo/anatomy/root/literals/width — "ds.piqueray-logo/anatomy/root/literals/width" (channel "width") carries a geometric literal with no matching entry in the named-literals registry

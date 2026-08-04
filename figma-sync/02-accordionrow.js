@@ -31,25 +31,29 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/24",
+            "paddingTop": "space/16",
+            "paddingBottom": "space/16"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
               "r": 0,
               "g": 0,
               "b": 0
-            },
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16,
-            "width": 1550
+            }
           },
           "children": [
             {
               "type": "text",
               "name": "Titre",
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/titre"
               },
               "characters": "Question",
               "fontSize": 20,
@@ -74,14 +78,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 64,
+                "varName": "size/accordion-row/trigger"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 64,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -102,18 +111,21 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/24",
+            "paddingTop": "space/16",
+            "paddingBottom": "space/16"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
               "r": 0,
               "g": 0,
               "b": 0
-            },
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16,
-            "width": 1550
+            }
           },
           "children": [
             {
@@ -125,15 +137,17 @@ const COMPONENTS = [
                 "counter": "CENTER"
               },
               "grow": true,
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/title"
               },
               "children": [
                 {
                   "type": "text",
                   "name": "TitreOuvert",
-                  "lits": {
-                    "height": 32
+                  "fixedHeight": {
+                    "px": 32,
+                    "varName": "size/accordion-row/titre-ouvert"
                   },
                   "characters": "Question",
                   "fontSize": 20,
@@ -155,8 +169,9 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/contenu"
               },
               "characters": "Réponse",
               "fontSize": 14,
@@ -175,14 +190,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 64,
+                "varName": "size/accordion-row/trigger"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 64,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -202,7 +222,14 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/24",
+            "paddingTop": "space/8",
+            "paddingBottom": "space/8"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
@@ -210,18 +237,15 @@ const COMPONENTS = [
               "g": 0.1568627450980392,
               "b": 0.17254901960784313,
               "a": 0.3215686274509804
-            },
-            "itemSpacing": 24,
-            "paddingTop": 8,
-            "paddingBottom": 8,
-            "width": 1550
+            }
           },
           "children": [
             {
               "type": "text",
               "name": "Titre",
-              "lits": {
-                "height": 24
+              "fixedHeight": {
+                "px": 24,
+                "varName": "size/accordion-row/titre-petit"
               },
               "characters": "Question",
               "fontSize": 14,
@@ -246,14 +270,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 40,
+                "varName": "size/accordion-row/trigger-petit"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 40,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -274,7 +303,14 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/8",
+            "paddingTop": "space/8",
+            "paddingBottom": "space/8"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
@@ -282,11 +318,7 @@ const COMPONENTS = [
               "g": 0.1568627450980392,
               "b": 0.17254901960784313,
               "a": 0.3215686274509804
-            },
-            "itemSpacing": 8,
-            "paddingTop": 8,
-            "paddingBottom": 8,
-            "width": 1550
+            }
           },
           "children": [
             {
@@ -298,15 +330,17 @@ const COMPONENTS = [
                 "counter": "CENTER"
               },
               "grow": true,
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/title"
               },
               "children": [
                 {
                   "type": "text",
                   "name": "TitreOuvert",
-                  "lits": {
-                    "height": 24
+                  "fixedHeight": {
+                    "px": 24,
+                    "varName": "size/accordion-row/titre-ouvert-petit"
                   },
                   "characters": "Question",
                   "fontSize": 14,
@@ -328,8 +362,9 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
-              "lits": {
-                "height": 24
+              "fixedHeight": {
+                "px": 24,
+                "varName": "size/accordion-row/contenu-petit"
               },
               "characters": "Réponse",
               "fontSize": 14,
@@ -348,14 +383,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 40,
+                "varName": "size/accordion-row/trigger-petit"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 40,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -363,7 +403,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1610
   }
 ];
 const ROW_H = 240, PAD = 40;

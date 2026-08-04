@@ -1,6 +1,6 @@
 {
-  "passed": 176,
-  "total": 176,
+  "passed": 182,
+  "total": 182,
   "quarantined": 48,
   "results": [
     {
@@ -120,6 +120,16 @@
     },
     {
       "id": "organism-audit-token-resolution",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "geometry-detection-code-side",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "geometry-detection-canvas-side",
       "claim": "C3-detection",
       "pass": true
     },
@@ -881,6 +891,26 @@
     {
       "id": "measure-gate-fail-closed-policy",
       "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "geometry-gate-policy-check",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "gradient-literal-channel",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "icon-tokens-by-prop-svg-mirror",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "preservation-013-clobber-detected",
+      "claim": "C3-detection",
       "pass": true
     }
   ]

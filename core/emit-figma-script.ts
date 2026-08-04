@@ -1305,6 +1305,17 @@ function applyLiterals(spec: NodeSpec, lits: Record<string, string>, ctx: TextCt
       case 'border-right-width': { const n = parseLitPx(value); if (n !== undefined) (li().strokeSides ??= {}).right = n; break; }
       case 'border-bottom-width': { const n = parseLitPx(value); if (n !== undefined) (li().strokeSides ??= {}).bottom = n; break; }
       case 'border-left-width': { const n = parseLitPx(value); if (n !== undefined) (li().strokeSides ??= {}).left = n; break; }
+      // 015 (D5, FR-003): the LITERAL gradient path — reuses parseCssGradient,
+      // the same compile-time parser already wired for the tokens branch
+      // above (never a second implementation). Radial/conic/unparseable
+      // values are a NAMED description limit (gradientMiss), never a silent
+      // drop — mirrors the tokens branch exactly.
+      case 'background-image': {
+        const g = parseCssGradient(value);
+        if (g) spec.gradient = g;
+        else spec.gradientMiss = value.slice(0, 60);
+        break;
+      }
       case 'letter-spacing': { const n = parseLitPx(value); if (n !== undefined) next.letterSpacing = n; break; }
       case 'font-size': {
         const n = parseLitPx(value);

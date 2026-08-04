@@ -45,10 +45,11 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
-              "fill": "color/noir-bleute",
-              "lits": {
-                "height": 459
+              "fixedHeight": {
+                "px": 459,
+                "varName": "size/footer/background"
               },
+              "fill": "color/noir-bleute",
               "children": []
             },
             {
@@ -186,8 +187,9 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
-              "lits": {
-                "height": 121
+              "fixedHeight": {
+                "px": 121,
+                "varName": "size/footer/spacer"
               },
               "children": []
             },
@@ -215,8 +217,9 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
-              "lits": {
-                "height": 27
+              "fixedHeight": {
+                "px": 27,
+                "varName": "size/footer/spacer2"
               },
               "children": []
             },

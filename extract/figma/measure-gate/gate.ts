@@ -63,7 +63,11 @@ export type MeasureGateRefusalCode =
   | 'cause-without-receipt'
   | 'receipt-not-dated'
   | 'receipt-not-retestable'
-  | 'receipt-claim-unrefuted';
+  | 'receipt-claim-unrefuted'
+  // 015 — measure-gate-counting-v2.md §3: a line's aggregateOf and a DW
+  // entry's dedupeKey must never target the same pair (the two dedup
+  // directions applied to one relationship at once).
+  | 'aggregate-dedupe-conflict';
 
 export interface MeasureGateRefusal {
   code: MeasureGateRefusalCode;
@@ -108,6 +112,15 @@ export interface MeasuredLine {
   /** organism-audit lines only (C3). Absent/undefined on visual-parity
    *  lines and on `avant.json`'s pre-fix snapshot, both legitimately. */
   referenceProvenance?: ReferenceProvenance | null;
+  /** 015 — measure-gate-counting-v2.md §2: dwIds. This line is the
+   *  CONSEQUENCE of N registry facts (`causes.json § organismLines`) — it
+   *  contributes 0 to `counts.byCause`; its N facts count 1 each. The
+   *  inverse direction of `ReclassifiedDwEntry.dedupeKey` below (which
+   *  erases the FACT when its LINE counts, 1:1) — the two never apply to
+   *  the same pair (checked, `aggregate-dedupe-conflict`). Still divergent,
+   *  still requires cause + receipt (C1/C4 see it) — only the COUNT
+   *  delegates to its facts. */
+  aggregateOf?: string[];
 }
 
 /** `causes.json § entries` — the 013 deferred-work register, re-classified
@@ -124,6 +137,12 @@ export interface ReclassifiedDwEntry {
    *  (receipts.schema.md §4 bis) — required for the dedup that keeps
    *  `counts.byCause` from dimensioning 015/016 on a doubled defect. */
   dedupeKey?: string | null;
+  /** 015 — measure-gate-counting-v2.md §2: non-null ⇒ this entry is no
+   *  longer a work item (a spec resolved it) ⇒ excluded from
+   *  `counts.byCause`. It stays in the register and under C4 (a resolved
+   *  entry still cites a dated, re-tested receipt — resolving it is itself
+   *  a claim). DW-006's actual shape: `resolvedBy: "014"`. */
+  resolvedBy?: string | null;
 }
 
 /** `causes.json § deferredWork` — what 014 ITSELF discovered and did not
@@ -318,9 +337,29 @@ export function evaluateMeasureGate(input: MeasureGateInput): MeasureGateResult 
     }
   }
 
+  // ---- 015 — consistency: aggregateOf and dedupeKey must never target the
+  // same pair (measure-gate-counting-v2.md §3). Checked independently of the
+  // counting below — a conflict is a refusal regardless of which direction
+  // the counter would have picked. -----------------------------------------
+  for (const d of input.reclassifiedDwEntries) {
+    if (!d.dedupeKey) continue;
+    const partner = input.lines.find((l) => l.key === d.dedupeKey);
+    if (partner?.aggregateOf?.includes(d.id)) {
+      refuse(
+        'aggregate-dedupe-conflict',
+        d.id,
+        `"${d.id}" is both aggregated INTO line "${d.dedupeKey}" (that line's aggregateOf) AND dedupeKey'd to it (this entry's own dedupeKey) — the two dedup directions must never target the same pair`,
+      );
+    }
+  }
+
   // ---- counts, always live (I-6.3 — never a number fixed in prose) -------
   const byCause = emptyByCause();
   for (const l of divergent) {
+    // 015 — aggregateOf (D8): this line is the CONSEQUENCE of N registry
+    // facts, counted individually below — the line itself contributes 0
+    // (never N+1: 1 line + N facts counts N, not N+1).
+    if (l.aggregateOf && l.aggregateOf.length > 0) continue;
     if (l.cause !== null && isCauseSlug(l.cause)) byCause[l.cause] += 1;
   }
   for (const d of input.reclassifiedDwEntries) {
@@ -330,6 +369,9 @@ export function evaluateMeasureGate(input: MeasureGateInput): MeasureGateResult 
     // (either absent from `lines`, or not counted because it scored 0).
     const partnerAlreadyCounted = d.dedupeKey != null && divergent.some((l) => l.key === d.dedupeKey);
     if (partnerAlreadyCounted) continue;
+    // 015 — resolvedBy (D8): no longer a work item — excluded from byCause,
+    // even though it stayed a valid C4 citation above.
+    if (d.resolvedBy) continue;
     if (isCauseSlug(d.cause)) byCause[d.cause] += 1;
   }
 

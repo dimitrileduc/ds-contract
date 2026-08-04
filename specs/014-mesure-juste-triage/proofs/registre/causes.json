@@ -87,7 +87,8 @@
       "key": "footer/footer-master-defaults",
       "rawPct": 1.0439991325748406,
       "cause": "contract-geometry",
-      "receiptId": "org-footer-geometry"
+      "receiptId": "org-footer-geometry",
+      "aggregateOf": ["DW-001", "DW-004", "DW-005"]
     },
     {
       "key": "sav/sav-master-defaults",
@@ -146,7 +147,7 @@
       "shippedSurfaceAffected": false,
       "shippedSurfaceNote": "src/components/Select/Select.tsx (émetteur react) émet correctement <select><option>{value}</option>, épinglé par l'eval native-checkbox-and-select-render-correctly. Aucun consommateur du produit n'est touché.",
       "whyNotFixedHere": "FR-005 (un triage ne répare pas) + constitution §VII (core/ intouché par 014).",
-      "destination": "à ordonnancer — défaut moteur ouvert, sans spec assignée à ce jour",
+      "destination": "tinyspec select-option-emit — ordonnancée immédiatement après la clôture de 015 (avant ou en parallèle de 016) : fixture d'abord, puis la branche d'émetteur + les 3 re-pins (D12, 015)",
       "verdictImpact": "divergent",
       "status": "deferred",
       "note": "Consigné ici parce que 014 l'a DÉCOUVERT : DW-006 n'était suivi que parce que 013 l'avait porté à un registre. Un défaut qui ne vit que dans un reçu n'est ordonnancé par personne."

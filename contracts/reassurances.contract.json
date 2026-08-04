@@ -63,10 +63,6 @@
         "direction": "column",
         "align": "center"
       },
-      "literals": {
-        "width": "1550px",
-        "gap": "48px"
-      },
       "parts": {
         "SectionHeader": {
           "description": "INSTANCE 2114:3612 de ds.section-header, 1550×83. accroche2 est porté explicitement : l'occurrence met Accroche2=true et le rendu concordait jusqu'ici par le seul défaut de l'enfant — un changement de ce défaut aurait fait dériver reassurances en silence.",
@@ -90,8 +86,8 @@
             "direction": "row",
             "justify": "center"
           },
-          "literals": {
-            "gap": "32px"
+          "tokens": {
+            "gap": "{space.32}"
           },
           "declared": {
             "align-self": "stretch"
@@ -154,8 +150,8 @@
           "layout": {
             "direction": "row"
           },
-          "literals": {
-            "gap": "16px"
+          "tokens": {
+            "gap": "{space.16}"
           },
           "parts": {
             "Bouton": {
@@ -216,7 +212,9 @@
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.reassurances.root}",
+        "gap": "{space.48}"
       }
     }
   },

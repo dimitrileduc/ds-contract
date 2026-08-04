@@ -1,0 +1,388 @@
+
+> ds-contracts-poc@0.7.0 parity
+> tsx parity/diff.ts
+
+⚠ Figma naming bridged (the file does not use this repo's collection/mode names):
+    · mode "Dark" does not exist in collection "Semantic" — read from its only mode, "Light"
+
+✔ No new drift — 85 acknowledged finding(s) remain in parity/baseline.json.
+
+  — acknowledged (baselined, does not fail the check) —
+
+  [figma BEHIND] Carte.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] SectionHeader.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma-tokens MISMATCH] Primitives/font/family/montserrat [Value]
+    tokens/ says Montserrat, sans-serif, Figma says Montserrat
+    proposed patch: {"tokenPath":"font.family.montserrat","mode":"Value","adoptFigmaValue":"Montserrat"}
+    → Adopt into tokens/ (promotion) then npm run tokens — or push tokens/ to Figma via figma_import_tokens
+
+  [figma-tokens BEHIND] Primitives/space/2
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/3
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/11
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/14
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/22
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/47
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre-ouvert
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre-ouvert-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/chevron-up-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/title
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/contenu
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/contenu-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/chevron-down-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/trigger
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/trigger-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/avantage/text
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/avantage/root-w
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/avantage/root-h
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/reassurance-image
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/categorie-image
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/root-categorie
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/checkbox/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/coordonnees/google-map-w
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/coordonnees/google-map-h
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/coordonnees/wrapper
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/devis/titre
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/faq/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/background
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/row
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/spacer
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/spacer2
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer-column/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/root-w
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/root-h
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/pastille-gauche
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/pastille-droite
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/hero/sous-titre
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/hero/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-card/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-picture/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-picture/root-member-card
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-picture/fun-ia
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  …and 35 more acknowledged (see parity/report.json)
+
+
+> ds-contracts-poc@0.7.0 eval
+> tsx evals/run.ts
+
+  ✔ C5-extraction  accordion-row-source-cleanup-extraction
+  ✔ C3-detection  baseline-parity-clean
+  ✔ C3-detection  primitives-border-width-parity
+  ✔ C2-refusal  visual-campaign-schema-guards
+  ✔ C2-refusal  visual-layout-context-size
+  ✔ C2-refusal  visual-parity-font-faces
+  ✔ C2-refusal  figma-render-bounds-alignment
+  ✔ C2-refusal  visual-evidence-integrity-guards
+  ✔ C2-refusal  visual-campaign-011-exact-coverage
+  ✔ C2-refusal  visual-campaign-slot-comparison
+  ✔ C2-refusal  visual-campaign-scope-additive
+  ✔ C2-refusal  organism-audit-campaign-scope
+  ✔ C2-refusal  organism-audit-wave-entry
+  ✔ C2-refusal  organism-audit-verdict-algebra
+  ✔ C2-refusal  organism-audit-probative-evidence
+  ✔ C2-refusal  organism-audit-dependency-mapping
+  ✔ C2-refusal  organism-audit-blocked-parent
+  ✔ C2-refusal  organism-audit-non-conversion
+  ✔ C2-refusal  declared-inset-channels
+  ✔ C2-refusal  organism-audit-contract-pin
+  ✔ C3-detection  organism-audit-react-capture
+  ✔ C3-detection  organism-audit-prop-projection
+  ✔ C3-detection  organism-audit-image-prop-path
+  ✔ C3-detection  organism-audit-token-resolution
+  ✔ C3-detection  geometry-detection-code-side
+  ✔ C3-detection  geometry-detection-canvas-side
+  ✔ C3-detection  field-slotted-control-semantics
+  ✔ C2-refusal  declared-object-position
+  ✔ C3-detection  semantic-attribute-map
+  ✔ C3-detection  tab-external-roving-context
+  ✔ C2-refusal  icon-glyph-geometry
+  ✔ C2-refusal  bounded-typography-geometry-justification
+  ✔ C3-detection  component-scalar-propagation
+  ✔ C3-detection  component-boolean-false-propagation
+  ✔ C3-detection  literal-text-newline-preservation
+  ✔ C2-refusal  img-paint-preserved-on-amend
+  ✔ C3-detection  component-rich-text-prop-value
+  ✔ C3-detection  part-literal-rich-text
+  ✔ C3-detection  repeat-enum-item-field
+  ✔ C2-refusal  visual-probative-evidence
+  ✔ C2-refusal  fractional-image-receipt
+  ✔ C2-refusal  campaign-capture-scale
+  ✔ C2-refusal  jpeg-exif-orientation-dimensions
+  ✔ C2-refusal  visual-regions-and-geometry
+  ✔ C2-refusal  visual-attribution-audit
+  ✖ C3-detection  baseline-acknowledges-without-failing
+      Error: Baselined finding still failed the exit code
+  ✔ C4-convergence  promotion-converges
+  ✔ C3-detection  detect-icon-registry-divergence
+  ✔ C2-refusal  refuse-unregistered-icon-enum
+  ✔ C5-extraction  lower-icon-swap-and-visibility-into-props
+  ✔ C5-extraction  preserve-nested-empty-boolean-and-swap-props
+  ✔ C2-refusal  figma-script-referees-invalid-contracts
+  ✔ C3-detection  detect-default-and-kind-drift
+  ✔ C2-refusal  refuse-unknown-token-reference
+  ✔ C1-determinism  provenance-fields-survive-roundtrip
+  ✔ C2-refusal  refuse-schema-invalid-contract
+  ✔ C2-refusal  refuse-unknown-category
+  ✔ C1-determinism  tolerate-contract-without-category
+  ✔ C6-theming  category-groups-story-and-catalog
+  ✔ C1-determinism  native-input-root-void-self-closes-with-attrs
+  ✔ C1-determinism  native-checkbox-and-select-render-correctly
+  ✔ C3-detection  internal-glyph-consumed-not-orphan
+  ✔ C1-determinism  deterministic-regeneration
+  ✔ C3-detection  detect-code-added-prop
+  ✔ C3-detection  detect-code-removed-prop
+  ✔ C3-detection  detect-code-enum-drift
+  ✔ C3-detection  detect-code-default-drift
+  ✔ C3-detection  detect-figma-missing-property
+  ✔ C3-detection  detect-figma-extra-property
+  ✔ C3-detection  detect-figma-variant-options-drift
+  ✔ C3-detection  detect-token-alias-drift
+  ✔ C3-detection  detect-token-missing-variable
+  ✔ C3-detection  detect-token-extra-variable
+  ✔ C2-refusal  refuse-circular-dependency
+  ✔ C2-refusal  refuse-unknown-component-ref
+  ✔ C2-refusal  refuse-contract-edge-cases
+  ✔ C5-extraction  extract-foreign-library
+  ✔ C5-extraction  diagnose-foreign-green-red-green
+  ✔ C5-extraction  fluent-sibling-types-merge
+  ✔ C5-extraction  as-expression-named
+  ✔ C5-extraction  intersection-named
+  ✔ C5-extraction  keyof-enum-resolution
+  ✔ C5-extraction  union-of-refs-composition
+  ✔ C5-extraction  cem-nameless-event-skip
+  ✔ C3-detection  native-button-type
+  ✔ C3-detection  code-only-scalar-prop
+  ✔ C3-detection  component-visiblewhen-emission
+  ✔ C3-detection  component-children-prop-emission
+  ✔ C3-detection  single-value-enum-code-extraction
+  ✔ C3-detection  visual-root-alignment
+  ✔ C3-detection  visual-mask-cannot-false-green
+  ✔ C3-detection  visual-transparent-ink-surface
+  ✔ C3-detection  bottom-inset-border
+  ✔ C3-detection  icon-variant-svg-size
+  ✔ C3-detection  structured-rich-text
+  ✔ C3-detection  rich-text-parity-projection
+  ✔ C2-refusal  rich-text-mark-styles
+  ✔ C5-extraction  plain-token-wrap
+  ✔ C5-extraction  stylex-token-wrap
+  ✔ C5-extraction  fill-matrix-depth-mint
+  ✔ C3-detection  raw-text-root-projection
+  ✔ C3-detection  underscore-set-compose
+  ✔ C2-refusal  session-id-collision-suffix
+  ✔ C3-detection  slot-wrapper-floor
+  ✖ C1-determinism  golden-generated-output
+      Error: Generated output diverges from golden manifest (12 file[s]): src/components/AccordionRow/AccordionRow.module.css, src/components/Carte/Carte.module.css, src/components/Hero/Hero.module.css, src/components/MemberPicture/MemberPicture.module.css, src/styles/tokens.css — if intentional, npm run golden:update in a reviewed change
+  ✔ C3-detection  detect-snapshot-provenance-mismatch
+  ✔ C3-detection  detect-stale-snapshot
+  ✔ C5-extraction  extract-code-roundtrip-identity
+  ✔ C5-extraction  extract-raw-values-never-invented
+  ✔ C5-extraction  design-propose-unbound-fill-provisional-mint
+  ✔ C1-determinism  emitter-invariants-hold-and-fail
+  ✔ C1-determinism  core-browser-importable
+  ✔ C5-extraction  design-base-instance-flattening-no-self-reference
+  ✔ C2-refusal  generator-refuses-component-ref-cycles
+  ✔ C5-extraction  design-semantics-element-inference
+  ✔ C5-extraction  design-state-axis-promotion-cbds-replay
+  ✔ C5-extraction  design-child-stubs-prevent-scope-refusals
+  ✔ C5-extraction  cross-import-token-scope
+  ✔ C5-extraction  part-level-state-overrides
+  ✔ C1-determinism  part-state-disabled-label-browser-probe
+  ✔ C5-extraction  design-shadow-mints-and-renders
+  ✔ C5-extraction  design-pointer-geometry-carried
+  ✔ C5-extraction  design-pointer-false-no-arrow
+  ✔ C5-extraction  design-text-weight-and-line-height-carried
+  ✔ C5-extraction  design-id-sanitize-at-proposal
+  ✔ C5-extraction  design-batch-isolation-plain-words-skips
+  ✔ C5-extraction  design-imported-token-layer-registration-resolution
+  ✔ C5-extraction  design-correlation-over-default-state-occurrences
+  ✔ C5-extraction  design-dialog-global-part-dedup
+  ✔ C5-extraction  design-canvas-box-parity
+  ✔ C2-refusal  design-ai-fix-removal-guardrails
+  ✔ C5-extraction  design-min-height-carried
+  ✔ C1-determinism  hit-area-enforced
+  ✔ C1-determinism  a11y-role-and-accessible-name
+  ✔ C1-determinism  button-icon-only-and-carousel-controls
+  ✔ C5-extraction  theme-axis-promotion
+  ✔ C5-extraction  negative-spacing-overlap
+  ✔ C5-extraction  var-chain-resolution
+  ✔ C5-extraction  composition-typography-carry
+  ✔ C2-refusal  multi-tokensbyprop-refusals
+  ✔ C1-determinism  rgba-stroke-emitter-fixes
+  ✔ C1-determinism  s4-canvas-channel-lifts
+  ✔ C1-determinism  figma-60-canvas-emitter-fixes
+  ✔ C1-determinism  polaris-showcase-reproducible
+  ✔ C1-determinism  computed-floor-gate
+node:fs:1349
+  const result = binding.mkdir(
+                         ^
+
+Error: EEXIST: file already exists, mkdir '/Users/dlstudio/.superset/projects/ds-contract-015/evals/.scratch/extract'
+    at mkdirSync (node:fs:1349:26)
+    at copyDir (node:internal/fs/cp/cp-sync:154:5)
+    at onDir (node:internal/fs/cp/cp-sync:136:25)
+    at getStats (node:internal/fs/cp/cp-sync:68:12)
+    at cpSyncFn (node:internal/fs/cp/cp-sync:58:10)
+    at cpSync (node:fs:3146:3)
+    at resetScratch (/Users/dlstudio/.superset/projects/ds-contract-015/evals/harness.ts:80:5)
+    at <anonymous> (/Users/dlstudio/.superset/projects/ds-contract-015/evals/run.ts:5283:3)
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26) {
+  errno: -17,
+  code: 'EEXIST',
+  syscall: 'mkdir',
+  path: '/Users/dlstudio/.superset/projects/ds-contract-015/evals/.scratch/extract'
+}
+
+Node.js v24.14.0
+SWEEP_EXIT_NONZERO

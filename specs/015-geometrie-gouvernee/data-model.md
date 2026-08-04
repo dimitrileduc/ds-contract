@@ -85,7 +85,7 @@ interface GeometryGateResult {
     byContract: Record<string, number>;   // invisibles par contrat
     byChannel: Record<string, number>;    // invisibles par canal
   };
-  refusals: Array<{ code: 'invisible-literal' | 'unregistered-literal' | 'registry-value-mismatch'
+  refusals: Array<{ code: 'invisible-literal' | 'registry-value-mismatch'
                         | 'registry-entry-orphaned' | 'registry-entry-undocumented';
                     subject: string;      // "ds.hero/anatomy/root/literals/gap" — jamais anonyme
                     message: string }>;
@@ -93,6 +93,8 @@ interface GeometryGateResult {
 ```
 
 Entrées lues : `contracts/*.contract.json` (via `inventoryLiterals`, art antérieur 013) + le registre §3. Pur (gate.ts) / CLI (run.ts), fixture d'eval data-only — patron `measure-gate`.
+
+**Correction (2026-08-04, découverte en implémentant T024)** : cette esquisse portait initialement 5 codes (`… | 'unregistered-literal' | …`) ; `contracts/geometry-gate.interface.md` §3 — le doc d'interface détaillé, qui fait foi sur cette esquisse — n'en définit que 4, `invisible-literal` couvrant seul « littéral géométrique sans entrée de registre ». `unregistered-literal` retiré ici pour que les deux documents restent cohérents ; aucune sémantique distincte ne lui était assignée nulle part.
 
 ## 6. Comptage v2 de la porte de mesure (extension de types existants — `extract/figma/measure-gate/gate.ts`)
 

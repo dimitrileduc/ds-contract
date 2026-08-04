@@ -57,9 +57,9 @@
           "layout": {
             "direction": "column"
           },
-          "literals": {
-            "gap": "8px",
-            "width": "687px"
+          "tokens": {
+            "gap": "{space.8}",
+            "width": "{size.avantage.text}"
           },
           "parts": {
             "Titre": {
@@ -91,13 +91,11 @@
           }
         }
       },
-      "literals": {
-        "gap": "8px",
-        "width": "759px",
-        "height": "75px"
-      },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.8}",
+        "width": "{size.avantage.root-w}",
+        "height": "{size.avantage.root-h}"
       }
     }
   },

@@ -38,7 +38,18 @@ import { fileURLToPath } from 'node:url';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const SPEC_014 = path.join(REPO, 'specs/014-mesure-juste-triage');
-const REGISTRE_DIR = path.join(SPEC_014, 'proofs', 'registre');
+// --out-dir (015, T003): redirects REGISTRE_DIR IN ITS ENTIRETY — avant.json/
+// apres.json (written), attributions.json (read, §7), causes.json (read by
+// --render only, §T038) all move together. Default UNCHANGED (014, retro-
+// compatible): omitting the flag reproduces the exact prior path. A feature
+// that re-measures without touching 014's own proofs points here instead of
+// overwriting them (D11) — 014's causes.json stays the porte de mesure's
+// live register regardless (measure-gate-counting-v2.md §1).
+const outDirIdx = process.argv.indexOf('--out-dir');
+const REGISTRE_DIR =
+  outDirIdx !== -1 && outDirIdx + 1 < process.argv.length
+    ? path.resolve(process.argv[outDirIdx + 1])
+    : path.join(SPEC_014, 'proofs', 'registre');
 const ATTRIBUTIONS = path.join(REGISTRE_DIR, 'attributions.json');
 const SCRATCH_BASE = path.join(REPO, 'extract', 'figma', 'organism-audit', 'out', 'registre-scratch');
 const CAMPAIGN_PATH = path.join(REPO, 'specs/013-auditer-fidelite-organismes', 'contracts', 'audit-campaign.json');

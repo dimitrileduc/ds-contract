@@ -3,6 +3,13 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: row;
@@ -15,8 +22,8 @@
   font-family: var(--font-family-montserrat);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
-  padding-block: 12px;
-  padding-inline: 12px;
+  padding-block: var(--space-12);
+  padding-inline: var(--space-12);
   --dsc-border-width: 1px;
   border-radius: 0px;
   line-height: 24px;

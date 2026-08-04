@@ -168,18 +168,18 @@
       "tokens": {
         "background-color": "{color.blanc}",
         "border-color": "{color.bleu-clair}",
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.review-card.root-w}",
+        "min-height": "{size.review-card.root-h}",
+        "padding-top": "{space.24}",
+        "padding-bottom": "{space.24}",
+        "padding-left": "{space.24}",
+        "padding-right": "{space.24}",
+        "gap": "{space.14}"
       },
       "literals": {
-        "width": "299px",
-        "min-height": "239px",
         "border-radius": "8px",
-        "border-width": "1px",
-        "padding-top": "24px",
-        "padding-bottom": "24px",
-        "padding-left": "24px",
-        "padding-right": "24px",
-        "gap": "14px"
+        "border-width": "1px"
       },
       "parts": {
         "entete": {
@@ -197,8 +197,8 @@
                 "direction": "row",
                 "align": "center"
               },
-              "literals": {
-                "gap": "12px"
+              "tokens": {
+                "gap": "{space.12}"
               },
               "parts": {
                 "avatarInitiale": {
@@ -212,12 +212,12 @@
                     "justify": "center"
                   },
                   "tokens": {
-                    "background-color": "{color.bleu-gris}"
+                    "background-color": "{color.bleu-gris}",
+                    "width": "{size.review-card.avatar-initiale}",
+                    "height": "{size.review-card.avatar-initiale}",
+                    "min-width": "{size.review-card.avatar-initiale}"
                   },
                   "literals": {
-                    "width": "40px",
-                    "height": "40px",
-                    "min-width": "40px",
                     "border-radius": "20px"
                   },
                   "parts": {
@@ -244,10 +244,12 @@
                   "visibleWhen": {
                     "prop": "photo"
                   },
+                  "tokens": {
+                    "width": "{size.review-card.avatar-photo}",
+                    "height": "{size.review-card.avatar-photo}",
+                    "min-width": "{size.review-card.avatar-photo}"
+                  },
                   "literals": {
-                    "width": "40px",
-                    "height": "40px",
-                    "min-width": "40px",
                     "border-radius": "20px"
                   },
                   "attrs": {
@@ -261,8 +263,8 @@
                     "direction": "column",
                     "justify": "center"
                   },
-                  "literals": {
-                    "gap": "2px"
+                  "tokens": {
+                    "gap": "{space.2}"
                   },
                   "parts": {
                     "auteur": {
@@ -315,8 +317,8 @@
             "direction": "row",
             "align": "center"
           },
-          "literals": {
-            "gap": "8px"
+          "tokens": {
+            "gap": "{space.8}"
           },
           "parts": {
             "etoiles": {
@@ -325,8 +327,8 @@
                 "direction": "row",
                 "align": "center"
               },
-              "literals": {
-                "gap": "3px"
+              "tokens": {
+                "gap": "{space.3}"
               },
               "parts": {
                 "etoile1": {
@@ -371,10 +373,12 @@
                 "align": "center",
                 "justify": "center"
               },
+              "tokens": {
+                "width": "{size.review-card.verification}",
+                "height": "{size.review-card.verification}",
+                "min-width": "{size.review-card.verification}"
+              },
               "literals": {
-                "width": "16px",
-                "height": "16px",
-                "min-width": "16px",
                 "border-radius": "8px",
                 "background-color": "#000000"
               },

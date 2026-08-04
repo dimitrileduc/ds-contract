@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "note": "Le SEUL document du registre 015 écrit à la main. build-registre.mts le lit et fusionne ses valeurs dans avant.json / apres.json. Une attribution est un jugement — elle ne peut pas être calculée ; ce qui peut l'être, c'est le refus de clore tant qu'un écart n'en porte pas. Clé = la clé de ligne du registre, telle que le registre l'imprime.",
+  "byKey": {
+    "reassurances/reassurances-disposition-4-cartes": "correction d'instrument DW-006 — même délta déjà attribué par 014 (specs/014-mesure-juste-triage/proofs/registre/attributions.json) ; la comparaison au committed 013 resurgit à chaque re-mesure, ce n'est pas une découverte 015.",
+    "hero/hero-master-defaults": "gradient-carry — les 2 voiles GRADIENT_LINEAR (T031, reçu hero-gradients-named-literal.md), 27,83% -> 10,66% mesuré (reçu hero-gradient-carry.md) ; résiduel = plan photo déjà documenté (A5/§a.7), pas un défaut nouveau",
+    "sav/sav-master-defaults": "box-model-unification (T013/T018-T019, reçu box-model-unification.md §2) — 0,665245% -> 20,810859% (delta +20,145614), identique à 6 décimales près au chiffre mesuré par ce reçu AVANT toute conversion littéral->token de Phase 4 (T037-T043) : la re-mesure post-conversions ne bouge pas d'un bit, preuve directe que les 196 conversions de Phase 4 n'ajoutent aucun mouvement de pixel (FR-012, T046).",
+    "footer/footer-master-defaults": "box-model-unification (T013/T018-T019, reçu box-model-unification.md §2) — 1,043999% -> 12,014059% (delta +10,970060), identique à 6 décimales près au chiffre pré-Phase-4 du même reçu — même preuve FR-012 que sav (T046).",
+    "faq/faq-master-defaults": "box-model-unification (T013/T018-T019, reçu box-model-unification.md §2) — 3,672346% -> 4,819331% (delta +1,146985), identique à 6 décimales près au chiffre pré-Phase-4 du même reçu — même preuve FR-012 que sav (T046).",
+    "coordonnees/coordonnees-master-defaults": "box-model-unification (T013/T019, reçu box-model-unification.md §3) — 0,522263% -> 0,522263% (delta 0, bit-à-bit identique) : absorption flexbox sous largeur épinglée, déjà expliquée (le fix est réel et vérifié en CSS, invisible à CET instrument précisément pour cette part) — inchangé par Phase 4."
+  }
+}

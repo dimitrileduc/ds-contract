@@ -29,25 +29,29 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/24",
+            "paddingTop": "space/16",
+            "paddingBottom": "space/16"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
               "r": 0,
               "g": 0,
               "b": 0
-            },
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16,
-            "width": 1550
+            }
           },
           "children": [
             {
               "type": "text",
               "name": "Titre",
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/titre"
               },
               "characters": "Question",
               "fontSize": 20,
@@ -72,14 +76,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 64,
+                "varName": "size/accordion-row/trigger"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 64,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -100,18 +109,21 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/24",
+            "paddingTop": "space/16",
+            "paddingBottom": "space/16"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
               "r": 0,
               "g": 0,
               "b": 0
-            },
-            "itemSpacing": 24,
-            "paddingTop": 16,
-            "paddingBottom": 16,
-            "width": 1550
+            }
           },
           "children": [
             {
@@ -123,15 +135,17 @@ const COMPONENTS = [
                 "counter": "CENTER"
               },
               "grow": true,
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/title"
               },
               "children": [
                 {
                   "type": "text",
                   "name": "TitreOuvert",
-                  "lits": {
-                    "height": 32
+                  "fixedHeight": {
+                    "px": 32,
+                    "varName": "size/accordion-row/titre-ouvert"
                   },
                   "characters": "Question",
                   "fontSize": 20,
@@ -153,8 +167,9 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/contenu"
               },
               "characters": "Réponse",
               "fontSize": 14,
@@ -173,14 +188,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 64,
+                "varName": "size/accordion-row/trigger"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 64,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -200,7 +220,14 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/24",
+            "paddingTop": "space/8",
+            "paddingBottom": "space/8"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
@@ -208,18 +235,15 @@ const COMPONENTS = [
               "g": 0.1568627450980392,
               "b": 0.17254901960784313,
               "a": 0.3215686274509804
-            },
-            "itemSpacing": 24,
-            "paddingTop": 8,
-            "paddingBottom": 8,
-            "width": 1550
+            }
           },
           "children": [
             {
               "type": "text",
               "name": "Titre",
-              "lits": {
-                "height": 24
+              "fixedHeight": {
+                "px": 24,
+                "varName": "size/accordion-row/titre-petit"
               },
               "characters": "Question",
               "fontSize": 14,
@@ -244,14 +268,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 40,
+                "varName": "size/accordion-row/trigger-petit"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 40,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -272,7 +301,14 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "bindings": {
-            "strokeBottomWeight": "border-width/1"
+            "strokeBottomWeight": "border-width/1",
+            "itemSpacing": "space/8",
+            "paddingTop": "space/8",
+            "paddingBottom": "space/8"
+          },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/accordion-row/root"
           },
           "lits": {
             "strokeColor": {
@@ -280,11 +316,7 @@ const COMPONENTS = [
               "g": 0.1568627450980392,
               "b": 0.17254901960784313,
               "a": 0.3215686274509804
-            },
-            "itemSpacing": 8,
-            "paddingTop": 8,
-            "paddingBottom": 8,
-            "width": 1550
+            }
           },
           "children": [
             {
@@ -296,15 +328,17 @@ const COMPONENTS = [
                 "counter": "CENTER"
               },
               "grow": true,
-              "lits": {
-                "height": 32
+              "fixedHeight": {
+                "px": 32,
+                "varName": "size/accordion-row/title"
               },
               "children": [
                 {
                   "type": "text",
                   "name": "TitreOuvert",
-                  "lits": {
-                    "height": 24
+                  "fixedHeight": {
+                    "px": 24,
+                    "varName": "size/accordion-row/titre-ouvert-petit"
                   },
                   "characters": "Question",
                   "fontSize": 14,
@@ -326,8 +360,9 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
-              "lits": {
-                "height": 24
+              "fixedHeight": {
+                "px": 24,
+                "varName": "size/accordion-row/contenu-petit"
               },
               "characters": "Réponse",
               "fontSize": 14,
@@ -346,14 +381,19 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 40,
+                "varName": "size/accordion-row/trigger-petit"
+              },
+              "bindings": {
+                "paddingLeft": "space/0",
+                "paddingRight": "space/0",
+                "paddingTop": "space/0",
+                "paddingBottom": "space/0"
+              },
               "lits": {
-                "height": 40,
                 "fillClear": true,
-                "strokeWeight": 0,
-                "paddingLeft": 0,
-                "paddingRight": 0,
-                "paddingTop": 0,
-                "paddingBottom": 0
+                "strokeWeight": 0
               },
               "children": []
             }
@@ -361,7 +401,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1610
   },
   {
     "setName": "Avantage",
@@ -388,10 +428,16 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN"
           },
-          "lits": {
-            "itemSpacing": 8,
-            "width": 759,
-            "height": 75
+          "bindings": {
+            "itemSpacing": "space/8"
+          },
+          "fixedWidth": {
+            "px": 759,
+            "varName": "size/avantage/root-w"
+          },
+          "fixedHeight": {
+            "px": 75,
+            "varName": "size/avantage/root-h"
           },
           "children": [
             {
@@ -409,9 +455,12 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 8,
-                "width": 687
+              "bindings": {
+                "itemSpacing": "space/8"
+              },
+              "fixedWidth": {
+                "px": 687,
+                "varName": "size/avantage/text"
               },
               "children": [
                 {
@@ -442,7 +491,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 819
   },
   {
     "setName": "Button",
@@ -941,10 +990,13 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "fill": "color/blanc",
-          "lits": {
-            "width": 364,
-            "itemSpacing": 24,
-            "paddingBottom": 24
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/carte/root"
+          },
+          "bindings": {
+            "itemSpacing": "space/24",
+            "paddingBottom": "space/24"
           },
           "children": [
             {
@@ -955,15 +1007,18 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/carte/reassurance-image"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "height": 364,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             },
             {
@@ -975,10 +1030,10 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 8,
-                "paddingRight": 16,
-                "paddingLeft": 16
+              "bindings": {
+                "itemSpacing": "space/8",
+                "paddingRight": "space/16",
+                "paddingLeft": "space/16"
               },
               "children": [
                 {
@@ -1024,10 +1079,13 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "fill": "color/blanc",
-          "lits": {
-            "width": 743,
-            "itemSpacing": 32,
-            "paddingBottom": 0
+          "fixedWidth": {
+            "px": 743,
+            "varName": "size/carte/root-categorie"
+          },
+          "bindings": {
+            "itemSpacing": "space/32",
+            "paddingBottom": "space/0"
           },
           "children": [
             {
@@ -1040,16 +1098,18 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
+              "fixedHeight": {
+                "px": 418,
+                "varName": "size/carte/categorie-image"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "height": 418,
-                "minHeight": 0,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             },
             {
@@ -1061,10 +1121,10 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 16,
-                "paddingRight": 0,
-                "paddingLeft": 0
+              "bindings": {
+                "itemSpacing": "space/16",
+                "paddingRight": "space/0",
+                "paddingLeft": "space/0"
               },
               "children": [
                 {
@@ -1122,7 +1182,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 803
   },
   {
     "setName": "Checkbox",
@@ -1151,11 +1211,17 @@ const COMPONENTS = [
           "bindings": {
             "strokeWeight": "border-width/2"
           },
+          "fixedWidth": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
+          "fixedHeight": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
           "fill": "color/blanc",
           "stroke": "color/bleu-gris",
           "lits": {
-            "width": 20,
-            "height": 20,
             "radius": 0
           },
           "children": []
@@ -1176,11 +1242,17 @@ const COMPONENTS = [
           "bindings": {
             "strokeWeight": "border-width/2"
           },
+          "fixedWidth": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
+          "fixedHeight": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
           "fill": "color/bleu",
           "stroke": "color/bleu",
           "lits": {
-            "width": 20,
-            "height": 20,
             "radius": 0
           },
           "children": [
@@ -1226,8 +1298,8 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 8
+          "bindings": {
+            "itemSpacing": "space/8"
           },
           "children": [
             {
@@ -1271,8 +1343,8 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 8
+          "bindings": {
+            "itemSpacing": "space/8"
           },
           "children": [
             {
@@ -1360,17 +1432,25 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedWidth": {
+                "px": 1152,
+                "varName": "size/coordonnees/google-map-w"
+              },
+              "bindings": {
+                "minWidth": "size/coordonnees/google-map-w"
+              },
+              "fixedHeight": {
+                "px": 597,
+                "varName": "size/coordonnees/google-map-h"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "width": 1152,
-                "minWidth": 1152,
-                "height": 597,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             },
             {
@@ -1382,13 +1462,16 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 16,
-                "paddingTop": 48,
-                "paddingBottom": 48,
-                "paddingLeft": 48,
-                "paddingRight": 48,
-                "width": 576
+              "bindings": {
+                "itemSpacing": "space/16",
+                "paddingTop": "space/48",
+                "paddingBottom": "space/48",
+                "paddingLeft": "space/48",
+                "paddingRight": "space/48"
+              },
+              "fixedWidth": {
+                "px": 576,
+                "varName": "size/coordonnees/wrapper"
               },
               "children": [
                 {
@@ -1410,8 +1493,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -1446,8 +1529,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -1481,8 +1564,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -1516,8 +1599,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -1538,8 +1621,8 @@ const COMPONENTS = [
                         "primary": "MIN",
                         "counter": "CENTER"
                       },
-                      "lits": {
-                        "itemSpacing": 16
+                      "bindings": {
+                        "itemSpacing": "space/16"
                       },
                       "children": [
                         {
@@ -1635,9 +1718,9 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "fill": "color/noir-pur",
-          "lits": {
-            "paddingTop": 96,
-            "paddingBottom": 96
+          "bindings": {
+            "paddingTop": "space/96",
+            "paddingBottom": "space/96"
           },
           "children": [
             {
@@ -1686,15 +1769,16 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
-              "lits": {
-                "itemSpacing": 32
+              "bindings": {
+                "itemSpacing": "space/32"
               },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
-                  "lits": {
-                    "width": 900
+                  "fixedWidth": {
+                    "px": 900,
+                    "varName": "size/devis/titre"
                   },
                   "characters": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
                   "fontSize": 40,
@@ -1747,9 +1831,15 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
+          "fixedHeight": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
           "lits": {
-            "width": 364,
-            "height": 364,
             "radius": 500,
             "fillColor": {
               "r": 0.8509803921568627,
@@ -1767,9 +1857,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -1789,9 +1885,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -1818,9 +1920,15 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
+          "fixedHeight": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
           "lits": {
-            "width": 364,
-            "height": 364,
             "radius": 500,
             "fillColor": {
               "r": 0.8509803921568627,
@@ -1838,9 +1946,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -1860,9 +1974,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -1878,7 +1998,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 424
   },
   {
     "setName": "MemberCard",
@@ -1906,9 +2026,12 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 16,
-            "width": 364
+          "bindings": {
+            "itemSpacing": "space/16"
+          },
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/member-card/root"
           },
           "children": [
             {
@@ -1927,8 +2050,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
-              "lits": {
-                "itemSpacing": 8
+              "bindings": {
+                "itemSpacing": "space/8"
               },
               "children": [
                 {
@@ -1959,7 +2082,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 424
   },
   {
     "setName": "Equipe",
@@ -2179,11 +2302,14 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "width": 1550,
-            "paddingLeft": 89,
-            "paddingRight": 89,
-            "itemSpacing": 48
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/faq/root"
+          },
+          "bindings": {
+            "paddingLeft": "space/89",
+            "paddingRight": "space/89",
+            "itemSpacing": "space/48"
           },
           "children": [
             {
@@ -2253,7 +2379,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1610
   },
   {
     "setName": "Input",
@@ -2282,11 +2408,13 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "stroke": "color/bleu-gris",
+          "bindings": {
+            "paddingTop": "space/12",
+            "paddingBottom": "space/12",
+            "paddingLeft": "space/12",
+            "paddingRight": "space/12"
+          },
           "lits": {
-            "paddingTop": 12,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
             "strokeWeight": 1,
             "radius": 0
           },
@@ -2335,11 +2463,13 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "stroke": "color/bleu-gris",
+          "bindings": {
+            "paddingTop": "space/12",
+            "paddingBottom": "space/12",
+            "paddingLeft": "space/12",
+            "paddingRight": "space/12"
+          },
           "lits": {
-            "paddingTop": 12,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
             "strokeWeight": 1,
             "radius": 0
           },
@@ -2395,14 +2525,19 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "stroke": "color/bleu-gris",
+          "bindings": {
+            "paddingTop": "space/12",
+            "paddingBottom": "space/12",
+            "paddingLeft": "space/12",
+            "paddingRight": "space/12"
+          },
+          "fixedHeight": {
+            "px": 128,
+            "varName": "size/textarea/root"
+          },
           "lits": {
-            "paddingTop": 12,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
             "strokeWeight": 1,
-            "radius": 0,
-            "height": 128
+            "radius": 0
           },
           "children": [
             {
@@ -2453,8 +2588,8 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN"
           },
-          "lits": {
-            "itemSpacing": 8
+          "bindings": {
+            "itemSpacing": "space/8"
           },
           "children": [
             {
@@ -2465,8 +2600,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
-              "lits": {
-                "itemSpacing": 4
+              "bindings": {
+                "itemSpacing": "space/4"
               },
               "children": [
                 {
@@ -2534,8 +2669,8 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "MIN"
           },
-          "lits": {
-            "itemSpacing": 8
+          "bindings": {
+            "itemSpacing": "space/8"
           },
           "children": [
             {
@@ -2546,8 +2681,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
-              "lits": {
-                "itemSpacing": 4
+              "bindings": {
+                "itemSpacing": "space/4"
               },
               "children": [
                 {
@@ -2642,9 +2777,12 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "itemSpacing": 16,
-            "width": 310
+          "bindings": {
+            "itemSpacing": "space/16"
+          },
+          "fixedWidth": {
+            "px": 310,
+            "varName": "size/footer-column/root"
           },
           "children": [
             {

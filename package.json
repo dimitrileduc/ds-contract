@@ -84,7 +84,8 @@
     "mint:code:check": "tsx core/mint-code-check.ts",
     "core:browser-check": "node scripts/core-browser-check.mjs",
     "site:build": "tsx site/build.ts",
-    "measure:gate": "tsx extract/figma/measure-gate/run.ts"
+    "measure:gate": "tsx extract/figma/measure-gate/run.ts",
+    "geometry:gate": "tsx extract/geometry-gate/run.ts"
   },
   "engines": {
     "node": ">=20"

@@ -36,16 +36,22 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedWidth": {
+                "px": 743,
+                "varName": "size/realisation/image"
+              },
+              "fixedHeight": {
+                "px": 743,
+                "varName": "size/realisation/image"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "width": 743,
-                "height": 743,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             }
           ]
@@ -72,16 +78,22 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedWidth": {
+                "px": 339.5,
+                "varName": "size/realisation/image-petit"
+              },
+              "fixedHeight": {
+                "px": 339.5,
+                "varName": "size/realisation/image-petit"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "width": 339.5,
-                "height": 339.5,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             }
           ]

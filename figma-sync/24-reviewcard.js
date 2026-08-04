@@ -57,16 +57,21 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "stroke": "color/bleu-clair",
+          "fixedWidth": {
+            "px": 299,
+            "varName": "size/review-card/root-w"
+          },
+          "bindings": {
+            "minHeight": "size/review-card/root-h",
+            "paddingTop": "space/24",
+            "paddingBottom": "space/24",
+            "paddingLeft": "space/24",
+            "paddingRight": "space/24",
+            "itemSpacing": "space/14"
+          },
           "lits": {
-            "width": 299,
-            "minHeight": 239,
             "radius": 8,
-            "strokeWeight": 1,
-            "paddingTop": 24,
-            "paddingBottom": 24,
-            "paddingLeft": 24,
-            "paddingRight": 24,
-            "itemSpacing": 14
+            "strokeWeight": 1
           },
           "children": [
             {
@@ -86,8 +91,8 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "CENTER"
                   },
-                  "lits": {
-                    "itemSpacing": 12
+                  "bindings": {
+                    "itemSpacing": "space/12"
                   },
                   "children": [
                     {
@@ -99,10 +104,18 @@ const COMPONENTS = [
                         "counter": "CENTER"
                       },
                       "fill": "color/bleu-gris",
+                      "fixedWidth": {
+                        "px": 40,
+                        "varName": "size/review-card/avatar-initiale"
+                      },
+                      "fixedHeight": {
+                        "px": 40,
+                        "varName": "size/review-card/avatar-initiale"
+                      },
+                      "bindings": {
+                        "minWidth": "size/review-card/avatar-initiale"
+                      },
                       "lits": {
-                        "width": 40,
-                        "height": 40,
-                        "minWidth": 40,
                         "radius": 20
                       },
                       "children": [
@@ -129,10 +142,18 @@ const COMPONENTS = [
                         "primary": "MIN",
                         "counter": "MIN"
                       },
+                      "fixedWidth": {
+                        "px": 40,
+                        "varName": "size/review-card/avatar-photo"
+                      },
+                      "fixedHeight": {
+                        "px": 40,
+                        "varName": "size/review-card/avatar-photo"
+                      },
+                      "bindings": {
+                        "minWidth": "size/review-card/avatar-photo"
+                      },
                       "lits": {
-                        "width": 40,
-                        "height": 40,
-                        "minWidth": 40,
                         "radius": 20,
                         "fillColor": {
                           "r": 0.8509803921568627,
@@ -154,8 +175,8 @@ const COMPONENTS = [
                         "counter": "MIN",
                         "stretchChildren": true
                       },
-                      "lits": {
-                        "itemSpacing": 2
+                      "bindings": {
+                        "itemSpacing": "space/2"
                       },
                       "children": [
                         {
@@ -198,8 +219,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
-              "lits": {
-                "itemSpacing": 8
+              "bindings": {
+                "itemSpacing": "space/8"
               },
               "children": [
                 {
@@ -210,8 +231,8 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "CENTER"
                   },
-                  "lits": {
-                    "itemSpacing": 3
+                  "bindings": {
+                    "itemSpacing": "space/3"
                   },
                   "children": [
                     {
@@ -254,10 +275,18 @@ const COMPONENTS = [
                     "primary": "CENTER",
                     "counter": "CENTER"
                   },
+                  "fixedWidth": {
+                    "px": 16,
+                    "varName": "size/review-card/verification"
+                  },
+                  "fixedHeight": {
+                    "px": 16,
+                    "varName": "size/review-card/verification"
+                  },
+                  "bindings": {
+                    "minWidth": "size/review-card/verification"
+                  },
                   "lits": {
-                    "width": 16,
-                    "height": 16,
-                    "minWidth": 16,
                     "radius": 8,
                     "fillColor": {
                       "r": 0,

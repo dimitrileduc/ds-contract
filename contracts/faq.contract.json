@@ -52,12 +52,6 @@
         "direction": "column",
         "align": "center"
       },
-      "literals": {
-        "width": "1550px",
-        "padding-left": "89px",
-        "padding-right": "89px",
-        "gap": "48px"
-      },
       "parts": {
         "SectionHeader": {
           "description": "Instance 2104:2907 de ds.section-header, REDIMENSIONNÉE par le master : layoutSizingVertical FIXED à 50px alors que son contenu en demande 83 (Accroche 25 + itemSpacing 8 + Titre 50) — clipsContent=false, le Titre déborde donc de 33px dans le gap de 48. LIMITE NOMMÉE / TRAVAIL REPORTÉ : une part qui est une instance de composant ne peut pas être restylée par son parent (validateContract refuse literals sur une part `component`), la hauteur devrait vivre sur le root de ds.section-header, contrat partagé avec presentation/equipe/realisation/google-reviews — non touché ici. Conséquence mesurable : tout ce qui suit le SectionHeader descend de 33px dans le rendu généré. Le titre est épelé en segments parce que ds.section-header.titre est un prop rich-text ; le schéma refuse la chaîne nue par nom, et c'est la seule orthographe possible du fait.",
@@ -127,7 +121,11 @@
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.faq.root}",
+        "padding-left": "{space.89}",
+        "padding-right": "{space.89}",
+        "gap": "{space.48}"
       }
     }
   },

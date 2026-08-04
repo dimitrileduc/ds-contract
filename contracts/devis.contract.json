@@ -133,8 +133,8 @@
           "declared": {
             "position": "relative"
           },
-          "literals": {
-            "gap": "32px"
+          "tokens": {
+            "gap": "{space.32}"
           },
           "parts": {
             "Titre": {
@@ -143,11 +143,11 @@
               },
               "tokens": {
                 "color": "{color.blanc}",
-                "font-size": "{font.size.40}"
+                "font-size": "{font.size.40}",
+                "width": "{size.devis.titre}"
               },
               "literals": {
-                "line-height": "50px",
-                "width": "900px"
+                "line-height": "50px"
               },
               "declared": {
                 "text-align": "center"
@@ -168,11 +168,9 @@
       },
       "tokens": {
         "background-color": "{color.noir-pur}",
-        "font-family": "{font.family.montserrat}"
-      },
-      "literals": {
-        "padding-top": "96px",
-        "padding-bottom": "96px"
+        "font-family": "{font.family.montserrat}",
+        "padding-top": "{space.96}",
+        "padding-bottom": "{space.96}"
       },
       "declared": {
         "position": "relative"

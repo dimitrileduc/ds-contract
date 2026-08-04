@@ -288,6 +288,31 @@ for (const contract of contracts) {
       remedy: `Review + append to contracts/${contract.id.replace(/^[^.]+\./, '')}.contract.json props[], bump version, then npm run build && npm run figma:plan`,
     });
   }
+
+  // 015/D9 (FR-005): a part's `tokens[cssProp]` binding implies the shipped
+  // CSS Module consumes `var(--<token-path>)` (core/emit-react.ts's own
+  // cssVar() naming: dots -> hyphens). A generated file hand-edited back to
+  // a raw literal still has the right PROPS — nothing above this point would
+  // catch it. `extracted.cssVars` (parity/extract-code.ts) already reads the
+  // CSS Module's actual var() usage; this is what compares it against what
+  // the contract's own token bindings require.
+  for (const { part, path: partPath } of walkAnatomy(contract)) {
+    if (part.component) continue; // instances style themselves via their own contract
+    for (const [cssProp, ref] of Object.entries(part.tokens ?? {})) {
+      if (typeof ref !== 'string' || !/^\{[^{}]+\}$/.test(ref)) continue; // per-variant placeholder ({...}), not a plain reference
+      const tokenPath = ref.slice(1, -1);
+      const expectedVar = tokenPath.split('.').join('-');
+      if (!extracted.cssVars.includes(expectedVar)) {
+        add({
+          surface: 'code',
+          classification: 'behind',
+          subject: `${contract.name}.${partPath.join('.')}#${cssProp}`,
+          detail: `Contract binds "${cssProp}" to token {${tokenPath}} (expects var(--${expectedVar})) but the shipped CSS Module does not consume that custom property`,
+          remedy: 'npm run generate',
+        });
+      }
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------

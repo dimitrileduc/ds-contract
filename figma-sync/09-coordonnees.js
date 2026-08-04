@@ -47,17 +47,25 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedWidth": {
+                "px": 1152,
+                "varName": "size/coordonnees/google-map-w"
+              },
+              "bindings": {
+                "minWidth": "size/coordonnees/google-map-w"
+              },
+              "fixedHeight": {
+                "px": 597,
+                "varName": "size/coordonnees/google-map-h"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "width": 1152,
-                "minWidth": 1152,
-                "height": 597,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             },
             {
@@ -69,13 +77,16 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 16,
-                "paddingTop": 48,
-                "paddingBottom": 48,
-                "paddingLeft": 48,
-                "paddingRight": 48,
-                "width": 576
+              "bindings": {
+                "itemSpacing": "space/16",
+                "paddingTop": "space/48",
+                "paddingBottom": "space/48",
+                "paddingLeft": "space/48",
+                "paddingRight": "space/48"
+              },
+              "fixedWidth": {
+                "px": 576,
+                "varName": "size/coordonnees/wrapper"
               },
               "children": [
                 {
@@ -97,8 +108,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -133,8 +144,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -168,8 +179,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -203,8 +214,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -225,8 +236,8 @@ const COMPONENTS = [
                         "primary": "MIN",
                         "counter": "CENTER"
                       },
-                      "lits": {
-                        "itemSpacing": 16
+                      "bindings": {
+                        "itemSpacing": "space/16"
                       },
                       "children": [
                         {

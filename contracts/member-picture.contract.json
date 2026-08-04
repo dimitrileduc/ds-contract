@@ -85,25 +85,23 @@
     "root": {
       "description": "Measured 364×364 circular clipping root; it is the positioned containing block for the two superposed photo planes. Its #D9D9D9 fill is only the generic technical A5 preview base, never a Piqueray colour.",
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.member-picture.root}",
+        "height": "{size.member-picture.root}"
       },
       "literals": {
-        "width": "364px",
-        "height": "364px",
         "border-radius": "500px",
         "background-color": "#D9D9D9"
       },
-      "literalsByProp": [
-        {
-          "prop": "taille",
-          "map": {
-            "member-card": {
-              "width": "363.5px",
-              "height": "363.5px"
-            }
+      "tokensByProp": {
+        "prop": "taille",
+        "map": {
+          "member-card": {
+            "width": "{size.member-picture.root-member-card}",
+            "height": "{size.member-picture.root-member-card}"
           }
         }
-      ],
+      },
       "declared": {
         "position": "relative"
       },
@@ -130,22 +128,22 @@
           "attrs": {
             "alt": ""
           },
+          "tokens": {
+            "width": "{size.member-picture.fun-ia}",
+            "height": "{size.member-picture.fun-ia}"
+          },
           "literals": {
-            "width": "364px",
-            "height": "364px",
             "border-radius": "500px"
           },
-          "literalsByProp": [
-            {
-              "prop": "taille",
-              "map": {
-                "member-card": {
-                  "width": "363.5px",
-                  "height": "363.5px"
-                }
+          "tokensByProp": {
+            "prop": "taille",
+            "map": {
+              "member-card": {
+                "width": "{size.member-picture.fun-ia-member-card}",
+                "height": "{size.member-picture.fun-ia-member-card}"
               }
             }
-          ],
+          },
           "declared": {
             "position": "absolute",
             "aspect-ratio": "1"
@@ -180,22 +178,22 @@
             "src": "{src}",
             "alt": "{alt}"
           },
+          "tokens": {
+            "width": "{size.member-picture.normal}",
+            "height": "{size.member-picture.normal}"
+          },
           "literals": {
-            "width": "364px",
-            "height": "364px",
             "border-radius": "500px"
           },
-          "literalsByProp": [
-            {
-              "prop": "taille",
-              "map": {
-                "member-card": {
-                  "width": "363.5px",
-                  "height": "363.5px"
-                }
+          "tokensByProp": {
+            "prop": "taille",
+            "map": {
+              "member-card": {
+                "width": "{size.member-picture.normal-member-card}",
+                "height": "{size.member-picture.normal-member-card}"
               }
             }
-          ],
+          },
           "declared": {
             "position": "absolute",
             "aspect-ratio": "1",

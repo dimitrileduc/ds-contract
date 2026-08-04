@@ -3,6 +3,13 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: row;
@@ -11,7 +18,7 @@
   font-family: var(--font-family-montserrat);
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-medium);
-  gap: 8px;
+  gap: var(--space-8);
   line-height: 16px;
   position: relative;
   text-transform: uppercase;
@@ -39,7 +46,7 @@
 
 .Soulignement {
   background-color: var(--color-blanc);
-  height: 2px;
+  height: var(--size-nav-item-soulignement);
   position: absolute;
 }
 

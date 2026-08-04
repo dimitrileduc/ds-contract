@@ -3,15 +3,22 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
-  width: 759px;
-  height: 75px;
+  gap: var(--space-8);
+  width: var(--size-avantage-root-w);
+  height: var(--size-avantage-root-h);
 }
 
 .Piqueray svg {
@@ -27,8 +34,8 @@
 .text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 687px;
+  gap: var(--space-8);
+  width: var(--size-avantage-text);
 }
 
 .Titre {

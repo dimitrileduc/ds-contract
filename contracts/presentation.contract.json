@@ -118,9 +118,9 @@
             "direction": "column",
             "align": "stretch"
           },
-          "literals": {
-            "gap": "16px",
-            "width": "627px"
+          "tokens": {
+            "gap": "{space.16}",
+            "width": "{size.presentation.wrapper}"
           },
           "parts": {
             "Texte": {
@@ -150,10 +150,8 @@
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
-      },
-      "literals": {
-        "gap": "32px"
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.32}"
       }
     }
   },

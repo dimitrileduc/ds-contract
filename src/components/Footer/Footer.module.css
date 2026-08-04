@@ -3,6 +3,13 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: column;
@@ -18,8 +25,8 @@
 }
 
 .Background {
+  height: var(--size-footer-background);
   background-color: var(--color-noir-bleute);
-  height: 459px;
   position: absolute;
   top: 0;
   left: 0;
@@ -83,7 +90,7 @@
 }
 
 .Spacer {
-  height: 121px;
+  height: var(--size-footer-spacer);
 }
 
 .Separator {
@@ -96,5 +103,5 @@
 }
 
 .spacer2 {
-  height: 27px;
+  height: var(--size-footer-spacer2);
 }

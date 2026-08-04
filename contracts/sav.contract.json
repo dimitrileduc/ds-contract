@@ -98,9 +98,9 @@
             "justify": "center",
             "align": "start"
           },
-          "literals": {
-            "width": "1550px",
-            "height": "677px"
+          "tokens": {
+            "width": "{size.sav.section-w}",
+            "height": "{size.sav.section-h}"
           },
           "declared": {
             "position": "relative"
@@ -113,9 +113,9 @@
                 "src": "{backgroundUrl}",
                 "alt": "{backgroundAlt}"
               },
-              "literals": {
-                "width": "1550px",
-                "height": "475px"
+              "tokens": {
+                "width": "{size.sav.background-w}",
+                "height": "{size.sav.background-h}"
               },
               "declared": {
                 "object-fit": "cover"
@@ -126,9 +126,9 @@
               "layout": {
                 "direction": "row"
               },
-              "literals": {
-                "width": "1288px",
-                "height": "561px"
+              "tokens": {
+                "width": "{size.sav.row-w}",
+                "height": "{size.sav.row-h}"
               },
               "declared": {
                 "position": "absolute",
@@ -143,12 +143,12 @@
                     "justify": "center",
                     "align": "start"
                   },
-                  "literals": {
-                    "width": "546px",
-                    "height": "513px",
-                    "padding-top": "48px",
-                    "padding-left": "48px",
-                    "padding-right": "47px"
+                  "tokens": {
+                    "width": "{size.sav.wrapper-w}",
+                    "height": "{size.sav.wrapper-h}",
+                    "padding-top": "{space.48}",
+                    "padding-left": "{space.48}",
+                    "padding-right": "{space.47}"
                   },
                   "declared": {
                     "position": "relative"
@@ -157,11 +157,9 @@
                     "WrapperBackground": {
                       "description": "Plan blanc de la colonne (RECTANGLE Figma 2108:3100, 641×561 en (0,0) de `wrapper`). Hors flux pour passer derrière `inner` ; `align-self: flex-end` annule exactement le `padding-top` de 48 px du parent (48 + (513 − 561) = 0). Limite nommée, résidu mesuré : sur l'axe principal la position statique tombe à x = 0,5 px et non 0 (48 + (546 − 641)/2), soit un liseré d'un demi-pixel au bord gauche — le vocabulaire de contrat n'a aucun canal `top`/`left` hors `stylesWhen`, et `stylesWhen` exige une prop booléenne ou enum que ce master n'expose pas.",
                       "tokens": {
-                        "background-color": "{color.blanc}"
-                      },
-                      "literals": {
-                        "width": "641px",
-                        "height": "561px"
+                        "background-color": "{color.blanc}",
+                        "width": "{size.sav.wrapper-background-w}",
+                        "height": "{size.sav.wrapper-background-h}"
                       },
                       "declared": {
                         "position": "absolute",
@@ -174,9 +172,9 @@
                         "direction": "column",
                         "align": "start"
                       },
-                      "literals": {
-                        "gap": "32px",
-                        "width": "546px"
+                      "tokens": {
+                        "gap": "{space.32}",
+                        "width": "{size.sav.inner}"
                       },
                       "declared": {
                         "position": "relative"
@@ -201,13 +199,11 @@
                         "vousRencontrezUnProblmeA": {
                           "description": "Paragraphe de la colonne (TEXT Figma 2108:3103, boîte observée 546×197). DEUX LIMITES NOMMÉES sur le contenu de ce calque, toutes deux hors du vocabulaire de contrat : (1) le saut de ligne dur entre les deux paragraphes ne survit pas à l'émission — le texte statique part en nœud de texte JSX, où l'espace blanc est réduit ; (2) les plages en gras du calque Figma (« votre installation », « votre porte de garage », « votre distributeur Hörmann en province de Liège ») ne sont pas portées, le texte enrichi exigeant `content.marks.strong` c'est-à-dire une PROP, alors que la campagne épingle le fait `sav.content.texte` sur `…/text`. Conséquence : la césure des lignes diverge et la hauteur intrinsèque tombe une ligne trop court. La `height` est donc épinglée sur la boîte OBSERVÉE de 197 px, pour que `Bouton` garde son y=311 mesuré dans `inner` au lieu de remonter de 27 px.",
                           "text": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
-                          "literals": {
-                            "height": "197px"
-                          },
                           "tokens": {
                             "color": "{color.noir}",
                             "font-size": "{font.size.18}",
-                            "line-height": "{font.line-height.27}"
+                            "line-height": "{font.line-height.27}",
+                            "height": "{size.sav.vous-rencontrez-un-problme-a}"
                           },
                           "declared": {
                             "white-space": "pre-line"
@@ -263,10 +259,10 @@
                     "justify": "start",
                     "align": "end"
                   },
-                  "literals": {
-                    "width": "644px",
-                    "height": "561px",
-                    "padding-left": "3px"
+                  "tokens": {
+                    "width": "{size.sav.img-group-w}",
+                    "height": "{size.sav.img-group-h}",
+                    "padding-left": "{space.3}"
                   },
                   "declared": {
                     "position": "relative"
@@ -275,11 +271,9 @@
                     "ImgGroupBackground": {
                       "description": "Plan bleu clair de la colonne image (RECTANGLE Figma 2108:3097, 647×478 en (0,0) de `img-group`). Hors flux pour passer derrière `img` ; `align-self: flex-start` fixe exactement son y=0. Limite nommée, résidu mesuré : sur l'axe principal sa position statique suit le `padding-left` du parent et tombe à x = 3 px et non 0, soit deux liserés de 3 px (bord gauche manquant, débord de 3 px à droite recouvert par la colonne suivante) — même cause que sur `WrapperBackground` : aucun canal `top`/`left` hors `stylesWhen`.",
                       "tokens": {
-                        "background-color": "{color.bleu-clair}"
-                      },
-                      "literals": {
-                        "width": "647px",
-                        "height": "478px"
+                        "background-color": "{color.bleu-clair}",
+                        "width": "{size.sav.img-group-background-w}",
+                        "height": "{size.sav.img-group-background-h}"
                       },
                       "declared": {
                         "position": "absolute",
@@ -293,9 +287,9 @@
                         "src": "{imageUrl}",
                         "alt": "{imageAlt}"
                       },
-                      "literals": {
-                        "width": "563px",
-                        "height": "504px"
+                      "tokens": {
+                        "width": "{size.sav.img-w}",
+                        "height": "{size.sav.img-h}"
                       },
                       "declared": {
                         "position": "relative",
@@ -309,11 +303,9 @@
           }
         }
       },
-      "literals": {
-        "gap": "10px"
-      },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.10}"
       }
     }
   },

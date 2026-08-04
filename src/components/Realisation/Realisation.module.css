@@ -3,6 +3,13 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: inline-flex;
   align-items: center;
@@ -12,12 +19,15 @@
 }
 
 .Image {
-  width: 743px;
-  height: 743px;
+  width: var(--size-realisation-image);
+  height: var(--size-realisation-image);
   object-fit: cover;
 }
 
 .taille-petit .Image {
-  width: 339.5px;
-  height: 339.5px;
+  width: var(--size-realisation-image-petit);
+}
+
+.taille-petit .Image {
+  height: var(--size-realisation-image-petit);
 }

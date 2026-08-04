@@ -41,7 +41,20 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../.
 const CONTRACTS_DIR = path.join(REPO, 'contracts');
 const VISUAL_ROWS = path.join(REPO, 'extract/figma/visual-parity/out/rows.json');
 const SPEC_014 = path.join(REPO, 'specs/014-mesure-juste-triage');
-const APRES_PATH = path.join(SPEC_014, 'proofs/registre/apres.json');
+// --apres <path> (015, T003b): overrides ONLY the apres.json this CLI reads
+// for measured-line SCORES — default unchanged (014, retro-compatible).
+// causes.json and recus/ are NOT parameterized: they stay the porte de
+// mesure's one live register (aggregateOf/resolvedBy — measure-gate-
+// counting-v2.md §1) and the receipt corpus C4 reads, neither of which 015
+// relocates ("Où vont les reçus", tasks.md § Conventions). Without --apres
+// the gate would evaluate 014's frozen registre forever: footer/texte-seo/
+// coordonnees would keep their pre-015 gaps no matter what 015 repairs, and
+// contract-geometry could never drop below 3 — SC-005 would be unreachable.
+const apresIdx = process.argv.indexOf('--apres');
+const APRES_PATH =
+  apresIdx !== -1 && apresIdx + 1 < process.argv.length
+    ? path.resolve(process.argv[apresIdx + 1])
+    : path.join(SPEC_014, 'proofs/registre/apres.json');
 const CAUSES_PATH = path.join(SPEC_014, 'proofs/registre/causes.json');
 const RECUS_DIR = path.join(SPEC_014, 'proofs/recus');
 const CAMPAIGN_013 = path.join(REPO, 'specs/013-auditer-fidelite-organismes/contracts/audit-campaign.json');
@@ -88,8 +101,11 @@ const REQUIRED_ARTIFACTS: Array<{ path: string; subject: string; hint: string }>
   },
   {
     path: APRES_PATH,
-    subject: 'specs/014-mesure-juste-triage/proofs/registre/apres.json',
-    hint: 'run `npx tsx extract/figma/organism-audit/tools/build-registre.mts --phase apres` first',
+    // Live path, not a hardcoded 014 string (I-6.2: never anonymous) — with
+    // --apres pointed elsewhere, a `blocked` refusal must name what it
+    // actually tried to read, not what the default would have been.
+    subject: path.relative(REPO, APRES_PATH),
+    hint: 'run `npx tsx extract/figma/organism-audit/tools/build-registre.mts --phase apres [--out-dir <dir>]` first',
   },
   {
     path: CAUSES_PATH,
@@ -196,9 +212,9 @@ const visualLines: MeasuredLine[] = (rows.rows as any[]).map((r): MeasuredLine =
 // (contracts/measure-gate.interface.md §3). causes.json's `organismLines`
 // supplies the cause + receipt, joined by key.
 // ---------------------------------------------------------------------------
-const organismCauseByKey = new Map<string, { cause: string; receiptId: string }>();
+const organismCauseByKey = new Map<string, { cause: string; receiptId: string; aggregateOf?: string[] }>();
 for (const o of causes.organismLines as any[]) {
-  organismCauseByKey.set(o.key, { cause: o.cause, receiptId: o.receiptId });
+  organismCauseByKey.set(o.key, { cause: o.cause, receiptId: o.receiptId, aggregateOf: o.aggregateOf });
 }
 
 const organismLines: MeasuredLine[] = (apres.lines as any[])
@@ -214,6 +230,9 @@ const organismLines: MeasuredLine[] = (apres.lines as any[])
       cause: causeEntry?.cause ?? null,
       causeReceiptId: causeEntry?.receiptId ?? null,
       referenceProvenance: l.referenceProvenance ?? null,
+      // 015 — measure-gate-counting-v2.md §2: organismLines[].aggregateOf →
+      // MeasuredLine.aggregateOf (the footer/DW-001/004/005 shape).
+      aggregateOf: causeEntry?.aggregateOf,
     };
   });
 
@@ -259,6 +278,9 @@ const reclassifiedDwEntries: ReclassifiedDwEntry[] = (causes.entries as any[]).m
   cause: e.cause,
   receiptId: e.receiptId,
   dedupeKey: e.sameDefectAs?.kind === 'organismLine' ? e.sameDefectAs.key : null,
+  // 015 — measure-gate-counting-v2.md §2: entries[].resolvedBy →
+  // ReclassifiedDwEntry.resolvedBy (non-null ⇒ no longer a work item).
+  resolvedBy: e.resolvedBy ?? null,
 }));
 
 const discoveredDeferredWork: DiscoveredDeferredWork[] = (causes.deferredWork as any[]).map((d) => ({

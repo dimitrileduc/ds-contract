@@ -1574,6 +1574,24 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     ` */`,
   ];
 
+  // D1 (015, DW-014-002): Figma boxes are border-box (a bound width/height
+  // IS the outer box, padding drawn inside — the canvas emitter forces
+  // strokeAlign: INSIDE). core/emit-html.ts, the playground
+  // (playground/src/styles.css) and the canvas preview
+  // (playground/src/engine/canvas-preview.ts) already declare this; the
+  // shipped React surface was the one surface out of four that didn't, so a
+  // part binding width/height + padding rendered wider for consumers than in
+  // Figma, than in emit-html, and than our own measurement surfaces (receipt:
+  // react-box-sizing-absent). One rule per top-level root class — ".root" for
+  // the single-root case, each composite root's own class under
+  // isMultiRoot — mirrors core/emit-html.ts:131-143, adapted to CSS
+  // Modules' unprefixed class names (no shared BEM component prefix exists
+  // here to hook one rule onto). Emitted at the head of the file, same
+  // position as emit-html.
+  for (const [name] of topRoots(contract)) {
+    lines.push('', `.${name}, .${name} *, .${name} *::before, .${name} *::after {`, '  box-sizing: border-box;', '}');
+  }
+
   const checkToken = (tokenPath: string, context: string): boolean => {
     if (!tokenInventory.has(tokenPath)) {
       errors.push(
@@ -2159,6 +2177,15 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
               nestedSubRules.push(
                 `\n.${entry.prop}-${value}.${phs[0]}-${phValue} .${name} {\n  ${cssProp}: ${cssVar(resolved)};\n}`,
               );
+              // 015: mirrors the literalsByProp branch below — an icon part's
+              // width/height must also reach the injected <svg>, or the
+              // per-variant override sizes only the wrapper and the glyph
+              // itself falls back to the base icon.size.
+              if (part.icon && (cssProp === 'width' || cssProp === 'height')) {
+                nestedSubRules.push(
+                  `\n.${entry.prop}-${value}.${phs[0]}-${phValue} .${name} svg {\n  ${cssProp}: ${cssVar(resolved)};\n}`,
+                );
+              }
             }
             continue;
           }
@@ -2166,6 +2193,12 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
           nestedSubRules.push(
             `\n.${entry.prop}-${value} .${name} {\n  ${cssProp}: ${cssVar(refPath)};\n}`,
           );
+          // 015: same mirror as above, for the non-placeholder (single-enum) case.
+          if (part.icon && (cssProp === 'width' || cssProp === 'height')) {
+            nestedSubRules.push(
+              `\n.${entry.prop}-${value} .${name} svg {\n  ${cssProp}: ${cssVar(refPath)};\n}`,
+            );
+          }
         }
       }
     }

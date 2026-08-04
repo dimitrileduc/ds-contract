@@ -27,9 +27,35 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "MAX"
           },
-          "lits": {
-            "height": 640,
-            "itemSpacing": 10
+          "fixedHeight": {
+            "px": 640,
+            "varName": "size/hero/root"
+          },
+          "bindings": {
+            "itemSpacing": "space/10"
+          },
+          "gradient": {
+            "angle": 0,
+            "stops": [
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0
+                },
+                "position": 0.75
+              },
+              {
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0,
+                  "a": 0.5
+                },
+                "position": 1
+              }
+            ]
           },
           "children": [
             {
@@ -60,8 +86,8 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
-              "lits": {
-                "itemSpacing": 16
+              "bindings": {
+                "itemSpacing": "space/16"
               },
               "children": [
                 {
@@ -73,12 +99,35 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 16,
-                    "paddingTop": 96,
-                    "paddingRight": 89,
-                    "paddingBottom": 48,
-                    "paddingLeft": 89
+                  "bindings": {
+                    "itemSpacing": "space/16",
+                    "paddingTop": "space/96",
+                    "paddingRight": "space/89",
+                    "paddingBottom": "space/48",
+                    "paddingLeft": "space/89"
+                  },
+                  "gradient": {
+                    "angle": 180,
+                    "stops": [
+                      {
+                        "color": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 0,
+                          "a": 0
+                        },
+                        "position": 0
+                      },
+                      {
+                        "color": {
+                          "r": 0,
+                          "g": 0,
+                          "b": 0,
+                          "a": 0.5
+                        },
+                        "position": 0.6
+                      }
+                    ]
                   },
                   "children": [
                     {
@@ -100,15 +149,16 @@ const COMPONENTS = [
                         "primary": "CENTER",
                         "counter": "MAX"
                       },
-                      "lits": {
-                        "itemSpacing": 32
+                      "bindings": {
+                        "itemSpacing": "space/32"
                       },
                       "children": [
                         {
                           "type": "text",
                           "name": "sousTitre",
-                          "lits": {
-                            "width": 1164
+                          "fixedWidth": {
+                            "px": 1164,
+                            "varName": "size/hero/sous-titre"
                           },
                           "characters": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
                           "fontSize": 24,
@@ -346,6 +396,18 @@ function applyFrameSpec(node, spec) {
         if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
       }
     }
+  }
+  if (spec.gradient) {
+    // CSS angle: 0deg = to top, clockwise. Unit-square gradientTransform.
+    const ga = ((spec.gradient.angle - 90) * Math.PI) / 180;
+    const gc = Math.cos(ga), gs = Math.sin(ga);
+    const paint = {
+      type: 'GRADIENT_LINEAR',
+      gradientTransform: [[gc, gs, (1 - gc - gs) / 2], [-gs, gc, (1 + gs - gc) / 2]],
+      gradientStops: spec.gradient.stops.map((st) => ({ position: st.position, color: { r: st.color.r, g: st.color.g, b: st.color.b, a: st.color.a === undefined ? 1 : st.color.a } })),
+    };
+    const base = node.fills === figma.mixed ? [] : (node.fills || []);
+    node.fills = base.concat([paint]);
   }
 }
 

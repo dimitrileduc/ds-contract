@@ -386,11 +386,124 @@ const ORG_LINE = (): MeasuredLine => ({
   }
 }
 
+// ---------------------------------------------------------------------------
+// 015 — comptage v2 (D8, contracts/measure-gate-counting-v2.md). Written
+// AGAINST gate.ts v1 first (Claims Rule, ordre imposé §6): v1 knows neither
+// `aggregateOf` nor `resolvedBy`, so every block below MUST fail red here —
+// the extra fields pass through untyped (evals/fixtures is outside tsconfig)
+// but v1's counting loop never special-cases them. Archived RED against v1
+// in specs/015-geometrie-gouvernee/proofs/recus/comptage-v2-rouge.txt, THEN
+// gate.ts is extended (T007) until every block below is green.
+// ---------------------------------------------------------------------------
+
+// aggregateOf — a line that is the CONSEQUENCE of N registry facts
+// contributes 0 to byCause; its N facts each count 1. 1 line + 3 facts = 3
+// travaux, never 4 — the footer/DW-001/004/005 shape, and exactly the N+1
+// the 015 clarification refuses.
+{
+  const input = baseline();
+  input.lines = [
+    line({
+      key: "footer/footer-master-defaults",
+      instrument: "organism-audit",
+      cause: "contract-geometry",
+      aggregateOf: ["DW-001", "DW-004", "DW-005"],
+    } as any),
+  ];
+  input.reclassifiedDwEntries = [
+    { id: "DW-001", cause: "contract-geometry", receiptId: "r-ok" },
+    { id: "DW-004", cause: "contract-geometry", receiptId: "r-ok" },
+    { id: "DW-005", cause: "contract-geometry", receiptId: "r-ok" },
+  ];
+  const r = evaluateMeasureGate(input);
+  if (r.counts.byCause["contract-geometry"] !== 3) {
+    throw new Error(
+      `1 line aggregating 3 facts must count 3, never 4 (the line itself contributes 0), got byCause["contract-geometry"]=${r.counts.byCause["contract-geometry"]}`,
+    );
+  }
+}
+
+// resolvedBy — a reclassified DW entry whose resolvedBy is non-null is no
+// longer a work item: it stays under C4 (must still cite a valid receipt)
+// but drops out of byCause. DW-006's actual shape (resolvedBy: "014").
+{
+  const input = baseline(); // one divergent line, cause "rendering" — unrelated to "instrument"
+  input.reclassifiedDwEntries = [
+    { id: "DW-006", cause: "instrument", receiptId: "r-ok", resolvedBy: "014" } as any,
+  ];
+  const r = evaluateMeasureGate(input);
+  if (r.counts.byCause.instrument !== 0) {
+    throw new Error(`a resolvedBy entry must not count as a work item, got byCause.instrument=${r.counts.byCause.instrument}`);
+  }
+  if (r.refusals.some((x) => x.code === "cause-without-receipt")) {
+    throw new Error(`a resolvedBy entry must still cite a valid receipt under C4, got ${JSON.stringify(r.refusals)}`);
+  }
+}
+
+// Mixed dedupeKey/aggregateOf — the two dedup directions coexist on
+// DIFFERENT pairs in one evaluation without interfering: a 1:1 dedupeKey
+// pair counts once (existing behavior), a 1:N aggregateOf pair counts by its
+// facts (new behavior) — independently, in the same run.
+{
+  const input = baseline(); // baseline's own line: key "button :: Style=Default", cause "rendering"
+  input.lines = [
+    ...input.lines,
+    line({
+      key: "footer/footer-master-defaults",
+      instrument: "organism-audit",
+      cause: "contract-geometry",
+      aggregateOf: ["DW-004", "DW-005"],
+    } as any),
+  ];
+  input.reclassifiedDwEntries = [
+    // 1:1 — deduped against the baseline button line, must NOT double it.
+    { id: "DW-002", cause: "rendering", receiptId: "r-ok", dedupeKey: "button :: Style=Default" },
+    // 1:N — the footer's two facts, un-linked by dedupeKey, count on their own.
+    { id: "DW-004", cause: "contract-geometry", receiptId: "r-ok" },
+    { id: "DW-005", cause: "contract-geometry", receiptId: "r-ok" },
+  ];
+  const r = evaluateMeasureGate(input);
+  if (r.counts.byCause.rendering !== 1) {
+    throw new Error(`the deduped 1:1 pair must still count 1, got byCause.rendering=${r.counts.byCause.rendering}`);
+  }
+  if (r.counts.byCause["contract-geometry"] !== 2) {
+    throw new Error(
+      `the aggregateOf line must contribute 0 and its 2 facts count 2, got byCause["contract-geometry"]=${r.counts.byCause["contract-geometry"]}`,
+    );
+  }
+}
+
+// Consistency refusal — a line's aggregateOf and a DW entry's dedupeKey must
+// never target the SAME pair: that would apply both dedup directions to one
+// relationship at once (measure-gate-counting-v2.md §3).
+{
+  const input = baseline();
+  input.lines = [
+    line({
+      key: "footer/footer-master-defaults",
+      instrument: "organism-audit",
+      cause: "contract-geometry",
+      aggregateOf: ["DW-001"],
+    } as any),
+  ];
+  input.reclassifiedDwEntries = [
+    { id: "DW-001", cause: "contract-geometry", receiptId: "r-ok", dedupeKey: "footer/footer-master-defaults" },
+  ];
+  expectFail(
+    input,
+    "aggregate-dedupe-conflict",
+    "a line's aggregateOf and a DW entry's dedupeKey targeting the same pair",
+  );
+}
+
 console.log(
   "✔ measure-gate policy holds: the baseline passes clean; C1 (untriaged-line, cause-outside-vocabulary, " +
     "cause-vocabulary-not-bijective), C2 (component-without-measurement, impediment-without-receipt), C3 " +
     "(reference-provenance-missing/-incomplete, reference-not-case-node via reference.ts's own check), and C4 " +
     "(cause-without-receipt, receipt-not-dated, receipt-not-retestable, receipt-claim-unrefuted) each refuse " +
     "exactly their own scenario and no other; sameDefectAs dedup holds; counts.deferredWork stays distinct from " +
-    "the reclassified DW register; a 0% row needs no cause (D8); byCause always publishes all six keys.",
+    "the reclassified DW register; a 0% row needs no cause (D8); byCause always publishes all six keys; comptage " +
+    "v2 (015) holds: aggregateOf contributes the line's N facts not N+1, resolvedBy retires a DW entry from " +
+    "byCause without excusing its receipt, the two dedup directions coexist on different pairs, and the same " +
+    "pair in both directions at once refuses by name (aggregate-dedupe-conflict).",
 );

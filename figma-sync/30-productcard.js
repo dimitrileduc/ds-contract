@@ -28,9 +28,12 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 16,
-            "width": 364
+          "bindings": {
+            "itemSpacing": "space/16"
+          },
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/product-card/root"
           },
           "children": [
             {
@@ -41,16 +44,22 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedWidth": {
+                "px": 240,
+                "varName": "size/product-card/image"
+              },
+              "fixedHeight": {
+                "px": 240,
+                "varName": "size/product-card/image"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "width": 240,
-                "height": 240,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             },
             {
@@ -81,7 +90,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 424
   }
 ];
 const ROW_H = 240, PAD = 40;

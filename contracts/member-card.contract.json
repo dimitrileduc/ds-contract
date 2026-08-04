@@ -109,8 +109,8 @@
             "direction": "column",
             "align": "center"
           },
-          "literals": {
-            "gap": "8px"
+          "tokens": {
+            "gap": "{space.8}"
           },
           "parts": {
             "Nom": {
@@ -142,12 +142,10 @@
           }
         }
       },
-      "literals": {
-        "gap": "16px",
-        "width": "364px"
-      },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.16}",
+        "width": "{size.member-card.root}"
       }
     }
   },

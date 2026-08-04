@@ -35,14 +35,20 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "fill": "color/blanc",
-          "lits": {
-            "width": 1552,
-            "height": 328,
-            "itemSpacing": 12,
-            "paddingTop": 4,
-            "paddingBottom": 8,
-            "paddingLeft": 11,
-            "paddingRight": 11
+          "fixedWidth": {
+            "px": 1552,
+            "varName": "size/google-reviews/root-w"
+          },
+          "fixedHeight": {
+            "px": 328,
+            "varName": "size/google-reviews/root-h"
+          },
+          "bindings": {
+            "itemSpacing": "space/12",
+            "paddingTop": "space/4",
+            "paddingBottom": "space/8",
+            "paddingLeft": "space/11",
+            "paddingRight": "space/11"
           },
           "children": [
             {
@@ -55,13 +61,15 @@ const COMPONENTS = [
               },
               "fill": "color/blanc",
               "stroke": "color/bleu-clair",
+              "bindings": {
+                "paddingTop": "space/12",
+                "paddingBottom": "space/12",
+                "paddingLeft": "space/16",
+                "paddingRight": "space/16"
+              },
               "lits": {
                 "radius": 8,
-                "strokeWeight": 1,
-                "paddingTop": 12,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16
+                "strokeWeight": 1
               },
               "children": [
                 {
@@ -72,8 +80,8 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "CENTER"
                   },
-                  "lits": {
-                    "itemSpacing": 10
+                  "bindings": {
+                    "itemSpacing": "space/10"
                   },
                   "children": [
                     {
@@ -98,8 +106,8 @@ const COMPONENTS = [
                         "primary": "MIN",
                         "counter": "CENTER"
                       },
-                      "lits": {
-                        "itemSpacing": 2
+                      "bindings": {
+                        "itemSpacing": "space/2"
                       },
                       "children": [
                         {
@@ -171,13 +179,15 @@ const COMPONENTS = [
                     "counter": "CENTER"
                   },
                   "stroke": "color/noir",
+                  "bindings": {
+                    "paddingTop": "space/8",
+                    "paddingBottom": "space/8",
+                    "paddingLeft": "space/22",
+                    "paddingRight": "space/22"
+                  },
                   "lits": {
                     "strokeWeight": 1,
-                    "radius": 0,
-                    "paddingTop": 8,
-                    "paddingBottom": 8,
-                    "paddingLeft": 22,
-                    "paddingRight": 22
+                    "radius": 0
                   },
                   "children": [
                     {
@@ -209,9 +219,12 @@ const COMPONENTS = [
                     "primary": "CENTER",
                     "counter": "CENTER"
                   },
-                  "lits": {
-                    "width": 0,
-                    "minWidth": 0
+                  "fixedWidth": {
+                    "px": 0,
+                    "varName": "space/0"
+                  },
+                  "bindings": {
+                    "minWidth": "space/0"
                   },
                   "children": [
                     {
@@ -224,10 +237,18 @@ const COMPONENTS = [
                       },
                       "fill": "color/blanc",
                       "stroke": "color/bleu-clair",
+                      "fixedWidth": {
+                        "px": 30,
+                        "varName": "size/google-reviews/pastille-gauche"
+                      },
+                      "fixedHeight": {
+                        "px": 30,
+                        "varName": "size/google-reviews/pastille-gauche"
+                      },
+                      "bindings": {
+                        "minWidth": "size/google-reviews/pastille-gauche"
+                      },
                       "lits": {
-                        "width": 30,
-                        "height": 30,
-                        "minWidth": 30,
                         "radius": 15,
                         "strokeWeight": 1
                       },
@@ -254,8 +275,8 @@ const COMPONENTS = [
                     "stretchChildren": true
                   },
                   "grow": true,
-                  "lits": {
-                    "itemSpacing": 8
+                  "bindings": {
+                    "itemSpacing": "space/8"
                   },
                   "children": [
                     {
@@ -353,9 +374,12 @@ const COMPONENTS = [
                     "primary": "CENTER",
                     "counter": "CENTER"
                   },
-                  "lits": {
-                    "width": 0,
-                    "minWidth": 0
+                  "fixedWidth": {
+                    "px": 0,
+                    "varName": "space/0"
+                  },
+                  "bindings": {
+                    "minWidth": "space/0"
                   },
                   "children": [
                     {
@@ -368,10 +392,18 @@ const COMPONENTS = [
                       },
                       "fill": "color/blanc",
                       "stroke": "color/bleu-clair",
+                      "fixedWidth": {
+                        "px": 30,
+                        "varName": "size/google-reviews/pastille-droite"
+                      },
+                      "fixedHeight": {
+                        "px": 30,
+                        "varName": "size/google-reviews/pastille-droite"
+                      },
+                      "bindings": {
+                        "minWidth": "size/google-reviews/pastille-droite"
+                      },
                       "lits": {
-                        "width": 30,
-                        "height": 30,
-                        "minWidth": 30,
                         "radius": 15,
                         "strokeWeight": 1
                       },
@@ -394,7 +426,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1612
   }
 ];
 const ROW_H = 240, PAD = 40;

@@ -183,8 +183,8 @@
             "src": "{imageUrl}",
             "alt": "{imageAlt}"
           },
-          "literals": {
-            "height": "364px"
+          "tokens": {
+            "height": "{size.carte.reassurance-image}"
           },
           "declared": {
             "object-fit": "cover",
@@ -205,9 +205,9 @@
           "layout": {
             "grow": true
           },
-          "literals": {
-            "height": "418px",
-            "min-height": "0px"
+          "tokens": {
+            "height": "{size.carte.categorie-image}",
+            "min-height": "{space.0}"
           },
           "declared": {
             "object-fit": "cover"
@@ -317,23 +317,21 @@
               }
             }
           },
-          "literals": {
-            "gap": "8px",
-            "padding-right": "16px",
-            "padding-left": "16px"
+          "tokens": {
+            "gap": "{space.8}",
+            "padding-right": "{space.16}",
+            "padding-left": "{space.16}"
           },
-          "literalsByProp": [
-            {
-              "prop": "disposition",
-              "map": {
-                "categorie": {
-                  "gap": "16px",
-                  "padding-right": "0px",
-                  "padding-left": "0px"
-                }
+          "tokensByProp": {
+            "prop": "disposition",
+            "map": {
+              "categorie": {
+                "gap": "{space.16}",
+                "padding-right": "{space.0}",
+                "padding-left": "{space.0}"
               }
             }
-          ],
+          },
           "declared": {
             "text-rendering": "geometricprecision"
           }
@@ -370,12 +368,10 @@
       },
       "tokens": {
         "background-color": "{color.blanc}",
-        "font-family": "{font.family.montserrat}"
-      },
-      "literals": {
-        "width": "364px",
-        "gap": "24px",
-        "padding-bottom": "24px"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.carte.root}",
+        "gap": "{space.24}",
+        "padding-bottom": "{space.24}"
       },
       "declared": {
         "box-shadow": "0px 5px 10px rgba(0, 0, 0, 0.2)",
@@ -386,14 +382,21 @@
           "prop": "disposition",
           "map": {
             "categorie": {
-              "width": "743px",
-              "background-color": "transparent",
-              "gap": "32px",
-              "padding-bottom": "0px"
+              "background-color": "transparent"
             }
           }
         }
-      ]
+      ],
+      "tokensByProp": {
+        "prop": "disposition",
+        "map": {
+          "categorie": {
+            "width": "{size.carte.root-categorie}",
+            "gap": "{space.32}",
+            "padding-bottom": "{space.0}"
+          }
+        }
+      }
     }
   },
   "anchors": {
