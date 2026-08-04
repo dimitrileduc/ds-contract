@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-tab",
+  "claim": "tab diverges by 'rendering': geometry is exact at 172×82 device px; residual is the master text plane rendering uppercase glyph ink while the bound Figma TEXT property reports default « Onglet », plus cross-renderer glyph rasterization.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: tab, class 'rendering')",
+  "method": "npm run extract:figma:visual -- tab",
+  "observed": {
+    "Etat=Defaut": { "rawPct": 3.6018150879183213, "sizeOurs": "172×82", "sizeFigma": "172×82" },
+    "Etat=Selectionne": { "rawPct": 3.6018150879183213, "sizeOurs": "172×82", "sizeFigma": "172×82" },
+    "visualCheck": "Isolated both triptych panels for Etat=Defaut: both sides show the SAME visually-uppercase 'ONGLET' label (a text-transform effect over the mixed-case bound value « Onglet », exactly as claimed) with only glyph-rasterization-level differences — no structural mismatch.",
+    "note": "geometry exact (Δ0×Δ0) as claimed. Both states score IDENTICALLY (3.6018150879183213% to 13 significant digits) — the Defaut/Selectionne visual difference, whatever it is, does not move this particular residual."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

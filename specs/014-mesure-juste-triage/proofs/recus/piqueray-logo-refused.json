@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "piqueray-logo-refused",
+  "claim": "piqueray-logo :: Couleur=Default, Couleur=Blanc is REFUSED because part \"Marque\" needs vector asset \"assets/vectors/piqueray-logo-marque.svg\" which does not exist.",
+  "claimSource": "extract/figma/visual-parity/REPORT.md, 'Not diffed (named, never dropped)' — research.md §0.5",
+  "method": "npm run extract:figma:visual -- piqueray-logo",
+  "observed": {
+    "consoleLines": [
+      "✗ Couleur=Default: render refused — Refused — 2 contract violation(s):   - ds.piqueray-logo: part \"Marque\" needs vector asset \"assets/vectors/piqueray-logo-marque.svg\" which does not exist",
+      "✗ Couleur=Blanc: render refused — Refused — 2 contract violation(s):   - ds.piqueray-logo: part \"Marque\" needs vector asset \"assets/vectors/piqueray-logo-marque.svg\" which does not exist"
+    ],
+    "hiddenSecondViolation": "run.ts truncates a refusal to its first TWO lines for the console/report headline (`error.split('\\n').slice(0,2).join(' ')`), which is exactly '\"Refused — 2 contract violation(s):\" + the FIRST bullet'. Calling core/emit-react.ts's validateContract directly on contracts/piqueray-logo.contract.json surfaces the full list — there IS a second violation, never shown anywhere in the report: `ds.piqueray-logo: part \"Wordmark\" needs vector asset \"assets/vectors/piqueray-logo-wordmark.svg\" which does not exist`. research.md §0.5 and the spec only name the Marque half.",
+    "assetsActuallyOnDisk": "Both assets/vectors/piqueray-logo-marque.svg (490 bytes) and assets/vectors/piqueray-logo-wordmark.svg (2275 bytes) EXIST on disk today, and both are well-formed, drawable SVGs already using `fill=\"currentColor\"` (satisfying the emitter's color-bound-paint check that runs right after the existence check, core/emit-react.ts:1144-1147) — the literal wording 'which does not exist' is imprecise.",
+    "realMechanism": "core/emit-react.ts:1139 checks `iconAssets.get(part.vectorAsset.asset)` against a Map, not the filesystem. For the visual-parity harness that Map is built by extract/fidelity-matrix/scripts/lib.ts's loadRepoData(), which populates `icons` by `readdirSync(path.join(REPO, 'assets', 'icons'))` ONLY — it never reads `assets/vectors/`. Both piqueray-logo vector assets physically live in `assets/vectors/`, a directory the loader never scans, so the Map lookup misses regardless of the files' real presence. The refusal is a loader-scope/discoverability gap, not a missing-asset gap."
+  },
+  "verdict": "confirmed",
+  "verdictNote": "The DECISION under test — piqueray-logo's two variants are refused and stay refused — reproduces exactly, unchanged. What the re-test refines: (1) a SECOND violation (Wordmark) exists and was never surfaced by the console/report truncation — both are the same class of gap; (2) the wording 'which does not exist' is imprecise — the assets exist on disk but are outside the directory extract/fidelity-matrix/scripts/lib.ts's loadRepoData() scans for `assets`. This looks fixable in principle (scan assets/vectors/ too, or relocate/duplicate the two files) but lib.ts is shared infrastructure used beyond visual-parity, and reviving this row would be new pixel coverage needing its own region/threshold work — both out of scope for a re-test receipt (FR-005, FR-013). Named here, not fixed.",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

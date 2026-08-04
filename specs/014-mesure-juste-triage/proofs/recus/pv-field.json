@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-field",
+  "claim": "field diverges by 'engine': open composition defect — the slotted Input keeps intrinsic width AND the Field error state cannot yet propagate the measured red border/aria-invalid to the composed control.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: field, class 'engine')",
+  "method": "npm run extract:figma:visual -- field",
+  "observed": {
+    "Etat=Normal": { "rawPct": 1.8419312169312168, "sizeOurs": "560×162", "sizeFigma": "560×162" },
+    "Etat=Erreur": { "rawPct": 2.195080862533693, "sizeOurs": "560×212", "sizeFigma": "560×212" },
+    "ariaInvalidWiring": "src/components/Field/Field.tsx:24 — `'aria-invalid': etat === 'normal' ? 'false' : etat === 'erreur' ? 'true' : undefined` — already correctly wired, contradicting the claim.",
+    "redBorderVisualCheck": "Sliced out/field/etat-erreur.triptych.png into isolated ours/figma panels (12px gutter, panel width 560 device px) and viewed both directly: BOTH sides show the SAME red border around the input box and the SAME red 'Message d'erreur' text — the error state visibly propagates on the code side. The claim's red-border/aria-invalid half does not hold today.",
+    "widthVisualCheck": "In the same isolated panels, Figma's input/label rule extends visibly further right than ours, even though the OUTER Field box measures IDENTICAL on both sides (560×162 / 560×212) — i.e. the outer box matches, but the nested Input part inside it does not stretch to fill, consistent with 'the slotted Input keeps intrinsic width'."
+  },
+  "verdict": "refuted",
+  "verdictNote": "Re-classed on what the re-test establishes (I-5.2): the class 'engine' and the WIDTH half of the claim are confirmed, but the red-border/aria-invalid half is false today — evidently fixed by a later change to Field.tsx without the triage cause being updated. triage.ts's cause text is corrected to drop the stale half and keep only what re-measures; no repair applied beyond the triage text itself (FR-013 — Field.tsx is untouched by this receipt).",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

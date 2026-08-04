@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-avantage",
+  "claim": "avantage :: Avantage diverges by rendering — pixel-identical size and masked score ≈0.00%: text raster explains the residual.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: avantage)",
+  "method": "npm run extract:figma:visual -- avantage",
+  "observed": {
+    "key": "avantage :: Avantage",
+    "rawPct": 1.8120333772507684,
+    "maskedPct": 0.0009670992824123325,
+    "maskCoveragePct": 54.58849363197189,
+    "sizeOurs": "1518×150",
+    "sizeFigma": "1518×150"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

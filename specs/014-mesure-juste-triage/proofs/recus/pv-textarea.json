@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-textarea",
+  "claim": "textarea :: Textarea diverges by rendering — imposed renderWidth matches the master exactly, pixel-identical size, masked score 0.00% at the same localized region as input's placeholder text.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: textarea)",
+  "method": "npm run extract:figma:visual -- textarea",
+  "observed": {
+    "key": "textarea :: Textarea",
+    "rawPct": 0.0634765625,
+    "maskedPct": 0,
+    "maskCoveragePct": 6.414620535714286,
+    "sizeOurs": "560×256",
+    "sizeFigma": "560×256",
+    "diagnosis": "diff localized top-left (179×20px)"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

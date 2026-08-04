@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-member-card",
+  "claim": "member-card diverges by 'image-boundary': Figma paints the real portrait while ds.member-picture deliberately renders the documented #D9D9D9 technical placeholder; text and outer geometry agree (height Δ1 device px).",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: member-card, class 'image-boundary')",
+  "method": "npm run extract:figma:visual -- member-card",
+  "observed": {
+    "rawPct": 52.51872429246731,
+    "maskedPct": 56.86246785349511,
+    "maskCoveragePct": 7.736202345140892,
+    "sizeOurs": "728×895",
+    "sizeFigma": "728×895",
+    "diagnosis": "overall ink differs (ours #d7d6d6 vs figma #aa9f97)",
+    "note": "size is IDENTICAL both sides (Δ0×Δ0) — the previously-written 'height Δ1 device px' no longer measures and is corrected in triage.ts. The core diagnosis (placeholder gray vs real-portrait ink) holds: #d7d6d6 is the same #D9D9D9-family placeholder tone, #aa9f97 is a real-photo average, matching the class and the mechanism unchanged since the cause was written."
+  },
+  "verdict": "confirmed",
+  "verdictNote": "Class and mechanism (A5 image boundary) hold on re-measurement; only the peripheral 'Δ1 device px' detail was stale and is corrected in triage.ts (now Δ0) rather than reconducted verbatim.",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

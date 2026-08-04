@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-accordion-row-petit-ouvert",
+  "claim": "accordion-row :: Taille=Petit, Etat=Ouvert diverges by rendering — imposed renderWidth (1550) matches, pixel-identical size, masked score 0.00%: the raw residual is entirely text raster.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: accordion-row)",
+  "method": "npm run extract:figma:visual -- accordion-row",
+  "observed": {
+    "key": "accordion-row :: Taille=Petit, Etat=Ouvert",
+    "rawPct": 0.01995967741935484,
+    "maskedPct": 0,
+    "maskCoveragePct": 2.4306451612903226,
+    "sizeOurs": "3100×160",
+    "sizeFigma": "3100×160",
+    "diagnosis": "near-identical"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-google-reviews",
+  "claim": "google-reviews :: Avis Google diverges by rendering (cross-renderer text rasterization) — sizes are pixel-identical, geometry is not the driver.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: google-reviews)",
+  "method": "npm run extract:figma:visual -- google-reviews",
+  "observed": {
+    "key": "google-reviews :: Avis Google",
+    "rawPct": 3.3242413408348,
+    "maskedPct": 1.5061886679677832,
+    "maskCoveragePct": 13.891300760623585,
+    "sizeOurs": "3104×656",
+    "sizeFigma": "3104×656",
+    "diagnosis": "text raster/family delta dominates"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

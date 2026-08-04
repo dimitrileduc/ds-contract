@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-footer-column",
+  "claim": "footer-column :: FooterColumn diverges by rendering — the imposed renderWidth (169 CSS px = figma's declared 338 device px exactly) is correct; the residual is a content-box text-hug delta on a wider label, the same class already documented as a cross-renderer text-hug note.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: footer-column)",
+  "method": "npm run extract:figma:visual -- footer-column",
+  "observed": {
+    "key": "footer-column :: FooterColumn",
+    "rawPct": 2.774887834059432,
+    "maskedPct": 0.08666512595331638,
+    "maskCoveragePct": 71.8642304441121,
+    "sizeOurs": "322×182",
+    "sizeFigma": "338×181",
+    "diagnosis": "size ours 322×182 vs figma 338×181 (Δ-16, Δ1 device px); text raster/family delta dominates",
+    "renderWidthCheck": "subjects.ts renderWidth:169 CSS px × 2 = 338 device px == figma width exactly"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

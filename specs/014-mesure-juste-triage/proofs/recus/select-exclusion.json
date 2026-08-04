@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "select-exclusion",
+  "claim": "a native <select> does NOT render its selected-option TEXT in headless Chromium (this harness's renderer) — the \"ours\"/code side comes up empty while Figma shows « Texte de saisie ». The code is correct (it emits <select><option>{value}, and the dashboard's real-browser render shows the text); only headless drops the option display.",
+  "claimSource": "extract/figma/visual-parity/subjects.ts:236-247 (as committed before 014/T025 — the block is removed by this feature, replaced by the `select` PARITY_SUBJECTS entry)",
+  "method": "npm run extract:figma:visual -- select",
+  "observed": {
+    "rawPct": 0.8500744047619047,
+    "maskedPct": 0.8500744047619047,
+    "maskCoveragePct": 0,
+    "sizeOurs": "560×96",
+    "sizeFigma": "560×96",
+    "diagnosis": "diff localized middle-left (197×20px)",
+    "optionTextRendered": false,
+    "reproducible": "identical rawPct across two independent runs (out/select/ cleared between them)",
+    "rootCause": "NOT a headless-Chromium limitation. An isolated diagnostic (same launchBrowser()/executable, same viewport 800x300 @ deviceScaleFactor 2, same omitBackground:true + transparent-body screenshot technique the harness uses) rendered a bare <select><option>Texte de saisie</option></select> and the text painted correctly in all three tested background/omitBackground combinations — ruling out both 'headless can't paint select internals' and 'omitBackground breaks native widget compositing'. The real defect lives in core/emit-html.ts's renderPart(): `textEl = part.element ?? (parentEl === 'select' ? 'option' : 'span')` (~line 886) defaults a CHILD's element to 'option' only when that child has no authored element AND its parent is a select. ds.select's own 'valeur' part authors `element: 'select'` directly (correct — it IS the outer <select> tag), so textEl resolves to 'select' itself; the content branch (~line 962-964) then emits `<select class=\"…\" data-part=\"valeur\">${contentHtml(...)}</select>` — the resolved text as a BARE child, never nested in an <option>. Bare text is not permitted content inside <select> per the HTML5 content model; Chromium's parser drops it during tree construction, so no text node ever reaches the render tree. This single mechanism explains BOTH observed symptoms at once: the blank screenshot AND maskCoveragePct 0 (the harness's own text-rect walker, extract/figma/visual-parity/render.ts:940-950, finds zero text nodes because none survived HTML parsing — not because a real text node was merely invisible).",
+    "shippedComponentUnaffected": "src/components/Select/Select.tsx:31-33 (generated output of the REACT emitter, core/emit-react.ts) correctly emits `<select className={styles.valeur}><option>{value}</option></select>` — verified by direct read. evals/run.ts's 'native-checkbox-and-select-render-correctly' fixture (line ~856-873) already pins exactly this for the REACT emitter (`if (!/<option>\\{value\\}<\\/option>/.test(sel)) throw …`). No equivalent pin exists for the HTML emitter on this pattern: evals/fixtures/raw-text-root-projection-check.ts only covers a select ROOT with STRUCTURAL children (a different code path — emit-html.ts's root-projection logic, ~line 1030-1141), not a nested, non-root part with plain text content. Real consumers of the shipped React component are unaffected; the gap is isolated to core/emit-html.ts (the `html` emitter) and to this visual-parity harness's own code-side preview, which uses that emitter (render.ts module header: 'The contract is emitted by core/emit-html.ts').",
+    "scopeNote": "Named, not fixed: 014's plan.md Constitution Check commits to zero core/ changes (§VII, 'Engine integrity') and FR-005 forbids a triage from repairing anything it finds. This is flagged here as a genuine, previously-undetected core/emit-html.ts defect for a future spec to pick up — the select TRIAGE rule classes it `engine` (re-classed at review, 2026-08-03): the fault is in core/emit-html.ts, one of the four emitters, which is the definition of `engine`. It was first filed `instrument`, but that class publishes \"fixed HERE (DW-006)\" and this defect is NOT fixed here — the wording would have retired a live bug. `engine` is the tracked-open class, and the defect now carries a deferredWork entry in proofs/registre/causes.json so something schedules it. The shipped React surface is unaffected: this is an open tracked defect, not a product regression."
+  },
+  "verdict": "refuted",
+  "verdictNote": "The claim's stated MECHANISM ('a native <select> does NOT render text in headless Chromium') is false — proven directly. The claim's SYMPTOM (the code side comes up empty) is real, but for a completely different, newly-identified reason (an emit-html.ts content-model gap, see rootCause). Per I-5.2, the line is re-classed on what the re-test establishes: select rejoins pixel coverage (T025/T027) and its residual carries the `instrument` cause this receipt supports, not the retired 'headless Chromium limitation' framing.",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

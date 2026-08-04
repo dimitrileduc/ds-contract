@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dw-001-contract-geometry",
+  "claim": "DW-001 (footer, ds.piqueray-logo /anatomy/root/literals/width): the master carries PiquerayLogo at 180.0985565185547px; a parent cannot restyle a component instance, so the width should live on ds.piqueray-logo's own root — but that root is SHARED with ds.header, which needs a different size there.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json DW-001",
+  "method": "re-read DW-001's observedCause against contracts/cause-vocabulary.md §1's six definitions; cross-checked against org-footer-geometry.json (014/T023b), which already measures and confirms this same finding on the live footer organism",
+  "observed": {
+    "vocabularyMatch": "'the contract's own geometry is false, or carries none at all' (contract-geometry) — DW-001 is precisely this: ds.piqueray-logo's root has no width that can vary per consuming context (footer vs header), so ONE shared instance cannot be both sizes. Not image-boundary (no image involved), not figma-source (the DEFECT is in the contract's anatomy, not the canvas), not instrument (nothing about the measurement itself is at fault).",
+    "corroboration": "org-footer-geometry.json (rawPct 1.0439991325748406, verdict confirmed) already names DW-001 as one of three contract-geometry findings on footer, measured on 2026-08-03."
+  },
+  "verdict": "confirmed",
+  "browser": null,
+  "date": "2026-08-03"
+}

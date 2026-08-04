@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dw-003-figma-source",
+  "claim": "DW-003 (faq, ds.section-header /anatomy/root/literals/height): the SectionHeader instance 2104:2907 is FIXED at 50px by its master while its content needs 83px (clipsContent=false); of 8 census'd SectionHeader instances, only faq's is FIXED instead of HUG. Everything downstream shifts 32px. Already self-labeled DÉFAUT DE SOURCE FIGMA.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json DW-003",
+  "method": "re-read DW-003's observedCause against contracts/cause-vocabulary.md §1; cross-checked against org-faq-source.json (014/T023b), which measures the same fact and cascade on the live faq organism",
+  "observed": {
+    "vocabularyMatch": "'the FIGMA side draws something else than it should' (figma-source) — a single OUTLIER instance (FIXED vs the other 7's HUG) is a defect of that specific canvas instance, not of ds.section-header's contract (which correctly HUGs everywhere else) nor of the measurement. DW-003's own text already reaches this exact conclusion in its final sentence.",
+    "corroboration": "org-faq-source.json (rawPct 3.672346488508598, verdict confirmed) already names DW-003 as faq's cause, citing the same instance id and 32px cascade, measured 2026-08-03."
+  },
+  "verdict": "confirmed",
+  "browser": null,
+  "date": "2026-08-03"
+}

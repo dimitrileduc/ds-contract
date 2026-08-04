@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-carte",
+  "claim": "carte diverges by 'engine': open component defect — IMAGE pixels are outside the contract transport and the two layouts still need distinct image sizing; Reassurance also lacks its measured shadow/alignment and Categorie lacks uppercase/rich-text treatment.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: carte, class 'engine')",
+  "method": "npm run extract:figma:visual -- carte",
+  "observed": {
+    "Disposition=Reassurance": {
+      "rawPct": 64.13921650953598,
+      "maskedPct": 73.45081332300542,
+      "sizeOurs": "738×1065",
+      "sizeFigma": "736×1064",
+      "diagnosis": "overall ink differs (ours #ababad vs figma #845f61)"
+    },
+    "Disposition=Categorie": {
+      "rawPct": 56.559939932402315,
+      "maskedPct": 62.19559356028079,
+      "sizeOurs": "1486×1244",
+      "sizeFigma": "1486×1244",
+      "diagnosis": "overall ink differs (ours #4f5154 vs figma #767672)"
+    },
+    "note": "neither variant emits a size diagnosis line (both under the Δ4 device-px threshold), so geometry is not the measured driver on either — a mixed cause naming geometry alongside the image frontier does not survive re-measurement as written."
+  },
+  "verdict": "refuted",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

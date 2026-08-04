@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "retired-heading",
+  "claim": "the 'heading' TRIAGE rule (originalClass 'renderer') can never fire again: ds.heading was removed at the Piqueray reconversion, and no contract, no parity subject (live or quarantined) exists for it.",
+  "claimSource": "extract/figma/visual-parity/triage.ts RETIRED_RULES entry 'heading' (cause-vocabulary.md §4.2)",
+  "method": "ls contracts/*.contract.json | xargs -n1 basename | grep -i heading ; grep -oE \"id: '[a-z-]+'\" extract/figma/visual-parity/subjects.ts | sort -u | grep -i heading ; grep -i heading catalog/catalog.json",
+  "observed": {
+    "contractsMatch": "none — no contracts/heading.contract.json, no *heading* file under contracts/",
+    "subjectsMatch": "none — 'heading' is not an id in PARITY_SUBJECTS nor LEGACY_SUBJECTS (extract/figma/visual-parity/subjects.ts)",
+    "catalogMatch": "none — catalog/catalog.json carries no heading entry"
+  },
+  "verdict": "confirmed",
+  "browser": null,
+  "date": "2026-08-03"
+}

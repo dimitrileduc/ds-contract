@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-section-header-avec-cta",
+  "claim": "section-header :: Disposition=Avec CTA diverges by contract-geometry, not by an instrument-imposed width — the subject declares no renderWidth (both dispositions HUG), Standard already HUGs within 1px of its own master, and the Avec-CTA master alone is 3093px wide against our 2174px.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: section-header)",
+  "method": "npm run extract:figma:visual -- section-header",
+  "observed": {
+    "key": "section-header :: Disposition=Avec CTA",
+    "rawPct": 8.778484271533092,
+    "maskedPct": 6.854510283038078,
+    "maskCoveragePct": 41.193375722958656,
+    "sizeOurs": "2174×108",
+    "sizeFigma": "3093×108",
+    "diagnosis": "size ours 2174×108 vs figma 3093×108 (Δ-919, Δ0 device px)",
+    "corroboration": "section-header :: Disposition=Standard renders 1082×158 vs figma 1081×156 (Δ1/Δ2) — near-exact HUG match, ruling out a harness-imposed width as the driver for Avec CTA specifically."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

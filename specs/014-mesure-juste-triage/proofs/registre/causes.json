@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "note": "Registre des causes hors règles TRIAGE : entrées DW de 013 re-classées (Phase 6/US5, T032) + lignes divergentes de l'audit d'organismes (Phase 4/US2, T023b). Ce document RÉFÉRENCE specs/013-… ; aucun de ses fichiers n'est modifié.",
+  "entries": [
+    {
+      "dwId": "DW-001",
+      "subjectId": "footer",
+      "cause": "contract-geometry",
+      "receiptId": "dw-001-contract-geometry",
+      "resolvedBy": null
+    },
+    {
+      "dwId": "DW-002",
+      "subjectId": "reassurances",
+      "cause": "contract-geometry",
+      "receiptId": "dw-002-contract-geometry",
+      "resolvedBy": null,
+      "sameDefectAs": {
+        "kind": "organismLine",
+        "key": "reassurances/reassurances-disposition-4-cartes",
+        "note": "Même défaut sous-jacent que la ligne d'organisme reassurances (ds.carte /anatomy/root/literals/min-width). Deux entrées parce qu'elles décrivent deux choses — un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 015 : le comptage par cause doit les dédupliquer, sinon il dimensionne 2 pour 1."
+      }
+    },
+    {
+      "dwId": "DW-003",
+      "subjectId": "faq",
+      "cause": "figma-source",
+      "receiptId": "dw-003-figma-source",
+      "resolvedBy": null,
+      "sameDefectAs": {
+        "kind": "organismLine",
+        "key": "faq/faq-master-defaults",
+        "note": "Même défaut sous-jacent : l'instance SectionHeader 2104:2907 figée à 50px dans le master faq (faq.structure.section-header-height). Le reçu de la ligne cite DW-003 nommément. Deux entrées parce qu'elles décrivent un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 016 : le comptage par cause les déduplique."
+      }
+    },
+    {
+      "dwId": "DW-004",
+      "subjectId": "footer",
+      "cause": "contract-geometry",
+      "receiptId": "dw-004-contract-geometry",
+      "resolvedBy": null
+    },
+    {
+      "dwId": "DW-005",
+      "subjectId": "footer",
+      "cause": "contract-geometry",
+      "receiptId": "dw-005-contract-geometry",
+      "resolvedBy": null
+    },
+    {
+      "dwId": "DW-006",
+      "subjectId": "reassurances",
+      "cause": "instrument",
+      "receiptId": "dw-006-instrument",
+      "resolvedBy": "014"
+    }
+  ],
+  "organismLines": [
+    {
+      "key": "hero/hero-master-defaults",
+      "rawPct": 27.82904730902778,
+      "cause": "image-boundary",
+      "receiptId": "org-hero-image"
+    },
+    {
+      "key": "faq/faq-master-defaults",
+      "rawPct": 3.672346488508598,
+      "cause": "figma-source",
+      "receiptId": "org-faq-source",
+      "sameDefectAs": {
+        "kind": "deferredWork",
+        "dwId": "DW-003",
+        "note": "Même défaut sous-jacent : l'instance SectionHeader 2104:2907 figée à 50px dans le master faq (faq.structure.section-header-height). Le reçu de la ligne cite DW-003 nommément. Deux entrées parce qu'elles décrivent un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 016 : le comptage par cause les déduplique."
+      }
+    },
+    {
+      "key": "texte-seo/texte-seo-master-defaults",
+      "rawPct": 1.8376109056184122,
+      "cause": "contract-geometry",
+      "receiptId": "org-texte-seo-geometry"
+    },
+    {
+      "key": "footer/footer-master-defaults",
+      "rawPct": 1.0439991325748406,
+      "cause": "contract-geometry",
+      "receiptId": "org-footer-geometry"
+    },
+    {
+      "key": "sav/sav-master-defaults",
+      "rawPct": 0.6652451517606137,
+      "cause": "image-boundary",
+      "receiptId": "org-sav-image"
+    },
+    {
+      "key": "coordonnees/coordonnees-master-defaults",
+      "rawPct": 0.5222631289161859,
+      "cause": "contract-geometry",
+      "receiptId": "org-coordonnees-geometry"
+    },
+    {
+      "key": "presentation/presentation-master-defaults",
+      "rawPct": 0.3530901968401968,
+      "cause": "rendering",
+      "receiptId": "org-presentation-rendering"
+    },
+    {
+      "key": "devis/devis-master-defaults",
+      "rawPct": 0.1353753306878307,
+      "cause": "image-boundary",
+      "receiptId": "org-devis-image"
+    },
+    {
+      "key": "reassurances/reassurances-disposition-4-cartes",
+      "rawPct": 3.298885335721438,
+      "cause": "contract-geometry",
+      "receiptId": "org-reassurances-geometry",
+      "coOccurring": {
+        "cause": "image-boundary",
+        "fact": "reassurances.visual.carte-images",
+        "note": "Fait réel, nommé ici parce que le vocabulaire n'admet qu'une cause par ligne. La part respective des deux n'a pas pu être mesurée dans cette fenêtre — question transmise à 015 (voir le reçu)."
+      },
+      "sameDefectAs": {
+        "kind": "deferredWork",
+        "dwId": "DW-002",
+        "note": "Même défaut sous-jacent que DW-002 (ds.carte /anatomy/root/literals/min-width). Deux entrées parce qu'elles décrivent deux choses — un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 015 : le comptage par cause doit les dédupliquer, sinon il dimensionne 2 pour 1."
+      }
+    }
+  ],
+  "deferredWork": [
+    {
+      "id": "DW-014-001",
+      "discoveredBy": "014",
+      "cause": "engine",
+      "receiptId": "select-exclusion",
+      "surface": "core/emit-html.ts",
+      "title": "L'émetteur html émet le texte d'une part `element: 'select'` en enfant nu de <select>",
+      "observedCause": "renderPart() résout `textEl = part.element ?? (parentEl === 'select' ? 'option' : 'span')`. La part `valeur` de ds.select déclare `element: 'select'` (correct — elle EST la balise), donc textEl vaut 'select' et la branche de contenu émet le texte en enfant direct. Le contenu texte nu n'est pas permis dans <select> par le modèle de contenu HTML5 : Chromium le jette à la construction de l'arbre. Explique à la fois la capture vide et maskCoveragePct 0.",
+      "shippedSurfaceAffected": false,
+      "shippedSurfaceNote": "src/components/Select/Select.tsx (émetteur react) émet correctement <select><option>{value}</option>, épinglé par l'eval native-checkbox-and-select-render-correctly. Aucun consommateur du produit n'est touché.",
+      "whyNotFixedHere": "FR-005 (un triage ne répare pas) + constitution §VII (core/ intouché par 014).",
+      "destination": "à ordonnancer — défaut moteur ouvert, sans spec assignée à ce jour",
+      "verdictImpact": "divergent",
+      "status": "deferred",
+      "note": "Consigné ici parce que 014 l'a DÉCOUVERT : DW-006 n'était suivi que parce que 013 l'avait porté à un registre. Un défaut qui ne vit que dans un reçu n'est ordonnancé par personne."
+    }
+  ]
+}

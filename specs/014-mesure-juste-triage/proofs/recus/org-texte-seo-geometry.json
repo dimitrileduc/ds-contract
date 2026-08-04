@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "org-texte-seo-geometry",
+  "claim": "texte-seo diverges by contract-geometry — the section-header title's bold span ('showroom à Pepinster' in Figma) is not carried (plain string in the contract) and its font-size (24px) / line-height (30px) are not bound at all; geometry itself passes exactly (Δpx 0/0), consistent with a typography-binding gap rather than cross-renderer noise.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/organisms/texte-seo/result.json (facts: texte-seo.content.section-header-titre, texte-seo.visual.section-header-titre-font-size, texte-seo.visual.section-header-titre-line-height)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts texte-seo",
+  "observed": {
+    "geometryDeltaPx": {
+      "width": 0,
+      "height": 0
+    },
+    "rawPct": 1.8376109056184122,
+    "divergentFacts": [
+      {
+        "id": "texte-seo.content.section-header-titre",
+        "reason": "contract-value-differs: rich-text bold span not carried, rendered as one plain string"
+      },
+      {
+        "id": "texte-seo.visual.section-header-titre-font-size",
+        "reason": "contract-does-not-carry-figma-fact:SectionHeader.Titre.font-size=24px"
+      },
+      {
+        "id": "texte-seo.visual.section-header-titre-line-height",
+        "reason": "contract-does-not-carry-figma-fact:SectionHeader.Titre.line-height=30px"
+      }
+    ],
+    "excludedAsNoise": "root.itemSpacing/paddingInline facts ('32px'!=32, '89px'!=89) are a string-vs-number comparison artefact, not a real value mismatch — not cited as the driver."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-carousel-controls",
+  "claim": "carousel-controls :: CarouselControls diverges by rendering — both nav buttons are the same ds.button variant=iconOnly (chevron-left/chevron-right, contract carries no distinguishing state), pixel-identical size, 0% mask coverage (icon-only, no text), diff localized to one icon-sized region: cross-renderer SVG chevron rasterization.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: carousel-controls)",
+  "method": "npm run extract:figma:visual -- carousel-controls",
+  "observed": {
+    "key": "carousel-controls :: CarouselControls",
+    "rawPct": 0.40523690773067333,
+    "maskedPct": 0.40523690773067333,
+    "maskCoveragePct": 0,
+    "sizeOurs": "3208×104",
+    "sizeFigma": "3208×104",
+    "diagnosis": "diff localized middle-right (72×104px)",
+    "contractCheck": "contracts/carousel-controls.contract.json: both parts (prcdent, Suivant) are ds.button variant=iconOnly with only iconLeftGlyph differing (chevron-left/chevron-right) — no disabled/state distinction that would explain a structural gap."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

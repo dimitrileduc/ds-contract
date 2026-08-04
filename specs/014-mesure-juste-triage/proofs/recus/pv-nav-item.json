@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-nav-item",
+  "claim": "nav-item :: NavItem diverges by rendering — HUG master, no forced width; the triptych diff is almost entirely antialiasing-classified (yellow, not red) over identical label text and chevron on a dark, white-on-transparent surface.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: nav-item)",
+  "method": "npm run extract:figma:visual -- nav-item",
+  "observed": {
+    "key": "nav-item :: NavItem",
+    "rawPct": 1.25,
+    "maskedPct": 0.25252525252525254,
+    "maskCoveragePct": 91.3157894736842,
+    "sizeOurs": "378×24",
+    "sizeFigma": "380×24",
+    "comparisonSurface": "dark",
+    "triptychInspection": "report-assets/nav-item--navitem.triptych.png: diff panel is overwhelmingly YELLOW (pixelmatch antialiasing classifier) over the same 'PORTES DE GARAGE ⌄' text/chevron on both sides — no content or structural gap visible."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

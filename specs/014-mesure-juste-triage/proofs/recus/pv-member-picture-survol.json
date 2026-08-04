@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-member-picture-survol",
+  "claim": "member-picture :: Etat=Survol diverges under the same A5 image-boundary limit as Etat=Defaut — the hover state photographs a dimmed real portrait Figma-side, against our unchanged placeholder.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: member-picture)",
+  "method": "npm run extract:figma:visual -- member-picture",
+  "observed": {
+    "key": "member-picture :: Etat=Survol",
+    "rawPct": 58.33459123294288,
+    "maskedPct": 58.33459123294288,
+    "maskCoveragePct": 0,
+    "sizeOurs": "728×728",
+    "sizeFigma": "727×727",
+    "diagnosis": "overall ink differs (ours #d9d9d9 vs figma #6d6d6c)"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

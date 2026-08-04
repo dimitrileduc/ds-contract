@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "dw-006-instrument",
+  "claim": "DW-006 (reassurances, ds.reassurances /anatomy/root): INSTRUMENT defect, not a contract defect — the pilot photographs `subject.figmaSetNodeId` (2114:3721, three variants stacked, 1552×2451) instead of the case node (2114:3619, one variant, 1550×731), comparing one rendered variant against three photographed ones and publishing 39,78437291157622% — not a fidelity measurement.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json DW-006",
+  "method": "this DW is not merely re-read — it is the ROOT CAUSE 014 itself corrects (US1/T007-T015): npx tsx extract/figma/organism-audit/tools/run-one.mts reassurances, then inspect proofs/organisms/reassurances/result.json's cases[0].referenceProvenance",
+  "observed": {
+    "vocabularyMatch": "'the measurement itself is in question' (instrument) — DW-006's own text already says this in its first three words. This is the ONLY DW entry the six-value split (D1) explicitly names as the 'ex-harness'/instrument destination's worked example.",
+    "fixApplied014": "extract/figma/organism-audit/reference.ts (resolveCaseReference + checkReferenceProvenance, T007), pilot.ts's five derivations switched to the case node (T008), fixture evals/fixtures/organism-audit-case-reference-check.ts (T006, red before T007/T008, green after).",
+    "postFixMeasurement": {
+      "rawPct": 3.298885335721438,
+      "referenceProvenance": {
+        "caseNodeId": "2114:3619",
+        "setNodeId": "2114:3721",
+        "derivations": {
+          "capture": "2114:3619",
+          "nodeValues": "2114:3619",
+          "imposedWidth": "2114:3619",
+          "alignmentFrame": "2114:3619",
+          "receiptCitation": "2114:3619"
+        }
+      },
+      "source": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/result.json cases[0], re-rendered 2026-08-03"
+    },
+    "note": "the OLD 39.78437291157622% figure remains consultable in specs/014-…/proofs/registre/avant.json and git history, named as the instrument defect's receipt — never presented as a fidelity result (SC-004). The 3.298885335721438% RESIDUAL after this fix is a SEPARATE, NEWLY-classified finding (org-reassurances-geometry.json, cause contract-geometry/DW-002) — DW-006 explains the correction, not the residual."
+  },
+  "verdict": "confirmed",
+  "resolvedBy": "014",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

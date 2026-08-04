@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "org-faq-source",
+  "claim": "faq diverges by a Figma-source defect — DW-003: the SectionHeader instance (2104:2907) is FIXED at 50px in the faq master while its content needs 83px (clipsContent=false); of the 8 SectionHeader instances in the census, only faq's is FIXED instead of HUG. Everything below is shifted ~32px as a consequence.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (DW-003) + specs/013-auditer-fidelite-organismes/proofs/organisms/faq/result.json (fact: faq.structure.section-header-height)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts faq",
+  "observed": {
+    "rawPct": 3.672346488508598,
+    "dwEntry": "DW-003",
+    "dwObservedCause": "L'instance SectionHeader 2104:2907 est figée par le master à 50px alors que son contenu en demande 83 (clipsContent=false). … DÉFAUT DE SOURCE FIGMA, à verser au backlog de nettoyage.",
+    "factCount": "9 divergent facts total; DW-003's single instance-height defect plausibly cascades to several of the others (everything downstream shifts by the same 32px)."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}
