@@ -5154,6 +5154,31 @@ const cases: Case[] = [
       console.log('member-picture-fixed-circle-and-named-a5-placeholder: rejects a 0×0 root; both 364×364 circular inset layers stack with normal opacity 1→0 and a 300ms transition; unavailable IMAGE pixels render only as the generic technical A5 placeholder, explicitly named (not a Piqueray colour or pixel-parity claim)');
     },
   },
+  // ---- 014 — mesure juste et triage complet ---------------------------------
+  {
+    id: 'organism-audit-case-reference-provenance',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-case-reference-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism-audit case-reference provenance check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'triage-six-value-vocabulary',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/triage-vocabulary-check.ts']);
+      if (r.status !== 0) throw new Error(`Six-value cause vocabulary check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'measure-gate-fail-closed-policy',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/measure-gate-policy-check.ts']);
+      if (r.status !== 0) throw new Error(`measure-gate fail-closed policy check failed:\n${r.out}`);
+    },
+  },
 ];
 
 // ---------------------------------------------------------------------------
