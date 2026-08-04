@@ -142,6 +142,37 @@
       "verdictImpact": "divergent",
       "status": "deferred",
       "note": "Consigné ici parce que 014 l'a DÉCOUVERT : DW-006 n'était suivi que parce que 013 l'avait porté à un registre. Un défaut qui ne vit que dans un reçu n'est ordonnancé par personne."
+    },
+    {
+      "id": "DW-014-002",
+      "discoveredBy": "014",
+      "cause": "engine",
+      "receiptId": "react-box-sizing-absent",
+      "surface": "core/emit-react.ts",
+      "title": "La surface React livrée est la seule des quatre à ne pas être border-box",
+      "observedCause": "Figma est border-box (l'émetteur force strokeAlign: INSIDE), core/emit-html.ts le déclare explicitement (`.k, .k *, .k *::before, .k *::after { box-sizing: border-box }`), le playground et la preview canvas aussi. core/emit-react.ts ne le pose nulle part, et aucun fichier de src/ n'en porte. Une part qui lie une taille ET du padding rend donc plus large dans le produit livré que dans Figma, que dans notre propre aperçu de mesure.",
+      "blastRadius": {
+        "contracts": 9,
+        "ids": [
+          "ds.accordion-row",
+          "ds.carte",
+          "ds.coordonnees",
+          "ds.faq",
+          "ds.footer",
+          "ds.google-reviews",
+          "ds.review-card",
+          "ds.sav",
+          "ds.textarea"
+        ],
+        "method": "parts portant à la fois (width|height|min-width|min-height) et un padding, dans tokens ou literals"
+      },
+      "whyTheInstrumentCannotSeeIt": "Le harnais de parité visuelle compare Figma à l'émetteur HTML, qui a la bonne règle. La surface qui diverge — celle que les consommateurs reçoivent — n'est mesurée par rien sur cet axe. Ce n'est pas un chiffre faux, c'est un fait HORS DE PORTÉE de l'instrument : la classe de défaut que 014 existe pour refuser.",
+      "priorReceipt": "Le commentaire de core/emit-html.ts porte déjà la preuve de ce que la règle évite : « sans elle, chaque part liant width/height + padding gonflait du padding — reçu de parité visuelle : piste du Switch 36×24 contre 32×20 chez Figma ».",
+      "ownerRuling": "2026-08-04 — oubli, pas un choix délibéré. À corriger.",
+      "whyNotFixedHere": "SC-005 : 0 sortie générée retouchée. Le correctif change le rendu des 9 contrats et impose une re-mesure — c'est du travail de 015, pas d'une spec de mesure.",
+      "destination": "015 — à traiter AVANT la conversion des littéraux : la règle décide quelle boîte le token décrit",
+      "verdictImpact": "divergent",
+      "status": "deferred"
     }
   ]
 }

@@ -13,7 +13,7 @@ Les quatre conditions de FR-007 sont tenues : zéro ligne divergente sans cause,
 - contrats gouvernés : **34**
 - lignes mesurées (deux instruments) : **52**
 - dont divergentes (score brut > 0) : **42**
-- travaux découverts par 014, non réparés (§4 ter, distincts du registre DW re-classé) : **1**
+- travaux découverts par 014, non réparés (§4 ter, distincts du registre DW re-classé) : **2**
 
 ## Sortie dimensionnante FR-011 — compte par cause
 
