@@ -36,6 +36,7 @@ import { resolveComparisonOnlyProps, type Rect } from '../visual-parity/render.j
 import { fetchNodePngs, fetchSetInfos } from '../visual-parity/figma-api.js';
 
 import { buildHarness, renderHarnessCase, type HarnessRenderResult } from './harness.js';
+import { checkReferenceProvenance, resolveCaseReference, type ReferenceProvenance } from './reference.js';
 import { resolveGeneratedComponent } from './render-react.js';
 import {
   assertContractPinFresh,
@@ -208,6 +209,11 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
 
   // ---- the pinned Figma reference (GET only) ---------------------------
   const cacheDir = path.join(repoRoot, 'extract/figma/visual-parity/out/_cache');
+
+  // The FILE VERSION check reads the SET — a property of the file, not of
+  // the measurement (data-model.md §3, DW-006): every subject in the
+  // manifest already pins a set, and the version a nodes-API call returns is
+  // file-wide, whichever node was requested.
   const setInfos = await fetchSetInfos(
     cacheDir,
     campaign.reference.fileKey,
@@ -220,25 +226,64 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
       `${subject.id}: Figma file version moved (${campaign.reference.fileVersion} → ${setInfo.version}) — re-pin the manifest before capturing`,
     );
   }
+
+  const caseDecl = subject.cases[0];
+  // DW-006 (FR-001/FR-002): every derivation below cites the CASE node,
+  // never the set that contains it — `resolveCaseReference` is the single
+  // place that decides it, so nothing downstream can quietly fall back to
+  // the set. For the eight organisms whose set and case already coincide
+  // (research §0.2) this changes nothing; `reassurances` is the one where it
+  // does (set `2114:3721`, case `2114:3619`).
+  const caseReference = resolveCaseReference(subject, caseDecl);
+  const caseNodeId = caseReference.caseNodeId;
+  // An explicit, checkable receipt of an invariant that would otherwise be
+  // implicit in "read the same variable five times": FR-002's verification
+  // reads exactly this shape, re-asserted here so a future edit reverting
+  // one derivation back to the set trips immediately, not only in the eval
+  // fixture (`organism-audit-case-reference-check.ts`).
+  const referenceProvenance: ReferenceProvenance = {
+    caseNodeId,
+    setNodeId: caseReference.setNodeId,
+    derivations: {
+      capture: caseNodeId,
+      nodeValues: caseNodeId,
+      imposedWidth: caseNodeId,
+      alignmentFrame: caseNodeId,
+      receiptCitation: caseNodeId,
+    },
+  };
+  const provenanceCheck = checkReferenceProvenance(referenceProvenance);
+  if (!provenanceCheck.ok)
+    throw new Error(`${subject.id}: ${provenanceCheck.reasons.map((r) => r.message).join('; ')}`);
+
+  const caseInfos = await fetchSetInfos(cacheDir, campaign.reference.fileKey, [caseNodeId], input.refresh);
+  const caseInfo = caseInfos.get(caseNodeId)!;
+  // The pin check above reads the SET while the dossier publishes the CASE's
+  // version — sound only because a nodes-API version is file-wide, whichever
+  // node was asked for. That was an assumption; here it is a check. Otherwise
+  // the value VERIFIED and the value PUBLISHED would come from two different
+  // reads, and nothing would say so.
+  //
+  // It cannot fire today, and that is a reading rather than a hope:
+  // `reassurances` is the ONLY subject whose case and set ids differ (all
+  // eight others resolve both to the same node, so the two reads are the same
+  // read), and its two cached dumps — 2114:3619 and 2114:3721 — both carry
+  // 2381581871281042338.
+  if (caseInfo.version !== setInfo.version) {
+    throw new Error(
+      `${subject.id}: the case node's file version (${caseInfo.version}) differs from the set's (${setInfo.version}) — the version checked against the manifest and the version published in the dossier cannot come from two different reads`,
+    );
+  }
   const rawNode = JSON.parse(
     readFileSync(
-      path.join(
-        cacheDir,
-        `nodes-${campaign.reference.fileKey}-${subject.figmaSetNodeId.replace(/:/g, '_')}.json`,
-      ),
+      path.join(cacheDir, `nodes-${campaign.reference.fileKey}-${caseNodeId.replace(/:/g, '_')}.json`),
       'utf8',
     ),
   ) as { document: Record<string, any> };
   const document = rawNode.document;
 
-  const pngs = await fetchNodePngs(
-    cacheDir,
-    campaign.reference.fileKey,
-    subject.figmaSetNodeId,
-    setInfo.version,
-    [subject.figmaSetNodeId],
-  );
-  const referencePngPath = pngs.get(subject.figmaSetNodeId);
+  const pngs = await fetchNodePngs(cacheDir, campaign.reference.fileKey, caseNodeId, caseInfo.version, [caseNodeId]);
+  const referencePngPath = pngs.get(caseNodeId);
   if (!referencePngPath) throw new Error(`${subject.id}: Figma declined the PNG export`);
   const referenceBytes = readFileSync(referencePngPath);
   const referencePng = readPng(referenceBytes);
@@ -253,8 +298,6 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
     componentImportPath: path.dirname(componentRef.componentFile),
     exportName: componentRef.export,
   });
-
-  const caseDecl = subject.cases[0];
 
   // ---- comparison fixtures: {$asset:id} → verified data URL ---------------
   // A master paints photos through IMAGE fills that expose no component
@@ -502,7 +545,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
         required: declaration.required,
         representability: declaration.representability,
         figma: leg(
-          `${subject.figmaSetNodeId}#${declaration.figmaExpectation.channel}`,
+          `${caseNodeId}#${declaration.figmaExpectation.channel}`,
           declaration.figmaExpectation.value,
           referenceSha,
           true,
@@ -611,14 +654,15 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
     probative: probative.probative,
     reasons: [...probative.reasons, ...pixelRule.reasons],
     figma: {
-      nodeId: caseDecl.figmaNodeId,
-      setNodeId: subject.figmaSetNodeId,
-      fileVersion: setInfo.version,
+      nodeId: caseReference.caseNodeId,
+      setNodeId: caseReference.setNodeId,
+      fileVersion: caseInfo.version,
       observedProperties: caseDecl.observedProperties,
       pngSha256: referenceSha,
       width: referencePng.width,
       height: referencePng.height,
     },
+    referenceProvenance,
     contract: {
       id: subject.contractId,
       version: subject.contractVersion,
@@ -676,6 +720,7 @@ export async function auditOrganism(input: AuditOrganismInput): Promise<{
     semantics,
     domProbes,
     artifacts: [],
+    browserRevision: defaults.browserRevision,
   };
 
   const metadataOut = path.join(caseDir, 'metadata.json');

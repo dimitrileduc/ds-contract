@@ -36,7 +36,7 @@ if (!wrapperErrors.some((error) => error.includes('must not transform an icon/ve
 }
 
 const emitted = emitHtml(fixture, { tokens: new Set(), icons, contracts });
-const browser = await launchBrowser();
+const { browser } = await launchBrowser();
 try {
   const page = await browser.newPage();
   await page.setContent(`<style>${emitted.css}</style>${emitted.html}`, { waitUntil: 'load' });

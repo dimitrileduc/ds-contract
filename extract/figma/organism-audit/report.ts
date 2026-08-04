@@ -19,6 +19,7 @@
  */
 import type { AuditIssue } from './campaign.js';
 import type { DependencyGateResult } from './dependencies.js';
+import type { ReferenceProvenance } from './reference.js';
 import type { FactOutcome, LocalizedSource, OrganismVerdict } from './verdict.js';
 
 export interface OrganismTargetSnapshot {
@@ -92,6 +93,8 @@ export interface CaseAuditResult {
     width: number;
     height: number;
   };
+  /** DW-006 (FR-001/FR-002) — the node every derivation cited; never the set. */
+  referenceProvenance: ReferenceProvenance;
   contract: {
     id: string;
     version: string;
@@ -140,6 +143,8 @@ export interface CaseAuditResult {
     projected: boolean;
   }>;
   artifacts: ArtifactReceipt[];
+  /** Browser that produced this render (version + executable path). */
+  browserRevision: { version: string; executablePath: string };
 }
 
 export interface OrganismAuditResult {
@@ -369,6 +374,11 @@ export function renderOrganismReportMd(
     push('|---|---|');
     push(`| Verdict | **${caseResult.verdict}** (probant : ${caseResult.probative}) |`);
     push(`| Node Figma | \`${caseResult.figma.nodeId}\` @ v\`${caseResult.figma.fileVersion}\` — PNG ${caseResult.figma.width}×${caseResult.figma.height}, sha \`${short(caseResult.figma.pngSha256)}\` |`);
+    push(
+      `| Référence de cas (DW-006) | node du cas \`${caseResult.referenceProvenance.caseNodeId}\` (set \`${caseResult.referenceProvenance.setNodeId}\`) — 5 dérivées : ` +
+        `${Object.entries(caseResult.referenceProvenance.derivations).map(([derivation, nodeId]) => `${derivation}=\`${nodeId}\``).join(', ')} |`,
+    );
+    push(`| Navigateur de mesure | \`${caseResult.browserRevision.version}\` — \`${caseResult.browserRevision.executablePath}\` |`);
     push(`| Rendu généré | \`${caseResult.generated.componentFile}\` export \`${caseResult.generated.export}\`, bundle \`${short(caseResult.generated.bundleSha256)}\`, fonts ${caseResult.generated.fontsLoaded ? 'chargées' : 'NON CHARGÉES'} |`);
     push(`| Pixels | brut ${caseResult.pixels.rawPct.toFixed(3)} % (seuil ${caseResult.pixels.thresholdPct} %) — diagnostic masqué ${caseResult.pixels.maskedDiagnosticPct === null ? '—' : `${caseResult.pixels.maskedDiagnosticPct.toFixed(3)} %`} (hors calcul autoritaire) |`);
     push(`| Régions | ${caseResult.pixels.regions.map((r) => `\`${r.id}\` ${r.score.toFixed(3)} %/${r.maxDiffPct} % (${r.signalPixels} px signal)`).join(' · ') || '—'} |`);

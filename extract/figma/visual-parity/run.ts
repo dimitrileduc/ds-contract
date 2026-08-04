@@ -17,9 +17,11 @@
  * The authoritative unmasked score and the text-masked diagnostic both print
  * per variant next to mask coverage. A mask may explain glyph rasterization;
  * because it deletes evidence, it can never lower the pass/fail score. Skips,
- * refusals, and API declines are rows, not omissions. Every diffed row over
- * the 3% authoritative line must match a NAMED cause in triage.ts or the
- * report prints it UNTRIAGED — loud, never a silent residue.
+ * refusals, and API declines are rows, not omissions. Every diffed row with a
+ * STRICTLY POSITIVE authoritative raw score must match a NAMED cause in
+ * triage.ts or the report prints it UNTRIAGED — loud, never a silent residue.
+ * (014, FR-015/D8: the prior 3% dispense that let a small divergent row skip
+ * causation is gone; a row exactly at 0% is not divergent and needs none.)
  *
  * STANDING-GATE MODES:
  *   --summary         no artifacts; every row's authoritative raw score
@@ -109,7 +111,7 @@ import {
   type Rect,
 } from "./render.js";
 import { PARITY_SUBJECTS, type ParitySubject } from "./subjects.js";
-import { triageFor, type TriageRule } from "./triage.js";
+import { triageFor, CAUSE_LABELS, type TriageRule } from "./triage.js";
 import { THRESHOLD_PCT } from "./tolerance.js";
 
 const HERE = path.resolve(new URL(".", import.meta.url).pathname);
@@ -118,8 +120,6 @@ const OUT = path.join(HERE, "out");
 const CACHE = path.join(OUT, "_cache");
 const ASSETS = path.join(HERE, "report-assets");
 const BASELINE = path.join(HERE, "baseline.json");
-/** Over this authoritative raw score a row needs a triage.ts named cause. */
-const TRIAGE_LINE_PCT = 3.0;
 /** Summary mode: allowed per-row authoritative-score drift vs baseline.json, in
  *  percentage points. Absorbs antialiasing jitter only — same machine,
  *  same Chromium, scores reproduce byte-identically; this is NOT a fidelity
@@ -187,6 +187,15 @@ interface Baseline {
       causeClass: TriageRule["class"] | null;
     }
   >;
+}
+
+/** The browser that produced a run, recorded rather than guessed: the Playwright
+ *  cache holds several revisions and chromiumExecutable() takes the highest,
+ *  so a cause blaming the renderer must be able to name which one (014, FR-014). */
+interface BrowserInfo {
+  version: string;
+  executablePath: string;
+  revision: string | null;
 }
 
 const rowKey = (r: { subject: string; variant: string }) =>
@@ -1210,14 +1219,14 @@ async function captureCampaignCases(
     }
   }
 
-  let browser: Awaited<ReturnType<typeof launchBrowser>> | null = null;
+  let launch: Awaited<ReturnType<typeof launchBrowser>> | null = null;
   let page: Awaited<
-    ReturnType<Awaited<ReturnType<typeof launchBrowser>>["newPage"]>
+    ReturnType<Awaited<ReturnType<typeof launchBrowser>>["browser"]["newPage"]>
   > | null = null;
   try {
     if (setInfos.size > 0) {
-      browser = await launchBrowser();
-      page = await browser.newPage(
+      launch = await launchBrowser();
+      page = await launch.browser.newPage(
         campaignCapturePageOptions({ width: 1600, height: 1200 }),
       );
     }
@@ -1681,7 +1690,7 @@ async function captureCampaignCases(
       }
     }
   } finally {
-    await browser?.close();
+    await launch?.browser.close();
   }
 }
 
@@ -1862,7 +1871,16 @@ async function main(): Promise<void> {
       setInfos.set(`${fileKey}:${setId}`, info);
   }
 
-  const browser = await launchBrowser();
+  const {
+    browser,
+    version: browserVersion,
+    executablePath: browserExecutablePath,
+  } = await launchBrowser();
+  const browserInfo: BrowserInfo = {
+    version: browserVersion,
+    executablePath: browserExecutablePath,
+    revision: /chromium-(\d+)/.exec(browserExecutablePath)?.[1] ?? null,
+  };
   const page = await browser.newPage({
     viewport: { width: 1600, height: 1200 },
     deviceScaleFactor: 2,
@@ -2049,8 +2067,10 @@ async function main(): Promise<void> {
       rows.push(row);
       const gate = authoritativeScore(diff);
       const verdict = gate.scorePct <= THRESHOLD_PCT ? "within" : "OVER";
+      // D8 (014, FR-015): divergent means a strictly positive raw score — no
+      // amplitude dispenses a row from carrying a cause.
       const causeTag =
-        gate.scorePct > TRIAGE_LINE_PCT
+        gate.scorePct > 0
           ? row.cause
             ? ` [cause: ${row.cause.class}]`
             : " [UNTRIAGED]"
@@ -2080,9 +2100,10 @@ async function main(): Promise<void> {
     }
     return;
   }
-  writeReport(rows, subjectMeta, fontAvailability);
+  writeReport(rows, subjectMeta, fontAvailability, browserInfo);
   if (writeBaselineFlag) writeBaseline(rows, subjectMeta);
   console.log(`\nREPORT: ${path.join(HERE, "REPORT.md")}`);
+  console.log(`RECEIPT: ${path.join(HERE, "out", "rows.json")}`);
 }
 
 // ---------------------------------------------------------------------------
@@ -2219,6 +2240,7 @@ function writeReport(
     version: string;
   }>,
   fontAvailability: Map<string, boolean>,
+  browser: BrowserInfo,
 ): void {
   const diffed = rows.filter((r) => r.status === "diffed");
   const problem = rows.filter((r) => r.status !== "diffed");
@@ -2256,8 +2278,9 @@ function writeReport(
       .join("\n") || "  - (no font families named by the Figma sets)";
 
   const causeCell = (r: Row): string => {
-    if (r.cause) return `${r.cause.class}: ${r.cause.cause}`;
-    return score(r) > TRIAGE_LINE_PCT ? "**UNTRIAGED**" : "—";
+    if (r.cause) return `${r.cause.class} (${CAUSE_LABELS[r.cause.class]}): ${r.cause.cause}`;
+    // D8: divergent means raw score strictly > 0 — no amplitude dispense.
+    return score(r) > 0 ? "**UNTRIAGED**" : "—";
   };
   const tableRow = (r: Row): string =>
     `| ${r.subject} | ${r.variant}${r.interaction ? ` [${r.interaction}]` : ""} | ${pct(score(r))} | ${pct(r.maskedPct)} | ${pct(r.maskCoveragePct)} | ${r.comparisonSurface ?? "light"} | ${r.sizeOurs} vs ${r.sizeFigma} | ${r.diagnosis}${r.notes.length > 0 ? ` (${r.notes.join("; ")})` : ""} | ${causeCell(r)} | ${r.triptych ?? "—"} |`;
@@ -2265,9 +2288,9 @@ function writeReport(
   // Gate read: distribution by triage class + the standing invariants.
   const over = (lo: number, hi: number) =>
     diffed.filter((r) => score(r) > lo && score(r) <= hi);
-  const untriaged = diffed.filter(
-    (r) => score(r) > TRIAGE_LINE_PCT && !r.cause,
-  );
+  // D8 (014, FR-015): the population is every divergent row — raw score
+  // strictly > 0 — not just those over the former 3% dispense line.
+  const untriaged = diffed.filter((r) => score(r) > 0 && !r.cause);
   const classCounts = (rs: Row[]): string => {
     const m = new Map<string, number>();
     for (const r of rs)
@@ -2283,17 +2306,23 @@ function writeReport(
     );
   };
 
+  const causeClassList = Object.entries(CAUSE_LABELS)
+    .map(([slug, label]) => `${slug} (${label})`)
+    .join(" / ");
   const md = `# Visual-parity baseline — pixels as receipts
 
-Generated by \`npm run extract:figma:visual\` (extract/figma/visual-parity/run.ts).
-Ranked WORST-FIRST by the authoritative **raw** score. Gate line: **${THRESHOLD_PCT}%** —
-printed per row without any masked substitution. Every row over **${TRIAGE_LINE_PCT}%**
-raw carries a NAMED cause from the committed triage table (triage.ts,
-classed engine / capture-gap / renderer / harness / design) or prints
-**UNTRIAGED**. Standing gate: \`-- --summary\` re-scores every row against the
-committed baseline.json and FAILS on any regression beyond ±${EPSILON_PP}pp
-(cached Figma PNGs — render-only when the cache is warm); \`-- --write-baseline\`
-moves the gate, explicitly, after review.
+Generated by \`npm run extract:figma:visual\` (extract/figma/visual-parity/run.ts),
+measured with Chromium ${browser.version}${browser.revision ? ` (Playwright revision ${browser.revision})` : ""}
+— \`${browser.executablePath}\` (014, FR-014: a cause blaming the renderer names
+which one). Ranked WORST-FIRST by the authoritative **raw** score. Gate line:
+**${THRESHOLD_PCT}%** — printed per row without any masked substitution. Every row
+with a STRICTLY POSITIVE raw score carries a NAMED cause from the committed
+triage table (triage.ts, classed ${causeClassList}) or prints **UNTRIAGED**
+(014, FR-015/D8 — the prior 3% dispense is gone; a row exactly at 0% is not
+divergent and needs no cause). Standing gate: \`-- --summary\` re-scores every
+row against the committed baseline.json and FAILS on any regression beyond
+±${EPSILON_PP}pp (cached Figma PNGs — render-only when the cache is warm);
+\`-- --write-baseline\` moves the gate, explicitly, after review.
 
 ## Known cross-renderer deltas (named, not tolerated away)
 
@@ -2313,7 +2342,7 @@ moves the gate, explicitly, after review.
   glyph advance widths differ per rasterizer, so a hug-sized component's box
   lands ±1–2 CSS px off (receipt: Button node 83×35 vs ours 82×36). The size
   delta is REAL and stays in the score; rows whose residual is only this are
-  triaged \`renderer\`.
+  triaged \`rendering\`.
 - **Font availability** (checked in-page via \`document.fonts.check\`):
 ${fontLines}
 - **Antialiasing**: edge pixels differ per renderer. pixelmatch's antialiasing
@@ -2330,7 +2359,7 @@ ${fontLines}
   dominates its row's score by design: fix the size first, re-run, then read the
   styling delta. On TRANSPARENT-INK rows (washed fills near the alpha-trim
   threshold) the two sides can trim to very different boxes and the compounding
-  is extreme — triaged \`harness\` by name. Anchoring both crops to one shared
+  is extreme — triaged \`instrument\` by name. Anchoring both crops to one shared
   box was considered and rejected honestly: the two images have no shared
   coordinate frame (our screenshot clips a DOM union box + margin; Figma's PNG
   is the node render), and correlation-based registration would optimize the
@@ -2383,9 +2412,10 @@ ${buckets.map(([label, n]) => `- ${label}: ${n} variant(s)`).join("\n")}
 
 ## Gate read (triage classes)
 
-- **UNTRIAGED over ${TRIAGE_LINE_PCT}%: ${untriaged.length}**${untriaged.length > 0 ? ` — ${untriaged.map((r) => rowKey(r)).join("; ")}` : " — the queue is empty"}
+- **UNTRIAGED (raw score > 0%): ${untriaged.length}**${untriaged.length > 0 ? ` — ${untriaged.map((r) => rowKey(r)).join("; ")}` : " — the queue is empty"}
 - > 10% by class: ${classCounts(over(10, Infinity))}
-- 3–10% by class: ${classCounts(over(TRIAGE_LINE_PCT, 10))}
+- 3–10% by class: ${classCounts(over(3, 10))}
+- 0–3% by class: ${classCounts(over(0, 3))}
 - open \`engine\`-class causes: ${diffed.filter((r) => r.cause?.class === "engine").length} (an engine row is a tracked defect, not an accepted delta)
 
 ## Subjects
@@ -2403,6 +2433,44 @@ center-padded onto a shared canvas — size deltas are real mismatches, reported
 in device px, never resampled away.
 `;
   writeFileSync(path.join(HERE, "REPORT.md"), md);
+  writeMachineRows(rows, browser);
+}
+
+/**
+ * The machine receipt beside the rendered report — same relationship 013 already
+ * holds ("result.json is the AUTHORITY; REPORT.md is rendered from it").
+ *
+ * Scores are written at FULL precision on purpose. The authoritative score is
+ * the number, never the two-decimal string the table prints: a row shown as
+ * `0.00%` can be worth 0.004%, and anything reading the Markdown back would
+ * silently round a real divergence to zero (014, decision D8).
+ */
+function writeMachineRows(rows: Row[], browser: BrowserInfo): void {
+  const out = path.join(HERE, "out");
+  mkdirSync(out, { recursive: true });
+  const receipt = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    browser,
+    rows: rows.map((r) => ({
+      key: rowKey(r),
+      subject: r.subject,
+      variant: r.variant,
+      status: r.status,
+      rawPct: r.unmaskedPct ?? null,
+      maskedPct: r.maskedPct ?? null,
+      maskCoveragePct: r.maskCoveragePct ?? null,
+      sizeOurs: r.sizeOurs ?? null,
+      sizeFigma: r.sizeFigma ?? null,
+      interaction: r.interaction ?? null,
+      causeClass: r.cause?.class ?? null,
+      cause: r.cause?.cause ?? null,
+    })),
+  };
+  writeFileSync(
+    path.join(out, "rows.json"),
+    `${JSON.stringify(receipt, null, 1)}\n`,
+  );
 }
 
 main().catch((e: unknown) => {

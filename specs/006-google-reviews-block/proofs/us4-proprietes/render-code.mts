@@ -81,7 +81,7 @@ async function main(): Promise<void> {
     '</head><body>', emitted.html, '</body></html>',
   ].join('\n');
 
-  const browser = await launchBrowser();
+  const { browser } = await launchBrowser();
   try {
     const page = await browser.newPage({ deviceScaleFactor: 2 });
     await page.setContent(doc, { waitUntil: 'load' });

@@ -80,6 +80,34 @@ function censusVersion(setId: string): string | null {
   return (JSON.parse(readFileSync(p, 'utf8')) as { version: string }).version;
 }
 
+/**
+ * DW-006 (FR-001) : le node primaire du recoupement est désormais le CAS —
+ * même bascule que `fetch-census.mts` (T010), pour que la cible affichée et
+ * la version vérifiée soient exactement ce que le pilote mesure. Un sujet
+ * sans cas (vague 3, porte fermée) n'a rien à basculer : son seul node connu
+ * reste le set.
+ */
+function censusNodeId(subject: any): string {
+  return subject.cases?.[0]?.figmaNodeId ?? subject.figmaSetNodeId;
+}
+
+/**
+ * L'existence d'un node cité se recoupe contre le cas ET le set (toujours
+ * les deux, `fetch-census.mts` les cache tous les deux) : le cas est un
+ * sous-arbre du set par construction, donc l'union n'admet jamais un
+ * hallucination que le cas seul aurait rejetée — elle admet en plus les
+ * faits qui documentent légitimement le set lui-même (les définitions de
+ * propriété du COMPONENT_SET, ex. `disposition-valeurs`) ou une variante
+ * sœur (une comparaison délibérée, ex. `carte-largeur-cinq-cartes`,
+ * `sample-entree-orpheline` — reassurances). Recouper contre le seul cas
+ * rejetterait ces faits réels comme s'ils étaient hallucinés : la classe
+ * d'erreur que ce contrôle existe pour attraper est un node qui n'existe
+ * PAS dans le fichier, pas un node réel hors du cas mesuré.
+ */
+function censusNodeIdsWithSet(subject: any): Set<string> {
+  return new Set([...censusNodeIds(censusNodeId(subject)), ...censusNodeIds(subject.figmaSetNodeId)]);
+}
+
 const MODULE_CLASSES = allModuleClasses();
 const KINDS = new Set(['content', 'structure', 'property', 'composition', 'visual', 'semantic']);
 const REPRESENTABILITY = new Set(['carry-both', 'carry-with-named-limit', 'carry-code-only']);
@@ -148,8 +176,9 @@ for (const file of readdirSync(DECL_DIR).filter((f) => f.endsWith('.json') && !f
   }
 
   const contract = JSON.parse(readFileSync(path.join(REPO, subject.contractPath), 'utf8'));
-  const nodeIds = censusNodeIds(subject.figmaSetNodeId);
-  const version = censusVersion(subject.figmaSetNodeId);
+  const censusTarget = censusNodeId(subject);
+  const nodeIds = censusNodeIdsWithSet(subject);
+  const version = censusVersion(censusTarget);
 
   if (version === null) problems.push('census absent du cache — le node n\'a jamais été lu');
   else if (version !== PINNED_VERSION) problems.push(`census à la version ${version}, manifeste piné sur ${PINNED_VERSION}`);
@@ -208,9 +237,9 @@ for (const file of readdirSync(DECL_DIR).filter((f) => f.endsWith('.json') && !f
     for (const key of ['nodeId', 'textLayer', 'mainComponent']) {
       const value = fact.figmaReference?.[key];
       if (typeof value === 'string' && nodeIds.size > 0 && !nodeIds.has(value)) {
-        // mainComponent pointe hors du set (c'est le master de l'enfant) — toléré.
+        // mainComponent pointe hors du cas (c'est le master de l'enfant) — toléré.
         if (key === 'mainComponent') continue;
-        problems.push(`${at}: node "${value}" (${key}) absent du census de ${subject.figmaSetNodeId}`);
+        problems.push(`${at}: node "${value}" (${key}) absent du census de ${censusTarget}`);
       }
     }
 

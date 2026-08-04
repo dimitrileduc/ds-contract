@@ -101,7 +101,7 @@ async function main(): Promise<void> {
     for (const [k, v] of got) infos.set(k, v);
   }
 
-  const browser = await launchBrowser();
+  const { browser } = await launchBrowser();
   // Page RECYCLED per subject — a single page accumulating ~1,100 setContent
   // cycles degrades Chromium into an indefinite hang around render ~500
   // (observed twice on the heal-round replay, different subjects each time);

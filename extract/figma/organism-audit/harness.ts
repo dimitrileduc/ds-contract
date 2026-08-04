@@ -155,6 +155,8 @@ export interface HarnessRenderResult {
   fontChecks: Array<{ query: string; loaded: boolean }>;
   /** Page console errors and uncaught exceptions.  Empty in normal use. */
   consoleErrors: string[];
+  /** The browser that produced this render (version + executable path). */
+  browserRevision: { version: string; executablePath: string };
 }
 
 // ---------------------------------------------------------------------------
@@ -616,7 +618,8 @@ export async function renderHarnessCase(input: {
   }
 
   const consoleErrors: string[] = [];
-  const browser = await launchBrowser();
+  const { browser, version: browserVersion, executablePath: browserExecutablePath } = await launchBrowser();
+  const browserRevision = { version: browserVersion, executablePath: browserExecutablePath };
   try {
     // The organism must fit its own layout width plus the clip margin on both
     // sides, or the painted box overflows the viewport and the capture is
@@ -737,6 +740,7 @@ export async function renderHarnessCase(input: {
       fontsLoaded: measurement.fontChecks.every((check) => check.loaded),
       fontChecks: measurement.fontChecks,
       consoleErrors,
+      browserRevision,
     };
   } finally {
     await browser.close();
