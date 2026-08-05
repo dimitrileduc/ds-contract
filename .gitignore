@@ -71,3 +71,9 @@ extract/computed/out/.regate-probe.html
 # L'OUTIL est versionné (specs/016-canvas-vrai/tools/revue-visuelle.mts), pas ses
 # sorties — elles se regénèrent en une commande depuis les captures.
 specs/*/proofs/REVUE-VISUELLE*.html
+
+# Copies temporaires des scripts bridge spec-locaux dans le jail du receveur.
+# `receiver.mjs` ne sert que son propre dossier ; les scripts de specs/*/bridge/ y
+# sont copiés le temps d'une fenêtre de travail. La SOURCE versionnée reste
+# specs/<spec>/bridge/ — ces copies ne doivent jamais devenir une seconde vérité.
+extract/figma/page-parity/bridge/_0*-*.js
