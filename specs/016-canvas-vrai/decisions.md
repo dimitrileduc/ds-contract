@@ -195,6 +195,39 @@ ni `revertAsync`. La restauration d'une version reste un geste humain dans l'int
 
 ---
 
+### O-9 · Quatre correctifs moteur en une session — et les deux verrous d'un amend
+
+La régénération a révélé, en cascade, quatre défauts du moteur d'émission Figma. Tous
+réparés **fixture rouge d'abord** (§II), tous validés en fixture, trois déjà validés sur
+le canvas réel :
+
+| # | Défaut | Fixture |
+|---|---|---|
+| 1 | Police codée en dur à Inter + rattrapage avalé par un catch muet (l'orthographe des styles diffère par famille : « Semi Bold » vs « SemiBold ») | `figma-font-family-from-token-check` |
+| 2 | Couleur de bordure sans largeur → cadre plein (CSS : rien) | `figma-border-color-without-width-check` |
+| 3 | Part `declared position:absolute` posée DANS le flux (insets en stylesWhen non lus ; motif top/left/right sans bottom non couvert) | `absolute-part-out-of-flow-check` |
+| 4 | Taille d'icône par-prop ignorée (icon.size seul lu, jamais tokensByProp) | `icon-size-tokens-by-prop-check` |
+
+**Les deux verrous d'un amend** (workflow 3 agents, reproduit dans le mock RUN par RUN) :
+
+1. **La variable liée fait autorité** sur le px du script → l'ordre d'une régénération
+   est *tokens d'abord, composants ensuite*.
+2. **Le saut specHash** : écrit à la FIN d'un amend réussi ; un changement consommé par
+   une exécution qui n'a rien livré devient invisible pour toujours. Déverrouillage :
+   `set.setSharedPluginData('ds_contracts','specHash','')`.
+
+**Leçon d'exécution sur fichier volumineux** : le timeout MCP (30 s) coupe la RÉPONSE,
+pas l'exécution — l'amend continue dans le sandbox. Et une lecture de contrôle envoyée
+pendant ce temps **préempte l'amend** (sandbox mono-tâche) : d'où des états intermédiaires
+si l'on vérifie trop tôt. Protocole : lancer, attendre plusieurs minutes SANS toucher au
+pont, lire UNE fois.
+
+Validation canvas d'AccordionRow au moment de cette entrée : Grand fermé 64 ✓,
+Grand ouvert 120 ✓, Petit ouvert 80 ✓ (trigger ABSOLUTE partout) ; la petite fermée
+attend la fin d'un amend en cours.
+
+---
+
 ## Lots
 
 > Une ligne par lot, ajoutée à sa clôture (étape 9 du cycle de preuve).
