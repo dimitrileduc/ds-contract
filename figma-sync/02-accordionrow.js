@@ -84,7 +84,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "fixedHeight": {
-                "px": 64,
+                "px": 32,
                 "varName": "size/accordion-row/trigger"
               },
               "bindings": {
@@ -201,7 +201,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "fixedHeight": {
-                "px": 64,
+                "px": 32,
                 "varName": "size/accordion-row/trigger"
               },
               "bindings": {
@@ -286,7 +286,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "fixedHeight": {
-                "px": 40,
+                "px": 24,
                 "varName": "size/accordion-row/trigger-petit"
               },
               "bindings": {
@@ -404,7 +404,7 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "fixedHeight": {
-                "px": 40,
+                "px": 24,
                 "varName": "size/accordion-row/trigger-petit"
               },
               "bindings": {

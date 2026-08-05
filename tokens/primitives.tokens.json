@@ -288,13 +288,13 @@
       },
       "trigger": {
         "$type": "dimension",
-        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "64px"
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04. 016 (2026-08-05) : CORRIGÉ de 64 à 32. La valeur extraite était la hauteur TOTALE de la variante, padding du parent compris (16+32+16=64) — or ce token s'applique à la part `trigger`, un ENFANT de la racine. Le générateur ajoutait donc le padding de la racine par-dessus une hauteur qui l'incluait déjà : la ligne passait de 64 à 96 px sur le canvas régénéré. Mesuré sur le dump REST d'avant régénération (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-2059_1417.json) : variante à 64 px = padding + Titre 32 px.",
+        "$value": "32px"
       },
       "trigger-petit": {
         "$type": "dimension",
-        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "40px"
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04. 016 (2026-08-05) : CORRIGÉ de 40 à 24. La valeur extraite était la hauteur TOTALE de la variante, padding du parent compris (8+24+8=40) — or ce token s'applique à la part `trigger`, un ENFANT de la racine. Le générateur ajoutait donc le padding de la racine par-dessus une hauteur qui l'incluait déjà : la ligne passait de 40 à 56 px sur le canvas régénéré. Mesuré sur le dump REST d'avant régénération (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-2059_1417.json) : variante à 40 px = padding + Titre 24 px.",
+        "$value": "24px"
       },
       "root": {
         "$type": "dimension",
