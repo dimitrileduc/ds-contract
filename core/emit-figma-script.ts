@@ -169,6 +169,11 @@ export interface NodeSpec {
    *  translate the capture cannot carry; the parent-square lowering is the
    *  honest approximation, receipted in the canvas fidelity notes). */
   insetOverlay?: boolean;
+  /** 016 (AccordionRow trigger): top/left/right carried, NO bottom — the
+   *  CSS top-band overlay. The runtime pins the top edge WITHOUT stretching
+   *  vertically: the node keeps its own (token-bound) height. Absent =
+   *  full-stretch inset overlay, byte-stable for every existing spec. */
+  insetPartialV?: boolean;
   /** Round 5: NON-ZERO inset offsets for an inset overlay (the Checkbox
    *  indeterminate glyph rides inset -2px — the 22px dash overhangs its
    *  parent square). Absent = inset 0 (byte-stable for existing specs). */
@@ -1870,12 +1875,22 @@ function shapePlacement(
 function insetOverlayOffsets(
   part: Part,
   subst: Record<string, string>,
-): { top: number; right: number; bottom: number; left: number } | null {
+): { top: number; right: number; bottom: number; left: number; partialV?: boolean } | null {
   if (part.declared?.['position'] === 'relative') return null;
   const tokens = resolveTokens(part, subst);
   const lits = resolveLiterals(part, subst);
+  // 016 (AccordionRow trigger): inset channels can ALSO ride stylesWhen — the
+  // contract spells `left/right/top: 0` per `taille`, exactly how the paired
+  // CSS is emitted. Only the entries whose condition holds for THIS combo
+  // count (same rule as the CSS side).
+  const styles: Record<string, string> = {};
+  for (const sw of part.stylesWhen ?? []) {
+    if (sw.equals !== undefined && subst[sw.prop] !== sw.equals) continue;
+    for (const [k, v] of Object.entries(sw.styles ?? {})) styles[k] = String(v);
+  }
   const offsets = { top: 0, right: 0, bottom: 0, left: 0 };
   let carried = 0;
+  const carriedByCh = { top: false, right: false, bottom: false, left: false };
   let numeric = true;
   for (const ch of ['top', 'right', 'bottom', 'left'] as const) {
     let value: string | undefined;
@@ -1888,9 +1903,12 @@ function insetOverlayOffsets(
       value = String(resolveLiteral(tokenPath));
     } else if (lits[ch] !== undefined) {
       value = String(lits[ch]);
+    } else if (styles[ch] !== undefined) {
+      value = styles[ch];
     }
     if (value === undefined) continue;
     carried++;
+    carriedByCh[ch] = true;
     const n = parseLitPx(value);
     if (n === undefined) numeric = false;
     else offsets[ch] = n;
@@ -1899,6 +1917,24 @@ function insetOverlayOffsets(
   // offsets (Round 5: offsets generalized beyond 0 — the Checkbox
   // indeterminate glyph rides inset -2px; B-3 finding 5 was the 0 case).
   if (carried === 4 && numeric) return offsets;
+  // 016 (AccordionRow trigger, found on the live canvas): a part DECLARING
+  // position:absolute with top+left+right carried but NO bottom is the most
+  // common CSS overlay of all — a full-width band pinned to the top, its own
+  // height token-bound. In CSS, position:absolute ALWAYS leaves the flow; on
+  // canvas this part was flowing as a row and every open variant grew by
+  // gap+height (measured: 176px vs the file's original 120). partialV tells
+  // the runtime to pin the top WITHOUT stretching vertically — the node keeps
+  // its own (token-bound) height.
+  if (
+    numeric &&
+    part.declared?.['position'] === 'absolute' &&
+    carriedByCh.top &&
+    carriedByCh.left &&
+    carriedByCh.right &&
+    !carriedByCh.bottom
+  ) {
+    return { ...offsets, partialV: true };
+  }
   // Round 5: a DECLARED position:absolute part with NO carried inset
   // channels whose box is parent-bound (declared aspect-ratio, or max
   // dimensions 100%) lowers to the inset-0 overlay — the floor-promoted
@@ -2082,7 +2118,21 @@ function partToSpecInner(
       // Round 4 (canvas-gate finding): a viewBox-only svg has no intrinsic
       // size — the icon draws 0×0 in shrink-to-fit contexts. The contract's
       // icon.size (captured glyph size) sizes the node on every surface.
-      ...(part.icon.size ? { iconSize: part.icon.size } : {}),
+      // 016 (AccordionRow chevron, found on the live canvas): a width/height
+      // token resolved FOR THIS COMBO (tokensByProp) overrides the base size —
+      // the small variant's chevron is 24, not the base 32; without this the
+      // closed small row measured 48 on canvas vs the file's original 40.
+      ...(((): { iconSize?: number } => {
+        const t = resolveTokens(part, subst);
+        const ref = t['width'] ?? t['height'];
+        if (ref) {
+          let tokenPath = ref.slice(1, -1);
+          for (const [propName, v] of Object.entries(subst)) tokenPath = tokenPath.replaceAll(`{${propName}}`, v);
+          const n = parseLitPx(String(resolveLiteral(tokenPath)));
+          if (n !== undefined) return { iconSize: n };
+        }
+        return part.icon!.size ? { iconSize: part.icon!.size } : {};
+      })()),
     };
     applyVisibleWhen(spec, part, contract);
     return spec;
@@ -2214,7 +2264,12 @@ function partToSpecInner(
     const io = insetOverlayOffsets(part, subst);
     if (io) {
       spec.insetOverlay = true;
-      if (io.top !== 0 || io.right !== 0 || io.bottom !== 0 || io.left !== 0) spec.insetOffsets = io;
+      // 016: top/left/right without bottom — pin the top, keep the node's own
+      // height (the runtime reads the flag; absent = full-stretch, byte-stable).
+      if (io.partialV) spec.insetPartialV = true;
+      if (io.top !== 0 || io.right !== 0 || io.bottom !== 0 || io.left !== 0) {
+        spec.insetOffsets = { top: io.top, right: io.right, bottom: io.bottom, left: io.left };
+      }
     }
   }
   const childCtx = applyStyling(spec, part, subst, ctx);
@@ -3101,14 +3156,21 @@ function applyInsetOverlay(parent, childNode, childSpec) {
       parent.insertChild(0, childNode);
     }
     childNode.layoutPositioning = 'ABSOLUTE';
-    childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
     const o = childSpec.insetOffsets || { top: 0, right: 0, bottom: 0, left: 0 };
     childNode.x = o.left;
     childNode.y = o.top;
-    childNode.resize(
-      Math.max(1, parent.width - o.left - o.right),
-      Math.max(1, parent.height - o.top - o.bottom),
-    );
+    if (childSpec.insetPartialV) {
+      // 016: top band — top/left/right pinned, NO bottom. The node keeps its
+      // own (token-bound) height; only the width follows the parent.
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'MIN' };
+      childNode.resize(Math.max(1, parent.width - o.left - o.right), childNode.height);
+    } else {
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+      childNode.resize(
+        Math.max(1, parent.width - o.left - o.right),
+        Math.max(1, parent.height - o.top - o.bottom),
+      );
+    }
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 `

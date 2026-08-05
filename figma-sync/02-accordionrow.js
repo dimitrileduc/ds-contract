@@ -83,6 +83,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "insetOverlay": true,
+              "insetPartialV": true,
               "fixedHeight": {
                 "px": 32,
                 "varName": "size/accordion-row/trigger"
@@ -200,6 +202,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "insetOverlay": true,
+              "insetPartialV": true,
               "fixedHeight": {
                 "px": 32,
                 "varName": "size/accordion-row/trigger"
@@ -275,7 +279,7 @@ const COMPONENTS = [
               "type": "svg",
               "name": "ChevronDown",
               "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z\" fill=\"#000000\"/>\n</svg>",
-              "iconSize": 32
+              "iconSize": 24
             },
             {
               "type": "frame",
@@ -285,6 +289,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "insetOverlay": true,
+              "insetPartialV": true,
               "fixedHeight": {
                 "px": 24,
                 "varName": "size/accordion-row/trigger-petit"
@@ -375,7 +381,7 @@ const COMPONENTS = [
                   "type": "svg",
                   "name": "ChevronUp",
                   "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z\" fill=\"#000000\"/>\n</svg>",
-                  "iconSize": 32
+                  "iconSize": 24
                 }
               ]
             },
@@ -403,6 +409,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "insetOverlay": true,
+              "insetPartialV": true,
               "fixedHeight": {
                 "px": 24,
                 "varName": "size/accordion-row/trigger-petit"
@@ -689,6 +697,41 @@ function applyOverlay(parent, childNode, childSpec) {
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 
+// B-3 finding 5: an inset-0 overlay part (top/right/bottom/left all 0) is
+// lowered out of flow — ABSOLUTE, stretched to the parent, BEHIND the
+// in-flow siblings — matching the declared anatomy and the HTML render.
+function applyInsetOverlay(parent, childNode, childSpec) {
+  if (!childSpec.insetOverlay) return;
+  try {
+    // Round 5f (B5E finding 3): only a childless BACKDROP overlay (an
+    // inset:0 fill layer — TextField's backdrop) lowers BEHIND the in-flow
+    // siblings (index 0). A CONTENT overlay that carries glyphs (the Checkbox
+    // check, the RadioButton dot, a remove button) must stay ON TOP at its
+    // natural post-backdrop index — else the opaque backdrop sibling paints
+    // over the glyph (the checkbox backdrop-over-glyph z-order the owner saw,
+    // previously hand-corrected on canvas each re-amend).
+    if (!childNode.children || childNode.children.length === 0) {
+      parent.insertChild(0, childNode);
+    }
+    childNode.layoutPositioning = 'ABSOLUTE';
+    const o = childSpec.insetOffsets || { top: 0, right: 0, bottom: 0, left: 0 };
+    childNode.x = o.left;
+    childNode.y = o.top;
+    if (childSpec.insetPartialV) {
+      // 016: top band — top/left/right pinned, NO bottom. The node keeps its
+      // own (token-bound) height; only the width follows the parent.
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'MIN' };
+      childNode.resize(Math.max(1, parent.width - o.left - o.right), childNode.height);
+    } else {
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+      childNode.resize(
+        Math.max(1, parent.width - o.left - o.right),
+        Math.max(1, parent.height - o.top - o.bottom),
+      );
+    }
+  } catch (e) { /* parent not auto-layout — leave in flow */ }
+}
+
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -816,6 +859,7 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+    applyInsetOverlay(node, childNode, child);
   }
   return node;
 }
@@ -967,6 +1011,7 @@ async function amendSet(set, C) {
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
+    applyInsetOverlay(comp, childNode, childSpec);
       }
       restoreImagePaints(v.spec, comp, imagePool, report);
       report.rebuiltVariants++;
@@ -1105,6 +1150,7 @@ async function amendComponent(comp, C) {
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+    applyInsetOverlay(comp, childNode, childSpec);
   }
   restoreImagePaints(v.spec, comp, imagePool, report);
   for (const t of registry.texts) {

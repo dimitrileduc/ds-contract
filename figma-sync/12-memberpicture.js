@@ -477,14 +477,21 @@ function applyInsetOverlay(parent, childNode, childSpec) {
       parent.insertChild(0, childNode);
     }
     childNode.layoutPositioning = 'ABSOLUTE';
-    childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
     const o = childSpec.insetOffsets || { top: 0, right: 0, bottom: 0, left: 0 };
     childNode.x = o.left;
     childNode.y = o.top;
-    childNode.resize(
-      Math.max(1, parent.width - o.left - o.right),
-      Math.max(1, parent.height - o.top - o.bottom),
-    );
+    if (childSpec.insetPartialV) {
+      // 016: top band — top/left/right pinned, NO bottom. The node keeps its
+      // own (token-bound) height; only the width follows the parent.
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'MIN' };
+      childNode.resize(Math.max(1, parent.width - o.left - o.right), childNode.height);
+    } else {
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+      childNode.resize(
+        Math.max(1, parent.width - o.left - o.right),
+        Math.max(1, parent.height - o.top - o.bottom),
+      );
+    }
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 

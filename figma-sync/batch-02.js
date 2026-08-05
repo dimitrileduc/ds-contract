@@ -1347,6 +1347,14 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "insetOverlay": true,
+              "insetPartialV": true,
+              "insetOffsets": {
+                "top": 22,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+              },
               "fill": "color/blanc",
               "fixedHeight": {
                 "px": 2,
@@ -3057,6 +3065,41 @@ function applyOverlay(parent, childNode, childSpec) {
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 
+// B-3 finding 5: an inset-0 overlay part (top/right/bottom/left all 0) is
+// lowered out of flow — ABSOLUTE, stretched to the parent, BEHIND the
+// in-flow siblings — matching the declared anatomy and the HTML render.
+function applyInsetOverlay(parent, childNode, childSpec) {
+  if (!childSpec.insetOverlay) return;
+  try {
+    // Round 5f (B5E finding 3): only a childless BACKDROP overlay (an
+    // inset:0 fill layer — TextField's backdrop) lowers BEHIND the in-flow
+    // siblings (index 0). A CONTENT overlay that carries glyphs (the Checkbox
+    // check, the RadioButton dot, a remove button) must stay ON TOP at its
+    // natural post-backdrop index — else the opaque backdrop sibling paints
+    // over the glyph (the checkbox backdrop-over-glyph z-order the owner saw,
+    // previously hand-corrected on canvas each re-amend).
+    if (!childNode.children || childNode.children.length === 0) {
+      parent.insertChild(0, childNode);
+    }
+    childNode.layoutPositioning = 'ABSOLUTE';
+    const o = childSpec.insetOffsets || { top: 0, right: 0, bottom: 0, left: 0 };
+    childNode.x = o.left;
+    childNode.y = o.top;
+    if (childSpec.insetPartialV) {
+      // 016: top band — top/left/right pinned, NO bottom. The node keeps its
+      // own (token-bound) height; only the width follows the parent.
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'MIN' };
+      childNode.resize(Math.max(1, parent.width - o.left - o.right), childNode.height);
+    } else {
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+      childNode.resize(
+        Math.max(1, parent.width - o.left - o.right),
+        Math.max(1, parent.height - o.top - o.bottom),
+      );
+    }
+  } catch (e) { /* parent not auto-layout — leave in flow */ }
+}
+
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -3193,6 +3236,7 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+    applyInsetOverlay(node, childNode, child);
   }
   return node;
 }
@@ -3344,6 +3388,7 @@ async function amendSet(set, C) {
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
+    applyInsetOverlay(comp, childNode, childSpec);
       }
       restoreImagePaints(v.spec, comp, imagePool, report);
       report.rebuiltVariants++;
@@ -3482,6 +3527,7 @@ async function amendComponent(comp, C) {
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+    applyInsetOverlay(comp, childNode, childSpec);
   }
   restoreImagePaints(v.spec, comp, imagePool, report);
   for (const t of registry.texts) {
