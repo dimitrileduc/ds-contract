@@ -462,22 +462,21 @@ export const TRIAGE: TriageRule[] = [
 
   // ==== 014 — select rejoins pixel coverage (US3/T025-T027): its 004
   //      exclusion (a comment, never code) is REFUTED by
-  //      proofs/recus/select-exclusion.json, but the retest surfaces a real,
-  //      different, previously-undetected instrument defect (see receipt).
+  //      proofs/recus/select-exclusion.json, and the retest surfaced a real
+  //      emit-html defect (DW-014-001, class `engine` until its repair).
   {
     subject: 'select',
-    // `engine`, not `instrument` (re-classed at review, 2026-08-03): the fault
-    // is in core/emit-html.ts — one of the four emitters — which is the literal
-    // definition of `engine` ("our emitters render the contract wrong"). It was
-    // first filed `instrument` because the html emitter's only consumer here is
-    // the harness preview; but `instrument` publishes "fixed HERE (DW-006)" and
-    // this one is NOT fixed here (FR-005 forbids it), so that class would have
-    // retired a live defect by wording. `engine` is the tracked-open class, and
-    // the defect now carries a deferredWork entry so something schedules it.
-    class: 'engine',
+    // Re-classed `engine` → `rendering` (tinyspec select-option-emit,
+    // 2026-08-05): the `engine` fault this rule carried — renderPart()
+    // emitting the "valeur" part's text as a BARE child of <select>, dropped
+    // by the HTML5 parser, hence the empty capture and maskCoveragePct 0 —
+    // is repaired (the text now rides a bare <option>, the shipped React
+    // surface's shape, standing eval emit-html-select-option-text). The
+    // re-measured residual is input's exact class: text raster.
+    class: 'rendering',
     cause:
-      'sizes IDENTICAL (560×96); maskCoveragePct 0.00% because the text node never reaches the DOM — core/emit-html.ts renderPart() emits the "valeur" part\'s resolved text as a BARE child of <select> (no <option> wrapper) when the part\'s OWN element is "select" (only a childless fallback defaults to <option>); Chromium\'s parser drops non-option content inside <select> per the HTML5 content model, so the code side paints no text at all — confirmed NOT a headless-Chromium limitation by an isolated same-browser repro. The shipped React component (src/components/Select/Select.tsx) is unaffected — it already wraps in <option>, pinned by evals/run.ts\'s native-checkbox-and-select-render-correctly. This is a comparison-preview-only gap in the html emitter, named here per FR-005 (a triage does not repair core/).',
-    receiptId: 'select-exclusion',
+      'renderWidth:280 (subjects.ts) matches the master exactly; sizes IDENTICAL (560×96); re-measured 2026-08-05 after tinyspec select-option-emit repaired DW-014-001: the capture is no longer empty — « Texte de saisie » paints, the raw score fell 0.85% → 0.17%, and the diff localizes to the same ~179×20px text region as input with input\'s exact score signature — cross-renderer text rasterization on the option glyphs. maskCoveragePct stays 0.00% for input\'s documented reason (the native widget paints its visible value itself, so it is not a masked DOM text rect — a text-mask miss, not evidence the residual is non-textual).',
+    receiptId: 'pv-select',
   },
 ];
 

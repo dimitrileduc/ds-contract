@@ -130,18 +130,21 @@ function componentCss(contract: Contract): string[] {
   const enums = new Map(enumProps(contract).map((p) => [p.name, p.type.enum]));
   const lines: string[] = [
     `/* ${contract.name} — from ${contract.id} v${contract.version} (core/emit-html.ts) */`,
-    // Figma boxes are border-box (a bound 32px width IS 32px outside,
-    // padding inside) — the canvas preview injects this same rule
-    // (playground/src/engine/canvas-preview.ts) and the playground app
-    // carries it globally (playground/src/styles.css). emit-html output is
-    // self-sufficient, so the component scope declares its own box model;
-    // without it every part binding width/height + padding inflated by the
-    // padding (visual-parity receipt: Switch track 36×24 vs Figma's 32×20).
-    '',
-    `.${k}, .${k} *, .${k} *::before, .${k} *::after {`,
-    '  box-sizing: border-box;',
-    '}',
   ];
+  // Figma boxes are border-box (a bound 32px width IS 32px outside,
+  // padding inside) — the canvas preview injects this same rule
+  // (playground/src/engine/canvas-preview.ts) and the playground app
+  // carries it globally (playground/src/styles.css). emit-html output is
+  // self-sufficient, so the component scope declares its own box model;
+  // without it every part binding width/height + padding inflated by the
+  // padding (visual-parity receipt: Switch track 36×24 vs Figma's 32×20).
+  // Multi-root: no element carries the bare `.${k}` — each top-level root is
+  // its own `.${k}__<root>` sibling class — so the rule rides EACH root,
+  // emit-react's exact per-root loop (DW-015-001).
+  const boxRoots = isMultiRoot(contract) ? topRoots(contract).map(([name]) => partCls(name)) : [rootCls];
+  for (const root of boxRoots) {
+    lines.push('', `${root}, ${root} *, ${root} *::before, ${root} *::after {`, '  box-sizing: border-box;', '}');
+  }
 
   // MULTI-ROOT composite (advanced composition): no single ".${k}" root box —
   // each top-level root and descendant compiles to its OWN BEM part class
@@ -971,14 +974,21 @@ function renderComponentHtml(
         .join('\n');
       return `${pad}<${el} class="${cls}"${attrString(part)}${partAttr}>\n${inner}\n${pad}</${el}>`;
     }
+    // The same content-model honesty when the part IS the <select> (ds.select's
+    // `valeur` authors element: "select" — correct, it IS the tag): its one
+    // visible text rides inside a bare <option>, the React surface's exact
+    // shape (pinned by native-checkbox-and-select-render-correctly) — emitted
+    // as a direct child, the parser drops it at tree construction
+    // (DW-014-001: empty capture, maskCoveragePct 0).
+    const inOption = (text: string) => (textEl === 'select' ? `<option>${text}</option>` : text);
     if (part.content) {
-      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${contentHtml(part.content.prop, extraText)}</${textEl}>`;
+      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${inOption(contentHtml(part.content.prop, extraText))}</${textEl}>`;
     }
     if (part.text !== undefined) {
       const literal = part.textSegments
         ? literalSegmentsHtml(part.textSegments)   // v19: observed strong ranges
         : escapeHtml(part.text);
-      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${literal}</${textEl}>`;
+      return `${pad}<${textEl} class="${cls}"${attrString(part)}${partAttr}>${inOption(literal)}</${textEl}>`;
     }
     if (part.meter) {
       const num = (propName: string, fallback: number) => {

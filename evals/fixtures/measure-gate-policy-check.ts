@@ -368,6 +368,39 @@ const ORG_LINE = (): MeasuredLine => ({
     throw new Error(`counts.deferredWork must count discoveredDeferredWork live, got ${r.counts.deferredWork}`);
   }
 }
+{
+  // tinyspec select-option-emit — the closure mechanism measure-gate-
+  // counting-v2.md §2 gave `entries` extends to THIS roster: a deferredWork
+  // item with a non-null `resolvedBy` is no longer "found, not fixed" and
+  // leaves the printed count, while the entry STAYS in the register and
+  // under C4 (its receipt is still cited — resolving is itself a claim).
+  // The count must reflect closure; a prose note alone never does.
+  // Written RED against the pre-tinyspec gate, which counted `.length`
+  // with no status filter (extra fields pass untyped — fixtures are
+  // outside tsconfig).
+  const input = baseline();
+  input.discoveredDeferredWork = [
+    { id: "DW-014-001", cause: "engine", receiptId: "r-ok", resolvedBy: "tiny/select-option-emit" },
+    { id: "DW-014-003", cause: "contract-geometry", receiptId: "r-ok" },
+  ] as typeof input.discoveredDeferredWork;
+  const r = evaluateMeasureGate(input);
+  if (r.counts.deferredWork !== 1) {
+    throw new Error(
+      `a resolved deferredWork entry must leave counts.deferredWork (1 unresolved expected), got ${r.counts.deferredWork}`,
+    );
+  }
+  // C4 still sees the resolved entry: a dangling receipt id must refuse.
+  const dangling = baseline();
+  dangling.discoveredDeferredWork = [
+    { id: "DW-015-001", cause: "engine", receiptId: "r-missing", resolvedBy: "tiny/select-option-emit" },
+  ] as typeof dangling.discoveredDeferredWork;
+  const rd = evaluateMeasureGate(dangling);
+  if (!rd.refusals.some((x) => x.code === "cause-without-receipt" && x.subject === "DW-015-001")) {
+    throw new Error(
+      "a RESOLVED deferredWork entry still cites its receipt under C4 — a dangling id must refuse (cause-without-receipt)",
+    );
+  }
+}
 
 // ---------------------------------------------------------------------------
 // I-6.1 — fail-closed: an absence of artifact data (here: zero contracts

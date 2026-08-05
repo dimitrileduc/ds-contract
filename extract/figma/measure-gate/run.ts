@@ -287,6 +287,10 @@ const discoveredDeferredWork: DiscoveredDeferredWork[] = (causes.deferredWork as
   id: d.id,
   cause: d.cause,
   receiptId: d.receiptId,
+  // tinyspec select-option-emit — deferredWork[].resolvedBy →
+  // DiscoveredDeferredWork.resolvedBy (non-null ⇒ out of the printed count,
+  // still in the register and under C4), the same mapping entries[] got.
+  resolvedBy: d.resolvedBy ?? null,
 }));
 
 const input: MeasureGateInput = {

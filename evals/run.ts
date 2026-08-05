@@ -5251,6 +5251,20 @@ const cases: Case[] = [
       if (r.status !== 0) throw new Error(`React box-model (border-box) check failed:\n${r.out}`);
     },
   },
+  // tinyspec select-option-emit — DW-014-001's standing eval: a part that IS
+  // the <select> (ds.select's `valeur` authors element: "select") wraps its
+  // text in a bare <option> on the html surface, both branches (content and
+  // text) — the React mirror native-checkbox-and-select-render-correctly
+  // pins. Red first against the bare-child emission behind 014's empty
+  // select capture (maskCoveragePct 0, receipt select-exclusion.json).
+  {
+    id: 'emit-html-select-option-text',
+    claim: 'C1-determinism',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/emit-html-select-option-text.ts']);
+      if (r.status !== 0) throw new Error(`emit-html select option-text check failed:\n${r.out}`);
+    },
+  },
   // 015/D10 (FR-009) — the exact scenario reproduced RED in
   // preservation-013-rouge.txt (T037): a re-extraction/merge silently
   // clobbers a 013 hand-set correction. `checkPreservation` (T038,

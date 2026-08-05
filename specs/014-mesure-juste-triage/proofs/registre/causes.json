@@ -152,7 +152,8 @@
       "destination": "tinyspec select-option-emit — ordonnancée immédiatement après la clôture de 015 (avant ou en parallèle de 016) : fixture d'abord, puis la branche d'émetteur + les 3 re-pins (D12, 015)",
       "verdictImpact": "divergent",
       "status": "deferred",
-      "note": "Consigné ici parce que 014 l'a DÉCOUVERT : DW-006 n'était suivi que parce que 013 l'avait porté à un registre. Un défaut qui ne vit que dans un reçu n'est ordonnancé par personne."
+      "resolvedBy": "tinyspec select-option-emit",
+      "note": "Consigné ici parce que 014 l'a DÉCOUVERT : DW-006 n'était suivi que parce que 013 l'avait porté à un registre. Un défaut qui ne vit que dans un reçu n'est ordonnancé par personne. CLOS le 2026-08-05 par la tinyspec select-option-emit (resolvedBy — le canal que measure-gate-counting-v2.md §2 a donné aux entries, étendu par la tinyspec à ce roster ; le compte imprimé le reflète, jamais une note seule) : reçu de réparation named-repair-DW-014-001.md, fixture permanente emit-html-select-option-text (rouge d'abord), re-mesure pv-select.json — 0,85 % → 0,17 %, « Texte de saisie » peint, règle de triage re-classée engine → rendering."
     },
     {
       "id": "DW-014-002",
@@ -209,10 +210,12 @@
       "observedCause": "La règle est accrochée au préfixe BEM partagé `.<name>` — qu'aucun élément ne porte en multi-root, où chaque racine de premier niveau compile vers sa propre classe frère `.<name>__<root>`, descendante de rien. core/emit-react.ts n'a pas le défaut : T013 (015, Phase 3) émet une règle PAR racine via topRoots(contract).",
       "whyNotFixedHere": "Hors périmètre de 015 (US2/FR-004 vise la surface LIVRÉE, React ; emit-html était déjà correct pour tous les contrats existants) et une édition d'émetteur en clôture coûte trois re-pins pour un défaut qui n'affecte aucun contrat. Correction connue et longue de deux lignes.",
       "impact": "LATENT — 0 des 34 contrats Piqueray n'est multi-root (relevé du 2026-08-05). Aucune surface livrée ne rend une boîte fausse.",
-      "destination": "à ordonnancer — la spec qui rendra Piqueray multi-root, ou une passe moteur dédiée",
+      "destination": "tinyspec select-option-emit — la passe moteur dédiée (destination assignée par la tinyspec elle-même AVANT sa clôture : jamais d'embarquement silencieux)",
       "verdictImpact": "none",
       "status": "deferred",
-      "foundBy": "evals/fixtures/react-box-model-border-box.ts — écrite en revue de Phase 7 pour donner un eval à T013 (Claims Rule) ; son premier passage a échoué sur cette asymétrie."
+      "resolvedBy": "tinyspec select-option-emit",
+      "foundBy": "evals/fixtures/react-box-model-border-box.ts — écrite en revue de Phase 7 pour donner un eval à T013 (Claims Rule) ; son premier passage a échoué sur cette asymétrie.",
+      "note": "CLOS le 2026-08-05 par la tinyspec select-option-emit : componentCss émet désormais une règle border-box PAR racine via topRoots en multi-root (la boucle exacte d'emit-react), chemin single-root byte-identique. Reçu de réparation named-repair-DW-015-001.md ; le verdict du reçu dw-015-001-emit-html-multiroot-box-sizing.json est re-testé par la fixture qui l'avait trouvé (rouge sur l'asymétrie avant le fix, verte après — html multi-root : 2 règles `.box-model-multi__{root,trailer}`)."
     }
   ]
 }

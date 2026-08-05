@@ -24,14 +24,14 @@ Fait vérifié qui a cadré ce découpage : les gros écarts de parité visuelle
 
 ### À ordonnancer — trouvé, non fait, sans spec assignée
 
-Chacun a son entrée au registre et son reçu re-testé ; aucun n'a de destination arrêtée. **C'est l'arbitrage qui reste à faire.**
+**Clos depuis (tinyspec `select-option-emit`, 2026-08-05)** : les deux défauts moteur qui figuraient ici sont réparés et fermés au registre — `DW-014-001` (texte du `<select>` émis en enfant nu → `<option>` nue, miroir de la surface React livrée ; re-mesure 0,85 % → 0,17 %, « Texte de saisie » peint, triage re-classé `engine` → `rendering`) et `DW-015-001` (border-box émis PAR racine en multi-root, chemin single-root byte-identique). Reçus : `specs/014-…/proofs/recus/named-repair-DW-014-001.md` / `named-repair-DW-015-001.md` ; le compte « deferred work » de `npm run measure:gate` est passé de 4 à **2** par le canal `resolvedBy` étendu au roster `deferredWork` — le compte imprimé reflète la clôture, jamais une note en prose seule.
+
+Chacun des restants a son entrée au registre et son reçu re-testé ; aucun n'a de destination arrêtée. **C'est l'arbitrage qui reste à faire.**
 
 | Id | Ce que c'est | Poids |
 |---|---|---|
-| `DW-014-001` | Le texte des `<select>` émis en enfant nu → capture vide. La surface React livrée est correcte. | Petit — **tinyspec `select-option-emit`**, décidée en 015, à lancer juste après (avant ou en parallèle de 016, sans collision : 016 ne touche pas `core/`) |
-| `DW-014-002` | **La parité visuelle rend `emit-html`, jamais la surface React livrée.** Sa destination au registre disait « 015 » — 015 ne l'a pas résolu. Conséquence vivante : la seule surface que les consommateurs installent n'est mesurée par rien sur cet axe. | Moyen, et c'est le plus gênant des quatre — un angle mort d'instrument, exactement la classe de défaut que 014 existe pour refuser |
+| `DW-014-002` | **La parité visuelle rend `emit-html`, jamais la surface React livrée.** Sa destination au registre disait « 015 » — 015 ne l'a pas résolu. Conséquence vivante : la seule surface que les consommateurs installent n'est mesurée par rien sur cet axe. | Moyen, et c'est le plus gênant — un angle mort d'instrument, exactement la classe de défaut que 014 existe pour refuser |
 | `DW-014-003` | `texte-seo` : le titre rich-text est aplati et sa typographie n'est pas liée à travers la composition `ds.texte-seo → ds.section-header`. Seul travail de cause `contract-geometry` encore ouvert. | Moyen — demande de porter une marque rich-text ET une typographie par-disposition à travers une composition imbriquée |
-| `DW-015-001` | `emit-html` accroche sa règle border-box au préfixe BEM partagé, inopérant en multi-root. **Latent** : 0 des 34 contrats n'est multi-root. | Deux lignes — appartient à la spec qui rendra Piqueray multi-root |
 | — | **30 des 69 pointeurs** `/literals/` d'`audit-campaign.json` visent l'ancien emplacement après les conversions de 015 → faux négatifs « le contrat ne porte pas ce fait ». | Mécanique mais substantiel ; le fichier appartient à 013, à ne pas réécrire sans revue |
 | — | **89 littéraux** de trait, peinture et typographie restent hors périmètre gouverné, donc invisibles au contrôle. La suite naturelle de 015. | Une spec entière si on la veut — même patron que 015, autre population |
 
