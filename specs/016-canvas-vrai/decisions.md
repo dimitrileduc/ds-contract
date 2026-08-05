@@ -164,6 +164,37 @@ lui, le comparatif visuel de clôture devient impossible à produire.
 
 ---
 
+### O-8 · La régénération est bloquée par deux défauts moteur — trouvés par un pilote d'un seul composant
+
+Reçu complet : `proofs/recus/defauts-moteur-regeneration.md`.
+
+1. **La famille de police est codée en dur à `Inter`** (`core/emit-figma-script.ts:3378`). Le
+   rattrapage par `textStyle` est inopérant : `TEXT_STYLES` est vide (mesuré en US1). Portée :
+   **tout composant textuel**. Une régénération complète aurait remplacé la typographie du
+   système entier.
+2. **Une couleur de bordure sans largeur produit un stroke plein sur le canvas** alors qu'en CSS
+   elle ne dessine rien. Portée mesurée : **11 parts sur 8 contrats** (google-reviews x4,
+   accordion-row, footer, input, review-card, select, tab, textarea).
+
+**Ce qui a permis de les trouver** : avoir régénéré **un** composant avant 44. Et, pour le
+premier, **l'oeil de l'owner sur la revue visuelle** — l'instrument avait rendu `exit 2`
+(dimension-mismatch) et l'analyse concluait « le canvas dit ce que dit le contrat », ce qui
+était vrai pour la géométrie et faux pour la police.
+
+> **Règle à porter au rapport** : un verdict pixel qui REFUSE de se prononcer (`exit 2`)
+> n'autorise pas à conclure à la conformité. Et une revue visuelle lisible vaut un verdict,
+> parce qu'elle rend le défaut visible à qui connaît le design.
+
+**État laissé sur le canvas** : geste correctif ciblé sur `Tab` (Montserrat rétabli, strokes
+parasites retirés, bordure basse de 2 px conservée sur l'état sélectionné). La maquette
+`Dépannage/SAV` est **byte-identique** à son état d'avant le pilote (`c4acfdf1b9512cec`) ; seul
+le master garde une boîte régénérée (163x202), transitoire — la prochaine régénération l'écrase.
+
+**Prémisse re-testée** (jamais recopiée) : l'API du plugin n'expose ni `restoreVersionAsync`
+ni `revertAsync`. La restauration d'une version reste un geste humain dans l'interface.
+
+---
+
 ## Lots
 
 > Une ligne par lot, ajoutée à sa clôture (étape 9 du cycle de preuve).
@@ -174,6 +205,7 @@ lui, le comparatif visuel de clôture devient impossible à produire.
 | **`U1a-variables`** (2026-08-05) | `identique` sur les 9 maquettes — **zéro pixel** ; 83 créations (77 `size` + 6 `space`), 1 MAJ de valeur (`montserrat`), 0 création Semantic, aucune collection `Brand`, 0 style de texte | **9/9 `identical`** ; rapport du script : `created: 83` / semantic `0` / brand `skipped` / textStyles `0` ; 2ᵉ passe `created: 0` (idempotent) | ✅ **conforme** | `2384251202054787848` |
 | **`U1a-sentinelle`** (2026-08-05) | la valeur d'une variable de géométrie change côté maquette (`size/carte/root` **364** → 999, valeur de départ **relevée**) ⇒ le différentiel doit la **signaler**, la **classer** et proposer un **remède** ; puis annulation ⇒ retour à l'état exact, et 2 passes stables | finding `figma-tokens\|mismatch\|Primitives/size/carte/root [Value]` — `tokens/ says 364, Figma says 999`, `adoptFigmaValue: 999`, 2 remèdes proposés, **parity exit 1** ; après annulation : exit 0, 2 passes **byte-identiques** (`b5a9ed4b87f96c2e`), cliché identique au sain | ✅ **conforme** | `2384256876219261626` |
 | **`L-DW002`** (2026-08-05) | master `Reassurances` **doit** bouger (3 variantes : cartes 364→363,5 et 285→284,4, conteneur 1550 et gaps 32 intacts) ; les maquettes **porteuses** d'une instance bougent de 2–3 px ; les **non porteuses** restent identiques au pixel | **3 identical / 7 diff** sur 10 cibles — les 6 porteuses ont bougé, les 3 non porteuses sont identiques, le master a bougé ; débordement résiduel **0** sur les 3 variantes ; chaque `diffBox` dans la bande de son instance | ✅ **conforme** | `2384258061656145845` |
+| **`R-pilote-tab`** (2026-08-05) | régénérer UN composant sans photo pour mesurer le coût d'un cycle avant d'en toucher 44 ; liaisons attendues, écart visuel à constater | liaisons **0 → 8** ✅ ; MAIS **police remplacée par Inter** (défaut moteur, tout composant textuel) et **cadres parasites** sur les onglets inactifs (défaut moteur, 8 contrats) ; `pages:compare` **exit 2** (dimension-mismatch, refus de conclure) | ⚠️ **arrêté — défauts moteur bloquants** | `2384277698227071279` |
 
 ### O-5 · Trois obstacles d'outillage avant que le geste passe — aucun n'a touché le fichier
 
