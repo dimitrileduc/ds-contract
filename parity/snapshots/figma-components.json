@@ -1,13 +1,13 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1785954132662,
+  "extractedAt": 1785957531670,
   "sets": [
     {
       "name": "Input",
       "nodeId": "2053:1245",
       "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
-      "description": "Champ de saisie texte — atome de formulaire. Fond color/blanc, bordure 1px color/bleu-gris (INSIDE), coins droits (0). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur » liée au contenu affiché — pas de calque à éditer manuellement.",
+      "description": "Input — generated from contract ds.input v1.0.0",
       "variantCount": 1,
       "properties": {
         "Valeur#2053:1": {
@@ -23,7 +23,7 @@
       "name": "Textarea",
       "nodeId": "2053:1247",
       "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
-      "description": "Zone de saisie multi-lignes — atome de formulaire. Même style que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), texte aligné en haut. Hauteur fixe 128px portée par le container (pas par un texte surdimensionné). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "description": "Textarea — generated from contract ds.textarea v1.0.0",
       "variantCount": 1,
       "properties": {
         "Valeur#2053:2": {
@@ -39,7 +39,7 @@
       "name": "Select",
       "nodeId": "2053:1249",
       "key": "3063f8a5ed587927ede2ae021433c705656acff5",
-      "description": "Liste déroulante — atome de formulaire. Même boîte que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), disposition SPACE_BETWEEN pour pousser le chevron à droite. Chevron = INSTANCE du composant local chevron-down (226:373, zéro dépendance tierce), jamais une copie. Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "description": "Select — generated from contract ds.select v1.0.0",
       "variantCount": 1,
       "properties": {
         "Valeur#2053:3": {
@@ -49,15 +49,13 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "ChevronDown"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "Checkbox",
       "nodeId": "2053:1256",
       "key": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
-      "description": "Case à cocher — atome net-new intégral (aucune référence dans les 9 maquettes, consentement RGPD en simple texte). Variant officiel « Coché » (Non/Oui) : décoché = fond color/blanc, bordure 2px color/bleu-gris ; coché = fond color/bleu plein, coche blanche. Coins droits (0), cohérent avec la famille Input/Textarea/Select. 20×20.",
+      "description": "Checkbox — generated from contract ds.checkbox v1.0.1",
       "variantCount": 2,
       "properties": {
         "Coche": {
@@ -457,7 +455,7 @@
       "name": "Field",
       "nodeId": "2056:1278",
       "key": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
-      "description": "Molécule Field (label + saisie + erreur) — propriétés : État (variant Normal/Erreur), Optionnel (booléen, affiche \"(optionnel)\"), Label (texte), Saisie (instance-swap Input/Select/Textarea). Erreur = bordure + message color/rouge (nouveau token, T039).",
+      "description": "Field — generated from contract ds.field v2.0.0 †",
       "variantCount": 2,
       "properties": {
         "Label#2056:4": {
@@ -654,15 +652,13 @@
       "description": "Anciennement nommé « Carousel-controls » sur le canvas. Molécule Carousel-controls — les deux boutons de navigation (précédent et suivant) d'un carrousel. Elle instancie Bouton deux fois, un pour chaque sens. Aucune propriété n'est exposée par la molécule elle-même : les libellés des deux instances ne se pilotent qu'en forant dans les instances Bouton imbriquées.",
       "variantCount": 1,
       "properties": {},
-      "nestedInstances": [
-        "Bouton"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "FooterColumn",
       "nodeId": "2079:2246",
       "key": "1de5585bfa55ff9e973748a4b2b99ef4b0a88cef",
-      "description": "Anciennement nommé « Footer-column » sur le canvas. Molécule Footer-column : une colonne du pied de page qui associe un titre de rubrique à une liste de liens. Le titre et chaque libellé se modifient par surcharge de texte depuis l'instance.",
+      "description": "FooterColumn — generated from contract ds.footer-column v1.1.0",
       "variantCount": 1,
       "properties": {
         "Titre#2079:38": {
@@ -684,7 +680,7 @@
       "name": "Copyright",
       "nodeId": "2086:2330",
       "key": "314cd2368d8d019fec33b60eb8995fac453d0e9f",
-      "description": "Affiche la ligne de copyright en pied de page du site. Il s'agit du texte de mention légale.",
+      "description": "Copyright — generated from contract ds.copyright v1.0.0",
       "variantCount": 1,
       "properties": {
         "Texte#2086:40": {
@@ -700,7 +696,7 @@
       "name": "Avantage",
       "nodeId": "2088:2350",
       "key": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
-      "description": "Molécule Avantage — met en avant un point fort ou argument, en associant l'icône de marque Piqueray à un titre et un texte. Titre et Texte sont deux propriétés texte indépendantes, éditables par instance. L'icône, elle, est une instance fixe sans propriété exposée : non substituable par une autre icône.",
+      "description": "Avantage — generated from contract ds.avantage v1.0.0",
       "variantCount": 1,
       "properties": {
         "Titre#2088:41": {
@@ -716,15 +712,13 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "Piqueray"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "SectionHeader",
       "nodeId": "2090:2397",
       "key": "770d5801af6e899b9547461ea2c714a66e0fa356",
-      "description": "Anciennement nommé « Section-header » sur le canvas. Molécule Section-header (en-tête générique de section) — propriétés pilotables depuis l'instance : le texte du titre, et la présence ou non d'un CTA (bouton d'action) via la variante.",
+      "description": "SectionHeader — generated from contract ds.section-header v2.0.0 †",
       "variantCount": 2,
       "properties": {
         "Accroche#2090:46": {
@@ -780,7 +774,7 @@
       "name": "NavItem",
       "nodeId": "2152:5554",
       "key": "bb5fff155aa25e719d1b9e38dedc767d677b4471",
-      "description": "Anciennement nommé « Nav-item » sur le canvas. Brique de navigation répétée du Header (×4, ex-copies brutes dans Header nav). Libellé + chevron optionnel (propriété booléenne \"Chevron\", défaut vrai) pour les entrées à sous-menu. Le chevron instancie le glyphe hors registre octicon:chevron-down-12 (6:119, gouvernance 002) — conservé tel quel, jamais réassigné à l'icône chevron-down du registre (décision FR-038, spec 005).",
+      "description": "NavItem — generated from contract ds.nav-item v1.1.0 †",
       "variantCount": 1,
       "properties": {
         "Chevron#2152:62": {
@@ -796,9 +790,7 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "OcticonChevronDown12"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "Review-card",
@@ -874,7 +866,7 @@
       "name": "Devis",
       "nodeId": "2096:2524",
       "key": "0caac7487988d0da129211e64a40545163149a6f",
-      "description": "Bandeau CTA pleine largeur (photo de fond + voile noir 30% + titre + bouton). Le titre est une propriete texte gouvernee : varie entre l'offre particuliers (\"chez vous\") et l'offre professionnels (\"dans vos locaux\", page Portes de garage industrielles). Le fond photo varie egalement sur cette meme page (override d'instance, comme gallery-item) - voir ledger/devis-cta.json.",
+      "description": "Devis — generated from contract ds.devis v1.2.0 †",
       "variantCount": 1,
       "properties": {
         "Titre#2096:49": {
@@ -892,7 +884,7 @@
       "name": "Formulaire",
       "nodeId": "2096:2564",
       "key": "b588bcccec2ae782382324bcda5fc257b91defd5",
-      "description": "Bloc formulaire de contact (2 colonnes) : argumentaire + Avantage x4 + Boutons, et colonne formulaire (7 Field + consentement RGPD + Bouton Envoyer). Note: le lien hypertexte du texte de consentement pointe vers un domaine tiers (jonckers-clabots.be), résidu de template pré-Piqueray reproduit fidèlement depuis la source — signalé en anomalie, pas corrigé silencieusement (voir decisions.md).",
+      "description": "Formulaire — generated from contract ds.formulaire v1.1.0",
       "variantCount": 1,
       "properties": {
         "Accroche#2096:50": {
@@ -914,7 +906,13 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": []
+      "nestedInstances": [
+        "SectionHeader",
+        "Avantage",
+        "Bouton",
+        "Field",
+        "Input"
+      ]
     },
     {
       "name": "Presentation",
@@ -951,7 +949,7 @@
       "name": "FAQ",
       "nodeId": "2104:2914",
       "key": "0df659be188a72700e42e2afbf30e95bb38db5f1",
-      "description": "Section FAQ — assemble 3 pièces déjà gouvernées : Section-header (Disposition Standard), accordion (N instances Accordion-row, Taille Grand) et Bouton (Outilne noir, « Contactez-nous »). Propriété `Ligne 3` (BOOLEAN, défaut true) montre/masque la 3e question — les 3 occurrences sources mesurées ont soit 2 soit 3 questions (jamais plus), et retirer un enfant structurel d'une instance placée n'est pas supporté par l'API Figma (vérifié) — la visibilité togglable est le mécanisme officiel retenu, pas un calque caché sans contrôle. Le contenu des questions/réponses est propre à chaque page et s'override par instance (propriétés TEXTE `Titre`/`Contenu` d'Accordion-row). Le bloc « Hero et FAQ » (Dépannage/SAV) porte en plus 4 instances Tab déjà gouvernées dans un frame `tabs` séparé, volontairement exclu de ce master (voir decisions.md) — cette page garde sa structure composite telle quelle, ses 3 pièces (Section-header/accordion/Bouton) étant déjà des instances gouvernées individuellement, sans instance FAQ consolidée. Zéro dépendance tierce.",
+      "description": "FAQ — generated from contract ds.faq v1.2.0 †",
       "variantCount": 1,
       "properties": {
         "Ligne 3#2104:59": {
@@ -963,7 +961,8 @@
       },
       "nestedInstances": [
         "SectionHeader",
-        "AccordionRow"
+        "AccordionRow",
+        "Bouton"
       ]
     },
     {
@@ -1134,16 +1133,21 @@
       "name": "Footer",
       "nodeId": "2120:4785",
       "key": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b",
-      "description": "Footer du site — logo + colonnes de liens (gouvernées, T058) + copyright (gouverné, T060) + réseaux sociaux + Bouton CTA (gouverné). Contenu identique sur les 9 maquettes (0 override attendu à l'adoption).",
+      "description": "Footer — generated from contract ds.footer v1.1.0 †",
       "variantCount": 1,
       "properties": {},
-      "nestedInstances": []
+      "nestedInstances": [
+        "PiquerayLogo",
+        "Bouton",
+        "FooterColumn",
+        "Copyright"
+      ]
     },
     {
       "name": "Header",
       "nodeId": "84:285",
       "key": "4165b8449f68916cca476b62454ede85eea13420",
-      "description": "En-tête de navigation du site — regroupe logo, liens de navigation, recherche, compte, panier et un CTA. Son fond peut être opaque ou transparent, ce dernier prévu pour un affichage sur photo. Un des glyphes qu'il instancie est hors du registre d'icônes gouverné ; son traitement est réservé à une étape séparée.",
+      "description": "Header — generated from contract ds.header v1.0.0",
       "variantCount": 2,
       "properties": {
         "Fond": {
@@ -1157,7 +1161,9 @@
         }
       },
       "nestedInstances": [
-        "PiquerayLogo"
+        "PiquerayLogo",
+        "NavItem",
+        "Bouton"
       ]
     },
     {

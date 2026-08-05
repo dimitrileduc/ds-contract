@@ -83,6 +83,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "PiquerayLogo",
                       "dep":"PiquerayLogo",
+                      "depId": "ds.piqueray-logo",
                       "depProps": {
                         "Couleur": "Blanc"
                       }
@@ -91,6 +92,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Bouton",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {
                         "Style": "Outline blanc",
                         "Icone droite": false,
@@ -103,6 +105,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
                     "Texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
                     "Titre": "Contact"
@@ -112,6 +115,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn 2",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
                     "Texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
                     "Titre": "Horaires"
@@ -121,6 +125,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn 3",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
                     "Texte": "Rue Alfred Drèze 7,  4860 Pepinster",
                     "Titre": "Adresse"
@@ -229,6 +234,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "Copyright",
               "dep":"Copyright",
+              "depId": "ds.copyright",
               "depProps": {
                 "Texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
               }
@@ -289,6 +295,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "SectionHeader",
                   "dep":"SectionHeader",
+                  "depId": "ds.section-header",
                   "depProps": {
                     "Titre": "Prenez contact avec nous dès maintenant !",
                     "Accroche": "Une demande de devis ? Une réparation ?",
@@ -309,6 +316,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
                         "Titre": "Conseils personnalisés"
@@ -318,6 +326,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage 2",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Marque Hormann renommée, qualité allemande",
                         "Titre": "Produits de qualité"
@@ -327,6 +336,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage 3",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais",
                         "Titre": "Dépannage et SAV"
@@ -336,6 +346,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage 4",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
                         "Titre": "Expérience et savoir-faire"
@@ -357,12 +368,14 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormArgumentBoutonA",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     },
                     {
                       "type":"instance",
                       "name": "FormArgumentBoutonB",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     }
                   ]
@@ -395,6 +408,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow1FieldA",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Prénom",
                         "Etat": "Normal"
@@ -404,6 +418,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow1FieldB",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Nom",
                         "Etat": "Normal"
@@ -425,6 +440,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow2FieldA",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Email",
                         "Etat": "Normal"
@@ -434,6 +450,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow2FieldB",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Téléphone",
                         "Etat": "Normal"
@@ -455,6 +472,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow3Field",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Adresse",
                         "Etat": "Normal"
@@ -476,6 +494,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow4Field",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Sujet",
                         "Etat": "Normal"
@@ -497,6 +516,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow5Field",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Message",
                         "Etat": "Normal"
@@ -517,6 +537,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FormulaireBouton",
                   "dep":"Button",
+                  "depId": "ds.button",
                   "depProps": {}
                 }
               ]
@@ -1137,6 +1158,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "carte",
                       "dep":"ReviewCard",
+                      "depId": "ds.review-card",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -1154,6 +1176,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "carte 2",
                       "dep":"ReviewCard",
+                      "depId": "ds.review-card",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -1171,6 +1194,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "carte 3",
                       "dep":"ReviewCard",
+                      "depId": "ds.review-card",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -1188,6 +1212,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "carte 4",
                       "dep":"ReviewCard",
+                      "depId": "ds.review-card",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -1205,6 +1230,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "carte 5",
                       "dep":"ReviewCard",
+                      "depId": "ds.review-card",
                       "depProps": {
                         "Auteur": "Prénom N.",
                         "Initiale": "P",
@@ -1399,6 +1425,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "PiquerayLogo",
               "dep":"PiquerayLogo",
+              "depId": "ds.piqueray-logo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -1425,6 +1452,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -1434,6 +1462,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 2",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -1443,6 +1472,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 3",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -1452,6 +1482,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 4",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -1461,6 +1492,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Bouton",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     }
                   ]
@@ -1516,6 +1548,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "PiquerayLogo",
               "dep":"PiquerayLogo",
+              "depId": "ds.piqueray-logo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -1542,6 +1575,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -1551,6 +1585,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 2",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -1560,6 +1595,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 3",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -1569,6 +1605,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 4",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -1578,6 +1615,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Bouton",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     }
                   ]
@@ -1750,6 +1788,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "SectionHeader",
                       "dep":"SectionHeader",
+                      "depId": "ds.section-header",
                       "depProps": {
                         "Titre": "Portes de garage industrielles",
                         "Accroche": "Plus de 50 ans d’expérience",
@@ -1787,6 +1826,7 @@ const COMPONENTS = [
                           "type":"instance",
                           "name": "Bouton",
                           "dep":"Button",
+                          "depId": "ds.button",
                           "depProps": {
                             "Style": "Outline blanc",
                             "Icone droite": true,
@@ -1847,6 +1887,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "SectionHeader",
               "dep":"SectionHeader",
+              "depId": "ds.section-header",
               "depProps": {
                 "Titre": "Piqueray, une histoire de famille ",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -1886,6 +1927,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Bouton",
                   "dep":"Button",
+                  "depId": "ds.button",
                   "depProps": {},
                   "visibleProp": "Bouton",
                   "visibleDefault": false
@@ -2122,6 +2164,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "SectionHeader",
               "dep":"SectionHeader",
+              "depId": "ds.section-header",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -2146,6 +2189,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -2156,6 +2200,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 2",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -2166,6 +2211,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 3",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -2176,6 +2222,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 4",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -2188,6 +2235,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "BoutonQuatreCartes",
               "dep":"Button",
+              "depId": "ds.button",
               "depProps": {
                 "Style": "Outline noir",
                 "Icone droite": true,
@@ -2222,6 +2270,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "SectionHeader",
               "dep":"SectionHeader",
+              "depId": "ds.section-header",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -2246,6 +2295,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -2256,6 +2306,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 2",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -2266,6 +2317,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 3",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -2276,6 +2328,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 4",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -2301,6 +2354,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Bouton",
                   "dep":"Button",
+                  "depId": "ds.button",
                   "depProps": {
                     "Style": "Outline noir",
                     "Icone gauche": true,
@@ -2314,6 +2368,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "BoutonSecondaire",
                   "dep":"Button",
+                  "depId": "ds.button",
                   "depProps": {
                     "Style": "Outline noir",
                     "Icone droite": true,
@@ -2350,6 +2405,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "SectionHeader",
               "dep":"SectionHeader",
+              "depId": "ds.section-header",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -2374,6 +2430,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -2384,6 +2441,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 2",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -2394,6 +2452,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 3",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -2404,6 +2463,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 4",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -2416,6 +2476,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "BoutonCinqCartes",
               "dep":"Button",
+              "depId": "ds.button",
               "depProps": {
                 "Style": "Outline noir",
                 "Icone droite": true,
@@ -2584,6 +2645,7 @@ const COMPONENTS = [
                               "type":"instance",
                               "name": "SectionHeader",
                               "dep":"SectionHeader",
+                              "depId": "ds.section-header",
                               "depProps": {
                                 "Titre": "Dépannage / SAV",
                                 "Accroche": "Plus de 50 ans d’expérience",
@@ -2609,6 +2671,7 @@ const COMPONENTS = [
                               "type":"instance",
                               "name": "Bouton",
                               "dep":"Button",
+                              "depId": "ds.button",
                               "depProps": {
                                 "Libelle": "Demander de l’aide",
                                 "Icone droite": true
@@ -2901,7 +2964,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -3164,7 +3241,7 @@ async function buildNode(spec, registry) {
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
@@ -3180,7 +3257,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);

@@ -53,6 +53,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "SectionHeader",
                   "dep":"SectionHeader",
+                  "depId": "ds.section-header",
                   "depProps": {
                     "Titre": "Prenez contact avec nous dès maintenant !",
                     "Accroche": "Une demande de devis ? Une réparation ?",
@@ -73,6 +74,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
                         "Titre": "Conseils personnalisés"
@@ -82,6 +84,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage 2",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Marque Hormann renommée, qualité allemande",
                         "Titre": "Produits de qualité"
@@ -91,6 +94,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage 3",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Nous mettons tout en œuvre pour vous dépanner dans les meilleur délais",
                         "Titre": "Dépannage et SAV"
@@ -100,6 +104,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Avantage 4",
                       "dep":"Avantage",
+                      "depId": "ds.avantage",
                       "depProps": {
                         "Texte": "Nous cumulons plus de 50 ans d’expérience sur trois générations",
                         "Titre": "Expérience et savoir-faire"
@@ -121,12 +126,14 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormArgumentBoutonA",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     },
                     {
                       "type":"instance",
                       "name": "FormArgumentBoutonB",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     }
                   ]
@@ -159,6 +166,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow1FieldA",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Prénom",
                         "Etat": "Normal"
@@ -168,6 +176,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow1FieldB",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Nom",
                         "Etat": "Normal"
@@ -189,6 +198,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow2FieldA",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Email",
                         "Etat": "Normal"
@@ -198,6 +208,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow2FieldB",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Téléphone",
                         "Etat": "Normal"
@@ -219,6 +230,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow3Field",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Adresse",
                         "Etat": "Normal"
@@ -240,6 +252,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow4Field",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Sujet",
                         "Etat": "Normal"
@@ -261,6 +274,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "FormRow5Field",
                       "dep":"Field",
+                      "depId": "ds.field",
                       "depProps": {
                         "Label": "Message",
                         "Etat": "Normal"
@@ -281,6 +295,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FormulaireBouton",
                   "dep":"Button",
+                  "depId": "ds.button",
                   "depProps": {}
                 }
               ]
@@ -403,7 +418,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -564,7 +593,7 @@ async function buildNode(spec, registry) {
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
@@ -580,7 +609,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);

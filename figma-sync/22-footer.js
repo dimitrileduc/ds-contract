@@ -85,6 +85,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "PiquerayLogo",
                       "dep":"PiquerayLogo",
+                      "depId": "ds.piqueray-logo",
                       "depProps": {
                         "Couleur": "Blanc"
                       }
@@ -93,6 +94,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Bouton",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {
                         "Style": "Outline blanc",
                         "Icone droite": false,
@@ -105,6 +107,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
                     "Texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
                     "Titre": "Contact"
@@ -114,6 +117,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn 2",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
                     "Texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
                     "Titre": "Horaires"
@@ -123,6 +127,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn 3",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
                     "Texte": "Rue Alfred Drèze 7,  4860 Pepinster",
                     "Titre": "Adresse"
@@ -231,6 +236,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "Copyright",
               "dep":"Copyright",
+              "depId": "ds.copyright",
               "depProps": {
                 "Texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
               }
@@ -353,7 +359,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -569,7 +589,7 @@ async function buildNode(spec, registry) {
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
@@ -585,7 +605,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);

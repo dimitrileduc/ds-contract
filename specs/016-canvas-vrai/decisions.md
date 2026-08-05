@@ -228,6 +228,41 @@ attend la fin d'un amend en cours.
 
 ---
 
+### O-10 · Clôture de la session du 2026-08-05 — la boucle est prouvée, l'attribution des deltas reste
+
+**Le chiffre central (U1b)** : **562 liaisons de variables sur 31 masters** — contre 10 sur 3
+à l'ouverture. Relevés : `proofs/bindings-audit-avant.json` / `proofs/bindings-audit.json`.
+
+**Fidélité de l'aller-retour, prouvée sur trois masters** (contrat → canvas = l'origine
+exacte du fichier, mesurée contre les dumps REST en cache) :
+AccordionRow **4/4** (64/40/120/80, trigger ABSOLUTE, chevrons 32/24) · Tab 86×41 pad 8/8 ·
+Bouton 219×54 / 155×30 / 52×52.
+
+**21 des 22 masters sans photo régénérés et liés**, `fontFallbacks: []` partout. Le 22ᵉ,
+`CarouselControls`, échoue sur `Property value is incompatible with component property type`
+— défaut NOMMÉ, non traité, et `npm run parity` le montre : ses 2 findings sont les seuls
+actifs. Le différentiel dit exactement ce qui reste.
+
+**Cinq correctifs moteur en une session**, tous fixture-rouge-d'abord :
+police (orthographe des styles + catch muet) · bordure sans largeur · part absolue hors
+flux (insets stylesWhen, mode partialV) · taille d'icône par-prop · **résolution des
+dépendances par MARQUEUR** (`findComponentByName` cherchait le nom littéral — le master
+s'appelle « Bouton », le contrat dit Button ; §VIII, l'identité n'est jamais un nom de calque).
+
+**CE QUI N'EST PAS RÉGLÉ — dit, pas tu** : les 9 maquettes sont plus hautes que la référence
+d'avant-chantier (+300 à +536 px, `proofs/FINAL2/`). Design intact (photos, textes,
+couleurs) ; ce sont des espacements verticaux. Cause identifiée : d'autres contrats portent
+des valeurs extraites avec le même défaut que `size.accordion-row.trigger` (hauteur TOTALE
+de la variante au lieu de la hauteur de l'enfant — double comptage du padding). La méthode
+de réparation est établie et prouvée sur l'accordéon : comparer chaque master à son dump
+REST en cache, corriger le token, republier les variables, ré-amender (specHash effacé).
+**Travail restant : l'attribution composant par composant, avec cette méthode.**
+
+À l'œil (revue visuelle) : une différence de design à ARBITRER par l'owner — l'icône du
+bouton « EN SAVOIR PLUS » (chevron sur l'ancien canvas, flèche prescrite par le contrat).
+
+---
+
 ## Lots
 
 > Une ligne par lot, ajoutée à sa clôture (étape 9 du cycle de preuve).

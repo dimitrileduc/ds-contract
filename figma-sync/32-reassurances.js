@@ -39,6 +39,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "SectionHeader",
               "dep":"SectionHeader",
+              "depId": "ds.section-header",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -63,6 +64,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -73,6 +75,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 2",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -83,6 +86,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 3",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -93,6 +97,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 4",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -105,6 +110,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "BoutonQuatreCartes",
               "dep":"Button",
+              "depId": "ds.button",
               "depProps": {
                 "Style": "Outline noir",
                 "Icone droite": true,
@@ -139,6 +145,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "SectionHeader",
               "dep":"SectionHeader",
+              "depId": "ds.section-header",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -163,6 +170,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -173,6 +181,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 2",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -183,6 +192,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 3",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -193,6 +203,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 4",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -218,6 +229,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Bouton",
                   "dep":"Button",
+                  "depId": "ds.button",
                   "depProps": {
                     "Style": "Outline noir",
                     "Icone gauche": true,
@@ -231,6 +243,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "BoutonSecondaire",
                   "dep":"Button",
+                  "depId": "ds.button",
                   "depProps": {
                     "Style": "Outline noir",
                     "Icone droite": true,
@@ -267,6 +280,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "SectionHeader",
               "dep":"SectionHeader",
+              "depId": "ds.section-header",
               "depProps": {
                 "Titre": "Pourquoi choisir nos portes de garage industrielles ?",
                 "Accroche": "Plus de 50 ans d’expérience",
@@ -291,6 +305,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Respectent les normes des bâtiments publics et les réglementations pompiers.",
@@ -301,6 +316,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 2",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Conçues pour recevoir tout type de bardage (Renson, Trespa, Alubond, Bois ou Eternit).",
@@ -311,6 +327,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 3",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal.",
@@ -321,6 +338,7 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "Carte 4",
                   "dep":"Carte",
+                  "depId": "ds.carte",
                   "depProps": {
                     "Disposition": "Reassurance",
                     "Texte": "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces.",
@@ -333,6 +351,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "BoutonCinqCartes",
               "dep":"Button",
+              "depId": "ds.button",
               "depProps": {
                 "Style": "Outline noir",
                 "Icone droite": true,
@@ -458,7 +477,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -614,7 +647,7 @@ async function buildNode(spec, registry) {
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
@@ -630,7 +663,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);

@@ -268,6 +268,8 @@ export interface NodeSpec {
   contentProp?: string;
   // instance
   dep?: string;
+  /** 016: the dependency contract's ID — resolution rides the ds_contracts/contractId marker, never the layer name (§VIII). */
+  depId?: string;
   depProps?: Record<string, string | boolean>;
   // slot
   slotProperty?: string;
@@ -276,7 +278,7 @@ export interface NodeSpec {
   /** Design-time default content. >1 item = multi-child slot: rendered
    *  directly, NO swap property (INSTANCE_SWAP holds one instance — the
    *  native SLOT property type is the migration target, see docs/08). */
-  slotDefault?: Array<{ dep: string; props?: Record<string, string | boolean> }>;
+  slotDefault?: Array<{ dep: string; depId?: string; props?: Record<string, string | boolean> }>;
   /** Variable name for a `slot.control` border-color resolved at this variant.
    *  It paints the slotted CONTROL, not the slot wrapper — the canvas half of
    *  the same state paint the code surfaces forward onto the child. Only a
@@ -2027,6 +2029,7 @@ function partToSpecs(
         type: 'instance',
         name: i === 0 ? name : `${name} ${i + 1}`,
         dep: dep.name,
+        depId: dep.id,
         depProps: mapDepProps(dep, { ...(part.component!.props ?? {}), ...fields }, subst, part.component!.text),
       };
       applyVisibleWhen(spec, part, contract);
@@ -2162,6 +2165,7 @@ function partToSpecInner(
       type: 'instance',
       name,
       dep: dep.name,
+      depId: dep.id,
       depProps: mapDepProps(dep, part.component.props ?? {}, subst, part.component.text),
     };
     // Boolean-toggled component-ref parts (CBDS icon toggles): the instance's
@@ -2181,7 +2185,7 @@ function partToSpecInner(
     if ((part.slot.defaultContent?.length ?? 0) > 0) {
       spec.slotDefault = part.slot.defaultContent!.map((item) => {
         const dep = byId.get(item.id)!;
-        return { dep: dep.name, props: mapDepProps(dep, item.props ?? {}, subst, item.text) };
+        return { dep: dep.name, depId: dep.id, props: mapDepProps(dep, item.props ?? {}, subst, item.text) };
       });
     }
     const controlStroke = slotControlStrokeVar(part.slot.control, subst);
@@ -3436,7 +3440,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -3592,7 +3610,7 @@ async function buildNode(spec, registry) {
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
@@ -3608,7 +3626,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);

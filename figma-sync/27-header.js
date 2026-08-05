@@ -32,6 +32,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "PiquerayLogo",
               "dep":"PiquerayLogo",
+              "depId": "ds.piqueray-logo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -58,6 +59,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -67,6 +69,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 2",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -76,6 +79,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 3",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -85,6 +89,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 4",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -94,6 +99,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Bouton",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     }
                   ]
@@ -149,6 +155,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "PiquerayLogo",
               "dep":"PiquerayLogo",
+              "depId": "ds.piqueray-logo",
               "depProps": {
                 "Couleur": "Default"
               }
@@ -175,6 +182,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -184,6 +192,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 2",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": true
@@ -193,6 +202,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 3",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -202,6 +212,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "NavItem 4",
                       "dep":"NavItem",
+                      "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
                         "Chevron": false
@@ -211,6 +222,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Bouton",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {}
                     }
                   ]
@@ -364,7 +376,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -520,7 +546,7 @@ async function buildNode(spec, registry) {
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
@@ -536,7 +562,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);

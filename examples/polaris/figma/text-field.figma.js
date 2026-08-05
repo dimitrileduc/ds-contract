@@ -2484,7 +2484,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -2608,14 +2622,21 @@ function applyInsetOverlay(parent, childNode, childSpec) {
       parent.insertChild(0, childNode);
     }
     childNode.layoutPositioning = 'ABSOLUTE';
-    childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
     const o = childSpec.insetOffsets || { top: 0, right: 0, bottom: 0, left: 0 };
     childNode.x = o.left;
     childNode.y = o.top;
-    childNode.resize(
-      Math.max(1, parent.width - o.left - o.right),
-      Math.max(1, parent.height - o.top - o.bottom),
-    );
+    if (childSpec.insetPartialV) {
+      // 016: top band — top/left/right pinned, NO bottom. The node keeps its
+      // own (token-bound) height; only the width follows the parent.
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'MIN' };
+      childNode.resize(Math.max(1, parent.width - o.left - o.right), childNode.height);
+    } else {
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+      childNode.resize(
+        Math.max(1, parent.width - o.left - o.right),
+        Math.max(1, parent.height - o.top - o.bottom),
+      );
+    }
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 
@@ -2706,7 +2727,7 @@ async function buildNode(spec, registry) {
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
@@ -2722,7 +2743,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);
