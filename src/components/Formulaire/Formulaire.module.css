@@ -15,6 +15,8 @@
   flex-direction: row;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: var(--size-formulaire-root);
+  gap: var(--space-32);
 }
 
 .column {
@@ -22,16 +24,19 @@
   flex-direction: column;
   flex: 1 1 auto;
   min-width: 0;
+  gap: var(--space-48);
 }
 
 .features {
   display: flex;
   flex-direction: column;
+  gap: var(--space-32);
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .form {
@@ -40,29 +45,37 @@
   flex: 1 1 auto;
   min-width: 0;
   background-color: var(--color-bleu-clair);
+  padding-inline: var(--space-32);
+  padding-block: var(--space-32);
+  gap: var(--space-16);
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .row2 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .row3 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .row4 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .row5 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }

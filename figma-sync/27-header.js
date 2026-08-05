@@ -27,6 +27,16 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
           },
+          "fixedWidth": {
+            "px": 1728,
+            "varName": "size/header/root"
+          },
+          "bindings": {
+            "paddingLeft": "space/89",
+            "paddingRight": "space/89",
+            "paddingTop": "space/16",
+            "paddingBottom": "space/16"
+          },
           "children": [
             {
               "type":"instance",
@@ -45,6 +55,9 @@ const COMPONENTS = [
                 "primary": "MAX",
                 "counter": "CENTER"
               },
+              "bindings": {
+                "itemSpacing": "space/64"
+              },
               "children": [
                 {
                   "type": "frame",
@@ -53,6 +66,9 @@ const COMPONENTS = [
                     "mode": "HORIZONTAL",
                     "primary": "CENTER",
                     "counter": "CENTER"
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/32"
                   },
                   "children": [
                     {
@@ -111,6 +127,9 @@ const COMPONENTS = [
                     "mode": "HORIZONTAL",
                     "primary": "MIN",
                     "counter": "CENTER"
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/16"
                   },
                   "children": [
                     {
@@ -150,6 +169,16 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
           },
+          "fixedWidth": {
+            "px": 1728,
+            "varName": "size/header/root"
+          },
+          "bindings": {
+            "paddingLeft": "space/89",
+            "paddingRight": "space/89",
+            "paddingTop": "space/16",
+            "paddingBottom": "space/16"
+          },
           "children": [
             {
               "type":"instance",
@@ -168,6 +197,9 @@ const COMPONENTS = [
                 "primary": "MAX",
                 "counter": "CENTER"
               },
+              "bindings": {
+                "itemSpacing": "space/64"
+              },
               "children": [
                 {
                   "type": "frame",
@@ -176,6 +208,9 @@ const COMPONENTS = [
                     "mode": "HORIZONTAL",
                     "primary": "CENTER",
                     "counter": "CENTER"
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/32"
                   },
                   "children": [
                     {
@@ -235,6 +270,9 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "CENTER"
                   },
+                  "bindings": {
+                    "itemSpacing": "space/16"
+                  },
                   "children": [
                     {
                       "type": "svg",
@@ -262,7 +300,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1788
   }
 ];
 const ROW_H = 240, PAD = 40;

@@ -1890,6 +1890,14 @@ function insetOverlayOffsets(
     if (sw.equals !== undefined && subst[sw.prop] !== sw.equals) continue;
     for (const [k, v] of Object.entries(sw.styles ?? {})) styles[k] = String(v);
   }
+  // 016 FINAL2 (Footer.Background, +459 px sur le master) : les insets peuvent AUSSI
+  // vivre en `declared` — le contrat du footer dit `declared: { position: absolute,
+  // top: 0, left: 0, right: 0 }`, le CSS généré les porte fidèlement, et le canvas
+  // les ignorait : le fond restait dans le flux et poussait tout le contenu.
+  for (const ch of ['top', 'right', 'bottom', 'left'] as const) {
+    const d = part.declared?.[ch];
+    if (d !== undefined && styles[ch] === undefined) styles[ch] = String(d);
+  }
   const offsets = { top: 0, right: 0, bottom: 0, left: 0 };
   let carried = 0;
   const carriedByCh = { top: false, right: false, bottom: false, left: false };

@@ -121,6 +121,9 @@
                     "id": "ds.button"
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.32}"
               }
             },
             "iconsNav": {
@@ -147,13 +150,24 @@
                     "size": 32
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             }
+          },
+          "tokens": {
+            "gap": "{space.64}"
           }
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.header.root}",
+        "padding-left": "{space.89}",
+        "padding-right": "{space.89}",
+        "padding-top": "{space.16}",
+        "padding-bottom": "{space.16}"
       }
     }
   },

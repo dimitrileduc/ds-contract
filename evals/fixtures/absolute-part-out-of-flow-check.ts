@@ -65,6 +65,13 @@ const contrat = ContractSchema.parse({
             { prop: 'taille', equals: 'petit', styles: { left: '0px', right: '0px', top: '0px' } },
           ],
         },
+        // LE SUJET 2 (Footer.Background, trouvé au FINAL2) : les insets portés en
+        // DECLARED — pas en stylesWhen. Même exigence : hors flux.
+        Fond: {
+          tokens: { height: '{size.fx.bandeau}' },
+          literals: { 'background-color': 'transparent' },
+          declared: { position: 'absolute', top: '0px', left: '0px', right: '0px' },
+        },
         // TÉMOIN : même forme, PAS de position:absolute — doit rester en flux.
         Temoin: { tokens: { height: '{size.fx.bandeau}' }, literals: { 'background-color': 'transparent' } },
       },
@@ -86,6 +93,10 @@ const script = engine.buildComponentScript(contrat, new Map([[contrat.id, contra
 const specBandeauSorti = /"name":\s*"Bandeau"[\s\S]{0,600}?"insetOverlay":\s*true/.test(script);
 if (!specBandeauSorti) {
   echecs.push('le spec émis pour `Bandeau` (declared position:absolute + insets stylesWhen) ne porte PAS insetOverlay — la part restera dans le flux, comme le trigger d’AccordionRow (176 px au lieu de 120 mesurés sur le canvas)');
+}
+const fondSorti = /"name":\s*"Fond"[\s\S]{0,600}?"insetOverlay":\s*true/.test(script);
+if (!fondSorti) {
+  echecs.push('le spec émis pour `Fond` (insets en DECLARED — le cas Footer.Background, +459 px au FINAL2) ne porte PAS insetOverlay');
 }
 const temoinReste = !/"name":\s*"Temoin"[\s\S]{0,600}?"insetOverlay":\s*true/.test(script);
 if (!temoinReste) echecs.push('le TÉMOIN (sans position:absolute) a été sorti du flux — le correctif déborde de sa cible');

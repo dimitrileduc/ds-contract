@@ -37,6 +37,13 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
+          "fixedWidth": {
+            "px": 1550,
+            "varName": "size/formulaire/root"
+          },
+          "bindings": {
+            "itemSpacing": "space/32"
+          },
           "children": [
             {
               "type": "frame",
@@ -48,6 +55,9 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
+              "bindings": {
+                "itemSpacing": "space/48"
+              },
               "children": [
                 {
                   "type":"instance",
@@ -68,6 +78,9 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN",
                     "stretchChildren": true
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/32"
                   },
                   "children": [
                     {
@@ -121,6 +134,9 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "bindings": {
+                    "itemSpacing": "space/16"
+                  },
                   "children": [
                     {
                       "type":"instance",
@@ -151,6 +167,13 @@ const COMPONENTS = [
               },
               "grow": true,
               "fill": "color/bleu-clair",
+              "bindings": {
+                "paddingLeft": "space/32",
+                "paddingRight": "space/32",
+                "paddingTop": "space/32",
+                "paddingBottom": "space/32",
+                "itemSpacing": "space/16"
+              },
               "children": [
                 {
                   "type": "frame",
@@ -160,6 +183,9 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN",
                     "stretchChildren": true
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/16"
                   },
                   "children": [
                     {
@@ -193,6 +219,9 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "bindings": {
+                    "itemSpacing": "space/16"
+                  },
                   "children": [
                     {
                       "type":"instance",
@@ -225,6 +254,9 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "bindings": {
+                    "itemSpacing": "space/16"
+                  },
                   "children": [
                     {
                       "type":"instance",
@@ -247,6 +279,9 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
+                  "bindings": {
+                    "itemSpacing": "space/16"
+                  },
                   "children": [
                     {
                       "type":"instance",
@@ -268,6 +303,9 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN",
                     "stretchChildren": true
+                  },
+                  "bindings": {
+                    "itemSpacing": "space/16"
                   },
                   "children": [
                     {
@@ -304,7 +342,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1610
   }
 ];
 const ROW_H = 240, PAD = 40;
