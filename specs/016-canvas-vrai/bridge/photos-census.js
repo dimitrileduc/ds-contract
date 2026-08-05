@@ -43,6 +43,15 @@
   const port = input.port || 9231;
   const nom = input.nom;
   const avecOctets = input.octets !== false;
+  // LOTS (leçon du 2026-08-05) : un parcours de tout le fichier en un seul appel
+  // (58 masters + 9 maquettes ≈ 5 350 nœuds) SATURE le sandbox et fait tomber le
+  // plugin — le pont se déconnecte et l'owner doit le relancer à la main. Le census
+  // se fait donc par lots, et les lots se recollent côté Node.
+  //   input.racines : liste d'ids à traiter (défaut : tout)
+  //   input.pagesDS / input.maquettes : booléens de sélection de famille
+  const filtreIds = Array.isArray(input.racines) && input.racines.length ? new Set(input.racines) : null;
+  const veutMasters = input.pagesDS !== false;
+  const veutMaquettes = input.maquettes !== false;
   if (!nom) throw new Error('photos-census.js: input requis — { nom, port?, expectNonce?, octets? }');
 
   // Identité du puits AVANT tout envoi (même durcissement que capture.js : un octet
@@ -115,7 +124,7 @@
   };
 
   // 1. Les masters (COMPONENT_SET / COMPONENT de premier rang) des pages DS.
-  const pagesDS = figma.root.children.filter((p) => /^DS · /.test(p.name));
+  const pagesDS = veutMasters ? figma.root.children.filter((p) => /^DS · /.test(p.name)) : [];
   const racines = [];
   const collecterMasters = (node, page) => {
     for (const c of node.children) {
@@ -127,9 +136,16 @@
   for (const pg of pagesDS) collecterMasters(pg, pg);
 
   // 2. Les 9 maquettes de la page `Pages`.
-  const pagePages = figma.root.children.find((p) => p.id === '210:325');
-  if (!pagePages) throw new Error('photos-census.js: page Pages (210:325) introuvable');
-  pagePages.children.forEach((c) => racines.push({ id: c.id, nom: c.name, type: c.type, page: pagePages.name, noeud: c }));
+  if (veutMaquettes) {
+    const pagePages = figma.root.children.find((p) => p.id === '210:325');
+    if (!pagePages) throw new Error('photos-census.js: page Pages (210:325) introuvable');
+    pagePages.children.forEach((c) => racines.push({ id: c.id, nom: c.name, type: c.type, page: pagePages.name, noeud: c }));
+  }
+
+  // Filtre explicite d'ids : c'est lui qui permet de découper un gros périmètre.
+  const racinesRetenues = filtreIds ? racines.filter((r) => filtreIds.has(r.id)) : racines;
+  racines.length = 0;
+  racines.push(...racinesRetenues);
 
   for (const r of racines) {
     try {

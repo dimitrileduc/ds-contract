@@ -115,7 +115,7 @@
       "limitesLevees": [
         {
           "quoi": "la largeur des cartes de la variante `5 cartes` n'etait portee par aucun token (invisible du differentiel)",
-          "preuveNonRegression": null
+          "preuveNonRegression": "proofs/recus/DW-002.md — le token size.reassurances.carte-cinq-cartes existe, sa variable Figma aussi, et l'axe tokens la surveille (parity vert apres correction float32)"
         }
       ],
       "recu": "proofs/recus/DW-002.md",
@@ -124,7 +124,28 @@
         "work013": "specs/013-.../proofs/deferred/work.json — cloture par reference croisee (additif)",
         "compteAttendu": "npm run measure:gate — figma-source 2 -> 0 (le compte vif imprime fait foi)"
       },
-      "statut": "annonce"
+      "statut": "corrige",
+      "resultat": {
+        "gesteLe": "2026-08-05",
+        "versionId": "2384258061656145845",
+        "lotId": "L-DW002",
+        "cartes": {
+          "4 cartes": "364 -> 363,5",
+          "QuatreCartesDeuxCta": "364 -> 363,5",
+          "5 cartes": "285 -> 284,4"
+        },
+        "debordementResiduel": 0,
+        "verdictPixel": "conforme — 10 cibles, 3 identical / 7 diff ; les 6 maquettes porteuses ont bouge, les 3 non porteuses sont identiques au pixel, le master a bouge (obligatoire)",
+        "promotions": [
+          "tokens/primitives.tokens.json : size.carte.root 364 -> 363,5",
+          "tokens/primitives.tokens.json : MINT size.reassurances.carte-cinq-cartes = 284,4"
+        ],
+        "rePins": [
+          "evals/golden.json (4 fichiers, tous expliques)",
+          "figma-sync/plugin/engine.receipt.json (plugin:check vert)"
+        ],
+        "defautInstrumentCorrige": "parity/diff.ts — comparaison des valeurs numeriques en float32 (Math.fround) : Figma stocke les FLOAT en simple precision, la comparaison par CHAINE creait un faux mismatch permanent. Meme classe que le correctif v4 sur l'alpha."
+      }
     },
     {
       "id": "DW-003",
