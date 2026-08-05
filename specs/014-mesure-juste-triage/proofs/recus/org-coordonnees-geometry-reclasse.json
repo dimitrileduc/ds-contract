@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "org-coordonnees-geometry-reclasse",
+  "claim": "RECLASSIFIED 2026-08-04 (Phase 6/015, T060). The original claim (org-coordonnees-geometry.json, 014, 2026-08-03) held this was a genuine contract-geometry defect: root.visualColumnOrder \"row\" != Figma's \"row-reverse\". Investigation found the contract already documents this choice explicitly — googleMap's own description states the DOM/part order IS the Figma visual order (plan left, wrapper right) and that the layer-authoring order is scope-free, matching the identical, already-acknowledged pattern used for ds.footer (\"reconstruction flexbox d'une frame sans auto-layout\"). The fact-checker compares a literal CSS string against Figma's own row-reverse mechanism and cannot recognize that a different part order produces the same visual result — this is a limitation of the verifying instrument, not a flaw in the contract's own carried geometry.",
+  "claimSource": "specs/014-mesure-juste-triage/proofs/recus/org-coordonnees-geometry.json (superseded); contracts/coordonnees.contract.json googleMap description (unchanged since before 015)",
+  "method": "re-read org-coordonnees-geometry.json's sole divergent fact (coordonnees.structure.colonnes-ordre) against the contract's own documented justification and against ds.footer's identical, already-accepted precedent",
+  "observed": {
+    "geometryDeltaPx": { "width": 0, "height": 0 },
+    "rawPct": 0.5222631289161859,
+    "divergentFacts": [
+      {
+        "id": "coordonnees.structure.colonnes-ordre",
+        "reason": "contract-value-differs:root.visualColumnOrder:\"row\"!=\"row-reverse\" — same visual result via part order instead of flex-direction: row-reverse, precedented and already accepted for ds.footer"
+      }
+    ]
+  },
+  "verdict": "confirmed",
+  "browser": null,
+  "date": "2026-08-04"
+}

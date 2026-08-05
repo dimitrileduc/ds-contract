@@ -353,9 +353,9 @@ export const TRIAGE: TriageRule[] = [
   {
     subject: 'section-header',
     variant: /Avec CTA/,
-    class: 'contract-geometry',
+    class: 'rendering',
     cause:
-      'width mismatch, not an instrument artefact: section-header declares no renderWidth (subjects.ts) — it HUGs on both sides — and the Standard disposition already HUGs to within 1px of its own master (1082 vs 1081). The Avec-CTA master is 3093px wide; ours only reaches 2174px (Δ-919, height exact at Δ0). The triptych shows Figma spreading the title and the "Voir les produits" CTA further apart than the contract\'s Avec-CTA anatomy reproduces — a content/spacing gap in the contract\'s own geometry for this disposition, not a harness-imposed width.',
+      'RE-CLASSIFIED 2026-08-04 (Phase 6/015, named-repair — see subjects.ts\'s section-header entry). The width mismatch this rule used to describe (2174×108 vs figma 3093×108) is now fixed: `renderWidth: 1550` pins the isolated test to the same width Figma\'s own master declares (layoutSizingHorizontal FIXED at 1550px, live-verified). A contract-level width was tried first and reverted — it broke align-self:stretch for every real consumer (coordonnees, sav, presentation all regressed) because "Avec CTA" is not composed by any current contract; only the isolated instrument needed the pin. Sizes are now IDENTICAL both sides (3100×108); masked score 0.99% (mask coverage 41.10%) — text raster explains the residual, same class as section-header\'s own Standard disposition and google-reviews.',
     receiptId: 'pv-section-header-avec-cta',
   },
   {

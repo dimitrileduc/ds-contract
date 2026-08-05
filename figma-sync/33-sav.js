@@ -106,11 +106,11 @@ const COMPONENTS = [
                         "counter": "MIN"
                       },
                       "fixedWidth": {
-                        "px": 546,
+                        "px": 641,
                         "varName": "size/sav/wrapper-w"
                       },
                       "fixedHeight": {
-                        "px": 513,
+                        "px": 561,
                         "varName": "size/sav/wrapper-h"
                       },
                       "bindings": {
@@ -201,7 +201,7 @@ const COMPONENTS = [
                         "counter": "MAX"
                       },
                       "fixedWidth": {
-                        "px": 644,
+                        "px": 647,
                         "varName": "size/sav/img-group-w"
                       },
                       "fixedHeight": {

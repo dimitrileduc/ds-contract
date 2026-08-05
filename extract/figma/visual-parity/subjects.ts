@@ -317,6 +317,6 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   },
   { id: 'product-card', label: 'ProductCard (Piqueray)', kind: 'contract', contractId: 'ds.product-card', fileKey: PIQUERAY, setNodeId: '2068:1972' },
   { id: 'realisation', label: 'Realisation (Piqueray)', kind: 'contract', contractId: 'ds.realisation', fileKey: PIQUERAY, setNodeId: '2095:2484' },
-  { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397' },
+  { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397', renderWidth: 1550 }, // Phase 6 (015), named-repair: both dispositions declare layoutSizingHorizontal FIXED at 1550px on the isolated master (figma_get_component_for_development, read-only) — the contract's own align-self:stretch correctly fills every REAL consumer's own container (verified live: coordonnees' embedded instance measures 480px, its own wrapper's content width) and must NOT carry a width itself, or every stretch-context consumer regresses (confirmed: adding one broke coordonnees/sav/presentation, reverted). This is a harness-only pin, isolation-context width, same class as accordion-row's own 1550.
   { id: 'tab', label: 'Tab (Piqueray)', kind: 'contract', contractId: 'ds.tab', fileKey: PIQUERAY, setNodeId: '2061:1588', renderWidth: 86 },
 ];

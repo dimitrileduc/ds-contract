@@ -1071,3 +1071,53 @@ none of those exist in Piqueray).
 - 3 Figma token references not in DTCG tokens (noir-pur→noir-bleute, rouge/gris-clair removed)
 - 13 parity drift findings: expected post-extraction (Figma properties not yet promoted into contracts)
 - Eval suite not run (scratch-dir Node v24 issue, user-requested skip)
+
+## 2026-08-05 — Spec 015: the geometry blind spot, closed on the code side
+
+**Journal gap, named:** specs 011, 012, 013 and 014 have no entry here. 015's is
+filed on top of that hole rather than pretending it isn't there — their record
+lives in their spec folders and the commit log.
+
+**The problem, with its receipt:** the three-way differ watches geometry through
+the token axis. A padding carried as `"89px"` sits on no axis at all — nothing
+proposes it, nothing flags it, and parity stays green while the surfaces drift.
+Spec 013 had proved the cost: a footer "fixed" with hard numbers went from
+96.91 % to 1.04 % pixel gap — a green render on an invisible fact.
+
+- **208 invisible geometric values → 0**, read live by a new fail-closed gate
+  (`npm run geometry:gate`). 196 literal→token conversions across 27 contracts,
+  all pure — the before/after register proves zero pixel movement from them,
+  line by line. 83 references minted from-dump (6 `space.N`, 77
+  `size.<component>.*`), each `$description` citing its node and date, none
+  rounded to fit the scale.
+- **Named literals, not zero literals**: the 2 hero gradient veils have no
+  legitimate vocabulary, so they are *declared* in a closed registry
+  (`contracts/named-literals.registry.json`) the gate reads live — and the
+  `background-image` channel was lifted with its **own** bounded grammar
+  (`linear-gradient(...)` only; radial/conic refuse by name). Carrying them
+  measured 27.83 % → 10.66 % on the hero.
+- **One box model across four surfaces**: the delivered React library was the
+  only surface not border-box — 9 contracts rendered wider for consumers than
+  for the designer, and the instrument could not see it. Fixed at the emitter,
+  plus **three content-box values corrected at the source** (`ds.sav`
+  wrapper/imgGroup, `ds.footer` root 1550→1728, `ds.faq` root 1550→1728) — each
+  ratified by its line falling bit-for-bit back onto its pre-fix number.
+- **The loop proven, not assumed**: a geometry change injected on each side is
+  detected. Testing that premise found a real hole — `parity/diff.ts` extracted
+  `cssVars` but never compared them, so `var(--token)` → raw value passed parity
+  with exit 0. Wired into the existing axis rather than worked around.
+- **014's measure gate: `contract-geometry` 6 → 0**, PASS, read live. What that
+  0 covers — 3 real repairs, 2 argued re-classifications, 1 deferral that keeps
+  the cause — is stated in `specs/015-geometrie-gouvernee/RAPPORT-CLOTURE.md` §4.
+  Suite: **183/183** (+1 case, `react-box-model-border-box`).
+
+**Named limits (the honest half).** "Zero invisible values" is scoped to layout
+channels: 89 trait/paint/typography literals remain out of scope and therefore
+still invisible — the live count is published, not the opening estimate. The
+canvas axis is *acknowledged, not watched*: the 83 new references have no Figma
+variables yet (015 was read-only end to end), which is why `parity/baseline.json`
+went from 7 to 89 acknowledgements — spec 016 restores that axis. And
+**DW-014-002, whose register destination said "015", is NOT resolved**: the
+visual-parity instrument still renders `emit-html`, never the delivered React
+surface, so SC-003 rests on direct measurement and the new eval rather than on
+that instrument.

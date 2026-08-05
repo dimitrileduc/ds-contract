@@ -33,7 +33,7 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "fixedWidth": {
-            "px": 1550,
+            "px": 1728,
             "varName": "size/faq/root"
           },
           "bindings": {
@@ -109,7 +109,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1610
+    "colW": 1788
   }
 ];
 const ROW_H = 240, PAD = 40;

@@ -23,10 +23,12 @@ Seuls 4 des 9 contrats du rayon sont des sujets d'audit d'organismes (coordonnee
 |---|---:|---:|---:|---|
 | `sav/sav-master-defaults` | 0.6652 % | 20.8109 % | **+20.146** | oui |
 | `footer/footer-master-defaults` | 1.0440 % | 12.0141 % | **+10.970** | oui |
-| `faq/faq-master-defaults` | 3.6723 % | 4.8193 % | **+1.147** | oui |
+| `faq/faq-master-defaults` | 3.6723 % | 4.8193 % | **+1.147** → **0 après correction** (voir note) | oui |
 | `coordonnees/coordonnees-master-defaults` | 0.5223 % | 0.5223 % | 0 (bit-à-bit identique) | oui — voir §3 |
 | `devis`, `hero`, `presentation`, `texte-seo` | — | — | 0 chacun | non — inchangés, comme attendu |
 | `reassurances/reassurances-disposition-4-cartes` | 14.9228 % | 14.9229 % | +0.0000870 | non (hors rayon ; bruit de rendu résiduel, sans rapport avec box-sizing — DW-006 déjà attribué) |
+
+> **NOTE DE CORRECTION — 2026-08-05 (revue de Phase 7).** Les trois mouvements positifs de ce tableau (`sav` +20,146, `footer` +10,970, `faq` +1,147) ont d'abord été lus comme la trace ATTENDUE du fix. Ils étaient l'inverse : des **aggravations**, révélées par la règle border-box sur des largeurs que les contrats portaient en content-box. Les trois ont été corrigés — `sav` (§6 de `sav-wrapper-imggroup-content-box-defect.md`, Phase 6), `footer` (T058, 1550→1728), `faq` (`faq-root-content-box-defect.md`, 2026-08-05, 1550→1728) — et les trois lignes retombent désormais **bit à bit** sur leur chiffre d'`avant.json` (0,665245 % · 1,043999 % · 3,672346 %, delta 0 chacune). La leçon, déjà écrite par le reçu `sav` et confirmée deux fois depuis : **la direction du mouvement seule ne suffit pas à conclure** — il faut comparer la valeur portée à la bbox Figma du master. Le relevé exhaustif du 2026-08-05 (les 11 parts du dépôt portant taille + padding sur un même axe, chacune comparée à sa bbox) confirme qu'aucun autre cas ne subsiste.
 
 **Aucun chiffre ne bouge hors des 9** : les 4 contrats d'organisme hors rayon (devis, hero, presentation, texte-seo) sont strictement inchangés ; le micro-bruit de reassurances (0.00009 pt, 5 ordres de grandeur sous le seuil) est un résidu de rendu, pas un mouvement attribuable.
 

@@ -1,7 +1,7 @@
 # Reçu — défaut découvert : `ds.sav` `wrapper`/`imgGroup` portent des valeurs content-box, plus correctes sous border-box
 
 **Date** : 2026-08-04 · **Découvert pendant** : conversion littéraux→tokens de Lot A (T040, agent délégué) — signalé en transparence par l'agent (deux descriptions de `sav.contract.json` restées fausses après le passage border-box de Phase 3).
-**Statut** : **différé, non réparé ici** (décision owner, hors périmètre FR-012 de Phase 4 — une conversion pure ne change aucune valeur).
+**Statut** : **réparé en Phase 6** (2026-08-04, mise à jour) — voir §6 ci-dessous. Le reste de ce reçu (§1-5) est le compte-rendu original de Phase 4, conservé tel quel.
 
 ## Le fait, vérifié contre le dump Figma commité
 
@@ -36,3 +36,11 @@ FR-012 (Phase 4, ce spec) : une conversion littéral→token est PURE — aucune
 
 - Les 72 conversions littéral→token de Lot A (dont ces 2 sites) sont correctes AU SENS DE T040 : elles déplacent la valeur EXISTANTE (fausse ou pas) sans la modifier — c'est le contrat, exactement, de FR-012.
 - Les 7 autres contrats du rayon Phase 3 (`accordion-row`, `carte`, `coordonnees`, `faq`, `footer`, `google-reviews`, `review-card`, `textarea`) ne sont PAS automatiquement suspects par ce reçu — `coordonnees` est vérifié sain ci-dessus (vrai auto-layout Figma) ; `faq`/`footer` n'ont pas été re-vérifiés contre leur bbox Figma réel ici (hors périmètre de cette investigation ponctuelle, déclenchée par le signalement de l'agent Lot A sur `sav` spécifiquement) et restent à l'état où `box-model-unification.md` les a laissés.
+
+## §6 — Réparé en Phase 6 (2026-08-04)
+
+Bien que `sav` ne soit pas l'une des 4 lignes explicitement nommées par l'objectif de Phase 6 (« l'en-tête Avec CTA, texte-seo, footer, coordonnees »), la réparation a été faite ici parce qu'elle bloquait la mesure propre de `npm run audit:organisms` (`build-registre.mts --phase apres`) : `wrapper-w`/`wrapper-h`/`img-group-w` corrigés à 641px/561px/647px dans `tokens/primitives.tokens.json`, descriptions du contrat mises à jour. Vérifié cohérent avec le reste de la géométrie déjà portée : `size.sav.row-w` (1288px) = `wrapper` (641) + `imgGroup` (647) exactement (`itemSpacing: 0` sur `row`, confirmé par sa propre description) ; `size.sav.section-w` (1550px) et la position `x=131` de `row` (`(1550−1288)/2`) restent cohérents. Le calcul interne du contrat est donc auto-consistant après correction.
+
+**PÉRIMÉ le 2026-08-05 (revue de Phase 7) — le refus décrit ci-dessous ne se reproduit plus.** La re-mesure de clôture (`build-registre --phase apres`, 2026-08-05T06:17:34Z) mesure les **9 sujets d'organisme, `sav` compris, avec 0 refus**, et publie `sav/sav-master-defaults` à 0,665245 % (delta 0 contre l'« avant »). Le paragraphe d'origine est conservé tel quel ci-dessous — il décrit un état transitoire du 2026-08-04 21:16, entre deux captures ; la capture officielle de 21:30 le même soir ne le portait déjà plus. La revue signale la contradiction plutôt que de réécrire le reçu : deux preuves du dossier se contredisaient, et c'est la plus récente, re-testée, qui fait foi.
+
+~~**Ce que la correction n'a PAS résolu**~~ (état du 2026-08-04 21:16, périmé) : `build-registre.mts --phase apres` continue de refuser `sav` avec `organism-measurement-failed: painted box exceeds the capture viewport` — **ce refus existait AVANT la correction (263px de dépassement) et a AUGMENTÉ après (358px, +95px = exactement la correction de largeur de `wrapper`)**. Direction : le dépassement grandit avec une correction qui rapproche la géométrie de Figma, ce qui indique que ce refus n'est PAS causé par le défaut réparé ici, mais par un troisième fait, plus profond dans la hiérarchie de `sav` (ou par le pin `rootWidthCss` du harnais lui-même, lu depuis le dump commité plutôt que re-vérifié en direct). Cause probable : `instrument` (le vocabulaire à 6 valeurs) plutôt que `contract-geometry` — pas encore confirmé. **Non investigué plus loin ici** (hors périmètre nommé de Phase 6, risque de dérive de portée) — nommé, pas absorbé en silence, pour reprise ultérieure si `sav` devient un jour une ligne mesurée de spec.

@@ -1,0 +1,9 @@
+
+> ds-contracts-poc@0.7.0 measure:gate
+> tsx extract/figma/measure-gate/run.ts --apres specs/015-geometrie-gouvernee/proofs/registre/apres.json
+
+measure:gate — verdict: PASS (exit 0)
+  contracts 34 · measured lines 52 · divergent 42 · deferred work 3
+  by cause: contract-geometry=0 · image-boundary=11 · rendering=23 · engine=3 · instrument=1 · figma-source=2
+  browser: 151.0.7922.34
+✓ all four conditions held — zero refusals

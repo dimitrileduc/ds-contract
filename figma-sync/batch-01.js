@@ -2303,7 +2303,7 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "fixedWidth": {
-            "px": 1550,
+            "px": 1728,
             "varName": "size/faq/root"
           },
           "bindings": {
@@ -2379,7 +2379,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1610
+    "colW": 1788
   },
   {
     "setName": "Input",
@@ -2837,9 +2837,13 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
-          "lits": {
-            "width": 180,
-            "height": 34
+          "fixedWidth": {
+            "px": 180,
+            "varName": "size/logo/width"
+          },
+          "fixedHeight": {
+            "px": 34,
+            "varName": "size/logo/height"
           },
           "children": [
             {
@@ -2889,9 +2893,13 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
-          "lits": {
-            "width": 180,
-            "height": 34
+          "fixedWidth": {
+            "px": 180,
+            "varName": "size/logo/width"
+          },
+          "fixedHeight": {
+            "px": 34,
+            "varName": "size/logo/height"
           },
           "children": [
             {

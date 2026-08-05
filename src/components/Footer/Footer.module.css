@@ -15,12 +15,12 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: 1550px;
-  padding-top: 128px;
-  padding-right: 89px;
-  padding-bottom: 32px;
-  padding-left: 89px;
-  gap: 0px;
+  width: var(--size-footer-root);
+  padding-top: var(--space-128);
+  padding-right: var(--space-89);
+  padding-bottom: var(--space-32);
+  padding-left: var(--space-89);
+  gap: var(--space-0);
   position: relative;
 }
 
@@ -38,20 +38,20 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  width: 1385px;
+  width: var(--size-footer-row);
   position: relative;
 }
 
 .col1 {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--space-32);
 }
 
 .col5 {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 .TitreReseaux {
@@ -64,7 +64,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 .Facebook svg {

@@ -30,18 +30,10 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "COMPONENT « Footer » 2120:4785, 1728×619, layoutMode VERTICAL, itemSpacing 0, padding 128/89/32/89. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés. La feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav).",
+      "description": "COMPONENT « Footer » 2120:4785, 1728×619, layoutMode VERTICAL (auto-layout Figma natif), itemSpacing 0, padding 128/89/32/89. La largeur portée ici (`{size.footer.root}` = 1728px) est la boîte TOTALE padding-inclus, telle que Figma la mesure nativement pour un frame auto-layout (`absoluteBoundingBox.width`) — la feuille générée déclare `box-sizing: border-box` (T013) donc ce même 1728px, posé en CSS `width`, retombe sur la même boîte. Corrigé le 2026-08-04 (Phase 6, named-repair:DW-004+DW-005) : la valeur portée jusque-là (1550px) était le calcul CONTENU (1728−89−89), correct seulement sous l'ancien défaut content-box — voir `size.footer.root` dans tokens/primitives.tokens.json pour le detail de la correction.",
       "layout": {
         "display": "flex",
         "direction": "column"
-      },
-      "literals": {
-        "width": "1550px",
-        "padding-top": "128px",
-        "padding-right": "89px",
-        "padding-bottom": "32px",
-        "padding-left": "89px",
-        "gap": "0px"
       },
       "declared": {
         "position": "relative"
@@ -68,8 +60,8 @@
             "justify": "space-between",
             "align": "start"
           },
-          "literals": {
-            "width": "1385px"
+          "tokens": {
+            "width": "{size.footer.row}"
           },
           "declared": {
             "position": "relative"
@@ -79,8 +71,8 @@
               "layout": {
                 "direction": "column"
               },
-              "literals": {
-                "gap": "32px"
+              "tokens": {
+                "gap": "{space.32}"
               },
               "parts": {
                 "PiquerayLogo": {
@@ -131,8 +123,8 @@
               "layout": {
                 "direction": "column"
               },
-              "literals": {
-                "gap": "16px"
+              "tokens": {
+                "gap": "{space.16}"
               },
               "parts": {
                 "TitreReseaux": {
@@ -150,8 +142,8 @@
                     "direction": "row",
                     "align": "center"
                   },
-                  "literals": {
-                    "gap": "16px"
+                  "tokens": {
+                    "gap": "{space.16}"
                   },
                   "parts": {
                     "Facebook": {
@@ -210,7 +202,13 @@
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.footer.root}",
+        "padding-top": "{space.128}",
+        "padding-right": "{space.89}",
+        "padding-bottom": "{space.32}",
+        "padding-left": "{space.89}",
+        "gap": "{space.0}"
       }
     }
   },

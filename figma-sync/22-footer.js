@@ -28,13 +28,16 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "lits": {
-            "width": 1550,
-            "paddingTop": 128,
-            "paddingRight": 89,
-            "paddingBottom": 32,
-            "paddingLeft": 89,
-            "itemSpacing": 0
+          "fixedWidth": {
+            "px": 1728,
+            "varName": "size/footer/root"
+          },
+          "bindings": {
+            "paddingTop": "space/128",
+            "paddingRight": "space/89",
+            "paddingBottom": "space/32",
+            "paddingLeft": "space/89",
+            "itemSpacing": "space/0"
           },
           "children": [
             {
@@ -60,8 +63,9 @@ const COMPONENTS = [
                 "primary": "SPACE_BETWEEN",
                 "counter": "MIN"
               },
-              "lits": {
-                "width": 1385
+              "fixedWidth": {
+                "px": 1385,
+                "varName": "size/footer/row"
               },
               "children": [
                 {
@@ -73,8 +77,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 32
+                  "bindings": {
+                    "itemSpacing": "space/32"
                   },
                   "children": [
                     {
@@ -133,8 +137,8 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "itemSpacing": 16
+                  "bindings": {
+                    "itemSpacing": "space/16"
                   },
                   "children": [
                     {
@@ -155,8 +159,8 @@ const COMPONENTS = [
                         "primary": "MIN",
                         "counter": "CENTER"
                       },
-                      "lits": {
-                        "itemSpacing": 16
+                      "bindings": {
+                        "itemSpacing": "space/16"
                       },
                       "children": [
                         {
@@ -235,7 +239,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1788
   }
 ];
 const ROW_H = 240, PAD = 40;

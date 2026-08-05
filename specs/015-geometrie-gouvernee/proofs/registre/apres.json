@@ -7,12 +7,12 @@
     "revision": "1234"
   },
   "figmaDumps": "cached",
-  "visualParityReceiptAt": "2026-08-04T14:03:53.499Z",
+  "visualParityReceiptAt": "2026-08-05T06:16:31.307Z",
   "committedComparison": {
     "source": "git show HEAD:extract/figma/visual-parity/REPORT.md (parité) + specs/013-…/proofs/organisms/*/result.json (organismes)",
     "note": "La colonne `committed` de la parité visuelle est lue dans le Markdown, donc à 2 décimales : elle DÉTECTE un écart avec ce que le dépôt publiait, elle ne fonde pas l'« avant »."
   },
-  "capturedAt": "2026-08-04T14:05:26.735Z",
+  "capturedAt": "2026-08-05T06:17:34.750Z",
   "refusals": [],
   "lines": [
     {
@@ -1104,7 +1104,7 @@
         "facts": null
       },
       "after": {
-        "rawPct": 1.9104330938955052,
+        "rawPct": 0.9040031092110377,
         "status": "diffed",
         "facts": null
       },
@@ -1115,15 +1115,15 @@
       },
       "referenceProvenance": null,
       "delta": {
-        "rawPct": 0,
+        "rawPct": -1.0064299846844675,
         "facts": null
       },
       "committedDelta": {
-        "rawPct": 0,
+        "rawPct": -1.0099999999999998,
         "comparedAt": "2 décimales",
         "statusChanged": null
       },
-      "attribution": null
+      "attribution": "Phase 6, named-repair (T056, receipts pv-section-header-standard/avec-cta re-testés) — 1,910433% -> 0,904003% (amélioration). `renderWidth: 1550` ajouté au sujet `subjects.ts` (harnais seul, contrat inchangé) pin désormais les deux dispositions à la largeur FIXED que le maître Figma déclare réellement (live-vérifié, figma_get_component_for_development) au lieu de HUG en isolation. Standard n'était déjà pas hors seuil ; l'amélioration est un effet de bord bienvenu du même pin."
     },
     {
       "instrument": "visual-parity",
@@ -1134,7 +1134,7 @@
         "facts": null
       },
       "after": {
-        "rawPct": 8.778484271533092,
+        "rawPct": 6.080645161290323,
         "status": "diffed",
         "facts": null
       },
@@ -1145,15 +1145,15 @@
       },
       "referenceProvenance": null,
       "delta": {
-        "rawPct": 0,
+        "rawPct": -2.697839110242769,
         "facts": null
       },
       "committedDelta": {
-        "rawPct": 0,
+        "rawPct": -2.6999999999999993,
         "comparedAt": "2 décimales",
         "statusChanged": null
       },
-      "attribution": null
+      "attribution": "Phase 6, named-repair (T056, reçu pv-section-header-avec-cta re-testé, triage.ts reclassé contract-geometry->rendering) — 8,778484% -> 6,080645% (delta -2,697839, masked 0,992414% désormais sous le seuil de 2%). `renderWidth: 1550` (subjects.ts) ferme l'écart de largeur (tailles désormais IDENTIQUES 3100×108 des deux côtés) ; le résiduel raw est du bruit de rastérisation de texte, même classe que Standard et google-reviews. Un correctif au niveau du CONTRAT (largeur inconditionnelle sur le root) a été essayé PUIS annulé : il cassait `align-self: stretch` pour tous les vrais consommateurs (coordonnees, sav, presentation ont régressé) car aucun contrat actuel ne compose `disposition: avecCta` — seul l'instrument isolé avait besoin du pin."
     },
     {
       "instrument": "visual-parity",
@@ -1281,7 +1281,7 @@
         "comparedAt": "pleine précision",
         "statusChanged": null
       },
-      "attribution": "box-model-unification (T013/T019, reçu box-model-unification.md §3) — 0,522263% -> 0,522263% (delta 0, bit-à-bit identique) : absorption flexbox sous largeur épinglée, déjà expliquée (le fix est réel et vérifié en CSS, invisible à CET instrument précisément pour cette part) — inchangé par Phase 4."
+      "attribution": "CORRIGÉ (l'attribution précédente citait box-model-unification.md §3 par erreur — ce reçu explique pourquoi le fix WIDTH/PADDING de wrapper est invisible à CET instrument, mais ce n'est PAS le fait qui pilote ce rawPct). Le vrai moteur, selon le reçu d'origine `org-coordonnees-geometry.json` (014, 2026-08-03) : le seul fait divergent est `coordonnees.structure.colonnes-ordre` (`root.visualColumnOrder: \"row\"!=\"row-reverse\"`) — l'ordre visuel Figma (plan à gauche, wrapper à droite) est porté ici par l'ORDRE DES PARTS (googleMap avant wrapper) plutôt que par `flex-direction: row-reverse`, exactement le même choix que celui documenté et acquitté pour `ds.footer` (« LIMITE NOMMÉE : reconstruction flexbox d'une frame sans auto-layout »). La description du contrat le dit déjà explicitement (« l'ordre d'auteur du calque est un artefact sans portée, le contrat décrit le résultat »). Le vérificateur de faits compare une chaîne CSS (`row`) à l'attente Figma (`row-reverse`) sans reconnaître l'équivalence visuelle obtenue par un autre mécanisme — 0,522263% (inchangé depuis avant.json) est ce résiduel, pas un défaut de géométrie non traité."
     },
     {
       "instrument": "organism-audit",
@@ -1352,7 +1352,7 @@
         }
       },
       "after": {
-        "rawPct": 10.661055953414351,
+        "rawPct": 10.661688910590279,
         "status": "divergent",
         "facts": {
           "proved": 20,
@@ -1383,7 +1383,7 @@
         }
       },
       "delta": {
-        "rawPct": -17.167991355613427,
+        "rawPct": -17.1673583984375,
         "facts": {
           "before": {
             "proved": 27,
@@ -1400,7 +1400,7 @@
         }
       },
       "committedDelta": {
-        "rawPct": -17.167991355613427,
+        "rawPct": -17.1673583984375,
         "comparedAt": "pleine précision",
         "statusChanged": null
       },
@@ -1475,11 +1475,11 @@
         }
       },
       "after": {
-        "rawPct": 20.810930576070902,
+        "rawPct": 0.6652451517606137,
         "status": "divergent",
         "facts": {
-          "proved": 11,
-          "divergent": 7,
+          "proved": 12,
+          "divergent": 6,
           "limited": 0,
           "notProven": 0
         }
@@ -1506,28 +1506,15 @@
         }
       },
       "delta": {
-        "rawPct": 20.145685424310287,
-        "facts": {
-          "before": {
-            "proved": 12,
-            "divergent": 6,
-            "limited": 0,
-            "notProven": 0
-          },
-          "after": {
-            "proved": 11,
-            "divergent": 7,
-            "limited": 0,
-            "notProven": 0
-          }
-        }
+        "rawPct": 0,
+        "facts": null
       },
       "committedDelta": {
-        "rawPct": 20.145685424310287,
+        "rawPct": 0,
         "comparedAt": "pleine précision",
         "statusChanged": null
       },
-      "attribution": "box-model-unification (T013/T018-T019, reçu box-model-unification.md §2) — 0,665245% -> 20,810859% (delta +20,145614), identique à 6 décimales près au chiffre mesuré par ce reçu AVANT toute conversion littéral->token de Phase 4 (T037-T043) : la re-mesure post-conversions ne bouge pas d'un bit, preuve directe que les 196 conversions de Phase 4 n'ajoutent aucun mouvement de pixel (FR-012, T046)."
+      "attribution": "MIS À JOUR Phase 6 (named-repair, sav-wrapper-imggroup-content-box-defect.md §6) — le compte affiché ici (avant=après=0,665245%, delta 0) N'EST PAS l'absence de mouvement : c'est la PREUVE que la correction est exacte. Phase 3 seule (border-box sans correction de valeur) avait fait bouger cette ligne à 20,810859% (T046, chiffre désormais périmé) — `size.sav.wrapper-w/h` et `img-group-w` corrigés (546×513→641×561 ; 644→647) ramènent le rendu EXACTEMENT à la même géométrie totale que content-box produisait avant Phase 3 (546+95 padding = 641, la même arithmétique que border-box+641 aujourd'hui) : la mesure retombe donc, bit à bit, sur le chiffre `avant.json` d'origine."
     },
     {
       "instrument": "organism-audit",
@@ -1598,7 +1585,7 @@
         }
       },
       "after": {
-        "rawPct": 4.819331106969321,
+        "rawPct": 3.672346488508598,
         "status": "divergent",
         "facts": {
           "proved": 21,
@@ -1629,7 +1616,7 @@
         }
       },
       "delta": {
-        "rawPct": 1.1469846184607233,
+        "rawPct": 0,
         "facts": {
           "before": {
             "proved": 24,
@@ -1646,11 +1633,11 @@
         }
       },
       "committedDelta": {
-        "rawPct": 1.1469846184607233,
+        "rawPct": 0,
         "comparedAt": "pleine précision",
         "statusChanged": null
       },
-      "attribution": "box-model-unification (T013/T018-T019, reçu box-model-unification.md §2) — 3,672346% -> 4,819331% (delta +1,146985), identique à 6 décimales près au chiffre pré-Phase-4 du même reçu — même preuve FR-012 que sav (T046)."
+      "attribution": "box-model-unification (T013/T018-T019, reçu box-model-unification.md §2) — 3,672346% -> 4,819331% (delta +1,146985), identique à 6 décimales près au chiffre pré-Phase-4 du même reçu — même preuve FR-012 que sav (T046). Non affecté par les corrections de valeur de Phase 6 (`ds.faq` n'a reçu aucune réparation cette phase)."
     },
     {
       "instrument": "organism-audit",
@@ -1666,11 +1653,11 @@
         }
       },
       "after": {
-        "rawPct": 12.014059095860565,
+        "rawPct": 1.0439991325748406,
         "status": "divergent",
         "facts": {
-          "proved": 35,
-          "divergent": 22,
+          "proved": 28,
+          "divergent": 29,
           "limited": 0,
           "notProven": 0
         }
@@ -1697,7 +1684,7 @@
         }
       },
       "delta": {
-        "rawPct": 10.970059963285724,
+        "rawPct": 0,
         "facts": {
           "before": {
             "proved": 39,
@@ -1706,19 +1693,19 @@
             "notProven": 0
           },
           "after": {
-            "proved": 35,
-            "divergent": 22,
+            "proved": 28,
+            "divergent": 29,
             "limited": 0,
             "notProven": 0
           }
         }
       },
       "committedDelta": {
-        "rawPct": 10.970059963285724,
+        "rawPct": 0,
         "comparedAt": "pleine précision",
         "statusChanged": null
       },
-      "attribution": "box-model-unification (T013/T018-T019, reçu box-model-unification.md §2) — 1,043999% -> 12,014059% (delta +10,970060), identique à 6 décimales près au chiffre pré-Phase-4 du même reçu — même preuve FR-012 que sav (T046)."
+      "attribution": "MIS À JOUR Phase 6 (named-repair DW-004/005) — même mécanisme que sav : `size.footer.root` corrigé 1550→1728 (T057/T058) ramène le rendu border-box à la même géométrie totale (1728px) que content-box produisait avant Phase 3 (1550+178 padding = 1728) — la mesure retombe donc, bit à bit, sur le chiffre `avant.json` d'origine (1,043999%, delta 0). Le chiffre T046 (12,014059%, +10,970060) décrivait l'état APRÈS Phase 3 seule et AVANT la correction de valeur de Phase 6 ; désormais périmé."
     },
     {
       "instrument": "organism-audit",

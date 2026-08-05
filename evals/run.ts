@@ -5238,6 +5238,19 @@ const cases: Case[] = [
       if (r.status !== 0) throw new Error(`background-image gradient literal channel check failed:\n${r.out}`);
     },
   },
+  // 015/US2 (FR-004) — T013 shipped the border-box rule into emit-react with
+  // receipts but no fixture; the only box-sizing assertion in the suite was on
+  // the CANVAS stylesheet. Added in the Phase 7 review so the README claim has
+  // an eval behind it (Claims Rule). It earned its keep immediately: its first
+  // run caught the multi-root emit-html gap now registered as DW-015-001.
+  {
+    id: 'react-box-model-border-box',
+    claim: 'C1-determinism',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/react-box-model-border-box.ts']);
+      if (r.status !== 0) throw new Error(`React box-model (border-box) check failed:\n${r.out}`);
+    },
+  },
   // 015/D10 (FR-009) — the exact scenario reproduced RED in
   // preservation-013-rouge.txt (T037): a re-extraction/merge silently
   // clobbers a 013 hand-set correction. `checkPreservation` (T038,
@@ -5257,10 +5270,15 @@ const cases: Case[] = [
     claim: 'C3-detection',
     run: () => {
       resetScratch();
+      // 015 Phase 6 (T057) converted these sites literals->tokens on the real
+      // footer.contract.json — the clobber simulation now mutates `tokens`,
+      // not `literals` (checkPreservation's own mirrorToTokenPointer already
+      // follows a pure conversion; this fixture just needs to match where the
+      // values live today).
       editJson('contracts/footer.contract.json', (c) => {
-        c.anatomy.root.literals['padding-top'] = '0px'; // reverted
-        delete c.anatomy.root.literals['padding-left']; // dropped
-        delete c.anatomy.root.literals['padding-right']; // dropped
+        c.anatomy.root.tokens['padding-top'] = '{space.0}'; // reverted (resolves to a different px than expected)
+        delete c.anatomy.root.tokens['padding-left']; // dropped
+        delete c.anatomy.root.tokens['padding-right']; // dropped
       });
       // The toolchain alone must NOT catch it (this IS the gap T038 closes).
       if (generate().status !== 0) throw new Error('generate must still succeed on a schema-valid, geometrically-wrong contract');

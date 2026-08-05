@@ -245,15 +245,15 @@
     "faq": {
       "root": {
         "$type": "dimension",
-        "$description": "Authored from ds.faq's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "1550px"
+        "$description": "CORRECTED 2026-08-05 (Phase 7 review, box-model-unification — same defect class as size.footer.root/T058 and size.sav.wrapper-w/§6): the original mint (015 Phase 4) carried the contract's existing literal (1550px) forward unchanged, which was itself a content-box-subtracted value (1728−89−89) authored before border-box was declared (T013, Phase 3) — the contract's own root description spelled the subtraction out. Re-verified against the committed Figma dump (node 2104:2914, version 2381581871281042338, read-only, FR-010): ds.faq's root is a genuine auto-layout frame (layoutMode VERTICAL, padding 0/89/0/89, counterAxisSizingMode FIXED) whose absoluteBoundingBox.width is 1728px — Figma's auto-layout width already includes padding, matching border-box semantics natively (same pattern as ds.footer, contrast with ds.sav's free-form frame). 1728px is the correct border-box-matching total; 1550px rendered 178px too narrow.",
+        "$value": "1728px"
       }
     },
     "footer": {
       "root": {
         "$type": "dimension",
-        "$description": "Authored from ds.footer's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "1550px"
+        "$description": "CORRECTED 2026-08-04 (Phase 6, T057/T058, named-repair:DW-004+DW-005): the original mint (015 Phase 4) carried the contract's existing literal (1550px) forward unchanged, which was itself a content-box-subtracted value (1728−89−89) authored before border-box was declared (T013). Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.footer's root (node 2120:4785) is a genuine auto-layout frame (layoutMode VERTICAL, padding 89/89/128/32) whose own absoluteBoundingBox.width is 1728px — Figma's auto-layout width already includes padding, matching border-box semantics natively (same pattern as ds.coordonnees, contrast with ds.sav's free-form frame, see coordonnees-box-sizing-absent memory). 1728px is the correct border-box-matching total; 1550px rendered 178px too narrow.",
+        "$value": "1728px"
       },
       "background": {
         "$type": "dimension",
@@ -461,13 +461,13 @@
       },
       "wrapper-w": {
         "$type": "dimension",
-        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "546px"
+        "$description": "CORRECTED 2026-08-04 (Phase 6, named-repair, blocked organism-audit measurement of ds.sav — painted box exceeded the capture viewport). The original mint (Phase 4) carried the contract's existing literal (546px) forward unchanged, which was itself a content-box-subtracted value authored before border-box was declared (T013) — see the part's own description. Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.sav's wrapper (node 2169:6188) is a free-form frame (layoutMode undefined, no native auto-layout padding — the 48/48/47px padding is a code-side reconstruction from absolute child positions), with absoluteBoundingBox 641×561. 546px rendered 95px too narrow under border-box. See specs/015-geometrie-gouvernee/proofs/recus/sav-wrapper-imggroup-content-box-defect.md for the original discovery.",
+        "$value": "641px"
       },
       "wrapper-h": {
         "$type": "dimension",
-        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "513px"
+        "$description": "CORRECTED 2026-08-04 (Phase 6, named-repair, blocked organism-audit measurement of ds.sav — painted box exceeded the capture viewport). The original mint (Phase 4) carried the contract's existing literal (513px) forward unchanged, which was itself a content-box-subtracted value authored before border-box was declared (T013) — see the part's own description. Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.sav's wrapper (node 2169:6188) is a free-form frame (layoutMode undefined), absoluteBoundingBox 641×561. 513px rendered 48px too short under border-box. See specs/015-geometrie-gouvernee/proofs/recus/sav-wrapper-imggroup-content-box-defect.md for the original discovery.",
+        "$value": "561px"
       },
       "wrapper-background-w": {
         "$type": "dimension",
@@ -491,8 +491,8 @@
       },
       "img-group-w": {
         "$type": "dimension",
-        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "644px"
+        "$description": "CORRECTED 2026-08-04 (Phase 6, named-repair). The original mint (Phase 4) carried the contract's existing literal (644px) forward unchanged, which was itself a content-box-subtracted value (647−3px padding-left) authored before border-box was declared (T013) — see the part's own description. Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.sav's imgGroup (node 2169:5846) is a free-form frame, absoluteBoundingBox width 647px. 644px rendered 3px too narrow under border-box. See specs/015-geometrie-gouvernee/proofs/recus/sav-wrapper-imggroup-content-box-defect.md for the original discovery.",
+        "$value": "647px"
       },
       "img-group-h": {
         "$type": "dimension",
@@ -525,6 +525,18 @@
         "$type": "dimension",
         "$description": "Authored from ds.textarea's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "128px"
+      }
+    },
+    "logo": {
+      "width": {
+        "$type": "dimension",
+        "$description": "Authored from ds.piqueray-logo's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. T048 (015) re-verified live against both consumers (ds.header 84:256/84:287 exactly 180×34, ds.footer 2120:4783 180.0985565185547×34, the difference being export floating-point noise, not a second size) — one governed size, not two. Minted 015, 2026-08-04.",
+        "$value": "180px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$description": "Authored from ds.piqueray-logo's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. T048 (015) re-verified live against both consumers (ds.header 84:256/84:287 exactly 180×34, ds.footer 2120:4783 180.0985565185547×34, the difference being export floating-point noise, not a second size) — one governed size, not two. Minted 015, 2026-08-04.",
+        "$value": "34px"
       }
     }
   },

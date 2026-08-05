@@ -136,7 +136,7 @@
               },
               "parts": {
                 "wrapper": {
-                  "description": "Colonne de texte (FRAME Figma 2169:6188, 641×561, `layoutMode` NONE). Ses deux enfants observés se superposent : `WrapperBackground` couvre la frame entière en (0,0) et `inner` est posé en (48,48). L'encart de 48 px est porté en `padding`, ce qui place `inner` exactement ; les `literals` `width`/`height` sont donc des mesures de BOÎTE DE CONTENU (546 + 48 + 47 = les 641 px observés ; 513 + 48 = les 561 px observés) — la feuille générée ne déclare pas `box-sizing: border-box`.",
+                  "description": "Colonne de texte (FRAME Figma 2169:6188, 641×561, `layoutMode` NONE). Ses deux enfants observés se superposent : `WrapperBackground` couvre la frame entière en (0,0) et `inner` est posé en (48,48). L'encart de 48 px est porté en `padding`, ce qui place `inner` exactement. `{size.sav.wrapper-w}`/`{size.sav.wrapper-h}` portent désormais la boîte TOTALE (641×561, padding-inclus) : la feuille générée déclare `box-sizing: border-box` (T013) donc `width`/`height` retombent directement sur la boîte observée. Corrigé le 2026-08-04 (Phase 6, named-repair) : la valeur portée jusque-là (546×513) était le calcul CONTENU, correct seulement sous l'ancien défaut content-box.",
                   "layout": {
                     "display": "flex",
                     "direction": "row",
@@ -252,7 +252,7 @@
                   }
                 },
                 "imgGroup": {
-                  "description": "Colonne image (FRAME Figma 2169:5846, 647×561, `layoutMode` NONE). Ses deux enfants se superposent : `ImgGroupBackground` en (0,0) sur 647×478 et `img` en (3,57) sur 563×504. `align: end` donne à `img` son y=57 (561 − 504) et le `padding-left` de 3 px son x=3 ; `width` est donc une mesure de BOÎTE DE CONTENU (644 + 3 = les 647 px observés).",
+                  "description": "Colonne image (FRAME Figma 2169:5846, 647×561, `layoutMode` NONE). Ses deux enfants se superposent : `ImgGroupBackground` en (0,0) sur 647×478 et `img` en (3,57) sur 563×504. `align: end` donne à `img` son y=57 (561 − 504) et le `padding-left` de 3 px son x=3 ; `{size.sav.img-group-w}` porte désormais la boîte TOTALE (647px, padding-inclus) sous `box-sizing: border-box` (T013). Corrigé le 2026-08-04 (Phase 6, named-repair) : la valeur portée jusque-là (644px) était le calcul CONTENU (647−3), correct seulement sous l'ancien défaut content-box.",
                   "layout": {
                     "display": "flex",
                     "direction": "row",
