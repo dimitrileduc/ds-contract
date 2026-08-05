@@ -132,6 +132,36 @@ fait de design voulu. Rien à changer.
 
 ---
 
+### O-7 · Le chantier quitte le worktree — écart nommé à la règle F1
+
+**Fait** : le 2026-08-05, en cours de chantier, le worktree `ds-contract-016` a été
+supprimé et la branche `016-canvas-vrai` ramenée dans le checkout principal
+(`/Users/dlstudio/.superset/projects/ds-contract`), à la demande de l'owner.
+
+**Pourquoi la demande** : T001 avait créé le worktree conformément à la règle F1
+(constitution, *Worktree Gates*) ; comme la branche était déjà sortie dans le checkout
+principal, celui-ci avait dû être **détaché** pour libérer la branche. Conséquence non
+signalée assez clairement sur le moment : pendant 8 commits, le dossier de travail
+habituel de l'owner affichait un `tasks.md` figé à 0/81 alors que le worktree était à
+32/81. Un dossier mort sous les yeux de l'owner est un défaut de méthode, pas un détail.
+
+**Écart assumé** : les gates ne tournent plus en isolation (F1). En pratique le risque
+est faible ici — aucun autre travail ne tourne sur ce dépôt et `evals/.scratch` reste un
+chemin unique dont l'usage concurrent est déjà surveillé (mémoire
+`eval-scratch-partage-collision`). L'écart est **nommé plutôt que tu**, et le rapport de
+clôture le reprendra.
+
+**Précaution prise à la bascule** : `.page-parity/` (268 Mo, **hors git**) a été déplacé
+vers le checkout principal AVANT la suppression du worktree — il contient
+`00-REFERENCE-AVANT-CHANTIER/`, l'état visuel de référence de tout le chantier.
+Supprimer le worktree sans ce déplacement l'aurait détruit, et le comparatif final de
+clôture serait devenu impossible à produire.
+
+**Ménage joint** : le worktree de la spec 015 (close et fusionnée) traînait encore ; il a
+été retiré. Sa branche est conservée.
+
+---
+
 ## Lots
 
 > Une ligne par lot, ajoutée à sa clôture (étape 9 du cycle de preuve).
