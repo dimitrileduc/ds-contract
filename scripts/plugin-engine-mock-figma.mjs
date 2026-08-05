@@ -13,7 +13,11 @@
  *   - createNodeFromSvg validates drawable vector geometry and derives an
  *     intrinsic size from width/height or viewBox; it records vectorNodeCount
  *     for headless geometry fixtures (it is not a full SVG renderer).
- *   - Fonts always "load"; text style application is exact (textStyleId).
+ *   - Fonts load IF AND ONLY IF the (family, style) pair exists in the inventory
+ *     (figma._fonts) — Inter spells composite styles with a space, Montserrat
+ *     compact. The old "fonts always load" no-op is what let a hard-coded Inter
+ *     ship: a failing loadFontAsync was invisible headless. Text style
+ *     application is exact (textStyleId).
  */
 
 let nextId = 1;
@@ -334,7 +338,28 @@ export function createFigmaMock() {
     currentPage: firstPage,
     notify() {},
     async loadAllPagesAsync() {},
-    async loadFontAsync() {},
+    // Inventaire de polices calqué sur le fichier client : Inter épelle ses styles
+    // composés avec une espace ('Semi Bold'), Montserrat les épelle compact
+    // ('SemiBold'). Mesuré — specs/007-…/data-model.md:134 et les dumps REST
+    // ("fontPostScriptName": "Montserrat-SemiBold").
+    //
+    // Une paire (famille, style) inconnue est REFUSÉE, comme le fait l'API réelle.
+    // L'ancien no-op « les polices se chargent toujours » est EXACTEMENT ce qui a
+    // laissé passer le codage en dur d'Inter : le mock ne pouvait pas voir qu'un
+    // loadFontAsync échouait en silence et que tout le texte régénéré restait en
+    // Inter. Discipline de fidélité du mock (§VII) : un défaut qui n'apparaît que
+    // sur le canvas vivant se répare en deux temps — l'émetteur, puis le mock qui
+    // doit désormais l'attraper headless pour toujours.
+    _fonts: {
+      Inter: ['Thin', 'Extra Light', 'Light', 'Regular', 'Medium', 'Semi Bold', 'Bold', 'Extra Bold', 'Black'],
+      Montserrat: ['Thin', 'ExtraLight', 'Light', 'Regular', 'Medium', 'SemiBold', 'Bold', 'ExtraBold', 'Black'],
+    },
+    async loadFontAsync({ family, style } = {}) {
+      const styles = figma._fonts[family];
+      if (!styles || !styles.includes(style)) {
+        throw new Error(`in loadFontAsync: Cannot load font ${family} ${style}`);
+      }
+    },
     async setCurrentPageAsync(page) {
       figma.currentPage = page;
     },

@@ -24,7 +24,10 @@
  *
  * Fidelity scope (deliberate, documented in docs/05 + docs/08):
  * - fontSize/family/weight are not variable-bindable → set numerically from
- *   resolved token values (weight → Inter style name).
+ *   resolved token values (weight → a style NAME; the table spells it the Inter
+ *   way, and the runtime tries the compact spelling too — Montserrat says
+ *   'SemiBold' where Inter says 'Semi Bold'. A family that truly cannot load
+ *   falls back to Inter and the fallback is NAMED in `fontFallbacks`).
  * - Interaction states are CSS concerns; not represented in Figma.
  * - Slot `accepts` maps to INSTANCE_SWAP preferredValues (soft constraint);
  *   Figma's native SLOT property type + SlotSettings is the upgrade target.
@@ -80,6 +83,13 @@ export interface NodeSpec {
    *  so the ring wraps the full root bounds; the preview renders a CSS
    *  outline. */
   strokeOutside?: boolean;
+  /** 016: the compiler DROPPED a border colour that no width makes visible
+   *  (normalizeStrokeWidths). Both amend paths REUSE the variant node, so a
+   *  paint an earlier sync left on it would outlive the drop — this tells the
+   *  runtime to clear it. Same shape and same intent as `lits.fillClear`, and
+   *  feature-gated the same way: contracts without the pattern emit
+   *  byte-identical scripts (the golden discipline). */
+  strokeClear?: boolean;
   fixedWidth?: { px: number; varName: string };
   fixedHeight?: { px: number; varName?: string };
   /** CSS grow → layoutSizingHorizontal FILL after append. */
@@ -418,8 +428,12 @@ function scopesFor(dotPath: string, entry: TokenEntry): string[] {
 // The style's weight comes from the group's `font.<group>.weight` token when
 // declared, else the runtimes' text default ('Medium') — the same fallback a
 // bound text node gets, so definitions and consumers can match EXACTLY.
-// Family is Inter: font stacks are not canvas-representable (documented
-// fidelity scope, same as raw text nodes today). Primitive font.size.* stays
+// NOTE (016): named TEXT STYLES are still emitted with family Inter here — a
+// separate organ from raw text nodes, which now carry their prescribed family.
+// It is latent while TEXT_STYLES is empty (deriveTextStyles looks for
+// `font.<group>.size`, the foundation spells `typography.<role>.size`), but it
+// WILL spell Inter into all 18 styles the day that net fills. Named, not fixed
+// here: repairing it touches tokens/. Primitive font.size.* stays
 // style-less — text styles are semantic roles, not a size ramp.
 // ---------------------------------------------------------------------------
 
@@ -968,8 +982,10 @@ function applyTokens(
         break;
       case 'font-family': {
         // v15 (S4/matrix a.6): the first font-family stack entry rides the
-        // text node (retires the everything-renders-Inter fiat; the runtime
-        // falls back to Inter when the family is unavailable — named limit).
+        // text node. 016: the runtime now LOADS that family before assigning it
+        // (trying both style spellings), and only falls back to Inter when the
+        // family genuinely cannot load — a fallback that is NAMED in the
+        // script's report, never silent as it was until 2026-08-05.
         const family = firstFamily(String(resolveLiteral(tokenPath)));
         if (family) next.fontFamily = family;
         break;
@@ -1388,6 +1404,67 @@ function applyDeclared(declared: Record<string, string> | undefined, ctx: TextCt
   return next;
 }
 
+/** 016 (canvas-gate finding): a border COLOUR with no border WIDTH applicable
+ *  to the current state must paint NOTHING.
+ *
+ *  CSS is the reference and it is unambiguous: `border-style` defaults to
+ *  `none`, and the generated root spells the border as
+ *  `box-shadow: inset 0 0 0 var(--dsc-border-width, 0) <colour>` — a
+ *  zero-spread inset shadow paints zero pixels; a lone
+ *  `border-bottom-width` spells `inset 0 calc(-1 * <w>) 0 <colour>`, the
+ *  bottom rule and nothing else. Figma disagrees by default: a freshly
+ *  created frame carries `strokeWeight = 1`, so the moment a paint lands in
+ *  `node.strokes` the canvas manufactures a 1px ring the web never draws
+ *  (ds.tab's UNSELECTED variant), and a per-side width leaves the other three
+ *  sides sitting on that same default (ds.tab selected, ds.accordion-row).
+ *
+ *  The rule already exists twice in this file — `hasWidthSource` guards the
+ *  border-SIDE-colour longhands (see applyTokens: "would let the renderer's
+ *  1px default manufacture a ring the real component never draws") and
+ *  `translateStateOverrides` guards the lone outline-colour override. This
+ *  closes the remaining two holes: the border-colour SHORTHAND channel, and
+ *  the per-side residue neither guard covers.
+ *
+ *  Runs AFTER applyTokens AND applyLiterals on purpose: the colour and the
+ *  width can arrive on either branch and in either order (ds.tab's colour is
+ *  a token, its width a literalsByProp override), so only the merged spec can
+ *  answer the question. */
+function normalizeStrokeWidths(spec: NodeSpec): void {
+  if (spec.stroke === undefined && spec.lits?.strokeColor === undefined) return;
+  // An OUTSIDE-aligned stroke is a state-preview outline, already gated by
+  // translateStateOverrides (colour AND width or nothing) — leave it alone.
+  if (spec.strokeOutside) return;
+  // A uniform width governs all four sides: the legitimate full ring
+  // (ds.input, ds.button's outline variants, ds.checkbox, ds.review-card…).
+  if (spec.bindings?.strokeWeight !== undefined || spec.lits?.strokeWeight !== undefined) return;
+  const SIDES = [
+    ['top', 'strokeTopWeight'],
+    ['right', 'strokeRightWeight'],
+    ['bottom', 'strokeBottomWeight'],
+    ['left', 'strokeLeftWeight'],
+  ] as const;
+  const governs = (side: 'top' | 'right' | 'bottom' | 'left', field: string): boolean =>
+    spec.bindings?.[field] !== undefined || spec.lits?.strokeSides?.[side] !== undefined;
+  if (!SIDES.some(([side, field]) => governs(side, field))) {
+    // Nothing draws. Drop the paint, and ask the runtime to clear a stale one
+    // (amend reuses the variant node).
+    delete spec.stroke;
+    if (spec.lits) {
+      delete spec.lits.strokeColor;
+      // Byte-stability: an emptied `lits` must go back to undefined, or the
+      // whole conditional literals runtime block would switch on for a
+      // contract that carries no literal at all (hasLits tests `!== undefined`).
+      if (Object.keys(spec.lits).length === 0) delete spec.lits;
+    }
+    spec.strokeClear = true;
+    return;
+  }
+  // Per-side widths only: every side the contract gives no width is 0, never
+  // Figma's default 1.
+  const sides = ((spec.lits ??= {}).strokeSides ??= {});
+  for (const [side, field] of SIDES) if (!governs(side, field)) sides[side] = 0;
+}
+
 /** Token bindings + literal channels + declared facts for one part under one
  *  combo — the ONE styling entry point every part kind compiles through. */
 function applyStyling(
@@ -1399,6 +1476,7 @@ function applyStyling(
   const t = applyTokens(spec, resolveTokens(part, subst), subst, ctx);
   const l = applyLiterals(spec, resolveLiterals(part, subst), t);
   const d = applyDeclared(part.declared, l);
+  normalizeStrokeWidths(spec);
   // Round 4: declared aspect-ratio draws natively — height follows the bound
   // width when the contract carries no height channel (Avatar/Thumbnail
   // squares whose real height rides a pseudo-element padding hack).
@@ -2763,6 +2841,14 @@ const dataSome = (d: ComponentData, pred: (x: NodeSpec) => boolean): boolean =>
 const strokeAlignJs = (hasOutside: boolean): string =>
   hasOutside ? `spec.strokeOutside ? 'OUTSIDE' : 'INSIDE'` : `'INSIDE'`;
 
+/** 016: the clear half of normalizeStrokeWidths. The frame path never cleared
+ *  strokes (unlike fills, cleared unconditionally just above), so a paint an
+ *  earlier sync left on a REUSED variant node would outlive the compile-side
+ *  drop. Feature-gated: contracts with no dropped border colour emit
+ *  byte-identical scripts. */
+const strokeClearJs = (has: boolean): string =>
+  has ? ` else if (spec.strokeClear) node.strokes = [];` : '';
+
 /** Round 5d: the CSS margin box as a fixed wrapper frame (see
  *  NodeSpec.margins). Emitted only when a spec carries residual margins. */
 const marginBoxRuntime = (has: boolean): string =>
@@ -2943,12 +3029,6 @@ const wrapRuntime = (has: boolean): string =>
 const textExtrasRuntime = (has: boolean): string =>
   has
     ? `
-    if (spec.fontFamily) {
-      try {
-        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
-        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
-      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
-    }
     if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
     if (spec.textCase) node.textCase = spec.textCase;
     if (spec.textDecoration) node.textDecoration = spec.textDecoration;
@@ -3171,6 +3251,7 @@ function buildSyncScript(
   // without these facts emit byte-identical scripts (the golden discipline).
   const hasMargins = datas.some((d) => dataSome(d, (x) => x.margins !== undefined));
   const hasStrokeOutside = datas.some((d) => dataSome(d, (x) => x.strokeOutside === true));
+  const hasStrokeClear = datas.some((d) => dataSome(d, (x) => x.strokeClear === true));
   const hasSvgPaint = datas.some((d) => dataSome(d, (x) => x.svgPaintVar !== undefined));
   const hasTextExtras = datas.some((d) =>
     dataSome(
@@ -3238,10 +3319,46 @@ async function ourTextStyle(name) {
   return _textStyleMap[name] || null;
 }
 
+// FONTES — résolution par famille ET orthographe de style.
+//
+// Le défaut que ceci répare (016, lot R-pilote-tab, trouvé sur le canvas réel) :
+// la table des poids épelle les styles à la façon d'Inter ('Semi Bold', avec une
+// espace) ; la plupart des familles — Montserrat comprise — les épellent compact
+// ('SemiBold'). Le runtime posait Inter en dur puis tentait un rattrapage avec
+// l'orthographe d'Inter appliquée à Montserrat : loadFontAsync refusait la paire,
+// un catch avalait l'erreur EN SILENCE, et tout le texte régénéré restait en Inter.
+// Mesuré sur le fichier client : "fontPostScriptName": "Montserrat-SemiBold".
+//
+// On essaie donc les deux orthographes, dans l'ordre, et surtout : on NOMME le
+// repli quand il a lieu (fontFallbacks), au lieu de dégrader sans le dire.
+const FONT_STYLE_ALIASES = { 'Semi Bold': ['Semi Bold', 'SemiBold'], 'Extra Light': ['Extra Light', 'ExtraLight'], 'Extra Bold': ['Extra Bold', 'ExtraBold'] };
+const fontFallbacks = [];
+const _fontCache = {};
+async function resolveFont(family, style) {
+  const k = family + '|' + style;
+  if (k in _fontCache) return _fontCache[k];
+  const candidates = FONT_STYLE_ALIASES[style] || [style];
+  for (const candidate of candidates) {
+    try {
+      await figma.loadFontAsync({ family: family, style: candidate });
+      return (_fontCache[k] = { family: family, style: candidate });
+    } catch (e) { /* orthographe suivante */ }
+  }
+  return (_fontCache[k] = null);
+}
+async function textFont(spec) {
+  const style = (spec && spec.fontStyle) || 'Medium';
+  const family = (spec && spec.fontFamily) || 'Inter';
+  const wanted = await resolveFont(family, style);
+  if (wanted) return wanted;
+  const used = (await resolveFont('Inter', style)) || (await resolveFont('Inter', 'Regular')) || { family: 'Inter', style: 'Regular' };
+  fontFallbacks.push({ wanted: family + ' ' + style, used: used.family + ' ' + used.style });
+  return used;
+}
 const fontStyles = new Set(['Medium']);
 for (const C of COMPONENTS) for (const s of C.fontStyles) fontStyles.add(s);
 for (const style of fontStyles) {
-  await figma.loadFontAsync({ family: 'Inter', style });
+  await resolveFont('Inter', style);
 }
 
 // State previews (figmaStatePreviews): merge the enum-API cartesian with the
@@ -3327,7 +3444,7 @@ function applyFrameSpec(node, spec) {
   if (spec.stroke) {
     node.strokes = [boundPaint(spec.stroke, node)];
     node.strokeAlign = ${strokeAlignJs(hasStrokeOutside)};
-  }${shadowRuntime(hasShadow)}${effectStackRuntime(hasEffectStack)}
+  }${strokeClearJs(hasStrokeClear)}${shadowRuntime(hasShadow)}${effectStackRuntime(hasEffectStack)}
   if (spec.fixedWidth || spec.fixedHeight) {
     const w = spec.fixedWidth ? spec.fixedWidth.px : node.width;
     const h = spec.fixedHeight ? spec.fixedHeight.px : node.height;
@@ -3375,7 +3492,7 @@ async function buildNode(spec, registry) {
     if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);${svgPaintRuntime(hasSvgPaint)}
   } else if (spec.type === 'text') {
     node = figma.createText();
-    node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
+    node.fontName = await textFont(spec);
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';${lineHeightRuntime(hasLineHeight)}${textExtrasRuntime(hasTextExtras)}
     if (spec.textStyle) {
@@ -3980,7 +4097,7 @@ const results = [];
 for (const C of COMPONENTS) {
   results.push(await syncOne(C));
 }
-return { createdNodeIds: results.filter((r) => !r.skipped).map((r) => r.nodeId), results };
+return { createdNodeIds: results.filter((r) => !r.skipped).map((r) => r.nodeId), results, fontFallbacks };
 `;
 }
 

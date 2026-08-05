@@ -1,0 +1,28 @@
+{
+  "statutGlobal": "refus",
+  "exitCode": 2,
+  "totaux": {
+    "identical": 1,
+    "diff": 0,
+    "captureFailed": 0,
+    "dimensionMismatch": 1
+  },
+  "maquettes": [
+    {
+      "maquette": "depannage-sav",
+      "status": "identical",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": null
+    },
+    {
+      "maquette": "master-tab",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 163x202 != after 166x202"
+    }
+  ]
+}

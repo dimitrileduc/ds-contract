@@ -348,10 +348,46 @@ async function ourTextStyle(name) {
   return _textStyleMap[name] || null;
 }
 
+// FONTES — résolution par famille ET orthographe de style.
+//
+// Le défaut que ceci répare (016, lot R-pilote-tab, trouvé sur le canvas réel) :
+// la table des poids épelle les styles à la façon d'Inter ('Semi Bold', avec une
+// espace) ; la plupart des familles — Montserrat comprise — les épellent compact
+// ('SemiBold'). Le runtime posait Inter en dur puis tentait un rattrapage avec
+// l'orthographe d'Inter appliquée à Montserrat : loadFontAsync refusait la paire,
+// un catch avalait l'erreur EN SILENCE, et tout le texte régénéré restait en Inter.
+// Mesuré sur le fichier client : "fontPostScriptName": "Montserrat-SemiBold".
+//
+// On essaie donc les deux orthographes, dans l'ordre, et surtout : on NOMME le
+// repli quand il a lieu (fontFallbacks), au lieu de dégrader sans le dire.
+const FONT_STYLE_ALIASES = { 'Semi Bold': ['Semi Bold', 'SemiBold'], 'Extra Light': ['Extra Light', 'ExtraLight'], 'Extra Bold': ['Extra Bold', 'ExtraBold'] };
+const fontFallbacks = [];
+const _fontCache = {};
+async function resolveFont(family, style) {
+  const k = family + '|' + style;
+  if (k in _fontCache) return _fontCache[k];
+  const candidates = FONT_STYLE_ALIASES[style] || [style];
+  for (const candidate of candidates) {
+    try {
+      await figma.loadFontAsync({ family: family, style: candidate });
+      return (_fontCache[k] = { family: family, style: candidate });
+    } catch (e) { /* orthographe suivante */ }
+  }
+  return (_fontCache[k] = null);
+}
+async function textFont(spec) {
+  const style = (spec && spec.fontStyle) || 'Medium';
+  const family = (spec && spec.fontFamily) || 'Inter';
+  const wanted = await resolveFont(family, style);
+  if (wanted) return wanted;
+  const used = (await resolveFont('Inter', style)) || (await resolveFont('Inter', 'Regular')) || { family: 'Inter', style: 'Regular' };
+  fontFallbacks.push({ wanted: family + ' ' + style, used: used.family + ' ' + used.style });
+  return used;
+}
 const fontStyles = new Set(['Medium']);
 for (const C of COMPONENTS) for (const s of C.fontStyles) fontStyles.add(s);
 for (const style of fontStyles) {
-  await figma.loadFontAsync({ family: 'Inter', style });
+  await resolveFont('Inter', style);
 }
 
 // State previews (figmaStatePreviews): merge the enum-API cartesian with the
@@ -485,15 +521,9 @@ async function buildNode(spec, registry) {
     if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);
   } else if (spec.type === 'text') {
     node = figma.createText();
-    node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
+    node.fontName = await textFont(spec);
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
-    if (spec.fontFamily) {
-      try {
-        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
-        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
-      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
-    }
     if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
     if (spec.textCase) node.textCase = spec.textCase;
     if (spec.textDecoration) node.textDecoration = spec.textDecoration;
@@ -1101,4 +1131,4 @@ const results = [];
 for (const C of COMPONENTS) {
   results.push(await syncOne(C));
 }
-return { createdNodeIds: results.filter((r) => !r.skipped).map((r) => r.nodeId), results };
+return { createdNodeIds: results.filter((r) => !r.skipped).map((r) => r.nodeId), results, fontFallbacks };

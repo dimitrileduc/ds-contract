@@ -2991,7 +2991,7 @@ const cases: Case[] = [
       }
       if (label.fontFamily !== 'Söhne') throw new Error('font-family must carry the first stack entry, got ' + label.fontFamily);
       if (label.textTruncation !== true) throw new Error('text-overflow: ellipsis must carry textTruncation');
-      for (const marker of ["layoutWrap = 'WRAP'", 'INNER_SHADOW', 'GRADIENT_LINEAR', 'node.textCase = spec.textCase', 'loadFontAsync({ family: spec.fontFamily']) {
+      for (const marker of ["layoutWrap = 'WRAP'", 'INNER_SHADOW', 'GRADIENT_LINEAR', 'node.textCase = spec.textCase', 'node.fontName = await textFont(spec)']) {
         if (!script.includes(marker)) throw new Error('emitted runtime missing: ' + marker);
       }
       // ROUND 4 (owner de-noise directive): descriptions are ONE caption line
