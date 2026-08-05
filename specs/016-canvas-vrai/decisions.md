@@ -118,4 +118,41 @@ le masquer — un refus nommé n'est pas un échec silencieux.
 
 | Lot | Annonce | Observé | Verdict | versionId |
 |---|---|---|---|---|
-| _(aucun lot clos à ce jour)_ | | | | |
+| **`U1a-variables`** (2026-08-05) | `identique` sur les 9 maquettes — **zéro pixel** ; 83 créations (77 `size` + 6 `space`), 1 MAJ de valeur (`montserrat`), 0 création Semantic, aucune collection `Brand`, 0 style de texte | **9/9 `identical`** ; rapport du script : `created: 83` / semantic `0` / brand `skipped` / textStyles `0` ; 2ᵉ passe `created: 0` (idempotent) | ✅ **conforme** | `2384251202054787848` |
+
+### O-5 · Trois obstacles d'outillage avant que le geste passe — aucun n'a touché le fichier
+
+Le lot U1a n'a pas abouti du premier coup. Les trois échecs ont eu lieu **avant toute
+écriture** ; ils se reproduiront à chaque lot de US3, qui exécute 35 scripts générés de la
+même manière. Détail et code dans `proofs/U1a-variables/gestes.md`.
+
+1. **Les scripts générés ne sont pas servables par le receveur** — `receiver.mjs` est jailé
+   sur son propre dossier, et l'instrument est réutilisé *tel quel*. D'où
+   `specs/016-canvas-vrai/tools/serve-scripts.mjs` (lecture seule, racine paramétrable,
+   taille servie vérifiée contre le disque) : le script s'exécute **verbatim**, jamais
+   retranscrit — c'est §I qui l'exige.
+2. **Le manifest du plugin est figé au chargement du plugin.** `Failed to fetch` sur 9230,
+   pourtant listé dans le manifest : le fichier a été réécrit à **15:54:43** (relance des
+   serveurs MCP après le nettoyage O-2) alors que le plugin s'était connecté à **15:46:18**.
+   → *Les ports joignables sont ceux du manifest au moment de l'ouverture du plugin ; un
+   port se prouve par un `fetch` de test depuis le sandbox, jamais en lisant le fichier.*
+3. **CORS.** `Failed to fetch` **aussi sur 9231**, où le receveur fonctionnait — donc ni le
+   port ni le bind. `receiver.mjs:56-59` pose `Access-Control-Allow-Origin: *` et répond aux
+   `OPTIONS` ; le serveur spec-local ne le faisait pas. Le message d'erreur est **identique
+   à celui d'un port fermé**, ce qui rend le diagnostic trompeur.
+4. **Un script généré n'est pas une IIFE.** `SyntaxError: expecting ';'` — les scripts
+   *bridge* sont des IIFE, les scripts **générés** sont du code plat terminé par un `return`
+   top-level (conçus pour être passés en `code` à `figma_execute`, qui les enveloppe).
+   Servis puis évalués, il faut reconstituer cette enveloppe : `eval('(async () => {\n' + src + '\n})()')`.
+
+### O-6 · Le cliché de composants était périmé de deux semaines
+
+`parity/snapshots/figma-components.json` datait du **2026-07-26**. Sa ré-extraction (T015)
+a fait tomber **deux** acquittements sans le moindre geste : `figma|behind|Avantage.PiquerayLogo`
+et `figma|mismatch|Presentation.Texte (default)` — ils n'étaient pas des divergences réelles
+mais des **artefacts d'un cliché ancien**. Ce sont deux des **4** acquittements que T056
+devait re-juger : il n'en reste que **2** (`Carte.Bouton`, `SectionHeader.Bouton`).
+
+Le cliché frais compte aussi **58 sets** au lieu de 57 — `Style=Icône seule`, déjà présent
+au relevé T004, donc antérieur au lot. Son nom (graphie de *variante* sur un composant
+autonome) est un signe de source à vérifier, **hors périmètre** des 10 défauts de 016.

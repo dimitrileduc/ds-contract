@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1785099569818,
+  "extractedAt": 1785941220242,
   "sets": [
     {
       "name": "Input",
@@ -436,13 +436,25 @@
           "type": "VARIANT",
           "defaultValue": "Defaut",
           "variantOptions": [
-            "Defaut",
-            "Survol"
+            "Survol",
+            "Defaut"
           ],
           "preferredValues": null
         }
       },
       "nestedInstances": []
+    },
+    {
+      "name": "Style=Icône seule",
+      "nodeId": "2238:4411",
+      "key": "dc24a6d7ac9ee7223ff4e0d122918aba645e78e5",
+      "description": "",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "ArrowLeft",
+        "ArrowRight"
+      ]
     },
     {
       "name": "Field",
@@ -651,7 +663,6 @@
         "Bouton",
         "ChevronLeft",
         "ArrowRight",
-        "ArrowLeft",
         "ChevronRight"
       ]
     },
@@ -1134,7 +1145,6 @@
         "ArrowLeft",
         "ArrowRight",
         "ProductCard",
-        "Cart",
         "CarouselControls",
         "ChevronLeft",
         "ChevronRight"
