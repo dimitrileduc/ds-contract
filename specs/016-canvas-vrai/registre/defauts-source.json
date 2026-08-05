@@ -1,0 +1,452 @@
+{
+  "schemaVersion": 1,
+  "note": "Registre gouverne des 10 defauts de la source Figma (FR-003/FR-008). Le champ `provenance` recopie le diagnostic D'ORIGINE ; `diagnosticVif` reste VIDE jusqu'au re-releve de T026 — une memoire ou un registre date n'est jamais la preuve (D5/D9). Graphie JSON sans accents, conforme a contracts/registre-source.md.",
+  "creeLe": "2026-08-05",
+  "fichierCible": "d9FYAUcqdcNtsuaMgLefvJ",
+  "items": [
+    {
+      "id": "DW-002",
+      "provenance": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (status: deferred) — factId reassurances.structure.carte-largeur",
+      "diagnosticOrigine": "4x364 + 3x32 = 1552 > 1550px du frame items. Figma laisse deborder, le CSS flex retrecit les cartes de 0,5px et decale le contenu de 1px. MESURE : le patch applique temporairement fait REFUSER le harnais (debordement horizontal de 4 device px), donc la correction n'est pas locale.",
+      "sujet": "reassurances",
+      "contractId": "ds.carte",
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "methode": "figma_execute LECTURE SEULE, parcours par POSITION du COMPONENT_SET 2114:3721",
+        "masterSet": {
+          "id": "2114:3721",
+          "nom": "Reassurances",
+          "bounds": "1552x2451"
+        },
+        "variantes": [
+          {
+            "nom": "Disposition=4 cartes",
+            "id": "2114:3619",
+            "frameItems": {
+              "id": "2114:3613",
+              "largeur": 1550,
+              "x": 40,
+              "itemSpacing": 32,
+              "sizH": "FILL"
+            },
+            "nbCartes": 4,
+            "largeurCarte": 364,
+            "sizHCarte": "FIXED",
+            "somme": 1456,
+            "gaps": 96,
+            "total": 1552,
+            "debordement": 2,
+            "cartes": [
+              "2114:3614",
+              "2114:3615",
+              "2114:3616",
+              "2114:3617"
+            ],
+            "xPremiere": 39,
+            "note": "la 1re carte commence a x=39 pour un frame a x=40 : le debordement est reel, 1px de chaque cote"
+          },
+          {
+            "nom": "Disposition=QuatreCartesDeuxCta",
+            "id": "2114:3653",
+            "frameItems": {
+              "id": "2114:3645",
+              "largeur": 1550,
+              "itemSpacing": 32
+            },
+            "nbCartes": 4,
+            "largeurCarte": 364,
+            "somme": 1456,
+            "gaps": 96,
+            "total": 1552,
+            "debordement": 2,
+            "cartes": [
+              "2114:3646",
+              "2114:3647",
+              "2114:3648",
+              "2114:3649"
+            ]
+          },
+          {
+            "nom": "Disposition=5 cartes",
+            "id": "2114:3693",
+            "frameItems": {
+              "id": "2114:3686",
+              "largeur": 1550,
+              "itemSpacing": 32
+            },
+            "nbCartes": 5,
+            "largeurCarte": 285,
+            "somme": 1425,
+            "gaps": 128,
+            "total": 1553,
+            "debordement": 3,
+            "cartes": [
+              "2114:3687",
+              "2114:3688",
+              "2114:3689",
+              "2114:3690",
+              "2114:3691"
+            ],
+            "note": "JAMAIS NOMMEE par le diagnostic 013, qui ne parlait que de 4x364+3x32. Deborde de 3px, et la largeur 285 n'est portee par AUCUN token (tokens/primitives.tokens.json ne connait que size.carte.root=364, root-categorie=743, reassurance-image=364, categorie-image=418) : elle est donc invisible du differentiel."
+          }
+        ],
+        "planImageInterieur": {
+          "id": "I2114:3614;2063:1607",
+          "nom": "img",
+          "w": 364,
+          "h": 364,
+          "sizH": "FILL",
+          "sizV": "FIXED",
+          "consequence": "FILL en largeur : l'image suivra automatiquement la carte a 363,5, AUCUN geste requis sur elle. FIXED en hauteur a 364 : elle cessera d'etre exactement carree (363,5 x 364)."
+        },
+        "ecartAvecLeDiagnosticOrigine": "013 ne decrivait qu'un seul cas (4x364+3x32=1552). Le vif en montre TROIS, dont un plus grave et non gouverne par un token."
+      },
+      "correction": "les cartes des 3 variantes passent en FIXED ajuste, conteneur 1550 et gaps 32 INTACTS : 4 cartes et QuatreCartesDeuxCta -> 363,5 (decision owner 2026-08-05) ; 5 cartes -> 284,4 = (1550 - 4x32)/5 (decision owner 2026-08-05, seconde passe, meme doctrine : on ajuste les cartes, jamais le conteneur ni les gaps). Le plan image interieur est FILL en largeur : aucun geste. Sa hauteur reste 364 (decision owner : ecart de 0,5px laisse et NOMME).",
+      "decisionOwnerRequise": false,
+      "decisionOwner": "2026-08-05 (1re passe) — cartes a 363,5, ni conteneur a 1552 ni gaps a 31,33. 2026-08-05 (2e passe, apres re-releve vif) — la variante `5 cartes`, non couverte par la 1re decision, suit la meme doctrine : 285 -> 284,4, avec mint d'un token from-dump pour que la largeur cesse d'etre invisible au differentiel. Le plan image interieur garde sa hauteur de 364 : l'ecart de 0,5px (image plus exactement carree) est LAISSE et NOMME a l'annonce et au recu, plutot que corrige au prix d'un decalage reel de tout le contenu sous l'image.",
+      "lotId": "L-DW002",
+      "promotionCodeSide": {
+        "fichiers": [
+          "tokens/primitives.tokens.json"
+        ],
+        "detail": "size.carte.root 364 -> 363,5 ; MINT from-dump d'un token pour la largeur des cartes de la variante 5 cartes (284,4) — aujourd'hui valeur brute non gouvernee. size.carte.reassurance-image reste a 364 (decision owner). Ne jamais ecrire le nombre a la main dans un contrat : la geometrie se porte en tokens.",
+        "semver": "aucun bump de contrat — seuls des tokens changent"
+      },
+      "limitesLevees": [
+        {
+          "quoi": "la largeur des cartes de la variante `5 cartes` n'etait portee par aucun token (invisible du differentiel)",
+          "preuveNonRegression": null
+        }
+      ],
+      "recu": "proofs/recus/DW-002.md",
+      "cloturePortes": {
+        "causesJson": "specs/014-mesure-juste-triage/proofs/registre/causes.json — resolvedBy: 016-canvas-vrai",
+        "work013": "specs/013-.../proofs/deferred/work.json — cloture par reference croisee (additif)",
+        "compteAttendu": "npm run measure:gate — figma-source 2 -> 0 (le compte vif imprime fait foi)"
+      },
+      "statut": "annonce"
+    },
+    {
+      "id": "DW-003",
+      "provenance": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (status: deferred) — factId faq.structure.section-header-height",
+      "diagnosticOrigine": "L'instance SectionHeader 2104:2907 est figee par le master a 50px alors que son contenu en demande 83 (clipsContent=false). Tout ce qui suit est decale de 32px. Le fait appartient a l'INSTANCE : sur les 8 instances du census, seule celle de FAQ est FIXED a 50, les autres sont HUG.",
+      "sujet": "faq",
+      "contractId": "ds.section-header",
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "methode": "figma_execute LECTURE SEULE — getNodeByIdAsync('2104:2907') + son master via getMainComponentAsync",
+        "instance": {
+          "id": "2104:2907",
+          "nom": "SectionHeader",
+          "bounds": "1550x50",
+          "sizH": "FIXED",
+          "sizV": "FIXED",
+          "itemSpacing": 8,
+          "clipsContent": false
+        },
+        "master": {
+          "id": "2090:2385",
+          "nom": "Disposition=Standard",
+          "bounds": "1550x83",
+          "sizV": "HUG"
+        },
+        "enfants": [
+          {
+            "nom": "Accroche",
+            "type": "TEXT",
+            "h": 25,
+            "sizV": "HUG"
+          },
+          {
+            "nom": "Titre",
+            "type": "TEXT",
+            "h": 50,
+            "sizV": "HUG"
+          }
+        ],
+        "hauteurDemandeeParLeContenu": 83,
+        "calcul": "25 (Accroche) + 8 (itemSpacing) + 50 (Titre) = 83",
+        "parent": {
+          "id": "2104:2914",
+          "nom": "FAQ",
+          "type": "COMPONENT",
+          "bounds": "1728x448",
+          "layoutMode": "VERTICAL",
+          "itemSpacing": 48,
+          "padding": [
+            89,
+            89,
+            0,
+            0
+          ]
+        },
+        "ecartAttenduAuGeste": 33,
+        "ecartAvecLeDiagnosticOrigine": "013 annoncait un decalage de 32px ; le releve vif donne 83 - 50 = 33. Le compte VIF fait foi. L'annonce du lot L-DW003 chiffrera donc +33px sur la hauteur de l'en-tete et le decalage vers le bas de tout ce qui suit sur la maquette FAQ.",
+        "confirme": true
+      },
+      "correction": "l'instance SectionHeader 2104:2907 du master faq passe de FIXED 50 a HUG.",
+      "decisionOwnerRequise": false,
+      "lotId": "L-DW003",
+      "promotionCodeSide": {
+        "fichiers": [],
+        "detail": "A RE-LOCALISER : le pointeur d'origine /anatomy/root/literals/height ne resolvait plus au releve du 2026-08-04 (la racine ne porte qu'un gap ; le 50 du fichier etait un line-height, canal hors population). S'il n'existe aucun litteral porteur, l'ecrire : le defaut etait purement canvas.",
+        "semver": null
+      },
+      "limitesLevees": [],
+      "recu": "proofs/recus/DW-003.md",
+      "cloturePortes": {
+        "causesJson": "specs/014-mesure-juste-triage/proofs/registre/causes.json — resolvedBy: 016-canvas-vrai",
+        "work013": "specs/013-.../proofs/deferred/work.json — cloture par reference croisee (additif)",
+        "compteAttendu": "npm run measure:gate — figma-source 2 -> 0 (le compte vif imprime fait foi)"
+      },
+      "statut": "annonce"
+    },
+    {
+      "id": "B013-1",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30), version Figma pinee 2381581871281042338",
+      "diagnosticOrigine": "4 proprietes orphelines : declarees sur un master, referencees par rien — Titre#2103:53 (presentation), Titre#2108:60 (sav), Accroche#2104:57 et Titre#2104:58 (coordonnees). Verifiable par componentPropertyReferences vs componentPropertyDefinitions.",
+      "sujet": "presentation, sav, coordonnees",
+      "contractId": null,
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "methode": "figma_execute LECTURE SEULE — componentPropertyDefinitions du master vs componentPropertyReferences de TOUT son sous-arbre",
+        "confirme": true,
+        "masters": [
+          {
+            "nom": "Presentation",
+            "id": "2103:2824",
+            "definitions": [
+              "Titre#2103:53",
+              "Texte#2103:54",
+              "Bouton#2103:55"
+            ],
+            "orphelines": [
+              "Titre#2103:53"
+            ],
+            "resteApresSuppression": 2
+          },
+          {
+            "nom": "SAV",
+            "id": "2108:3105",
+            "definitions": [
+              "Titre#2108:60"
+            ],
+            "orphelines": [
+              "Titre#2108:60"
+            ],
+            "resteApresSuppression": 0,
+            "note": "c'est sa SEULE propriete : le master se retrouvera sans aucune propriete — coherent avec B013-4 (sav : paragraphe non lie)"
+          },
+          {
+            "nom": "Coordonnees",
+            "id": "2104:2904",
+            "definitions": [
+              "Accroche#2104:57",
+              "Titre#2104:58"
+            ],
+            "orphelines": [
+              "Accroche#2104:57",
+              "Titre#2104:58"
+            ],
+            "resteApresSuppression": 0,
+            "note": "les DEUX proprietes sont orphelines : le master se retrouvera sans aucune propriete"
+          }
+        ],
+        "verdictParPropriete": [
+          {
+            "propriete": "Titre#2103:53",
+            "master": "presentation",
+            "definieEncore": true,
+            "orphelineEncore": true
+          },
+          {
+            "propriete": "Titre#2108:60",
+            "master": "sav",
+            "definieEncore": true,
+            "orphelineEncore": true
+          },
+          {
+            "propriete": "Accroche#2104:57",
+            "master": "coordonnees",
+            "definieEncore": true,
+            "orphelineEncore": true
+          },
+          {
+            "propriete": "Titre#2104:58",
+            "master": "coordonnees",
+            "definieEncore": true,
+            "orphelineEncore": true
+          }
+        ],
+        "ecartAvecLeDiagnosticOrigine": "aucun — les 4 sont encore definies et encore orphelines. Le diagnostic de la memoire (2026-07-30) se reproduit au vif."
+      },
+      "correction": "supprimer les 4 proprietes orphelines de leurs masters.",
+      "decisionOwnerRequise": false,
+      "lotId": "L-B013-1",
+      "annonceEcartAttendu": "ZERO ecart visuel — une propriete que rien ne reference ne peint rien. Tout pixel qui bouge annule le lot.",
+      "promotionCodeSide": null,
+      "limitesLevees": [],
+      "recu": "proofs/recus/B013-1.md",
+      "statut": "annonce"
+    },
+    {
+      "id": "B013-2",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+      "diagnosticOrigine": "SectionHeader (2090:2385) : master centre, 5 usages sur 7 alignes a gauche par surcharge d'instance (textAlignHorizontal=LEFT) ; seuls faq/reassurances suivent le master. Porte cote code par l'axe `alignement` (defaut centre).",
+      "sujet": "section-header",
+      "contractId": "ds.section-header",
+      "diagnosticVif": null,
+      "correction": "poser la variante gouvernee d'alignement sur le master 2090:2385, puis remplacer les 5 surcharges d'instance par la variante — instances scannees par POSITION, jamais par nom (VIII).",
+      "decisionOwnerRequise": false,
+      "lotId": "L-B013-2",
+      "annonceEcartAttendu": "rendu inchange (la variante reproduit l'etat actuel de chaque usage) ; seule la gouvernance change.",
+      "promotionCodeSide": {
+        "fichiers": [
+          "contracts/section-header.contract.json"
+        ],
+        "detail": "la prop `alignement` cesse d'etre un axe code-side (bindings.figma.kind: NONE) et devient un binding VARIANT",
+        "semver": "mineur"
+      },
+      "limitesLevees": [
+        {
+          "quoi": "alignement non lie a Figma (axe code-side)",
+          "preuveNonRegression": null
+        }
+      ],
+      "recu": "proofs/recus/B013-2.md",
+      "statut": "ouvert"
+    },
+    {
+      "id": "B013-3",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+      "diagnosticOrigine": "SectionHeader : typo du titre surchargee par instance (hero 54/68/700/blanc ; presentation 32/40 ; texte-seo 24/30) au lieu de variantes. Porte cote code par l'axe `emphase`.",
+      "sujet": "section-header",
+      "contractId": "ds.section-header",
+      "diagnosticVif": null,
+      "correction": "promouvoir les typographies surchargees en variantes du master — valeurs RE-RELEVEES en T026, jamais recopiees.",
+      "decisionOwnerRequise": false,
+      "lotId": "L-B013-3",
+      "annonceEcartAttendu": "rendu inchange, gouvernance changee.",
+      "promotionCodeSide": {
+        "fichiers": [
+          "contracts/section-header.contract.json"
+        ],
+        "detail": "la prop `emphase` passe en binding VARIANT",
+        "semver": "mineur"
+      },
+      "limitesLevees": [
+        {
+          "quoi": "emphase non liee a Figma (axe code-side)",
+          "preuveNonRegression": null
+        }
+      ],
+      "recu": "proofs/recus/B013-3.md",
+      "statut": "ouvert"
+    },
+    {
+      "id": "B013-4",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+      "diagnosticOrigine": "Masters sans proprietes TEXT : hero (aucune propriete du tout), sav (paragraphe non lie) — les textes sont cuits en dur ; une prop rich-text ne peut pas s'y lier honnetement (le schema exige une liaison TEXT native).",
+      "sujet": "hero, sav",
+      "contractId": "ds.hero, ds.sav",
+      "diagnosticVif": null,
+      "correction": "exposer et lier des proprietes Texte sur hero et sav.",
+      "decisionOwnerRequise": false,
+      "lotId": "L-B013-4",
+      "annonceEcartAttendu": "rendu inchange ; le texte cesse d'etre cuit en dur.",
+      "promotionCodeSide": {
+        "fichiers": [
+          "contracts/hero.contract.json",
+          "contracts/sav.contract.json"
+        ],
+        "detail": "bindings TEXT ajoutes",
+        "semver": "mineur"
+      },
+      "limitesLevees": [
+        {
+          "quoi": "une prop rich-text ne peut pas se lier honnetement, le schema exige une liaison TEXT native",
+          "preuveNonRegression": null
+        }
+      ],
+      "recu": "proofs/recus/B013-4.md",
+      "statut": "ouvert"
+    },
+    {
+      "id": "B013-5",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+      "diagnosticOrigine": "coordonnees : row-reverse d'auteur (la carte est visuellement a gauche via inversion) — le contrat a reordonne ses parts pour refleter le visuel.",
+      "sujet": "coordonnees",
+      "contractId": "ds.coordonnees",
+      "diagnosticVif": null,
+      "correction": "remettre les calques dans l'ordre normal.",
+      "decisionOwnerRequise": false,
+      "lotId": "L-B013-5",
+      "annonceEcartAttendu": "rendu STRICTEMENT IDENTIQUE — l'inversion et le re-ordonnancement se compensent ; tout ecart de pixel signale une erreur de geste et annule le lot.",
+      "promotionCodeSide": {
+        "fichiers": [
+          "contracts/coordonnees.contract.json"
+        ],
+        "detail": "re-ordonner les parts pour suivre l'ordre reel des calques ; re-juger la ligne instrument=1 de measure:gate (le compte vif decide)",
+        "semver": "a determiner au lot"
+      },
+      "limitesLevees": [],
+      "recu": "proofs/recus/B013-5.md",
+      "statut": "ouvert"
+    },
+    {
+      "id": "B013-6",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+      "diagnosticOrigine": "texte-seo : la 2e ligne d'accordeon est depliee dans le master — intention (etat de demonstration) ou accident ? Porte cote code par le champ d'item `etat` (arrayOf+enum, extension 013).",
+      "sujet": "texte-seo",
+      "contractId": "ds.texte-seo",
+      "diagnosticVif": null,
+      "correction": "conforme a la decision owner (T027) : si accident -> replier, annonce chiffree ; si intention -> AUCUN geste, cloture avec recu qui dit la decision, sa date et son auteur.",
+      "decisionOwnerRequise": true,
+      "decisionOwner": null,
+      "lotId": "L-B013-6",
+      "promotionCodeSide": null,
+      "limitesLevees": [],
+      "recu": "proofs/recus/B013-6.md",
+      "statut": "ouvert"
+    },
+    {
+      "id": "B013-7",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+      "diagnosticOrigine": "hero : fills[1] du root est visible:false — un degrade mort a supprimer du master.",
+      "sujet": "hero",
+      "contractId": "ds.hero",
+      "diagnosticVif": null,
+      "correction": "supprimer le fill mort du master hero.",
+      "decisionOwnerRequise": false,
+      "lotId": "L-B013-7",
+      "annonceEcartAttendu": "ZERO ecart visuel — un fill invisible ne peint pas. Tout pixel qui bouge annule le lot ET revele que le diagnostic etait faux.",
+      "promotionCodeSide": null,
+      "limitesLevees": [],
+      "recu": "proofs/recus/B013-7.md",
+      "statut": "ouvert"
+    },
+    {
+      "id": "B013-8",
+      "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+      "diagnosticOrigine": "ds.button : valeur d'enum `outilneNoir` (faute pour outline) venue de Figma — renommer cote canvas puis bump majeur du contrat.",
+      "sujet": "button",
+      "contractId": "ds.button",
+      "diagnosticVif": null,
+      "correction": "renommer la valeur de variante cote canvas.",
+      "decisionOwnerRequise": false,
+      "lotId": "L-B013-8",
+      "annonceEcartAttendu": "rendu inchange, nom change.",
+      "promotionCodeSide": {
+        "fichiers": [
+          "contracts/button.contract.json"
+        ],
+        "detail": "bump MAJEUR (VI — une valeur d'enum renommee est un breaking change) + migration de TOUS les consommateurs internes du depot dans le meme mouvement (rg -a outilneNoir sur contracts/, src/, examples/, evals/, playground/, catalog/)",
+        "semver": "majeur"
+      },
+      "limitesLevees": [],
+      "observationCroisee": "L'instrument de mesure visuelle voit deja ce defaut : `Property 1=Outilne noir: SKIPPED — axis has no contract binding` (releve T007, proofs/00-ouverture/visual-summary.txt). L'axe n'est donc pas mesure aujourd'hui.",
+      "recu": "proofs/recus/B013-8.md",
+      "statut": "ouvert"
+    }
+  ]
+}

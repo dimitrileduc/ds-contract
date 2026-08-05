@@ -119,6 +119,7 @@ le masquer — un refus nommé n'est pas un échec silencieux.
 | Lot | Annonce | Observé | Verdict | versionId |
 |---|---|---|---|---|
 | **`U1a-variables`** (2026-08-05) | `identique` sur les 9 maquettes — **zéro pixel** ; 83 créations (77 `size` + 6 `space`), 1 MAJ de valeur (`montserrat`), 0 création Semantic, aucune collection `Brand`, 0 style de texte | **9/9 `identical`** ; rapport du script : `created: 83` / semantic `0` / brand `skipped` / textStyles `0` ; 2ᵉ passe `created: 0` (idempotent) | ✅ **conforme** | `2384251202054787848` |
+| **`U1a-sentinelle`** (2026-08-05) | la valeur d'une variable de géométrie change côté maquette (`size/carte/root` **364** → 999, valeur de départ **relevée**) ⇒ le différentiel doit la **signaler**, la **classer** et proposer un **remède** ; puis annulation ⇒ retour à l'état exact, et 2 passes stables | finding `figma-tokens\|mismatch\|Primitives/size/carte/root [Value]` — `tokens/ says 364, Figma says 999`, `adoptFigmaValue: 999`, 2 remèdes proposés, **parity exit 1** ; après annulation : exit 0, 2 passes **byte-identiques** (`b5a9ed4b87f96c2e`), cliché identique au sain | ✅ **conforme** | `2384256876219261626` |
 
 ### O-5 · Trois obstacles d'outillage avant que le geste passe — aucun n'a touché le fichier
 
