@@ -111,6 +111,27 @@ le masquer — un refus nommé n'est pas un échec silencieux.
 
 ---
 
+### D-1 · Décision owner du 2026-08-05 — B013-6 : intention, pas accident
+
+**Question posée** (point de décision T027, bloquant pour le lot L-B013-6) : dans le
+master `texte-seo`, la 2ᵉ ligne d'accordéon est dépliée — état de démonstration voulu,
+ou accident ?
+
+**Fait décisif apporté par le relevé vif** (que le diagnostic d'origine ne portait pas) :
+la **seule** ligne ouverte est aussi la **seule** à porter un contenu réel
+(« Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués… ») ;
+les deux lignes fermées portent le placeholder `Réponse`.
+
+**Décision** : **INTENTION**. Aucun geste. L'entrée `B013-6` est **close** au registre
+avec son reçu (`proofs/recus/B013-6.md`), au titre de FR-003 (« clos sans geste sur
+relevé vif / décision owner consignée »).
+
+**Conséquence code** : le champ d'item `etat` (`arrayOf` + `enum`, extension posée par
+013) cesse d'être une compensation d'un défaut et redevient la modélisation juste d'un
+fait de design voulu. Rien à changer.
+
+---
+
 ## Lots
 
 > Une ligne par lot, ajoutée à sa clôture (étape 9 du cycle de preuve).
