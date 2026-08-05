@@ -143,7 +143,9 @@
   }
 
   // Filtre explicite d'ids : c'est lui qui permet de découper un gros périmètre.
-  const racinesRetenues = filtreIds ? racines.filter((r) => filtreIds.has(r.id)) : racines;
+  // COPIE explicite : sans elle, `racinesRetenues` alias `racines`, et le vidage
+  // ci-dessous vide les deux — le census rendait 0 racine parcourue.
+  const racinesRetenues = filtreIds ? racines.filter((r) => filtreIds.has(r.id)) : [...racines];
   racines.length = 0;
   racines.push(...racinesRetenues);
 
