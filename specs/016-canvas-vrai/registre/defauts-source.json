@@ -295,7 +295,41 @@
       "diagnosticOrigine": "SectionHeader (2090:2385) : master centre, 5 usages sur 7 alignes a gauche par surcharge d'instance (textAlignHorizontal=LEFT) ; seuls faq/reassurances suivent le master. Porte cote code par l'axe `alignement` (defaut centre).",
       "sujet": "section-header",
       "contractId": "ds.section-header",
-      "diagnosticVif": null,
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "confirme": true,
+        "aggrave": true,
+        "methode": "figma_execute LECTURE SEULE — toutes les instances du set SectionHeader (2090:2397) resolues par getMainComponentAsync, scannees par POSITION",
+        "masterReference": {
+          "id": "2090:2385",
+          "nom": "Disposition=Standard",
+          "alignementTitre": "CENTER"
+        },
+        "set": {
+          "id": "2090:2397",
+          "variantes": [
+            "Disposition=Standard",
+            "Disposition=Avec CTA"
+          ],
+          "proprietes": [
+            "Accroche#2090:46",
+            "Titre#2090:47",
+            "Accroche2#2169:64",
+            "Disposition"
+          ]
+        },
+        "totalInstances": 59,
+        "parVariante": {
+          "Disposition=Standard": 56,
+          "Disposition=Avec CTA": 3
+        },
+        "repartitionAlignement": {
+          "LEFT": 34,
+          "CENTER": 25
+        },
+        "instancesEnEcartAvecLeMaster": 34,
+        "ecartAvecLeDiagnosticOrigine": "La memoire (2026-07-30) annoncait « 5 usages sur 7 alignes a gauche ». Le vif montre 34 surcharges LEFT sur 59 instances. L'ampleur est 7x superieure : le lot B013-2 est bien plus lourd que le plan ne le suppose."
+      },
       "correction": "poser la variante gouvernee d'alignement sur le master 2090:2385, puis remplacer les 5 surcharges d'instance par la variante — instances scannees par POSITION, jamais par nom (VIII).",
       "decisionOwnerRequise": false,
       "lotId": "L-B013-2",
@@ -314,7 +348,7 @@
         }
       ],
       "recu": "proofs/recus/B013-2.md",
-      "statut": "ouvert"
+      "statut": "annonce"
     },
     {
       "id": "B013-3",
@@ -322,7 +356,29 @@
       "diagnosticOrigine": "SectionHeader : typo du titre surchargee par instance (hero 54/68/700/blanc ; presentation 32/40 ; texte-seo 24/30) au lieu de variantes. Porte cote code par l'axe `emphase`.",
       "sujet": "section-header",
       "contractId": "ds.section-header",
-      "diagnosticVif": null,
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "confirme": true,
+        "aggrave": true,
+        "referenceMaster": "40/50/Regular/#26282C",
+        "signaturesTypographiques": {
+          "54/68/(mixed)/#FFFFFF": 9,
+          "40/50/Regular/#26282C": 31,
+          "24/30/(mixed)/#26282C": 9,
+          "32/40/(mixed)/#26282C": 4,
+          "32/40/Regular/#26282C": 3,
+          "40/50/(mixed)/#26282C": 3
+        },
+        "instancesEnEcartAvecLeMaster": 25,
+        "exemples": {
+          "54/68 blanc": "Titres (hero)",
+          "24/30": "h2 (texte-seo)",
+          "32/40 mixed": "Presentation",
+          "32/40 Regular": "ProduitsECommerce",
+          "40/50 mixed": "Bloc en-tete"
+        },
+        "ecartAvecLeDiagnosticOrigine": "La memoire nommait 3 cas (hero 54/68/700/blanc ; presentation 32/40 ; texte-seo 24/30). Le vif en montre CINQ hors reference — s'ajoutent ProduitsECommerce (32/40 Regular, distinct de Presentation) et Bloc en-tete (40/50 avec un poids mixte). Le poids remonte souvent `mixed` (plusieurs styles dans un meme texte), ce que le diagnostic d'origine ne mentionnait pas."
+      },
       "correction": "promouvoir les typographies surchargees en variantes du master — valeurs RE-RELEVEES en T026, jamais recopiees.",
       "decisionOwnerRequise": false,
       "lotId": "L-B013-3",
@@ -341,7 +397,7 @@
         }
       ],
       "recu": "proofs/recus/B013-3.md",
-      "statut": "ouvert"
+      "statut": "annonce"
     },
     {
       "id": "B013-4",
@@ -349,7 +405,40 @@
       "diagnosticOrigine": "Masters sans proprietes TEXT : hero (aucune propriete du tout), sav (paragraphe non lie) — les textes sont cuits en dur ; une prop rich-text ne peut pas s'y lier honnetement (le schema exige une liaison TEXT native).",
       "sujet": "hero, sav",
       "contractId": "ds.hero, ds.sav",
-      "diagnosticVif": null,
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "confirme": "partiellement",
+        "hero": {
+          "master": {
+            "id": "2111:3382",
+            "type": "COMPONENT"
+          },
+          "definitionsPropres": [],
+          "nbTextes": 4,
+          "textesLies": 3,
+          "textesNONLies": 1,
+          "nonLie": "Sous-titre (« La performance sans compromis, meme en u… »)",
+          "lies": [
+            "Accroche -> Accroche#2090:46",
+            "Titre -> Titre#2090:47",
+            "Libelle -> Libelle#2044:28"
+          ]
+        },
+        "sav": {
+          "master": {
+            "id": "2108:3105",
+            "type": "COMPONENT"
+          },
+          "definitionsPropres": [
+            "Titre#2108:60"
+          ],
+          "nbTextes": 4,
+          "textesLies": 3,
+          "textesNONLies": 1,
+          "nonLie": "le paragraphe long (« Vous rencontrez un probleme avec votre installation Hormann… »)"
+        },
+        "ecartAvecLeDiagnosticOrigine": "La memoire disait « hero (aucune propriete du tout), sav (paragraphe non lie) ». FAUX pour hero au sens ou on l'entend : hero n'a aucune definition PROPRE, mais 3 de ses 4 textes SONT lies, via des proprietes heritees d'instances imbriquees (SectionHeader, Bouton). Le defaut reel est le meme des deux cotes : UN texte non lie par master (Sous-titre pour hero, le paragraphe pour sav). Le geste est donc plus petit qu'annonce."
+      },
       "correction": "exposer et lier des proprietes Texte sur hero et sav.",
       "decisionOwnerRequise": false,
       "lotId": "L-B013-4",
@@ -369,7 +458,7 @@
         }
       ],
       "recu": "proofs/recus/B013-4.md",
-      "statut": "ouvert"
+      "statut": "annonce"
     },
     {
       "id": "B013-5",
@@ -377,7 +466,32 @@
       "diagnosticOrigine": "coordonnees : row-reverse d'auteur (la carte est visuellement a gauche via inversion) — le contrat a reordonne ses parts pour refleter le visuel.",
       "sujet": "coordonnees",
       "contractId": "ds.coordonnees",
-      "diagnosticVif": null,
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "confirme": "inversion oui, mecanisme NON",
+        "master": {
+          "id": "2104:2904",
+          "nom": "Coordonnees",
+          "layoutMode": "GRID",
+          "itemSpacing": 0
+        },
+        "enfants": [
+          {
+            "position": 0,
+            "nom": "wrapper",
+            "x": 1192,
+            "w": 576
+          },
+          {
+            "position": 1,
+            "nom": "google-map",
+            "x": 40,
+            "w": 1152
+          }
+        ],
+        "constat": "le 1er enfant dans l'ordre des calques (wrapper) est visuellement a DROITE (x=1192) et le 2e (google-map) a GAUCHE (x=40) : l'inversion visuelle est confirmee.",
+        "ecartAvecLeDiagnosticOrigine": "La memoire parlait d'un « row-reverse d'auteur ». Le vif montre un layoutMode GRID, pas un HORIZONTAL inverse : le placement ne suit pas l'ordre des enfants parce que c'est une grille, pas parce qu'un axe est inverse. Le geste correctif n'est donc PAS celui qu'annonce le diagnostic — a re-concevoir au lot."
+      },
       "correction": "remettre les calques dans l'ordre normal.",
       "decisionOwnerRequise": false,
       "lotId": "L-B013-5",
@@ -391,7 +505,7 @@
       },
       "limitesLevees": [],
       "recu": "proofs/recus/B013-5.md",
-      "statut": "ouvert"
+      "statut": "annonce"
     },
     {
       "id": "B013-6",
@@ -399,7 +513,41 @@
       "diagnosticOrigine": "texte-seo : la 2e ligne d'accordeon est depliee dans le master — intention (etat de demonstration) ou accident ? Porte cote code par le champ d'item `etat` (arrayOf+enum, extension 013).",
       "sujet": "texte-seo",
       "contractId": "ds.texte-seo",
-      "diagnosticVif": null,
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "confirme": true,
+        "master": {
+          "id": "2108:3123",
+          "nom": "TexteSEO"
+        },
+        "lignes": [
+          {
+            "position": 0,
+            "id": "2108:3120",
+            "etat": "Ferme",
+            "h": 40,
+            "titre": "Acces et parking",
+            "contenu": "Reponse"
+          },
+          {
+            "position": 1,
+            "id": "2108:3121",
+            "etat": "Ouvert",
+            "h": 80,
+            "titre": "Faut-il prendre rendez-vous ?",
+            "contenu": "Pour une simple visite decouverte, le showroom est ouvert aux horaires indiques. Pour une etude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillee."
+          },
+          {
+            "position": 2,
+            "id": "2108:3122",
+            "etat": "Ferme",
+            "h": 40,
+            "titre": "Zones de deplacement pour devis",
+            "contenu": "Reponse"
+          }
+        ],
+        "indiceFortPourLaDecision": "la SEULE ligne ouverte est aussi la seule a porter un contenu REEL ; les deux fermees portent le placeholder « Reponse ». Cela plaide pour une INTENTION (etat de demonstration), pas un accident — mais la decision appartient a l'owner (T027)."
+      },
       "correction": "conforme a la decision owner (T027) : si accident -> replier, annonce chiffree ; si intention -> AUCUN geste, cloture avec recu qui dit la decision, sa date et son auteur.",
       "decisionOwnerRequise": true,
       "decisionOwner": null,
@@ -415,7 +563,33 @@
       "diagnosticOrigine": "hero : fills[1] du root est visible:false — un degrade mort a supprimer du master.",
       "sujet": "hero",
       "contractId": "ds.hero",
-      "diagnosticVif": null,
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "confirme": true,
+        "master": {
+          "id": "2111:3382",
+          "nom": "Hero"
+        },
+        "fills": [
+          {
+            "i": 0,
+            "type": "IMAGE",
+            "visible": true
+          },
+          {
+            "i": 1,
+            "type": "GRADIENT_LINEAR",
+            "visible": false
+          },
+          {
+            "i": 2,
+            "type": "GRADIENT_LINEAR",
+            "visible": true
+          }
+        ],
+        "constat": "fills[1] est bien un GRADIENT_LINEAR invisible — exactement le diagnostic d'origine. A noter : le root porte TROIS fills, dont un second degrade VISIBLE (fills[2]) qu'il ne faut pas confondre avec le mort.",
+        "ecartAvecLeDiagnosticOrigine": "aucun."
+      },
       "correction": "supprimer le fill mort du master hero.",
       "decisionOwnerRequise": false,
       "lotId": "L-B013-7",
@@ -423,7 +597,7 @@
       "promotionCodeSide": null,
       "limitesLevees": [],
       "recu": "proofs/recus/B013-7.md",
-      "statut": "ouvert"
+      "statut": "annonce"
     },
     {
       "id": "B013-8",
@@ -431,8 +605,49 @@
       "diagnosticOrigine": "ds.button : valeur d'enum `outilneNoir` (faute pour outline) venue de Figma — renommer cote canvas puis bump majeur du contrat.",
       "sujet": "button",
       "contractId": "ds.button",
-      "diagnosticVif": null,
-      "correction": "renommer la valeur de variante cote canvas.",
+      "diagnosticVif": {
+        "releveLe": "2026-08-05",
+        "confirme": false,
+        "seReproduitEncore": false,
+        "setBouton": {
+          "id": "6:122",
+          "proprietes": [
+            "Icone gauche#2024:0",
+            "Icone droite#2024:7",
+            "Glyphe gauche#2028:14",
+            "Glyphe droite#2028:21",
+            "Libelle#2044:28",
+            "Style"
+          ],
+          "axeStyle": {
+            "defaut": "Default",
+            "valeurs": [
+              "Default",
+              "Orange",
+              "Blanc",
+              "Outline blanc",
+              "Link",
+              "Outline noir",
+              "Icone seule"
+            ]
+          }
+        },
+        "usagesDeLaValeurFautiveDansFigma": 0,
+        "constat": "COTE FIGMA, LE DEFAUT N'EXISTE PLUS : la variante s'appelle « Outline noir », correctement orthographiee, et aucune instance ne porte la valeur fautive. Il n'y a RIEN a corriger sur le canvas.",
+        "ouViTLaFauteAujourdHui": [
+          {
+            "niveau": "contrat",
+            "fait": "contracts/button.contract.json v1.6.0 porte la CLE d'enum `outilneNoir` (cote code) ; son binding pointe correctement vers la valeur Figma « Outline noir ». La faute est donc dans le CONTRAT, pas dans la source."
+          },
+          {
+            "niveau": "instrument",
+            "fait": "extract/figma/visual-parity/subjects.ts declare un axe « Property 1=Outilne noir » — une propriete (`Property 1`) ET une valeur qui n'existent plus dans le set (il porte `Style`). D'ou le SKIPPED releve en T007 : une couverture de mesure perdue, nommee mais reelle."
+          }
+        ],
+        "consequencePourLeLot": "Le lot L-B013-8 perd son geste canvas. Restent : (1) le bump MAJEUR du contrat pour renommer la cle `outilneNoir` -> `outlineNoir` + migration des consommateurs ; (2) la remise a jour du sujet d'instrument perime. A clore SANS geste canvas, avec ce releve pour recu (T026 : « tout defaut qui ne se reproduit plus est clos sans geste »).",
+        "ecartAvecLeDiagnosticOrigine": "La memoire disait « valeur d'enum outilneNoir VENUE DE FIGMA — renommer cote canvas puis bump majeur ». Le vif contredit la premiere moitie : Figma est propre. C'est le cas d'ecole de la regle « une decision du depot n'est pas un fait »."
+      },
+      "correction": "AUCUN geste canvas — le defaut ne se reproduit plus cote Figma. Promotion code-side seule (bump MAJEUR du contrat) + mise a jour du sujet d'instrument perime.",
       "decisionOwnerRequise": false,
       "lotId": "L-B013-8",
       "annonceEcartAttendu": "rendu inchange, nom change.",
@@ -446,7 +661,7 @@
       "limitesLevees": [],
       "observationCroisee": "L'instrument de mesure visuelle voit deja ce defaut : `Property 1=Outilne noir: SKIPPED — axis has no contract binding` (releve T007, proofs/00-ouverture/visual-summary.txt). L'axe n'est donc pas mesure aujourd'hui.",
       "recu": "proofs/recus/B013-8.md",
-      "statut": "ouvert"
+      "statut": "annonce"
     }
   ]
 }
