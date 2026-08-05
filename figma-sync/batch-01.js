@@ -991,7 +991,7 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "fixedWidth": {
-            "px": 364,
+            "px": 363.5,
             "varName": "size/carte/root"
           },
           "bindings": {

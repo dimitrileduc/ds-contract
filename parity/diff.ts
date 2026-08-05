@@ -659,6 +659,43 @@ function norm(v: unknown): string {
   return String(v);
 }
 
+/**
+ * Same token value on both sides?
+ *
+ * Numbers get a SINGLE-PRECISION comparison, and that is not a tolerance — it is
+ * the exact arithmetic of the storage. Figma keeps FLOAT variables in float32:
+ * write 284.4 and the file gives back 284.3999938964844. Comparing the two as
+ * STRINGS ("284.4" vs "284.3999938964844") reports a mismatch that does not
+ * exist, and no re-run can ever clear it — the differ would demand a correction
+ * for a value that is already correct.
+ *
+ * `Math.fround` maps a double onto the float32 it becomes once stored, so this
+ * compares what tokens/ MEANS against what Figma CAN HOLD. It stays strict:
+ * fround(284.4) !== fround(284.5), and fround(364) !== fround(363.5).
+ *
+ * Found by 016 (lot L-DW002) when minting `size.reassurances.carte-cinq-cartes`
+ * = 284.4px — the first token in the foundation whose decimal is not a negative
+ * power of two (every earlier one was a .5, which float32 holds exactly, which
+ * is why the defect had lain dormant). Same class as the v4 alpha fix in
+ * `parity/extract-figma.plugin.js`: the instrument inventing drift that does not
+ * exist. The rule there applies here — the instrument is what gets fixed.
+ */
+function memeValeur(want: unknown, got: unknown): boolean {
+  const nombre = (x: unknown): number | null => {
+    if (typeof x === 'number') return x;
+    if (typeof x === 'string') {
+      const m = x.match(/^(-?[\d.]+)px$/) ?? x.match(/^(-?\d+(?:\.\d+)?)$/);
+      if (m) return Number(m[1]);
+    }
+    return null;
+  };
+  const a = nombre(want), b = nombre(got);
+  if (a !== null && b !== null && Number.isFinite(a) && Number.isFinite(b)) {
+    return Math.fround(a) === Math.fround(b);
+  }
+  return norm(want) === norm(got);
+}
+
 const figmaVarsByCollection = new Map<string, Map<string, FigmaVariable>>();
 for (const col of figmaTokens.collections) {
   figmaVarsByCollection.set(col.name, new Map(col.variables.map((v) => [v.name, v])));
@@ -737,7 +774,7 @@ function checkTokens(
         if (!namingBridges.includes(note)) namingBridges.push(note);
       }
       const got = v.values[readMode];
-      if (norm(want) !== norm(got)) {
+      if (!memeValeur(want, got)) {
         add({
           surface: 'figma-tokens',
           classification: 'mismatch',

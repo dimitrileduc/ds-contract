@@ -1,0 +1,110 @@
+# Sweep — lot L-DW002 · 2026-08-05T16:24:01Z
+### $ npm run build
+
+> ds-contracts-poc@0.7.0 build
+> npm run tokens && npm run schema && npm run generate
+
+
+> ds-contracts-poc@0.7.0 tokens
+> node scripts/build-tokens.mjs
+
+✔ Tokens built: 223 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default
+
+> ds-contracts-poc@0.7.0 schema
+> tsx scripts/emit-schema.ts
+
+✔ contracts/contract.schema.json emitted from Zod schema
+
+> ds-contracts-poc@0.7.0 generate
+> tsx scripts/generate-components.ts
+
+✔ Generated 34 component(s) from contracts: AccordionRow, Avantage, Button, CarouselControls, Carte, Checkbox, Coordonnees, Copyright, Devis, Equipe, FAQ, Field, Footer, FooterColumn, Formulaire, GoogleReviews, Header, Hero, Input, MemberCard, MemberPicture, NavItem, PiquerayLogo, Presentation, ProductCard, Realisation, Reassurances, ReviewCard, SAV, SectionHeader, Select, Tab, Textarea, TexteSEO
+### => OK
+
+### $ npm run parity
+
+> ds-contracts-poc@0.7.0 parity
+> tsx parity/diff.ts
+
+⚠ Figma naming bridged (the file does not use this repo's collection/mode names):
+    · mode "Dark" does not exist in collection "Semantic" — read from its only mode, "Light"
+
+✔ No new drift — 3 acknowledged finding(s) remain in parity/baseline.json.
+
+  — acknowledged (baselined, does not fail the check) —
+
+  [figma BEHIND] Carte.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] SectionHeader.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [icons AHEAD] assets/icons/close.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+
+### => OK
+
+### $ npm run eval
+
+> ds-contracts-poc@0.7.0 eval
+> tsx evals/run.ts
+
+  ✔ C5-extraction  accordion-row-source-cleanup-extraction
+  ✔ C3-detection  baseline-parity-clean
+  ✔ C3-detection  primitives-border-width-parity
+  ✔ C2-refusal  visual-campaign-schema-guards
+  ✔ C2-refusal  visual-layout-context-size
+  ✔ C2-refusal  visual-parity-font-faces
+  ✔ C2-refusal  figma-render-bounds-alignment
+  ✔ C2-refusal  visual-evidence-integrity-guards
+  ✔ C2-refusal  visual-campaign-011-exact-coverage
+  ✔ C2-refusal  visual-campaign-slot-comparison
+### => ECHEC (exit 143)
+
+### $ npm run plugin:check
+
+> ds-contracts-poc@0.7.0 plugin:check
+> node scripts/plugin-engine-check.mjs
+
+file:///Users/dlstudio/.superset/projects/ds-contract-016/scripts/build-plugin-zip.mjs:248
+    throw new Error(
+          ^
+
+Error: plugin-zip: the plugin engine bundle is STALE vs core — a fresh bundle hashes d7d429f81d42… (569791 bytes) but the committed receipt records 3d1ac3850e3d… (568791 bytes). Core (or tokens/contracts/icons) changed without re-recording. Review the change, then run `node scripts/build-plugin-zip.mjs --update-engine-receipt` and commit engine.receipt.json.
+    at verifyEngineReceipt (file:///Users/dlstudio/.superset/projects/ds-contract-016/scripts/build-plugin-zip.mjs:248:11)
+    at async file:///Users/dlstudio/.superset/projects/ds-contract-016/scripts/plugin-engine-check.mjs:62:1
+
+Node.js v24.14.0
+### => ECHEC (exit 1)
+
+### $ npx tsx scripts/deterministic-roundtrip.mjs
+
+DETERMINISTIC ROUND-TRIP — ds.google-reviews@1.0.0 (GoogleReviews)
+
+1. contract → canvas  (the plugin engine, run twice)
+  ✔ built GoogleReviews both times; node trees byte-identical (1447 bytes fingerprint) — DETERMINISTIC
+  ✔ the repeat+component produced 5 nested instances in "groupeCartes" — dependency depth exercised
+
+2. canvas → contract  (dump attempt; core proof: step 1 byte-identical ×2)
+  ✔ proposeDiff recovered a contract — element: <div>, props: 5
+  ✔ round-trip closes: the anatomy that went to canvas came back (byte-identical ×2 proves the loop)
+
+3. contract → code  (emit React from the contract)
+  ✔ emitted 7585B of React from the same contract — <section> host, repeat+component, text props typed
+
+✔ THE FULL LOOP RAN WITH ZERO AI — pure deterministic functions (the same engine the plugin runs):
+    contract → canvas → contract → code, byte-reproducible.
+  The AI built this tooling; it is NEVER in the conversion. That is the guarantee.
+  ✅ Depth restored (spec 006): repeat+component (5 nested instances) is now exercised.
+
+### => OK
+
+### $ node scripts/core-browser-check.mjs
+✔ core barrel bundles for platform=browser: 11.89 MB raw, 5.21 MB minified
+✔ all 4 emitters ran in a VM with no node globals (AccordionRow): react=3469+4178+2301B, html=3577+4676B, react-inline=7051B, figma-script=53498B
+### => OK
+
+### $ npx tsc --noEmit
