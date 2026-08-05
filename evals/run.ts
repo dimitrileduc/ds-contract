@@ -237,6 +237,39 @@ const cases: Case[] = [
       if (r.status !== 0) throw new Error(`Organism audit token-resolution guard failed:\n${r.out}`);
     },
   },
+  // 015/D9 (FR-005) — the geometry loop detected on BOTH sides, demonstrated
+  // not deduced (SC-002: 2/2). Code side: the differ's own code<->contract
+  // axis (parity/diff.ts's cssVars check, added by 015) reads the ACTUAL
+  // shipped CSS Module, so a var(--space-…) reference reverted to its raw
+  // value is caught — never regenerated away first.
+  {
+    id: 'geometry-detection-code-side',
+    claim: 'C3-detection',
+    run: () => {
+      // Button.root's gap is the ONLY declaration in Button.module.css that
+      // consumes var(--space-10) (extract-code.ts's cssVars is a file-WIDE
+      // set, not per-declaration — a token reused elsewhere in the same file
+      // would still show "consumed" after this one reference is reverted).
+      replaceInFile('src/components/Button/Button.module.css', 'gap: var(--space-10);', 'gap: 10px;');
+      const r = parity();
+      if (r.status === 0) throw new Error('A reverted var(--space-…) reference must fail parity, but it passed');
+      expectFinding(readReport(), 'code', 'behind', 'Button.root#gap');
+    },
+  },
+  // Canvas side: `compareFigmaExpectation` (extract/figma/organism-audit/
+  // facts.ts) is the pure comparator the audit pilot calls per captured
+  // fact — data-only, exercised against the REAL token source exactly like
+  // organism-audit-token-resolution-check (never live Figma, FR-010). A
+  // geometric channel's captured value, mutated as a fresh dump COPY would
+  // read differently, must report a divergence localized to that fact.
+  {
+    id: 'geometry-detection-canvas-side',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/geometry-detection-canvas-side-check.ts']);
+      if (r.status !== 0) throw new Error(`Geometry canvas-side detection check failed:\n${r.out}`);
+    },
+  },
   {
     id: 'field-slotted-control-semantics',
     claim: 'C3-detection',
@@ -5126,9 +5159,12 @@ const cases: Case[] = [
       // compiled spec. This is the pre-fix MemberPicture failure class: with
       // no root geometry, the absolute children contribute no intrinsic size
       // and the generated root collapses to 0×0.
+      // 015: root's width/height moved from literals to tokens (geometry-
+      // rides-tokens conversion) — delete from the field that now actually
+      // carries them, or this constructs a contract identical to `member`.
       const collapsedContract = ContractSchema.parse(JSON.parse(JSON.stringify(member)));
-      delete collapsedContract.anatomy.root.literals?.width;
-      delete collapsedContract.anatomy.root.literals?.height;
+      delete collapsedContract.anatomy.root.tokens?.width;
+      delete collapsedContract.anatomy.root.tokens?.height;
       const collapsedById = new Map(byId);
       collapsedById.set(collapsedContract.id, collapsedContract);
       const collapsedScript = engine.buildComponentScript(collapsedContract, collapsedById);
@@ -5137,9 +5173,16 @@ const cases: Case[] = [
       try { assertProjection(collapsed); } catch (err) { refused = String(err).includes('collapsed root'); }
       if (!refused) throw new Error('A MemberPicture contract that generates a 0×0 root was accepted');
       for (const required of [
-        '.root {', 'width: 364px;', 'height: 364px;', 'border-radius: 500px;', 'background-color: #d9d9d9;', 'position: relative;',
+        // 015: root/funIa/normal width+height moved from literal px to
+        // per-part tokens (geometry-rides-tokens) — the generated CSS now
+        // carries var() references (each 364px via a distinct custom
+        // property), never the raw literal.
+        '.root {', 'width: var(--size-member-picture-root);', 'height: var(--size-member-picture-root);',
+        'border-radius: 500px;', 'background-color: #d9d9d9;', 'position: relative;',
         '.etat-defaut {', '.etat-survol {', 'overflow: hidden;',
-        '.funIa {', '.normal {', 'position: absolute;', 'top: 0px;', 'right: 0px;', 'bottom: 0px;', 'left: 0px;',
+        '.funIa {', 'width: var(--size-member-picture-fun-ia);', 'height: var(--size-member-picture-fun-ia);',
+        '.normal {', 'width: var(--size-member-picture-normal);', 'height: var(--size-member-picture-normal);',
+        'position: absolute;', 'top: 0px;', 'right: 0px;', 'bottom: 0px;', 'left: 0px;',
         'transition: opacity 300ms;',
       ]) {
         if (!css.toLowerCase().includes(required.toLowerCase())) {
@@ -5152,6 +5195,109 @@ const cases: Case[] = [
         throw new Error(`MemberPicture image loss must remain named A5 in the contract and marked † on the canvas, got contract=${JSON.stringify(member.description)}, canvas=${JSON.stringify(compiled.description)}`);
       }
       console.log('member-picture-fixed-circle-and-named-a5-placeholder: rejects a 0×0 root; both 364×364 circular inset layers stack with normal opacity 1→0 and a 300ms transition; unavailable IMAGE pixels render only as the generic technical A5 placeholder, explicitly named (not a Piqueray colour or pixel-parity claim)');
+    },
+  },
+  // ---- 014 — mesure juste et triage complet ---------------------------------
+  {
+    id: 'organism-audit-case-reference-provenance',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/organism-audit-case-reference-check.ts']);
+      if (r.status !== 0) throw new Error(`Organism-audit case-reference provenance check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'triage-six-value-vocabulary',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/triage-vocabulary-check.ts']);
+      if (r.status !== 0) throw new Error(`Six-value cause vocabulary check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'measure-gate-fail-closed-policy',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/measure-gate-policy-check.ts']);
+      if (r.status !== 0) throw new Error(`measure-gate fail-closed policy check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'geometry-gate-policy-check',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/geometry-gate-policy-check.ts']);
+      if (r.status !== 0) throw new Error(`geometry-gate fail-closed policy check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'gradient-literal-channel',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/gradient-literal-channel.ts']);
+      if (r.status !== 0) throw new Error(`background-image gradient literal channel check failed:\n${r.out}`);
+    },
+  },
+  // 015/US2 (FR-004) — T013 shipped the border-box rule into emit-react with
+  // receipts but no fixture; the only box-sizing assertion in the suite was on
+  // the CANVAS stylesheet. Added in the Phase 7 review so the README claim has
+  // an eval behind it (Claims Rule). It earned its keep immediately: its first
+  // run caught the multi-root emit-html gap now registered as DW-015-001.
+  {
+    id: 'react-box-model-border-box',
+    claim: 'C1-determinism',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/react-box-model-border-box.ts']);
+      if (r.status !== 0) throw new Error(`React box-model (border-box) check failed:\n${r.out}`);
+    },
+  },
+  // 015/D10 (FR-009) — the exact scenario reproduced RED in
+  // preservation-013-rouge.txt (T037): a re-extraction/merge silently
+  // clobbers a 013 hand-set correction. `checkPreservation` (T038,
+  // extract/geometry-gate/preservation.ts) must refuse both shapes —
+  // a reverted value AND a dropped field — where the toolchain alone
+  // (build + parity) stayed clean.
+  {
+    id: 'icon-tokens-by-prop-svg-mirror',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/icon-tokens-by-prop-svg-mirror.ts']);
+      if (r.status !== 0) throw new Error(`Icon tokensByProp svg-mirror check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'preservation-013-clobber-detected',
+    claim: 'C3-detection',
+    run: () => {
+      resetScratch();
+      // 015 Phase 6 (T057) converted these sites literals->tokens on the real
+      // footer.contract.json — the clobber simulation now mutates `tokens`,
+      // not `literals` (checkPreservation's own mirrorToTokenPointer already
+      // follows a pure conversion; this fixture just needs to match where the
+      // values live today).
+      editJson('contracts/footer.contract.json', (c) => {
+        c.anatomy.root.tokens['padding-top'] = '{space.0}'; // reverted (resolves to a different px than expected)
+        delete c.anatomy.root.tokens['padding-left']; // dropped
+        delete c.anatomy.root.tokens['padding-right']; // dropped
+      });
+      // The toolchain alone must NOT catch it (this IS the gap T038 closes).
+      if (generate().status !== 0) throw new Error('generate must still succeed on a schema-valid, geometrically-wrong contract');
+      if (parity().status !== 0) throw new Error('parity is not the instrument for this class of drift — it must stay clean here');
+
+      const preservationCheck = run(TSX, [
+        'extract/geometry-gate/run.ts',
+        '--preservation',
+        path.join(ROOT, 'specs/015-geometrie-gouvernee/fixtures/corrections-013.json'),
+        '--json',
+      ]);
+      if (preservationCheck.status === 0) {
+        throw new Error(`checkPreservation must refuse the clobbered contract, but exited 0:\n${preservationCheck.out}`);
+      }
+      const result = JSON.parse(preservationCheck.out);
+      const clobbered = result.findings.filter((f: { state: string }) => f.state === 'clobbered');
+      if (clobbered.length !== 3) {
+        throw new Error(`expected exactly 3 clobbered entries (1 reverted + 2 dropped), got ${clobbered.length}: ${JSON.stringify(clobbered)}`);
+      }
     },
   },
 ];

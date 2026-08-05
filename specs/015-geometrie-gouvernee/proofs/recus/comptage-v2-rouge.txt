@@ -1,0 +1,11 @@
+/Users/dlstudio/.superset/projects/ds-contract-015/evals/fixtures/measure-gate-policy-check.ts:420
+    throw new Error(
+          ^
+
+Error: 1 line aggregating 3 facts must count 3, never 4 (the line itself contributes 0), got byCause["contract-geometry"]=4
+    at <anonymous> (/Users/dlstudio/.superset/projects/ds-contract-015/evals/fixtures/measure-gate-policy-check.ts:420:11)
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:661:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.14.0

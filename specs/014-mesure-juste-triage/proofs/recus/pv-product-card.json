@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-product-card",
+  "claim": "product-card diverges by 'image-boundary': the master carries an IMAGE fill that the code-only imageUrl prop cannot obtain from the contract; the default empty URL leaves the 240px image plane unpainted while text and outer geometry remain near-equal.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: product-card, class 'image-boundary')",
+  "method": "npm run extract:figma:visual -- product-card",
+  "observed": {
+    "rawPct": 15.64481191885038,
+    "maskedPct": 16.512303706142546,
+    "maskCoveragePct": 7.733252324598479,
+    "sizeOurs": "728×624",
+    "sizeFigma": "728×624",
+    "diagnosis": "overall ink differs (ours #787e85 vs figma #606866)",
+    "note": "sizes IDENTICAL both sides — 'near-equal' as written undersells it, the geometry is exact. The ink-differs signature (empty image plane vs a real IMAGE fill) is unchanged."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

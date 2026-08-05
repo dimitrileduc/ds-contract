@@ -3,6 +3,13 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: row;
@@ -13,8 +20,8 @@
   position: relative;
   --dsc-border-width: var(--border-width-2);
   font-family: var(--font-family-montserrat);
-  width: 20px;
-  height: 20px;
+  width: var(--size-checkbox-root);
+  height: var(--size-checkbox-root);
   border-radius: 0px;
 }
 

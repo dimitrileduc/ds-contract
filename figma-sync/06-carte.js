@@ -30,10 +30,13 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "fill": "color/blanc",
-          "lits": {
-            "width": 364,
-            "itemSpacing": 24,
-            "paddingBottom": 24
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/carte/root"
+          },
+          "bindings": {
+            "itemSpacing": "space/24",
+            "paddingBottom": "space/24"
           },
           "children": [
             {
@@ -44,15 +47,18 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/carte/reassurance-image"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "height": 364,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             },
             {
@@ -64,10 +70,10 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 8,
-                "paddingRight": 16,
-                "paddingLeft": 16
+              "bindings": {
+                "itemSpacing": "space/8",
+                "paddingRight": "space/16",
+                "paddingLeft": "space/16"
               },
               "children": [
                 {
@@ -113,10 +119,13 @@ const COMPONENTS = [
             "stretchChildren": true
           },
           "fill": "color/blanc",
-          "lits": {
-            "width": 743,
-            "itemSpacing": 32,
-            "paddingBottom": 0
+          "fixedWidth": {
+            "px": 743,
+            "varName": "size/carte/root-categorie"
+          },
+          "bindings": {
+            "itemSpacing": "space/32",
+            "paddingBottom": "space/0"
           },
           "children": [
             {
@@ -129,16 +138,18 @@ const COMPONENTS = [
                 "stretchChildren": true
               },
               "grow": true,
+              "fixedHeight": {
+                "px": 418,
+                "varName": "size/carte/categorie-image"
+              },
+              "imgPlaceholder": true,
               "lits": {
-                "height": 418,
-                "minHeight": 0,
                 "fillColor": {
                   "r": 0.8509803921568627,
                   "g": 0.8509803921568627,
                   "b": 0.8509803921568627
                 }
               },
-              "imgPlaceholder": true,
               "children": []
             },
             {
@@ -150,10 +161,10 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "lits": {
-                "itemSpacing": 16,
-                "paddingRight": 0,
-                "paddingLeft": 0
+              "bindings": {
+                "itemSpacing": "space/16",
+                "paddingRight": "space/0",
+                "paddingLeft": "space/0"
               },
               "children": [
                 {
@@ -211,7 +222,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 803
   }
 ];
 const ROW_H = 240, PAD = 40;

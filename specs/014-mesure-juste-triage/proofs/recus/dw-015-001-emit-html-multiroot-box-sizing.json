@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "dw-015-001-emit-html-multiroot-box-sizing",
+  "verdict": "confirmed",
+  "date": "2026-08-05",
+  "claim": "core/emit-html.ts hooks its box-sizing rule on the shared BEM prefix (`.<name>, .<name> *, …`), which no element carries in a MULTI-ROOT composite — each top-level root compiles to its own `.<name>__<root>` sibling class, descendant of nothing. The html surface therefore declares border-box for zero nodes on a multi-root contract. core/emit-react.ts does not share the defect: T013 (015, Phase 3) emits one rule per top-level root via topRoots(contract), because CSS Modules offer no shared prefix to hook a single rule onto.",
+  "retest": "Re-tested mechanically on 2026-08-05 by the fixture that found it, evals/fixtures/react-box-model-border-box.ts: emitHtml on a two-root synthetic contract yields 1 box-sizing declaration (hooked on a class no element carries), emitReact yields 2 (one per root). The fixture's first run failed on exactly this asymmetry, which is what surfaced the defect.",
+  "impact": "LATENT, not live: 0 of the 34 Piqueray contracts is multi-root (measured 2026-08-05, len(anatomy) > 1 across contracts/*.contract.json → 0). No shipped surface renders a wrong box because of it. The demo-51-era multi-root composites are archived and their eval cases quarantined.",
+  "fix": "Two lines: the same `for (const [name] of topRoots(contract))` loop emit-react.ts already uses, emitting one rule per root class instead of one hooked on the shared prefix.",
+  "whyNotFixedHere": "Out of 015's scope (US2/FR-004 targets the DELIVERED React surface, and emit-html was already correct for every existing contract), and an emitter edit in closure costs three re-pins — golden.json, the plugin engine receipt, and the Polaris showcase — to fix a defect that affects no contract. Belongs to whichever spec makes Piqueray multi-root, or to a dedicated engine pass.",
+  "markdownReceipt": "specs/015-geometrie-gouvernee/proofs/recus/emit-html-multiroot-box-sizing.md"
+}

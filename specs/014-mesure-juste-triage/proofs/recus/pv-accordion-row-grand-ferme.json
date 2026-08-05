@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-accordion-row-grand-ferme",
+  "claim": "accordion-row :: Taille=Grand, Etat=Ferme diverges by rendering — imposed renderWidth (1550) matches, pixel-identical size, masked score 0.00%: the raw residual is entirely text raster.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: accordion-row)",
+  "method": "npm run extract:figma:visual -- accordion-row",
+  "observed": {
+    "key": "accordion-row :: Taille=Grand, Etat=Ferme",
+    "rawPct": 0.13230846774193547,
+    "maskedPct": 0,
+    "maskCoveragePct": 2.780241935483871,
+    "sizeOurs": "3100×128",
+    "sizeFigma": "3100×128",
+    "diagnosis": "diff localized middle-left (182×39px)"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

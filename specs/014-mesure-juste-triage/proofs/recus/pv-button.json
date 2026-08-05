@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-button",
+  "claim": "button (catch-all, every variant not otherwise matched) diverges by 'rendering': Montserrat kerning — Chromium kerns, Figma does not — the label runs ~4 device px narrower (436 vs 440); on bordered variants the inset-border ring rides the same shifted edges (Outilne noir), while white-on-transparent ink stays under-counted (Outline blanc).",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: button catch-all, class 'rendering')",
+  "method": "npm run extract:figma:visual -- button",
+  "observed": {
+    "Style=Default": { "rawPct": 2.7016742770167426, "sizeOurs": "436×108", "sizeFigma": "438×108" },
+    "Style=Orange": { "rawPct": 2.6995602908844916, "sizeOurs": "436×108", "sizeFigma": "438×108" },
+    "Style=Blanc": { "rawPct": 2.2598511753762893, "sizeOurs": "436×108", "sizeFigma": "438×108" },
+    "Style=Outline blanc": { "rawPct": 0, "sizeOurs": "436×108", "sizeFigma": "438×108" },
+    "Style=Outline noir": { "rawPct": 3.137155420260443, "sizeOurs": "436×108", "sizeFigma": "438×108" },
+    "Style=Icône seule": { "rawPct": 0, "sizeOurs": "104×104", "sizeFigma": "104×104" },
+    "note": "the five text-bearing variants all measure the claimed 436×108 vs 438×108 (Δ2, not literally '436 vs 440' as worded, but the same direction and the same ~kerning-narrower-label signature); Style=Icône seule carries no label at all (104×104 exact, rawPct 0) and needed no cause under this catch-all — D8 does not require one at exactly 0%, it simply isn't dispensed FROM one."
+  },
+  "verdict": "confirmed",
+  "verdictNote": "Class and kerning mechanism hold for the five text-bearing variants this rule actually covers (Style=Link is now carved out to its own rule, pv-button-link.json).",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

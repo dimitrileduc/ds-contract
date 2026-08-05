@@ -93,7 +93,7 @@ if (cases.length !== expectedCaseCount) {
   throw new Error(`target campaign cases are incomplete: found ${cases.map((entry: any) => entry.campaignCase.id).join(', ')}`);
 }
 
-const browser = await launchBrowser();
+const { browser } = await launchBrowser();
 const failures: string[] = [];
 const unscored: Array<{ id: string; reason: string }> = [];
 const observations: Array<{

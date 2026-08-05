@@ -30,11 +30,17 @@ const COMPONENTS = [
           "bindings": {
             "strokeWeight": "border-width/2"
           },
+          "fixedWidth": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
+          "fixedHeight": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
           "fill": "color/blanc",
           "stroke": "color/bleu-gris",
           "lits": {
-            "width": 20,
-            "height": 20,
             "radius": 0
           },
           "children": []
@@ -55,11 +61,17 @@ const COMPONENTS = [
           "bindings": {
             "strokeWeight": "border-width/2"
           },
+          "fixedWidth": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
+          "fixedHeight": {
+            "px": 20,
+            "varName": "size/checkbox/root"
+          },
           "fill": "color/bleu",
           "stroke": "color/bleu",
           "lits": {
-            "width": 20,
-            "height": 20,
             "radius": 0
           },
           "children": [

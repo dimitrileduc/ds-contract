@@ -157,6 +157,31 @@ export function inventoryLiterals(contractsById: Record<string, unknown>): Liter
         continue;
       }
 
+      // `tokensByProp: {prop, map} | [{prop, map}, ...]` — v14 union (single
+      // entry OR ordered array; TokensByPropFieldSchema in contract-schema.ts).
+      // Normalized inline rather than importing the schema package, so this
+      // stays a dependency-free pure module over raw JSON-ish data.
+      if (key === 'tokensByProp' && (isRecord(value) || Array.isArray(value))) {
+        const rules = Array.isArray(value) ? value : [value];
+        rules.forEach((rule, index) => {
+          if (!isRecord(rule) || !isRecord(rule.map)) return;
+          for (const [propValue, declarations] of Object.entries(rule.map)) {
+            if (!isRecord(declarations)) continue;
+            for (const [property, token] of Object.entries(declarations)) {
+              if (typeof token !== 'string' || !TOKEN_REFERENCE.test(token)) continue;
+              tokenBindingInventory.push({
+                contractId,
+                pointer: Array.isArray(value)
+                  ? `${here}/${index}/map/${escapeToken(propValue)}/${escapeToken(property)}`
+                  : `${here}/map/${escapeToken(propValue)}/${escapeToken(property)}`,
+                token,
+              });
+            }
+          }
+        });
+        continue;
+      }
+
       // `declared` and `attrs` are out of scope by design — not recursed for
       // harvesting, though nested anatomy elsewhere still is.
       if (key === 'declared' || key === 'attrs') continue;
@@ -183,6 +208,22 @@ const mirroredTokenPointer = (literalPointer: string): string =>
   literalPointer.replace(/\/literals\//, '/tokens/');
 
 /**
+ * Index-agnostic match key for a `literalsByProp`/`tokensByProp` site.
+ *
+ * Unlike top-level `literals`→`tokens` (a straight pointer substitution),
+ * `literalsByProp` is always an array while `tokensByProp` may be a bare
+ * object or its own independently-ordered array (v14 union) — so the two
+ * fields need not share array indices for the same prop/value, and a naive
+ * pointer substitution would miss real conversions whose index shifted. The
+ * array index is a schema-legality artifact, not a semantic identifier: this
+ * strips it, keying on the part path + prop value + CSS channel instead.
+ */
+const byPropMatchKey = (pointer: string): string | null => {
+  const m = pointer.match(/^(.*)\/(?:literalsByProp|tokensByProp)\/(?:\d+\/)?map\/(.+)$/);
+  return m ? `${m[1]} ${m[2]}` : null;
+};
+
+/**
  * Produce the typed diff the receipt is checked with.
  *
  * The key move is the *site* comparison: a token binding only counts as a
@@ -198,6 +239,13 @@ export function diffBaseline(before: Baseline, after: Baseline): BaselineDiff {
   const beforeLiterals = new Map(before.literalInventory.map((entry) => [siteKey(entry), entry]));
   const afterLiterals = new Map(after.literalInventory.map((entry) => [siteKey(entry), entry]));
   const afterTokens = new Map(after.tokenBindingInventory.map((entry) => [siteKey(entry), entry]));
+  const afterTokensByPropKey = new Map<string, TokenBindingEntry>();
+  for (const entry of after.tokenBindingInventory) {
+    if (!entry.pointer.includes('/tokensByProp')) continue;
+    const key = byPropMatchKey(entry.pointer);
+    if (key === null) continue;
+    afterTokensByPropKey.set(`${entry.contractId} ${key}`, entry);
+  }
 
   for (const [site, entry] of beforeLiterals) {
     const stillLiteral = afterLiterals.get(site);
@@ -226,6 +274,24 @@ export function diffBaseline(before: Baseline, after: Baseline): BaselineDiff {
         token: token.token,
       });
       continue;
+    }
+
+    // Same question for a `literalsByProp` site, matched index-agnostically
+    // against `tokensByProp` (see byPropMatchKey — the two fields need not
+    // share array indices for the same prop/value).
+    const byPropKey = byPropMatchKey(entry.pointer);
+    if (byPropKey !== null) {
+      const byPropToken = afterTokensByPropKey.get(`${entry.contractId} ${byPropKey}`);
+      if (byPropToken !== undefined) {
+        literalToTokenConversions.push({
+          contractId: entry.contractId,
+          pointer: entry.pointer,
+          value: entry.value,
+          tokenPointer: byPropToken.pointer,
+          token: byPropToken.token,
+        });
+        continue;
+      }
     }
     localContractCorrections.push({
       contractId: entry.contractId,

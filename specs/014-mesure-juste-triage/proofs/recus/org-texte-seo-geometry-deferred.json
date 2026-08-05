@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "org-texte-seo-geometry-deferred",
+  "claim": "DEFERRED 2026-08-04 (Phase 6/015, T059, owner decision). The original claim (org-texte-seo-geometry.json, 014, 2026-08-03) is CONFIRMED still true and NOT repaired here: texte-seo passes a rich-text titre (a bold span, \"showroom à Pepinster\") to its nested ds.section-header composition (disposition=standard, emphase=compact), but the generated output flattens it to one plain string, and the compact-emphase font-size (24px) / line-height (30px) are not bound at all on that path. Geometry itself (Δpx 0/0) is exact — this is a typography/rich-text composition-binding gap, not a size defect.",
+  "claimSource": "specs/014-mesure-juste-triage/proofs/recus/org-texte-seo-geometry.json (re-confirmed, not superseded)",
+  "method": "re-read org-texte-seo-geometry.json against the current contracts/texte-seo.contract.json and contracts/section-header.contract.json composition (T059, Phase 6) — the gap is unchanged by any 015 work",
+  "observed": {
+    "geometryDeltaPx": { "width": 0, "height": 0 },
+    "rawPct": 1.8376109056184122,
+    "divergentFacts": [
+      { "id": "texte-seo.content.section-header-titre", "reason": "contract-value-differs: rich-text bold span not carried through the ds.section-header composition, rendered as one plain string" },
+      { "id": "texte-seo.visual.section-header-titre-font-size", "reason": "contract-does-not-carry-figma-fact:SectionHeader.Titre.font-size=24px" },
+      { "id": "texte-seo.visual.section-header-titre-line-height", "reason": "contract-does-not-carry-figma-fact:SectionHeader.Titre.line-height=30px" }
+    ]
+  },
+  "verdict": "confirmed",
+  "browser": null,
+  "date": "2026-08-04",
+  "deferredTo": "DW-014-003",
+  "whyNotFixedHere": "A real code fix — carrying a rich-text mark AND per-disposition typography through a nested component composition (ds.texte-seo -> ds.section-header) — was judged too significant a change to attempt safely this late in an already very long session; the owner chose to defer with a named receipt rather than risk a rushed regression. Not blocking SC-005 (moved to causes.json deferredWork, tracked but not gated)."
+}

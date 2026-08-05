@@ -625,6 +625,7 @@ function componentCss(contract: Contract): string[] {
     for (const entry of tokensByPropEntries(part)) {
       for (const [value, overrides] of Object.entries(entry.map)) {
         const plain: string[] = [];
+        const svgPlain: string[] = [];
         for (const [cssProp, ref] of Object.entries(overrides)) {
           const refPath = stripBraces(ref);
           // S2 capability lift: one-placeholder map refs expand as compound
@@ -636,12 +637,23 @@ function componentCss(contract: Contract): string[] {
               rule(`${enumCls(entry.prop, value)}${enumCls(phs[0], phValue)} ${partCls(name)}`, [
                 `${cssProp}: ${cssVar(resolved)}`,
               ]);
+              // 015: mirrors the literalsByProp branch below — an icon
+              // part's width/height must also reach the injected <svg>.
+              if (part.icon && (cssProp === 'width' || cssProp === 'height')) {
+                rule(`${enumCls(entry.prop, value)}${enumCls(phs[0], phValue)} ${partCls(name)} svg`, [
+                  `${cssProp}: ${cssVar(resolved)}`,
+                ]);
+              }
             }
             continue;
           }
           plain.push(`${cssProp}: ${cssVar(refPath)}`);
+          if (part.icon && (cssProp === 'width' || cssProp === 'height')) {
+            svgPlain.push(`${cssProp}: ${cssVar(refPath)}`);
+          }
         }
         if (plain.length > 0) rule(`${enumCls(entry.prop, value)} ${partCls(name)}`, plain);
+        if (svgPlain.length > 0) rule(`${enumCls(entry.prop, value)} ${partCls(name)} svg`, svgPlain);
       }
     }
     // v13 part-level states (P18 second half): descendant rules under the

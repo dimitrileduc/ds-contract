@@ -73,24 +73,22 @@
             "src": "{imageUrl}",
             "alt": "{imageAlt}"
           },
-          "literals": {
-            "width": "743px",
-            "height": "743px"
+          "tokens": {
+            "width": "{size.realisation.image}",
+            "height": "{size.realisation.image}"
           },
           "declared": {
             "object-fit": "cover"
           },
-          "literalsByProp": [
-            {
-              "prop": "taille",
-              "map": {
-                "petit": {
-                  "width": "339.5px",
-                  "height": "339.5px"
-                }
+          "tokensByProp": {
+            "prop": "taille",
+            "map": {
+              "petit": {
+                "width": "{size.realisation.image-petit}",
+                "height": "{size.realisation.image-petit}"
               }
             }
-          ]
+          }
         }
       },
       "tokens": {

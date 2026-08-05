@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "org-devis-image",
+  "claim": "devis diverges under the A5 image-boundary limit — a root background IMAGE fill and its scrim opacity are not carried by the contract (the same declared-photo pattern as hero); geometry passes exactly (Δpx 0/0).",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/organisms/devis/result.json (facts: devis.visual.root-background-image, devis.visual.root-scrim-opacity)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts devis",
+  "observed": {
+    "geometryDeltaPx": {
+      "width": 0,
+      "height": 0
+    },
+    "rawPct": 0.1353753306878307,
+    "divergentFacts": [
+      {
+        "id": "devis.visual.root-background-image",
+        "reason": "contract-does-not-carry-figma-fact:root.fills[0].type=\"IMAGE\""
+      },
+      {
+        "id": "devis.visual.root-scrim-opacity",
+        "reason": "contract-does-not-carry-figma-fact:root.fills[1].opacity=0.30…"
+      }
+    ],
+    "capabilityMatrixRef": "docs/FIGMA-CAPABILITY-MATRIX.md row 91 (background-image url(): named-gap A5)",
+    "smallScoreNote": "score (0.14%) is much smaller than hero's (27.83%) despite the same defect class — plausibly the placeholder/scrim color happens to sit closer to the real photo's tone here; the mechanism (missing IMAGE transport), not the magnitude, drives the classification."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

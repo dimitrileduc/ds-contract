@@ -4,8 +4,8 @@
   "verdict": "fail",
   "probative": true,
   "reasons": [
-    "raw-over-threshold:39.78437291157622>2.5",
-    "region-over-budget:whole:39.78437291157622>2.5"
+    "raw-over-threshold:3.298885335721438>2.5",
+    "region-over-budget:whole:3.298885335721438>2.5"
   ],
   "figma": {
     "nodeId": "2114:3619",
@@ -14,9 +14,20 @@
     "observedProperties": {
       "Disposition": "4 cartes"
     },
-    "pngSha256": "781f59cb813571ab383b6e557b208d17665651665106307ebe245d35d32b8d51",
+    "pngSha256": "1596a444364c5a80ee4e4243cccb1a17e095ed1e7fd2f0ccc74901d1ce8af79b",
     "width": 3104,
-    "height": 4902
+    "height": 1462
+  },
+  "referenceProvenance": {
+    "caseNodeId": "2114:3619",
+    "setNodeId": "2114:3721",
+    "derivations": {
+      "capture": "2114:3619",
+      "nodeValues": "2114:3619",
+      "imposedWidth": "2114:3619",
+      "alignmentFrame": "2114:3619",
+      "receiptCitation": "2114:3619"
+    }
   },
   "contract": {
     "id": "ds.reassurances",
@@ -101,12 +112,12 @@
   },
   "visibility": {
     "figma": {
-      "signalPixels": 7180924,
+      "signalPixels": 2408529,
       "width": 3104,
-      "height": 4902
+      "height": 1462
     },
     "generated": {
-      "signalPixels": 2505875,
+      "signalPixels": 2499665,
       "width": 3292,
       "height": 1654
     },
@@ -115,7 +126,7 @@
   "geometry": {
     "figmaRoot": {
       "width": 3104,
-      "height": 4902
+      "height": 1462
     },
     "generatedRoot": {
       "width": 3100,
@@ -123,20 +134,20 @@
     },
     "deltaPx": {
       "width": -4,
-      "height": -3440
+      "height": 0
     },
     "verdict": "fail"
   },
   "pixels": {
-    "rawPct": 39.78437291157622,
-    "maskedDiagnosticPct": 37.322538779934774,
+    "rawPct": 3.298885335721438,
+    "maskedDiagnosticPct": null,
     "thresholdPct": 2.5,
     "regions": [
       {
         "id": "whole",
-        "score": 39.78437291157622,
+        "score": 3.298885335721438,
         "maxDiffPct": 2.5,
-        "signalPixels": 2505875
+        "signalPixels": 2408529
       }
     ],
     "verdict": "fail"
@@ -222,5 +233,9 @@
       "projected": false
     }
   ],
-  "artifacts": []
+  "artifacts": [],
+  "browserRevision": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  }
 }

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-realisation",
+  "claim": "realisation diverges by 'image-boundary': Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty; both variant dimensions are exact, but image pixels are intentionally not transported.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: realisation, class 'image-boundary')",
+  "method": "npm run extract:figma:visual -- realisation",
+  "observed": {
+    "Taille=Grand": {
+      "rawPct": 99.9703377779871,
+      "maskCoveragePct": 0,
+      "sizeOurs": "1486×1486",
+      "sizeFigma": "1486×1486",
+      "diagnosis": "overall ink differs (ours #bfc0c0 vs figma #e0e0e0)"
+    },
+    "Taille=Petit": {
+      "rawPct": 99.85793020577346,
+      "maskCoveragePct": 0,
+      "sizeOurs": "679×679",
+      "sizeFigma": "679×679",
+      "diagnosis": "overall ink differs (ours #bdc1c0 vs figma #e0e0e0)"
+    },
+    "note": "both variant dimensions are exact (Δ0×Δ0), confirming the geometry half of the claim. The near-100% raw score is exactly what two UNIFORM flat fills of different tone (#bfc0c0 vs #e0e0e0) produce under pixelmatch — no shared structure to match, so nearly every pixel differs; this is consistent with, not contradicted by, 'both sides are placeholder-flat'."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

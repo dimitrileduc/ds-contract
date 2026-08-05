@@ -32,8 +32,8 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "lits": {
-            "itemSpacing": 10
+          "bindings": {
+            "itemSpacing": "space/10"
           },
           "children": [
             {
@@ -44,9 +44,13 @@ const COMPONENTS = [
                 "primary": "CENTER",
                 "counter": "MIN"
               },
-              "lits": {
-                "width": 1550,
-                "height": 677
+              "fixedWidth": {
+                "px": 1550,
+                "varName": "size/sav/section-w"
+              },
+              "fixedHeight": {
+                "px": 677,
+                "varName": "size/sav/section-h"
               },
               "children": [
                 {
@@ -57,16 +61,22 @@ const COMPONENTS = [
                     "primary": "MIN",
                     "counter": "MIN"
                   },
+                  "fixedWidth": {
+                    "px": 1550,
+                    "varName": "size/sav/background-w"
+                  },
+                  "fixedHeight": {
+                    "px": 475,
+                    "varName": "size/sav/background-h"
+                  },
+                  "imgPlaceholder": true,
                   "lits": {
-                    "width": 1550,
-                    "height": 475,
                     "fillColor": {
                       "r": 0.8509803921568627,
                       "g": 0.8509803921568627,
                       "b": 0.8509803921568627
                     }
                   },
-                  "imgPlaceholder": true,
                   "children": []
                 },
                 {
@@ -78,9 +88,13 @@ const COMPONENTS = [
                     "counter": "MIN",
                     "stretchChildren": true
                   },
-                  "lits": {
-                    "width": 1288,
-                    "height": 561
+                  "fixedWidth": {
+                    "px": 1288,
+                    "varName": "size/sav/row-w"
+                  },
+                  "fixedHeight": {
+                    "px": 561,
+                    "varName": "size/sav/row-h"
                   },
                   "children": [
                     {
@@ -91,12 +105,18 @@ const COMPONENTS = [
                         "primary": "CENTER",
                         "counter": "MIN"
                       },
-                      "lits": {
-                        "width": 546,
-                        "height": 513,
-                        "paddingTop": 48,
-                        "paddingLeft": 48,
-                        "paddingRight": 47
+                      "fixedWidth": {
+                        "px": 641,
+                        "varName": "size/sav/wrapper-w"
+                      },
+                      "fixedHeight": {
+                        "px": 561,
+                        "varName": "size/sav/wrapper-h"
+                      },
+                      "bindings": {
+                        "paddingTop": "space/48",
+                        "paddingLeft": "space/48",
+                        "paddingRight": "space/47"
                       },
                       "children": [
                         {
@@ -108,9 +128,13 @@ const COMPONENTS = [
                             "counter": "MIN"
                           },
                           "fill": "color/blanc",
-                          "lits": {
-                            "width": 641,
-                            "height": 561
+                          "fixedWidth": {
+                            "px": 641,
+                            "varName": "size/sav/wrapper-background-w"
+                          },
+                          "fixedHeight": {
+                            "px": 561,
+                            "varName": "size/sav/wrapper-background-h"
                           },
                           "children": []
                         },
@@ -122,9 +146,12 @@ const COMPONENTS = [
                             "primary": "MIN",
                             "counter": "MIN"
                           },
-                          "lits": {
-                            "itemSpacing": 32,
-                            "width": 546
+                          "bindings": {
+                            "itemSpacing": "space/32"
+                          },
+                          "fixedWidth": {
+                            "px": 546,
+                            "varName": "size/sav/inner"
                           },
                           "children": [
                             {
@@ -141,8 +168,9 @@ const COMPONENTS = [
                             {
                               "type": "text",
                               "name": "vousRencontrezUnProblmeA",
-                              "lits": {
-                                "height": 197
+                              "fixedHeight": {
+                                "px": 197,
+                                "varName": "size/sav/vous-rencontrez-un-problme-a"
                               },
                               "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
                               "fontSize": 18,
@@ -172,10 +200,16 @@ const COMPONENTS = [
                         "primary": "MIN",
                         "counter": "MAX"
                       },
-                      "lits": {
-                        "width": 644,
-                        "height": 561,
-                        "paddingLeft": 3
+                      "fixedWidth": {
+                        "px": 647,
+                        "varName": "size/sav/img-group-w"
+                      },
+                      "fixedHeight": {
+                        "px": 561,
+                        "varName": "size/sav/img-group-h"
+                      },
+                      "bindings": {
+                        "paddingLeft": "space/3"
                       },
                       "children": [
                         {
@@ -187,9 +221,13 @@ const COMPONENTS = [
                             "counter": "MIN"
                           },
                           "fill": "color/bleu-clair",
-                          "lits": {
-                            "width": 647,
-                            "height": 478
+                          "fixedWidth": {
+                            "px": 647,
+                            "varName": "size/sav/img-group-background-w"
+                          },
+                          "fixedHeight": {
+                            "px": 478,
+                            "varName": "size/sav/img-group-background-h"
                           },
                           "children": []
                         },
@@ -201,16 +239,22 @@ const COMPONENTS = [
                             "primary": "MIN",
                             "counter": "MIN"
                           },
+                          "fixedWidth": {
+                            "px": 563,
+                            "varName": "size/sav/img-w"
+                          },
+                          "fixedHeight": {
+                            "px": 504,
+                            "varName": "size/sav/img-h"
+                          },
+                          "imgPlaceholder": true,
                           "lits": {
-                            "width": 563,
-                            "height": 504,
                             "fillColor": {
                               "r": 0.8509803921568627,
                               "g": 0.8509803921568627,
                               "b": 0.8509803921568627
                             }
                           },
-                          "imgPlaceholder": true,
                           "children": []
                         }
                       ]

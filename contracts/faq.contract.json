@@ -46,17 +46,11 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "COMPONENT « FAQ » 2104:2914, 1728×448, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing 48, padding 0/89/0/89 (aucun paddingTop/Bottom), layoutSizingHorizontal FIXED / Vertical HUG, clipsContent false. La largeur portée ici est la boîte de CONTENU : 1550 + 89 + 89 = les 1728px relevés ; la feuille générée ne déclare pas box-sizing: border-box et ce canal n'est pas dans DECLARED_CHANNELS, donc l'arithmétique est explicitée plutôt que contournée (même convention que ds.sav et ds.footer). fills[0] est un SOLID visible=false : aucun fond n'est peint, le contrat n'en porte donc aucun.",
+      "description": "COMPONENT « FAQ » 2104:2914, 1728×448, layoutMode VERTICAL, counterAxisAlignItems CENTER, itemSpacing 48, padding 0/89/0/89 (aucun paddingTop/Bottom), layoutSizingHorizontal FIXED / Vertical HUG, clipsContent false. La largeur portée ici est la boîte TOTALE (border-box) : 1728px, exactement l'absoluteBoundingBox du master — Figma inclut déjà le padding dans la largeur d'un frame auto-layout. CORRIGÉ le 2026-08-05 (revue de Phase 7, cause box-model-unification) : jusque-là ce contrat portait 1550px, la boîte de CONTENU (1728 − 89 − 89), avec la mention « la feuille générée ne déclare pas box-sizing: border-box » — vraie à l'époque du census 013, fausse depuis T013 (Phase 3, 015) qui déclare border-box sur toutes les racines générées. La soustraction rendait donc 178px trop étroit. Même défaut et même correction que ds.footer (T058, 1550→1728) et ds.sav (wrapper/imgGroup, §6). fills[0] est un SOLID visible=false : aucun fond n'est peint, le contrat n'en porte donc aucun.",
       "layout": {
         "display": "flex",
         "direction": "column",
         "align": "center"
-      },
-      "literals": {
-        "width": "1550px",
-        "padding-left": "89px",
-        "padding-right": "89px",
-        "gap": "48px"
       },
       "parts": {
         "SectionHeader": {
@@ -127,7 +121,11 @@
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.faq.root}",
+        "padding-left": "{space.89}",
+        "padding-right": "{space.89}",
+        "gap": "{space.48}"
       }
     }
   },

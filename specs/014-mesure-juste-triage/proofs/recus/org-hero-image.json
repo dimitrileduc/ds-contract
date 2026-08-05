@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "org-hero-image",
+  "claim": "hero diverges under the A5 image-boundary limit — the contract does not carry the root background photo (IMAGE fill) or its gradient overlays, on a 3456×1280 canvas where geometry itself passes exactly (Δpx 0/0).",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/organisms/hero/result.json (facts: hero.visual.root-image-fill, hero.visual.root-gradient-overlay, hero.visual.titres-gradient)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts hero",
+  "observed": {
+    "geometryDeltaPx": {
+      "width": 0,
+      "height": 0
+    },
+    "rawPct": 27.82904730902778,
+    "divergentFacts": [
+      {
+        "id": "hero.visual.root-image-fill",
+        "reason": "contract-does-not-carry-figma-fact:root.fills[0].IMAGE.imageRef=…"
+      },
+      {
+        "id": "hero.visual.root-gradient-overlay",
+        "reason": "contract-does-not-carry-figma-fact:root.fills[2].GRADIENT_LINEAR=…"
+      },
+      {
+        "id": "hero.visual.titres-gradient",
+        "reason": "contract-does-not-carry-figma-fact:Titres.fills[0].GRADIENT_LINEAR=…"
+      }
+    ],
+    "capabilityMatrixRef": "docs/FIGMA-CAPABILITY-MATRIX.md row 91 (background-image url(): named-gap A5) — GRADIENT_LINEAR itself is CARRY-BOTH (addendum), so the gradient omissions are a smaller, secondary authoring gap; the full-bleed background photo is the dominant visual driver."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "org-reassurances-geometry",
+  "claim": "reassurances' RESIDUAL after the DW-006 instrument correction (T014) is classed contract-geometry: its geometry gate FAILS (verdict \"fail\", Δwidth -4px, the only organism of the nine not at exactly 0/0), and that failure is already registered as DW-002 — ds.carte /anatomy/root/literals/min-width, 4×364+3×32 = 1552px against a 1550px frame. Four card photos are ALSO not carried (co-occurring named fact below); which of the two drives the larger share of the 3.30% could not be measured in this window.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/organisms/reassurances/result.json (geometry verdict + fact reassurances.visual.carte-images; post-T014 re-render) · specs/013-…/proofs/deferred/work.json DW-002",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts reassurances",
+  "observed": {
+    "geometryVerdict": "fail",
+    "geometryDeltaPx": { "width": -4, "height": 0 },
+    "geometryIsTheOnlyFailingWidthOfNine": true,
+    "rawPct": 3.298885335721438,
+    "referenceProvenance": { "caseNodeId": "2114:3619", "setNodeId": "2114:3721" },
+    "registeredAs": {
+      "dwId": "DW-002",
+      "contractId": "ds.carte",
+      "contractPointer": "/anatomy/root/literals/min-width",
+      "note": "013 recorded it as MEASURED, not supposed: a temporary patch made the harness REFUSE (4 device px of horizontal overflow), so the correction is not local."
+    },
+    "coOccurringImageFact": {
+      "id": "reassurances.visual.carte-images",
+      "reason": "contract-does-not-carry-figma-fact:items[*].Carte.img.fills[0].IMAGE.imageRef=[…4 refs…]",
+      "note": "Real, and it does not disappear by being classed elsewhere: the same defect is classed image-boundary on the standalone carte subject (pv-carte)."
+    },
+    "otherDivergentFact": {
+      "id": "reassurances.visual.bouton-contour",
+      "reason": "contract-does-not-carry-figma-fact:BoutonQuatreCartes.border=\"2px solid {color.noir-bleute}\""
+    }
+  },
+  "whyThisCauseAndNotImageBoundary": [
+    "The vocabulary admits exactly ONE cause per line, so the two real facts compete and the tie must be broken on something other than preference.",
+    "The geometry failure is MEASURED — a binary verdict the instrument produces. The claim that the photos dominate the 3.30% is an INFERENCE: settling it needs a region-masked score isolating the four card image areas, and the case declares a single `whole` region (2 408 529 signal px, no breakdown).",
+    "Building that masking capability is measurement work 014 is not allowed to do (FR-005: a triage does not repair, and the feature builds no new capability). So the dominance question is open, and a cause resting on it would be exactly the asserted-without-measurement cause this feature exists to refuse.",
+    "Between two candidate causes, the one backed by a measurement the instrument already produces wins — and it is also the one already registered as work (DW-002), so the line lands in 015 where someone will look at the -4px."
+  ],
+  "openQuestionForwarded": {
+    "to": "015",
+    "question": "Of the 3.30% residual, what share is the four missing card photos and what share is the -4px row overflow? Answering it needs a region-masked score on the carte image areas — a measurement capability, to be built where measurement may be built.",
+    "consequence": "If 015 measures the photos as dominant, this line re-classes to image-boundary and its receipt records the infirmation. The attribution is provisional in its ORDERING, never in its evidence."
+  },
+  "falsifiesSpecAssumption": "spec.md Assumptions states: « Le re-test d'une cause se fait avec les instruments existants… aucune cause ne demande, pour être vérifiée, une capacité que la fonctionnalité n'a pas le droit de construire. » This line falsifies it — separating the two causes DOES need a capability 014 may not build. Named here rather than absorbed (research.md §4).",
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

@@ -107,7 +107,7 @@ async function main(): Promise<void> {
     fail('comparison preview manufactured a tablist identity instead of using the contract-bound prop');
   }
 
-  const browser = await launchBrowser();
+  const { browser } = await launchBrowser();
   try {
     const page = await browser.newPage();
     await page.setContent(doc, { waitUntil: 'load' });

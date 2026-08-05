@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-checkbox",
+  "claim": "checkbox diverges by 'rendering': label advance-width hug (ours Δ-7 device px) shifts the center-padded pair; residual masked ink is the control-box edge ring + Figma label pixels escaping the DOM-derived text mask.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: checkbox, class 'rendering')",
+  "method": "npm run extract:figma:visual -- checkbox",
+  "observed": {
+    "Coche=Non": { "rawPct": 0, "sizeOurs": "40×40", "sizeFigma": "40×40" },
+    "Coche=Oui": { "rawPct": 2.5625, "sizeOurs": "40×40", "sizeFigma": "40×40" },
+    "visualCheck": "Isolated both triptych panels for Coche=Oui: both show a near-identical blue 20×20-ish box with a white checkmark glyph, box geometry and fill matching; the residual is a small centering/glyph-weight difference consistent with a sub-pixel advance-width shift, not a structural mismatch.",
+    "note": "outer box is exact (40×40 both sides) both variants; Coche=Non is a clean 0% match. No claim in the written cause is contradicted by this re-test."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

@@ -498,8 +498,17 @@ export function chromiumExecutable(): string {
   );
 }
 
-export async function launchBrowser(): Promise<Browser> {
-  return chromium.launch({ executablePath: chromiumExecutable(), headless: true });
+export interface LaunchResult {
+  browser: Browser;
+  version: string;
+  executablePath: string;
+}
+
+export async function launchBrowser(): Promise<LaunchResult> {
+  const executablePath = chromiumExecutable();
+  const browser = await chromium.launch({ executablePath, headless: true });
+  const version = browser.version();
+  return { browser, version, executablePath };
 }
 
 /**

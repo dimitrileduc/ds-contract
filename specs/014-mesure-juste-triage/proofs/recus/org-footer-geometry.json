@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "org-footer-geometry",
+  "claim": "footer diverges by contract-geometry — three independent DW findings (DW-001, DW-004, DW-005) all describe the contract's own geometry: a shared-instance width conflict (piqueray-logo), literal padding/gap values where tokens already exist ({space.89}/{space.128}/{space.48}/{space.32}/{space.16}), and root widths with no token in the foundation at all.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (DW-001, DW-004, DW-005)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts footer",
+  "observed": {
+    "rawPct": 1.0439991325748406,
+    "dwEntries": [
+      "DW-001",
+      "DW-004",
+      "DW-005"
+    ],
+    "dwSummary": {
+      "DW-001": "piqueray-logo width (180.0985565185547px) lives on a shared instance root also used by ds.header, which needs another size there.",
+      "DW-004": "padding-left/right 89px, padding-top 128px, gap 48/32/16px written as literals in ds.footer/ds.faq/ds.reassurances while {space.89}/{space.128}/{space.48}/{space.32}/{space.16} already exist (minted by 012) — a literal sits on no differ axis (canvas variables ⟷ tokens/), so npm run parity stays green while the surfaces drift.",
+      "DW-005": "root widths (1550/1728/459/310px) have no token at all in the foundation."
+    },
+    "factCount": "18 divergent facts total (proved 39); DW-004 alone names 3 of the affected contracts (footer, faq, reassurances)."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-input",
+  "claim": "input :: Input diverges by rendering — imposed renderWidth matches the master exactly, pixel-identical size; the triptych shows the shared placeholder text rendered in antialiasing-classified orange at the same localized region also seen on textarea.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: input)",
+  "method": "npm run extract:figma:visual -- input",
+  "observed": {
+    "key": "input :: Input",
+    "rawPct": 0.16927083333333334,
+    "maskedPct": 0.16927083333333334,
+    "maskCoveragePct": 0,
+    "sizeOurs": "560×96",
+    "sizeFigma": "560×96",
+    "diagnosis": "diff localized middle-left (179×20px)",
+    "triptychInspection": "out/input/input.triptych.png: 'Texte de saisie' placeholder renders identically on both sides; diff panel shows it in antialiasing-classified orange, not a hard mismatch — the 0% reported mask coverage is a text-mask miss on the placeholder, not evidence of a non-textual cause."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

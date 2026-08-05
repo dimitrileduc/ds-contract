@@ -228,6 +228,13 @@ export const LiteralValueSchema = z
   .string()
   .regex(LITERAL_VALUE_RE, 'Literal value must be a px/rem/em/number, hex or rgb()/rgba() color, or transparent/inherit/currentColor');
 
+/** 015 (D5, FR-003): `background-image`'s OWN bounded grammar —
+ *  `linear-gradient(...)` only. A channel-specific grammar, not a widening
+ *  of `LITERAL_VALUE_RE` (which stays byte-for-byte untouched for every
+ *  other channel, Principle VI) — radial/conic gradients and anything else
+ *  refuse by name at schema validation, never merely at emit time. */
+export const GRADIENT_LITERAL_RE = /^linear-gradient\(.*\)$/s;
+
 /** The semantic <strong> range always owns a governed weight.  An observed
  * Figma mixed-style range may additionally carry its own literal size and
  * line height (for example an 18/27 bold lead-in inside 14/24 body copy).
@@ -263,6 +270,12 @@ export const LITERAL_CHANNELS = new Set([
   // base combo's captured paddings when per-plane values refuse correlation
   // (Tag's remove-×/link planes shift them; the base plane is exact).
   'padding-left', 'padding-right', 'padding-top', 'padding-bottom',
+  // 015 (D5, FR-003): the gradient channel — admitted ONLY as the declared
+  // exception a named-literals registry entry documents (never invisible;
+  // contracts/geometry-gate.interface.md §2). Its value grammar is
+  // GRADIENT_LITERAL_RE, not LITERAL_VALUE_RE — see the `literals` field
+  // below.
+  'background-image',
 ]);
 
 /** v14: per-enum-value literal overrides — the literals sibling of
@@ -1038,8 +1051,35 @@ export const PartSchema: z.ZodType<Part> = z.lazy(() =>
     /** v10. */
     /** v14: single entry OR ordered array of entries (see TokensByPropFieldSchema). */
     tokensByProp: TokensByPropFieldSchema.optional(),
-    /** v14: bounded literal styling values with promotion-time provenance. */
-    literals: z.record(z.string(), LiteralValueSchema).optional(),
+    /** v14: bounded literal styling values with promotion-time provenance.
+     *  v15/015: per-channel grammar — `background-image` validates against
+     *  GRADIENT_LITERAL_RE, every other channel keeps LITERAL_VALUE_RE
+     *  unchanged (a `z.record` cannot express "channel X uses grammar Y" on
+     *  its own; the refinement below is the minimal addition that can). */
+    literals: z
+      .record(z.string(), z.string())
+      .superRefine((value, ctx) => {
+        for (const [channel, literal] of Object.entries(value)) {
+          if (channel === 'background-image') {
+            if (!GRADIENT_LITERAL_RE.test(literal)) {
+              ctx.addIssue({
+                code: 'custom',
+                message: 'Literal background-image must be a linear-gradient(...) value',
+                path: [channel],
+              });
+            }
+            continue;
+          }
+          if (!LITERAL_VALUE_RE.test(literal)) {
+            ctx.addIssue({
+              code: 'custom',
+              message: 'Literal value must be a px/rem/em/number, hex or rgb()/rgba() color, or transparent/inherit/currentColor',
+              path: [channel],
+            });
+          }
+        }
+      })
+      .optional(),
     /** v14: ordered per-enum-value literal overrides. */
     literalsByProp: z.array(LiteralsByPropSchema).min(1).optional(),
     /** v15 (S4): declared facts — DECLARED_CHANNELS registry channels. */

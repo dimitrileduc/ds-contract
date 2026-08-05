@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "dw-002-reclasse-figma-source",
+  "claim": "DW-002 est classé `contract-geometry` (destination 015). Le re-test infirme le CLASSEMENT, pas le défaut : le contrat porte fidèlement ce que la source dessine — 364 et 1550 sont tous deux exacts. C'est la SOURCE FIGMA qui n'est pas cohérente avec elle-même, donc un `figma-source` (destination 016).",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json DW-002 · specs/014-…/proofs/registre/causes.json (entrée DW-002 et ligne reassurances, liées par sameDefectAs)",
+  "method": "lecture du dump de node déjà en cache : extract/figma/visual-parity/out/_cache/nodes-<fileKey>-2114_3619.json — aucune écriture, aucun appel réseau",
+  "observed": {
+    "ceQueLaSourceDessine": {
+      "items": "1550 × 498 · gap 32 · layoutSizingHorizontal FILL",
+      "Carte": "364 × 498 · FIXED · ×4",
+      "arithmetique": "4 × 364 + 3 × 32 = 1552 dans un conteneur de 1550 — la source déborde d'elle-même de 2 px CSS"
+    },
+    "ceQueLeContratPorte": {
+      "ds.carte": "root.width = 364px",
+      "ds.reassurances": "root.width = 1550px · items.gap = 32px",
+      "verdict": "identiques à la source, aux trois nombres près. Le contrat ne porte AUCUNE géométrie fausse."
+    },
+    "pourquoiFigmaNeSEnPlaintPas": "Figma n'a ni flex-shrink ni flex-basis — seulement le modèle FIXED/HUG/FILL (docs/FIGMA-CAPABILITY-MATRIX.md ligne 50, CARRY-CODE-ONLY déclaré). Quatre enfants FIXED qui excèdent leur parent FILL débordent, sans erreur. Le CSS, lui, applique flex-shrink par défaut et rétrécit les cartes pour rentrer.",
+    "consequenceMesuree": "geometryVerdict `fail`, Δwidth -4 device px = -2 px CSS : notre rendu fait 1550 (rétréci), Figma 1552 (débordé). L'écart mesuré est exactement le débordement de la source.",
+    "pointeurPerimeDansLeRegistre": "DW-002 cite `contractPointer: /anatomy/root/literals/min-width`. `ds.carte` ne porte AUCUN min-width — sa largeur est `root.literals.width = 364px`. Le pointeur du registre de 013 ne résout donc pas. Nommé plutôt qu'absorbé ; il suivra le re-classement."
+  },
+  "verdict": "refuted",
+  "ceQuiNEstPasInfirme": "Le défaut lui-même. Les 2 px de conflit sont réels, mesurés par 013 comme par 014, et le patch temporaire de 013 faisait bien REFUSER le harnais. Seule son ATTRIBUTION change : la faute est dans la source, pas dans le contrat.",
+  "consequence": {
+    "reclassement": "DW-002 et la ligne d'organisme reassurances (liées par sameDefectAs) passent de `contract-geometry` à `figma-source`.",
+    "destination": "016 — canvas vrai. Trois corrections possibles, toutes DANS Figma : cartes à 363,5 · conteneur à 1552 · gap à 31,33. Le choix est un arbitrage de design, pas d'ingénierie.",
+    "pourquoi015NeDoitPasSEnSaisir": "Convertir 364 en référence de token n'y changerait rien : on écrirait proprement un nombre qui ne rentre pas. Le motif est celui que le dépôt connaît — un chiffre juste, écrit au bon endroit, qui ne répare rien parce que le défaut est ailleurs."
+  },
+  "priorArtChecked": {
+    "regleDuDepot": "Avant de proposer un contournement, chercher comment le codebase a déjà résolu le cas (CLAUDE.md, prior-art rule).",
+    "resultat": "Le motif de dimensionnement d'un enfant répété EST déjà tranché : `layout.grow` ne s'applique pas au root d'un contrat, et l'unique précédent d'égalité de taille de l'archive (`ds.avatar-group`) emploie exactement la largeur fixe sur le root de l'enfant. Il n'y avait donc pas d'arbitrage d'architecture à prendre — seulement une arithmétique qui ne tombe pas juste."
+  },
+  "browser": null,
+  "date": "2026-08-04"
+}

@@ -76,6 +76,8 @@ Parts with none of these are structural (frames/elements containing `parts`). `o
 }
 ```
 
+**Bounded literal styling (`Part.literals` / `literalsByProp`, v14).** A part may also carry `literals: { <css-prop>: <value> }` — a value with no token vocabulary to bind (a component-private pixel geometry, a foreign-system literal), scoped to a fixed, versioned set of channels (`LITERAL_CHANNELS`): geometry (`width`/`height`/`min-width`/`min-height`, `padding-*` incl. longhands, `gap`), paint (`background`/`background-color`/`color`/`border-color`), and trait (`border-radius`/`border-width`, per-corner/per-side). Every channel shares one bounded value grammar (`LITERAL_VALUE_RE`: px/rem/em/number, hex or `rgb()`/`rgba()` color, `transparent`/`inherit`/`currentColor`) — **except `background-image` (v15/015)**, admitted only for the `linear-gradient(...)` gradient grammar (`GRADIENT_LITERAL_RE`), never a widening of `LITERAL_VALUE_RE` itself. A channel outside this set, or a value outside its channel's grammar, refuses **at schema validation**, never merely at emit time. `literalsByProp: [{ prop, map: { <value>: { <css>: <literal> } } }]` is the per-enum-value sibling, same grammar per channel. Every geometric literal (the layout subset of `LITERAL_CHANNELS`, `contracts/geometry-gate.interface.md` §2) must additionally resolve through `contracts/named-literals.registry.json` or `npm run geometry:gate` refuses it by name (015, FR-001/FR-003) — a literal is a documented, surveilled exception, never an invisible number.
+
 ### Conditional semantics and scalar composition
 
 These optional fields are additive: contracts that omit them retain their existing shape and output.

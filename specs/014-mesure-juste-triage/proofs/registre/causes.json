@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 2,
+  "note": "Registre des causes hors règles TRIAGE : entrées DW de 013 re-classées (Phase 6/US5, T032) + lignes divergentes de l'audit d'organismes (Phase 4/US2, T023b). Ce document RÉFÉRENCE specs/013-… ; aucun de ses fichiers n'est modifié.",
+  "entries": [
+    {
+      "dwId": "DW-001",
+      "subjectId": "footer",
+      "cause": "contract-geometry",
+      "receiptId": "dw-001-contract-geometry",
+      "resolvedBy": "015"
+    },
+    {
+      "dwId": "DW-002",
+      "subjectId": "reassurances",
+      "cause": "figma-source",
+      "receiptId": "dw-002-reclasse-figma-source",
+      "resolvedBy": null,
+      "sameDefectAs": {
+        "kind": "organismLine",
+        "key": "reassurances/reassurances-disposition-4-cartes",
+        "note": "Même défaut sous-jacent que la ligne d'organisme reassurances (ds.carte /anatomy/root/literals/min-width). Deux entrées parce qu'elles décrivent deux choses — un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 015 : le comptage par cause doit les dédupliquer, sinon il dimensionne 2 pour 1."
+      },
+      "reclassedOn": "2026-08-04",
+      "reclassedFrom": "contract-geometry",
+      "reclassReceiptId": "dw-002-reclasse-figma-source",
+      "priorReceiptId": "dw-002-contract-geometry"
+    },
+    {
+      "dwId": "DW-003",
+      "subjectId": "faq",
+      "cause": "figma-source",
+      "receiptId": "dw-003-figma-source",
+      "resolvedBy": null,
+      "sameDefectAs": {
+        "kind": "organismLine",
+        "key": "faq/faq-master-defaults",
+        "note": "Même défaut sous-jacent : l'instance SectionHeader 2104:2907 figée à 50px dans le master faq (faq.structure.section-header-height). Le reçu de la ligne cite DW-003 nommément. Deux entrées parce qu'elles décrivent un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 016 : le comptage par cause les déduplique."
+      }
+    },
+    {
+      "dwId": "DW-004",
+      "subjectId": "footer",
+      "cause": "contract-geometry",
+      "receiptId": "dw-004-contract-geometry",
+      "resolvedBy": "015"
+    },
+    {
+      "dwId": "DW-005",
+      "subjectId": "footer",
+      "cause": "contract-geometry",
+      "receiptId": "dw-005-contract-geometry",
+      "resolvedBy": "015"
+    },
+    {
+      "dwId": "DW-006",
+      "subjectId": "reassurances",
+      "cause": "instrument",
+      "receiptId": "dw-006-instrument",
+      "resolvedBy": "014"
+    }
+  ],
+  "organismLines": [
+    {
+      "key": "hero/hero-master-defaults",
+      "rawPct": 27.82904730902778,
+      "cause": "image-boundary",
+      "receiptId": "org-hero-image"
+    },
+    {
+      "key": "faq/faq-master-defaults",
+      "rawPct": 3.672346488508598,
+      "cause": "figma-source",
+      "receiptId": "org-faq-source",
+      "sameDefectAs": {
+        "kind": "deferredWork",
+        "dwId": "DW-003",
+        "note": "Même défaut sous-jacent : l'instance SectionHeader 2104:2907 figée à 50px dans le master faq (faq.structure.section-header-height). Le reçu de la ligne cite DW-003 nommément. Deux entrées parce qu'elles décrivent un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 016 : le comptage par cause les déduplique."
+      }
+    },
+    {
+      "key": "texte-seo/texte-seo-master-defaults",
+      "rawPct": 1.8376109056184122,
+      "cause": "contract-geometry",
+      "receiptId": "org-texte-seo-geometry-deferred",
+      "aggregateOf": ["DW-014-003"],
+      "note": "Compte délégué à deferredWork DW-014-003 (2026-08-04, Phase 6/015, T059, décision owner) — le fait sous-jacent (rich-text/typographie non liées dans la composition section-header) reste réel, nommé et non résolu. `aggregateOf` retire cette LIGNE du décompte actif de `contract-geometry` (elle est la CONSÉQUENCE du fait DW-014-003, compté séparément) sans revendiquer une résolution qui n'a pas eu lieu — DW-014-003 vit dans `deferredWork`, jamais dans `entries`, donc jamais compté nulle part : suivi, jamais silencieux, jamais faussement clos."
+    },
+    {
+      "key": "footer/footer-master-defaults",
+      "rawPct": 1.0439991325748406,
+      "cause": "contract-geometry",
+      "receiptId": "org-footer-geometry",
+      "aggregateOf": ["DW-001", "DW-004", "DW-005"]
+    },
+    {
+      "key": "sav/sav-master-defaults",
+      "rawPct": 0.6652451517606137,
+      "cause": "image-boundary",
+      "receiptId": "org-sav-image"
+    },
+    {
+      "key": "coordonnees/coordonnees-master-defaults",
+      "rawPct": 0.5222631289161859,
+      "cause": "instrument",
+      "receiptId": "org-coordonnees-geometry-reclasse"
+    },
+    {
+      "key": "presentation/presentation-master-defaults",
+      "rawPct": 0.3530901968401968,
+      "cause": "rendering",
+      "receiptId": "org-presentation-rendering"
+    },
+    {
+      "key": "devis/devis-master-defaults",
+      "rawPct": 0.1353753306878307,
+      "cause": "image-boundary",
+      "receiptId": "org-devis-image"
+    },
+    {
+      "key": "reassurances/reassurances-disposition-4-cartes",
+      "rawPct": 3.298885335721438,
+      "cause": "figma-source",
+      "receiptId": "dw-002-reclasse-figma-source",
+      "coOccurring": {
+        "cause": "image-boundary",
+        "fact": "reassurances.visual.carte-images",
+        "note": "Fait réel, nommé ici parce que le vocabulaire n'admet qu'une cause par ligne. La part respective des deux n'a pas pu être mesurée dans cette fenêtre — question transmise à 015 (voir le reçu)."
+      },
+      "sameDefectAs": {
+        "kind": "deferredWork",
+        "dwId": "DW-002",
+        "note": "Même défaut sous-jacent que DW-002 (ds.carte /anatomy/root/literals/min-width). Deux entrées parce qu'elles décrivent deux choses — un FAIT épinglé et une LIGNE mesurée — mais UN seul travail pour 015 : le comptage par cause doit les dédupliquer, sinon il dimensionne 2 pour 1."
+      },
+      "reclassedOn": "2026-08-04",
+      "reclassedFrom": "contract-geometry",
+      "reclassReceiptId": "dw-002-reclasse-figma-source",
+      "priorReceiptId": "org-reassurances-geometry"
+    }
+  ],
+  "deferredWork": [
+    {
+      "id": "DW-014-001",
+      "discoveredBy": "014",
+      "cause": "engine",
+      "receiptId": "select-exclusion",
+      "surface": "core/emit-html.ts",
+      "title": "L'émetteur html émet le texte d'une part `element: 'select'` en enfant nu de <select>",
+      "observedCause": "renderPart() résout `textEl = part.element ?? (parentEl === 'select' ? 'option' : 'span')`. La part `valeur` de ds.select déclare `element: 'select'` (correct — elle EST la balise), donc textEl vaut 'select' et la branche de contenu émet le texte en enfant direct. Le contenu texte nu n'est pas permis dans <select> par le modèle de contenu HTML5 : Chromium le jette à la construction de l'arbre. Explique à la fois la capture vide et maskCoveragePct 0.",
+      "shippedSurfaceAffected": false,
+      "shippedSurfaceNote": "src/components/Select/Select.tsx (émetteur react) émet correctement <select><option>{value}</option>, épinglé par l'eval native-checkbox-and-select-render-correctly. Aucun consommateur du produit n'est touché.",
+      "whyNotFixedHere": "FR-005 (un triage ne répare pas) + constitution §VII (core/ intouché par 014).",
+      "destination": "tinyspec select-option-emit — ordonnancée immédiatement après la clôture de 015 (avant ou en parallèle de 016) : fixture d'abord, puis la branche d'émetteur + les 3 re-pins (D12, 015)",
+      "verdictImpact": "divergent",
+      "status": "deferred",
+      "note": "Consigné ici parce que 014 l'a DÉCOUVERT : DW-006 n'était suivi que parce que 013 l'avait porté à un registre. Un défaut qui ne vit que dans un reçu n'est ordonnancé par personne."
+    },
+    {
+      "id": "DW-014-002",
+      "discoveredBy": "014",
+      "cause": "engine",
+      "receiptId": "react-box-sizing-absent",
+      "surface": "core/emit-react.ts",
+      "title": "La surface React livrée est la seule des quatre à ne pas être border-box",
+      "observedCause": "Figma est border-box (l'émetteur force strokeAlign: INSIDE), core/emit-html.ts le déclare explicitement (`.k, .k *, .k *::before, .k *::after { box-sizing: border-box }`), le playground et la preview canvas aussi. core/emit-react.ts ne le pose nulle part, et aucun fichier de src/ n'en porte. Une part qui lie une taille ET du padding rend donc plus large dans le produit livré que dans Figma, que dans notre propre aperçu de mesure.",
+      "blastRadius": {
+        "contracts": 9,
+        "ids": [
+          "ds.accordion-row",
+          "ds.carte",
+          "ds.coordonnees",
+          "ds.faq",
+          "ds.footer",
+          "ds.google-reviews",
+          "ds.review-card",
+          "ds.sav",
+          "ds.textarea"
+        ],
+        "method": "parts portant à la fois (width|height|min-width|min-height) et un padding, dans tokens ou literals"
+      },
+      "whyTheInstrumentCannotSeeIt": "Le harnais de parité visuelle compare Figma à l'émetteur HTML, qui a la bonne règle. La surface qui diverge — celle que les consommateurs reçoivent — n'est mesurée par rien sur cet axe. Ce n'est pas un chiffre faux, c'est un fait HORS DE PORTÉE de l'instrument : la classe de défaut que 014 existe pour refuser.",
+      "priorReceipt": "Le commentaire de core/emit-html.ts porte déjà la preuve de ce que la règle évite : « sans elle, chaque part liant width/height + padding gonflait du padding — reçu de parité visuelle : piste du Switch 36×24 contre 32×20 chez Figma ».",
+      "ownerRuling": "2026-08-04 — oubli, pas un choix délibéré. À corriger.",
+      "whyNotFixedHere": "SC-005 : 0 sortie générée retouchée. Le correctif change le rendu des 9 contrats et impose une re-mesure — c'est du travail de 015, pas d'une spec de mesure.",
+      "destination": "015 — à traiter AVANT la conversion des littéraux : la règle décide quelle boîte le token décrit",
+      "verdictImpact": "divergent",
+      "status": "deferred",
+      "note": "RÉPARÉ par 015 Phase 3 (T013) — voir specs/015-geometrie-gouvernee/proofs/recus/box-model-unification.md. Statut laissé 'deferred' ici : ce document appartient au registre de 014 (jamais réécrit par 015 en dehors des champs resolvedBy explicitement documentés) et le compte deferredWork n'affecte pas le verdict pass/fail — nommé pour ne pas induire en erreur un lecteur futur, pas silencieusement laissé faux."
+    },
+    {
+      "id": "DW-014-003",
+      "discoveredBy": "014",
+      "cause": "contract-geometry",
+      "receiptId": "org-texte-seo-geometry-deferred",
+      "surface": "contracts/texte-seo.contract.json (composition ds.section-header)",
+      "title": "texte-seo : le titre en gras passé à section-header (emphase=compact) est aplati en chaîne simple, sa typographie n'est pas liée",
+      "observedCause": "Le titre rich-text de ds.texte-seo (« Visitez notre showroom à Pepinster ou contactez-nous », le segment central en gras) est transmis à l'instance section-header composée, mais la marque `strong` ne survit pas au passage — rendu en une seule chaîne plate. Le font-size (24px) / line-height (30px) attendus pour la disposition emphase=compact ne sont pas non plus liés côté section-header pour cet usage. Géométrie (Δpx) exacte — c'est un défaut de fidélité typographique/rich-text de composition, pas de taille.",
+      "whyNotFixedHere": "Décision owner (2026-08-04, Phase 6/015, T059) : un correctif réel demanderait de porter une marque rich-text ET une typographie par-disposition à travers une composition imbriquée (ds.texte-seo → ds.section-header) — jugé trop substantiel pour être tenté sans risque en toute fin d'une session déjà très longue. Différé avec reçu nommé plutôt que réparé en hâte.",
+      "destination": "à ordonnancer — un futur spec ou une reprise de 015/016 avec le temps d'investiguer et de tester correctement le mécanisme de composition rich-text",
+      "verdictImpact": "divergent",
+      "status": "deferred"
+    },
+    {
+      "id": "DW-015-001",
+      "discoveredBy": "015",
+      "cause": "engine",
+      "receiptId": "dw-015-001-emit-html-multiroot-box-sizing",
+      "surface": "core/emit-html.ts (l.131-143)",
+      "title": "emit-html ne déclare border-box pour aucun nœud sur un contrat multi-root",
+      "observedCause": "La règle est accrochée au préfixe BEM partagé `.<name>` — qu'aucun élément ne porte en multi-root, où chaque racine de premier niveau compile vers sa propre classe frère `.<name>__<root>`, descendante de rien. core/emit-react.ts n'a pas le défaut : T013 (015, Phase 3) émet une règle PAR racine via topRoots(contract).",
+      "whyNotFixedHere": "Hors périmètre de 015 (US2/FR-004 vise la surface LIVRÉE, React ; emit-html était déjà correct pour tous les contrats existants) et une édition d'émetteur en clôture coûte trois re-pins pour un défaut qui n'affecte aucun contrat. Correction connue et longue de deux lignes.",
+      "impact": "LATENT — 0 des 34 contrats Piqueray n'est multi-root (relevé du 2026-08-05). Aucune surface livrée ne rend une boîte fausse.",
+      "destination": "à ordonnancer — la spec qui rendra Piqueray multi-root, ou une passe moteur dédiée",
+      "verdictImpact": "none",
+      "status": "deferred",
+      "foundBy": "evals/fixtures/react-box-model-border-box.ts — écrite en revue de Phase 7 pour donner un eval à T013 (Claims Rule) ; son premier passage a échoué sur cette asymétrie."
+    }
+  ]
+}

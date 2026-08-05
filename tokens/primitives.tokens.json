@@ -81,13 +81,19 @@
     "$type": "dimension",
     "$description": "Authored from the Button canvas geometry (dump v1.5: itemSpacing 10, padding 16/32, Link padding 4/0). NOT Figma variables — Piqueray binds no spacing variables; minted from-dump so anatomy references tokens, not literals.",
     "0": { "$value": "0px" },
+    "2": { "$value": "2px" },
+    "3": { "$value": "3px" },
     "4": { "$value": "4px" },
     "8": { "$value": "8px" },
     "10": { "$value": "10px" },
+    "11": { "$value": "11px" },
     "12": { "$value": "12px" },
+    "14": { "$value": "14px" },
     "16": { "$value": "16px" },
+    "22": { "$value": "22px" },
     "24": { "$value": "24px" },
     "32": { "$value": "32px" },
+    "47": { "$value": "47px" },
     "48": { "$value": "48px" },
     "64": { "$value": "64px" },
     "89": { "$value": "89px" },
@@ -102,6 +108,435 @@
         "$type": "dimension",
         "$description": "Observed from the governed Figma Button Style=Icône seule master (52×52).",
         "$value": "52px"
+      }
+    },
+    "accordion-row": {
+      "titre-ouvert": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/title/parts/TitreOuvert/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "32px"
+      },
+      "titre-ouvert-petit": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/title/parts/TitreOuvert/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "24px"
+      },
+      "chevron-up-petit": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/title/parts/ChevronUp/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "24px"
+      },
+      "title": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/title/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "32px"
+      },
+      "contenu": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/Contenu/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "32px"
+      },
+      "contenu-petit": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/Contenu/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "24px"
+      },
+      "titre": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/Titre/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "32px"
+      },
+      "titre-petit": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/Titre/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "24px"
+      },
+      "chevron-down-petit": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/ChevronDown/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "24px"
+      },
+      "trigger": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "64px"
+      },
+      "trigger-petit": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "40px"
+      },
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1550px"
+      }
+    },
+    "avantage": {
+      "text": {
+        "$type": "dimension",
+        "$description": "Authored from ds.avantage's already-governed anatomy at /anatomy/root/parts/text/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "687px"
+      },
+      "root-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.avantage's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "759px"
+      },
+      "root-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.avantage's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "75px"
+      }
+    },
+    "carte": {
+      "reassurance-image": {
+        "$type": "dimension",
+        "$description": "Authored from ds.carte's already-governed anatomy at /anatomy/root/parts/reassuranceImage/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "364px"
+      },
+      "categorie-image": {
+        "$type": "dimension",
+        "$description": "Authored from ds.carte's already-governed anatomy at /anatomy/root/parts/categorieImage/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "418px"
+      },
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.carte's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "364px"
+      },
+      "root-categorie": {
+        "$type": "dimension",
+        "$description": "Authored from ds.carte's already-governed anatomy at /anatomy/root/literalsByProp/0/map/categorie (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "743px"
+      }
+    },
+    "checkbox": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.checkbox's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "20px"
+      }
+    },
+    "coordonnees": {
+      "google-map-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.coordonnees's already-governed anatomy at /anatomy/root/parts/googleMap/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1152px"
+      },
+      "google-map-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.coordonnees's already-governed anatomy at /anatomy/root/parts/googleMap/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "597px"
+      },
+      "wrapper": {
+        "$type": "dimension",
+        "$description": "Authored from ds.coordonnees's already-governed anatomy at /anatomy/root/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "576px"
+      }
+    },
+    "devis": {
+      "titre": {
+        "$type": "dimension",
+        "$description": "Authored from ds.devis's already-governed anatomy at /anatomy/root/parts/Container/parts/Titre/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "900px"
+      }
+    },
+    "faq": {
+      "root": {
+        "$type": "dimension",
+        "$description": "CORRECTED 2026-08-05 (Phase 7 review, box-model-unification — same defect class as size.footer.root/T058 and size.sav.wrapper-w/§6): the original mint (015 Phase 4) carried the contract's existing literal (1550px) forward unchanged, which was itself a content-box-subtracted value (1728−89−89) authored before border-box was declared (T013, Phase 3) — the contract's own root description spelled the subtraction out. Re-verified against the committed Figma dump (node 2104:2914, version 2381581871281042338, read-only, FR-010): ds.faq's root is a genuine auto-layout frame (layoutMode VERTICAL, padding 0/89/0/89, counterAxisSizingMode FIXED) whose absoluteBoundingBox.width is 1728px — Figma's auto-layout width already includes padding, matching border-box semantics natively (same pattern as ds.footer, contrast with ds.sav's free-form frame). 1728px is the correct border-box-matching total; 1550px rendered 178px too narrow.",
+        "$value": "1728px"
+      }
+    },
+    "footer": {
+      "root": {
+        "$type": "dimension",
+        "$description": "CORRECTED 2026-08-04 (Phase 6, T057/T058, named-repair:DW-004+DW-005): the original mint (015 Phase 4) carried the contract's existing literal (1550px) forward unchanged, which was itself a content-box-subtracted value (1728−89−89) authored before border-box was declared (T013). Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.footer's root (node 2120:4785) is a genuine auto-layout frame (layoutMode VERTICAL, padding 89/89/128/32) whose own absoluteBoundingBox.width is 1728px — Figma's auto-layout width already includes padding, matching border-box semantics natively (same pattern as ds.coordonnees, contrast with ds.sav's free-form frame, see coordonnees-box-sizing-absent memory). 1728px is the correct border-box-matching total; 1550px rendered 178px too narrow.",
+        "$value": "1728px"
+      },
+      "background": {
+        "$type": "dimension",
+        "$description": "Authored from ds.footer's already-governed anatomy at /anatomy/root/parts/Background/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "459px"
+      },
+      "row": {
+        "$type": "dimension",
+        "$description": "Authored from ds.footer's already-governed anatomy at /anatomy/root/parts/Row/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1385px"
+      },
+      "spacer": {
+        "$type": "dimension",
+        "$description": "Authored from ds.footer's already-governed anatomy at /anatomy/root/parts/Spacer/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "121px"
+      },
+      "spacer2": {
+        "$type": "dimension",
+        "$description": "Authored from ds.footer's already-governed anatomy at /anatomy/root/parts/spacer2/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "27px"
+      }
+    },
+    "footer-column": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.footer-column's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "310px"
+      }
+    },
+    "google-reviews": {
+      "root-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.google-reviews's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1552px"
+      },
+      "root-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.google-reviews's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "328px"
+      },
+      "pastille-gauche": {
+        "$type": "dimension",
+        "$description": "Authored from ds.google-reviews's already-governed anatomy at /anatomy/root/parts/cartes/parts/flecheGauche/parts/pastilleGauche/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "30px"
+      },
+      "pastille-droite": {
+        "$type": "dimension",
+        "$description": "Authored from ds.google-reviews's already-governed anatomy at /anatomy/root/parts/cartes/parts/flecheDroite/parts/pastilleDroite/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "30px"
+      }
+    },
+    "hero": {
+      "sous-titre": {
+        "$type": "dimension",
+        "$description": "Authored from ds.hero's already-governed anatomy at /anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1164px"
+      },
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.hero's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "640px"
+      }
+    },
+    "member-card": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.member-card's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "364px"
+      }
+    },
+    "member-picture": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.member-picture's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "364px"
+      },
+      "root-member-card": {
+        "$type": "dimension",
+        "$description": "Authored from ds.member-picture's already-governed anatomy at /anatomy/root/literalsByProp/0/map/member-card (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "363.5px"
+      },
+      "fun-ia": {
+        "$type": "dimension",
+        "$description": "Authored from ds.member-picture's already-governed anatomy at /anatomy/root/parts/funIa/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "364px"
+      },
+      "fun-ia-member-card": {
+        "$type": "dimension",
+        "$description": "Authored from ds.member-picture's already-governed anatomy at /anatomy/root/parts/funIa/literalsByProp/0/map/member-card (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "363.5px"
+      },
+      "normal": {
+        "$type": "dimension",
+        "$description": "Authored from ds.member-picture's already-governed anatomy at /anatomy/root/parts/normal/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "364px"
+      },
+      "normal-member-card": {
+        "$type": "dimension",
+        "$description": "Authored from ds.member-picture's already-governed anatomy at /anatomy/root/parts/normal/literalsByProp/0/map/member-card (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "363.5px"
+      }
+    },
+    "nav-item": {
+      "soulignement": {
+        "$type": "dimension",
+        "$description": "Authored from ds.nav-item's already-governed anatomy at /anatomy/root/parts/Soulignement/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "2px"
+      }
+    },
+    "presentation": {
+      "wrapper": {
+        "$type": "dimension",
+        "$description": "Authored from ds.presentation's already-governed anatomy at /anatomy/root/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "627px"
+      }
+    },
+    "product-card": {
+      "image": {
+        "$type": "dimension",
+        "$description": "Authored from ds.product-card's already-governed anatomy at /anatomy/root/parts/Image/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "240px"
+      },
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.product-card's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "364px"
+      }
+    },
+    "realisation": {
+      "image": {
+        "$type": "dimension",
+        "$description": "Authored from ds.realisation's already-governed anatomy at /anatomy/root/parts/Image/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "743px"
+      },
+      "image-petit": {
+        "$type": "dimension",
+        "$description": "Authored from ds.realisation's already-governed anatomy at /anatomy/root/parts/Image/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "339.5px"
+      }
+    },
+    "reassurances": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.reassurances's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1550px"
+      }
+    },
+    "review-card": {
+      "root-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.review-card's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "299px"
+      },
+      "root-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.review-card's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "239px"
+      },
+      "avatar-initiale": {
+        "$type": "dimension",
+        "$description": "Authored from ds.review-card's already-governed anatomy at /anatomy/root/parts/entete/parts/profil/parts/avatarInitiale/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "40px"
+      },
+      "avatar-photo": {
+        "$type": "dimension",
+        "$description": "Authored from ds.review-card's already-governed anatomy at /anatomy/root/parts/entete/parts/profil/parts/avatarPhoto/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "40px"
+      },
+      "verification": {
+        "$type": "dimension",
+        "$description": "Authored from ds.review-card's already-governed anatomy at /anatomy/root/parts/notation/parts/verification/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "16px"
+      }
+    },
+    "sav": {
+      "section-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1550px"
+      },
+      "section-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "677px"
+      },
+      "background-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/background/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1550px"
+      },
+      "background-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/background/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "475px"
+      },
+      "row-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "1288px"
+      },
+      "row-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "561px"
+      },
+      "wrapper-w": {
+        "$type": "dimension",
+        "$description": "CORRECTED 2026-08-04 (Phase 6, named-repair, blocked organism-audit measurement of ds.sav — painted box exceeded the capture viewport). The original mint (Phase 4) carried the contract's existing literal (546px) forward unchanged, which was itself a content-box-subtracted value authored before border-box was declared (T013) — see the part's own description. Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.sav's wrapper (node 2169:6188) is a free-form frame (layoutMode undefined, no native auto-layout padding — the 48/48/47px padding is a code-side reconstruction from absolute child positions), with absoluteBoundingBox 641×561. 546px rendered 95px too narrow under border-box. See specs/015-geometrie-gouvernee/proofs/recus/sav-wrapper-imggroup-content-box-defect.md for the original discovery.",
+        "$value": "641px"
+      },
+      "wrapper-h": {
+        "$type": "dimension",
+        "$description": "CORRECTED 2026-08-04 (Phase 6, named-repair, blocked organism-audit measurement of ds.sav — painted box exceeded the capture viewport). The original mint (Phase 4) carried the contract's existing literal (513px) forward unchanged, which was itself a content-box-subtracted value authored before border-box was declared (T013) — see the part's own description. Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.sav's wrapper (node 2169:6188) is a free-form frame (layoutMode undefined), absoluteBoundingBox 641×561. 513px rendered 48px too short under border-box. See specs/015-geometrie-gouvernee/proofs/recus/sav-wrapper-imggroup-content-box-defect.md for the original discovery.",
+        "$value": "561px"
+      },
+      "wrapper-background-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/wrapper/parts/WrapperBackground/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "641px"
+      },
+      "wrapper-background-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/wrapper/parts/WrapperBackground/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "561px"
+      },
+      "inner": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "546px"
+      },
+      "vous-rencontrez-un-problme-a": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "197px"
+      },
+      "img-group-w": {
+        "$type": "dimension",
+        "$description": "CORRECTED 2026-08-04 (Phase 6, named-repair). The original mint (Phase 4) carried the contract's existing literal (644px) forward unchanged, which was itself a content-box-subtracted value (647−3px padding-left) authored before border-box was declared (T013) — see the part's own description. Re-verified live against Figma (figma_get_component_for_development, read-only, FR-010): ds.sav's imgGroup (node 2169:5846) is a free-form frame, absoluteBoundingBox width 647px. 644px rendered 3px too narrow under border-box. See specs/015-geometrie-gouvernee/proofs/recus/sav-wrapper-imggroup-content-box-defect.md for the original discovery.",
+        "$value": "647px"
+      },
+      "img-group-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "561px"
+      },
+      "img-group-background-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/parts/ImgGroupBackground/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "647px"
+      },
+      "img-group-background-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/parts/ImgGroupBackground/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "478px"
+      },
+      "img-w": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "563px"
+      },
+      "img-h": {
+        "$type": "dimension",
+        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "504px"
+      }
+    },
+    "textarea": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from ds.textarea's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
+        "$value": "128px"
+      }
+    },
+    "logo": {
+      "width": {
+        "$type": "dimension",
+        "$description": "Authored from ds.piqueray-logo's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. T048 (015) re-verified live against both consumers (ds.header 84:256/84:287 exactly 180×34, ds.footer 2120:4783 180.0985565185547×34, the difference being export floating-point noise, not a second size) — one governed size, not two. Minted 015, 2026-08-04.",
+        "$value": "180px"
+      },
+      "height": {
+        "$type": "dimension",
+        "$description": "Authored from ds.piqueray-logo's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. T048 (015) re-verified live against both consumers (ds.header 84:256/84:287 exactly 180×34, ds.footer 2120:4783 180.0985565185547×34, the difference being export floating-point noise, not a second size) — one governed size, not two. Minted 015, 2026-08-04.",
+        "$value": "34px"
       }
     }
   },

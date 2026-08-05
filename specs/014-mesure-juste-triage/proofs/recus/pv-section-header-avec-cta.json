@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-section-header-avec-cta",
+  "claim": "RE-TESTED 2026-08-04 (Phase 6/015, named-repair). The original claim (013/014, superseded) held section-header :: Disposition=Avec CTA diverged by contract-geometry — a real content/spacing gap, not a harness-imposed width. Investigation for 015 found the master's Avec-CTA variant IS genuinely layoutSizingHorizontal FIXED at 1550px (figma_get_component_for_development, read-only, live-verified) — the isolated test instrument simply never pinned a matching width (subjects.ts declared none). Fix: `renderWidth: 1550` added to section-header's subject entry (same mechanism already used by accordion-row for the same 1550px page-width convention) — harness-only, contract untouched. A contract-level width was tried FIRST and reverted: it broke align-self:stretch for every real consumer (coordonnees' embedded instance measures 480px via its own per-instance override; sav and presentation also regressed) because no current contract actually composes disposition=avecCta — only the isolated instrument needed the pin, not the shipped component.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: section-header); specs/015-geometrie-gouvernee/tasks.md T056",
+  "method": "npm run extract:figma:visual -- section-header (post-fix, fresh Playwright render, full precision from extract/figma/visual-parity/out/rows.json)",
+  "observed": {
+    "key": "section-header :: Disposition=Avec CTA",
+    "rawPct": 6.080645161290323,
+    "maskedPct": 0.9924136392218909,
+    "maskCoveragePct": 41.100358422939074,
+    "sizeOurs": "3100×108",
+    "sizeFigma": "3100×108",
+    "diagnosis": "sizes now IDENTICAL both sides (Δ0×Δ0) — the width mismatch this receipt originally reported is closed; residual raw 6.08% masks down to 0.99% (within the 2% gate), consistent with cross-renderer text rasterization, the same class already documented for section-header's own Standard disposition and for google-reviews."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-04",
+  "supersedes": {
+    "date": "2026-08-03",
+    "rawPct": 8.778484271533092,
+    "maskedPct": 6.854510283038078,
+    "sizeOurs": "2174×108",
+    "sizeFigma": "3093×108"
+  }
+}

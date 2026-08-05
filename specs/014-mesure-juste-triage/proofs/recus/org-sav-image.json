@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "org-sav-image",
+  "claim": "sav diverges under the A5 image-boundary limit — TWO IMAGE fills (background.fills[0], img.fills[0]) are not carried by the contract; geometry passes exactly (Δpx 0/0).",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/organisms/sav/result.json (facts: sav.visual.background-image, sav.visual.img-image)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts sav",
+  "observed": {
+    "geometryDeltaPx": {
+      "width": 0,
+      "height": 0
+    },
+    "rawPct": 0.6652451517606137,
+    "divergentFacts": [
+      {
+        "id": "sav.visual.background-image",
+        "reason": "contract-does-not-carry-figma-fact:background.fills[0].imageRef=…"
+      },
+      {
+        "id": "sav.visual.img-image",
+        "reason": "contract-does-not-carry-figma-fact:img.fills[0].imageRef=…"
+      }
+    ],
+    "capabilityMatrixRef": "docs/FIGMA-CAPABILITY-MATRIX.md row 91 (background-image url(): named-gap A5)"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

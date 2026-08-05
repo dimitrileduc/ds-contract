@@ -29,11 +29,11 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
-          "lits": {
-            "paddingTop": 8,
-            "paddingRight": 0,
-            "paddingBottom": 8,
-            "paddingLeft": 0
+          "bindings": {
+            "paddingTop": "space/8",
+            "paddingRight": "space/0",
+            "paddingBottom": "space/8",
+            "paddingLeft": "space/0"
           },
           "children": [
             {
@@ -64,11 +64,13 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "stroke": "color/noir-bleute",
+          "bindings": {
+            "paddingTop": "space/8",
+            "paddingRight": "space/0",
+            "paddingBottom": "space/8",
+            "paddingLeft": "space/0"
+          },
           "lits": {
-            "paddingTop": 8,
-            "paddingRight": 0,
-            "paddingBottom": 8,
-            "paddingLeft": 0,
             "strokeSides": {
               "bottom": 2
             }

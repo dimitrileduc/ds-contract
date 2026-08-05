@@ -1,0 +1,12 @@
+=== SCÉNARIO 1 — écrasement par re-proposition (valeur revertie) ===
+parity status after clobbering footer padding-top 128px -> 0px: 0
+parity: NO NEW DRIFT (clobber invisible to parity)
+mutated value on disk: 0px
+
+✗ RED CONFIRMED: build succeeds, parity stays clean — the 013 correction was silently clobbered and NOTHING in the existing toolchain caught it.
+
+=== SCÉNARIO 2 — classe voisine documentée (champ omis en silence, mémo merge-declarations-clobber-risk.md) ===
+generate status after DELETING padding-left/right entirely: 0
+parity status: 0 (NO NEW DRIFT — the hole is invisible)
+
+✗ RED CONFIRMED (scenario 2): the 013 correction was silently DROPPED (not merely reverted) and the existing toolchain still builds + stays parity-clean.

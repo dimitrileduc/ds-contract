@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dw-004-contract-geometry",
+  "claim": "DW-004 (footer/faq/reassurances, ds.footer /anatomy/root/literals): padding-left/right 89px, padding-top 128px, gap 48/32/16px were written as LITERALS while {space.89}/{space.128}/{space.48}/{space.32}/{space.16} already existed (minted by 012) — geometry riding literals instead of tokens sits on no differ axis, so `npm run parity` stays green while the surfaces drift.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json DW-004",
+  "method": "re-read DW-004's observedCause against contracts/cause-vocabulary.md §1; cross-checked against org-footer-geometry.json (014/T023b), which groups DW-004 with DW-001/DW-005 as the same contract-geometry finding",
+  "observed": {
+    "vocabularyMatch": "'the contract carries a false geometry, or none at all' (contract-geometry) — a literal is the same thing as carrying NO geometry in the eyes of the token-axis differ (canvas variables ⟷ tokens/): nothing proposes it, nothing flags it. This is the exact doctrine CLAUDE.md's own 'geometry-rides-tokens' rule names, with this DW as its own cited receipt.",
+    "corroboration": "org-footer-geometry.json (rawPct 1.0439991325748406, verdict confirmed) already names DW-004 as one of three contract-geometry findings on footer, with the identical token-name list, measured 2026-08-03. DW-004 also names faq and reassurances as affected contracts, not only footer."
+  },
+  "verdict": "confirmed",
+  "browser": null,
+  "date": "2026-08-03"
+}

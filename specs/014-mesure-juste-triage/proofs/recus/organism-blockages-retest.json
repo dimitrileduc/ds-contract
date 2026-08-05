@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "organism-blockages-retest",
+  "claim": "The three organism dependencyGates (equipe→ds.member-card, formulaire→ds.field, header→ds.nav-item) are blocked, and all three pin `expectedFigmaFileVersion: 2381568261081914456` while the campaign now runs on `2381581871281042338` — a stale-pin drift already visible by reading audit-campaign.json (research.md D9's 'already-acquired-by-reading' note).",
+  "claimSource": "specs/013-auditer-fidelite-organismes/contracts/audit-campaign.json dependencyGates; research.md D9",
+  "method": "npx tsx extract/figma/organism-audit/run.ts --campaign specs/013-auditer-fidelite-organismes/contracts/audit-campaign.json --check-dependencies --check",
+  "observed": {
+    "equipe": {
+      "dependencyContractId": "ds.member-card",
+      "receiptVerdict": "blocked",
+      "actualVerdict": "blocked",
+      "probative": true,
+      "reasons": ["receipt-verdict-blocked", "dependency-not-proved:ds.member-card", "figma-file-version-moved:2381568261081914456->2381581871281042338"]
+    },
+    "formulaire": {
+      "dependencyContractId": "ds.field",
+      "receiptVerdict": "blocked",
+      "actualVerdict": "blocked",
+      "probative": true,
+      "reasons": ["receipt-verdict-blocked", "dependency-not-proved:ds.field", "figma-file-version-moved:2381568261081914456->2381581871281042338"]
+    },
+    "header": {
+      "dependencyContractId": "ds.nav-item",
+      "receiptVerdict": "fail",
+      "actualVerdict": "divergent",
+      "probative": true,
+      "reasons": ["receipt-verdict-fail", "dependency-not-proved:ds.nav-item", "figma-file-version-moved:2381568261081914456->2381581871281042338"]
+    },
+    "exitCode": 0
+  },
+  "verdict": "confirmed",
+  "verdictNote": "The stale pin is REAL and reproduces on all three gates exactly as the prior reading found — but it does NOT fully explain the blockage, only PART of it. Each gate carries a SECOND, independent reason ahead of the version drift in its own `reasons` list: the dependency's OWN visual-campaign receipt (specs/011-fix-molecule-convergence/proofs/visual/result.json, `visual-campaign-v1` schema — a DIFFERENT, older measurement system than this feature's two instruments) already records `receipt-verdict-blocked`/`receipt-verdict-fail` for ds.member-card/ds.field/ds.nav-item, and the tool marks that receipt `probative: true` — meaning the block does not hinge on the version mismatch alone. Re-pinning `expectedFigmaFileVersion` to the current campaign version would remove ONE reason from each gate's list but would NOT, by itself, flip `open` to true while the underlying dependency verdict stays blocked/fail. Cross-reference: this feature's OWN, newer measurement of ds.member-card (visual-parity, 014/T030 — 52.52% raw, image-boundary) and ds.field (1.84%/2.20% raw, engine) corroborates that these dependencies are genuinely still divergent today, independent of which Figma version is pinned. Per FR-013/US5 scenario 3, this finding is CONSIGNED as an entry for 016 (the stale pin is a canvas-source-adjacent bookkeeping fact, and the underlying divergences are exactly the kind of governed-geometry/source work 015/016 exist for) — none of the three blockages is lifted here.",
+  "browser": null,
+  "date": "2026-08-03"
+}

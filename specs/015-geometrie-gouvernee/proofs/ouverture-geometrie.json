@@ -1,0 +1,1096 @@
+{
+  "schemaVersion": 1,
+  "verdict": "fail",
+  "counts": {
+    "contracts": 34,
+    "geometricEntries": 208,
+    "governedRefs": 5,
+    "namedLiterals": 0,
+    "invisible": 208,
+    "byContract": {
+      "ds.accordion-row": 21,
+      "ds.avantage": 5,
+      "ds.carte": 15,
+      "ds.checkbox": 2,
+      "ds.coordonnees": 12,
+      "ds.devis": 4,
+      "ds.faq": 4,
+      "ds.field": 2,
+      "ds.footer": 13,
+      "ds.footer-column": 2,
+      "ds.google-reviews": 28,
+      "ds.hero": 10,
+      "ds.input": 2,
+      "ds.member-card": 3,
+      "ds.member-picture": 12,
+      "ds.nav-item": 2,
+      "ds.piqueray-logo": 2,
+      "ds.presentation": 3,
+      "ds.product-card": 4,
+      "ds.realisation": 4,
+      "ds.reassurances": 4,
+      "ds.review-card": 20,
+      "ds.sav": 24,
+      "ds.section-header": 1,
+      "ds.select": 2,
+      "ds.tab": 4,
+      "ds.textarea": 3
+    },
+    "byChannel": {
+      "gap": 49,
+      "padding-block": 7,
+      "width": 48,
+      "height": 47,
+      "padding-inline": 5,
+      "padding-bottom": 10,
+      "min-height": 2,
+      "padding-left": 12,
+      "padding-right": 11,
+      "min-width": 8,
+      "padding-top": 9
+    }
+  },
+  "refusals": [
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/literals/gap",
+      "message": "\"ds.accordion-row/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/literals/padding-block",
+      "message": "\"ds.accordion-row/anatomy/root/literals/padding-block\" (channel \"padding-block\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/literals/width",
+      "message": "\"ds.accordion-row/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/literalsByProp/0/map/petit/gap",
+      "message": "\"ds.accordion-row/anatomy/root/literalsByProp/0/map/petit/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/literalsByProp/0/map/petit/padding-block",
+      "message": "\"ds.accordion-row/anatomy/root/literalsByProp/0/map/petit/padding-block\" (channel \"padding-block\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/literalsByProp/1/map/ferme/gap",
+      "message": "\"ds.accordion-row/anatomy/root/literalsByProp/1/map/ferme/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/ChevronDown/literalsByProp/0/map/petit/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/ChevronDown/literalsByProp/0/map/petit/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/ChevronDown/literalsByProp/0/map/petit/width",
+      "message": "\"ds.accordion-row/anatomy/root/parts/ChevronDown/literalsByProp/0/map/petit/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/Contenu/literals/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/Contenu/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/Contenu/literalsByProp/0/map/petit/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/Contenu/literalsByProp/0/map/petit/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/title/literals/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/title/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/title/parts/ChevronUp/literalsByProp/0/map/petit/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/title/parts/ChevronUp/literalsByProp/0/map/petit/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/title/parts/ChevronUp/literalsByProp/0/map/petit/width",
+      "message": "\"ds.accordion-row/anatomy/root/parts/title/parts/ChevronUp/literalsByProp/0/map/petit/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/title/parts/TitreOuvert/literals/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/title/parts/TitreOuvert/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/title/parts/TitreOuvert/literalsByProp/0/map/petit/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/title/parts/TitreOuvert/literalsByProp/0/map/petit/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/Titre/literals/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/Titre/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/Titre/literalsByProp/0/map/petit/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/Titre/literalsByProp/0/map/petit/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/trigger/literals/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/trigger/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/trigger/literals/padding-block",
+      "message": "\"ds.accordion-row/anatomy/root/parts/trigger/literals/padding-block\" (channel \"padding-block\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/trigger/literals/padding-inline",
+      "message": "\"ds.accordion-row/anatomy/root/parts/trigger/literals/padding-inline\" (channel \"padding-inline\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.accordion-row/anatomy/root/parts/trigger/literalsByProp/0/map/petit/height",
+      "message": "\"ds.accordion-row/anatomy/root/parts/trigger/literalsByProp/0/map/petit/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.avantage/anatomy/root/literals/gap",
+      "message": "\"ds.avantage/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.avantage/anatomy/root/literals/height",
+      "message": "\"ds.avantage/anatomy/root/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.avantage/anatomy/root/literals/width",
+      "message": "\"ds.avantage/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.avantage/anatomy/root/parts/text/literals/gap",
+      "message": "\"ds.avantage/anatomy/root/parts/text/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.avantage/anatomy/root/parts/text/literals/width",
+      "message": "\"ds.avantage/anatomy/root/parts/text/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/literals/gap",
+      "message": "\"ds.carte/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/literals/padding-bottom",
+      "message": "\"ds.carte/anatomy/root/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/literals/width",
+      "message": "\"ds.carte/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/literalsByProp/0/map/categorie/gap",
+      "message": "\"ds.carte/anatomy/root/literalsByProp/0/map/categorie/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/literalsByProp/0/map/categorie/padding-bottom",
+      "message": "\"ds.carte/anatomy/root/literalsByProp/0/map/categorie/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/literalsByProp/0/map/categorie/width",
+      "message": "\"ds.carte/anatomy/root/literalsByProp/0/map/categorie/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/categorieImage/literals/height",
+      "message": "\"ds.carte/anatomy/root/parts/categorieImage/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/categorieImage/literals/min-height",
+      "message": "\"ds.carte/anatomy/root/parts/categorieImage/literals/min-height\" (channel \"min-height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/reassuranceImage/literals/height",
+      "message": "\"ds.carte/anatomy/root/parts/reassuranceImage/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/text/literals/gap",
+      "message": "\"ds.carte/anatomy/root/parts/text/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/text/literals/padding-left",
+      "message": "\"ds.carte/anatomy/root/parts/text/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/text/literals/padding-right",
+      "message": "\"ds.carte/anatomy/root/parts/text/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/text/literalsByProp/0/map/categorie/gap",
+      "message": "\"ds.carte/anatomy/root/parts/text/literalsByProp/0/map/categorie/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/text/literalsByProp/0/map/categorie/padding-left",
+      "message": "\"ds.carte/anatomy/root/parts/text/literalsByProp/0/map/categorie/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.carte/anatomy/root/parts/text/literalsByProp/0/map/categorie/padding-right",
+      "message": "\"ds.carte/anatomy/root/parts/text/literalsByProp/0/map/categorie/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.checkbox/anatomy/root/literals/height",
+      "message": "\"ds.checkbox/anatomy/root/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.checkbox/anatomy/root/literals/width",
+      "message": "\"ds.checkbox/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/googleMap/literals/height",
+      "message": "\"ds.coordonnees/anatomy/root/parts/googleMap/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/googleMap/literals/min-width",
+      "message": "\"ds.coordonnees/anatomy/root/parts/googleMap/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/googleMap/literals/width",
+      "message": "\"ds.coordonnees/anatomy/root/parts/googleMap/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/literals/gap",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/literals/padding-block",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/literals/padding-block\" (channel \"padding-block\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/literals/padding-inline",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/literals/padding-inline\" (channel \"padding-inline\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/literals/width",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/parts/Adresse/literals/gap",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/parts/Adresse/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/parts/Contact/literals/gap",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/parts/Contact/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/parts/Horaires/literals/gap",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/parts/Horaires/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/parts/suivezNous/literals/gap",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/parts/suivezNous/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.coordonnees/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/literals/gap",
+      "message": "\"ds.coordonnees/anatomy/root/parts/wrapper/parts/suivezNous/parts/rseauxSociaux/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.devis/anatomy/root/literals/padding-bottom",
+      "message": "\"ds.devis/anatomy/root/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.devis/anatomy/root/literals/padding-top",
+      "message": "\"ds.devis/anatomy/root/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.devis/anatomy/root/parts/Container/literals/gap",
+      "message": "\"ds.devis/anatomy/root/parts/Container/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.devis/anatomy/root/parts/Container/parts/Titre/literals/width",
+      "message": "\"ds.devis/anatomy/root/parts/Container/parts/Titre/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.faq/anatomy/root/literals/gap",
+      "message": "\"ds.faq/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.faq/anatomy/root/literals/padding-left",
+      "message": "\"ds.faq/anatomy/root/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.faq/anatomy/root/literals/padding-right",
+      "message": "\"ds.faq/anatomy/root/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.faq/anatomy/root/literals/width",
+      "message": "\"ds.faq/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.field/anatomy/root/literals/gap",
+      "message": "\"ds.field/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.field/anatomy/root/parts/label/literals/gap",
+      "message": "\"ds.field/anatomy/root/parts/label/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/literals/gap",
+      "message": "\"ds.footer/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/literals/padding-bottom",
+      "message": "\"ds.footer/anatomy/root/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/literals/padding-left",
+      "message": "\"ds.footer/anatomy/root/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/literals/padding-right",
+      "message": "\"ds.footer/anatomy/root/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/literals/padding-top",
+      "message": "\"ds.footer/anatomy/root/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/literals/width",
+      "message": "\"ds.footer/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/parts/Background/literals/height",
+      "message": "\"ds.footer/anatomy/root/parts/Background/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/parts/Row/literals/width",
+      "message": "\"ds.footer/anatomy/root/parts/Row/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/parts/Row/parts/col1/literals/gap",
+      "message": "\"ds.footer/anatomy/root/parts/Row/parts/col1/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/parts/Row/parts/col5/literals/gap",
+      "message": "\"ds.footer/anatomy/root/parts/Row/parts/col5/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap",
+      "message": "\"ds.footer/anatomy/root/parts/Row/parts/col5/parts/rseauxSociaux/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/parts/Spacer/literals/height",
+      "message": "\"ds.footer/anatomy/root/parts/Spacer/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer/anatomy/root/parts/spacer2/literals/height",
+      "message": "\"ds.footer/anatomy/root/parts/spacer2/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer-column/anatomy/root/literals/gap",
+      "message": "\"ds.footer-column/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.footer-column/anatomy/root/literals/width",
+      "message": "\"ds.footer-column/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/literals/gap",
+      "message": "\"ds.google-reviews/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/literals/height",
+      "message": "\"ds.google-reviews/anatomy/root/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/literals/padding-bottom",
+      "message": "\"ds.google-reviews/anatomy/root/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/literals/padding-left",
+      "message": "\"ds.google-reviews/anatomy/root/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/literals/padding-right",
+      "message": "\"ds.google-reviews/anatomy/root/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/literals/padding-top",
+      "message": "\"ds.google-reviews/anatomy/root/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/literals/width",
+      "message": "\"ds.google-reviews/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/literals/min-width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/literals/width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/parts/pastilleDroite/literals/height",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/parts/pastilleDroite/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/parts/pastilleDroite/literals/min-width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/parts/pastilleDroite/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/parts/pastilleDroite/literals/width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheDroite/parts/pastilleDroite/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/literals/min-width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/literals/width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/parts/pastilleGauche/literals/height",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/parts/pastilleGauche/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/parts/pastilleGauche/literals/min-width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/parts/pastilleGauche/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/parts/pastilleGauche/literals/width",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/flecheGauche/parts/pastilleGauche/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/cartes/parts/groupeCartes/literals/gap",
+      "message": "\"ds.google-reviews/anatomy/root/parts/cartes/parts/groupeCartes/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/literals/padding-bottom",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/literals/padding-left",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/literals/padding-right",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/literals/padding-top",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-bottom",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-left",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-right",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-top",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/parts/ecrireAvis/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/parts/infos/literals/gap",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/parts/infos/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.google-reviews/anatomy/root/parts/resume/parts/infos/parts/notation/literals/gap",
+      "message": "\"ds.google-reviews/anatomy/root/parts/resume/parts/infos/parts/notation/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/literals/gap",
+      "message": "\"ds.hero/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/literals/height",
+      "message": "\"ds.hero/anatomy/root/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/literals/gap",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/gap",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-bottom",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-left",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-right",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-top",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/parts/Titres/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/literals/gap",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.hero/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/literals/width",
+      "message": "\"ds.hero/anatomy/root/parts/blocTexte/parts/Titres/parts/wrapper/parts/sousTitre/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.input/anatomy/root/literals/padding-block",
+      "message": "\"ds.input/anatomy/root/literals/padding-block\" (channel \"padding-block\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.input/anatomy/root/literals/padding-inline",
+      "message": "\"ds.input/anatomy/root/literals/padding-inline\" (channel \"padding-inline\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-card/anatomy/root/literals/gap",
+      "message": "\"ds.member-card/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-card/anatomy/root/literals/width",
+      "message": "\"ds.member-card/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-card/anatomy/root/parts/text/literals/gap",
+      "message": "\"ds.member-card/anatomy/root/parts/text/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/literals/height",
+      "message": "\"ds.member-picture/anatomy/root/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/literals/width",
+      "message": "\"ds.member-picture/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/literalsByProp/0/map/member-card/height",
+      "message": "\"ds.member-picture/anatomy/root/literalsByProp/0/map/member-card/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/literalsByProp/0/map/member-card/width",
+      "message": "\"ds.member-picture/anatomy/root/literalsByProp/0/map/member-card/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/funIa/literals/height",
+      "message": "\"ds.member-picture/anatomy/root/parts/funIa/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/funIa/literals/width",
+      "message": "\"ds.member-picture/anatomy/root/parts/funIa/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/funIa/literalsByProp/0/map/member-card/height",
+      "message": "\"ds.member-picture/anatomy/root/parts/funIa/literalsByProp/0/map/member-card/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/funIa/literalsByProp/0/map/member-card/width",
+      "message": "\"ds.member-picture/anatomy/root/parts/funIa/literalsByProp/0/map/member-card/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/normal/literals/height",
+      "message": "\"ds.member-picture/anatomy/root/parts/normal/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/normal/literals/width",
+      "message": "\"ds.member-picture/anatomy/root/parts/normal/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/normal/literalsByProp/0/map/member-card/height",
+      "message": "\"ds.member-picture/anatomy/root/parts/normal/literalsByProp/0/map/member-card/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.member-picture/anatomy/root/parts/normal/literalsByProp/0/map/member-card/width",
+      "message": "\"ds.member-picture/anatomy/root/parts/normal/literalsByProp/0/map/member-card/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.nav-item/anatomy/root/literals/gap",
+      "message": "\"ds.nav-item/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.nav-item/anatomy/root/parts/Soulignement/literals/height",
+      "message": "\"ds.nav-item/anatomy/root/parts/Soulignement/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.piqueray-logo/anatomy/root/literals/height",
+      "message": "\"ds.piqueray-logo/anatomy/root/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.piqueray-logo/anatomy/root/literals/width",
+      "message": "\"ds.piqueray-logo/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.presentation/anatomy/root/literals/gap",
+      "message": "\"ds.presentation/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.presentation/anatomy/root/parts/wrapper/literals/gap",
+      "message": "\"ds.presentation/anatomy/root/parts/wrapper/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.presentation/anatomy/root/parts/wrapper/literals/width",
+      "message": "\"ds.presentation/anatomy/root/parts/wrapper/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.product-card/anatomy/root/literals/gap",
+      "message": "\"ds.product-card/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.product-card/anatomy/root/literals/width",
+      "message": "\"ds.product-card/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.product-card/anatomy/root/parts/Image/literals/height",
+      "message": "\"ds.product-card/anatomy/root/parts/Image/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.product-card/anatomy/root/parts/Image/literals/width",
+      "message": "\"ds.product-card/anatomy/root/parts/Image/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.realisation/anatomy/root/parts/Image/literals/height",
+      "message": "\"ds.realisation/anatomy/root/parts/Image/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.realisation/anatomy/root/parts/Image/literals/width",
+      "message": "\"ds.realisation/anatomy/root/parts/Image/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.realisation/anatomy/root/parts/Image/literalsByProp/0/map/petit/height",
+      "message": "\"ds.realisation/anatomy/root/parts/Image/literalsByProp/0/map/petit/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.realisation/anatomy/root/parts/Image/literalsByProp/0/map/petit/width",
+      "message": "\"ds.realisation/anatomy/root/parts/Image/literalsByProp/0/map/petit/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.reassurances/anatomy/root/literals/gap",
+      "message": "\"ds.reassurances/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.reassurances/anatomy/root/literals/width",
+      "message": "\"ds.reassurances/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.reassurances/anatomy/root/parts/Boutons/literals/gap",
+      "message": "\"ds.reassurances/anatomy/root/parts/Boutons/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.reassurances/anatomy/root/parts/items/literals/gap",
+      "message": "\"ds.reassurances/anatomy/root/parts/items/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/literals/gap",
+      "message": "\"ds.review-card/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/literals/min-height",
+      "message": "\"ds.review-card/anatomy/root/literals/min-height\" (channel \"min-height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/literals/padding-bottom",
+      "message": "\"ds.review-card/anatomy/root/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/literals/padding-left",
+      "message": "\"ds.review-card/anatomy/root/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/literals/padding-right",
+      "message": "\"ds.review-card/anatomy/root/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/literals/padding-top",
+      "message": "\"ds.review-card/anatomy/root/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/literals/width",
+      "message": "\"ds.review-card/anatomy/root/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/literals/gap",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarInitiale/literals/height",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarInitiale/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarInitiale/literals/min-width",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarInitiale/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarInitiale/literals/width",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarInitiale/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarPhoto/literals/height",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarPhoto/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarPhoto/literals/min-width",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarPhoto/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarPhoto/literals/width",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/parts/avatarPhoto/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/entete/parts/profil/parts/identite/literals/gap",
+      "message": "\"ds.review-card/anatomy/root/parts/entete/parts/profil/parts/identite/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/notation/literals/gap",
+      "message": "\"ds.review-card/anatomy/root/parts/notation/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/notation/parts/etoiles/literals/gap",
+      "message": "\"ds.review-card/anatomy/root/parts/notation/parts/etoiles/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/notation/parts/verification/literals/height",
+      "message": "\"ds.review-card/anatomy/root/parts/notation/parts/verification/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/notation/parts/verification/literals/min-width",
+      "message": "\"ds.review-card/anatomy/root/parts/notation/parts/verification/literals/min-width\" (channel \"min-width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.review-card/anatomy/root/parts/notation/parts/verification/literals/width",
+      "message": "\"ds.review-card/anatomy/root/parts/notation/parts/verification/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/literals/gap",
+      "message": "\"ds.sav/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/background/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/background/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/background/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/background/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/literals/padding-left",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/img/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/ImgGroupBackground/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/ImgGroupBackground/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/ImgGroupBackground/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/imgGroup/parts/ImgGroupBackground/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/padding-left",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/padding-right",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/padding-top",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/literals/gap",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/inner/parts/vousRencontrezUnProblmeA/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/WrapperBackground/literals/height",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/WrapperBackground/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/WrapperBackground/literals/width",
+      "message": "\"ds.sav/anatomy/root/parts/section/parts/row/parts/wrapper/parts/WrapperBackground/literals/width\" (channel \"width\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.section-header/anatomy/root/literals/gap",
+      "message": "\"ds.section-header/anatomy/root/literals/gap\" (channel \"gap\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.select/anatomy/root/literals/padding-block",
+      "message": "\"ds.select/anatomy/root/literals/padding-block\" (channel \"padding-block\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.select/anatomy/root/literals/padding-inline",
+      "message": "\"ds.select/anatomy/root/literals/padding-inline\" (channel \"padding-inline\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.tab/anatomy/root/literals/padding-bottom",
+      "message": "\"ds.tab/anatomy/root/literals/padding-bottom\" (channel \"padding-bottom\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.tab/anatomy/root/literals/padding-left",
+      "message": "\"ds.tab/anatomy/root/literals/padding-left\" (channel \"padding-left\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.tab/anatomy/root/literals/padding-right",
+      "message": "\"ds.tab/anatomy/root/literals/padding-right\" (channel \"padding-right\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.tab/anatomy/root/literals/padding-top",
+      "message": "\"ds.tab/anatomy/root/literals/padding-top\" (channel \"padding-top\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.textarea/anatomy/root/literals/height",
+      "message": "\"ds.textarea/anatomy/root/literals/height\" (channel \"height\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.textarea/anatomy/root/literals/padding-block",
+      "message": "\"ds.textarea/anatomy/root/literals/padding-block\" (channel \"padding-block\") carries a geometric literal with no matching entry in the named-literals registry"
+    },
+    {
+      "code": "invisible-literal",
+      "subject": "ds.textarea/anatomy/root/literals/padding-inline",
+      "message": "\"ds.textarea/anatomy/root/literals/padding-inline\" (channel \"padding-inline\") carries a geometric literal with no matching entry in the named-literals registry"
+    }
+  ],
+  "exitCode": 1
+}

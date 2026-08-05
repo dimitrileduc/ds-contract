@@ -3,6 +3,13 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: column;
@@ -10,8 +17,8 @@
   border: 0;
   background-color: var(--color-noir-pur);
   font-family: var(--font-family-montserrat);
-  padding-top: 96px;
-  padding-bottom: 96px;
+  padding-top: var(--space-96);
+  padding-bottom: var(--space-96);
   position: relative;
 }
 
@@ -45,14 +52,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: var(--space-32);
   position: relative;
 }
 
 .Titre {
   color: var(--color-blanc);
   font-size: var(--font-size-40);
+  width: var(--size-devis-titre);
   line-height: 50px;
-  width: 900px;
   text-align: center;
 }

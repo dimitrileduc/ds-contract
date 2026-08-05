@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-button-link",
+  "claim": "button :: Property 1=Link diverges by 'rendering': all-text row since the 2026-07-23 icon toggles — neither side draws an icon at defaults, the DOM-derived text mask covers everything so the masked score is null BY CONSTRUCTION; ranks by its unmasked glyph-raster delta on a ~370×24 canvas. NAMED COVERAGE GAP: icon rendering is no longer exercised by this gate.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: button, variant /Property 1=Link/, class 'rendering')",
+  "method": "npm run extract:figma:visual -- button",
+  "observed": {
+    "regexBug": "the rule's variant regex /Property 1=Link/ never matches the live report's row key 'button :: Style=Link' — contracts/button.contract.json binds the VARIANT prop to Figma property \"Style\" (not \"Property 1\"), so the button's own axis was renamed in Figma sometime after this rule was written (2026-07-23, per its own neighboring comment: 'the Piqueray axis is `Property 1=…`'). A dead regex does not drop the row (D8 would surface that loudly as UNTRIAGED) — it silently falls through to the catch-all 'button' rule below (pv-button.json), whose 'label runs ~4 device px narrower (436 vs 440)' text describes a 436×108 canvas and does not apply to this row's actual 307×24 canvas.",
+    "rawPct": 0.9907709011943538,
+    "maskedPct": null,
+    "maskCoveragePct": 100,
+    "sizeOurs": "307×24",
+    "sizeFigma": "307×24",
+    "diagnosis": "diffuse delta — see triptych",
+    "visualCheck": "Isolated both triptych panels: both sides show the same all-caps 'CONTACTEZ-NOUS' label at identical size (307×24, no icons on either side) — matches 'all-text row… neither side draws an icon at defaults' precisely.",
+    "note": "maskedPct: null and maskCoveragePct: 100 confirm 'the DOM-derived text mask covers everything → masked score null BY CONSTRUCTION' exactly as written."
+  },
+  "verdict": "refuted",
+  "verdictNote": "The CAUSE's own diagnosis (class + text) is confirmed accurate for this row — what's refuted is the regex that was supposed to attach it: fixed in triage.ts from /Property 1=Link/ to /Style=Link/ so the row gets its purpose-written cause back instead of the ill-fitting catch-all. Same CauseSlug ('rendering') either way, so FR-011's dimensioning count is unaffected — only which specific text a reviewer reads for this row changes. The 'NAMED COVERAGE GAP' note is left standing: reviving real icon-pixel coverage for this row is a capability gap, not something a re-test receipt fixes (FR-005).",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

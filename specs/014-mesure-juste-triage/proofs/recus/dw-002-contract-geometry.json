@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "dw-002-contract-geometry",
+  "claim": "DW-002 (reassurances, ds.carte /anatomy/root/literals/min-width): 4×364 + 3×32 = 1552px against a 1550px items frame — Figma overflows by 2px, CSS flex shrinks the cards ~0.5px and shifts content 1px. MEASURED: a temporary patch makes the harness REFUSE (4 device px of horizontal overflow), so the fix is not local to one contract.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json DW-002",
+  "method": "re-read DW-002's observedCause against contracts/cause-vocabulary.md §1; cross-checked against org-reassurances-geometry.json (014/T023b), which measures this exact defect (geometry verdict 'fail', Δwidth -4px) on the post-DW-006 reassurances residual",
+  "observed": {
+    "vocabularyMatch": "the contract's own min-width literal (ds.carte) is arithmetically wrong for its container (1552 > 1550) — 'the contract carries a false geometry', contract-geometry. Not image-boundary or figma-source (the number is wrong in the CONTRACT, Figma's own layout is what exposed it); not instrument (the overflow is real, not a measurement artefact).",
+    "corroboration": "org-reassurances-geometry.json (rawPct 3.298885335721438, verdict confirmed) already names DW-002 as the geometry half of reassurances' post-correction residual, with the SAME registeredAs.dwId/contractPointer, measured 2026-08-03."
+  },
+  "verdict": "confirmed",
+  "browser": null,
+  "date": "2026-08-03"
+}

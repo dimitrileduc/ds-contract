@@ -28,9 +28,9 @@ const COMPONENTS = [
             "counter": "CENTER"
           },
           "fill": "color/noir-pur",
-          "lits": {
-            "paddingTop": 96,
-            "paddingBottom": 96
+          "bindings": {
+            "paddingTop": "space/96",
+            "paddingBottom": "space/96"
           },
           "children": [
             {
@@ -79,15 +79,16 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "CENTER"
               },
-              "lits": {
-                "itemSpacing": 32
+              "bindings": {
+                "itemSpacing": "space/32"
               },
               "children": [
                 {
                   "type": "text",
                   "name": "Titre",
-                  "lits": {
-                    "width": 900
+                  "fixedWidth": {
+                    "px": 900,
+                    "varName": "size/devis/titre"
                   },
                   "characters": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
                   "fontSize": 40,

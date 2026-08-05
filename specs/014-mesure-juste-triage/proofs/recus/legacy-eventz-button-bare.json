@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "legacy-eventz-button-bare",
+  "claim": "eventz-button :: variant=bare, state=(default|active) diverges by 'instrument': capture-channel limit (ex-capture-gap): Figma renders the bare variant's design-time slot instances (icon + spacing, 149px wide) that the dump carries only as slot defaultContent stubs — ours renders the 66px text-only truth of the contract's empty-slot state (named proposal note)",
+  "claimSource": "extract/figma/visual-parity/triage.ts (pre-014 TRIAGE rule: eventz-button, variant /variant=bare, state=(default|active)/, class 'instrument'; pre-014 original class 'capture-gap')",
+  "method": "grep -n 'PARITY_SUBJECTS\\|LEGACY_SUBJECTS' extract/figma/visual-parity/run.ts (imports/uses PARITY_SUBJECTS only, run.ts:113,1172,1844 — LEGACY_SUBJECTS is never imported by run.ts); confirm the subject's own entry sits in LEGACY_SUBJECTS, not PARITY_SUBJECTS, in extract/figma/visual-parity/subjects.ts",
+  "observed": {
+    "quarantineStatus": "eventz-button is a LEGACY_SUBJECTS entry (extract/figma/visual-parity/subjects.ts) — never PARITY_SUBJECTS.",
+    "quarantineFact": "run.ts:113 imports ONLY `PARITY_SUBJECTS` from subjects.ts (LEGACY_SUBJECTS is never imported); main()'s `subjects = PARITY_SUBJECTS.filter(...)` (run.ts:1844) is the sole population `npm run extract:figma:visual` ever iterates, with or without a positional subject filter. Building a path that exercises LEGACY_SUBJECTS would be a new capability (wiring a quarantined external-file subject into the live harness), which FR-005 and plan.md's 'aucun nouveau moteur' scope forbid here — exactly the same discipline already applied to the select/emit-html.ts and button-with-icons findings in this same phase. The re-test that IS available and IS a replayable command: confront the rule's own written cause text against cause-vocabulary.md §3's classification rule (frontier vs channel-limit) and against its ORIGINAL pre-014 class (research.md D1 §4 table).",
+    "classConfrontation": "slot content the dump cannot carry (defaultContent stub only) — a channel-limit, not an image frontier or a rendering-only delta. Mapping confirmed correct."
+  },
+  "verdict": "confirmed",
+  "verdictNote": "Not live-retestable by pixel re-render (see quarantineFact) — the re-test available and performed here is a textual/mechanical audit: the rule's ORIGINAL pre-014 class and its own written cause text are confronted against cause-vocabulary.md §3's classification rule (capture-gap's frontier/channel-limit split, or a straight renderer→rendering rename). No mismatch found; the six-value class this rule now carries is a faithful mechanical translation, not a fresh judgment call.",
+  "browser": null,
+  "date": "2026-08-03"
+}

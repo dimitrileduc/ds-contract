@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "button-with-icons-skipped",
+  "claim": "button-with-icons :: Property 1=Outilne noir is SKIPPED because \"axis has no contract binding\".",
+  "claimSource": "extract/figma/visual-parity/REPORT.md, 'Not diffed (named, never dropped)' — research.md §0.5",
+  "method": "npm run extract:figma:visual -- button-with-icons",
+  "observed": {
+    "consoleLine": "✗ Property 1=Outilne noir: SKIPPED — axis \"Property 1=Outilne noir\" has no contract binding (props: Style, Libelle, Icone gauche, Icone droite, Glyphe gauche, Glyphe droite)",
+    "rootCause": "extract/figma/visual-parity/subjects.ts's button-with-icons instanceOverride still reads `variantName: 'Property 1=Outilne noir'`. contracts/button.contract.json binds its VARIANT prop to Figma property \"Style\" (verified: `bindings.figma.property === 'Style'`), not \"Property 1\" — the SAME stale axis-name drift already found and fixed in triage.ts's button rule (pv-button-link.json, 014/T030). match.ts's planVariant() parses 'Property 1=Outilne noir' into axis {'Property 1': 'Outilne noir'}, finds no contract prop bound to Figma property 'Property 1' (nor named 'Property 1'), falls through every branch (not enum, not boolean, not a state axis) and returns {ok:false, reason:'axis \"Property 1=Outilne noir\" has no contract binding'} — exactly the observed message.",
+    "shortCircuit": "run.ts's render loop `continue`s on `!plan.ok` BEFORE the override's propPreset (children/iconLeft/iconRight/iconLeftGlyph/iconRightGlyph, subjects.ts) ever gets merged into plan.subst/plan.bools. The propPreset values are not wrong or missing — they are never reached.",
+    "spellingNote": "the contract's own enum value for this style is 'Outline noir' (contracts/button.contract.json props[].bindings.figma.values.outilneNoir === 'Outline noir') — subjects.ts's override string spells it 'Outilne noir' (transposed). Whether this is a copy of a genuine Figma-side instance override typo (page instance 237:1500) or a local transcription slip was not re-verified here — it is a SECOND, independent obstacle behind the axis-name one, not investigated further because fixing either is out of scope for a re-test (see verdictNote)."
+  },
+  "verdict": "confirmed",
+  "verdictNote": "The skip and its exact stated reason both reproduce today, unchanged. The re-test surfaces WHY (a stale 'Property 1' axis name — Figma renamed the button's variant property to 'Style' after this override was authored, per the same drift already receipted for triage.ts's button rule), which makes the block fixable in principle (repoint variantName at 'Style=…' with a verified value spelling). Not fixed here: reviving this row would produce a NEW measured row needing its own region/threshold/cause treatment, which is coverage work already named as a gap in triage.ts's button-link cause ('NAMED COVERAGE GAP: icon rendering is no longer exercised by this gate') — beyond a re-test receipt's mandate (FR-005, FR-013). Left named for a future spec.",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

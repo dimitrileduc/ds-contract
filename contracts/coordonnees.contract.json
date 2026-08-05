@@ -87,10 +87,10 @@
             "src": "{mapUrl}",
             "alt": "{mapAlt}"
           },
-          "literals": {
-            "width": "1152px",
-            "min-width": "1152px",
-            "height": "597px"
+          "tokens": {
+            "width": "{size.coordonnees.google-map-w}",
+            "min-width": "{size.coordonnees.google-map-w}",
+            "height": "{size.coordonnees.google-map-h}"
           },
           "declared": {
             "object-fit": "cover"
@@ -140,8 +140,8 @@
                   }
                 }
               },
-              "literals": {
-                "gap": "8px"
+              "tokens": {
+                "gap": "{space.8}"
               }
             },
             "Horaires": {
@@ -166,8 +166,8 @@
                   }
                 }
               },
-              "literals": {
-                "gap": "8px"
+              "tokens": {
+                "gap": "{space.8}"
               }
             },
             "Contact": {
@@ -211,8 +211,8 @@
                   }
                 }
               },
-              "literals": {
-                "gap": "8px"
+              "tokens": {
+                "gap": "{space.8}"
               }
             },
             "suivezNous": {
@@ -247,21 +247,21 @@
                       }
                     }
                   },
-                  "literals": {
-                    "gap": "16px"
+                  "tokens": {
+                    "gap": "{space.16}"
                   }
                 }
               },
-              "literals": {
-                "gap": "8px"
+              "tokens": {
+                "gap": "{space.8}"
               }
             }
           },
-          "literals": {
-            "gap": "16px",
-            "padding-block": "48px",
-            "padding-inline": "48px",
-            "width": "576px"
+          "tokens": {
+            "gap": "{space.16}",
+            "padding-block": "{space.48}",
+            "padding-inline": "{space.48}",
+            "width": "{size.coordonnees.wrapper}"
           }
         }
       },

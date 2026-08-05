@@ -108,16 +108,14 @@
       },
       "tokens": {
         "background-color": "{color.blanc}",
-        "font-family": "{font.family.montserrat}"
-      },
-      "literals": {
-        "width": "1552px",
-        "height": "328px",
-        "gap": "12px",
-        "padding-top": "4px",
-        "padding-bottom": "8px",
-        "padding-left": "11px",
-        "padding-right": "11px"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.google-reviews.root-w}",
+        "height": "{size.google-reviews.root-h}",
+        "gap": "{space.12}",
+        "padding-top": "{space.4}",
+        "padding-bottom": "{space.8}",
+        "padding-left": "{space.11}",
+        "padding-right": "{space.11}"
       },
       "parts": {
         "resume": {
@@ -130,15 +128,15 @@
           },
           "tokens": {
             "background-color": "{color.blanc}",
-            "border-color": "{color.bleu-clair}"
+            "border-color": "{color.bleu-clair}",
+            "padding-top": "{space.12}",
+            "padding-bottom": "{space.12}",
+            "padding-left": "{space.16}",
+            "padding-right": "{space.16}"
           },
           "literals": {
             "border-radius": "8px",
-            "border-width": "1px",
-            "padding-top": "12px",
-            "padding-bottom": "12px",
-            "padding-left": "16px",
-            "padding-right": "16px"
+            "border-width": "1px"
           },
           "parts": {
             "infos": {
@@ -147,8 +145,8 @@
                 "direction": "row",
                 "align": "center"
               },
-              "literals": {
-                "gap": "10px"
+              "tokens": {
+                "gap": "{space.10}"
               },
               "parts": {
                 "marque": {
@@ -177,8 +175,8 @@
                     "direction": "row",
                     "align": "center"
                   },
-                  "literals": {
-                    "gap": "2px"
+                  "tokens": {
+                    "gap": "{space.2}"
                   },
                   "parts": {
                     "etoile1": {
@@ -263,14 +261,14 @@
               },
               "literals": {
                 "border-width": "1px",
-                "border-radius": "0px",
-                "padding-top": "8px",
-                "padding-bottom": "8px",
-                "padding-left": "22px",
-                "padding-right": "22px"
+                "border-radius": "0px"
               },
               "tokens": {
-                "border-color": "{color.noir}"
+                "border-color": "{color.noir}",
+                "padding-top": "{space.8}",
+                "padding-bottom": "{space.8}",
+                "padding-left": "{space.22}",
+                "padding-right": "{space.22}"
               },
               "parts": {
                 "libelle": {
@@ -308,9 +306,9 @@
                 "align": "center",
                 "justify": "center"
               },
-              "literals": {
-                "width": "0px",
-                "min-width": "0px"
+              "tokens": {
+                "width": "{space.0}",
+                "min-width": "{space.0}"
               },
               "parts": {
                 "pastilleGauche": {
@@ -321,12 +319,12 @@
                   },
                   "tokens": {
                     "background-color": "{color.blanc}",
-                    "border-color": "{color.bleu-clair}"
+                    "border-color": "{color.bleu-clair}",
+                    "width": "{size.google-reviews.pastille-gauche}",
+                    "height": "{size.google-reviews.pastille-gauche}",
+                    "min-width": "{size.google-reviews.pastille-gauche}"
                   },
                   "literals": {
-                    "width": "30px",
-                    "height": "30px",
-                    "min-width": "30px",
                     "border-radius": "15px",
                     "border-width": "1px"
                   },
@@ -349,8 +347,8 @@
                 "align": "stretch",
                 "grow": true
               },
-              "literals": {
-                "gap": "8px"
+              "tokens": {
+                "gap": "{space.8}"
               },
               "parts": {
                 "carte": {
@@ -436,9 +434,9 @@
                 "align": "center",
                 "justify": "center"
               },
-              "literals": {
-                "width": "0px",
-                "min-width": "0px"
+              "tokens": {
+                "width": "{space.0}",
+                "min-width": "{space.0}"
               },
               "parts": {
                 "pastilleDroite": {
@@ -449,12 +447,12 @@
                   },
                   "tokens": {
                     "background-color": "{color.blanc}",
-                    "border-color": "{color.bleu-clair}"
+                    "border-color": "{color.bleu-clair}",
+                    "width": "{size.google-reviews.pastille-droite}",
+                    "height": "{size.google-reviews.pastille-droite}",
+                    "min-width": "{size.google-reviews.pastille-droite}"
                   },
                   "literals": {
-                    "width": "30px",
-                    "height": "30px",
-                    "min-width": "30px",
                     "border-radius": "15px",
                     "border-width": "1px"
                   },

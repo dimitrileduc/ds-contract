@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-section-header-standard",
+  "claim": "section-header :: Disposition=Standard diverges by rendering — near-identical HUG size and masked score 0.00%: the residual is entirely text raster.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: section-header)",
+  "method": "npm run extract:figma:visual -- section-header",
+  "observed": {
+    "key": "section-header :: Disposition=Standard",
+    "rawPct": 1.9104330938955052,
+    "maskedPct": 0,
+    "maskCoveragePct": 88.8205152202906,
+    "sizeOurs": "1082×158",
+    "sizeFigma": "1081×156"
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

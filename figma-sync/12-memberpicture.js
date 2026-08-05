@@ -27,9 +27,15 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
+          "fixedHeight": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
           "lits": {
-            "width": 364,
-            "height": 364,
             "radius": 500,
             "fillColor": {
               "r": 0.8509803921568627,
@@ -47,9 +53,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -69,9 +81,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -98,9 +116,15 @@ const COMPONENTS = [
             "primary": "CENTER",
             "counter": "CENTER"
           },
+          "fixedWidth": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
+          "fixedHeight": {
+            "px": 364,
+            "varName": "size/member-picture/root"
+          },
           "lits": {
-            "width": 364,
-            "height": 364,
             "radius": 500,
             "fillColor": {
               "r": 0.8509803921568627,
@@ -118,9 +142,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/fun-ia"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -140,9 +170,15 @@ const COMPONENTS = [
                 "counter": "MIN"
               },
               "insetOverlay": true,
+              "fixedWidth": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
+              "fixedHeight": {
+                "px": 364,
+                "varName": "size/member-picture/normal"
+              },
               "lits": {
-                "width": 364,
-                "height": 364,
                 "radius": 500,
                 "fillColor": {
                   "r": 0.8509803921568627,
@@ -158,7 +194,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 424
   }
 ];
 const ROW_H = 240, PAD = 40;

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "org-presentation-rendering",
+  "claim": "presentation's small residual has no concrete missing-binding or image-fill evidence among its divergent facts — two are format-comparison artefacts ('32px'!=32, '16px'!=16, the same pattern excluded as noise in texte-seo) and two are audit-instrumentation limits (probe-not-projected, leg-unavailable), not visual defects. With geometry passing exactly (Δpx 0/0) and no dominant driver identified, the residual is classed as the generic cross-renderer floor.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/organisms/presentation/result.json (facts: presentation.structure.gap-root, presentation.structure.gap-wrapper, presentation.property.titre, presentation.composition.button)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts presentation",
+  "observed": {
+    "geometryDeltaPx": {
+      "width": 0,
+      "height": 0
+    },
+    "rawPct": 0.3530901968401968,
+    "divergentFacts": [
+      {
+        "id": "presentation.property.titre",
+        "reason": "probe-not-projected:child-renders-a-literal"
+      },
+      {
+        "id": "presentation.composition.button",
+        "reason": "leg-unavailable:generated / agreement-unknown"
+      },
+      {
+        "id": "presentation.structure.gap-root",
+        "reason": "contract-value-differs:\"32px\"!=32"
+      },
+      {
+        "id": "presentation.structure.gap-wrapper",
+        "reason": "contract-value-differs:\"16px\"!=16"
+      }
+    ],
+    "honestyNote": "no dominant visual driver was found among the audited facts — this is named rather than a guessed mechanism."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}

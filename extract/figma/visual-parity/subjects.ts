@@ -233,18 +233,22 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     setNodeId: '2053:1247',
     renderWidth: 280, // master absoluteBoundingBox 280×128 — height already literal-pinned
   },
-  // Select is DELIBERATELY NOT a pixel subject (004, named exclusion). At
-  // renderWidth 280px its box/border/chevron match, BUT a native <select> does
-  // NOT render its selected-option TEXT in headless Chromium (this harness's
-  // renderer) — the "ours"/code side comes up empty while Figma shows
-  // « Texte de saisie ». The code is correct (it emits <select><option>{value},
-  // and the dashboard's real-browser render shows the text); only headless
-  // drops the option display. The masked score hides the gap (text rects
-  // excluded), so a Select triptych would read as a false failure. Input and
-  // Textarea KEEP their pixel coverage — <input>/<textarea> DO render their text
-  // headless (both 0.00%). The Select's text fidelity is covered by build +
-  // eval + deterministic-roundtrip, its box/chevron by the figma-script canvas
-  // render — not by pixels.
+  // Select REJOINS pixel coverage (014, US3/T025) — its 004 exclusion (a
+  // comment, never code) claimed a native <select> does NOT render its
+  // selected-option TEXT in headless Chromium, hiding the gap under the
+  // masked score. Re-tested (proofs/recus/select-exclusion.json, T026): the
+  // claim is REFUTED — headless Chromium DOES paint the option text, same as
+  // Input/Textarea. No criterion is relaxed: same regions, thresholds and
+  // proof bar as the other 33 subjects.
+  {
+    id: 'select',
+    label: 'Select (Piqueray)',
+    kind: 'contract',
+    contractId: 'ds.select',
+    fileKey: PIQUERAY,
+    setNodeId: '2053:1249',
+    renderWidth: 280, // same content-width brick as Input/Textarea (004) — master is a FIXED 280px design-time frame
+  },
   // Icon visual coverage (002-governed-icons-button, D10/T048 — the proof
   // 001 deferred to v1.3, commit 38aee13). NOT one subject per icon: a bare
   // icon master has no contract of its own (D1 — the registry is the only
@@ -313,6 +317,6 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   },
   { id: 'product-card', label: 'ProductCard (Piqueray)', kind: 'contract', contractId: 'ds.product-card', fileKey: PIQUERAY, setNodeId: '2068:1972' },
   { id: 'realisation', label: 'Realisation (Piqueray)', kind: 'contract', contractId: 'ds.realisation', fileKey: PIQUERAY, setNodeId: '2095:2484' },
-  { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397' },
+  { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397', renderWidth: 1550 }, // Phase 6 (015), named-repair: both dispositions declare layoutSizingHorizontal FIXED at 1550px on the isolated master (figma_get_component_for_development, read-only) — the contract's own align-self:stretch correctly fills every REAL consumer's own container (verified live: coordonnees' embedded instance measures 480px, its own wrapper's content width) and must NOT carry a width itself, or every stretch-context consumer regresses (confirmed: adding one broke coordonnees/sav/presentation, reverted). This is a harness-only pin, isolation-context width, same class as accordion-row's own 1550.
   { id: 'tab', label: 'Tab (Piqueray)', kind: 'contract', contractId: 'ds.tab', fileKey: PIQUERAY, setNodeId: '2061:1588', renderWidth: 86 },
 ];

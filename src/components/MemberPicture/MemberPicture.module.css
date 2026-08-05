@@ -3,22 +3,29 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: 364px;
-  height: 364px;
+  width: var(--size-member-picture-root);
+  height: var(--size-member-picture-root);
   border-radius: 500px;
   background-color: #d9d9d9;
   position: relative;
 }
 
 .taille-member-card {
-  width: 363.5px;
-  height: 363.5px;
+  width: var(--size-member-picture-root-member-card);
+  height: var(--size-member-picture-root-member-card);
 }
 
 .etat-defaut {
@@ -30,8 +37,8 @@
 }
 
 .funIa {
-  width: 364px;
-  height: 364px;
+  width: var(--size-member-picture-fun-ia);
+  height: var(--size-member-picture-fun-ia);
   border-radius: 500px;
   position: absolute;
   aspect-ratio: 1;
@@ -40,8 +47,11 @@
 }
 
 .taille-member-card .funIa {
-  width: 363.5px;
-  height: 363.5px;
+  width: var(--size-member-picture-fun-ia-member-card);
+}
+
+.taille-member-card .funIa {
+  height: var(--size-member-picture-fun-ia-member-card);
 }
 
 .etat-defaut .funIa {
@@ -59,8 +69,8 @@
 }
 
 .normal {
-  width: 364px;
-  height: 364px;
+  width: var(--size-member-picture-normal);
+  height: var(--size-member-picture-normal);
   border-radius: 500px;
   position: absolute;
   aspect-ratio: 1;
@@ -70,8 +80,11 @@
 }
 
 .taille-member-card .normal {
-  width: 363.5px;
-  height: 363.5px;
+  width: var(--size-member-picture-normal-member-card);
+}
+
+.taille-member-card .normal {
+  height: var(--size-member-picture-normal-member-card);
 }
 
 .etat-defaut .normal {

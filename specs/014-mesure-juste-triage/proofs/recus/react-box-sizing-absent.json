@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "react-box-sizing-absent",
+  "claim": "La surface React livrée est la SEULE des quatre à ne pas être border-box. Figma l'est (l'émetteur force strokeAlign: INSIDE), core/emit-html.ts le déclare explicitement, le playground et la preview canvas aussi — core/emit-react.ts ne le pose nulle part. Une part qui lie une taille ET du padding rend donc plus large dans le produit livré que dans Figma et que dans notre propre aperçu de mesure.",
+  "claimSource": "core/emit-html.ts:131-143 (la règle et sa justification) · core/emit-react.ts (aucune occurrence) · src/ (aucune occurrence)",
+  "method": "grep -ac 'box-sizing' core/emit-*.ts && rg -l box-sizing src/ playground/src/styles.css playground/src/engine/canvas-preview.ts",
+  "observed": {
+    "parSurface": {
+      "figma": "border-box — l'émetteur force strokeAlign: INSIDE (matrice des capacités, ligne 65)",
+      "emit-html": "border-box — déclaré : `.k, .k *, .k *::before, .k *::after { box-sizing: border-box }`",
+      "playground + canvas-preview": "border-box — playground/src/styles.css:51, canvas-preview.ts:591",
+      "emit-react": "AUCUNE déclaration — ni dans l'émetteur, ni dans aucun fichier de src/"
+    },
+    "piegeDeMesure": "grep SANS -a rend 0 sur core/emit-html.ts : ces fichiers TS contiennent un octet NUL et grep les traite en binaire. Le premier relevé de cette session a donc conclu à tort « aucun box-sizing nulle part ». Même piège que extract/figma/visual-parity/run.ts. Toujours grep -a sur les sources de ce dépôt.",
+    "blastRadius": {
+      "contracts": 9,
+      "sur": 34,
+      "ids": ["ds.accordion-row", "ds.carte", "ds.coordonnees", "ds.faq", "ds.footer", "ds.google-reviews", "ds.review-card", "ds.sav", "ds.textarea"],
+      "critere": "une part portant à la fois (width|height|min-width|min-height) et un padding, dans tokens ou literals"
+    },
+    "recuAnterieur": "Le commentaire de core/emit-html.ts porte déjà la preuve de ce que la règle évite : « sans elle, chaque part liant width/height + padding gonflait du padding — reçu de parité visuelle : piste du Switch 36×24 contre 32×20 chez Figma ». Le défaut que cette règle corrige est donc vivant, aujourd'hui, dans le React livré.",
+    "pourquoiLInstrumentNeLeVoitPas": "Le harnais de parité visuelle compare Figma à l'émetteur HTML (render.ts, en-tête de module : « The contract is emitted by core/emit-html.ts »), qui porte la bonne règle. La surface qui diverge n'est mesurée par rien sur cet axe. Ce n'est pas un chiffre faux — c'est un fait hors de portée de l'instrument, la classe de défaut que 014 existe pour refuser."
+  },
+  "verdict": "confirmed",
+  "ownerRuling": "2026-08-04 — l'owner tranche : oubli, pas un choix délibéré. Une bibliothèque qui impose son modèle de boîte serait un arbitrage défendable, mais aucune trace d'un tel arbitrage n'existe, et les trois autres surfaces posent la règle avec la même justification.",
+  "consequenceForNextSpec": "015 doit traiter ceci AVANT de convertir les 260 littéraux : la règle décide quelle boîte le token décrit. Convertir d'abord, c'est convertir deux fois.",
+  "browser": null,
+  "date": "2026-08-04"
+}

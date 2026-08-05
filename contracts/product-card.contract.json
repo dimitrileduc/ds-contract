@@ -81,9 +81,9 @@
             "src": "{imageUrl}",
             "alt": "{imageAlt}"
           },
-          "literals": {
-            "width": "240px",
-            "height": "240px"
+          "tokens": {
+            "width": "{size.product-card.image}",
+            "height": "{size.product-card.image}"
           }
         },
         "Titre": {
@@ -121,12 +121,10 @@
           }
         }
       },
-      "literals": {
-        "gap": "16px",
-        "width": "364px"
-      },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "gap": "{space.16}",
+        "width": "{size.product-card.root}"
       },
       "declared": {
         "text-rendering": "geometricprecision"

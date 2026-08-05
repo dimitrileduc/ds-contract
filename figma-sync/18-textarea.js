@@ -30,14 +30,19 @@ const COMPONENTS = [
           },
           "fill": "color/blanc",
           "stroke": "color/bleu-gris",
+          "bindings": {
+            "paddingTop": "space/12",
+            "paddingBottom": "space/12",
+            "paddingLeft": "space/12",
+            "paddingRight": "space/12"
+          },
+          "fixedHeight": {
+            "px": 128,
+            "varName": "size/textarea/root"
+          },
           "lits": {
-            "paddingTop": 12,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
             "strokeWeight": 1,
-            "radius": 0,
-            "height": 128
+            "radius": 0
           },
           "children": [
             {

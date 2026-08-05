@@ -3,21 +3,28 @@
  * Regenerate with: npm run generate
  */
 
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
 .root {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 16px;
-  width: 364px;
+  gap: var(--space-16);
+  width: var(--size-member-card-root);
 }
 
 .text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .Nom {

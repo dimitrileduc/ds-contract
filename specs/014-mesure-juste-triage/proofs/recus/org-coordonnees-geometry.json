@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "org-coordonnees-geometry",
+  "claim": "coordonnees diverges by contract-geometry — the two-column layout's visual order is reversed between contract ('row') and Figma ('row-reverse'); a concrete, specific layout-direction mismatch, not cross-renderer noise.",
+  "claimSource": "specs/013-auditer-fidelite-organismes/proofs/organisms/coordonnees/result.json (fact: coordonnees.structure.colonnes-ordre)",
+  "method": "npx tsx extract/figma/organism-audit/tools/run-one.mts coordonnees",
+  "observed": {
+    "geometryDeltaPx": {
+      "width": 0,
+      "height": 0
+    },
+    "rawPct": 0.5222631289161859,
+    "divergentFacts": [
+      {
+        "id": "coordonnees.structure.colonnes-ordre",
+        "reason": "contract-value-differs:root.visualColumnOrder:\"row\"!=\"row-reverse\""
+      }
+    ]
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-03"
+}
