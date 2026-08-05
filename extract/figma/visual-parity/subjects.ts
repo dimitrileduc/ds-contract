@@ -212,9 +212,11 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // Field), so the diff judges box styling (border/padding/color/font) at a
   // shared size instead of two different boxes. Both match at 0.00%. Height is
   // untouched — Input HUGs to 48px, Textarea carries a literal 128px height,
-  // both already master-height; only width needed the fix. (Select is a THIRD
-  // such brick but is NOT a subject — a native <select> drops its option text
-  // in headless Chromium; see its named-exclusion note just below.)
+  // both already master-height; only width needed the fix. (Select is the
+  // THIRD such brick and a subject since 014/T025 — the "headless Chromium
+  // drops its option text" claim behind its 004 exclusion was REFUTED; the
+  // empty capture came from emit-html emitting the text as a bare <select>
+  // child, DW-014-001, repaired by tinyspec select-option-emit.)
   {
     id: 'input',
     label: 'Input (Piqueray)',

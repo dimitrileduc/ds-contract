@@ -15,21 +15,24 @@
  *   1. every top-level root gets the rule, self AND descendants — `box-sizing`
  *      is not inherited, so a rule on the root alone leaves nested parts
  *      content-box (this is the shape that made `ds.sav`/`ds.footer`/`ds.faq`
- *      render a width authored as bbox − padding);
+ *      render a width authored as bbox − padding) — asserted on BOTH text
+ *      surfaces, react (CSS Modules: the class is the part name) and html
+ *      (BEM: the shared `.<name>` prefix on single-root, one
+ *      `.<name>__<root>` sibling class per root on multi-root);
  *   2. on a single-root contract — what all 34 Piqueray contracts are today —
  *      `react` and `html` both declare it: the delivered library and the
  *      surface the visual-parity harness renders agree on the box model;
  *   3. the rule is emitted once per ROOT, not once per part — a regression
  *      re-emitting it per part would still pass property 1.
  *
- * NAMED LIMIT, found by this very fixture (2026-08-05, registered as
- * DW-015-001, receipt `emit-html-multiroot-box-sizing.md`): `core/emit-html.ts`
- * hooks its rule on the shared BEM prefix `.<name>`, which no element carries
- * in a MULTI-ROOT composite (each root compiles to its own `.<name>__<root>`
- * sibling class) — so the html surface declares border-box for nothing there.
- * Latent, not live: zero Piqueray contract is multi-root today, which is why
- * property 2 below is asserted on the single-root shape and the multi-root
- * gap is registered rather than silently asserted away.
+ * DW-015-001, found by this very fixture's first run (2026-08-05, receipt
+ * `emit-html-multiroot-box-sizing.md`): `core/emit-html.ts` hooked its rule
+ * on the shared BEM prefix `.<name>`, which no element carries in a
+ * MULTI-ROOT composite — so the html surface declared border-box for nothing
+ * there. Latent (zero Piqueray contract is multi-root), it was registered as
+ * a NAMED LIMIT here rather than silently asserted away, then repaired by
+ * tinyspec select-option-emit — property 1's html/multi-root leg is that
+ * repair's standing assertion.
  */
 import { ContractSchema } from '../../scripts/contract-schema.js';
 import { emitHtml } from '../../core/emit-html.js';
@@ -80,18 +83,23 @@ const countRule = (s: string) => (s.match(/box-sizing:\s*border-box/g) ?? []).le
 
 // --------------------------------------------------------------------------
 // Property 1 — every top-level root declares the rule for itself AND its
-// descendants, in both the single-root and multi-root shapes.
+// descendants, in both the single-root and multi-root shapes, on both text
+// surfaces. The html/multi-root leg is DW-015-001's exact gap: the rule was
+// hooked on the shared `.box-model-multi` prefix, which no element carries
+// there — each root needs its own `.box-model-multi__<root>` rule.
 // --------------------------------------------------------------------------
-for (const [contract, roots] of [
-  [singleRoot, ['root']],
-  [multiRoot, ['root', 'trailer']],
+for (const [contract, emitter, surface, roots] of [
+  [singleRoot, emitReact, 'react', ['root']],
+  [multiRoot, emitReact, 'react', ['root', 'trailer']],
+  [singleRoot, emitHtml, 'html', ['box-model']],
+  [multiRoot, emitHtml, 'html', ['box-model-multi__root', 'box-model-multi__trailer']],
 ] as const) {
-  const out = css(contract, emitReact);
+  const out = css(contract, emitter);
   for (const rootClass of roots) {
     for (const selector of [`.${rootClass}`, `.${rootClass} *`, `.${rootClass} *::before`, `.${rootClass} *::after`]) {
       if (!out.includes(selector)) {
         throw new Error(
-          `react/${contract.id}: the border-box rule is missing the selector \`${selector}\` — a part nested under .${rootClass} would size content-box while Figma sizes border-box. Got:\n${out}`,
+          `${surface}/${contract.id}: the border-box rule is missing the selector \`${selector}\` — a part nested under .${rootClass} would size content-box while Figma sizes border-box. Got:\n${out}`,
         );
       }
     }
@@ -111,14 +119,21 @@ if (countRule(reactSingle) < 1 || countRule(htmlSingle) < 1) {
 }
 
 // --------------------------------------------------------------------------
-// Property 3 — once per top-level root, never once per part.
+// Property 3 — once per top-level root, never once per part, on both
+// surfaces (2 rules for the two-root contract: DW-015-001's repaired shape).
 // --------------------------------------------------------------------------
-if (countRule(reactSingle) !== 1 || countRule(css(multiRoot, emitReact)) !== 2) {
-  throw new Error(
-    `react: expected exactly 1 declaration for the single-root contract and 2 for the two-root contract, got ${countRule(reactSingle)} and ${countRule(css(multiRoot, emitReact))} — the rule must be emitted per ROOT, not per part.`,
-  );
+for (const [emitter, surface, single] of [
+  [emitReact, 'react', reactSingle],
+  [emitHtml, 'html', htmlSingle],
+] as const) {
+  const multi = countRule(css(multiRoot, emitter));
+  if (countRule(single) !== 1 || multi !== 2) {
+    throw new Error(
+      `${surface}: expected exactly 1 declaration for the single-root contract and 2 for the two-root contract, got ${countRule(single)} and ${multi} — the rule must be emitted per ROOT, not per part.`,
+    );
+  }
 }
 
 console.log(
-  'react-box-model: every top-level root declares border-box for self + descendants (single-root and multi-root); react and html agree on the single-root shape Piqueray ships; emitted once per root. Multi-root html gap named as DW-015-001, latent (0 multi-root contracts today).',
+  'react-box-model: every top-level root declares border-box for self + descendants (single-root and multi-root), on react AND html; emitted once per root. DW-015-001 (multi-root html hooked on a class no element carries) stays repaired.',
 );

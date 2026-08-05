@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "pv-select",
+  "claim": "select :: Select diverges by rendering — sizes IDENTICAL (560×96), the capture paints « Texte de saisie », and the residual is cross-renderer text rasterization on the option glyphs at the same localized ~179×20px region as input, input's exact score signature.",
+  "claimSource": "extract/figma/visual-parity/triage.ts (TRIAGE rule: select, re-classed from `engine` by tinyspec select-option-emit)",
+  "method": "npm run extract:figma:visual -- select — re-measured 2026-08-05 AFTER the emitter repair (DW-014-001: core/emit-html.ts renderPart() now wraps the text of a part that IS the <select> in a bare <option>, the shipped React surface's shape, fixture evals/fixtures/emit-html-select-option-text.ts red→green)",
+  "observed": {
+    "key": "select :: Select",
+    "rawPct": 0.16927083333333334,
+    "maskedPct": 0.16927083333333334,
+    "maskCoveragePct": 0,
+    "sizeOurs": "560×96",
+    "sizeFigma": "560×96",
+    "diagnosis": "diff localized middle-left (179×20px)",
+    "before": "rawPct 0.8500744047619047 with an EMPTY code-side capture (select-exclusion.json, 2026-08-03) — the `engine` cause this rule carried until the repair",
+    "optionTextRendered": true,
+    "maskCoverageNote": "stays 0.00% for input's exact documented reason: the native widget paints its visible value itself (the <option> text node has no client rects while the dropdown is closed), so the value is not a masked DOM text rect — a text-mask miss, not evidence the residual is non-textual. The tinyspec's expected `maskCoveragePct > 0` is therefore NOT met and is named here rather than approximated: the proof the text paints is the capture itself (out/select/select.ours.png) plus the 0.85→0.17 drop to input's signature."
+  },
+  "verdict": "confirmed",
+  "browser": {
+    "version": "151.0.7922.34",
+    "executablePath": "/Users/dlstudio/Library/Caches/ms-playwright/chromium-1234/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
+  },
+  "date": "2026-08-05"
+}

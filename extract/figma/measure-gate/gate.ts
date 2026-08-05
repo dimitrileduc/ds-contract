@@ -155,6 +155,13 @@ export interface DiscoveredDeferredWork {
   id: string;
   cause: string;
   receiptId: string;
+  /** tinyspec select-option-emit — the closure mechanism
+   *  measure-gate-counting-v2.md §2 gave `entries` (`resolvedBy`, non-null ⇒
+   *  no longer a work item), extended to this roster: a resolved discovery
+   *  leaves `counts.deferredWork` while the entry STAYS in the register and
+   *  under C4 (a resolved entry still cites a dated, re-tested receipt).
+   *  The printed count reflects closure; a prose note alone never does. */
+  resolvedBy?: string | null;
 }
 
 export interface ReceiptRecord {
@@ -192,8 +199,10 @@ export interface MeasureGateCounts {
    *  (015/016 dimension on `byCause`, contracts/measure-gate.interface.md
    *  §4). */
   byCause: Record<CauseSlug, number>;
-  /** `discoveredDeferredWork.length` — never mixed into `byCause` (§4 ter):
-   *  a separate roster of "found, not fixed, not yet scheduled." */
+  /** The UNRESOLVED discoveredDeferredWork entries (`resolvedBy` null) —
+   *  never mixed into `byCause` (§4 ter): a separate roster of "found, not
+   *  fixed, not yet scheduled." A resolved entry stays in the register (and
+   *  under C4) but no longer counts as work to do. */
   deferredWork: number;
 }
 
@@ -386,7 +395,7 @@ export function evaluateMeasureGate(input: MeasureGateInput): MeasureGateResult 
       measuredLines: input.lines.length,
       divergentLines: divergent.length,
       byCause,
-      deferredWork: input.discoveredDeferredWork.length,
+      deferredWork: input.discoveredDeferredWork.filter((d) => !d.resolvedBy).length,
     },
     refusals,
     browser: input.browser,

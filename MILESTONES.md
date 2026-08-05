@@ -1121,3 +1121,36 @@ went from 7 to 89 acknowledgements — spec 016 restores that axis. And
 visual-parity instrument still renders `emit-html`, never the delivered React
 surface, so SC-003 rests on direct measurement and the new eval rather than on
 that instrument.
+
+## 2026-08-05 — tinyspec `select-option-emit`: the two named engine defects closed with measured proof
+
+The first tinyspec (small-change track): both `core/emit-html.ts` defects from
+the deferred-work register repaired — the delivered React library unchanged by
+one byte (golden's 213 hashes re-derived, diff empty; the one real re-pin was
+the plugin engine receipt).
+
+- **DW-014-001** — a part that IS the `<select>` emitted its text as a bare
+  child, dropped by the HTML5 parser (014's empty capture, mask coverage 0).
+  Now wrapped in a bare `<option>` on both text branches — the shipped React
+  surface's exact shape, no state attributes. Fixture red first
+  (`emit-html-select-option-text`, now a standing C1 eval); re-measured
+  **0.85 % → 0.17 %**, « Texte de saisie » paints, the same score signature
+  and ~179×20px text region as `input`; triage re-classed `engine` →
+  `rendering` (receipt `pv-select.json`). Named deviation: the expected
+  `maskCoveragePct > 0` is NOT met — the native widget paints its value
+  itself (input's documented text-mask miss); the proof is the capture and
+  the drop.
+- **DW-015-001** — the html border-box rule hung on the shared BEM prefix no
+  multi-root node carries. Now one rule per top-level root via `topRoots`
+  (emit-react's loop), single-root path byte-identical; the finding fixture
+  hardened into the standing assertion (red first, archived in the receipt).
+- **The printed count closes the register**: `resolvedBy` extended from
+  `entries` to the `deferredWork` roster (policy fixture red first), so
+  `npm run measure:gate` reports **deferred work 4 → 2** — PASS, zero
+  refusals, `contract-geometry` still 0. Remaining: DW-014-002 (instrument
+  renders emit-html, not the delivered React) and DW-014-003 (rich-text
+  through composition).
+- Visual baseline refreshed at head (40 rows, `--write-baseline` after a full
+  reviewed run — the stale 006-era 13-row baseline is finally current); the
+  full-run REPORT diff touched exactly one row: select. Suite: **184/184**
+  (+1 case).
