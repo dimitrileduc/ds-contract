@@ -52,6 +52,33 @@ npm run build && npm run golden:update && npm run plugin:check   # re-pins déri
 # audit de liaison (U1b) : bridge/bindings-audit.js → proofs/bindings-audit.json (zéro manquant)
 ```
 
+## Vérifier l'avant/après soi-même (demande owner du 2026-08-05)
+
+Trois moyens, du plus autonome au plus détaillé.
+
+**1. Dans Figma, sans aucun outil du dépôt.** `Fichier › Afficher l'historique des
+versions`. Chaque lot a posé un point nommé `016/<lot>/avant` — on peut afficher
+n'importe lequel, comparer, et restaurer. C'est du Figma natif.
+
+**2. La page de revue visuelle** — les 9 maquettes en avant | après | pixels changés :
+
+```bash
+npx tsx specs/016-canvas-vrai/tools/revue-visuelle.mts \
+  --avant .page-parity/00-REFERENCE-AVANT-CHANTIER \
+  --apres .page-parity/<jeu-final> \
+  --out   specs/016-canvas-vrai/proofs/REVUE-VISUELLE.html
+```
+
+Page **autonome** (images embarquées) : elle reste lisible sans le dépôt et sans les
+PNG d'origine. Elle n'est PAS commitée (~12 Mo) — l'outil l'est, elle se regénère.
+
+`.page-parity/00-REFERENCE-AVANT-CHANTIER/` = les 9 maquettes **avant tout changement
+de dessin** (jeu d'étalonnage `d`, 45 Mo, hors git). C'est la référence de tout le
+chantier : ne pas l'effacer avant la clôture.
+
+**3. Les triptyques par lot** — `specs/016-canvas-vrai/proofs/<lot>/crops/`, commités,
+générés par `pages:compare` là où il y a une différence.
+
 ## La sweep (chaque point de contrôle et la clôture — jamais deux sweeps en parallèle)
 
 ```bash
