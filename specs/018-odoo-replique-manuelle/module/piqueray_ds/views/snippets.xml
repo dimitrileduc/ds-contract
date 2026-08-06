@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  LA déclaration de bloc posable. Cardinalité : UN (FR-003).
+
+  Un deuxième `t-snippet` ici serait un ÉCHEC de FR-003, pas un bonus. Les deux
+  autres modèles de la chaîne — `t_section_header` et `t_button` — sont présents
+  dans le module et volontairement absents du panneau : ce sont des modèles
+  APPELÉS, pas des blocs. C'est un patron courant de la source 19.0
+  (`s_masonry_block`, `s_dynamic_snippet_template`, `website_search_box_input`
+  sont tous absents du registre `t-snippet` et appelés par un modèle qui, lui,
+  y est).
+
+  Le mécanisme : héritage `xpath` de `website.snippets`, l'entrée injectée dans
+  le groupe `snippet_structure` du panneau.
+
+  Les pages de mesure de la US3 (harness.xml) sont des PAGES, pas des blocs :
+  elles n'ajoutent aucune entrée ici et ne touchent donc pas à FR-003.
+-->
+<odoo>
+
+  <template id="snippets_piqueray" inherit_id="website.snippets" name="Piqueray · entrée du panneau de blocs">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_presentation"
+         string="Piqueray · Présentation"
+         t-thumbnail="/piqueray_ds/static/src/img/snippet-presentation.svg"/>
+    </xpath>
+  </template>
+
+</odoo>

@@ -1,0 +1,416 @@
+/**
+ * components.css — les trois composants gouvernés, ÉCRITS À LA MAIN.
+ *
+ * ⚠️ Ce fichier n'est PAS généré. Rien dans le dépôt ne le compare aux contrats :
+ *    le différentiel a trois axes (code⟷contrat, canvas⟷contrat, variables⟷tokens)
+ *    et une quatrième surface n'en a aucun. Si un contrat change, ce fichier
+ *    devient silencieusement faux et aucune porte ne s'allume. Voir ../../README.md.
+ *
+ * ── D'où vient ce contenu ────────────────────────────────────────────────────
+ * De la feuille que `emitHtml` produit pour `ds.presentation` v2.2.0 — qui
+ * contient DÉJÀ, dédupliquée et dans l'ordre des dépendances, la CSS de
+ * `ds.button` v2.0.0 et de `ds.section-header` v2.1.1. Le travail de montage est
+ * un RENOMMAGE MÉCANIQUE : `var(--x)` → `var(--pqr-x)`, 52 occurrences, parce que
+ * la 4ᵉ sortie du pipeline de jetons publie ses noms préfixés (FR-008). Compté
+ * comme tel dans proofs/volumes.json.
+ *
+ * Deux exceptions au renommage, et elles sont volontaires : `--dsc-border-width`
+ * et `--dsc-border-color` ne sont PAS des jetons. Ce sont des propriétés internes
+ * au moteur, déclarées et consommées à l'intérieur de cette même feuille (le
+ * moteur rend les bordures en `box-shadow: inset`). Elles portent déjà un
+ * espace de noms qui nous appartient et ne peut pas entrer en collision avec
+ * Odoo ; les préfixer une seconde fois n'aurait rien protégé.
+ *
+ * ── Pas de @layer, et c'est mesuré ───────────────────────────────────────────
+ * Odoo 19 n'emploie `@layer` NULLE PART (0 occurrence dans odoo/odoo) ni
+ * `:where()`. Le réflexe « isolons notre CSS dans une couche » nous ferait
+ * PERDRE : les déclarations non superposées l'emportent sur toute couche, donc
+ * le reboot de Bootstrap battrait la nôtre. Ce qui marche est ce que FR-006
+ * décrit : nos propres classes (spécificité 0-1-0) l'emportent sur les
+ * sélecteurs de type du reboot (0-0-1), sans bataille globale.
+ *
+ * ── Valeurs de style en clair ────────────────────────────────────────────────
+ * Il y en a, elles sont TOUTES héritées d'un contrat, et elles sont toutes
+ * inscrites et épinglées dans ./named-literals.registry.json (4 entrées :
+ * letter-spacing 3px, font-weight 300, icon size 20px, minHitArea 44px). La
+ * doctrine vise zéro valeur INVISIBLE, pas zéro littéral. Les 7 autres littéraux
+ * des contrats ont un jeton de même valeur et sont rendus en `var(--pqr-…)`.
+ */
+
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
+
+.button, .button *, .button *::before, .button *::after {
+  box-sizing: border-box;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  background-color: transparent;
+  cursor: pointer;
+  font-family: var(--pqr-font-family-montserrat);
+  font-size: var(--pqr-font-size-16);
+  font-weight: var(--pqr-font-weight-medium);
+  line-height: var(--pqr-font-line-height-22);
+  color: var(--pqr-color-blanc);
+  gap: var(--pqr-space-10);
+  padding-block: var(--pqr-space-16);
+  padding-inline: var(--pqr-space-32);
+  --dsc-border-width: var(--pqr-border-width-0);
+  text-transform: uppercase;
+  position: relative;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+.button--variant-default {
+  background-color: var(--pqr-color-noir-bleute);
+}
+
+.button--variant-orange {
+  background-color: var(--pqr-color-orange);
+}
+
+.button--variant-blanc {
+  background-color: var(--pqr-color-blanc);
+  color: var(--pqr-color-noir-bleute);
+}
+
+.button--variant-outlineBlanc {
+  --dsc-border-width: var(--pqr-border-width-2);
+  --dsc-border-color: var(--pqr-color-blanc);
+}
+
+.button--variant-link {
+  color: var(--pqr-color-noir-bleute);
+  border-radius: var(--pqr-radius-32);
+  padding-block: var(--pqr-space-4);
+  padding-inline: var(--pqr-space-0);
+}
+
+.button--variant-outlineNoir {
+  --dsc-border-width: var(--pqr-border-width-2);
+  --dsc-border-color: var(--pqr-color-noir-bleute);
+  color: var(--pqr-color-noir-bleute);
+}
+
+.button--variant-iconOnly {
+  width: var(--pqr-size-button-icon-only);
+  height: var(--pqr-size-button-icon-only);
+  gap: var(--pqr-space-0);
+  padding-inline: var(--pqr-space-16);
+  --dsc-border-width: var(--pqr-border-width-2);
+  --dsc-border-color: var(--pqr-color-noir-bleute);
+  color: var(--pqr-color-noir-bleute);
+}
+
+.button__iconLeft .pqr-glyph {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconLeft {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button__iconOnlyIcon .pqr-glyph {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconOnlyIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button--variant-iconOnly .button__label {
+  display: none;
+}
+
+.button__iconRight .pqr-glyph {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconRight {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
+
+.section-header, .section-header *, .section-header *::before, .section-header *::after {
+  box-sizing: border-box;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  gap: var(--pqr-space-8);
+  width: var(--pqr-size-section-header-root);
+  align-self: stretch;
+}
+
+.section-header--disposition-avecCta {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.section-header--alignement-gauche {
+  align-items: start;
+}
+
+.section-header__Accroche {
+  color: var(--pqr-color-noir-bleute);
+  font-size: var(--pqr-font-size-20);
+  font-weight: var(--pqr-font-weight-regular);
+  letter-spacing: 3px;
+  line-height: var(--pqr-font-line-height-25);
+  text-transform: uppercase;
+}
+
+.section-header__Titre {
+  color: var(--pqr-color-noir-bleute);
+  font-size: var(--pqr-font-size-40);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: var(--pqr-font-line-height-50);
+}
+
+.section-header__Titre > strong {
+  font-weight: var(--pqr-font-weight-bold);
+}
+
+.section-header--disposition-avecCta .section-header__Titre {
+  line-height: var(--pqr-font-line-height-40);
+}
+
+.section-header--emphase-hero .section-header__Titre {
+  line-height: var(--pqr-font-line-height-68);
+  font-weight: 300;
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  line-height: var(--pqr-font-line-height-40);
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  line-height: var(--pqr-font-line-height-30);
+}
+
+.section-header--disposition-avecCta .section-header__Titre {
+  font-size: var(--pqr-font-size-32);
+}
+
+.section-header--emphase-hero .section-header__Titre {
+  color: var(--pqr-color-blanc);
+  font-size: var(--pqr-font-size-54);
+}
+
+.section-header--emphase-moyen .section-header__Titre {
+  font-size: var(--pqr-font-size-32);
+}
+
+.section-header--emphase-compact .section-header__Titre {
+  font-size: var(--pqr-font-size-24);
+}
+
+/* Presentation — from ds.presentation v2.2.0 (core/emit-html.ts) */
+
+.presentation, .presentation *, .presentation *::before, .presentation *::after {
+  box-sizing: border-box;
+}
+
+.presentation {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  gap: var(--pqr-space-32);
+}
+
+.presentation__colGauche {
+  display: flex;
+  flex-direction: column;
+  width: var(--pqr-size-presentation-col-gauche);
+}
+
+.presentation__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--pqr-space-16);
+  width: var(--pqr-size-presentation-wrapper);
+}
+
+.presentation__Texte {
+  color: var(--pqr-color-noir);
+  font-size: var(--pqr-font-size-14);
+  line-height: var(--pqr-font-line-height-24);
+}
+
+.presentation__Texte > strong {
+  font-weight: var(--pqr-font-weight-bold);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * AJOUT DU MONTAGE ODOO — les 19 glyphes du registre gouverné
+ *
+ * Pourquoi une classe par glyphe, et pas un <svg> en ligne comme la surface de
+ * référence : un snippet Odoo est rendu UNE FOIS à la pose, puis son HTML est
+ * stocké dans la page. Un réglage postérieur manipule ce DOM — il ne re-rend
+ * pas le gabarit. Le choix de glyphe doit donc être portable par une CLASSE, ce
+ * que l'action intégrée ClassAction d'Odoo sait faire (BuilderSelect +
+ * BuilderSelectItem). Un t-if sur 19 branches aurait figé le glyphe à la pose et
+ * rendu FR-004b inatteignable.
+ *
+ * DÉVIATION NOMMÉE : la référence rend <span class="button__iconLeft"><svg…>, le
+ * module rend <span class="button__iconLeft pqr-glyph pqr-glyph--x">. Le balisage
+ * diffère ; la géométrie et la couleur sont reproduites. Les 3 règles
+ * .button__… svg ci-dessus ont été RETARGÉES vers .pqr-glyph — retargées, jamais
+ * dupliquées, pour qu'il n'y ait pas deux tailles d'icône dans la feuille.
+ *
+ * Les 20px viennent du contrat (icon.size) — entrée 018-t019-button-icon-size du
+ * registre des littéraux nommés.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+.pqr-glyph {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* 19 règles dérivées de contracts/icons.registry.json v1.2.0 — une par
+ * icons[].name, vers assets/icons/<icons[].asset>.svg. MÉCANIQUE : rien à
+ * trancher, l'entrée du registre suffit à écrire la règle. */
+.pqr-glyph--piqueray {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/piqueray.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/piqueray.svg');
+}
+.pqr-glyph--phone {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/phone.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/phone.svg');
+}
+.pqr-glyph--download {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/download.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/download.svg');
+}
+.pqr-glyph--pdf {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/pdf.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/pdf.svg');
+}
+.pqr-glyph--search {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/search.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/search.svg');
+}
+.pqr-glyph--user {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/user.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/user.svg');
+}
+.pqr-glyph--chevron-right {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/chevron-right.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/chevron-right.svg');
+}
+.pqr-glyph--chevron-left {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/chevron-left.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/chevron-left.svg');
+}
+.pqr-glyph--chevron-down {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/chevron-down.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/chevron-down.svg');
+}
+.pqr-glyph--chevron-up {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/chevron-up.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/chevron-up.svg');
+}
+.pqr-glyph--cart {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/cart.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/cart.svg');
+}
+.pqr-glyph--arrow-right {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/arrow-right.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/arrow-right.svg');
+}
+.pqr-glyph--arrow-left {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/arrow-left.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/arrow-left.svg');
+}
+.pqr-glyph--facebook {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/facebook.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/facebook.svg');
+}
+.pqr-glyph--instagram {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/instagram.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/instagram.svg');
+}
+.pqr-glyph--star {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/star.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/star.svg');
+}
+.pqr-glyph--external-link {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/external-link.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/external-link.svg');
+}
+.pqr-glyph--mail {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/mail.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/mail.svg');
+}
+.pqr-glyph--octicon-chevron-down12 {
+  -webkit-mask-image: url('/piqueray_ds/static/src/img/icons/octicon-chevron-down12.svg');
+  mask-image: url('/piqueray_ds/static/src/img/icons/octicon-chevron-down12.svg');
+}
+
+/* CAS PARTICULIER — les 2 glyphes du registre qui portent une couleur FIGÉE au
+ * lieu de currentColor. Relevé par exécution sur les 19 SVG :
+ *   star, octicon-chevron-down12
+ * Un masque les rendrait dans la couleur du texte et EFFACERAIT leur couleur
+ * propre (l'orange de l'étoile, le blanc du chevron). On repasse donc ces deux-là
+ * en image de fond, qui préserve les couleurs du fichier. Le jugement rendu : la
+ * fidélité de couleur l'emporte sur l'uniformité du mécanisme, parce qu'une étoile
+ * grise est un défaut visible alors que deux règles de plus ne le sont pas.
+ * Contrepartie assumée : ces deux glyphes n'héritent PAS de la couleur du bouton.
+ * C'est déjà vrai de la surface de référence — leur SVG ne porte pas currentColor. */
+.pqr-glyph--star {
+  background-color: transparent;
+  background-image: url('/piqueray_ds/static/src/img/icons/star.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.pqr-glyph--octicon-chevron-down12 {
+  background-color: transparent;
+  background-image: url('/piqueray_ds/static/src/img/icons/octicon-chevron-down12.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  -webkit-mask-image: none;
+  mask-image: none;
+}

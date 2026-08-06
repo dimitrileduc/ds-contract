@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "note": "Registre LOCAL au module piqueray_ds (spec 018), de la même forme que contracts/named-literals.registry.json. Chaque entrée est une valeur écrite en clair dans static/src/css/components.css, HÉRITÉE d'un contrat et épinglée byte-à-byte contre lui. La doctrine du dépôt vise ZÉRO VALEUR INVISIBLE, pas zéro littéral : un littéral nommé, épinglé et comparé est conforme ; un nombre écrit à la main et déclaré nulle part ne l'est pas. Aucune de ces valeurs n'est inventée par 018 — toutes viennent du contrat, et le montage n'a fait que les transcrire là où la surface de référence les émet.",
+  "$compte": "4 entrées. research.md §D4 et contracts/odoo-tokens-output.md §6 en annonçaient UNE. L'écart est mesuré, pas subi : ces deux documents n'ont examiné que les 4 littéraux du canal `literals` jugés actifs, et ont manqué (a) font-weight: 300, sur la branche emphase=hero du même canal, (b) icon.size et (c) a11y.minHitArea, qui sont des nombres bruts portés par le contrat dans D'AUTRES canaux que `literals`. Relevé complet : proofs/inventaire-chaine.md §5 et §7.2.",
+  "$methode": "Relevé par exécution sur le rendu FRAIS des trois contrats par emitHtml (l'état fusionné, pas core/samples/ qui est périmé). Toute valeur de style brute de la CSS de référence a été tracée jusqu'à sa source ; celles qui ont un token de même valeur sont rendues en var(--pqr-…) et n'apparaissent PAS ici. 7 des 9 littéraux du canal `literals` sont dans ce cas.",
+  "entries": [
+    {
+      "contractId": "ds.section-header",
+      "contractVersion": "2.1.1",
+      "pointer": "/anatomy/root/parts/Accroche/literals/letter-spacing",
+      "channel": "letter-spacing",
+      "value": "3px",
+      "reason": "Aucun token de même valeur : `font.letter-spacing` ne contient que `15`. La porte de géométrie de 015 gouverne un ensemble FERMÉ de canaux de mise en page (width, height, min-*, gap, padding-*, + background-image en exception) — la typographie n'y est pas, et ROADMAP.md range les 89 littéraux de trait, peinture et typographie dans le travail non assigné. Ce littéral est donc légitime et connu, pas un défaut de 018. Minter {font.letter-spacing.3} serait le vrai correctif de fond, mais il coûterait un deuxième point de contact avec le code du dépôt, trois re-pins et un acquittement de parité — et aucun contrat ne référencerait ce token, qui serait minté pour servir un artefact écrit à la main. Ce correctif appartient à la spec des 89 littéraux.",
+      "decidedOn": "2026-08-06",
+      "receiptId": "018-t019-accroche-letter-spacing",
+      "note": "La part Accroche n'est PAS rendue sur le chemin emprunté (ds.presentation compose avec accroche2: false). La règle CSS est néanmoins émise par la surface de référence pour toutes les parts, y compris masquées — vérifié par exécution. Le littéral entre donc au registre parce que le module doit écrire la règle pour rester comparable, et non parce qu'il est visible. L'argument de research.md §D4 (« il change visiblement la largeur de la ligne ») est FAUX sur ce chemin ; la décision tient, sa raison change."
+    },
+    {
+      "contractId": "ds.section-header",
+      "contractVersion": "2.1.1",
+      "pointer": "/anatomy/root/parts/Titre/literalsByProp/emphase/hero/font-weight",
+      "channel": "font-weight",
+      "value": "300",
+      "reason": "Aucun token de même valeur : `font.weight` ne porte que regular=400, medium=500, semibold=600, bold=700. Même famille de cause que l'entrée précédente — canal typographique, hors de la porte de géométrie de 015. Manqué par research.md §D4, qui n'a pas examiné la branche emphase=hero.",
+      "decidedOn": "2026-08-06",
+      "receiptId": "018-t019-titre-hero-font-weight",
+      "note": "Branche non atteignable sur le bloc posé : `emphase` est figé à `moyen` (zones/ds-section-header.json). La règle est écrite parce que la CSS de référence l'émet. Conséquence portée dans fonts.css : aucune face Montserrat 300 n'est servie — ni par le module, ni par le harnais —, donc les deux côtés de la comparaison synthétisent identiquement et l'invariant C7 (symétrie des polices) tient."
+    },
+    {
+      "contractId": "ds.button",
+      "contractVersion": "2.0.0",
+      "pointer": "/anatomy/root/parts/{iconLeft,iconOnlyIcon,iconRight}/icon/size",
+      "channel": "icon-size",
+      "value": "20",
+      "reason": "Nombre brut porté par le contrat dans le canal `icon.size` — pas dans `literals`, ce qui explique qu'aucun document de conception ne l'ait vu. Trois tokens valent bien 20px ({font.size.20}, {font.line-height.20}, {size.checkbox.root}) mais AUCUN n'est sémantiquement juste pour la taille d'une icône de bouton : lier une icône de bouton à {size.checkbox.root} fabriquerait un faux vocabulaire, exactement ce que la doctrine « la géométrie se porte en tokens » existe pour empêcher. Le littéral est donc nommé plutôt que mal lié.",
+      "decidedOn": "2026-08-06",
+      "receiptId": "018-t019-button-icon-size",
+      "note": "Rendu en CSS par `width: 20px; height: 20px` sur le `svg` de chacune des trois parts d'icône — 9 occurrences dans la feuille de référence (3 parts × 3 déclarations). Un token {size.button.icon} serait le correctif de fond ; il appartient à une spec qui a le droit de toucher tokens/."
+    },
+    {
+      "contractId": "ds.button",
+      "contractVersion": "2.0.0",
+      "pointer": "/a11y/minHitArea",
+      "channel": "min-hit-area",
+      "value": "44",
+      "reason": "Nombre brut porté par le contrat dans son bloc `a11y`, que le moteur rend en `width: max(100%, 44px)` / `height: max(100%, 44px)` sur un ::before centré non visuel. Ce n'est PAS une constante du moteur — vérifié dans core/emit-html.ts, qui lit `contract.a11y.minHitArea` et interpole. Aucun token ne le porte, et il ne devrait probablement pas en avoir : 44px est le plancher de cible tactile des WCAG, une contrainte d'accessibilité et non une décision de design system.",
+      "decidedOn": "2026-08-06",
+      "receiptId": "018-t019-button-min-hit-area",
+      "note": "Seul ds.button porte un bloc a11y ; ds.section-header et ds.presentation n'en ont pas."
+    }
+  ]
+}

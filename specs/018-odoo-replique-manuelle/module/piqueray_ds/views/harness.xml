@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Les TROIS pages de mesure de la US3.
+
+  Ce sont des PAGES, pas des blocs : elles n'ajoutent AUCUNE entrée au panneau et
+  ne touchent donc pas à FR-003 (cardinalité 1, tenue par snippets.xml). Elles
+  existent parce que les trois composants doivent être capturables SÉPARÉMENT
+  alors qu'un seul est posable.
+
+  ── Pourquoi une page nue plutôt que `website.layout` ──────────────────────────
+  `website.layout` ajoute l'en-tête, le menu et le pied de page du site. Ils
+  déplaceraient le composant à une position qui dépend du contenu du site, alors
+  que le protocole de comparaison exige un `clip` de taille ET d'origine
+  identiques des deux côtés (contracts/visual-comparison.md §3.2).
+
+  Ce qui compte est conservé : `t-call-assets="web.assets_frontend"` charge le
+  MÊME paquet CSS que n'importe quelle page publique — Bootstrap 5.3.3 et son
+  reboot inclus, qui est exactement le risque que la US3 mesure (le cadre CSS
+  d'Odoo qui style les balises nues de nos composants).
+
+  LIMITE NOMMÉE : les styles que le squelette du site apporterait (classes de
+  `<body>`, conteneurs `o_*` d'en-tête et de pied de page) ne sont PAS mesurés.
+  L'écart mesuré est donc celui du cadre CSS de base, pas celui d'une page de
+  site complète. Consigné dans NON-PORTES.md et repris au rapport de décision.
+
+  ── La page 2 exerce le troisième niveau ──────────────────────────────────────
+  `mesure_section_header` appelle l'en-tête avec `disposition = 'avecCta'`, ce qui
+  fait rendre le `t-call` de NIVEAU 3 vers le bouton. C'est la seule façon de
+  prouver en fonctionnement qu'un appel imbriqué trois fois avec passage de
+  paramètres marche réellement, sans ajouter au bloc posable une capacité que le
+  contrat ne porte pas (décision d'owner du 2026-08-06).
+-->
+<odoo>
+
+  <!-- Cadre commun des trois pages : fond opaque identique au côté HTML,
+       composant posé à une origine fixe, animations et transitions neutralisées.
+       Aucune valeur de style de composant ici — uniquement de la mise en scène
+       de mesure, qui n'appartient à aucun contrat. -->
+  <template id="mesure_frame" name="Piqueray · cadre de mesure">
+    <html t-att-lang="'fr-FR'">
+      <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="robots" content="noindex, nofollow"/>
+        <title><t t-esc="titre_page"/></title>
+        <t t-call-assets="web.assets_frontend" t-css="true" t-js="false"/>
+        <style>
+          html, body { margin: 0; padding: 0; background: var(--pqr-color-blanc); }
+          *, *::before, *::after { animation: none !important; transition: none !important; }
+          .pqr-mesure { position: absolute; top: 0; left: 0; padding: var(--pqr-space-24); background: var(--pqr-color-blanc); }
+        </style>
+      </head>
+      <body>
+        <div class="pqr-mesure"><t t-out="0"/></div>
+      </body>
+    </html>
+  </template>
+
+  <!-- ── Page 1 · ds.button, seul ──────────────────────────────────────────── -->
+  <template id="mesure_button" name="Mesure · Bouton">
+    <t t-call="piqueray_ds.mesure_frame">
+      <t t-set="titre_page" t-value="'Mesure · Bouton'"/>
+      <t t-call="piqueray_ds.t_button">
+        <t t-set="variant" t-value="'default'"/>
+        <t t-set="libelle" t-value="'Contactez-nous'"/>
+        <t t-set="icon_left" t-value="False"/>
+        <t t-set="icon_right" t-value="False"/>
+        <t t-set="glyph_left" t-value="'arrow-left'"/>
+        <t t-set="glyph_right" t-value="'arrow-right'"/>
+      </t>
+    </t>
+  </template>
+
+  <!-- ── Page 2 · ds.section-header, EN EXERÇANT LE NIVEAU 3 ───────────────── -->
+  <template id="mesure_section_header" name="Mesure · En-tête de section">
+    <t t-call="piqueray_ds.mesure_frame">
+      <t t-set="titre_page" t-value="'Mesure · En-tête de section'"/>
+      <t t-call="piqueray_ds.t_section_header">
+        <!-- `avecCta` — le SEUL réglage qui fait rendre le bouton de niveau 3.
+             Il n'est PAS offert sur le bloc posable ; il l'est ici, sur une page
+             hors panneau, pour que l'appel à trois niveaux soit exercé et non
+             seulement déclaré. -->
+        <t t-set="disposition" t-value="'avecCta'"/>
+        <t t-set="emphase" t-value="'moyen'"/>
+        <t t-set="alignement" t-value="'gauche'"/>
+        <t t-set="accroche2" t-value="False"/>
+        <t t-set="accroche" t-value="'Plus de 50 ans d’expérience'"/>
+        <t t-set="titre_html"><strong>Piqueray, </strong><span>une histoire de famille </span></t>
+      </t>
+    </t>
+  </template>
+
+  <!-- ── Page 3 · ds.presentation, la chaîne telle que le bloc la pose ─────── -->
+  <template id="mesure_presentation" name="Mesure · Présentation">
+    <t t-call="piqueray_ds.mesure_frame">
+      <t t-set="titre_page" t-value="'Mesure · Présentation'"/>
+      <t t-call="piqueray_ds.s_presentation"/>
+    </t>
+  </template>
+
+  <!-- Les trois pages, publiées. `website.page` suffit : aucun contrôleur Python,
+       donc aucun code Python dans ce module. -->
+  <record id="page_mesure_button" model="website.page">
+    <field name="name">Mesure · Bouton</field>
+    <field name="url">/piqueray-mesure/button</field>
+    <field name="view_id" ref="mesure_button"/>
+    <field name="is_published" eval="True"/>
+  </record>
+
+  <record id="page_mesure_section_header" model="website.page">
+    <field name="name">Mesure · En-tête de section</field>
+    <field name="url">/piqueray-mesure/section-header</field>
+    <field name="view_id" ref="mesure_section_header"/>
+    <field name="is_published" eval="True"/>
+  </record>
+
+  <record id="page_mesure_presentation" model="website.page">
+    <field name="name">Mesure · Présentation</field>
+    <field name="url">/piqueray-mesure/presentation</field>
+    <field name="view_id" ref="mesure_presentation"/>
+    <field name="is_published" eval="True"/>
+  </record>
+
+</odoo>

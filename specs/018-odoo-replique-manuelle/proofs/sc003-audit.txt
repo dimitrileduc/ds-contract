@@ -1,0 +1,73 @@
+=== T029 · audit SC-003 — valeurs de style écrites en dur, PAR EXÉCUTION ===
+date : 2026-08-06T20:58:19Z
+
+PÉRIMÈTRE : tout ce que le module écrit À LA MAIN.
+  EXCLU : static/src/css/tokens.pqr.css — GÉNÉRÉ par npm run tokens (en-tête DO NOT EDIT)
+  EXCLU : static/src/fonts/, static/src/img/ — ressources, pas des feuilles de style
+  EXCLU : les blocs de COMMENTAIRE, qui citent des valeurs pour les expliquer
+
+L'INSTRUMENT A ÉTÉ RÉPARÉ EN COURS D'AUDIT, et c'est dit :
+  Le premier passage employait un seul motif (couleurs + longueurs unitées) et
+  rendait « 0 valeur invisible » en RATANT font-weight: 300 — une entrée de son
+  propre registre. Un instrument qui manque ce qu'il déclare chercher rend un vert
+  flatteur. Un second motif couvre désormais les valeurs sans unité.
+
+RÈGLE SUR LES POURCENTAGES — énoncée, et vérifiée par exécution :
+  un pourcentage exprime une RELATION à un conteneur, pas une valeur de design ;
+  aucun token ne peut en porter, et de fait aucun n'en porte —
+    $ rg -a -o -N '"\$value": "[0-9.]+%"' tokens/*.json tokens/modes/*.json
+      → 0 résultat.
+  Les % du module viennent tous de l'idiome de centrage que le moteur émet pour
+  a11y.minHitArea. Le 44px, lui, EST une valeur — et il EST au registre.
+
+CORRECTION APPLIQUÉE AVANT CE RELEVÉ (T020) :
+  7 line-height littéraux de la CSS de référence ONT un token de même valeur
+  (font.line-height.24|25|30|40|50|68, vérifié valeur par valeur). Ils ont été
+  convertis en var(--pqr-font-line-height-N) — la doctrine du dépôt est explicite :
+  la géométrie se porte en TOKENS, un littéral brut ne siège sur aucun axe.
+  Idem pour la mise en scène des pages de mesure : #FFFFFF → var(--pqr-color-blanc),
+  24px → var(--pqr-space-24).
+
+--- fichiers audités ---
+  __init__.py
+  __manifest__.py
+  static/src/css/components.css
+  static/src/css/fonts.css
+  views/harness.xml
+  views/snippets.xml
+  views/templates.xml
+
+--- RÉSULTAT, LES DEUX COMPTES DONNÉS SÉPARÉMENT (SC-003) ---
+
+N · valeurs INVISIBLES (écrites en dur, déclarées nulle part) : 0
+    (aucune)
+
+M · littéraux NOMMÉS au registre du module : 12 occurrences de 4 entrées
+    . static/src/css/components.css:72  «44px»  -> width: max(100%, 44px);
+    . static/src/css/components.css:73  «44px»  -> height: max(100%, 44px);
+    . static/src/css/components.css:120  «20px»  -> width: 20px;
+    . static/src/css/components.css:121  «20px»  -> height: 20px;
+    . static/src/css/components.css:131  «20px»  -> width: 20px;
+    . static/src/css/components.css:132  «20px»  -> height: 20px;
+    . static/src/css/components.css:146  «20px»  -> width: 20px;
+    . static/src/css/components.css:147  «20px»  -> height: 20px;
+    . static/src/css/components.css:185  «3px»  -> letter-spacing: 3px;
+    . static/src/css/components.css:207  «300»  -> font-weight: 300;
+    . static/src/css/components.css:298  «20px»  -> width: 20px;
+    . static/src/css/components.css:299  «20px»  -> height: 20px;
+
+    registre · letter-spacing = 3px      <- ds.section-header /anatomy/root/parts/Accroche/literals/letter-spacing
+    registre · font-weight    = 300      <- ds.section-header /anatomy/root/parts/Titre/literalsByProp/emphase/hero/font-weight
+    registre · icon-size      = 20       <- ds.button /anatomy/root/parts/{iconLeft,iconOnlyIcon,iconRight}/icon/size
+    registre · min-hit-area   = 44       <- ds.button /a11y/minHitArea
+
+COUVERTURE DE L'INSTRUMENT, dite plutôt que sous-entendue :
+  couvert     : couleurs (#hex, rgb/rgba), longueurs (px/rem/em),
+                et les valeurs SANS UNITÉ de font-weight/opacity/z-index/line-height.
+  non couvert : mots-clés de mise en page (display, align-items, flex-direction…),
+                flex-shrink/flex-grow/border: 0, et les pourcentages — aucun d'eux
+                ne peut porter une décision de design qu'un token exprimerait.
+  exclu, dit  : les 4 font-weight de fonts.css nomment le POIDS DE LA FACE servie
+                (@font-face), pas un style de composant.
+
+VERDICT SC-003 : 0 valeur invisible ; 12 occurrences de 4 littéraux nommés, tous hérités du contrat et épinglés byte-à-byte.

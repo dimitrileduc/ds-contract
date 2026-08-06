@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Les TROIS modèles de la chaîne gouvernée, ÉCRITS À LA MAIN.
+
+  L'imbrication est portée par le mécanisme d'appel entre modèles d'Odoo
+  (`t-call`), JAMAIS par duplication de balisage (FR-002) : la chaîne se vérifie
+  en lisant les appels, pas en comparant deux blocs de XML. Trois niveaux :
+
+      s_presentation  ──t-call──▶  t_section_header  ──t-call──▶  t_button
+                      └───────────────────t-call───────────────────▶  t_button
+
+  Limite du moteur, connue et non supposée : `ir_qweb.py` `_render_iterall` lève
+  `RecursionError` au-delà de 50 cadres de rendu. Nous en avons 3.
+
+  UN SEUL de ces modèles est déclaré comme bloc posable (voir snippets.xml) :
+  `s_presentation`. Les deux autres sont présents dans le module et absents du
+  panneau (FR-003) — un patron courant de la source 19.0, pas une astuce
+  (`s_masonry_block`, `s_dynamic_snippet_template`, `website_search_box_input`
+  font exactement cela).
+
+  CONVENTION D'APPEL, et elle est délibérée : chaque site d'appel passe TOUS les
+  paramètres du modèle appelé, explicitement. Aucun modèle ne lit une variable
+  qu'un appelant pourrait ne pas avoir posée — un nom absent du contexte QWeb est
+  une erreur de rendu, pas un `None` silencieux. C'est aussi ce qu'un émetteur
+  ferait : il connaît toutes les valeurs de la composition.
+-->
+<odoo>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       ds.button v2.0.0 — NIVEAU 3 (et niveau 2 depuis la présentation)
+       Tableau des zones : ../../zones/ds-button.json
+       Modifiable : children (libellé), variant, iconLeft/iconRight, les 2 glyphes
+       Figé       : toutes les parts en tant qu'éléments
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <template id="t_button" name="Piqueray · Bouton">
+    <!--
+      `oe_unremovable oe_unmovable` : le levier L1, PAR ÉLÉMENT. La prémisse
+      « un seul marqueur ferme tout le sous-arbre » est RÉFUTÉE (research.md
+      §D11/P1) — seul `o_not_editable` porte sur le sous-arbre, ces deux-là sont
+      par élément. Odoo compose exactement ces trois classes sur son propre
+      `s_dynamic_snippet`. Ce balisage est entièrement MÉCANIQUE : il se dérive
+      du tableau des zones — toute part que le tableau ne déclare pas modifiable
+      les reçoit. Il gonfle le volume écrit sans gonfler la part de jugement,
+      donc c'est un chiffre EN FAVEUR d'un émetteur.
+    -->
+    <button type="button" data-part="root"
+            t-attf-class="button button--variant-#{variant} button--iconLeftGlyph-#{glyph_left} button--iconRightGlyph-#{glyph_right} oe_unremovable oe_unmovable">
+      <span t-if="variant == 'iconOnly'" role="img" t-att-aria-label="libelle" data-part="iconOnlyIcon"
+            t-attf-class="button__iconOnlyIcon pqr-glyph pqr-glyph--#{glyph_left} oe_unremovable oe_unmovable"/>
+      <span t-if="variant != 'iconOnly' and icon_left" aria-hidden="true" data-part="iconLeft"
+            t-attf-class="button__iconLeft pqr-glyph pqr-glyph--#{glyph_left} oe_unremovable oe_unmovable"/>
+      <span class="button__label oe_unremovable oe_unmovable" data-part="label"><t t-esc="libelle"/></span>
+      <span t-if="variant != 'iconOnly' and icon_right" aria-hidden="true" data-part="iconRight"
+            t-attf-class="button__iconRight pqr-glyph pqr-glyph--#{glyph_right} oe_unremovable oe_unmovable"/>
+    </button>
+  </template>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       ds.section-header v2.1.1 — NIVEAU 2
+       Tableau des zones : ../../zones/ds-section-header.json
+       AUCUNE zone modifiable — les six props sont fixées par la composition du
+       parent. Ce composant n'aura donc aucun panneau de réglages, et c'est un
+       résultat consigné, pas un oubli.
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <template id="t_section_header" name="Piqueray · En-tête de section">
+    <div data-part="root"
+         t-attf-class="section-header section-header--disposition-#{disposition} section-header--emphase-#{emphase} section-header--alignement-#{alignement} oe_unremovable oe_unmovable">
+      <!-- Part masquée sur le chemin emprunté (le parent compose avec
+           accroche2 = False). Écrite avec sa condition parce que la surface de
+           référence émet sa règle CSS pour toutes les parts, y compris masquées —
+           et parce que c'est la source du littéral nommé `letter-spacing: 3px`. -->
+      <span t-if="accroche2" class="section-header__Accroche oe_unremovable oe_unmovable" data-part="Accroche"><t t-esc="accroche"/></span>
+
+      <!-- Le contrat porte `titre` en rich-text avec une marque `strong` liée à
+           {font.weight.bold} : le gras reste donc gouverné. L'appelant fournit le
+           balisage exact que la surface de référence produit. -->
+      <span class="section-header__Titre oe_unremovable oe_unmovable" data-part="Titre"><t t-out="titre_html"/></span>
+
+      <!-- LE TROISIÈME NIVEAU. L'appel existe et il est écrit ; il ne se rend que
+           si `disposition == 'avecCta'`, ce que le bloc posé ne permet pas
+           (zones/ds-section-header.json fige `disposition` à `standard`, décision
+           d'owner du 2026-08-06). Il est exercé en fonctionnement sur une page de
+           mesure — voir harness.xml. Les valeurs passées sont celles que la
+           composition du contrat fixe : variant `outlineNoir`, libellé
+           « Voir les produits ». -->
+      <t t-if="disposition == 'avecCta'">
+        <t t-call="piqueray_ds.t_button">
+          <t t-set="variant" t-value="'outlineNoir'"/>
+          <t t-set="libelle" t-value="'Voir les produits'"/>
+          <t t-set="icon_left" t-value="False"/>
+          <t t-set="icon_right" t-value="False"/>
+          <t t-set="glyph_left" t-value="'arrow-left'"/>
+          <t t-set="glyph_right" t-value="'arrow-right'"/>
+        </t>
+      </t>
+    </div>
+  </template>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       ds.presentation v2.2.0 — NIVEAU 1, LE SEUL BLOC POSABLE
+       Tableau des zones : ../../zones/ds-presentation.json
+       Modifiable : texte (contenu), bouton (présence du CTA)
+       Figé       : titre (PROP ORPHELINE — défaut de source B013-1), structure
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <template id="s_presentation" name="Piqueray · Présentation">
+    <!--
+      `section > .container` n'est pas cosmétique : c'est CE balisage qui rend le
+      texte intérieur éditable AUTOMATIQUEMENT, sans un seul attribut ni une ligne
+      de JavaScript (`builder_content_editable_plugin.js` : les sélecteurs par
+      défaut sont `section > .container`, `section > .o_container_small`,
+      `section > .container-fluid`, `.o_editable`).
+
+      C'est ce qui rend FR-012 tenable. Écrire `contenteditable="true"` ou
+      `class="o_editable"` dans un gabarit ne produit RIEN de durable : les deux
+      sont effacés à chaque enregistrement (`cleanForSave()`, et le sélecteur de
+      nettoyage est littéralement `[contenteditable]`). Le choix de balisage
+      achète donc une réduction de coût réelle — et mesurable, donc elle
+      appartient au rapport de décision.
+
+      `o_not_editable` n'est PAS posé sur cette racine : il fermerait les réglages
+      ET l'édition sur TOUT le sous-arbre, y compris le texte qu'on veut
+      modifiable. Il est posé plus bas, sur le conteneur de structure qui n'a rien
+      d'éditable.
+
+      Fait favorable, à ne pas sur-payer : rien n'est zone de dépôt par défaut.
+      `dropzone_selector` est une LISTE BLANCHE — un conteneur qui ne s'enregistre
+      pas et n'imite pas les sélecteurs génériques d'Odoo (`.oe_structure`,
+      `.row > div`) n'accepte aucun dépôt. Ne rien faire est ici la bonne action.
+    -->
+    <section class="s_piqueray_presentation">
+      <div class="container">
+        <div class="presentation" data-part="root">
+
+          <!-- Colonne gauche — structure figée, rien d'éditable à l'intérieur.
+               `o_not_editable` y ferme les réglages ET l'usage comme zone de
+               dépôt sur tout le sous-arbre (L1, portée sous-arbre). -->
+          <div class="presentation__colGauche o_not_editable oe_unremovable oe_unmovable" data-part="colGauche">
+            <t t-call="piqueray_ds.t_section_header">
+              <!-- Les valeurs que la composition du contrat fixe, à l'identique.
+                   `disposition: standard` est écrit EN DUR par ds.presentation —
+                   le contrat n'emploie pas le report de prop du parent, pourtant
+                   offert par le schéma (ComponentRefSchema). Le répliquer
+                   fidèlement, c'est écrire cette valeur ici. -->
+              <t t-set="disposition" t-value="'standard'"/>
+              <t t-set="emphase" t-value="'moyen'"/>
+              <t t-set="alignement" t-value="'gauche'"/>
+              <t t-set="accroche2" t-value="False"/>
+              <t t-set="accroche" t-value="'Plus de 50 ans d’expérience'"/>
+              <t t-set="titre_html"><strong>Piqueray, </strong><span>une histoire de famille </span></t>
+            </t>
+          </div>
+
+          <!-- Colonne droite — le texte y est éditable, donc PAS de
+               `o_not_editable` sur ce conteneur : il le fermerait aussi. -->
+          <div class="presentation__wrapper oe_unremovable oe_unmovable" data-part="wrapper">
+            <span class="presentation__Texte oe_unremovable oe_unmovable" data-part="Texte"><strong>Depuis plus de 50 ans,</strong><span> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de </span><strong>proximité et d'excellence technique</strong><span>. Dépositaire officiel </span><strong>Hörmann</strong><span>, nous allions la force d'un leader mondial à </span><strong>la souplesse d'une PME locale</strong><span>.</span></span>
+
+            <!-- Le bouton de NIVEAU 2, conditionné par la prop `bouton`
+                 (modifiable, défaut `false` au contrat). C'est le seul appel de la
+                 chaîne qui se rend sur le bloc posé.
+
+                 `t-if="False"` reproduit le défaut du contrat. La prop `bouton`
+                 d'un snippet posé n'est pas une variable QWeb : une fois le bloc
+                 déposé, son HTML est stocké dans la page. Le réglage « afficher le
+                 bouton » agit donc sur le DOM (voir static/src/js/), et le gabarit
+                 doit livrer le bouton PRÉSENT mais masqué, pas absent — sinon il
+                 n'y aurait rien à réafficher. C'est une contrainte du modèle
+                 d'Odoo, pas un choix : elle est comptée en cas particulier. -->
+            <div class="presentation__cta d-none oe_unremovable oe_unmovable" data-part="Bouton">
+              <t t-call="piqueray_ds.t_button">
+                <t t-set="variant" t-value="'default'"/>
+                <t t-set="libelle" t-value="'Contactez-nous'"/>
+                <t t-set="icon_left" t-value="False"/>
+                <t t-set="icon_right" t-value="False"/>
+                <t t-set="glyph_left" t-value="'arrow-left'"/>
+                <t t-set="glyph_right" t-value="'arrow-right'"/>
+              </t>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </template>
+
+</odoo>
