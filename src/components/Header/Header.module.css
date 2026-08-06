@@ -17,6 +17,11 @@
   justify-content: space-between;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: var(--size-header-root);
+  padding-left: var(--space-89);
+  padding-right: var(--space-89);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
 }
 
 .navWrapper {
@@ -24,6 +29,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  gap: var(--space-64);
 }
 
 .nav {
@@ -31,17 +37,19 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: var(--space-32);
 }
 
 .iconsNav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: var(--space-16);
 }
 
 .Search svg {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .Search {
@@ -50,8 +58,8 @@
 }
 
 .User svg {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .User {
@@ -60,8 +68,8 @@
 }
 
 .Cart svg {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .Cart {

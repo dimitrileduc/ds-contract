@@ -1,0 +1,12 @@
+measure:gate — verdict: PASS (exit 0)
+  contracts 34 · measured lines 52 · divergent 42 · deferred work 2
+  by cause: contract-geometry=0 · image-boundary=11 · rendering=24 · engine=2 · instrument=1 · figma-source=2
+  browser: 151.0.7922.34
+✓ all four conditions held — zero refusals
+
+Note T035 (2026-08-06) — le compte vif fait foi : le résumé imprime figma-source=2
+mais rows.json (même run, schemaVersion frais) compte 0 ligne figma-source
+(26 rendering, 8 image-boundary, 2 engine, 4 non-triées — les sujets re-pointés
+du jour, dont button-with-icons dont le variantName suit désormais le canvas
+réparé « Style=Outline noir »). L'écart résumé/rows est un décalage d'instrument
+(le résumé compte les RÈGLES de triage, pas les lignes) — consigné, pas maquillé.

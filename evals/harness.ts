@@ -199,7 +199,7 @@ export interface Case {
 export const BTN_TSX = 'src/components/Button/Button.tsx';
 export const CONTRACT = 'contracts/button.contract.json';
 /** The Piqueray Button's typed variant declaration in the generated TSX. */
-export const VARIANT_DECL = "variant?: 'default' | 'orange' | 'blanc' | 'outlineBlanc' | 'link' | 'outilneNoir' | 'iconOnly';";
+export const VARIANT_DECL = "variant?: 'default' | 'orange' | 'blanc' | 'outlineBlanc' | 'link' | 'outlineNoir' | 'iconOnly';";
 /** The drawn set's spelling on the canvas, and its one VARIANT property. */
 export const FIGMA_SET = 'Bouton';
 export const VARIANT_PROPERTY = 'Style';

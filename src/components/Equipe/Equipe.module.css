@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/equipe.contract.json (ds.equipe v1.0.0)
+ * Source of truth: contracts/equipe.contract.json (ds.equipe v1.1.2)
  * Regenerate with: npm run generate
  */
 
@@ -16,11 +16,15 @@
   justify-content: center;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: var(--size-equipe-root);
 }
 
 .grid {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   flex: 1 1 auto;
   min-width: 0;
+  gap: var(--size-equipe-gap-colonnes);
+  row-gap: var(--size-equipe-gap-rangees);
 }

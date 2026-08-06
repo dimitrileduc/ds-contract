@@ -1,0 +1,786 @@
+{
+ "schemaVersion": 1,
+ "note": "Registre gouverne des 10 defauts de la source Figma (FR-003/FR-008). Le champ `provenance` recopie le diagnostic D'ORIGINE ; `diagnosticVif` reste VIDE jusqu'au re-releve de T026 — une memoire ou un registre date n'est jamais la preuve (D5/D9). Graphie JSON sans accents, conforme a contracts/registre-source.md.",
+ "creeLe": "2026-08-05",
+ "fichierCible": "d9FYAUcqdcNtsuaMgLefvJ",
+ "items": [
+  {
+   "id": "DW-002",
+   "provenance": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (status: deferred) — factId reassurances.structure.carte-largeur",
+   "diagnosticOrigine": "4x364 + 3x32 = 1552 > 1550px du frame items. Figma laisse deborder, le CSS flex retrecit les cartes de 0,5px et decale le contenu de 1px. MESURE : le patch applique temporairement fait REFUSER le harnais (debordement horizontal de 4 device px), donc la correction n'est pas locale.",
+   "sujet": "reassurances",
+   "contractId": "ds.carte",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "methode": "figma_execute LECTURE SEULE, parcours par POSITION du COMPONENT_SET 2114:3721",
+    "masterSet": {
+     "id": "2114:3721",
+     "nom": "Reassurances",
+     "bounds": "1552x2451"
+    },
+    "variantes": [
+     {
+      "nom": "Disposition=4 cartes",
+      "id": "2114:3619",
+      "frameItems": {
+       "id": "2114:3613",
+       "largeur": 1550,
+       "x": 40,
+       "itemSpacing": 32,
+       "sizH": "FILL"
+      },
+      "nbCartes": 4,
+      "largeurCarte": 364,
+      "sizHCarte": "FIXED",
+      "somme": 1456,
+      "gaps": 96,
+      "total": 1552,
+      "debordement": 2,
+      "cartes": [
+       "2114:3614",
+       "2114:3615",
+       "2114:3616",
+       "2114:3617"
+      ],
+      "xPremiere": 39,
+      "note": "la 1re carte commence a x=39 pour un frame a x=40 : le debordement est reel, 1px de chaque cote"
+     },
+     {
+      "nom": "Disposition=QuatreCartesDeuxCta",
+      "id": "2114:3653",
+      "frameItems": {
+       "id": "2114:3645",
+       "largeur": 1550,
+       "itemSpacing": 32
+      },
+      "nbCartes": 4,
+      "largeurCarte": 364,
+      "somme": 1456,
+      "gaps": 96,
+      "total": 1552,
+      "debordement": 2,
+      "cartes": [
+       "2114:3646",
+       "2114:3647",
+       "2114:3648",
+       "2114:3649"
+      ]
+     },
+     {
+      "nom": "Disposition=5 cartes",
+      "id": "2114:3693",
+      "frameItems": {
+       "id": "2114:3686",
+       "largeur": 1550,
+       "itemSpacing": 32
+      },
+      "nbCartes": 5,
+      "largeurCarte": 285,
+      "somme": 1425,
+      "gaps": 128,
+      "total": 1553,
+      "debordement": 3,
+      "cartes": [
+       "2114:3687",
+       "2114:3688",
+       "2114:3689",
+       "2114:3690",
+       "2114:3691"
+      ],
+      "note": "JAMAIS NOMMEE par le diagnostic 013, qui ne parlait que de 4x364+3x32. Deborde de 3px, et la largeur 285 n'est portee par AUCUN token (tokens/primitives.tokens.json ne connait que size.carte.root=364, root-categorie=743, reassurance-image=364, categorie-image=418) : elle est donc invisible du differentiel."
+     }
+    ],
+    "planImageInterieur": {
+     "id": "I2114:3614;2063:1607",
+     "nom": "img",
+     "w": 364,
+     "h": 364,
+     "sizH": "FILL",
+     "sizV": "FIXED",
+     "consequence": "FILL en largeur : l'image suivra automatiquement la carte a 363,5, AUCUN geste requis sur elle. FIXED en hauteur a 364 : elle cessera d'etre exactement carree (363,5 x 364)."
+    },
+    "ecartAvecLeDiagnosticOrigine": "013 ne decrivait qu'un seul cas (4x364+3x32=1552). Le vif en montre TROIS, dont un plus grave et non gouverne par un token."
+   },
+   "correction": "les cartes des 3 variantes passent en FIXED ajuste, conteneur 1550 et gaps 32 INTACTS : 4 cartes et QuatreCartesDeuxCta -> 363,5 (decision owner 2026-08-05) ; 5 cartes -> 284,4 = (1550 - 4x32)/5 (decision owner 2026-08-05, seconde passe, meme doctrine : on ajuste les cartes, jamais le conteneur ni les gaps). Le plan image interieur est FILL en largeur : aucun geste. Sa hauteur reste 364 (decision owner : ecart de 0,5px laisse et NOMME).",
+   "decisionOwnerRequise": false,
+   "decisionOwner": "2026-08-05 (1re passe) — cartes a 363,5, ni conteneur a 1552 ni gaps a 31,33. 2026-08-05 (2e passe, apres re-releve vif) — la variante `5 cartes`, non couverte par la 1re decision, suit la meme doctrine : 285 -> 284,4, avec mint d'un token from-dump pour que la largeur cesse d'etre invisible au differentiel. Le plan image interieur garde sa hauteur de 364 : l'ecart de 0,5px (image plus exactement carree) est LAISSE et NOMME a l'annonce et au recu, plutot que corrige au prix d'un decalage reel de tout le contenu sous l'image.",
+   "lotId": "L-DW002",
+   "promotionCodeSide": {
+    "fichiers": [
+     "tokens/primitives.tokens.json"
+    ],
+    "detail": "size.carte.root 364 -> 363,5 ; MINT from-dump d'un token pour la largeur des cartes de la variante 5 cartes (284,4) — aujourd'hui valeur brute non gouvernee. size.carte.reassurance-image reste a 364 (decision owner). Ne jamais ecrire le nombre a la main dans un contrat : la geometrie se porte en tokens.",
+    "semver": "aucun bump de contrat — seuls des tokens changent"
+   },
+   "limitesLevees": [
+    {
+     "quoi": "la largeur des cartes de la variante `5 cartes` n'etait portee par aucun token (invisible du differentiel)",
+     "preuveNonRegression": "proofs/recus/DW-002.md — le token size.reassurances.carte-cinq-cartes existe, sa variable Figma aussi, et l'axe tokens la surveille (parity vert apres correction float32)"
+    }
+   ],
+   "recu": "proofs/recus/DW-002.md",
+   "cloturePortes": {
+    "causesJson": "specs/014-mesure-juste-triage/proofs/registre/causes.json — resolvedBy: 016-canvas-vrai",
+    "work013": "specs/013-.../proofs/deferred/work.json — cloture par reference croisee (additif)",
+    "compteAttendu": "npm run measure:gate — figma-source 2 -> 0 (le compte vif imprime fait foi)"
+   },
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "decisions.md — lot L-DW002 conforme (table des lots, versionId 2384258061656145845) ; O-16 : T030 rig React reel, captures avant/apres byte-identiques (sha256), delta 0 — la premisse owner verifiee sur la surface livree (proofs/L-DW002/react-delta/) ; portes posees par T034 (causes.json 014 + work.json 013, resolvedBy additifs) ; measure:gate PASS archive (proofs/measure-gate-post-dw.txt — note T035 : rows.json du run frais compte 0 ligne figma-source, le compte vif fait foi).",
+   "resultat": {
+    "gesteLe": "2026-08-05",
+    "versionId": "2384258061656145845",
+    "lotId": "L-DW002",
+    "cartes": {
+     "4 cartes": "364 -> 363,5",
+     "QuatreCartesDeuxCta": "364 -> 363,5",
+     "5 cartes": "285 -> 284,4"
+    },
+    "debordementResiduel": 0,
+    "verdictPixel": "conforme — 10 cibles, 3 identical / 7 diff ; les 6 maquettes porteuses ont bouge, les 3 non porteuses sont identiques au pixel, le master a bouge (obligatoire)",
+    "promotions": [
+     "tokens/primitives.tokens.json : size.carte.root 364 -> 363,5",
+     "tokens/primitives.tokens.json : MINT size.reassurances.carte-cinq-cartes = 284,4"
+    ],
+    "rePins": [
+     "evals/golden.json (4 fichiers, tous expliques)",
+     "figma-sync/plugin/engine.receipt.json (plugin:check vert)"
+    ],
+    "defautInstrumentCorrige": "parity/diff.ts — comparaison des valeurs numeriques en float32 (Math.fround) : Figma stocke les FLOAT en simple precision, la comparaison par CHAINE creait un faux mismatch permanent. Meme classe que le correctif v4 sur l'alpha."
+   }
+  },
+  {
+   "id": "DW-003",
+   "provenance": "specs/013-auditer-fidelite-organismes/proofs/deferred/work.json (status: deferred) — factId faq.structure.section-header-height",
+   "diagnosticOrigine": "L'instance SectionHeader 2104:2907 est figee par le master a 50px alors que son contenu en demande 83 (clipsContent=false). Tout ce qui suit est decale de 32px. Le fait appartient a l'INSTANCE : sur les 8 instances du census, seule celle de FAQ est FIXED a 50, les autres sont HUG.",
+   "sujet": "faq",
+   "contractId": "ds.section-header",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "methode": "figma_execute LECTURE SEULE — getNodeByIdAsync('2104:2907') + son master via getMainComponentAsync",
+    "instance": {
+     "id": "2104:2907",
+     "nom": "SectionHeader",
+     "bounds": "1550x50",
+     "sizH": "FIXED",
+     "sizV": "FIXED",
+     "itemSpacing": 8,
+     "clipsContent": false
+    },
+    "master": {
+     "id": "2090:2385",
+     "nom": "Disposition=Standard",
+     "bounds": "1550x83",
+     "sizV": "HUG"
+    },
+    "enfants": [
+     {
+      "nom": "Accroche",
+      "type": "TEXT",
+      "h": 25,
+      "sizV": "HUG"
+     },
+     {
+      "nom": "Titre",
+      "type": "TEXT",
+      "h": 50,
+      "sizV": "HUG"
+     }
+    ],
+    "hauteurDemandeeParLeContenu": 83,
+    "calcul": "25 (Accroche) + 8 (itemSpacing) + 50 (Titre) = 83",
+    "parent": {
+     "id": "2104:2914",
+     "nom": "FAQ",
+     "type": "COMPONENT",
+     "bounds": "1728x448",
+     "layoutMode": "VERTICAL",
+     "itemSpacing": 48,
+     "padding": [
+      89,
+      89,
+      0,
+      0
+     ]
+    },
+    "ecartAttenduAuGeste": 33,
+    "ecartAvecLeDiagnosticOrigine": "013 annoncait un decalage de 32px ; le releve vif donne 83 - 50 = 33. Le compte VIF fait foi. L'annonce du lot L-DW003 chiffrera donc +33px sur la hauteur de l'en-tete et le decalage vers le bas de tout ce qui suit sur la maquette FAQ.",
+    "confirme": true
+   },
+   "correction": "l'instance SectionHeader 2104:2907 du master faq passe de FIXED 50 a HUG.",
+   "decisionOwnerRequise": false,
+   "lotId": "L-DW003",
+   "promotionCodeSide": {
+    "fichiers": [],
+    "detail": "A RE-LOCALISER : le pointeur d'origine /anatomy/root/literals/height ne resolvait plus au releve du 2026-08-04 (la racine ne porte qu'un gap ; le 50 du fichier etait un line-height, canal hors population). S'il n'existe aucun litteral porteur, l'ecrire : le defaut etait purement canvas.",
+    "semver": null
+   },
+   "limitesLevees": [],
+   "recu": "proofs/recus/DW-003.md",
+   "cloturePortes": {
+    "causesJson": "specs/014-mesure-juste-triage/proofs/registre/causes.json — resolvedBy: 016-canvas-vrai",
+    "work013": "specs/013-.../proofs/deferred/work.json — cloture par reference croisee (additif)",
+    "compteAttendu": "npm run measure:gate — figma-source 2 -> 0 (le compte vif imprime fait foi)"
+   },
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "specs/016-canvas-vrai/decisions.md — O-12 (vague de regeneration au gain d'axe VARIANT du SectionHeader : le rebuild repose l'en-tete du master faq depuis le contrat, qui ne declare aucune hauteur, donc en HUG 83) / O-15 (FINAL17 : « le header FAQ reforme +33 », difference de doctrine assumee, partiellement compensee). Resolu par la vague de regeneration, pas par un lot dedie L-DW003. Defaut purement canvas : le pointeur d'origine ne resout pas et n'a jamais resolu (preuve git au recu) — promotionCodeSide.fichiers [] confirme."
+  },
+  {
+   "id": "B013-1",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30), version Figma pinee 2381581871281042338",
+   "diagnosticOrigine": "4 proprietes orphelines : declarees sur un master, referencees par rien — Titre#2103:53 (presentation), Titre#2108:60 (sav), Accroche#2104:57 et Titre#2104:58 (coordonnees). Verifiable par componentPropertyReferences vs componentPropertyDefinitions.",
+   "sujet": "presentation, sav, coordonnees",
+   "contractId": null,
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "methode": "figma_execute LECTURE SEULE — componentPropertyDefinitions du master vs componentPropertyReferences de TOUT son sous-arbre",
+    "confirme": true,
+    "masters": [
+     {
+      "nom": "Presentation",
+      "id": "2103:2824",
+      "definitions": [
+       "Titre#2103:53",
+       "Texte#2103:54",
+       "Bouton#2103:55"
+      ],
+      "orphelines": [
+       "Titre#2103:53"
+      ],
+      "resteApresSuppression": 2
+     },
+     {
+      "nom": "SAV",
+      "id": "2108:3105",
+      "definitions": [
+       "Titre#2108:60"
+      ],
+      "orphelines": [
+       "Titre#2108:60"
+      ],
+      "resteApresSuppression": 0,
+      "note": "c'est sa SEULE propriete : le master se retrouvera sans aucune propriete — coherent avec B013-4 (sav : paragraphe non lie)"
+     },
+     {
+      "nom": "Coordonnees",
+      "id": "2104:2904",
+      "definitions": [
+       "Accroche#2104:57",
+       "Titre#2104:58"
+      ],
+      "orphelines": [
+       "Accroche#2104:57",
+       "Titre#2104:58"
+      ],
+      "resteApresSuppression": 0,
+      "note": "les DEUX proprietes sont orphelines : le master se retrouvera sans aucune propriete"
+     }
+    ],
+    "verdictParPropriete": [
+     {
+      "propriete": "Titre#2103:53",
+      "master": "presentation",
+      "definieEncore": true,
+      "orphelineEncore": true
+     },
+     {
+      "propriete": "Titre#2108:60",
+      "master": "sav",
+      "definieEncore": true,
+      "orphelineEncore": true
+     },
+     {
+      "propriete": "Accroche#2104:57",
+      "master": "coordonnees",
+      "definieEncore": true,
+      "orphelineEncore": true
+     },
+     {
+      "propriete": "Titre#2104:58",
+      "master": "coordonnees",
+      "definieEncore": true,
+      "orphelineEncore": true
+     }
+    ],
+    "ecartAvecLeDiagnosticOrigine": "aucun — les 4 sont encore definies et encore orphelines. Le diagnostic de la memoire (2026-07-30) se reproduit au vif."
+   },
+   "correction": "supprimer les 4 proprietes orphelines de leurs masters.",
+   "decisionOwnerRequise": false,
+   "lotId": "L-B013-1",
+   "annonceEcartAttendu": "ZERO ecart visuel — une propriete que rien ne reference ne peint rien. Tout pixel qui bouge annule le lot.",
+   "promotionCodeSide": null,
+   "limitesLevees": [],
+   "recu": "proofs/recus/B013-1.md",
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "decisions.md O-16 — 4 proprietes orphelines supprimees (workflow multi-agents, agent canvas §XI), orphelinage re-prouve ATOMIQUEMENT dans le script de suppression ; version nommee 016/B013-lots/avant ; cycle pixel global du batch (§XI, orchestrateur) : FINAL18 vs FINAL17 = 6/9 identiques + 3 micro-diffs d'anti-aliasing de re-rendu, rien de degrade vs reference pre-chantier ; incident traite dans la meme fenetre : marqueurs ds_contracts poses sur SAV et Coordonnees. Consequence nommee : sav et coordonnees restent sans aucune propriete propre — exposer des proprietes honnetes est B013-4, toujours ouvert."
+  },
+  {
+   "id": "B013-2",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+   "diagnosticOrigine": "SectionHeader (2090:2385) : master centre, 5 usages sur 7 alignes a gauche par surcharge d'instance (textAlignHorizontal=LEFT) ; seuls faq/reassurances suivent le master. Porte cote code par l'axe `alignement` (defaut centre).",
+   "sujet": "section-header",
+   "contractId": "ds.section-header",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "confirme": true,
+    "aggrave": true,
+    "methode": "figma_execute LECTURE SEULE — toutes les instances du set SectionHeader (2090:2397) resolues par getMainComponentAsync, scannees par POSITION",
+    "masterReference": {
+     "id": "2090:2385",
+     "nom": "Disposition=Standard",
+     "alignementTitre": "CENTER"
+    },
+    "set": {
+     "id": "2090:2397",
+     "variantes": [
+      "Disposition=Standard",
+      "Disposition=Avec CTA"
+     ],
+     "proprietes": [
+      "Accroche#2090:46",
+      "Titre#2090:47",
+      "Accroche2#2169:64",
+      "Disposition"
+     ]
+    },
+    "totalInstances": 59,
+    "parVariante": {
+     "Disposition=Standard": 56,
+     "Disposition=Avec CTA": 3
+    },
+    "repartitionAlignement": {
+     "LEFT": 34,
+     "CENTER": 25
+    },
+    "instancesEnEcartAvecLeMaster": 34,
+    "ecartAvecLeDiagnosticOrigine": "La memoire (2026-07-30) annoncait « 5 usages sur 7 alignes a gauche ». Le vif montre 34 surcharges LEFT sur 59 instances. L'ampleur est 7x superieure : le lot B013-2 est bien plus lourd que le plan ne le suppose."
+   },
+   "correction": "poser la variante gouvernee d'alignement sur le master 2090:2385, puis remplacer les 5 surcharges d'instance par la variante — instances scannees par POSITION, jamais par nom (VIII).",
+   "decisionOwnerRequise": false,
+   "lotId": "L-B013-2",
+   "annonceEcartAttendu": "rendu inchange (la variante reproduit l'etat actuel de chaque usage) ; seule la gouvernance change.",
+   "promotionCodeSide": {
+    "fichiers": [
+     "contracts/section-header.contract.json"
+    ],
+    "detail": "la prop `alignement` cesse d'etre un axe code-side (bindings.figma.kind: NONE) et devient un binding VARIANT",
+    "semver": "mineur"
+   },
+   "limitesLevees": [
+    {
+     "quoi": "alignement non lie a Figma (axe code-side)",
+     "preuveNonRegression": "proofs/recus/limites-levees.md §1.2 — binding VARIANT « Alignement » au contrat v2.1.0, description du contrat toilettee (LIMITE LEVEE)"
+    }
+   ],
+   "recu": "proofs/recus/B013-2.md",
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "decisions.md O-12 (gain d'axe VARIANT +Emphase+Alignement, SET 18→16 variantes sain) et O-14 (les alignements d'usage reposes du dump versionne : 114 gestes textAlignHorizontal). Resolu par la vague de regeneration, pas par le lot dedie L-B013-2."
+  },
+  {
+   "id": "B013-3",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+   "diagnosticOrigine": "SectionHeader : typo du titre surchargee par instance (hero 54/68/700/blanc ; presentation 32/40 ; texte-seo 24/30) au lieu de variantes. Porte cote code par l'axe `emphase`.",
+   "sujet": "section-header",
+   "contractId": "ds.section-header",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "confirme": true,
+    "aggrave": true,
+    "referenceMaster": "40/50/Regular/#26282C",
+    "signaturesTypographiques": {
+     "54/68/(mixed)/#FFFFFF": 9,
+     "40/50/Regular/#26282C": 31,
+     "24/30/(mixed)/#26282C": 9,
+     "32/40/(mixed)/#26282C": 4,
+     "32/40/Regular/#26282C": 3,
+     "40/50/(mixed)/#26282C": 3
+    },
+    "instancesEnEcartAvecLeMaster": 25,
+    "exemples": {
+     "54/68 blanc": "Titres (hero)",
+     "24/30": "h2 (texte-seo)",
+     "32/40 mixed": "Presentation",
+     "32/40 Regular": "ProduitsECommerce",
+     "40/50 mixed": "Bloc en-tete"
+    },
+    "ecartAvecLeDiagnosticOrigine": "La memoire nommait 3 cas (hero 54/68/700/blanc ; presentation 32/40 ; texte-seo 24/30). Le vif en montre CINQ hors reference — s'ajoutent ProduitsECommerce (32/40 Regular, distinct de Presentation) et Bloc en-tete (40/50 avec un poids mixte). Le poids remonte souvent `mixed` (plusieurs styles dans un meme texte), ce que le diagnostic d'origine ne mentionnait pas."
+   },
+   "correction": "promouvoir les typographies surchargees en variantes du master — valeurs RE-RELEVEES en T026, jamais recopiees.",
+   "decisionOwnerRequise": false,
+   "lotId": "L-B013-3",
+   "annonceEcartAttendu": "rendu inchange, gouvernance changee.",
+   "promotionCodeSide": {
+    "fichiers": [
+     "contracts/section-header.contract.json"
+    ],
+    "detail": "la prop `emphase` passe en binding VARIANT",
+    "semver": "mineur"
+   },
+   "limitesLevees": [
+    {
+     "quoi": "emphase non liee a Figma (axe code-side)",
+     "preuveNonRegression": "proofs/recus/limites-levees.md §1.1 — binding VARIANT « Emphase » au contrat v2.1.0, description du contrat toilettee (LIMITE LEVEE)"
+    }
+   ],
+   "recu": "proofs/recus/B013-3.md",
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "decisions.md O-12 (gain d'axe VARIANT +Emphase+Alignement, 16 variantes generees mecaniquement, master par master). Resolu par la vague de regeneration, pas par le lot dedie L-B013-3. Les valeurs typographiques portees par le contrat (54/68, 32/40, 24/30) restent celles re-relevees au vif T026."
+  },
+  {
+   "id": "B013-4",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+   "diagnosticOrigine": "Masters sans proprietes TEXT : hero (aucune propriete du tout), sav (paragraphe non lie) — les textes sont cuits en dur ; une prop rich-text ne peut pas s'y lier honnetement (le schema exige une liaison TEXT native).",
+   "sujet": "hero, sav",
+   "contractId": "ds.hero, ds.sav",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "confirme": "partiellement",
+    "hero": {
+     "master": {
+      "id": "2111:3382",
+      "type": "COMPONENT"
+     },
+     "definitionsPropres": [],
+     "nbTextes": 4,
+     "textesLies": 3,
+     "textesNONLies": 1,
+     "nonLie": "Sous-titre (« La performance sans compromis, meme en u… »)",
+     "lies": [
+      "Accroche -> Accroche#2090:46",
+      "Titre -> Titre#2090:47",
+      "Libelle -> Libelle#2044:28"
+     ]
+    },
+    "sav": {
+     "master": {
+      "id": "2108:3105",
+      "type": "COMPONENT"
+     },
+     "definitionsPropres": [
+      "Titre#2108:60"
+     ],
+     "nbTextes": 4,
+     "textesLies": 3,
+     "textesNONLies": 1,
+     "nonLie": "le paragraphe long (« Vous rencontrez un probleme avec votre installation Hormann… »)"
+    },
+    "ecartAvecLeDiagnosticOrigine": "La memoire disait « hero (aucune propriete du tout), sav (paragraphe non lie) ». FAUX pour hero au sens ou on l'entend : hero n'a aucune definition PROPRE, mais 3 de ses 4 textes SONT lies, via des proprietes heritees d'instances imbriquees (SectionHeader, Bouton). Le defaut reel est le meme des deux cotes : UN texte non lie par master (Sous-titre pour hero, le paragraphe pour sav). Le geste est donc plus petit qu'annonce."
+   },
+   "correction": "exposer et lier des proprietes Texte sur hero et sav.",
+   "decisionOwnerRequise": false,
+   "lotId": "L-B013-4",
+   "annonceEcartAttendu": "rendu inchange ; le texte cesse d'etre cuit en dur.",
+   "promotionCodeSide": {
+    "fichiers": [
+     "contracts/hero.contract.json",
+     "contracts/sav.contract.json"
+    ],
+    "detail": "bindings TEXT ajoutes",
+    "semver": "mineur"
+   },
+   "limitesLevees": [
+    {
+     "quoi": "une prop rich-text ne peut pas se lier honnetement, le schema exige une liaison TEXT native",
+     "preuveNonRegression": null
+    }
+   ],
+   "recu": "proofs/recus/B013-4.md",
+   "statut": "annonce",
+   "nota": "re-audit T049 (2026-08-06) : AUCUNE trace d'execution au journal — O-16 ne nomme pas B013-4, aucun lot ne l'a pose. Reste OUVERT : geste canvas T041 (exposer et lier une propriete Texte honnete par master — le perimetre vif est UN texte non lie par master, plus petit que la memoire) + promotion T042. Attention : B013-1 (clos) a laisse sav et coordonnees sans aucune propriete propre — la suppression des coquilles vides n'y supplee pas. Le fichier proofs/recus/B013-4.md n'existe pas encore : chemin declare d'avance, a ecrire a la cloture."
+  },
+  {
+   "id": "B013-5",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+   "diagnosticOrigine": "coordonnees : row-reverse d'auteur (la carte est visuellement a gauche via inversion) — le contrat a reordonne ses parts pour refleter le visuel.",
+   "sujet": "coordonnees",
+   "contractId": "ds.coordonnees",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "confirme": "inversion oui, mecanisme NON",
+    "master": {
+     "id": "2104:2904",
+     "nom": "Coordonnees",
+     "layoutMode": "GRID",
+     "itemSpacing": 0
+    },
+    "enfants": [
+     {
+      "position": 0,
+      "nom": "wrapper",
+      "x": 1192,
+      "w": 576
+     },
+     {
+      "position": 1,
+      "nom": "google-map",
+      "x": 40,
+      "w": 1152
+     }
+    ],
+    "constat": "le 1er enfant dans l'ordre des calques (wrapper) est visuellement a DROITE (x=1192) et le 2e (google-map) a GAUCHE (x=40) : l'inversion visuelle est confirmee.",
+    "ecartAvecLeDiagnosticOrigine": "La memoire parlait d'un « row-reverse d'auteur ». Le vif montre un layoutMode GRID, pas un HORIZONTAL inverse : le placement ne suit pas l'ordre des enfants parce que c'est une grille, pas parce qu'un axe est inverse. Le geste correctif n'est donc PAS celui qu'annonce le diagnostic — a re-concevoir au lot."
+   },
+   "correction": "remettre les calques dans l'ordre normal.",
+   "decisionOwnerRequise": false,
+   "lotId": "L-B013-5",
+   "annonceEcartAttendu": "rendu STRICTEMENT IDENTIQUE — l'inversion et le re-ordonnancement se compensent ; tout ecart de pixel signale une erreur de geste et annule le lot.",
+   "promotionCodeSide": {
+    "fichiers": [
+     "contracts/coordonnees.contract.json"
+    ],
+    "detail": "EXECUTE, plus petit que planifie (verifie) : les parts etaient DEJA dans l'ordre visuel (['googleMap','wrapper']) — c'est le canvas qui a rejoint le contrat. Seule la prose d'inversion de la description googleMap est retiree (commit 0ed9981). Ligne instrument=1 de measure:gate re-jugee au recu : elle lit le registre 014 (organismLine coordonnees/coordonnees-master-defaults, re-classe 015 org-coordonnees-geometry-reclasse) dont l'unique fait divergent est l'inversion resorbee par ce lot — resolvedBy additif cote 014 a poser, nomme au recu, pas fait en douce.",
+    "semver": "aucun bump — seule une description change"
+   },
+   "limitesLevees": [],
+   "recu": "proofs/recus/B013-5.md",
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "decisions.md O-16 — coordonnees reordonne en ordre visuel, ecart 0 px ; le mecanisme reel etait un GRID a placement MANUAL, pas un row-reverse (consigne) ; cycle pixel global du batch (§XI) : FINAL18, 6/9 identiques + micro-AA de re-rendu, rien de degrade vs reference pre-chantier."
+  },
+  {
+   "id": "B013-6",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+   "diagnosticOrigine": "texte-seo : la 2e ligne d'accordeon est depliee dans le master — intention (etat de demonstration) ou accident ? Porte cote code par le champ d'item `etat` (arrayOf+enum, extension 013).",
+   "sujet": "texte-seo",
+   "contractId": "ds.texte-seo",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "confirme": true,
+    "master": {
+     "id": "2108:3123",
+     "nom": "TexteSEO"
+    },
+    "lignes": [
+     {
+      "position": 0,
+      "id": "2108:3120",
+      "etat": "Ferme",
+      "h": 40,
+      "titre": "Acces et parking",
+      "contenu": "Reponse"
+     },
+     {
+      "position": 1,
+      "id": "2108:3121",
+      "etat": "Ouvert",
+      "h": 80,
+      "titre": "Faut-il prendre rendez-vous ?",
+      "contenu": "Pour une simple visite decouverte, le showroom est ouvert aux horaires indiques. Pour une etude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillee."
+     },
+     {
+      "position": 2,
+      "id": "2108:3122",
+      "etat": "Ferme",
+      "h": 40,
+      "titre": "Zones de deplacement pour devis",
+      "contenu": "Reponse"
+     }
+    ],
+    "indiceFortPourLaDecision": "la SEULE ligne ouverte est aussi la seule a porter un contenu REEL ; les deux fermees portent le placeholder « Reponse ». Cela plaide pour une INTENTION (etat de demonstration), pas un accident — mais la decision appartient a l'owner (T027)."
+   },
+   "correction": "AUCUN geste — l'etat deplie de la 2e ligne est une intention de demonstration, conservee telle quelle.",
+   "decisionOwnerRequise": true,
+   "decisionOwner": "2026-08-05 — INTENTION (etat de demonstration), decision de l'owner du systeme (hello@d-l.studio). Motif : le releve vif montre que la seule ligne depliee est aussi la seule a porter un contenu REEL (« Pour une simple visite decouverte, le showroom est ouvert aux horaires indiques… »), les deux lignes fermees portant le placeholder « Reponse ». Un vrai texte de reponse ne s'ecrit pas par accident dans une ligne ouverte.",
+   "lotId": "L-B013-6",
+   "promotionCodeSide": null,
+   "limitesLevees": [],
+   "recu": "proofs/recus/B013-6.md",
+   "statut": "clos",
+   "closLe": "2026-08-05"
+  },
+  {
+   "id": "B013-7",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+   "diagnosticOrigine": "hero : fills[1] du root est visible:false — un degrade mort a supprimer du master.",
+   "sujet": "hero",
+   "contractId": "ds.hero",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "confirme": true,
+    "master": {
+     "id": "2111:3382",
+     "nom": "Hero"
+    },
+    "fills": [
+     {
+      "i": 0,
+      "type": "IMAGE",
+      "visible": true
+     },
+     {
+      "i": 1,
+      "type": "GRADIENT_LINEAR",
+      "visible": false
+     },
+     {
+      "i": 2,
+      "type": "GRADIENT_LINEAR",
+      "visible": true
+     }
+    ],
+    "constat": "fills[1] est bien un GRADIENT_LINEAR invisible — exactement le diagnostic d'origine. A noter : le root porte TROIS fills, dont un second degrade VISIBLE (fills[2]) qu'il ne faut pas confondre avec le mort.",
+    "ecartAvecLeDiagnosticOrigine": "aucun."
+   },
+   "correction": "supprimer le fill mort du master hero.",
+   "decisionOwnerRequise": false,
+   "lotId": "L-B013-7",
+   "annonceEcartAttendu": "ZERO ecart visuel — un fill invisible ne peint pas. Tout pixel qui bouge annule le lot ET revele que le diagnostic etait faux.",
+   "promotionCodeSide": null,
+   "limitesLevees": [],
+   "recu": "proofs/recus/B013-7.md",
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "decisions.md O-16 — le fills[1] GRADIENT visible:false du master hero supprime (workflow multi-agents, agent canvas §XI, version nommee 016/B013-lots/avant) ; cycle pixel global du batch : FINAL18, accueil (porteuse du hero d'accueil) a 0 pixel, rien de degrade vs reference ; hero.contract.json v1.3.0 ne porte que les deux paints visibles — le mort n'a jamais ete porte par aucun canal (verifie au recu)."
+  },
+  {
+   "id": "B013-8",
+   "provenance": "memoire projet figma-cleanup-backlog-013 (2026-07-30)",
+   "diagnosticOrigine": "ds.button : valeur d'enum `outilneNoir` (faute pour outline) venue de Figma — renommer cote canvas puis bump majeur du contrat.",
+   "sujet": "button",
+   "contractId": "ds.button",
+   "diagnosticVif": {
+    "releveLe": "2026-08-05",
+    "confirme": false,
+    "seReproduitEncore": false,
+    "setBouton": {
+     "id": "6:122",
+     "proprietes": [
+      "Icone gauche#2024:0",
+      "Icone droite#2024:7",
+      "Glyphe gauche#2028:14",
+      "Glyphe droite#2028:21",
+      "Libelle#2044:28",
+      "Style"
+     ],
+     "axeStyle": {
+      "defaut": "Default",
+      "valeurs": [
+       "Default",
+       "Orange",
+       "Blanc",
+       "Outline blanc",
+       "Link",
+       "Outline noir",
+       "Icone seule"
+      ]
+     }
+    },
+    "usagesDeLaValeurFautiveDansFigma": 0,
+    "constat": "COTE FIGMA, LE DEFAUT N'EXISTE PLUS : la variante s'appelle « Outline noir », correctement orthographiee, et aucune instance ne porte la valeur fautive. Il n'y a RIEN a corriger sur le canvas.",
+    "ouViTLaFauteAujourdHui": [
+     {
+      "niveau": "contrat",
+      "fait": "contracts/button.contract.json v1.6.0 porte la CLE d'enum `outilneNoir` (cote code) ; son binding pointe correctement vers la valeur Figma « Outline noir ». La faute est donc dans le CONTRAT, pas dans la source."
+     },
+     {
+      "niveau": "instrument",
+      "fait": "extract/figma/visual-parity/subjects.ts declare un axe « Property 1=Outilne noir » — une propriete (`Property 1`) ET une valeur qui n'existent plus dans le set (il porte `Style`). D'ou le SKIPPED releve en T007 : une couverture de mesure perdue, nommee mais reelle."
+     }
+    ],
+    "consequencePourLeLot": "Le lot L-B013-8 perd son geste canvas. Restent : (1) le bump MAJEUR du contrat pour renommer la cle `outilneNoir` -> `outlineNoir` + migration des consommateurs ; (2) la remise a jour du sujet d'instrument perime. A clore SANS geste canvas, avec ce releve pour recu (T026 : « tout defaut qui ne se reproduit plus est clos sans geste »).",
+    "ecartAvecLeDiagnosticOrigine": "La memoire disait « valeur d'enum outilneNoir VENUE DE FIGMA — renommer cote canvas puis bump majeur ». Le vif contredit la premiere moitie : Figma est propre. C'est le cas d'ecole de la regle « une decision du depot n'est pas un fait »."
+   },
+   "correction": "AUCUN geste canvas — le defaut ne se reproduit plus cote Figma. Promotion code-side seule (bump MAJEUR du contrat) + mise a jour du sujet d'instrument perime.",
+   "decisionOwnerRequise": false,
+   "lotId": "L-B013-8",
+   "annonceEcartAttendu": "rendu inchange, nom change.",
+   "promotionCodeSide": {
+    "fichiers": [
+     "contracts/button.contract.json"
+    ],
+    "detail": "EXECUTE (commit 0ed9981) : bump MAJEUR 1.6.0 → 2.0.0 (§VI — valeur d'enum renommee) — cle outilneNoir → outlineNoir dans type.enum ET bindings.figma.values ; 7 sources migrees dans le meme mouvement (contrats button/faq/reassurances/section-header, evals/harness.ts VARIANT_DECL, evals/run.ts mutation C2, evals/adherence/ARCHIVE.md) ; generes retombes au build (src/components/Button/*, figma-sync/batch-01.js) + re-pins golden/engine.receipt. RESIDU NOMME au recu : catalog/ (genere, jamais edite a la main) encore v1.6.0/outilneNoir — a resorber au prochain npm run catalog ; core/samples figes (entrees de test historiques) et proses dashboard/context en retard, sans effet runtime.",
+    "semver": "majeur"
+   },
+   "limitesLevees": [],
+   "observationCroisee": "L'instrument de mesure visuelle voit deja ce defaut : `Property 1=Outilne noir: SKIPPED — axis has no contract binding` (releve T007, proofs/00-ouverture/visual-summary.txt). L'axe n'est donc pas mesure aujourd'hui.",
+   "recu": "proofs/recus/B013-8.md",
+   "statut": "clos",
+   "closLe": "2026-08-06",
+   "journal": "decisions.md O-16 — cote canvas CONSTAT, aucun geste (la regeneration avait deja purge « outilne » ; T026 : tout defaut qui ne se reproduit plus est clos sans geste) ; cote code, promotion MAJEURE executee et sujet d'instrument button-with-icons re-pointe (Style=Outline noir) — les 2 « figma-source » du gate etaient l'instrument en retard sur la source reparee, pas le fichier (note T035 : rows.json compte 0 ligne figma-source) ; gates : eval 184/184, parity exit 0."
+  },
+  {
+   "id": "D-016-CARTE-BOUTON",
+   "provenance": null,
+   "diagnosticOrigine": null,
+   "sujet": null,
+   "contractId": null,
+   "diagnosticVif": "CORRIGÉ le 2026-08-06 par relevé (dump REST versionné vs vif) — le diagnostic initial était FAUX sur deux points. (a) La structure est bonne : le contrat compose bien ds.button et le canvas rend l'instance 'action' 215x30 HUG, taille d'origine ; les 'trois enfants' de l'origine sont les internes du bouton, pas des parts manquantes. Le cadre 'Bouton' 743x30 FILL qui l'enveloppe porte le align-self qu'une part component ne peut pas recevoir (refus de validateContract) : il est transparent, à la hauteur du bouton, aligné au début — PIXEL-NEUTRE. (b) Les ~1,05M px de portes-de-garage ne sont PAS le bouton : ce sont les photos par carte effondrées (voir D-016-PHOTOS-INSTANCE-EFFONDREES). LE DÉFAUT RÉEL, ÉTROIT : le master vif porte Glyphe gauche=230:585 (pdf) et Glyphe droite=230:599 (download) — les défauts imposés par le contrat — là où le master d'origine porte 6:99 (arrow-left) et 6:104 (arrow-right), les défauts du bouton lui-même. Et le contrat NE PEUT PAS exprimer l'origine : son enum ctaIconLeftGlyph ne contient que 'pdf'. Réparation spécifiée : specs/tiny/carte-bouton-glyphes.md.",
+   "correction": null,
+   "decisionOwnerRequise": null,
+   "decisionOwner": null,
+   "lotId": null,
+   "promotionCodeSide": null,
+   "limitesLevees": null,
+   "recu": null,
+   "cloturePortes": null,
+   "statut": "ouvert",
+   "closLe": null,
+   "journal": null,
+   "resultat": null
+  },
+  {
+   "id": "D-016-SECTIONS-LOCALES-CARTES",
+   "provenance": null,
+   "diagnosticOrigine": null,
+   "sujet": null,
+   "contractId": null,
+   "diagnosticVif": "Les sections locales des maquettes (CategoriesPrincipales, ProduitsECommerce, Hero et catégories…) sont des masters CLIENT non gouvernés dont les cartes nested (ds.carte) avaient des largeurs PAR PAGE (474 sur motorisation ×3, 743 ailleurs) ; le rebuild de ds.carte a re-layouté ces masters et les resize nested ne tiennent pas en auto-layout (reposés 27/27 sans effet mesuré). Écarts résiduels : motorisation +124, dépannage −32, accueil +10, a-propos +4. Réparation propre : gouverner ces sections OU re-poser les layouts des masters locaux — arbitrage owner.",
+   "correction": null,
+   "decisionOwnerRequise": null,
+   "decisionOwner": null,
+   "lotId": null,
+   "promotionCodeSide": null,
+   "limitesLevees": null,
+   "recu": null,
+   "cloturePortes": null,
+   "statut": "ouvert",
+   "closLe": null,
+   "journal": null,
+   "resultat": null
+  },
+  {
+   "id": "D-016-REPEAT-SAMPLE-PAR-VARIANTE",
+   "provenance": null,
+   "diagnosticOrigine": null,
+   "sujet": null,
+   "contractId": null,
+   "diagnosticVif": "Un repeat n'a qu'UN sample pour toutes les variantes : la variante '5 cartes' de ds.reassurances reperd sa 5e carte (photo d62d8bf3…) à CHAQUE rebuild — reposée deux fois ce jour (census 13/13). Limite de schéma nommée : repeat.sampleByProp à concevoir ; d'ici là tout amend de reassurances DOIT re-poser la 5e carte.",
+   "correction": null,
+   "decisionOwnerRequise": null,
+   "decisionOwner": null,
+   "lotId": null,
+   "promotionCodeSide": null,
+   "limitesLevees": null,
+   "recu": null,
+   "cloturePortes": null,
+   "statut": "ouvert",
+   "closLe": null,
+   "journal": null,
+   "resultat": null
+  },
+  {
+   "id": "D-016-PHOTOS-INSTANCE-EFFONDREES",
+   "provenance": null,
+   "diagnosticOrigine": null,
+   "sujet": null,
+   "contractId": null,
+   "diagnosticVif": "RÉGRESSION INTRODUITE PAR 016, mesurée le 2026-08-06 (dump REST versionné vs vif) : les photos PAR CARTE des sections client, portées en SURCHARGES D'INSTANCE sur les maquettes, s'effondrent sur une seule image quand leur master est reconstruit. Comptes de hashes DISTINCTS, origine → vif : Reassurances 4→1 (à-propos, portes-entrée, industrielles, résidentielles), 5→1 (accueil et portes-de-garage) ; CategoriesPrincipales 2→1 (portes-entrée, industrielles, résidentielles) ; ProduitsECommerce 4→1 (accueil). SIX maquettes touchées. C'est le principal reste du diff pixel (portes-de-garage ~1,05M px : la rangée de 5 photos distinctes rend 5 fois la même). CAUSE : la passe harvest/restore du moteur protège les fills DU MASTER ; elle ne voit pas les surcharges d'image des INSTANCES en aval (famille D7, la même que les INSTANCE_SWAP perdus). Le census par multiset de hashes AU MASTER ne peut pas le détecter — la limite est nommée dans proofs/photos/CENSUS-APRES.md, ce cas la démontre. RÉCUPÉRABLE : les hashes d'origine sont dans le dump versionné 2384251202054787848, par node — même mécanique que la restauration des heros et du CTA Devis (getImageByHash + fills, appariement par (host, ordre)). À faire AVANT toute nouvelle régénération de ces masters.",
+   "correction": null,
+   "decisionOwnerRequise": null,
+   "decisionOwner": null,
+   "lotId": null,
+   "promotionCodeSide": null,
+   "limitesLevees": null,
+   "recu": null,
+   "cloturePortes": null,
+   "statut": "ouvert",
+   "closLe": null,
+   "journal": null,
+   "resultat": null
+  }
+ ]
+}

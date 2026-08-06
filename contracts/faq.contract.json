@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.faq",
   "name": "FAQ",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur le master 2104:2914 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures (ni gap, ni padding, ni largeur) et sans aucune des valeurs d'instance du Bouton, ce qui laissait le rendu généré à 4,37 % d'écart pixel. Aucune propriété publique n'a changé.",
   "semantics": {
     "element": "div",
@@ -31,7 +31,7 @@
       "name": "ligne3",
       "type": "boolean",
       "default": true,
-      "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass). LIMITE NOMMÉE : côté Figma cette propriété pilote la visibilité de la SEULE 3e instance (2104:2911), et la géométrie recalcule 448 ↔ 384px. Côté contrat les trois lignes naissent d'un `repeat` : `visibleWhen` s'applique à la part, donc à TOUTES les lignes répétées, jamais à la dernière seule. Le vocabulaire n'a pas de visibilité par index dans un repeat ; poser `visibleWhen: { prop: \"ligne3\" }` ferait disparaître les trois lignes là où Figma en garde deux. Le fait est donc EXPOSÉ mais non PROJETÉ, et nommé plutôt que contourné par un modèle faux.",
+      "description": "Extracted from Figma \"Ligne 3\" BOOLEAN property (added by sync pass). Côté Figma cette propriété pilote la visibilité de la SEULE 3e instance, et la géométrie recalcule 448 ↔ 384px. LIMITE LEVÉE en 1.3.0 (016, journal decisions.md O-15) : un item de `repeat` ne peut toujours pas porter de visibleWhen individuel (le vocabulaire n'a pas de visibilité par index — poser `visibleWhen` sur la part répétée ferait disparaître les trois lignes là où Figma en garde deux), mais la 3e rangée est sortie du repeat en part composée séparée `AccordionRow3`, qui porte `visibleWhen: { prop: \"ligne3\" }` : le fait est désormais PROJETÉ (mesuré au canvas, O-15 : portes-entrée 481→409, la prop agit).",
       "bindings": {
         "figma": {
           "kind": "BOOLEAN",
@@ -98,23 +98,33 @@
                   {
                     "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
                     "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
-                  },
-                  {
-                    "contenu": "Réponse",
-                    "titre": "Assurez-vous la maintenance après l'installation ?"
                   }
                 ]
+              }
+            },
+            "AccordionRow3": {
+              "description": "Troisième rangée sortie du repeat (016) : un item de repeat ne peut pas porter de visibleWhen individuel — la prop ligne3 déclarée au contrat n'était reliée à AUCUNE part (mesuré : refs [] sur les rangées du master, Ligne 3=false sans effet, pages +64). Part composée séparée, toggleable.",
+              "component": {
+                "id": "ds.accordion-row",
+                "props": {
+                  "taille": "grand",
+                  "titre": "Assurez-vous la maintenance après l'installation ?",
+                  "contenu": "Réponse"
+                }
+              },
+              "visibleWhen": {
+                "prop": "ligne3"
               }
             }
           }
         },
         "Bouton": {
-          "description": "Instance 2104:2912 de ds.button, 249×54 : Style = « Outline noir » (valeur d'enum contractuelle \"outilneNoir\", coquille assumée par ds.button), Libelle = « Contactez-nous », Icone droite = true (ArrowRight 20×20, gap 10), Icone gauche = false. Le contrat portait la seule référence à ds.button : le rendu retombait sur variant=\"default\" (fond noir-bleuté, texte blanc) là où Figma dessine un contour 2px sur fond transparent, et n'émettait pas la flèche.",
+          "description": "Instance 2104:2912 de ds.button, 249×54 : Style = « Outline noir » (valeur d'enum contractuelle \"outlineNoir\"), Libelle = « Contactez-nous », Icone droite = true (ArrowRight 20×20, gap 10), Icone gauche = false. Le contrat portait la seule référence à ds.button : le rendu retombait sur variant=\"default\" (fond noir-bleuté, texte blanc) là où Figma dessine un contour 2px sur fond transparent, et n'émettait pas la flèche.",
           "component": {
             "id": "ds.button",
             "text": "Contactez-nous",
             "props": {
-              "variant": "outilneNoir",
+              "variant": "outlineNoir",
               "iconRight": true
             }
           }

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/section-header.contract.json (ds.section-header v2.0.0)
+ * Source of truth: contracts/section-header.contract.json (ds.section-header v2.1.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -15,9 +15,9 @@ export interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
   titre?: Array<{ text: string; strong?: boolean }>;
   /** Extracted from Figma "Accroche2" BOOLEAN property (added by sync pass). */
   accroche2?: boolean;
-  /** LIMITE NOMMÉE — abstraction code-side sur des surcharges d'instance Figma ad hoc. Le master 2090:2385 porte 40px/50px ; les usages surchargent la typographie du Titre par instance (hero 2169:6264 : 54/68/blanc, poids 300 sur la plage NON marquée — voir ci-dessous ; presentation 2169:6246 : 32/40 ; texte-seo 2170:6361 : 24/30 ; coordonnees, faq, sav et reassurances restent à 40/50 = defaut) au lieu de la porter en variantes gouvernées. Le poids du hero : le nœud Figma a un style de BASE Bold 700 avec une surcharge Light 300 sur « industrielles » ; le modèle du contrat porte l'inverse strictement équivalent en pixels — la plage non marquée prend le poids de base (300, littéral : aucun token Light dans la fondation) et la plage marquée prend content.marks.strong (token font.weight.bold). `component.props` ne transporte que des valeurs de props, jamais une surcharge typographique de l'enfant — cet axe est donc le seul moyen de porter le fait sans retoucher la sortie générée. Le correctif de fond appartient à Figma : promouvoir ces surcharges en variantes réelles, après quoi cet axe redevient un VARIANT lié. */
+  /** Axe gouverné : binding VARIANT « Emphase » depuis 2.1.0 (016, journal decisions.md O-12 — le SET 2090:2397 a gagné les dimensions Emphase et Alignement, 16 variantes). LIMITE LEVÉE : jusqu'en 2.0.x cet axe était code-only (bindings.figma.kind: NONE), une abstraction au-dessus de surcharges d'instance ad hoc (hero 2169:6264 : 54/68/blanc ; presentation 2169:6246 : 32/40 ; texte-seo 2170:6361 : 24/30 ; les autres usages au défaut 40/50 du master 2090:2385) — le correctif de fond annoncé par l'ancienne limite (promouvoir ces surcharges en variantes réelles) a eu lieu côté Figma. Le modèle du poids hero est inchangé : le nœud d'origine porte un style de BASE Bold 700 avec une surcharge Light 300 sur « industrielles » ; le contrat porte l'inverse strictement équivalent en pixels — la plage non marquée prend le poids de base (300, littéral : aucun token Light dans la fondation) et la plage marquée prend content.marks.strong (token font.weight.bold). */
   emphase?: 'standard' | 'hero' | 'moyen' | 'compact';
-  /** LIMITE NOMMÉE — le master 2090:2385 centre (textAlign CENTER) mais 5 usages sur 7 le surchargent en LEFT par instance (coordonnees, presentation, sav, texte-seo, hero) quand faq et reassurances suivent le master. Cet axe code-side porte ce fait d’usage ; le correctif de fond appartient à Figma (promouvoir l’alignement en variante gouvernée du master). */
+  /** Axe gouverné : binding VARIANT « Alignement » depuis 2.1.0 (016, journal decisions.md O-12). LIMITE LEVÉE : jusqu'en 2.0.x cet axe était code-only (bindings.figma.kind: NONE) — le master 2090:2385 centrait (textAlign CENTER) et les usages le surchargeaient en LEFT par instance (census 013 : 5 usages sur 7 ; relevé vif 016 : 34 instances sur 59, specs/016-canvas-vrai/registre/defauts-source.json B013-2). Le correctif de fond annoncé par l'ancienne limite a eu lieu : l'alignement est une variante gouvernée du master. */
   alignement?: 'centre' | 'gauche';
 }
 
@@ -57,7 +57,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
           ),
         )}
       </span>
-      {disposition === 'avecCta' ? <Button variant="outilneNoir">Voir les produits</Button> : null}
+      {disposition === 'avecCta' ? <Button variant="outlineNoir">Voir les produits</Button> : null}
     </div>
   );
 });

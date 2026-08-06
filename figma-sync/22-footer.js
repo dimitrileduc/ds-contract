@@ -48,6 +48,8 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "insetOverlay": true,
+              "insetPartialV": true,
               "fixedHeight": {
                 "px": 459,
                 "varName": "size/footer/background"
@@ -85,6 +87,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "PiquerayLogo",
                       "dep":"PiquerayLogo",
+                      "depId": "ds.piqueray-logo",
                       "depProps": {
                         "Couleur": "Blanc"
                       }
@@ -93,6 +96,7 @@ const COMPONENTS = [
                       "type":"instance",
                       "name": "Bouton",
                       "dep":"Button",
+                      "depId": "ds.button",
                       "depProps": {
                         "Style": "Outline blanc",
                         "Icone droite": false,
@@ -105,17 +109,19 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
-                    "Texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-                    "Titre": "Contact"
+                    "Texte": "Rue Alfred Drèze 7, \u20284860 Pepinster",
+                    "Titre": "Adresse"
                   }
                 },
                 {
                   "type":"instance",
                   "name": "FooterColumn 2",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
-                    "Texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                    "Texte": "Du lundi au vendredi \u2028de 8h00 à 12h00 et \u2028de 13h30 à 17h00",
                     "Titre": "Horaires"
                   }
                 },
@@ -123,9 +129,10 @@ const COMPONENTS = [
                   "type":"instance",
                   "name": "FooterColumn 3",
                   "dep":"FooterColumn",
+                  "depId": "ds.footer-column",
                   "depProps": {
-                    "Texte": "Rue Alfred Drèze 7,  4860 Pepinster",
-                    "Titre": "Adresse"
+                    "Texte": "Tél : +32 (0)87 46 32 66\r\u2028 Email: info@piqueray.be",
+                    "Titre": "Contact"
                   }
                 },
                 {
@@ -203,13 +210,20 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
-                "counter": "MIN",
-                "stretchChildren": true
+                "counter": "MIN"
               },
-              "grow": true,
               "stroke": "color/blanc",
+              "fixedHeight": {
+                "px": 0,
+                "varName": "space/0"
+              },
               "lits": {
-                "strokeWeight": 1
+                "strokeSides": {
+                  "top": 1,
+                  "right": 0,
+                  "bottom": 0,
+                  "left": 0
+                }
               },
               "children": []
             },
@@ -231,6 +245,7 @@ const COMPONENTS = [
               "type":"instance",
               "name": "Copyright",
               "dep":"Copyright",
+              "depId": "ds.copyright",
               "depProps": {
                 "Texte": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb"
               }
@@ -298,10 +313,46 @@ async function ourTextStyle(name) {
   return _textStyleMap[name] || null;
 }
 
+// FONTES — résolution par famille ET orthographe de style.
+//
+// Le défaut que ceci répare (016, lot R-pilote-tab, trouvé sur le canvas réel) :
+// la table des poids épelle les styles à la façon d'Inter ('Semi Bold', avec une
+// espace) ; la plupart des familles — Montserrat comprise — les épellent compact
+// ('SemiBold'). Le runtime posait Inter en dur puis tentait un rattrapage avec
+// l'orthographe d'Inter appliquée à Montserrat : loadFontAsync refusait la paire,
+// un catch avalait l'erreur EN SILENCE, et tout le texte régénéré restait en Inter.
+// Mesuré sur le fichier client : "fontPostScriptName": "Montserrat-SemiBold".
+//
+// On essaie donc les deux orthographes, dans l'ordre, et surtout : on NOMME le
+// repli quand il a lieu (fontFallbacks), au lieu de dégrader sans le dire.
+const FONT_STYLE_ALIASES = { 'Semi Bold': ['Semi Bold', 'SemiBold'], 'Extra Light': ['Extra Light', 'ExtraLight'], 'Extra Bold': ['Extra Bold', 'ExtraBold'] };
+const fontFallbacks = [];
+const _fontCache = {};
+async function resolveFont(family, style) {
+  const k = family + '|' + style;
+  if (k in _fontCache) return _fontCache[k];
+  const candidates = FONT_STYLE_ALIASES[style] || [style];
+  for (const candidate of candidates) {
+    try {
+      await figma.loadFontAsync({ family: family, style: candidate });
+      return (_fontCache[k] = { family: family, style: candidate });
+    } catch (e) { /* orthographe suivante */ }
+  }
+  return (_fontCache[k] = null);
+}
+async function textFont(spec) {
+  const style = (spec && spec.fontStyle) || 'Medium';
+  const family = (spec && spec.fontFamily) || 'Inter';
+  const wanted = await resolveFont(family, style);
+  if (wanted) return wanted;
+  const used = (await resolveFont('Inter', style)) || (await resolveFont('Inter', 'Regular')) || { family: 'Inter', style: 'Regular' };
+  fontFallbacks.push({ wanted: family + ' ' + style, used: used.family + ' ' + used.style });
+  return used;
+}
 const fontStyles = new Set(['Medium']);
 for (const C of COMPONENTS) for (const s of C.fontStyles) fontStyles.add(s);
 for (const style of fontStyles) {
-  await figma.loadFontAsync({ family: 'Inter', style });
+  await resolveFont('Inter', style);
 }
 
 // State previews (figmaStatePreviews): merge the enum-API cartesian with the
@@ -317,7 +368,21 @@ function withStateAxis(C) {
   }).concat(C.stateVariants);
 }
 
-function findComponentByName(name) {
+function findComponentByName(name, contractId) {
+  // 016: identity FIRST — the ds_contracts/contractId marker survives any layer
+  // rename (the live file spells the button master « Bouton »; the contract says
+  // 'Button'; §VIII: a copy's own layer name is never an identity). The name
+  // lookup stays as the fallback for pre-marker files.
+  if (contractId) {
+    for (const page of figma.root.children) {
+      const hit = page.findOne(
+        (n) =>
+          (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') &&
+          n.getSharedPluginData('ds_contracts', 'contractId') === contractId,
+      );
+      if (hit) return hit;
+    }
+  }
   for (const page of figma.root.children) {
     const hit = page.findOne(
       (n) => (n.type === 'COMPONENT_SET' || n.type === 'COMPONENT') && n.name === name,
@@ -332,7 +397,19 @@ function setInstanceProps(inst, props) {
   const resolved = {};
   for (const [wanted, value] of Object.entries(props)) {
     const key = available.find((k) => k === wanted || k.startsWith(wanted + '#'));
-    if (key) resolved[key] = value;
+    if (!key) continue;
+    let v = value;
+    // 016: an INSTANCE_SWAP property takes a COMPONENT ID — contract enums map
+    // to component NAMES at compile time (CarouselControls passed "ChevronLeft"
+    // and Figma refused: "Property value is incompatible with component
+    // property type"). Resolve name -> id here; a name never contains ':',
+    // a node id always does.
+    const def = inst.componentProperties[key];
+    if (def && def.type === 'INSTANCE_SWAP' && typeof v === 'string' && v.indexOf(':') < 0) {
+      const target = findComponentByName(v);
+      v = (target.type === 'COMPONENT_SET' ? target.defaultVariant : target).id;
+    }
+    resolved[key] = v;
   }
   if (Object.keys(resolved).length > 0) inst.setProperties(resolved);
 }
@@ -437,6 +514,23 @@ function applyFrameSpec(node, spec) {
       if (sw.right !== undefined) node.strokeRightWeight = sw.right;
       if (sw.bottom !== undefined) node.strokeBottomWeight = sw.bottom;
       if (sw.left !== undefined) node.strokeLeftWeight = sw.left;
+      // 016: our grammar never expresses strokesIncludedInLayout — a true
+      // inherited by an amend-reused node is a ghost fact (same class as
+      // strokeClear): it inflated Footer.Separator to h=2 where the origin
+      // LINE contributes 0. Normalize whenever we own the node's strokes.
+      // (NB: this block lives inside a template literal — no backticks here.)
+      // 016, measured live: a zero-height part with per-side strokes is a
+      // LINE, not a box — INSIDE stroke align (the border-box doctrine, right
+      // for boxes) makes Figma clamp the frame's height to the horizontal
+      // stroke total (0 became 2). CENTER, like the origin LINE's own stroke,
+      // leaves geometry at ~0; the weights were set after the bind-time
+      // resize, so re-affirm the zero height last. (Zero-WIDTH vertical rules
+      // would need the mirror rule — unproven, so not written.)
+      if (spec.fixedHeight && spec.fixedHeight.px === 0) {
+        node.strokeAlign = 'CENTER';
+        node.resize(node.width, 0);
+      }
+      try { node.strokesIncludedInLayout = false; } catch (e) { /* not a frame */ }
     }
     if (li.width !== undefined || li.height !== undefined) {
       node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
@@ -469,6 +563,41 @@ function applyOverlay(parent, childNode, childSpec) {
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 
+// B-3 finding 5: an inset-0 overlay part (top/right/bottom/left all 0) is
+// lowered out of flow — ABSOLUTE, stretched to the parent, BEHIND the
+// in-flow siblings — matching the declared anatomy and the HTML render.
+function applyInsetOverlay(parent, childNode, childSpec) {
+  if (!childSpec.insetOverlay) return;
+  try {
+    // Round 5f (B5E finding 3): only a childless BACKDROP overlay (an
+    // inset:0 fill layer — TextField's backdrop) lowers BEHIND the in-flow
+    // siblings (index 0). A CONTENT overlay that carries glyphs (the Checkbox
+    // check, the RadioButton dot, a remove button) must stay ON TOP at its
+    // natural post-backdrop index — else the opaque backdrop sibling paints
+    // over the glyph (the checkbox backdrop-over-glyph z-order the owner saw,
+    // previously hand-corrected on canvas each re-amend).
+    if (!childNode.children || childNode.children.length === 0) {
+      parent.insertChild(0, childNode);
+    }
+    childNode.layoutPositioning = 'ABSOLUTE';
+    const o = childSpec.insetOffsets || { top: 0, right: 0, bottom: 0, left: 0 };
+    childNode.x = o.left;
+    childNode.y = o.top;
+    if (childSpec.insetPartialV) {
+      // 016: top band — top/left/right pinned, NO bottom. The node keeps its
+      // own (token-bound) height; only the width follows the parent.
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'MIN' };
+      childNode.resize(Math.max(1, parent.width - o.left - o.right), childNode.height);
+    } else {
+      childNode.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+      childNode.resize(
+        Math.max(1, parent.width - o.left - o.right),
+        Math.max(1, parent.height - o.top - o.bottom),
+      );
+    }
+  } catch (e) { /* parent not auto-layout — leave in flow */ }
+}
+
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -489,16 +618,10 @@ async function buildNode(spec, registry) {
     }
   } else if (spec.type === 'text') {
     node = figma.createText();
-    node.fontName = { family: 'Inter', style: spec.fontStyle || 'Medium' };
+    node.fontName = await textFont(spec);
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
     if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
-    if (spec.fontFamily) {
-      try {
-        await figma.loadFontAsync({ family: spec.fontFamily, style: spec.fontStyle || 'Medium' });
-        node.fontName = { family: spec.fontFamily, style: spec.fontStyle || 'Medium' };
-      } catch (e) { /* family unavailable — Inter stands (named limit) */ }
-    }
     if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
     if (spec.textCase) node.textCase = spec.textCase;
     if (spec.textDecoration) node.textDecoration = spec.textDecoration;
@@ -534,15 +657,48 @@ async function buildNode(spec, registry) {
         wrap.resize(spec.fixedWidth ? spec.fixedWidth.px : wrap.width, spec.fixedHeight ? spec.fixedHeight.px : wrap.height);
         if (spec.fixedWidth) { wrap.primaryAxisSizingMode = 'FIXED'; wrap.setBoundVariable('width', need(spec.fixedWidth.varName)); }
         if (spec.fixedHeight) { wrap.counterAxisSizingMode = 'FIXED'; if (spec.fixedHeight.varName) wrap.setBoundVariable('height', need(spec.fixedHeight.varName)); else wrap.resize(wrap.width, spec.fixedHeight.px); }
+        // 016, CSS semantics: width on a text block means the TEXT WRAPS at
+        // that width. The wrapper was fixed but the TEXT stayed auto-width
+        // (WIDTH_AND_HEIGHT) and overflowed in one line — measured live on
+        // Devis.Titre: origin 900x100 (two lines), emitted TEXT 1498x50.
+        if (spec.fixedWidth && spec.characters) {
+          try {
+            node.textAutoResize = 'HEIGHT';
+            node.layoutSizingHorizontal = 'FILL';
+          } catch (e) { /* older figma: leave auto */ }
+        }
       }
       wrap.name = spec.name;
       node = wrap;
     }
   } else if (spec.type === 'instance') {
-    const target = findComponentByName(spec.dep);
+    const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
+    // v20 (016): contract-carried slot content on the composed instance — the
+    // swap rides the child's INSTANCE_SWAP property (identity by marker, never
+    // layer name), then the slotted instance's own props are set on the nested
+    // instance the swap produced. Regenerated on every rebuild, by design.
+    for (const ds of spec.depSlots || []) {
+      const target = findComponentByName(ds.dep, ds.depId);
+      const slotMain = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
+      setInstanceProps(node, { [ds.property]: slotMain.id });
+      // marker for the mock-backed fixture only — REAL Figma nodes are sealed
+      // objects (assigning threw "object is not extensible" mid-amend, r11).
+      try { node._depSlotsApplied = true; } catch (e) { /* sealed on canvas */ }
+      if (ds.props && Object.keys(ds.props).length > 0) {
+        const nested = [];
+        for (const cand of (typeof node.findAll === 'function' ? node.findAll((n) => n.type === 'INSTANCE') : [])) {
+          const mc = typeof cand.getMainComponentAsync === 'function' ? await cand.getMainComponentAsync() : null;
+          if (mc && (mc.id === slotMain.id || (mc.parent && mc.parent.id === target.id))) nested.push(cand);
+        }
+        for (const inner of nested) setInstanceProps(inner, ds.props);
+        if (nested.length === 0) {
+          console.warn('[ds-contracts] depSlots: swapped ' + ds.property + ' to ' + ds.dep + ' but found no nested instance to receive its props (mock or detached child)');
+        }
+      }
+    }
   } else if (spec.type === 'slot') {
     node = figma.createFrame();
     applyFrameSpec(node, spec);
@@ -555,7 +711,7 @@ async function buildNode(spec, registry) {
     } else {
       const instances = [];
       for (const item of defaults) {
-        const target = findComponentByName(item.dep);
+        const target = findComponentByName(item.dep, item.depId);
         const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
         const inst = main.createInstance();
         if (item.props) setInstanceProps(inst, item.props);
@@ -611,6 +767,18 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+    // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
+    // Figma's auto-width has no CSS equivalent. A TEXT child of a
+    // width-CONSTRAINED parent (fixed width, or a stretch/grow context)
+    // fills and wraps (FILL + HEIGHT). Parents that HUG keep auto-width
+    // text — that IS the inline semantics (button labels), and FILL inside
+    // HUG is the circular case Figma refuses. Measured live: the
+    // SectionHeader title overflowed Presentation's 628 column in one line
+    // (origin: two lines) — the Devis.Titre fix was this rule's local case.
+    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+      try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
+    }
+    applyInsetOverlay(node, childNode, child);
   }
   return node;
 }
@@ -688,23 +856,10 @@ async function amendSet(set, C) {
   }
   const report = { name: C.setName, amended: true, nodeId: set.id, key: set.key,
     addedVariants: [], rebuiltVariants: 0, extraVariants: [], addedProps: [], editedDefaults: [] };
-  const defs = set.componentPropertyDefinitions;
-  const newKeys = {};
-  const defKey = (name) => newKeys[name] ||
-    Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      set.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
-
+  // 016: the variant-name reconciliation must run BEFORE the first
+  // componentPropertyDefinitions read — on a set already in the incomplete-
+  // names error state, THAT read throws and the repair below would never be
+  // reached (measured live: SectionHeader gaining Emphase+Alignement).
   // Sets gaining/losing the State preview axis reconcile by RENAME, not
   // duplication: an existing variant whose name matches an expected name
   // minus the ', State=Default' segment IS that variant (instances point at
@@ -726,9 +881,63 @@ async function amendSet(set, C) {
       report.renamedVariants = report.renamedVariants || [];
       report.renamedVariants.push(lost);
     } else {
-      report.extraVariants.push(ch.name);
+      // 016, generalization of the State-axis rename: a set gaining ANY new
+      // VARIANT dimension leaves its old variants named without the new
+      // segments ("Disposition=Standard" vs "Disposition=Standard, Emphase=…").
+      // Complete the old name with each missing expected axis at its spec
+      // default — the old node IS that variant (instances point at it). If
+      // this amend already built a twin under the completed name, the twin is
+      // ours and instance-free: remove it, keep the historied node. Measured
+      // live (SectionHeader +Emphase+Alignement): the incomplete pair put the
+      // whole set in "existing errors" and every composite read failed.
+      const segsOf = (nom) => new Map(nom.split(',').map((seg) => seg.trim().split('=')).filter((kv) => kv.length === 2).map(([k, val]) => [k, val]));
+      const parsed = segsOf(ch.name);
+      // the canonical default combo is EV[0] (row 0 / col 0 by construction):
+      // missing axes complete at THEIR spec default, in EV[0]'s axis order.
+      const defauts = segsOf(EV[0].name);
+      let completed = null;
+      if (parsed.size > 0 && parsed.size < defauts.size && [...parsed].every(([k]) => defauts.has(k))) {
+        completed = [...defauts.keys()].map((k) => k + '=' + (parsed.has(k) ? parsed.get(k) : defauts.get(k))).join(', ');
+        if (!expected.has(completed)) completed = null;
+      }
+      if (completed && completed !== ch.name) {
+        const twin = set.children.find((o) => o !== ch && o.name === completed);
+        // 016 revue adversariale (finding 1) : ne JAMAIS remove le jumeau — sous
+        // le nouvel ordre (rename avant build) un jumeau peut être un node
+        // PRÉEXISTANT portant des instances (designer migration) ; le supprimer
+        // orphelinerait ses instances irréversiblement. On le renomme hors du
+        // namespace gouverné et on le SIGNALE — un humain arbitre.
+        if (twin) {
+          twin.name = completed + ' (doublon amend — à arbitrer)';
+          report.mergedVariants = report.mergedVariants || [];
+          report.mergedVariants.push(completed + ' [jumeau conservé, renommé]');
+          report.extraVariants.push(twin.name);
+        }
+        ch.name = completed;
+        report.renamedVariants = report.renamedVariants || [];
+        report.renamedVariants.push(completed);
+      } else {
+        report.extraVariants.push(ch.name);
+      }
     }
   }
+  const defs = set.componentPropertyDefinitions;
+  const newKeys = {};
+  const defKey = (name) => newKeys[name] ||
+    Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
+
+  for (const w of [
+    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
+    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
+  ]) {
+    const k = defKey(w.name);
+    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
+    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
+      set.editComponentProperty(k, { defaultValue: w.def });
+      report.editedDefaults.push(w.name);
+    }
+  }
+
   const existingByName = new Map(set.children.map((ch) => [ch.name, ch]));
 
   for (const v of EV) {
@@ -762,6 +971,12 @@ async function amendSet(set, C) {
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
+        // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
+        // variant root fills and wraps.
+        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+          try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
+        }
+    applyInsetOverlay(comp, childNode, childSpec);
       }
       restoreImagePaints(v.spec, comp, imagePool, report);
       report.rebuiltVariants++;
@@ -773,7 +988,7 @@ async function amendSet(set, C) {
         set.editComponentProperty(k, { defaultValue: t.default });
         report.editedDefaults.push(t.prop);
       }
-      t.node.componentPropertyReferences = { characters: k };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
     }
     for (const sl of registry.slots) {
       const util = await ensureSlotUtility();
@@ -789,17 +1004,17 @@ async function amendSet(set, C) {
         newKeys[sl.spec.slotProperty] = k;
         report.addedProps.push(sl.spec.slotProperty);
       }
-      sl.instance.componentPropertyReferences = { mainComponent: k };
+      sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
       if (sl.spec.slotOptional) {
         let vk = defKey('Show ' + sl.spec.slotProperty);
         if (!vk) { vk = set.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-        sl.wrapper.componentPropertyReferences = { visible: vk };
+        sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
       }
     }
     for (const vis of registry.visibles) {
       const k = defKey(vis.prop);
       if (!k) continue;
-      vis.node.componentPropertyReferences = { visible: k };
+      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
       vis.node.visible = vis.default;
     }
   }
@@ -900,6 +1115,12 @@ async function amendComponent(comp, C) {
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+    // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
+    // fills and wraps.
+    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+      try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
+    }
+    applyInsetOverlay(comp, childNode, childSpec);
   }
   restoreImagePaints(v.spec, comp, imagePool, report);
   for (const t of registry.texts) {
@@ -909,7 +1130,7 @@ async function amendComponent(comp, C) {
       comp.editComponentProperty(k, { defaultValue: t.default });
       report.editedDefaults.push(t.prop);
     }
-    t.node.componentPropertyReferences = { characters: k };
+    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
   }
   for (const sl of registry.slots) {
     const util = await ensureSlotUtility();
@@ -925,17 +1146,17 @@ async function amendComponent(comp, C) {
       newKeys[sl.spec.slotProperty] = k;
       report.addedProps.push(sl.spec.slotProperty);
     }
-    sl.instance.componentPropertyReferences = { mainComponent: k };
+    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
     if (sl.spec.slotOptional) {
       let vk = defKey('Show ' + sl.spec.slotProperty);
       if (!vk) { vk = comp.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-      sl.wrapper.componentPropertyReferences = { visible: vk };
+      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
     }
   }
   for (const vis of registry.visibles) {
     const k = defKey(vis.prop);
     if (!k) continue;
-    vis.node.componentPropertyReferences = { visible: k };
+    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
     vis.node.visible = vis.default;
   }
   comp.description = C.description;
@@ -1014,7 +1235,7 @@ async function syncOne(C) {
   for (const b of built) {
     for (const t of b.registry.texts) {
       const key = b.comp.addComponentProperty(t.prop, 'TEXT', t.default);
-      t.node.componentPropertyReferences = { characters: key };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };
     }
     for (const s of b.registry.slots) {
       const util = await ensureSlotUtility();
@@ -1032,10 +1253,10 @@ async function syncOne(C) {
         s.defaultId || util.id,
         preferred.length > 0 ? { preferredValues: preferred } : undefined,
       );
-      s.instance.componentPropertyReferences = { mainComponent: key };
+      s.instance.componentPropertyReferences = { ...(s.instance.componentPropertyReferences || {}), mainComponent: key };
       if (s.spec.slotOptional) {
         const vkey = b.comp.addComponentProperty('Show ' + s.spec.slotProperty, 'BOOLEAN', true);
-        s.wrapper.componentPropertyReferences = { visible: vkey };
+        s.wrapper.componentPropertyReferences = { ...(s.wrapper.componentPropertyReferences || {}), visible: vkey };
       }
     }
     const boolKeys = {};
@@ -1048,7 +1269,7 @@ async function syncOne(C) {
     for (const vis of b.registry.visibles) {
       const key = boolKeys[vis.prop];
       if (!key) continue;
-      vis.node.componentPropertyReferences = { visible: key };
+      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: key };
       vis.node.visible = vis.default;
     }
   }
@@ -1106,4 +1327,4 @@ const results = [];
 for (const C of COMPONENTS) {
   results.push(await syncOne(C));
 }
-return { createdNodeIds: results.filter((r) => !r.skipped).map((r) => r.nodeId), results };
+return { createdNodeIds: results.filter((r) => !r.skipped).map((r) => r.nodeId), results, fontFallbacks };

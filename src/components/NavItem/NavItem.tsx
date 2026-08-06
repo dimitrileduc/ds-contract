@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.1.0)
+ * Source of truth: contracts/nav-item.contract.json (ds.nav-item v1.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -19,7 +19,7 @@ export interface NavItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   actif?: boolean;
 }
 
-/** Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination and runtime label are explicit code semantics; chevron and active are Figma BOOLEAN facts, and the transparent white-ink composition is intended for a dark Header/photo surface. */
+/** Piqueray NavItem. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Link destination (href) is explicit code semantics; the label binds the Figma TEXT property « Libellé » since 1.2.0 (016 — lifted limit, formerly code-only kind: NONE); chevron and active are Figma BOOLEAN facts, and the transparent white-ink composition is intended for a dark Header/photo surface. */
 export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(function NavItem(
   {
     chevron = true,

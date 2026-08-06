@@ -60,6 +60,96 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'figma-font-family-from-token',
+    claim: 'C3-detection',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/figma-font-family-from-token-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-font-family-from-token rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-border-color-without-width',
+    claim: 'C3-detection',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/figma-border-color-without-width-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-border-color-without-width rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'absolute-part-out-of-flow',
+    claim: 'C3-detection',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/absolute-part-out-of-flow-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture absolute-part-out-of-flow rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'icon-size-tokens-by-prop',
+    claim: 'C3-detection',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/icon-size-tokens-by-prop-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture icon-size-tokens-by-prop rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'dep-resolved-by-marker',
+    claim: 'C3-detection',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/dep-resolved-by-marker-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture dep-resolved-by-marker rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'composed-child-slot-content',
+    claim: 'C1-determinism',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/composed-child-slot-content-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture composed-child-slot-content rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'zero-height-line-part',
+    claim: 'C1-determinism',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/zero-height-line-part-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture zero-height-line-part rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'text-prop-and-visible-refs-coexist',
+    claim: 'C1-determinism',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/text-prop-and-visible-refs-coexist-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture text-prop-and-visible-refs-coexist rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'text-fills-constrained-parent',
+    claim: 'C1-determinism',
+    run: () => {
+      // 016 — fixture du jour branchée sur la porte (revue adversariale, finding 2 :
+      // une fixture que rien ne lance ne protège rien).
+      const r = run(TSX, ['evals/fixtures/text-fills-constrained-parent-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture text-fills-constrained-parent rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'primitives-border-width-parity',
     claim: 'C3-detection',
     run: () => {
@@ -968,7 +1058,7 @@ const cases: Case[] = [
     id: 'detect-code-enum-drift',
     claim: 'C3-detection',
     run: () => {
-      replaceInFile(BTN_TSX, "| 'outilneNoir'", "| 'outilneNoir' | 'ghost'");
+      replaceInFile(BTN_TSX, "| 'outlineNoir'", "| 'outlineNoir' | 'ghost'");
       if (parity().status === 0) throw new Error('Drift not detected');
       expectFinding(readReport(), 'code', 'mismatch', 'Button.variant');
     },
@@ -2991,7 +3081,7 @@ const cases: Case[] = [
       }
       if (label.fontFamily !== 'Söhne') throw new Error('font-family must carry the first stack entry, got ' + label.fontFamily);
       if (label.textTruncation !== true) throw new Error('text-overflow: ellipsis must carry textTruncation');
-      for (const marker of ["layoutWrap = 'WRAP'", 'INNER_SHADOW', 'GRADIENT_LINEAR', 'node.textCase = spec.textCase', 'loadFontAsync({ family: spec.fontFamily']) {
+      for (const marker of ["layoutWrap = 'WRAP'", 'INNER_SHADOW', 'GRADIENT_LINEAR', 'node.textCase = spec.textCase', 'node.fontName = await textFont(spec)']) {
         if (!script.includes(marker)) throw new Error('emitted runtime missing: ' + marker);
       }
       // ROUND 4 (owner de-noise directive): descriptions are ONE caption line

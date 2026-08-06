@@ -9,6 +9,7 @@ import { SectionHeader } from '../SectionHeader';
 import { Avantage } from '../Avantage';
 import { Button } from '../Button';
 import { Field } from '../Field';
+import { Textarea } from '../Textarea';
 import styles from './Formulaire.module.css';
 
 export interface FormulaireProps extends HTMLAttributes<HTMLDivElement> {
@@ -68,7 +69,9 @@ export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function F
           <Field label="Sujet" etat="normal" />
         </div>
         <div className={styles.row5}>
-          <Field label="Message" etat="normal" />
+          <Field label="Message" etat="normal">
+            <Textarea value="Écrivez votre message ici..." />
+          </Field>
         </div>
         <span className={styles.TexteConsentement}>{consentement}</span>
         <Button>Contactez-nous</Button>

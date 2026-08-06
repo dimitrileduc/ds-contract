@@ -3,7 +3,7 @@ title: "History — how we got here"
 doc_id: 10-history
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-07-24
+last_updated: 2026-08-06
 reading_order: 10
 prerequisites: [00-readme, 02-thesis-and-north-star]
 related: [03-determinism, 08-status-what-doesnt-work, 11-roadmap]
@@ -123,6 +123,56 @@ filenames coincidentally matched real Piqueray icon names (e.g.
 `chevron-left.svg`) but drew completely different glyphs under that name. The
 governed set was re-extracted from the real Figma file from scratch, never
 copied from the old demo.
+
+## Journal gap — specs 003 through 015 (named, not filled)
+
+The narrative here jumps from spec 002 to spec 016. Specs 003–015 (Figma
+externalization, input atoms, source cleanup, extractable source, molecule/
+organism extraction, token adoption, measurement-and-triage, governed
+geometry, …) have **no section in this file**; their record lives in each
+`specs/NNN-*/` folder (spec.md, decisions.md, closure reports) and the commit
+log. `MILESTONES.md` similarly stops at spec 010. The repo rule (see
+`CLAUDE.md`, "Journal gap") is to name this hole rather than write over it —
+this section is the naming, not the filling.
+
+## The canvas made true (spec 016, 2026-08-06)
+
+Spec 015 had closed the geometry blind spot on the code side but left the
+canvas axis acknowledged, not watched: 89 acknowledgements in
+`parity/baseline.json`, 83 of them geometry references with no Figma variable
+behind them. Spec 016 rebranched that axis on the live client file: 83
+variables created (77 `size/*` + 6 `space/*`), **562 variable bindings on 31
+masters** (10 on 3 at opening), the baseline down to **3 named
+acknowledgements** — and the watch *proven*, not assumed: a deliberate sentinel
+drift (364→999) was caught as the exact classified finding with two proposed
+remedies, then cancelled under byte-identical double verification
+(`U1a-sentinelle`, 2026-08-05).
+
+The divergent canvas was then regenerated **under measure**: 22 photo-free
+masters rebuilt and bound, every page delta attributed arithmetically against a
+versioned REST dump — never by page-pixel flair (~40% of page diff was cascade
+carry) — ~90% of the pixel diff resorbed, and every remaining delta named,
+caused and statused. Twelve engine/schema defect classes were closed
+fixture-first along the way; six standalone checks under `evals/fixtures/` lock
+the fixture-backed ones (`composed-child-slot-content-check.ts`,
+`text-prop-and-visible-refs-coexist-check.ts`, `zero-height-line-part-check.ts`,
+`dep-resolved-by-marker-check.ts`, `icon-size-tokens-by-prop-check.ts`,
+`absolute-part-out-of-flow-check.ts` — each header carries its live measured
+origin; see `07` for the claims and the not-yet-in-sweep caveat), and
+`component.slots` (schema v20) made a composed child's slot content a contract
+fact. Contracts elevated: `section-header` 2.1.0 (emphase/alignement promoted
+to VARIANT — 16 variants), `button` 2.0.0 **MAJOR** (`outilneNoir` →
+`outlineNoir`), `faq` 1.3.0, `accordion-row` 1.2.0, `presentation` 2.2.0.
+
+Lessons written into the record: **"TEXT survives" holds only for
+amend-in-place** — a variant rebuild orphans every downstream instance
+override, INSTANCE_SWAP first; attribution goes through per-section REST
+dumps; a refusal to judge (exit 2) is never a conformity verdict; a session's
+first capture of an image-bearing frame is not a reference (warm-up receipt).
+The closure report — `specs/016-canvas-vrai/RAPPORT-CLOTURE.md` — was written
+2026-08-06 with the chantier honestly unfinished (56/81 tasks; SC-004 photo
+identity and SC-006 Field/NavItem reported with names, not declared): read it
+before building on any 016 claim.
 
 ## Cultural throughline
 

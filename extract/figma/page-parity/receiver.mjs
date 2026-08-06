@@ -142,6 +142,12 @@ const server = createServer((req, res) => {
   res.writeHead(404);
   res.end('not found');
 });
+// Two SPECIFIC binds, v4 AND v6 (016). The IPv4-only bind lost the port to MCP
+// squatters twice: macOS resolves localhost to [::1] first, and a later server
+// binding [::1]:<port> SPECIFICALLY wins IPv6 traffic even over a wildcard.
+// Holding both specific binds ourselves makes the next squatter EADDRINUSE.
 server.listen(port, '127.0.0.1', () =>
   console.log(`page-parity receiver on http://localhost:${port} → ${outDir} (nonce ${identity.nonce})`),
 );
+const serverV6 = createServer(server.listeners('request')[0]);
+serverV6.listen(port, '::1');

@@ -475,6 +475,7 @@ function findComponentCycle(
     for (const w of walkAnatomy(dep)) {
       const targets = [
         ...(w.part.component ? [w.part.component.id] : []),
+        ...Object.values(w.part.component?.slots ?? {}).map((item) => item.id),
         ...(w.part.slot?.defaultContent ?? []).map((item) => item.id),
       ];
       for (const t of targets) {
@@ -578,6 +579,35 @@ export function validateContract(
       }
       if (part.component.text !== undefined && dep && !hasChildrenText(dep)) {
         errors.push(`${contract.id}: part "${name}" sets text but ${dep.id} has no children text prop`);
+      }
+      // v20 (016): component.slots — content for the child's named slots. Each
+      // key must name a real slot on the child, each item must be in scope and
+      // satisfy the slot's accepts; only the `children` slot is renderable as
+      // JSX children on the code side (named limit, refused here, not at
+      // render time).
+      for (const [slotName, item] of Object.entries(part.component.slots ?? {})) {
+        const childSlot = dep
+          ? [...walkAnatomy(dep)].map((w) => w.part.slot).find((s) => s?.name === slotName)
+          : undefined;
+        if (dep && !childSlot) {
+          errors.push(`${contract.id}: part "${name}" fills slot "${slotName}" but ${dep.id} declares no such slot`);
+          continue;
+        }
+        if (!byId.get(item.id)) {
+          errors.push(`${contract.id}: part "${name}" slot "${slotName}" references "${item.id}" which has no contract in scope`);
+        }
+        if (childSlot?.accepts && !childSlot.accepts.includes(item.id)) {
+          errors.push(`${contract.id}: part "${name}" slot "${slotName}" content "${item.id}" is not in ${dep!.id}'s accepts (${childSlot.accepts.join(', ')})`);
+        }
+        if (slotName !== 'children') {
+          errors.push(`${contract.id}: part "${name}" fills slot "${slotName}" — only the "children" slot is expressible as JSX children today (named limit)`);
+        }
+        const slotDep = byId.get(item.id);
+        for (const [pn] of Object.entries(item.props ?? {})) {
+          if (slotDep && !slotDep.props.some((dp) => dp.name === pn)) {
+            errors.push(`${contract.id}: part "${name}" slot "${slotName}" sets unknown ${slotDep.id} prop "${pn}"`);
+          }
+        }
       }
     }
     for (const item of part.slot?.defaultContent ?? []) {
@@ -2522,7 +2552,11 @@ export function generateTsx(
     ...new Set(
       walkAnatomy(contract)
         .filter((w) => w.part.component)
-        .map((w) => byId.get(w.part.component!.id)!.name),
+        .flatMap((w) => [
+          byId.get(w.part.component!.id)!.name,
+          // v20 (016): slotted content renders as JSX children — import it too.
+          ...Object.values(w.part.component!.slots ?? {}).map((item) => byId.get(item.id)!.name),
+        ]),
     ),
   ];
 
@@ -2954,9 +2988,23 @@ export function generateTsx(
       const dep = byId.get(part.component.id)!;
       const fixedProps = part.component.props ?? {};
       const mappedChildren = componentChildrenJsx(dep, fixedProps, contract);
-      const attrs = depAttrString(dep, fixedProps, contract, mappedChildren !== undefined);
+      // v20 (016): component.slots.children — the contract says what the
+      // child's slot holds, so BOTH surfaces regenerate it (Figma: the
+      // INSTANCE_SWAP; here: the JSX children). Validation already restricted
+      // slots to `children` (named limit).
+      const slotItem = part.component.slots?.['children'];
+      const slotJsx = slotItem
+        ? (() => {
+            const slotDep = byId.get(slotItem.id)!;
+            const slotAttrs = depAttrString(slotDep, slotItem.props ?? {}, contract);
+            return slotItem.text !== undefined
+              ? `<${slotDep.name}${slotAttrs}>${slotItem.text}</${slotDep.name}>`
+              : `<${slotDep.name}${slotAttrs} />`;
+          })()
+        : undefined;
+      const attrs = depAttrString(dep, fixedProps, contract, mappedChildren !== undefined || slotJsx !== undefined);
       const depChildren = textProps(dep).find((p) => p.bindings.code.prop === 'children');
-      const text = mappedChildren ?? part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
+      const text = slotJsx ?? mappedChildren ?? part.component.text ?? (typeof depChildren?.default === 'string' ? depChildren.default : undefined);
       const node = text !== undefined
         ? `<${dep.name}${attrs}>${text}</${dep.name}>`
         : `<${dep.name}${attrs} />`;

@@ -906,6 +906,16 @@ export const ComponentRefSchema = z.strictObject({
   /** Overrides the child's `children` text prop (code: JSX children;
    *  Figma: TEXT property override on the instance). */
   text: z.string().optional(),
+  /** v20 (016): content for the CHILD's named slots, keyed by the child
+   *  contract's slot name. This is the ONLY governed carrier of that fact:
+   *  spelled here it regenerates on both surfaces (code: rendered slot
+   *  content; Figma: the slot's INSTANCE_SWAP property set on the composed
+   *  instance, resolved by identity marker). Spelled as a manual override on
+   *  the canvas instead, every parent rebuild erases it — the D7 family
+   *  (INSTANCE_SWAP overrides are lost, TEXT overrides survive); receipt:
+   *  Formulaire row5's textarea, lost on regeneration, page −80 px. Items
+   *  must satisfy the child slot's `accepts`. */
+  slots: z.record(z.string(), SlotContentItemSchema).optional(),
 });
 
 export interface Part {

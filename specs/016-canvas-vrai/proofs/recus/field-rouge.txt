@@ -1,0 +1,55 @@
+ROUGE CONSTATÉ AU VIF — volet Field (D8, T064/T065) — §II fixture d'abord
+Date : 2026-08-06
+Commande : npx tsx evals/fixtures/slot-control-fill-reaches-wrapper-check.ts
+Code de sortie : 1
+Fixture : evals/fixtures/slot-control-fill-reaches-wrapper-check.ts
+  (écrite le 2026-08-05, commit 49ded16 — re-exécutée telle quelle ce jour,
+   APRÈS les correctifs moteur n°1-6 et les régénérations du master Field :
+   le rouge est identique au constat d'origine, le correctif slot-fill n'a
+   jamais été appliqué)
+
+Sortie exacte :
+
+✘ slot-control-fill-reaches-wrapper:
+- slot wrapper declaring control.fill "width" does not fill its parent: measured 169, expected 280 (it shrink-to-fits under the root's align-items: flex-start)
+- the slotted control does not fill its parent: measured 169, expected 280 — its width: 100% resolves against a hugging wrapper, so the declaration is inert
+- html surface leaves the filled slot wrapper hugging:
+.slot-fill-field__Filled {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+- delivered React surface leaves the filled slot wrapper hugging (DW-014-002 shape: the instrument never renders it):
+.Filled {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+- Figma spec leaves the filled slot wrapper HUG — the parent declares align "start", so stretchChildren never fires and the canvas reproduces the same inert fill:
+{
+              "type": "slot",
+              "name": "Filled",
+              "layout": {
+                "mode": "VERTICAL",
+                "primary": "MIN",
+                "counter": "MIN",
+                "stretchChildren": true
+              },
+              "slotProperty": "Children",
+              "slotAccepts": [
+                "SlotFillControl"
+              ],
+              "slotDefault": [
+                {
+                  "dep":"SlotFillControl",
+                  "depId": "fixture.slot-fill-control",
+                  "props": {}
+
+Relevé canvas VIF du même jour (REST lecture seule, fileKey d9FYAUcqdcNtsuaMgLefvJ,
+master Field 2056:1278, description « generated from contract ds.field v2.0.0 † ») :
+  COMPONENT Etat=Normal  : 125×81  sizingH=HUG   (origine : 280×81 CSS = 560×162 device)
+  FRAME Saisie           : 125×48  sizingH=HUG   (origine : FIXED 280, layoutGrow 0)
+  INSTANCE Input         : 125×48  sizingH=FILL  (FILL dans une chaîne qui hug → inerte)
+La régénération du jour a EXPORTÉ le défaut moteur vers le canvas : les deux surfaces
+huggent désormais à l'identique — une mesure pixel proche de Δ0 sur ce sujet serait un
+FAUX VERT (le canvas n'est plus l'état d'origine : racine 280→125 CSS).

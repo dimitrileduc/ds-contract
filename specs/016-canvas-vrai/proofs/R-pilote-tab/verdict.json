@@ -1,0 +1,33 @@
+{
+  "statutGlobal": "refus",
+  "exitCode": 2,
+  "totaux": {
+    "identical": 0,
+    "diff": 1,
+    "captureFailed": 0,
+    "dimensionMismatch": 1
+  },
+  "maquettes": [
+    {
+      "maquette": "depannage-sav",
+      "status": "diff",
+      "diffCount": 4563,
+      "diffBox": {
+        "x": 456,
+        "y": 835,
+        "w": 815,
+        "h": 41
+      },
+      "cropTriptyque": "crops/depannage-sav.png",
+      "refus": null
+    },
+    {
+      "maquette": "master-tab",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 106x261 != after 163x202"
+    }
+  ]
+}

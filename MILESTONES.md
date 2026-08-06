@@ -1154,3 +1154,118 @@ the plugin engine receipt).
   reviewed run — the stale 006-era 13-row baseline is finally current); the
   full-run REPORT diff touched exactly one row: select. Suite: **184/184**
   (+1 case).
+
+## 2026-08-06 — Spec 016: the canvas axis restored — 89 acknowledgements → 3
+
+**Journal gap, still named:** specs 011 to 014 still have no entry here. 015's
+was filed on top of that hole and 016's does not fill it either — their record
+lives in their spec folders and the commit log, and `docs/handoff/10-history.md`
+still stops at spec 002.
+
+**Where 015 left it:** the geometry blind spot was closed on the *code* side,
+but the 83 references it minted had no Figma variables — the canvas axis was
+*acknowledged, not watched*, and `parity/baseline.json` carried **89**
+acknowledgements. Restoring that axis meant writing on the real client file
+again, on the 9 maquettes the agency ships from. Twenty-nine commits on the
+branch, seven of them on the closing day (`f854cc2` → `08f7d22`).
+
+- **The axis is watched again: 89 → 3 acknowledgements, none of them geometry.**
+  The 83 references became **83 variables in the client file** (77 `size/*` +
+  6 `space/*`) with a **zero-pixel** proof — 9/9 maquettes `identical`, second
+  pass idempotent (`created: 0`) — and variable **bindings went from 10 on 3
+  masters to 562 on 31** (`proofs/bindings-audit-avant.json` /
+  `bindings-audit.json`). `npm run parity` exits 0 with 3 named acknowledgements
+  and **zero `figma-tokens` entries**; `geometry:gate` still reads `invisible 0`.
+- **The sentinel, run twice — the claim is detection, not green.** A geometry
+  variable changed by hand in the maquette (`size/carte/root` **364 → 999** at
+  opening, **363,5 → 999** replayed on the final state) produced the exact
+  finding `figma-tokens|mismatch|Primitives/size/carte/root [Value]` — classified,
+  located by token path + mode, carrying **both** remedies (adopt the canvas
+  value, or push the token), parity exit 1. Reverted: exit 0 and two
+  **byte-identical** passes. The second run (`proofs/recus/sentinelle-T073.md`)
+  is on the closing state — the capability survives 11 regenerated masters and
+  83 new variables, which is the only version of that claim worth having.
+- **Regenerating a real client file taught the engine thirteen defect classes**,
+  each one measured live → **red fixture first** → fix → re-amend → re-measure:
+  the font family hardcoded to `Inter` (a full regeneration would have replaced
+  the typography of the entire system — caught by piloting **one** component
+  before 44, and by the owner's eye on a readable visual review); a border color
+  without width drawing a solid stroke where CSS draws nothing (11 parts, 8
+  contracts); absolute parts placed back in flow; per-prop icon size ignored;
+  dependency resolution by **marker** (`findComponentByName` was matching the
+  literal name — the master is « Bouton », the contract says Button; §VIII:
+  identity is never a layer name); `component.slots` (schema **v20**, additive —
+  a composed child's slot content becomes a contract fact instead of a manual
+  override erased at every rebuild); the zero-height line rule (a frame cannot
+  carry an INSIDE stroke without occupying height — the Figma clamp 0→2 measured,
+  then taught to the mock); the `componentPropertyReferences` **merge** — a part
+  both TEXT-content and BOOLEAN-visible lost its characters reference, which had
+  silenced **every** instance TEXT override in the file (12 sites merged; one
+  witness re-lit itself); INSTANCE_SWAP by name where the API demands an id;
+  **VARIANT axis gain** (a set gaining a dimension completes its variant names
+  and merges with its fresh twin — made non-destructive after the adversarial
+  review); width on a text block = wrap; and the **CSS text-flow rule** (in CSS
+  every text wraps to its box — Figma's auto-width has no equivalent).
+- **57/57 photos, 11 carrying masters, none lost.** The pass was censused master
+  by master, and it went the other way too: a photo lost *before* the spec (the
+  Devis CTA background, hash `7825ba2d…`) was found still in the file and
+  re-posted on the master and its 8 instances — the CTA got its width back in
+  the same pass (`size.devis.root` minted from-dump at 1728, the contract
+  declared no width so HUG had shrunk the master to its title).
+- **The maquettes' overrides came back from a versioned dump, not from memory.**
+  The REST dump pinned at `version=2384251202054787848` (the restore point
+  `016/U1a-variables/avant`) holds the whole pre-spec state, so every page delta
+  became arithmetic per section instead of a guess: **205** diff-only
+  property/text gestures, then **198** style-range and alignment gestures — the
+  rich text (« Discutons **de votre** projet » with its per-character weights,
+  letter-spacing and fills) that flat `characters` re-posts had quietly dropped.
+  **~90 % of the page pixel diff absorbed between FINAL4 and FINAL18**; at
+  FINAL21 vs the pre-spec reference, **3 maquettes are exact** and every
+  remaining delta has a name, a cause and a status.
+- **Contract elevations, and the suite:** `button` **2.0.0 — a major bump**
+  (`outilneNoir` → `outlineNoir`, the typo fixed at the source with its 7
+  internal call sites migrated), `section-header` 2.1.1 (emphase + alignement
+  leave `kind: NONE` for real VARIANT axes, 16 variants — the owner's « la
+  régression c'est la typo »), `faq` 1.3.0 (a BOOLEAN declared but wired to no
+  part: a `repeat` item cannot carry an individual `visibleWhen`),
+  `accordion-row` 1.2.0 (open content is AUTO, not a fixed height minted from a
+  short extraction sample), `presentation` 2.2.0, `nav-item` 1.2.0, `equipe`
+  1.1.2. Suite **184 → 193/193** (48 quarantined): the adversarial review found
+  **nine** of the day's fixtures wired to no gate at all — all nine now run in
+  `evals/run.ts`.
+
+**Named limits (the honest half).** The restored axis watches the **existence**
+and the **value** of variables, never the *bindings*: a designer who detaches a
+dimension at node level and types a raw value leaves the variable intact and
+conform, and the differ says nothing — `parity/diff.ts` never reads
+`boundVariables` (0 occurrences, verified). The hole is caught in deferred mode
+by the binding audit and by any regeneration, never continuously. The
+source-defect register closed **9 of its 10** opening items with receipts
+(B013-4, the hero/sav TEXT props, was not done) and **grew to 13**: three
+defects the work itself discovered, all open — `D-016-CARTE-BOUTON` (the
+Categorie cards' button is unfaithful to the origin *in the contract*, and is
+the bulk of the remaining page pixel diff), `D-016-SECTIONS-LOCALES-CARTES`
+(ungoverned client sections re-layout their nested cards at every rebuild; the
+owner arbitration is govern them or re-post their layouts) and
+`D-016-REPEAT-SAMPLE-PAR-VARIANTE` (a repeat's single sample is re-lost at each
+rebuild). And the 9 maquettes are governed by **no document at all**: restoring
+their overrides took 403 generated gestures — proof that the question of who
+governs page assembly exists, not its answer.
+
+Four things the work learned about itself, worth more than the counts:
+**« TEXT survives » only holds for amend-in-place** — a variant REBUILD recreates
+internal nodes and orphans every downstream instance override, TEXT included, and
+rebuilding a master's children loses INSTANCE_SWAP overrides outright (same risk
+family as the photos, now extended to swaps). **The first capture of a session
+never counts**: a frame carrying an `IMAGE` paint exports incomplete before the
+image is decoded (measured — two different sha256 with no gesture between), so a
+§X BEFORE capture taken cold documents a state that never existed; warm up, then
+capture. **`exit 2` is not a verdict** — an instrument refusing to rule
+(dimension-mismatch) never authorizes a conformity conclusion, and a readable
+visual review is worth a verdict because it shows the defect to whoever knows the
+design. **Attribution never happens at the page pixel** — ~40 % of the page diff
+was cascade from upstream shifts; the per-section REST dumps are what made each
+delta arithmetic. Left standing: MemberCard and the A5 image boundary (spec 017),
+DW-014-002 (the visual-parity instrument still renders `emit-html`, never the
+delivered React surface), and the 89 stroke/paint/typography literals — 015's
+pattern applied to its next population, another spec.
