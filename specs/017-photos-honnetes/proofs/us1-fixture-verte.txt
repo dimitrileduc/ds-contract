@@ -1,0 +1,11 @@
+# T018 — la même fixture, APRÈS le correctif d'émetteur (§II : le passage rouge → vert EST la preuve)
+# date: 2026-08-06T18:52:25Z  commit: 9076b19
+# commande: npx tsx evals/fixtures/photos-instance-overrides-preserved-check.ts
+
+  ✔ central : 8 empreintes (maître + 3 instances) retrouvées à leur emplacement ; rapport vert, 4 hôtes
+  ✔ A (perte) : refus nommant photo, hôte et rang, aucun nœud touché
+  ✔ B (interversion) : le contrôle échoue et nomme les deux emplacements
+  ✔ C (sans accueil) : refus avant mutation ; acquittement complet → passe et s'imprime ; entrée incomplète → refus au chargement
+  ✔ D (déterminisme) : deux exécutions sans geste rendent le même rapport
+photos-instance-overrides-preserved ok: une photo posée sur une INSTANCE DE PAGE survit à la reconstruction, appariée par (hôte, chemin de position) et jamais par nom ; une empreinte qui perd son accueil fait REFUSER avant la première démolition en nommant photo, hôte et rang ; une interversion fait échouer le contrôle en nommant les deux emplacements ; un acquittement écrit lève à la photo près et reste imprimé ; deux exécutions rendent le même verdict.
+EXIT=0

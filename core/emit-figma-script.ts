@@ -3409,6 +3409,12 @@ function buildSyncScript(
 const COMPONENTS = ${componentsJson};
 const ROW_H = 240, PAD = 40;
 
+// 017 — le registre gouverné des levées du refus photo (FR-003a/FR-003b),
+// baké ici parce que le bac à sable Figma ne lit aucun fichier et que core/
+// n'en lit pas non plus (§VII). Vide = le refus ne se lève sur rien, ce qui
+// est l'état normal : une entrée est une décision owner avec son reçu.
+const ACQUITTEMENTS_PHOTOS = ${JSON.stringify(input.acquittementsPhotos ?? [])};
+
 const EXPECTED_FILE_KEY = ${JSON.stringify(fileKey)};
 if (EXPECTED_FILE_KEY && figma.fileKey && figma.fileKey !== EXPECTED_FILE_KEY) {
   throw new Error('WRONG FILE: expected ' + EXPECTED_FILE_KEY + ', got ' + figma.fileKey);
@@ -3849,7 +3855,7 @@ function specHash(C) {
 // maquettes du fichier client, DERRIÈRE UN RAPPORT VERT. Trois défauts, tous
 // réparés ici — et le rapport ne peut plus être vert en présence d'une perte.
 //
-//  1. LE PÉRIMÈTRE. Le relevé ne voyait que `comp`. Or 255 des 349 photos
+//  1. LE PÉRIMÈTRE. Le relevé ne voyait que le maître (comp). Or 255 des 349 photos
 //     vivantes sont des surcharges d'INSTANCE DE PAGE (016/proofs/photos/
 //     RECONCILIATION.md:26) : Figma propage la démolition aux instances, et les
 //     surcharges meurent avec les nœuds qui les portaient — les trois quarts de
@@ -3874,11 +3880,11 @@ function specHash(C) {
 // libre suivant DANS L'ORDRE DU DOCUMENT. C'est le cas réel du Hero — la photo
 // est un fill de RACINE alors que le contrat modélise un enfant Background — et
 // sans lui chaque régénération du Hero perdrait la photo du client (c'est le
-// cas B de `img-paint-preserved-on-amend`, mesuré, pas hypothétique). Il est
+// cas B de img-paint-preserved-on-amend, mesuré, pas hypothétique). Il est
 // déterministe, il préserve l'ordre (donc il ne peut pas produire
-// d'interversion), et il est RAPPORTÉ nommément dans `rehebergees`. Un
+// d'interversion), et il est RAPPORTÉ nommément dans rehebergees. Un
 // rehébergement vers un accueil dont l'occupant d'origine est ailleurs est, lui,
-// une INTERVERSION : il part dans `deplacees` et rend le rapport ROUGE.
+// une INTERVERSION : il part dans deplacees et rend le rapport ROUGE.
 // ==============================================================================
 
 function cheminEnfantDe(chemin, i) { return chemin === '' ? String(i) : chemin + '/' + i; }
@@ -3955,7 +3961,7 @@ async function hotesDeReconstruction(comp) {
   } else if (typeof comp.getInstancesAsync === 'function') {
     // VOIE API — bornée au maître reconstruit, JAMAIS au fichier.
     // ⚠️ NON MESURÉE sur le fichier client au 2026-08-06 : la sonde T005 est
-    // consignée `empeche` (specs/017-photos-honnetes/proofs/sonde-getinstances.md
+    // consignée empeche (specs/017-photos-honnetes/proofs/sonde-getinstances.md
     // — pont vivant mais saturé, EADDRINUSE sur toute la plage 9223-9232). Le
     // faux-Figma la modélise d'après l'API publiée, ce qui prouve que le moteur
     // emprunte correctement la voie, pas que le fichier client la rende.
@@ -4112,7 +4118,7 @@ function restaurerPhotos(spec, comp, plan, report, contractId) {
       if (occupant) deplacees.push(mouvement); else rehebergees.push(mouvement);
     }
     // 3. appliquer — RÉAFFECTATION du tableau, jamais mutation en place (dans
-    //    le vrai Figma `node.fills` est readonly : une mutation en place est
+    //    le vrai Figma node.fills est readonly : une mutation en place est
     //    ignorée en silence).
     let distinctesApres = 0;
     const vusApres = {};
@@ -4146,7 +4152,7 @@ function restaurerPhotos(spec, comp, plan, report, contractId) {
     for (const m of rehebergees) { report.preservedImages = report.preservedImages || []; report.preservedImages.push(h.hostId + ':' + m.de + ' -> ' + m.vers); }
     for (const m of nonReplacees) { report.unplacedImages = report.unplacedImages || []; report.unplacedImages.push(h.hostId + ':' + m.cheminPosition); }
   }
-  // Le verdict, refusable par le nom (data-model §3). `vert` est INTERDIT si
+  // Le verdict, refusable par le nom (data-model §3). Le vert est INTERDIT si
   // une perte, une interversion ou une empreinte illisible existe quelque part.
   let verdict = 'vert';
   if (plan.info.voie === 'empeche') verdict = 'empeche';
@@ -4421,8 +4427,10 @@ async function amendComponent(comp, C) {
   }
   const v = C.variants[0];
   const registry = { texts: [], slots: [], visibles: [] };
-  const imagePool = [];
-  harvestImagePaints(comp, imagePool);
+  // 017 — même PRÉ-PASSE que le chemin amendSet : relever le maître ET ses
+  // instances de page, compter les accueils, DÉCIDER. Le refus tombe ici, une
+  // ligne avant la première démolition (§X, FR-003a).
+  const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
   for (const child of [...comp.children]) child.remove();
   applyFrameSpec(comp, v.spec);
   for (const childSpec of v.spec.children || []) {
@@ -4450,7 +4458,7 @@ async function amendComponent(comp, C) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }${insetOverlayCall(hasInsetOverlay, 'comp, childNode, childSpec')}
   }
-  restoreImagePaints(v.spec, comp, imagePool, report);
+  restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
   for (const t of registry.texts) {
     let k = defKey(t.prop);
     if (!k) { k = comp.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }

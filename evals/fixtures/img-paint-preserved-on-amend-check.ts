@@ -9,13 +9,26 @@
  * #D9D9D9 placeholder wash on every re-sync — regeneration would be
  * DESTRUCTIVE on all 9 image-bearing Piqueray components.
  *
- * Three cases:
- *   A — paint sits on the img-part node itself → survives, matched BY NAME;
+ * Four cases:
+ *   A — paint sits on the img-part node itself → survives, matched BY POSITION
+ *       (spec 017: the pairing key moved from the layer NAME to the path of
+ *       indices — a rename is not a loss, two homonyms do not merge, §VIII);
  *   B — paint sits on the component ROOT (hero's real shape: the photo is a
  *       root fill while the contract models a Background child) → REHOUSED
- *       onto the first unclaimed img part, in document order;
+ *       onto the next free img accueil, in document order. Spec 017 narrowed
+ *       this: the arbitrary "first unclaimed paint" fallback is gone, replaced
+ *       by an ORDER-PRESERVING bijection that cannot produce an interversion,
+ *       and every such move is reported in `rehebergees`. Deleting the fallback
+ *       outright would have lost hero's photo on every regeneration — the exact
+ *       damage class 017 exists to prevent;
  *   C — fresh create with no pre-existing paint → the gray placeholder stays
- *       (current doctrine, unchanged).
+ *       (current doctrine, unchanged);
+ *   D — spec 017, the INSTANCE axis: a paint sitting on a PAGE INSTANCE's
+ *       mirrored node survives too. 255 of the 349 live photos on the client
+ *       file are instance overrides — the three quarters the master-only
+ *       rescue never saw. Extended here rather than duplicated into a second
+ *       case; the adversarial depth (loss, interversion, no-accueil,
+ *       determinism) lives in photos-instance-overrides-preserved-check.ts.
  * Every preserved/rehoused/unplaced paint is REPORTED by the amend — never
  * silent.
  */
@@ -137,6 +150,35 @@ if (keptB.length !== 1 || keptB[0].imageHash !== 'HASH-B') {
 }
 
 // ---------------------------------------------------------------------------
+// CASE D (spec 017) — the paint sits on a PAGE INSTANCE, not on the master.
+// ---------------------------------------------------------------------------
+await runScript(emit(mk('fixture.imgkeep-d', 'ImgKeepD', '8px')));
+const compD = marker('fixture.imgkeep-d');
+if (!compD) fail('D: create did not produce a marked component');
+const instD = (compD as any).createInstance();
+(figma as any).currentPage.appendChild(instD);
+const photoInstD = findByName(instD, 'Photo');
+if (!photoInstD) {
+  fail('D: the page instance does not mirror its master\'s subtree — an instance with no children has nothing to override, so the instance-override loss class is unreachable headless (FR-002a)');
+}
+photoInstD.fills = [{ type: 'IMAGE', imageHash: 'HASH-D-INST', scaleMode: 'FILL', visible: true }];
+// the master keeps its own, distinct photo — the two must not be confused
+findByName(compD, 'Photo').fills = [{ type: 'IMAGE', imageHash: 'HASH-D-MASTER', scaleMode: 'FILL', visible: true }];
+
+await runScript(emit(mk('fixture.imgkeep-d', 'ImgKeepD', '12px')));
+const keptDInst = imagePaints(findByName(instD, 'Photo') ?? {});
+const keptDMaster = imagePaints(findByName(marker('fixture.imgkeep-d'), 'Photo'));
+if (keptDInst.length !== 1 || keptDInst[0].imageHash !== 'HASH-D-INST') {
+  fail(
+    `D: the PAGE INSTANCE's own IMAGE override did not survive the amend — got ${JSON.stringify(keptDInst)}. ` +
+      'Figma propagates the teardown to instances; the harvest must descend to the rebuilt master\'s instances (spec 017, FR-001/FR-002).',
+  );
+}
+if (keptDMaster.length !== 1 || keptDMaster[0].imageHash !== 'HASH-D-MASTER') {
+  fail(`D: the master's own photo was confused with the instance's — got ${JSON.stringify(keptDMaster)}`);
+}
+
+// ---------------------------------------------------------------------------
 // The amend REPORTS what it preserved — honesty, never silent.
 // ---------------------------------------------------------------------------
 const resultsA = reportA && reportA.results ? reportA.results : Array.isArray(reportA) ? reportA : [];
@@ -146,5 +188,5 @@ if (!lineA.includes('preservedImages') && !lineA.includes('HASH-A')) {
 }
 
 console.log(
-  'img-paint-preserved-on-amend ok: an out-of-contract IMAGE paint survives both amend shapes (name-matched on the img node, rehoused from the root), the fresh-create placeholder is unchanged, and the amend report names every preserved paint',
+  'img-paint-preserved-on-amend ok: an out-of-contract IMAGE paint survives both amend shapes (matched BY POSITION on the img node, order-rehoused from the root), survives on a PAGE INSTANCE without being confused with the master\'s own photo, the fresh-create placeholder is unchanged, and the amend report names every preserved paint',
 );

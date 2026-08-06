@@ -34,7 +34,7 @@
  */
 import vm from 'node:vm';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { ContractSchema } from '../../scripts/contract-schema.js';
@@ -275,7 +275,7 @@ function casB() {
   for (const emplacement of ['0', '1']) {
     if (!sortie.includes(`::${emplacement}::`) && !sortie.includes(`/${emplacement} `) && !sortie.includes(`"${emplacement}"`)) {
       // dernier recours : le rapport écrit sur disque doit porter les deux rangs
-      const rapport = JSON.parse(require('node:fs').readFileSync(out, 'utf8'));
+      const rapport = JSON.parse(readFileSync(out, 'utf8'));
       const rangs = JSON.stringify(rapport).match(/"cheminPosition":"(\d)"/g) ?? [];
       if (rangs.length < 2) fail(`B : le contrôle doit nommer LES DEUX emplacements — got : ${sortie.slice(0, 600)}`);
     }

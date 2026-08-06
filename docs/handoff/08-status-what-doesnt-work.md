@@ -99,7 +99,51 @@ has the Desktop Bridge plugin open. Live inspection of a specific file requires
 the human to open that plugin there. Plan around it; don't rely on long live
 sessions.
 
-## 6. Open product-friction items (not bugs, but blockers to adoption)
+## 6. What happens to an image at regeneration? — ANSWERED, with one gap still open
+
+*Added 2026-08-06 (spec 017). This package was **silent** on the subject that
+carried the system's single worst measured gap: two occurrences of "photo" across
+its twelve files, both narrative. Silence on a live risk is the defect, not the
+question.*
+
+**The short answer, in three lines.**
+
+- A fact the contract **can** carry (a gap, a colour, a text) is **overwritten,
+  deliberately** on regeneration — both amend paths rebuild variant interiors
+  from the spec, and a manual interior edit is drift by definition.
+- A designer's **real photo** is a fact the contract **cannot** carry (named gap
+  A5: the contract carries the *route* — a runtime URL prop, default empty —
+  **never the bytes**). It is **preserved by an explicit rescue pass, never by
+  luck**: every `IMAGE` paint is harvested before the teardown and restored
+  after, on the master **and on its page instances**.
+- If an imprint has **nowhere to land** in the rebuilt contract, the rebuild
+  **refuses before touching a single node**, naming `imageHash`, `hostId` and
+  `cheminPosition`. It is not lost; the rebuild does not happen. The refusal
+  lifts photo-by-photo through a written acknowledgement, never through
+  tolerance.
+
+**The full answer, and it is authoritative over any inference from the code**:
+`docs/FIGMA-CAPABILITY-MATRIX.md`, section *(b)* addendum (why the image row sits
+in a CARRY-CODE-ONLY table while row 91 verdicts `CARRY-BOTH`) and the two dated
+regeneration addenda at the end of the document (2026-08-03, then 2026-08-06 —
+the second supersedes the first's two named limits).
+
+**What is closed, and what is not.**
+
+| | state |
+|---|---|
+| photos lost on regeneration (master) | **closed** — harvest/restore, eval-guarded since 2026-07-26 |
+| photos lost on regeneration (**page instances** — 255 of 349 live photos) | **closed 2026-08-06** — the 62-photo collapse behind a green report is what forced it |
+| two same-sized photos swapping places | **closed** — pairing is positional, an order-preserving bijection |
+| a photo with no accueil silently dropped | **closed** — refusal before mutation |
+| **A5 itself — transporting the image content** | **OPEN, and named.** Row 91, Bindable column: `— (image content not bindable)`. The image will never ride the variable axis. 017 did **not** close this and does not claim to |
+
+Guarded headlessly, without the client file open, by eval
+`photos-instance-overrides-preserved` (claim `C2-refusal`) — the loss replay plus
+three adversarial cases. The live receipt (`npm run photos:verify`) confirms it;
+it does not replace it.
+
+## 7. Open product-friction items (not bugs, but blockers to adoption)
 
 - The plugin is a **dev-import** today; publishing to the Figma Community (a
   human-driven Figma flow) is prepared (`PUBLISHING.md`, icon) but not done.
@@ -109,7 +153,7 @@ sessions.
 - CI recipes exist but the fully-async "CI → plugin" channel is a named roadmap
   item, not v1.
 
-## 7. Things proven headless but NOT yet validated live
+## 8. Things proven headless but NOT yet validated live
 
 - The composite Modal building correctly on a real canvas (fails — see #1).
 - `canvas → contract` for advanced composition *on real Figma* (only mock-gated).

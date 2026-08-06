@@ -441,6 +441,27 @@ const cases: Case[] = [
     },
   },
   {
+    // 017 (US1) — LA PORTE QUI FAIT FOI pour la classe photo, et elle tourne
+    // partout, SANS le fichier client ouvert. Elle rejoue la perte du
+    // 2026-08-06 (62 photos d'instance effondrées sur 10 sections de 8
+    // maquettes, DERRIÈRE UN RAPPORT VERT) et porte les trois cas adverses
+    // exigés par SC-002 — perte, interversion, empreinte sans accueil — plus
+    // le déterminisme de SC-009.
+    //
+    // Pourquoi un cas d'eval et non une extension de `plugin:check` : les trois
+    // cas de plugin:check sont en quarantaine et AUCUN cas actif ne les lance.
+    // Une fixture que rien ne lance ne protège rien.
+    //
+    // Le reçu vif (npm run photos:verify sur le fichier client) CONFIRME ; il ne
+    // remplace pas celui-ci. Le sans-tête fait foi.
+    id: 'photos-instance-overrides-preserved',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/photos-instance-overrides-preserved-check.ts']);
+      if (r.status !== 0) throw new Error(`Photos instance-override preservation check failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'component-rich-text-prop-value',
     claim: 'C3-detection',
     run: () => {
