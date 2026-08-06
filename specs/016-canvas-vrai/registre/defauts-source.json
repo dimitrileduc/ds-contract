@@ -214,13 +214,15 @@
         "semver": null
       },
       "limitesLevees": [],
-      "recu": "proofs/recus/DW-003.md",
+      "recu": "proofs/recus/DW-003.md (journal : decisions.md O-12/O-15)",
       "cloturePortes": {
         "causesJson": "specs/014-mesure-juste-triage/proofs/registre/causes.json — resolvedBy: 016-canvas-vrai",
         "work013": "specs/013-.../proofs/deferred/work.json — cloture par reference croisee (additif)",
         "compteAttendu": "npm run measure:gate — figma-source 2 -> 0 (le compte vif imprime fait foi)"
       },
-      "statut": "annonce"
+      "statut": "clos",
+      "closLe": "2026-08-06",
+      "journal": "specs/016-canvas-vrai/decisions.md — O-12 (vague de regeneration au gain d'axe VARIANT du SectionHeader : le rebuild repose l'en-tete du master faq depuis le contrat, qui ne declare aucune hauteur, donc en HUG 83) / O-15 (FINAL17 : « le header FAQ reforme +33 », difference de doctrine assumee, partiellement compensee). Resolu par la vague de regeneration, pas par un lot dedie L-DW003. Defaut purement canvas : le pointeur d'origine ne resout pas et n'a jamais resolu (preuve git au recu) — promotionCodeSide.fichiers [] confirme."
     },
     {
       "id": "B013-1",
@@ -365,11 +367,13 @@
       "limitesLevees": [
         {
           "quoi": "alignement non lie a Figma (axe code-side)",
-          "preuveNonRegression": null
+          "preuveNonRegression": "proofs/recus/limites-levees.md §1.2 — binding VARIANT « Alignement » au contrat v2.1.0, description du contrat toilettee (LIMITE LEVEE)"
         }
       ],
-      "recu": "proofs/recus/B013-2.md",
-      "statut": "annonce"
+      "recu": "specs/016-canvas-vrai/decisions.md — O-12 (le SET 2090:2397 gagne la dimension Alignement, 16 variantes, elevation du contrat v2.1.0) ; recense dans proofs/recus/limites-levees.md §1.2",
+      "statut": "clos",
+      "closLe": "2026-08-06",
+      "journal": "decisions.md O-12 (gain d'axe VARIANT +Emphase+Alignement, SET 18→16 variantes sain) et O-14 (les alignements d'usage reposes du dump versionne : 114 gestes textAlignHorizontal). Resolu par la vague de regeneration, pas par le lot dedie L-B013-2."
     },
     {
       "id": "B013-3",
@@ -414,11 +418,13 @@
       "limitesLevees": [
         {
           "quoi": "emphase non liee a Figma (axe code-side)",
-          "preuveNonRegression": null
+          "preuveNonRegression": "proofs/recus/limites-levees.md §1.1 — binding VARIANT « Emphase » au contrat v2.1.0, description du contrat toilettee (LIMITE LEVEE)"
         }
       ],
-      "recu": "proofs/recus/B013-3.md",
-      "statut": "annonce"
+      "recu": "specs/016-canvas-vrai/decisions.md — O-12 (dimension Emphase gagnee par le SET, elevation du contrat v2.1.0 ; « c'etait LA typo signalee par l'owner », TexteSEO 403→383 = origine, titre 24px) ; recense dans proofs/recus/limites-levees.md §1.1",
+      "statut": "clos",
+      "closLe": "2026-08-06",
+      "journal": "decisions.md O-12 (gain d'axe VARIANT +Emphase+Alignement, 16 variantes generees mecaniquement, master par master). Resolu par la vague de regeneration, pas par le lot dedie L-B013-3. Les valeurs typographiques portees par le contrat (54/68, 32/40, 24/30) restent celles re-relevees au vif T026."
     },
     {
       "id": "B013-4",

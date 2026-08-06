@@ -271,6 +271,11 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
   // disponibles », Glyphe gauche 230:585 = pdf, Glyphe droite 230:599 =
   // download (all read from the instance, never invented). pdf+download is the
   // same pairing every real "both icons shown" instance carries file-wide.
+  // Re-pointed (016, B013-8): the live set's misspelled value was purged by
+  // regeneration — the variant axis is now Style and the value reads
+  // « Outline noir »; the subject follows the LIVE canvas, the old spelling
+  // was the instrument lagging behind the repaired source (measure:gate's
+  // two figma-source lines were THIS subject, not the file).
   {
     id: 'button-with-icons',
     label: 'Button with icons (Piqueray, both placements)',
@@ -280,7 +285,7 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     setNodeId: '6:122',
     instanceOverride: {
       nodeId: '237:1500',
-      variantName: 'Property 1=Outilne noir',
+      variantName: 'Style=Outline noir',
       // children matches the instance's OWN scanned text override — without
       // it the two sides render different widths for a reason that has
       // nothing to do with icon coverage (our default "Contactez-nous" vs

@@ -968,7 +968,7 @@ const cases: Case[] = [
     id: 'detect-code-enum-drift',
     claim: 'C3-detection',
     run: () => {
-      replaceInFile(BTN_TSX, "| 'outilneNoir'", "| 'outilneNoir' | 'ghost'");
+      replaceInFile(BTN_TSX, "| 'outlineNoir'", "| 'outlineNoir' | 'ghost'");
       if (parity().status === 0) throw new Error('Drift not detected');
       expectFinding(readReport(), 'code', 'mismatch', 'Button.variant');
     },

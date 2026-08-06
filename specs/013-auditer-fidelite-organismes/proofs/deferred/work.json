@@ -27,7 +27,9 @@
       "candidateToken": null,
       "evidenceIds": ["reassurances-master-defaults"],
       "verdictImpact": "divergent",
-      "status": "deferred"
+      "status": "deferred",
+      "resolvedBy": "016-canvas-vrai",
+      "note": "CLOS le 2026-08-05 par 016 (lot L-DW002, versionId 2384258061656145845) : les cartes des 3 variantes du master Reassurances passent en FIXED ajusté (4 cartes et QuatreCartesDeuxCta 364 → 363,5 ; 5 cartes 285 → 284,4), conteneur 1550 et gaps 32 intacts, débordement résiduel 0 ; promotions tokens size.carte.root 364 → 363,5 + mint from-dump size.reassurances.carte-cinq-cartes = 284,4. Reçu : specs/016-canvas-vrai/proofs/recus/DW-002.md. Statut laissé deferred : ce registre appartient à 013 — clôture par référence croisée additive (resolvedBy), jamais par réécriture."
     },
     {
       "id": "DW-003",
@@ -40,7 +42,9 @@
       "candidateToken": null,
       "evidenceIds": ["faq-master-defaults"],
       "verdictImpact": "divergent",
-      "status": "deferred"
+      "status": "deferred",
+      "resolvedBy": "016-canvas-vrai",
+      "note": "CLOS le 2026-08-06 par 016 : défaut purement canvas — l'instance SectionHeader 2104:2907 du master faq, FIXED 50, rend HUG 83 après le rebuild de la vague O-12/O-15 (specs/016-canvas-vrai/decisions.md ; écart vif +33, pas 32 — le compte vif fait foi). Le contractPointer /anatomy/root/literals/height ne résout pas dans ds.section-header v2.1.0 et n'a jamais résolu (aucune version du contrat n'a porté de height racine) : aucune contrepartie contrat. Reçu : specs/016-canvas-vrai/proofs/recus/DW-003.md. Statut laissé deferred : ce registre appartient à 013 — clôture par référence croisée additive (resolvedBy), jamais par réécriture."
     },
     {
       "id": "DW-004",

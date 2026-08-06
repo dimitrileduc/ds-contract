@@ -463,3 +463,35 @@ chaque delta restant a un nom, une cause et un statut (assumé ou résiduel fin)
 Parity re-rafraîchie post-mints : exit 0, 3 acquittés nommés (Carte.Bouton,
 SectionHeader.Bouton — masters photo-carrying/avecCta à traiter hors 016 —
 et close.svg orphelin).
+
+## O-16 — 2026-08-06 (nuit) : le workflow multi-agents clôt les lots US2 — B013 posés, outilneNoir majeur, reçus écrits
+
+Cinq agents (1 canvas séquentiel §XI + 4 fichiers en parallèle), 514k tokens, ~20 min ;
+tout vérifié en live par l'orchestrateur (journal + git diff + cycle pixel global).
+
+- **B013-1** : 4 propriétés orphelines supprimées (presentation Titre#2103:53, sav
+  Titre#2108:60, coordonnees Accroche#2104:57 + Titre#2104:58) — orphelinage re-prouvé
+  atomiquement dans le script de suppression. Version nommée 016/B013-lots/avant.
+- **B013-7** : le fills[1] GRADIENT visible:false du master hero supprimé.
+- **B013-5** : coordonnees réordonné en ordre visuel, écart 0 px — le mécanisme réel
+  était un GRID à placement MANUAL, pas un row-reverse (consigné) ; le contrat était
+  déjà dans l'ordre normal, seule la prose d'inversion est retirée.
+- **B013-8** : côté canvas, CONSTAT — la régénération avait déjà purgé « outilne » ;
+  côté code, button 1.6.0 → **2.0.0 MAJEUR** (§VI) + migration des 7 sources
+  (contrats faq/reassurances/section-header, evals harness/run, ARCHIVE.md) ; les
+  générés retombés au build. Le sujet d'instrument button-with-icons re-pointé
+  (« Style=Outline noir ») — les 2 « figma-source » du gate étaient l'instrument en
+  retard sur la source réparée, pas le fichier.
+- **T030 (DW-002 React)** : rig React réel, captures avant/après **byte-identiques**
+  (sha256), delta 0 — la prémisse de la décision owner vérifiée sur la surface livrée.
+- **T033/T034/T049/T050** : reçus DW-002/DW-003 écrits, resolvedBy additifs posés aux
+  registres 013/014, limites-levees.md (4 limites levées, fixtures nommées),
+  registre defauts-source.json passé à clos où le journal le prouve.
+- **Incident traité par l'orchestrateur** : SAV (2108:3105) et Coordonnees (2104:2904)
+  ne portaient AUCUN marqueur ds_contracts — posés (l'identité par marqueur vaut pour
+  25 autres masters, ces deux-là avaient échappé aux vagues).
+- **Cycle pixel global du lot** (§XI, à l'orchestrateur) : FINAL18 vs FINAL17 = 6/9
+  identiques + 3 micro-diffs d'anti-aliasing de re-rendu (contenu identique à l'œil) ;
+  FINAL18 vs référence pré-chantier : rien de dégradé, a-propos AMÉLIORÉ (189k→175k).
+- Gates : measure:gate PASS (note T035 consignée), parity exit 0, golden/receipt/
+  polaris re-pins, eval finale en cours au moment de cette entrée.
