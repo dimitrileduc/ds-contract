@@ -3,7 +3,7 @@ title: "Status — what works (proven / gated / live-validated)"
 doc_id: 07-status-what-works
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-07-21
+last_updated: 2026-08-06
 reading_order: 7
 prerequisites: [03-determinism, 05-architecture]
 related: [08-status-what-doesnt-work, 09-testing-and-gates]
@@ -95,6 +95,66 @@ level: **[gated headless]** (an eval/gate proves it in Node against the mock),
 - `@ds-contracts/cli` and `@ds-contracts/schema` are published and stranger-
   verified. The web-components emitter is built (not published). The plugin
   builds to a drift-guarded zip with a clean-install + publishing guide.
+
+## The Piqueray canvas round (spec 016, added 2026-08-06)
+
+The sections above are the demo-era record (last full pass 2026-07-21); the
+Piqueray reconversion's spec-by-spec record lives in `specs/NNN-*/` (see the
+journal-gap note in `10-history.md`). What spec 016 makes claimable today, each
+sentence with its check. The six fixtures below run standalone
+(`npx tsx evals/fixtures/<name>.ts` — all six re-run green on 2026-08-06) and
+are **not yet registered in `evals/run.ts`'s sweep**; named so the sweep count
+is not mistaken for their coverage.
+
+- **A composed child's slot content is a contract fact** (`component.slots`,
+  schema v20): the canvas emitter poses it through the child's INSTANCE_SWAP
+  property — resolved by the `ds_contracts/contractId` marker, with the child's
+  props mapped through the slotted contract's own bindings, never a manual
+  instance override; a witness composition without `slots` sets no swap prop.
+  [gated headless] (`evals/fixtures/composed-child-slot-content-check.ts`; live
+  origin: the Formulaire master's Field slot held a textarea by manual override
+  and every parent amend erased it — `specs/016-canvas-vrai/decisions.md` O-12.)
+- **A part that is BOTH content-prop (TEXT) and visibility-piloted (BOOLEAN)
+  keeps BOTH `componentPropertyReferences`** (`characters` AND `visible`) — the
+  runtime used to set them in two overwriting passes, which muted every
+  downstream instance TEXT override. [gated headless]
+  (`evals/fixtures/text-prop-and-visible-refs-coexist-check.ts`; live witness:
+  instance 2094:2468's own text override relit once the references merged.)
+- **Height-0 + per-side stroke = a LINE, not a box**: `strokeAlign: CENTER` +
+  re-resize after the weights, geometry stays ~0; the witness box with the same
+  stroke keeps the INSIDE border-box doctrine and its height. The mock learned
+  Figma's measured INSIDE height clamp (at resize AND at weight pose).
+  [gated headless] (`evals/fixtures/zero-height-line-part-check.ts`; live
+  origin: Footer.Separator, a 1550×0 LINE emitted as an h=2 frame.)
+- **Composition dependencies resolve by the `ds_contracts/contractId` marker,
+  never by layer name** — a designer's rename cannot break composition (§VIII):
+  the fixture builds the child's set, renames it, and the parent script still
+  finds it. [gated headless] (`evals/fixtures/dep-resolved-by-marker-check.ts`;
+  live origin 2026-08-05: the master renamed « Bouton » broke all 7 composers
+  through the name-based dependency resolver.)
+- **A per-prop icon size reaches the emitted canvas**: an `icon` part whose
+  size varies by prop (`tokensByProp` width/height) emits the combo's size, not
+  the base `icon.size` (Grand 32 / Petit 24 in the fixture). [gated headless]
+  (`evals/fixtures/icon-size-tokens-by-prop-check.ts`; live origin: the
+  AccordionRow chevron drew 32 in small variants — closed small row 48 vs 40.)
+- **A `declared position:absolute` part contributes no geometry to the canvas
+  flow**: `layoutPositioning: ABSOLUTE`, vertical constraint MIN when `bottom`
+  is not carried, height preserved from its token, width stretched to the
+  parent — and inset channels riding `stylesWhen` or covering only three sides
+  (top/left/right) now lower too; the in-flow witness does not move.
+  [gated headless] (`evals/fixtures/absolute-part-out-of-flow-check.ts`; live
+  origin: each open AccordionRow variant gained a full flow row, 176 vs 120.)
+
+Beyond the fixtures, the round's headline is receipted in
+`specs/016-canvas-vrai/RAPPORT-CLOTURE.md` (§1–2, with `proofs/`): the geometry
+watch is rebranched **[live]** — 83 variables created in the client file, 562
+variable bindings on 31 masters (10 on 3 at opening), `parity/baseline.json`
+down from 89 acknowledgements to 3 named ones, and the watch *proven* by a
+sentinel drift (364→999) caught, classified, remedied and cancelled with
+byte-identical double verification. Two further canvas mappings (VARIANT-axis
+gain on amend; width-on-text = wrap) are live-receipted but have **no dedicated
+fixture yet** — see the 2026-08-06 addendum of `docs/FIGMA-CAPABILITY-MATRIX.md`
+for the exact claim level of each.
 
 ## The honest headline
 

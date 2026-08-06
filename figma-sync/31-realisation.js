@@ -563,6 +563,17 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+    // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
+    // Figma's auto-width has no CSS equivalent. A TEXT child of a
+    // width-CONSTRAINED parent (fixed width, or a stretch/grow context)
+    // fills and wraps (FILL + HEIGHT). Parents that HUG keep auto-width
+    // text — that IS the inline semantics (button labels), and FILL inside
+    // HUG is the circular case Figma refuses. Measured live: the
+    // SectionHeader title overflowed Presentation's 628 column in one line
+    // (origin: two lines) — the Devis.Titre fix was this rule's local case.
+    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+      try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
+    }
   }
   return node;
 }
@@ -686,7 +697,17 @@ async function amendSet(set, C) {
       }
       if (completed && completed !== ch.name) {
         const twin = set.children.find((o) => o !== ch && o.name === completed);
-        if (twin) { twin.remove(); report.mergedVariants = report.mergedVariants || []; report.mergedVariants.push(completed); }
+        // 016 revue adversariale (finding 1) : ne JAMAIS remove le jumeau — sous
+        // le nouvel ordre (rename avant build) un jumeau peut être un node
+        // PRÉEXISTANT portant des instances (designer migration) ; le supprimer
+        // orphelinerait ses instances irréversiblement. On le renomme hors du
+        // namespace gouverné et on le SIGNALE — un humain arbitre.
+        if (twin) {
+          twin.name = completed + ' (doublon amend — à arbitrer)';
+          report.mergedVariants = report.mergedVariants || [];
+          report.mergedVariants.push(completed + ' [jumeau conservé, renommé]');
+          report.extraVariants.push(twin.name);
+        }
         ch.name = completed;
         report.renamedVariants = report.renamedVariants || [];
         report.renamedVariants.push(completed);
@@ -744,6 +765,11 @@ async function amendSet(set, C) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
+        }
+        // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
+        // variant root fills and wraps.
+        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+          try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
       }
       restoreImagePaints(v.spec, comp, imagePool, report);
@@ -882,6 +908,11 @@ async function amendComponent(comp, C) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
+    }
+    // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
+    // fills and wraps.
+    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+      try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
   }
   restoreImagePaints(v.spec, comp, imagePool, report);

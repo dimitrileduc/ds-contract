@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.equipe",
   "name": "Equipe",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "Piqueray Equipe. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -39,7 +39,8 @@
         "grid": {
           "layout": {
             "direction": "row",
-            "grow": true
+            "grow": true,
+            "wrap": true
           },
           "parts": {
             "MemberCard": {
@@ -116,11 +117,17 @@
                 ]
               }
             }
+          },
+          "description": "016 : flex-wrap ajouté (l'origine est une grille 4x4 de 16 MemberCards, 1550x1886 ; sans wrap le rebuild rendait UNE rangée de 448 et a-propos perdait 1438 px).",
+          "tokens": {
+            "gap": "{size.equipe.gap-colonnes}",
+            "row-gap": "{size.equipe.gap-rangees}"
           }
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.equipe.root}"
       }
     }
   },

@@ -495,3 +495,43 @@ tout vérifié en live par l'orchestrateur (journal + git diff + cycle pixel glo
   FINAL18 vs référence pré-chantier : rien de dégradé, a-propos AMÉLIORÉ (189k→175k).
 - Gates : measure:gate PASS (note T035 consignée), parity exit 0, golden/receipt/
   polaris re-pins, eval finale en cours au moment de cette entrée.
+
+## O-17 — 2026-08-06 (fin de journée) : la passe photos éprouvée à l'échelle, la règle CSS text-flow, et trois défauts profonds nommés
+
+**Passe photos (workflow, agent canvas unique)** : 11 masters porteurs amendés, census
+par master — 57/57 photos, 0 perdue définitivement. Deux incidents traités : la 5e carte
+de reassurances (sample unique par repeat — reperdue à CHAQUE rebuild, reposée deux
+fois, limite D-016-REPEAT-SAMPLE-PAR-VARIANTE au registre) ; Equipe effondrée (le
+contrat ne portait ni wrap ni largeur : mints size.equipe.root 1728 + gaps exacts en
+tiers 31,333333/32,666667 — la grille 4×4 d'origine revient à ±4).
+
+**La règle CSS text-flow (moteur, fixture text-fills-constrained-parent)** : en CSS tout
+texte wrappe à la largeur de son bloc — l'auto-width Figma n'a pas d'équivalent. Un
+TEXT enfant d'un parent contraint (fixedWidth/stretch/grow) passe FILL+HEIGHT ; un
+parent HUG garde l'auto-width (sémantique inline des labels). Posée aux trois sites
+d'append + mint size.section-header.root 1550 (la largeur de référence d'origine du
+master). Effet mesuré : portes-entrée revient EXACTE, industrielles/résidentielles au
+−3,5 assumé (DW-002), la variante 5-cartes 785→731=origine.
+
+**Revue adversariale (workflow)** : 6 CONFIRMÉS. Traités séance tenante : (1) le
+twin.remove du gain d'axe devenait destructif sous le nouvel ordre — remplacé par un
+rename non destructif + signalement ; (2) NEUF fixtures du jour n'étaient branchées sur
+AUCUNE porte — toutes câblées dans evals/run.ts (C1/C3). Restent au travail nommé :
+la règle ligne-0 sur les canaux uniforme/token (le fix ne couvre que li.strokeSides),
+depSlots trop large sur homonymes profonds, repeat+component.slots silencieux,
+validations slots plus faibles que defaultContent — consignés par la revue (sortie
+complète dans le journal du workflow).
+
+**Trois défauts profonds nommés au registre (13 items)** :
+- D-016-CARTE-BOUTON : le bouton des cartes Categorie du CONTRAT (part unique 'action')
+  est infidèle à l'origine (Pdf/Libellé/Download) — révélé par le premier rebuild du
+  master. C'est le gros du diff pixel restant des pages à cartes.
+- D-016-SECTIONS-LOCALES-CARTES : les sections client non gouvernées re-layoutent leurs
+  cartes nested au rebuild de ds.carte ; les resize nested ne tiennent pas (27/27 posés
+  sans effet). Résiduels : motorisation +124, dépannage −32, accueil +10, a-propos +4.
+  Arbitrage owner : gouverner ces sections ou re-poser leurs layouts.
+- D-016-REPEAT-SAMPLE-PAR-VARIANTE (ci-dessus).
+
+**FINAL21 vs avant-chantier** : contactez-nous, portes-entrée (±0,5), portes-de-garage
+EXACTES ; industrielles/résidentielles −3,5 (assumé) ; a-propos +4 (arrondi cartes) ;
+accueil +10 ; dépannage −32 et motorisation +124 (D-016-SECTIONS-LOCALES-CARTES).

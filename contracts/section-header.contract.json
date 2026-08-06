@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.section-header",
   "name": "SectionHeader",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -253,7 +253,8 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "gap": "{space.8}"
+        "gap": "{space.8}",
+        "width": "{size.section-header.root}"
       },
       "declared": {
         "align-self": "stretch"

@@ -697,6 +697,30 @@
         "$type": "dimension",
         "$description": "Authored from the pinned REST dump of the Header master (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-84_285.json, layoutSizingHorizontal FIXED, width 1728) — minted from-dump so anatomy references tokens, not literals. Minted 016 (attribution FINAL2, 2026-08-05) : la largeur racine n'etait pas portee par le contrat et la regeneration rendait le master HUG."
       }
+    },
+    "equipe": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.equipe's master 2115:3928 at version 016/U1a-variables/avant (COMPONENT 1728x1886, grid 1550 wrapping 16 MemberCards 4x4) — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06: without a root width the rebuilt master HUGged to 6002 (one 16-card row) and a-propos lost 1438px.",
+        "$value": "1728px"
+      },
+      "gap-colonnes": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.equipe's grid (native GRID layout) at version 016/U1a-variables/avant: 16 cards 364x447 in a 1550x1886 grid — column gap (1550-4*364)/3, row gap (1886-4*447)/3, exact thirds, never rounded (the 363.5 doctrine). Minted 016, 2026-08-06.",
+        "$value": "31.333333px"
+      },
+      "gap-rangees": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.equipe's grid (native GRID layout) at version 016/U1a-variables/avant: 16 cards 364x447 in a 1550x1886 grid — column gap (1550-4*364)/3, row gap (1886-4*447)/3, exact thirds, never rounded (the 363.5 doctrine). Minted 016, 2026-08-06.",
+        "$value": "32.666667px"
+      }
+    },
+    "section-header": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.section-header's master (2090:2385-era, every origin usage renders at 1550: FAQ/TexteSEO relevés 016) at version 016/U1a-variables/avant — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06: the rebuilt master HUGged, its auto-width titles overflowed every constrained column instead of wrapping (Presentation 628: one line vs two at origin).",
+        "$value": "1550px"
+      }
     }
   },
   "radius": {
