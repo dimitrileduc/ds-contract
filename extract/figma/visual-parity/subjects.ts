@@ -40,6 +40,13 @@ export interface DumpSubject {
    * `dark` is required for white-on-transparent subjects. This changes only
    * the inspection surface shared by BOTH PNGs, never component styling. */
   comparisonSurface?: ComparisonSurface;
+  /** 017 — comparison-only props lent to OUR side. Same three fields, same
+   *  semantics, as on `ContractSubject` below (documented there in full). No
+   *  dump subject declares them today; the field is here so the live gate's
+   *  resolution path is uniform across both kinds rather than kind-conditional. */
+  comparisonProps?: Record<string, unknown>;
+  comparisonPropsByVariant?: Record<string, Record<string, unknown>>;
+  fixtureAssetIds?: string[];
 }
 
 export interface ContractSubject {
@@ -83,6 +90,46 @@ export interface ContractSubject {
      *  REAL, scanned state of `nodeId`, never invented. */
     propPreset: Record<string, string | boolean>;
   };
+  /**
+   * 017 (FR-006/FR-006a) — COMPARISON-ONLY props lent to OUR side so the two
+   * pictures compare like for like. Same name and same semantics as
+   * `CampaignCase.codeProps`: a `{ "$asset": "<id>" }` sentinel resolves through
+   * the pinned fixture manifest (size + extension + bytes + SHA-256 re-verified
+   * at render time) into a data URL that exists **only inside the comparison
+   * document**. The injection CLONES the contract (`structuredClone`), so
+   * `contracts/*.contract.json` is never touched — FR-006b held by construction,
+   * not by discipline. No asset may carry `runtimeDefault: true`; no generated
+   * component ever receives one.
+   *
+   * Why this exists: without it the live gate rendered `<img src="">` against a
+   * real photo and scored the ABSENCE OF DATA, not a fidelity defect. The whole
+   * chain already existed and was proven — only this loop never passed the 7th
+   * argument (`render.ts:816` had the parameter; `run.ts` passed six).
+   */
+  comparisonProps?: Record<string, unknown>;
+  /**
+   * 017 — the same thing, PER VARIANT, keyed by the variant's own name
+   * (`"Disposition=Reassurance"`). It is the port of `CampaignCase`'s
+   * granularity: a campaign *case* IS a variant, so the campaign path never
+   * needed this shape; a subject-level record cannot serve a master that paints
+   * a DIFFERENT photo per variant.
+   *
+   * Measured 2026-08-06, and it is why this field exists rather than being
+   * hypothetical: the `Carte` master paints `d62d8bf3…` on
+   * `Disposition=Reassurance` and `3c54b9a6…` on `Disposition=Categorie` — two
+   * distinct images — while the contract binds BOTH img parts to the single
+   * `imageUrl` prop. A flat record would have made one of the two lines lie.
+   *
+   * Merged OVER `comparisonProps` when the variant name matches.
+   */
+  comparisonPropsByVariant?: Record<string, Record<string, unknown>>;
+  /**
+   * 017 — every fixture asset id this subject may reference, declared. Same name
+   * and same semantics as `CampaignCase.fixtureAssetIds`: a `$asset` that is not
+   * declared here, or not present in the manifest, is a NAMED REFUSAL
+   * (`render.ts:386`, `:413`) — never a silent fallback to an empty image.
+   */
+  fixtureAssetIds?: string[];
 }
 
 export type ParitySubject = DumpSubject | ContractSubject;
@@ -300,16 +347,63 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     },
   },
   // ---- spec 010: 27 new Piqueray components ----
-  { id: 'member-picture', label: 'MemberPicture (Piqueray)', kind: 'contract', contractId: 'ds.member-picture', fileKey: PIQUERAY, setNodeId: '274:2389', renderWidth: 364 },
+  {
+    id: 'member-picture', label: 'MemberPicture (Piqueray)', kind: 'contract', contractId: 'ds.member-picture',
+    fileKey: PIQUERAY, setNodeId: '274:2389', renderWidth: 364,
+    // 017 — the master paints c60f37ab… on `normal` and 508388d6… on `funIa`,
+    // the SAME pair on both variants (REST read of 274:2389, 2026-08-06).
+    // Its URL prop is `src`, NOT `imageUrl` — a preset copied from the other
+    // subjects would not take.
+    // NAMED, NOT HIDDEN: only `normal` is wired to a prop; `funIa` has
+    // attrs:{alt:""} and no src (the second photo plane was left unwired in
+    // spec 011). So `Etat=Defaut` (normal at opacity 1, covering funIa) becomes
+    // a fair comparison, while `Etat=Survol` (normal at opacity 0, funIa
+    // showing) stays a REAL residual — re-measured and re-classed, never
+    // re-labelled as noise. See registre/defauts-decouverts.json,
+    // D-017-MEMBER-PICTURE-SURVOL-2E-PLAN.
+    // The photo lent is funIa's (508388d6…), NOT normal's — and the reason is a
+    // MEASURED fact worth keeping: in the master, `funIa` sits at child index 1
+    // and `normal` at index 0, and Figma orders children back-to-front, so
+    // funIa is the plane a viewer actually SEES. The contract inverts that
+    // order (funIa declared first, normal second and painting over it). Lending
+    // normal's portrait made the gap WORSE (58.32% → 60.97%) because the two
+    // sides then showed two DIFFERENT photos. See
+    // registre/defauts-decouverts.json, D-017-MEMBER-PICTURE-ORDRE-DES-PLANS.
+    comparisonProps: { src: { $asset: 'member-card-base-508388d68808' } },
+    fixtureAssetIds: ['member-card-base-508388d68808'],
+  },
   { id: 'piqueray-logo', label: 'PiquerayLogo (Piqueray)', kind: 'contract', contractId: 'ds.piqueray-logo', fileKey: PIQUERAY, setNodeId: '4:14', renderWidth: 180 },
   { id: 'accordion-row', label: 'AccordionRow (Piqueray)', kind: 'contract', contractId: 'ds.accordion-row', fileKey: PIQUERAY, setNodeId: '2059:1417', renderWidth: 1550 },
   { id: 'avantage', label: 'Avantage (Piqueray)', kind: 'contract', contractId: 'ds.avantage', fileKey: PIQUERAY, setNodeId: '2088:2350' },
   { id: 'carousel-controls', label: 'CarouselControls (Piqueray)', kind: 'contract', contractId: 'ds.carousel-controls', fileKey: PIQUERAY, setNodeId: '2077:2191', renderWidth: 1604 },
-  { id: 'carte', label: 'Carte (Piqueray)', kind: 'contract', contractId: 'ds.carte', fileKey: PIQUERAY, setNodeId: '2063:1622' },
+  {
+    id: 'carte', label: 'Carte (Piqueray)', kind: 'contract', contractId: 'ds.carte',
+    fileKey: PIQUERAY, setNodeId: '2063:1622',
+    // 017 — TWO DISTINCT photos, one per variant (REST read of 2063:1622,
+    // 2026-08-06): d62d8bf3… on reassuranceImage, 3c54b9a6… on categorieImage.
+    // The contract binds both img parts to the single `imageUrl` prop, so a
+    // subject-level record would have made one of the two lines lie. This is
+    // the whole reason `comparisonPropsByVariant` exists.
+    comparisonPropsByVariant: {
+      'Disposition=Reassurance': { imageUrl: { $asset: 'carte-reassurance' } },
+      'Disposition=Categorie': { imageUrl: { $asset: 'carte-categorie' } },
+    },
+    fixtureAssetIds: ['carte-reassurance', 'carte-categorie'],
+  },
   { id: 'copyright', label: 'Copyright (Piqueray)', kind: 'contract', contractId: 'ds.copyright', fileKey: PIQUERAY, setNodeId: '2086:2330' },
   { id: 'field', label: 'Field (Piqueray)', kind: 'contract', contractId: 'ds.field', fileKey: PIQUERAY, setNodeId: '2056:1278', renderWidth: 280 },
   { id: 'footer-column', label: 'FooterColumn (Piqueray)', kind: 'contract', contractId: 'ds.footer-column', fileKey: PIQUERAY, setNodeId: '2079:2246', renderWidth: 169 },
-  { id: 'member-card', label: 'MemberCard (Piqueray)', kind: 'contract', contractId: 'ds.member-card', fileKey: PIQUERAY, setNodeId: '2074:2072' },
+  {
+    id: 'member-card', label: 'MemberCard (Piqueray)', kind: 'contract', contractId: 'ds.member-card',
+    fileKey: PIQUERAY, setNodeId: '2074:2072',
+    // 017 — the composed ds.member-picture instance paints c60f37ab… on `normal`
+    // and 508388d6… on `funIa` (REST read of 2074:2072). ds.member-card has no
+    // img part of its own; its `imageUrl` reaches the nested MemberPicture.
+    // Same measured reason as ds.member-picture: funIa is the plane on top in
+    // the master, so it is the one to compare against.
+    comparisonProps: { imageUrl: { $asset: 'member-card-base-508388d68808' } },
+    fixtureAssetIds: ['member-card-base-508388d68808'],
+  },
   {
     id: 'nav-item',
     label: 'NavItem (Piqueray)',
@@ -322,8 +416,27 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     // transparent component ink intended for a dark Header/photo context.
     comparisonSurface: 'dark',
   },
-  { id: 'product-card', label: 'ProductCard (Piqueray)', kind: 'contract', contractId: 'ds.product-card', fileKey: PIQUERAY, setNodeId: '2068:1972' },
-  { id: 'realisation', label: 'Realisation (Piqueray)', kind: 'contract', contractId: 'ds.realisation', fileKey: PIQUERAY, setNodeId: '2095:2484' },
+  {
+    id: 'product-card', label: 'ProductCard (Piqueray)', kind: 'contract', contractId: 'ds.product-card',
+    fileKey: PIQUERAY, setNodeId: '2068:1972',
+    // 017 — the master paints 1ba972fd… on its single `Image` part
+    // (REST read of 2068:1972, 2026-08-06).
+    comparisonProps: { imageUrl: { $asset: 'product-card-default' } },
+    fixtureAssetIds: ['product-card-default'],
+  },
+  {
+    id: 'realisation', label: 'Realisation (Piqueray)', kind: 'contract', contractId: 'ds.realisation',
+    fileKey: PIQUERAY, setNodeId: '2095:2484',
+    // 017 — NO comparisonProps HERE, AND THAT IS THE MEASURED ANSWER, not an
+    // omission. REST read of 2095:2484 (2026-08-06): the master carries NO
+    // IMAGE paint at all on either variant — root COMPONENT fills SOLID #dfdfdf,
+    // one child `Image` (FRAME) fills SOLID #d9d9d9. Lending our side a photo
+    // would CREATE a difference where Figma has none. The ~99% these two lines
+    // score is a FLAT-FILL gap across the whole surface (the contract carries
+    // neither colour), not an image frontier — the inherited triage cause said
+    // otherwise for months. See registre/defauts-decouverts.json,
+    // D-017-REALISATION-PAS-UNE-FRONTIERE-IMAGE.
+  },
   { id: 'section-header', label: 'SectionHeader (Piqueray)', kind: 'contract', contractId: 'ds.section-header', fileKey: PIQUERAY, setNodeId: '2090:2397', renderWidth: 1550 }, // Phase 6 (015), named-repair: both dispositions declare layoutSizingHorizontal FIXED at 1550px on the isolated master (figma_get_component_for_development, read-only) — the contract's own align-self:stretch correctly fills every REAL consumer's own container (verified live: coordonnees' embedded instance measures 480px, its own wrapper's content width) and must NOT carry a width itself, or every stretch-context consumer regresses (confirmed: adding one broke coordonnees/sav/presentation, reverted). This is a harness-only pin, isolation-context width, same class as accordion-row's own 1550.
   { id: 'tab', label: 'Tab (Piqueray)', kind: 'contract', contractId: 'ds.tab', fileKey: PIQUERAY, setNodeId: '2061:1588', renderWidth: 86 },
 ];

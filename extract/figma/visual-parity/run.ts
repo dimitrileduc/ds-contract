@@ -107,6 +107,10 @@ import {
   launchBrowser,
   renderCampaignVariant,
   renderVariant,
+  // 017 — the SAME resolver the campaign path uses. Not a second mechanism:
+  // the live gate finally borrows the one that was already written, proven and
+  // SHA-256-verified.
+  resolveComparisonOnlyProps,
   type DomSemanticReceipt,
   type Rect,
 } from "./render.js";
@@ -145,7 +149,18 @@ interface VisualRunArguments {
 interface Row {
   subject: string;
   variant: string;
-  status: "diffed" | "skipped" | "refused" | "figma-declined";
+  /** 017 (FR-007) — a fifth, ADDITIVE member: `incomparable`. It says the
+   *  measure has NO MEANING for this row (no photo could be obtained for one
+   *  side), which is a different axis from `cause`, which explains a measured
+   *  gap. An incomparable row is VISIBLE and COUNTED in "Not diffed (named,
+   *  never dropped)", carries NO gate score, and is never shown at 0% nor
+   *  absorbed into a tolerance. It is the RECOURSE — never the first answer
+   *  (FR-006a): the first answer is to lend our side the photo. */
+  status: "diffed" | "skipped" | "refused" | "figma-declined" | "incomparable";
+  /** 017 — MANDATORY and non-empty when status is "incomparable". Without a
+   *  written reason the row refuses: an unexplained "not comparable" is exactly
+   *  the silent omission this repo treats as its highest-severity bug class. */
+  incomparableReason?: string;
   unmaskedPct?: number;
   maskedPct?: number | null;
   maskCoveragePct?: number;
@@ -1855,6 +1870,15 @@ async function main(): Promise<void> {
   mkdirSync(OUT, { recursive: true });
   mkdirSync(CACHE, { recursive: true });
 
+  // 017 — the pinned fixture manifest, read ONCE for the whole run. Same file,
+  // same preflight and same receipts as the campaign path; only its consumer is
+  // new. Every byte it hands out is re-verified (size, extension, SHA-256) at
+  // render time, and no asset it carries may be a runtime default.
+  const fixtureAssetManifest = readJsonPreflight(
+    path.resolve(REPOSITORY_ROOT, "extract/figma/visual-parity/fixture-assets/manifest.json"),
+    "fixture assets manifest",
+  );
+
   // One nodes call per fileKey (batched set ids), cached.
   const byFile = new Map<string, ParitySubject[]>();
   for (const s of subjects)
@@ -1997,8 +2021,83 @@ async function main(): Promise<void> {
         });
         continue;
       }
+      // 017 (FR-006/FR-006a) — resolve this variant's comparison-only props.
+      // Per-variant first (a master may paint a DIFFERENT photo per variant —
+      // measured on `Carte`), subject-level otherwise. A resolution FAILURE is
+      // a NAMED, VISIBLE, COUNTED row — never a silent fallback to the empty
+      // image that produced the 99% scores in the first place.
+      let comparisonProps: Record<string, unknown> = {};
+      const declaredProps =
+        subject.comparisonPropsByVariant?.[variant.name] ?? subject.comparisonProps;
+      if (declaredProps) {
+        // The resolver requires every DECLARED asset to be BOUND by a $asset in
+        // the props it is given. A subject declaring one asset per variant
+        // (Carte: two distinct photos) would therefore refuse on both lines. So
+        // the ids passed for THIS call are exactly the ones this variant
+        // references — and each one must still appear in the subject's own
+        // `fixtureAssetIds`, or it is a NAMED refusal. The guarantee is
+        // unchanged: nothing undeclared can enter the comparison.
+        const referenced = new Set<string>();
+        const collect = (v: unknown): void => {
+          if (Array.isArray(v)) return void v.forEach(collect);
+          if (!v || typeof v !== "object") return;
+          const rec = v as Record<string, unknown>;
+          if (typeof rec.$asset === "string") return void referenced.add(rec.$asset);
+          Object.values(rec).forEach(collect);
+        };
+        collect(declaredProps);
+        const declaredIds = subject.fixtureAssetIds ?? [];
+        const undeclared = [...referenced].filter((id) => !declaredIds.includes(id));
+        if (undeclared.length > 0) {
+          const reason = `$asset ${undeclared.join(", ")} is referenced by this variant but not declared in the subject's fixtureAssetIds`;
+          console.log(`  ⊘ ${variant.name}: incomparable — ${reason}`);
+          rows.push({
+            subject: subject.id,
+            variant: variant.name,
+            status: "incomparable",
+            incomparableReason: reason,
+            diagnosis: `no comparable measure: ${reason}`,
+            notes: plan.notes,
+            cause: null,
+          });
+          continue;
+        }
+        const resolvedProps = resolveComparisonOnlyProps({
+          codeProps: declaredProps,
+          fixtureAssetIds: [...referenced],
+          assetManifest: fixtureAssetManifest,
+        });
+        if (!resolvedProps.ok) {
+          const reason = resolvedProps.error;
+          console.log(`  ⊘ ${variant.name}: incomparable — ${reason}`);
+          rows.push({
+            subject: subject.id,
+            variant: variant.name,
+            status: "incomparable",
+            incomparableReason: reason,
+            diagnosis: `no comparable measure: ${reason}`,
+            notes: plan.notes,
+            cause: null,
+          });
+          continue;
+        }
+        comparisonProps = resolvedProps.value.props;
+      }
       let rendered: Awaited<ReturnType<typeof renderVariant>>;
       try {
+        // 017 (FR-006) — THE 7th ARGUMENT. `renderVariant` has carried
+        // `comparisonProps` since render.ts:816; the campaign path resolves and
+        // passes it (render.ts:1341, :1351); THIS loop passed six and let the
+        // parameter sit at its empty default. That single missing argument is
+        // where the 99% scores were born: our side rendered `<img src="">`
+        // against a real photo and the gate scored the ABSENCE OF DATA.
+        //
+        // Resolution goes through the SAME proven code as the campaign —
+        // `resolveComparisonOnlyProps` re-verifies size, extension, bytes and
+        // SHA-256 at render time, refuses any path outside fixture-assets/, and
+        // clones the contract before injecting. A `$asset` not declared in the
+        // subject's `fixtureAssetIds`, or absent from the manifest, is a NAMED
+        // refusal, never a silent empty image.
         rendered = await renderVariant(
           page,
           pkg,
@@ -2006,6 +2105,7 @@ async function main(): Promise<void> {
           plan.bools,
           plan.interaction,
           info.fontFamilies,
+          comparisonProps,
         );
       } catch (e) {
         rendered = {
@@ -2244,6 +2344,19 @@ function writeReport(
 ): void {
   const diffed = rows.filter((r) => r.status === "diffed");
   const problem = rows.filter((r) => r.status !== "diffed");
+  // 017 (FR-007) — FAIL-CLOSED, refusable BY NAME rather than merely true by
+  // construction: an "incomparable" row without a written reason does not get
+  // published. An unexplained "not comparable" would be a silent omission
+  // wearing a status, which is the highest-severity bug class here.
+  for (const r of problem) {
+    if (r.status !== "incomparable") continue;
+    if (typeof r.incomparableReason !== "string" || r.incomparableReason.trim() === "") {
+      throw new Error(
+        `row ${r.subject}/${r.variant} is marked incomparable with no written reason — ` +
+          "FR-007 requires a non-empty incomparableReason; a row that measures nothing must say why",
+      );
+    }
+  }
   // A mask deletes evidence and is diagnostic-only. Ranking, threshold,
   // triage and baseline all use the same authoritative raw score.
   const score = (r: Row) => r.unmaskedPct!;

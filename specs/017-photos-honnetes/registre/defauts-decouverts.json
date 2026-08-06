@@ -81,6 +81,19 @@
       "decide": "A trancher dans l'implementation d'US2 ; consigne ici pour que le choix soit visible et non subi.",
       "destination": "017/US2 (T023, T027)",
       "repareDans": null
+    },
+    {
+      "id": "D-017-MEMBER-PICTURE-ORDRE-DES-PLANS",
+      "titre": "Le contrat member-picture INVERSE l'ordre des deux plans photo par rapport au master",
+      "decouvertLe": "2026-08-06",
+      "decouvertPar": "017/US2 — decouvert PAR la remise a armes egales : preter la photo de `normal` a fait EMPIRER l'ecart (58,32 % → 60,97 %)",
+      "surface": "contracts/member-picture.contract.json",
+      "observation": "Master 274:2389 : `normal` est a l'index 0, `funIa` a l'index 1. Figma ordonne les enfants d'arriere en avant (index 0 = dessous) : c'est donc `funIa` que l'oeil voit. Le contrat declare `funIa` en premier et `normal` en second, tous deux en position absolue — en DOM, `normal` peint par-dessus. Les deux surfaces montrent donc DEUX PHOTOS DIFFERENTES au meme endroit. Preuve chiffree : en pretant la photo de `normal`, l'ecart monte a 60,97 % ; en pretant celle de `funIa`, il tombe a 0,00 %.",
+      "classe": "fait de contrat divergent de la source (SVIII)",
+      "consequence": "Aucune sur la mesure d'US2 (l'echantillon pretes est celui du plan visible). Reelle sur la SURFACE LIVREE : un consommateur qui fournit une URL la voit atterrir sur le plan que Figma met DESSOUS.",
+      "decide": "NON REPARE dans 017 — corriger l'ordre touche l'anatomie d'un contrat, hors perimetre. Consigne parce qu'il a ete decouvert ici et qu'il est chiffre.",
+      "destination": "la spec qui branchera le 2e plan photo — meme chantier que D-017-MEMBER-PICTURE-SURVOL-2E-PLAN",
+      "repareDans": null
     }
   ]
 }

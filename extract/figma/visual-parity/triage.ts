@@ -142,30 +142,30 @@ export const TRIAGE: TriageRule[] = [
   // ---- Piqueray molecule extraction pilot ----------------------------------
   {
     subject: 'member-card',
-    class: 'image-boundary',
+    class: 'rendering',
     cause:
-      'A5 image boundary: Figma paints the real portrait while ds.member-picture deliberately renders the documented #D9D9D9 technical placeholder; text and outer geometry agree (re-tested 014/T030: sizes now IDENTICAL 728×895 both sides — the previously-written "Δ1 device px" no longer measures, corrected here).',
+      're-measured 2026-08-06 (017/US2, FR-008 — the inherited A5 cause is RETIRED, not reconducted): with the mockup sample lent to our side the row fell 47.88% → 1.76%, UNDER the 2% line. So the old cause ("Figma paints the real portrait while we render the #D9D9D9 placeholder") was measuring the ABSENCE OF DATA on our side, not a fidelity defect. What remains is a diffuse raster/anti-aliasing delta over the shared portrait — the ordinary renderer floor.',
     receiptId: 'pv-member-card',
   },
   {
     subject: 'product-card',
-    class: 'image-boundary',
+    class: 'rendering',
     cause:
-      'A5 image boundary: the master carries an IMAGE fill that the code-only imageUrl prop cannot obtain from the contract; the default empty URL leaves the 240px image plane unpainted while text and outer geometry remain near-equal.',
+      're-measured 2026-08-06 (017/US2, FR-008): 15.64% → 0.41% once the mockup sample was lent to our side, UNDER the 2% line. The inherited A5 cause is RETIRED: the empty image plane was an instrument condition, not a component defect. Residual is the renderer floor over the shared photo.',
     receiptId: 'pv-product-card',
   },
   {
     subject: 'realisation',
-    class: 'image-boundary',
+    class: 'engine',
     cause:
-      'A5 image boundary: Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty; both variant dimensions are exact, but image pixels are intentionally not transported.',
+      're-measured 2026-08-06 (017/US2, FR-008 — and the inherited cause was FALSE, not merely imprecise). REST read of set 2095:2484: the master carries NO IMAGE PAINT AT ALL on either variant — root COMPONENT fills SOLID #dfdfdf, one child `Image` (FRAME) fills SOLID #d9d9d9. So no photo can be "lent" to make this fair: Figma has none either, and giving our side one would CREATE a gap. The ~99% is a FLAT-FILL gap over the whole surface, and its dominant driver is an ENGINE divergence between our own two surfaces: the figma emitter paints the #D9D9D9 reservation wash for an `img` part (spec.imgPlaceholder → lits.fillColor) while emit-html — the surface this instrument renders — paints nothing. A second, smaller fact rides along and is named rather than folded in: the contract carries neither the master root\'s #dfdfdf nor the image plane\'s #d9d9d9. Both are recorded in specs/017-photos-honnetes/registre/defauts-decouverts.json (D-017-REALISATION-PAS-UNE-FRONTIERE-IMAGE); neither is repaired here — one touches an emitter, the other a contract anatomy, and 017 forbids itself both. Note the collision with DW-014-002: the instrument renders emit-html, never the delivered React surface.',
     receiptId: 'pv-realisation',
   },
   {
     subject: 'carte',
-    class: 'image-boundary',
+    class: 'rendering',
     cause:
-      're-measured before classifying (014 §4.1 — the inherited cause mixed the image frontier with geometry/content notes under one label, illegal in a vocabulary where a row carries exactly one cause): both dispositions read as "overall ink differs" (Reassurance ours #ababad vs figma #845f61; Categorie ours #4f5154 vs figma #767672), the same placeholder-vs-real-photo signature already classed image-boundary for member-card/product-card/realisation; no size line is emitted for either variant (Δ≤2 device px), so a geometry defect is not the measured driver. The shadow/alignment and uppercase/rich-text notes from the prior cause remain true as smaller, un-scored observations — not the dominant residual.',
+      're-measured 2026-08-06 (017/US2, FR-008 — the inherited cause is RETIRED, not reconducted). With each variant lent ITS OWN mockup sample, Reassurance fell 64.05% → 3.43% and Categorie 56.34% → 0.64% (UNDER the 2% line). So the dominant driver was the absence of data on our side, exactly as suspected but never proven until the equal-arms pass. Two facts came out of it and are named rather than folded in: (1) the master paints TWO DISTINCT photos, d62d8bf3… on Disposition=Reassurance and 3c54b9a6… on Disposition=Categorie, while the contract binds BOTH img parts to the single `imageUrl` prop — which is why this subject needs comparisonPropsByVariant and a flat record would have made one line lie; (2) the 3.43% residual on Reassurance is a diffuse delta over the shared photo, not an image frontier. D-016-CARTE-BOUTON (ds.carte renders one `action` part where the master carries three children) was expected to surface from under the old 56.56%: at 0.64% on Categorie it is NOT the dominant residual — it stays open in specs/tiny/carte-bouton-glyphes.md, re-measured rather than re-asserted.',
     receiptId: 'pv-carte',
   },
   {
@@ -337,9 +337,9 @@ export const TRIAGE: TriageRule[] = [
   {
     subject: 'member-picture',
     variant: /Etat=Defaut/,
-    class: 'image-boundary',
+    class: 'rendering',
     cause:
-      'A5 image boundary: near-identical geometry (728×728 vs 727×727, Δ1 device px) but overall ink differs (ours #d9d9d9 vs figma #aba198) — the SAME documented technical placeholder already classed image-boundary under member-card, measured here on the atom directly.',
+      're-measured 2026-08-06 (017/US2, FR-008): 58.32% → 0.00% — PIXEL-IDENTICAL — once the right mockup sample was lent to our side. The inherited A5 cause is RETIRED. Getting there uncovered a real fact, kept because it is measured: the master paints `funIa` at child index 1 and `normal` at index 0, and Figma orders children BACK-TO-FRONT, so funIa is the plane a viewer sees — while the contract declares funIa first and normal second, i.e. normal paints over it. Lending normal\'s portrait made the row WORSE (60.97%); lending funIa\'s made it exact. Recorded as D-017-MEMBER-PICTURE-ORDRE-DES-PLANS, not repaired here.',
     receiptId: 'pv-member-picture-defaut',
   },
   {
@@ -347,7 +347,7 @@ export const TRIAGE: TriageRule[] = [
     variant: /Etat=Survol/,
     class: 'image-boundary',
     cause:
-      'A5 image boundary: same placeholder-vs-photo signature as Etat=Defaut, darker on Figma\'s side because the hover state photographs a dimmed real portrait (figma #6d6d6c) against our unchanged #d9d9d9 placeholder; geometry near-identical (728×728 vs 727×727).',
+      're-measured 2026-08-06 (017/US2, FR-008 — the class is CONFIRMED here, and the old wording CORRECTED). It is not "a dimmed real portrait against our placeholder": both Figma variants average #6d6d6c because BOTH show the same `funIa` plane on top. The row is unchanged at 58.31% while Etat=Defaut went to 0.00%, and the reason is structural: ds.member-picture carries TWO img parts but ONE URL prop, wired to `normal` only — `funIa` has attrs:{alt:""} and no src (the second photo plane was left unwired in spec 011). In Survol, normal drops to opacity 0 and funIa shows; no route exists to paint it, so our side keeps the #D9D9D9 wash. This IS an A5 image boundary — a photo that cannot be given because no route carries it — and it is the honest residual of the equal-arms pass, not noise. Recorded as D-017-MEMBER-PICTURE-SURVOL-2E-PLAN; the fix (wiring a second URL prop) touches a contract\'s props and is out of 017\'s scope.',
     receiptId: 'pv-member-picture-survol',
   },
   {
