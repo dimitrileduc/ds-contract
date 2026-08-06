@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "contractId": "ds.section-header",
+  "contractVersion": "2.1.1",
+  "decidedOn": "2026-08-06",
+  "$regle": "Un réglage est offert au rédacteur s'il a une raison métier de le changer sur son site. Tout le reste est figé. Corollaire : le contenu se modifie, le design se fige.",
+  "$reference": "Écrit contre un rendu FRAIS de ds.section-header v2.1.1 par emitHtml. core/samples/section-header.html porte encore v2.0.0 (relevé T004 §7.3) et n'a pas servi.",
+  "$couverture": "6 props déclarées + 4 parts d'anatomie = 10 lignes (invariant Z1).",
+  "$resultat": "AUCUNE zone modifiable sur ce composant — et c'est un résultat, pas un oubli. ds.presentation fixe les six props dans sa composition ; ce composant n'est jamais posé seul. Conséquence assumée, à porter au rapport : ce composant n'aura AUCUN panneau de réglages, donc T032 écrit zéro ligne d'OWL, et le coût du mécanisme de réglages n'est mesuré que sur deux des trois composants (FR-017).",
+  "$conflitDeclare": "L'acceptation US2-5 de spec.md nomme « la disposition de l'en-tête » parmi les réglages que le rédacteur change depuis le panneau. Ce tableau la fige. Le conflit est réel et il est tranché en faveur de FR-009 (« la règle est : une raison métier »), confirmé par l'owner le 2026-08-06 (option « fidèle + page de mesure »). Conséquence : US2-5 n'est exerçable QUE sur la variante du bouton, et le t-call de niveau 3 est exercé sur une page de mesure hors panneau (harness.xml), pas sur le bloc posé. Écrit ici pour que T036 ne le redécouvre pas comme un manque.",
+  "zones": [
+    {
+      "reglage": "disposition",
+      "origine": "prop",
+      "etat": "figé",
+      "raison": "ds.presentation fixe `disposition: \"standard\"` EN DUR dans sa composition — le contrat n'emploie pas le report de prop du parent (`\"{parentProp}\"`), pourtant offert par le schéma (ComponentRefSchema, contract-schema.ts:897). L'ouvrir au rédacteur ne serait donc pas répliquer le contrat mais lui AJOUTER une capacité, et ferait mesurer à FR-017 le coût d'un réglage que la vraie chaîne ne demande pas. Décision d'owner du 2026-08-06. Conséquence assumée et mesurée : la part `Bouton` ci-dessous, seul chemin de niveau 3 vers ds.button, ne se rend jamais sur le bloc posé.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "accroche",
+      "origine": "prop",
+      "etat": "figé",
+      "raison": "La part qui l'affiche est masquée sur le chemin emprunté : ds.presentation compose avec `accroche2: false`. Offrir un champ dont le texte n'apparaît nulle part serait un réglage sans effet — la même faute que la prop orpheline `titre` de ds.presentation, en pire, parce qu'ici elle serait volontaire.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "titre",
+      "origine": "prop",
+      "etat": "figé",
+      "raison": "Fixé par la composition du parent, qui passe un littéral rich-text (« Piqueray, » en gras + « une histoire de famille »). Le titre de CETTE section fait partie de l'identité de la maquette Piqueray ; un site qui veut un autre titre de section change de section, il ne réécrit pas celle-ci. Note honnête : c'est le réglage le plus discutable du tableau — un rédacteur pourrait raisonnablement vouloir son propre titre. Il est figé parce que la composition du contrat le fixe, et que 018 réplique le contrat plutôt que de le renégocier (FR-001).",
+      "mecanisme": null
+    },
+    {
+      "reglage": "accroche2",
+      "origine": "prop",
+      "etat": "figé",
+      "raison": "Fixé à `false` par la composition du parent. C'est ce booléen qui masque la part `Accroche` — l'ouvrir ferait apparaître un texte que le design de cette section ne prévoit pas.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "emphase",
+      "origine": "prop",
+      "etat": "figé",
+      "raison": "Axe de typographie du design system : `standard|hero|moyen|compact` pilotent {font.size.40|54|32|24} et les hauteurs de ligne correspondantes. Le rédacteur n'a aucune raison métier de changer la taille d'un titre ; le laisser ouvert rouvrirait exactement la dérive que le contrat existe pour fermer. La composition fixe `moyen`.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "alignement",
+      "origine": "prop",
+      "etat": "figé",
+      "raison": "Décision de mise en page (`centre|gauche`), fixée à `gauche` par la composition parce que l'en-tête vit dans la colonne gauche d'une grille à deux colonnes. Le centrer casserait la grille.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "Racine de l'en-tête, porteuse de {size.section-header.root}, {space.8} et de la famille de police. Rien à l'intérieur ne doit bouger.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/Accroche",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "Part masquée sur le chemin emprunté (`accroche2: false`). Elle est néanmoins ÉCRITE dans le gabarit avec sa condition, parce que la surface de référence émet sa règle CSS — c'est la source du seul littéral nommé du montage (letter-spacing: 3px, registre du module).",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/Titre",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "La part est figée. Son contenu l'est aussi, pour la raison écrite à la ligne `titre` ci-dessus.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/Bouton",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "Le bouton de niveau 3, conditionné par `disposition == \"avecCta\"`. Sa part est écrite dans le gabarit avec son `t-call` et sa condition — donc la chaîne d'appels compte bien trois niveaux — mais elle ne se rend jamais sur le bloc posé, `disposition` étant figé à `standard`. Elle est exercée en fonctionnement sur une page de mesure (harness.xml), hors panneau : c'est la seule façon de prouver qu'un t-call imbriqué trois fois avec passage de paramètres marche réellement, sans ajouter au bloc une capacité que le contrat ne porte pas.",
+      "mecanisme": null
+    }
+  ]
+}

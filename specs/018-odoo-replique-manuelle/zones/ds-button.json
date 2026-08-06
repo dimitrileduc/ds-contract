@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "contractId": "ds.button",
+  "contractVersion": "2.0.0",
+  "decidedOn": "2026-08-06",
+  "$regle": "Un réglage est offert au rédacteur s'il a une raison métier de le changer sur son site. Tout le reste est figé. Corollaire : le contenu se modifie, le design se fige.",
+  "$reference": "Écrit contre un rendu FRAIS de ds.button v2.0.0 par emitHtml (le seul des trois dont core/samples/ était encore à jour — 118 lignes de CSS des deux côtés, relevé T004 §7.3).",
+  "$couverture": "6 props déclarées + 5 parts d'anatomie = 11 lignes (invariant Z1).",
+  "$portee": "Ce tableau vaut pour les DEUX sites d'appel du bouton — ds.presentation/root/wrapper/Bouton (niveau 2, celui qui se rend) et ds.section-header/root/Bouton (niveau 3, exercé sur la page de mesure). Le second reçoit `variant: \"outlineNoir\"` et le libellé « Voir les produits » de la composition ; le premier prend les défauts du contrat.",
+  "zones": [
+    {
+      "reglage": "children",
+      "origine": "contenu-texte",
+      "etat": "modifiable",
+      "raison": "Le libellé du bouton. « Contactez-nous », « Demander un devis », « Voir nos réalisations » — c'est la décision de page la plus élémentaire qui soit.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "variant",
+      "origine": "prop",
+      "etat": "modifiable",
+      "raison": "L'emphase de l'appel à l'action, parmi les 7 valeurs GOUVERNÉES du contrat (default, orange, blanc, outlineBlanc, link, outlineNoir, iconOnly). Le rédacteur choisit le poids de son CTA sur SA page — un devis en orange plein, un lien secondaire en `link` — sans jamais pouvoir inventer une apparence : chaque valeur est une décision de design déjà prise, et l'énumération est fermée. C'est aussi le réglage que l'acceptation US2-5 exerce (« changent sur place, sans remplacer le bloc »), et le second mécanisme d'énumération que FR-017 doit chiffrer.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "iconLeft",
+      "origine": "prop",
+      "etat": "modifiable",
+      "raison": "Présence de l'icône à gauche. FR-004b exige que la présence soit exprimable ; le tableau décide de l'offrir, parce qu'« ce bouton porte-t-il un pictogramme ? » est une décision de page au même titre que le libellé. Mécanisme booléen, le même que `bouton` sur ds.presentation.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "iconRight",
+      "origine": "prop",
+      "etat": "modifiable",
+      "raison": "Présence de l'icône à droite. Même raison qu'`iconLeft`. La valeur par défaut du contrat est `false` aux deux sites d'appel.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "iconLeftGlyph",
+      "origine": "glyphe",
+      "etat": "modifiable",
+      "raison": "Choix du glyphe gauche parmi les 19 du registre gouverné. FR-004b l'EXIGE modifiable et exercé sur l'instance : c'est la seule liaison par échange d'instance de toute la chaîne, et le seul franchissement de frontière d'un registre gouverné. Le figer rendrait SC-002 inatteignable. L'énumération est fermée et dérivée de contracts/icons.registry.json v1.2.0 — le rédacteur choisit dans le registre, il n'y ajoute rien.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "iconRightGlyph",
+      "origine": "glyphe",
+      "etat": "modifiable",
+      "raison": "Choix du glyphe droit, mêmes 19 valeurs, même raison. Défaut du contrat : `arrow-right`.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "L'élément `button` lui-même, porteur de la variante, des jetons de couleur, de rayon ({radius.32}) et d'espacement. Il ne se supprime pas — on décoche `bouton` sur la présentation — ni ne se déplace, ni ne se duplique.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/iconLeft",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "La part est figée ; sa présence est pilotée par la prop `iconLeft` et son glyphe par `iconLeftGlyph`, tous deux modifiables ci-dessus. On ouvre les valeurs, jamais la boîte.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/iconOnlyIcon",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "Part conditionnée par `variant == \"iconOnly\"`. Écrite dans le gabarit avec sa condition puisque la variante est modifiable ; jamais manipulable en tant qu'élément.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/label",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "La part est figée ; son contenu est modifiable, et c'est la ligne `children` qui le déclare.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/iconRight",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "Même raison que `root/iconLeft` : la boîte est fermée, la présence et le glyphe sont ouverts.",
+      "mecanisme": null
+    }
+  ]
+}

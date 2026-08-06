@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "contractId": "ds.presentation",
+  "contractVersion": "2.2.0",
+  "decidedOn": "2026-08-06",
+  "$regle": "Un réglage est offert au rédacteur s'il a une raison métier de le changer sur son site. Tout le reste est figé. Corollaire : le contenu se modifie, le design se fige.",
+  "$reference": "Écrit contre un rendu FRAIS de ds.presentation v2.2.0 par emitHtml, jamais contre core/samples/presentation.html — qui date de la spec 013 et porte encore v2.1.0 (relevé T004 §7.3).",
+  "$couverture": "3 props déclarées + 6 parts d'anatomie = 9 lignes. Aucun réglage porté par le contrat n'est laissé sans ligne (invariant Z1).",
+  "zones": [
+    {
+      "reglage": "texte",
+      "origine": "prop",
+      "etat": "modifiable",
+      "raison": "C'est le corps du texte de présentation de l'entreprise. Chaque site a le sien : c'est du contenu, pas du design. Le contrat le porte en rich-text avec une marque `strong` liée à {font.weight.bold} — le gras reste donc gouverné même quand le texte change.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "bouton",
+      "origine": "prop",
+      "etat": "modifiable",
+      "raison": "Booléen d'affichage de l'appel à l'action. « Cette section a-t-elle un CTA ? » est une décision de page, pas d'axe du design system : une page produit en veut un, une page institutionnelle non. C'est aussi le seul réglage qui fait apparaître le troisième composant à l'écran (relevé T004 §7.4).",
+      "mecanisme": null
+    },
+    {
+      "reglage": "titre",
+      "origine": "prop",
+      "etat": "figé",
+      "raison": "PROP ORPHELINE — déclarée par le contrat, liée à la propriété Figma TEXT « Titre », et consommée par AUCUNE part de l'anatomie. Le React généré l'accepte puis l'ignore (Presentation.tsx l. 16/23 la déclare, l. 47 passe un littéral rich-text à SectionHeader et non `titre={titre}`). L'offrir au rédacteur donnerait un champ sans effet — le pire des réglages. C'est un défaut de source Figma DÉJÀ ENREGISTRÉ : `Titre#2103:53` sur le master Presentation, entrée B013-1 de specs/016-canvas-vrai/registre/defauts-source.json, `orphelineEncore: true` au relevé vif du 2026-08-05. 018 est en lecture seule sur Figma : elle le nomme (NON-PORTES.md) et ne le corrige pas.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "La racine de la section. Sa suppression ou son déplacement n'a de sens que sur le bloc entier, ce qu'Odoo gère déjà au niveau du snippet ; à l'intérieur, rien ne doit bouger.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/colGauche",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "Colonne gauche de la grille, porteuse de {size.presentation.col-gauche}. C'est une décision de mise en page du design system — le contrat documente d'ailleurs pourquoi cette largeur vit là (une instance composée ne peut pas être restylée par son parent).",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/colGauche/SectionHeader",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "L'en-tête composé. Le supprimer viderait la section de son titre ; le déplacer casserait la grille en deux colonnes. Ses propres réglages sont décidés dans zones/ds-section-header.json.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/wrapper",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "Colonne droite, porteuse de {size.presentation.wrapper} et de {space.16}. Même raison que colGauche : c'est la grille, pas du contenu.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/wrapper/Texte",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "La part elle-même est figée — elle ne se supprime, ne se déplace ni ne se duplique. Son CONTENU est modifiable, et c'est la ligne `texte` ci-dessus qui le déclare. La distinction est le point : on ouvre la valeur, jamais la boîte.",
+      "mecanisme": null
+    },
+    {
+      "reglage": "root/wrapper/Bouton",
+      "origine": "structure",
+      "etat": "figé",
+      "raison": "La part est figée ; sa PRÉSENCE est pilotée par la prop `bouton` ci-dessus, et ses propres réglages sont décidés dans zones/ds-button.json. Un rédacteur qui veut retirer le bouton décoche la case — il ne supprime pas l'élément.",
+      "mecanisme": null
+    }
+  ]
+}
