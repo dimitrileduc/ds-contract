@@ -7,7 +7,7 @@ const COMPONENTS = [
     "setName": "Thumbnail",
     "contractId": "polaris.thumbnail",
     "anchorKey": null,
-    "description": "Thumbnail — generated from contract polaris.thumbnail v0.3.2 †",
+    "description": "Thumbnail — generated from contract polaris.thumbnail v0.3.2 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [
       {

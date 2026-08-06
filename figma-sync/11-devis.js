@@ -7,7 +7,7 @@ const COMPONENTS = [
     "setName": "Devis",
     "contractId": "ds.devis",
     "anchorKey": "0caac7487988d0da129211e64a40545163149a6f",
-    "description": "Devis — generated from contract ds.devis v1.2.0 †",
+    "description": "Devis — generated from contract ds.devis v1.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": false,
     "boolProps": [],
     "textProps": [],

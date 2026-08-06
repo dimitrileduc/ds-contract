@@ -2770,6 +2770,14 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   const hasPreviewOnlyFacts = [...variants, ...stateVariants].some((v) =>
     specSome(v.spec, (x) => x.imgPlaceholder === true || x.blockRoot === true),
   );
+  // 017 (FR-010) — un drapeau DÉDIÉ au cadre photo. Il ne réutilise pas
+  // `hasPreviewOnlyFacts` ci-dessus, qui agrège aussi `blockRoot` et
+  // déclencherait la clause sur des composants SANS cadre photo. Vrai pour les
+  // 9 contrats à part `img` (12 parts), faux pour les 25 autres — dont la
+  // légende doit rester inchangée AU CARACTÈRE PRÈS.
+  const hasImgPart = [...variants, ...stateVariants].some((v) =>
+    specSome(v.spec, (x) => x.imgPlaceholder === true),
+  );
   // Part D (owner directive): every code-only fact — events, declared-not-
   // drawn channels, gradient/shadow misses, runtime-sized meters — leaves
   // exactly ONE canvas trace: a single trailing † on the caption line.
@@ -2792,7 +2800,18 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     // canvas; the detailed docs stay in repo receipts. The single trailing
     // dagger marks that code-only facts exist. Plugin-data identity markers
     // (ds_contracts/*) are machine identity and remain untouched.
-    description: `${contract.name} — generated from contract ${contract.id} v${contract.version}${hasCodeOnlyFacts ? ' †' : ''}`,
+    //
+    // 017 (FR-010, FR-010a) : la dague cesse d'être MUETTE sur l'image. Elle
+    // était déjà posée sur les 9 composants porteurs d'image (vérifié au cliché,
+    // pas supposé) — ce qui manquait n'était pas la marque, c'était la phrase.
+    // Une clause d'UNE PROPOSITION, sur la MÊME LIGNE, dague en fin à sa place
+    // actuelle : la directive owner du 2026-07-19 (« une seule ligne ») tient,
+    // et une clause sur la même ligne ne rouvre pas ce choix — un retour aux
+    // paragraphes de copie le rouvrirait. Anglais, comme la légende des 34.
+    // Ce qui ARRIVE à la photo à la reconstruction n'est PAS dit ici : la
+    // légende dit ce qu'EST le cadre, la documentation dit ce qui arrive à la
+    // photo (docs/FIGMA-CAPABILITY-MATRIX.md, docs/handoff/08 §6).
+    description: `${contract.name} — generated from contract ${contract.id} v${contract.version}${hasImgPart ? ' · image frame: runtime slot, photo shown is a mockup sample' : ''}${hasCodeOnlyFacts ? ' †' : ''}`,
     isSet: variants.length + stateVariants.length > 1,
     boolProps: boolPropsData,
     textProps: textOnlyProps,

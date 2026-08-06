@@ -1,0 +1,109 @@
+# T037 — le diff des legendes
+#
+# LE COMPTE ANNONCE PAR LES TACHES ETAIT « 9 changent, 25 inchangees ». LE RELEVE DIT
+# « 10 changent, 24 inchangees », ET L'ECART SE NOMME PLUTOT QU'IL NE SE LISSE :
+#
+#   · 9 legendes changent parce qu'elles GAGNENT LA CLAUSE — ce sont exactement les
+#     9 contrats portant au moins une part `img` (12 parts). C'est SC-006, tenu.
+#   · 1 legende change SANS gagner la clause : ds.member-card, dont la VERSION a bumpe
+#     (1.2.0 → 1.2.1, patch) parce que T035 y a ajoute la description manquante de sa
+#     prop d'URL. Sa legende porte le numero de version : elle DEVAIT donc bouger.
+#     ds.member-card n'a pas de part `img` (sa photo vient de l'instance ds.member-picture
+#     qu'il compose) et ne porte AUCUNE clause — verifie ci-dessous.
+#   · Les deux autres contrats touches par T035 (ds.carte, ds.member-picture) portent
+#     DEJA une part img : leur bump de version se confond avec leur gain de clause.
+#
+# Autrement dit : la clause est sur 9 et 9 seulement ; le 10e changement est un effet
+# mecanique du semver, pas une fuite de la clause.
+# date : 2026-08-06T19:09:46Z   commit : 9763576
+# source : les scripts generes figma-sync/*.js (34 legendes VIVES), contre proofs/depart-legendes.txt section A.
+#
+# DEUX PREMISSES CORRIGEES, ET ELLES CHANGENT CE QUE CETTE PREUVE PEUT DIRE :
+#  (1) `npm run parity` NE VOIT PAS la description — parity/diff.ts ne lit jamais ce champ
+#      (son interface FigmaSet, :89-96, ne le porte pas). La parite ne peut donc NI prouver
+#      NI infirmer cette tache, et elle ne rougira pas non plus. Elle reste au sweep pour
+#      les autres axes, et elle est verte (3 acquittements, aucune derive nouvelle).
+#  (2) parity/snapshots/figma-components.json n'est deplacable que par une capture vive au
+#      pont, et 017 NE MUTE PAS le canevas : diffe contre son propre archivage il rendrait
+#      0 changement — une preuve vide. La preuve vit donc cote genere, avec le re-pin
+#      evals/golden.json en second recu.
+#
+# ET CE QUE CETTE PREUVE N'ATTEINT PAS — SC-006-vif, reporte et nomme :
+#      LE CANEVAS N'A PAS RECU LA CLAUSE. Un designer qui ouvre le fichier client lit
+#      encore l'ancienne legende. Elle n'y arrivera qu'au lot de regeneration de la
+#      fenetre vive (Phase 6). AUCUNE PORTE AUTOMATIQUE NE DETECTE CET ECART, puisque
+#      parity/diff.ts ne compare pas les descriptions. Ce n'est pas acquis parce que
+#      l'emetteur emet.
+
+## CHANGEES : 10
+
+  - Carte — generated from contract ds.carte v2.0.0 †
+  + Carte — generated from contract ds.carte v2.0.1 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - Coordonnees — generated from contract ds.coordonnees v2.2.0 †
+  + Coordonnees — generated from contract ds.coordonnees v2.2.0 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - Devis — generated from contract ds.devis v1.2.0 †
+  + Devis — generated from contract ds.devis v1.2.0 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - Hero — generated from contract ds.hero v1.4.0 †
+  + Hero — generated from contract ds.hero v1.4.0 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - MemberCard — generated from contract ds.member-card v1.2.0
+  + MemberCard — generated from contract ds.member-card v1.2.1
+
+  - MemberPicture — generated from contract ds.member-picture v1.2.0 †
+  + MemberPicture — generated from contract ds.member-picture v1.2.1 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - ProductCard — generated from contract ds.product-card v2.0.0 †
+  + ProductCard — generated from contract ds.product-card v2.0.0 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - Realisation — generated from contract ds.realisation v1.1.0 †
+  + Realisation — generated from contract ds.realisation v1.1.0 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - ReviewCard — generated from contract ds.review-card v1.0.0 †
+  + ReviewCard — generated from contract ds.review-card v1.0.0 · image frame: runtime slot, photo shown is a mockup sample †
+
+  - SAV — generated from contract ds.sav v1.3.0 †
+  + SAV — generated from contract ds.sav v1.3.0 · image frame: runtime slot, photo shown is a mockup sample †
+
+## INCHANGEES AU CARACTERE PRES : 24
+
+  = AccordionRow — generated from contract ds.accordion-row v1.2.0 †
+  = Avantage — generated from contract ds.avantage v1.0.0
+  = Button — generated from contract ds.button v2.0.0
+  = CarouselControls — generated from contract ds.carousel-controls v1.0.2
+  = Checkbox — generated from contract ds.checkbox v1.0.1
+  = Copyright — generated from contract ds.copyright v1.0.0
+  = Equipe — generated from contract ds.equipe v1.1.2
+  = FAQ — generated from contract ds.faq v1.3.0 †
+  = Field — generated from contract ds.field v2.0.0 †
+  = Footer — generated from contract ds.footer v1.1.0 †
+  = FooterColumn — generated from contract ds.footer-column v1.1.0
+  = Formulaire — generated from contract ds.formulaire v1.1.0
+  = GoogleReviews — generated from contract ds.google-reviews v1.0.0
+  = Header — generated from contract ds.header v1.0.0
+  = Input — generated from contract ds.input v1.0.0
+  = NavItem — generated from contract ds.nav-item v1.2.0 †
+  = PiquerayLogo — generated from contract ds.piqueray-logo v0.1.0
+  = Presentation — generated from contract ds.presentation v2.2.0
+  = Reassurances — generated from contract ds.reassurances v1.2.0 †
+  = SectionHeader — generated from contract ds.section-header v2.1.1 †
+  = Select — generated from contract ds.select v1.0.0
+  = Tab — generated from contract ds.tab v2.0.0
+  = Textarea — generated from contract ds.textarea v1.0.0
+  = TexteSEO — generated from contract ds.texte-seo v2.1.0 †
+
+## CONTROLE : la clause est sur 9 composants, et ce sont exactement les porteurs de part `img`
+
+  · ds.carte
+  · ds.coordonnees
+  · ds.devis
+  · ds.hero
+  · ds.member-picture
+  · ds.product-card
+  · ds.realisation
+  · ds.review-card
+  · ds.sav
+
+## CONTROLE : aucune legende multi-ligne — 0 sur 34

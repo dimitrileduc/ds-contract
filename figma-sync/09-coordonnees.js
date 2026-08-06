@@ -7,7 +7,7 @@ const COMPONENTS = [
     "setName": "Coordonnees",
     "contractId": "ds.coordonnees",
     "anchorKey": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
-    "description": "Coordonnees — generated from contract ds.coordonnees v2.2.0 †",
+    "description": "Coordonnees — generated from contract ds.coordonnees v2.2.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": false,
     "boolProps": [],
     "textProps": [

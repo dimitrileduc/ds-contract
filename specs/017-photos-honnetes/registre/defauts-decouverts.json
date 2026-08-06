@@ -29,6 +29,58 @@
       "decide": "NON REPARE dans 017. Consigne parce que la precondition bloquante FR-005 s'appuie sur ce plan : s'y appuyer sans nommer sa faiblesse serait fonder une porte sur un message de commit.",
       "destination": "016 (execution de la restauration) — ajouter le drapeau au JSON avant de s'en servir comme preuve de precondition ; T042 de 017 refuse de le compter comme preuve tant qu'il manque",
       "repareDans": null
+    },
+    {
+      "id": "D-017-REALISATION-PAS-UNE-FRONTIERE-IMAGE",
+      "titre": "Les deux PIRES lignes de la porte (realisation, 99,43 % et 98,98 %) ne sont PAS une frontiere image — le master ne porte aucune photo",
+      "decouvertLe": "2026-08-06",
+      "decouvertPar": "017/US2, releve REST en LECTURE du set 2095:2484 (mesure, pas heritage — FR-008)",
+      "surface": "extract/figma/visual-parity/triage.ts (regle `realisation`) + contracts/realisation.contract.json",
+      "observation": "Le master Realisation ne porte AUCUN paint IMAGE sur ses deux variantes. Sa structure reelle : root COMPONENT fills=SOLID #dfdfdf, un seul enfant `Image` (FRAME) fills=SOLID #d9d9d9, geometrie 743x743 et 339x339. La regle de triage en vigueur dit « Figma paints its non-semantic gray IMAGE placeholder while the runtime imageUrl default is empty » : elle est exacte sur le fond (c'est bien un aplat gris de reservation) mais elle le classe `image-boundary`, ce qui a fait croire pendant des mois que DONNER une photo a notre cote reduirait l'ecart. C'est faux : Figma n'a pas de photo. Le contrat, lui, ne porte NI le #dfdfdf du root NI le #d9d9d9 du plan image — notre surface HTML rend un <img src=\"\"> sans fond. L'ecart de ~99 % est donc un ecart d'APLAT sur toute la surface, pas un ecart de contenu photographique.",
+      "classe": "cause de triage heritee et fausse (FR-008) + fait de contrat non porte",
+      "consequence": "T027 NE DOIT PAS declarer de comparisonProps pour `realisation` : preter une photo a notre cote CREERAIT un ecart la ou il n'y en a pas. La remise a armes egales pour ce sujet est ailleurs — soit le contrat porte les deux aplats, soit l'emetteur code pose le meme lavis de reservation que l'emetteur figma (spec.imgPlaceholder -> lits.fillColor existe cote canvas, PAS cote emit-html).",
+      "decide": "RE-MESURE ET RE-CLASSE dans 017 (FR-008). La REPARATION (porter les aplats au contrat, ou poser le lavis cote code) n'est PAS faite ici : elle touche soit l'anatomie de contrats, soit un emetteur, deux perimetres que 017 s'interdit.",
+      "destination": "une spec de fidelite d'aplat — et elle croise DW-014-002, puisque l'instrument mesure emit-html et non la surface React livree",
+      "repareDans": null
+    },
+    {
+      "id": "D-017-ASSETS-MEMBER-PICTURE-DEJA-EPINGLES",
+      "titre": "Les assets « manquants » de member-picture ne manquaient pas — ils sont au manifeste, classes sous un autre sujet",
+      "decouvertLe": "2026-08-06",
+      "decouvertPar": "017/US2 T026, releve REST du set 274:2389 croise au manifeste",
+      "surface": "extract/figma/visual-parity/fixture-assets/manifest.json",
+      "observation": "Research D8 et T026 disaient : « aucun asset ne porte subject: member-picture, deux des huit lignes en dependent, il faut les epingler par fetch.mjs ». Le releve dit autre chose. Le master MemberPicture peint DEUX imageRef, identiques sur ses deux variantes : normal = c60f37abee2a78de43e7b189e77356ab1a16c7e4 et funIa = 508388d688080236a8ce2c4bfc27ce3dd7d724e9. Les DEUX sont DEJA au manifeste, verifies SHA-256, runtimeDefault:false — sous les ids `member-card-normal` et `member-card-base-508388d68808`, classes subject:\"member-card\" parce que ds.member-card COMPOSE ds.member-picture : c'est litteralement la meme image. Aucun telechargement n'est necessaire.",
+      "classe": "premisse de plan corrigee par le releve",
+      "consequence": "T026 se resout en referencant les ids existants, sans dupliquer d'octets. Note de forme : `fetch.mjs` ne SAIT PAS decouvrir un asset — il ne telecharge que ce qu'un cas de campagne declare (selectCampaignAssets), donc le « chemin existant » annonce par T026 n'aurait de toute facon pas suffi seul.",
+      "decide": "RESOLU dans 017 sans fetch : les deux ids existants sont references. Le champ `subject` du manifeste reste « member-card » — le corriger serait reecrire une donnee verifiee pour une etiquette.",
+      "destination": "aucune — clos ici",
+      "repareDans": "017"
+    },
+    {
+      "id": "D-017-MEMBER-PICTURE-SURVOL-2E-PLAN",
+      "titre": "La variante Etat=Survol de member-picture restera un ecart reel apres la remise a armes egales — le 2e plan photo n'est pas branche",
+      "decouvertLe": "2026-08-06",
+      "decouvertPar": "017/US2, lecture du contrat croisee au releve REST",
+      "surface": "contracts/member-picture.contract.json",
+      "observation": "ds.member-picture porte DEUX parts img (`normal` et `funIa`) mais UNE SEULE prop d'URL (`src`), branchee sur `normal` uniquement — `funIa` a attrs:{alt:\"\"}, sans src. En Etat=Defaut, `normal` est opacity 1 et couvre `funIa` : donner `src` suffit, la mesure devient juste. En Etat=Survol, `normal` passe a opacity 0 et c'est `funIa` qui se voit — or aucune prop ne peut le peindre. Notre cote montrera le lavis #D9D9D9 la ou Figma montre le portrait assombri.",
+      "classe": "limite nommee, deja assumee en spec 011 (2e plan photo de MemberCard non branche)",
+      "consequence": "La ligne member-picture/Etat=Survol ne descendra PAS sous 2 % avec T027 seul. Elle finit dans la troisieme issue de SC-003 : re-classee a une cause reelle re-mesuree, acquittee avec son motif ecrit et visible. Ce n'est pas une echappatoire — c'est ce qu'US2 devait decouvrir.",
+      "decide": "NON REPARE dans 017 (brancher une 2e prop d'URL toucherait les props d'un contrat, hors perimetre). Re-classe et acquitte, jamais requalifie en bruit.",
+      "destination": "la spec qui branchera le 2e plan photo de MemberCard/MemberPicture",
+      "repareDans": null
+    },
+    {
+      "id": "D-017-CARTE-DEUX-PHOTOS-UNE-PROP",
+      "titre": "carte peint DEUX photos differentes selon la variante mais n'a qu'UNE prop d'URL — un comparisonProps plat ne peut pas les servir toutes deux",
+      "decouvertLe": "2026-08-06",
+      "decouvertPar": "017/US2, releve REST du set 2063:1622",
+      "surface": "contracts/carte.contract.json + extract/figma/visual-parity/subjects.ts",
+      "observation": "Le master Carte peint d62d8bf3... sur Disposition=Reassurance (part `reassuranceImage`) et 3c54b9a6... sur Disposition=Categorie (part `categorieImage`) — deux images DISTINCTES. Le contrat lie les DEUX parts a la MEME prop `imageUrl`. Un `comparisonProps` declare au niveau du SUJET (et non de la variante) ne peut donc donner qu'une seule des deux photos : l'une des deux lignes restera fausse.",
+      "classe": "limite de forme de l'instrument (le sujet porte les props, la variante non)",
+      "consequence": "Soit `ParitySubject` gagne une declaration PAR VARIANTE — ce que `CampaignCase` a deja, puisqu'un cas de campagne EST une variante — soit une des deux lignes de `carte` reste incomparable avec sa raison ecrite.",
+      "decide": "A trancher dans l'implementation d'US2 ; consigne ici pour que le choix soit visible et non subi.",
+      "destination": "017/US2 (T023, T027)",
+      "repareDans": null
     }
   ]
 }

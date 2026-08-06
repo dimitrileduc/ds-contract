@@ -7,7 +7,7 @@ const COMPONENTS = [
     "setName": "ReviewCard",
     "contractId": "ds.review-card",
     "anchorKey": "3826fdc9975d42b1661e14494476701676759671",
-    "description": "ReviewCard — generated from contract ds.review-card v1.0.0 †",
+    "description": "ReviewCard — generated from contract ds.review-card v1.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": false,
     "boolProps": [
       {

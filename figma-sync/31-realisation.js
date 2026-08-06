@@ -7,7 +7,7 @@ const COMPONENTS = [
     "setName": "Realisation",
     "contractId": "ds.realisation",
     "anchorKey": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43",
-    "description": "Realisation — generated from contract ds.realisation v1.1.0 †",
+    "description": "Realisation — generated from contract ds.realisation v1.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
