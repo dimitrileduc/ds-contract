@@ -1032,6 +1032,93 @@ const cases: Case[] = [
     },
   },
   {
+    // 018 — the token pipeline's FOURTH output: a prefixed :root sheet written
+    // into a hand-written Odoo module under specs/. Principle II puts this case
+    // BEFORE docs/03-token-pipeline.md describes the output; it refuses each of
+    // the seven invariants of
+    // specs/018-odoo-replique-manuelle/contracts/odoo-tokens-output.md §4 BY NAME.
+    //
+    // Structural trap, verified rather than assumed: resetScratch() does NOT
+    // copy specs/ (the directory list in harness.ts has no `specs` entry). The
+    // output is therefore never staged — it is CREATED in the scratch by the
+    // pipeline's own recursive mkdirSync. That same fact is the mechanical
+    // reason it has no golden entry: scripts/update-golden.mjs walks only src/
+    // and figma-sync/*.js.
+    id: 'odoo-tokens-output',
+    claim: 'C1-determinism',
+    run: () => {
+      const ODOO = path.join(
+        'specs', '018-odoo-replique-manuelle', 'module', 'piqueray_ds',
+        'static', 'src', 'css', 'tokens.pqr.css',
+      );
+      const PREFIX = '--pqr-';
+      const EXISTING = ['src/styles/tokens.css', 'src/styles/tokens.dark.css', 'src/styles/tokens.brands.css'];
+      const abs = (rel: string) => path.join(SCRATCH, rel);
+      const sha = (rel: string) => createHash('sha256').update(readFileSync(abs(rel))).digest('hex');
+      /** Every custom-property DECLARATION of a :root sheet, as [name, value]. */
+      const decls = (css: string): Array<[string, string]> =>
+        [...css.matchAll(/^\s*(--[\w-]+):\s*(.+?);$/gm)].map((m) => [m[1], m[2]]);
+
+      // ---- I1 additivity: the three existing outputs must not move one byte.
+      // The scratch stages them from the repo, so the pre-build hash IS the
+      // committed state; rebuilding must reproduce it exactly.
+      const before = EXISTING.map(sha);
+      if (buildTokens().status !== 0) throw new Error('build-tokens failed on a clean scratch');
+      if (!existsSync(abs(ODOO))) throw new Error(`I6: the fourth output was not written to ${ODOO}`);
+      EXISTING.forEach((rel, i) => {
+        if (sha(rel) !== before[i]) throw new Error(`I1: ${rel} changed — the fourth output is not additive`);
+      });
+
+      const first = readFileSync(abs(ODOO), 'utf8');
+
+      // ---- I6 header: generated marker AND the command that remakes it.
+      if (!/GENERATED FILE — DO NOT EDIT\./.test(first)) throw new Error('I6: no GENERATED — DO NOT EDIT marker');
+      if (!/npm run tokens/.test(first)) throw new Error('I6: header does not name the regeneration command');
+
+      // ---- I3 total prefix: one unprefixed declaration OR reference is a refusal.
+      const odooDecls = decls(first);
+      if (odooDecls.length === 0) throw new Error('I3/I4: the fourth output declares nothing');
+      const bareDecl = odooDecls.find(([name]) => !name.startsWith(PREFIX));
+      if (bareDecl) throw new Error(`I3: declaration without the ${PREFIX} prefix: ${bareDecl[0]}`);
+      const bareRef = [...first.matchAll(/var\((--[\w-]+)\)/g)].map((m) => m[1]).find((n) => !n.startsWith(PREFIX));
+      if (bareRef) throw new Error(`I3: alias reference without the ${PREFIX} prefix: var(${bareRef})`);
+
+      // ---- I4 coverage: a BIJECTION with :root of tokens.css. Never a count —
+      // the vocabulary grows, and a hardcoded number would rot silently.
+      const rootNames = new Set(decls(readFileSync(abs('src/styles/tokens.css'), 'utf8')).map(([n]) => n));
+      const odooNames = new Set(odooDecls.map(([n]) => n.slice(PREFIX.length)).map((n) => `--${n}`));
+      const missing = [...rootNames].filter((n) => !odooNames.has(n));
+      const extra = [...odooNames].filter((n) => !rootNames.has(n));
+      if (missing.length > 0) throw new Error(`I4: ${missing.length} :root propert(ies) absent from the Odoo output, e.g. ${missing.slice(0, 3).join(', ')}`);
+      if (extra.length > 0) throw new Error(`I4: ${extra.length} Odoo propert(ies) with no :root counterpart, e.g. ${extra.slice(0, 3).join(', ')}`);
+
+      // ---- I2 determinism: twice, byte for byte.
+      if (buildTokens().status !== 0) throw new Error('I2: second build-tokens failed');
+      if (readFileSync(abs(ODOO), 'utf8') !== first) throw new Error('I2: two consecutive runs differ');
+
+      // ---- I5 derivation, not transcription. THE adversarial check: a value
+      // moved in the source must move in the output. A file copied once would
+      // sail through I1–I4 and die here.
+      editJson('tokens/primitives.tokens.json', (t: any) => {
+        if (t?.radius?.['32']?.$value !== '32px') {
+          throw new Error(`I5: fixture drift — primitives radius.32 is ${JSON.stringify(t?.radius?.['32']?.$value)}, expected "32px"`);
+        }
+        t.radius['32'].$value = '7px';
+      });
+      if (buildTokens().status !== 0) throw new Error('I5: build failed after mutating a source token');
+      const mutated = decls(readFileSync(abs(ODOO), 'utf8')).find(([n]) => n === `${PREFIX}radius-32`);
+      if (!mutated) throw new Error(`I5: ${PREFIX}radius-32 disappeared from the output`);
+      if (mutated[1] !== '7px') throw new Error(`I5: source moved to 7px but the Odoo output still reads ${mutated[1]} — transcribed once, not derived`);
+
+      // ---- I7 an unresolvable alias is still refused. The fourth output must
+      // not open an escape hatch the other three close.
+      editJson('tokens/semantic.tokens.json', (t: any) => {
+        t['zzz-018-probe'] = { $value: '{does.not.exist}', $type: 'dimension' };
+      });
+      if (buildTokens().status === 0) throw new Error('I7: build passed with an alias pointing into the void');
+    },
+  },
+  {
     id: 'detect-code-added-prop',
     claim: 'C3-detection',
     run: () => {

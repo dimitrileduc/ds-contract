@@ -32,8 +32,10 @@ Migration to 2025.10 object forms is mechanical (a value-shape transform) and sh
 
 | Pass | Sources | Output |
 |---|---|---|
-| light | primitives + semantic + `semantic.light` | `src/styles/tokens.css` → everything under `:root` |
+| light | primitives + `brand.default` + semantic + `semantic.light` | `src/styles/tokens.css` → everything under `:root` |
 | dark | `semantic.dark` only | `src/styles/tokens.dark.css` → **only mode-varying tokens** under `[data-theme="dark"]` |
+| brands | every `brand.<name>` except `default` | `src/styles/tokens.brands.css` → one `[data-brand="<name>"]` block each |
+| **odoo** (spec 018) | the same compiled map as `:root` | `specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css/tokens.pqr.css` → `:root`, **every name prefixed `--pqr-`** |
 
 The emitter enforces two integrity rules at build time: every alias must resolve to a real token, and the light/dark mode files must define **identical token sets** (a token present in one mode but not the other is drift inside the source of truth itself). Alias chains are preserved as `var()` references, so the generated CSS reads like the token architecture:
 
@@ -54,6 +56,26 @@ Note the dark block's `var()` references point at primitives that live only in `
 ### Naming convention
 
 CSS custom property = token path joined with `-`: `color.action.primary.background` → `--color-action-primary-background`. The generator computes variable names with the same rule, which is what lets it validate contract bindings against the token inventory. In phase 2, the same names are written into each design-tool variable's web code-syntax metadata, so the tool's developer view shows the real CSS variable for every design-tool variable.
+
+### The fourth output — a prefixed sheet for a third-party host page
+
+The `odoo` pass exists because two requirements cross, and only one shape satisfies both.
+
+Spec 018 replicates three governed components by hand as Odoo 19 blocks, to **measure what that costs**. The module must carry **no invisible style value** — retyping ~230 properties by hand would reintroduce exactly the drift spec 015 closed on the code side. But its variable names must also be unable to collide with the ones Odoo publishes: Odoo 19 forces `$variable-prefix: ''` in three independent `bootstrap_overridden.scss` files, so on an Odoo page Bootstrap's custom properties are named **bare** — `--primary`, `--body-bg`, `--border-radius` — alongside Odoo's own `--base-100…900`, `--header-font-size`, `--palette-names`. Our names are generic (`--color-*`, `--space-*`, `--font-size-*`); publishing them unprefixed onto that page is a bet you cannot win.
+
+So the pipeline gains a fourth target rather than the module gaining hand-typed numbers. The pass reuses the same compiled map and the same `cssName()` rule with a prefix added, so it is **generated, not transcribed**. Three properties are load-bearing:
+
+- **Strictly additive.** The three outputs above do not move one byte. Adding the pass changed no existing file.
+- **Prefixed in full.** Every declaration *and* every alias reference reads `--pqr-…`. One bare name is a refusal.
+- **The whole vocabulary**, not only what those three components consume — so a fourth component needs no pipeline change.
+
+There are **no mode blocks**: Piqueray is mono-brand and mono-mode, and emitting empty `[data-theme]` / `[data-brand]` blocks would manufacture a capability that does not exist.
+
+`evals/run.ts` case `odoo-tokens-output` (C1) refuses seven invariants by name — additivity, byte-identical determinism, total prefixing, a **bijection** with `:root` (never a hardcoded count, which would rot as the vocabulary grows), the generated-file header, and the refusal of an unresolvable alias. The seventh is adversarial and the reason the case is worth its weight: mutating a value in `tokens/*.tokens.json` **must** move this output. A file copied once would sail through all the others and die there.
+
+The output has **no entry in `evals/golden.json`**, and that is mechanical rather than an oversight: `scripts/update-golden.mjs` walks only `src/` and `figma-sync/*.js`. Its determinism is proven by its own eval.
+
+> **Consequence to carry.** This pipeline now writes into a spec folder. If `specs/018-odoo-replique-manuelle/` is archived or moved, `npm run tokens` does **not** fail — the recursive `mkdirSync` simply recreates the path and leaves an orphan directory behind. Whoever retires that spec deletes the block in `scripts/build-tokens.mjs` too.
 
 ## Design-tool mapping (phase 2 preview)
 

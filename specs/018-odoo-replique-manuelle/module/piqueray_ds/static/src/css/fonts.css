@@ -1,0 +1,55 @@
+/**
+ * Les faces Montserrat servies par le module — invariant C7 du protocole de
+ * comparaison d'image (`../../../../contracts/visual-comparison.md`).
+ *
+ * ÉCRIT À LA MAIN, et volontairement sans aucune valeur de jeton : ce fichier
+ * ne déclare que des ressources de police. Il n'y a rien ici qu'un jeton
+ * pourrait porter.
+ *
+ * Pourquoi exactement ces quatre poids, et pas les neuf que @fontsource publie :
+ * le harnais de mesure embarque `montserrat-latin-{400,500,600,700}-normal.woff2`
+ * (`extract/figma/visual-parity/render.ts`, `MONTSERRAT_WEIGHTS`). La US3 compare
+ * deux images ; si un côté sert la vraie police et l'autre un repli système, la
+ * mesure n'est pas approximative, elle est FAUSSE — c'est le bug daté du
+ * 2026-07-23, où Chromium substituait en silence pendant que `document.fonts.check`
+ * répondait « disponible ». Les deux côtés servent donc les MÊMES faces.
+ *
+ * Heureuse coïncidence, et elle est structurelle : `font.weight` du vocabulaire
+ * porte exactement regular=400, medium=500, semibold=600, bold=700 — les quatre
+ * poids que les contrats peuvent demander sont les quatre faces embarquées.
+ *
+ * Limite nommée : `ds.section-header` porte un littéral `font-weight: 300` sous
+ * `emphase=hero`. Aucune face 300 n'est servie — ni ici, ni par le harnais. Les
+ * deux côtés synthétisent donc identiquement, la symétrie C7 tient, et cette
+ * branche n'est de toute façon pas sur le chemin emprunté (`emphase=moyen`).
+ *
+ * Source : @fontsource/montserrat 5.3.0, licence OFL-1.1.
+ */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/piqueray_ds/static/src/fonts/montserrat-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url('/piqueray_ds/static/src/fonts/montserrat-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url('/piqueray_ds/static/src/fonts/montserrat-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url('/piqueray_ds/static/src/fonts/montserrat-latin-700-normal.woff2') format('woff2');
+}

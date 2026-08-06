@@ -1,0 +1,40 @@
+=== T009 · les trois non-dérives attendues, vérifiées PAR EXÉCUTION (research.md §D2) ===
+date : 2026-08-06T20:21:53Z
+après : édition de scripts/build-tokens.mjs + evals/run.ts, npm run tokens ×3, npm run eval ×2
+
+--- git diff --stat evals/golden.json figma-sync/plugin/engine.receipt.json examples/polaris/figma/ ---
+(sortie vide ci-dessus = LES TROIS NON-DÉRIVES TIENNENT)
+
+--- pourquoi elles devaient tenir, et c'est vérifié, pas supposé ---
+1. evals/golden.json      : scripts/update-golden.mjs ne parcourt que src/ et figma-sync/*.js.
+                            La 4ᵉ sortie vit sous specs/ ⇒ aucune entrée golden possible.
+                            Contrôle : specs/ apparaît-il dans update-golden.mjs ?
+                            → AUCUNE occurrence de 'specs' ✓
+
+2. engine.receipt.json    : dérive sur édition tokens/ contracts/ icons — aucun touché.
+                            → git diff vide ✓
+
+3. examples/polaris/…     : dérive sur édition d'ÉMETTEUR — aucun core/emit-*.ts touché.
+                            → git diff vide ✓
+
+--- le périmètre de code de dépôt réellement touché par 018 à ce stade ---
+ evals/results.json       |  8 ++++-
+ evals/run.ts             | 87 ++++++++++++++++++++++++++++++++++++++++++++++++
+ scripts/build-tokens.mjs | 69 +++++++++++++++++++++++++++++++++-----
+ 3 files changed, 154 insertions(+), 10 deletions(-)
+
+--- UN QUATRIÈME FICHIER BOUGE, ET IL N'EST PAS DANS LE PÉRIMÈTRE DÉCLARÉ ---
+evals/results.json est modifié.
+
+Ce n'est PAS une dérive absorbée en silence, et ce n'est pas non plus une édition de 018 :
+c'est le journal que `evals/run.ts` écrit à CHAQUE exécution (`writeFileSync(ROOT/evals/results.json)`,
+runner en fin de fichier). Il bouge dès qu'on lance la porte, quel que soit le changement.
+Il portait déjà 193 avant 018 ; il porte 194 après, parce que 018 ajoute un cas.
+
+Le périmètre de code de dépôt de 018 reste donc :
+  ÉDITÉ VOLONTAIREMENT   scripts/build-tokens.mjs, evals/run.ts, docs/03-token-pipeline.md
+  ÉCRIT PAR LA PORTE     evals/results.json  (journal d'exécution, jamais rédigé à la main)
+
+La formulation « exactement trois fichiers » de tasks.md T053 est donc juste sur ce que 018
+RÉDIGE, et incomplète sur ce que 018 fait BOUGER. La distinction est notée ici pour que T053
+ne la relise pas comme une surprise.

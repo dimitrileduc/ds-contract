@@ -1,0 +1,61 @@
+# Instance Odoo 19 JETABLE — spec 018, environnement de preuve, jamais une cible de déploiement.
+#
+# Ce fichier n'entre sur le chemin d'AUCUNE porte du dépôt (invariant C6). Il se monte à la
+# demande, la preuve se consigne sous `../proofs/`, puis tout se détruit (quickstart.md §5).
+#
+# ── Le tag est DATÉ, et c'est le point ────────────────────────────────────────────────────
+# `odoo:19.0` est un alias FLOTTANT, reconstruit chaque nuit : un reçu qui le cite n'est plus
+# relisable dans six mois. Tag épinglé ici : **odoo:19.0-20260803**.
+#   Relevé du 2026-08-06 sur le registre (hub.docker.com/v2/repositories/library/odoo/tags) :
+#   19.0-20260803 est le tag daté le plus récent, et `19.0` pointait sur la même mise à jour
+#   (2026-08-04). Épingler le daté ne change donc rien à ce qui tourne — seulement à ce que le
+#   reçu veut dire.
+#
+# ── Faits d'environnement vérifiés sur CETTE machine le 2026-08-06 ────────────────────────
+#   docker version → serveur 29.2.1, linux/amd64  ⇒ aucun `--platform` à passer.
+#   Aucune image odoo/postgres en cache local ⇒ le premier montage paie le `pull` (~2 min).
+#   (research.md §D16 chiffre ~3,9 Go de cache : c'est la machine du relevé, pas celle-ci.)
+#
+# ── Pièges nommés ─────────────────────────────────────────────────────────────────────────
+#   • Odoo 19 exige PostgreSQL **≥ 13** (le minimum est passé de 12 à 13 avec la 19).
+#   • `--dev` en 19.0 accepte `all|xml|reload|qweb|werkzeug|replica|access`. Il n'y a **PAS**
+#     de fonction `assets` — confusion facile avec les versions antérieures, et elle coûte une
+#     demi-journée à diagnostiquer.
+#   • `-i` et `-u` **exigent `-d`** (voir quickstart.md §1).
+#   • `addons_path = /mnt/extra-addons` est déjà dans l'`odoo.conf` de l'image officielle :
+#     monter le module là suffit, il n'y a rien à configurer.
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - odoo19-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U odoo']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  web:
+    image: odoo:19.0-20260803
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '8069:8069'
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - odoo19-web-data:/var/lib/odoo
+      - ../module:/mnt/extra-addons # le module de la spec, monté tel quel
+    command: ['--', '-d', 'odoo', '--dev=xml,reload']
+
+volumes:
+  odoo19-web-data:
+  odoo19-db-data:

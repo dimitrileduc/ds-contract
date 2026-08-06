@@ -5,12 +5,31 @@
  * unit-string dimensions, single-level `{path.to.token}` aliases — see
  * docs/03-token-pipeline.md), so no token-build framework is needed.
  *
- * Two outputs, mirroring the DTCG Resolver Module mental model:
- *   src/styles/tokens.css        :root               (primitives + semantic + light)
- *   src/styles/tokens.dark.css   [data-theme="dark"]  (mode-varying tokens only)
+ * Four outputs, the first three mirroring the DTCG Resolver Module mental model:
+ *   src/styles/tokens.css         :root                 (primitives + semantic + light)
+ *   src/styles/tokens.dark.css    [data-theme="dark"]   (mode-varying tokens only)
+ *   src/styles/tokens.brands.css  [data-brand="<name>"] (every non-default brand)
+ *   specs/018-…/module/…/tokens.pqr.css   :root, PREFIXED (see "Fourth output")
  *
  * Aliases are preserved as var() references so the CSS reads like the token
  * architecture. Unresolvable aliases fail the build.
+ *
+ * ── Fourth output (spec 018) ───────────────────────────────────────────────
+ * The same compiled map as :root, emitted with a `--pqr-` prefix into a
+ * hand-written Odoo 19 module that lives under specs/. It exists because two
+ * requirements cross: the module must carry NO invisible style value (so the
+ * ~230 properties cannot be retyped by hand), and its variable names must not
+ * be able to collide with the ones Odoo publishes (so the unprefixed sheet
+ * cannot be reused as-is). Strictly additive: the three outputs above do not
+ * move one byte. Proven by evals/run.ts `odoo-tokens-output` (C1), which
+ * refuses seven invariants by name — including the adversarial one, that
+ * moving a source value MUST move this output.
+ *
+ * Consequence, named so it is not rediscovered later: this pipeline now writes
+ * into a spec folder. If specs/018-odoo-replique-manuelle/ is ever archived or
+ * moved, `npm run tokens` does NOT fail — the recursive mkdirSync below simply
+ * recreates the path and leaves an orphan directory behind. Whoever retires
+ * that spec must delete this block too.
  */
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 
@@ -28,34 +47,37 @@ function flatten(tree, prefix = [], out = new Map()) {
   return out;
 }
 
-const cssName = (path) => `--${path.split('.').join('-')}`;
+/** `prefix` is '' for the three repo outputs; the Odoo output passes 'pqr-'.
+ *  Defaulting it empty is what keeps those three byte-identical. */
+const cssName = (path, prefix = '') => `--${prefix}${path.split('.').join('-')}`;
 const ALIAS = /^\{([^}]+)\}$/;
 
-function cssValue(tokenPath, value, resolvable) {
+function cssValue(tokenPath, value, resolvable, prefix = '') {
   if (typeof value === 'string') {
     const alias = value.match(ALIAS);
     if (alias) {
       if (!resolvable.has(alias[1])) {
         throw new Error(`Token "${tokenPath}" references "{${alias[1]}}" which does not exist`);
       }
-      return `var(${cssName(alias[1])})`;
+      return `var(${cssName(alias[1], prefix)})`;
     }
     return value;
   }
   return String(value);
 }
 
-function emit(selector, tokens, resolvable) {
+function emit(selector, tokens, resolvable, prefix = '', note = null) {
   const lines = [
     '/**',
     ' * GENERATED FILE — DO NOT EDIT.',
     ' * Source of truth: tokens/*.tokens.json — regenerate with: npm run tokens',
+    ...(note ? note.map((l) => (l ? ` * ${l}` : ' *')) : []),
     ' */',
     '',
     `${selector} {`,
   ];
   for (const [path, value] of tokens) {
-    lines.push(`  ${cssName(path)}: ${cssValue(path, value, resolvable)};`);
+    lines.push(`  ${cssName(path, prefix)}: ${cssValue(path, value, resolvable, prefix)};`);
   }
   lines.push('}', '');
   return lines.join('\n');
@@ -131,7 +153,36 @@ writeFileSync(
     '/* GENERATED FILE — no non-default brands declared in tokens/modes/brand.*.tokens.json */\n',
 );
 
+// ---------------------------------------------------------------------------
+// Fourth output — spec 018, the hand-written Odoo 19 module. See the header.
+// ---------------------------------------------------------------------------
+// The prefix is `pqr-` (Piqueray). NOT `o-`, which is Odoo's own convention,
+// and NOT `bs-`: Odoo 19 forces `$variable-prefix: ''` in three independent
+// bootstrap_overridden.scss files, so on an Odoo page Bootstrap's custom
+// properties are named `--primary`, `--body-bg`, `--border-radius` — bare.
+// Reintroducing `bs-` would read as "this is Bootstrap's", which is exactly
+// backwards. Non-collision survey:
+// specs/018-odoo-replique-manuelle/proofs/prefixe-non-collision.md
+//
+// NO mode blocks. Piqueray is mono-brand, mono-mode: the dark file is absent
+// and no non-default brand exists. Emitting empty [data-theme] / [data-brand]
+// blocks would manufacture a capability that does not exist.
+const ODOO_DIR = 'specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css';
+mkdirSync(ODOO_DIR, { recursive: true });
+writeFileSync(
+  `${ODOO_DIR}/tokens.pqr.css`,
+  emit(':root', base, base, 'pqr-', [
+    '',
+    'The SAME compiled vocabulary as src/styles/tokens.css, prefixed `--pqr-`.',
+    'Prefixed so these names cannot collide with the ones Odoo publishes bare',
+    '(--primary, --body-bg, --base-100…900, --header-font-size, …).',
+    'Carries the vocabulary IN FULL — not only what the three replicated',
+    'components consume — so a fourth component needs no pipeline change.',
+  ]),
+);
+
 console.log(
   `✔ Tokens built: ${base.size} custom properties (:root), ${dark.size} dark-mode overrides, ` +
-    `${brands.size} brand mode(s): ${[...brands.keys()].join(', ')}`,
+    `${brands.size} brand mode(s): ${[...brands.keys()].join(', ')}; ` +
+    `+ ${base.size} prefixed (--pqr-) for the spec-018 Odoo module`,
 );

@@ -1,0 +1,48 @@
+=== T008 · additivité et déterminisme, vérifiés À LA MAIN (quickstart.md §2) ===
+date : 2026-08-06T20:20:55Z
+
+--- 1. additivité : git diff --stat sur les 3 sorties existantes ---
+(sortie vide ci-dessus = les 3 sorties n'ont pas bougé d'un octet)
+
+--- 2. déterminisme : deux npm run tokens consécutifs, empreinte de la 4ᵉ sortie ---
+run 1 : 7eaee916df509a97f516a80ddb4e5c6074bd8df5d96f17320d20dd2bf9c1123f  specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css/tokens.pqr.css
+run 2 : 7eaee916df509a97f516a80ddb4e5c6074bd8df5d96f17320d20dd2bf9c1123f  specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css/tokens.pqr.css
+VERDICT : empreintes IDENTIQUES ✓
+
+--- 3. couverture : bijection avec :root (comptée, pas codée) ---
+  :root de tokens.css        : 231 propriétés
+  :root de tokens.pqr.css    : 231 propriétés préfixées
+  déclarations SANS préfixe  : 0
+  références var() non préfixées : 0
+
+--- 4. additivité après les deux runs (contre-vérification) ---
+(vide = OK)
+
+--- 5. CONTRÔLE ADVERSARIAL : que se passe-t-il si la spec 018 est archivée ? ---
+plan.md § Complexity Tracking et research.md §D2 annoncent tous deux :
+  « si 018 est un jour archivé ou déplacé, `npm run build` casse tant que
+    `build-tokens.mjs` n'est pas mis à jour. »
+
+VÉRIFIÉ PAR EXÉCUTION le 2026-08-06 — c'est FAUX, et la vraie conséquence est pire :
+
+  $ mv specs/018-odoo-replique-manuelle /tmp/018-moved
+  $ npm run tokens
+  → EXIT=0                                    (le build NE CASSE PAS)
+  $ ls specs/018-odoo-replique-manuelle/module/piqueray_ds/static/src/css/
+  → tokens.pqr.css  (11270 octets)            (le chemin est RECRÉÉ, vide de tout le reste)
+
+Le `mkdirSync(…, { recursive: true })` recrée silencieusement toute l'arborescence et y
+dépose la feuille. Archiver 018 ne produit donc pas une porte rouge qu'on remarque : ça
+produit un répertoire FANTÔME qui repousse à chaque `npm run build`, sans que rien ne le
+signale. Une panne bruyante aurait été préférable ; ce n'est pas ce qui se passe.
+
+Ce comportement n'est pas modifiable sans casser l'eval : `evals/harness.ts` ne recopie PAS
+`specs/` dans le scratch, donc le pipeline DOIT créer le chemin lui-même. Un garde
+« refuser si le module n'existe pas » ferait échouer la porte à chaque exécution.
+
+⇒ La phrase est corrigée à sa source : `docs/03-token-pipeline.md` porte désormais la
+conséquence réelle (répertoire orphelin recréé, à supprimer avec le bloc de
+`scripts/build-tokens.mjs` quand la spec sera retirée), et non celle qui était annoncée.
+
+Restauration vérifiée : 19 glyphes intacts, empreinte de tokens.pqr.css inchangée
+(7eaee916df509a97f516…) — identique à celle des runs 1 et 2 ci-dessus.
