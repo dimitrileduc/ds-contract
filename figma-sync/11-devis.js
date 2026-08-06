@@ -32,6 +32,10 @@ const COMPONENTS = [
             "paddingTop": "space/96",
             "paddingBottom": "space/96"
           },
+          "fixedWidth": {
+            "px": 1728,
+            "varName": "size/devis/root"
+          },
           "children": [
             {
               "type": "frame",
@@ -118,7 +122,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 380
+    "colW": 1788
   }
 ];
 const ROW_H = 240, PAD = 40;

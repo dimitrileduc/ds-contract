@@ -393,3 +393,20 @@ orphelin. Les overrides restaient PORTÉS par les props d'instance — c'est le 
 gestes diff-only sourcé au dump versionné : `proofs/repose/gestes.json`), chevrons de maquette
 (swaps ids relevés à l'origine), Realisations −4 (DW-002 assumé : cartes 363,5), Presentation +8
 (apparu à la re-vague, cause à relever), portes-de-garage diff pixel à hauteur égale (agent).
+
+## O-13 — 2026-08-06 (après-midi) : le CTA retrouve sa photo — et sa largeur
+
+Le rapport de l'agent d'attribution (bandes pixel par bande, arithmétique bouclée sur
+FINAL4/5) a nommé le plus gros poste résiduel : le CTA « Prenez rendez-vous » (44 % du
+diff de portes-de-garage) — photo de fond perdue ET « placeholder gris 900 px centré ».
+Diagnostic en trois faits : (1) l'image (7825ba2d…) vivait sur la RACINE du master
+d'origine avec un voile noir 30 % — aucun canal de contrat ne porte une peinture IMAGE
+(limite documentée dans le contrat) et les rebuilds pré-spec l'avaient perdue ;
+(2) l'image existait ENCORE dans le fichier (getImageByHash) → reposée sur les parts
+Voile/Background (master + 8 instances de maquette) ; (3) le « 900 px centré » n'était
+pas la photo mais LA RACINE : le contrat devis ne déclarait aucune largeur → HUG
+rétrécissait le master à son titre (900) au lieu des 1728 d'origine. Mint from-dump
+`size.devis.root` = 1728px + `width` au contrat → master 1728×378 = origine exacte.
+Mesure : FINAL14→FINAL15, le diff des pages à Devis chute de ~45 % (a-propos 733k→419k,
+motorisation 670k→356k, portes-de-garage 755k→441k). Le hero « noir » signalé par
+l'agent était déjà réparé par l'élévation Emphase=Hero (titre vif 255,255,255).
