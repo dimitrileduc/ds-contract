@@ -20,8 +20,25 @@
 
   <template id="snippets_piqueray" inherit_id="website.snippets" name="Piqueray · entrée du panneau de blocs">
     <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <!--
+        `group` est OBLIGATOIRE, et son absence ne se voit pas à l'installation.
+        Découvert EN FONCTIONNEMENT (T028) : le module s'installait à 0 erreur,
+        l'xpath matchait, et pourtant le bloc n'apparaissait NULLE PART dans
+        l'éditeur — la chaîne « piqueray » était absente de tout le DOM du
+        builder. Cause : `html_builder` n'affiche d'abord que les CATÉGORIES
+        (`snippet_groups`) ; les entrées de `snippet_structure` ne sont rendues
+        qu'une fois une catégorie ouverte, et une entrée sans `group` n'appartient
+        à aucune catégorie. Elle est donc chargée, valide, et inatteignable.
+        Toutes les entrées natives en portent un (`group="intro"`, `"content"`,
+        `"columns"`…). `research.md` §D10 le mentionnait bien ; c'est le montage
+        qui l'avait omis.
+
+        Catégorie retenue : `content` — une section titre + texte + appel à
+        l'action est du contenu éditorial, pas une bannière d'introduction.
+      -->
       <t t-snippet="piqueray_ds.s_presentation"
          string="Piqueray · Présentation"
+         group="content"
          t-thumbnail="/piqueray_ds/static/src/img/snippet-presentation.svg"/>
     </xpath>
   </template>
