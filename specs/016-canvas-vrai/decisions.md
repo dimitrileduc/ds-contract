@@ -263,6 +263,35 @@ bouton « EN SAVOIR PLUS » (chevron sur l'ancien canvas, flèche prescrite par 
 
 ---
 
+### O-11 · Décisions owner du 2026-08-06 et la perte d'overrides INSTANCE_SWAP
+
+**Décisions prises** :
+- **Icônes du header : 24 px** (l'origine), le contrat corrigé (3 × `icon.size` 32 → 24).
+- Les 3 restaurations d'origine (Separator, U+2028 du footer, slots du formulaire) :
+  **« montre-moi d'abord »** — crops envoyés (`DECISION-footer.png`, `DECISION-formulaire.png`),
+  décision en attente.
+
+**Le bouton « EN SAVOIR PLUS » — le fait vérifié blanchit le contrat** : le défaut
+d'origine du master `Bouton` était **`6:104` = ArrowRight** (dump en cache), le contrat
+dit `arrow-right` — ils sont d'accord. Le master `Hero` d'origine portait aussi la
+flèche (libellé « Demander un devis gratuit »). Les chevrons `⌄` des heros étaient des
+**surcharges posées sur les instances des maquettes** (libellé + glyphe).
+
+**DÉCOUVERTE — la reconstruction des enfants d'un master PERD les overrides
+INSTANCE_SWAP des instances** (le glyphe est retombé sur le défaut), alors que les
+props TEXT survivent (les libellés « EN SAVOIR PLUS » sont intacts). C'est la même
+famille de risque que les photos (D7), étendue aux swaps. Conséquence : l'état
+d'origine de ces glyphes n'existe plus que dans les **PNG de référence**
+(`00-REFERENCE-AVANT-CHANTIER/`) — la réparation est un recensement visuel puis une
+repose ciblée par `setProperties`, à faire éveillé. À porter au registre des risques
+de régénération aux côtés des photos.
+
+Recensement d'origine des glyphes surchargés dans les MASTERS (dumps) : 2 seulement —
+`CarouselControls.Suivant` (27:86, invisible) et `Reassurances.Bouton` (230:599).
+Le reste des surcharges vivait au niveau des maquettes.
+
+---
+
 ## Lots
 
 > Une ligne par lot, ajoutée à sa clôture (étape 9 du cycle de preuve).
