@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "note": "Point d'atterrissage exige par FR-009 / SC-005 : 100 % des defauts reveles par 017 sont consignes ICI, meme non repares ici — jamais une note en prose seule. Forme reprise de specs/016-canvas-vrai/registre/defauts-source.json. Un item porte toujours (a) ce qui a ete OBSERVE, (b) ce qui est DECIDE dans cette spec, (c) sa DESTINATION. Un item sans destination est un item incomplet. Graphie JSON sans accents, conforme a l'usage du depot.",
+  "creeLe": "2026-08-06",
+  "fichierCible": "d9FYAUcqdcNtsuaMgLefvJ",
+  "items": [
+    {
+      "id": "D-017-MOCK-FILLS-EN-PLACE",
+      "titre": "Le faux-Figma accepte la mutation EN PLACE de node.fills la ou le vrai Figma l'ignore silencieusement",
+      "decouvertLe": "2026-08-06",
+      "decouvertPar": "instruction du plan 017 (research D5)",
+      "surface": "scripts/plugin-engine-mock-figma.mjs",
+      "observation": "Dans le vrai Figma, node.fills rend un tableau READONLY : muter un element en place (node.fills[0].imageHash = ...) est ignore sans erreur ; seule une reaffectation complete (node.fills = [...]) prend effet. Le mock, lui, accepte la mutation en place — un code qui mute en place passe headless et echoue au vif.",
+      "classe": "fidelite du mock (constitution SVII, mock-fidelity discipline)",
+      "orthogonalA": "la classe photo reparee par 017 (surcharges d'instance perdues a l'amend)",
+      "decide": "NON REPARE dans 017. Nomme ici parce qu'il a ete decouvert en instruisant cette spec, et parce que taire une classe de defaut decouverte est precisement le defaut que 017 repare ailleurs.",
+      "destination": "une spec de fidelite du mock — le geste est de rendre le tableau fills readonly (gel) et de faire LEVER la mutation en place, forme d'extension deja eprouvee trois fois (981e446, ddac778, e856844)",
+      "repareDans": null
+    },
+    {
+      "id": "D-017-PLAN-62-SANS-DRAPEAU",
+      "titre": "Le plan de restauration des 62 photos effondrees n'a pas de drapeau machine distinguant « deja bonne » de « a reposer »",
+      "decouvertLe": "2026-08-06",
+      "decouvertPar": "instruction du plan 017 (research D15)",
+      "surface": "specs/016-canvas-vrai/proofs/repose/photos-instances.json",
+      "observation": "Le fichier porte les 97 photos du releve, sans champ distinguant celles qui sont deja correctes de celles a reposer. La repartition 62 a reposer / 35 deja bonnes, et le « 10 sections de 8 maquettes », ne vivent que dans le message du commit 51cab06 : ils ne sont PAS re-derivables du JSON.",
+      "classe": "preuve non re-derivable (constitution SV, honnetete)",
+      "orthogonalA": "la reparation moteur d'US1 — c'est un defaut du PLAN de restauration, pas du moteur",
+      "decide": "NON REPARE dans 017. Consigne parce que la precondition bloquante FR-005 s'appuie sur ce plan : s'y appuyer sans nommer sa faiblesse serait fonder une porte sur un message de commit.",
+      "destination": "016 (execution de la restauration) — ajouter le drapeau au JSON avant de s'en servir comme preuve de precondition ; T042 de 017 refuse de le compter comme preuve tant qu'il manque",
+      "repareDans": null
+    }
+  ]
+}

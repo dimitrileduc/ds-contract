@@ -1,0 +1,117 @@
+# T003 — les legendes AVANT 017, telles que l'emetteur les produit aujourd'hui
+# date : 2026-08-06T18:33:14Z   commit : 9fdd86b
+# source : les scripts generes figma-sync/*.js (champ "description"), PAS le cliche de canevas.
+#   parity/snapshots/figma-components.json n'est deplacable que par une capture vive au pont,
+#   et 017 ne mute pas le canevas : diffe contre lui-meme il rendrait 0 changement (T037).
+#
+# RELEVE FAIT ICI, ET IL CORRIGE UNE PREMISSE DE T003 :
+#   72 fichiers figma-sync/*.js, 71 portent une legende — mais 34 seulement sont VIVES
+#   (leur version = la version courante du contrat) et 16 sont PERIMEES : des fichiers
+#   orphelins laisses par les renumerotations successives (NN-<nom>.js, l'index suit l'ordre
+#   de dependance ; ajouter un contrat decale les suivants). `npm run figma:plan` ne les
+#   reecrit jamais. Differ les 71 fichiers diluerait la preuve de T037 : la reference,
+#   ce sont les 34 legendes VIVES ci-dessous, une par contrat.
+#
+# AUTRE PREMISSE CORRIGEE : `npm run build` ne regenere PAS figma-sync/*.js
+#   (build = tokens + schema + generate-components). C'est `npm run figma:plan`
+#   — et `npm run golden:update`, qui l'appelle — qui les ecrit.
+
+## A · Les 34 legendes VIVES (une par contrat) — LA REFERENCE de T037
+
+AccordionRow — generated from contract ds.accordion-row v1.2.0 †
+Avantage — generated from contract ds.avantage v1.0.0
+Button — generated from contract ds.button v2.0.0
+CarouselControls — generated from contract ds.carousel-controls v1.0.2
+Carte — generated from contract ds.carte v2.0.0 †
+Checkbox — generated from contract ds.checkbox v1.0.1
+Coordonnees — generated from contract ds.coordonnees v2.2.0 †
+Copyright — generated from contract ds.copyright v1.0.0
+Devis — generated from contract ds.devis v1.2.0 †
+Equipe — generated from contract ds.equipe v1.1.2
+FAQ — generated from contract ds.faq v1.3.0 †
+Field — generated from contract ds.field v2.0.0 †
+Footer — generated from contract ds.footer v1.1.0 †
+FooterColumn — generated from contract ds.footer-column v1.1.0
+Formulaire — generated from contract ds.formulaire v1.1.0
+GoogleReviews — generated from contract ds.google-reviews v1.0.0
+Header — generated from contract ds.header v1.0.0
+Hero — generated from contract ds.hero v1.4.0 †
+Input — generated from contract ds.input v1.0.0
+MemberCard — generated from contract ds.member-card v1.2.0
+MemberPicture — generated from contract ds.member-picture v1.2.0 †
+NavItem — generated from contract ds.nav-item v1.2.0 †
+PiquerayLogo — generated from contract ds.piqueray-logo v0.1.0
+Presentation — generated from contract ds.presentation v2.2.0
+ProductCard — generated from contract ds.product-card v2.0.0 †
+Realisation — generated from contract ds.realisation v1.1.0 †
+Reassurances — generated from contract ds.reassurances v1.2.0 †
+ReviewCard — generated from contract ds.review-card v1.0.0 †
+SAV — generated from contract ds.sav v1.3.0 †
+SectionHeader — generated from contract ds.section-header v2.1.1 †
+Select — generated from contract ds.select v1.0.0
+Tab — generated from contract ds.tab v2.0.0
+Textarea — generated from contract ds.textarea v1.0.0
+TexteSEO — generated from contract ds.texte-seo v2.1.0 †
+
+# dont 17 portent la dague (au moins un fait code-only), 17 sans dague.
+
+## B · Les 16 legendes PERIMEES (fichiers orphelins — NE BOUGERONT PAS)
+
+Button — generated from contract ds.button v1.6.0    [figma-sync/05-button.js]
+Carte — generated from contract ds.carte v1.0.0    [figma-sync/07-carte.js]
+Coordonnees — generated from contract ds.coordonnees v1.0.0    [figma-sync/10-coordonnees.js]
+Devis — generated from contract ds.devis v1.0.0    [figma-sync/12-devis.js]
+Equipe — generated from contract ds.equipe v1.0.0    [figma-sync/15-equipe.js]
+FAQ — generated from contract ds.faq v1.0.0    [figma-sync/16-faq.js]
+Field — generated from contract ds.field v1.0.0    [figma-sync/13-field.js, figma-sync/20-field.js]
+FooterColumn — generated from contract ds.footer-column v1.0.0    [figma-sync/14-footercolumn.js, figma-sync/21-footercolumn.js]
+MemberCard — generated from contract ds.member-card v1.0.0    [figma-sync/14-membercard.js, figma-sync/18-membercard.js]
+MemberPicture — generated from contract ds.member-picture v1.0.0    [figma-sync/17-memberpicture.js]
+MemberPicture — generated from contract ds.member-picture v1.0.1 †    [figma-sync/13-memberpicture.js]
+NavItem — generated from contract ds.nav-item v1.0.0    [figma-sync/19-navitem.js]
+ProductCard — generated from contract ds.product-card v1.0.0    [figma-sync/20-productcard.js]
+Realisation — generated from contract ds.realisation v1.0.0    [figma-sync/21-realisation.js]
+SectionHeader — generated from contract ds.section-header v1.0.0    [figma-sync/09-sectionheader.js, figma-sync/22-sectionheader.js]
+Tab — generated from contract ds.tab v1.0.0    [figma-sync/23-tab.js]
+
+## C · L'etat CANVAS des memes legendes (documentaire — NE BOUGERA PAS dans 017)
+
+# Lu dans parity/snapshots/figma-components.json (fichier commite, lecture pure).
+# 34 legendes au cliche de canevas.
+# 017 ne mute pas le canevas : ces lignes sont l'etat que lira un designer TANT QUE le lot
+# de regeneration de la fenetre vive (Phase 6) n'a pas tourne. C'est SC-006-vif, reporte et nomme.
+
+AccordionRow — generated from contract ds.accordion-row v1.2.0 †
+Avantage — generated from contract ds.avantage v1.0.0
+Button — generated from contract ds.button v1.6.0
+CarouselControls — generated from contract ds.carousel-controls v1.0.2
+Carte — generated from contract ds.carte v2.0.0 †
+Checkbox — generated from contract ds.checkbox v1.0.1
+Coordonnees — generated from contract ds.coordonnees v2.2.0 †
+Copyright — generated from contract ds.copyright v1.0.0
+Devis — generated from contract ds.devis v1.2.0 †
+Equipe — generated from contract ds.equipe v1.1.2
+FAQ — generated from contract ds.faq v1.3.0 †
+Field — generated from contract ds.field v2.0.0 †
+Footer — generated from contract ds.footer v1.1.0 †
+FooterColumn — generated from contract ds.footer-column v1.1.0
+Formulaire — generated from contract ds.formulaire v1.1.0
+GoogleReviews — generated from contract ds.google-reviews v1.0.0
+Header — generated from contract ds.header v1.0.0
+Hero — generated from contract ds.hero v1.4.0 †
+Input — generated from contract ds.input v1.0.0
+MemberCard — generated from contract ds.member-card v1.2.0
+MemberPicture — generated from contract ds.member-picture v1.2.0 †
+NavItem — generated from contract ds.nav-item v1.2.0 †
+PiquerayLogo — generated from contract ds.piqueray-logo v0.1.0
+Presentation — generated from contract ds.presentation v2.2.0
+ProductCard — generated from contract ds.product-card v2.0.0 †
+Realisation — generated from contract ds.realisation v1.1.0 †
+Reassurances — generated from contract ds.reassurances v1.2.0 †
+ReviewCard — generated from contract ds.review-card v1.0.0 †
+SAV — generated from contract ds.sav v1.3.0 †
+SectionHeader — generated from contract ds.section-header v2.1.1 †
+Select — generated from contract ds.select v1.0.0
+Tab — generated from contract ds.tab v2.0.0
+Textarea — generated from contract ds.textarea v1.0.0
+TexteSEO — generated from contract ds.texte-seo v2.1.0 †
