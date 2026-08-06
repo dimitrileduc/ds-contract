@@ -44,7 +44,7 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
         ))}
       </div>
       {disposition === '5Cartes' ? (
-        <Button variant="outilneNoir" iconRight iconRightGlyph="arrow-right">
+        <Button variant="outlineNoir" iconRight iconRightGlyph="arrow-right">
           Contactez-nous
         </Button>
       ) : null}
@@ -52,7 +52,7 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
         <div className={styles.Boutons}>
           {disposition === 'quatrecartesdeuxcta' ? (
             <Button
-              variant="outilneNoir"
+              variant="outlineNoir"
               iconLeft
               iconLeftGlyph="pdf"
               iconRight
@@ -62,14 +62,14 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
             </Button>
           ) : null}
           {disposition === 'quatrecartesdeuxcta' ? (
-            <Button variant="outilneNoir" iconRight iconRightGlyph="arrow-right">
+            <Button variant="outlineNoir" iconRight iconRightGlyph="arrow-right">
               Contactez-nous
             </Button>
           ) : null}
         </div>
       ) : null}
       {disposition === '4Cartes' ? (
-        <Button variant="outilneNoir" iconRight iconRightGlyph="arrow-right">
+        <Button variant="outlineNoir" iconRight iconRightGlyph="arrow-right">
           Contactez-nous
         </Button>
       ) : null}

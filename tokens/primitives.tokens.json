@@ -1,21 +1,51 @@
 {
   "color": {
     "$type": "color",
-    "bleu": { "$value": "#143A84" },
-    "orange": { "$value": "#F98A0B" },
-    "blanc": { "$value": "#FFFFFF" },
-    "noir-bleute": { "$value": "#26282C" },
-    "beige": { "$value": "#F6D49F" },
-    "beige-clair": { "$value": "#FFF3E2" },
-    "bleu-gris": { "$value": "#9BA4B5" },
-    "bleu-clair": { "$value": "#F4F6FA" },
-    "beige-clair-80": { "$value": "#FFF3E2CC" },
-    "noir": { "$value": "#37373B" },
-    "rouge": { "$value": "#D32F2F" },
-    "orange-12": { "$value": "#F494001F" },
-    "orange-42": { "$value": "#F494006B" },
-    "gris-clair": { "$value": "#E0E0E0" },
-    "noir-pur": { "$value": "#000000" }
+    "bleu": {
+      "$value": "#143A84"
+    },
+    "orange": {
+      "$value": "#F98A0B"
+    },
+    "blanc": {
+      "$value": "#FFFFFF"
+    },
+    "noir-bleute": {
+      "$value": "#26282C"
+    },
+    "beige": {
+      "$value": "#F6D49F"
+    },
+    "beige-clair": {
+      "$value": "#FFF3E2"
+    },
+    "bleu-gris": {
+      "$value": "#9BA4B5"
+    },
+    "bleu-clair": {
+      "$value": "#F4F6FA"
+    },
+    "beige-clair-80": {
+      "$value": "#FFF3E2CC"
+    },
+    "noir": {
+      "$value": "#37373B"
+    },
+    "rouge": {
+      "$value": "#D32F2F"
+    },
+    "orange-12": {
+      "$value": "#F494001F"
+    },
+    "orange-42": {
+      "$value": "#F494006B"
+    },
+    "gris-clair": {
+      "$value": "#E0E0E0"
+    },
+    "noir-pur": {
+      "$value": "#000000"
+    }
   },
   "nav": {
     "state": {
@@ -26,7 +56,9 @@
   },
   "opacity": {
     "$type": "number",
-    "base": { "$value": 100 }
+    "base": {
+      "$value": 100
+    }
   },
   "font": {
     "family": {
@@ -37,70 +69,168 @@
     },
     "size": {
       "$type": "dimension",
-      "14": { "$value": "14px" },
-      "16": { "$value": "16px" },
-      "18": { "$value": "18px" },
-      "20": { "$value": "20px" },
-      "24": { "$value": "24px" },
-      "32": { "$value": "32px" },
-      "40": { "$value": "40px" },
-      "44": { "$value": "44px" },
-      "48": { "$value": "48px" },
-      "54": { "$value": "54px" }
+      "14": {
+        "$value": "14px"
+      },
+      "16": {
+        "$value": "16px"
+      },
+      "18": {
+        "$value": "18px"
+      },
+      "20": {
+        "$value": "20px"
+      },
+      "24": {
+        "$value": "24px"
+      },
+      "32": {
+        "$value": "32px"
+      },
+      "40": {
+        "$value": "40px"
+      },
+      "44": {
+        "$value": "44px"
+      },
+      "48": {
+        "$value": "48px"
+      },
+      "54": {
+        "$value": "54px"
+      }
     },
     "weight": {
       "$type": "fontWeight",
-      "regular": { "$value": 400 },
-      "medium": { "$value": 500 },
-      "semibold": { "$value": 600 },
-      "bold": { "$value": 700 }
+      "regular": {
+        "$value": 400
+      },
+      "medium": {
+        "$value": 500
+      },
+      "semibold": {
+        "$value": 600
+      },
+      "bold": {
+        "$value": 700
+      }
     },
     "line-height": {
       "$type": "dimension",
       "$description": "Authored from the Button canvas geometry (dump v1.5: text lineHeight 22px). NOT a Figma variable — Piqueray binds no line-height variable; minted from-dump so anatomy can reference a token instead of a literal (the schema forbids literals in anatomy tokens).",
-      "16": { "$value": "16px" },
-      "20": { "$value": "20px" },
-      "22": { "$value": "22px" },
-      "24": { "$value": "24px" },
-      "25": { "$value": "25px" },
-      "27": { "$value": "27px" },
-      "30": { "$value": "30px" },
-      "32": { "$value": "32px" },
-      "40": { "$value": "40px" },
-      "48": { "$value": "48px" },
-      "50": { "$value": "50px" },
-      "60": { "$value": "60px" },
-      "68": { "$value": "68px" }
+      "16": {
+        "$value": "16px"
+      },
+      "20": {
+        "$value": "20px"
+      },
+      "22": {
+        "$value": "22px"
+      },
+      "24": {
+        "$value": "24px"
+      },
+      "25": {
+        "$value": "25px"
+      },
+      "27": {
+        "$value": "27px"
+      },
+      "30": {
+        "$value": "30px"
+      },
+      "32": {
+        "$value": "32px"
+      },
+      "40": {
+        "$value": "40px"
+      },
+      "48": {
+        "$value": "48px"
+      },
+      "50": {
+        "$value": "50px"
+      },
+      "60": {
+        "$value": "60px"
+      },
+      "68": {
+        "$value": "68px"
+      }
     },
     "letter-spacing": {
       "$type": "dimension",
-      "15": { "$value": "15px" }
+      "15": {
+        "$value": "15px"
+      }
     }
   },
   "space": {
     "$type": "dimension",
     "$description": "Authored from the Button canvas geometry (dump v1.5: itemSpacing 10, padding 16/32, Link padding 4/0). NOT Figma variables — Piqueray binds no spacing variables; minted from-dump so anatomy references tokens, not literals.",
-    "0": { "$value": "0px" },
-    "2": { "$value": "2px" },
-    "3": { "$value": "3px" },
-    "4": { "$value": "4px" },
-    "8": { "$value": "8px" },
-    "10": { "$value": "10px" },
-    "11": { "$value": "11px" },
-    "12": { "$value": "12px" },
-    "14": { "$value": "14px" },
-    "16": { "$value": "16px" },
-    "22": { "$value": "22px" },
-    "24": { "$value": "24px" },
-    "32": { "$value": "32px" },
-    "47": { "$value": "47px" },
-    "48": { "$value": "48px" },
-    "64": { "$value": "64px" },
-    "89": { "$value": "89px" },
-    "96": { "$value": "96px" },
-    "128": { "$value": "128px" },
-    "392": { "$value": "392px" },
-    "597": { "$value": "597px" }
+    "0": {
+      "$value": "0px"
+    },
+    "2": {
+      "$value": "2px"
+    },
+    "3": {
+      "$value": "3px"
+    },
+    "4": {
+      "$value": "4px"
+    },
+    "8": {
+      "$value": "8px"
+    },
+    "10": {
+      "$value": "10px"
+    },
+    "11": {
+      "$value": "11px"
+    },
+    "12": {
+      "$value": "12px"
+    },
+    "14": {
+      "$value": "14px"
+    },
+    "16": {
+      "$value": "16px"
+    },
+    "22": {
+      "$value": "22px"
+    },
+    "24": {
+      "$value": "24px"
+    },
+    "32": {
+      "$value": "32px"
+    },
+    "47": {
+      "$value": "47px"
+    },
+    "48": {
+      "$value": "48px"
+    },
+    "64": {
+      "$value": "64px"
+    },
+    "89": {
+      "$value": "89px"
+    },
+    "96": {
+      "$value": "96px"
+    },
+    "128": {
+      "$value": "128px"
+    },
+    "392": {
+      "$value": "392px"
+    },
+    "597": {
+      "$value": "597px"
+    }
   },
   "size": {
     "button": {
@@ -158,13 +288,13 @@
       },
       "trigger": {
         "$type": "dimension",
-        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "64px"
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04. 016 (2026-08-05) : CORRIGÉ de 64 à 32. La valeur extraite était la hauteur TOTALE de la variante, padding du parent compris (16+32+16=64) — or ce token s'applique à la part `trigger`, un ENFANT de la racine. Le générateur ajoutait donc le padding de la racine par-dessus une hauteur qui l'incluait déjà : la ligne passait de 64 à 96 px sur le canvas régénéré. Mesuré sur le dump REST d'avant régénération (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-2059_1417.json) : variante à 64 px = padding + Titre 32 px.",
+        "$value": "32px"
       },
       "trigger-petit": {
         "$type": "dimension",
-        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "40px"
+        "$description": "Authored from ds.accordion-row's already-governed anatomy at /anatomy/root/parts/trigger/literalsByProp/0/map/petit (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04. 016 (2026-08-05) : CORRIGÉ de 40 à 24. La valeur extraite était la hauteur TOTALE de la variante, padding du parent compris (8+24+8=40) — or ce token s'applique à la part `trigger`, un ENFANT de la racine. Le générateur ajoutait donc le padding de la racine par-dessus une hauteur qui l'incluait déjà : la ligne passait de 40 à 56 px sur le canvas régénéré. Mesuré sur le dump REST d'avant régénération (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-2059_1417.json) : variante à 40 px = padding + Titre 24 px.",
+        "$value": "24px"
       },
       "root": {
         "$type": "dimension",
@@ -202,8 +332,8 @@
       },
       "root": {
         "$type": "dimension",
-        "$description": "Authored from ds.carte's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "364px"
+        "$description": "Authored from ds.carte's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04. 016 (L-DW002, 2026-08-05) : 364 → 363,5 — décision owner. Les 4 cartes de reassurances débordaient de leur conteneur (4×364 + 3×32 = 1552 > 1550) ; la source rejoint ce que le CSS flex rendait déjà. Conteneur (1550) et gaps (32) intacts.",
+        "$value": "363.5px"
       },
       "root-categorie": {
         "$type": "dimension",
@@ -240,6 +370,11 @@
         "$type": "dimension",
         "$description": "Authored from ds.devis's already-governed anatomy at /anatomy/root/parts/Container/parts/Titre/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "900px"
+      },
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.devis's master 2096:2524 (absoluteBoundingBox width 1728 at version 016/U1a-variables/avant) — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06: the contract root carried NO width, HUG shrank the master to its 900px title and every page rendered the CTA as a 900px centered band (the agent's 'grey placeholder').",
+        "$value": "1728px"
       }
     },
     "faq": {
@@ -368,6 +503,11 @@
         "$type": "dimension",
         "$description": "Authored from ds.presentation's already-governed anatomy at /anatomy/root/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "627px"
+      },
+      "col-gauche": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of the Presentation instances at version 016/U1a-variables/avant: the composed SectionHeader renders 628x80 (two lines) inside the two-column grid (628 + 627 wrapper). Without it the instance HUGs to 1101x40 (one line) and every page loses 16px — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06.",
+        "$value": "628px"
       }
     },
     "product-card": {
@@ -399,6 +539,11 @@
         "$type": "dimension",
         "$description": "Authored from ds.reassurances's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "1550px"
+      },
+      "carte-cinq-cartes": {
+        "$value": "284.4px",
+        "$type": "dimension",
+        "$description": "Largeur d'une carte dans la disposition « 5 cartes » de ds.reassurances. MINT from-dump 016 (L-DW002, 2026-08-05) : la source portait 285 px en valeur BRUTE, gouvernée par aucun token — donc invisible au différentiel, exactement le trou que la règle « la géométrie se porte en tokens » vise. La valeur corrigée est (1550 − 4×32) / 5 = 284,4 : les 5 cartes remplissent leur conteneur exactement, sans toucher au conteneur ni aux gaps (décision owner, même doctrine que les variantes à 4 cartes). Le diagnostic 013 n'avait jamais nommé cette variante ; elle a été trouvée au re-relevé vif T026."
       }
     },
     "review-card": {
@@ -538,19 +683,67 @@
         "$description": "Authored from ds.piqueray-logo's already-governed anatomy at /anatomy/root/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. T048 (015) re-verified live against both consumers (ds.header 84:256/84:287 exactly 180×34, ds.footer 2120:4783 180.0985565185547×34, the difference being export floating-point noise, not a second size) — one governed size, not two. Minted 015, 2026-08-04.",
         "$value": "34px"
       }
+    },
+    "formulaire": {
+      "root": {
+        "$value": "1550px",
+        "$type": "dimension",
+        "$description": "Authored from the pinned REST dump of the Formulaire master (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-2096_2564.json, layoutSizingHorizontal FIXED, width 1550) — minted from-dump so anatomy references tokens, not literals. Minted 016 (attribution FINAL2, 2026-08-05) : la largeur racine n'etait pas portee par le contrat et la regeneration rendait le master HUG."
+      }
+    },
+    "header": {
+      "root": {
+        "$value": "1728px",
+        "$type": "dimension",
+        "$description": "Authored from the pinned REST dump of the Header master (extract/figma/visual-parity/out/_cache/nodes-d9FYAUcqdcNtsuaMgLefvJ-84_285.json, layoutSizingHorizontal FIXED, width 1728) — minted from-dump so anatomy references tokens, not literals. Minted 016 (attribution FINAL2, 2026-08-05) : la largeur racine n'etait pas portee par le contrat et la regeneration rendait le master HUG."
+      }
+    },
+    "equipe": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.equipe's master 2115:3928 at version 016/U1a-variables/avant (COMPONENT 1728x1886, grid 1550 wrapping 16 MemberCards 4x4) — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06: without a root width the rebuilt master HUGged to 6002 (one 16-card row) and a-propos lost 1438px.",
+        "$value": "1728px"
+      },
+      "gap-colonnes": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.equipe's grid (native GRID layout) at version 016/U1a-variables/avant: 16 cards 364x447 in a 1550x1886 grid — column gap (1550-4*364)/3, row gap (1886-4*447)/3, exact thirds, never rounded (the 363.5 doctrine). Minted 016, 2026-08-06.",
+        "$value": "31.333333px"
+      },
+      "gap-rangees": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.equipe's grid (native GRID layout) at version 016/U1a-variables/avant: 16 cards 364x447 in a 1550x1886 grid — column gap (1550-4*364)/3, row gap (1886-4*447)/3, exact thirds, never rounded (the 363.5 doctrine). Minted 016, 2026-08-06.",
+        "$value": "32.666667px"
+      }
+    },
+    "section-header": {
+      "root": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of ds.section-header's master (2090:2385-era, every origin usage renders at 1550: FAQ/TexteSEO relevés 016) at version 016/U1a-variables/avant — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06: the rebuilt master HUGged, its auto-width titles overflowed every constrained column instead of wrapping (Presentation 628: one line vs two at origin).",
+        "$value": "1550px"
+      }
     }
   },
   "radius": {
     "$type": "dimension",
     "$description": "Authored from the Button canvas geometry (dump v1.5: Link cornerRadius 32). NOT a Figma variable; minted from-dump.",
-    "32": { "$value": "32px" },
-    "500": { "$value": "500px" }
+    "32": {
+      "$value": "32px"
+    },
+    "500": {
+      "$value": "500px"
+    }
   },
   "border-width": {
     "$type": "dimension",
     "$description": "Authored from the Button canvas geometry (dump v1.5: outline strokeWeight 2; non-outline variants have no stroke = 0). NOT Figma variables; minted from-dump. The 0 is the base border so border-style resolves solid and the outline variants' 2px border renders.",
-    "0": { "$value": "0px" },
-    "1": { "$value": "1px" },
-    "2": { "$value": "2px" }
+    "0": {
+      "$value": "0px"
+    },
+    "1": {
+      "$value": "1px"
+    },
+    "2": {
+      "$value": "2px"
+    }
   }
 }

@@ -1,0 +1,29 @@
+
+> ds-contracts-poc@0.7.0 parity
+> tsx parity/diff.ts
+
+⚠ Figma naming bridged (the file does not use this repo's collection/mode names):
+    · mode "Dark" does not exist in collection "Semantic" — read from its only mode, "Light"
+
+✖ 1 drift finding(s) (+3 acknowledged in parity/baseline.json):
+    figma-tokens — mismatch: 1
+
+  [figma-tokens MISMATCH] Primitives/size/carte/root [Value]
+    tokens/ says 364, Figma says 999
+    proposed patch: {"tokenPath":"size.carte.root","mode":"Value","adoptFigmaValue":999}
+    → Adopt into tokens/ (promotion) then npm run tokens — or push tokens/ to Figma via figma_import_tokens
+
+  — acknowledged (baselined, does not fail the check) —
+
+  [figma BEHIND] Carte.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] SectionHeader.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [icons AHEAD] assets/icons/close.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+

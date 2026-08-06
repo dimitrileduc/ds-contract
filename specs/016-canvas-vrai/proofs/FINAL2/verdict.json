@@ -1,0 +1,89 @@
+{
+  "statutGlobal": "refus",
+  "exitCode": 2,
+  "totaux": {
+    "identical": 0,
+    "diff": 1,
+    "captureFailed": 0,
+    "dimensionMismatch": 8
+  },
+  "maquettes": [
+    {
+      "maquette": "a-propos",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x5928 != after 1728x6399"
+    },
+    {
+      "maquette": "accueil",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x5430 != after 1728x5881"
+    },
+    {
+      "maquette": "contactez-nous",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x3901 != after 1728x4204"
+    },
+    {
+      "maquette": "depannage-sav",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x4242 != after 1728x4737"
+    },
+    {
+      "maquette": "motorisation",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x3334 != after 1728x3829"
+    },
+    {
+      "maquette": "portes-de-garage",
+      "status": "diff",
+      "diffCount": 2904469,
+      "diffBox": {
+        "x": 0,
+        "y": 16,
+        "w": 1728,
+        "h": 4356
+      },
+      "cropTriptyque": "crops/portes-de-garage.png",
+      "refus": null
+    },
+    {
+      "maquette": "portes-entree",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x6534 != after 1728x7070"
+    },
+    {
+      "maquette": "portes-garage-industrielles",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x6762 != after 1728x7086"
+    },
+    {
+      "maquette": "portes-garage-residentielles",
+      "status": "dimension-mismatch",
+      "diffCount": 0,
+      "diffBox": null,
+      "cropTriptyque": null,
+      "refus": "dimensions before 1728x6575 != after 1728x7083"
+    }
+  ]
+}

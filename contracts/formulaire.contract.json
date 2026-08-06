@@ -82,7 +82,8 @@
         "column": {
           "layout": {
             "direction": "column",
-            "grow": true
+            "grow": true,
+            "align": "stretch"
           },
           "parts": {
             "SectionHeader": {
@@ -97,6 +98,9 @@
                   "accroche": "Une demande de devis ? Une réparation ?",
                   "disposition": "standard"
                 }
+              },
+              "layout": {
+                "grow": true
               }
             },
             "features": {
@@ -130,6 +134,9 @@
                     ]
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.32}"
               }
             },
             "buttons": {
@@ -147,8 +154,14 @@
                     "id": "ds.button"
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             }
+          },
+          "tokens": {
+            "gap": "{space.48}"
           }
         },
         "form": {
@@ -157,7 +170,10 @@
             "grow": true
           },
           "tokens": {
-            "background-color": "{color.bleu-clair}"
+            "background-color": "{color.bleu-clair}",
+            "padding-inline": "{space.32}",
+            "padding-block": "{space.32}",
+            "gap": "{space.16}"
           },
           "parts": {
             "row": {
@@ -172,6 +188,9 @@
                       "label": "Prénom",
                       "etat": "normal"
                     }
+                  },
+                  "layout": {
+                    "grow": true
                   }
                 },
                 "FormRow1FieldB": {
@@ -181,8 +200,14 @@
                       "label": "Nom",
                       "etat": "normal"
                     }
+                  },
+                  "layout": {
+                    "grow": true
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             },
             "row2": {
@@ -197,6 +222,9 @@
                       "label": "Email",
                       "etat": "normal"
                     }
+                  },
+                  "layout": {
+                    "grow": true
                   }
                 },
                 "FormRow2FieldB": {
@@ -206,8 +234,14 @@
                       "label": "Téléphone",
                       "etat": "normal"
                     }
+                  },
+                  "layout": {
+                    "grow": true
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             },
             "row3": {
@@ -222,8 +256,14 @@
                       "label": "Adresse",
                       "etat": "normal"
                     }
+                  },
+                  "layout": {
+                    "grow": true
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             },
             "row4": {
@@ -238,8 +278,14 @@
                       "label": "Sujet",
                       "etat": "normal"
                     }
+                  },
+                  "layout": {
+                    "grow": true
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             },
             "row5": {
@@ -253,9 +299,23 @@
                     "props": {
                       "label": "Message",
                       "etat": "normal"
+                    },
+                    "slots": {
+                      "children": {
+                        "id": "ds.textarea",
+                        "props": {
+                          "value": "Écrivez votre message ici..."
+                        }
+                      }
                     }
+                  },
+                  "layout": {
+                    "grow": true
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             },
             "TexteConsentement": {
@@ -266,13 +326,18 @@
             "FormulaireBouton": {
               "component": {
                 "id": "ds.button"
+              },
+              "layout": {
+                "grow": true
               }
             }
           }
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.formulaire.root}",
+        "gap": "{space.32}"
       }
     }
   },

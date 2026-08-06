@@ -1,13 +1,13 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1785099569818,
+  "extractedAt": 1786026743523,
   "sets": [
     {
       "name": "Input",
       "nodeId": "2053:1245",
       "key": "376ed2e3d748a430b28e763035ba5c62bdc9b383",
-      "description": "Champ de saisie texte — atome de formulaire. Fond color/blanc, bordure 1px color/bleu-gris (INSIDE), coins droits (0). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur » liée au contenu affiché — pas de calque à éditer manuellement.",
+      "description": "Input — generated from contract ds.input v1.0.0",
       "variantCount": 1,
       "properties": {
         "Valeur#2053:1": {
@@ -23,7 +23,7 @@
       "name": "Textarea",
       "nodeId": "2053:1247",
       "key": "cdeef5ac88e94d53b8fe1cefcad341d5c7df79bd",
-      "description": "Zone de saisie multi-lignes — atome de formulaire. Même style que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), texte aligné en haut. Hauteur fixe 128px portée par le container (pas par un texte surdimensionné). Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "description": "Textarea — generated from contract ds.textarea v1.0.0",
       "variantCount": 1,
       "properties": {
         "Valeur#2053:2": {
@@ -39,7 +39,7 @@
       "name": "Select",
       "nodeId": "2053:1249",
       "key": "3063f8a5ed587927ede2ae021433c705656acff5",
-      "description": "Liste déroulante — atome de formulaire. Même boîte que Input (fond color/blanc, bordure 1px color/bleu-gris, coins droits), disposition SPACE_BETWEEN pour pousser le chevron à droite. Chevron = INSTANCE du composant local chevron-down (226:373, zéro dépendance tierce), jamais une copie. Texte color/noir, Montserrat Regular 14px. Propriété TEXTE « Valeur ».",
+      "description": "Select — generated from contract ds.select v1.0.0",
       "variantCount": 1,
       "properties": {
         "Valeur#2053:3": {
@@ -49,15 +49,13 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "ChevronDown"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "Checkbox",
       "nodeId": "2053:1256",
       "key": "d1b5e763513013c8d216d840c4f95f22f0e3c909",
-      "description": "Case à cocher — atome net-new intégral (aucune référence dans les 9 maquettes, consentement RGPD en simple texte). Variant officiel « Coché » (Non/Oui) : décoché = fond color/blanc, bordure 2px color/bleu-gris ; coché = fond color/bleu plein, coche blanche. Coins droits (0), cohérent avec la famille Input/Textarea/Select. 20×20.",
+      "description": "Checkbox — generated from contract ds.checkbox v1.0.1",
       "variantCount": 2,
       "properties": {
         "Coche": {
@@ -247,7 +245,7 @@
       "name": "PiquerayLogo",
       "nodeId": "4:14",
       "key": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
-      "description": "Anciennement nommé « piqueray_logo » sur le canvas. Le logotype de marque Piqueray, instancié notamment dans le Header nav et le Footer. Sa couleur se pilote depuis l'instance entre deux variantes : une normale et une blanche, cette dernière destinée aux fonds sombres (par exemple le Header nav en mode transparent, ou le Footer). Le lettrage est un tracé vectoriel figé, sans auto-layout — un choix de construction assumé, pas une limite du composant.",
+      "description": "PiquerayLogo — generated from contract ds.piqueray-logo v0.1.0",
       "variantCount": 2,
       "properties": {
         "Couleur": {
@@ -266,7 +264,7 @@
       "name": "Bouton",
       "nodeId": "6:122",
       "key": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-      "description": "Bouton — atome d'action, le plus instancié du fichier (14+ usages sur les deux pages DS). Libellé piloté par une propriété texte. Icône gauche/droite : visibilité pilotée par une propriété booléenne, glyphe par une propriété instance-swap — propriétés officielles, aucun calque caché non exposé. Porte 7 variantes de traitement visuel (couleur et style du fond et du texte, dont « Icône seule »). Limite connue : le menu de swap du glyphe ne propose que 13 icônes sur les 16 du registre gouverné — divergence héritée de la spec 004, non résolue ici.",
+      "description": "Button — generated from contract ds.button v1.6.0",
       "variantCount": 7,
       "properties": {
         "Icone gauche#2024:0": {
@@ -420,24 +418,21 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "ArrowLeft",
-        "ArrowRight"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "MemberPicture",
       "nodeId": "274:2389",
       "key": "70fdd040214e23fd7b5709b1009638a711b4080f",
-      "description": "Anciennement nommé « member-picture » sur le canvas. Photo (portrait rond) d'un membre de l'équipe. Une instance peut afficher soit l'apparence par défaut, soit une apparence déclenchée par le survol du pointeur (interaction souris) — réglage pilotable directement sur l'instance. Les deux images n'ont pas de note d'alternative textuelle distincte dans Figma.",
+      "description": "MemberPicture — generated from contract ds.member-picture v1.2.0 †",
       "variantCount": 2,
       "properties": {
         "Etat": {
           "type": "VARIANT",
           "defaultValue": "Defaut",
           "variantOptions": [
-            "Defaut",
-            "Survol"
+            "Survol",
+            "Defaut"
           ],
           "preferredValues": null
         }
@@ -445,10 +440,22 @@
       "nestedInstances": []
     },
     {
+      "name": "Style=Icône seule",
+      "nodeId": "2238:4411",
+      "key": "dc24a6d7ac9ee7223ff4e0d122918aba645e78e5",
+      "description": "",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": [
+        "ArrowLeft",
+        "ArrowRight"
+      ]
+    },
+    {
       "name": "Field",
       "nodeId": "2056:1278",
       "key": "15df1358a281d8eee862acddccc8cdcfc1b1c8fc",
-      "description": "Molécule Field (label + saisie + erreur) — propriétés : État (variant Normal/Erreur), Optionnel (booléen, affiche \"(optionnel)\"), Label (texte), Saisie (instance-swap Input/Select/Textarea). Erreur = bordure + message color/rouge (nouveau token, T039).",
+      "description": "Field — generated from contract ds.field v2.0.0 †",
       "variantCount": 2,
       "properties": {
         "Label#2056:4": {
@@ -500,7 +507,7 @@
       "name": "AccordionRow",
       "nodeId": "2059:1417",
       "key": "6b15207fffd75082f1f8c423eab771aa6709179d",
-      "description": "Anciennement nommé « Accordion-row » sur le canvas. Molécule Accordion-row (ligne repliable) — 2 tailles réelles trouvées à l'audit (Grand=sections FAQ 20px/32px chevron, Petit=sections Texte SEO 14px/24px chevron), même comportement. Propriétés : Taille (Grand/Petit), État (Fermé/Ouvert), Titre (texte), Contenu (texte, visible si Ouvert — limite: ne porte pas le texte riche multi-style, cf. audits/accordion-row.md).",
+      "description": "AccordionRow — generated from contract ds.accordion-row v1.2.0 †",
       "variantCount": 4,
       "properties": {
         "Titre#2059:13": {
@@ -534,15 +541,13 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "ChevronDown"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "Tab",
       "nodeId": "2061:1588",
       "key": "c5fa537d17c544114dc780ba11bbf1157fedba37",
-      "description": "Molécule Tab (onglet de navigation) — propriété État (Défaut/Sélectionné, l'état sélectionné affiche un soulignement 2px) + Libellé (texte). Utilisé en rangée (plusieurs instances) pour former une barre d'onglets — le conteneur lui-même n'a aucune identité visuelle propre, non gouverné séparément.",
+      "description": "Tab — generated from contract ds.tab v2.0.0",
       "variantCount": 2,
       "properties": {
         "Libelle#2061:23": {
@@ -567,7 +572,7 @@
       "name": "Carte",
       "nodeId": "2063:1622",
       "key": "8d4295948b18955c16a6c61892e8d3ecb7c7ac24",
-      "description": "Carte générique pour présenter une catégorie ou un service : image, titre et texte descriptif. Ce composant propose deux variantes pilotables depuis l'instance. Limite connue : les images sont des placeholders, sans alternative textuelle.",
+      "description": "Carte — generated from contract ds.carte v2.0.0 †",
       "variantCount": 2,
       "properties": {
         "Titre#2063:26": {
@@ -598,7 +603,7 @@
       "name": "ProductCard",
       "nodeId": "2068:1972",
       "key": "28f85f1f7c529cb418c9e123c0a823f666516bb7",
-      "description": "Anciennement nommé « Product-card » sur le canvas. Carte qui présente un produit e-commerce. Elle associe une image, un titre, un prix et un bouton d'action. Le titre et le prix sont propres à chaque produit représenté.",
+      "description": "ProductCard — generated from contract ds.product-card v2.0.0 †",
       "variantCount": 1,
       "properties": {
         "Titre#2068:34": {
@@ -620,7 +625,7 @@
       "name": "MemberCard",
       "nodeId": "2074:2072",
       "key": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
-      "description": "Anciennement nommé « Member-card » sur le canvas. Carte de présentation d'un membre de l'équipe (photo + nom + intitulé de poste). Nom et intitulé de poste sont deux propriétés texte éditables depuis l'instance. La photo n'est pas une propriété de la carte : elle provient de l'instance member-picture imbriquée, pilotée séparément.",
+      "description": "MemberCard — generated from contract ds.member-card v1.2.0",
       "variantCount": 1,
       "properties": {
         "Nom#2074:36": {
@@ -644,22 +649,18 @@
       "name": "CarouselControls",
       "nodeId": "2077:2191",
       "key": "f9cf66306491d239164a61b8a0ac6ba8d0de0238",
-      "description": "Anciennement nommé « Carousel-controls » sur le canvas. Molécule Carousel-controls — les deux boutons de navigation (précédent et suivant) d'un carrousel. Elle instancie Bouton deux fois, un pour chaque sens. Aucune propriété n'est exposée par la molécule elle-même : les libellés des deux instances ne se pilotent qu'en forant dans les instances Bouton imbriquées.",
+      "description": "CarouselControls — generated from contract ds.carousel-controls v1.0.2",
       "variantCount": 1,
       "properties": {},
       "nestedInstances": [
-        "Bouton",
-        "ChevronLeft",
-        "ArrowRight",
-        "ArrowLeft",
-        "ChevronRight"
+        "Bouton"
       ]
     },
     {
       "name": "FooterColumn",
       "nodeId": "2079:2246",
       "key": "1de5585bfa55ff9e973748a4b2b99ef4b0a88cef",
-      "description": "Anciennement nommé « Footer-column » sur le canvas. Molécule Footer-column : une colonne du pied de page qui associe un titre de rubrique à une liste de liens. Le titre et chaque libellé se modifient par surcharge de texte depuis l'instance.",
+      "description": "FooterColumn — generated from contract ds.footer-column v1.1.0",
       "variantCount": 1,
       "properties": {
         "Titre#2079:38": {
@@ -681,7 +682,7 @@
       "name": "Copyright",
       "nodeId": "2086:2330",
       "key": "314cd2368d8d019fec33b60eb8995fac453d0e9f",
-      "description": "Affiche la ligne de copyright en pied de page du site. Il s'agit du texte de mention légale.",
+      "description": "Copyright — generated from contract ds.copyright v1.0.0",
       "variantCount": 1,
       "properties": {
         "Texte#2086:40": {
@@ -697,7 +698,7 @@
       "name": "Avantage",
       "nodeId": "2088:2350",
       "key": "0e3b2541ebb7b1a5c86d7bca6a186fdff073d27b",
-      "description": "Molécule Avantage — met en avant un point fort ou argument, en associant l'icône de marque Piqueray à un titre et un texte. Titre et Texte sont deux propriétés texte indépendantes, éditables par instance. L'icône, elle, est une instance fixe sans propriété exposée : non substituable par une autre icône.",
+      "description": "Avantage — generated from contract ds.avantage v1.0.0",
       "variantCount": 1,
       "properties": {
         "Titre#2088:41": {
@@ -713,16 +714,14 @@
           "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "Piqueray"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "SectionHeader",
       "nodeId": "2090:2397",
       "key": "770d5801af6e899b9547461ea2c714a66e0fa356",
-      "description": "Anciennement nommé « Section-header » sur le canvas. Molécule Section-header (en-tête générique de section) — propriétés pilotables depuis l'instance : le texte du titre, et la présence ou non d'un CTA (bouton d'action) via la variante.",
-      "variantCount": 2,
+      "description": "SectionHeader — generated from contract ds.section-header v2.1.1 †",
+      "variantCount": 16,
       "properties": {
         "Accroche#2090:46": {
           "type": "TEXT",
@@ -750,6 +749,26 @@
             "Avec CTA"
           ],
           "preferredValues": null
+        },
+        "Emphase": {
+          "type": "VARIANT",
+          "defaultValue": "Standard",
+          "variantOptions": [
+            "Standard",
+            "Hero",
+            "Moyen",
+            "Compact"
+          ],
+          "preferredValues": null
+        },
+        "Alignement": {
+          "type": "VARIANT",
+          "defaultValue": "Centre",
+          "variantOptions": [
+            "Centre",
+            "Gauche"
+          ],
+          "preferredValues": null
         }
       },
       "nestedInstances": []
@@ -758,7 +777,7 @@
       "name": "Realisation",
       "nodeId": "2095:2484",
       "key": "7cf12fad8cd3bd7cc0d797ff0978554ff15d8d43",
-      "description": "Anciennement nommé « Réalisation » sur le canvas. Tuile de la galerie « Réalisations » (grille native GRID, 3 maquettes). Taille=Grand (743×743, tuile vedette, toujours en 1re position) ou Petit (339.5×339.5). Fill image posé par instance à l’adoption — le placeholder gris du master n’a aucune signification.",
+      "description": "Realisation — generated from contract ds.realisation v1.1.0 †",
       "variantCount": 2,
       "properties": {
         "Taille": {
@@ -777,7 +796,7 @@
       "name": "NavItem",
       "nodeId": "2152:5554",
       "key": "bb5fff155aa25e719d1b9e38dedc767d677b4471",
-      "description": "Anciennement nommé « Nav-item » sur le canvas. Brique de navigation répétée du Header (×4, ex-copies brutes dans Header nav). Libellé + chevron optionnel (propriété booléenne \"Chevron\", défaut vrai) pour les entrées à sous-menu. Le chevron instancie le glyphe hors registre octicon:chevron-down-12 (6:119, gouvernance 002) — conservé tel quel, jamais réassigné à l'icône chevron-down du registre (décision FR-038, spec 005).",
+      "description": "NavItem — generated from contract ds.nav-item v1.2.0 †",
       "variantCount": 1,
       "properties": {
         "Chevron#2152:62": {
@@ -791,11 +810,15 @@
           "defaultValue": false,
           "variantOptions": null,
           "preferredValues": null
+        },
+        "Libellé#2341:48": {
+          "type": "TEXT",
+          "defaultValue": "Portes de garage",
+          "variantOptions": null,
+          "preferredValues": null
         }
       },
-      "nestedInstances": [
-        "OcticonChevronDown12"
-      ]
+      "nestedInstances": []
     },
     {
       "name": "Review-card",
@@ -871,7 +894,7 @@
       "name": "Devis",
       "nodeId": "2096:2524",
       "key": "0caac7487988d0da129211e64a40545163149a6f",
-      "description": "Bandeau CTA pleine largeur (photo de fond + voile noir 30% + titre + bouton). Le titre est une propriete texte gouvernee : varie entre l'offre particuliers (\"chez vous\") et l'offre professionnels (\"dans vos locaux\", page Portes de garage industrielles). Le fond photo varie egalement sur cette meme page (override d'instance, comme gallery-item) - voir ledger/devis-cta.json.",
+      "description": "Devis — generated from contract ds.devis v1.2.0 †",
       "variantCount": 1,
       "properties": {
         "Titre#2096:49": {
@@ -882,16 +905,14 @@
         }
       },
       "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
+        "Bouton"
       ]
     },
     {
       "name": "Formulaire",
       "nodeId": "2096:2564",
       "key": "b588bcccec2ae782382324bcda5fc257b91defd5",
-      "description": "Bloc formulaire de contact (2 colonnes) : argumentaire + Avantage x4 + Boutons, et colonne formulaire (7 Field + consentement RGPD + Bouton Envoyer). Note: le lien hypertexte du texte de consentement pointe vers un domaine tiers (jonckers-clabots.be), résidu de template pré-Piqueray reproduit fidèlement depuis la source — signalé en anomalie, pas corrigé silencieusement (voir decisions.md).",
+      "description": "Formulaire — generated from contract ds.formulaire v1.1.0",
       "variantCount": 1,
       "properties": {
         "Accroche#2096:50": {
@@ -916,31 +937,19 @@
       "nestedInstances": [
         "SectionHeader",
         "Avantage",
-        "Piqueray",
         "Bouton",
-        "Phone",
-        "ArrowRight",
         "Field",
         "Input",
-        "Select",
-        "ChevronDown",
-        "Textarea",
-        "ArrowLeft"
+        "Textarea"
       ]
     },
     {
       "name": "Presentation",
       "nodeId": "2103:2824",
       "key": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
-      "description": "Anciennement nommé « Présentation » sur le canvas. Bloc \"Présentation\" (histoire/branding de l'entreprise) : titre + paragraphe + CTA optionnel \"En savoir plus\". Propriétés : Titre (TEXTE), Texte (TEXTE, porte souvent du gras par plage — réappliquer après tout override d'instance, le binding aplatit sinon), Bouton (BOOLEAN, visibilité du CTA, défaut masqué — mesuré sur 3 occurrences réelles : 1 seule l'affiche). Bouton = instance baked du composant Bouton existant (Property 1=Link), zéro dépendance tierce.",
+      "description": "Presentation — generated from contract ds.presentation v2.2.0",
       "variantCount": 1,
       "properties": {
-        "Titre#2103:53": {
-          "type": "TEXT",
-          "defaultValue": "Piqueray, une histoire de famille ",
-          "variantOptions": null,
-          "preferredValues": null
-        },
         "Texte#2103:54": {
           "type": "TEXT",
           "defaultValue": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
@@ -952,20 +961,24 @@
           "defaultValue": false,
           "variantOptions": null,
           "preferredValues": null
+        },
+        "Titre#2351:54": {
+          "type": "TEXT",
+          "defaultValue": "Piqueray, une histoire de famille ",
+          "variantOptions": null,
+          "preferredValues": null
         }
       },
       "nestedInstances": [
         "SectionHeader",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
+        "Bouton"
       ]
     },
     {
       "name": "FAQ",
       "nodeId": "2104:2914",
       "key": "0df659be188a72700e42e2afbf30e95bb38db5f1",
-      "description": "Section FAQ — assemble 3 pièces déjà gouvernées : Section-header (Disposition Standard), accordion (N instances Accordion-row, Taille Grand) et Bouton (Outilne noir, « Contactez-nous »). Propriété `Ligne 3` (BOOLEAN, défaut true) montre/masque la 3e question — les 3 occurrences sources mesurées ont soit 2 soit 3 questions (jamais plus), et retirer un enfant structurel d'une instance placée n'est pas supporté par l'API Figma (vérifié) — la visibilité togglable est le mécanisme officiel retenu, pas un calque caché sans contrôle. Le contenu des questions/réponses est propre à chaque page et s'override par instance (propriétés TEXTE `Titre`/`Contenu` d'Accordion-row). Le bloc « Hero et FAQ » (Dépannage/SAV) porte en plus 4 instances Tab déjà gouvernées dans un frame `tabs` séparé, volontairement exclu de ce master (voir decisions.md) — cette page garde sa structure composite telle quelle, ses 3 pièces (Section-header/accordion/Bouton) étant déjà des instances gouvernées individuellement, sans instance FAQ consolidée. Zéro dépendance tierce.",
+      "description": "FAQ — generated from contract ds.faq v1.3.0 †",
       "variantCount": 1,
       "properties": {
         "Ligne 3#2104:59": {
@@ -978,27 +991,23 @@
       "nestedInstances": [
         "SectionHeader",
         "AccordionRow",
-        "ChevronDown",
-        "ChevronUp",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
+        "Bouton"
       ]
     },
     {
       "name": "Coordonnees",
       "nodeId": "2104:2904",
       "key": "1ff0d29f239fe6f4db0619565ee01f305bacabd1",
-      "description": "Anciennement nommé « Coordonnées » sur le canvas. Bloc « Coordonnées » (Contactez-nous) : adresse, horaires, contact, réseaux sociaux + carte statique. Couleurs aux variables (color/noir-bleute, color/orange, color/bleu-clair). Icônes Facebook/Instagram = instances des masters T037 (remplacent les vecteurs bruts d'origine). google-map = image statique, zéro dépendance tierce. 2 propriétés TEXTE (Accroche, Titre) pour l'en-tête ; Adresse/Horaires/Contact/Suivez-nous restent du texte fixe — 2 des 3 valeurs portent des caractères de saut de ligne invisibles (U+2028 sur Adresse ; \\r+U+2028 sur Contact, entre le tél et l'email) préservés à l'identique par clonage, jamais retypés à la main. Voir specs/003-externalize-figma-components/audits/coordonnees.md.",
+      "description": "Coordonnees — generated from contract ds.coordonnees v2.2.0 †",
       "variantCount": 1,
       "properties": {
-        "Accroche#2104:57": {
+        "Accroche#2351:52": {
           "type": "TEXT",
           "defaultValue": "Contact",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Titre#2104:58": {
+        "Titre#2351:53": {
           "type": "TEXT",
           "defaultValue": "Nos coordonnées",
           "variantOptions": null,
@@ -1006,65 +1015,70 @@
         }
       },
       "nestedInstances": [
-        "SectionHeader",
-        "Facebook",
-        "Instagram"
+        "SectionHeader"
       ]
     },
     {
       "name": "SAV",
       "nodeId": "2108:3105",
       "key": "bf5e147a9b56206eba9c73045d533c9868b445b2",
-      "description": "Section SAV (« Dépannage / SAV ») — 1 occurrence (Accueil). Propriété officielle TEXTE `Titre`. Le corps de texte reste STATIQUE : styles mixtes (3 plages Bold) + saut de ligne manuel — le lier aplatirait le gras (piège documenté Présentation/Formulaire). Bouton = instance gouvernée locale (set Bouton, remote:false). 2 fonds image bakés (illustration + bandeau de fond), zéro dépendance tierce. Groupes internes conservés verbatim (fidélité pixel).",
+      "description": "SAV — generated from contract ds.sav v1.3.0 †",
       "variantCount": 1,
       "properties": {
-        "Titre#2108:60": {
+        "Titre#2351:50": {
           "type": "TEXT",
           "defaultValue": "Dépannage / SAV",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2351:51": {
+          "type": "TEXT",
+          "defaultValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
           "variantOptions": null,
           "preferredValues": null
         }
       },
       "nestedInstances": [
         "SectionHeader",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
+        "Bouton"
       ]
     },
     {
       "name": "TexteSEO",
       "nodeId": "2108:3123",
       "key": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
-      "description": "Anciennement nommé « Texte SEO » sur le canvas. Bloc SEO de bas de page (contenu par maquette). Structure : h2 (titre, gras par plage) + p (paragraphe body, gras par plage) + h3 (sous-titre) + accordion (3 lignes Accordion-row gouvernées, motif Fermé/Ouvert/Fermé). Hauteur HUG (varie selon la longueur du body et de la réponse ouverte). Contenu porté par override d'instance (h2/p/h3 : plages/caractères invisibles préservés ; lignes : propriétés Titre/Contenu/État de chaque Accordion-row).",
+      "description": "TexteSEO — generated from contract ds.texte-seo v2.1.0 †",
       "variantCount": 1,
       "properties": {},
       "nestedInstances": [
         "SectionHeader",
-        "AccordionRow",
-        "ChevronDown",
-        "ChevronUp"
+        "AccordionRow"
       ]
     },
     {
       "name": "Hero",
       "nodeId": "2111:3382",
       "key": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
-      "description": "Hero de page (bandeau haut, 1728×640, hauteur externe fixe). Fond image par page + 2 dégradés de lisibilité ; bloc texte en HUG (280–360 selon le contenu) : titre (gras riche par plage) + rangée sous-titre (FILL) + Bouton « Outline blanc » (libellé + glyphe droit + gap variables par page). Contenu porté par override de sous-calque (aucune propriété TEXTE formelle — le binding aplatirait le gras, précédent Texte SEO). Zéro dépendance tierce. Cloné depuis Portes de garage industrielles.",
+      "description": "Hero — generated from contract ds.hero v1.4.0 †",
       "variantCount": 1,
-      "properties": {},
+      "properties": {
+        "SousTitre#2351:49": {
+          "type": "TEXT",
+          "defaultValue": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
+          "variantOptions": null,
+          "preferredValues": null
+        }
+      },
       "nestedInstances": [
         "SectionHeader",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
+        "Bouton"
       ]
     },
     {
       "name": "Reassurances",
       "nodeId": "2114:3721",
       "key": "a303bd661e06746baa62828633b5c6132714a8c8",
-      "description": "Anciennement nommé « Réassurances » sur le canvas. Section Réassurances — Section-header (gouverné) + rangée `items` de Cartes (disposition Réassurance, gouvernées) + CTA. Variante `Disposition` : `4 cartes` (À Propos, Portes de garage industrielles, résidentielles), `4 cartes · 2 CTA` (Portes d'entrée — bouton `Motifs disponibles` + `Contactez-nous`), `5 cartes` (Accueil, Portes de garage). Cartes/section-header/boutons déjà gouvernés ; contenu par override d'instance à l'adoption.",
+      "description": "Reassurances — generated from contract ds.reassurances v1.2.0 †",
       "variantCount": 3,
       "properties": {
         "Disposition": {
@@ -1081,16 +1095,14 @@
       "nestedInstances": [
         "SectionHeader",
         "Carte",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
+        "Bouton"
       ]
     },
     {
       "name": "Equipe",
       "nodeId": "2115:3947",
       "key": "786b6f6634939b2081530949058eddf071b22ab1",
-      "description": "Anciennement nommé « Équipe » sur le canvas. Section Équipe — grille qui instancie 16 Member-card déjà gouvernées, chacune affichant le nom, le poste et la photo d'un membre. Le master ne porte aucune propriété pilotable : les 16 fiches sont posées en dur, sans propriété exposée pour changer un membre depuis une instance. Limite de source : 3 des 16 fiches gardent un nom et un poste au stade placeholder (texte littéral « Prénom »/« Poste », jamais renseigné), alors que leur photo, elle, est réelle.",
+      "description": "Equipe — generated from contract ds.equipe v1.1.2",
       "variantCount": 1,
       "properties": {},
       "nestedInstances": [
@@ -1131,13 +1143,8 @@
       "nestedInstances": [
         "SectionHeader",
         "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
         "ProductCard",
-        "Cart",
-        "CarouselControls",
-        "ChevronLeft",
-        "ChevronRight"
+        "CarouselControls"
       ]
     },
     {
@@ -1166,17 +1173,13 @@
       "name": "Footer",
       "nodeId": "2120:4785",
       "key": "68ac20d7b13590d961b0fdce1d8cb72cdc77885b",
-      "description": "Footer du site — logo + colonnes de liens (gouvernées, T058) + copyright (gouverné, T060) + réseaux sociaux + Bouton CTA (gouverné). Contenu identique sur les 9 maquettes (0 override attendu à l'adoption).",
+      "description": "Footer — generated from contract ds.footer v1.1.0 †",
       "variantCount": 1,
       "properties": {},
       "nestedInstances": [
-        "Facebook",
-        "Instagram",
-        "FooterColumn",
         "PiquerayLogo",
         "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
+        "FooterColumn",
         "Copyright"
       ]
     },
@@ -1184,7 +1187,7 @@
       "name": "Header",
       "nodeId": "84:285",
       "key": "4165b8449f68916cca476b62454ede85eea13420",
-      "description": "En-tête de navigation du site — regroupe logo, liens de navigation, recherche, compte, panier et un CTA. Son fond peut être opaque ou transparent, ce dernier prévu pour un affichage sur photo. Un des glyphes qu'il instancie est hors du registre d'icônes gouverné ; son traitement est réservé à une étape séparée.",
+      "description": "Header — generated from contract ds.header v1.0.0",
       "variantCount": 2,
       "properties": {
         "Fond": {
@@ -1200,13 +1203,7 @@
       "nestedInstances": [
         "PiquerayLogo",
         "NavItem",
-        "OcticonChevronDown12",
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight",
-        "Search",
-        "User",
-        "Cart"
+        "Bouton"
       ]
     },
     {
@@ -1217,9 +1214,7 @@
       "variantCount": 1,
       "properties": {},
       "nestedInstances": [
-        "Bouton",
-        "ArrowLeft",
-        "ArrowRight"
+        "Bouton"
       ]
     },
     {

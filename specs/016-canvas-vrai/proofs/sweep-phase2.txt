@@ -1,0 +1,542 @@
+# Sweep checkpoint Phase 2 — 016 · T008
+# Date : 2026-08-05T14:25:00Z
+# Commit : 258fa40
+# ============================================================
+
+### $ npm run build
+
+> ds-contracts-poc@0.7.0 build
+> npm run tokens && npm run schema && npm run generate
+
+
+> ds-contracts-poc@0.7.0 tokens
+> node scripts/build-tokens.mjs
+
+✔ Tokens built: 222 custom properties (:root), 0 dark-mode overrides, 1 brand mode(s): default
+
+> ds-contracts-poc@0.7.0 schema
+> tsx scripts/emit-schema.ts
+
+✔ contracts/contract.schema.json emitted from Zod schema
+
+> ds-contracts-poc@0.7.0 generate
+> tsx scripts/generate-components.ts
+
+✔ Generated 34 component(s) from contracts: AccordionRow, Avantage, Button, CarouselControls, Carte, Checkbox, Coordonnees, Copyright, Devis, Equipe, FAQ, Field, Footer, FooterColumn, Formulaire, GoogleReviews, Header, Hero, Input, MemberCard, MemberPicture, NavItem, PiquerayLogo, Presentation, ProductCard, Realisation, Reassurances, ReviewCard, SAV, SectionHeader, Select, Tab, Textarea, TexteSEO
+### => OK
+
+### $ npm run parity
+
+> ds-contracts-poc@0.7.0 parity
+> tsx parity/diff.ts
+
+⚠ Figma naming bridged (the file does not use this repo's collection/mode names):
+    · mode "Dark" does not exist in collection "Semantic" — read from its only mode, "Light"
+
+✔ No new drift — 87 acknowledged finding(s) remain in parity/baseline.json.
+
+  — acknowledged (baselined, does not fail the check) —
+
+  [figma BEHIND] Carte.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] SectionHeader.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma-tokens MISMATCH] Primitives/font/family/montserrat [Value]
+    tokens/ says Montserrat, sans-serif, Figma says Montserrat
+    proposed patch: {"tokenPath":"font.family.montserrat","mode":"Value","adoptFigmaValue":"Montserrat"}
+    → Adopt into tokens/ (promotion) then npm run tokens — or push tokens/ to Figma via figma_import_tokens
+
+  [figma-tokens BEHIND] Primitives/space/2
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/3
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/11
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/14
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/22
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/space/47
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre-ouvert
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre-ouvert-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/chevron-up-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/title
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/contenu
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/contenu-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/titre-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/chevron-down-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/trigger
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/trigger-petit
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/accordion-row/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/avantage/text
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/avantage/root-w
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/avantage/root-h
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/reassurance-image
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/categorie-image
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/carte/root-categorie
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/checkbox/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/coordonnees/google-map-w
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/coordonnees/google-map-h
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/coordonnees/wrapper
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/devis/titre
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/faq/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/background
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/row
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/spacer
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer/spacer2
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/footer-column/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/root-w
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/root-h
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/pastille-gauche
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/google-reviews/pastille-droite
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/hero/sous-titre
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/hero/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-card/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-picture/root
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-picture/root-member-card
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  [figma-tokens BEHIND] Primitives/size/member-picture/fun-ia
+    Token exists in tokens/ but has no Figma variable
+    → Re-run figma-sync token script (or figma_import_tokens ≥1.34 with creation support)
+
+  …and 37 more acknowledged (see parity/report.json)
+
+### => OK
+
+### $ npm run eval
+
+> ds-contracts-poc@0.7.0 eval
+> tsx evals/run.ts
+
+  ✔ C5-extraction  accordion-row-source-cleanup-extraction
+  ✔ C3-detection  baseline-parity-clean
+  ✔ C3-detection  primitives-border-width-parity
+  ✔ C2-refusal  visual-campaign-schema-guards
+  ✔ C2-refusal  visual-layout-context-size
+  ✔ C2-refusal  visual-parity-font-faces
+  ✔ C2-refusal  figma-render-bounds-alignment
+  ✔ C2-refusal  visual-evidence-integrity-guards
+  ✔ C2-refusal  visual-campaign-011-exact-coverage
+  ✔ C2-refusal  visual-campaign-slot-comparison
+  ✔ C2-refusal  visual-campaign-scope-additive
+  ✔ C2-refusal  organism-audit-campaign-scope
+  ✔ C2-refusal  organism-audit-wave-entry
+  ✔ C2-refusal  organism-audit-verdict-algebra
+  ✔ C2-refusal  organism-audit-probative-evidence
+  ✔ C2-refusal  organism-audit-dependency-mapping
+  ✔ C2-refusal  organism-audit-blocked-parent
+  ✔ C2-refusal  organism-audit-non-conversion
+  ✔ C2-refusal  declared-inset-channels
+  ✔ C2-refusal  organism-audit-contract-pin
+  ✔ C3-detection  organism-audit-react-capture
+  ✔ C3-detection  organism-audit-prop-projection
+  ✔ C3-detection  organism-audit-image-prop-path
+  ✔ C3-detection  organism-audit-token-resolution
+  ✔ C3-detection  geometry-detection-code-side
+  ✔ C3-detection  geometry-detection-canvas-side
+  ✔ C3-detection  field-slotted-control-semantics
+  ✔ C2-refusal  declared-object-position
+  ✔ C3-detection  semantic-attribute-map
+  ✔ C3-detection  tab-external-roving-context
+  ✔ C2-refusal  icon-glyph-geometry
+  ✔ C2-refusal  bounded-typography-geometry-justification
+  ✔ C3-detection  component-scalar-propagation
+  ✔ C3-detection  component-boolean-false-propagation
+  ✔ C3-detection  literal-text-newline-preservation
+  ✔ C2-refusal  img-paint-preserved-on-amend
+  ✔ C3-detection  component-rich-text-prop-value
+  ✔ C3-detection  part-literal-rich-text
+  ✔ C3-detection  repeat-enum-item-field
+  ✔ C2-refusal  visual-probative-evidence
+  ✔ C2-refusal  fractional-image-receipt
+  ✔ C2-refusal  campaign-capture-scale
+  ✔ C2-refusal  jpeg-exif-orientation-dimensions
+  ✔ C2-refusal  visual-regions-and-geometry
+  ✔ C2-refusal  visual-attribution-audit
+  ✔ C3-detection  baseline-acknowledges-without-failing
+  ✔ C4-convergence  promotion-converges
+  ✔ C3-detection  detect-icon-registry-divergence
+  ✔ C2-refusal  refuse-unregistered-icon-enum
+  ✔ C5-extraction  lower-icon-swap-and-visibility-into-props
+  ✔ C5-extraction  preserve-nested-empty-boolean-and-swap-props
+  ✔ C2-refusal  figma-script-referees-invalid-contracts
+  ✔ C3-detection  detect-default-and-kind-drift
+  ✔ C2-refusal  refuse-unknown-token-reference
+  ✔ C1-determinism  provenance-fields-survive-roundtrip
+  ✔ C2-refusal  refuse-schema-invalid-contract
+  ✔ C2-refusal  refuse-unknown-category
+  ✔ C1-determinism  tolerate-contract-without-category
+  ✔ C6-theming  category-groups-story-and-catalog
+  ✔ C1-determinism  native-input-root-void-self-closes-with-attrs
+  ✔ C1-determinism  native-checkbox-and-select-render-correctly
+  ✔ C3-detection  internal-glyph-consumed-not-orphan
+  ✔ C1-determinism  deterministic-regeneration
+  ✔ C3-detection  detect-code-added-prop
+  ✔ C3-detection  detect-code-removed-prop
+  ✔ C3-detection  detect-code-enum-drift
+  ✔ C3-detection  detect-code-default-drift
+  ✔ C3-detection  detect-figma-missing-property
+  ✔ C3-detection  detect-figma-extra-property
+  ✔ C3-detection  detect-figma-variant-options-drift
+  ✔ C3-detection  detect-token-alias-drift
+  ✔ C3-detection  detect-token-missing-variable
+  ✔ C3-detection  detect-token-extra-variable
+  ✔ C2-refusal  refuse-circular-dependency
+  ✔ C2-refusal  refuse-unknown-component-ref
+  ✔ C2-refusal  refuse-contract-edge-cases
+  ✔ C5-extraction  extract-foreign-library
+  ✔ C5-extraction  diagnose-foreign-green-red-green
+  ✔ C5-extraction  fluent-sibling-types-merge
+  ✔ C5-extraction  as-expression-named
+  ✔ C5-extraction  intersection-named
+  ✔ C5-extraction  keyof-enum-resolution
+  ✔ C5-extraction  union-of-refs-composition
+  ✔ C5-extraction  cem-nameless-event-skip
+  ✔ C3-detection  native-button-type
+  ✔ C3-detection  code-only-scalar-prop
+  ✔ C3-detection  component-visiblewhen-emission
+  ✔ C3-detection  component-children-prop-emission
+  ✔ C3-detection  single-value-enum-code-extraction
+  ✔ C3-detection  visual-root-alignment
+  ✔ C3-detection  visual-mask-cannot-false-green
+  ✔ C3-detection  visual-transparent-ink-surface
+  ✔ C3-detection  bottom-inset-border
+  ✔ C3-detection  icon-variant-svg-size
+  ✔ C3-detection  structured-rich-text
+  ✔ C3-detection  rich-text-parity-projection
+  ✔ C2-refusal  rich-text-mark-styles
+  ✔ C5-extraction  plain-token-wrap
+  ✔ C5-extraction  stylex-token-wrap
+  ✔ C5-extraction  fill-matrix-depth-mint
+  ✔ C3-detection  raw-text-root-projection
+  ✔ C3-detection  underscore-set-compose
+  ✔ C2-refusal  session-id-collision-suffix
+  ✔ C3-detection  slot-wrapper-floor
+  ✔ C1-determinism  golden-generated-output
+  ✔ C3-detection  detect-snapshot-provenance-mismatch
+  ✔ C3-detection  detect-stale-snapshot
+  ✔ C5-extraction  extract-code-roundtrip-identity
+  ✔ C5-extraction  extract-raw-values-never-invented
+  ✔ C5-extraction  design-propose-unbound-fill-provisional-mint
+  ✔ C1-determinism  emitter-invariants-hold-and-fail
+  ✔ C1-determinism  core-browser-importable
+  ✔ C5-extraction  design-base-instance-flattening-no-self-reference
+  ✔ C2-refusal  generator-refuses-component-ref-cycles
+  ✔ C5-extraction  design-semantics-element-inference
+  ✔ C5-extraction  design-state-axis-promotion-cbds-replay
+  ✔ C5-extraction  design-child-stubs-prevent-scope-refusals
+  ✔ C5-extraction  cross-import-token-scope
+  ✔ C5-extraction  part-level-state-overrides
+  ✔ C1-determinism  part-state-disabled-label-browser-probe
+  ✔ C5-extraction  design-shadow-mints-and-renders
+  ✔ C5-extraction  design-pointer-geometry-carried
+  ✔ C5-extraction  design-pointer-false-no-arrow
+  ✔ C5-extraction  design-text-weight-and-line-height-carried
+  ✔ C5-extraction  design-id-sanitize-at-proposal
+  ✔ C5-extraction  design-batch-isolation-plain-words-skips
+  ✔ C5-extraction  design-imported-token-layer-registration-resolution
+  ✔ C5-extraction  design-correlation-over-default-state-occurrences
+  ✔ C5-extraction  design-dialog-global-part-dedup
+  ✔ C5-extraction  design-canvas-box-parity
+  ✔ C2-refusal  design-ai-fix-removal-guardrails
+  ✔ C5-extraction  design-min-height-carried
+  ✔ C1-determinism  hit-area-enforced
+  ✔ C1-determinism  a11y-role-and-accessible-name
+  ✔ C1-determinism  button-icon-only-and-carousel-controls
+  ✔ C5-extraction  theme-axis-promotion
+  ✔ C5-extraction  negative-spacing-overlap
+  ✔ C5-extraction  var-chain-resolution
+  ✔ C5-extraction  composition-typography-carry
+  ✔ C2-refusal  multi-tokensbyprop-refusals
+  ✔ C1-determinism  rgba-stroke-emitter-fixes
+  ✔ C1-determinism  s4-canvas-channel-lifts
+  ✔ C1-determinism  figma-60-canvas-emitter-fixes
+  ✔ C1-determinism  polaris-showcase-reproducible
+  ✔ C1-determinism  computed-floor-gate
+dom-anatomy-promotion: ribbon "box-2", 4 tone glyphs, dismiss+action gated parts present; HTML renders inline svg
+  ✔ C3-detection  dom-anatomy-promotion
+  ✔ C1-determinism  svg-content-round-trip
+canvas-pixel-gate: 10 scorecards present, summaries row-consistent, every >10% cell named
+  ✔ C3-detection  canvas-pixel-gate-receipts
+cli-smoke: init → extract(5+2 named) → generate/figma byte-stable ×2 → diff 0/1 → propose-pr dry-run plan → lazy computed seam intact
+  ✔ C7-cli  cli-smoke
+propose-pr-live-shape: PUT body carries sha on update, omits it on create, base64 verbatim; PR body summarizes the change (live open is a network receipt)
+  ✔ C7-cli  propose-pr-live-shape
+emitter-plugin-loads: registered (live array + getEmitters + byName), 4 named refusals, CLI --emitter emitted badge.inventory.txt
+  ✔ C7-cli  emitter-plugin-loads
+canvas-gate-standing-pin: 7/10 PASS pinned (Avatar, Badge, Banner, Checkbox, RadioButton, Spinner, Thumbnail); 10/10 means at or under their round-5d pins, all >10% cells named
+  ✔ C3-detection  canvas-gate-standing-pin
+journey-engineer: dump → propose (1/0) → manifest generate (local CLI build) → skeleton glob hit → browser render matches the 11-point Figma ground truth
+  ✔ C8-journey  journey-engineer
+journey-designer: manifest figma-emit (local CLI build) → 42-variant compiled set (14×3, tone-substituted fills, slash-bound tokens, icon+label anatomy) → push DRY through the real worker pipeline (zero network)
+  ✔ C8-journey  journey-designer
+deterministic-roundtrip: contract→canvas byte-identical across two runs (deterministic), canvas→contract recovers the anatomy, contract→code emits — the full journey is pure functions, no AI in the conversion
+  ✔ C1-determinism  deterministic-roundtrip
+react-hyphenated-part-names-execute: emitReact + emitReactInline outputs bundled and EXECUTED with react-dom/server — hyphen-named parts render real classes (the styles.label-2 subtraction defect stays fixed)
+  ✔ C3-detection  react-hyphenated-part-names-execute
+svg-dash-animation-vehicle-pin: 22 committed assets dash-free; committed checkbox capture (dasharray 2px in style) reconstructs to the continuous stroke with the svg-dash-channels-dropped receipt, byte-equal to the committed asset
+  ✔ C3-detection  svg-dash-animation-vehicle-pin
+canvas-margin-gap-pin: checkbox/radio itemSpacing binds the margin-right variable; badge keeps residual pip margins + applyMarginBox runtime; all four badge corners bind p/border-radius-200 (no size-8 siblings)
+  ✔ C3-detection  canvas-margin-gap-pin
+amend-margin-box: badge script carries applyMarginBox on BOTH the create (buildNode) and re-amend (amendSet) top-level child loops — margins now survive a re-amend at source, not a canvas correction
+  ✔ C3-detection  amend-margin-box
+checkbox-center: an inset-overlay container WITH content compiles to CENTER/CENTER (glyph centered in the control box); empty backdrop overlays untouched
+  ✔ C3-detection  checkbox-center
+optional-adornment-gating-general-fixture: default variant plain (no pip), pip=a variant has it, "Show Icon" boolean exposed default OFF (icon node visibleDefault false), unset value enumerated as a real variant
+  ✔ C3-detection  optional-adornment-gating-general-fixture
+portal-capture-modal: current reader ABSENT (0) → 1 portaled root, 3765 B dialog; descends to 2 real roots
+  ✔ C5-extraction  portal-capture-modal
+multi-root-anatomy: {dialog, backdrop}, 21 parts depth 8 (spike 17/7) — single-root reader returns 0
+  ✔ C5-extraction  multi-root-anatomy
+simple-component-anatomy-unchanged: Badge/Button/Checkbox descend zero wrappers; multi-root anatomy == single-root anatomy (byte-identical)
+  ✔ C1-determinism  simple-component-anatomy-unchanged
+emitter-multi-root-modal: {dialog, backdrop} emits valid React (bundles+renders headless) + HTML markup + figma-script (referee frame carries both roots, headless-executes) — dialog+backdrop present, Cancel/Save actions render
+  ✔ C8-journey  emitter-multi-root-modal
+single-root-golden-invariant: all 34 repo contracts are single-root (0 multi-root); Badge/Button/Card take the untouched forwardRef+.root path, zero multi-root marker — byte authority is golden-generated-output
+  ✔ C1-determinism  single-root-golden-invariant
+  ✔ C5-extraction  vector-asset-figma-capture-proposes-external-geometry
+  ✔ C3-detection  vector-asset-non-square-token-bound
+astryx-dev-journey: 10 flagship contracts → generator byte-stable × 2 runs (fd7424e47e73…); committed badge.figma.js compiles to the 14-variant Badge set (referee)
+  ✔ C8-journey  astryx-dev-journey
+pages-compare-regions-additive: no-flag run carries zero region keys (byte-identity); region-inside → regionDiffCount 1/outsideDiffCount 0; region-outside → regionDiffCount 0/outsideDiffCount 1
+  ✔ C1-determinism  pages-compare-regions-additive
+  ✔ C3-detection  detect-figma-missing-nested-instance
+review-card-avatar-exclusivity-is-convention-not-schema: initialeVisible and photo gate independently (separate {cond ? (...) : null} per part, no cross-reference) — both true renders BOTH avatars; the exclusion stays a documented convention, never a schema constraint
+  ✔ C3-detection  review-card-avatar-exclusivity-is-convention-not-schema
+google-reviews-repeat-renders-sample-on-static-surfaces: React maps the live "avis" array (avis?.map, undefined renders nothing); html + react-inline both render the contract's 5-record OBSERVED sample verbatim, never the real runtime content — the canvas leg of the same claim is proven by scripts/deterministic-roundtrip.mjs (5 nested instances in groupeCartes)
+  ✔ C3-detection  google-reviews-repeat-renders-sample-on-static-surfaces
+img-part-canvas-placeholder-named: avatarPhoto (element:"img") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas, and the component caption carries the † footnote — the A5 gap (real photo pixel = out-of-contract override) stays a NAMED limit, never a silent one
+  ✔ C3-detection  img-part-canvas-placeholder-named
+member-picture-fixed-circle-and-named-a5-placeholder: rejects a 0×0 root; both 364×364 circular inset layers stack with normal opacity 1→0 and a 300ms transition; unavailable IMAGE pixels render only as the generic technical A5 placeholder, explicitly named (not a Piqueray colour or pixel-parity claim)
+  ✔ C2-refusal  member-picture-fixed-circle-and-named-a5-placeholder
+  ✔ C3-detection  organism-audit-case-reference-provenance
+  ✔ C2-refusal  triage-six-value-vocabulary
+  ✔ C2-refusal  measure-gate-fail-closed-policy
+  ✔ C2-refusal  geometry-gate-policy-check
+  ✔ C2-refusal  gradient-literal-channel
+  ✔ C1-determinism  react-box-model-border-box
+  ✔ C1-determinism  emit-html-select-option-text
+  ✔ C3-detection  icon-tokens-by-prop-svg-mirror
+  ✔ C3-detection  preservation-013-clobber-detected
+
+184/184 evals passed — evals/results.json
+48 legacy cases quarantined (not run) — Piqueray has no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-block added nested instances + repeat collections). See evals/REMOVED-CASES.md.
+### => OK
+
+### $ npm run plugin:check
+
+> ds-contracts-poc@0.7.0 plugin:check
+> node scripts/plugin-engine-check.mjs
+
+✔ engine bundle fresh vs committed receipt: 568791 bytes minified, 108 inputs, hash 3d1ac3850e3d…
+✔ headless generate: AccordionRow v1.1.0 synced into the mock file (COMPONENT_SET, node 254:255); stored specHash equals the engine mirror (2693027494)
+✔ bundle order: ds.carousel-controls plans 2 component scripts, dependencies first (ds.button → ds.carousel-controls)
+⏭ SKIPPED: the update report's "new — will be created" row and the "N new" count (needs a SECOND contract, so the bundle can carry one the canvas has never seen — Piqueray ships one component). Restore when Piqueray gains a second component.
+✔ update report (before anything applies):
+    • AccordionRow 1.1.0 → 9.9.9: +prop Experimental.
+    1 to update · 0 new · 0 unchanged.
+    Nothing has been applied — review the list, then Apply.
+    • AccordionRow 1.1.0: unchanged — will be skipped.
+✔ apply: AccordionRow amended in place (same node 254:255), +prop Experimental, markers updated to v9.9.9
+✔ propose: mock canvas dumped through the embedded dump script → proposal + bounded diff; a base missing "taille" surfaces "+prop taille" by name (the canvas spelling of "Taille")
+✔ PR dry-run plan: 4 named REST steps, deterministic branch, session-only token note — zero network
+⏭ SKIPPED: packaged-engine composition (needs a contract with nested component instances — Piqueray ships a flat Button). Restore when Piqueray gains a composite.
+⏭ SKIPPED: the reverse journey for that composite (design→code recovery of both roots, the composed INSTANCE and the repeated collection — same missing shape). Restore when Piqueray gains a composite.
+plugin-engine-check: all flows green (bundle, generate, update-report, apply, propose-diff, pr-dry-run) — 3 flow(s) SKIPPED and named above; see evals/REMOVED-CASES.md
+### => OK
+
+### $ npx tsx scripts/deterministic-roundtrip.mjs
+
+DETERMINISTIC ROUND-TRIP — ds.google-reviews@1.0.0 (GoogleReviews)
+
+1. contract → canvas  (the plugin engine, run twice)
+  ✔ built GoogleReviews both times; node trees byte-identical (1447 bytes fingerprint) — DETERMINISTIC
+  ✔ the repeat+component produced 5 nested instances in "groupeCartes" — dependency depth exercised
+
+2. canvas → contract  (dump attempt; core proof: step 1 byte-identical ×2)
+  ✔ proposeDiff recovered a contract — element: <div>, props: 5
+  ✔ round-trip closes: the anatomy that went to canvas came back (byte-identical ×2 proves the loop)
+
+3. contract → code  (emit React from the contract)
+  ✔ emitted 7585B of React from the same contract — <section> host, repeat+component, text props typed
+
+✔ THE FULL LOOP RAN WITH ZERO AI — pure deterministic functions (the same engine the plugin runs):
+    contract → canvas → contract → code, byte-reproducible.
+  The AI built this tooling; it is NEVER in the conversion. That is the guarantee.
+  ✅ Depth restored (spec 006): repeat+component (5 nested instances) is now exercised.
+
+### => OK
+
+### $ node scripts/core-browser-check.mjs
+✔ core barrel bundles for platform=browser: 11.89 MB raw, 5.21 MB minified
+✔ all 4 emitters ran in a VM with no node globals (AccordionRow): react=3469+4178+2301B, html=3577+4676B, react-inline=7051B, figma-script=53498B
+### => OK
+
+### $ npx tsc --noEmit
+### => OK
+
+### $ npx tsc -p tsconfig.build.json
+### => OK
+
+### $ npm run measure:gate
+
+> ds-contracts-poc@0.7.0 measure:gate
+> tsx extract/figma/measure-gate/run.ts
+
+measure:gate — verdict: PASS (exit 0)
+  contracts 34 · measured lines 52 · divergent 42 · deferred work 2
+  by cause: contract-geometry=0 · image-boundary=11 · rendering=24 · engine=2 · instrument=1 · figma-source=2
+  browser: 151.0.7922.34
+✓ all four conditions held — zero refusals
+### => OK
+
+### $ npm run geometry:gate
+
+> ds-contracts-poc@0.7.0 geometry:gate
+> tsx extract/geometry-gate/run.ts
+
+geometry:gate — verdict: PASS (exit 0)
+Comptage (en direct, jamais figé) :
+  contracts 34 · geometric entries 2 · governed refs 219 · named literals 2 · invisible 0
+✓ zero invisible literal, zero registry refusal
+### => OK
+

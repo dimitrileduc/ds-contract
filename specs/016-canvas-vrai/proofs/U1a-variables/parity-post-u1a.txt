@@ -1,0 +1,23 @@
+
+> ds-contracts-poc@0.7.0 parity
+> tsx parity/diff.ts
+
+⚠ Figma naming bridged (the file does not use this repo's collection/mode names):
+    · mode "Dark" does not exist in collection "Semantic" — read from its only mode, "Light"
+
+✔ No new drift — 3 acknowledged finding(s) remain in parity/baseline.json.
+
+  — acknowledged (baselined, does not fail the check) —
+
+  [figma BEHIND] Carte.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [figma BEHIND] SectionHeader.Bouton
+    Contract composes ds.button but no Bouton instance exists inside the Figma component
+    → Re-run the component sync script
+
+  [icons AHEAD] assets/icons/close.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+

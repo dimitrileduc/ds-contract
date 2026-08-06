@@ -1,0 +1,140 @@
+
+> ds-contracts-poc@0.7.0 extract:figma:visual:summary
+> tsx extract/figma/visual-parity/run.ts --summary
+
+
+── Button (Piqueray) (button) ──
+  contract ds.button; repo tokens only
+  figma set "Bouton" v2381581871281042338: 7 variant(s); fonts: Montserrat
+  ✗ Style=Default: gate/raw 2.70% | masked diagnostic 0.66% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Style=Orange: gate/raw 2.70% | masked diagnostic 0.66% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Style=Blanc: gate/raw 2.26% | masked diagnostic 0.00% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates; diff localized middle-center (306×25px) [cause: rendering]
+  · Style=Outline blanc: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 30.83% | surface light (threshold 2% — within) — near-identical
+  · Style=Link: gate/raw 0.99% | masked diagnostic — | mask coverage 100.00% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+  ✗ Style=Outline noir: gate/raw 3.14% | masked diagnostic 1.27% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  · Style=Icône seule: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 0.00% | surface light (threshold 2% — within) — near-identical
+
+── Checkbox (Piqueray) (checkbox) ──
+  contract ds.checkbox; repo tokens only
+  figma set "Checkbox" v2381581871281042338: 2 variant(s); fonts: (none)
+  · Coche=Non: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 0.00% | surface light (threshold 2% — within) — near-identical
+  ✗ Coche=Oui: gate/raw 2.56% | masked diagnostic 2.56% | mask coverage 0.00% | surface light (threshold 2% — OVER) — diffuse delta — see triptych [cause: rendering]
+
+── ReviewCard (Piqueray) (review-card) ──
+  contract ds.review-card; repo tokens only
+  figma set "Review-card" v2381581871281042338: 1 variant(s); fonts: Inter, Montserrat
+  · Review-card: gate/raw 1.68% | masked diagnostic 0.00% | mask coverage 17.48% | surface light (threshold 2% — within) — text raster/family delta dominates [cause: rendering]
+
+── GoogleReviews (Piqueray) (google-reviews) ──
+  contract ds.google-reviews; repo tokens only
+  figma set "Avis Google" v2381581871281042338: 1 variant(s); fonts: Inter, Montserrat
+  ✗ Avis Google: gate/raw 3.32% | masked diagnostic 1.51% | mask coverage 13.89% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+
+── Input (Piqueray) (input) ──
+  contract ds.input; repo tokens only
+  figma set "Input" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  · Input: gate/raw 0.17% | masked diagnostic 0.17% | mask coverage 0.00% | surface light (threshold 2% — within) — diff localized middle-left (179×20px) [cause: rendering]
+
+── Textarea (Piqueray) (textarea) ──
+  contract ds.textarea; repo tokens only
+  figma set "Textarea" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  · Textarea: gate/raw 0.06% | masked diagnostic 0.00% | mask coverage 6.41% | surface light (threshold 2% — within) — diff localized top-left (179×20px) [cause: rendering]
+
+── Select (Piqueray) (select) ──
+  contract ds.select; repo tokens only
+  figma set "Select" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  · Select: gate/raw 0.17% | masked diagnostic 0.17% | mask coverage 0.00% | surface light (threshold 2% — within) — diff localized middle-left (179×20px) [cause: rendering]
+
+── Button with icons (Piqueray, both placements) (button-with-icons) ──
+  contract ds.button; repo tokens only
+  figma set "Bouton" v2381581871281042338: 7 variant(s); fonts: Montserrat
+  ✗ Property 1=Outilne noir: SKIPPED — axis "Property 1=Outilne noir" has no contract binding (props: Style, Libelle, Icone gauche, Icone droite, Glyphe gauche, Glyphe droite)
+
+── MemberPicture (Piqueray) (member-picture) ──
+  contract ds.member-picture; repo tokens only
+  figma set "MemberPicture" v2381581871281042338: 2 variant(s); fonts: (none)
+  ✗ Etat=Defaut: gate/raw 64.48% | masked diagnostic 64.48% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #d9d9d9 vs figma #aba198) [cause: image-boundary]
+  ✗ Etat=Survol: gate/raw 58.33% | masked diagnostic 58.33% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #d9d9d9 vs figma #6d6d6c) [cause: image-boundary]
+
+── PiquerayLogo (Piqueray) (piqueray-logo) ──
+  contract ds.piqueray-logo; repo tokens only
+  figma set "PiquerayLogo" v2381581871281042338: 2 variant(s); fonts: (none)
+  ✗ Couleur=Default: render refused — Refused — 2 contract violation(s):   - ds.piqueray-logo: part "Marque" needs vector asset "assets/vectors/piqueray-logo-marque.svg" which does not exist
+  ✗ Couleur=Blanc: render refused — Refused — 2 contract violation(s):   - ds.piqueray-logo: part "Marque" needs vector asset "assets/vectors/piqueray-logo-marque.svg" which does not exist
+
+── AccordionRow (Piqueray) (accordion-row) ──
+  contract ds.accordion-row; repo tokens only
+  figma set "AccordionRow" v2381581871281042338: 4 variant(s); fonts: Montserrat
+  · Taille=Grand, Etat=Ferme: gate/raw 0.13% | masked diagnostic 0.00% | mask coverage 2.78% | surface light (threshold 2% — within) — diff localized middle-left (182×39px) [cause: rendering]
+  · Taille=Petit, Etat=Ferme: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 2.52% | surface light (threshold 2% — within) — near-identical [cause: rendering]
+  · Taille=Grand, Etat=Ouvert: gate/raw 0.08% | masked diagnostic 0.00% | mask coverage 2.26% | surface light (threshold 2% — within) — diff localized middle-left (182×144px) [cause: rendering]
+  · Taille=Petit, Etat=Ouvert: gate/raw 0.02% | masked diagnostic 0.00% | mask coverage 2.43% | surface light (threshold 2% — within) — near-identical [cause: rendering]
+
+── Avantage (Piqueray) (avantage) ──
+  contract ds.avantage; repo tokens only
+  figma set "Avantage" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  · Avantage: gate/raw 1.81% | masked diagnostic 0.00% | mask coverage 54.59% | surface light (threshold 2% — within) — text raster/family delta dominates [cause: rendering]
+
+── CarouselControls (Piqueray) (carousel-controls) ──
+  contract ds.carousel-controls; repo tokens only
+  figma set "CarouselControls" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  · CarouselControls: gate/raw 0.41% | masked diagnostic 0.41% | mask coverage 0.00% | surface light (threshold 2% — within) — diff localized middle-right (72×104px) [cause: rendering]
+
+── Carte (Piqueray) (carte) ──
+  contract ds.carte; repo tokens only
+  figma set "Carte" v2381581871281042338: 2 variant(s); fonts: Montserrat
+  ✗ Disposition=Reassurance: gate/raw 64.14% | masked diagnostic 73.45% | mask coverage 13.27% | surface light (threshold 2% — OVER) — overall ink differs (ours #ababad vs figma #845f61) [cause: image-boundary]
+  ✗ Disposition=Categorie: gate/raw 56.56% | masked diagnostic 62.20% | mask coverage 9.92% | surface light (threshold 2% — OVER) — overall ink differs (ours #4f5154 vs figma #767672) [cause: image-boundary]
+
+── Copyright (Piqueray) (copyright) ──
+  contract ds.copyright; repo tokens only
+  figma set "Copyright" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  · Copyright: gate/raw 0.00% | masked diagnostic — | mask coverage 100.00% | surface light (threshold 2% — within) — near-identical
+
+── Field (Piqueray) (field) ──
+  contract ds.field; repo tokens only
+  figma set "Field" v2381581871281042338: 2 variant(s); fonts: Montserrat
+  · Etat=Normal: gate/raw 1.84% | masked diagnostic 1.51% | mask coverage 8.89% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: engine]
+  ✗ Etat=Erreur: gate/raw 2.20% | masked diagnostic 1.24% | mask coverage 15.18% | surface light (threshold 2% — OVER) — diffuse delta — see triptych [cause: engine]
+
+── FooterColumn (Piqueray) (footer-column) ──
+  contract ds.footer-column; repo tokens only
+  figma set "FooterColumn" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  ✗ FooterColumn: gate/raw 2.77% | masked diagnostic 0.09% | mask coverage 71.86% | surface light (threshold 2% — OVER) — size ours 322×182 vs figma 338×181 (Δ-16, Δ1 device px); text raster/family delta dominates; diff localized top-left (196×37px) [cause: rendering]
+
+── MemberCard (Piqueray) (member-card) ──
+  contract ds.member-card; repo tokens only
+  figma set "MemberCard" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  ✗ MemberCard: gate/raw 52.52% | masked diagnostic 56.86% | mask coverage 7.74% | surface light (threshold 2% — OVER) — overall ink differs (ours #d7d6d6 vs figma #aa9f97) [cause: image-boundary]
+
+── NavItem (Piqueray) (nav-item) ──
+  contract ds.nav-item; repo tokens only
+  figma set "NavItem" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  · NavItem: gate/raw 1.25% | masked diagnostic 0.25% | mask coverage 91.32% | surface dark (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+
+── ProductCard (Piqueray) (product-card) ──
+  contract ds.product-card; repo tokens only
+  figma set "ProductCard" v2381581871281042338: 1 variant(s); fonts: Montserrat
+  ✗ ProductCard: gate/raw 15.64% | masked diagnostic 16.51% | mask coverage 7.73% | surface light (threshold 2% — OVER) — overall ink differs (ours #787e85 vs figma #606866) [cause: image-boundary]
+
+── Realisation (Piqueray) (realisation) ──
+  contract ds.realisation; repo tokens only
+  figma set "Realisation" v2381581871281042338: 2 variant(s); fonts: (none)
+  ✗ Taille=Grand: gate/raw 99.97% | masked diagnostic 99.97% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #bfc0c0 vs figma #e0e0e0) [cause: image-boundary]
+  ✗ Taille=Petit: gate/raw 99.86% | masked diagnostic 99.86% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #bdc1c0 vs figma #e0e0e0) [cause: image-boundary]
+
+── SectionHeader (Piqueray) (section-header) ──
+  contract ds.section-header; repo tokens only
+  figma set "SectionHeader" v2381581871281042338: 2 variant(s); fonts: Montserrat
+  · Disposition=Standard: gate/raw 0.90% | masked diagnostic 0.00% | mask coverage 31.21% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+  ✗ Disposition=Avec CTA: gate/raw 6.08% | masked diagnostic 0.99% | mask coverage 41.10% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+
+── Tab (Piqueray) (tab) ──
+  contract ds.tab; repo tokens only
+  figma set "Tab" v2381581871281042338: 2 variant(s); fonts: Montserrat
+  ✗ Etat=Defaut: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Etat=Selectionne: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+
+── summary vs baseline 2026-08-05T08:35:15.110Z (0ecb129), ε 0.1pp ──
+
+SUMMARY GATE: all rows within ±0.1pp of baseline.json (2026-08-05T14:24:13.074Z)

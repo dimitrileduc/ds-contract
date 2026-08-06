@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.presentation",
   "name": "Presentation",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -92,24 +92,35 @@
         "justify": "space-between"
       },
       "parts": {
-        "SectionHeader": {
-          "component": {
-            "id": "ds.section-header",
-            "props": {
-              "titre": [
-                {
-                  "text": "Piqueray, ",
-                  "strong": true
-                },
-                {
-                  "text": "une histoire de famille "
+        "colGauche": {
+          "description": "Colonne gauche de la grille (016) : une instance composée ne peut pas être restylée par le parent — la largeur d'origine (628, le titre wrappe en 2 lignes) vit sur ce wrapper structurel.",
+          "layout": {
+            "direction": "column"
+          },
+          "tokens": {
+            "width": "{size.presentation.col-gauche}"
+          },
+          "parts": {
+            "SectionHeader": {
+              "component": {
+                "id": "ds.section-header",
+                "props": {
+                  "titre": [
+                    {
+                      "text": "Piqueray, ",
+                      "strong": true
+                    },
+                    {
+                      "text": "une histoire de famille "
+                    }
+                  ],
+                  "accroche": "Plus de 50 ans d’expérience",
+                  "disposition": "standard",
+                  "accroche2": false,
+                  "emphase": "moyen",
+                  "alignement": "gauche"
                 }
-              ],
-              "accroche": "Plus de 50 ans d’expérience",
-              "disposition": "standard",
-              "accroche2": false,
-              "emphase": "moyen",
-              "alignement": "gauche"
+              }
             }
           }
         },

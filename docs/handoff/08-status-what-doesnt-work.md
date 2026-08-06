@@ -3,7 +3,7 @@ title: "Status — what does NOT work (failures, frontier, blind spots)"
 doc_id: 08-status-what-doesnt-work
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-07-21
+last_updated: 2026-08-06
 reading_order: 8
 prerequisites: [07-status-what-works]
 related: [10-history, 11-roadmap]
@@ -53,6 +53,12 @@ component-property text on nodes. **Every time a bug is found live, the fix must
 include teaching the mock to catch it headlessly** — otherwise the gates give
 false confidence. This is a permanent discipline, not a one-off.
 
+*The discipline has receipts beyond the demo era (update 2026-08-06, spec 016):
+when the live canvas showed a height-0 separator landing at 2px, the mock was
+taught Figma's INSIDE-stroke height clamp — at `resize` AND at weight pose —
+and `evals/fixtures/zero-height-line-part-check.ts` now fails headlessly on
+that class forever.*
+
 ## 3. A real emitter bug was found ONLY on the live canvas (now fixed, but note the pattern)
 
 Stroke-based icons (`<svg fill="none" stroke="currentColor">`, e.g. the Button's
@@ -74,6 +80,17 @@ that payload (a ~22KB read cap compounds it). Sandbox `fetch` is blocked. This i
 run the plugin (or a stable Desktop Bridge for inspection). Do not burn time
 trying to shuttle the emitter through an MCP; it is a dead end (proven
 repeatedly).
+
+*Partially expired (update 2026-08-06, spec 016): the **generated per-component
+scripts** (`figma-sync/NN-*.js`) were delivered through the desktop bridge at
+campaign scale, by serving them from a local HTTP server and evaluating them via
+`figma_execute` — the async IIFE envelope must be reconstituted around the
+served source (`specs/016-canvas-vrai/decisions.md` O-5;
+`specs/016-canvas-vrai/tools/serve-scripts.mjs`; 21/22 masters regenerated and
+bound through this route, then the last repaired — O-10, O-12). The per-call
+size caps and statelessness stand, and the full ~288KB plugin build remains
+human-run — what is dead is shuttling the emitter itself, not bridge delivery
+of its generated output.*
 
 ## 5. The figma-console Desktop Bridge is unstable — ENVIRONMENTAL
 

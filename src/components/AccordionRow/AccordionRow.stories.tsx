@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.1.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.2.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';

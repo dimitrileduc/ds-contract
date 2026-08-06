@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/faq.contract.json (ds.faq v1.2.0)
+ * Source of truth: contracts/faq.contract.json (ds.faq v1.3.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -28,7 +28,7 @@ const meta = {
     ligne3: {
       control: 'boolean',
       description:
-        'Extracted from Figma "Ligne 3" BOOLEAN property (added by sync pass). LIMITE NOMMÉE : côté Figma cette propriété pilote la visibilité de la SEULE 3e instance (2104:2911), et la géométrie recalcule 448 ↔ 384px. Côté contrat les trois lignes naissent d\'un `repeat` : `visibleWhen` s\'applique à la part, donc à TOUTES les lignes répétées, jamais à la dernière seule. Le vocabulaire n\'a pas de visibilité par index dans un repeat ; poser `visibleWhen: { prop: "ligne3" }` ferait disparaître les trois lignes là où Figma en garde deux. Le fait est donc EXPOSÉ mais non PROJETÉ, et nommé plutôt que contourné par un modèle faux.',
+        'Extracted from Figma "Ligne 3" BOOLEAN property (added by sync pass). Côté Figma cette propriété pilote la visibilité de la SEULE 3e instance, et la géométrie recalcule 448 ↔ 384px. LIMITE LEVÉE en 1.3.0 (016, journal decisions.md O-15) : un item de `repeat` ne peut toujours pas porter de visibleWhen individuel (le vocabulaire n\'a pas de visibilité par index — poser `visibleWhen` sur la part répétée ferait disparaître les trois lignes là où Figma en garde deux), mais la 3e rangée est sortie du repeat en part composée séparée `AccordionRow3`, qui porte `visibleWhen: { prop: "ligne3" }` : le fait est désormais PROJETÉ (mesuré au canvas, O-15 : portes-entrée 481→409, la prop agit).',
     },
   },
   args: {
@@ -42,7 +42,6 @@ const meta = {
           'Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.',
         titre: 'Quels types de bardages peuvent être intégrés sur les portes ?',
       },
-      { contenu: 'Réponse', titre: "Assurez-vous la maintenance après l'installation ?" },
     ],
     ligne3: true,
   },

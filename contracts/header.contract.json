@@ -104,7 +104,7 @@
                         "chevron": true
                       },
                       {
-                        "libelle": "Motorisation",
+                        "libelle": "Dépannage/SAV",
                         "href": "/motorisation",
                         "chevron": false
                       },
@@ -121,6 +121,9 @@
                     "id": "ds.button"
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.32}"
               }
             },
             "iconsNav": {
@@ -132,28 +135,39 @@
                 "Search": {
                   "icon": {
                     "asset": "search",
-                    "size": 32
+                    "size": 24
                   }
                 },
                 "User": {
                   "icon": {
                     "asset": "user",
-                    "size": 32
+                    "size": 24
                   }
                 },
                 "Cart": {
                   "icon": {
                     "asset": "cart",
-                    "size": 32
+                    "size": 24
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{space.16}"
               }
             }
+          },
+          "tokens": {
+            "gap": "{space.64}"
           }
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}"
+        "font-family": "{font.family.montserrat}",
+        "width": "{size.header.root}",
+        "padding-left": "{space.89}",
+        "padding-right": "{space.89}",
+        "padding-top": "{space.16}",
+        "padding-bottom": "{space.16}"
       }
     }
   },

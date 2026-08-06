@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.1.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -42,14 +42,16 @@ export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(functi
   const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} data-bouton={bouton || undefined} {...rest}>
-      <SectionHeader
-        titre={[{ text: 'Piqueray, ', strong: true }, { text: 'une histoire de famille ' }]}
-        accroche="Plus de 50 ans d’expérience"
-        disposition="standard"
-        accroche2={false}
-        emphase="moyen"
-        alignement="gauche"
-      />
+      <div className={styles.colGauche}>
+        <SectionHeader
+          titre={[{ text: 'Piqueray, ', strong: true }, { text: 'une histoire de famille ' }]}
+          accroche="Plus de 50 ans d’expérience"
+          disposition="standard"
+          accroche2={false}
+          emphase="moyen"
+          alignement="gauche"
+        />
+      </div>
       <div className={styles.wrapper}>
         <span className={styles.Texte}>
           {texte.map((segment, index) =>

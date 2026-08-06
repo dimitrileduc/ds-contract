@@ -24,9 +24,9 @@ const meta = {
   },
   args: {
     items: [
-      { texte: 'Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be', titre: 'Contact' },
-      { texte: 'Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00', titre: 'Horaires' },
-      { texte: 'Rue Alfred Drèze 7,  4860 Pepinster', titre: 'Adresse' },
+      { texte: 'Rue Alfred Drèze 7,  4860 Pepinster', titre: 'Adresse' },
+      { texte: 'Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00', titre: 'Horaires' },
+      { texte: 'Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be', titre: 'Contact' },
     ],
   },
 } satisfies Meta<typeof Footer>;

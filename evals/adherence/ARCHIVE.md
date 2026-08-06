@@ -85,7 +85,7 @@ step 1 needs a human to drive a model.
    `context/rules.json` still name things that do not exist here:
    `layout-via-primitives` ("compose with Stack and Inline"), `avatars-are-people`,
    `one-primary-action` (Piqueray's Button has no `primary` variant — its values
-   are default/orange/blanc/outlineBlanc/link/outilneNoir), and
+   are default/orange/blanc/outlineBlanc/link/outlineNoir), and
    `no-raw-equivalents` (forbids `table`, `input`, `select`, for which no
    component is offered). `context/memory.md` likewise still describes
    "data-dense B2B product surfaces". A judge enforcing rules about absent

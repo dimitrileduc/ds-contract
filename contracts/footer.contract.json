@@ -105,16 +105,16 @@
                 "itemsProp": "items",
                 "sample": [
                   {
-                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
-                    "titre": "Contact"
+                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
+                    "titre": "Adresse"
                   },
                   {
-                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
+                    "texte": "Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00",
                     "titre": "Horaires"
                   },
                   {
-                    "texte": "Rue Alfred Drèze 7,  4860 Pepinster",
-                    "titre": "Adresse"
+                    "texte": "Tél : +32 (0)87 46 32 66\r  Email: info@piqueray.be",
+                    "titre": "Contact"
                   }
                 ]
               }
@@ -177,14 +177,12 @@
           }
         },
         "Separator": {
-          "layout": {
-            "grow": true
-          },
           "tokens": {
-            "border-color": "{color.blanc}"
+            "border-color": "{color.blanc}",
+            "height": "{space.0}"
           },
           "literals": {
-            "border-width": "1px"
+            "border-top-width": "1px"
           }
         },
         "spacer2": {

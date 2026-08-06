@@ -1,6 +1,6 @@
 {
-  "passed": 184,
-  "total": 184,
+  "passed": 193,
+  "total": 193,
   "quarantined": 48,
   "results": [
     {
@@ -11,6 +11,51 @@
     {
       "id": "baseline-parity-clean",
       "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "figma-font-family-from-token",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "figma-border-color-without-width",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "absolute-part-out-of-flow",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "icon-size-tokens-by-prop",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "dep-resolved-by-marker",
+      "claim": "C3-detection",
+      "pass": true
+    },
+    {
+      "id": "composed-child-slot-content",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "zero-height-line-part",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "text-prop-and-visible-refs-coexist",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "text-fills-constrained-parent",
+      "claim": "C1-determinism",
       "pass": true
     },
     {
