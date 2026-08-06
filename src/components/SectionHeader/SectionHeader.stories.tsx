@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/section-header.contract.json (ds.section-header v2.0.0)
+ * Source of truth: contracts/section-header.contract.json (ds.section-header v2.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';

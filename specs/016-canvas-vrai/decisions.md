@@ -340,3 +340,56 @@ devait re-juger : il n'en reste que **2** (`Carte.Bouton`, `SectionHeader.Bouton
 Le cliché frais compte aussi **58 sets** au lieu de 57 — `Style=Icône seule`, déjà présent
 au relevé T004, donc antérieur au lot. Son nom (graphie de *variante* sur un composant
 autonome) est un signe de source à vérifier, **hors périmètre** des 10 défauts de 016.
+
+## O-12 — 2026-08-06 : la boucle se referme — sept classes de défauts moteur closes, fixtures à l'appui
+
+**Contexte.** Après les restaurations owner (footer U+2028, formulaire, header 24px), la mesure
+FINAL4/5 contre `00-REFERENCE-AVANT-CHANTIER` a montré des écarts par page (−177 à +36.5) dont
+l'attribution exigeait la source exacte. La clé : **le dump REST versionné**
+(`version=2384251202054787848`, libellé `016/U1a-variables/avant`) donne l'état pré-chantier
+INTÉGRAL — géométrie par section, componentProperties par instance, styles par node. L'attribution
+est devenue arithmétique (chaque Δ de page = somme exacte de Δ de sections nommées).
+
+**Classes closes aujourd'hui (moteur, chacune : mesure vive → fixture → fix → re-amend → relevé) :**
+
+1. **`component.slots`** (schéma v20, additif) — le contenu du slot d'un enfant composé est
+   désormais un fait de CONTRAT (Formulaire row5 → textarea, h 643→723=origine). L'override
+   INSTANCE_SWAP manuel dans un master gouverné était effacé à chaque rebuild (famille D7).
+   Fixture : `composed-child-slot-content-check.ts`. React : rend le slotté en children JSX.
+2. **Séparateur hauteur 0** — un frame ne peut pas porter un trait INSIDE sans occuper sa hauteur
+   (clamp Figma mesuré : 0→2). Règle nommée : height 0 + strokeSides = LIGNE → strokeAlign CENTER
+   + re-resize après pose des poids. Footer 461→459=origine. Le mock a appris le clamp INSIDE
+   (resize ET pose de poids). Fixture : `zero-height-line-part-check.ts`.
+3. **`strokesIncludedInLayout` fantôme** — hérité d'un node amend-reused, jamais exprimé par notre
+   grammaire → normalisé à false à la pose des strokeSides (même classe que strokeClear).
+4. **Écrasement des `componentPropertyReferences`** — une part à la fois content-prop (TEXT) et
+   visible-toggled (BOOLEAN) perdait sa référence characters (la 2e passe écrasait la 1re).
+   Conséquence systémique : TOUS les overrides TEXT d'instance (encore portés au niveau prop !)
+   étaient muets. Merge sur les 12 sites → le témoin 2094:2468 s'est rallumé seul
+   (« Nos avis Google vérifiés »). Fixture : `text-prop-and-visible-refs-coexist-check.ts`.
+5. **INSTANCE_SWAP par nom** — setInstanceProps passait « ChevronLeft » (nom) à une prop swap qui
+   exige un ID → « Property value is incompatible ». Résolution nom→id au runtime (un nom n'a
+   jamais de `:`). CarouselControls:amend ✓ (le dernier master cassé).
+6. **Gain d'axe VARIANT** — généralisation du rename State : un SET qui gagne une dimension
+   (SectionHeader +Emphase+Alignement) complète les noms de ses variantes existantes aux défauts
+   du spec et fusionne avec la jumelle fraîche ; ET le bloc tourne AVANT la première lecture de
+   componentPropertyDefinitions (sur un SET en erreur, cette lecture jette — l'amend ne pouvait
+   plus se réparer lui-même). SET 18→16 variantes, sain.
+7. **width sur bloc texte = wrap** — le wrapper était FIXED mais le TEXT restait WIDTH_AND_HEIGHT
+   et débordait en 1 ligne (Devis.Titre 1498×50 vs origine 900×100). Fix : TEXT en
+   textAutoResize HEIGHT + FILL. Devis 328→378=origine.
+
+**Élévations de contrat :** `section-header` v2.1.0 — `emphase` et `alignement` passent de
+kind:NONE (code-only) à VARIANT (16 variantes générées mécaniquement). C'était LA typo signalée
+par l'owner (« la régression c'est la typo ») : le TexteSEO composait `emphase: compact` que le
+canvas ne savait pas recevoir. TexteSEO 403→383=origine (titre 24px), master par master.
+
+**Leçon écrite au registre : « TEXT survit » ne vaut que pour l'amend-in-place.** Un REBUILD de
+variantes recrée les nodes internes : tout override d'instance en aval (TEXT compris) devient
+orphelin. Les overrides restaient PORTÉS par les props d'instance — c'est le merge des références
+(classe 4) qui les a ressuscités en masse, pas un repose manuel.
+
+**Restes connus à cette heure :** repose des états/textes par page encore divergents (plan de
+gestes diff-only sourcé au dump versionné : `proofs/repose/gestes.json`), chevrons de maquette
+(swaps ids relevés à l'origine), Realisations −4 (DW-002 assumé : cartes 363,5), Presentation +8
+(apparu à la re-vague, cause à relever), portes-de-garage diff pixel à hauteur égale (agent).

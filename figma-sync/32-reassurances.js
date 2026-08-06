@@ -506,7 +506,19 @@ function setInstanceProps(inst, props) {
   const resolved = {};
   for (const [wanted, value] of Object.entries(props)) {
     const key = available.find((k) => k === wanted || k.startsWith(wanted + '#'));
-    if (key) resolved[key] = value;
+    if (!key) continue;
+    let v = value;
+    // 016: an INSTANCE_SWAP property takes a COMPONENT ID — contract enums map
+    // to component NAMES at compile time (CarouselControls passed "ChevronLeft"
+    // and Figma refused: "Property value is incompatible with component
+    // property type"). Resolve name -> id here; a name never contains ':',
+    // a node id always does.
+    const def = inst.componentProperties[key];
+    if (def && def.type === 'INSTANCE_SWAP' && typeof v === 'string' && v.indexOf(':') < 0) {
+      const target = findComponentByName(v);
+      v = (target.type === 'COMPONENT_SET' ? target.defaultVariant : target).id;
+    }
+    resolved[key] = v;
   }
   if (Object.keys(resolved).length > 0) inst.setProperties(resolved);
 }
@@ -642,6 +654,16 @@ async function buildNode(spec, registry) {
         wrap.resize(spec.fixedWidth ? spec.fixedWidth.px : wrap.width, spec.fixedHeight ? spec.fixedHeight.px : wrap.height);
         if (spec.fixedWidth) { wrap.primaryAxisSizingMode = 'FIXED'; wrap.setBoundVariable('width', need(spec.fixedWidth.varName)); }
         if (spec.fixedHeight) { wrap.counterAxisSizingMode = 'FIXED'; if (spec.fixedHeight.varName) wrap.setBoundVariable('height', need(spec.fixedHeight.varName)); else wrap.resize(wrap.width, spec.fixedHeight.px); }
+        // 016, CSS semantics: width on a text block means the TEXT WRAPS at
+        // that width. The wrapper was fixed but the TEXT stayed auto-width
+        // (WIDTH_AND_HEIGHT) and overflowed in one line — measured live on
+        // Devis.Titre: origin 900x100 (two lines), emitted TEXT 1498x50.
+        if (spec.fixedWidth && spec.characters) {
+          try {
+            node.textAutoResize = 'HEIGHT';
+            node.layoutSizingHorizontal = 'FILL';
+          } catch (e) { /* older figma: leave auto */ }
+        }
       }
       wrap.name = spec.name;
       node = wrap;
@@ -651,6 +673,29 @@ async function buildNode(spec, registry) {
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
+    // v20 (016): contract-carried slot content on the composed instance — the
+    // swap rides the child's INSTANCE_SWAP property (identity by marker, never
+    // layer name), then the slotted instance's own props are set on the nested
+    // instance the swap produced. Regenerated on every rebuild, by design.
+    for (const ds of spec.depSlots || []) {
+      const target = findComponentByName(ds.dep, ds.depId);
+      const slotMain = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
+      setInstanceProps(node, { [ds.property]: slotMain.id });
+      // marker for the mock-backed fixture only — REAL Figma nodes are sealed
+      // objects (assigning threw "object is not extensible" mid-amend, r11).
+      try { node._depSlotsApplied = true; } catch (e) { /* sealed on canvas */ }
+      if (ds.props && Object.keys(ds.props).length > 0) {
+        const nested = [];
+        for (const cand of (typeof node.findAll === 'function' ? node.findAll((n) => n.type === 'INSTANCE') : [])) {
+          const mc = typeof cand.getMainComponentAsync === 'function' ? await cand.getMainComponentAsync() : null;
+          if (mc && (mc.id === slotMain.id || (mc.parent && mc.parent.id === target.id))) nested.push(cand);
+        }
+        for (const inner of nested) setInstanceProps(inner, ds.props);
+        if (nested.length === 0) {
+          console.warn('[ds-contracts] depSlots: swapped ' + ds.property + ' to ' + ds.dep + ' but found no nested instance to receive its props (mock or detached child)');
+        }
+      }
+    }
   } else if (spec.type === 'slot') {
     node = figma.createFrame();
     applyFrameSpec(node, spec);
@@ -796,23 +841,10 @@ async function amendSet(set, C) {
   }
   const report = { name: C.setName, amended: true, nodeId: set.id, key: set.key,
     addedVariants: [], rebuiltVariants: 0, extraVariants: [], addedProps: [], editedDefaults: [] };
-  const defs = set.componentPropertyDefinitions;
-  const newKeys = {};
-  const defKey = (name) => newKeys[name] ||
-    Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      set.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
-
+  // 016: the variant-name reconciliation must run BEFORE the first
+  // componentPropertyDefinitions read — on a set already in the incomplete-
+  // names error state, THAT read throws and the repair below would never be
+  // reached (measured live: SectionHeader gaining Emphase+Alignement).
   // Sets gaining/losing the State preview axis reconcile by RENAME, not
   // duplication: an existing variant whose name matches an expected name
   // minus the ', State=Default' segment IS that variant (instances point at
@@ -834,9 +866,53 @@ async function amendSet(set, C) {
       report.renamedVariants = report.renamedVariants || [];
       report.renamedVariants.push(lost);
     } else {
-      report.extraVariants.push(ch.name);
+      // 016, generalization of the State-axis rename: a set gaining ANY new
+      // VARIANT dimension leaves its old variants named without the new
+      // segments ("Disposition=Standard" vs "Disposition=Standard, Emphase=…").
+      // Complete the old name with each missing expected axis at its spec
+      // default — the old node IS that variant (instances point at it). If
+      // this amend already built a twin under the completed name, the twin is
+      // ours and instance-free: remove it, keep the historied node. Measured
+      // live (SectionHeader +Emphase+Alignement): the incomplete pair put the
+      // whole set in "existing errors" and every composite read failed.
+      const segsOf = (nom) => new Map(nom.split(',').map((seg) => seg.trim().split('=')).filter((kv) => kv.length === 2).map(([k, val]) => [k, val]));
+      const parsed = segsOf(ch.name);
+      // the canonical default combo is EV[0] (row 0 / col 0 by construction):
+      // missing axes complete at THEIR spec default, in EV[0]'s axis order.
+      const defauts = segsOf(EV[0].name);
+      let completed = null;
+      if (parsed.size > 0 && parsed.size < defauts.size && [...parsed].every(([k]) => defauts.has(k))) {
+        completed = [...defauts.keys()].map((k) => k + '=' + (parsed.has(k) ? parsed.get(k) : defauts.get(k))).join(', ');
+        if (!expected.has(completed)) completed = null;
+      }
+      if (completed && completed !== ch.name) {
+        const twin = set.children.find((o) => o !== ch && o.name === completed);
+        if (twin) { twin.remove(); report.mergedVariants = report.mergedVariants || []; report.mergedVariants.push(completed); }
+        ch.name = completed;
+        report.renamedVariants = report.renamedVariants || [];
+        report.renamedVariants.push(completed);
+      } else {
+        report.extraVariants.push(ch.name);
+      }
     }
   }
+  const defs = set.componentPropertyDefinitions;
+  const newKeys = {};
+  const defKey = (name) => newKeys[name] ||
+    Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
+
+  for (const w of [
+    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
+    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
+  ]) {
+    const k = defKey(w.name);
+    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
+    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
+      set.editComponentProperty(k, { defaultValue: w.def });
+      report.editedDefaults.push(w.name);
+    }
+  }
+
   const existingByName = new Map(set.children.map((ch) => [ch.name, ch]));
 
   for (const v of EV) {
@@ -881,7 +957,7 @@ async function amendSet(set, C) {
         set.editComponentProperty(k, { defaultValue: t.default });
         report.editedDefaults.push(t.prop);
       }
-      t.node.componentPropertyReferences = { characters: k };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
     }
     for (const sl of registry.slots) {
       const util = await ensureSlotUtility();
@@ -897,17 +973,17 @@ async function amendSet(set, C) {
         newKeys[sl.spec.slotProperty] = k;
         report.addedProps.push(sl.spec.slotProperty);
       }
-      sl.instance.componentPropertyReferences = { mainComponent: k };
+      sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
       if (sl.spec.slotOptional) {
         let vk = defKey('Show ' + sl.spec.slotProperty);
         if (!vk) { vk = set.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-        sl.wrapper.componentPropertyReferences = { visible: vk };
+        sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
       }
     }
     for (const vis of registry.visibles) {
       const k = defKey(vis.prop);
       if (!k) continue;
-      vis.node.componentPropertyReferences = { visible: k };
+      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
       vis.node.visible = vis.default;
     }
   }
@@ -1017,7 +1093,7 @@ async function amendComponent(comp, C) {
       comp.editComponentProperty(k, { defaultValue: t.default });
       report.editedDefaults.push(t.prop);
     }
-    t.node.componentPropertyReferences = { characters: k };
+    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
   }
   for (const sl of registry.slots) {
     const util = await ensureSlotUtility();
@@ -1033,17 +1109,17 @@ async function amendComponent(comp, C) {
       newKeys[sl.spec.slotProperty] = k;
       report.addedProps.push(sl.spec.slotProperty);
     }
-    sl.instance.componentPropertyReferences = { mainComponent: k };
+    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
     if (sl.spec.slotOptional) {
       let vk = defKey('Show ' + sl.spec.slotProperty);
       if (!vk) { vk = comp.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-      sl.wrapper.componentPropertyReferences = { visible: vk };
+      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
     }
   }
   for (const vis of registry.visibles) {
     const k = defKey(vis.prop);
     if (!k) continue;
-    vis.node.componentPropertyReferences = { visible: k };
+    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
     vis.node.visible = vis.default;
   }
   comp.description = C.description;
@@ -1122,7 +1198,7 @@ async function syncOne(C) {
   for (const b of built) {
     for (const t of b.registry.texts) {
       const key = b.comp.addComponentProperty(t.prop, 'TEXT', t.default);
-      t.node.componentPropertyReferences = { characters: key };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };
     }
     for (const s of b.registry.slots) {
       const util = await ensureSlotUtility();
@@ -1140,10 +1216,10 @@ async function syncOne(C) {
         s.defaultId || util.id,
         preferred.length > 0 ? { preferredValues: preferred } : undefined,
       );
-      s.instance.componentPropertyReferences = { mainComponent: key };
+      s.instance.componentPropertyReferences = { ...(s.instance.componentPropertyReferences || {}), mainComponent: key };
       if (s.spec.slotOptional) {
         const vkey = b.comp.addComponentProperty('Show ' + s.spec.slotProperty, 'BOOLEAN', true);
-        s.wrapper.componentPropertyReferences = { visible: vkey };
+        s.wrapper.componentPropertyReferences = { ...(s.wrapper.componentPropertyReferences || {}), visible: vkey };
       }
     }
     const boolKeys = {};
@@ -1156,7 +1232,7 @@ async function syncOne(C) {
     for (const vis of b.registry.visibles) {
       const key = boolKeys[vis.prop];
       if (!key) continue;
-      vis.node.componentPropertyReferences = { visible: key };
+      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: key };
       vis.node.visible = vis.default;
     }
   }

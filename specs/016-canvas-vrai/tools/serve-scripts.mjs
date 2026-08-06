@@ -101,7 +101,13 @@ const server = createServer((req, res) => {
   refus(res, 404, `route inconnue: ${req.method} ${url.pathname}`);
 });
 
-// Dual-stack : ne pas répéter le défaut IPv4-seul relevé en O-2.
-server.listen(port, '::', () =>
-  console.log(`serve-scripts on http://localhost:${port} → ${root} (nonce ${identity.nonce})`),
-);
+// Deux binds SPÉCIFIQUES, pas un wildcard. Leçon du 2026-08-06 (2e squat) : un
+// serveur MCP né 6 s après nous a bindé [::1]:<port> SPÉCIFIQUE par-dessus notre
+// wildcard *:<port> — et le routage donne la priorité au bind spécifique : le
+// sandbox lui était routé, nous répondions dans le vide. En tenant nous-mêmes
+// [::1] ET 127.0.0.1 en spécifique, le prochain squatteur prend EADDRINUSE et
+// passe au port suivant. C'est la seule position imprenable de la plage.
+const annonce = () => console.log(`serve-scripts on http://localhost:${port} → ${root} (nonce ${identity.nonce})`);
+server.listen(port, '::1', annonce);
+const serverV4 = createServer(server.listeners('request')[0]);
+serverV4.listen(port, '127.0.0.1');

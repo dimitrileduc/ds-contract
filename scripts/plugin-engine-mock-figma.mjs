@@ -120,7 +120,29 @@ export function createFigmaMock() {
     resize(w, h) {
       this.width = w;
       this.height = h;
+      // Fidelity (016, measured live): with strokeAlign INSIDE, real Figma
+      // clamps a frame's height to the total of its horizontal per-side
+      // stroke weights — height 0 + strokeTopWeight 1 yields 1 (uniform
+      // default weights yielded 2 on Footer.Separator). CENTER/OUTSIDE do not
+      // clamp. Without this, the zero-height-line defect class is invisible
+      // headless.
+      this._clampInsideStrokes();
     }
+
+    /** Real-Figma INSIDE clamp (016): applies on resize AND whenever a
+     *  per-side weight is set afterwards — both orders were measured live. */
+    _clampInsideStrokes() {
+      if (this.strokeAlign === 'INSIDE' && (this.strokes?.length ?? 0) > 0) {
+        const top = this.strokeTopWeight ?? this.strokeWeight ?? 0;
+        const bottom = this.strokeBottomWeight ?? this.strokeWeight ?? 0;
+        if (this.height < top + bottom) this.height = top + bottom;
+      }
+    }
+
+    get strokeTopWeight() { return this._strokeTopWeight; }
+    set strokeTopWeight(v) { this._strokeTopWeight = v; this._clampInsideStrokes(); }
+    get strokeBottomWeight() { return this._strokeBottomWeight; }
+    set strokeBottomWeight(v) { this._strokeBottomWeight = v; this._clampInsideStrokes(); }
 
     resizeWithoutConstraints(w, h) {
       this.resize(w, h);

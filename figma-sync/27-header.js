@@ -78,6 +78,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Portes de garage",
                         "Chevron": true
                       }
                     },
@@ -88,6 +89,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Portes d’entrée",
                         "Chevron": true
                       }
                     },
@@ -98,6 +100,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Dépannage/SAV",
                         "Chevron": false
                       }
                     },
@@ -108,6 +111,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "À propos",
                         "Chevron": false
                       }
                     },
@@ -135,20 +139,20 @@ const COMPONENTS = [
                     {
                       "type": "svg",
                       "name": "Search",
-                      "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M24.3337 14.6667C24.3337 13.3973 24.0831 12.1404 23.5974 10.9675C23.1116 9.7947 22.4003 8.72846 21.5026 7.83081C20.605 6.93317 19.5387 6.22189 18.3659 5.73608C17.1931 5.25028 15.9362 4.99976 14.6667 4.99976C13.3972 4.99976 12.1403 5.25028 10.9675 5.73608C9.79462 6.22189 8.72841 6.93315 7.83075 7.83081C6.01785 9.64371 4.99969 12.1029 4.99969 14.6667C4.99971 17.2306 6.01786 19.6898 7.83075 21.5027C9.64365 23.3156 12.1029 24.3337 14.6667 24.3337C17.2305 24.3337 19.6897 23.3156 21.5026 21.5027C22.4003 20.605 23.1115 19.5388 23.5974 18.366C24.0832 17.1931 24.3337 15.9362 24.3337 14.6667ZM26.3337 14.6667C26.3337 16.1989 26.0313 17.7161 25.445 19.1316C24.9867 20.238 24.3591 21.2632 23.5905 22.1765L28.7067 27.2927C29.0972 27.6832 29.0972 28.3163 28.7067 28.7068C28.3162 29.0973 27.6832 29.0973 27.2927 28.7068L22.1765 23.5906C20.0817 25.3535 17.4258 26.3337 14.6667 26.3337C11.5724 26.3337 8.60466 25.1047 6.41669 22.9167C4.22872 20.7288 2.99971 17.761 2.99969 14.6667C2.99969 11.5725 4.22871 8.60472 6.41669 6.41675C7.50006 5.33337 8.78634 4.47377 10.2018 3.88745C11.6173 3.30116 13.1346 2.99976 14.6667 2.99976C16.1988 2.99976 17.7161 3.30114 19.1315 3.88745C20.547 4.47377 21.8333 5.33337 22.9167 6.41675C24 7.50006 24.8587 8.78651 25.445 10.2019C26.0313 11.6174 26.3337 13.1346 26.3337 14.6667Z\" fill=\"#000000\"/>\n</svg>",
-                      "iconSize": 32
+                      "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M24.3337 14.6667C24.3337 13.3973 24.0831 12.1404 23.5974 10.9675C23.1116 9.7947 22.4003 8.72846 21.5026 7.83081C20.605 6.93317 19.5387 6.22189 18.3659 5.73608C17.1931 5.25028 15.9362 4.99976 14.6667 4.99976C13.3972 4.99976 12.1403 5.25028 10.9675 5.73608C9.79462 6.22189 8.72841 6.93315 7.83075 7.83081C6.01785 9.64371 4.99969 12.1029 4.99969 14.6667C4.99971 17.2306 6.01786 19.6898 7.83075 21.5027C9.64365 23.3156 12.1029 24.3337 14.6667 24.3337C17.2305 24.3337 19.6897 23.3156 21.5026 21.5027C22.4003 20.605 23.1115 19.5388 23.5974 18.366C24.0832 17.1931 24.3337 15.9362 24.3337 14.6667ZM26.3337 14.6667C26.3337 16.1989 26.0313 17.7161 25.445 19.1316C24.9867 20.238 24.3591 21.2632 23.5905 22.1765L28.7067 27.2927C29.0972 27.6832 29.0972 28.3163 28.7067 28.7068C28.3162 29.0973 27.6832 29.0973 27.2927 28.7068L22.1765 23.5906C20.0817 25.3535 17.4258 26.3337 14.6667 26.3337C11.5724 26.3337 8.60466 25.1047 6.41669 22.9167C4.22872 20.7288 2.99971 17.761 2.99969 14.6667C2.99969 11.5725 4.22871 8.60472 6.41669 6.41675C7.50006 5.33337 8.78634 4.47377 10.2018 3.88745C11.6173 3.30116 13.1346 2.99976 14.6667 2.99976C16.1988 2.99976 17.7161 3.30114 19.1315 3.88745C20.547 4.47377 21.8333 5.33337 22.9167 6.41675C24 7.50006 24.8587 8.78651 25.445 10.2019C26.0313 11.6174 26.3337 13.1346 26.3337 14.6667Z\" fill=\"#000000\"/>\n</svg>",
+                      "iconSize": 24
                     },
                     {
                       "type": "svg",
                       "name": "User",
-                      "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M20.3336 7.99963C20.3334 5.60655 18.3928 3.66663 15.9996 3.66663C13.6067 3.6668 11.6668 5.60666 11.6666 7.99963C11.6666 10.3928 13.6065 12.3334 15.9996 12.3336C18.3929 12.3336 20.3336 10.3929 20.3336 7.99963ZM22.3336 7.99963C22.3336 11.4974 19.4974 14.3336 15.9996 14.3336C12.502 14.3334 9.66663 11.4973 9.66663 7.99963C9.6668 4.50209 12.5021 1.6668 15.9996 1.66663C19.4973 1.66663 22.3334 4.50198 22.3336 7.99963Z\" fill=\"#000000\"/>\n<path d=\"M25.6663 23.3333C25.6663 22.1984 24.8381 20.9668 23.0521 19.9622C21.2975 18.9752 18.8062 18.3333 16.0003 18.3333C13.1942 18.3333 10.7022 18.9751 8.94756 19.9622C7.16163 20.9668 6.33331 22.1984 6.33331 23.3333C6.33331 25.0767 6.38721 26.0581 7.29815 26.8C7.79217 27.2024 8.61802 27.5949 10.0315 27.8811C11.4408 28.1664 13.368 28.3333 16.0003 28.3333C18.939 28.3332 20.9952 28.1254 22.4319 27.7786C22.9688 27.649 23.5094 27.979 23.639 28.5159C23.7685 29.0526 23.4383 29.5932 22.9017 29.7229C21.2452 30.1227 19.0105 30.3332 16.0003 30.3333C13.2994 30.3333 11.2258 30.164 9.63506 29.842C8.04875 29.5209 6.87474 29.0343 6.03545 28.3508C4.27984 26.9211 4.33331 24.9031 4.33331 23.3333C4.33331 21.1549 5.89256 19.386 7.9671 18.219C10.0731 17.0344 12.9157 16.3333 16.0003 16.3333C19.0847 16.3333 21.9266 17.0344 24.0325 18.219C26.1071 19.386 27.6663 21.1548 27.6663 23.3333C27.6663 23.5617 27.6662 23.7866 27.6644 24.0081C27.6599 24.5603 27.2078 25.0047 26.6556 25.0002C26.1034 24.9956 25.6599 24.5436 25.6644 23.9915C25.6661 23.7757 25.6663 23.5563 25.6663 23.3333Z\" fill=\"#000000\"/>\n</svg>",
-                      "iconSize": 32
+                      "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M20.3336 7.99963C20.3334 5.60655 18.3928 3.66663 15.9996 3.66663C13.6067 3.6668 11.6668 5.60666 11.6666 7.99963C11.6666 10.3928 13.6065 12.3334 15.9996 12.3336C18.3929 12.3336 20.3336 10.3929 20.3336 7.99963ZM22.3336 7.99963C22.3336 11.4974 19.4974 14.3336 15.9996 14.3336C12.502 14.3334 9.66663 11.4973 9.66663 7.99963C9.6668 4.50209 12.5021 1.6668 15.9996 1.66663C19.4973 1.66663 22.3334 4.50198 22.3336 7.99963Z\" fill=\"#000000\"/>\n<path d=\"M25.6663 23.3333C25.6663 22.1984 24.8381 20.9668 23.0521 19.9622C21.2975 18.9752 18.8062 18.3333 16.0003 18.3333C13.1942 18.3333 10.7022 18.9751 8.94756 19.9622C7.16163 20.9668 6.33331 22.1984 6.33331 23.3333C6.33331 25.0767 6.38721 26.0581 7.29815 26.8C7.79217 27.2024 8.61802 27.5949 10.0315 27.8811C11.4408 28.1664 13.368 28.3333 16.0003 28.3333C18.939 28.3332 20.9952 28.1254 22.4319 27.7786C22.9688 27.649 23.5094 27.979 23.639 28.5159C23.7685 29.0526 23.4383 29.5932 22.9017 29.7229C21.2452 30.1227 19.0105 30.3332 16.0003 30.3333C13.2994 30.3333 11.2258 30.164 9.63506 29.842C8.04875 29.5209 6.87474 29.0343 6.03545 28.3508C4.27984 26.9211 4.33331 24.9031 4.33331 23.3333C4.33331 21.1549 5.89256 19.386 7.9671 18.219C10.0731 17.0344 12.9157 16.3333 16.0003 16.3333C19.0847 16.3333 21.9266 17.0344 24.0325 18.219C26.1071 19.386 27.6663 21.1548 27.6663 23.3333C27.6663 23.5617 27.6662 23.7866 27.6644 24.0081C27.6599 24.5603 27.2078 25.0047 26.6556 25.0002C26.1034 24.9956 25.6599 24.5436 25.6644 23.9915C25.6661 23.7757 25.6663 23.5563 25.6663 23.3333Z\" fill=\"#000000\"/>\n</svg>",
+                      "iconSize": 24
                     },
                     {
                       "type": "svg",
                       "name": "Cart",
-                      "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.333 26C12.333 25.7348 12.2276 25.4805 12.04 25.293C11.8525 25.1056 11.5981 25 11.333 25C11.0679 25.0001 10.8134 25.1055 10.626 25.293C10.4385 25.4805 10.333 25.7349 10.333 26C10.333 26.2652 10.4385 26.5195 10.626 26.7071C10.8134 26.8945 11.0679 27 11.333 27C11.5981 27 11.8525 26.8945 12.04 26.7071C12.2276 26.5195 12.333 26.2653 12.333 26ZM23 26C23 25.7348 22.8945 25.4805 22.707 25.293C22.5195 25.1055 22.2652 25 22 25C21.7348 25 21.4805 25.1055 21.2929 25.293C21.1054 25.4805 21 25.7348 21 26C21 26.2653 21.1054 26.5195 21.2929 26.7071C21.4805 26.8946 21.7348 27 22 27C22.2652 27 22.5195 26.8946 22.707 26.7071C22.8945 26.5195 23 26.2653 23 26ZM3.71677 3.04105C4.24623 2.88469 4.80233 3.18739 4.95896 3.71683L5.69333 6.20023H25.2324C27.61 6.20048 29.4416 8.34754 28.9101 10.6573L28.8506 10.8809L26.6455 18.3477C26.1738 19.9381 24.6832 21 23.0263 21H10.8164C9.15863 21 7.66553 19.938 7.19529 18.3477L3.04099 4.28324C2.88463 3.75378 3.18733 3.19768 3.71677 3.04105ZM9.11326 17.7803C9.32034 18.4807 10.0021 19 10.8164 19H23.0263C23.8387 19 24.5191 18.4821 24.7275 17.7793L26.9326 10.3145C27.2327 9.29964 26.4523 8.20048 25.2324 8.20023H6.28415L9.11326 17.7803ZM14.333 26C14.333 26.7955 14.0175 27.5586 13.4551 28.1211C12.8924 28.6837 12.1286 29 11.333 29C10.5374 29 9.77442 28.6837 9.21189 28.1211C8.64938 27.5585 8.33298 26.7956 8.33298 26C8.33298 25.2045 8.64938 24.4415 9.21189 23.8789C9.77442 23.3164 10.5374 23.0001 11.333 23C12.1286 23 12.8924 23.3163 13.4551 23.8789C14.0175 24.4415 14.333 25.2045 14.333 26ZM25 26C25 26.7957 24.6837 27.5585 24.1211 28.1211C23.5585 28.6837 22.7956 29 22 29C21.2043 29 20.4415 28.6837 19.8789 28.1211C19.3163 27.5585 19 26.7957 19 26C19 25.2044 19.3163 24.4416 19.8789 23.8789C20.4415 23.3163 21.2043 23 22 23C22.7956 23 23.5585 23.3163 24.1211 23.8789C24.6837 24.4415 25 25.2044 25 26Z\" fill=\"#000000\"/>\n</svg>",
-                      "iconSize": 32
+                      "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.333 26C12.333 25.7348 12.2276 25.4805 12.04 25.293C11.8525 25.1056 11.5981 25 11.333 25C11.0679 25.0001 10.8134 25.1055 10.626 25.293C10.4385 25.4805 10.333 25.7349 10.333 26C10.333 26.2652 10.4385 26.5195 10.626 26.7071C10.8134 26.8945 11.0679 27 11.333 27C11.5981 27 11.8525 26.8945 12.04 26.7071C12.2276 26.5195 12.333 26.2653 12.333 26ZM23 26C23 25.7348 22.8945 25.4805 22.707 25.293C22.5195 25.1055 22.2652 25 22 25C21.7348 25 21.4805 25.1055 21.2929 25.293C21.1054 25.4805 21 25.7348 21 26C21 26.2653 21.1054 26.5195 21.2929 26.7071C21.4805 26.8946 21.7348 27 22 27C22.2652 27 22.5195 26.8946 22.707 26.7071C22.8945 26.5195 23 26.2653 23 26ZM3.71677 3.04105C4.24623 2.88469 4.80233 3.18739 4.95896 3.71683L5.69333 6.20023H25.2324C27.61 6.20048 29.4416 8.34754 28.9101 10.6573L28.8506 10.8809L26.6455 18.3477C26.1738 19.9381 24.6832 21 23.0263 21H10.8164C9.15863 21 7.66553 19.938 7.19529 18.3477L3.04099 4.28324C2.88463 3.75378 3.18733 3.19768 3.71677 3.04105ZM9.11326 17.7803C9.32034 18.4807 10.0021 19 10.8164 19H23.0263C23.8387 19 24.5191 18.4821 24.7275 17.7793L26.9326 10.3145C27.2327 9.29964 26.4523 8.20048 25.2324 8.20023H6.28415L9.11326 17.7803ZM14.333 26C14.333 26.7955 14.0175 27.5586 13.4551 28.1211C12.8924 28.6837 12.1286 29 11.333 29C10.5374 29 9.77442 28.6837 9.21189 28.1211C8.64938 27.5585 8.33298 26.7956 8.33298 26C8.33298 25.2045 8.64938 24.4415 9.21189 23.8789C9.77442 23.3164 10.5374 23.0001 11.333 23C12.1286 23 12.8924 23.3163 13.4551 23.8789C14.0175 24.4415 14.333 25.2045 14.333 26ZM25 26C25 26.7957 24.6837 27.5585 24.1211 28.1211C23.5585 28.6837 22.7956 29 22 29C21.2043 29 20.4415 28.6837 19.8789 28.1211C19.3163 27.5585 19 26.7957 19 26C19 25.2044 19.3163 24.4416 19.8789 23.8789C20.4415 23.3163 21.2043 23 22 23C22.7956 23 23.5585 23.3163 24.1211 23.8789C24.6837 24.4415 25 25.2044 25 26Z\" fill=\"#000000\"/>\n</svg>",
+                      "iconSize": 24
                     }
                   ]
                 }
@@ -220,6 +224,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Portes de garage",
                         "Chevron": true
                       }
                     },
@@ -230,6 +235,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Portes d’entrée",
                         "Chevron": true
                       }
                     },
@@ -240,6 +246,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "Dépannage/SAV",
                         "Chevron": false
                       }
                     },
@@ -250,6 +257,7 @@ const COMPONENTS = [
                       "depId": "ds.nav-item",
                       "depProps": {
                         "Actif": false,
+                        "Libellé": "À propos",
                         "Chevron": false
                       }
                     },
@@ -277,20 +285,20 @@ const COMPONENTS = [
                     {
                       "type": "svg",
                       "name": "Search",
-                      "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M24.3337 14.6667C24.3337 13.3973 24.0831 12.1404 23.5974 10.9675C23.1116 9.7947 22.4003 8.72846 21.5026 7.83081C20.605 6.93317 19.5387 6.22189 18.3659 5.73608C17.1931 5.25028 15.9362 4.99976 14.6667 4.99976C13.3972 4.99976 12.1403 5.25028 10.9675 5.73608C9.79462 6.22189 8.72841 6.93315 7.83075 7.83081C6.01785 9.64371 4.99969 12.1029 4.99969 14.6667C4.99971 17.2306 6.01786 19.6898 7.83075 21.5027C9.64365 23.3156 12.1029 24.3337 14.6667 24.3337C17.2305 24.3337 19.6897 23.3156 21.5026 21.5027C22.4003 20.605 23.1115 19.5388 23.5974 18.366C24.0832 17.1931 24.3337 15.9362 24.3337 14.6667ZM26.3337 14.6667C26.3337 16.1989 26.0313 17.7161 25.445 19.1316C24.9867 20.238 24.3591 21.2632 23.5905 22.1765L28.7067 27.2927C29.0972 27.6832 29.0972 28.3163 28.7067 28.7068C28.3162 29.0973 27.6832 29.0973 27.2927 28.7068L22.1765 23.5906C20.0817 25.3535 17.4258 26.3337 14.6667 26.3337C11.5724 26.3337 8.60466 25.1047 6.41669 22.9167C4.22872 20.7288 2.99971 17.761 2.99969 14.6667C2.99969 11.5725 4.22871 8.60472 6.41669 6.41675C7.50006 5.33337 8.78634 4.47377 10.2018 3.88745C11.6173 3.30116 13.1346 2.99976 14.6667 2.99976C16.1988 2.99976 17.7161 3.30114 19.1315 3.88745C20.547 4.47377 21.8333 5.33337 22.9167 6.41675C24 7.50006 24.8587 8.78651 25.445 10.2019C26.0313 11.6174 26.3337 13.1346 26.3337 14.6667Z\" fill=\"#000000\"/>\n</svg>",
-                      "iconSize": 32
+                      "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M24.3337 14.6667C24.3337 13.3973 24.0831 12.1404 23.5974 10.9675C23.1116 9.7947 22.4003 8.72846 21.5026 7.83081C20.605 6.93317 19.5387 6.22189 18.3659 5.73608C17.1931 5.25028 15.9362 4.99976 14.6667 4.99976C13.3972 4.99976 12.1403 5.25028 10.9675 5.73608C9.79462 6.22189 8.72841 6.93315 7.83075 7.83081C6.01785 9.64371 4.99969 12.1029 4.99969 14.6667C4.99971 17.2306 6.01786 19.6898 7.83075 21.5027C9.64365 23.3156 12.1029 24.3337 14.6667 24.3337C17.2305 24.3337 19.6897 23.3156 21.5026 21.5027C22.4003 20.605 23.1115 19.5388 23.5974 18.366C24.0832 17.1931 24.3337 15.9362 24.3337 14.6667ZM26.3337 14.6667C26.3337 16.1989 26.0313 17.7161 25.445 19.1316C24.9867 20.238 24.3591 21.2632 23.5905 22.1765L28.7067 27.2927C29.0972 27.6832 29.0972 28.3163 28.7067 28.7068C28.3162 29.0973 27.6832 29.0973 27.2927 28.7068L22.1765 23.5906C20.0817 25.3535 17.4258 26.3337 14.6667 26.3337C11.5724 26.3337 8.60466 25.1047 6.41669 22.9167C4.22872 20.7288 2.99971 17.761 2.99969 14.6667C2.99969 11.5725 4.22871 8.60472 6.41669 6.41675C7.50006 5.33337 8.78634 4.47377 10.2018 3.88745C11.6173 3.30116 13.1346 2.99976 14.6667 2.99976C16.1988 2.99976 17.7161 3.30114 19.1315 3.88745C20.547 4.47377 21.8333 5.33337 22.9167 6.41675C24 7.50006 24.8587 8.78651 25.445 10.2019C26.0313 11.6174 26.3337 13.1346 26.3337 14.6667Z\" fill=\"#000000\"/>\n</svg>",
+                      "iconSize": 24
                     },
                     {
                       "type": "svg",
                       "name": "User",
-                      "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M20.3336 7.99963C20.3334 5.60655 18.3928 3.66663 15.9996 3.66663C13.6067 3.6668 11.6668 5.60666 11.6666 7.99963C11.6666 10.3928 13.6065 12.3334 15.9996 12.3336C18.3929 12.3336 20.3336 10.3929 20.3336 7.99963ZM22.3336 7.99963C22.3336 11.4974 19.4974 14.3336 15.9996 14.3336C12.502 14.3334 9.66663 11.4973 9.66663 7.99963C9.6668 4.50209 12.5021 1.6668 15.9996 1.66663C19.4973 1.66663 22.3334 4.50198 22.3336 7.99963Z\" fill=\"#000000\"/>\n<path d=\"M25.6663 23.3333C25.6663 22.1984 24.8381 20.9668 23.0521 19.9622C21.2975 18.9752 18.8062 18.3333 16.0003 18.3333C13.1942 18.3333 10.7022 18.9751 8.94756 19.9622C7.16163 20.9668 6.33331 22.1984 6.33331 23.3333C6.33331 25.0767 6.38721 26.0581 7.29815 26.8C7.79217 27.2024 8.61802 27.5949 10.0315 27.8811C11.4408 28.1664 13.368 28.3333 16.0003 28.3333C18.939 28.3332 20.9952 28.1254 22.4319 27.7786C22.9688 27.649 23.5094 27.979 23.639 28.5159C23.7685 29.0526 23.4383 29.5932 22.9017 29.7229C21.2452 30.1227 19.0105 30.3332 16.0003 30.3333C13.2994 30.3333 11.2258 30.164 9.63506 29.842C8.04875 29.5209 6.87474 29.0343 6.03545 28.3508C4.27984 26.9211 4.33331 24.9031 4.33331 23.3333C4.33331 21.1549 5.89256 19.386 7.9671 18.219C10.0731 17.0344 12.9157 16.3333 16.0003 16.3333C19.0847 16.3333 21.9266 17.0344 24.0325 18.219C26.1071 19.386 27.6663 21.1548 27.6663 23.3333C27.6663 23.5617 27.6662 23.7866 27.6644 24.0081C27.6599 24.5603 27.2078 25.0047 26.6556 25.0002C26.1034 24.9956 25.6599 24.5436 25.6644 23.9915C25.6661 23.7757 25.6663 23.5563 25.6663 23.3333Z\" fill=\"#000000\"/>\n</svg>",
-                      "iconSize": 32
+                      "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M20.3336 7.99963C20.3334 5.60655 18.3928 3.66663 15.9996 3.66663C13.6067 3.6668 11.6668 5.60666 11.6666 7.99963C11.6666 10.3928 13.6065 12.3334 15.9996 12.3336C18.3929 12.3336 20.3336 10.3929 20.3336 7.99963ZM22.3336 7.99963C22.3336 11.4974 19.4974 14.3336 15.9996 14.3336C12.502 14.3334 9.66663 11.4973 9.66663 7.99963C9.6668 4.50209 12.5021 1.6668 15.9996 1.66663C19.4973 1.66663 22.3334 4.50198 22.3336 7.99963Z\" fill=\"#000000\"/>\n<path d=\"M25.6663 23.3333C25.6663 22.1984 24.8381 20.9668 23.0521 19.9622C21.2975 18.9752 18.8062 18.3333 16.0003 18.3333C13.1942 18.3333 10.7022 18.9751 8.94756 19.9622C7.16163 20.9668 6.33331 22.1984 6.33331 23.3333C6.33331 25.0767 6.38721 26.0581 7.29815 26.8C7.79217 27.2024 8.61802 27.5949 10.0315 27.8811C11.4408 28.1664 13.368 28.3333 16.0003 28.3333C18.939 28.3332 20.9952 28.1254 22.4319 27.7786C22.9688 27.649 23.5094 27.979 23.639 28.5159C23.7685 29.0526 23.4383 29.5932 22.9017 29.7229C21.2452 30.1227 19.0105 30.3332 16.0003 30.3333C13.2994 30.3333 11.2258 30.164 9.63506 29.842C8.04875 29.5209 6.87474 29.0343 6.03545 28.3508C4.27984 26.9211 4.33331 24.9031 4.33331 23.3333C4.33331 21.1549 5.89256 19.386 7.9671 18.219C10.0731 17.0344 12.9157 16.3333 16.0003 16.3333C19.0847 16.3333 21.9266 17.0344 24.0325 18.219C26.1071 19.386 27.6663 21.1548 27.6663 23.3333C27.6663 23.5617 27.6662 23.7866 27.6644 24.0081C27.6599 24.5603 27.2078 25.0047 26.6556 25.0002C26.1034 24.9956 25.6599 24.5436 25.6644 23.9915C25.6661 23.7757 25.6663 23.5563 25.6663 23.3333Z\" fill=\"#000000\"/>\n</svg>",
+                      "iconSize": 24
                     },
                     {
                       "type": "svg",
                       "name": "Cart",
-                      "svg": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.333 26C12.333 25.7348 12.2276 25.4805 12.04 25.293C11.8525 25.1056 11.5981 25 11.333 25C11.0679 25.0001 10.8134 25.1055 10.626 25.293C10.4385 25.4805 10.333 25.7349 10.333 26C10.333 26.2652 10.4385 26.5195 10.626 26.7071C10.8134 26.8945 11.0679 27 11.333 27C11.5981 27 11.8525 26.8945 12.04 26.7071C12.2276 26.5195 12.333 26.2653 12.333 26ZM23 26C23 25.7348 22.8945 25.4805 22.707 25.293C22.5195 25.1055 22.2652 25 22 25C21.7348 25 21.4805 25.1055 21.2929 25.293C21.1054 25.4805 21 25.7348 21 26C21 26.2653 21.1054 26.5195 21.2929 26.7071C21.4805 26.8946 21.7348 27 22 27C22.2652 27 22.5195 26.8946 22.707 26.7071C22.8945 26.5195 23 26.2653 23 26ZM3.71677 3.04105C4.24623 2.88469 4.80233 3.18739 4.95896 3.71683L5.69333 6.20023H25.2324C27.61 6.20048 29.4416 8.34754 28.9101 10.6573L28.8506 10.8809L26.6455 18.3477C26.1738 19.9381 24.6832 21 23.0263 21H10.8164C9.15863 21 7.66553 19.938 7.19529 18.3477L3.04099 4.28324C2.88463 3.75378 3.18733 3.19768 3.71677 3.04105ZM9.11326 17.7803C9.32034 18.4807 10.0021 19 10.8164 19H23.0263C23.8387 19 24.5191 18.4821 24.7275 17.7793L26.9326 10.3145C27.2327 9.29964 26.4523 8.20048 25.2324 8.20023H6.28415L9.11326 17.7803ZM14.333 26C14.333 26.7955 14.0175 27.5586 13.4551 28.1211C12.8924 28.6837 12.1286 29 11.333 29C10.5374 29 9.77442 28.6837 9.21189 28.1211C8.64938 27.5585 8.33298 26.7956 8.33298 26C8.33298 25.2045 8.64938 24.4415 9.21189 23.8789C9.77442 23.3164 10.5374 23.0001 11.333 23C12.1286 23 12.8924 23.3163 13.4551 23.8789C14.0175 24.4415 14.333 25.2045 14.333 26ZM25 26C25 26.7957 24.6837 27.5585 24.1211 28.1211C23.5585 28.6837 22.7956 29 22 29C21.2043 29 20.4415 28.6837 19.8789 28.1211C19.3163 27.5585 19 26.7957 19 26C19 25.2044 19.3163 24.4416 19.8789 23.8789C20.4415 23.3163 21.2043 23 22 23C22.7956 23 23.5585 23.3163 24.1211 23.8789C24.6837 24.4415 25 25.2044 25 26Z\" fill=\"#000000\"/>\n</svg>",
-                      "iconSize": 32
+                      "svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M12.333 26C12.333 25.7348 12.2276 25.4805 12.04 25.293C11.8525 25.1056 11.5981 25 11.333 25C11.0679 25.0001 10.8134 25.1055 10.626 25.293C10.4385 25.4805 10.333 25.7349 10.333 26C10.333 26.2652 10.4385 26.5195 10.626 26.7071C10.8134 26.8945 11.0679 27 11.333 27C11.5981 27 11.8525 26.8945 12.04 26.7071C12.2276 26.5195 12.333 26.2653 12.333 26ZM23 26C23 25.7348 22.8945 25.4805 22.707 25.293C22.5195 25.1055 22.2652 25 22 25C21.7348 25 21.4805 25.1055 21.2929 25.293C21.1054 25.4805 21 25.7348 21 26C21 26.2653 21.1054 26.5195 21.2929 26.7071C21.4805 26.8946 21.7348 27 22 27C22.2652 27 22.5195 26.8946 22.707 26.7071C22.8945 26.5195 23 26.2653 23 26ZM3.71677 3.04105C4.24623 2.88469 4.80233 3.18739 4.95896 3.71683L5.69333 6.20023H25.2324C27.61 6.20048 29.4416 8.34754 28.9101 10.6573L28.8506 10.8809L26.6455 18.3477C26.1738 19.9381 24.6832 21 23.0263 21H10.8164C9.15863 21 7.66553 19.938 7.19529 18.3477L3.04099 4.28324C2.88463 3.75378 3.18733 3.19768 3.71677 3.04105ZM9.11326 17.7803C9.32034 18.4807 10.0021 19 10.8164 19H23.0263C23.8387 19 24.5191 18.4821 24.7275 17.7793L26.9326 10.3145C27.2327 9.29964 26.4523 8.20048 25.2324 8.20023H6.28415L9.11326 17.7803ZM14.333 26C14.333 26.7955 14.0175 27.5586 13.4551 28.1211C12.8924 28.6837 12.1286 29 11.333 29C10.5374 29 9.77442 28.6837 9.21189 28.1211C8.64938 27.5585 8.33298 26.7956 8.33298 26C8.33298 25.2045 8.64938 24.4415 9.21189 23.8789C9.77442 23.3164 10.5374 23.0001 11.333 23C12.1286 23 12.8924 23.3163 13.4551 23.8789C14.0175 24.4415 14.333 25.2045 14.333 26ZM25 26C25 26.7957 24.6837 27.5585 24.1211 28.1211C23.5585 28.6837 22.7956 29 22 29C21.2043 29 20.4415 28.6837 19.8789 28.1211C19.3163 27.5585 19 26.7957 19 26C19 25.2044 19.3163 24.4416 19.8789 23.8789C20.4415 23.3163 21.2043 23 22 23C22.7956 23 23.5585 23.3163 24.1211 23.8789C24.6837 24.4415 25 25.2044 25 26Z\" fill=\"#000000\"/>\n</svg>",
+                      "iconSize": 24
                     }
                   ]
                 }
@@ -443,7 +451,19 @@ function setInstanceProps(inst, props) {
   const resolved = {};
   for (const [wanted, value] of Object.entries(props)) {
     const key = available.find((k) => k === wanted || k.startsWith(wanted + '#'));
-    if (key) resolved[key] = value;
+    if (!key) continue;
+    let v = value;
+    // 016: an INSTANCE_SWAP property takes a COMPONENT ID — contract enums map
+    // to component NAMES at compile time (CarouselControls passed "ChevronLeft"
+    // and Figma refused: "Property value is incompatible with component
+    // property type"). Resolve name -> id here; a name never contains ':',
+    // a node id always does.
+    const def = inst.componentProperties[key];
+    if (def && def.type === 'INSTANCE_SWAP' && typeof v === 'string' && v.indexOf(':') < 0) {
+      const target = findComponentByName(v);
+      v = (target.type === 'COMPONENT_SET' ? target.defaultVariant : target).id;
+    }
+    resolved[key] = v;
   }
   if (Object.keys(resolved).length > 0) inst.setProperties(resolved);
 }
@@ -579,6 +599,16 @@ async function buildNode(spec, registry) {
         wrap.resize(spec.fixedWidth ? spec.fixedWidth.px : wrap.width, spec.fixedHeight ? spec.fixedHeight.px : wrap.height);
         if (spec.fixedWidth) { wrap.primaryAxisSizingMode = 'FIXED'; wrap.setBoundVariable('width', need(spec.fixedWidth.varName)); }
         if (spec.fixedHeight) { wrap.counterAxisSizingMode = 'FIXED'; if (spec.fixedHeight.varName) wrap.setBoundVariable('height', need(spec.fixedHeight.varName)); else wrap.resize(wrap.width, spec.fixedHeight.px); }
+        // 016, CSS semantics: width on a text block means the TEXT WRAPS at
+        // that width. The wrapper was fixed but the TEXT stayed auto-width
+        // (WIDTH_AND_HEIGHT) and overflowed in one line — measured live on
+        // Devis.Titre: origin 900x100 (two lines), emitted TEXT 1498x50.
+        if (spec.fixedWidth && spec.characters) {
+          try {
+            node.textAutoResize = 'HEIGHT';
+            node.layoutSizingHorizontal = 'FILL';
+          } catch (e) { /* older figma: leave auto */ }
+        }
       }
       wrap.name = spec.name;
       node = wrap;
@@ -588,6 +618,29 @@ async function buildNode(spec, registry) {
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
+    // v20 (016): contract-carried slot content on the composed instance — the
+    // swap rides the child's INSTANCE_SWAP property (identity by marker, never
+    // layer name), then the slotted instance's own props are set on the nested
+    // instance the swap produced. Regenerated on every rebuild, by design.
+    for (const ds of spec.depSlots || []) {
+      const target = findComponentByName(ds.dep, ds.depId);
+      const slotMain = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
+      setInstanceProps(node, { [ds.property]: slotMain.id });
+      // marker for the mock-backed fixture only — REAL Figma nodes are sealed
+      // objects (assigning threw "object is not extensible" mid-amend, r11).
+      try { node._depSlotsApplied = true; } catch (e) { /* sealed on canvas */ }
+      if (ds.props && Object.keys(ds.props).length > 0) {
+        const nested = [];
+        for (const cand of (typeof node.findAll === 'function' ? node.findAll((n) => n.type === 'INSTANCE') : [])) {
+          const mc = typeof cand.getMainComponentAsync === 'function' ? await cand.getMainComponentAsync() : null;
+          if (mc && (mc.id === slotMain.id || (mc.parent && mc.parent.id === target.id))) nested.push(cand);
+        }
+        for (const inner of nested) setInstanceProps(inner, ds.props);
+        if (nested.length === 0) {
+          console.warn('[ds-contracts] depSlots: swapped ' + ds.property + ' to ' + ds.dep + ' but found no nested instance to receive its props (mock or detached child)');
+        }
+      }
+    }
   } else if (spec.type === 'slot') {
     node = figma.createFrame();
     applyFrameSpec(node, spec);
@@ -733,23 +786,10 @@ async function amendSet(set, C) {
   }
   const report = { name: C.setName, amended: true, nodeId: set.id, key: set.key,
     addedVariants: [], rebuiltVariants: 0, extraVariants: [], addedProps: [], editedDefaults: [] };
-  const defs = set.componentPropertyDefinitions;
-  const newKeys = {};
-  const defKey = (name) => newKeys[name] ||
-    Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      set.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
-
+  // 016: the variant-name reconciliation must run BEFORE the first
+  // componentPropertyDefinitions read — on a set already in the incomplete-
+  // names error state, THAT read throws and the repair below would never be
+  // reached (measured live: SectionHeader gaining Emphase+Alignement).
   // Sets gaining/losing the State preview axis reconcile by RENAME, not
   // duplication: an existing variant whose name matches an expected name
   // minus the ', State=Default' segment IS that variant (instances point at
@@ -771,9 +811,53 @@ async function amendSet(set, C) {
       report.renamedVariants = report.renamedVariants || [];
       report.renamedVariants.push(lost);
     } else {
-      report.extraVariants.push(ch.name);
+      // 016, generalization of the State-axis rename: a set gaining ANY new
+      // VARIANT dimension leaves its old variants named without the new
+      // segments ("Disposition=Standard" vs "Disposition=Standard, Emphase=…").
+      // Complete the old name with each missing expected axis at its spec
+      // default — the old node IS that variant (instances point at it). If
+      // this amend already built a twin under the completed name, the twin is
+      // ours and instance-free: remove it, keep the historied node. Measured
+      // live (SectionHeader +Emphase+Alignement): the incomplete pair put the
+      // whole set in "existing errors" and every composite read failed.
+      const segsOf = (nom) => new Map(nom.split(',').map((seg) => seg.trim().split('=')).filter((kv) => kv.length === 2).map(([k, val]) => [k, val]));
+      const parsed = segsOf(ch.name);
+      // the canonical default combo is EV[0] (row 0 / col 0 by construction):
+      // missing axes complete at THEIR spec default, in EV[0]'s axis order.
+      const defauts = segsOf(EV[0].name);
+      let completed = null;
+      if (parsed.size > 0 && parsed.size < defauts.size && [...parsed].every(([k]) => defauts.has(k))) {
+        completed = [...defauts.keys()].map((k) => k + '=' + (parsed.has(k) ? parsed.get(k) : defauts.get(k))).join(', ');
+        if (!expected.has(completed)) completed = null;
+      }
+      if (completed && completed !== ch.name) {
+        const twin = set.children.find((o) => o !== ch && o.name === completed);
+        if (twin) { twin.remove(); report.mergedVariants = report.mergedVariants || []; report.mergedVariants.push(completed); }
+        ch.name = completed;
+        report.renamedVariants = report.renamedVariants || [];
+        report.renamedVariants.push(completed);
+      } else {
+        report.extraVariants.push(ch.name);
+      }
     }
   }
+  const defs = set.componentPropertyDefinitions;
+  const newKeys = {};
+  const defKey = (name) => newKeys[name] ||
+    Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
+
+  for (const w of [
+    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
+    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
+  ]) {
+    const k = defKey(w.name);
+    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
+    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
+      set.editComponentProperty(k, { defaultValue: w.def });
+      report.editedDefaults.push(w.name);
+    }
+  }
+
   const existingByName = new Map(set.children.map((ch) => [ch.name, ch]));
 
   for (const v of EV) {
@@ -818,7 +902,7 @@ async function amendSet(set, C) {
         set.editComponentProperty(k, { defaultValue: t.default });
         report.editedDefaults.push(t.prop);
       }
-      t.node.componentPropertyReferences = { characters: k };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
     }
     for (const sl of registry.slots) {
       const util = await ensureSlotUtility();
@@ -834,17 +918,17 @@ async function amendSet(set, C) {
         newKeys[sl.spec.slotProperty] = k;
         report.addedProps.push(sl.spec.slotProperty);
       }
-      sl.instance.componentPropertyReferences = { mainComponent: k };
+      sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
       if (sl.spec.slotOptional) {
         let vk = defKey('Show ' + sl.spec.slotProperty);
         if (!vk) { vk = set.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-        sl.wrapper.componentPropertyReferences = { visible: vk };
+        sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
       }
     }
     for (const vis of registry.visibles) {
       const k = defKey(vis.prop);
       if (!k) continue;
-      vis.node.componentPropertyReferences = { visible: k };
+      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
       vis.node.visible = vis.default;
     }
   }
@@ -954,7 +1038,7 @@ async function amendComponent(comp, C) {
       comp.editComponentProperty(k, { defaultValue: t.default });
       report.editedDefaults.push(t.prop);
     }
-    t.node.componentPropertyReferences = { characters: k };
+    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
   }
   for (const sl of registry.slots) {
     const util = await ensureSlotUtility();
@@ -970,17 +1054,17 @@ async function amendComponent(comp, C) {
       newKeys[sl.spec.slotProperty] = k;
       report.addedProps.push(sl.spec.slotProperty);
     }
-    sl.instance.componentPropertyReferences = { mainComponent: k };
+    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
     if (sl.spec.slotOptional) {
       let vk = defKey('Show ' + sl.spec.slotProperty);
       if (!vk) { vk = comp.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-      sl.wrapper.componentPropertyReferences = { visible: vk };
+      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
     }
   }
   for (const vis of registry.visibles) {
     const k = defKey(vis.prop);
     if (!k) continue;
-    vis.node.componentPropertyReferences = { visible: k };
+    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
     vis.node.visible = vis.default;
   }
   comp.description = C.description;
@@ -1059,7 +1143,7 @@ async function syncOne(C) {
   for (const b of built) {
     for (const t of b.registry.texts) {
       const key = b.comp.addComponentProperty(t.prop, 'TEXT', t.default);
-      t.node.componentPropertyReferences = { characters: key };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };
     }
     for (const s of b.registry.slots) {
       const util = await ensureSlotUtility();
@@ -1077,10 +1161,10 @@ async function syncOne(C) {
         s.defaultId || util.id,
         preferred.length > 0 ? { preferredValues: preferred } : undefined,
       );
-      s.instance.componentPropertyReferences = { mainComponent: key };
+      s.instance.componentPropertyReferences = { ...(s.instance.componentPropertyReferences || {}), mainComponent: key };
       if (s.spec.slotOptional) {
         const vkey = b.comp.addComponentProperty('Show ' + s.spec.slotProperty, 'BOOLEAN', true);
-        s.wrapper.componentPropertyReferences = { visible: vkey };
+        s.wrapper.componentPropertyReferences = { ...(s.wrapper.componentPropertyReferences || {}), visible: vkey };
       }
     }
     const boolKeys = {};
@@ -1093,7 +1177,7 @@ async function syncOne(C) {
     for (const vis of b.registry.visibles) {
       const key = boolKeys[vis.prop];
       if (!key) continue;
-      vis.node.componentPropertyReferences = { visible: key };
+      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: key };
       vis.node.visible = vis.default;
     }
   }

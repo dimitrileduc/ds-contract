@@ -82,7 +82,8 @@
         "column": {
           "layout": {
             "direction": "column",
-            "grow": true
+            "grow": true,
+            "align": "stretch"
           },
           "parts": {
             "SectionHeader": {
@@ -298,6 +299,14 @@
                     "props": {
                       "label": "Message",
                       "etat": "normal"
+                    },
+                    "slots": {
+                      "children": {
+                        "id": "ds.textarea",
+                        "props": {
+                          "value": "Écrivez votre message ici..."
+                        }
+                      }
                     }
                   },
                   "layout": {

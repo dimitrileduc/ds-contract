@@ -28,7 +28,7 @@ const meta = {
     items: [
       { libelle: 'Portes de garage', href: '/portes-de-garage', chevron: true },
       { libelle: 'Portes d’entrée', href: '/portes-entree', chevron: true },
-      { libelle: 'Motorisation', href: '/motorisation', chevron: false },
+      { libelle: 'Dépannage/SAV', href: '/motorisation', chevron: false },
       { libelle: 'À propos', href: '/a-propos', chevron: false },
     ],
   },

@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.section-header",
   "name": "SectionHeader",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -94,7 +94,14 @@
       "description": "LIMITE NOMMÉE — abstraction code-side sur des surcharges d'instance Figma ad hoc. Le master 2090:2385 porte 40px/50px ; les usages surchargent la typographie du Titre par instance (hero 2169:6264 : 54/68/blanc, poids 300 sur la plage NON marquée — voir ci-dessous ; presentation 2169:6246 : 32/40 ; texte-seo 2170:6361 : 24/30 ; coordonnees, faq, sav et reassurances restent à 40/50 = defaut) au lieu de la porter en variantes gouvernées. Le poids du hero : le nœud Figma a un style de BASE Bold 700 avec une surcharge Light 300 sur « industrielles » ; le modèle du contrat porte l'inverse strictement équivalent en pixels — la plage non marquée prend le poids de base (300, littéral : aucun token Light dans la fondation) et la plage marquée prend content.marks.strong (token font.weight.bold). `component.props` ne transporte que des valeurs de props, jamais une surcharge typographique de l'enfant — cet axe est donc le seul moyen de porter le fait sans retoucher la sortie générée. Le correctif de fond appartient à Figma : promouvoir ces surcharges en variantes réelles, après quoi cet axe redevient un VARIANT lié.",
       "bindings": {
         "figma": {
-          "kind": "NONE"
+          "kind": "VARIANT",
+          "property": "Emphase",
+          "values": {
+            "standard": "Standard",
+            "hero": "Hero",
+            "moyen": "Moyen",
+            "compact": "Compact"
+          }
         },
         "code": {
           "prop": "emphase"
@@ -113,7 +120,12 @@
       "description": "LIMITE NOMMÉE — le master 2090:2385 centre (textAlign CENTER) mais 5 usages sur 7 le surchargent en LEFT par instance (coordonnees, presentation, sav, texte-seo, hero) quand faq et reassurances suivent le master. Cet axe code-side porte ce fait d’usage ; le correctif de fond appartient à Figma (promouvoir l’alignement en variante gouvernée du master).",
       "bindings": {
         "figma": {
-          "kind": "NONE"
+          "kind": "VARIANT",
+          "property": "Alignement",
+          "values": {
+            "centre": "Centre",
+            "gauche": "Gauche"
+          }
         },
         "code": {
           "prop": "alignement"
