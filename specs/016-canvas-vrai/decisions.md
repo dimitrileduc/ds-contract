@@ -410,3 +410,27 @@ rétrécissait le master à son titre (900) au lieu des 1728 d'origine. Mint fro
 Mesure : FINAL14→FINAL15, le diff des pages à Devis chute de ~45 % (a-propos 733k→419k,
 motorisation 670k→356k, portes-de-garage 755k→441k). Le hero « noir » signalé par
 l'agent était déjà réparé par l'élévation Emphase=Hero (titre vif 255,255,255).
+
+## O-14 — 2026-08-06 : rich text et alignements — les plages de style reviennent au canvas
+
+L'owner a vu juste dans la revue (« soucis de rich text et d'alignement ») : les reposes
+de textes par props/characters posaient du texte PLAT — les plages de style par
+caractère (gras/graisses/letter-spacing/couleur segmentés : « Discutons **de votre**
+projet » avec projet en Light) vivaient dans styleOverrideTable/characterStyleOverrides
+du dump versionné et n'avaient jamais été reposées ; idem des textAlignHorizontal
+CENTER d'origine. 198 gestes générés du dump (84 plages, 114 alignements), posés par
+setRangeFontName/setRangeLetterSpacing/setRangeFills + textAlignHorizontal, appariés
+(hostId, nomText, occurrence). Témoin : le titre hero rend Regular/Bold/Light aux
+mêmes bornes que l'origine. Mesure FINAL15→FINAL16 : a-propos 419k→192k,
+dépannage 384k→157k, motorisation 356k→129k, portes-de-garage 441k→213k px.
+Depuis FINAL4 : ~90 % du diff pixel résorbé, chaque poste attribué et sourcé.
+
+**Réponse à la question d'instrument (« pourquoi par page et pas par composant ? ») :**
+les deux instruments existent et ne mesurent pas la même chose. Par COMPOSANT :
+extract/figma/visual-parity (code rendu ↔ master Figma, 27 sujets) — relancé ce jour :
+SUMMARY GATE, toutes lignes dans ±0.1pp du baseline commité (aucune régression
+composant). Par PAGE : page-parity (les 9 maquettes ↔ référence pré-chantier) — c'est
+l'intégrale composants × overrides par page × assemblage, le critère d'acceptation
+de l'owner, mais un mauvais outil d'attribution (les décalages amont se reportent en
+cascade — mesuré : ~40 % du diff de page n'était que du report). L'attribution
+passe par les dumps REST par section, jamais par le pixel de page seul.
