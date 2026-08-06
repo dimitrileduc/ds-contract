@@ -1,5 +1,5 @@
 {
-  "passed": 193,
+  "passed": 194,
   "total": 194,
   "quarantined": 48,
   "results": [
@@ -921,8 +921,7 @@
     {
       "id": "img-part-canvas-placeholder-named",
       "claim": "C3-detection",
-      "pass": false,
-      "error": "Error: docs/FIGMA-CAPABILITY-MATRIX.md § (b) must carry the image row, byte-for-byte:\n  | `background-image: url()` (img parts) | \"This frame is a runtime image slot — the photo you see is a mockup sample. The coded component receives its image at runtime.\" |\n(the canvas clause and the annotation copy are two halves of one answer — they may not drift apart)"
+      "pass": true
     },
     {
       "id": "member-picture-fixed-circle-and-named-a5-placeholder",

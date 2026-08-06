@@ -1,0 +1,52 @@
+# T033 — determinisme de la porte de mesure (SC-009)
+# date: 2026-08-06T19:57:36Z  commit: e01f3cb
+# geste : deux executions successives de `npm run extract:figma:visual -- --summary`,
+#         AUCUN geste entre les deux.
+
+## VERDICT : le score qui DECIDE est identique sur les 37 lignes.
+##           Un nombre DIAGNOSTIQUE bouge de 0,01pp sur UNE ligne — dit, pas tu.
+
+Le diff complet des 37 lignes de score :
+
+24c24
+< · Disposition=Categorie: gate/raw 0.64% | masked diagnostic 0.36% | mask coverage 9.92% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+---
+> · Disposition=Categorie: gate/raw 0.64% | masked diagnostic 0.37% | mask coverage 9.92% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+
+## Lecture
+
+`gate/raw` — le seul score qui classe, franchit le seuil, alimente le triage et la
+baseline (run.ts : « A mask deletes evidence and is diagnostic-only. Ranking,
+threshold, triage and baseline all use the same authoritative raw score. ») — est
+IDENTIQUE au centieme sur les 37 lignes, dont les 8 lignes de ce chantier.
+
+Le seul ecart porte sur `masked diagnostic` de carte/Disposition=Categorie :
+0,36 % -> 0,37 %. Ce nombre est calcule APRES application du masque, qui derive du
+rendu : une gigue de rasterisation sous-pixel le fait varier au centieme. Il n'entre
+NI dans le verdict, NI dans le classement, NI dans la baseline.
+
+## Ce que cela veut dire, sans arrondir
+
+SC-009 est TENU sur ce qui fait foi. Il n'est PAS tenu au sens byte-pour-byte du
+rapport complet, et cette nuance est ecrite ici plutot que masquee par une
+comparaison qui aurait ignore la colonne genante. La porte de resume porte
+d'ailleurs deja son epsilon assume (±0,1pp) : les deux passes rendent
+« all rows within ±0.1pp of baseline.json ».
+
+## Les deux sorties completes
+
+### PASSE 1 (fin)
+  ✗ Etat=Defaut: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Etat=Selectionne: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+
+── summary vs baseline 2026-08-06T19:51:59.562Z (422ee48), ε 0.1pp ──
+
+SUMMARY GATE: all rows within ±0.1pp of baseline.json (2026-08-06T19:55:18.380Z)
+
+### PASSE 2 (fin)
+  ✗ Etat=Defaut: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Etat=Selectionne: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+
+── summary vs baseline 2026-08-06T19:51:59.562Z (422ee48), ε 0.1pp ──
+
+SUMMARY GATE: all rows within ±0.1pp of baseline.json (2026-08-06T19:55:48.403Z)
