@@ -1,12 +1,32 @@
 === T002 · fusion de main dans 018-odoo-replique-manuelle ===
-date: 2026-08-06T19:49:40Z
-HEAD avant : 3c63c05 Merge pull request #12 from dimitrileduc/tiny/select-option-emit
-main       : 51cab06 fix(016): plan de restauration des 62 photos effondrées, sourcé au dump d'origine
+date: 2026-08-06T19:50:08Z
+HEAD avant : cbcf612 — docs(018): spec, plan, tâches et les 5 contrats d'interface
+main       : 51cab06 — fix(016): plan de restauration des 62 photos effondrées, sourcé au dump d'origine
+git merge-base --is-ancestor main HEAD (avant) : NON (relevé T001)
 
---- git merge main ---
-error: Your local changes to the following files would be overwritten by merge:
-	CLAUDE.md
-Please commit your changes or stash them before you merge.
-Aborting
-Updating 3c63c05..51cab06
+--- git merge main --no-edit ---
+Auto-merging CLAUDE.md
+CONFLICT (content): Merge conflict in CLAUDE.md
+Automatic merge failed; fix conflicts and then commit the result.
 EXIT=1
+
+--- résolution du conflit CLAUDE.md ---
+1 seul fichier en conflit : CLAUDE.md, 2 hunks.
+  hunk 1 (Last updated) : 2026-08-06 retenu (postérieur au 2026-08-05 de main)
+  hunk 2 (Active Technologies) : LES DEUX lots conservés — 2 lignes 016 (main) PUIS 2 lignes 018 (branche).
+  Rien de perdu : main n'a lui-même aucune entrée 016 dans Recent Changes (vérifié).
+
+--- HEAD après fusion ---
+fff7d69 Merge branch 'main' into 018-odoo-replique-manuelle
+
+--- vérification par exécution des versions de contrat (D1) ---
+ds.button        2.0.0
+ds.presentation  2.2.0
+ds.section-header 2.1.1
+
+--- le variant passé au bouton par ds.section-header ---
+outlineNoir
+
+--- les 2 tokens que 016 ajoute et que la chaîne consomme ---
+size.presentation.col-gauche       contracts/presentation.contract.json:1
+size.section-header.root           contracts/section-header.contract.json:1
