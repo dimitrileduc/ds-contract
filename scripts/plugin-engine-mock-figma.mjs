@@ -23,6 +23,18 @@
 let nextId = 1;
 const newId = () => `${nextId++}:${nextId}`;
 
+/** 017 : les seuls `scaleMode` qu'un ImagePaint accepte dans l'API réelle. */
+const IMAGE_SCALE_MODES = new Set(['FILL', 'FIT', 'CROP', 'TILE']);
+
+/** 017 : adressage par contenu, comme Figma — mêmes octets ⇔ même hash. djb2,
+ *  pour garder le mock sans dépendance (le bac à sable n'a pas `crypto` non
+ *  plus, et le sha256 des octets se calcule côté Node dans photo-parity/). */
+const imageHashOfBytes = (bytes) => {
+  let h = 5381;
+  for (let i = 0; i < bytes.length; i++) h = (((h << 5) + h) + bytes[i]) >>> 0;
+  return `img-${h.toString(16)}-${bytes.length}`;
+};
+
 export function createFigmaMock() {
   const allStyles = [];
   const collections = [];
@@ -75,6 +87,10 @@ export function createFigmaMock() {
       this.componentPropertyReferences = {};
       this._shared = new Map();
       this._svgExport = null;
+      // 017 : le nœud de maître dont celui-ci est le MIROIR (null si ce n'en est
+      // pas un). C'est ce lien qui fait mourir une surcharge d'instance quand le
+      // nœud de maître qu'elle décorait est démoli.
+      this._mirrorOf = null;
       if (type !== 'TEXT') this.children = [];
       if (type === 'TEXT') {
         this.characters = '';
@@ -91,6 +107,33 @@ export function createFigmaMock() {
         this._propDefs = {};
         this._propSeq = 0;
       }
+      // 017 : le registre des instances d'un maître — ce que `getInstancesAsync`
+      // rend, et ce sur quoi la démolition se propage.
+      if (type === 'COMPONENT') this._instances = [];
+    }
+
+    // 017 (FR-002a) — `fills` cesse d'être un champ nu : un paint IMAGE est
+    // VALIDÉ. Le mock transportait jusqu'ici des paints IMAGE écrits à la main
+    // par la fixture 013 sans jamais les connaître (0 occurrence d'`imageHash`
+    // ou de `scaleMode` dans ce fichier). Forme §VII : d'un no-op permissif à
+    // une contrainte qui lève.
+    get fills() {
+      return this._fills;
+    }
+    set fills(value) {
+      const arr = Array.isArray(value) ? value : [];
+      for (const p of arr) {
+        if (!p || p.type !== 'IMAGE') continue;
+        if (typeof p.imageHash !== 'string' || p.imageHash === '') {
+          throw new Error('in set_fills: an IMAGE paint requires a non-empty string imageHash');
+        }
+        if (!IMAGE_SCALE_MODES.has(p.scaleMode)) {
+          throw new Error(
+            `in set_fills: an IMAGE paint requires scaleMode ∈ {${[...IMAGE_SCALE_MODES].join('|')}}, got ${JSON.stringify(p.scaleMode)}`,
+          );
+        }
+      }
+      this._fills = arr;
     }
 
     appendChild(node) {
@@ -100,21 +143,34 @@ export function createFigmaMock() {
       }
       node.parent = this;
       this.children.push(node);
+      syncMirrorsOf(this);
     }
 
     insertChild(index, node) {
-      this.appendChild(node);
-      this.children.pop();
+      if (node.parent) {
+        const i = node.parent.children.indexOf(node);
+        if (i >= 0) node.parent.children.splice(i, 1);
+      }
+      node.parent = this;
       this.children.splice(index, 0, node);
+      syncMirrorsOf(this);
     }
 
     remove() {
+      // 017 : dans le vrai Figma, la démolition d'un nœud de maître SE PROPAGE
+      // aux instances — le nœud miroir meurt avec lui, et la surcharge de
+      // peinture qu'il portait meurt avec le nœud. C'est EXACTEMENT le mécanisme
+      // de la perte du 2026-08-06 (62 photos d'instance effondrées derrière un
+      // rapport vert) : les deux chemins d'amend font
+      // `for (const child of [...comp.children]) child.remove()`.
+      const master = ownerComponentOf(this.parent);
       if (this.parent) {
         const i = this.parent.children.indexOf(this);
         if (i >= 0) this.parent.children.splice(i, 1);
       }
       this.parent = null;
       this.removed = true;
+      if (master) syncMirrorsOf(master);
     }
 
     resize(w, h) {
@@ -240,11 +296,24 @@ export function createFigmaMock() {
       return this.children?.[0] ?? null;
     }
 
+    // 017 (FR-002a, le TROU CENTRAL) — une INSTANCE MIROITE le sous-arbre de son
+    // maître, et ses nœuds miroirs acceptent une surcharge de `fills`.
+    //
+    // Jusqu'ici : `inst.children = []`. Rien à surcharger, donc rien à perdre,
+    // donc la perte du 2026-08-06 — 62 photos posées sur des INSTANCES DE PAGE,
+    // effondrées par une régénération, derrière un rapport vert — était
+    // STRUCTURELLEMENT INATTEIGNABLE sans tête. 255 des 349 photos vivantes du
+    // fichier client sont des surcharges d'instance : les trois quarts que le
+    // sauvetage d'origine ne voyait pas (016/proofs/photos/RECONCILIATION.md:26).
+    //
+    // Discipline §VII, forme des trois précédents (981e446, ddac778, e856844) :
+    // le mock passe d'un no-op permissif à une contrainte qui lève.
     createInstance() {
       const inst = new MockNode('INSTANCE');
       inst.name = this.name;
       inst._mainComponent = this;
-      inst.children = [];
+      inst.children = (this.children ?? []).map((ch) => mirrorSubtree(ch, inst));
+      this._instances.push(inst);
       const source = this.parent?.type === 'COMPONENT_SET' ? this.parent : this;
       inst.componentProperties = {};
       for (const [key, def] of Object.entries(source.componentPropertyDefinitions ?? {})) {
@@ -264,6 +333,31 @@ export function createFigmaMock() {
       return inst;
     }
 
+    // 017 (D1) — `ComponentNode.getInstancesAsync()`. Elle n'avait AUCUN usage
+    // dans ce dépôt et n'était pas modélisée ici : c'était la seule prémisse non
+    // mesurée du plan 017.
+    //
+    // ⚠️ CE QUE CE MOCK PROUVE, ET CE QU'IL NE PROUVE PAS. Il est écrit d'après
+    // l'API PUBLIÉE (les instances du maître, refusées tant que
+    // `loadAllPagesAsync` n'a pas tourné — le chargement dynamique des pages),
+    // et non d'après un relevé sur le fichier client : la sonde T005 est
+    // consignée `empeche` (proofs/sonde-getinstances.md — dix serveurs MCP
+    // concurrents, EADDRINUSE sur toute la plage 9223-9232, pont vivant mais
+    // saturé). Il prouve donc que le moteur emprunte correctement la voie ; il
+    // ne prouve pas que le fichier client la rende. C'est pour cela que
+    // l'émetteur garde le repli orchestré comme voie par défaut.
+    async getInstancesAsync() {
+      if (this.type !== 'COMPONENT') {
+        throw new Error('in getInstancesAsync: only a ComponentNode has instances');
+      }
+      if (!pagesLoaded) {
+        throw new Error(
+          'in getInstancesAsync: Cannot query instances before figma.loadAllPagesAsync() — pages load dynamically',
+        );
+      }
+      return (this._instances ?? []).filter((i) => !i.removed);
+    }
+
     async setTextStyleIdAsync(id) {
       this.textStyleId = id;
     }
@@ -273,6 +367,80 @@ export function createFigmaMock() {
         throw new Error('mock exportAsync supports only configured SVG fixtures');
       }
       return Uint8Array.from(Buffer.from(this._svgExport, 'utf8'));
+    }
+  }
+
+  // --- 017 : le miroir d'instance (FR-002a) ---------------------------------
+  // Trois fonctions, et elles disent ensemble une seule chose : ce qu'une
+  // surcharge d'instance vit, et comment elle meurt.
+
+  /** Le COMPONENT dont `node` fait partie — null si on est déjà DANS un miroir
+   *  (une INSTANCE n'a pas d'instances) ou hors de tout maître. */
+  function ownerComponentOf(node) {
+    let n = node;
+    while (n) {
+      if (n.type === 'INSTANCE') return null;
+      if (n.type === 'COMPONENT') return n;
+      n = n.parent;
+    }
+    return null;
+  }
+
+  /** Copie miroir d'un sous-arbre de maître. `fills` et `strokes` sont copiés
+   *  en TABLEAUX NEUFS : une surcharge posée sur l'instance ne doit pas remonter
+   *  au maître (c'est tout l'intérêt d'une surcharge). */
+  function mirrorSubtree(master, parent) {
+    const m = new MockNode(master.type === 'COMPONENT' ? 'INSTANCE' : master.type);
+    for (const [k, v] of Object.entries(master)) {
+      if (k === 'id' || k === 'key' || k === 'parent' || k === 'children' || k === '_shared') continue;
+      if (k === '_fills' || k === 'strokes' || k === 'effects' || k === 'dashPattern') continue;
+      if (k === '_instances' || k === '_mirrorOf') continue;
+      m[k] = v;
+    }
+    m._fills = Array.isArray(master.fills) ? master.fills.map((p) => ({ ...p })) : [];
+    m.strokes = Array.isArray(master.strokes) ? master.strokes.map((p) => ({ ...p })) : [];
+    m.effects = Array.isArray(master.effects) ? [...master.effects] : [];
+    m.dashPattern = Array.isArray(master.dashPattern) ? [...master.dashPattern] : [];
+    m._mirrorOf = master;
+    m.parent = parent;
+    if (master.children) m.children = master.children.map((ch) => mirrorSubtree(ch, m));
+    return m;
+  }
+
+  /** Réaligne les enfants d'un miroir sur ceux de son maître : un miroir déjà
+   *  présent est CONSERVÉ (donc sa surcharge survit à un simple réordonnancement),
+   *  un nœud de maître nouveau reçoit un miroir neuf, et un miroir dont le nœud de
+   *  maître a disparu MEURT — avec la surcharge qu'il portait. Cette dernière
+   *  ligne est le mécanisme de la perte, et c'est délibérément ce que le mock
+   *  reproduit. */
+  function syncMirrorChildren(master, mirror) {
+    const existing = new Map();
+    for (const ch of mirror.children ?? []) if (ch._mirrorOf) existing.set(ch._mirrorOf, ch);
+    const next = [];
+    for (const mch of master.children ?? []) {
+      let m = existing.get(mch);
+      if (m) {
+        existing.delete(mch);
+        syncMirrorChildren(mch, m);
+      } else {
+        m = mirrorSubtree(mch, mirror);
+      }
+      m.parent = mirror;
+      next.push(m);
+    }
+    for (const orphan of existing.values()) {
+      orphan.parent = null;
+      orphan.removed = true;
+    }
+    mirror.children = next;
+  }
+
+  /** Propage à toutes les instances du maître qui contient `node`. */
+  function syncMirrorsOf(node) {
+    const comp = ownerComponentOf(node);
+    if (!comp || !comp._instances || comp._instances.length === 0) return;
+    for (const inst of comp._instances) {
+      if (!inst.removed) syncMirrorChildren(comp, inst);
     }
   }
 
@@ -350,6 +518,12 @@ export function createFigmaMock() {
   const root = new MockNode('DOCUMENT');
   root.appendChild(firstPage);
 
+  // 017 : les pages se chargent dynamiquement dans l'API réelle, et
+  // `getInstancesAsync` refuse tant que `loadAllPagesAsync` n'a pas tourné.
+  let pagesLoaded = false;
+  // 017 : le magasin d'images, adressé par contenu comme chez Figma.
+  const imageStore = new Map();
+
   const figma = {
     mixed,
     base64Encode(bytes) {
@@ -359,7 +533,36 @@ export function createFigmaMock() {
     root,
     currentPage: firstPage,
     notify() {},
-    async loadAllPagesAsync() {},
+    async loadAllPagesAsync() {
+      pagesLoaded = true;
+    },
+    // 017 (FR-002a) — le couple createImage / getImageByHash, 0 occurrence de
+    // chacun jusqu'ici. `getImageByHash` rend **null** sur un hash inconnu,
+    // comme l'API réelle : c'est précisément ce qui distingue « photo illisible,
+    // donc NON VÉRIFIABLE » de « photo identique ». Un contrôle empêché n'est
+    // pas un contrôle vert (FR-015).
+    createImage(bytes) {
+      const arr = bytes instanceof Uint8Array ? bytes : Uint8Array.from(bytes ?? []);
+      if (arr.length === 0) throw new Error('in createImage: Image is empty');
+      const hash = imageHashOfBytes(arr);
+      imageStore.set(hash, arr);
+      return {
+        hash,
+        async getBytesAsync() {
+          return arr;
+        },
+      };
+    },
+    getImageByHash(hash) {
+      const bytes = imageStore.get(hash);
+      if (!bytes) return null;
+      return {
+        hash,
+        async getBytesAsync() {
+          return bytes;
+        },
+      };
+    },
     // Inventaire de polices calqué sur le fichier client : Inter épelle ses styles
     // composés avec une espace ('Semi Bold'), Montserrat les épelle compact
     // ('SemiBold'). Mesuré — specs/007-…/data-model.md:134 et les dumps REST
