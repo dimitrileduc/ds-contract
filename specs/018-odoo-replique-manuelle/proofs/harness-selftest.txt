@@ -1,0 +1,19 @@
+=== T044 · self-test du harnais — HORS LIGNE, sans instance ===
+date : 2026-08-06T21:12:34Z
+
+Self-test du harnais 018 — hors ligne, sans instance Odoo.
+
+  ✔ C7 · le harnais embarque 4 faces Montserrat réelles — poids 400, 500, 600, 700
+  ✔ C7 · le module sert les MÊMES faces, octet pour octet — 4/4
+  ✔ C7 · fonts.css déclare les 4 faces
+  ✔ les 3 clips tiennent dans leur viewport
+  ✔ les 3 URL de mesure sont déclarées dans harness.xml
+  ✔ l'instrument REFUSE deux tailles différentes — code 2 — un refus honnête plutôt qu un écart masqué
+  ✔ l'instrument MESURE deux tailles égales — code 0
+  ✔ les 2 chemins de capture produisent la même géométrie — 584×252 px appareil (clip 292×126 × DSF 2)
+
+Tous les contrôles passent.
+EXIT=0
+
+--- et le typecheck que le tsconfig RACINE ne voit pas ---
+EXIT=0

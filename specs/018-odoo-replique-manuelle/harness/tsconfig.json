@@ -1,0 +1,22 @@
+{
+  // MITIGATION OBLIGATOIRE, pas un confort (research.md §D6).
+  //
+  // Le `include` du tsconfig racine est
+  //   ["src","scripts","core",".storybook","extract","parity","evals","figma-sync/plugin/engine"]
+  // — `specs/` n'y est PAS. Un instrument écrit ici est donc INVISIBLE à
+  // `npx tsc --noEmit`. C'est le même trou que `evals/fixtures`, qui a déjà mordu
+  // ce dépôt : changer une signature partagée laissait `tsc` vert et cassait
+  // `npm run eval` au runtime.
+  //
+  // D'où ce fichier, ET le self-test hors ligne (`selftest.mts`) — les deux,
+  // jamais l'un des deux. Un instrument que rien ne typecheck et que rien
+  // n'exécute est un instrument dont on ne sait rien.
+  //
+  //   npx tsc -p specs/018-odoo-replique-manuelle/harness/tsconfig.json --noEmit
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["./**/*.mts"]
+}

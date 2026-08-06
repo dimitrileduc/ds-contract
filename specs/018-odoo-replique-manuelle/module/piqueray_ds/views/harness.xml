@@ -75,17 +75,30 @@
   <template id="mesure_section_header" name="Mesure · En-tête de section">
     <t t-call="piqueray_ds.mesure_frame">
       <t t-set="titre_page" t-value="'Mesure · En-tête de section'"/>
+      <!--
+        Les valeurs sont celles du DÉFAUT DU CONTRAT, avec `disposition` seule
+        variée — exactement la vignette « disposition=avecCta » du showcase que
+        `emitHtml` produit. C'est la condition §3.2 du protocole : props
+        identiques des deux côtés. Rendre ici `emphase=moyen` + `alignement=gauche`
+        (les valeurs que la COMPOSITION du parent fixe) opposerait deux mises en
+        page différentes et viderait la mesure de son sens.
+
+        `avecCta` est le SEUL réglage qui fait rendre le bouton de niveau 3. Il
+        n'est PAS offert sur le bloc posable ; il l'est ici, sur une page hors
+        panneau, pour que l'appel à trois niveaux soit EXERCÉ et non seulement
+        déclaré.
+
+        `accroche2 = True` est le défaut du contrat : la part Accroche se rend
+        donc ici, ce qui exerce visuellement le littéral nommé `letter-spacing: 3px`
+        — invisible sur le bloc posé, où la composition la masque.
+      -->
       <t t-call="piqueray_ds.t_section_header">
-        <!-- `avecCta` — le SEUL réglage qui fait rendre le bouton de niveau 3.
-             Il n'est PAS offert sur le bloc posable ; il l'est ici, sur une page
-             hors panneau, pour que l'appel à trois niveaux soit exercé et non
-             seulement déclaré. -->
         <t t-set="disposition" t-value="'avecCta'"/>
-        <t t-set="emphase" t-value="'moyen'"/>
-        <t t-set="alignement" t-value="'gauche'"/>
-        <t t-set="accroche2" t-value="False"/>
+        <t t-set="emphase" t-value="'standard'"/>
+        <t t-set="alignement" t-value="'centre'"/>
+        <t t-set="accroche2" t-value="True"/>
         <t t-set="accroche" t-value="'Plus de 50 ans d’expérience'"/>
-        <t t-set="titre_html"><strong>Piqueray, </strong><span>une histoire de famille </span></t>
+        <t t-set="titre_html"><span>Pourquoi choisir Piqueray ?</span></t>
       </t>
     </t>
   </template>
