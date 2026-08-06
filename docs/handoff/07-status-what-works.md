@@ -101,10 +101,10 @@ level: **[gated headless]** (an eval/gate proves it in Node against the mock),
 The sections above are the demo-era record (last full pass 2026-07-21); the
 Piqueray reconversion's spec-by-spec record lives in `specs/NNN-*/` (see the
 journal-gap note in `10-history.md`). What spec 016 makes claimable today, each
-sentence with its check. The six fixtures below run standalone
-(`npx tsx evals/fixtures/<name>.ts` — all six re-run green on 2026-08-06) and
-are **not yet registered in `evals/run.ts`'s sweep**; named so the sweep count
-is not mistaken for their coverage.
+sentence with its check. The fixtures below are **registered in `evals/run.ts`'s
+sweep** (016 closure, adversarial-review finding 2: a fixture nothing runs
+protects nothing) — they are part of the live `193/193`, and each also runs
+standalone (`npx tsx evals/fixtures/<name>.ts`).
 
 - **A composed child's slot content is a contract fact** (`component.slots`,
   schema v20): the canvas emitter poses it through the child's INSTANCE_SWAP
