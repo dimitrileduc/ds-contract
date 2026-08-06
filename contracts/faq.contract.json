@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.faq",
   "name": "FAQ",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Piqueray FAQ. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v1.2.0 porte la géométrie relevée au census 013 sur le master 2104:2914 (version Figma pinée 2381581871281042338) : l'extraction 010 avait retenu la structure sans aucune de ses mesures (ni gap, ni padding, ni largeur) et sans aucune des valeurs d'instance du Bouton, ce qui laissait le rendu généré à 4,37 % d'écart pixel. Aucune propriété publique n'a changé.",
   "semantics": {
     "element": "div",
@@ -98,12 +98,22 @@
                   {
                     "contenu": "Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.",
                     "titre": "Quels types de bardages peuvent être intégrés sur les portes ?"
-                  },
-                  {
-                    "contenu": "Réponse",
-                    "titre": "Assurez-vous la maintenance après l'installation ?"
                   }
                 ]
+              }
+            },
+            "AccordionRow3": {
+              "description": "Troisième rangée sortie du repeat (016) : un item de repeat ne peut pas porter de visibleWhen individuel — la prop ligne3 déclarée au contrat n'était reliée à AUCUNE part (mesuré : refs [] sur les rangées du master, Ligne 3=false sans effet, pages +64). Part composée séparée, toggleable.",
+              "component": {
+                "id": "ds.accordion-row",
+                "props": {
+                  "taille": "grand",
+                  "titre": "Assurez-vous la maintenance après l'installation ?",
+                  "contenu": "Réponse"
+                }
+              },
+              "visibleWhen": {
+                "prop": "ligne3"
               }
             }
           }

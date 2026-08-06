@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "AccordionRow",
     "contractId": "ds.accordion-row",
     "anchorKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
-    "description": "AccordionRow — generated from contract ds.accordion-row v1.1.0 †",
+    "description": "AccordionRow — generated from contract ds.accordion-row v1.2.0 †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -179,10 +179,6 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
-              "fixedHeight": {
-                "px": 32,
-                "varName": "size/accordion-row/contenu"
-              },
               "characters": "Réponse",
               "fontSize": 14,
               "fontStyle": "Regular",
@@ -386,10 +382,6 @@ const COMPONENTS = [
             {
               "type": "text",
               "name": "Contenu",
-              "fixedHeight": {
-                "px": 24,
-                "varName": "size/accordion-row/contenu-petit"
-              },
               "characters": "Réponse",
               "fontSize": 14,
               "fontStyle": "Regular",
@@ -3036,7 +3028,7 @@ const COMPONENTS = [
     "setName": "FAQ",
     "contractId": "ds.faq",
     "anchorKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
-    "description": "FAQ — generated from contract ds.faq v1.2.0 †",
+    "description": "FAQ — generated from contract ds.faq v1.3.0 †",
     "isSet": false,
     "boolProps": [
       {
@@ -3117,14 +3109,16 @@ const COMPONENTS = [
                 },
                 {
                   "type":"instance",
-                  "name": "AccordionRow 3",
+                  "name": "AccordionRow3",
                   "dep":"AccordionRow",
                   "depId": "ds.accordion-row",
                   "depProps": {
                     "Taille": "Grand",
-                    "Contenu": "Réponse",
-                    "Titre": "Assurez-vous la maintenance après l'installation ?"
-                  }
+                    "Titre": "Assurez-vous la maintenance après l'installation ?",
+                    "Contenu": "Réponse"
+                  },
+                  "visibleProp": "Ligne 3",
+                  "visibleDefault": true
                 }
               ]
             },

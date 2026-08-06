@@ -434,3 +434,32 @@ l'intégrale composants × overrides par page × assemblage, le critère d'accep
 de l'owner, mais un mauvais outil d'attribution (les décalages amont se reportent en
 cascade — mesuré : ~40 % du diff de page n'était que du report). L'attribution
 passe par les dumps REST par section, jamais par le pixel de page seul.
+
+## O-15 — 2026-08-06 (soir) : « finis le job » — les quatre écarts tombent, il ne reste que les différences assumées
+
+Trois causes structurelles, trois réparations de contrat :
+1. **FAQ « Ligne 3 » morte de naissance** : la prop BOOLEAN était déclarée mais reliée à
+   AUCUNE part — un item de `repeat` ne peut pas porter de visibleWhen individuel
+   (mesuré : refs [] sur les rangées du master, false sans effet, pages +64). La 3e
+   rangée sort du repeat en part `AccordionRow3` composée + visibleWhen. FAQ 1.3.0.
+   Portes-entrée 481→409, la prop agit.
+2. **Contenu d'accordéon clippé** : la part Contenu portait une hauteur FIXE minted du
+   sample court d'extraction — 503 caractères rendus sur une ligne (TexteSEO
+   industrielles 431 vs 503 origine). Le contenu d'un accordéon ouvert est AUTO ;
+   canaux height retirés. accordion-row 1.2.0. Row ouverte 80→128.
+3. **Presentation sans colonne** : le SectionHeader composé s'étalait à 1101 (une ligne)
+   au lieu des 628 d'origine (deux lignes) — une instance ne peut pas être restylée par
+   le parent, la largeur vit sur un wrapper structurel `colGauche` + mint from-dump
+   `size.presentation.col-gauche` = 628. presentation 2.2.0. Accueil 214→238.
+
+**FINAL17, deltas de hauteur vs avant-chantier** : 4 pages exactes (contactez-nous,
+à-propos, motorisation, portes-de-garage), industrielles −3,5 (≈ le −4 Realisations
+assumé DW-002), accueil +8 et dépannage −8 (le wrap AUTO du contenu re-rendu, ±1
+interligne), portes-entrée +24,5 et résidentielles +20,5 (≈ le header FAQ réformé +33
+du nettoyage §VIII, différence de doctrine assumée, partiellement compensée). Le diff
+pixel : 128k–219k par page (~1,4M au départ). Il ne reste AUCUN défaut non attribué :
+chaque delta restant a un nom, une cause et un statut (assumé ou résiduel fin).
+
+Parity re-rafraîchie post-mints : exit 0, 3 acquittés nommés (Carte.Bouton,
+SectionHeader.Bouton — masters photo-carrying/avecCta à traiter hors 016 —
+et close.svg orphelin).

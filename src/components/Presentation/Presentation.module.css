@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.1.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -18,6 +18,12 @@
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-32);
+}
+
+.colGauche {
+  display: flex;
+  flex-direction: column;
+  width: var(--size-presentation-col-gauche);
 }
 
 .wrapper {

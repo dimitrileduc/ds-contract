@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/faq.contract.json (ds.faq v1.2.0)
+ * Source of truth: contracts/faq.contract.json (ds.faq v1.3.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -35,6 +35,13 @@ export const FAQ = forwardRef<HTMLDivElement, FAQProps>(function FAQ(
         {items?.map((item, index) => (
           <AccordionRow key={index} taille="grand" contenu={item.contenu} titre={item.titre} />
         ))}
+        {ligne3 ? (
+          <AccordionRow
+            taille="grand"
+            titre="Assurez-vous la maintenance après l'installation ?"
+            contenu="Réponse"
+          />
+        ) : null}
       </div>
       <Button variant="outilneNoir" iconRight>
         Contactez-nous

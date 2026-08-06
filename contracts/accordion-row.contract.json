@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.accordion-row",
   "name": "AccordionRow",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "stable",
   "description": "Piqueray AccordionRow. Visual anatomy, layout, dimensions, typography, colors and visibility are adopted from the validated read-only Figma extraction. Native button, toggle and ARIA semantics are intentionally deferred to a separately proven semantic-wrapper capability.",
   "semantics": {
@@ -92,12 +92,17 @@
       "name": "toggle",
       "description": "Activates the transparent native trigger projected over the Figma title row.",
       "bindings": {
-        "code": { "prop": "onToggle" }
+        "code": {
+          "prop": "onToggle"
+        }
       },
       "trigger": "trigger",
       "toggles": {
         "prop": "etat",
-        "between": ["ferme", "ouvert"],
+        "between": [
+          "ferme",
+          "ouvert"
+        ],
         "aria": "expanded",
         "controls": "Contenu"
       }
@@ -156,15 +161,17 @@
                 "letter-spacing": "0px",
                 "line-height": "25px"
               },
-              "literalsByProp": [{
-                "prop": "taille",
-                "map": {
-                  "petit": {
-                    "font-weight": "700",
-                    "line-height": "24px"
+              "literalsByProp": [
+                {
+                  "prop": "taille",
+                  "map": {
+                    "petit": {
+                      "font-weight": "700",
+                      "line-height": "24px"
+                    }
                   }
                 }
-              }],
+              ],
               "visibleWhen": {
                 "prop": "etat",
                 "equals": "ouvert"
@@ -206,16 +213,7 @@
             "color": "{color.noir-bleute}",
             "font-family": "{typography.paragraphe.family}",
             "font-size": "{typography.paragraphe.size}",
-            "font-weight": "{typography.paragraphe.weight}",
-            "height": "{size.accordion-row.contenu}"
-          },
-          "tokensByProp": {
-            "prop": "taille",
-            "map": {
-              "petit": {
-                "height": "{size.accordion-row.contenu-petit}"
-              }
-            }
+            "font-weight": "{typography.paragraphe.weight}"
           },
           "literals": {
             "letter-spacing": "0px",
@@ -224,7 +222,8 @@
           "visibleWhen": {
             "prop": "etat",
             "equals": "ouvert"
-          }
+          },
+          "description": "016: la hauteur fixe (minted du sample court d'extraction) clippait tout contenu réel (503 chars rendus 1 ligne, TexteSEO industrielles 431 vs 503 origine) ; le contenu d'un accordéon ouvert est AUTO, sa hauteur est celle de son texte."
         },
         "Titre": {
           "content": {
@@ -251,15 +250,17 @@
             "letter-spacing": "0px",
             "line-height": "25px"
           },
-          "literalsByProp": [{
-            "prop": "taille",
-            "map": {
-              "petit": {
-                "font-weight": "700",
-                "line-height": "24px"
+          "literalsByProp": [
+            {
+              "prop": "taille",
+              "map": {
+                "petit": {
+                  "font-weight": "700",
+                  "line-height": "24px"
+                }
               }
             }
-          }],
+          ],
           "visibleWhen": {
             "prop": "etat",
             "equals": "ferme"

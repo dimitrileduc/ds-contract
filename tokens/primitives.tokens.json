@@ -503,6 +503,11 @@
         "$type": "dimension",
         "$description": "Authored from ds.presentation's already-governed anatomy at /anatomy/root/parts/wrapper/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
         "$value": "627px"
+      },
+      "col-gauche": {
+        "$type": "dimension",
+        "$description": "Authored from the Figma dump of the Presentation instances at version 016/U1a-variables/avant: the composed SectionHeader renders 628x80 (two lines) inside the two-column grid (628 + 627 wrapper). Without it the instance HUGs to 1101x40 (one line) and every page loses 16px — minted from-dump so anatomy references tokens, not literals. Minted 016, 2026-08-06.",
+        "$value": "628px"
       }
     },
     "product-card": {

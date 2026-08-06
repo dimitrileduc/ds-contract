@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/faq.contract.json (ds.faq v1.2.0)
+ * Source of truth: contracts/faq.contract.json (ds.faq v1.3.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -42,7 +42,6 @@ const meta = {
           'Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.',
         titre: 'Quels types de bardages peuvent être intégrés sur les portes ?',
       },
-      { contenu: 'Réponse', titre: "Assurez-vous la maintenance après l'installation ?" },
     ],
     ligne3: true,
   },
