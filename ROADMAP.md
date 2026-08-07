@@ -19,11 +19,20 @@ Ordre imposé par les dépendances — chaque spec dimensionne la suivante, gate
 
 > **⚠️ DEUX DÉCISIONS OWNER DU 2026-08-07 RE-CLASSENT CETTE LISTE. À lire avant elle.**
 >
-> **(a) La surface d'intérêt est HTML, plus React.** Conséquence directe : `DW-014-002` — que
-> cette section tenait pour « le plus gênant » — **est déclassé**. L'instrument de parité visuelle
-> rend `emit-html`, donc il mesure désormais la bonne surface. Le fait « React n'est mesuré par
-> rien sur cet axe » reste vrai et reste au registre (`resolvedBy: null` : déclassé n'est pas
-> réparé), mais il ne commande plus l'ordonnancement.
+> **(a) HTML est la surface que l'owner veut REGARDER ; React reste le livrable ; et l'owner
+> NE VEUT PAS mesurer React.** Décision explicite, redite deux fois le 2026-08-07 : *« je veux pas
+> mesurer React »*.
+>
+> `DW-014-002` **sort donc de l'ordonnancement** — non parce qu'il serait refermé, mais parce que
+> l'owner décline le travail. Le fait reste consigné tel quel au registre (`resolvedBy: null` :
+> décliné n'est pas réparé) et il n'est **pas** re-proposé à chaque revue. Ne pas le rouvrir sans
+> une demande explicite.
+>
+> *Rectification du même jour, écrite plutôt que corrigée en silence : cette entrée a d'abord été
+> rédigée « l'instrument mesure désormais la bonne surface, le problème s'évapore » — faux, bâti
+> sur l'hypothèse que HTML devenait le livrable. Puis, la correction faite, elle a été re-écrite
+> en « le trou est entier » — vrai comme fait, mais qui remettait en tête un chantier que l'owner
+> venait de refuser. Les deux dérapages vont dans le même sens : conclure à la place de l'owner.*
 >
 > **(b) Les sections locales des maquettes sont HORS PÉRIMÈTRE, définitivement.**
 > `D-016-SECTIONS-LOCALES-CARTES` est clos sans geste. Au maximum, un jour, **un seul** contrat de
@@ -40,15 +49,12 @@ Ordre imposé par les dépendances — chaque spec dimensionne la suivante, gate
 qu'établi le 2026-08-06 — **re-classé par les deux décisions ci-dessus**, conservé pour le
 raisonnement)* :
 
-1. ~~**`DW-014-002` — l'instrument mesure la mauvaise surface.**~~ — **DÉCLASSÉ le 2026-08-07 par
-   décision owner : la surface qui compte désormais est HTML, pas React.** Or l'instrument rend
-   précisément `emit-html`. L'angle mort qu'il décrivait portait sur une surface qui n'est plus
-   celle du produit : **il cesse d'être le premier chantier.** Le fait, lui, reste vrai et
-   l'entrée reste au registre avec `resolvedBy: null` — la marquer résolue la sortirait du compte
-   imprimé comme si elle était réparée, ce qu'elle n'est pas. À reprendre **seulement** si React
-   redevient un livrable surveillé. *(Attention en relisant l'historique : `DW-014-002` couvrait
-   **deux** choses. Le volet « React n'est pas border-box » a bel et bien été réparé par 015 T013 ;
-   seul l'angle mort d'instrument restait ouvert, et c'est lui qui est déclassé ici.)*
+1. ~~**`DW-014-002` — l'instrument mesure la mauvaise surface.**~~ **DÉCLINÉ PAR L'OWNER le
+   2026-08-07** (« je veux pas mesurer React »). Le fait — la parité visuelle rend `emit-html`,
+   jamais la surface React livrée — reste consigné au registre, `resolvedBy: null`. **Ne pas le
+   remettre en tête de liste.** *(Attention en relisant l'historique : `DW-014-002` couvrait
+   **deux** choses. Le volet « React n'est pas border-box » a bel et bien été réparé par 015 T013
+   — c'était la divergence CONNUE entre les deux émetteurs.)*
 2. ~~Le lot de régénération vif~~ — **FAIT le 2026-08-07** : sonde levée (33 instances, 15 ms), 45 photos d'instance + 36 photos de master reposées, clause de légende portée au canevas. Ce qui en reste : **3 images purgées** à reposer à la main (fichiers fournis) et le **cliché de parité à rafraîchir** — il ignore les mutations du 2026-08-07.
 3. **Les deux plans photo de MemberPicture** — `D-017-MEMBER-PICTURE-ORDRE-DES-PLANS` (le contrat
    inverse l'ordre du master, chiffré) et `D-017-MEMBER-PICTURE-SURVOL-2E-PLAN` (deux parts `img`,
@@ -82,7 +88,7 @@ Chacun des restants a son entrée au registre et son reçu re-testé ; aucun n'a
 | ~~`DW-014-002`~~ | **La parité visuelle rend `emit-html`, jamais la surface React livrée.** Le fait reste vrai. | **DÉCLASSÉ le 2026-08-07** : HTML est désormais la surface d'intérêt, et c'est celle que l'instrument mesure. Reste au registre, `resolvedBy: null` — déclassé n'est pas réparé |
 | `DW-014-003` | `texte-seo` : le titre rich-text est aplati et sa typographie n'est pas liée à travers la composition `ds.texte-seo → ds.section-header`. Seul travail de cause `contract-geometry` encore ouvert. | Moyen — demande de porter une marque rich-text ET une typographie par-disposition à travers une composition imbriquée |
 | — | **30 des 69 pointeurs** `/literals/` d'`audit-campaign.json` visent l'ancien emplacement après les conversions de 015 → faux négatifs « le contrat ne porte pas ce fait ». | Mécanique mais substantiel ; le fichier appartient à 013, à ne pas réécrire sans revue |
-| — | **89 littéraux** de trait, peinture et typographie restent hors périmètre gouverné, donc invisibles au contrôle. La suite naturelle de 015. | Une spec entière si on la veut — même patron que 015, autre population |
+| — | ~~89~~ **55 littéraux** de typographie (38), peinture (15) et trait (2) restent hors périmètre gouverné, donc invisibles au contrôle. La suite naturelle de 015. *(Chiffre **re-compté le 2026-08-07** : 79 littéraux au total dans les 34 contrats, dont 24 de famille géométrique déjà couverts par `npm run geometry:gate` — qui passe, 0 invisible. Le « 89 » précédent était repris de main en main sans être mesuré.)* | Une spec entière si on la veut — même patron que 015, autre population. **C'est le seul chantier de taille qui subsiste** une fois retirés : les états (hors périmètre — la source Figma n'a pas d'axe State, cf. `evals/REMOVED-CASES.md`), le plancher de rendu texte (accepté par l'owner : « on fait avec, on sait rien faire d'autre »), la mesure de React (déclinée) et les sections locales (hors périmètre) |
 
 Short version — four phases, each with a falsifiable exit criterion:
 
