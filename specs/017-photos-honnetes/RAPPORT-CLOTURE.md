@@ -101,7 +101,28 @@ légende n'est multi-ligne, la dague reste en fin.
 porte le numéro de version, elle devait bouger. Elle ne porte **aucune** clause. Écart nommé, pas
 lissé.
 
-### SC-006-vif · Le designer la lit **dans Figma** — **NON TENU, ET C'EST DIT**
+### SC-006-vif · Le designer la lit **dans Figma** — **TENU le 2026-08-07**
+
+*Ce critère était NON TENU à la clôture du 2026-08-06. Le pont a été débloqué le lendemain et
+il a été honoré. Reçu : [`proofs/vif/recu-clause-legende.json`](proofs/vif/recu-clause-legende.json).*
+
+**11 légendes écrites, dont 9 portant la clause** — exactement les 9 contrats à part `img`.
+Vérifié au canevas après écriture : **34 légendes, 9 avec la clause, 0 multi-ligne, 0 dague mal
+placée**, et **14/14 hôtes photos conformes** (l'écriture n'a touché aucune photo). Point de
+restauration posé avant : `017/clause-legende/avant`.
+
+**Le geste choisi, et pourquoi** : écriture **directe** du champ `description`, **sans reconstruire
+les masters**. La clause est une chaîne de légende ; reconstruire les 9 masters trois minutes après
+avoir reposé 45 photos aurait fait courir un risque réel pour rien.
+
+**Les 2 écritures qui ne sont PAS des gains de clause**, dites plutôt que fondues dans le compte :
+`ds.button` (le canevas était resté en v1.6.0 depuis 016) et `ds.member-card` (bump patch de T035).
+
+**La limite demeure entière** : `parity/diff.ts` ne compare toujours pas les descriptions. Cette
+preuve est un **relevé vif**, pas une porte — rien ne détectera une dérive future de la légende
+sur le canevas.
+
+### (2026-08-06) SC-006-vif — l'état à la clôture, conservé
 
 **Le canevas n'a pas reçu la clause.** Elle n'y arrivera qu'au lot de régénération de la fenêtre
 vive, qui n'a pas eu lieu (§4). D'ici là, un designer qui ouvre le fichier client lit **l'ancienne
