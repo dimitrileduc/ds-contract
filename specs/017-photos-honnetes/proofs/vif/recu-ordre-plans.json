@@ -1,0 +1,24 @@
+{
+ "schemaVersion": 1,
+ "nom": "017 — correction de l'ordre des plans photo de MemberPicture",
+ "executeLe": "2026-08-07T07:09:00Z",
+ "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+ "pointDeRestauration": {
+  "nom": "017/memberpicture-ordre-plans/avant",
+  "versionId": "2384890556256602698"
+ },
+ "declencheur": "L'owner a vu la MEME PHOTO pour tous les membres apres la restauration. Il avait raison : ma verification comptait des HASHES (17 distincts) et non ce qui se VOIT. Les 15 reposes etaient allees sur le plan `normal`, situe DESSOUS `funIa` — lequel porte la meme image generique sur les 16 cartes. Visuellement rien n'avait bouge.",
+ "cause": "D-017-MEMBER-PICTURE-ORDRE-DES-PLANS, confirme AU CANEVAS et plus seulement au contrat : le master MemberPicture posait `normal` a l'index 0 (dessous) et `funIa` a l'index 1 (dessus), alors que le contrat decrit `normal` comme le plan du DESSUS a l'etat defaut.",
+ "gesteRefuseParFigma": "Reordonner les enfants d'une INSTANCE : `in appendChild: Cannot move node. New parent is an instance or is inside of an instance`. La structure d'une instance suit son master — la correction ne pouvait se faire QUE sur le master.",
+ "geste": "Sur les DEUX variantes du master (274:2388 Etat=Defaut et 274:2390 Etat=Survol) : `normal` remonte au dernier rang (= devant). Propage aux 33 instances.",
+ "verification": {
+  "equipeCartes": 16,
+  "planVisible": "normal",
+  "portraitsDistincts": 16,
+  "sectionsVerifiees": 14,
+  "sectionsCorrectes": 14,
+  "note": "Le compteur brut affiche 'doublons' sur Equipe : il additionne les deux plans superposes (16 normal + 16 funIa). Le plan VISIBLE est `normal`, 16 portraits distincts."
+ },
+ "verdict": "vert",
+ "lecon": "Compter des hashes n'est pas verifier ce qui se voit. Un plan correct mais MASQUE se compte comme repare et ne repare rien. Toute verification photo doit resoudre l'ordre z et l'opacite avant de conclure."
+}

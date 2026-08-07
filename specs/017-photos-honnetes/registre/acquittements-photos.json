@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "note": "Levées owner du refus FR-003a (spec 017). Une entree = une photo, a la photo pres. Toute addition est une decision consignee avec recu — jamais un ajout silencieux. Une entree dont l'hote ou le rang ne resout plus est ORPHELINE et se retire : l'exception morte ne s'accumule pas. Les SEPT champs sont obligatoires et se refusent par le nom — hostId, cheminPosition, imageHash, motif, decidePar, decideLe, receiptId ; une entree incomplete refuse au chargement. cheminPosition est la cle positionnelle (indices depuis l'hote) : jamais 'ordre', qui est la cle du repli. Un acquittement ne leve QUE la photo qu'il nomme, jamais un emplacement en general — et il reste imprime dans sa propre section du rapport, jamais fondu dans le vert. Graphie JSON sans accents, conforme a l'usage du depot (specs/016-canvas-vrai/contracts/registre-source.md).",
+  "creeLe": "2026-08-06",
+  "fichierCible": "d9FYAUcqdcNtsuaMgLefvJ",
+  "entries": []
+}

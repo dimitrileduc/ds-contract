@@ -4,6 +4,64 @@ A dated log of what this system has **proven**, in order. Every entry is backed
 by receipts in the repo — commits, pilot write-ups, eval cases, or live-file
 forensics. Nothing here is aspirational; the roadmap holds the aspirations.
 
+## 2026-08-06 — Photos honnêtes : deux rapports cessent de dire le faux (spec 017)
+
+> **Trou de journal, nommé plutôt que comblé en silence.** Ce fichier saute des
+> specs **011, 012, 013, 014 et 016** — 015 a déjà déposé son entrée par-dessus
+> ce trou, 017 fait de même. Leur trace vit dans les dossiers de spec et le log
+> de commits jusqu'à ce que le journal soit rattrapé.
+
+- **Une photo posée sur une INSTANCE DE PAGE survit à une reconstruction, et le
+  rapport ne peut plus être vert sur une perte.** Le 2026-08-06, une régénération
+  avait effondré **62 photos** sur 10 sections de 8 maquettes du fichier client
+  **derrière un rapport vert** : le sauvetage ne voyait que le maître, alors que
+  **255 des 349 photos vivantes sont des surcharges d'instance**. Trois défauts
+  réparés — le périmètre descend aux instances, l'appariement passe du **nom** à
+  la **position**, et le refus devient une **pré-passe exécutée avant le premier
+  `remove()`** (aucun nœud touché, levable à la photo près par acquittement
+  écrit). Preuve §II archivée des deux côtés : la fixture rouge détruisait
+  **6 empreintes sur 8**, exactement les 6 surcharges d'instance.
+  Evals **193 → 194/194**.
+- **La porte de parité visuelle cesse de mesurer un cadre vide.** La boucle du
+  live gate appelait `renderVariant` avec **six** arguments alors que le septième
+  existait depuis toujours : notre surface rendait `<img src="">` face à une
+  photo et la porte notait **l'absence de données**. Quatre des huit lignes
+  « frontière image » passent sous la porte —
+  `member-picture/Etat=Defaut` **58,32 % → 0,00 %**, `product-card` 15,64 % →
+  0,41 %, `carte/Categorie` 56,34 % → 0,64 %, `member-card` 47,88 % → 1,76 %.
+  Les six règles de triage **réécrites d'après la mesure d'après**, zéro
+  `UNTRIAGED`.
+- **Trois prémisses du dépôt renversées par la mesure**, toutes consignées :
+  `realisation` (la pire ligne, 99,43 %) **n'était pas une frontière image** — son
+  master ne porte **aucune photo** ; les assets « manquants » de `member-picture`
+  étaient au manifeste depuis toujours ; et le contrat `member-picture`
+  **inverse l'ordre de ses deux plans photo** par rapport au master — découvert
+  parce que prêter la mauvaise photo a fait *empirer* l'écart.
+- **La documentation cesse d'être l'exception à la règle des revendications.**
+  Relevé : **aucun cas d'eval ne lisait `docs/`** — la règle « aucune phrase de
+  capacité sans son eval derrière » n'était, côté doc, tenue par rien.
+  `img-part-canvas-placeholder-named` est le **premier cas du dépôt à lire
+  `docs/`**, et il est prouvé adverse : **un mot** altéré dans la copie fait
+  tomber la suite à `193/194`.
+- **La fenêtre vive du lendemain (2026-08-07) a tourné, et elle a élargi le dégât connu.**
+  Le pont était **saturé et non déconnecté** — 13 serveurs pour 10 ports, dont **3 squattés par ce
+  dépôt** depuis 016. Une fois débloqué : sonde `getInstancesAsync` **levée** (33 instances, 15 ms),
+  **45 photos d'instance** reposées, la **clause de légende portée au canevas** (SC-006-vif tenu),
+  et surtout — **les MASTERS du design system avaient perdu leurs photos eux aussi** (`Equipe`
+  17 → 2, `Reassurances` 13 → 1, `ProduitsECommerce` 4 → 1), alors que le plan de restauration de
+  016 ne listait que des hôtes de maquette. 3 masters sur 4 restaurés. **016 avait aussi inversé
+  l'ordre des deux plans photo**, prouvé par lecture REST de la version d'avant-016.
+- **Deux comptes du dépôt corrigés** : ni « 62 photos » (le relevé photo-par-photo en compte **45**
+  côté instances), ni « seulement les instances ». Et une leçon de méthode payée cher : compter
+  des **hashes** n'est pas vérifier ce qui **se voit** — un plan correct mais masqué se compte
+  comme réparé et ne répare rien.
+- **Ce qui n'est PAS fermé, et qui est écrit noir sur blanc** : `DW-014-002`
+  (l'instrument rend `emit-html`, jamais la surface React livrée), la lacune A5
+  (lacune de **transport**, pas défaut de fidélité), **SC-006-vif** (le canevas
+  n'a pas reçu la clause, et aucune porte ne le détecte), et le reçu vif
+  `verdict: "empeche"` — pont saturé, précondition FR-005 non levée.
+  Détail : `specs/017-photos-honnetes/RAPPORT-CLOTURE.md` §5.
+
 ## 2026-07-03 — The loop exists
 
 - **Generation from contract into both surfaces** — working React + CSS Modules

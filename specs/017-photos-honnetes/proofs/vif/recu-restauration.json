@@ -1,0 +1,148 @@
+{
+ "schemaVersion": 1,
+ "nom": "017 — recu vif de la restauration des photos",
+ "executeLe": "2026-08-07T06:54:00Z",
+ "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+ "fileName": "Piqueray (Copy)",
+ "pointDeRestauration": {
+  "nom": "017/restauration-photos/avant",
+  "versionId": "2384868067790461864"
+ },
+ "methode": "Appariement par CARTE puis par NOM DE CALQUE, jamais par index seul — le plan de 016 liste fun-ia avant normal, le canvas expose normal avant funIa : un appariement par index aurait INTERVERTI les 32 photos de l'Equipe.",
+ "totaux": {
+  "photosSuivies": 97,
+  "reposees": 45,
+  "refus": 0,
+  "intactes": 52
+ },
+ "verdict": "vert",
+ "sections": [
+  {
+   "maquette": "À Propos",
+   "section": "Equipe",
+   "hostId": "2115:4044",
+   "porteurs": 32,
+   "distinctesAvant": 2,
+   "distinctesApres": 17,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "À Propos",
+   "section": "Reassurances",
+   "hostId": "2115:3830",
+   "porteurs": 4,
+   "distinctesAvant": 1,
+   "distinctesApres": 4,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "Dépannage/SAV",
+   "section": "CategoriesPrincipales",
+   "hostId": "2115:4364",
+   "porteurs": 2,
+   "distinctesAvant": 2,
+   "distinctesApres": 2,
+   "verdict": "intact"
+  },
+  {
+   "maquette": "Portes d’entrée",
+   "section": "Reassurances",
+   "hostId": "2115:3754",
+   "porteurs": 4,
+   "distinctesAvant": 1,
+   "distinctesApres": 4,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "Portes d’entrée",
+   "section": "Realisations",
+   "hostId": "2118:4722",
+   "porteurs": 9,
+   "distinctesAvant": 9,
+   "distinctesApres": 9,
+   "verdict": "intact"
+  },
+  {
+   "maquette": "Motorisation",
+   "section": "ProduitsECommerce",
+   "hostId": "2116:4531",
+   "porteurs": 4,
+   "distinctesAvant": 1,
+   "distinctesApres": 4,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "Portes de garage industrielles",
+   "section": "Reassurances",
+   "hostId": "2115:3723",
+   "porteurs": 4,
+   "distinctesAvant": 1,
+   "distinctesApres": 4,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "Portes de garage industrielles",
+   "section": "Realisations",
+   "hostId": "2118:4736",
+   "porteurs": 9,
+   "distinctesAvant": 9,
+   "distinctesApres": 9,
+   "verdict": "intact"
+  },
+  {
+   "maquette": "Portes de garage résidentielles",
+   "section": "Reassurances",
+   "hostId": "2115:3861",
+   "porteurs": 4,
+   "distinctesAvant": 1,
+   "distinctesApres": 4,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "Portes de garage résidentielles",
+   "section": "Realisations",
+   "hostId": "2118:4751",
+   "porteurs": 9,
+   "distinctesAvant": 9,
+   "distinctesApres": 9,
+   "verdict": "intact"
+  },
+  {
+   "maquette": "Portes de garage",
+   "section": "Reassurances",
+   "hostId": "2115:3794",
+   "porteurs": 5,
+   "distinctesAvant": 1,
+   "distinctesApres": 5,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "Accueil",
+   "section": "SAV",
+   "hostId": "2108:3135",
+   "porteurs": 2,
+   "distinctesAvant": 2,
+   "distinctesApres": 2,
+   "verdict": "intact"
+  },
+  {
+   "maquette": "Accueil",
+   "section": "ProduitsECommerce",
+   "hostId": "2116:4595",
+   "porteurs": 4,
+   "distinctesAvant": 1,
+   "distinctesApres": 4,
+   "verdict": "restaure"
+  },
+  {
+   "maquette": "Accueil",
+   "section": "Reassurances",
+   "hostId": "2115:3892",
+   "porteurs": 5,
+   "distinctesAvant": 1,
+   "distinctesApres": 5,
+   "verdict": "restaure"
+  }
+ ],
+ "reserveNommee": "Le depot annoncait 62 photos perdues. Le releve vif, photo par photo avec appariement par nom, en compte 45 a reposer. L'ecart vient de la methode : un comptage par ENSEMBLE de hashes classait toute une section comme perdue, alors que les plans funIa de l'Equipe (image generique partagee) etaient corrects. Le 45 est derive d'un releve, le 62 d'un message de commit."
+}

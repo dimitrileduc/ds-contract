@@ -1,0 +1,13 @@
+# T011 — la fixture, AVANT le correctif d'émetteur (§II : elle DOIT être rouge)
+# date: 2026-08-06T18:43:19Z  commit: 3bd794b
+# commande: npx tsx evals/fixtures/photos-instance-overrides-preserved-check.ts
+
+✘ photos-instance-overrides-preserved: LA PERTE DU 2026-08-06 SE REJOUE — 6 empreinte(s) sur 8 n'ont pas survécu à la reconstruction :
+      · instance 1 rang 0 → [] (attendu H-1-A)
+      · instance 1 rang 1 → [] (attendu H-1-B)
+      · instance 2 rang 0 → [] (attendu H-2-A)
+      · instance 2 rang 1 → [] (attendu H-2-B)
+      · instance 3 rang 0 → [] (attendu H-3-A)
+      · instance 3 rang 1 → [] (attendu H-3-B)
+    Le sauvetage ne descend pas aux instances du maître reconstruit.
+EXIT=1

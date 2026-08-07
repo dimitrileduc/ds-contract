@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.member-card",
   "name": "MemberCard",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides are explicit code-only photo data, propagated to the composed MemberPicture without flattening its image anatomy.",
   "semantics": {
     "element": "div",
@@ -39,6 +39,7 @@
     },
     {
       "name": "imageUrl",
+      "description": "La ROUTE du portrait, jamais ses octets. Figma n'expose aucune propriete de composant pour ces pixels (trou A5, matrice ligne 91) : le contrat porte la route, la photo arrive a l'execution. Defaut vide, et il le reste. Ce contrat n'a pas de part `img` a lui — son plan photo vient de l'instance ds.member-picture qu'il compose — mais il porte bien sa propre prop d'URL, et elle obeit a la meme convention.",
       "type": "text",
       "default": "",
       "bindings": {

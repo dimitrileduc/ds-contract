@@ -259,6 +259,41 @@ CARRY-CODE-ONLY: fully rendered in code, declared here, annotated on canvas.
 | `word-break` / `hyphens` | "Line-breaking rules differ: Figma wraps by box width only." |
 | `flex-shrink` / `flex-basis` | "Fine-grained shrink behavior exists only in code; the canvas uses fixed/fill sizing." |
 | `accent-color` / `caret-color` / `::selection` | "Form-control and selection colors exist only in code." |
+| `background-image: url()` (img parts) | "This frame is a runtime image slot — the photo you see is a mockup sample. The coded component receives its image at runtime." |
+
+### Addendum, 2026-08-06 (spec 017) — pourquoi la ligne image est ici alors que la ligne 91 dit `CARRY-BOTH`
+
+Cette section §(b) est réservée aux canaux **CARRY-CODE-ONLY**, or la ligne 91 de
+la table (a) verdicte `background-image: url()` en **`CARRY-BOTH (add — § a.7)`**.
+L'absence d'une ligne image ici n'était donc **pas un oubli de saisie : c'est
+structurel**, et cet addendum est ce qui rend la ligne ci-dessus cohérente — pas
+l'inverse.
+
+Trois choses, et elles ne se confondent plus :
+
+1. **Le CANAL est porté des deux côtés.** `ImagePaint` existe, `figma.createImage`
+   existe, `scaleMode` correspond à `background-size`. Un cadre image se dessine
+   sur le canevas comme il se rend en code. Ligne 91 : `CARRY-BOTH`, et elle
+   reste exacte.
+2. **Ce qui manque est le TRANSPORT du contenu — c'est la lacune A5, et elle
+   reste OUVERTE et NOMMÉE.** Colonne « Bindable » de la ligne 91 :
+   `— (image content not bindable)`. Les octets d'une photo ne rouleront jamais
+   sur l'axe des variables : Figma n'expose aucune propriété de composant pour
+   ces pixels. Le contrat porte donc la **route** (une prop d'URL, défaut vide),
+   **jamais les octets**. 017 **n'a pas fermé** cette lacune et ne prétend pas
+   l'avoir fermée.
+3. **Ce n'est PAS un défaut de fidélité mesuré.** Les 99,97 % de la porte de
+   parité visuelle relevés le 2026-08-06 mesuraient une **absence de données de
+   notre côté**, pas une infidélité du composant : notre surface rendait un
+   `<img src="">` face à une photo de maquette. C'était un **artefact
+   d'instrument**, corrigé par 017/US2 (l'échantillon de mesure est prêté à notre
+   surface, `runtimeDefault: false`, il n'entre jamais au contrat). La matrice
+   cessait ici de confondre une **lacune de transport** avec un **écart mesuré**.
+
+**Et ce qui arrive à la photo à la régénération** est répondu plus bas, § *What
+happens to a designer's real photo when the canvas is regenerated?* — pas ici :
+la copie ci-dessus dit ce qu'**est** le cadre, la section dédiée dit ce qui
+**arrive** à la photo.
 
 ## (c) Figma API capabilities not currently used
 
@@ -372,6 +407,18 @@ Open VERIFY-BY-SPIKE items (each ≤ one plugin-console session): exact
 2. *Matching is by name, then "first unclaimed" in document order. With several photos on one component and renamed parts, **two photos can be swapped**: both survive, both are reported as preserved, and the report cannot tell you they traded places. Before/after pixel proof (§X) catches a loss; it does not catch a swap between two same-sized planes.*
 
 *Generalization worth carrying to every future named limit: **what the contract does not govern, regeneration must not claim to own.** A limit that has no preservation story is a limit that silently deletes — so any new CARRY-CODE-ONLY or named-gap row whose fact is authored on canvas needs its own harvest/restore answer, and its own eval, at the moment the row is declared.*
+
+*Addendum (2026-08-06, spec 017 — **the two limits above were not theoretical, and they are now closed**). The paragraph above is kept as written because it is a dated record; its description of the rescue is **superseded here**. On 2026-08-06 a regeneration collapsed **62 photos across 10 sections of 8 maquettes** on the client file, **behind a green report**. Three defects, all repaired:*
+
+| the defect | what it was | what it is now |
+|---|---|---|
+| **scope** | the harvest saw only the master component | it descends to the rebuilt master's **page instances** — **255 of the 349 live photos are instance overrides**, the three quarters the master-only rescue never saw. Bounded to the rebuilt master, never the file (a global walk saturates the sandbox, ≈5350 nodes measured) |
+| **pairing** | node **name** first, then "first unclaimed" — an arbitrary pick | **positional**: exact `(hostId, path-of-indices)` first, then document order, a one-for-one bijection. A canvas layer name takes part in **no** comparison (§VIII: a rename is not a loss, two homonyms do not merge) |
+| **order** | teardown ran **before** the accueils were computed, so the refusal always arrived too late | the refusal is a **pre-pass executed before the first `remove()`** — an imprint with nowhere to land refuses the rebuild by naming `imageHash`, `hostId`, `cheminPosition`, **with not one node touched**. It lifts photo-by-photo through a written acknowledgement (seven mandatory fields), never through tolerance |
+
+*So limit **1** ("lost, loudly") is closed: nothing is lost, the rebuild refuses instead. Limit **2** (two photos swapping places) is closed: an order-preserving bijection cannot produce a swap, and the report distinguishes a licit **rehousing** (`rehebergees` — hero's root fill onto its `Background` child, kept precisely because deleting the fallback outright would have lost hero's photo on every regeneration) from an **interversion** (`deplacees`), which forces the verdict to **rouge**. The report itself is refusable by name: `vert` is **forbidden** when `nonReplacees`, `deplacees` or `nonVerifiables` is non-empty on any host, and `distinctesApres < distinctesAvant` on a host is **rouge** with that host named — the channel that says "17 distinct portraits originally, 2 live" when the total count has not moved. An unreadable imprint is **non-verifiable**, never "identical".*
+
+*Guarded headlessly, without the client file open, by eval **`photos-instance-overrides-preserved`** (claim `C2-refusal`): it replays the 2026-08-06 loss and carries the three adversarial cases — loss, interversion, no-accueil — plus determinism. `img-paint-preserved-on-amend` was **extended** to the instance axis rather than duplicated. The live receipt (`npm run photos:verify` on the client file) **confirms**; it does not replace them. **Headless is what carries authority.***
 
 *Addendum (2026-08-06, 016-canvas-vrai — the regeneration round): regenerating the divergent Piqueray canvas under measure earned four mappings this matrix did not carry. The first two are fixture-locked (both checks re-run green this day, standalone `npx tsx evals/fixtures/<name>.ts` — they are not yet registered in `evals/run.ts`'s sweep, named so the sweep count is not mistaken for their coverage); the last two are live receipts whose dedicated fixture does not exist yet — per the claims rule those entries stay at receipt level, and say so.*
 

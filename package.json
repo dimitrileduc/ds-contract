@@ -85,7 +85,8 @@
     "core:browser-check": "node scripts/core-browser-check.mjs",
     "site:build": "tsx site/build.ts",
     "measure:gate": "tsx extract/figma/measure-gate/run.ts",
-    "geometry:gate": "tsx extract/geometry-gate/run.ts"
+    "geometry:gate": "tsx extract/geometry-gate/run.ts",
+    "photos:verify": "tsx extract/figma/photo-parity/photos-verify.mts"
   },
   "engines": {
     "node": ">=20"

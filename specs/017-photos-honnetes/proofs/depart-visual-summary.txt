@@ -1,0 +1,195 @@
+# T004 — porte de mesure AVANT toute edition d'instrument
+# date: 2026-08-06T18:34:16Z  commit: 9fdd86b
+# commande: npm run extract:figma:visual -- --summary
+
+
+> ds-contracts-poc@0.7.0 extract:figma:visual
+> tsx extract/figma/visual-parity/run.ts --summary
+
+
+── Button (Piqueray) (button) ──
+  contract ds.button; repo tokens only
+  figma set "Bouton" v2384636826202245678: 7 variant(s); fonts: Montserrat
+  ✗ Style=Default: gate/raw 2.70% | masked diagnostic 0.66% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Style=Orange: gate/raw 2.70% | masked diagnostic 0.66% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Style=Blanc: gate/raw 2.26% | masked diagnostic 0.00% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates; diff localized middle-center (306×25px) [cause: rendering]
+  · Style=Outline blanc: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 30.83% | surface light (threshold 2% — within) — near-identical
+  · Style=Link: gate/raw 0.99% | masked diagnostic — | mask coverage 100.00% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+  ✗ Style=Outline noir: gate/raw 3.14% | masked diagnostic 1.27% | mask coverage 30.83% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  · Style=Icône seule: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 0.00% | surface light (threshold 2% — within) — near-identical
+
+── Checkbox (Piqueray) (checkbox) ──
+  contract ds.checkbox; repo tokens only
+  figma set "Checkbox" v2384636826202245678: 2 variant(s); fonts: (none)
+  · Coche=Non: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 0.00% | surface light (threshold 2% — within) — near-identical
+  · Coche=Oui: gate/raw 1.63% | masked diagnostic 1.63% | mask coverage 0.00% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+
+── ReviewCard (Piqueray) (review-card) ──
+  contract ds.review-card; repo tokens only
+  figma set "Review-card" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  · Review-card: gate/raw 1.33% | masked diagnostic 0.00% | mask coverage 17.48% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+
+── GoogleReviews (Piqueray) (google-reviews) ──
+  contract ds.google-reviews; repo tokens only
+  figma set "Avis Google" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  · Avis Google: gate/raw 1.33% | masked diagnostic 0.27% | mask coverage 13.89% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+
+── Input (Piqueray) (input) ──
+  contract ds.input; repo tokens only
+  figma set "Input" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  ✗ Input: gate/raw 5.73% | masked diagnostic 5.73% | mask coverage 0.00% | surface light (threshold 2% — OVER) — size ours 560×96 vs figma 250×96 (Δ310, Δ0 device px) [cause: rendering]
+
+── Textarea (Piqueray) (textarea) ──
+  contract ds.textarea; repo tokens only
+  figma set "Textarea" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  ✗ Textarea: gate/raw 3.04% | masked diagnostic 2.61% | mask coverage 6.41% | surface light (threshold 2% — OVER) — size ours 560×256 vs figma 250×256 (Δ310, Δ0 device px) [cause: rendering]
+
+── Select (Piqueray) (select) ──
+  contract ds.select; repo tokens only
+  figma set "Select" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  ✗ Select: gate/raw 5.56% | masked diagnostic 5.56% | mask coverage 0.00% | surface light (threshold 2% — OVER) — size ours 560×96 vs figma 298×96 (Δ262, Δ0 device px) [cause: rendering]
+
+── Button with icons (Piqueray, both placements) (button-with-icons) ──
+  contract ds.button; repo tokens only
+  figma set "Bouton" v2384636826202245678: 7 variant(s); fonts: Montserrat
+  ✗ Style=Outline noir: images API declined to render the node
+
+── MemberPicture (Piqueray) (member-picture) ──
+  contract ds.member-picture; repo tokens only
+  figma set "MemberPicture" v2384636826202245678: 2 variant(s); fonts: (none)
+  ✗ Etat=Defaut: gate/raw 58.32% | masked diagnostic 58.32% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #d9d9d9 vs figma #6d6d6c) [cause: image-boundary]
+  ✗ Etat=Survol: gate/raw 58.31% | masked diagnostic 58.31% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #d9d9d9 vs figma #6d6d6c) [cause: image-boundary]
+
+── PiquerayLogo (Piqueray) (piqueray-logo) ──
+  contract ds.piqueray-logo; repo tokens only
+  figma set "PiquerayLogo" v2384636826202245678: 2 variant(s); fonts: (none)
+  ✗ Couleur=Default: render refused — Refused — 2 contract violation(s):   - ds.piqueray-logo: part "Marque" needs vector asset "assets/vectors/piqueray-logo-marque.svg" which does not exist
+  ✗ Couleur=Blanc: render refused — Refused — 2 contract violation(s):   - ds.piqueray-logo: part "Marque" needs vector asset "assets/vectors/piqueray-logo-marque.svg" which does not exist
+
+── AccordionRow (Piqueray) (accordion-row) ──
+  contract ds.accordion-row; repo tokens only
+  figma set "AccordionRow" v2384636826202245678: 4 variant(s); fonts: Montserrat
+  · Taille=Grand, Etat=Ferme: gate/raw 0.51% | masked diagnostic 0.00% | mask coverage 2.78% | surface light (threshold 2% — within) — diff localized middle-left (183×46px) [cause: rendering]
+  · Taille=Petit, Etat=Ferme: gate/raw 0.00% | masked diagnostic 0.00% | mask coverage 2.52% | surface light (threshold 2% — within) — near-identical [cause: rendering]
+  · Taille=Grand, Etat=Ouvert: gate/raw 0.30% | masked diagnostic 0.00% | mask coverage 2.43% | surface light (threshold 2% — within) — diff localized middle-left (183×144px) [cause: rendering]
+  · Taille=Petit, Etat=Ouvert: gate/raw 0.02% | masked diagnostic 0.00% | mask coverage 2.43% | surface light (threshold 2% — within) — near-identical [cause: rendering]
+
+── Avantage (Piqueray) (avantage) ──
+  contract ds.avantage; repo tokens only
+  figma set "Avantage" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  · Avantage: gate/raw 1.81% | masked diagnostic 0.00% | mask coverage 54.59% | surface light (threshold 2% — within) — text raster/family delta dominates [cause: rendering]
+
+── CarouselControls (Piqueray) (carousel-controls) ──
+  contract ds.carousel-controls; repo tokens only
+  figma set "CarouselControls" v2384636826202245678: 1 variant(s); fonts: (none)
+  · CarouselControls: gate/raw 1.75% | masked diagnostic 1.75% | mask coverage 0.00% | surface light (threshold 2% — within) — size ours 3136×104 vs figma 208×104 (Δ2928, Δ0 device px) [cause: rendering]
+
+── Carte (Piqueray) (carte) ──
+  contract ds.carte; repo tokens only
+  figma set "Carte" v2384636826202245678: 2 variant(s); fonts: Montserrat
+  ✗ Disposition=Reassurance: gate/raw 64.05% | masked diagnostic 73.35% | mask coverage 13.27% | surface light (threshold 2% — OVER) — overall ink differs (ours #acacad vs figma #845f61) [cause: image-boundary]
+  ✗ Disposition=Categorie: gate/raw 56.34% | masked diagnostic 62.20% | mask coverage 9.92% | surface light (threshold 2% — OVER) — overall ink differs (ours #4f5154 vs figma #757672) [cause: image-boundary]
+
+── Copyright (Piqueray) (copyright) ──
+  contract ds.copyright; repo tokens only
+  figma set "Copyright" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  · Copyright: gate/raw 0.00% | masked diagnostic — | mask coverage 100.00% | surface light (threshold 2% — within) — near-identical
+
+── Field (Piqueray) (field) ──
+  contract ds.field; repo tokens only
+  figma set "Field" v2384636826202245678: 2 variant(s); fonts: Montserrat
+  ✗ Etat=Normal: gate/raw 10.91% | masked diagnostic 9.59% | mask coverage 14.28% | surface light (threshold 2% — OVER) — size ours 362×156 vs figma 250×153 (Δ112, Δ3 device px) [cause: engine]
+  ✗ Etat=Erreur: gate/raw 10.03% | masked diagnostic 8.50% | mask coverage 23.73% | surface light (threshold 2% — OVER) — size ours 362×204 vs figma 250×203 (Δ112, Δ1 device px) [cause: engine]
+
+── FooterColumn (Piqueray) (footer-column) ──
+  contract ds.footer-column; repo tokens only
+  figma set "FooterColumn" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  ✗ FooterColumn: gate/raw 2.77% | masked diagnostic 0.09% | mask coverage 71.86% | surface light (threshold 2% — OVER) — size ours 322×182 vs figma 338×181 (Δ-16, Δ1 device px); text raster/family delta dominates; diff localized top-left (196×37px) [cause: rendering]
+
+── MemberCard (Piqueray) (member-card) ──
+  contract ds.member-card; repo tokens only
+  figma set "MemberCard" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  ✗ MemberCard: gate/raw 47.88% | masked diagnostic 51.78% | mask coverage 7.64% | surface light (threshold 2% — OVER) — overall ink differs (ours #d7d6d6 vs figma #6d6d6c) [cause: image-boundary]
+
+── NavItem (Piqueray) (nav-item) ──
+  contract ds.nav-item; repo tokens only
+  figma set "NavItem" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  · NavItem: gate/raw 1.25% | masked diagnostic 0.25% | mask coverage 91.32% | surface dark (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+
+── ProductCard (Piqueray) (product-card) ──
+  contract ds.product-card; repo tokens only
+  figma set "ProductCard" v2384636826202245678: 1 variant(s); fonts: Montserrat
+  ✗ ProductCard: gate/raw 15.64% | masked diagnostic 16.51% | mask coverage 7.73% | surface light (threshold 2% — OVER) — overall ink differs (ours #787e85 vs figma #606866) [cause: image-boundary]
+
+── Realisation (Piqueray) (realisation) ──
+  contract ds.realisation; repo tokens only
+  figma set "Realisation" v2384636826202245678: 2 variant(s); fonts: (none)
+  ✗ Taille=Grand: gate/raw 99.43% | masked diagnostic 99.43% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #bfc0c0 vs figma #d9d9d9) [cause: image-boundary]
+  ✗ Taille=Petit: gate/raw 98.98% | masked diagnostic 98.98% | mask coverage 0.00% | surface light (threshold 2% — OVER) — overall ink differs (ours #bdc1c0 vs figma #d9d9d9) [cause: image-boundary]
+
+── SectionHeader (Piqueray) (section-header) ──
+  contract ds.section-header; repo tokens only
+  figma set "SectionHeader" v2384636826202245678: 16 variant(s); fonts: Montserrat
+  ✗ Disposition=Standard, Emphase=Standard, Alignement=Centre: gate/raw 5.85% | masked diagnostic 3.74% | mask coverage 31.21% | surface light (threshold 2% — OVER) — diffuse delta — see triptych [cause: rendering]
+  ✗ Disposition=Avec CTA, Emphase=Standard, Alignement=Centre: gate/raw 4.12% | masked diagnostic 0.31% | mask coverage 41.10% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  · Disposition=Standard, Emphase=Standard, Alignement=Gauche: gate/raw 0.44% | masked diagnostic 0.00% | mask coverage 31.21% | surface light (threshold 2% — within) — near-identical [cause: rendering]
+  · Disposition=Standard, Emphase=Hero, Alignement=Centre: gate/raw 1.12% | masked diagnostic 0.81% | mask coverage 40.09% | surface light (threshold 2% — within) — diff localized top-left (1941×37px) [cause: rendering]
+  · Disposition=Standard, Emphase=Hero, Alignement=Gauche: gate/raw 0.36% | masked diagnostic 0.00% | mask coverage 40.09% | surface light (threshold 2% — within) — diff localized top-left (796×37px) [cause: rendering]
+  ✗ Disposition=Standard, Emphase=Moyen, Alignement=Centre: gate/raw 4.80% | masked diagnostic 2.89% | mask coverage 26.55% | surface light (threshold 2% — OVER) — diffuse delta — see triptych [cause: rendering]
+  · Disposition=Standard, Emphase=Moyen, Alignement=Gauche: gate/raw 0.50% | masked diagnostic 0.00% | mask coverage 26.55% | surface light (threshold 2% — within) — near-identical [cause: rendering]
+  ✗ Disposition=Standard, Emphase=Compact, Alignement=Centre: gate/raw 3.76% | masked diagnostic 2.10% | mask coverage 22.64% | surface light (threshold 2% — OVER) — diffuse delta — see triptych [cause: rendering]
+  · Disposition=Standard, Emphase=Compact, Alignement=Gauche: gate/raw 0.98% | masked diagnostic 0.00% | mask coverage 22.64% | surface light (threshold 2% — within) — diffuse delta — see triptych [cause: rendering]
+  ✗ Disposition=Avec CTA, Emphase=Standard, Alignement=Gauche: gate/raw 6.27% | masked diagnostic 1.02% | mask coverage 41.10% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  · Disposition=Avec CTA, Emphase=Hero, Alignement=Centre: gate/raw 1.77% | masked diagnostic 1.64% | mask coverage 36.45% | surface light (threshold 2% — within) — size ours 3096×114 vs figma 3096×239 (Δ0, Δ-125 device px) [cause: rendering]
+  · Disposition=Avec CTA, Emphase=Hero, Alignement=Gauche: gate/raw 1.76% | masked diagnostic 1.29% | mask coverage 36.45% | surface light (threshold 2% — within) — size ours 3096×128 vs figma 3096×239 (Δ0, Δ-111 device px) [cause: rendering]
+  ✗ Disposition=Avec CTA, Emphase=Moyen, Alignement=Centre: gate/raw 4.12% | masked diagnostic 0.31% | mask coverage 41.10% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Disposition=Avec CTA, Emphase=Moyen, Alignement=Gauche: gate/raw 6.27% | masked diagnostic 1.02% | mask coverage 41.10% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Disposition=Avec CTA, Emphase=Compact, Alignement=Centre: gate/raw 2.47% | masked diagnostic 0.36% | mask coverage 31.50% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Disposition=Avec CTA, Emphase=Compact, Alignement=Gauche: gate/raw 4.75% | masked diagnostic 1.30% | mask coverage 31.50% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+
+── Tab (Piqueray) (tab) ──
+  contract ds.tab; repo tokens only
+  figma set "Tab" v2384636826202245678: 2 variant(s); fonts: Montserrat
+  ✗ Etat=Defaut: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+  ✗ Etat=Selectionne: gate/raw 3.60% | masked diagnostic 0.00% | mask coverage 68.29% | surface light (threshold 2% — OVER) — text raster/family delta dominates [cause: rendering]
+
+── summary vs baseline 2026-08-05T08:35:15.110Z (0ecb129), ε 0.1pp ──
+· checkbox :: Coche=Oui: IMPROVED 2.56% → 1.63% — re-baseline (--write-baseline) to lock it in
+· review-card :: Review-card: IMPROVED 1.68% → 1.33% — re-baseline (--write-baseline) to lock it in
+· google-reviews :: Avis Google: IMPROVED 3.32% → 1.33% — re-baseline (--write-baseline) to lock it in
+✗ input :: Input: gate/raw 0.17% → 5.73% (+5.56pp > ε 0.1)
+✗ textarea :: Textarea: gate/raw 0.06% → 3.04% (+2.98pp > ε 0.1)
+✗ select :: Select: gate/raw 0.17% → 5.56% (+5.39pp > ε 0.1)
+✗ button-with-icons :: Property 1=Outilne noir: in baseline, MISSING from this run (variant vanished / set edited?)
+· member-picture :: Etat=Defaut: IMPROVED 64.48% → 58.32% — re-baseline (--write-baseline) to lock it in
+✗ accordion-row :: Taille=Grand, Etat=Ferme: gate/raw 0.13% → 0.51% (+0.38pp > ε 0.1)
+✗ accordion-row :: Taille=Grand, Etat=Ouvert: gate/raw 0.08% → 0.30% (+0.22pp > ε 0.1)
+✗ carousel-controls :: CarouselControls: gate/raw 0.41% → 1.75% (+1.34pp > ε 0.1)
+· carte :: Disposition=Categorie: IMPROVED 56.56% → 56.34% — re-baseline (--write-baseline) to lock it in
+✗ field :: Etat=Normal: gate/raw 1.84% → 10.91% (+9.07pp > ε 0.1)
+✗ field :: Etat=Erreur: gate/raw 2.20% → 10.03% (+7.83pp > ε 0.1)
+· member-card :: MemberCard: IMPROVED 52.52% → 47.88% — re-baseline (--write-baseline) to lock it in
+· realisation :: Taille=Grand: IMPROVED 99.97% → 99.43% — re-baseline (--write-baseline) to lock it in
+· realisation :: Taille=Petit: IMPROVED 99.86% → 98.98% — re-baseline (--write-baseline) to lock it in
+✗ section-header :: Disposition=Standard: in baseline, MISSING from this run (variant vanished / set edited?)
+✗ section-header :: Disposition=Avec CTA: in baseline, MISSING from this run (variant vanished / set edited?)
+✗ button-with-icons :: Style=Outline noir: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Standard, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Standard, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Standard, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Hero, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Hero, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Moyen, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Moyen, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Compact, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Standard, Emphase=Compact, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Standard, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Hero, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Hero, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Moyen, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Moyen, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Compact, Alignement=Centre: NEW row not in baseline — review the full report, then --write-baseline
+✗ section-header :: Disposition=Avec CTA, Emphase=Compact, Alignement=Gauche: NEW row not in baseline — review the full report, then --write-baseline
+
+SUMMARY GATE: 28 named failure(s) vs baseline.json — see lines above
+EXIT=1

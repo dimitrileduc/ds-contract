@@ -441,6 +441,27 @@ const cases: Case[] = [
     },
   },
   {
+    // 017 (US1) — LA PORTE QUI FAIT FOI pour la classe photo, et elle tourne
+    // partout, SANS le fichier client ouvert. Elle rejoue la perte du
+    // 2026-08-06 (62 photos d'instance effondrées sur 10 sections de 8
+    // maquettes, DERRIÈRE UN RAPPORT VERT) et porte les trois cas adverses
+    // exigés par SC-002 — perte, interversion, empreinte sans accueil — plus
+    // le déterminisme de SC-009.
+    //
+    // Pourquoi un cas d'eval et non une extension de `plugin:check` : les trois
+    // cas de plugin:check sont en quarantaine et AUCUN cas actif ne les lance.
+    // Une fixture que rien ne lance ne protège rien.
+    //
+    // Le reçu vif (npm run photos:verify sur le fichier client) CONFIRME ; il ne
+    // remplace pas celui-ci. Le sans-tête fait foi.
+    id: 'photos-instance-overrides-preserved',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/photos-instance-overrides-preserved-check.ts']);
+      if (r.status !== 0) throw new Error(`Photos instance-override preservation check failed:\n${r.out}`);
+    },
+  },
+  {
     id: 'component-rich-text-prop-value',
     claim: 'C3-detection',
     run: () => {
@@ -5155,7 +5176,75 @@ const cases: Case[] = [
       if (!comp.description.includes('†')) {
         throw new Error(`ds.review-card has a code-only fact (imgPlaceholder) — its description must carry the † footnote, got: ${JSON.stringify(comp.description)}`);
       }
-      console.log('img-part-canvas-placeholder-named: avatarPhoto (element:"img") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas, and the component caption carries the † footnote — the A5 gap (real photo pixel = out-of-contract override) stays a NAMED limit, never a silent one');
+
+      // --- 017 (T036, FR-010/FR-010a) — the dagger stops being MUTE ---------
+      // The mark was already there on all 9 image-bearing components; what was
+      // missing was the SENTENCE. One clause, on the SAME line, dagger still
+      // last — the owner's 2026-07-19 "one line only" directive holds, and a
+      // clause on the same line does not reopen it (a return to paragraphs
+      // would). What HAPPENS to the photo at regeneration is deliberately NOT
+      // said here: the caption says what the frame IS, the docs say what
+      // happens to the photo.
+      const CLAUSE = ' · image frame: runtime slot, photo shown is a mockup sample';
+      if (!comp.description.includes(CLAUSE)) {
+        throw new Error(`a component with an img part must carry the image-frame clause ${JSON.stringify(CLAUSE)} — got: ${JSON.stringify(comp.description)}`);
+      }
+      if (comp.description.includes('\n')) {
+        throw new Error(`the component caption must stay ONE line (owner directive 2026-07-19) — got: ${JSON.stringify(comp.description)}`);
+      }
+      if (!comp.description.endsWith(`${CLAUSE} †`)) {
+        throw new Error(`the dagger must stay LAST, after the clause — got: ${JSON.stringify(comp.description)}`);
+      }
+      // A component WITHOUT an img part keeps its caption to the character.
+      const plain = byId.get('ds.button');
+      if (!plain) throw new Error('contracts/button.contract.json missing ds.button');
+      const plainComp = JSON.parse(engine.buildComponentScript(plain, byId).match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
+      if (plainComp.description.includes('image frame')) {
+        throw new Error(`ds.button has no img part — its caption must be unchanged, got: ${JSON.stringify(plainComp.description)}`);
+      }
+
+      // --- 017 (T036a) — THE FIRST EVAL IN THIS REPO TO READ docs/ -----------
+      // Measured 2026-08-06: NOT ONE case in this file read `docs/` (the single
+      // `docs/` occurrence was a comment at :18; every .md a case reads is a
+      // GENERATED report outside docs/). So the repo's own rule — "no capability
+      // sentence lands in a doc before an eval backs it" — was, on the
+      // documentation side, held up by nothing at all. A doc that asserts with
+      // no check behind it is exactly the defect this spec repairs elsewhere.
+      //
+      // The two copies below are pinned BYTE-FOR-BYTE. Editing the canvas clause
+      // without the docs — or the reverse — reddens here. That is the only
+      // mechanism preventing the two from drifting apart in silence.
+      const MATRIX_IMAGE_ROW =
+        '| `background-image: url()` (img parts) | "This frame is a runtime image slot — the photo you see is a mockup sample. The coded component receives its image at runtime." |';
+      const matrix = readFileSync(path.join(ROOT, 'docs', 'FIGMA-CAPABILITY-MATRIX.md'), 'utf8');
+      if (!matrix.includes(MATRIX_IMAGE_ROW)) {
+        throw new Error(
+          'docs/FIGMA-CAPABILITY-MATRIX.md § (b) must carry the image row, byte-for-byte:\n  ' + MATRIX_IMAGE_ROW +
+            '\n(the canvas clause and the annotation copy are two halves of one answer — they may not drift apart)',
+        );
+      }
+      // The addendum is what makes that row COHERENT: §(b) is reserved for
+      // CARRY-CODE-ONLY channels, while row 91 verdicts the image CARRY-BOTH.
+      // Its absence would leave the row looking like a filing error instead of
+      // a named transport gap.
+      for (const needle of ['Addendum, 2026-08-06 (spec 017)', '`— (image content not bindable)`']) {
+        if (!matrix.includes(needle)) {
+          throw new Error(`docs/FIGMA-CAPABILITY-MATRIX.md must keep the A5 addendum — missing: ${JSON.stringify(needle)}`);
+        }
+      }
+      const handoff = readFileSync(path.join(ROOT, 'docs', 'handoff', '08-status-what-doesnt-work.md'), 'utf8');
+      const HANDOFF_QUESTION = '## 6. What happens to an image at regeneration? — ANSWERED, with one gap still open';
+      if (!handoff.includes(HANDOFF_QUESTION)) {
+        throw new Error(
+          `docs/handoff/08-status-what-doesnt-work.md must answer the regeneration question, byte-for-byte:\n  ${HANDOFF_QUESTION}`,
+        );
+      }
+      if (!handoff.includes('docs/FIGMA-CAPABILITY-MATRIX.md`, section')) {
+        throw new Error('the handoff answer must POINT at the capability matrix — the matrix is the authoritative source, the handoff is the entry point');
+      }
+      console.log(
+        'img-part-canvas-placeholder-named: avatarPhoto (element:"img") compiles to imgPlaceholder:true + the standard #D9D9D9 wash on canvas; the caption carries the image-frame clause on ONE line with the † still last, and a component without an img part is untouched; and — a first for this repo — the two documentation copies (capability-matrix row + its A5 addendum, handoff §6 + its pointer) are pinned BYTE-FOR-BYTE, so canvas copy and doc copy cannot drift apart in silence',
+      );
     },
   },
   {
