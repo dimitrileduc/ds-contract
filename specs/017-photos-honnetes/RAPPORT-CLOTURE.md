@@ -16,10 +16,28 @@ imprimée d'une commande, archivée dans [`proofs/`](proofs/).
 | porte | départ | clôture |
 |---|---|---|
 | `npm run eval` | `193/193` | **`194/194`** |
-| `npm run parity` | vert, 3 acquittements | **vert, 3 acquittements** — aucune dérive nouvelle |
+| `npm run parity` | vert, 3 acquittements | **vert, 3 acquittements** — ⚠️ **mais sur un cliché périmé**, voir l'avertissement ci-dessous |
 | `npm run extract:figma:visual -- --summary` | **rouge** (8 lignes « frontière image » de 99,43 % à 15,64 %) | **vert** — toutes les lignes à ±0,1pp de la baseline |
 | `npm run photos:verify -- --selftest` | *n'existait pas* | **`5/5`** |
 | `deterministic-roundtrip` · `plugin:check` · `core-browser-check` · `tsc` ×2 | verts | **verts** |
+
+
+> ### ⚠️ Ce que le vert de `npm run parity` NE prouve PAS
+>
+> `parity/snapshots/figma-components.json` **n'a pas été rafraîchi** après les mutations
+> canvas du 2026-08-07 (11 légendes, 98 photos reposées, un ordre de plans inversé). La
+> parité compare donc le contrat à un **canevas d'avant** : son vert est exact sur l'état
+> qu'elle connaît, et **muet sur l'état réel du fichier**.
+>
+> **C'est une clôture avec une preuve périmée sur un axe, et il faut le lire comme tel.**
+> Les deux autres axes (`code ⟷ contrat`, `tokens`) restent, eux, pleinement valides —
+> ils ne dépendent pas du cliché canvas. Le rafraîchir demande une capture vive complète
+> au pont (~30 k caractères de transport) : c'est un geste à part, consigné au registre
+> sous `D-017-CLICHE-PARITE-PERIME`, **pas un détail de forme**.
+>
+> Dit ici parce qu'afficher un vert qui ne mesure pas l'état réel est *exactement* le
+> défaut que cette spec répare. Le signaler ne l'excuse pas ; le taire l'aggraverait.
+
 
 ---
 
