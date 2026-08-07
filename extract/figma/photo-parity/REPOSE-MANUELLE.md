@@ -14,7 +14,42 @@ les **réinjecter** s'est heurté à la politique réseau du plugin.
 | `figma.createImageAsync('http://localhost:9231/x.png')` | refusé **bien que `http://localhost:9231` soit dans `allowedDomains`** du manifest — `createImageAsync` applique une politique plus stricte que `fetch` |
 | `await fetch('http://localhost:.../x.png')` puis `figma.createImage(bytes)` | `Failed to fetch` — **le thread principal du plugin n'a aucun accès réseau** ; seul l'`<iframe>` de l'UI en a, et le Desktop Bridge ne l'expose pas |
 
-## La voie qui reste : les octets en base64, par morceaux
+## ⚠️ MISE À JOUR 2026-08-07 — LA VOIE EST OUVERTE, et ce n'était pas celle-là
+
+**`figma_set_image_fill` accepte le base64 SANS LE TRONQUER.** Mesuré : 55 496 caractères
+envoyés en un appel, acceptés. L'appel n'a été refusé que par le **hook before-capture du
+dépôt** (§X) — une erreur de POLITIQUE, pas de transport.
+
+Donc : **une image = un appel**, pas quinze.
+
+```
+figma_set_image_fill({ nodeIds: ['<id>'], imageData: '<base64 complet>', scaleMode: 'FILL' })
+```
+
+**Ce qu'il faut faire AVANT**, sans quoi le hook refuse (et il a raison) :
+1. relancer le receiver — `node extract/figma/page-parity/receiver.mjs .page-parity/<jeu> 9227`
+2. capturer **TOUTE** cible concernée — `bridge/capture.js`, jamais un sous-ensemble pilote
+3. `bridge/checkpoint.js`
+4. puis la mutation, puis capture APRÈS et `npm run pages:compare`
+
+**Attention à `figma_execute`, lui, qui TRONQUE** : mesuré à ~3 770 caractères utiles sur 25 496
+envoyés. La route par `globalThis` + `figma.base64Decode` décrite plus bas reste donc valable
+en secours, mais elle n'est plus nécessaire.
+
+**Les octets à poser** : `~/Desktop/photos-a-reposer-017/o-*.jpg` — versions passées à
+`jpegtran -optimize -progressive -copy none`, **sans perte** (réencodage des tables de Huffman
+et retrait des métadonnées Photoshop ; aucun coefficient DCT touché). 92 777, 143 480 et
+41 621 octets.
+
+| fichier | nodeId cible |
+|---|---|
+| `o-CategoriesPrincipales_pos-1-0-0.jpg` | `I2115:4177;2351:37100` |
+| `o-CategoriesPrincipales_pos-2-1-0.jpg` | `I2115:4205;2351:37100` |
+| `o-CategoriesPrincipales_pos-2-2-0.jpg` | `I2115:4206;2351:37100` |
+
+---
+
+## La voie de secours : les octets en base64, par morceaux
 
 `figma.base64Decode` **existe** dans le sandbox (vérifié). Le transport passe donc par
 `figma_execute`, en accumulant sur `globalThis` :
