@@ -1,0 +1,127 @@
+{
+ "schemaVersion": 1,
+ "nom": "017 — les MASTERS aussi avaient perdu leurs photos",
+ "executeLe": "2026-08-07T07:52:00Z",
+ "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+ "pointsDeRestauration": [
+  "017/master-equipe-photos/avant (2384885921444183927)",
+  "017/masters-photos/avant (2384889697270782773)"
+ ],
+ "constat": "Le plan de restauration de 016 ne couvrait QUE les 14 hotes de maquette. Les MASTERS du design system avaient subi le meme effondrement et n'ont jamais ete traites. Diagnostic par comparaison REST a la version d'avant-016 (2384251202054787848) sur les 13 masters porteurs d'images.",
+ "masters": [
+  {
+   "id": "2115:3947",
+   "nom": "Equipe",
+   "avant016": 17,
+   "avantGeste": 2,
+   "apres": 16,
+   "reposees": 16,
+   "verdict": "restaure"
+  },
+  {
+   "id": "2114:3721",
+   "nom": "Reassurances",
+   "avant016": 13,
+   "avantGeste": 1,
+   "apres": 13,
+   "reposees": 12,
+   "verdict": "restaure"
+  },
+  {
+   "id": "2116:4475",
+   "nom": "ProduitsECommerce",
+   "avant016": 4,
+   "avantGeste": 1,
+   "apres": 4,
+   "reposees": 3,
+   "verdict": "restaure"
+  },
+  {
+   "id": "2115:4277",
+   "nom": "CategoriesPrincipales",
+   "avant016": 8,
+   "avantGeste": 4,
+   "apres": 5,
+   "reposees": 2,
+   "verdict": "PARTIEL",
+   "refus": "3 images PURGEES du fichier : figma.getImageByHash rend null et figma.createImageAsync REFUSE les URLs S3 signees de l'API. Recuperees par REST a la version d'avant-016 et deposees sur le bureau pour repose manuelle.",
+   "emplacements": {
+    "1/0/0": "031815a6a17c",
+    "2/1/0": "86d495b87402",
+    "2/2/0": "715170bb427e"
+   }
+  },
+  {
+   "id": "2117:4691",
+   "nom": "Realisations",
+   "avant016": 18,
+   "apres": 18,
+   "verdict": "intact"
+  },
+  {
+   "id": "274:2389",
+   "nom": "MemberPicture",
+   "avant016": 2,
+   "apres": 2,
+   "verdict": "intact"
+  },
+  {
+   "id": "2063:1622",
+   "nom": "Carte",
+   "avant016": 2,
+   "apres": 2,
+   "verdict": "intact"
+  },
+  {
+   "id": "2074:2072",
+   "nom": "MemberCard",
+   "avant016": 2,
+   "apres": 2,
+   "verdict": "intact"
+  },
+  {
+   "id": "2108:3105",
+   "nom": "SAV",
+   "avant016": 2,
+   "apres": 2,
+   "verdict": "intact"
+  },
+  {
+   "id": "2111:3382",
+   "nom": "Hero",
+   "avant016": 1,
+   "apres": 1,
+   "verdict": "intact"
+  },
+  {
+   "id": "2068:1972",
+   "nom": "ProductCard",
+   "avant016": 1,
+   "apres": 1,
+   "verdict": "intact"
+  },
+  {
+   "id": "2096:2524",
+   "nom": "Devis",
+   "avant016": 1,
+   "apres": 1,
+   "verdict": "intact"
+  },
+  {
+   "id": "2104:2904",
+   "nom": "Coordonnees",
+   "avant016": 1,
+   "apres": 1,
+   "verdict": "intact"
+  },
+  {
+   "id": "2151:5552",
+   "nom": "HeroVideo",
+   "avant016": 1,
+   "apres": 1,
+   "verdict": "intact"
+  }
+ ],
+ "verdict": "vert sauf CategoriesPrincipales (3 images purgees, repose manuelle)",
+ "limiteRencontree": "figma.createImageAsync refuse les URLs S3 signees de l'API Figma. La seule voie restante pour reinjecter des octets par le pont est le base64 par morceaux (~40k chars/appel) — 422 Ko pour ces trois images, soit une douzaine d'appels."
+}
