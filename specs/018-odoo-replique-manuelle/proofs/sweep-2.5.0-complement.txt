@@ -1,0 +1,37 @@
+=== portes manquantes — 2026-08-07T13:31:35Z ===
+--- npx tsx scripts/deterministic-roundtrip.mjs ---
+    contract → canvas → contract → code, byte-reproducible.
+  The AI built this tooling; it is NEVER in the conversion. That is the guarantee.
+  ✅ Depth restored (spec 006): repeat+component (5 nested instances) is now exercised.
+
+EXIT=0
+
+--- node scripts/core-browser-check.mjs ---
+✔ core barrel bundles for platform=browser: 11.90 MB raw, 5.22 MB minified
+✔ all 4 emitters ran in a VM with no node globals (AccordionRow): react=3469+4054+2301B, html=3577+4522B, react-inline=6933B, figma-script=66802B
+EXIT=0
+
+--- npx tsc -p tsconfig.build.json ---
+EXIT=0
+
+--- npx tsx specs/018-odoo-replique-manuelle/harness/selftest.mts ---
+  ✔ l'instrument MESURE deux tailles égales — code 0
+  ✔ les 2 chemins de capture produisent la même géométrie — 584×252 px appareil (clip 292×126 × DSF 2)
+
+Tous les contrôles passent.
+EXIT=0
+
+--- npm run mint:check ---
+  ✔ emitted css references the minted custom properties
+  ✔ mintedTokenCss carries every literal the bindings resolve to
+
+✔ all minting invariants hold (dedupe, per-variant, refusal, determinism, generation)
+EXIT=0
+
+--- npm run emitters:check ---
+  ✔ repo contract (mints nothing): NO preamble — golden byte-invariant
+
+samples → core/samples/
+✔ all emitter invariants hold (34 contracts × 2 new emitters + registry)
+EXIT=0
+

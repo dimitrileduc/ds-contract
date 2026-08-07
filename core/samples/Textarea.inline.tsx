@@ -27,10 +27,10 @@ const S: Record<string, CSSProperties> = {
     "fontWeight": 400,
     "paddingBlock": "12px",
     "paddingInline": "12px",
+    "height": "128px",
     "borderWidth": "1px",
     "borderRadius": "0px",
-    "lineHeight": "24px",
-    "height": "128px"
+    "lineHeight": "24px"
   },
   "texteDeSaisie": {}
 };

@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -125,7 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
+  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -204,9 +205,9 @@
   align-items: flex-start;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
-  width: 759px;
-  height: 75px;
+  gap: var(--space-8);
+  width: var(--size-avantage-root-w);
+  height: var(--size-avantage-root-h);
 }
 
 .avantage__Piqueray svg {
@@ -223,8 +224,8 @@
 .avantage__text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 687px;
+  gap: var(--space-8);
+  width: var(--size-avantage-text);
 }
 
 .avantage__Titre {
@@ -259,8 +260,8 @@
   font-family: var(--font-family-montserrat);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
-  padding-block: 12px;
-  padding-inline: 12px;
+  padding-block: var(--space-12);
+  padding-inline: var(--space-12);
   --dsc-border-width: 1px;
   border-radius: 0px;
   line-height: 24px;
@@ -278,14 +279,14 @@
   align-items: flex-start;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .field__label {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 4px;
+  gap: var(--space-4);
   align-self: flex-start;
 }
 
@@ -327,23 +328,29 @@
   flex-direction: row;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: var(--size-formulaire-root);
+  gap: var(--space-32);
 }
 
 .formulaire__column {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
+  gap: var(--space-48);
 }
 
 .formulaire__features {
   display: flex;
   flex-direction: column;
+  gap: var(--space-32);
 }
 
 .formulaire__buttons {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .formulaire__form {
@@ -352,31 +359,39 @@
   flex: 1 1 auto;
   min-width: 0;
   background-color: var(--color-bleu-clair);
+  padding-inline: var(--space-32);
+  padding-block: var(--space-32);
+  gap: var(--space-16);
 }
 
 .formulaire__row {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .formulaire__row2 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .formulaire__row3 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .formulaire__row4 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 .formulaire__row5 {
   display: flex;
   flex-direction: row;
+  gap: var(--space-16);
 }
 
 /* showcase chrome */

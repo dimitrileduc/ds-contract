@@ -16,8 +16,8 @@
   font-family: var(--font-family-montserrat);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
-  padding-block: 12px;
-  padding-inline: 12px;
+  padding-block: var(--space-12);
+  padding-inline: var(--space-12);
   --dsc-border-width: 1px;
   border-radius: 0px;
   line-height: 24px;
@@ -35,14 +35,14 @@
   align-items: flex-start;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .field__label {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 4px;
+  gap: var(--space-4);
   align-self: flex-start;
 }
 

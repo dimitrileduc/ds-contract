@@ -47,7 +47,7 @@ Un réglage figé est porté. Un littéral nommé est porté. Seul ce qui suit n
 
 | | |
 |---|---|
-| **Contrat** | `ds.presentation` v2.2.0 |
+| **Contrat** | `ds.presentation` v2.5.0 |
 | **Pointeur** | `/props[name=titre]` |
 | **Fait** | La prop est déclarée, dotée d'un défaut, liée à la propriété Figma TEXT « Titre » — et **consommée par aucune part de l'anatomie**. Le React généré l'accepte puis l'ignore (`Presentation.tsx` la déclare l. 16/23, et passe l. 47 un littéral rich-text à `SectionHeader`, pas `titre={titre}`). |
 | **Raison** | L'offrir au rédacteur donnerait un champ **sans effet** — le pire des réglages. Le module ne l'exprime donc pas. |
@@ -67,7 +67,7 @@ Un réglage figé est porté. Un littéral nommé est porté. Seul ce qui suit n
 
 | | |
 |---|---|
-| **Contrat** | `ds.presentation` v2.2.0 → `ds.section-header` v2.1.1 → `ds.button` v2.0.0 |
+| **Contrat** | `ds.presentation` v2.5.0 → `ds.section-header` v2.1.1 → `ds.button` v2.0.0 |
 | **Pointeur** | `/anatomy/root/parts/colGauche/parts/SectionHeader/component/props/disposition` |
 | **Fait** | `ds.presentation` fixe `disposition: "standard"` **en dur** dans sa composition, ce qui ferme l'unique chemin de niveau 3 vers `ds.button`. **Aucune valeur de prop** ne fait rendre les trois niveaux du bloc posé. |
 | **Raison** | Le schéma offre pourtant le report de prop du parent (`ComponentRefSchema` : une valeur `"{parentProp}"` fait suivre une prop scalaire), et le contrat ne l'emploie pas. Le répliquer fidèlement, c'est écrire la valeur littérale. |

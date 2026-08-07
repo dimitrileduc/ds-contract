@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.presentation",
   "name": "Presentation",
-  "version": "2.2.0",
+  "version": "2.5.0",
   "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -55,7 +55,7 @@
     {
       "name": "bouton",
       "type": "boolean",
-      "default": false,
+      "default": true,
       "bindings": {
         "figma": {
           "kind": "BOOLEAN",
@@ -89,7 +89,7 @@
         "display": "flex",
         "direction": "row",
         "align": "start",
-        "justify": "space-between"
+        "justify": "center"
       },
       "parts": {
         "colGauche": {
@@ -127,7 +127,7 @@
         "wrapper": {
           "layout": {
             "direction": "column",
-            "align": "stretch"
+            "align": "start"
           },
           "tokens": {
             "gap": "{space.16}",
@@ -151,7 +151,11 @@
             },
             "Bouton": {
               "component": {
-                "id": "ds.button"
+                "id": "ds.button",
+                "props": {
+                  "variant": "link",
+                  "iconRight": true
+                }
               },
               "visibleWhen": {
                 "prop": "bouton"

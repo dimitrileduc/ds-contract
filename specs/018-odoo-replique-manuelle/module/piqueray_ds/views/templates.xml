@@ -97,38 +97,71 @@
   </template>
 
   <!-- ═══════════════════════════════════════════════════════════════════════
-       ds.presentation v2.2.0 — NIVEAU 1, LE SEUL BLOC POSABLE
+       ds.presentation v2.5.0 — NIVEAU 1, LE SEUL BLOC POSABLE
        Tableau des zones : ../../zones/ds-presentation.json
        Modifiable : texte (contenu), bouton (présence du CTA)
        Figé       : titre (PROP ORPHELINE — défaut de source B013-1), structure
        ═══════════════════════════════════════════════════════════════════════ -->
   <template id="s_presentation" name="Piqueray · Présentation">
     <!--
-      `section > .container` n'est pas cosmétique : c'est CE balisage qui rend le
-      texte intérieur éditable AUTOMATIQUEMENT, sans un seul attribut ni une ligne
-      de JavaScript (`builder_content_editable_plugin.js` : les sélecteurs par
-      défaut sont `section > .container`, `section > .o_container_small`,
-      `section > .container-fluid`, `.o_editable`).
+      ⚠️ CE QUI A CHANGÉ, et il faut le lire avant le reste. À l'origine le
+      conteneur intérieur était `<div class="container">` de Bootstrap, et il
+      achetait l'éditabilité GRATUITEMENT : `section > .container` est l'un des
+      sélecteurs par défaut de `content_editable_selectors`. Ce n'est PLUS le
+      cas — le conteneur est maintenant `.pqr-page` (voir plus bas pourquoi), qui
+      n'est dans aucun défaut d'Odoo. L'éditabilité des trois textes vient donc
+      entièrement de `static/src/js/piqueray_option.js`, qui les rouvre nommément
+      après avoir tout fermé. La réduction de coût que le balisage seul procurait
+      n'existe plus : elle est devenue du JavaScript, et ça compte au chiffrage.
 
-      C'est ce qui rend FR-012 tenable. Écrire `contenteditable="true"` ou
-      `class="o_editable"` dans un gabarit ne produit RIEN de durable : les deux
-      sont effacés à chaque enregistrement (`cleanForSave()`, et le sélecteur de
-      nettoyage est littéralement `[contenteditable]`). Le choix de balisage
-      achète donc une réduction de coût réelle — et mesurable, donc elle
-      appartient au rapport de décision.
+      LA RACINE RESTE UNE <section>, et c'est un choix mesuré. Les options
+      natives qui polluaient le bloc (Background, Content Width, Visibility,
+      Layout/Spacing, Scroll Button) se branchent toutes sur cette balise. Deux
+      voies existaient : changer de balise, ou retirer notre sélecteur de ces
+      options. La seconde a gagné parce qu'elle est CHIRURGICALE — elle nomme
+      les options écartées une par une, ne touche rien d'autre sur le site, et
+      garde l'éditabilité automatique. Voir static/src/js/piqueray_option.js.
 
-      `o_not_editable` n'est PAS posé sur cette racine : il fermerait les réglages
-      ET l'édition sur TOUT le sous-arbre, y compris le texte qu'on veut
-      modifiable. Il est posé plus bas, sur le conteneur de structure qui n'a rien
-      d'éditable.
+      ⚠️ FAIT CONTRE-INTUITIF, constaté en fonctionnement puis expliqué par le
+      code : `o_not_editable` NE FERME PAS l'édition de texte à l'intérieur d'un
+      snippet. `builder_content_editable_plugin.js` le dit en clair — un élément
+      sous `.o_not_editable` reste éditable dès lors que ce `.o_not_editable` est
+      lui-même sous un `[data-snippet]`. C'est voulu : les sous-parties d'un bloc
+      doivent rester modifiables. Conséquence pour nous : geler un texte passe
+      OBLIGATOIREMENT par `content_not_editable_selectors`, jamais par le
+      balisage seul.
+
+      `data-snippet` et `data-name` sont posés explicitement : la doc les exige
+      pour un bloc déclaré, et toute la mécanique d'éditabilité ci-dessus en
+      dépend.
 
       Fait favorable, à ne pas sur-payer : rien n'est zone de dépôt par défaut.
       `dropzone_selector` est une LISTE BLANCHE — un conteneur qui ne s'enregistre
       pas et n'imite pas les sélecteurs génériques d'Odoo (`.oe_structure`,
       `.row > div`) n'accepte aucun dépôt. Ne rien faire est ici la bonne action.
     -->
-    <section class="s_piqueray_presentation">
-      <div class="container">
+    <section class="s_piqueray_presentation" data-snippet="s_piqueray_presentation"
+             data-name="Piqueray · Présentation">
+      <!--
+        LE CONTENEUR DE PAGE. Il n'appartient à aucun contrat, et c'est voulu :
+        « quelle largeur fait une page » est une décision de site, pas de
+        composant. Le contrat de la Présentation ne porte donc aucune largeur —
+        il centre son contenu dans ce qu'on lui donne.
+
+        Reçu de l'erreur qui a rendu cette ligne nécessaire (2026-08-07) : un
+        `<div class="container">` de Bootstrap jouait ce rôle sur le bloc posé
+        d'origine. Il a été retiré parce que sa gouttière de 15 px coûtait
+        4,17 % dans la comparaison d'image. La mesure est passée à 0,0000 % et
+        la vraie page a cassé : sans borne, `<section>` prend la largeur de
+        l'écran et les colonnes du composant s'écartent. L'instrument a
+        récompensé la suppression de ce qui faisait marcher la page.
+
+        Donc : on remet la borne, mais la nôtre, sans la gouttière. La page de
+        mesure (`.pqr-mesure`, en `position:absolute`) se rétracte sur son
+        contenu et n'est pas affectée — raison de plus pour laquelle elle ne
+        voyait rien.
+      -->
+      <div class="pqr-page">
         <div class="presentation" data-part="root">
 
           <!-- Colonne gauche — structure figée, rien d'éditable à l'intérieur.
@@ -156,22 +189,35 @@
             <span class="presentation__Texte oe_unremovable oe_unmovable" data-part="Texte"><strong>Depuis plus de 50 ans,</strong><span> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de </span><strong>proximité et d'excellence technique</strong><span>. Dépositaire officiel </span><strong>Hörmann</strong><span>, nous allions la force d'un leader mondial à </span><strong>la souplesse d'une PME locale</strong><span>.</span></span>
 
             <!-- Le bouton de NIVEAU 2, conditionné par la prop `bouton`
-                 (modifiable, défaut `false` au contrat). C'est le seul appel de la
-                 chaîne qui se rend sur le bloc posé.
+                 (modifiable, défaut `true` au contrat depuis ds.presentation
+                 v2.5.0). C'est le seul appel de la chaîne qui se rend sur le
+                 bloc posé.
 
-                 `t-if="False"` reproduit le défaut du contrat. La prop `bouton`
-                 d'un snippet posé n'est pas une variable QWeb : une fois le bloc
-                 déposé, son HTML est stocké dans la page. Le réglage « afficher le
-                 bouton » agit donc sur le DOM (voir static/src/js/), et le gabarit
-                 doit livrer le bouton PRÉSENT mais masqué, pas absent — sinon il
-                 n'y aurait rien à réafficher. C'est une contrainte du modèle
-                 d'Odoo, pas un choix : elle est comptée en cas particulier. -->
-            <div class="presentation__cta d-none oe_unremovable oe_unmovable" data-part="Bouton">
+                 La prop `bouton` d'un snippet posé n'est pas une variable QWeb :
+                 une fois le bloc déposé, son HTML est stocké dans la page. Le
+                 réglage « afficher le bouton » agit donc sur le DOM (voir
+                 static/src/js/), et le gabarit doit livrer le bouton PRÉSENT dans
+                 l'état que le contrat déclare par défaut — visible, donc avec
+                 `pqr-cta-on`. C'est une contrainte du modèle d'Odoo, pas un
+                 choix : elle est comptée en cas particulier.
+
+                 ⚠️ DIVERGENCE ASSUMÉE, ET ELLE EST À NOUS. La surface de
+                 référence (`emit-html`) pose le `<button>` DIRECTEMENT dans
+                 `wrapper` — ce `<div class="presentation__cta">` n'existe nulle
+                 part dans le contrat. Il est là uniquement pour donner au réglage
+                 Odoo un point d'accroche stable (`applyTo`) sans que la règle
+                 `display` du bouton, elle, soit réécrite à la main. Le coût en
+                 pixels est MESURÉ, pas supposé : voir proofs/comparaison-image.json.
+
+                 Les trois valeurs ci-dessous ne sont pas libres : elles sont la
+                 composition que le contrat fixe (`variant: link`, `iconRight:
+                 true`) et le défaut de ds.button pour le libellé. -->
+            <div class="presentation__cta pqr-cta-on oe_unremovable oe_unmovable" data-part="Bouton">
               <t t-call="piqueray_ds.t_button">
-                <t t-set="variant" t-value="'default'"/>
+                <t t-set="variant" t-value="'link'"/>
                 <t t-set="libelle" t-value="'Contactez-nous'"/>
                 <t t-set="icon_left" t-value="False"/>
-                <t t-set="icon_right" t-value="False"/>
+                <t t-set="icon_right" t-value="True"/>
                 <t t-set="glyph_left" t-value="'arrow-left'"/>
                 <t t-set="glyph_right" t-value="'arrow-right'"/>
               </t>

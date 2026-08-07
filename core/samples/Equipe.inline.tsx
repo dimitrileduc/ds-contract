@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/equipe.contract.json (ds.equipe v1.0.0)
+ * Source of truth: contracts/equipe.contract.json (ds.equipe v1.1.2)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -23,13 +23,17 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "justifyContent": "center",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "width": "1728px"
   },
   "grid": {
     "display": "flex",
     "flexDirection": "row",
+    "flexWrap": "wrap",
     "flex": "1 1 auto",
-    "minWidth": 0
+    "minWidth": 0,
+    "gap": "31.333333px",
+    "rowGap": "32.666667px"
   }
 };
 

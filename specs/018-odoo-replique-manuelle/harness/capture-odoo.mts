@@ -19,18 +19,18 @@
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import type { Browser } from 'playwright-core';
-import { SUBJECTS, DEVICE_SCALE_FACTOR, viewportFor, type Subject } from './subjects.mts';
-import { launchBrowser } from './render-html.mts';
-
-/** Le plafond d'attente des polices, en ms. Même valeur que le côté HTML et que
- *  `visual-parity/render.ts` — une asymétrie ici fabriquerait un écart de rendu
- *  qui n'existe pas dans les composants. */
-export const FONT_SETTLE_MS = 5000;
-/** Plafond de navigation. Odoo peut mettre du temps à compiler ses bundles au
- *  premier chargement ; il ne doit pas pour autant pouvoir figer la sonde. */
-export const NAV_TIMEOUT_MS = 60_000;
+import { launchBrowser } from '../../../extract/figma/visual-parity/render.js';
+import {
+  SUBJECTS,
+  DEVICE_SCALE_FACTOR,
+  FONT_SETTLE_MS,
+  NAV_TIMEOUT_MS,
+  arg,
+  runAsCli,
+  viewportFor,
+  type Subject,
+} from './subjects.mts';
 
 export async function capturePage(browser: Browser, subject: Subject, url: string): Promise<Buffer> {
   // Contexte NEUF pour chaque sujet : aucun cookie, donc aucune session admin,
@@ -57,16 +57,13 @@ export async function capturePage(browser: Browser, subject: Subject, url: strin
 
 async function main() {
   const args = process.argv.slice(2);
-  const read = (flag: string) => {
-    const i = args.indexOf(flag);
-    return i >= 0 ? args[i + 1] : null;
-  };
-  const base = read('--base');
-  const out = read('--out');
+  const base = arg(args, '--base');
+  const out = arg(args, '--out');
   if (!base || !out) throw new Error('Usage : --base <http://host:port> --out <dir>');
   mkdirSync(out, { recursive: true });
 
-  const browser = await launchBrowser();
+  const { browser, version } = await launchBrowser();
+  console.log(`Chromium ${version}`);
   try {
     for (const s of SUBJECTS) {
       const url = `${base.replace(/\/$/, '')}${s.odooPath}`;
@@ -79,9 +76,4 @@ async function main() {
   }
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  main().catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
-}
+runAsCli(import.meta.url, main);

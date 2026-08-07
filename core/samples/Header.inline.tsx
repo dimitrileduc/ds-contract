@@ -32,24 +32,32 @@ const S: Record<string, CSSProperties> = {
     "alignItems": "center",
     "justifyContent": "space-between",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "width": "1728px",
+    "paddingLeft": "89px",
+    "paddingRight": "89px",
+    "paddingTop": "16px",
+    "paddingBottom": "16px"
   },
   "navWrapper": {
     "display": "flex",
     "flexDirection": "row",
     "alignItems": "center",
-    "justifyContent": "flex-end"
+    "justifyContent": "flex-end",
+    "gap": "64px"
   },
   "nav": {
     "display": "flex",
     "flexDirection": "row",
     "alignItems": "center",
-    "justifyContent": "center"
+    "justifyContent": "center",
+    "gap": "32px"
   },
   "iconsNav": {
     "display": "flex",
     "flexDirection": "row",
-    "alignItems": "center"
+    "alignItems": "center",
+    "gap": "16px"
   },
   "Search": {
     "display": "inline-flex",
@@ -85,7 +93,7 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
 <div style={{ ...S.nav }}>
 <NavItem actif={false} libelle="Portes de garage" href="/portes-de-garage" chevron />
 <NavItem actif={false} libelle="Portes d’entrée" href="/portes-entree" chevron />
-<NavItem actif={false} libelle="Motorisation" href="/motorisation" />
+<NavItem actif={false} libelle="Dépannage/SAV" href="/motorisation" />
 <NavItem actif={false} libelle="À propos" href="/a-propos" />
 <Button>Contactez-nous</Button>
 </div>

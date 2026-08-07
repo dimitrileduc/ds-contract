@@ -1,20 +1,6 @@
-=== T041 · clips épinglés, MESURÉS et non choisis ===
-date : 2026-08-06T21:12:30Z
-
-render-html.mts --measure imprime la boîte réelle de chaque sujet.
-Les clips sont ces boîtes + 24 px de garde sur chaque dimension.
-
-La garde n'est pas décorative : sans elle, un composant Odoo plus large serait
-COUPÉ par le clip au lieu d'apparaître en pixels de diff — l'écart qu'on veut
-mesurer disparaîtrait dans un recadrage.
+=== relevé des boîtes — 2026-08-07T11:08:57Z ===
+contrat ds.presentation v2.3.0 (bouton défaut true, CTA link+flèche)
 
 button           boîte réelle   267×102   · clip épinglé   292×126   · TIENT
 section-header   boîte réelle  1598×102   · clip épinglé  1622×126   · TIENT
-presentation     boîte réelle  1335×144   · clip épinglé  1360×168   · TIENT
-
---- piège trouvé et corrigé au premier relevé ---
-La première version prenait « la première vignette du showcase » des deux côtés.
-Or la page de mesure Odoo de l'en-tête rendait 'avecCta' pendant que le côté HTML
-rendait 'default' : la comparaison aurait opposé deux mises en page différentes.
-Chaque sujet NOMME désormais sa vignette (subjects.mts, showcaseLabel), et la page
-Odoo reproduit exactement la même combinaison de props.
+presentation     boîte réelle  1335×190   · clip épinglé  1360×214   · TIENT

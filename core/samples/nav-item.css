@@ -1,4 +1,4 @@
-/* NavItem — from ds.nav-item v1.1.0 (core/emit-html.ts) */
+/* NavItem — from ds.nav-item v1.2.0 (core/emit-html.ts) */
 
 .nav-item, .nav-item *, .nav-item *::before, .nav-item *::after {
   box-sizing: border-box;
@@ -12,7 +12,7 @@
   font-family: var(--font-family-montserrat);
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-medium);
-  gap: 8px;
+  gap: var(--space-8);
   line-height: 16px;
   position: relative;
   text-transform: uppercase;
@@ -41,7 +41,7 @@
 
 .nav-item__Soulignement {
   background-color: var(--color-blanc);
-  height: 2px;
+  height: var(--size-nav-item-soulignement);
   position: absolute;
 }
 

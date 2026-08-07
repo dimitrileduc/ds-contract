@@ -22,7 +22,7 @@ const S: Record<string, CSSProperties> = {
     "border": 0,
     "backgroundColor": "#FFFFFF",
     "fontFamily": "Montserrat, sans-serif",
-    "width": "364px",
+    "width": "363.5px",
     "gap": "24px",
     "paddingBottom": "24px",
     "boxShadow": "0px 5px 10px rgba(0, 0, 0, 0.2)",
@@ -90,9 +90,9 @@ const S: Record<string, CSSProperties> = {
 const V: Record<string, CSSProperties> = {
   "disposition-categorie:root": {
     "width": "743px",
-    "backgroundColor": "transparent",
     "gap": "32px",
-    "paddingBottom": "0px"
+    "paddingBottom": "0px",
+    "backgroundColor": "transparent"
   },
   "disposition-categorie:text": {
     "gap": "16px",

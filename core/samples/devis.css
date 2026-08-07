@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -126,8 +126,9 @@
   border: 0;
   background-color: var(--color-noir-pur);
   font-family: var(--font-family-montserrat);
-  padding-top: 96px;
-  padding-bottom: 96px;
+  padding-top: var(--space-96);
+  padding-bottom: var(--space-96);
+  width: var(--size-devis-root);
   position: relative;
 }
 
@@ -161,15 +162,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: var(--space-32);
   position: relative;
 }
 
 .devis__Titre {
   color: var(--color-blanc);
   font-size: var(--font-size-40);
+  width: var(--size-devis-titre);
   line-height: 50px;
-  width: 900px;
   text-align: center;
 }
 

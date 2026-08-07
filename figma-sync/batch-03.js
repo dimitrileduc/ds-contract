@@ -5,12 +5,12 @@ const COMPONENTS = [
     "setName": "Presentation",
     "contractId": "ds.presentation",
     "anchorKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
-    "description": "Presentation — generated from contract ds.presentation v2.2.0",
+    "description": "Presentation — generated from contract ds.presentation v2.5.0",
     "isSet": false,
     "boolProps": [
       {
         "property": "Bouton",
-        "default": false
+        "default": true
       }
     ],
     "textProps": [
@@ -32,7 +32,7 @@ const COMPONENTS = [
           "name": "Presentation",
           "layout": {
             "mode": "HORIZONTAL",
-            "primary": "SPACE_BETWEEN",
+            "primary": "CENTER",
             "counter": "MIN"
           },
           "bindings": {
@@ -75,8 +75,7 @@ const COMPONENTS = [
               "layout": {
                 "mode": "VERTICAL",
                 "primary": "MIN",
-                "counter": "MIN",
-                "stretchChildren": true
+                "counter": "MIN"
               },
               "bindings": {
                 "itemSpacing": "space/16"
@@ -102,9 +101,12 @@ const COMPONENTS = [
                   "name": "Bouton",
                   "dep":"Button",
                   "depId": "ds.button",
-                  "depProps": {},
+                  "depProps": {
+                    "Style": "Link",
+                    "Icone droite": true
+                  },
                   "visibleProp": "Bouton",
-                  "visibleDefault": false
+                  "visibleDefault": true
                 }
               ]
             }

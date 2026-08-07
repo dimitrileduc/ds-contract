@@ -3,9 +3,14 @@
  * surface HTML EXISTANTE du dépôt (`emitHtml`), au clip épinglé.
  *
  * ── Ce qui est RÉUTILISÉ, et pourquoi jamais ré-implémenté ───────────────────
- * `chromiumExecutable()` et `embeddedFontFaces()` viennent de
+ * `launchBrowser()` et `embeddedFontFaces()` viennent de
  * `extract/figma/visual-parity/render.ts`, importés SANS le modifier. Ils sont
  * exportés avec cette intention écrite : « for reuse … never re-implemented ».
+ *   · le lancement : `launchBrowser()` rend `{ browser, version, executablePath }`.
+ *     Ces trois lignes avaient été recopiées ici, ce qui marchait mais PERDAIT la
+ *     version — un harnais qui écrit des reçus sous proofs/ doit pouvoir dire
+ *     quel Chromium a produit ses chiffres, comme le font visual-parity/run.ts
+ *     et canvas-gate/run.ts ;
  *   · la police : un second harnais qui refait son chargement retombe dans le
  *     bug daté du 2026-07-23 — Chromium substituait silencieusement une police
  *     système pendant que `document.fonts.check` répondait « disponible », et
@@ -22,41 +27,45 @@
  *   npx tsx specs/018-…/harness/render-html.mts --out <dir>
  *   npx tsx specs/018-…/harness/render-html.mts --measure     (boîtes réelles)
  */
-import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium, type Browser } from 'playwright-core';
-import { chromiumExecutable, embeddedFontFaces } from '../../../extract/figma/visual-parity/render.js';
-import { ContractSchema, tokenInventoryFromJson, emitHtml, type Contract } from '../../../core/index.js';
-import { SUBJECTS, DEVICE_SCALE_FACTOR, FRAME_PADDING_TOKEN, viewportFor, type Subject } from './subjects.mts';
-
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const REPO = path.resolve(HERE, '..', '..', '..');
-const readJson = (p: string): any => JSON.parse(readFileSync(p, 'utf8'));
+import type { Browser } from 'playwright-core';
+import { embeddedFontFaces, launchBrowser } from '../../../extract/figma/visual-parity/render.js';
+import { loadRepoData } from '../../../extract/fidelity-matrix/scripts/lib.js';
+import { emitHtml } from '../../../core/index.js';
+import {
+  SUBJECTS,
+  DEVICE_SCALE_FACTOR,
+  FONT_SETTLE_MS,
+  FRAME_PADDING_TOKEN,
+  arg,
+  runAsCli,
+  viewportFor,
+  type Subject,
+} from './subjects.mts';
 
 // ---------------------------------------------------------------------------
 // Le contexte d'émission — contrats, jetons, icônes, en DONNÉES (jamais des
-// chemins) : c'est le contrat du barrel `core/`.
+// chemins) : c'est le contrat du barrel `core/`. Le chargement est celui du
+// dépôt, `loadRepoData()`, pas une seconde lecture maison.
+//
+// Ce qu'on gagne à ne PAS le refaire, et ce n'est pas cosmétique : la version
+// maison épinglait les quatre fichiers de jetons en dur, donc restaurer le mode
+// sombre ou ajouter une marque aurait laissé l'inventaire du harnais en arrière
+// EN SILENCE — `loadRepoData` découvre `modes/brand.*.tokens.json` par motif et
+// traite l'absence du fichier sombre explicitement. Elle validait aussi les
+// contrats en `safeParse` puis SAUTAIT les invalides sans rien dire, ce qui
+// ressortait bien plus tard en « Contrat absent : … » ; `loadRepoData` fait
+// `.parse` et échoue par le nom du contrat fautif.
+//
+// Équivalence vérifiée par exécution avant la bascule, en ENSEMBLES et pas en
+// comptes : inventaire 231 = 231 (0 en trop, 0 manquant), 34 contrats,
+// 23 icônes — et les 3 PNG de sortie sont restés identiques octet pour octet.
 // ---------------------------------------------------------------------------
 export function buildEmitCtx() {
-  const contracts = new Map<string, Contract>();
-  for (const f of readdirSync(path.join(REPO, 'contracts'))) {
-    if (!f.endsWith('.contract.json')) continue;
-    const parsed = ContractSchema.safeParse(readJson(path.join(REPO, 'contracts', f)));
-    if (parsed.success) contracts.set(parsed.data.id, parsed.data);
-  }
-  const tokens = tokenInventoryFromJson([
-    readJson(path.join(REPO, 'tokens', 'primitives.tokens.json')),
-    readJson(path.join(REPO, 'tokens', 'semantic.tokens.json')),
-    readJson(path.join(REPO, 'tokens', 'modes', 'semantic.light.tokens.json')),
-    readJson(path.join(REPO, 'tokens', 'modes', 'brand.default.tokens.json')),
-  ]);
-  const icons = new Map(
-    readdirSync(path.join(REPO, 'assets', 'icons'))
-      .filter((f) => f.endsWith('.svg'))
-      .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(REPO, 'assets', 'icons', f), 'utf8').trim()] as const),
-  );
-  return { tokens, icons, contracts };
+  const { inventory, icons, contracts, tokensCss } = loadRepoData();
+  return { tokens: inventory, icons, contracts, tokensCss };
 }
 
 /** Le fragment rendu pour un sujet : la vignette du showcase que `subjects.mts`
@@ -82,17 +91,16 @@ export function fragmentFor(subject: Subject, ctx: ReturnType<typeof buildEmitCt
   return { body: m[1].trim(), css };
 }
 
-/** La feuille de jetons SANS préfixe, incluse dans la page — condition
- *  documentée de cet émetteur : « the page must include the token stylesheet or
- *  the custom properties resolve to nothing ». */
-const tokensCss = () => readFileSync(path.join(REPO, 'src', 'styles', 'tokens.css'), 'utf8');
-
-export function documentFor(subject: Subject, body: string, css: string): string {
+/** `tokensCss` est la feuille de jetons SANS préfixe (`src/styles/tokens.css`),
+ *  incluse dans la page — condition documentée de cet émetteur : « the page must
+ *  include the token stylesheet or the custom properties resolve to nothing ».
+ *  Elle vient du même `loadRepoData()` que le reste du contexte. */
+export function documentFor(subject: Subject, body: string, css: string, tokensCss: string): string {
   return [
     '<!doctype html>',
     '<html lang="fr"><head><meta charset="utf-8">',
     embeddedFontFaces(),
-    `<style>${tokensCss()}</style>`,
+    `<style>${tokensCss}</style>`,
     // Le MÊME cadre que la page de mesure Odoo : fond opaque, marge identique,
     // animations neutralisées, composant à une origine fixe.
     `<style>
@@ -107,10 +115,6 @@ export function documentFor(subject: Subject, body: string, css: string): string
   ].join('\n');
 }
 
-export async function launchBrowser(): Promise<Browser> {
-  return chromium.launch({ executablePath: chromiumExecutable(), headless: true });
-}
-
 /** Rend un sujet et renvoie le PNG au clip épinglé, plus la boîte réellement
  *  occupée par le composant (utile au mode --measure). */
 export async function renderSubject(browser: Browser, subject: Subject, doc: string) {
@@ -123,8 +127,10 @@ export async function renderSubject(browser: Browser, subject: Subject, doc: str
     const page = await context.newPage();
     await page.setContent(doc, { waitUntil: 'load' });
     // Attente BORNÉE : un `document.fonts.ready` qui pend ne doit jamais figer
-    // la sonde. Même plafond de 5 s que visual-parity/render.ts.
-    await page.evaluate('Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 5000))])');
+    // la sonde. Le plafond vient de `subjects.mts` — LE MÊME que le côté Odoo.
+    await page.evaluate(
+      `Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, ${FONT_SETTLE_MS}))])`,
+    );
     const box = await page.evaluate(() => {
       const el = document.querySelector('.pqr-mesure') as HTMLElement | null;
       if (!el) return null;
@@ -146,17 +152,17 @@ export async function renderSubject(browser: Browser, subject: Subject, doc: str
 async function main() {
   const args = process.argv.slice(2);
   const measure = args.includes('--measure');
-  const outIdx = args.indexOf('--out');
-  const out = outIdx >= 0 ? args[outIdx + 1] : null;
+  const out = arg(args, '--out');
   if (!measure && !out) throw new Error('Usage : --out <dir>  |  --measure');
   if (out) mkdirSync(out, { recursive: true });
 
   const ctx = buildEmitCtx();
-  const browser = await launchBrowser();
+  const { browser, version } = await launchBrowser();
+  console.log(`Chromium ${version}`);
   try {
     for (const s of SUBJECTS) {
       const { body, css } = fragmentFor(s, ctx);
-      const { png, box } = await renderSubject(browser, s, documentFor(s, body, css));
+      const { png, box } = await renderSubject(browser, s, documentFor(s, body, css, ctx.tokensCss));
       if (measure) {
         const fits = box && box.width <= s.clip.width && box.height <= s.clip.height;
         console.log(
@@ -175,9 +181,4 @@ async function main() {
   }
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  main().catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
-}
+runAsCli(import.meta.url, main);

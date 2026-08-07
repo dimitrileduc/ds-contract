@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -125,7 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
+  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -207,9 +208,9 @@
 }
 
 .coordonnees__googleMap {
-  width: 1152px;
-  min-width: 1152px;
-  height: 597px;
+  width: var(--size-coordonnees-google-map-w);
+  min-width: var(--size-coordonnees-google-map-w);
+  height: var(--size-coordonnees-google-map-h);
   object-fit: cover;
 }
 
@@ -217,16 +218,16 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 16px;
-  padding-block: 48px;
-  padding-inline: 48px;
-  width: 576px;
+  gap: var(--space-16);
+  padding-block: var(--space-48);
+  padding-inline: var(--space-48);
+  width: var(--size-coordonnees-wrapper);
 }
 
 .coordonnees__Adresse {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .coordonnees__AdresseEtiquette {
@@ -246,7 +247,7 @@
 .coordonnees__Horaires {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .coordonnees__HorairesEtiquette {
@@ -264,7 +265,7 @@
 .coordonnees__Contact {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .coordonnees__ContactEtiquette {
@@ -287,7 +288,7 @@
 .coordonnees__suivezNous {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 }
 
 .coordonnees__SuivezNousEtiquette {
@@ -300,7 +301,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 .coordonnees__Facebook svg {

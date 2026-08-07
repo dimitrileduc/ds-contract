@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v1.2.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v1.3.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -51,8 +51,8 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "flex-start",
     "justifyContent": "center",
-    "width": "546px",
-    "height": "513px",
+    "width": "641px",
+    "height": "561px",
     "paddingTop": "48px",
     "paddingLeft": "48px",
     "paddingRight": "47px",
@@ -85,7 +85,7 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "flex-end",
     "justifyContent": "flex-start",
-    "width": "644px",
+    "width": "647px",
     "height": "561px",
     "paddingLeft": "3px",
     "position": "relative"
@@ -111,6 +111,8 @@ const V: Record<string, CSSProperties> = {};
 export interface SAVProps extends HTMLAttributes<HTMLDivElement> {
   /** Extracted from Figma "Titre" TEXT property (added by sync pass). Forwarded live into the SectionHeader instance (`titre: "{titre}"`) so the parent property reaches the rendered surface instead of the child's literal. */
   titre?: string;
+  /** Le paragraphe long de la colonne (TEXT Figma 2108:3103) en prop rich-text gouvernée — 016/T042, lot B013-4 : c'était le SEUL texte non lié du master (diagnostic vif 2026-08-05), et le lot L-B013-4 (T041) expose la propriété TEXT native « Texte » qu'elle lie. Les trois plages 700 observées voyagent en segments ; la projection Figma aplatit vers la valeur native de la propriété (concaténation, saut de ligne dur compris). */
+  texte?: Array<{ text: string; strong?: boolean }>;
   /** Code-supplied URL for the full-bleed section IMAGE fill. Figma stores those pixels as a paint on the master (not as a component property) and the contract has no background-image channel; the empty runtime default is intentional and does not substitute an image. */
   backgroundUrl?: string;
   /** Code-supplied text alternative paired with backgroundUrl. Figma IMAGE fills expose no corresponding alt component property, so the empty runtime default is intentional (decorative plane). */
@@ -123,9 +125,11 @@ export interface SAVProps extends HTMLAttributes<HTMLDivElement> {
 
 /** Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.
 
-Limites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé. */
+Limites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.
+
+v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. */
 export const SAV = forwardRef<HTMLDivElement, SAVProps>(function SAV(
-  { titre = 'Dépannage / SAV', backgroundUrl = '', backgroundAlt = '', imageUrl = '', imageAlt = '', style, children, ...rest },
+  { titre = 'Dépannage / SAV', backgroundUrl = '', backgroundAlt = '', imageUrl = '', imageAlt = '', texte = [{"text":"Vous rencontrez un problème avec "},{"text":"votre installation ","strong":true},{"text":"Hörmann à Liège ? Il y a une panne de courant et "},{"text":"votre porte de garage","strong":true},{"text":" ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "},{"text":"votre distributeur Hörmann en province de Liège","strong":true},{"text":" est là pour vous aider !"}], style, children, ...rest },
   ref,
 ) {
   return (
@@ -141,7 +145,7 @@ export const SAV = forwardRef<HTMLDivElement, SAVProps>(function SAV(
 </div>
 <div style={{ ...S.inner }}>
 <SectionHeader titre={[{"text":"Dépannage / SAV"}]} accroche="Plus de 50 ans d’expérience" accroche2={false} disposition="standard" alignement="gauche" />
-<span style={{ ...S.vousRencontrezUnProblmeA }}>{"Vous rencontrez un problème avec "}<strong style={{ fontWeight: 700 }}>{"votre installation "}</strong>{"Hörmann à Liège ? Il y a une panne de courant et "}<strong style={{ fontWeight: 700 }}>{"votre porte de garage"}</strong>{" ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, "}<strong style={{ fontWeight: 700 }}>{"votre distributeur Hörmann en province de Liège"}</strong>{" est là pour vous aider !"}</span>
+<span style={{ ...S.vousRencontrezUnProblmeA }}>{texte.map(({ text, strong }, index) => strong ? <strong key={index} style={{ fontWeight: 700 }}>{text}</strong> : <span key={index}>{text}</span>)}</span>
 <Button iconRight>Demander de l’aide</Button>
 </div>
 </div>

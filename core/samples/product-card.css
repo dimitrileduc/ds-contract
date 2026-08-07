@@ -10,14 +10,14 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 16px;
-  width: 364px;
+  gap: var(--space-16);
+  width: var(--size-product-card-root);
   text-rendering: geometricprecision;
 }
 
 .product-card__Image {
-  width: 240px;
-  height: 240px;
+  width: var(--size-product-card-image);
+  height: var(--size-product-card-image);
 }
 
 .product-card__Titre {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Le gabarit OWL du panneau. UN seul réglage, et c'est le résultat de la règle,
+  pas une économie : sur les 15 props que Figma porte pour cette chaîne, une
+  seule a une raison métier d'être changée ET n'est pas déjà fixée par le
+  contrat — la présence de l'appel à l'action.
+
+  Les trois textes ne sont PAS ici : ils se tapent sur la page. Le panneau est
+  réservé aux choix fermés (oui/non, énumérations), jamais au texte.
+-->
+<templates xml:space="preserve">
+
+  <t t-name="piqueray_ds.PresentationOption">
+    <BuilderRow label.translate="Appel à l'action">
+      <BuilderCheckbox classAction="'pqr-cta-on'"/>
+    </BuilderRow>
+  </t>
+
+</templates>

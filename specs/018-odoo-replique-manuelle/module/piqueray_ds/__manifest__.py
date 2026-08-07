@@ -47,7 +47,10 @@ Voir README.md et NON-PORTES.md dans le dossier du module.
         ],
         # Éditeur de site : les réglages du panneau (Phase 4). Bundle distinct —
         # rien de tout ceci n'est servi au visiteur.
-        "website.website_builder_assets": [],
+        "website.website_builder_assets": [
+            "piqueray_ds/static/src/js/piqueray_option.js",
+            "piqueray_ds/static/src/js/piqueray_option.xml",
+        ],
     },
     # Pas d'"application": True — c'est délibéré. Ce module n'est pas une app,
     # et la voie d'installation est le CLI (`-i piqueray_ds`, qui exige `-d`),

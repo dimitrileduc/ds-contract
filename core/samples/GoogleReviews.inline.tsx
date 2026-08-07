@@ -47,12 +47,12 @@ const S: Record<string, CSSProperties> = {
     "borderStyle": "solid",
     "backgroundColor": "#FFFFFF",
     "borderColor": "#F4F6FA",
-    "borderRadius": "8px",
-    "borderWidth": "1px",
     "paddingTop": "12px",
     "paddingBottom": "12px",
     "paddingLeft": "16px",
-    "paddingRight": "16px"
+    "paddingRight": "16px",
+    "borderRadius": "8px",
+    "borderWidth": "1px"
   },
   "infos": {
     "display": "flex",
@@ -118,12 +118,12 @@ const S: Record<string, CSSProperties> = {
     "justifyContent": "center",
     "borderStyle": "solid",
     "borderColor": "#37373B",
-    "borderWidth": "1px",
-    "borderRadius": "0px",
     "paddingTop": "8px",
     "paddingBottom": "8px",
     "paddingLeft": "22px",
-    "paddingRight": "22px"
+    "paddingRight": "22px",
+    "borderWidth": "1px",
+    "borderRadius": "0px"
   },
   "libelle": {
     "fontFamily": "Montserrat, sans-serif",

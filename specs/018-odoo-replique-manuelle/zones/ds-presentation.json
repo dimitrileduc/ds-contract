@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "contractId": "ds.presentation",
-  "contractVersion": "2.2.0",
+  "contractVersion": "2.5.0",
   "decidedOn": "2026-08-06",
   "$regle": "Un réglage est offert au rédacteur s'il a une raison métier de le changer sur son site. Tout le reste est figé. Corollaire : le contenu se modifie, le design se fige.",
-  "$reference": "Écrit contre un rendu FRAIS de ds.presentation v2.2.0 par emitHtml, jamais contre core/samples/presentation.html — qui date de la spec 013 et porte encore v2.1.0 (relevé T004 §7.3).",
+  "$reference": "Écrit contre un rendu FRAIS de ds.presentation v2.5.0 par emitHtml, jamais contre core/samples/presentation.html — qui date de la spec 013 et porte encore v2.1.0 (relevé T004 §7.3).",
   "$couverture": "3 props déclarées + 6 parts d'anatomie = 9 lignes. Aucun réglage porté par le contrat n'est laissé sans ligne (invariant Z1).",
   "zones": [
     {
@@ -18,7 +18,7 @@
       "reglage": "bouton",
       "origine": "prop",
       "etat": "modifiable",
-      "raison": "Booléen d'affichage de l'appel à l'action. « Cette section a-t-elle un CTA ? » est une décision de page, pas d'axe du design system : une page produit en veut un, une page institutionnelle non. C'est aussi le seul réglage qui fait apparaître le troisième composant à l'écran (relevé T004 §7.4).",
+      "raison": "Booléen d'affichage de l'appel à l'action. « Cette section a-t-elle un CTA ? » est une décision de page, pas d'axe du design system : une page produit en veut un, une page institutionnelle non. C'est aussi le seul réglage qui fait apparaître le troisième composant à l'écran (relevé T004 §7.4). MISE À JOUR 2026-08-07 (contrat v2.3.0) : le défaut est passé de `false` à `true`, et la composition fixe désormais le style du CTA (`variant: link`, `iconRight: true`). Le réglage reste modifiable — c'est sa PRÉSENCE qui est une décision de page ; son APPARENCE, elle, est maintenant figée par le contrat et n'est plus offerte.",
       "mecanisme": null
     },
     {

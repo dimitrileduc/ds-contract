@@ -25,48 +25,62 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "row",
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif"
+    "fontFamily": "Montserrat, sans-serif",
+    "width": "1550px",
+    "gap": "32px"
   },
   "column": {
     "display": "flex",
     "flexDirection": "column",
+    "alignItems": "stretch",
     "flex": "1 1 auto",
-    "minWidth": 0
+    "minWidth": 0,
+    "gap": "48px"
   },
   "features": {
     "display": "flex",
-    "flexDirection": "column"
+    "flexDirection": "column",
+    "gap": "32px"
   },
   "buttons": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "gap": "16px"
   },
   "form": {
     "display": "flex",
     "flexDirection": "column",
     "flex": "1 1 auto",
     "minWidth": 0,
-    "backgroundColor": "#F4F6FA"
+    "backgroundColor": "#F4F6FA",
+    "paddingInline": "32px",
+    "paddingBlock": "32px",
+    "gap": "16px"
   },
   "row": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "gap": "16px"
   },
   "row2": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "gap": "16px"
   },
   "row3": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "gap": "16px"
   },
   "row4": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "gap": "16px"
   },
   "row5": {
     "display": "flex",
-    "flexDirection": "row"
+    "flexDirection": "row",
+    "gap": "16px"
   },
   "TexteConsentement": {}
 };

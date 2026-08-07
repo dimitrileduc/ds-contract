@@ -13,14 +13,14 @@
 }
 
 .realisation__Image {
-  width: 743px;
-  height: 743px;
+  width: var(--size-realisation-image);
+  height: var(--size-realisation-image);
   object-fit: cover;
 }
 
 .realisation--taille-petit .realisation__Image {
-  width: 339.5px;
-  height: 339.5px;
+  width: var(--size-realisation-image-petit);
+  height: var(--size-realisation-image-petit);
 }
 
 /* showcase chrome */

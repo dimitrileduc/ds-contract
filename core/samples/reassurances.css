@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -125,7 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
+  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -205,22 +206,22 @@
   border: 0;
   background-color: var(--color-blanc);
   font-family: var(--font-family-montserrat);
-  width: 364px;
-  gap: 24px;
-  padding-bottom: 24px;
+  width: var(--size-carte-root);
+  gap: var(--space-24);
+  padding-bottom: var(--space-24);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   text-rendering: geometricprecision;
 }
 
 .carte--disposition-categorie {
-  width: 743px;
+  width: var(--size-carte-root-categorie);
+  gap: var(--space-32);
+  padding-bottom: var(--space-0);
   background-color: transparent;
-  gap: 32px;
-  padding-bottom: 0px;
 }
 
 .carte__reassuranceImage {
-  height: 364px;
+  height: var(--size-carte-reassurance-image);
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -229,8 +230,8 @@
   display: flex;
   flex: 1 1 auto;
   min-width: 0;
-  height: 418px;
-  min-height: 0px;
+  height: var(--size-carte-categorie-image);
+  min-height: var(--space-0);
   object-fit: cover;
 }
 
@@ -238,16 +239,16 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 8px;
-  padding-right: 16px;
-  padding-left: 16px;
+  gap: var(--space-8);
+  padding-right: var(--space-16);
+  padding-left: var(--space-16);
   text-rendering: geometricprecision;
 }
 
 .carte--disposition-categorie .carte__text {
-  gap: 16px;
-  padding-right: 0px;
-  padding-left: 0px;
+  gap: var(--space-16);
+  padding-right: var(--space-0);
+  padding-left: var(--space-0);
 }
 
 .carte__TitreReassurance {
@@ -311,22 +312,22 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: 1550px;
-  gap: 48px;
+  width: var(--size-reassurances-root);
+  gap: var(--space-48);
 }
 
 .reassurances__items {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 32px;
+  gap: var(--space-32);
   align-self: stretch;
 }
 
 .reassurances__Boutons {
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 /* showcase chrome */

@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -125,7 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
+  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -192,7 +193,7 @@
   font-size: var(--font-size-24);
 }
 
-/* Presentation — from ds.presentation v2.1.0 (core/emit-html.ts) */
+/* Presentation — from ds.presentation v2.5.0 (core/emit-html.ts) */
 
 .presentation, .presentation *, .presentation *::before, .presentation *::after {
   box-sizing: border-box;
@@ -202,18 +203,24 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 32px;
+  gap: var(--space-32);
+}
+
+.presentation__colGauche {
+  display: flex;
+  flex-direction: column;
+  width: var(--size-presentation-col-gauche);
 }
 
 .presentation__wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 16px;
-  width: 627px;
+  align-items: flex-start;
+  gap: var(--space-16);
+  width: var(--size-presentation-wrapper);
 }
 
 .presentation__Texte {

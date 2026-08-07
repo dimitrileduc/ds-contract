@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v1.6.0)
+ * Source of truth: contracts/button.contract.json (ds.button v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -90,7 +90,7 @@ const V: Record<string, CSSProperties> = {
     "paddingBlock": "4px",
     "paddingInline": "0px"
   },
-  "variant-outilneNoir:root": {
+  "variant-outlineNoir:root": {
     "borderWidth": "2px",
     "borderColor": "#26282C",
     "color": "#26282C"
@@ -108,7 +108,7 @@ const V: Record<string, CSSProperties> = {
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Visual style of the button. */
-  variant?: 'default' | 'orange' | 'blanc' | 'outlineBlanc' | 'link' | 'outilneNoir' | 'iconOnly';
+  variant?: 'default' | 'orange' | 'blanc' | 'outlineBlanc' | 'link' | 'outlineNoir' | 'iconOnly';
   /** Shows the leading icon slot (which glyph: iconLeftGlyph, default arrow-left). Extracted from the BOOLEAN property « Icone gauche » added to the Figma masters on 2026-07-23. */
   iconLeft?: boolean;
   /** Shows the trailing icon slot (which glyph: iconRightGlyph, default arrow-right — the « → » of Link buttons). Extracted from the BOOLEAN property « Icone droite » added to the Figma masters on 2026-07-23. */

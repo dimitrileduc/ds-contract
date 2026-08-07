@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -125,7 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
+  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -192,7 +193,7 @@
   font-size: var(--font-size-24);
 }
 
-/* Hero — from ds.hero v1.3.0 (core/emit-html.ts) */
+/* Hero — from ds.hero v1.4.0 (core/emit-html.ts) */
 
 .hero, .hero *, .hero *::before, .hero *::after {
   box-sizing: border-box;
@@ -205,8 +206,9 @@
   justify-content: space-between;
   border: 0;
   font-family: var(--font-family-montserrat);
-  height: 640px;
-  gap: 10px;
+  height: var(--size-hero-root);
+  gap: var(--space-10);
+  background-image: linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%);
   position: relative;
 }
 
@@ -223,7 +225,7 @@
   align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
-  gap: 16px;
+  gap: var(--space-16);
   position: relative;
 }
 
@@ -231,11 +233,12 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 16px;
-  padding-top: 96px;
-  padding-right: 89px;
-  padding-bottom: 48px;
-  padding-left: 89px;
+  gap: var(--space-16);
+  padding-top: var(--space-96);
+  padding-right: var(--space-89);
+  padding-bottom: var(--space-48);
+  padding-left: var(--space-89);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%);
 }
 
 .hero__wrapper {
@@ -243,16 +246,16 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
-  gap: 32px;
+  gap: var(--space-32);
 }
 
 .hero__sousTitre {
   flex: 1 1 auto;
   min-width: 0;
+  width: var(--size-hero-sous-titre);
   color: var(--color-blanc);
   font-size: var(--font-size-24);
   line-height: var(--font-line-height-32);
-  width: 1164px;
 }
 
 .hero__sousTitre > strong {

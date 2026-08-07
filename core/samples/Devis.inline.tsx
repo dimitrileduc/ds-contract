@@ -24,6 +24,7 @@ const S: Record<string, CSSProperties> = {
     "fontFamily": "Montserrat, sans-serif",
     "paddingTop": "96px",
     "paddingBottom": "96px",
+    "width": "1728px",
     "position": "relative"
   },
   "Background": {
@@ -44,8 +45,8 @@ const S: Record<string, CSSProperties> = {
   "Titre": {
     "color": "#FFFFFF",
     "fontSize": "40px",
-    "lineHeight": "50px",
     "width": "900px",
+    "lineHeight": "50px",
     "textAlign": "center"
   }
 };

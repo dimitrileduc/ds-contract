@@ -1,4 +1,4 @@
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -113,7 +113,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.0.0 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -125,7 +125,8 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
+  gap: var(--space-8);
+  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -192,7 +193,7 @@
   font-size: var(--font-size-24);
 }
 
-/* SAV — from ds.sav v1.2.0 (core/emit-html.ts) */
+/* SAV — from ds.sav v1.3.0 (core/emit-html.ts) */
 
 .sav, .sav *, .sav *::before, .sav *::after {
   box-sizing: border-box;
@@ -204,7 +205,7 @@
   align-items: center;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 10px;
+  gap: var(--space-10);
 }
 
 .sav__section {
@@ -212,22 +213,22 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  width: 1550px;
-  height: 677px;
+  width: var(--size-sav-section-w);
+  height: var(--size-sav-section-h);
   position: relative;
 }
 
 .sav__background {
-  width: 1550px;
-  height: 475px;
+  width: var(--size-sav-background-w);
+  height: var(--size-sav-background-h);
   object-fit: cover;
 }
 
 .sav__row {
   display: flex;
   flex-direction: row;
-  width: 1288px;
-  height: 561px;
+  width: var(--size-sav-row-w);
+  height: var(--size-sav-row-h);
   position: absolute;
   align-self: flex-end;
 }
@@ -237,18 +238,18 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  width: 546px;
-  height: 513px;
-  padding-top: 48px;
-  padding-left: 48px;
-  padding-right: 47px;
+  width: var(--size-sav-wrapper-w);
+  height: var(--size-sav-wrapper-h);
+  padding-top: var(--space-48);
+  padding-left: var(--space-48);
+  padding-right: var(--space-47);
   position: relative;
 }
 
 .sav__WrapperBackground {
   background-color: var(--color-blanc);
-  width: 641px;
-  height: 561px;
+  width: var(--size-sav-wrapper-background-w);
+  height: var(--size-sav-wrapper-background-h);
   position: absolute;
   align-self: flex-end;
 }
@@ -257,8 +258,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
-  width: 546px;
+  gap: var(--space-32);
+  width: var(--size-sav-inner);
   position: relative;
 }
 
@@ -266,7 +267,7 @@
   color: var(--color-noir);
   font-size: var(--font-size-18);
   line-height: var(--font-line-height-27);
-  height: 197px;
+  height: var(--size-sav-vous-rencontrez-un-problme-a);
   white-space: pre-line;
 }
 
@@ -279,23 +280,23 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;
-  width: 644px;
-  height: 561px;
-  padding-left: 3px;
+  width: var(--size-sav-img-group-w);
+  height: var(--size-sav-img-group-h);
+  padding-left: var(--space-3);
   position: relative;
 }
 
 .sav__ImgGroupBackground {
   background-color: var(--color-bleu-clair);
-  width: 647px;
-  height: 478px;
+  width: var(--size-sav-img-group-background-w);
+  height: var(--size-sav-img-group-background-h);
   position: absolute;
   align-self: flex-start;
 }
 
 .sav__img {
-  width: 563px;
-  height: 504px;
+  width: var(--size-sav-img-w);
+  height: var(--size-sav-img-h);
   position: relative;
   object-fit: contain;
 }

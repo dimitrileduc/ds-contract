@@ -7,7 +7,7 @@
  *    devient silencieusement faux et aucune porte ne s'allume. Voir ../../README.md.
  *
  * ── D'où vient ce contenu ────────────────────────────────────────────────────
- * De la feuille que `emitHtml` produit pour `ds.presentation` v2.2.0 — qui
+ * De la feuille que `emitHtml` produit pour `ds.presentation` v2.5.0 — qui
  * contient DÉJÀ, dédupliquée et dans l'ordre des dépendances, la CSS de
  * `ds.button` v2.0.0 et de `ds.section-header` v2.1.1. Le travail de montage est
  * un RENOMMAGE MÉCANIQUE : `var(--x)` → `var(--pqr-x)`, 52 occurrences, parce que
@@ -232,7 +232,7 @@
   font-size: var(--pqr-font-size-24);
 }
 
-/* Presentation — from ds.presentation v2.2.0 (core/emit-html.ts) */
+/* Presentation — from ds.presentation v2.5.0 (core/emit-html.ts) */
 
 .presentation, .presentation *, .presentation *::before, .presentation *::after {
   box-sizing: border-box;
@@ -242,7 +242,14 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  /* `center`, pas `space-between` — corrigé au contrat le 2026-08-07 (v2.4.0).
+   * Le défaut était invisible dans Figma : le master se cale sur son contenu,
+   * donc il n'y a jamais d'espace en trop et `gauche`, `centré` et
+   * `space-between` y rendent à l'identique. Il n'apparaît que là où il y a de
+   * la place — une vraie page — où les deux colonnes partaient aux extrêmes de
+   * l'écran. Aucun axe du différentiel ne regarde la mise en page, donc rien ne
+   * l'a signalé. */
+  justify-content: center;
   border: 0;
   font-family: var(--pqr-font-family-montserrat);
   gap: var(--pqr-space-32);
@@ -257,7 +264,14 @@
 .presentation__wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  /* `flex-start`, pas `stretch` — corrigé au contrat le 2026-08-07 (v2.5.0).
+   * `stretch` étirait TOUS les enfants sur les 627 px de la colonne : sans
+   * effet visible sur le texte, mais le bouton passait de sa largeur naturelle
+   * (185 px, ce que Figma déclare en HUG) à 627 px, libellé centré.
+   * Le patron vient de `ds.sav` (root/section/row/wrapper/inner) : la largeur
+   * est portée par le CONTENEUR, l'alignement est `start`, et le bouton reste
+   * un enfant direct à sa largeur propre. Aucun sous-conteneur, aucun `grow`. */
+  align-items: flex-start;
   gap: var(--pqr-space-16);
   width: var(--pqr-size-presentation-wrapper);
 }
@@ -413,4 +427,66 @@
   background-size: contain;
   -webkit-mask-image: none;
   mask-image: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * LE CONTENEUR DE PAGE — il n'appartient à aucun contrat, exprès.
+ *
+ * « Quelle largeur fait une page » est une décision de site. Aucun contrat ne
+ * la porte, aucun différentiel ne la surveille, et c'est correct : un composant
+ * qui déciderait de la largeur de la page serait un composant qui déborde de
+ * son rôle. Le contrat de la Présentation ne porte donc AUCUNE largeur sur sa
+ * racine — il centre son contenu dans ce qu'on lui donne (`justify: center`
+ * depuis ds.presentation v2.5.0).
+ *
+ * 1728 est un LITTÉRAL, et il est nommé ici plutôt que caché. C'est la largeur
+ * de la maquette Figma, la même que déclarent déjà `size.devis.root`,
+ * `size.faq.root`, `size.footer.root`, `size.header.root` et
+ * `size.equipe.root`. Aucun jeton `size.page.*` n'existe : le minter serait une
+ * décision de gouvernance, et ce module est explicitement non gouverné (voir
+ * NON-PORTES.md). Le nommer ici est la forme honnête du provisoire.
+ *
+ * Pas de `padding-inline` : c'est la gouttière de 15 px du `.container` de
+ * Bootstrap qui coûtait 4,17 % dans la comparaison d'image, et la raison pour
+ * laquelle ce conteneur avait été retiré à tort.
+ * ══════════════════════════════════════════════════════════════════════════ */
+.pqr-page {
+  max-width: 1728px;
+  margin-inline: auto;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+ * Le porteur du CTA — piloté par la case à cocher « Afficher le bouton ».
+ * `display` est un mot-clé de mise en page, pas une valeur de design : aucun
+ * jeton ne pourrait le porter, et l'audit SC-003 ne le compte pas.
+ * Classe POSITIVE : cochée = visible, ce qui rend le réglage lisible dans le
+ * panneau (une case « Afficher » qui ajoute `d-none` serait à l'envers).
+ * ══════════════════════════════════════════════════════════════════════════ */
+.presentation__cta {
+  display: none;
+}
+/* `contents`, PAS `block` — et ce n'est pas un détail de style, c'est une
+ * correction MESURÉE. Avec `block`, la comparaison d'image donnait 0,3372 % de
+ * pixels différents, tous dans une seule bande : le bouton était décalé de
+ * 221 px vers la gauche.
+ *
+ * La cause, une fois cherchée dans les règles plutôt que devinée : dans la
+ * surface de référence le `<button>` est un ENFANT DIRECT de
+ * `.presentation__wrapper`, donc il subit directement l'alignement de ce
+ * conteneur flex. Interposer un `<div>` en `block` casse cette chaîne : le div
+ * prend la largeur, et le `<button>`, qui est `inline-flex`, se recale dans
+ * cette boîte-là au lieu du wrapper.
+ *
+ * (Le relevé d'origine décrivait le wrapper en `align-items:stretch`, ce qui
+ * était vrai AVANT la correction du contrat au même jour : il est passé à
+ * `flex-start` en v2.5.0, une trentaine de lignes plus haut. Le décalage de
+ * 221 px et son retour à 0 ont bien été mesurés, mais sous l'ancienne règle —
+ * la cause tient, sa formulation change.)
+ *
+ * `display: contents` retire le div de l'arbre de boîtes sans le retirer du
+ * DOM : le `<button>` redevient l'enfant flex du wrapper, exactement comme dans
+ * la référence, et le div reste là pour porter la classe que le réglage Odoo
+ * bascule (`applyTo`). Retour mesuré à 0,0000 %. */
+.presentation__cta.pqr-cta-on {
+  display: contents;
 }

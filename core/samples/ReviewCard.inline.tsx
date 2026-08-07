@@ -29,13 +29,13 @@ const S: Record<string, CSSProperties> = {
     "fontFamily": "Montserrat, sans-serif",
     "width": "299px",
     "minHeight": "239px",
-    "borderRadius": "8px",
-    "borderWidth": "1px",
     "paddingTop": "24px",
     "paddingBottom": "24px",
     "paddingLeft": "24px",
     "paddingRight": "24px",
-    "gap": "14px"
+    "gap": "14px",
+    "borderRadius": "8px",
+    "borderWidth": "1px"
   },
   "entete": {
     "display": "flex",

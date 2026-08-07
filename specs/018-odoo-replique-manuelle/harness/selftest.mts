@@ -16,10 +16,11 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PNG } from 'pngjs';
-import { embeddedFontFaces } from '../../../extract/figma/visual-parity/render.js';
-import { SUBJECTS, DEVICE_SCALE_FACTOR, viewportFor } from './subjects.mts';
-import { launchBrowser, renderSubject } from './render-html.mts';
-import { capturePage, FONT_SETTLE_MS } from './capture-odoo.mts';
+import { embeddedFontFaces, launchBrowser } from '../../../extract/figma/visual-parity/render.js';
+import { readPng } from '../../../extract/figma/visual-parity/img.js';
+import { SUBJECTS, DEVICE_SCALE_FACTOR, FRAME_PADDING_TOKEN, viewportFor } from './subjects.mts';
+import { renderSubject } from './render-html.mts';
+import { capturePage } from './capture-odoo.mts';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, '..', '..', '..');
@@ -79,12 +80,12 @@ async function testGeometrie() {
       .pqr-mesure{position:absolute;top:0;left:0;padding:24px;background:#fff}
       .b{width:120px;height:40px;background:#26282C}
     </style></head><body><div class="pqr-mesure"><div class="b"></div></div></body></html>`;
-  const browser = await launchBrowser();
+  const { browser } = await launchBrowser();
   try {
     const viaHtml = await renderSubject(browser, sujet, doc);
     const viaOdoo = await capturePage(browser, sujet, `data:text/html;charset=utf-8,${encodeURIComponent(doc)}`);
-    const a = PNG.sync.read(viaHtml.png);
-    const b = PNG.sync.read(viaOdoo);
+    const a = readPng(viaHtml.png);
+    const b = readPng(viaOdoo);
     if (a.width !== b.width || a.height !== b.height) {
       return ko('les 2 chemins de capture produisent la même géométrie', `HTML ${a.width}×${a.height} vs Odoo ${b.width}×${b.height}`);
     }
@@ -118,7 +119,7 @@ function testRefus() {
     encoding: 'utf8',
   });
   if (r.status !== 2) return ko("l'instrument REFUSE deux tailles différentes", `code ${r.status}, attendu 2`);
-  ok("l'instrument REFUSE deux tailles différentes", 'code 2 — un refus honnête plutôt qu'.concat(' un écart masqué'));
+  ok("l'instrument REFUSE deux tailles différentes", "code 2 — un refus honnête plutôt qu'un écart masqué");
 
   // Et il MESURE quand elles sont égales — sinon le refus ne prouverait rien.
   const c = png(40, 40, 'c.png');
@@ -151,6 +152,20 @@ function testClips() {
     }
   }
   ok('les 3 URL de mesure sont déclarées dans harness.xml');
+
+  // La marge du cadre est une valeur À DEUX CÔTÉS : `render-html.mts` la lit
+  // dans FRAME_PADDING_TOKEN, la page Odoo l'écrit dans son propre gabarit. Rien
+  // ne les tenait ensemble — changer la constante n'aurait déplacé QUE le côté
+  // HTML, et l'écart serait tombé dans le pourcentage comme un défaut de
+  // composant. Même geste que le contrôle d'URL juste au-dessus.
+  const margeOdoo = `padding: var(--pqr-space-${FRAME_PADDING_TOKEN})`;
+  if (!harness.includes(margeOdoo)) {
+    return ko(
+      'les 2 cadres de mesure appliquent la MÊME marge',
+      `harness.xml ne contient pas « ${margeOdoo} » — le côté Odoo a divergé du côté HTML`,
+    );
+  }
+  ok('les 2 cadres de mesure appliquent la même marge', `var(--space-${FRAME_PADDING_TOKEN}) des deux côtés`);
 }
 
 async function main() {

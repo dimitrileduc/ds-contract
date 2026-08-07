@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.2.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.5.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -19,7 +19,7 @@ export interface PresentationProps extends HTMLAttributes<HTMLDivElement> {
 /** Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(function Presentation(
   {
-    bouton = false,
+    bouton = true,
     titre = 'Piqueray, une histoire de famille ',
     texte = [
       { text: 'Depuis plus de 50 ans,', strong: true },
@@ -62,7 +62,11 @@ export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(functi
             ),
           )}
         </span>
-        {bouton ? <Button>Contactez-nous</Button> : null}
+        {bouton ? (
+          <Button variant="link" iconRight>
+            Contactez-nous
+          </Button>
+        ) : null}
       </div>
     </div>
   );

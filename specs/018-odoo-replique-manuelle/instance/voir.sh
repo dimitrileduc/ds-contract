@@ -32,16 +32,37 @@ fi
 echo "→ 1/3  démarrage de la base de données…"
 docker compose -p odoo19 up -d db >/dev/null
 
+LOG=/tmp/odoo-install.log
 echo "→ 2/3  installation d'Odoo et du module (~2 min, c'est le plus long)…"
-docker compose -p odoo19 run --rm web \
-  odoo -d odoo -i base,website,piqueray_ds --stop-after-init >/tmp/odoo-install.log 2>&1
+if ! docker compose -p odoo19 run --rm web \
+  odoo -d odoo -i base,website,piqueray_ds --stop-after-init >"$LOG" 2>&1; then
+  echo
+  echo "✖ L'installation a ÉCHOUÉ. Les 30 dernières lignes de $LOG :"
+  echo
+  tail -30 "$LOG"
+  exit 1
+fi
 
 echo "→ 3/3  démarrage du site…"
 docker compose -p odoo19 up -d >/dev/null
+pret=non
 for _ in $(seq 1 40); do
-  [ "$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 http://localhost:8069/web/login 2>/dev/null)" = "200" ] && break
+  if [ "$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 http://localhost:8069/web/login 2>/dev/null)" = "200" ]; then
+    pret=oui
+    break
+  fi
   sleep 3
 done
+
+# Ne JAMAIS annoncer « c'est prêt » sans l'avoir vérifié : la boucle ci-dessus
+# peut s'épuiser, et le message de succès s'imprimait quand même.
+if [ "$pret" != "oui" ]; then
+  echo
+  echo "✖ Le site n'a pas répondu 200 sur http://localhost:8069/web/login après ~2 min."
+  echo "  L'installation, elle, s'est bien terminée — le journal est dans $LOG."
+  echo "  À essayer :  docker compose -p odoo19 logs --tail 50 web"
+  exit 1
+fi
 
 cat <<'FIN'
 

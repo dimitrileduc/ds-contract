@@ -31,7 +31,7 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "column",
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "width": "1550px",
+    "width": "1728px",
     "paddingTop": "128px",
     "paddingRight": "89px",
     "paddingBottom": "32px",
@@ -40,8 +40,8 @@ const S: Record<string, CSSProperties> = {
     "position": "relative"
   },
   "Background": {
-    "backgroundColor": "#26282C",
     "height": "459px",
+    "backgroundColor": "#26282C",
     "position": "absolute",
     "top": "0",
     "left": "0",
@@ -90,12 +90,10 @@ const S: Record<string, CSSProperties> = {
     "height": "121px"
   },
   "Separator": {
-    "display": "flex",
-    "flex": "1 1 auto",
-    "minWidth": 0,
     "borderStyle": "solid",
     "borderColor": "#FFFFFF",
-    "borderWidth": "1px"
+    "height": "0px",
+    "borderTopWidth": "1px"
   },
   "spacer2": {
     "height": "27px"
@@ -124,9 +122,9 @@ export const Footer = forwardRef<HTMLDivElement, FooterProps>(function Footer(
 <PiquerayLogo couleur="blanc" />
 <Button variant="outlineBlanc" iconRight={false}>Contactez-nous</Button>
 </div>
-<FooterColumn texte="Tél : +32 (0)87 46 32 66  Email: info@piqueray.be" titre="Contact" />
-<FooterColumn texte="Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00" titre="Horaires" />
-<FooterColumn texte="Rue Alfred Drèze 7,  4860 Pepinster" titre="Adresse" />
+<FooterColumn texte="Rue Alfred Drèze 7,  4860 Pepinster" titre="Adresse" />
+<FooterColumn texte="Du lundi au vendredi  de 8h00 à 12h00 et  de 13h30 à 17h00" titre="Horaires" />
+<FooterColumn texte="Tél : +32 (0)87 46 32 66  Email: info@piqueray.be" titre="Contact" />
 <div style={{ ...S.col5 }}>
 <span style={{ ...S.TitreReseaux }}>Suivez-nous</span>
 <div style={{ ...S.rseauxSociaux }}>

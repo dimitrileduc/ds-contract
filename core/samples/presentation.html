@@ -1,5 +1,5 @@
 <!--
-  Presentation — static HTML+CSS emitted from contract ds.presentation v2.1.0 by core/emit-html.ts.
+  Presentation — static HTML+CSS emitted from contract ds.presentation v2.5.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,25 +9,19 @@
 <section class="showcase showcase--presentation">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <div class="presentation" data-part="root">
-      <div class="section-header section-header--disposition-standard section-header--emphase-moyen section-header--alignement-gauche" data-part="SectionHeader">
-        <span class="section-header__Titre" data-part="Titre"><strong>Piqueray, </strong><span>une histoire de famille </span></span>
-      </div>
-      <div class="presentation__wrapper" data-part="wrapper">
-        <span class="presentation__Texte" data-part="Texte"><strong>Depuis plus de 50 ans,</strong><span> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de </span><strong>proximité et d'excellence technique</strong><span>. Dépositaire officiel </span><strong>Hörmann</strong><span>, nous allions la force d'un leader mondial à </span><strong>la souplesse d'une PME locale</strong><span>.</span></span>
-      </div>
-    </div>
-  </div>
-  <div class="showcase__item">
-    <p class="showcase__label">bouton=true</p>
     <div class="presentation" data-part="root" data-bouton="true">
-      <div class="section-header section-header--disposition-standard section-header--emphase-moyen section-header--alignement-gauche" data-part="SectionHeader">
-        <span class="section-header__Titre" data-part="Titre"><strong>Piqueray, </strong><span>une histoire de famille </span></span>
+      <div class="presentation__colGauche" data-part="colGauche">
+        <div class="section-header section-header--disposition-standard section-header--emphase-moyen section-header--alignement-gauche" data-part="SectionHeader">
+          <span class="section-header__Titre" data-part="Titre"><strong>Piqueray, </strong><span>une histoire de famille </span></span>
+        </div>
       </div>
       <div class="presentation__wrapper" data-part="wrapper">
         <span class="presentation__Texte" data-part="Texte"><strong>Depuis plus de 50 ans,</strong><span> la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de </span><strong>proximité et d'excellence technique</strong><span>. Dépositaire officiel </span><strong>Hörmann</strong><span>, nous allions la force d'un leader mondial à </span><strong>la souplesse d'une PME locale</strong><span>.</span></span>
-        <button class="button button--variant-default button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button">
+        <button class="button button--variant-link button--iconLeftGlyph-arrow-left button--iconRightGlyph-arrow-right" data-part="Bouton" type="button" data-icon-right="true">
           <span class="button__label" data-part="label">Contactez-nous</span>
+          <span class="button__iconRight" aria-hidden="true" data-part="iconRight"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>
+</svg></span>
         </button>
       </div>
     </div>

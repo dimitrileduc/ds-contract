@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.1.0)
+ * Source of truth: contracts/accordion-row.contract.json (ds.accordion-row v1.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -26,10 +26,10 @@ const S: Record<string, CSSProperties> = {
     "justifyContent": "space-between",
     "border": 0,
     "borderBottomWidth": "1px",
-    "borderColor": "#000000",
     "gap": "24px",
     "paddingBlock": "16px",
     "width": "1550px",
+    "borderColor": "#000000",
     "position": "relative"
   },
   "title": {
@@ -46,9 +46,9 @@ const S: Record<string, CSSProperties> = {
     "fontFamily": "Montserrat, sans-serif",
     "fontSize": "20px",
     "fontWeight": 600,
+    "height": "32px",
     "letterSpacing": "0px",
-    "lineHeight": "25px",
-    "height": "32px"
+    "lineHeight": "25px"
   },
   "ChevronUp": {
     "display": "inline-flex",
@@ -60,17 +60,16 @@ const S: Record<string, CSSProperties> = {
     "fontSize": "14px",
     "fontWeight": 400,
     "letterSpacing": "0px",
-    "lineHeight": "24px",
-    "height": "32px"
+    "lineHeight": "24px"
   },
   "Titre": {
     "color": "#26282C",
     "fontFamily": "Montserrat, sans-serif",
     "fontSize": "20px",
     "fontWeight": 600,
+    "height": "32px",
     "letterSpacing": "0px",
-    "lineHeight": "25px",
-    "height": "32px"
+    "lineHeight": "25px"
   },
   "ChevronDown": {
     "display": "inline-flex",
@@ -86,11 +85,11 @@ const S: Record<string, CSSProperties> = {
     "color": "inherit",
     "textAlign": "inherit",
     "cursor": "pointer",
-    "height": "64px",
-    "backgroundColor": "transparent",
-    "borderWidth": "0px",
+    "height": "32px",
     "paddingInline": "0px",
     "paddingBlock": "0px",
+    "backgroundColor": "transparent",
+    "borderWidth": "0px",
     "position": "absolute"
   }
 };
@@ -98,37 +97,34 @@ const S: Record<string, CSSProperties> = {
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
 const V: Record<string, CSSProperties> = {
   "taille-petit:root": {
-    "borderColor": "#26282c52",
     "gap": "8px",
-    "paddingBlock": "8px"
+    "paddingBlock": "8px",
+    "borderColor": "#26282c52"
   },
   "taille-petit:TitreOuvert": {
     "fontFamily": "Montserrat, sans-serif",
     "fontSize": "14px",
+    "height": "24px",
     "fontWeight": "700",
-    "lineHeight": "24px",
-    "height": "24px"
+    "lineHeight": "24px"
   },
   "taille-petit:ChevronUp": {
     "width": "24px",
     "height": "24px"
   },
-  "taille-petit:Contenu": {
-    "height": "24px"
-  },
   "taille-petit:Titre": {
     "fontFamily": "Montserrat, sans-serif",
     "fontSize": "14px",
+    "height": "24px",
     "fontWeight": "700",
-    "lineHeight": "24px",
-    "height": "24px"
+    "lineHeight": "24px"
   },
   "taille-petit:ChevronDown": {
     "width": "24px",
     "height": "24px"
   },
   "taille-petit:trigger": {
-    "height": "40px"
+    "height": "24px"
   },
   "etat-ferme:root": {
     "gap": "24px"
@@ -165,7 +161,7 @@ export const AccordionRow = forwardRef<HTMLDivElement, AccordionRowProps>(functi
 {etat === 'ouvert' ? (<span style={{ ...S.TitreOuvert, ...(V[`taille-${taille}:TitreOuvert`] ?? {}) }}>{titre}</span>) : null}
 {etat === 'ouvert' ? (<span style={{ ...S.ChevronUp, ...(V[`taille-${taille}:ChevronUp`] ?? {}) }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-up"] }} />) : null}
 </div>) : null}
-{etat === 'ouvert' ? (<span style={{ ...S.Contenu, ...(V[`taille-${taille}:Contenu`] ?? {}) }}>{contenu}</span>) : null}
+{etat === 'ouvert' ? (<span style={{ ...S.Contenu }}>{contenu}</span>) : null}
 {etat === 'ferme' ? (<span style={{ ...S.Titre, ...(V[`taille-${taille}:Titre`] ?? {}) }}>{titre}</span>) : null}
 {etat === 'ferme' ? (<span style={{ ...S.ChevronDown, ...(V[`taille-${taille}:ChevronDown`] ?? {}) }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["chevron-down"] }} />) : null}
 <button style={{ ...S.trigger, ...(V[`taille-${taille}:trigger`] ?? {}), ...(taille === 'grand' ? {"left":"0px","right":"0px","top":"0px"} : {}), ...(taille === 'petit' ? {"left":"0px","right":"0px","top":"0px"} : {}) }} aria-label={String(titre)} type="button" onClick={handleToggle} aria-expanded={etat === 'ouvert'}>

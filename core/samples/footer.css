@@ -10,8 +10,8 @@
   justify-content: center;
   border: 0;
   position: relative;
-  width: 180px;
-  height: 34px;
+  width: var(--size-logo-width);
+  height: var(--size-logo-height);
 }
 
 .piqueray-logo__Marque svg {
@@ -48,7 +48,7 @@
   color: var(--color-blanc);
 }
 
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -110,7 +110,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -174,8 +174,8 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 16px;
-  width: 310px;
+  gap: var(--space-16);
+  width: var(--size-footer-column-root);
 }
 
 .footer-column__Titre {
@@ -223,18 +223,18 @@
   flex-direction: column;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: 1550px;
-  padding-top: 128px;
-  padding-right: 89px;
-  padding-bottom: 32px;
-  padding-left: 89px;
-  gap: 0px;
+  width: var(--size-footer-root);
+  padding-top: var(--space-128);
+  padding-right: var(--space-89);
+  padding-bottom: var(--space-32);
+  padding-left: var(--space-89);
+  gap: var(--space-0);
   position: relative;
 }
 
 .footer__Background {
+  height: var(--size-footer-background);
   background-color: var(--color-noir-bleute);
-  height: 459px;
   position: absolute;
   top: 0;
   left: 0;
@@ -246,20 +246,20 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  width: 1385px;
+  width: var(--size-footer-row);
   position: relative;
 }
 
 .footer__col1 {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--space-32);
 }
 
 .footer__col5 {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 .footer__TitreReseaux {
@@ -272,7 +272,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-16);
 }
 
 .footer__Facebook svg {
@@ -300,20 +300,18 @@
 }
 
 .footer__Spacer {
-  height: 121px;
+  height: var(--size-footer-spacer);
 }
 
 .footer__Separator {
-  display: flex;
-  flex: 1 1 auto;
-  min-width: 0;
   border-color: var(--color-blanc);
+  height: var(--space-0);
   border-style: solid;
-  border-width: 1px;
+  border-top-width: 1px;
 }
 
 .footer__spacer2 {
-  height: 27px;
+  height: var(--size-footer-spacer2);
 }
 
 /* showcase chrome */

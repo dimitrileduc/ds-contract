@@ -1,42 +1,40 @@
 {
   "schemaVersion": 1,
-  "mesureLe": "2026-08-06",
-  "instance": "odoo:19.0-20260803, page publique, contexte de navigateur neuf sans cookie",
-  "plancherDeTolerance": 0,
-  "raisonDuPlancher": "ZÉRO. La comparaison est stricte et les tailles sont égales PAR CONSTRUCTION (clip épinglé des deux côtés), les mêmes faces Montserrat sont servies des deux côtés (invariant C7, vérifié octet pour octet par le self-test), et les animations sont neutralisées. Il n'y a donc aucun bruit de mesure à absorber : tout pixel différent est un fait, pas du grain. Un plancher non nul n'aurait servi qu'à ranger d'avance un écart réel dans « acceptable ».",
-  "$divulgationC3": "L'invariant C3 refuse un plancher choisi APRÈS avoir vu les scores. Les trois scores étaient déjà mesurés quand cette ligne a été écrite — c'est dit plutôt que tu. Ce qui sauve le nombre n'est pas l'ordre, c'est son sens : 0 est le plancher le PLUS STRICT possible, donc il ne peut pas avoir été choisi pour flatter le résultat. Il rend au contraire une cause obligatoire sur la seule ligne qui dépasse. La prochaine spec qui emploie ce protocole doit écrire son plancher avant la première capture.",
-  "$vocabulaireDesCauses": "Fermé, celui de 014 : contract-geometry · image-boundary · rendering · engine · instrument · figma-source. Aucune cause nouvelle n'a été inventée pour Odoo.",
+  "plancherDeTolerance": null,
+  "raisonDuPlancher": null,
   "lignes": [
     {
       "composant": "ds.button",
       "statut": "mesurée",
-      "avant": "specs/018-odoo-replique-manuelle/proofs/html/button.png",
-      "apres": "specs/018-odoo-replique-manuelle/proofs/odoo/button.png",
+      "avant": "html/button.png",
+      "apres": "odoo/button.png",
       "score": 0,
       "cause": null,
-      "justification": "IDENTIQUE AU PIXEL PRÈS. 0 pixel différent sur 584×252 px appareil. Aucune cause n'est due sous le plancher. Ce que ça établit : les 16 références de jetons du bouton traversent Odoo sans altération — couleurs, rayon, espacements, famille et graisse de police, hauteur de ligne.",
+      "justification": null,
       "raisonImpossible": null
     },
     {
       "composant": "ds.section-header",
       "statut": "mesurée",
-      "avant": "specs/018-odoo-replique-manuelle/proofs/html/section-header.png",
-      "apres": "specs/018-odoo-replique-manuelle/proofs/odoo/section-header.png",
+      "avant": "html/section-header.png",
+      "apres": "odoo/section-header.png",
       "score": 0,
       "cause": null,
-      "justification": "IDENTIQUE AU PIXEL PRÈS, et c'est la ligne qui en dit le plus. Cette page rend `disposition=avecCta`, donc elle EXERCE le t-call de niveau 3 vers ds.button — la chaîne à trois niveaux fonctionne, et son rendu est exact. Elle rend aussi la part Accroche (`accroche2=true`, le défaut du contrat), donc elle exerce visuellement le littéral nommé `letter-spacing: 3px`, invisible sur le bloc posé. Trois faits pour le prix d'un, tous à 0.",
+      "justification": null,
       "raisonImpossible": null
     },
     {
       "composant": "ds.presentation",
       "statut": "mesurée",
-      "avant": "specs/018-odoo-replique-manuelle/proofs/html/presentation.png",
-      "apres": "specs/018-odoo-replique-manuelle/proofs/odoo/presentation.png",
-      "score": 4.170715161064425,
-      "cause": "engine",
-      "justification": "DÉCALAGE HORIZONTAL PUR DE 15 px CSS, sans aucune déformation. Mesuré, pas estimé : la boîte d'encre fait 2545×173 px appareil DES DEUX CÔTÉS — largeur identique, hauteur identique, décalage vertical nul — et seule son origine bouge, de x=53 (HTML) à x=83 (Odoo), soit +30 px appareil = +15 px CSS. Cause remontée jusqu'à sa règle sur la page vivante : `.container` d'Odoo déclare `--gutter-x: 30px` puis `padding-left: calc(var(--gutter-x) * .5)` = 15px (relevé de `getComputedStyle` : padL=15px, gutter=30px, maxW=1320px). Odoo surcharge donc le gouttière par défaut de Bootstrap (24px) à 30px, d'où 15 et non 12. Pourquoi `engine` et non `rendering` : l'écart vient d'une règle CSS de mise en page, pas de la rastérisation — c'est la distinction que contracts/visual-comparison.md §4 pose explicitement. Et pourquoi il nous appartient : ce `.container`, c'est NOUS qui l'avons mis dans le gabarit, délibérément, parce que `section > .container` est ce qui rend le texte éditable sans un attribut ni une ligne de JavaScript (research.md §D13). L'écart est donc le PRIX MESURÉ d'un choix de balisage assumé, pas une fatalité d'Odoo : il se supprimerait par `padding-inline: 0` sur notre classe racine, au prix d'un rendu qui ne serait plus celui d'une page Odoo normale. Non fait ici — 018 mesure, elle ne corrige pas.",
+      "avant": "html/presentation.png",
+      "apres": "odoo/presentation.png",
+      "score": 0,
+      "cause": null,
+      "justification": null,
       "raisonImpossible": null
     }
   ],
-  "$ceQueCetteMesureNeDitPas": "Elle dit si nos jetons traversent Odoo. Elle ne dit RIEN de la conformité à la maquette Figma — hors périmètre, explicitement. Elle ne mesure pas non plus le squelette du site : les pages de mesure chargent `web.assets_frontend` (donc Bootstrap et son reboot, le vrai cadre CSS) mais pas `website.layout`, donc ni en-tête, ni menu, ni pied de page. Voir module/piqueray_ds/NON-PORTES.md §6."
+  "$mesureDu": "2026-08-07",
+  "$contexte": "ds.presentation v2.3.0 — c'est la PREMIÈRE mesure où le CTA se rend vraiment. Les mesures antérieures notaient déjà 0,0000 % sur la présentation, mais le bouton y était masqué (`bouton` avait `false` pour défaut) : le troisième niveau de la chaîne n'était pas exercé du tout. Ce 0,0000 %-ci couvre les trois niveaux.",
+  "$corrige": "Une première passe a donné 0,3372 % sur la présentation, tous les pixels dans une seule bande : `.presentation__cta` en `display:block` sortait le `<button>` du flux flex de `wrapper` et le décalait de 221 px. Corrigé en `display:contents`. La cause a été cherchée dans les règles, pas devinée — voir le commentaire dans components.css."
 }

@@ -1,0 +1,40 @@
+=== sweep 2.5.0 — 2026-08-07T13:17:40Z ===
+--- node scripts/update-golden.mjs ---
+✔ Golden manifest: 213 files → evals/golden.json
+EXIT=0
+
+--- npm run parity ---
+
+  [icons AHEAD] assets/icons/close.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+
+EXIT=0
+
+--- npm run eval ---
+  ✔ C3-detection  icon-tokens-by-prop-svg-mirror
+  ✔ C3-detection  preservation-013-clobber-detected
+
+194/194 evals passed — evals/results.json
+48 legacy cases quarantined (not run) — Piqueray has no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-block added nested instances + repeat collections). See evals/REMOVED-CASES.md.
+EXIT=0
+
+--- npm run plugin:check ---
+Error: plugin-zip: the plugin engine bundle is STALE vs core — a fresh bundle hashes ca21a8eb32d8… (594262 bytes) but the committed receipt records 075440febce7… (594271 bytes). Core (or tokens/contracts/icons) changed without re-recording. Review the change, then run `node scripts/build-plugin-zip.mjs --update-engine-receipt` and commit engine.receipt.json.
+    at verifyEngineReceipt (file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/soapy-duckling/scripts/build-plugin-zip.mjs:248:11)
+    at async file:///Users/dlstudio/.superset/worktrees/a768cf04-a778-45a9-88b5-46c1b736a486/soapy-duckling/scripts/plugin-engine-check.mjs:62:1
+
+Node.js v24.14.0
+EXIT=1
+
+--- npm run geometry:gate ---
+
+geometry:gate — verdict: PASS (exit 0)
+Comptage (en direct, jamais figé) :
+  contracts 34 · geometric entries 2 · governed refs 244 · named literals 2 · invisible 0
+✓ zero invisible literal, zero registry refusal
+EXIT=0
+
+--- npx tsc --noEmit ---
+EXIT=0
+

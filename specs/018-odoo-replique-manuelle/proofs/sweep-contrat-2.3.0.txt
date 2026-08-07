@@ -1,0 +1,67 @@
+=== sweep de clôture — contrat ds.presentation v2.3.0 — 2026-08-07T11:22:48Z ===
+
+--- npm run build ---
+✔ contracts/contract.schema.json emitted from Zod schema
+
+> ds-contracts-poc@0.7.0 generate
+> tsx scripts/generate-components.ts
+
+✔ Generated 34 component(s) from contracts: AccordionRow, Avantage, Button, CarouselControls, Carte, Checkbox, Coordonnees, Copyright, Devis, Equipe, FAQ, Field, Footer, FooterColumn, Formulaire, GoogleReviews, Header, Hero, Input, MemberCard, MemberPicture, NavItem, PiquerayLogo, Presentation, ProductCard, Realisation, Reassurances, ReviewCard, SAV, SectionHeader, Select, Tab, Textarea, TexteSEO
+EXIT=0
+
+--- npm run parity ---
+    → Re-run the component sync script
+
+  [icons AHEAD] assets/icons/close.svg
+    code has an icon asset with no registry entry (Figma-first: every icon is born in Figma, FR-008)
+    → Review: add to the registry (promotion, requires a Figma master) or delete the orphaned asset
+
+EXIT=0
+
+--- npm run eval ---
+  ✔ C1-determinism  emit-html-select-option-text
+  ✔ C3-detection  icon-tokens-by-prop-svg-mirror
+  ✔ C3-detection  preservation-013-clobber-detected
+
+194/194 evals passed — evals/results.json
+48 legacy cases quarantined (not run) — Piqueray has no slots / multi-root anatomy / dark theme / second brand yet (006-google-reviews-block added nested instances + repeat collections). See evals/REMOVED-CASES.md.
+EXIT=0
+
+--- npm run plugin:check ---
+✔ apply: AccordionRow amended in place (same node 261:262), +prop Experimental, markers updated to v9.9.9
+✔ propose: mock canvas dumped through the embedded dump script → proposal + bounded diff; a base missing "taille" surfaces "+prop taille" by name (the canvas spelling of "Taille")
+✔ PR dry-run plan: 4 named REST steps, deterministic branch, session-only token note — zero network
+⏭ SKIPPED: packaged-engine composition (needs a contract with nested component instances — Piqueray ships a flat Button). Restore when Piqueray gains a composite.
+⏭ SKIPPED: the reverse journey for that composite (design→code recovery of both roots, the composed INSTANCE and the repeated collection — same missing shape). Restore when Piqueray gains a composite.
+plugin-engine-check: all flows green (bundle, generate, update-report, apply, propose-diff, pr-dry-run) — 3 flow(s) SKIPPED and named above; see evals/REMOVED-CASES.md
+EXIT=0
+
+--- npm run geometry:gate ---
+> tsx extract/geometry-gate/run.ts
+
+geometry:gate — verdict: PASS (exit 0)
+Comptage (en direct, jamais figé) :
+  contracts 34 · geometric entries 2 · governed refs 244 · named literals 2 · invisible 0
+✓ zero invisible literal, zero registry refusal
+EXIT=0
+
+--- npx tsx scripts/deterministic-roundtrip.mjs ---
+
+✔ THE FULL LOOP RAN WITH ZERO AI — pure deterministic functions (the same engine the plugin runs):
+    contract → canvas → contract → code, byte-reproducible.
+  The AI built this tooling; it is NEVER in the conversion. That is the guarantee.
+  ✅ Depth restored (spec 006): repeat+component (5 nested instances) is now exercised.
+
+EXIT=0
+
+--- node scripts/core-browser-check.mjs ---
+✔ core barrel bundles for platform=browser: 11.90 MB raw, 5.22 MB minified
+✔ all 4 emitters ran in a VM with no node globals (AccordionRow): react=3469+4054+2301B, html=3577+4522B, react-inline=6933B, figma-script=66802B
+EXIT=0
+
+--- npx tsc --noEmit ---
+EXIT=0
+
+--- npx tsc -p tsconfig.build.json ---
+EXIT=0
+

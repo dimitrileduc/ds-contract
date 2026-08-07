@@ -10,8 +10,8 @@
   justify-content: center;
   border: 0;
   position: relative;
-  width: 180px;
-  height: 34px;
+  width: var(--size-logo-width);
+  height: var(--size-logo-height);
 }
 
 .piqueray-logo__Marque svg {
@@ -48,7 +48,7 @@
   color: var(--color-blanc);
 }
 
-/* NavItem — from ds.nav-item v1.1.0 (core/emit-html.ts) */
+/* NavItem — from ds.nav-item v1.2.0 (core/emit-html.ts) */
 
 .nav-item, .nav-item *, .nav-item *::before, .nav-item *::after {
   box-sizing: border-box;
@@ -62,7 +62,7 @@
   font-family: var(--font-family-montserrat);
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-medium);
-  gap: 8px;
+  gap: var(--space-8);
   line-height: 16px;
   position: relative;
   text-transform: uppercase;
@@ -91,7 +91,7 @@
 
 .nav-item__Soulignement {
   background-color: var(--color-blanc);
-  height: 2px;
+  height: var(--size-nav-item-soulignement);
   position: absolute;
 }
 
@@ -101,7 +101,7 @@
   left: 0px;
 }
 
-/* Button — from ds.button v1.6.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -163,7 +163,7 @@
   padding-inline: var(--space-0);
 }
 
-.button--variant-outilneNoir {
+.button--variant-outlineNoir {
   --dsc-border-width: var(--border-width-2);
   --dsc-border-color: var(--color-noir-bleute);
   color: var(--color-noir-bleute);
@@ -229,6 +229,11 @@
   justify-content: space-between;
   border: 0;
   font-family: var(--font-family-montserrat);
+  width: var(--size-header-root);
+  padding-left: var(--space-89);
+  padding-right: var(--space-89);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
 }
 
 .header__navWrapper {
@@ -236,6 +241,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  gap: var(--space-64);
 }
 
 .header__nav {
@@ -243,18 +249,20 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: var(--space-32);
 }
 
 .header__iconsNav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: var(--space-16);
 }
 
 .header__Search svg {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .header__Search {
@@ -264,8 +272,8 @@
 
 .header__User svg {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .header__User {
@@ -275,8 +283,8 @@
 
 .header__Cart svg {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .header__Cart {

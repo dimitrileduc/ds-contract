@@ -66,12 +66,12 @@ export const Reassurances = forwardRef<HTMLDivElement, ReassurancesProps>(functi
 <Carte disposition="reassurance" texte={[{ text: "Ouverture silencieuse, fluide et ultra-rapide jusqu’à 1 m/s pour un confort optimal." }]} titre="Moteur performant" imageUrl="" />
 <Carte disposition="reassurance" texte={[{ text: "Réactivité maximale garantie grâce à nos techniciens et notre important stock de pièces." }]} titre="SAV & maintenance dédiés" imageUrl="" />
 </div>
-{disposition === '5Cartes' ? (<Button variant="outilneNoir" iconRight iconRightGlyph="arrow-right">Contactez-nous</Button>) : null}
+{disposition === '5Cartes' ? (<Button variant="outlineNoir" iconRight iconRightGlyph="arrow-right">Contactez-nous</Button>) : null}
 {disposition === 'quatrecartesdeuxcta' ? (<div style={{ ...S.Boutons }}>
-{disposition === 'quatrecartesdeuxcta' ? (<Button variant="outilneNoir" iconLeft iconLeftGlyph="pdf" iconRight iconRightGlyph="download">Motifs disponibles</Button>) : null}
-{disposition === 'quatrecartesdeuxcta' ? (<Button variant="outilneNoir" iconRight iconRightGlyph="arrow-right">Contactez-nous</Button>) : null}
+{disposition === 'quatrecartesdeuxcta' ? (<Button variant="outlineNoir" iconLeft iconLeftGlyph="pdf" iconRight iconRightGlyph="download">Motifs disponibles</Button>) : null}
+{disposition === 'quatrecartesdeuxcta' ? (<Button variant="outlineNoir" iconRight iconRightGlyph="arrow-right">Contactez-nous</Button>) : null}
 </div>) : null}
-{disposition === '4Cartes' ? (<Button variant="outilneNoir" iconRight iconRightGlyph="arrow-right">Contactez-nous</Button>) : null}
+{disposition === '4Cartes' ? (<Button variant="outlineNoir" iconRight iconRightGlyph="arrow-right">Contactez-nous</Button>) : null}
     </div>
   );
 });

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.2.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.5.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -40,7 +40,7 @@ const meta = {
       { text: "la souplesse d'une PME locale", strong: true },
       { text: '.' },
     ],
-    bouton: false,
+    bouton: true,
     titre: 'Piqueray, une histoire de famille ',
   },
 } satisfies Meta<typeof Presentation>;

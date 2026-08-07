@@ -10,9 +10,9 @@
   align-items: flex-start;
   border: 0;
   font-family: var(--font-family-montserrat);
-  gap: 8px;
-  width: 759px;
-  height: 75px;
+  gap: var(--space-8);
+  width: var(--size-avantage-root-w);
+  height: var(--size-avantage-root-h);
 }
 
 .avantage__Piqueray svg {
@@ -29,8 +29,8 @@
 .avantage__text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 687px;
+  gap: var(--space-8);
+  width: var(--size-avantage-text);
 }
 
 .avantage__Titre {
