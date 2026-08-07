@@ -44,7 +44,17 @@ for (const subdir of ['icons', 'vectors']) {
   }
 }
 
+// 017 (FR-003b) — le registre gouverné des levées du refus photo. `core/` ne
+// lit aucun fichier (§VII, browser-pure) : c'est la coquille CLI qui le lit et
+// le passe EN DONNÉES. Absent → aucune levée, ce qui est l'état normal : une
+// entrée est une décision owner avec son reçu, jamais un ajout silencieux.
+const ACQUITTEMENTS_PATH = 'specs/017-photos-honnetes/registre/acquittements-photos.json';
+const acquittementsPhotos = existsSync(path.join(ROOT, ACQUITTEMENTS_PATH))
+  ? (read(ACQUITTEMENTS_PATH).entries ?? [])
+  : [];
+
 const engine = createFigmaEngine({
+  acquittementsPhotos,
   tokens: {
     primitives: read('tokens/primitives.tokens.json'),
     semantic: read('tokens/semantic.tokens.json'),

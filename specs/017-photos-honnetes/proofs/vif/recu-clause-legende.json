@@ -1,0 +1,49 @@
+{
+ "schemaVersion": 1,
+ "nom": "017 — SC-006-vif : la clause de legende portee au canevas",
+ "executeLe": "2026-08-07T06:57:00Z",
+ "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+ "fileName": "Piqueray (Copy)",
+ "pointDeRestauration": {
+  "nom": "017/clause-legende/avant",
+  "versionId": "2384874247703392042"
+ },
+ "geste": "Ecriture DIRECTE du champ `description` des 34 masters porteurs du marqueur ds_contracts/contractId. AUCUNE reconstruction de master : la clause est une chaine de legende, la reconstruire aurait fait courir un risque aux 45 photos reposees 3 minutes plus tot, pour rien.",
+ "ecrites": 11,
+ "dont_clause": 9,
+ "listeEcrites": [
+  "ds.button",
+  "ds.member-picture",
+  "ds.carte",
+  "ds.product-card",
+  "ds.member-card",
+  "ds.realisation",
+  "ds.review-card",
+  "ds.devis",
+  "ds.coordonnees",
+  "ds.sav",
+  "ds.hero"
+ ],
+ "note_2_non_clause": "ds.button (le canevas etait reste en v1.6.0 depuis 016) et ds.member-card (bump patch de T035). Ce ne sont pas des gains de clause : ce sont des rattrapages de version, dits plutot que fondus dans le compte.",
+ "verification": {
+  "legendesTotal": 34,
+  "avecClause": 9,
+  "multiligne": 0,
+  "dagueMalPlacee": 0,
+  "composantsAvecClause": [
+   "ds.carte",
+   "ds.coordonnees",
+   "ds.devis",
+   "ds.hero",
+   "ds.member-picture",
+   "ds.product-card",
+   "ds.realisation",
+   "ds.review-card",
+   "ds.sav"
+  ],
+  "photosHotesConformes": "14/14",
+  "photosEcarts": 0
+ },
+ "verdict": "vert",
+ "limiteNommee": "parity/diff.ts ne compare PAS le champ description (son interface FigmaSet ne le porte pas). Cette preuve est donc un releve vif, pas une porte automatique : rien ne detectera une derive future de la legende sur le canevas."
+}

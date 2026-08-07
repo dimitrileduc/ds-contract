@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte.contract.json (ds.carte v2.0.0)
+ * Source of truth: contracts/carte.contract.json (ds.carte v2.0.1)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -22,7 +22,11 @@ const meta = {
   argTypes: {
     disposition: { control: 'select', options: ['reassurance', 'categorie'] },
     titre: { control: 'text' },
-    imageUrl: { control: 'text' },
+    imageUrl: {
+      control: 'text',
+      description:
+        "La ROUTE de l'image, jamais ses octets. Figma n'expose aucune propriete de composant pour ces pixels (trou A5, matrice ligne 91, colonne Bindable : image content not bindable) : le contrat porte donc la route, la photo arrive a l'execution. Defaut vide, et il le reste — un defaut non vide substituerait une image et la ferait entrer au contrat par la porte de derriere. Sur le canevas, ce cadre dessine le lavis technique #D9D9D9 ; la photo qu'un designer y voit est une maquette, hors contrat, preservee a la regeneration par une passe de sauvetage explicite (docs/handoff/08-status-what-doesnt-work.md, §6).",
+    },
     imageAlt: { control: 'text' },
     texte: {
       control: false,

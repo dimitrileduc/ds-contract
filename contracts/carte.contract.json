@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.carte",
   "name": "Carte",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Piqueray Carte. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored. It is one context-width card with two Figma dispositions: Reassurance (fixed-height image, centred content) and Categorie (remaining-space image and a Link Button CTA). Image URLs remain consumer/campaign inputs, never capture defaults.\n\nVersion 2.0.0 is a breaking change: `texte` is now typed rich text so the source's leading strong range is preserved without raw HTML.",
   "semantics": {
     "element": "div",
@@ -48,6 +48,7 @@
     },
     {
       "name": "imageUrl",
+      "description": "La ROUTE de l'image, jamais ses octets. Figma n'expose aucune propriete de composant pour ces pixels (trou A5, matrice ligne 91, colonne Bindable : image content not bindable) : le contrat porte donc la route, la photo arrive a l'execution. Defaut vide, et il le reste — un defaut non vide substituerait une image et la ferait entrer au contrat par la porte de derriere. Sur le canevas, ce cadre dessine le lavis technique #D9D9D9 ; la photo qu'un designer y voit est une maquette, hors contrat, preservee a la regeneration par une passe de sauvetage explicite (docs/handoff/08-status-what-doesnt-work.md, §6).",
       "type": "text",
       "default": "",
       "bindings": {

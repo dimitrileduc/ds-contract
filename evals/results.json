@@ -1,6 +1,6 @@
 {
   "passed": 194,
-  "total": 194,
+  "total": 195,
   "quarantined": 48,
   "results": [
     {
@@ -225,6 +225,11 @@
     },
     {
       "id": "img-paint-preserved-on-amend",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "photos-instance-overrides-preserved",
       "claim": "C2-refusal",
       "pass": true
     },
@@ -576,7 +581,8 @@
     {
       "id": "golden-generated-output",
       "claim": "C1-determinism",
-      "pass": true
+      "pass": false,
+      "error": "Error: Generated output diverges from golden manifest (5 file[s]): src/components/Presentation/Presentation.module.css, src/components/Presentation/Presentation.stories.tsx, src/components/Presentation/Presentation.tsx, figma-sync/29-presentation.js, figma-sync/batch-03.js — if intentional, npm run golden:update in a reviewed change"
     },
     {
       "id": "detect-snapshot-provenance-mismatch",

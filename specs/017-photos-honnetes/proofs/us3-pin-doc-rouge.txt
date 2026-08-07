@@ -1,0 +1,21 @@
+# T036a — PREUVE ADVERSE : le pin documentaire rougit vraiment
+# date: 2026-08-06T19:40:26Z
+#
+# POURQUOI CETTE PREUVE. T036a fait de img-part-canvas-placeholder-named LE PREMIER CAS
+# DU DEPOT A LIRE docs/. Releve du 2026-08-06 : aucun cas de evals/run.ts ne lisait docs/
+# (la seule occurrence y etait un commentaire, :18), donc la regle « aucune phrase de
+# capacite en doc sans son eval derriere » n'etait tenue par RIEN cote documentation.
+# Un pin qu'on n'a pas vu rougir est exactement le defaut que 017 repare ailleurs.
+#
+# GESTE : UN SEUL MOT altere dans la copie d'annotation de docs/FIGMA-CAPABILITY-MATRIX.md
+#         « the photo you see is a mockup sample » -> « ... is a sample »
+# ATTENDU : la suite rougit et NOMME la ligne attendue.
+
+copie de doc alteree d'un mot
+EXIT=1
+      Error: docs/FIGMA-CAPABILITY-MATRIX.md § (b) must carry the image row, byte-for-byte:
+193/194 evals passed — evals/results.json
+doc restauree
+
+# RESULTAT : 194/194 -> 193/194, refus nomme. Doc restauree ensuite (verifie ci-dessous).
+(aucune ligne = la doc est bien restauree a l'identique)

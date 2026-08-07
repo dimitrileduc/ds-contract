@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "nom": "recu-repose-complete",
+  "date": "2026-08-07",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "objet": "Repose des photos restantes sur le fichier client, en trois gestes, chacun sous cycle before-capture complet (constitution §X).",
+
+  "verdictFinal": {
+    "emplacementsAuReleveAvant016": 128,
+    "identiquesAAvant016": 127,
+    "deplaces": 1,
+    "hashDifferent": 0,
+    "reellementPerdus": 0,
+    "comment": "Le seul 'deplace' est la google-map de Contactez-nous : MEME hash (efdebf1941d1), passee de l'index 2/1 a 2/0 parce qu'un frere a disparu a cote. Ce n'est pas une perte de photo mais un changement de structure, et il est anterieur a ce chantier.",
+    "sourceAvant": ".page-parity/US3/census-avant-maquettes.json (releve 016, etat d'avant les destructions)",
+    "sourceApres": "specs/017-photos-honnetes/proofs/vif/census-apres-repose-complete.json"
+  },
+
+  "gestes": [
+    {
+      "n": 1,
+      "objet": "Les 3 images purgees du master CategoriesPrincipales — celles que le rapport de cloture renvoyait a une repose MANUELLE.",
+      "checkpointFigma": { "label": "017/vif-repose/avant-3-images-purgees", "versionId": "2384983726424428711" },
+      "ciblesCapturees": 5,
+      "note": "5 cibles et non 3 : le master plus les 4 maquettes qui l'instancient. §X interdit le sous-ensemble pilote.",
+      "mutations": [
+        { "node": "I2115:4177;2351:37100", "titreCarte": "PORTES INDUSTRIELLES SUR MESURE", "hashAvant": "3c54b9a6", "hashApres": "031815a6a17c", "octets": 98909 },
+        { "node": "I2115:4205;2351:37100", "titreCarte": "Pour portails d'entree", "hashAvant": "3c54b9a6", "hashApres": "86d495b87402", "octets": 147922 },
+        { "node": "I2115:4206;2351:37100", "titreCarte": "Pilotez a distance", "hashAvant": "3c54b9a6", "hashApres": "715170bb427e", "octets": 69968 }
+      ],
+      "verdictPixel": "specs/017-photos-honnetes/proofs/vif/verdict-repose-1.json — 5 diff, toutes bornees a h=418 (hauteur exacte de categorieImage). Rien hors des images n'a bouge."
+    },
+    {
+      "n": 2,
+      "objet": "Les 4 surcharges de page (instance-override) des maquettes residentielles et entree, que le geste 1 a rendues visibles : ces pages heritaient de la photo du master au lieu de porter la leur.",
+      "checkpointFigma": { "label": "017/vif-repose2/avant-surcharges-de-page", "versionId": "2384990335862092185" },
+      "mutations": [
+        { "racine": "230:376", "cheminPosition": "0/1/0/0", "hashApres": "f08d845ee4ed", "voie": "hash encore resoluble dans le fichier" },
+        { "racine": "230:376", "cheminPosition": "0/1/1/0", "hashApres": "dc3a406f3ce6", "voie": "octets re-telecharges (S3 via REST)", "conformeAuReleve": true },
+        { "racine": "237:969", "cheminPosition": "0/0/1/0/0", "hashApres": "cc37fe3bc6f0", "voie": "hash encore resoluble dans le fichier" },
+        { "racine": "237:969", "cheminPosition": "0/0/1/1/0", "hashApres": "a578caed28b1", "voie": "octets re-telecharges (S3 via REST)", "conformeAuReleve": true }
+      ],
+      "verdictPixel": "verdict-repose-2.json — 2 diff, bornees a 1550x418 (les deux cartes cote a cote)."
+    },
+    {
+      "n": 3,
+      "objet": "Le dernier ecart du recensement complet : un portrait de rassurance 364x364 sur la maquette A Propos.",
+      "checkpointFigma": { "label": "017/vif-repose3/avant-portrait-reassurance", "versionId": "2384992302938870815" },
+      "mutations": [
+        { "racine": "258:1887", "cheminPosition": "4/1/0/0", "calque": "reassuranceImage", "hashAvant": "ab6a82d4b83b", "hashApres": "d62d8bf32a19", "voie": "hash encore resoluble dans le fichier" }
+      ],
+      "verdictPixel": "verdict-repose-3.json — 1 diff, bornee a 364x364."
+    }
+  ],
+
+  "preuveZeroDegradation": {
+    "exigence": "L'owner a demande l'image nette, zero degradation.",
+    "troisPreuvesIndependantes": [
+      {
+        "nom": "decodeur de reference",
+        "detail": "djpeg (libjpeg) decode les octets originaux et les copies optimisees vers des PPM IDENTIQUES pour les 3 images. L'ecart de taille (69968 -> 41621 sur la troisieme) etait 29603 octets de metadonnees (profil ICC, bloc Photoshop, EXIF), pas un pixel."
+      },
+      {
+        "nom": "aller-retour par le moteur",
+        "detail": "getImageByHash(...).getBytesAsync() rend, pour chaque image reposee, la MEME longueur et le MEME FNV-1a que le fichier source. (Premiere mesure fausse : la multiplication 32 bits en JS depasse la precision de float64 — corrigee avec Math.imul.)"
+      },
+      {
+        "nom": "le hash de contenu de Figma, la plus forte",
+        "detail": "Figma a recalcule, pour mes octets, EXACTEMENT les hashes enregistres au releve d'avant-016 : 031815a6a17c (geste 1), dc3a406f3ce6 et a578caed28b1 (geste 2). Un hash de contenu identique = des octets identiques. Rien n'a ete re-encode."
+      }
+    ],
+    "voieRetenue": "Les octets bruts transitent par le receveur page-parity (endpoint /file, deja present) et sont lus dans le bac a sable via fetch().arrayBuffer() puis figma.createImage(). Ni base64 ni troncature : figma_execute tronque sa SORTIE a ~3770 caracteres, pas son entree, et cette voie ne fait transiter aucun octet par un resultat d'outil."
+  },
+
+  "voiesEcarteesParLaMesure": [
+    "figma_execute avec base64 en ligne — tronque (25496 caracteres envoyes, 3770 recus).",
+    "jpegtran -optimize -copy none — sans perte sur les pixels, mais retire le profil ICC ; inutile une fois la voie brute ouverte, donc NON employe au final.",
+    "createImageAsync sur URL S3 signee — refuse par Figma."
+  ],
+
+  "limitesNommees": [
+    "Le recensement de reference (.page-parity/US3/census-avant-maquettes.json) couvre 9 maquettes. Les photos hors de ces 9 racines ne sont pas dans le perimetre de cette comparaison.",
+    "Le geste 1 change la photo du MASTER, donc toute instance sans surcharge propre suit. C'est ce qui a rendu visibles les 4 surcharges manquantes du geste 2 — l'inverse aurait ete de les laisser invisibles."
+  ]
+}

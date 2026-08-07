@@ -100,6 +100,12 @@ const COMPONENTS = [
 ];
 const ROW_H = 240, PAD = 40;
 
+// 017 — le registre gouverné des levées du refus photo (FR-003a/FR-003b),
+// baké ici parce que le bac à sable Figma ne lit aucun fichier et que core/
+// n'en lit pas non plus (§VII). Vide = le refus ne se lève sur rien, ce qui
+// est l'état normal : une entrée est une décision owner avec son reçu.
+const ACQUITTEMENTS_PHOTOS = [];
+
 const EXPECTED_FILE_KEY = "d9FYAUcqdcNtsuaMgLefvJ";
 if (EXPECTED_FILE_KEY && figma.fileKey && figma.fileKey !== EXPECTED_FILE_KEY) {
   throw new Error('WRONG FILE: expected ' + EXPECTED_FILE_KEY + ', got ' + figma.fileKey);
@@ -600,48 +606,339 @@ function specHash(C) {
 // matrix row 91, 2026-07-26 addendum): the contract carries the img part and
 // its runtime URL prop, never the bytes. Both amend paths rebuild children
 // from the spec, so the client's photos are HARVESTED before the teardown and
-// RESTORED onto the rebuilt img parts — matched by node name first, then by
-// document order (hero's photo is a ROOT fill while its contract models a
-// Background child). Every move is reported; leftovers are named, not lost
-// silently. A contract-carried fill still wins (spec.fill wins, doctrine).
-function harvestImagePaints(node, pool) {
+// RESTORED onto the rebuilt img parts. A contract-carried fill still wins
+// (spec.fill wins, doctrine).
+//
+// ===== 017 — CE QUI A CHANGÉ, ET POURQUOI =====================================
+// Le 2026-08-06, une régénération a effondré 62 photos sur 10 sections de 8
+// maquettes du fichier client, DERRIÈRE UN RAPPORT VERT. Trois défauts, tous
+// réparés ici — et le rapport ne peut plus être vert en présence d'une perte.
+//
+//  1. LE PÉRIMÈTRE. Le relevé ne voyait que le maître (comp). Or 255 des 349 photos
+//     vivantes sont des surcharges d'INSTANCE DE PAGE (016/proofs/photos/
+//     RECONCILIATION.md:26) : Figma propage la démolition aux instances, et les
+//     surcharges meurent avec les nœuds qui les portaient — les trois quarts de
+//     la population étaient hors de vue. Le relevé descend maintenant aux
+//     instances du maître reconstruit, BORNÉ À LUI et jamais au fichier (un
+//     parcours global sature le bac à sable, ≈5350 nœuds mesurés).
+//  2. L'APPARIEMENT. Il se faisait par NOM, puis retombait sur « le premier
+//     paint non réclamé » — un choix arbitraire qui rendait l'interversion
+//     structurellement invisible. Il est maintenant POSITIONNEL : chemin exact
+//     d'abord, puis ordre du document pour le reste. Le nom d'un calque du
+//     canvas ne participe plus à AUCUNE comparaison (§VIII : un renommage n'est
+//     pas une perte, deux homonymes ne se confondent pas).
+//  3. L'ORDRE. La démolition précédait le calcul des accueils : au moment où
+//     l'on découvrait qu'une photo n'avait nulle part où aller, le mal était
+//     fait. Le REFUS est maintenant une PRÉ-PASSE exécutée AVANT le premier
+//     remove() — aucun nœud touché (§X). Il se lève à la photo près, par un
+//     acquittement écrit et imprimé, jamais par tolérance.
+//
+// CE QUI SUBSISTE DU REPLI, ET POURQUOI CE N'EST PLUS LE MÊME. Le « premier
+// paint non réclamé » disparaît EN TANT QUE CHOIX ARBITRAIRE. Ce qui reste est
+// un REHÉBERGEMENT d'ordre : une empreinte sans chemin exact prend l'accueil
+// libre suivant DANS L'ORDRE DU DOCUMENT. C'est le cas réel du Hero — la photo
+// est un fill de RACINE alors que le contrat modélise un enfant Background — et
+// sans lui chaque régénération du Hero perdrait la photo du client (c'est le
+// cas B de img-paint-preserved-on-amend, mesuré, pas hypothétique). Il est
+// déterministe, il préserve l'ordre (donc il ne peut pas produire
+// d'interversion), et il est RAPPORTÉ nommément dans rehebergees. Un
+// rehébergement vers un accueil dont l'occupant d'origine est ailleurs est, lui,
+// une INTERVERSION : il part dans deplacees et rend le rapport ROUGE.
+// ==============================================================================
+
+function cheminEnfantDe(chemin, i) { return chemin === '' ? String(i) : chemin + '/' + i; }
+function comparerChemins(a, b) {
+  const sa = a === '' ? [] : a.split('/').map(Number);
+  const sb = b === '' ? [] : b.split('/').map(Number);
+  for (let i = 0; i < Math.max(sa.length, sb.length); i++) {
+    const x = sa[i] === undefined ? -1 : sa[i];
+    const y = sb[i] === undefined ? -1 : sb[i];
+    if (x !== y) return x - y;
+  }
+  return 0;
+}
+function noeudAuChemin(racine, chemin) {
+  if (chemin === '') return racine;
+  let n = racine;
+  for (const seg of chemin.split('/')) {
+    n = (n.children || [])[Number(seg)];
+    if (!n) return null;
+  }
+  return n;
+}
+function cheminDuNoeud(racine, cible) {
+  if (racine === cible) return '';
+  const pile = [{ n: racine, c: '' }];
+  while (pile.length > 0) {
+    const t = pile.shift();
+    const kids = t.n.children || [];
+    for (let i = 0; i < kids.length; i++) {
+      const ch = cheminEnfantDe(t.c, i);
+      if (kids[i] === cible) return ch;
+      pile.push({ n: kids[i], c: ch });
+    }
+  }
+  return null;
+}
+
+// RELEVER — une empreinte, à son emplacement (hostId, cheminPosition).
+function harvestImagePaints(node, pool, hostId, chemin) {
   const fills = Array.isArray(node.fills) ? node.fills : [];
   const imgs = fills.filter((f) => f && f.type === 'IMAGE');
-  if (imgs.length > 0) pool.push({ name: node.name, paints: imgs, claimed: false });
-  for (const ch of node.children || []) harvestImagePaints(ch, pool);
+  if (imgs.length > 0) {
+    pool.push({
+      hostId: hostId, cheminPosition: chemin, nomCalque: node.name,
+      paints: imgs, claimed: false,
+      // Une empreinte illisible est NON VÉRIFIABLE, jamais « identique » :
+      // un contrôle empêché n'est pas un contrôle vert (FR-015).
+      hashes: imgs.map((f) => (typeof f.imageHash === 'string' && f.imageHash !== '' ? f.imageHash : null)),
+    });
+  }
+  const kids = node.children || [];
+  for (let i = 0; i < kids.length; i++) harvestImagePaints(kids[i], pool, hostId, cheminEnfantDe(chemin, i));
 }
+
+// Les hôtes d'une reconstruction : le maître, PUIS ses instances de page.
+// Deux voies nommées, et la frontière entre elles est écrite ici.
+async function hotesDeReconstruction(comp) {
+  const hotes = [{ node: comp, hostId: comp.id, hostNom: comp.name, role: 'master' }];
+  let voie = 'aucune';
+  let raison = null;
+  // VOIE ÉPROUVÉE (repli nommé, research D1) : l'orchestrateur a relevé les
+  // hôtes avant le lot et les passe par globalThis.__dsc_photos. Forme déjà
+  // éprouvée au dépôt — specs/016-canvas-vrai/proofs/repose/photos-instances.json
+  // (14 sections, 97 photos). Faiblesse à dire : elle exige un relevé frais
+  // avant chaque lot, donc elle ne protège pas une régénération lancée sans
+  // l'orchestrateur.
+  const reg = (typeof globalThis !== 'undefined' && globalThis.__dsc_photos) || null;
+  if (reg && Array.isArray(reg[comp.id])) {
+    voie = 'registre-orchestre';
+    for (const id of reg[comp.id]) {
+      const n = await figma.getNodeByIdAsync(String(id));
+      if (n) hotes.push({ node: n, hostId: n.id, hostNom: n.name, role: 'instance' });
+    }
+  } else if (typeof comp.getInstancesAsync === 'function') {
+    // VOIE API — bornée au maître reconstruit, JAMAIS au fichier.
+    // ⚠️ NON MESURÉE sur le fichier client au 2026-08-06 : la sonde T005 est
+    // consignée empeche (specs/017-photos-honnetes/proofs/sonde-getinstances.md
+    // — pont vivant mais saturé, EADDRINUSE sur toute la plage 9223-9232). Le
+    // faux-Figma la modélise d'après l'API publiée, ce qui prouve que le moteur
+    // emprunte correctement la voie, pas que le fichier client la rende.
+    voie = 'getInstancesAsync';
+    try {
+      for (const inst of (await comp.getInstancesAsync()) || []) {
+        hotes.push({ node: inst, hostId: inst.id, hostNom: inst.name, role: 'instance' });
+      }
+    } catch (e) {
+      voie = 'empeche';
+      raison = String((e && e.message) || e);
+    }
+  }
+  return { hotes: hotes, voie: voie, raison: raison };
+}
+
 function collectImgSpecTargets(spec, out) {
   if (spec.imgPlaceholder === true && !spec.fill) out.push(spec.name);
   for (const ch of spec.children || []) collectImgSpecTargets(ch, out);
 }
-function findDescendantByName(node, name) {
-  if (node.name === name) return node;
+function findDescendantByName(node, name, dejaVus) {
+  if (node.name === name && (!dejaVus || dejaVus.indexOf(node) < 0)) return node;
   for (const ch of node.children || []) {
-    const hit = findDescendantByName(ch, name);
+    const hit = findDescendantByName(ch, name, dejaVus);
     if (hit) return hit;
   }
   return null;
 }
-function restoreImagePaints(spec, rootNode, pool, report) {
-  const targets = [];
-  collectImgSpecTargets(spec, targets);
-  for (const name of targets) {
-    const node = findDescendantByName(rootNode, name);
-    if (!node) continue;
-    let entry = pool.find((e) => !e.claimed && e.name === name);
-    if (!entry) entry = pool.find((e) => !e.claimed);
-    if (!entry) continue;
-    entry.claimed = true;
-    node.fills = entry.paints;
-    report.preservedImages = report.preservedImages || [];
-    report.preservedImages.push(entry.name + ' -> ' + name);
+
+// Les accueils, DANS L'ARBRE RECONSTRUIT, rendus par ordre de document.
+// Le nom employé ici est celui du CONTRAT, sur un nœud que NOUS venons de bâtir
+// — pas le nom d'un calque posé par un designer. §VIII interdit de se fier au
+// second pour apparier ; il n'interdit pas de retrouver le nôtre.
+function accueilsDuNoeud(rootNode, spec) {
+  const noms = [];
+  collectImgSpecTargets(spec, noms);
+  const vus = [];
+  const out = [];
+  for (const nom of noms) {
+    const n = findDescendantByName(rootNode, nom, vus);
+    if (!n) continue;
+    vus.push(n);
+    out.push({ cheminPosition: cheminDuNoeud(rootNode, n), nom: nom });
   }
-  for (const e of pool) {
-    if (!e.claimed) {
-      report.unplacedImages = report.unplacedImages || [];
-      report.unplacedImages.push(e.name);
+  out.sort((a, b) => comparerChemins(a.cheminPosition, b.cheminPosition));
+  return out;
+}
+
+// Le registre gouverné des levées, baké au script (core/ ne lit aucun fichier).
+// Les SEPT champs sont obligatoires et se refusent PAR LE NOM.
+function chargerAcquittements() {
+  const CHAMPS = ['hostId', 'cheminPosition', 'imageHash', 'motif', 'decidePar', 'decideLe', 'receiptId'];
+  const out = [];
+  for (let i = 0; i < ACQUITTEMENTS_PHOTOS.length; i++) {
+    const e = ACQUITTEMENTS_PHOTOS[i];
+    const manquants = CHAMPS.filter((c) => !e || typeof e[c] !== 'string' || e[c] === '');
+    if (manquants.length > 0) {
+      throw new Error(
+        'REFUS au chargement du registre d\'acquittements photo (entrée ' + i + ') : champ(s) manquant(s) ou vide(s) — ' +
+        manquants.join(', ') + '. Les sept champs sont obligatoires (hostId, cheminPosition, imageHash, motif, ' +
+        'decidePar, decideLe, receiptId) : une porte fail-closed ne se lève pas sur une entrée incomplète.',
+      );
     }
+    out.push(e);
   }
+  return out;
+}
+
+// ===== PRÉ-PASSE : RELEVER → COMPTER LES ACCUEILS → DÉCIDER ===================
+// Rien de ce qui suit ne mute quoi que ce soit. Le refus, s'il tombe, tombe
+// AVANT le premier remove() — c'est tout l'objet de FR-003a et de §X.
+async function preparerSauvetagePhotos(comp, specs) {
+  const info = await hotesDeReconstruction(comp);
+  let accueilsAttendus = 0;
+  for (const s of specs) {
+    const noms = [];
+    collectImgSpecTargets(s, noms);
+    if (noms.length > accueilsAttendus) accueilsAttendus = noms.length;
+  }
+  const acquittes = chargerAcquittements();
+  const parHote = [];
+  const bloquantes = [];
+  const levees = [];
+  for (const h of info.hotes) {
+    const entrees = [];
+    harvestImagePaints(h.node, entrees, h.hostId, '');
+    entrees.sort((a, b) => comparerChemins(a.cheminPosition, b.cheminPosition));
+    const surplus = entrees.length - accueilsAttendus;
+    for (let k = 0; k < surplus; k++) {
+      const orpheline = entrees[entrees.length - 1 - k];
+      const hash = orpheline.hashes[0];
+      const acquit = acquittes.find((a) =>
+        a.hostId === orpheline.hostId && a.cheminPosition === orpheline.cheminPosition && a.imageHash === hash);
+      if (acquit) levees.push({ imageHash: hash, hostId: orpheline.hostId, cheminPosition: orpheline.cheminPosition, motif: acquit.motif, decidePar: acquit.decidePar, receiptId: acquit.receiptId });
+      else bloquantes.push({ imageHash: hash, hostId: orpheline.hostId, cheminPosition: orpheline.cheminPosition, nomCalque: orpheline.nomCalque });
+      orpheline.acquittee = !!acquit;
+    }
+    parHote.push({ hostId: h.hostId, hostNom: h.hostNom, role: h.role, node: h.node, entrees: entrees });
+  }
+  if (bloquantes.length > 0) {
+    throw new Error(
+      'REFUS AVANT MUTATION — ' + bloquantes.length + ' photo(s) relevée(s) n\'ont aucun emplacement d\'accueil ' +
+      'dans le contrat reconstruit (' + accueilsAttendus + ' accueil(s) par hôte). AUCUN nœud n\'a été touché.\n' +
+      bloquantes.map((b) => '  · imageHash=' + b.imageHash + ' hostId=' + b.hostId + ' cheminPosition=' + b.cheminPosition + ' (calque « ' + b.nomCalque + ' », documentaire)').join('\n') +
+      '\nCe refus se lève à la photo près, par une entrée écrite dans ' +
+      'specs/017-photos-honnetes/registre/acquittements-photos.json (sept champs obligatoires) — jamais par tolérance.',
+    );
+  }
+  return { info: info, parHote: parHote, accueilsAttendus: accueilsAttendus, levees: levees };
+}
+
+// ===== REPOSER + RAPPORTER ====================================================
+function restaurerPhotos(spec, comp, plan, report, contractId) {
+  const accueils = accueilsDuNoeud(comp, spec);
+  const hotes = [];
+  for (const h of plan.parHote) {
+    const libres = accueils.map((a) => a.cheminPosition);
+    const pris = {};
+    const retrouvees = [];
+    const rehebergees = [];
+    const deplacees = [];
+    const nonReplacees = [];
+    const nonVerifiables = [];
+    const acquittees = [];
+    const dispo = h.entrees.filter((e) => !e.acquittee);
+    for (const e of dispo) {
+      if (e.hashes.some((x) => x === null)) {
+        nonVerifiables.push({ cheminPosition: e.cheminPosition, nomCalque: e.nomCalque, raison: 'imageHash absent — empreinte illisible' });
+      }
+    }
+    // 1. chemin EXACT — le cas normal, la forme de l'arbre n'a pas bougé
+    for (const e of dispo) {
+      const i = libres.indexOf(e.cheminPosition);
+      if (i < 0) continue;
+      libres.splice(i, 1);
+      pris[e.cheminPosition] = e;
+      e.claimed = true;
+      retrouvees.push({ cheminPosition: e.cheminPosition, imageHash: e.hashes[0] });
+    }
+    // 2. le reste, DANS L'ORDRE DU DOCUMENT — bijection déterministe
+    for (const e of dispo) {
+      if (e.claimed) continue;
+      if (libres.length === 0) {
+        nonReplacees.push({ cheminPosition: e.cheminPosition, imageHash: e.hashes[0], nomCalque: e.nomCalque });
+        continue;
+      }
+      const vers = libres.shift();
+      e.claimed = true;
+      pris[vers] = e;
+      const mouvement = { de: e.cheminPosition, vers: vers, imageHash: e.hashes[0] };
+      // Si l'emplacement d'origine de cette empreinte est occupé par une AUTRE
+      // empreinte, ce n'est pas un rehébergement : c'est une INTERVERSION.
+      const occupant = dispo.find((o) => o !== e && o.cheminPosition === e.cheminPosition);
+      if (occupant) deplacees.push(mouvement); else rehebergees.push(mouvement);
+    }
+    // 3. appliquer — RÉAFFECTATION du tableau, jamais mutation en place (dans
+    //    le vrai Figma node.fills est readonly : une mutation en place est
+    //    ignorée en silence).
+    let distinctesApres = 0;
+    const vusApres = {};
+    for (const chemin of Object.keys(pris)) {
+      const node = noeudAuChemin(h.node, chemin);
+      if (!node) {
+        nonReplacees.push({ cheminPosition: chemin, imageHash: pris[chemin].hashes[0], nomCalque: pris[chemin].nomCalque });
+        continue;
+      }
+      node.fills = pris[chemin].paints;
+      for (const x of pris[chemin].hashes) if (x && !vusApres[x]) { vusApres[x] = true; distinctesApres++; }
+    }
+    const vusAvant = {};
+    let distinctesAvant = 0;
+    for (const e of h.entrees) for (const x of e.hashes) if (x && !vusAvant[x]) { vusAvant[x] = true; distinctesAvant++; }
+    for (const l of plan.levees) if (l.hostId === h.hostId) acquittees.push(l);
+    hotes.push({
+      hostId: h.hostId, hostNom: h.hostNom, role: h.role,
+      attendues: h.entrees.length,
+      retrouvees: retrouvees.length,
+      distinctesAvant: distinctesAvant,
+      distinctesApres: distinctesApres,
+      deplacees: deplacees,
+      rehebergees: rehebergees,
+      nonReplacees: nonReplacees,
+      nonVerifiables: nonVerifiables,
+      acquittees: acquittees,
+    });
+    // trace héritée, conservée : les consommateurs existants la lisent
+    for (const m of retrouvees) { report.preservedImages = report.preservedImages || []; report.preservedImages.push(h.hostId + ':' + m.cheminPosition); }
+    for (const m of rehebergees) { report.preservedImages = report.preservedImages || []; report.preservedImages.push(h.hostId + ':' + m.de + ' -> ' + m.vers); }
+    for (const m of nonReplacees) { report.unplacedImages = report.unplacedImages || []; report.unplacedImages.push(h.hostId + ':' + m.cheminPosition); }
+  }
+  // Le verdict, refusable par le nom (data-model §3). Le vert est INTERDIT si
+  // une perte, une interversion ou une empreinte illisible existe quelque part.
+  let verdict = 'vert';
+  if (plan.info.voie === 'empeche') verdict = 'empeche';
+  for (const h of hotes) {
+    if (h.nonReplacees.length > 0 || h.deplacees.length > 0 || h.nonVerifiables.length > 0) verdict = 'rouge';
+    // Le canal qui dit l'effondrement quand le compte total n'a pas bougé
+    // (« 17 portraits distincts à l'origine, 2 au vif »).
+    if (h.distinctesApres < h.distinctesAvant) verdict = 'rouge';
+  }
+  // amendSet boucle sur les variantes : le rapport s'ACCUMULE, il ne s'écrase
+  // pas. Un seul hôte rouge suffit à rendre l'ensemble rouge.
+  if (!report.photos) {
+    report.photos = {
+      schemaVersion: 1,
+      contractId: contractId || null,
+      voieInstances: plan.info.voie,
+      raisonVoie: plan.info.raison,
+      accueilsParHote: plan.accueilsAttendus,
+      hotes: [],
+      verdict: 'vert',
+      refusAvantMutation: null,
+    };
+  }
+  for (const h of hotes) report.photos.hotes.push(h);
+  if (verdict === 'rouge' || report.photos.verdict === 'rouge') report.photos.verdict = 'rouge';
+  else if (verdict === 'empeche' || report.photos.verdict === 'empeche') report.photos.verdict = 'empeche';
+  if (plan.accueilsAttendus > report.photos.accueilsParHote) report.photos.accueilsParHote = plan.accueilsAttendus;
 }
 
 async function amendSet(set, C) {
@@ -744,8 +1041,10 @@ async function amendSet(set, C) {
       set.appendChild(comp);
       report.addedVariants.push(v.name);
     } else {
-      const imagePool = [];
-      harvestImagePaints(comp, imagePool);
+      // 017 — PRÉ-PASSE avant toute mutation : relever (maître ET instances de
+      // page), compter les accueils, DÉCIDER. Une empreinte sans accueil jette
+      // ICI, une ligne avant la première démolition (§X, FR-003a).
+      const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
       for (const child of [...comp.children]) child.remove();
       applyFrameSpec(comp, v.spec);
       for (const childSpec of v.spec.children || []) {
@@ -773,7 +1072,7 @@ async function amendSet(set, C) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
       }
-      restoreImagePaints(v.spec, comp, imagePool, report);
+      restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
       report.rebuiltVariants++;
     }
     for (const t of registry.texts) {
@@ -887,8 +1186,10 @@ async function amendComponent(comp, C) {
   }
   const v = C.variants[0];
   const registry = { texts: [], slots: [], visibles: [] };
-  const imagePool = [];
-  harvestImagePaints(comp, imagePool);
+  // 017 — même PRÉ-PASSE que le chemin amendSet : relever le maître ET ses
+  // instances de page, compter les accueils, DÉCIDER. Le refus tombe ici, une
+  // ligne avant la première démolition (§X, FR-003a).
+  const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
   for (const child of [...comp.children]) child.remove();
   applyFrameSpec(comp, v.spec);
   for (const childSpec of v.spec.children || []) {
@@ -916,7 +1217,7 @@ async function amendComponent(comp, C) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
   }
-  restoreImagePaints(v.spec, comp, imagePool, report);
+  restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
   for (const t of registry.texts) {
     let k = defKey(t.prop);
     if (!k) { k = comp.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
