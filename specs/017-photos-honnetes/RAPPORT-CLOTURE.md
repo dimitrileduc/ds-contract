@@ -37,8 +37,9 @@ preuve**, archivé des deux côtés ([rouge](proofs/us1-fixture-rouge.txt),
 (les 2 du maître survivent : le sauvetage ne voyait que lui)
 ```
 
-**Ce que ce zéro NE couvre pas** : le fichier client. Le reçu vif est `empeche`
-([reçu](proofs/recu-vif-photos.md)) — voir §4.
+**Et le vif a confirmé le 2026-08-07** : sur le fichier client, **45 photos reposées, 0 refus**,
+l'Equipe repassée de **2 images distinctes à 17** ([reçu](proofs/vif/recu-restauration.json)).
+Le sans-tête faisait foi ; le vif a confirmé sans rien contredire.
 
 ### SC-002 · Les trois cas adverses font échouer le contrôle — **TENU**
 
@@ -179,7 +180,33 @@ tournent plus **en isolation**. Risque pratique faible (aucun autre chantier sur
 
 ---
 
-## 4 · La Phase 6 n'a pas eu lieu — deux blocages, aucun levé
+## 4 · La Phase 6 a eu lieu le 2026-08-07 — les deux blocages levés
+
+*Cette section disait « n'a pas eu lieu » à la clôture du 2026-08-06. Le lendemain le pont a été
+débloqué et la phase a tourné. Le texte d'origine est conservé plus bas, daté.*
+
+| geste | résultat |
+|---|---|
+| sonde `getInstancesAsync` (T005) | **levée** — elle existe, rend **33 instances** de page, en **15 ms**, très loin du seuil de saturation |
+| capture d'avant §X | [`proofs/vif/census-avant.json`](proofs/vif/census-avant.json) — 97 photos, 14 hôtes, hashes complets par position |
+| restauration des photos | **45 reposées, 0 refus, 52 déjà intactes** — [reçu](proofs/vif/recu-restauration.json) |
+| clause de légende au canevas (SC-006-vif) | **11 écrites, 9 avec la clause** — [reçu](proofs/vif/recu-clause-legende.json) |
+
+**Le piège évité, et c'est le travail de la veille qui l'a rendu visible.** Le plan de 016 liste
+`fun-ia` avant `normal` ; le canevas expose `normal` avant `funIa`. Un appariement **par index** —
+celui que le plan suggère — **aurait interverti les 32 photos de l'Equipe**, soit exactement le
+dégât que 017 existe pour empêcher. L'appariement a été fait **par carte puis par nom de calque**,
+résolu localement et affiché avant d'écrire. C'est `D-017-MEMBER-PICTURE-ORDRE-DES-PLANS`,
+consigné la veille, qui a servi d'alerte.
+
+**Deux comptes du dépôt corrigés par le relevé vif.** (1) Le pont n'était pas « déconnecté » mais
+**saturé** : 13 serveurs pour 10 ports, dont **3 squattés par des processus de ce dépôt** laissés
+tourner depuis 016 (2× `serve-scripts.mjs`, 1× `page-parity/receiver.mjs`). Correctif durable :
+`FIGMA_WS_PORT=9232` dans `.claude/settings.json`. (2) Le dépôt annonçait **62** photos perdues ;
+le relevé photo-par-photo en compte **45** — l'écart est de méthode, un comptage par *ensemble*
+classait une section entière comme perdue alors que ses plans `funIa` génériques étaient corrects.
+
+### (2026-08-06) La Phase 6 n'a pas eu lieu — deux blocages, aucun levé
 
 [`proofs/recu-vif-photos.md`](proofs/recu-vif-photos.md) · [`proofs/precondition-fr005.md`](proofs/precondition-fr005.md)
 
