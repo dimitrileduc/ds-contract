@@ -1,6 +1,6 @@
 # Rapport de clôture — 017 · Photos honnêtes
 
-**Date** : 2026-08-06 · **Branche** : `017-photos-honnetes` · [spec](spec.md) · [plan](plan.md) · [décisions d'exécution](decisions.md)
+**Date** : 2026-08-06, **complété le 2026-08-07 après la fenêtre vive** · **Branche** : `017-photos-honnetes` · [spec](spec.md) · [plan](plan.md) · [décisions d'exécution](decisions.md)
 
 017 ne gouverne pas l'image. Il répare **deux rapports qui disaient le faux** et **une phrase qui
 manquait**. Ce document dit ce que les zéros couvrent exactement, et ce que la spec laisse
@@ -245,3 +245,62 @@ classait une section entière comme perdue alors que ses plans `funIa` génériq
 `MILESTONES.md` s'arrête à la spec **010** : les specs **011, 012, 013, 014 et 016** n'y ont
 aucune entrée datée (015 en a une, déposée par-dessus le trou). L'entrée 017 est déposée de la
 même façon — **par-dessus le trou, en le nommant**, plutôt qu'en faisant comme s'il n'était pas là.
+
+---
+
+## 7 · La fenêtre vive du 2026-08-07 — ce qu'elle a réellement changé, et ce qu'elle a découvert
+
+*Ajouté après coup. La clôture du 2026-08-06 disait `verdict: "empeche"` sur toute la Phase 6.
+Le pont a été débloqué le lendemain et elle a tourné — en révélant quatre choses que ni 016 ni
+017 n'avaient vues.*
+
+### Ce qui a changé sur le fichier client
+
+| geste | résultat | reçu |
+|---|---|---|
+| sonde `getInstancesAsync` | **levée** — 33 instances, 15 ms | `proofs/sonde-getinstances.md` |
+| restauration des instances de page | **45 reposées, 0 refus** | `proofs/vif/recu-restauration.json` |
+| clause de légende au canevas (SC-006-vif) | **11 écrites, 9 avec la clause** | `proofs/vif/recu-clause-legende.json` |
+| ordre des plans photo de MemberPicture | **corrigé sur le master**, 33 instances suivies | `proofs/vif/recu-ordre-plans.json` |
+| restauration des MASTERS | **3 sur 4**, 9 autres intacts | `proofs/vif/recu-masters.json` |
+
+### Quatre découvertes, et trois d'entre elles corrigent le dépôt
+
+1. **Le dégât était plus large que le dépôt ne l'annonçait — sur les deux axes.** Ni « 62 photos »
+   (le relevé photo-par-photo en compte **45** côté instances), ni « seulement les instances » :
+   **les masters du design system avaient subi le même effondrement** — `Equipe` 17 → 2,
+   `Reassurances` 13 → 1, `ProduitsECommerce` 4 → 1. Le plan de restauration de 016 ne listait
+   que 14 hôtes de maquette ; les masters n'y figuraient pas.
+2. **016 avait aussi inversé l'ordre des deux plans photo.** Prouvé par lecture REST à la version
+   d'avant-016 : `fun-ia` y est à l'index 0 et `normal` à l'index 1, donc `normal` **dessus**.
+   L'inversion faite le matin même — pour une autre raison — a restauré l'ordre d'origine.
+3. **Le piège d'appariement, évité de justesse.** Le plan de 016 liste `fun-ia` avant `normal`,
+   le canevas expose `normal` avant `funIa`. Un appariement **par index** — celui que le plan
+   suggère — **aurait interverti les 32 photos de l'Equipe**. C'est
+   `D-017-MEMBER-PICTURE-ORDRE-DES-PLANS`, consigné la veille, qui a servi d'alerte.
+4. **Trois images sont définitivement purgées du fichier.** Sur `CategoriesPrincipales` :
+   `getImageByHash` rend `null` et `figma.createImageAsync` **refuse les URLs S3 signées** de
+   l'API Figma. Récupérées par REST à la version d'avant-016 et déposées sur le bureau pour
+   repose manuelle. **La spec ne les compte pas comme restaurées.**
+
+### La leçon de méthode, et elle est à mon compte
+
+J'ai annoncé « Equipe : 2 images distinctes → 17 » en comptant des **hashes**. L'owner voyait la
+même photo sur les 16 cartes, et il avait raison : les portraits reposés étaient sur le plan
+**masqué**. Puis j'ai affirmé « c'est réparé » alors qu'il regardait un **autre nœud** — le master,
+que je n'avais pas traité. Deux fois, j'ai conclu sur la donnée au lieu de regarder l'image.
+
+**Règle qui en sort, et qui vaut plus que le correctif** : un plan correct mais masqué se compte
+comme réparé et ne répare rien. Toute vérification photo doit résoudre **l'ordre z et l'opacité**,
+identifier **le nœud que l'owner regarde**, et conclure sur une **capture**, jamais sur un compte
+de hashes.
+
+### Ce que la fenêtre vive laisse ouvert
+
+- **Les 3 images purgées** de `CategoriesPrincipales` — fichiers fournis, repose manuelle.
+- **Le cliché de parité n'a PAS été rafraîchi.** `parity/snapshots/figma-components.json` ignore
+  les nouvelles légendes et les photos reposées : `npm run parity` compare donc le contrat à un
+  canevas périmé. Il reste vert, mais sur un état qui n'est plus celui du fichier. **Dit plutôt
+  que masqué par un rafraîchissement bâclé** — le geste demande une capture vive complète, qui
+  est un chantier à part.
+- Tout ce que la §5 listait déjà : `DW-014-002`, la lacune A5, `realisation`, le 2ᵉ plan photo.

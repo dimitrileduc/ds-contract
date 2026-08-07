@@ -95,6 +95,43 @@
       "destination": "la spec qui branchera le 2e plan photo — meme chantier que D-017-MEMBER-PICTURE-SURVOL-2E-PLAN",
       "repareDans": "017 (canevas)",
       "confirmationVive": "Confirme AU CANEVAS et non plus seulement par la mesure : les 16 cartes de l'Equipe montraient la meme photo parce que le plan porteur des portraits etait DESSOUS. Figma REFUSE de reordonner les enfants d'une instance — la correction ne pouvait se faire que sur le master."
+    },
+    {
+      "id": "D-017-MASTERS-HORS-PLAN-016",
+      "titre": "Le plan de restauration de 016 ne couvrait AUCUN master — 4 d'entre eux avaient perdu leurs photos",
+      "decouvertLe": "2026-08-07",
+      "decouvertPar": "017, fenetre vive — l'owner regardait un master et voyait la meme photo apres la restauration des instances",
+      "surface": "specs/016-canvas-vrai/proofs/repose/photos-instances.json (14 hotes, tous des maquettes)",
+      "observation": "Comparaison REST a la version d'avant-016 sur les 13 masters porteurs d'images : Equipe 17→2, Reassurances 13→1, ProduitsECommerce 4→1, CategoriesPrincipales 8→4. Les 9 autres intacts. Le plan de 016 ne liste que des hotes de la page `Pages` : les masters de `DS · *` n'y figurent pas.",
+      "classe": "perimetre de restauration incomplet",
+      "decide": "REPARE dans 017 pour 3 masters sur 4 (proofs/vif/recu-masters.json).",
+      "destination": "aucune pour 3 ; CategoriesPrincipales reste partiel — voir D-017-IMAGES-PURGEES",
+      "repareDans": "017 (canevas)"
+    },
+    {
+      "id": "D-017-IMAGES-PURGEES",
+      "titre": "Trois images sont definitivement purgees du fichier et ne peuvent pas etre reinjectees par le pont",
+      "decouvertLe": "2026-08-07",
+      "decouvertPar": "017, restauration du master CategoriesPrincipales",
+      "surface": "fichier client d9FYAUcqdcNtsuaMgLefvJ, master 2115:4277",
+      "observation": "Pour 031815a6a17c, 86d495b87402 et 715170bb427e : `figma.getImageByHash` rend null (l'image n'est plus referencee, donc purgee) ET `figma.createImageAsync` REFUSE les URLs S3 signees de l'API Figma. La seule voie restante par le pont est le base64 par morceaux (~40k chars/appel), soit ~422 Ko et une douzaine d'appels.",
+      "classe": "limite d'outillage nommee",
+      "consequence": "Les octets ONT ete recuperes par REST a la version d'avant-016 et deposes dans ~/Desktop/photos-a-reposer-017/, nommes par emplacement. La repose est manuelle. 017 NE LES COMPTE PAS comme restaurees.",
+      "decide": "NON REPARE par le pont. Fichiers fournis a l'owner.",
+      "destination": "repose manuelle par l'owner, ou un outil de transport d'octets par morceaux si le cas se represente",
+      "repareDans": null
+    },
+    {
+      "id": "D-017-CLICHE-PARITE-PERIME",
+      "titre": "Le cliche de parite ignore les mutations canvas du 2026-08-07",
+      "decouvertLe": "2026-08-07",
+      "decouvertPar": "017, cloture",
+      "surface": "parity/snapshots/figma-components.json",
+      "observation": "Le canevas a recu 11 nouvelles legendes, 45+16+17 photos reposees et une inversion d'ordre de plans. Le cliche, lui, date d'avant. `npm run parity` compare donc le contrat a un canevas perime : il reste vert, mais sur un etat qui n'est plus celui du fichier.",
+      "classe": "preuve datee d'un etat depasse",
+      "decide": "NON RAFRAICHI dans 017 : le geste demande une capture vive complete au pont, qui est un chantier a part. DIT plutot que masque par un rafraichissement bacle.",
+      "destination": "la prochaine fenetre vive",
+      "repareDans": null
     }
   ]
 }

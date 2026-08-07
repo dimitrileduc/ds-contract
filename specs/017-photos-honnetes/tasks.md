@@ -140,19 +140,19 @@
 **⚠️ Précondition bloquante (FR-005)** : aucune reconstruction sur le fichier client des composants touchés par l'effondrement des 62 photos ne démarre avant que leur restauration (016) soit **exécutée et prouvée**. Les phases 1 à 5 ne sont **pas** bloquées par cette précondition.
 
 - [X] T042 Vérifier et consigner l'état de la précondition FR-005 dans `specs/017-photos-honnetes/proofs/precondition-fr005.md` : la restauration des 62 photos appartient à 016, son plan est commité (`specs/016-canvas-vrai/proofs/repose/photos-instances.json`), son exécution **attend le pont** (`51cab06`). **Nommer la réserve avant de s'appuyer dessus** (déjà consignée en T007) : ce plan liste les **97** photos du relevé sans drapeau distinguant « déjà bonne » de « à reposer ». Si la restauration n'est pas faite et prouvée, **la phase ne démarre pas — et c'est dit, pas silencieusement sauté**.
-- [ ] T043 Appliquer §X (before-capture) : capturer l'état d'avant de **CHAQUE cible qui sera touchée, jamais un sous-ensemble pilote**, et vérifier chaque capture **non vide et correctement dimensionnée** avant de continuer. Une fois une copie remplacée sur le canevas, son état d'avant est perdu pour de bon. Captures dans `specs/017-photos-honnetes/proofs/vif/avant/`.
-- [ ] T044 Exécuter le cycle vif et produire le reçu daté dans `specs/017-photos-honnetes/proofs/recu-vif-photos.md`, **avec la CLI réelle des deux outils, pas une CLI supposée** (T006) — les deux gestes n'appartiennent pas au même outil : (1) **recensement AVANT** par `photos-census.js` exécuté dans le bac à sable via le pont (receiver local requis), par POSITION, masters ET instances → `proofs/vif/census-avant.json` ; (2) le **lot de régénération** — **le lotissement est obligatoire, pas une optimisation** : le pont sature sur un parcours global (≈ 5 350 nœuds) — ce lot est aussi ce qui porte enfin la clause de légende au canevas (SC-006-vif) ; (3) **recensement APRÈS** → `proofs/vif/census-apres.json` ; (4) le verdict par empreinte à l'emplacement, hors ligne : `npm run photos:verify -- specs/017-photos-honnetes/proofs/vif/census-avant.json specs/017-photos-honnetes/proofs/vif/census-apres.json --out specs/017-photos-honnetes/proofs/recu-vif-photos.md`. Un seul écrivain, un seul cycle global de vérification pixel (§XI : aucune partition à établir ici).
+- [X] T043 Appliquer §X (before-capture) : capturer l'état d'avant de **CHAQUE cible qui sera touchée, jamais un sous-ensemble pilote**, et vérifier chaque capture **non vide et correctement dimensionnée** avant de continuer. Une fois une copie remplacée sur le canevas, son état d'avant est perdu pour de bon. Captures dans `specs/017-photos-honnetes/proofs/vif/avant/`.
+- [X] T044 Exécuter le cycle vif et produire le reçu daté dans `specs/017-photos-honnetes/proofs/recu-vif-photos.md`, **avec la CLI réelle des deux outils, pas une CLI supposée** (T006) — les deux gestes n'appartiennent pas au même outil : (1) **recensement AVANT** par `photos-census.js` exécuté dans le bac à sable via le pont (receiver local requis), par POSITION, masters ET instances → `proofs/vif/census-avant.json` ; (2) le **lot de régénération** — **le lotissement est obligatoire, pas une optimisation** : le pont sature sur un parcours global (≈ 5 350 nœuds) — ce lot est aussi ce qui porte enfin la clause de légende au canevas (SC-006-vif) ; (3) **recensement APRÈS** → `proofs/vif/census-apres.json` ; (4) le verdict par empreinte à l'emplacement, hors ligne : `npm run photos:verify -- specs/017-photos-honnetes/proofs/vif/census-avant.json specs/017-photos-honnetes/proofs/vif/census-apres.json --out specs/017-photos-honnetes/proofs/recu-vif-photos.md`. Un seul écrivain, un seul cycle global de vérification pixel (§XI : aucune partition à établir ici).
 - [X] T045 Si la fenêtre owner ne peut pas s'ouvrir, ou si le pont est absent : consigner `verdict: "empeche"` dans `specs/017-photos-honnetes/proofs/recu-vif-photos.md` avec la raison. **Un contrôle empêché n'est jamais un contrôle vert** (FR-015) — et la porte du dépôt reste le cas d'eval adossé au faux-Figma, qui tourne partout et sans le fichier client.
 
 ---
 
-> **T043 et T044 restent NON COCHÉES, délibérément.** La Phase 6 n'a pas eu lieu :
-> la précondition FR-005 n'est pas levée et le pont est saturé (`EADDRINUSE` sur
-> 9223-9232, dix serveurs MCP concurrents — Figma tourne, le plugin est ouvert,
-> c'est la session qui n'a pas de port). Le verdict `empeche` est consigné en
-> `proofs/recu-vif-photos.md` avec sa raison. **Un contrôle empêché n'est jamais
-> un contrôle vert** (FR-015) : les cocher aurait été le mensonge que cette spec
-> répare.
+> **T043 et T044 : cochées le 2026-08-07, après coup.** Elles étaient
+> délibérément laissées vides la veille (`verdict: "empeche"` — pont saturé,
+> précondition FR-005 non levée). Le pont a été débloqué le lendemain
+> (`FIGMA_WS_PORT=9232`) et la Phase 6 a réellement tourné : capture d'avant de
+> chaque cible (§X, `proofs/vif/census-avant.json`), restauration, clause de
+> légende au canevas, puis extension aux MASTERS que le plan de 016 n'avait
+> jamais couverts. Reçus sous `proofs/vif/`.
 
 ## Phase 7: Clôture & transverse
 

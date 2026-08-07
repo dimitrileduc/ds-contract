@@ -43,6 +43,18 @@ forensics. Nothing here is aspirational; the roadmap holds the aspirations.
   `img-part-canvas-placeholder-named` est le **premier cas du dépôt à lire
   `docs/`**, et il est prouvé adverse : **un mot** altéré dans la copie fait
   tomber la suite à `193/194`.
+- **La fenêtre vive du lendemain (2026-08-07) a tourné, et elle a élargi le dégât connu.**
+  Le pont était **saturé et non déconnecté** — 13 serveurs pour 10 ports, dont **3 squattés par ce
+  dépôt** depuis 016. Une fois débloqué : sonde `getInstancesAsync` **levée** (33 instances, 15 ms),
+  **45 photos d'instance** reposées, la **clause de légende portée au canevas** (SC-006-vif tenu),
+  et surtout — **les MASTERS du design system avaient perdu leurs photos eux aussi** (`Equipe`
+  17 → 2, `Reassurances` 13 → 1, `ProduitsECommerce` 4 → 1), alors que le plan de restauration de
+  016 ne listait que des hôtes de maquette. 3 masters sur 4 restaurés. **016 avait aussi inversé
+  l'ordre des deux plans photo**, prouvé par lecture REST de la version d'avant-016.
+- **Deux comptes du dépôt corrigés** : ni « 62 photos » (le relevé photo-par-photo en compte **45**
+  côté instances), ni « seulement les instances ». Et une leçon de méthode payée cher : compter
+  des **hashes** n'est pas vérifier ce qui **se voit** — un plan correct mais masqué se compte
+  comme réparé et ne répare rien.
 - **Ce qui n'est PAS fermé, et qui est écrit noir sur blanc** : `DW-014-002`
   (l'instrument rend `emit-html`, jamais la surface React livrée), la lacune A5
   (lacune de **transport**, pas défaut de fidélité), **SC-006-vif** (le canevas
