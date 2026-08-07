@@ -1,4 +1,32 @@
-# Reçu vif (FR-002b) — `verdict: "empeche"`
+# Reçu vif (FR-002b) — `verdict: "vert"`
+
+> **CE DOCUMENT A ÉTÉ DÉPASSÉ PAR LES FAITS le 2026-08-07.** Il disait `empeche` ;
+> le pont a été débloqué et **la restauration a eu lieu**. Reçu machine :
+> [`vif/recu-restauration.json`](vif/recu-restauration.json) · état d'avant :
+> [`vif/census-avant.json`](vif/census-avant.json).
+>
+> **45 photos reposées, 0 refus, 52 déjà intactes.** L'Equipe est repassée de **2 images
+> distinctes à 17**. Point de restauration Figma posé avant toute écriture :
+> `017/restauration-photos/avant` (`2384868067790461864`).
+>
+> **Deux comptes du dépôt corrigés par le relevé** : (1) le pont n'était pas déconnecté mais
+> **saturé** — 13 serveurs pour 10 ports, dont **3 squattés par des processus de ce dépôt**
+> laissés tourner depuis 016 ; (2) le dépôt annonçait **62** photos perdues, le relevé
+> photo-par-photo en compte **45** — l'écart vient de la méthode, un comptage par ensemble
+> classait toute une section comme perdue alors que les plans `funIa` génériques étaient bons.
+>
+> **Le piège évité, et il valait le détour** : le plan de 016 liste `fun-ia` avant `normal`,
+> le canvas expose `normal` avant `funIa`. Un appariement par index — celui que le plan
+> suggère — **aurait interverti les 32 photos de l'Equipe**. C'est exactement le dégât que
+> 017 existe pour empêcher, et c'est le défaut `D-017-MEMBER-PICTURE-ORDRE-DES-PLANS`
+> trouvé la veille qui l'a rendu visible. L'appariement s'est fait **par carte puis par nom
+> de calque**.
+>
+> Le texte ci-dessous est conservé comme état du 2026-08-06 — daté, pas effacé.
+
+---
+
+# (2026-08-06) Reçu vif — `verdict: "empeche"`
 
 **Date** : 2026-08-06 · **Fichier client** : `d9FYAUcqdcNtsuaMgLefvJ`
 
