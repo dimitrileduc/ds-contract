@@ -16,27 +16,42 @@ imprimée d'une commande, archivée dans [`proofs/`](proofs/).
 | porte | départ | clôture |
 |---|---|---|
 | `npm run eval` | `193/193` | **`194/194`** |
-| `npm run parity` | vert, 3 acquittements | **vert, 3 acquittements** — ⚠️ **mais sur un cliché périmé**, voir l'avertissement ci-dessous |
+| `npm run parity` | vert, 3 acquittements | **1 écart, 3 acquittements** — sur un **cliché rafraîchi**, et l'écart n'est pas de 017 ; voir ci-dessous |
 | `npm run extract:figma:visual -- --summary` | **rouge** (8 lignes « frontière image » de 99,43 % à 15,64 %) | **vert** — toutes les lignes à ±0,1pp de la baseline |
 | `npm run photos:verify -- --selftest` | *n'existait pas* | **`5/5`** |
 | `deterministic-roundtrip` · `plugin:check` · `core-browser-check` · `tsc` ×2 | verts | **verts** |
 
 
-> ### ⚠️ Ce que le vert de `npm run parity` NE prouve PAS
+> ### Le cliché de parité a été rafraîchi — et il a immédiatement révélé un écart
 >
-> `parity/snapshots/figma-components.json` **n'a pas été rafraîchi** après les mutations
-> canvas du 2026-08-07 (11 légendes, 98 photos reposées, un ordre de plans inversé). La
-> parité compare donc le contrat à un **canevas d'avant** : son vert est exact sur l'état
-> qu'elle connaît, et **muet sur l'état réel du fichier**.
+> **Levée de `D-017-CLICHE-PARITE-PERIME` (2026-08-07).** `parity/snapshots/figma-components.json`
+> était figé au 2026-08-06 : la parité comparait le contrat à un canevas d'avant, et son vert
+> était **muet sur l'état réel du fichier**. Il est désormais capturé sur l'état vif (58 sets,
+> 2 collections), en faisant transiter le résultat par le receveur page-parity — `figma_execute`
+> tronque sa sortie à ~3 770 caractères, ce cliché en fait 64 205.
 >
-> **C'est une clôture avec une preuve périmée sur un axe, et il faut le lire comme tel.**
-> Les deux autres axes (`code ⟷ contrat`, `tokens`) restent, eux, pleinement valides —
-> ils ne dépendent pas du cliché canvas. Le rafraîchir demande une capture vive complète
-> au pont (~30 k caractères de transport) : c'est un geste à part, consigné au registre
-> sous `D-017-CLICHE-PARITE-PERIME`, **pas un détail de forme**.
+> Le rafraîchissement a fait exactement ce qu'on attend de lui : **il a rendu visible un écart
+> que le cliché périmé cachait.**
 >
-> Dit ici parce qu'afficher un vert qui ne mesure pas l'état réel est *exactement* le
-> défaut que cette spec répare. Le signaler ne l'excuse pas ; le taire l'aggraverait.
+> ```
+> [figma MISMATCH] Presentation.Bouton (default) — contrat: false, figma: true
+> ```
+>
+> **Cet écart n'est pas de 017, et sa cause est identifiée avec son reçu.** Le master
+> `Presentation` du canevas porte désormais `« generated from contract ds.presentation v2.5.0 »`
+> alors que `contracts/presentation.contract.json` est en **v2.2.0**. La v2.5.0 existe : elle est
+> dans le worktree de la branche **`018-odoo-replique-manuelle`**, avec `bouton` par défaut à
+> `true` — exactement ce que le canevas affiche. **Une autre session régénère ce master pendant
+> que 017 travaille.**
+>
+> Il n'est donc **ni promu ni acquitté** : promouvoir détournerait le changement de 018, et
+> l'acquitter au `baseline.json` maquillerait en décision d'owner ce qui est un chantier en vol.
+> Il se résorbe quand 018 atterrit. Les deux gestes étaient sur des zones **disjointes** (018 :
+> le master `Presentation` ; 017 : des remplissages d'image sur `CategoriesPrincipales` et les
+> maquettes) — la règle multi-écrivains §XI est tenue, sans collision.
+>
+> Le vert précédent était plus confortable et moins vrai. Celui-ci compte 1 écart, nommé,
+> daté et attribué.
 
 
 ---
@@ -296,10 +311,10 @@ Le pont a été débloqué le lendemain et elle a tourné — en révélant quat
    le canevas expose `normal` avant `funIa`. Un appariement **par index** — celui que le plan
    suggère — **aurait interverti les 32 photos de l'Equipe**. C'est
    `D-017-MEMBER-PICTURE-ORDRE-DES-PLANS`, consigné la veille, qui a servi d'alerte.
-4. **Trois images sont définitivement purgées du fichier.** Sur `CategoriesPrincipales` :
-   `getImageByHash` rend `null` et `figma.createImageAsync` **refuse les URLs S3 signées** de
-   l'API Figma. Récupérées par REST à la version d'avant-016 et déposées sur le bureau pour
-   repose manuelle. **La spec ne les compte pas comme restaurées.**
+4. **Trois images purgées du fichier — ~~définitivement~~, non : reposées le même jour.**
+   Sur `CategoriesPrincipales`, `getImageByHash` rend `null` et `figma.createImageAsync`
+   **refuse les URLs S3 signées**. La conclusion « repose manuelle » était **prématurée** :
+   elle tenait à une voie de transport mal évaluée, pas à une limite réelle. Voir §8.
 
 ### La leçon de méthode, et elle est à mon compte
 
@@ -315,10 +330,71 @@ de hashes.
 
 ### Ce que la fenêtre vive laisse ouvert
 
-- **Les 3 images purgées** de `CategoriesPrincipales` — fichiers fournis, repose manuelle.
-- **Le cliché de parité n'a PAS été rafraîchi.** `parity/snapshots/figma-components.json` ignore
-  les nouvelles légendes et les photos reposées : `npm run parity` compare donc le contrat à un
-  canevas périmé. Il reste vert, mais sur un état qui n'est plus celui du fichier. **Dit plutôt
-  que masqué par un rafraîchissement bâclé** — le geste demande une capture vive complète, qui
-  est un chantier à part.
-- Tout ce que la §5 listait déjà : `DW-014-002`, la lacune A5, `realisation`, le 2ᵉ plan photo.
+Les deux points qui figuraient ici — les 3 images purgées et le cliché de parité périmé — ont
+été **fermés le même jour** ; voir §8. Reste ce que la §5 listait déjà : `DW-014-002`, la
+lacune A5, `realisation`, le 2ᵉ plan photo.
+
+---
+
+## 8 · La seconde fenêtre du 2026-08-07 — les deux points ouverts sont fermés
+
+Reçu complet : [`proofs/vif/recu-repose-complete.json`](proofs/vif/recu-repose-complete.json).
+Verdicts pixel : `proofs/vif/verdict-repose-{1,2,3}.json`.
+
+### Le compte final, mesuré contre l'état d'avant-016
+
+| | |
+|---|---:|
+| emplacements photo au relevé d'avant-016 (9 maquettes) | **128** |
+| identiques à l'avant-016 aujourd'hui | **127** |
+| déplacés (même photo, autre index) | **1** |
+| hash différent | **0** |
+| réellement perdus | **0** |
+
+Le seul « déplacé » est la `google-map` de *Contactez-nous* : **même hash**, passée de
+l'index `2/1` à `2/0` parce qu'un frère a disparu à côté. C'est un changement de structure
+antérieur, pas une perte de photo.
+
+### Trois gestes, chacun sous cycle before-capture complet (§X)
+
+1. **Les 3 images purgées de `CategoriesPrincipales`.** Capture de **5 cibles** — le master
+   *et* les 4 maquettes qui l'instancient, jamais un sous-ensemble pilote. Diff pixel borné à
+   `h=418`, la hauteur exacte de `categorieImage`.
+2. **Les 4 surcharges de page** que le geste 1 a rendues visibles : les maquettes
+   *résidentielles* et *entrée* héritaient de la photo du master au lieu de porter la leur.
+   Deux hashes étaient encore résolubles dans le fichier ; deux ont été re-téléchargés depuis S3.
+3. **Un portrait de rassurance** 364×364 sur *À Propos*, dernier écart du recensement complet.
+
+### « Zéro dégradation » — trois preuves indépendantes
+
+L'owner a demandé l'image **nette**. Trois mesures le disent, dont une décisive :
+
+- **`djpeg` (libjpeg)** décode originaux et copies vers des PPM **identiques**. L'écart de
+  taille sur la 3ᵉ (69 968 → 41 621) était **29 603 octets de métadonnées** — profil ICC, bloc
+  Photoshop, EXIF — pas un pixel.
+- **L'aller-retour par le moteur** rend la même longueur et la même somme de contrôle.
+- **Le hash de contenu de Figma, la plus forte.** Figma a recalculé pour mes octets
+  **exactement** les hashes du relevé d'avant-016 : `031815a6a17c`, `dc3a406f3ce6`,
+  `a578caed28b1`. Un hash identique prouve des octets identiques. **Rien n'a été ré-encodé.**
+
+### Ce que ça corrige dans le dépôt
+
+`extract/figma/photo-parity/REPOSE-MANUELLE.md` — qui renvoyait l'owner à un glisser-déposer —
+devient [`REPOSER-UNE-PHOTO.md`](../../extract/figma/photo-parity/REPOSER-UNE-PHOTO.md), et
+**deux de ses affirmations sont corrigées plutôt qu'effacées** :
+
+| affirmation | verdict |
+|---|---|
+| « le thread principal du plugin n'a aucun accès réseau » | **faux** — `fetch` depuis le bac à sable a porté tout le chantier : captures, recensements, octets d'image |
+| « les nouveaux `imageHash` DIFFÉRERONT des originaux » | **faux** — `imageHash` *est* un hash de contenu ; mêmes octets, même hash |
+
+La voie qui marche : les octets bruts servis par le receveur page-parity (`GET /file`), lus
+via `fetch().arrayBuffer()`, puis `figma.createImage()`. **Une image = un appel**, sans base64
+ni plafond de taille — testé jusqu'à 350 690 octets. Et `GET /v1/files/:key/images` **sert
+encore les refs purgées** du document : les objets S3 survivent à la purge.
+
+**La leçon, et c'est la même qu'ailleurs dans ce dépôt** : les quatre « voies fermées » avaient
+été mesurées une fois puis inscrites comme un fait. Trois l'étaient vraiment. La quatrième
+était une erreur de manipulation — receveur non démarré ou port hors plage — promue en limite.
+Une conclusion du dépôt n'est pas un fait ; elle se re-teste avant qu'on renvoie l'owner
+faire le travail à la main.

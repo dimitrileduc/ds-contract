@@ -1,7 +1,7 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 3,
+    "acknowledged": 4,
     "pending": 0,
     "bySurface": {}
   },
@@ -13,6 +13,13 @@
       "subject": "Carte.Bouton",
       "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
       "remedy": "Re-run the component sync script"
+    },
+    {
+      "surface": "figma",
+      "classification": "mismatch",
+      "subject": "Presentation.Bouton (default)",
+      "detail": "Default differs — contract: false, figma: true",
+      "remedy": "Adopt into contract (promotion) or reset the property default"
     },
     {
       "surface": "figma",

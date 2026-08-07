@@ -117,8 +117,39 @@
       "observation": "Pour 031815a6a17c, 86d495b87402 et 715170bb427e : `figma.getImageByHash` rend null (l'image n'est plus referencee, donc purgee) ET `figma.createImageAsync` REFUSE les URLs S3 signees de l'API Figma. La seule voie restante par le pont est le base64 par morceaux (~40k chars/appel), soit ~422 Ko et une douzaine d'appels.",
       "classe": "limite d'outillage nommee",
       "consequence": "Les octets ONT ete recuperes par REST a la version d'avant-016 et deposes dans ~/Desktop/photos-a-reposer-017/, nommes par emplacement. La repose est manuelle. 017 NE LES COMPTE PAS comme restaurees.",
-      "decide": "NON REPARE par le pont. Fichiers fournis a l'owner.",
-      "destination": "repose manuelle par l'owner, ou un outil de transport d'octets par morceaux si le cas se represente",
+      "decide": "REPARE le 2026-08-07 (meme jour). Le titre et l'observation ci-dessus sont conserves tels quels : ils sont exacts comme compte rendu de ce qui avait ete mesure a ce moment-la, et FAUX comme etat actuel.",
+      "correctionDuDiagnostic": {
+        "cequiEtaitFaux": "'ne peuvent pas etre reinjectees par le pont'. La limite n'etait pas reelle : elle venait d'une voie de transport mal evaluee. `fetch()` DEPUIS LE BAC A SABLE fonctionne (c'est la voie qui a porte toutes les captures du chantier) ; l'echec initial venait d'un receveur non demarre ou d'un port hors de la plage 9223-9232, pas d'une interdiction.",
+        "voieRetenue": "Octets bruts servis par le receveur page-parity (GET /file), lus via fetch().arrayBuffer(), puis figma.createImage(). Une image = un appel, sans base64 ni plafond de taille.",
+        "secondeErreurCorrigee": "'Les nouveaux imageHash DIFFERERONT des originaux'. Faux : imageHash EST un hash de contenu. Figma a recalcule exactement les hashes du releve d'avant-016 (031815a6a17c, dc3a406f3ce6, a578caed28b1) — preuve d'octets identiques, plus forte que toute somme maison.",
+        "octetsSourceFinale": "GET /v1/files/:key/images sert ENCORE les refs purgees du document : les objets S3 survivent a la purge. Pas besoin de passer par une version anterieure."
+      },
+      "destination": "aucune",
+      "repareDans": "017 (canevas, 2026-08-07, geste 1 — proofs/vif/recu-repose-complete.json)"
+    },
+    {
+      "id": "D-017-SURCHARGES-DE-PAGE-MANQUANTES",
+      "titre": "Les maquettes residentielles et entree avaient perdu leurs 4 surcharges photo propres et heritaient de celle du master",
+      "decouvertLe": "2026-08-07",
+      "decouvertPar": "017, seconde fenetre — consequence directe du geste 1 : changer la photo du master a fait apparaitre que ces pages n'avaient plus la leur",
+      "surface": "maquettes 230:376 (residentielles) et 237:969 (entree), 2 cartes 743x418 chacune",
+      "observation": "Le releve d'avant-016 enregistre 4 photos `instance-override` distinctes (f08d845e, dc3a406f, cc37fe3b, a578caed). Apres 016 ces surcharges avaient disparu : les 4 emplacements affichaient la photo du master. Consequence visible : une page 'Portes de garage residentielles' illustree par des portes INDUSTRIELLES.",
+      "classe": "perte de surcharge d'instance non couverte par le plan de 016",
+      "decide": "REPARE. 2 hashes encore resolubles dans le fichier (repose directe), 2 octets re-telecharges depuis S3. Les 2 reposes par octets ont recalcule EXACTEMENT le hash du releve.",
+      "destination": "aucune",
+      "repareDans": "017 (canevas, 2026-08-07, geste 2 — proofs/vif/verdict-repose-2.json)"
+    },
+    {
+      "id": "D-017-PRESENTATION-V250-AUTRE-BRANCHE",
+      "titre": "Le master Presentation du canevas est genere depuis un contrat v2.5.0 qui n'est pas dans main",
+      "decouvertLe": "2026-08-07",
+      "decouvertPar": "017, au rafraichissement du cliche de parite — l'ecart etait invisible tant que le cliche datait",
+      "surface": "canevas: master Presentation 2103:2824 | depot: contracts/presentation.contract.json v2.2.0",
+      "observation": "`npm run parity` signale [figma MISMATCH] Presentation.Bouton (default) — contrat false, figma true. Le canevas porte la legende 'generated from contract ds.presentation v2.5.0'. Cette v2.5.0 existe : elle est dans le worktree de la branche 018-odoo-replique-manuelle, avec bouton par defaut a true.",
+      "classe": "chantier concurrent en vol, PAS une derive",
+      "decide": "NI PROMU NI ACQUITTE. Promouvoir detournerait le changement de 018 ; acquitter au baseline.json maquillerait en decision d'owner un chantier en cours. Se resorbe quand 018 atterrit.",
+      "noteMultiEcrivains": "Les zones etaient DISJOINTES (018: master Presentation ; 017: remplissages d'image sur CategoriesPrincipales et les maquettes). Constitution §XI tenue, aucune collision.",
+      "destination": "merge de 018-odoo-replique-manuelle",
       "repareDans": null
     },
     {
@@ -129,9 +160,10 @@
       "surface": "parity/snapshots/figma-components.json",
       "observation": "Le canevas a recu 11 nouvelles legendes, 45+16+17 photos reposees et une inversion d'ordre de plans. Le cliche, lui, date d'avant. `npm run parity` compare donc le contrat a un canevas perime : il reste vert, mais sur un etat qui n'est plus celui du fichier.",
       "classe": "preuve datee d'un etat depasse",
-      "decide": "NON RAFRAICHI dans 017 : le geste demande une capture vive complete au pont, qui est un chantier a part. DIT plutot que masque par un rafraichissement bacle.",
-      "destination": "la prochaine fenetre vive",
-      "repareDans": null
+      "decide": "RAFRAICHI le 2026-08-07. Le cliche est capture sur l'etat vif (58 sets, 2 collections, 64205 octets) en faisant transiter le resultat par le receveur page-parity — `figma_execute` tronque sa SORTIE a ~3770 caracteres.",
+      "cequeLeRafraichissementARevele": "Un ecart que le cliche perime cachait : [figma MISMATCH] Presentation.Bouton (default). Voir D-017-PRESENTATION-V250-AUTRE-BRANCHE. C'est le comportement attendu d'un differentiel — le vert precedent etait plus confortable et moins vrai.",
+      "destination": "aucune",
+      "repareDans": "017 (2026-08-07)"
     }
   ]
 }
