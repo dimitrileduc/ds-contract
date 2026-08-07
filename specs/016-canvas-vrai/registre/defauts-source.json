@@ -730,17 +730,18 @@
    "contractId": null,
    "diagnosticVif": "Les sections locales des maquettes (CategoriesPrincipales, ProduitsECommerce, Hero et catégories…) sont des masters CLIENT non gouvernés dont les cartes nested (ds.carte) avaient des largeurs PAR PAGE (474 sur motorisation ×3, 743 ailleurs) ; le rebuild de ds.carte a re-layouté ces masters et les resize nested ne tiennent pas en auto-layout (reposés 27/27 sans effet mesuré). Écarts résiduels : motorisation +124, dépannage −32, accueil +10, a-propos +4. Réparation propre : gouverner ces sections OU re-poser les layouts des masters locaux — arbitrage owner.",
    "correction": null,
-   "decisionOwnerRequise": null,
-   "decisionOwner": null,
+   "decisionOwnerRequise": true,
+   "decisionOwner": "2026-08-07 — HORS PERIMETRE, DEFINITIVEMENT. L'owner a tranche : les sections locales des maquettes ne seront PAS gouvernees (« on ne l'aura jamais »). Au maximum, un jour, UN seul contrat de mise en page de section — et encore. L'arbitrage ouvert par 016 est donc clos, sans geste.",
    "lotId": null,
    "promotionCodeSide": null,
    "limitesLevees": null,
    "recu": null,
    "cloturePortes": null,
-   "statut": "ouvert",
-   "closLe": null,
+   "statut": "clos",
+   "closLe": "2026-08-07",
    "journal": null,
-   "resultat": null
+   "resultat": "clos sans geste sur decision owner (hors perimetre)",
+   "consequenceAssumee": "Les cartes nested de ces sections gardent des largeurs PAR PAGE et se re-layoutent a chaque rebuild du master ds.carte. Les ecarts residuels mesures par 016 (motorisation +124, depannage -32, accueil +10, a-propos +4) NE SERONT PAS repares et ne doivent pas etre re-ouverts comme des defauts : ils sont la consequence ACCEPTEE de la decision. Toute campagne de mesure future qui les fait remonter doit lire cette entree avant de les compter comme une derive."
   },
   {
    "id": "D-016-REPEAT-SAMPLE-PAR-VARIANTE",

@@ -17,13 +17,44 @@ Ordre imposé par les dépendances — chaque spec dimensionne la suivante, gate
 
 ### 5 — la prochaine (à arbitrer par l'owner), telle que 017 la dimensionne
 
-017 a laissé un ordre de priorité **mesuré**, pas supposé. Par ordre de gêne décroissante :
+> **⚠️ DEUX DÉCISIONS OWNER DU 2026-08-07 RE-CLASSENT CETTE LISTE. À lire avant elle.**
+>
+> **(a) HTML est la surface que l'owner veut REGARDER ; React reste le livrable ; et l'owner
+> NE VEUT PAS mesurer React.** Décision explicite, redite deux fois le 2026-08-07 : *« je veux pas
+> mesurer React »*.
+>
+> `DW-014-002` **sort donc de l'ordonnancement** — non parce qu'il serait refermé, mais parce que
+> l'owner décline le travail. Le fait reste consigné tel quel au registre (`resolvedBy: null` :
+> décliné n'est pas réparé) et il n'est **pas** re-proposé à chaque revue. Ne pas le rouvrir sans
+> une demande explicite.
+>
+> *Rectification du même jour, écrite plutôt que corrigée en silence : cette entrée a d'abord été
+> rédigée « l'instrument mesure désormais la bonne surface, le problème s'évapore » — faux, bâti
+> sur l'hypothèse que HTML devenait le livrable. Puis, la correction faite, elle a été re-écrite
+> en « le trou est entier » — vrai comme fait, mais qui remettait en tête un chantier que l'owner
+> venait de refuser. Les deux dérapages vont dans le même sens : conclure à la place de l'owner.*
+>
+> **(b) Les sections locales des maquettes sont HORS PÉRIMÈTRE, définitivement.**
+> `D-016-SECTIONS-LOCALES-CARTES` est clos sans geste. Au maximum, un jour, **un seul** contrat de
+> mise en page de section. Les écarts résiduels qu'elles produisent (motorisation +124 px,
+> dépannage −32 px, accueil +10, à-propos +4) sont une **conséquence acceptée** : toute campagne
+> de mesure qui les fait remonter doit les lire ici avant de les compter comme une dérive.
+>
+> **Ce qu'il reste alors comme vrai chantier**, dans l'ordre : les 89 littéraux de trait, peinture
+> et typographie encore hors périmètre gouverné (même patron que 015, autre population) — puis
+> `D-016-CARTE-BOUTON` et les plans photo de MemberPicture, plus petits. La limite de schéma
+> `repeat` (`D-016-REPEAT-SAMPLE-PAR-VARIANTE`) reste, elle, à concevoir quand elle gênera.
 
-1. **`DW-014-002` — l'instrument mesure la mauvaise surface.** La parité visuelle rend
-   `emit-html`, **jamais la surface React livrée**. 017 a rendu les huit lignes honnêtes *sur
-   `emit-html`* ; l'angle mort demeure entier, et c'est celui que la feuille de route tient
-   pour « le plus gênant ». Sa destination disait « 015 », 015 ne l'a pas résolu, 017 non plus
-   — c'est la troisième spec qui le croise sans le fermer.
+017 a laissé un ordre de priorité **mesuré**, pas supposé. Par ordre de gêne décroissante *(tel
+qu'établi le 2026-08-06 — **re-classé par les deux décisions ci-dessus**, conservé pour le
+raisonnement)* :
+
+1. ~~**`DW-014-002` — l'instrument mesure la mauvaise surface.**~~ **DÉCLINÉ PAR L'OWNER le
+   2026-08-07** (« je veux pas mesurer React »). Le fait — la parité visuelle rend `emit-html`,
+   jamais la surface React livrée — reste consigné au registre, `resolvedBy: null`. **Ne pas le
+   remettre en tête de liste.** *(Attention en relisant l'historique : `DW-014-002` couvrait
+   **deux** choses. Le volet « React n'est pas border-box » a bel et bien été réparé par 015 T013
+   — c'était la divergence CONNUE entre les deux émetteurs.)*
 2. ~~Le lot de régénération vif~~ — **FAIT le 2026-08-07** : sonde levée (33 instances, 15 ms), 45 photos d'instance + 36 photos de master reposées, clause de légende portée au canevas. Ce qui en reste : **3 images purgées** à reposer à la main (fichiers fournis) et le **cliché de parité à rafraîchir** — il ignore les mutations du 2026-08-07.
 3. **Les deux plans photo de MemberPicture** — `D-017-MEMBER-PICTURE-ORDRE-DES-PLANS` (le contrat
    inverse l'ordre du master, chiffré) et `D-017-MEMBER-PICTURE-SURVOL-2E-PLAN` (deux parts `img`,
@@ -60,12 +91,12 @@ Chacun des restants a son entrée au registre et son reçu re-testé ; aucun n'a
 | Id | Ce que c'est | Poids |
 |---|---|---|
 | `D-016-CARTE-BOUTON` | **Le bouton des cartes du CONTRAT est infidèle à l'origine** : `ds.carte` (variante Categorie) rend une part unique `action` là où le master d'origine porte trois enfants (Pdf · Libellé · Download/ArrowRight) avec des glyphes choisis par page. Révélé par le PREMIER rebuild du master, jamais reconstruit avant 016. | Petit à écrire, **gros à voir** — c'est le principal reste du diff pixel des maquettes à cartes |
-| `D-016-SECTIONS-LOCALES-CARTES` | **Les sections client ne sont pas gouvernées** (CategoriesPrincipales, ProduitsECommerce, Hero-et-catégories…) : elles portent des cartes `ds.carte` à des largeurs PAR PAGE et se re-layoutent au rebuild du master ; les resize d'instance ne tiennent pas en auto-layout (27/27 posés, sans effet mesuré). Résiduel : motorisation +124 px, dépannage −32 px. | **Arbitrage owner OUVERT** : les gouverner (plusieurs nouveaux contrats — une spec) ou re-poser leurs layouts une fois (rapide, mais ça re-sautera) |
+| ~~`D-016-SECTIONS-LOCALES-CARTES`~~ | **Les sections client ne sont pas gouvernées** (CategoriesPrincipales, ProduitsECommerce, Hero-et-catégories…) : cartes `ds.carte` à des largeurs PAR PAGE, re-layout au rebuild du master. Résiduel : motorisation +124 px, dépannage −32 px. | **TRANCHÉ le 2026-08-07 — HORS PÉRIMÈTRE, définitivement.** « On ne l'aura jamais » ; au maximum, un jour, **un seul** contrat de mise en page de section. Les écarts résiduels ci-contre **ne seront pas réparés** et ne doivent pas être re-ouverts comme des défauts : ils sont la conséquence **acceptée** de la décision |
 | `D-016-REPEAT-SAMPLE-PAR-VARIANTE` | **Un `repeat` n'a qu'un `sample` pour toutes les variantes** : la variante « 5 cartes » de `ds.reassurances` reperd sa 5e carte (et sa photo) à chaque rebuild. Limite de schéma nommée — `repeat.sampleByProp` ou équivalent à concevoir. | Moyen — une extension de schéma, additive ; d'ici là tout amend de ce master doit re-poser la carte |
-| `DW-014-002` | **La parité visuelle rend `emit-html`, jamais la surface React livrée.** Sa destination au registre disait « 015 » — 015 ne l'a pas résolu. Conséquence vivante : la seule surface que les consommateurs installent n'est mesurée par rien sur cet axe. | Moyen, et c'est le plus gênant — un angle mort d'instrument, exactement la classe de défaut que 014 existe pour refuser |
+| ~~`DW-014-002`~~ | **La parité visuelle rend `emit-html`, jamais la surface React livrée.** Le fait reste vrai. | **DÉCLASSÉ le 2026-08-07** : HTML est désormais la surface d'intérêt, et c'est celle que l'instrument mesure. Reste au registre, `resolvedBy: null` — déclassé n'est pas réparé |
 | `DW-014-003` | `texte-seo` : le titre rich-text est aplati et sa typographie n'est pas liée à travers la composition `ds.texte-seo → ds.section-header`. Seul travail de cause `contract-geometry` encore ouvert. | Moyen — demande de porter une marque rich-text ET une typographie par-disposition à travers une composition imbriquée |
 | — | **30 des 69 pointeurs** `/literals/` d'`audit-campaign.json` visent l'ancien emplacement après les conversions de 015 → faux négatifs « le contrat ne porte pas ce fait ». | Mécanique mais substantiel ; le fichier appartient à 013, à ne pas réécrire sans revue |
-| — | **89 littéraux** de trait, peinture et typographie restent hors périmètre gouverné, donc invisibles au contrôle. La suite naturelle de 015. | Une spec entière si on la veut — même patron que 015, autre population |
+| — | ~~89~~ **55 littéraux** de typographie (38), peinture (15) et trait (2) restent hors périmètre gouverné, donc invisibles au contrôle. La suite naturelle de 015. *(Chiffre **re-compté le 2026-08-07** : 79 littéraux au total dans les 34 contrats, dont 24 de famille géométrique déjà couverts par `npm run geometry:gate` — qui passe, 0 invisible. Le « 89 » précédent était repris de main en main sans être mesuré.)* | Une spec entière si on la veut — même patron que 015, autre population. **C'est le seul chantier de taille qui subsiste** une fois retirés : les états (hors périmètre — la source Figma n'a pas d'axe State, cf. `evals/REMOVED-CASES.md`), le plancher de rendu texte (accepté par l'owner : « on fait avec, on sait rien faire d'autre »), la mesure de React (déclinée) et les sections locales (hors périmètre) |
 
 Short version — four phases, each with a falsifiable exit criterion:
 
