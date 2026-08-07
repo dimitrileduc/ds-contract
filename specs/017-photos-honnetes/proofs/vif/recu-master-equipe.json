@@ -1,0 +1,35 @@
+{
+ "schemaVersion": 1,
+ "nom": "017 — le MASTER Equipe avait perdu ses 16 portraits, restaure",
+ "executeLe": "2026-08-07T07:48:00Z",
+ "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+ "noeud": {
+  "id": "2115:3947",
+  "type": "COMPONENT",
+  "page": "DS · Organisms",
+  "nom": "Equipe"
+ },
+ "pointDeRestauration": {
+  "nom": "017/master-equipe-photos/avant",
+  "versionId": "2384885921444183927"
+ },
+ "declencheur": "L'owner voyait la meme photo sur les 16 cartes APRES la restauration des instances. Cause : il regardait le MASTER (DS · Organisms), pas l'instance de maquette (page Pages). Deux noeuds de meme taille 1728x1890, un seul avait ete traite.",
+ "preuveHistorique": {
+  "methode": "REST /v1/files/:key/nodes?ids=2115:3947&version=... sur la version epinglee par le plan de 016",
+  "versionAvant016": "2384251202054787848",
+  "imagesDistinctesAvant016": 17,
+  "imagesDistinctesAvantCeGeste": 2,
+  "conclusion": "Le master AVAIT les 16 portraits. La perte n'est pas voulue : c'est le meme effondrement que sur les instances. Le plan de restauration de 016 ne couvrait que 14 hotes de maquette ; le master est le 15e, jamais liste."
+ },
+ "confirmationOrdreDesPlans": "Dans l'etat d'avant-016, `fun-ia` est a l'index 0 et `normal` a l'index 1 — donc `normal` DESSUS. 016 avait aussi inverse l'ordre. L'inversion faite le matin meme (recu-ordre-plans.json) a donc RESTAURE l'ordre d'origine, ce qui n'etait pas su a ce moment-la.",
+ "geste": "16 fills IMAGE reposes sur les noeuds `normal` du master, par position, hashes de l'etat d'avant-016.",
+ "verification": {
+  "reposees": 16,
+  "refus": 0,
+  "planVisible": "normal",
+  "portraitsDistincts": 16,
+  "captureImage": "figma_capture_screenshot sur 2115:3947 — 16 visages differents, verifie A L'IMAGE et non sur la donnee"
+ },
+ "verdict": "vert",
+ "lecon": "Deux noeuds peuvent porter le meme nom, la meme taille et des etats opposes. Avant d'affirmer « c'est repare », identifier LE noeud que l'owner regarde — et conclure sur une CAPTURE, jamais sur un compte de hashes."
+}
