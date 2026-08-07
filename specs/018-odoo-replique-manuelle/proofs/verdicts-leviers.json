@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "instance": {
+    "odooVersion": "19.0",
+    "image": "odoo:19.0-20260803",
+    "montéeLe": "2026-08-06",
+    "détruiteLe": "2026-08-07"
+  },
+  "$avertissementDePortee": "CES VERDICTS PORTENT SUR UN MONTAGE INCOMPLET, et c'est dit avant les verdicts eux-mêmes pour qu'aucun ne se lise plus favorablement qu'il ne l'est. Les tâches T031–T033 (les composants de réglages OWL, un par composant) et T034–T035 (les leviers L2 et L3) N'ONT PAS ÉTÉ ÉCRITES. Le module posé sur l'instance porte donc son balisage de verrouillage (L1) mais AUCUNE couche de réglages. Ce que les gestes ci-dessous mesurent est l'état d'un bloc gouverné uniquement par son balisage — un état intermédiaire réel et instructif, pas le montage complet que la spec décrivait.",
+  "verdicts": [
+    {
+      "levier": "L1",
+      "intitule": "verrouiller la structure — plus rien d'intérieur ne se supprime, se déplace ou se duplique",
+      "verdict": "lâché",
+      "mecanisme": "`o_not_editable` sur le conteneur de structure + `oe_unremovable oe_unmovable` sur chaque élément intérieur, comme Odoo le compose sur son propre `s_dynamic_snippet`.",
+      "preuve": "Geste : page enregistrée, rouverte en édition, puis clic sur un élément intérieur. Résultat observé — LES MARQUEURS SURVIVENT (relevé dans l'éditeur : 8 `oe_unremovable`, 8 `oe_unmovable`, 1 `o_not_editable`, tous encore présents après enregistrement puis réouverture). MAIS l'éditeur propose toujours, sur la sélection : « Drag and move », « Duplicate », « Remove », « Duplicate this block », « Remove this block ». Et surtout : les zones que le tableau des zones déclare FIGÉES sont éditables au clavier — relevé `isContentEditable` sur la page rouverte : colonne gauche = true, titre de l'en-tête = true, libellé du bouton = true.",
+      "remplacant": "AUCUN trouvé à ce stade. La cause est identifiée et elle est structurelle : `o_not_editable` ferme les RÉGLAGES et l'usage comme zone de dépôt sur son sous-arbre — il ne ferme pas l'édition de texte. L'éditabilité vient de l'ancêtre `.container`, que nous avons mis nous-mêmes pour rendre le texte modifiable (research.md §D13), et elle est HÉRITÉE par tout le sous-arbre. Les deux besoins entrent en collision dans le même balisage : le mécanisme qui ouvre le texte de la colonne droite ouvre aussi celui de la colonne gauche. Fermer l'un sans l'autre demanderait un `contenteditable=\"false\"` explicite par élément figé, ou une contribution `content_editable_selectors` restrictive depuis un Plugin — ni l'un ni l'autre n'a été tenté.",
+      "raison": null
+    },
+    {
+      "levier": "L2",
+      "intitule": "empêcher un réglage natif d'apparaître, sans le neutraliser",
+      "verdict": "lâché",
+      "mecanisme": "Voie passive prévue : ne pas correspondre au `static selector` des options natives. Non complétée — T034 n'a pas été écrite.",
+      "preuve": "Geste : cliquer successivement la section, le texte, la colonne gauche et le titre de l'en-tête, et relever TOUT ce que le panneau affiche. Résultat observé — le panneau affiche EXACTEMENT LA MÊME CHOSE aux quatre clics, et rien de ce qu'il affiche n'a été déclaré par nous : « Background Colors », « Content Width », « Height : Auto / 50% / 100% », « Visibility : No condition / Conditionally ». Ce sont des options NATIVES d'Odoo, remontées sur notre bloc. Nous n'avons déclaré aucun réglage (T031–T033 non écrites), donc 100 % de ce qui s'affiche est natif et non déclaré.",
+      "remplacant": "Aucun tenté. Le fait mesuré est que la voie passive NE SUFFIT PAS À ELLE SEULE : notre `<section class=\"s_piqueray_presentation\">` correspond au sélecteur générique `section` d'options natives, et il y correspond parce qu'un snippet Odoo DOIT être une `<section>`. Les classes d'exclusion documentées (`s_col_no_resize`, `s_nb_column_fixed`, `s_col_no_bgcolor`, `o_snippet_not_selectable`) n'ont pas été essayées.",
+      "raison": null
+    },
+    {
+      "levier": "L3",
+      "intitule": "tronquer ce qui remonte du parent",
+      "verdict": "non exercé",
+      "mecanisme": null,
+      "preuve": null,
+      "remplacant": null,
+      "raison": "T035 n'a pas été écrite, et le geste n'a pas été tenté. Rendre un verdict ici demanderait d'observer l'empilement des blocs de réglages par ancêtre (`getClosestElements`), ce qui suppose d'abord d'avoir des réglages à nous — donc T031–T033. Un verdict `tenu` ou `lâché` établi sans ce geste serait un verdict par lecture de code, que l'invariant V4 interdit."
+    },
+    {
+      "levier": "L4",
+      "intitule": "rouvrir une image dans un cadre figé",
+      "verdict": "non exercé",
+      "mecanisme": null,
+      "preuve": null,
+      "remplacant": null,
+      "raison": "AUCUN des trois contrats de la chaîne ne porte d'image. L'exercer aurait demandé soit un bloc d'essai hors chaîne — qui mesure un montage qui n'est pas le montage —, soit faire entrer une image dans la chaîne, ce qui contredit la raison écrite de son choix. Connu d'avance, et le compte reste 4 sur 4 : l'invariant V5 refuse un 4/4 obtenu en élargissant le périmètre."
+    }
+  ],
+  "$ceQuiEstTENUmalgreTout": "Un fait positif, mesuré, et qu'il serait malhonnête de noyer dans les verdicts négatifs : FR-012 / SC-005 TIENT sur la zone déclarée modifiable. Le texte de présentation est ENCORE éditable après enregistrement PUIS réouverture, et son ancêtre éditable est bien `.container` — exactement le mécanisme que research.md §D13 avait identifié, obtenu sans un seul attribut ni une ligne de JavaScript. La réduction de coût que ce choix de balisage achète est donc RÉELLE et confirmée en fonctionnement. Ce qui a lâché n'est pas ce mécanisme : c'est l'impossibilité de le refermer sélectivement sur les zones voisines.",
+  "$lectureDuResultat": "Deux leviers lâchés, deux non exercés, zéro tenu. Ce n'est PAS un échec de la spec — FR-016 dit exactement cela : « un levier qui lâche est un résultat ». Et le résultat est net : sur un montage à balisage seul, Odoo 19 laisse remonter ses propres réglages et laisse le texte éditable partout où un ancêtre l'est. La gouvernance promise n'est pas obtenue par le balisage ; elle demande la couche de réglages (T031–T035), dont le coût reste donc NON MESURÉ. C'est l'angle mort principal du rapport de décision."
+}

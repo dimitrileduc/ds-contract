@@ -1,0 +1,22 @@
+=== T053 · non-dérives et périmètre, À LA CLÔTURE ===
+date : 2026-08-07T05:52:11Z
+
+--- 1. les trois non-dérives attendues (research.md §D2) ---
+(vide ci-dessus = LES TROIS TIENNENT)
+
+--- 2. ce que 018 s'interdisait de toucher ---
+(vide ci-dessus = aucun contrat, aucun token, aucun src/, aucun figma-sync/ touché)
+
+--- 3. le périmètre RÉEL de code de dépôt (hors specs/) ---
+ CLAUDE.md                 |  7 +++-
+ ROADMAP.md                |  8 +++++
+ docs/03-token-pipeline.md | 24 ++++++++++++-
+ evals/results.json        |  9 +++--
+ evals/run.ts              | 87 +++++++++++++++++++++++++++++++++++++++++++++++
+ scripts/build-tokens.mjs  | 69 ++++++++++++++++++++++++++++++++-----
+ 6 files changed, 191 insertions(+), 13 deletions(-)
+
+--- 4. rappel de la nuance relevée en T009 ---
+evals/results.json bouge aussi : c'est le journal que la porte écrit à chaque
+exécution, pas une édition de 018. Il portait 193 avant, 194 après (un cas ajouté).
+Le périmètre RÉDIGÉ par 018 reste : build-tokens.mjs, evals/run.ts, 03-token-pipeline.md.

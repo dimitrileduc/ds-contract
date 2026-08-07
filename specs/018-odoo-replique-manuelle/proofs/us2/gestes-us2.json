@@ -1,0 +1,76 @@
+[
+  {
+    "geste": "rouvrir en édition la page ENREGISTRÉE (l étape qui tue FR-012 si elle tue)",
+    "resultat": "bloc retrouvé dans l éditeur"
+  },
+  {
+    "geste": "FR-012 / SC-005 · éditabilité APRÈS enregistrement puis réouverture",
+    "resultat": {
+      "MODIFIABLE_texte": true,
+      "FIGE_colGauche": true,
+      "FIGE_titreEnTete": true,
+      "FIGE_libelleBouton": true,
+      "ancetreEditable": "container",
+      "marqueursSurvivants": {
+        "unremovable": 8,
+        "unmovable": 8,
+        "notEditable": 1
+      }
+    }
+  },
+  {
+    "geste": "SC-004 · cliquer la SECTION (racine)",
+    "resultat": {
+      "longueur": 147,
+      "contenu": "DiscardSaveBlocks Style ThemePiqueray · PrésentationBackground ColorsContent Width HeightAuto50%100%VisibilityNo conditionConditionallyNo condition"
+    }
+  },
+  {
+    "geste": "SC-004 · cliquer le TEXTE (déclaré modifiable)",
+    "resultat": {
+      "longueur": 147,
+      "contenu": "DiscardSaveBlocks Style ThemePiqueray · PrésentationBackground ColorsContent Width HeightAuto50%100%VisibilityNo conditionConditionallyNo condition"
+    }
+  },
+  {
+    "geste": "SC-004 · cliquer la COLONNE GAUCHE (déclarée figée)",
+    "resultat": {
+      "longueur": 147,
+      "contenu": "DiscardSaveBlocks Style ThemePiqueray · PrésentationBackground ColorsContent Width HeightAuto50%100%VisibilityNo conditionConditionallyNo condition"
+    }
+  },
+  {
+    "geste": "SC-004 · cliquer le TITRE de l en-tête (figé)",
+    "resultat": {
+      "longueur": 147,
+      "contenu": "DiscardSaveBlocks Style ThemePiqueray · PrésentationBackground ColorsContent Width HeightAuto50%100%VisibilityNo conditionConditionallyNo condition"
+    }
+  },
+  {
+    "geste": "L1 · quels outils l éditeur propose-t-il sur un élément intérieur ?",
+    "resultat": {
+      "boutons": [
+        "Home Menu",
+        "Toggle menu",
+        "Mobile Preview",
+        "Tip: Esc to preview",
+        "save",
+        "Create and copy a link targeti",
+        "Save this block to use it else",
+        "Duplicate this block",
+        "Remove this block",
+        "Color",
+        "Image",
+        "Video",
+        "Shape",
+        "Fit content",
+        "Half screen",
+        "Full screen",
+        "Toggle more options",
+        "Drag and move",
+        "Duplicate",
+        "Remove"
+      ]
+    }
+  }
+]

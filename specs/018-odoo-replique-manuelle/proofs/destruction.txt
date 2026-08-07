@@ -1,0 +1,32 @@
+=== T054 · destruction de l'instance jetable ===
+date : 2026-08-07T05:44:03Z
+
+--- docker compose -p odoo19 down -v --remove-orphans ---
+ Container odoo19-web-1 Stopping 
+ Container odoo19-web-1 Stopped 
+ Container odoo19-web-1 Removing 
+ Container odoo19-web-1 Removed 
+ Container odoo19-db-1 Stopping 
+ Container odoo19-db-1 Stopped 
+ Container odoo19-db-1 Removing 
+ Container odoo19-db-1 Removed 
+ Network odoo19_default Removing 
+ Volume odoo19_odoo19-db-data Removing 
+ Volume odoo19_odoo19-web-data Removing 
+ Volume odoo19_odoo19-web-data Removed 
+ Volume odoo19_odoo19-db-data Removed 
+ Network odoo19_default Removed 
+EXIT=0
+
+--- vérification qu'il ne reste RIEN ---
+conteneurs : 0
+volumes    : 0
+réseaux    : 0
+
+(les trois doivent valoir 0)
+
+--- les images sont CONSERVÉES à dessein ---
+postgres:15  633MB
+odoo:19.0-20260803  3.28GB
+  → ce sont elles qui rendent le prochain montage rapide. quickstart.md §5 :
+     « facultatif, et généralement à ne pas faire ».

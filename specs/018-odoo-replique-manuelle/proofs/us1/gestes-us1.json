@@ -1,0 +1,22 @@
+[
+  {
+    "geste": "poser la section « Piqueray · Présentation » depuis le panneau",
+    "resultat": "ÉCHEC — bloc absent de la page éditée"
+  },
+  {
+    "geste": "enregistrer la page",
+    "resultat": "clic effectué, http://localhost:8069/"
+  },
+  {
+    "geste": "recharger la page publique (contexte neuf, sans cookie)",
+    "resultat": {
+      "parts": 9,
+      "sectionHeader": true,
+      "presentation": true,
+      "bouton": true,
+      "contenteditableRestants": 0,
+      "oEditableRestants": 0,
+      "unremovable": 8
+    }
+  }
+]

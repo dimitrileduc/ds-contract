@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "regleVersion": "1",
+  "releveLe": "2026-08-07",
+  "$commandeDeReleve": "wc -l sur chaque fichier écrit à la main, puis découpe code / commentaire / vide par un script qui marque les blocs <!-- --> et /* */ (invariant M6 : compté par exécution, la commande est consignée).",
+  "$distinctionQuiChangeTout": "899 lignes ont été écrites, mais 306 (34 %) sont des COMMENTAIRES et 88 sont vides. Un émetteur ne rédige pas les justifications que ce montage porte — il émettrait au mieux un en-tête de provenance. Le volume qui doit entrer dans le chiffrage est donc les 505 LIGNES DE CODE, et compter les 899 gonflerait artificiellement l'argument en faveur d'un émetteur. C'est le sens du corollaire du §1 : le volume ne décide de rien, l'origine décide de tout.",
+  "$portee": "Ce relevé couvre un montage INCOMPLET. T031–T035 (les composants de réglages OWL et les leviers L2/L3) n'ont pas été écrites : il y a 0 ligne de `js-owl` et 0 de `xml-owl`. Le coût du mécanisme de réglages — celui que la US2 a montré nécessaire — est donc NON MESURÉ, et c'est l'angle mort principal du rapport.",
+  "composants": [
+    {
+      "contractId": "les trois (feuille commune)",
+      "fichiers": [
+        {
+          "chemin": "module/piqueray_ds/static/src/css/components.css",
+          "type": "css",
+          "lignes": 297,
+          "mecanique": 279,
+          "casParticulier": 18,
+          "postes": [
+            {
+              "libelle": "renommage var(--x) → var(--pqr-x) de la feuille de référence",
+              "classe": "mecanique",
+              "lignes": 191,
+              "origine": "la sortie de `emitHtml` pour ds.presentation, qui contient déjà, dédupliquée et dans l'ordre des dépendances, celle de ds.button et ds.section-header. 52 occurrences renommées, 2 laissées (--dsc-*, propriétés internes au moteur). Un émetteur produirait cette feuille directement depuis les contrats et les jetons : rien à trancher.",
+              "justification": null
+            },
+            {
+              "libelle": "les 19 règles de glyphe + la règle de base .pqr-glyph",
+              "classe": "mecanique",
+              "lignes": 88,
+              "origine": "contracts/icons.registry.json v1.2.0 — une règle par `icons[].name`, vers `assets/icons/<icons[].asset>.svg`. Répétitif n'est pas la même chose que non mécanique : 19 entrées dérivées d'un registre gouverné sont exactement le genre de travail qu'un émetteur fait à coût nul.",
+              "justification": null
+            },
+            {
+              "libelle": "les 2 glyphes à couleur figée, repassés en image de fond",
+              "classe": "cas-particulier",
+              "lignes": 18,
+              "origine": null,
+              "justification": "JUGEMENT RENDU : 17 des 19 SVG portent `fill=\"currentColor\"` et suivent la couleur du texte ; `star` (#F98A0B) et `octicon-chevron-down12` (white) portent une couleur figée. Un masque uniforme les aurait rendus dans la couleur du texte et effacé la leur — une étoile grise est un défaut visible. Décidé : la fidélité de couleur l'emporte sur l'uniformité du mécanisme. Le contrat ne dit RIEN de ce conflit ; il fallait ouvrir les 19 fichiers pour le voir. Un émetteur pourrait apprendre cette règle (« si le SVG ne porte pas currentColor, ne pas masquer »), mais il faut d'abord que quelqu'un la formule."
+            }
+          ]
+        },
+        {
+          "chemin": "module/piqueray_ds/static/src/css/fonts.css",
+          "type": "asset",
+          "lignes": 28,
+          "mecanique": 28,
+          "casParticulier": 0,
+          "postes": [
+            {
+              "libelle": "4 déclarations @font-face",
+              "classe": "mecanique",
+              "lignes": 28,
+              "origine": "les 4 poids de `font.weight` du vocabulaire (400/500/600/700), qui correspondent exactement aux 4 faces que le harnais de mesure embarque. La liste se dérive du vocabulaire de jetons.",
+              "justification": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contractId": "ds.button + ds.section-header + ds.presentation (gabarits)",
+      "fichiers": [
+        {
+          "chemin": "module/piqueray_ds/views/templates.xml",
+          "type": "xml-qweb",
+          "lignes": 63,
+          "mecanique": 55,
+          "casParticulier": 8,
+          "postes": [
+            {
+              "libelle": "les 3 gabarits, leur balisage, leurs classes de variante et leurs t-call",
+              "classe": "mecanique",
+              "lignes": 41,
+              "origine": "l'anatomie des 3 contrats : une part → un élément, un `component` → un `t-call`, un `visibleWhen` → un `t-if`, une prop d'énumération → une classe modificatrice. La correspondance est écrivable comme règle et se transpose à n'importe quel autre composant du catalogue.",
+              "justification": null
+            },
+            {
+              "libelle": "le balisage de verrouillage oe_unremovable/oe_unmovable/o_not_editable",
+              "classe": "mecanique",
+              "lignes": 14,
+              "origine": "les 3 tableaux des zones : toute part que le tableau ne déclare pas modifiable reçoit les classes. Entièrement dérivable — c'est le chiffre que research.md §D11 annonçait comme « en faveur d'un émetteur », et il l'est : 14 lignes de code sans une once de jugement.",
+              "justification": null
+            },
+            {
+              "libelle": "le bouton livré PRÉSENT mais masqué (.presentation__cta.d-none)",
+              "classe": "cas-particulier",
+              "lignes": 8,
+              "origine": null,
+              "justification": "JUGEMENT RENDU : le contrat dit `visibleWhen: {prop: bouton}` avec défaut `false`, ce qui se traduirait naïvement par « ne pas émettre le bouton ». Mais un snippet Odoo est rendu UNE FOIS à la pose puis stocké en HTML : un réglage postérieur manipule ce DOM, il ne re-rend pas le gabarit. Un bouton absent serait donc irrécupérable. Décidé : le livrer présent et masqué. Ce n'est pas dans le contrat ; c'est une contrainte du modèle d'exécution d'Odoo, qu'il fallait comprendre avant d'écrire la ligne."
+            }
+          ]
+        },
+        {
+          "chemin": "module/piqueray_ds/views/snippets.xml",
+          "type": "xml-qweb",
+          "lignes": 11,
+          "mecanique": 11,
+          "casParticulier": 0,
+          "postes": [
+            {
+              "libelle": "la déclaration de bloc posable par héritage xpath",
+              "classe": "mecanique",
+              "lignes": 11,
+              "origine": "une entrée par contrat déclaré posable — ici un seul. L'attribut `group` se dérive de la catégorie du composant. NOTE : c'est précisément l'attribut que le montage à la main a OUBLIÉ, et dont l'absence ne se voyait ni à l'installation ni dans aucun journal. Un émetteur ne l'oublierait pas — c'est un argument en sa faveur qui vaut plus que ses 11 lignes.",
+              "justification": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contractId": "(instrument de mesure — n'appartient à aucun contrat)",
+      "fichiers": [
+        {
+          "chemin": "module/piqueray_ds/views/harness.xml",
+          "type": "xml-qweb",
+          "lignes": 72,
+          "mecanique": 0,
+          "casParticulier": 72,
+          "postes": [
+            {
+              "libelle": "les 3 pages de mesure et leur cadre",
+              "classe": "cas-particulier",
+              "lignes": 72,
+              "origine": null,
+              "justification": "JUGEMENT RENDU : ces pages ne dérivent d'AUCUN contrat — elles existent parce que les trois composants doivent être capturables séparément alors qu'un seul est posable, et parce que le protocole exige un clip d'origine et de taille identiques des deux côtés. Chaque décision qu'elles portent est un arbitrage de mesure : page nue plutôt que `website.layout` (le squelette déplacerait le composant), `t-call-assets` pour garder le vrai cadre CSS, props alignées vignette par vignette sur le showcase de référence. Un émetteur de composants n'aurait aucune raison de produire ça. Compté à part, et EXCLU du coût par composant : le porter au débit de la réplique fausserait le chiffrage."
+            }
+          ]
+        },
+        {
+          "chemin": "module/piqueray_ds/__manifest__.py",
+          "type": "asset",
+          "lignes": 34,
+          "mecanique": 26,
+          "casParticulier": 8,
+          "postes": [
+            {
+              "libelle": "manifeste, dépendances, déclaration des bundles",
+              "classe": "mecanique",
+              "lignes": 26,
+              "origine": "la liste des fichiers du module et les deux bundles connus (`web.assets_frontend`, `website.website_builder_assets`). Boilerplate dérivable.",
+              "justification": null
+            },
+            {
+              "libelle": "la clé `description` en RST plat",
+              "classe": "cas-particulier",
+              "lignes": 8,
+              "origine": null,
+              "justification": "JUGEMENT RENDU, et trouvé par un défaut : sans cette clé, Odoo se rabat sur le README du module et le rend comme du reStructuredText. Notre README étant en Markdown, ses séparateurs de tableau devenaient des substitutions RST non définies et l'installation imprimait 2 lignes ERROR — ce qui faisait rater SC-001 pour une raison sans aucun rapport avec le module. Rien dans le contrat ne le dit ; il a fallu lire le journal d'installation."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "totaux": {
+    "lignesEcritesToutesCategories": 899,
+    "commentaires": 306,
+    "vides": 88,
+    "lignesDeCode": 505,
+    "mecanique": 399,
+    "casParticulier": 106,
+    "partMecanique": "79 %",
+    "$verification": "399 + 106 = 505 ✓ (invariant M2 : le compte ferme sur chaque fichier et au total)",
+    "$horsInstrument": "En retirant les 72 lignes de l'instrument de mesure, qui n'appartient à aucun contrat : 433 lignes de code pour la RÉPLIQUE elle-même, dont 399 mécaniques et 34 de cas particulier — soit 92 % de mécanique.",
+    "$parLigneGeneree": "Le dénominateur de référence est 554 lignes de CSS produites par emitHtml pour la chaîne (rendu frais, relevé T004 — et non les 546 de core/samples, périmé de deux versions de contrat)."
+  },
+  "nonClassees": []
+}
