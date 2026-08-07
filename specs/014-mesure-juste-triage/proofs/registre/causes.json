@@ -82,7 +82,9 @@
       "rawPct": 1.8376109056184122,
       "cause": "contract-geometry",
       "receiptId": "org-texte-seo-geometry-deferred",
-      "aggregateOf": ["DW-014-003"],
+      "aggregateOf": [
+        "DW-014-003"
+      ],
       "note": "Compte délégué à deferredWork DW-014-003 (2026-08-04, Phase 6/015, T059, décision owner) — le fait sous-jacent (rich-text/typographie non liées dans la composition section-header) reste réel, nommé et non résolu. `aggregateOf` retire cette LIGNE du décompte actif de `contract-geometry` (elle est la CONSÉQUENCE du fait DW-014-003, compté séparément) sans revendiquer une résolution qui n'a pas eu lieu — DW-014-003 vit dans `deferredWork`, jamais dans `entries`, donc jamais compté nulle part : suivi, jamais silencieux, jamais faussement clos."
     },
     {
@@ -90,7 +92,11 @@
       "rawPct": 1.0439991325748406,
       "cause": "contract-geometry",
       "receiptId": "org-footer-geometry",
-      "aggregateOf": ["DW-001", "DW-004", "DW-005"]
+      "aggregateOf": [
+        "DW-001",
+        "DW-004",
+        "DW-005"
+      ]
     },
     {
       "key": "sav/sav-master-defaults",
@@ -182,10 +188,11 @@
       "priorReceipt": "Le commentaire de core/emit-html.ts porte déjà la preuve de ce que la règle évite : « sans elle, chaque part liant width/height + padding gonflait du padding — reçu de parité visuelle : piste du Switch 36×24 contre 32×20 chez Figma ».",
       "ownerRuling": "2026-08-04 — oubli, pas un choix délibéré. À corriger.",
       "whyNotFixedHere": "SC-005 : 0 sortie générée retouchée. Le correctif change le rendu des 9 contrats et impose une re-mesure — c'est du travail de 015, pas d'une spec de mesure.",
-      "destination": "015 — à traiter AVANT la conversion des littéraux : la règle décide quelle boîte le token décrit",
+      "destination": "re-ordonnancee le 2026-08-07 : plus bloquante tant que HTML est la surface d'interet. A reprendre seulement si React redevient un livrable surveille. (Le volet box-sizing de cette entree, lui, a bien ete repare par 015 T013 — voir le champ `note`.)",
       "verdictImpact": "divergent",
       "status": "deferred",
-      "note": "RÉPARÉ par 015 Phase 3 (T013) — voir specs/015-geometrie-gouvernee/proofs/recus/box-model-unification.md. Statut laissé 'deferred' ici : ce document appartient au registre de 014 (jamais réécrit par 015 en dehors des champs resolvedBy explicitement documentés) et le compte deferredWork n'affecte pas le verdict pass/fail — nommé pour ne pas induire en erreur un lecteur futur, pas silencieusement laissé faux."
+      "note": "RÉPARÉ par 015 Phase 3 (T013) — voir specs/015-geometrie-gouvernee/proofs/recus/box-model-unification.md. Statut laissé 'deferred' ici : ce document appartient au registre de 014 (jamais réécrit par 015 en dehors des champs resolvedBy explicitement documentés) et le compte deferredWork n'affecte pas le verdict pass/fail — nommé pour ne pas induire en erreur un lecteur futur, pas silencieusement laissé faux.",
+      "ownerRulingScope": "2026-08-07 — RE-PRIORISE PAR L'OWNER, PAS RESOLU. L'owner a declare que la surface qui l'interesse desormais est HTML, pas React. Or l'instrument de parite visuelle rend justement `emit-html` : l'angle mort decrit dans `whyTheInstrumentCannotSeeIt` porte sur une surface qui n'est plus celle du produit. Le FAIT reste vrai (React n'est mesure par rien sur cet axe) et l'entree reste au registre avec resolvedBy=null — la marquer resolue la sortirait du compte imprime comme si elle etait reparee, ce qu'elle n'est pas. Ce qui change est son RANG : elle cesse d'etre le premier chantier de la feuille de route."
     },
     {
       "id": "DW-014-003",
