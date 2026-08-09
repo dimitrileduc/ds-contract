@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "sectionId": "formulaire",
+  "referenceDecisionId": "020-reference-formulaire-20260809",
+  "findings": [
+    {
+      "findingId": "020-formulaire-orphan-props",
+      "surface": "figma",
+      "significance": "significant",
+      "description": "Des propriétés composées sont exposées sur le master mais ne pilotent aucun nœud enfant.",
+      "cause": "renderer-fault",
+      "referenceEvidenceIds": [
+        "decision:020-reference-formulaire-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#formulaire"
+      ],
+      "status": "routed"
+    }
+  ],
+  "surfaces": {
+    "figma": "compared",
+    "contract": "compared",
+    "render": "compared"
+  },
+  "evidenceRefs": [
+    "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json"
+  ]
+}

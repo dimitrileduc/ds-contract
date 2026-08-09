@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "020-figma-contract-readiness",
+  "consultedDocs": [
+    "docs/handoff/00-README.md",
+    "docs/handoff/03-determinism.md",
+    "docs/FIGMA-CAPABILITY-MATRIX.md",
+    "docs/STYLE-FIDELITY.md",
+    "specs/013-auditer-fidelite-organismes/proofs/REPORT.md",
+    "specs/016-canvas-vrai/proofs/FINAL3/verdict.json",
+    "specs/017-photos-honnetes/proofs/vif/recu-ordre-plans.json",
+    "specs/019-odoo-production-foundation/proofs/visual-summary.json"
+  ],
+  "expectedSections": ["coordonnees", "devis", "equipe", "faq", "formulaire", "header", "hero", "footer", "reassurances", "sav", "texte-seo"],
+  "ownerDecisionRegistry": "specs/020-figma-contract-readiness/registry/owner-decisions.json",
+  "odoo019InputLock": "integrations/odoo/config/inputs.lock.json",
+  "sections": [
+    {"sectionId":"coordonnees","displayName":"Coordonnees","contractPath":"contracts/coordonnees.contract.json","masterNodeId":"2104:2904","usagePositions":["node:2192:9815"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/coordonnees/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Coordonnees/Coordonnees.tsx"},"historicalEvidence":[]},
+    {"sectionId":"devis","displayName":"Devis","contractPath":"contracts/devis.contract.json","masterNodeId":"2096:2524","usagePositions":["node:2096:2642","node:2096:2651","node:2096:2660","node:2096:2669","node:2096:2678","node:2096:2687","node:2096:2696","node:2096:2705"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/devis/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Devis/Devis.tsx"},"historicalEvidence":[]},
+    {"sectionId":"equipe","displayName":"Equipe","contractPath":"contracts/equipe.contract.json","masterNodeId":"2115:3947","usagePositions":["node:2115:4044"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/equipe/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Equipe/Equipe.tsx"},"historicalEvidence":[]},
+    {"sectionId":"faq","displayName":"FAQ","contractPath":"contracts/faq.contract.json","masterNodeId":"2104:2914","usagePositions":["node:2106:3035","node:2106:3010","node:2106:3060"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/faq/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/FAQ/FAQ.tsx"},"historicalEvidence":[]},
+    {"sectionId":"formulaire","displayName":"Formulaire","contractPath":"contracts/formulaire.contract.json","masterNodeId":"2096:2564","usagePositions":["node:2096:2714"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/formulaire/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Formulaire/Formulaire.tsx"},"historicalEvidence":[]},
+    {"sectionId":"header","displayName":"Header","contractPath":"contracts/header.contract.json","masterNodeId":"84:285","usagePositions":["node:274:2702","node:258:1995","node:249:1655","node:237:1127","node:237:828","node:387:869","node:230:483","node:226:259","node:210:473"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/header/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Header/Header.tsx"},"historicalEvidence":[]},
+    {"sectionId":"hero","displayName":"Hero","contractPath":"contracts/hero.contract.json","masterNodeId":"2111:3382","usagePositions":["node:2111:3416","node:2111:3430","node:2111:3444","node:2111:3458","node:2111:3472","node:2111:3388","node:2111:3486","node:2111:3402"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/hero/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Hero/Hero.tsx"},"historicalEvidence":[]},
+    {"sectionId":"footer","displayName":"Footer","contractPath":"contracts/footer.contract.json","masterNodeId":"2120:4785","usagePositions":["node:2121:4808","node:2121:4848","node:2121:4888","node:2121:4928","node:2121:4968","node:2121:5008","node:2121:5048","node:2121:5088","node:2121:5128"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/footer/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Footer/Footer.tsx"},"historicalEvidence":[]},
+    {"sectionId":"reassurances","displayName":"Reassurances","contractPath":"contracts/reassurances.contract.json","masterNodeId":"2114:3721","usagePositions":["node:2115:3830","node:2115:3754","node:2115:3723","node:2115:3861","node:2115:3794","node:2115:3892"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/reassurances/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/Reassurances/Reassurances.tsx"},"historicalEvidence":[]},
+    {"sectionId":"sav","displayName":"SAV","contractPath":"contracts/sav.contract.json","masterNodeId":"2108:3105","usagePositions":["node:2108:3135"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/sav/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/SAV/SAV.tsx"},"historicalEvidence":[]},
+    {"sectionId":"texte-seo","displayName":"TexteSEO","contractPath":"contracts/texte-seo.contract.json","masterNodeId":"2108:3123","usagePositions":["node:2108:3153","node:2108:3331","node:2108:3265","node:2108:3309","node:2108:3221","node:2108:3243","node:2108:3287","node:2108:3175"],"sourceAuditPath":"specs/020-figma-contract-readiness/dossiers/texte-seo/source/source-audit.json","current":{"figmaVersionId":"2385391614633344086","renderRef":"src/components/TexteSEO/TexteSEO.tsx"},"historicalEvidence":[]}
+  ]
+}

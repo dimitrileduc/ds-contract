@@ -1,0 +1,94 @@
+{
+  "candidates": [],
+  "currentPins": {
+    "contract": {
+      "path": "contracts/devis.contract.json",
+      "sha256": "16f56535118e39d0c75124b1f6cfe03e078f0d498f46a78c306624f1542f30dd"
+    },
+    "figma": {
+      "nodeId": "2096:2524",
+      "versionId": "2385391614633344086"
+    },
+    "odoo019": {
+      "path": "integrations/odoo/config/inputs.lock.json",
+      "sha256": "0022411ca029c01e3c9fcec8af7538b45973c3281eb3ab199d0b16b90c50b10e"
+    },
+    "render": {
+      "ref": "src/components/Devis/Devis.tsx"
+    }
+  },
+  "findings": [
+    {
+      "findingId": "020-devis-visual-current",
+      "surface": "figma",
+      "significance": "informational",
+      "description": "Aucun défaut visuel supplémentaire signalé par l’owner sur l’état courant.",
+      "informationalJustification": "L’apparence a été acceptée, mais l’API variables a répondu 403; la qualification conserve donc une exception explicite.",
+      "cause": "insufficient-history",
+      "referenceEvidenceIds": [
+        "decision:020-reference-devis-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#devis"
+      ],
+      "status": "routed"
+    }
+  ],
+  "historicalStates": [],
+  "impactGraph": {
+    "nodes": [
+      {
+        "id": "devis",
+        "kind": "section",
+        "revalidationStatus": "not-required"
+      }
+    ],
+    "edges": [],
+    "completeness": "complete",
+    "missingSources": []
+  },
+  "ownerDecisionRefs": [
+    "specs/020-figma-contract-readiness/dossiers/devis/owner/reference-decision.json"
+  ],
+  "schemaVersion": "1.0.0",
+  "sectionId": "devis",
+  "sourceAudit": {
+    "checkedDimensions": [
+      "structure",
+      "constraints",
+      "properties",
+      "variable-bindings",
+      "sizes",
+      "descriptions"
+    ],
+    "evidenceRefs": [
+      "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#devis"
+    ],
+    "masterNodeId": "2096:2524",
+    "missingSources": [
+      "variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ],
+    "sectionId": "devis",
+    "status": "blocked",
+    "usagePositions": [
+      "node:2096:2642",
+      "node:2096:2651",
+      "node:2096:2660",
+      "node:2096:2669",
+      "node:2096:2678",
+      "node:2096:2687",
+      "node:2096:2696",
+      "node:2096:2705"
+    ]
+  },
+  "status": "closed",
+  "timeline": {
+    "probableBreakStateId": null,
+    "reasons": [
+      "source-audit-not-clean",
+      "missing-source:variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ]
+  },
+  "finalVerdict": "ready-with-exception",
+  "destination": "wave-b"
+}

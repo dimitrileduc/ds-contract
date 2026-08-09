@@ -1,0 +1,95 @@
+{
+  "candidates": [],
+  "currentPins": {
+    "contract": {
+      "path": "contracts/footer.contract.json",
+      "sha256": "6869ef87945b8593f69d1dc4a7c5483ecbb3887803984a0149192a6f730a4218"
+    },
+    "figma": {
+      "nodeId": "2120:4785",
+      "versionId": "2385391614633344086"
+    },
+    "odoo019": {
+      "path": "integrations/odoo/config/inputs.lock.json",
+      "sha256": "0022411ca029c01e3c9fcec8af7538b45973c3281eb3ab199d0b16b90c50b10e"
+    },
+    "render": {
+      "ref": "src/components/Footer/Footer.tsx"
+    }
+  },
+  "findings": [
+    {
+      "findingId": "020-footer-visual-current",
+      "surface": "figma",
+      "significance": "informational",
+      "description": "Aucun défaut visuel supplémentaire signalé par l’owner sur l’état courant.",
+      "informationalJustification": "L’apparence a été acceptée, mais l’API variables a répondu 403; la qualification conserve donc une exception explicite.",
+      "cause": "insufficient-history",
+      "referenceEvidenceIds": [
+        "decision:020-reference-footer-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#footer"
+      ],
+      "status": "routed"
+    }
+  ],
+  "historicalStates": [],
+  "impactGraph": {
+    "nodes": [
+      {
+        "id": "footer",
+        "kind": "section",
+        "revalidationStatus": "not-required"
+      }
+    ],
+    "edges": [],
+    "completeness": "complete",
+    "missingSources": []
+  },
+  "ownerDecisionRefs": [
+    "specs/020-figma-contract-readiness/dossiers/footer/owner/reference-decision.json"
+  ],
+  "schemaVersion": "1.0.0",
+  "sectionId": "footer",
+  "sourceAudit": {
+    "checkedDimensions": [
+      "structure",
+      "constraints",
+      "properties",
+      "variable-bindings",
+      "sizes",
+      "descriptions"
+    ],
+    "evidenceRefs": [
+      "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#footer"
+    ],
+    "masterNodeId": "2120:4785",
+    "missingSources": [
+      "variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ],
+    "sectionId": "footer",
+    "status": "blocked",
+    "usagePositions": [
+      "node:2121:4808",
+      "node:2121:4848",
+      "node:2121:4888",
+      "node:2121:4928",
+      "node:2121:4968",
+      "node:2121:5008",
+      "node:2121:5048",
+      "node:2121:5088",
+      "node:2121:5128"
+    ]
+  },
+  "status": "closed",
+  "timeline": {
+    "probableBreakStateId": null,
+    "reasons": [
+      "source-audit-not-clean",
+      "missing-source:variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ]
+  },
+  "finalVerdict": "ready-with-exception",
+  "destination": "shell-workstream"
+}

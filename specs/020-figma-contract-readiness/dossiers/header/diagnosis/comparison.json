@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "sectionId": "header",
+  "referenceDecisionId": "020-reference-header-20260809",
+  "findings": [
+    {
+      "findingId": "020-header-visual-current",
+      "surface": "figma",
+      "significance": "informational",
+      "description": "Aucun défaut visuel supplémentaire signalé par l’owner sur l’état courant.",
+      "informationalJustification": "L’apparence a été acceptée, mais l’API variables a répondu 403; la qualification conserve donc une exception explicite.",
+      "cause": "insufficient-history",
+      "referenceEvidenceIds": [
+        "decision:020-reference-header-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#header"
+      ],
+      "status": "routed"
+    }
+  ],
+  "surfaces": {
+    "figma": "compared",
+    "contract": "compared",
+    "render": "compared"
+  },
+  "evidenceRefs": [
+    "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json"
+  ]
+}

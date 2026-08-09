@@ -5790,6 +5790,58 @@ const cases: Case[] = [
       }
     },
   },
+  // ---- 020 — readiness Figma–contrat des 11 sections -----------------------
+  // Each check is hermetic and adversarial.  The live Figma/owner gates remain
+  // explicit runtime inputs; the checks prove that their absence cannot become
+  // a green readiness result.
+  {
+    id: 'figma-readiness-foundation',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-readiness/foundation-check.ts']);
+      if (r.status !== 0) throw new Error(`Readiness foundation check failed:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-readiness-timeline-and-candidates',
+    claim: 'C2-refusal',
+    run: () => {
+      for (const fixture of ['timeline-check.ts', 'candidate-ranking-check.ts']) {
+        const r = run(TSX, [`evals/fixtures/figma-readiness/${fixture}`]);
+        if (r.status !== 0) throw new Error(`Readiness ${fixture} failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'figma-readiness-owner-gates',
+    claim: 'C2-refusal',
+    run: () => {
+      for (const fixture of ['owner-gate-check.ts', 'owner-gate-refusal-check.ts']) {
+        const r = run(TSX, [`evals/fixtures/figma-readiness/${fixture}`]);
+        if (r.status !== 0) throw new Error(`Readiness ${fixture} failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'figma-readiness-diagnosis-and-impact',
+    claim: 'C3-detection',
+    run: () => {
+      for (const fixture of ['findings-check.ts', 'impact-graph-check.ts']) {
+        const r = run(TSX, [`evals/fixtures/figma-readiness/${fixture}`]);
+        if (r.status !== 0) throw new Error(`Readiness ${fixture} failed:\n${r.out}`);
+      }
+    },
+  },
+  {
+    id: 'figma-readiness-routing-and-consolidation',
+    claim: 'C2-refusal',
+    run: () => {
+      for (const fixture of ['routing-refusal-check.ts', 'consolidation-check.ts', 'end-to-end-check.ts']) {
+        const r = run(TSX, [`evals/fixtures/figma-readiness/${fixture}`]);
+        if (r.status !== 0) throw new Error(`Readiness ${fixture} failed:\n${r.out}`);
+      }
+    },
+  },
 ];
 
 // ---------------------------------------------------------------------------

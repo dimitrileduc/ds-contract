@@ -1,0 +1,111 @@
+{
+  "candidates": [],
+  "currentPins": {
+    "contract": {
+      "path": "contracts/coordonnees.contract.json",
+      "sha256": "6a531ebd54e3c7aec70b4bff1f69be34b8c6c1da5d4235cf75d5656834a54d7f"
+    },
+    "figma": {
+      "nodeId": "2104:2904",
+      "versionId": "2385391614633344086"
+    },
+    "odoo019": {
+      "path": "integrations/odoo/config/inputs.lock.json",
+      "sha256": "0022411ca029c01e3c9fcec8af7538b45973c3281eb3ab199d0b16b90c50b10e"
+    },
+    "render": {
+      "ref": "src/components/Coordonnees/Coordonnees.tsx"
+    }
+  },
+  "findings": [
+    {
+      "findingId": "020-coordonnees-orphan-props",
+      "surface": "figma",
+      "significance": "significant",
+      "description": "Des propriétés composées sont exposées sur le master mais ne pilotent aucun nœud enfant.",
+      "cause": "renderer-fault",
+      "referenceEvidenceIds": [
+        "decision:020-reference-coordonnees-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#coordonnees"
+      ],
+      "status": "routed"
+    }
+  ],
+  "historicalStates": [],
+  "impactGraph": {
+    "nodes": [
+      {
+        "id": "core/emit-figma-script",
+        "kind": "dependency",
+        "revalidationStatus": "not-required"
+      },
+      {
+        "id": "coordonnees",
+        "kind": "section",
+        "revalidationStatus": "not-required"
+      }
+    ],
+    "edges": [
+      {
+        "consumerId": "coordonnees",
+        "dependencyId": "core/emit-figma-script",
+        "usage": "figma",
+        "evidenceRefs": [
+          "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#coordonnees"
+        ]
+      }
+    ],
+    "completeness": "complete",
+    "missingSources": []
+  },
+  "ownerDecisionRefs": [
+    "specs/020-figma-contract-readiness/dossiers/coordonnees/owner/reference-decision.json"
+  ],
+  "schemaVersion": "1.0.0",
+  "sectionId": "coordonnees",
+  "sourceAudit": {
+    "checkedDimensions": [
+      "structure",
+      "constraints",
+      "properties",
+      "variable-bindings",
+      "sizes",
+      "descriptions"
+    ],
+    "evidenceRefs": [
+      "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#coordonnees"
+    ],
+    "masterNodeId": "2104:2904",
+    "missingSources": [
+      "clean-source-baseline-unavailable-because-orphan-properties-were-observed",
+      "variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ],
+    "sectionId": "coordonnees",
+    "status": "dirty",
+    "usagePositions": [
+      "node:2192:9815"
+    ]
+  },
+  "status": "closed",
+  "timeline": {
+    "probableBreakStateId": null,
+    "reasons": [
+      "source-audit-not-clean",
+      "missing-source:clean-source-baseline-unavailable-because-orphan-properties-were-observed",
+      "missing-source:variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ]
+  },
+  "finalVerdict": "repair-renderer",
+  "destination": "repair-spec:figma-projection-repair",
+  "repairAssignment": {
+    "scope": "sub-spec",
+    "target": "coordonnees",
+    "reason": "Des propriétés composées sont exposées sur le master mais ne pilotent aucun nœud enfant.",
+    "affectedTargets": [
+      "coordonnees"
+    ],
+    "subSpecSlug": "figma-projection-repair"
+  }
+}

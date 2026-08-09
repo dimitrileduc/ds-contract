@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ds-contracts.local/specs/020/consolidated-readiness.schema.json",
+  "title": "Consolidated Readiness",
+  "type": "object",
+  "required": ["schemaVersion", "campaignId", "expectedSections", "dossiers", "dependencySummary", "ownerDecisionSummary", "repairSpecs", "odoo019Repins", "qualityMetrics"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "campaignId": { "type": "string", "minLength": 1 },
+    "expectedSections": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "coordonnees", "devis", "equipe", "faq", "formulaire", "header",
+          "hero", "footer", "reassurances", "sav", "texte-seo"
+        ]
+      }
+    },
+    "dossiers": { "type": "array", "minItems": 11, "maxItems": 11, "uniqueItems": true, "items": { "type": "string" } },
+    "dependencySummary": { "type": "array" },
+    "ownerDecisionSummary": { "type": "array" },
+    "repairSpecs": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
+    "odoo019Repins": { "type": "array" },
+    "qualityMetrics": {
+      "type": "object",
+      "required": ["ownerPacketReviews", "firstPassRepairAcceptance"],
+      "properties": {
+        "ownerPacketReviews": {
+          "type": "array",
+          "minItems": 11,
+          "maxItems": 11,
+          "items": {
+            "type": "object",
+            "required": ["sectionId", "activeSeconds", "excludedExplorationSeconds", "withinTarget"],
+            "properties": {
+              "sectionId": {
+                "enum": [
+                  "coordonnees", "devis", "equipe", "faq", "formulaire", "header",
+                  "hero", "footer", "reassurances", "sav", "texte-seo"
+                ]
+              },
+              "activeSeconds": { "type": "integer", "minimum": 0 },
+              "excludedExplorationSeconds": { "type": "integer", "minimum": 0 },
+              "withinTarget": { "type": "boolean" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "firstPassRepairAcceptance": {
+          "type": "object",
+          "required": ["acceptedFirstPass", "presentedRepairs", "rate", "status"],
+          "properties": {
+            "acceptedFirstPass": { "type": "integer", "minimum": 0 },
+            "presentedRepairs": { "type": "integer", "minimum": 0 },
+            "rate": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+            "status": { "enum": ["passed", "failed", "not-applicable"] }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

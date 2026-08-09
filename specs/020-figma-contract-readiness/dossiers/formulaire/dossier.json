@@ -1,0 +1,111 @@
+{
+  "candidates": [],
+  "currentPins": {
+    "contract": {
+      "path": "contracts/formulaire.contract.json",
+      "sha256": "f33b81e683bfead19616726c9c7b49e96d77a7f17b897c6939a30e2f010c5b55"
+    },
+    "figma": {
+      "nodeId": "2096:2564",
+      "versionId": "2385391614633344086"
+    },
+    "odoo019": {
+      "path": "integrations/odoo/config/inputs.lock.json",
+      "sha256": "0022411ca029c01e3c9fcec8af7538b45973c3281eb3ab199d0b16b90c50b10e"
+    },
+    "render": {
+      "ref": "src/components/Formulaire/Formulaire.tsx"
+    }
+  },
+  "findings": [
+    {
+      "findingId": "020-formulaire-orphan-props",
+      "surface": "figma",
+      "significance": "significant",
+      "description": "Des propriétés composées sont exposées sur le master mais ne pilotent aucun nœud enfant.",
+      "cause": "renderer-fault",
+      "referenceEvidenceIds": [
+        "decision:020-reference-formulaire-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#formulaire"
+      ],
+      "status": "routed"
+    }
+  ],
+  "historicalStates": [],
+  "impactGraph": {
+    "nodes": [
+      {
+        "id": "core/emit-figma-script",
+        "kind": "dependency",
+        "revalidationStatus": "not-required"
+      },
+      {
+        "id": "formulaire",
+        "kind": "section",
+        "revalidationStatus": "not-required"
+      }
+    ],
+    "edges": [
+      {
+        "consumerId": "formulaire",
+        "dependencyId": "core/emit-figma-script",
+        "usage": "figma",
+        "evidenceRefs": [
+          "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#formulaire"
+        ]
+      }
+    ],
+    "completeness": "complete",
+    "missingSources": []
+  },
+  "ownerDecisionRefs": [
+    "specs/020-figma-contract-readiness/dossiers/formulaire/owner/reference-decision.json"
+  ],
+  "schemaVersion": "1.0.0",
+  "sectionId": "formulaire",
+  "sourceAudit": {
+    "checkedDimensions": [
+      "structure",
+      "constraints",
+      "properties",
+      "variable-bindings",
+      "sizes",
+      "descriptions"
+    ],
+    "evidenceRefs": [
+      "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#formulaire"
+    ],
+    "masterNodeId": "2096:2564",
+    "missingSources": [
+      "clean-source-baseline-unavailable-because-orphan-properties-were-observed",
+      "variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ],
+    "sectionId": "formulaire",
+    "status": "dirty",
+    "usagePositions": [
+      "node:2096:2714"
+    ]
+  },
+  "status": "closed",
+  "timeline": {
+    "probableBreakStateId": null,
+    "reasons": [
+      "source-audit-not-clean",
+      "missing-source:clean-source-baseline-unavailable-because-orphan-properties-were-observed",
+      "missing-source:variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ]
+  },
+  "finalVerdict": "repair-renderer",
+  "destination": "repair-spec:figma-projection-repair",
+  "repairAssignment": {
+    "scope": "sub-spec",
+    "target": "formulaire",
+    "reason": "Des propriétés composées sont exposées sur le master mais ne pilotent aucun nœud enfant.",
+    "affectedTargets": [
+      "formulaire"
+    ],
+    "subSpecSlug": "figma-projection-repair"
+  }
+}

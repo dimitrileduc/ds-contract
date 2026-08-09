@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ds-contracts.local/specs/020/readiness-dossier.schema.json",
+  "title": "Section Readiness Dossier",
+  "type": "object",
+  "required": [
+    "schemaVersion", "sectionId", "sourceAudit", "currentPins", "timeline", "historicalStates", "candidates",
+    "ownerDecisionRefs", "findings", "impactGraph", "status"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "sectionId": {
+      "enum": [
+        "coordonnees", "devis", "equipe", "faq", "formulaire", "header",
+        "hero", "footer", "reassurances", "sav", "texte-seo"
+      ]
+    },
+    "sourceAudit": {
+      "type": "object",
+      "required": ["sectionId", "masterNodeId", "usagePositions", "checkedDimensions", "missingSources", "status", "evidenceRefs"],
+      "properties": {
+        "sectionId": {
+          "enum": [
+            "coordonnees", "devis", "equipe", "faq", "formulaire", "header",
+            "hero", "footer", "reassurances", "sav", "texte-seo"
+          ]
+        },
+        "masterNodeId": { "type": "string", "minLength": 1, "not": { "pattern": "^name:" } },
+        "usagePositions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "not": { "pattern": "^name:" } } },
+        "checkedDimensions": {
+          "type": "array",
+          "uniqueItems": true,
+          "allOf": [
+            { "contains": { "const": "structure" } },
+            { "contains": { "const": "constraints" } },
+            { "contains": { "const": "properties" } },
+            { "contains": { "const": "variable-bindings" } },
+            { "contains": { "const": "sizes" } },
+            { "contains": { "const": "descriptions" } }
+          ],
+          "items": { "enum": ["structure", "constraints", "properties", "variable-bindings", "sizes", "descriptions"] }
+        },
+        "missingSources": { "type": "array", "items": { "type": "string" } },
+        "status": { "enum": ["clean", "dirty", "blocked"] },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      },
+      "additionalProperties": false
+    },
+    "currentPins": { "type": "object", "minProperties": 3 },
+    "timeline": {
+      "type": "object",
+      "required": ["probableBreakStateId", "reasons"],
+      "properties": {
+        "probableBreakStateId": { "type": ["string", "null"] },
+        "reasons": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      },
+      "additionalProperties": false
+    },
+    "historicalStates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/historicalState" }
+    },
+    "candidates": {
+      "type": "array",
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/candidate" }
+    },
+    "ownerDecisionRefs": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/finding" }
+    },
+    "impactGraph": {
+      "type": "object",
+      "required": ["nodes", "edges", "completeness"],
+      "properties": {
+        "nodes": { "type": "array" },
+        "edges": { "type": "array" },
+        "completeness": { "enum": ["complete", "partial"] },
+        "missingSources": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "status": {
+      "enum": [
+        "inventory", "source-audited", "history-ready", "blocked-history", "awaiting-owner",
+        "diagnosed", "awaiting-final-gate", "closed"
+      ]
+    },
+    "finalVerdict": {
+      "enum": [
+        "ready", "ready-with-exception", "repair-figma", "repair-contract",
+        "repair-renderer", "accepted-defect", "out-of-contract", "blocked-history"
+      ]
+    },
+    "destination": {
+      "type": "string",
+      "pattern": "^(wave-a|wave-b|shell-workstream|repair-spec:[a-z0-9-]+)$"
+    },
+    "repairAssignment": { "type": "object" }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["evidenceId", "kind", "pathOrUri", "availability", "proves", "doesNotProve"],
+      "properties": {
+        "evidenceId": { "type": "string" },
+        "kind": {
+          "enum": ["visual", "structure", "contract", "render", "page", "image", "decision"]
+        },
+        "pathOrUri": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "availability": { "enum": ["available", "missing", "refused", "unrecoverable"] },
+        "proves": { "type": "array", "items": { "type": "string" } },
+        "doesNotProve": { "type": "array", "items": { "type": "string" } },
+        "reason": { "type": "string", "minLength": 1 }
+      },
+      "if": { "properties": { "availability": { "not": { "const": "available" } } } },
+      "then": { "required": ["reason"] },
+      "additionalProperties": false
+    },
+    "historicalState": {
+      "type": "object",
+      "required": ["stateId", "observedAt", "evidence", "completeness", "contradictions"],
+      "properties": {
+        "stateId": { "type": "string" },
+        "observedAt": { "type": "string", "format": "date-time" },
+        "figmaVersionId": { "type": "string" },
+        "evidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/evidence" } },
+        "completeness": { "enum": ["complete", "partial", "unrecoverable"] },
+        "contradictions": { "type": "array", "items": { "type": "string" } },
+        "knownChanges": { "type": "array", "items": { "type": "string" } }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "evidence": {
+                "contains": {
+                  "properties": {
+                    "availability": { "const": "available" },
+                    "kind": { "enum": ["visual", "structure", "page", "image"] }
+                  },
+                  "required": ["availability", "kind"]
+                }
+              }
+            }
+          },
+          "then": { "required": ["figmaVersionId"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["candidateId", "historicalStateId", "rank", "recommendation", "rationale"],
+      "properties": {
+        "candidateId": { "type": "string" },
+        "historicalStateId": { "type": "string" },
+        "rank": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "recommendation": { "enum": ["recommended", "plausible", "fallback"] },
+        "rationale": { "type": "string" },
+        "supportingEvidenceIds": { "type": "array", "items": { "type": "string" } },
+        "missingEvidence": { "type": "array", "items": { "type": "string" } },
+        "contradictions": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "required": ["findingId", "surface", "significance", "description", "cause"],
+      "properties": {
+        "findingId": { "type": "string" },
+        "surface": { "enum": ["figma", "contract", "render"] },
+        "significance": { "enum": ["significant", "informational"] },
+        "description": { "type": "string" },
+        "informationalJustification": { "type": "string", "minLength": 1 },
+        "cause": {
+          "enum": [
+            "design-regression", "contract-regression", "design-and-contract-regression",
+            "renderer-fault", "missing-image", "voluntary-evolution", "accepted-defect",
+            "out-of-contract", "insufficient-history"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "significance": { "const": "informational" } } },
+          "then": { "required": ["informationalJustification"] }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "sectionId": { "enum": ["header", "footer"] } } },
+      "then": { "properties": { "destination": { "const": "shell-workstream" } } },
+      "else": {
+        "allOf": [
+          {
+            "if": { "required": ["finalVerdict"], "properties": { "finalVerdict": { "const": "ready" } } },
+            "then": { "properties": { "destination": { "const": "wave-a" } } }
+          },
+          {
+            "if": { "required": ["finalVerdict"], "properties": { "finalVerdict": { "enum": ["ready-with-exception", "accepted-defect", "out-of-contract"] } } },
+            "then": { "properties": { "destination": { "const": "wave-b" } } }
+          },
+          {
+            "if": { "required": ["finalVerdict"], "properties": { "finalVerdict": { "enum": ["repair-figma", "repair-contract", "repair-renderer", "blocked-history"] } } },
+            "then": { "properties": { "destination": { "pattern": "^repair-spec:[a-z0-9-]+$" } } }
+          }
+        ]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

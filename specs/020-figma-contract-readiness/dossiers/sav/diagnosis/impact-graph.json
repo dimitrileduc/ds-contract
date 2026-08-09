@@ -1,0 +1,26 @@
+{
+  "nodes": [
+    {
+      "id": "core/emit-figma-script",
+      "kind": "dependency",
+      "revalidationStatus": "not-required"
+    },
+    {
+      "id": "sav",
+      "kind": "section",
+      "revalidationStatus": "not-required"
+    }
+  ],
+  "edges": [
+    {
+      "consumerId": "sav",
+      "dependencyId": "core/emit-figma-script",
+      "usage": "figma",
+      "evidenceRefs": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#sav"
+      ]
+    }
+  ],
+  "completeness": "complete",
+  "missingSources": []
+}

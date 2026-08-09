@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "020-figma-contract-readiness",
+  "reviewedAt": "2026-08-09T16:49:40Z",
+  "currentFigmaVersionId": "2385391614633344086",
+  "decisionStatus": "owner-reference-validated-and-repair-authorized",
+  "currentScreenshots": [
+    {
+      "target": "hero",
+      "path": "/Users/dlstudio/Desktop/Capture d’écran 2026-08-09 à 18.38.10.png",
+      "sha256": "a9186714f233b5f741da0dcf329546eb5765f7d21fe326ebd7096577ac04e94f",
+      "width": 1856,
+      "height": 760
+    },
+    {
+      "target": "categories-principales",
+      "path": "/Users/dlstudio/Desktop/Capture d’écran 2026-08-09 à 18.38.04.png",
+      "sha256": "e4326a52dc98c663469bf8b8b86355fdd754f4f792098aa1e7edab106ddaad3c",
+      "width": 1994,
+      "height": 554
+    },
+    {
+      "target": "produits-e-commerce",
+      "path": "/Users/dlstudio/Desktop/Capture d’écran 2026-08-09 à 18.37.54.png",
+      "sha256": "58fe2e10a4ac2c290d9e80a3bd0eab698e34900783a48f2c737a634f8fbe0f43",
+      "width": 662,
+      "height": 676
+    },
+    {
+      "target": "realisations",
+      "path": "/Users/dlstudio/Desktop/Capture d’écran 2026-08-09 à 18.37.50.png",
+      "sha256": "25ff4b534f5c55158eeef5223eba1ce0152029b8f602b7768bb42d0eb5bf55a2",
+      "width": 1692,
+      "height": 1476
+    },
+    {
+      "target": "sav",
+      "path": "/Users/dlstudio/Desktop/Capture d’écran 2026-08-09 à 18.37.43.png",
+      "sha256": "c10ac8c83f0d222b11afecaa900a7705682353ae05eea2ec1faf97fc89f1ee9e",
+      "width": 1438,
+      "height": 754
+    }
+  ],
+  "proposedReferences": [
+    {
+      "target": "hero",
+      "scope": "campaign-020",
+      "masterNodeId": "2111:3382",
+      "referenceVersionId": "2384534055700756530",
+      "referenceVersionLabel": "016/repose-overrides/avant",
+      "referenceCreatedAt": "2026-08-06T08:43:11Z",
+      "firstObservedBrokenVersionId": "2384536701936345665",
+      "firstObservedBrokenAt": "2026-08-06T08:50:01Z",
+      "currentDefect": "The master shrank from 1728x640 to 1072x640; Background became 100x640, the text block clips, and the subtitle starts outside the root.",
+      "referenceFacts": ["root 1728x640", "full-width image", "title, subtitle and CTA fully visible"],
+      "renderEvidence": {
+        "pathOrUri": "figma://d9FYAUcqdcNtsuaMgLefvJ/versions/2384534055700756530/nodes/2111:3382/render.png",
+        "sha256": "83b11cd9415857026fdd48fd6a5a31fba804360a6e414310e2ed181546d3b5e5",
+        "width": 1728,
+        "height": 640
+      }
+    },
+    {
+      "target": "sav",
+      "scope": "campaign-020",
+      "masterNodeId": "2108:3105",
+      "referenceVersionId": "2384611619054562083",
+      "referenceVersionLabel": "016/R2-photos/avant",
+      "referenceCreatedAt": "2026-08-06T13:21:39Z",
+      "firstObservedBrokenVersionId": "2384611417183573281",
+      "firstObservedBrokenAt": "2026-08-06T13:50:11Z",
+      "currentDefect": "The background begins at x=-644 and the row at x=906 inside a clipped root; the text and image columns are cut.",
+      "referenceFacts": ["background x=0", "row x=131", "unclipped section", "title, paragraph, CTA and technician image fully visible"],
+      "renderEvidence": {
+        "pathOrUri": "figma://d9FYAUcqdcNtsuaMgLefvJ/versions/2384611619054562083/nodes/2108:3105/render.png",
+        "sha256": "eb00ab5761c2cf3b61b940e8d99d3577498641ce92897a0711c876f63a2380b4",
+        "width": 1550,
+        "height": 677
+      }
+    },
+    {
+      "target": "categories-principales",
+      "scope": "repair-extension",
+      "masterNodeId": "2115:4275",
+      "parentSetNodeId": "2115:4277",
+      "referenceVersionId": "2384611619054562083",
+      "referenceVersionLabel": "016/R2-photos/avant",
+      "referenceCreatedAt": "2026-08-06T13:21:39Z",
+      "firstObservedBrokenVersionId": "2384611417183573281",
+      "firstObservedBrokenAt": "2026-08-06T13:50:11Z",
+      "currentDefect": "Three 743px cards are centered in a 1728px component, leaving the first and third cards outside the frame.",
+      "referenceFacts": ["three 474px cards", "x positions 89, 627 and 1165", "all card content visible"],
+      "renderEvidence": {
+        "pathOrUri": "figma://d9FYAUcqdcNtsuaMgLefvJ/versions/2384611619054562083/nodes/2115:4275/render.png",
+        "sha256": "86e12a705c85809cc7311a91ef6b84f918e0150999df094149d59fded843d041",
+        "width": 1728,
+        "height": 524
+      }
+    },
+    {
+      "target": "realisations",
+      "scope": "repair-extension",
+      "masterNodeId": "2117:4690",
+      "parentSetNodeId": "2117:4691",
+      "referenceVersionId": "2384302837232801871",
+      "referenceVersionLabel": "016/R1-sans-photos/avant",
+      "referenceCreatedAt": "2026-08-05T18:10:33Z",
+      "firstObservedBrokenVersionId": "2384313694906566509",
+      "firstObservedBrokenAt": "2026-08-05T18:55:14Z",
+      "currentDefect": "The presentation heading block is 2241px wide and begins at x=-256.5 inside a 1728px variant, shifting the title outside the section.",
+      "referenceFacts": ["heading block x=204.5", "heading block width 1319", "title and paragraph aligned above the grid"],
+      "renderEvidence": {
+        "pathOrUri": "figma://d9FYAUcqdcNtsuaMgLefvJ/versions/2384302837232801871/nodes/2117:4690/render.png",
+        "sha256": "e4319ef6073c6a2e7b8ae1dc61d5f64f28ae34e2ecaaaf37715f4532d900a4de",
+        "width": 1728,
+        "height": 1551
+      }
+    },
+    {
+      "target": "produits-e-commerce",
+      "scope": "repair-extension",
+      "masterNodeId": "2116:4475",
+      "dependencyNodeId": "2077:2191",
+      "referenceVersionId": "2384251202054787848",
+      "referenceVersionLabel": "016/U1a-variables/avant",
+      "referenceCreatedAt": "2026-08-05T14:35:53Z",
+      "lastObservedHealthyVersionId": "2384515780602054164",
+      "firstObservedBrokenVersionId": "2384524477915664894",
+      "firstObservedBrokenAt": "2026-08-06T08:12:08Z",
+      "currentDefect": "Both visible iconOnlyIcon vectors point left even though the second button property and ds.carousel-controls contract request chevron-right.",
+      "referenceFacts": ["previous control visibly points left", "next control visibly points right", "contract requires chevron-left and chevron-right"],
+      "renderEvidence": {
+        "pathOrUri": "figma://d9FYAUcqdcNtsuaMgLefvJ/versions/2384251202054787848/nodes/2077:2191/render.png",
+        "sha256": "00875febb6d2096b7a6f900303027c8c19554183973e6d4366a341ad56f540a4",
+        "width": 1604,
+        "height": 52
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "sectionId": "coordonnees",
+  "referenceDecisionId": "020-reference-coordonnees-20260809",
+  "findings": [
+    {
+      "findingId": "020-coordonnees-orphan-props",
+      "surface": "figma",
+      "significance": "significant",
+      "description": "Des propriétés composées sont exposées sur le master mais ne pilotent aucun nœud enfant.",
+      "cause": "renderer-fault",
+      "referenceEvidenceIds": [
+        "decision:020-reference-coordonnees-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#coordonnees"
+      ],
+      "status": "routed"
+    }
+  ],
+  "surfaces": {
+    "figma": "compared",
+    "contract": "compared",
+    "render": "compared"
+  },
+  "evidenceRefs": [
+    "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json"
+  ]
+}

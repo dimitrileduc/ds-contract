@@ -1,0 +1,275 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "020-figma-contract-readiness",
+  "capture": {
+    "capturedAt": "2026-08-09T16:27:06Z",
+    "method": "Figma REST read-only through figma-console-mcp",
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "fileVersionId": "2385391614633344086",
+    "fileLastModified": "2026-08-08T18:26:51Z",
+    "pageCount": 8,
+    "documentNodeCount": 5674,
+    "instanceCount": 683
+  },
+  "scope": {
+    "expectedSectionCount": 11,
+    "observedMasterCount": 11,
+    "observedUsageCount": 55,
+    "mastersPage": "DS · Organisms",
+    "usagesPage": "Pages"
+  },
+  "limitations": [
+    {
+      "dimension": "variable-bindings",
+      "status": "not-verifiable",
+      "reason": "The Figma /variables/local endpoint returned HTTP 403. Binding presence was counted from file data, but alias names and targets cannot be certified."
+    }
+  ],
+  "sections": [
+    {
+      "sectionId": "coordonnees",
+      "master": {
+        "nodeId": "2104:2904",
+        "type": "COMPONENT",
+        "size": "1728x597",
+        "descendantCount": 22,
+        "boundVariableSiteCount": 18,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2192:9815", "pageComposition": "Contactez-nous / Coordonnees"}
+      ],
+      "classification": "dirty",
+      "findings": [
+        "The definitions Accroche#2351:52 and Titre#2351:53 are not referenced anywhere in the master subtree.",
+        "The previously closed orphan-property defect has reappeared with new property ids after a later regeneration."
+      ]
+    },
+    {
+      "sectionId": "devis",
+      "master": {
+        "nodeId": "2096:2524",
+        "type": "COMPONENT",
+        "size": "1728x378",
+        "descendantCount": 12,
+        "boundVariableSiteCount": 8,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2096:2642", "pageComposition": "À Propos"},
+        {"nodeId": "2096:2651", "pageComposition": "Dépannage/SAV"},
+        {"nodeId": "2096:2660", "pageComposition": "Portes d’entrée"},
+        {"nodeId": "2096:2669", "pageComposition": "Motorisation"},
+        {"nodeId": "2096:2678", "pageComposition": "Portes de garage industrielles"},
+        {"nodeId": "2096:2687", "pageComposition": "Portes de garage résidentielles"},
+        {"nodeId": "2096:2696", "pageComposition": "Portes de garage"},
+        {"nodeId": "2096:2705", "pageComposition": "Accueil"}
+      ],
+      "classification": "no-defect-observed-but-incomplete",
+      "findings": ["The Titre property is referenced in the master subtree."]
+    },
+    {
+      "sectionId": "equipe",
+      "master": {
+        "nodeId": "2115:3947",
+        "type": "COMPONENT",
+        "size": "1728x1890",
+        "descendantCount": 114,
+        "boundVariableSiteCount": 114,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2115:4044", "pageComposition": "À Propos"}
+      ],
+      "classification": "no-defect-observed-but-incomplete",
+      "findings": ["No component property is declared; this agrees with the current contract projection."]
+    },
+    {
+      "sectionId": "faq",
+      "master": {
+        "nodeId": "2104:2914",
+        "type": "COMPONENT",
+        "size": "1728x425",
+        "descendantCount": 29,
+        "boundVariableSiteCount": 20,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2106:3035", "pageComposition": "Portes d’entrée", "size": "1728x409"},
+        {"nodeId": "2106:3010", "pageComposition": "Portes de garage industrielles", "size": "1728x473"},
+        {"nodeId": "2106:3060", "pageComposition": "Portes de garage résidentielles", "size": "1728x409"}
+      ],
+      "classification": "no-defect-observed-but-incomplete",
+      "findings": ["The Ligne3 boolean property is referenced in the master subtree."]
+    },
+    {
+      "sectionId": "formulaire",
+      "master": {
+        "nodeId": "2096:2564",
+        "type": "COMPONENT",
+        "size": "1550x723",
+        "descendantCount": 105,
+        "boundVariableSiteCount": 84,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2096:2714", "pageComposition": "Contactez-nous"}
+      ],
+      "classification": "dirty",
+      "findings": [
+        "The Consentement property is referenced in the master subtree.",
+        "The Accroche and Titre definitions are not referenced anywhere in the master subtree."
+      ]
+    },
+    {
+      "sectionId": "header",
+      "master": {
+        "nodeId": "84:285",
+        "type": "COMPONENT_SET",
+        "variantNodeIds": ["84:284", "84:286"],
+        "size": "1808x292",
+        "descendantCount": 101,
+        "boundVariableSiteCount": 60,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "274:2702", "pageComposition": "Contactez-nous", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "258:1995", "pageComposition": "À Propos", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "249:1655", "pageComposition": "Dépannage/SAV", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "237:1127", "pageComposition": "Portes d’entrée", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "237:828", "pageComposition": "Motorisation", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "387:869", "pageComposition": "Portes de garage industrielles", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "230:483", "pageComposition": "Portes de garage résidentielles", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "226:259", "pageComposition": "Portes de garage", "variantNodeId": "84:286", "size": "1728x86"},
+        {"nodeId": "210:473", "pageComposition": "Accueil", "variantNodeId": "84:286", "size": "1728x86"}
+      ],
+      "classification": "no-defect-observed-but-incomplete",
+      "findings": ["Fond is a variant property and all observed page usages select variant 84:286."]
+    },
+    {
+      "sectionId": "hero",
+      "master": {
+        "nodeId": "2111:3382",
+        "type": "COMPONENT",
+        "size": "1072x640",
+        "descendantCount": 16,
+        "boundVariableSiteCount": 13,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2111:3416", "pageComposition": "Contactez-nous", "size": "1728x640"},
+        {"nodeId": "2111:3430", "pageComposition": "À Propos", "size": "1728x640"},
+        {"nodeId": "2111:3444", "pageComposition": "Dépannage/SAV", "size": "1728x640"},
+        {"nodeId": "2111:3458", "pageComposition": "Portes d’entrée", "size": "1728x640"},
+        {"nodeId": "2111:3472", "pageComposition": "Motorisation", "size": "1728x640"},
+        {"nodeId": "2111:3388", "pageComposition": "Portes de garage industrielles", "size": "1728x640"},
+        {"nodeId": "2111:3486", "pageComposition": "Portes de garage résidentielles", "size": "1728x640"},
+        {"nodeId": "2111:3402", "pageComposition": "Portes de garage", "size": "1728x640"}
+      ],
+      "classification": "dirty",
+      "findings": [
+        "The SousTitre property is referenced in the master subtree; the earlier unlinked-property defect is not reproduced.",
+        "Owner visual evidence shows a broken composition: the master is 1072x640 while every page usage is 1728x640.",
+        "The Background is only 100x640, the text block clips, and the subtitle begins outside the master."
+      ]
+    },
+    {
+      "sectionId": "footer",
+      "master": {
+        "nodeId": "2120:4785",
+        "type": "COMPONENT",
+        "size": "1728x459",
+        "descendantCount": 44,
+        "boundVariableSiteCount": 36,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2121:4808", "pageComposition": "Contactez-nous"},
+        {"nodeId": "2121:4848", "pageComposition": "À Propos"},
+        {"nodeId": "2121:4888", "pageComposition": "Dépannage/SAV"},
+        {"nodeId": "2121:4928", "pageComposition": "Portes d’entrée"},
+        {"nodeId": "2121:4968", "pageComposition": "Motorisation"},
+        {"nodeId": "2121:5008", "pageComposition": "Portes de garage industrielles"},
+        {"nodeId": "2121:5048", "pageComposition": "Portes de garage résidentielles"},
+        {"nodeId": "2121:5088", "pageComposition": "Portes de garage"},
+        {"nodeId": "2121:5128", "pageComposition": "Accueil"}
+      ],
+      "classification": "no-defect-observed-but-incomplete",
+      "findings": ["No component property is declared; this agrees with the current contract projection."]
+    },
+    {
+      "sectionId": "reassurances",
+      "master": {
+        "nodeId": "2114:3721",
+        "type": "COMPONENT_SET",
+        "variantNodeIds": ["2114:3619", "2114:3653", "2114:3693"],
+        "size": "1630x2353",
+        "descendantCount": 106,
+        "boundVariableSiteCount": 97,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2115:3830", "pageComposition": "À Propos", "variantNodeId": "2114:3619"},
+        {"nodeId": "2115:3754", "pageComposition": "Portes d’entrée", "variantNodeId": "2114:3653"},
+        {"nodeId": "2115:3723", "pageComposition": "Portes de garage industrielles", "variantNodeId": "2114:3619"},
+        {"nodeId": "2115:3861", "pageComposition": "Portes de garage résidentielles", "variantNodeId": "2114:3619"},
+        {"nodeId": "2115:3794", "pageComposition": "Portes de garage", "variantNodeId": "2114:3693"},
+        {"nodeId": "2115:3892", "pageComposition": "Accueil", "variantNodeId": "2114:3693"}
+      ],
+      "classification": "no-defect-observed-but-incomplete",
+      "findings": ["Disposition is a variant property and all three variants have observed page usages."]
+    },
+    {
+      "sectionId": "sav",
+      "master": {
+        "nodeId": "2108:3105",
+        "type": "COMPONENT",
+        "size": "1550x677",
+        "descendantCount": 21,
+        "boundVariableSiteCount": 19,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2108:3135", "pageComposition": "Accueil"}
+      ],
+      "classification": "dirty",
+      "findings": [
+        "The Texte property is referenced in the master subtree.",
+        "The Titre definition is not referenced anywhere in the master subtree.",
+        "The previously closed orphan-property defect has reappeared after a later regeneration.",
+        "Owner visual evidence shows a broken composition: the background begins at x=-644 and the row at x=906 inside a clipped section."
+      ]
+    },
+    {
+      "sectionId": "texte-seo",
+      "master": {
+        "nodeId": "2108:3123",
+        "type": "COMPONENT",
+        "size": "1728x383",
+        "descendantCount": 30,
+        "boundVariableSiteCount": 20,
+        "description": ""
+      },
+      "usages": [
+        {"nodeId": "2108:3153", "pageComposition": "Contactez-nous", "height": 383},
+        {"nodeId": "2108:3331", "pageComposition": "À Propos", "height": 383},
+        {"nodeId": "2108:3265", "pageComposition": "Dépannage/SAV", "height": 359},
+        {"nodeId": "2108:3309", "pageComposition": "Portes d’entrée", "height": 359},
+        {"nodeId": "2108:3221", "pageComposition": "Motorisation", "height": 359},
+        {"nodeId": "2108:3243", "pageComposition": "Portes de garage industrielles", "height": 479},
+        {"nodeId": "2108:3287", "pageComposition": "Portes de garage résidentielles", "height": 383},
+        {"nodeId": "2108:3175", "pageComposition": "Portes de garage", "height": 383}
+      ],
+      "classification": "no-defect-observed-but-incomplete",
+      "findings": ["No component property is declared; this agrees with the current contract projection."]
+    }
+  ],
+  "summary": {
+    "dirty": ["coordonnees", "formulaire", "hero", "sav"],
+    "noDefectObservedButIncomplete": ["devis", "equipe", "faq", "header", "footer", "reassurances", "texte-seo"],
+    "clean": [],
+    "cleanCount": 0,
+    "reasonNoSectionIsClean": "Variable alias names and targets could not be certified because the variables endpoint returned HTTP 403."
+  }
+}

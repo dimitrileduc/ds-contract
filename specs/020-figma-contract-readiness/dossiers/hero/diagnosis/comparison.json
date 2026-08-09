@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "sectionId": "hero",
+  "referenceDecisionId": "020-reference-hero-20260809",
+  "findings": [
+    {
+      "findingId": "020-hero-absolute-lowering",
+      "surface": "figma",
+      "significance": "significant",
+      "description": "Le Background absolute reste dans le flux auto-layout: le master tombe à 1072×640, le fond à 100×640 et le texte est rogné.",
+      "cause": "renderer-fault",
+      "referenceEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/visual-reference-review-2026-08-09.json#hero"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#hero"
+      ],
+      "status": "routed"
+    }
+  ],
+  "surfaces": {
+    "figma": "compared",
+    "contract": "compared",
+    "render": "compared"
+  },
+  "evidenceRefs": [
+    "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json",
+    "specs/020-figma-contract-readiness/proofs/visual-reference-review-2026-08-09.json"
+  ]
+}

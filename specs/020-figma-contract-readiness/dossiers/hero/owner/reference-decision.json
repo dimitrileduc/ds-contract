@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "decisionId": "020-reference-hero-20260809",
+  "sectionId": "hero",
+  "gate": "reference",
+  "decision": "reference-validated",
+  "subjectId": "figma-version:2384534055700756530:node:2111:3382",
+  "rationale": "L’owner a confirmé visuellement que l’état courant du Hero est cassé et a autorisé la restauration vers la dernière référence saine présentée.",
+  "decidedBy": "owner",
+  "decidedAt": "2026-08-09T17:07:21.281Z",
+  "reviewTiming": {
+    "startedAt": "2026-08-09T16:49:40.000Z",
+    "completedAt": "2026-08-09T17:07:21.281Z",
+    "activeSeconds": 240,
+    "excludedExplorationSeconds": 821
+  },
+  "acceptedConsequences": [
+    "Restaurer la géométrie 1728×640 et le plan photo plein cadre; la correction du lowering absolute reste un défaut moteur hors 020.",
+    "Aucune réparation partagée n’est exécutée dans 020; elle est routée vers une sous-spec nommée."
+  ],
+  "receiptRefs": [
+    "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json",
+    "specs/020-figma-contract-readiness/proofs/visual-reference-review-2026-08-09.json"
+  ]
+}

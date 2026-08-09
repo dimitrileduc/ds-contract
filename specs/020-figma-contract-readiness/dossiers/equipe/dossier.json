@@ -1,0 +1,87 @@
+{
+  "candidates": [],
+  "currentPins": {
+    "contract": {
+      "path": "contracts/equipe.contract.json",
+      "sha256": "535535fcc5fa35e9109c093f38178cee6bfd7c0009428a64f3132fe9e8ac7087"
+    },
+    "figma": {
+      "nodeId": "2115:3947",
+      "versionId": "2385391614633344086"
+    },
+    "odoo019": {
+      "path": "integrations/odoo/config/inputs.lock.json",
+      "sha256": "0022411ca029c01e3c9fcec8af7538b45973c3281eb3ab199d0b16b90c50b10e"
+    },
+    "render": {
+      "ref": "src/components/Equipe/Equipe.tsx"
+    }
+  },
+  "findings": [
+    {
+      "findingId": "020-equipe-visual-current",
+      "surface": "figma",
+      "significance": "informational",
+      "description": "Aucun défaut visuel supplémentaire signalé par l’owner sur l’état courant.",
+      "informationalJustification": "L’apparence a été acceptée, mais l’API variables a répondu 403; la qualification conserve donc une exception explicite.",
+      "cause": "insufficient-history",
+      "referenceEvidenceIds": [
+        "decision:020-reference-equipe-20260809"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#equipe"
+      ],
+      "status": "routed"
+    }
+  ],
+  "historicalStates": [],
+  "impactGraph": {
+    "nodes": [
+      {
+        "id": "equipe",
+        "kind": "section",
+        "revalidationStatus": "not-required"
+      }
+    ],
+    "edges": [],
+    "completeness": "complete",
+    "missingSources": []
+  },
+  "ownerDecisionRefs": [
+    "specs/020-figma-contract-readiness/dossiers/equipe/owner/reference-decision.json"
+  ],
+  "schemaVersion": "1.0.0",
+  "sectionId": "equipe",
+  "sourceAudit": {
+    "checkedDimensions": [
+      "structure",
+      "constraints",
+      "properties",
+      "variable-bindings",
+      "sizes",
+      "descriptions"
+    ],
+    "evidenceRefs": [
+      "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#equipe"
+    ],
+    "masterNodeId": "2115:3947",
+    "missingSources": [
+      "variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ],
+    "sectionId": "equipe",
+    "status": "blocked",
+    "usagePositions": [
+      "node:2115:4044"
+    ]
+  },
+  "status": "closed",
+  "timeline": {
+    "probableBreakStateId": null,
+    "reasons": [
+      "source-audit-not-clean",
+      "missing-source:variable-alias-targets-not-verifiable-because-variables-endpoint-returned-http-403"
+    ]
+  },
+  "finalVerdict": "ready-with-exception",
+  "destination": "wave-b"
+}

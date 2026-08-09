@@ -30,6 +30,13 @@ import {
 import { evaluateDependencyGate, type DependencyGateResult } from './dependencies.js';
 import { diffBaseline, inventoryLiterals, verifyNonConversion } from './baseline.js';
 import { resolveGeneratedComponent } from './render-react.js';
+import { runReadinessCli } from './readiness/run.js';
+
+// 020 shares this entry point while retaining the existing 013 CLI unchanged.
+// `--readiness` is dispatched before the legacy parser sees its dedicated flags.
+if (process.argv.slice(2).includes('--readiness')) {
+  runReadinessCli(process.argv.slice(2).filter((argument) => argument !== '--readiness'));
+}
 
 const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..', '..');
 const CAMPAIGN_PROOF_ROOT = path.join(

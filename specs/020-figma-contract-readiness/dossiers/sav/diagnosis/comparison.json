@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "sectionId": "sav",
+  "referenceDecisionId": "020-reference-sav-20260809",
+  "findings": [
+    {
+      "findingId": "020-sav-absolute-lowering",
+      "surface": "figma",
+      "significance": "significant",
+      "description": "Les enfants row/WrapperBackground/ImgGroupBackground déclarés absolute restent dans le flux; la section clippe les deux colonnes.",
+      "cause": "renderer-fault",
+      "referenceEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/visual-reference-review-2026-08-09.json#sav"
+      ],
+      "currentEvidenceIds": [
+        "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json#sav"
+      ],
+      "status": "routed"
+    }
+  ],
+  "surfaces": {
+    "figma": "compared",
+    "contract": "compared",
+    "render": "compared"
+  },
+  "evidenceRefs": [
+    "specs/020-figma-contract-readiness/proofs/live-source-audit-2026-08-09.json",
+    "specs/020-figma-contract-readiness/proofs/visual-reference-review-2026-08-09.json"
+  ]
+}
