@@ -1,0 +1,25 @@
+/*
+ * ODOO-019-GOOGLE-REVIEWS-BRIDGE BEGIN
+ *
+ * Pont Odoo minimal : aucune valeur visuelle n'est dupliquée ici. La géométrie
+ * et l'apparence résident dans `css/generated/`; ce fichier ne traduit que les
+ * états persistés du builder vers l'attribut `hidden` et la classe de panneau.
+ */
+.s_pqr_google_reviews [hidden] {
+  display: none !important;
+}
+
+.s_pqr_google_reviews:not(.pqr-controls-visible) [data-pqr-controls] {
+  display: none;
+}
+/* ODOO-019-GOOGLE-REVIEWS-BRIDGE END */
+
+/* ODOO-019-PRESENTATION-MECHANICS BEGIN */
+.s_pqr_presentation:not(.pqr-cta-on) [data-pqr-part="presentation-cta"] {
+  display: none !important;
+}
+
+.s_pqr_presentation [data-pqr-part="presentation-cta"] {
+  display: contents;
+}
+/* ODOO-019-PRESENTATION-MECHANICS END */

@@ -1,0 +1,20 @@
+{
+  "receiptId": "presentation-performance-security-odoo-019-foundation",
+  "scenarioId": "presentation-performance-security",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "presentation-panel",
+  "observations": [
+    "[pass] sécurité — attendu « rich-text strong uniquement », observé « insertion hostile exercée, puis 1 strong, 0 em/a/script, 0 handler et 0 URL exécutable en public anonyme »",
+    "[pass] isolation — attendu « deux instances et CTA opposés », observé « contenus A/B distincts, CTA A visible et CTA B masqué après save/reopen/public »",
+    "[pass] échantillon de gestes — attendu « texte, rich-text, booléen », observé « titre, corps, libellé CTA et checkbox CTA exercés dans le scénario live »",
+    "[pass] mesure — attendu « p95 ou non-measured explicite », observé « non-measured : la qualification recrée la base et compile les bundles ; sa durée globale n’est pas une latence de geste »",
+    "[pass] absence de claim — attendu « aucune performance inventée », observé « aucun budget ou p95 déclaré »"
+  ],
+  "artifacts": [
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-functional.json", "sha256": "400014f7daf297e3ab6855bb903b0e5cd41b43c59f289dee13187b478380b1b0", "kind": "report" },
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-functional.public.json", "sha256": "9616b066eac01ca0f2a9f81ed3acb16d4d84cc554a699f27c62dead594751fff", "kind": "json" }
+  ],
+  "limitCodes": ["ODOO-LIMIT-PERFORMANCE-NON-MEASURED"],
+  "durationMs": 0
+}

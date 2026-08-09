@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piqueray.example/schemas/odoo/derivation-report.schema.json",
+  "title": "Odoo Derivation Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "snapshotId",
+    "generatorVersion",
+    "coverage",
+    "generatedArtifacts",
+    "manualDelta",
+    "unclassified",
+    "canonicalDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "snapshotId": { "$ref": "#/$defs/id" },
+    "generatorVersion": { "$ref": "#/$defs/semver" },
+    "coverage": { "$ref": "#/$defs/coverage" },
+    "generatedArtifacts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/generatedArtifact" }
+    },
+    "manualDelta": { "$ref": "#/$defs/manualDelta" },
+    "unclassified": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["files", "blocks", "registryEntries"],
+      "properties": {
+        "files": { "$ref": "#/$defs/pathArray" },
+        "blocks": { "$ref": "#/$defs/idArray" },
+        "registryEntries": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "canonicalDigest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._@/-]*$" },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "count": { "type": "integer", "minimum": 0 },
+    "idArray": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/id" },
+      "uniqueItems": true
+    },
+    "pathArray": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(?!/).+$" },
+      "uniqueItems": true
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expectedProps",
+        "decidedProps",
+        "expectedParts",
+        "decidedParts",
+        "missingDecisionIds",
+        "extraDecisionIds",
+        "invalidAddresses"
+      ],
+      "properties": {
+        "expectedProps": { "$ref": "#/$defs/count" },
+        "decidedProps": { "$ref": "#/$defs/count" },
+        "expectedParts": { "$ref": "#/$defs/count" },
+        "decidedParts": { "$ref": "#/$defs/count" },
+        "missingDecisionIds": { "$ref": "#/$defs/idArray" },
+        "extraDecisionIds": { "$ref": "#/$defs/idArray" },
+        "invalidAddresses": { "$ref": "#/$defs/idArray" }
+      }
+    },
+    "generatedArtifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "status", "expectedSha256", "actualSha256", "bytes"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^(?!/).+$" },
+        "status": { "enum": ["clean", "tampered", "missing", "orphan"] },
+        "expectedSha256": { "$ref": "#/$defs/sha256" },
+        "actualSha256": {
+          "oneOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }]
+        },
+        "bytes": { "$ref": "#/$defs/count" }
+      }
+    },
+    "manualBucket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "files", "blocks", "lines", "bytes"],
+      "properties": {
+        "key": { "$ref": "#/$defs/id" },
+        "files": { "$ref": "#/$defs/count" },
+        "blocks": { "$ref": "#/$defs/count" },
+        "lines": { "$ref": "#/$defs/count" },
+        "bytes": { "$ref": "#/$defs/count" }
+      }
+    },
+    "manualDelta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["files", "blocks", "lines", "bytes", "byReasonCode", "byMechanism"],
+      "properties": {
+        "files": { "$ref": "#/$defs/count" },
+        "blocks": { "$ref": "#/$defs/count" },
+        "lines": { "$ref": "#/$defs/count" },
+        "bytes": { "$ref": "#/$defs/count" },
+        "byReasonCode": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/manualBucket" }
+        },
+        "byMechanism": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/manualBucket" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+# Instance Odoo jetable de qualification — spec 019, tâche T003.
+#
+# ZONE MANUELLE. Ce fichier décrit l'environnement épinglé dans lequel les reçus de
+# qualification sont produits. Les deux images sont reprises telles quelles dans
+# `integrations/odoo/config/inputs.lock.json` (T010) : toute modification ici sans
+# repin correspondant doit faire échouer `npm run odoo:inputs:check`.
+#
+# Aucun secret n'est écrit dans ce fichier ni dans `.env.example`. Le mot de passe
+# de la base est un mot de passe d'instance jetable, fourni par `.env`, jamais
+# commité avec une valeur de production — il n'y a pas de production ici.
+#
+# Démarrage : `docker compose -f integrations/odoo/qa/compose.yaml --env-file integrations/odoo/qa/.env up -d`
+
+name: piqueray-odoo-qa
+
+services:
+  db:
+    # Épinglage mineur seulement — voir la limite ODOO-LIMIT-PG-TAG dans
+    # `integrations/odoo/README.md`. L'image Odoo est datée, celle-ci ne l'est pas.
+    image: ${PQR_POSTGRES_IMAGE:-postgres:15}
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: ${PQR_DB_USER:-odoo}
+      POSTGRES_PASSWORD: ${PQR_DB_PASSWORD:-odoo}
+      # Rend l'initdb reproductible : pas de locale héritée de l'hôte.
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      # `pg_isready` seul répond vrai pendant l'initdb ; on interroge donc la base.
+      test: ["CMD-SHELL", "pg_isready -U ${PQR_DB_USER:-odoo} -d postgres && psql -U ${PQR_DB_USER:-odoo} -d postgres -c 'select 1' > /dev/null"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+
+  odoo:
+    # Tag daté, jamais flottant. Contrôlé par le lock d'entrées (T010).
+    image: ${PQR_ODOO_IMAGE:-odoo:19.0-20260803}
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      HOST: db
+      USER: ${PQR_DB_USER:-odoo}
+      PASSWORD: ${PQR_DB_PASSWORD:-odoo}
+    ports:
+      - "${PQR_ODOO_PORT:-8069}:8069"
+      # Bus / longpolling — nécessaire à l'éditeur de site.
+      - "${PQR_ODOO_GEVENT_PORT:-8072}:8072"
+    volumes:
+      - web-data:/var/lib/odoo
+      # L'addon de 019, monté en lecture seule : la QA ne peut pas modifier la
+      # source depuis le conteneur, ce qui garantit que ce qui est installé est
+      # exactement ce que le dépôt contient.
+      - ../addons:/mnt/extra-addons:ro
+      - ./odoo.conf:/etc/odoo/odoo.conf:ro
+    healthcheck:
+      # `/web/health` répond sans base sélectionnée ; il prouve que le serveur
+      # écoute, PAS que `piqueray_ds` est installé — ce verdict appartient aux
+      # scénarios de qualification, jamais au healthcheck.
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8069/web/health || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  web-data:

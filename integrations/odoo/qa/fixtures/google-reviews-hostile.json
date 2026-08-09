@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "richText": {
+    "input": "<strong>PQR-STRONG-OK</strong><em>PQR-EM-OUT</em><a href=\"javascript:alert(1)\" onclick=\"window.__pqrHostile=1\">PQR-LINK-OUT</a><script>window.__pqrHostile=2</script><span style=\"color:red\">PQR-STYLE-OUT</span>",
+    "allowedText": ["PQR-STRONG-OK", "PQR-EM-OUT", "PQR-LINK-OUT", "PQR-STYLE-OUT"],
+    "allowedTags": ["strong"],
+    "forbiddenTags": ["em", "i", "a", "script", "style", "span"],
+    "forbiddenAttributes": ["onclick", "style", "href"]
+  },
+  "media": {
+    "invalidSources": ["javascript:alert(1)", "data:text/html,<script>alert(1)</script>", "", "https://invalid.example.test/avatar.svg"],
+    "emptyAlt": "",
+    "fallback": "initial-only"
+  },
+  "publicAssertions": {
+    "noExecutableUrl": true,
+    "noEventHandler": true,
+    "noScript": true,
+    "noBrokenPublishedImage": true
+  }
+}

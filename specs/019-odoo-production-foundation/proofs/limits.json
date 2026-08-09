@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordedBy": "T020b — replay concluant de la frontière d'éditabilité",
+  "recordedOn": "2026-08-08",
+  "snapshotId": "odoo-019-foundation",
+  "environment": {
+    "odooImage": "odoo:19.0-20260803",
+    "postgresImage": "postgres:15",
+    "browser": "Chromium 151.0.7922.34",
+    "baseUrl": "http://localhost:8169",
+    "editorRole": "website.group_website_designer sans base.group_system"
+  },
+  "limits": [],
+  "resolvedFindings": [
+    {
+      "code": "ODOO-LIMIT-EDITOR-ENTRY",
+      "resolution": "L'action de prévisualisation avec enable_editor=1 engage bien le builder. L'ancien témoin nul venait du rôle group_website_restricted_editor, qui n'a aucun droit d'écriture sur website.page par défaut. La QA emploie désormais Editor and Designer, toujours non administrateur.",
+      "evidence": "Le chrome porte o_builder_open, l'iframe editor_enable et le save produit un RPC ir.ui.view/save HTTP 200."
+    },
+    {
+      "code": "ODOO-LIMIT-FR009-FR010-UNPROVEN",
+      "resolution": "Le banc hostile de fondation a exercé la frontière, les gestes intérieurs et l'inventaire du panneau. La limite de mécanisme est levée ; chaque section réelle doit encore produire sa qualification propre.",
+      "evidence": "specs/019-odoo-production-foundation/proofs/editability-boundary.json — pass, 44 observations, 0 limitCode."
+    }
+  ],
+  "whatIsEstablished": [
+    "La page de banc est servie au public et aucun nœud de la section Piqueray n'est éditable anonymement.",
+    "En édition réelle, 2 zones nommées acceptent une frappe et 4 descendants déclarés figés la refusent.",
+    "L'addon QA rend les 4 descendants candidats aux gestes Odoo ; 12 intentions move/duplicate/remove sont refusées sans mutation.",
+    "Move, Duplicate et Remove sont désactivés sur une instance qui les interdit et restent visibles et actifs sur une instance concurrente qui les autorise ; save-as-custom, resize, ancre et options/champs natifs non déclarés sont absents.",
+    "Une charge riche hostile devient dirty, passe par ir.ui.view/save, conserve strong seulement, retire em/link/script et les attributs exécutables, puis est relue identique en session anonyme."
+  ],
+  "scopeOfProof": {
+    "qualified": "Mécanismes communs de la fondation sur le banc hostile T017b/T020b.",
+    "stillRequired": "Qualification fonctionnelle, panneau complet, save/reopen/public et visuelle de GoogleReviews puis Presentation en Phases 3 et 4."
+  },
+  "nextStep": {
+    "task": "Phase 3 — GoogleReviews",
+    "how": "Écrire d'abord les fixtures et scénarios rouges T022–T025, remplir les verdicts owner T026, puis monter la section avec le skill de production."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "subjectsModule": "integrations/odoo/qa/visual/subjects/google-reviews.mts",
+  "plancherDeTolerance": null,
+  "raisonDuPlancher": null,
+  "lignes": [
+    {
+      "composant": "ds.google-reviews",
+      "sujet": "google-reviews-default",
+      "statut": "mesurée",
+      "avant": "specs/019-odoo-production-foundation/proofs/google-reviews-visual/html/google-reviews-default.png",
+      "apres": "specs/019-odoo-production-foundation/proofs/google-reviews-visual/odoo/google-reviews-default.png",
+      "score": 1.5961313885326982,
+      "cause": "Anti-aliasing des glyphes, SVG et bordures entre l'émetteur HTML et le moteur Odoo.",
+      "justification": "Le clip est ancré sur .pqr-mesure, sans chrome; géométrie et contenu sont alignés. Le score est publié sans revendication de parité pixel parfaite.",
+      "raisonImpossible": null
+    }
+  ]
+}

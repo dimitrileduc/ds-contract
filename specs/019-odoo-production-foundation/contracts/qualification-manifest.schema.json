@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piqueray.example/schemas/odoo/qualification-manifest.schema.json",
+  "title": "Odoo Qualification Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "manifestId",
+    "snapshotId",
+    "moduleVersion",
+    "environment",
+    "requiredScenarios",
+    "receipts",
+    "limits",
+    "releaseStatus"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "manifestId": { "$ref": "#/$defs/id" },
+    "snapshotId": { "$ref": "#/$defs/id" },
+    "moduleVersion": { "type": "string", "pattern": "^19\\.0\\.[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "environment": { "$ref": "#/$defs/environment" },
+    "requiredScenarios": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/id" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "receipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/receipt" }
+    },
+    "limits": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/limit" }
+    },
+    "releaseStatus": { "enum": ["incomplete", "failed", "qualified", "qualified-with-limits"] }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._@/-]*$" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["odooImage", "postgresImage", "browser", "viewport", "locale"],
+      "properties": {
+        "odooImage": { "type": "string", "pattern": "^odoo:19\\.0-[0-9]{8}$" },
+        "postgresImage": { "type": "string", "pattern": "^postgres:15(?:[.-].*)?$" },
+        "browser": { "type": "string", "minLength": 1 },
+        "viewport": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["width", "height", "deviceScaleFactor"],
+          "properties": {
+            "width": { "type": "integer", "minimum": 1 },
+            "height": { "type": "integer", "minimum": 1 },
+            "deviceScaleFactor": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        },
+        "locale": { "type": "string", "minLength": 2 }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^(?!/).+$" },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "kind": {
+          "enum": ["json", "image", "log", "html", "video", "report"]
+        }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receiptId",
+        "scenarioId",
+        "snapshotId",
+        "status",
+        "fixture",
+        "observations",
+        "artifacts",
+        "limitCodes"
+      ],
+      "properties": {
+        "receiptId": { "$ref": "#/$defs/id" },
+        "scenarioId": { "$ref": "#/$defs/id" },
+        "snapshotId": { "$ref": "#/$defs/id" },
+        "status": { "enum": ["pass", "fail", "skipped"] },
+        "fixture": { "$ref": "#/$defs/id" },
+        "observations": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifact" }
+        },
+        "limitCodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "durationMs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "limit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "scope", "description", "accepted"],
+      "properties": {
+        "code": { "$ref": "#/$defs/id" },
+        "scope": {
+          "enum": ["contract", "authoring", "odoo", "visual", "migration", "interaction"]
+        },
+        "description": { "type": "string", "minLength": 1 },
+        "accepted": { "type": "boolean" },
+        "decisionRef": { "$ref": "#/$defs/id" }
+      }
+    }
+  }
+}

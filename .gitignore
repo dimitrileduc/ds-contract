@@ -85,3 +85,9 @@ specs/018-odoo-replique-manuelle/instance/.docker-cfg/
 # revenir au prochain montage.
 __pycache__/
 *.pyc
+.venv/
+venv/
+*.egg-info/
+
+# spec 019 — env local de l'instance jetable de qualification (jamais commité)
+integrations/odoo/qa/.env

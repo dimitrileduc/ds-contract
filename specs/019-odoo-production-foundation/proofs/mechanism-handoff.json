@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "mechanisms": [
+    { "id": "qweb-root", "status": "proved", "adaptations": ["GOOGLE-REVIEWS-QWEB", "PRESENTATION-QWEB"], "assignedTo": ["021", "022"] },
+    { "id": "root-scoped-authoring", "status": "proved", "adaptations": ["AUTHORING-ROOTS", "AUTHORING-PLUGIN", "GOOGLE-REVIEWS-PANEL", "PRESENTATION-PANEL"], "assignedTo": ["021", "022", "025"] },
+    { "id": "repeat-and-media", "status": "proved", "adaptations": ["REPEAT-ACTIONS", "MEDIA-POLICY", "RICHTEXT-POLICY"], "assignedTo": ["021", "025"] },
+    { "id": "saved-version-policy", "status": "proved", "adaptations": ["VERSION-GUARD"], "assignedTo": ["022", "025"] },
+    { "id": "generated-assets", "status": "proved", "adaptations": ["COMPAT-SENTINEL", "COMPAT-EXPORTS"], "assignedTo": ["025"] }
+  ],
+  "limits": [
+    { "code": "ODOO-LIMIT-PERFORMANCE-NON-MEASURED", "accepted": true, "description": "Aucun p95 de gestes n'est revendiqué." },
+    { "code": "VISUAL-NOT-PIXEL-PERFECT", "accepted": true, "description": "Écarts mesurés et attribués; aucune revendication 0 %." }
+  ]
+}

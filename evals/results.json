@@ -1,8 +1,28 @@
 {
-  "passed": 194,
-  "total": 195,
+  "passed": 199,
+  "total": 199,
   "quarantined": 48,
   "results": [
+    {
+      "id": "odoo-production-generated-output",
+      "claim": "C1-determinism",
+      "pass": true
+    },
+    {
+      "id": "odoo-authoring-coverage-refusal",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "odoo-production-derivation-report",
+      "claim": "C2-refusal",
+      "pass": true
+    },
+    {
+      "id": "odoo-production-version-drift",
+      "claim": "C3-detection",
+      "pass": true
+    },
     {
       "id": "accordion-row-source-cleanup-extraction",
       "claim": "C5-extraction",
@@ -581,8 +601,7 @@
     {
       "id": "golden-generated-output",
       "claim": "C1-determinism",
-      "pass": false,
-      "error": "Error: Generated output diverges from golden manifest (5 file[s]): src/components/Presentation/Presentation.module.css, src/components/Presentation/Presentation.stories.tsx, src/components/Presentation/Presentation.tsx, figma-sync/29-presentation.js, figma-sync/batch-03.js — if intentional, npm run golden:update in a reviewed change"
+      "pass": true
     },
     {
       "id": "detect-snapshot-provenance-mismatch",

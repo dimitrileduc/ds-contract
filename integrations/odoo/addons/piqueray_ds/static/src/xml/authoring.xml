@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+  <!-- La présence de ce composant inscrit la racine comme cible du builder et
+       rend ses gestes structurels natifs accessibles. Les options métier
+       dérivées des configs rejoindront ce panneau en T031. -->
+  <t t-name="piqueray_ds.RootPolicyOption">
+    <BuilderRow label.translate="Piqueray">
+      <span data-pqr-root-policy="" class="text-muted small">Structure gouvernée</span>
+    </BuilderRow>
+  </t>
+
+  <!-- ODOO-019-GOOGLE-REVIEWS-PANEL BEGIN -->
+  <t t-name="piqueray_ds.GoogleReviewsOption">
+    <BuilderRow label.translate="Piqueray · Avis Google">
+      <span data-pqr-control="review-collection">Collection gouvernée</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Avis">
+      <span data-pqr-control="review-collection"><BuilderButton action="'pqrAddReview'" preview="false">Ajouter un avis</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Résumé">
+      <span data-pqr-control="summary-rating"><span data-pqr-control="summary-qualifier"><span data-pqr-control="summary-volume">La note, le qualificatif et le volume se modifient directement dans le bloc.</span></span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Contrôles">
+      <span data-pqr-control="show-controls"><BuilderCheckbox classAction="'pqr-controls-visible'"/></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.ReviewCardOption">
+    <BuilderRow label.translate="Carte d’avis">
+      <span data-pqr-control="author"><span data-pqr-control="initial"><span data-pqr-control="date"><span data-pqr-control="testimonial">Auteur, initiale, date et témoignage se modifient directement.</span></span></span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Afficher Lire la suite"><span data-pqr-control="truncated"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'tronque'"/></span></BuilderRow>
+    <BuilderRow label.translate="Afficher l’initiale"><span data-pqr-control="show-initial"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'initialeVisible'"/></span></BuilderRow>
+    <BuilderRow label.translate="Afficher la photo"><span data-pqr-control="show-photo"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'photo'"/></span></BuilderRow>
+    <BuilderRow label.translate="Avis vérifié"><span data-pqr-control="verified"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'verifie'"/></span></BuilderRow>
+    <BuilderRow label.translate="Avatar"><span data-pqr-control="replace-avatar"><BuilderButton action="'pqrReplaceReviewAvatar'" preview="false">Remplacer</BuilderButton></span></BuilderRow>
+    <BuilderRow label.translate="Alternative"><span data-pqr-control="avatar-alt"><BuilderTextInput action="'pqrSetReviewAvatarAlt'"/></span></BuilderRow>
+    <BuilderRow label.translate="Ordre"><span data-pqr-control="move-up"><BuilderButton action="'pqrMoveReviewUp'" preview="false">Monter</BuilderButton></span><span data-pqr-control="move-down"><BuilderButton action="'pqrMoveReviewDown'" preview="false">Descendre</BuilderButton></span></BuilderRow>
+    <BuilderRow label.translate="Collection"><span data-pqr-control="remove-review"><BuilderButton action="'pqrRemoveReview'" preview="false" type="'danger'">Supprimer l’avis</BuilderButton></span></BuilderRow>
+  </t>
+  <!-- ODOO-019-GOOGLE-REVIEWS-PANEL END -->
+
+  <!-- ODOO-019-PRESENTATION-PANEL BEGIN -->
+  <t t-name="piqueray_ds.PresentationOption">
+    <BuilderRow label.translate="Piqueray · Présentation">
+      <span data-pqr-control="title"><span data-pqr-control="body"><span data-pqr-control="cta-label">Les contenus se modifient directement dans le bloc.</span></span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Appel à l’action">
+      <span data-pqr-control="show-cta"><BuilderCheckbox classAction="'pqr-cta-on'"/></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-PRESENTATION-PANEL END -->
+
+</templates>

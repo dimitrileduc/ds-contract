@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "rootSelector": ".s_pqr_google_reviews",
+  "expectedRootControls": [
+    "summary-rating",
+    "summary-qualifier",
+    "summary-volume",
+    "show-controls",
+    "review-collection"
+  ],
+  "expectedCardControls": [
+    "author",
+    "initial",
+    "date",
+    "testimonial",
+    "truncated",
+    "show-initial",
+    "show-photo",
+    "verified",
+    "replace-avatar",
+    "avatar-alt",
+    "move-up",
+    "move-down",
+    "remove-review"
+  ],
+  "expectedAvatarControls": ["replace-avatar", "avatar-alt"],
+  "forbiddenNativeImageOptions": [
+    "crop",
+    "filters",
+    "link",
+    "tooltip",
+    "dimensions",
+    "format"
+  ],
+  "forbiddenRootActions": ["save-as-custom", "resize", "background", "anchor"],
+  "rootActions": ["move", "duplicate", "remove"],
+  "notes": "Les contrôles sont nommés par data-pqr-control. Aucun champ d'image natif ne peut être compté comme un contrôle Piqueray."
+}

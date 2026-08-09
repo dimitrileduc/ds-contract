@@ -1,0 +1,34 @@
+{
+  "description": "Dérives à injecter dans une copie scratch de integrations/odoo/config/inputs.lock.json. Chaque entrée doit produire exactement une dérive nommée par `npm run odoo:inputs:check`, et le script doit sortir non nul sans jamais réécrire le lock tout seul.",
+  "consumedBy": "odoo-production-version-drift (T051, US3)",
+  "drifts": [
+    {
+      "case": "contenu",
+      "pointer": "/contracts/0/sha256",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000",
+      "expectKind": "content",
+      "why": "un contrat modifié sans bump de version — la dérive que la comparaison de versions seule laisse passer"
+    },
+    {
+      "case": "version",
+      "pointer": "/contracts/0/version",
+      "value": "0.0.1",
+      "expectKind": "version",
+      "why": "une version épinglée qui ne correspond plus au dépôt"
+    },
+    {
+      "case": "image",
+      "pointer": "/odoo/image",
+      "value": "odoo:19.0-20250101",
+      "expectKind": "field",
+      "why": "l'environnement de qualification a bougé — les reçus produits sous l'ancienne image ne valent plus"
+    },
+    {
+      "case": "graphe",
+      "pointer": "/graphDigest",
+      "value": "1111111111111111111111111111111111111111111111111111111111111111",
+      "expectKind": "field",
+      "why": "la fermeture des deux racines a changé de forme"
+    }
+  ]
+}

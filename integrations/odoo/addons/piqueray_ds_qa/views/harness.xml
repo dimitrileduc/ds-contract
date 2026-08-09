@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--
+    ODOO-019-HARNESS — le banc d'essai. Spec 019, tâche T017.
+
+    Ce fichier ne fait PAS partie du produit livré au client : il sert aux
+    scénarios de qualification. Il est déclaré dans `data` du manifeste parce
+    qu'un banc qu'il faut installer à la main n'est jamais rejoué.
+
+    ── Ce que la page d'éditabilité met à l'épreuve ─────────────────────────
+    Une racine FERMÉE portant `data-snippet` (donc traitée comme un snippet par
+    `isDescendantOfNotEditableNotSnippet` du noyau), avec :
+      · DEUX textes rouverts nommément (`.o_pqr_editable`) ;
+      · QUATRE descendants qui doivent rester verrouillés — un texte de colonne
+        figée, un titre d'en-tête, un libellé de bouton, un bloc structurel.
+
+    Volontairement AUCUN `.container` sous la `<section>` : le noyau ouvre
+    `section > .container` et fausserait le test en ouvrant tout. L'état final de
+    018 a corrigé ce montage et prouvé la fermeture/réouverture sur un bloc ; ce
+    banc la reproduit dans l'addon de production et ajoute les gestes structurels.
+  -->
+
+  <!-- ODOO-019-HARNESS-EDITABILITY BEGIN -->
+  <template id="harness_editability_boundary" name="Piqueray — banc d'éditabilité">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure">
+        <section class="s_pqr_presentation pqr-mesure" data-snippet="s_pqr_presentation"
+                 data-ds-contract="ds.presentation"
+                 data-pqr-root-actions="move duplicate remove"
+                 style="padding: var(--pqr-space-24); background: var(--pqr-color-blanc);">
+
+          <!--
+            Le premier run A/B a tranché : `isValidContentEditable()` exige
+            `closest(".o_editable")`. La zone 1 omet encore volontairement cette
+            classe dans le HTML sauvegardé : le normalizer Piqueray doit la
+            matérialiser avant celui du noyau. La zone 2 prouve que le mécanisme
+            reste idempotent quand un futur QWeb l'émet déjà.
+          -->
+          <p class="o_pqr_editable pqr-zone-ouverte-1" data-pqr-marks="strong"
+             data-pqr-role="rouverte">Zone rouverte numéro un — classe native matérialisée par politique.</p>
+          <p class="o_pqr_editable o_editable pqr-zone-ouverte-2" data-pqr-marks=""
+             data-pqr-role="rouverte">Zone rouverte numéro deux — classe native déjà émise.</p>
+
+          <!-- Les QUATRE descendants qui doivent rester verrouillés. -->
+          <div class="pqr-col-figee" data-pqr-role="verrouille">
+            <p class="pqr-texte-fige">Colonne figée — la frappe doit être refusée ici.</p>
+          </div>
+          <h2 class="pqr-titre-fige" data-pqr-role="verrouille">Titre d'en-tête figé</h2>
+          <a href="#" class="pqr-bouton-fige" data-pqr-role="verrouille">
+            <span class="pqr-libelle-fige">Libellé de bouton figé</span>
+          </a>
+          <div class="pqr-bloc-structurel" data-pqr-role="verrouille">
+            <span>Bloc structurel — ni déplaçable, ni duplicable, ni supprimable.</span>
+          </div>
+        </section>
+
+        <!--
+          Seconde INSTANCE, et non mutation artificielle de la première : Odoo
+          calcule les raisons d'indisponibilité de Clone/Remove à la création du
+          conteneur d'options. En production, `data-pqr-root-actions` est émis
+          avec chaque bloc ; il n'est pas une préférence changée à chaud. Ces
+          deux instances concurrentes prouvent donc la vraie frontière : les
+          mêmes classes et le même plugin, avec deux verdicts indépendants.
+        -->
+        <section class="s_pqr_presentation pqr-actions-interdites"
+                 data-snippet="s_pqr_presentation"
+                 data-ds-contract="ds.presentation"
+                 data-pqr-root-actions=""
+                 style="padding: var(--pqr-space-24); background: var(--pqr-color-blanc);">
+          <p class="pqr-actions-interdites__temoin" data-pqr-role="verrouille">
+            Instance témoin — aucune action structurelle de racine autorisée.
+          </p>
+        </section>
+      </div>
+    </t>
+  </template>
+
+  <record id="page_harness_editability_boundary" model="website.page">
+    <field name="url">/piqueray-harness/editability-boundary</field>
+    <field name="view_id" ref="harness_editability_boundary"/>
+    <field name="is_published" eval="True"/>
+    <field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-EDITABILITY END -->
+
+  <!-- ODOO-019-HARNESS-GOOGLE-REVIEWS BEGIN -->
+  <!-- La page part vide. Le scénario insère deux fois la racine depuis le
+       catalogue Website, ce qui matérialise le QWeb dans un #wrap que le
+       Builder sait réellement sauvegarder. -->
+  <template id="harness_google_reviews" name="Piqueray — banc Google Reviews">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty"/>
+    </t>
+  </template>
+  <record id="page_harness_google_reviews" model="website.page">
+    <field name="url">/piqueray-harness/google-reviews</field>
+    <field name="view_id" ref="harness_google_reviews"/>
+    <field name="is_published" eval="True"/>
+    <field name="website_indexed" eval="False"/>
+  </record>
+
+  <!-- Une seule racine, même padding/clip que le renderer HTML de T025. -->
+  <template id="harness_google_reviews_visual" name="Piqueray — Google Reviews visuel">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure">
+        <div class="pqr-mesure" style="min-height: 424px; padding: var(--pqr-space-24); background: var(--pqr-color-blanc); position: relative; z-index: 1;">
+          <t t-call="piqueray_ds.s_pqr_google_reviews"/>
+        </div>
+      </div>
+    </t>
+  </template>
+  <record id="page_harness_google_reviews_visual" model="website.page">
+    <field name="url">/piqueray-harness/google-reviews-visual</field>
+    <field name="view_id" ref="harness_google_reviews_visual"/>
+    <field name="is_published" eval="True"/>
+    <field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-GOOGLE-REVIEWS END -->
+
+  <!-- ODOO-019-HARNESS-PRESENTATION BEGIN -->
+  <template id="harness_presentation" name="Piqueray — banc Présentation">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_presentation" model="website.page">
+    <field name="url">/piqueray-harness/presentation</field><field name="view_id" ref="harness_presentation"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_presentation_visual" name="Piqueray — Présentation visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="min-height: 300px; padding: var(--pqr-space-24); background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_presentation"/></div></div></t>
+  </template>
+  <record id="page_harness_presentation_visual" model="website.page">
+    <field name="url">/piqueray-harness/presentation-visual</field><field name="view_id" ref="harness_presentation_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-PRESENTATION END -->
+
+  <!-- ODOO-019-HARNESS-COMBINED BEGIN -->
+  <template id="harness_combined" name="Piqueray — banc combiné">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_combined" model="website.page">
+    <field name="url">/piqueray-harness/combined</field><field name="view_id" ref="harness_combined"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-COMBINED END -->
+</odoo>

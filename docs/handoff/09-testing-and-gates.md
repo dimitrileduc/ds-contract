@@ -3,13 +3,17 @@ title: "Testing and gates — how everything is verified"
 doc_id: 09-testing-and-gates
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-07-21
+last_updated: 2026-08-09
 reading_order: 9
 prerequisites: [05-architecture, 07-status-what-works]
 related: [08-status-what-doesnt-work, 12-reference]
 ---
 
 # Testing and gates
+
+## Portes Odoo 019
+
+Le quickstart exécutable est `specs/019-odoo-production-foundation/quickstart.md`. Les portes spécifiques sont `odoo:inputs:check`, `odoo:authoring:check`, `odoo:assets -- --check`, `odoo:module:check`, `odoo:derivation:check`, les scénarios QA Docker et `odoo:qualification -- --require-qualified`. Le sweep final du 2026-08-09 a produit 199/199 evals; le nombre imprimé par le prochain run reste l'autorité.
 
 ## The philosophy
 

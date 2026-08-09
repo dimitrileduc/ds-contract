@@ -3,13 +3,21 @@ title: "Status — what works (proven / gated / live-validated)"
 doc_id: 07-status-what-works
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-08-06
+last_updated: 2026-08-09
 reading_order: 7
 prerequisites: [03-determinism, 05-architecture]
 related: [08-status-what-doesnt-work, 09-testing-and-gates]
 ---
 
 # What works
+
+## Fondation Odoo 19 (spec 019, 2026-08-09)
+
+- L'addon `piqueray_ds` livre exactement deux snippets gouvernés, Presentation et Google Reviews, qualifiés sur Odoo 19 épinglé.
+- Deux instances de chaque section restent isolées dans l'éditeur, après sauvegarde, en public et après réouverture.
+- Les blocs sauvegardés portent contrat, versions, digest et versions d'assets; la politique périmée est réappliquée sans prétendre migrer une structure ancienne.
+- Clean install puis `-u` conservent contenu et métadonnées. Le public est non éditable; un rédacteur standard conserve l'éditeur.
+- Le manifeste de qualification est `qualified-with-limits`; preuves et index : `specs/019-odoo-production-foundation/proofs/`.
 
 Read this together with `08-status-what-doesnt-work.md`. Green gates are **not**
 "it works" — they are "these checks pass." Each item below states its evidence

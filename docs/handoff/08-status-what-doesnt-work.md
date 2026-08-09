@@ -3,13 +3,19 @@ title: "Status — what does NOT work (failures, frontier, blind spots)"
 doc_id: 08-status-what-doesnt-work
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-08-06
+last_updated: 2026-08-09
 reading_order: 8
 prerequisites: [07-status-what-works]
 related: [10-history, 11-roadmap]
 ---
 
 # What does NOT work (yet)
+
+## Limites Odoo 019
+
+- Aucun p95 de gestes Odoo n'est revendiqué : la performance est `non-measured` et reste une limite acceptée, pas un succès mesuré.
+- La parité n'est pas pixel parfaite : Google Reviews diffère de 1.5961313885326982 % et Presentation de 2.6092857142857144 %. Les rapports attribuent le résidu d'anti-aliasing/métriques; ils ne le masquent pas par une tolérance choisie après mesure.
+- Une structure sauvegardée dont le digest est ancien est signalée, jamais réécrite automatiquement par `-u`.
 
 This is the most useful document for continuing the work. It is deliberately
 blunt. Do not treat any of these as solved.

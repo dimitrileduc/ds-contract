@@ -1,0 +1,23 @@
+{
+  "receiptId": "combined-isolation-odoo-019-foundation",
+  "scenarioId": "combined-isolation",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "two-by-two-sections",
+  "observations": [
+    "[pass] page combinée — deux instances de chaque section — attendu « 2 Presentation + 2 GoogleReviews », observé « 2 + 2 »",
+    "[pass] édition — valeurs opposées sans fuite inter-section — attendu « 4 valeurs distinctes, CTA opposés, 5 cartes chacune », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}]} »",
+    "[pass] save combiné — vue persistée — attendu « RPC 2xx », observé « HTTP 200 »",
+    "[pass] public — quatre instances persistées sans fuite — attendu « HTTP 200 et valeurs A/B distinctes », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}]} »",
+    "[pass] éditeur rouvert — état combiné relu — attendu « CTA B masqué et avis B distinct », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}]} »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/combined-isolation.public.json",
+      "sha256": "dfb39e45478125f1024b695f552cf800eaa6c2700353f88c7836c684a50c5904",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 100662
+}

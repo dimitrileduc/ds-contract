@@ -1,0 +1,72 @@
+{
+  "receiptId": "editability-boundary-odoo-019-foundation",
+  "scenarioId": "editability-boundary",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "harness_editability_boundary",
+  "observations": [
+    "[pass] la page de banc est servie au public — attendu « HTTP 200 », observé « HTTP 200 »",
+    "[pass] les 6 nœuds du banc sont présents — attendu « 0 manquant », observé « 0 manquant »",
+    "[pass] un visiteur anonyme ne peut éditer aucun nœud DE NOTRE SECTION — attendu « 0 nœud », observé « 0 nœud »",
+    "[pass] nœuds éditables hors de notre section (chrome Odoo) — attendu « informatif, hors périmètre », observé « 1 relevé(s) : h5.s_social_media_title d-none »",
+    "[pass] voie d'entrée dans l'éditeur — attendu « chrome o_builder_open et frame normalisé », observé « parametre-url · body=\"o_web_client o_website_o_website_preview o_builder_open\" »",
+    "[pass] TÉMOIN — l'éditeur est réellement engagé (chrome + iframe) — attendu « o_builder_open + editor_enable », observé « chrome=\"o_web_client o_website_o_website_preview o_builder_open\" · iframe=\"editor_enable\" · 23 nœud(s) éditable(s) »",
+    "[pass] .pqr-zone-ouverte-1 (rouverte) — isContentEditable — attendu « true », observé « true [ouvert par « o_pqr_editable pqr-zone-ouverte-1 o_editable »] »",
+    "[pass] .pqr-zone-ouverte-2 (rouverte) — isContentEditable — attendu « true », observé « true [ouvert par « o_pqr_editable o_editable pqr-zone-ouverte-2 »] »",
+    "[pass] .pqr-texte-fige (verrouillé) — isContentEditable — attendu « false », observé « false »",
+    "[pass] .pqr-titre-fige (verrouillé) — isContentEditable — attendu « false », observé « false »",
+    "[pass] .pqr-libelle-fige (verrouillé) — isContentEditable — attendu « false », observé « false »",
+    "[pass] .pqr-bloc-structurel (verrouillé) — isContentEditable — attendu « false », observé « false »",
+    "[pass] .pqr-zone-ouverte-1 (rouverte) — frappe réelle acceptée — attendu « texte modifié », observé « texte modifié »",
+    "[pass] .pqr-zone-ouverte-2 (rouverte) — frappe réelle acceptée — attendu « texte modifié », observé « texte modifié »",
+    "[pass] .pqr-texte-fige (verrouillé) — frappe réelle refusée — attendu « texte inchangé », observé « texte inchangé »",
+    "[pass] .pqr-titre-fige (verrouillé) — frappe réelle refusée — attendu « texte inchangé », observé « texte inchangé »",
+    "[pass] .pqr-libelle-fige (verrouillé) — frappe réelle refusée — attendu « texte inchangé », observé « texte inchangé »",
+    "[pass] .pqr-bloc-structurel (verrouillé) — frappe réelle refusée — attendu « texte inchangé », observé « texte inchangé »",
+    "[pass] .pqr-texte-fige — move refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-texte-fige — duplicate refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-texte-fige — remove refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-titre-fige — move refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-titre-fige — duplicate refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-titre-fige — remove refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-libelle-fige — move refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-libelle-fige — duplicate refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-libelle-fige — remove refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-bloc-structurel — move refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-bloc-structurel — duplicate refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] .pqr-bloc-structurel — remove refusé au descendant — attendu « sonde hostile active, sélection tentée, commande absente et aucune mutation », observé « sélection réelle tentée · conteneur hostile actif · commande absente · intention exercée »",
+    "[pass] racine — move suit aussi sa décision interdite — attendu « commande absente ou désactivée sans mutation », observé « absente »",
+    "[pass] racine — duplicate suit aussi sa décision interdite — attendu « commande absente ou désactivée sans mutation », observé « visible · désactivée »",
+    "[pass] racine — remove suit aussi sa décision interdite — attendu « commande absente ou désactivée sans mutation », observé « visible · désactivée »",
+    "[pass] racine — move reste distinctement autorisé — attendu « commande visible et active », observé « visible · active »",
+    "[pass] racine — duplicate reste distinctement autorisé — attendu « commande visible et active », observé « visible · active »",
+    "[pass] racine — remove reste distinctement autorisé — attendu « commande visible et active », observé « visible · active »",
+    "[pass] racine — save-as-custom suit sa décision — attendu « commande absente », observé « commande absente »",
+    "[pass] racine — panneau limité à la politique Piqueray et aux gestes déclarés — attendu « 1 politique Piqueray, 0 action haute non déclarée, 0 champ natif », observé « 1 politique · 0 action(s) non déclarée(s) · 0 champ(s) · texte=\"Block Piqueray Structure gouvernée\" »",
+    "[pass] racine — resize suit sa décision interdite — attendu « 0 poignée de resize active », observé « 0 poignée(s) active(s) »",
+    "[pass] charge hostile — le vrai geste devient sauvegardable — attendu « 2 insertions acceptées, au moins 1 racine dirty, charges présentes », observé « 2/2 insertions · 1 dirty · riche=\"PQR-STRONG-OKPQR-EM-OUT﻿﻿PQR-LINK-OUT﻿﻿window.__pqrHostile=3\" · simple=\"PQR-PLAIN-ONLY\" »",
+    "[pass] save — Odoo persiste effectivement la vue — attendu « RPC ir.ui.view/save HTTP 2xx », observé « HTTP 200 »",
+    "[pass] rich-text — attributs hostiles de la racine retirés au save — attendu « style=null et onclick=null », observé « style=null · onclick=null »",
+    "[pass] rich-text — allowlist strong conserve le texte et retire les marques interdites — attendu « 1 strong, 0 em/link/script, texte préservé », observé « 1 strong · 0 em · 0 link · 0 script · texte=\"PQR-STRONG-OKPQR-EM-OUTPQR-LINK-OUT\" »",
+    "[pass] texte simple — aucune marque riche ne survit au save — attendu « 0 marque et texte préservé », observé « 0 marque(s) · texte=\"PQR-PLAIN-ONLY\" »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/editability-boundary.temoin.json",
+      "sha256": "4fd29e5b5ea25324ab16718ea39a4b137d382d2b9739a568a0e87fe35d01b941",
+      "kind": "json"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/editability-boundary.releve.json",
+      "sha256": "7de787b5f6c2999f7fff0fa8a1e55f99ae94edac8062076a83a516d84ce76b73",
+      "kind": "json"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/editability-boundary.rich-text.json",
+      "sha256": "9dfb9e17b2d3ba9a961c968bd83f3cbb8e619ac4b18df9f557123f88c7c22399",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 166003
+}

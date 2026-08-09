@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piqueray.example/schemas/odoo/input-snapshot.schema.json",
+  "title": "Odoo Production Input Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "snapshotId",
+    "odoo",
+    "contracts",
+    "tokens",
+    "registries",
+    "assets",
+    "graphDigest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "snapshotId": { "$ref": "#/$defs/id" },
+    "odoo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["image", "sourceCommit", "postgresImage"],
+      "properties": {
+        "image": { "type": "string", "pattern": "^odoo:19\\.0-[0-9]{8}$" },
+        "sourceCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "postgresImage": { "type": "string", "pattern": "^postgres:15(?:[.-].*)?$" }
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pinnedVersionedInput" },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "tokens": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pinnedInput" },
+      "minItems": 1
+    },
+    "registries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pinnedInput" },
+      "minItems": 1
+    },
+    "assets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pinnedInput" }
+    },
+    "graphDigest": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._@/-]*$" },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "pinnedInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "path", "sha256"],
+      "properties": {
+        "kind": { "enum": ["contract", "tokens", "registry", "font", "image", "asset"] },
+        "id": { "$ref": "#/$defs/id" },
+        "path": { "type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "pinnedVersionedInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "version", "path", "sha256"],
+      "properties": {
+        "kind": { "const": "contract" },
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/semver" },
+        "path": { "type": "string", "pattern": "^(?!/)(?!.*\\.\\.).+$" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    }
+  }
+}

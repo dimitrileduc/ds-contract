@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piqueray.example/schemas/odoo/adaptation-registry.schema.json",
+  "title": "Odoo Manual Adaptation Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reasonCodes", "adaptations"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "reasonCodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reasonCode" },
+      "minItems": 1
+    },
+    "adaptations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/adaptation" }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._@/-]*$" },
+    "reasonCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "description"],
+      "properties": {
+        "code": { "$ref": "#/$defs/id" },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "adaptation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adaptationId",
+        "path",
+        "rootContracts",
+        "reasonCode",
+        "decisionRefs",
+        "mechanism"
+      ],
+      "properties": {
+        "adaptationId": { "type": "string", "pattern": "^ODOO-019-[A-Z0-9-]+$" },
+        "path": {
+          "type": "string",
+          "pattern": "^integrations/odoo/addons/piqueray_ds/(?!.*\\.\\.).+$"
+        },
+        "rootContracts": {
+          "type": "array",
+          "items": { "enum": ["ds.presentation", "ds.google-reviews"] },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "reasonCode": { "$ref": "#/$defs/id" },
+        "decisionRefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "mechanism": {
+          "enum": [
+            "qweb",
+            "builder-option",
+            "repeat-action",
+            "media",
+            "save-version",
+            "odoo-bridge",
+            "qualification",
+            "compatibility"
+          ]
+        }
+      }
+    }
+  }
+}

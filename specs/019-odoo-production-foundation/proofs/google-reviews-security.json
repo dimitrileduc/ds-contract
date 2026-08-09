@@ -1,0 +1,37 @@
+{
+  "receiptId": "google-reviews-security-odoo-019-foundation",
+  "scenarioId": "google-reviews-security",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "google-reviews-panel-hostile",
+  "observations": [
+    "[pass] rôle Website Designer — insertion native et carte sélectionnable — attendu « 1 racine et 1 carte accessibles dans l’éditeur non administrateur », observé « 1 racine(s) · 1 carte(s) »",
+    "[pass] panneau racine — inventaire strict des contrôles déclarés — attendu « review-collection, show-controls, summary-qualifier, summary-rating, summary-volume », observé « review-collection, show-controls, summary-qualifier, summary-rating, summary-volume »",
+    "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
+    "[pass] racine — les actions Odoo interdites sont réellement absentes du chrome visible — attendu « save-as-custom, resize, background et anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0,\"background\":0} »",
+    "[pass] panneau carte — contrôles texte, repeat et avatar exhaustifs — attendu « author, avatar-alt, date, initial, move-down, move-up, remove-review, replace-avatar, show-initial, show-photo, testimonial, truncated, verified », observé « author, avatar-alt, date, initial, move-down, move-up, remove-review, replace-avatar, show-initial, show-photo, testimonial, truncated, verified »",
+    "[pass] panneau avatar — aucune option image native interdite — attendu « crop, filters, link, tooltip, dimensions, format absents », observé « aucune option interdite »",
+    "[pass] média — le dialogue Odoo n’expose que l’onglet Images — attendu « Images seulement », observé « Images »",
+    "[pass] avatar sans alt — upload Odoo retenu mais replié — attendu « source Odoo /web/image ou /web/content, photo masquée, data-photo=false », observé « {\"initial\":true,\"photo\":false,\"photoFlag\":\"false\",\"rawSource\":\"/web/image/303-b01eb99b/home-light.png\",\"alt\":\"\"} »",
+    "[pass] avatar — les quatre états photo/initiale restent indépendants — attendu « initiale+photo, photo seule, aucune, initiale seule, puis restauration », observé « {\"both\":{\"initial\":true,\"photo\":true,\"photoFlag\":\"true\",\"rawSource\":\"/web/image/303-b01eb99b/home-light.png\",\"alt\":\"Portrait QA\"},\"photoOnly\":{\"initial\":false,\"photo\":true,\"photoFlag\":\"true\",\"rawSource\":\"/web/image/303-b01eb99b/home-light.png\",\"alt\":\"Portrait QA\"},\"neither\":{\"initial\":false,\"photo\":false,\"photoFlag\":\"false\",\"rawSource\":\"/web/image/303-b01eb99b/home-light.png\",\"alt\":\"Portrait QA\"},\"initialOnly\":{\"initial\":true,\"photo\":false,\"photoFlag\":\"false\",\"rawSource\":\"/web/image/303-b01eb99b/home-light.png\",\"alt\":\"Portrait QA\"},\"restored\":{\"initial\":true,\"photo\":true,\"photoFlag\":\"true\",\"rawSource\":\"/web/image/303-b01eb99b/home-light.png\",\"alt\":\"Portrait QA\"}} »",
+    "[pass] média hostile — sources exécutables, vides ou cassées retirées — attendu « 4 sources retirées et avatar replié », observé « [{\"source\":\"javascript:alert(1)\",\"state\":{\"initial\":true,\"photo\":false,\"photoFlag\":\"false\",\"rawSource\":null,\"alt\":\"Alt hostile 1\"}},{\"source\":\"data:text/html,<script>alert(1)</script>\",\"state\":{\"initial\":true,\"photo\":false,\"photoFlag\":\"false\",\"rawSource\":null,\"alt\":\"Alt hostile 2\"}},{\"source\":\"\",\"state\":{\"initial\":true,\"photo\":false,\"photoFlag\":\"false\",\"rawSource\":null,\"alt\":\"Alt hostile 3\"}},{\"source\":\"https://invalid.example.test/avatar.svg\",\"state\":{\"initial\":true,\"photo\":false,\"photoFlag\":\"false\",\"rawSource\":null,\"alt\":\"Alt hostile 4\"}}] »",
+    "[pass] charge hostile rich-text — une édition réellement dirty est insérée — attendu « insertHTML accepté et au moins une racine dirty », observé « insert=true · dirty=1 »",
+    "[pass] save hostile — ir.ui.view/save répond 2xx — attendu « HTTP 2xx », observé « HTTP 200 »",
+    "[pass] public anonyme — rich-text conserve strong et retire tags/attributs hostiles — attendu « HTTP 200 · 1 strong · 0 em/i/a/script/style/span · texte préservé », observé « {\"status\":\"/piqueray-harness/google-reviews\",\"strong\":1,\"forbiddenTags\":0,\"forbiddenAttributes\":[],\"preserved\":true,\"executableAttributes\":[],\"executableUrls\":[],\"avatarSource\":\"/html_editor/static/src/img/placeholder_thumbnail.png\",\"avatarHidden\":true} »",
+    "[pass] public anonyme — aucun handler, URL exécutable ou avatar cassé ne survit — attendu « 0 handler · 0 URL exécutable · avatar sans source ou placeholder natif masqué », observé « {\"status\":\"/piqueray-harness/google-reviews\",\"strong\":1,\"forbiddenTags\":0,\"forbiddenAttributes\":[],\"preserved\":true,\"executableAttributes\":[],\"executableUrls\":[],\"avatarSource\":\"/html_editor/static/src/img/placeholder_thumbnail.png\",\"avatarHidden\":true} »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/google-reviews-security.avatar-states.json",
+      "sha256": "6e119bb39b49fab2ed97957a7254cbd5967952ffc4e0f9d5014e5934d08afb99",
+      "kind": "json"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/google-reviews-security.public.json",
+      "sha256": "67de16b818a3c87ba895d27da6950d055c272ffb0952e1dfe011c8ea46ae933d",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 85889
+}

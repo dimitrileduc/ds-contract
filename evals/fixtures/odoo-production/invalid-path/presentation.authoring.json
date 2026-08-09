@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "fixture-invalid-path",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": { "id": "ds.presentation", "version": "2.5.0" },
+  "rootActions": [{ "action": "move", "verdict": "allowed" }],
+  "controls": [
+    {
+      "decisionId": "fx-chemin-inexistant",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.presentation", "version": "2.5.0" } },
+          { "contract": { "id": "ds.review-card", "version": "1.0.0" }, "viaPart": "carte" }
+        ],
+        "prop": "auteur"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_presentation .auteur"
+    },
+    {
+      "decisionId": "fx-version-fausse",
+      "address": {
+        "componentPath": [
+          { "contract": { "id": "ds.presentation", "version": "2.5.0" } },
+          { "contract": { "id": "ds.section-header", "version": "9.9.9" }, "viaPart": "SectionHeader" }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_presentation .titre"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "fx-part-inexistante",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.5.0" } }],
+        "partPath": ["root", "colonneQuiNexistePas"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_presentation .fantome",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "fx-selecteur-non-prefixe",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.5.0" } }],
+        "partPath": ["root", "wrapper", "Texte"]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".pqr-texte",
+      "allowedMarks": ["strong"]
+    }
+  ]
+}

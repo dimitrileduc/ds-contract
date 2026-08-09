@@ -39,7 +39,217 @@ import {
 import { legacyCases } from './legacy-cases.js';
 import { normalizeVectorSvg } from '../extract/figma/vector-assets.js';
 
+/**
+ * 019 — les schémas des cinq formats d'intégration vivent sous `specs/`, que
+ * `resetScratch()` ne copie PAS (sa liste de répertoires n'a pas d'entrée
+ * `specs`, et le cas `odoo-tokens-output` de 018 s'appuie explicitement sur ce
+ * fait). Les portes de 019 lisent donc leurs schémas via `PQR_ODOO_SCHEMA_DIR`.
+ * On le pose autour d'un cas et on le restaure, plutôt que globalement : une
+ * variable d'environnement qui survit d'un cas à l'autre est un couplage
+ * invisible entre cas.
+ */
+const ODOO_SCHEMA_DIR = path.join(ROOT, 'specs', '019-odoo-production-foundation', 'contracts');
+function avecSchemasOdoo<T>(fn: () => T): T {
+  const avant = process.env.PQR_ODOO_SCHEMA_DIR;
+  process.env.PQR_ODOO_SCHEMA_DIR = ODOO_SCHEMA_DIR;
+  try {
+    return fn();
+  } finally {
+    if (avant === undefined) delete process.env.PQR_ODOO_SCHEMA_DIR;
+    else process.env.PQR_ODOO_SCHEMA_DIR = avant;
+  }
+}
+
 const cases: Case[] = [
+  {
+    // 019 — les sorties générées de l'addon Odoo. La règle des claims place ce
+    // cas AVANT toute phrase affirmant que le module est reproductible.
+    //
+    // Il refuse quatre choses par leur nom :
+    //   D1  deux générations ne rendent pas les mêmes octets ;
+    //   D2  une sortie retouchée à la main passe `--check` ;
+    //   D3  une valeur déplacée en amont ne se propage PAS (recopie unique
+    //       déguisée en dérivation — le contrôle adversarial du lot) ;
+    //   D4  le chrome de showcase de `emit-html` fuit en production.
+    id: 'odoo-production-generated-output',
+    claim: 'C1-determinism',
+    run: () => avecSchemasOdoo(() => {
+      const GEN = 'integrations/odoo/addons/piqueray_ds/static/src/css/generated';
+      const COMPONENTS = `${GEN}/components.pqr.css`;
+      const TOKENS = `${GEN}/tokens.pqr.css`;
+      const abs = (rel: string) => path.join(SCRATCH, rel);
+      const assets = (...extra: string[]) => run(TSX, ['scripts/odoo/build-assets.ts', ...extra]);
+
+      // Les jetons CSS sont une entrée du build d'assets : on part d'un état
+      // construit, comme le fait `npm run build`.
+      if (buildTokens().status !== 0) throw new Error('build-tokens a échoué sur un scratch propre');
+      const r1 = assets();
+      if (r1.status !== 0) throw new Error(`odoo:assets a échoué :\n${r1.out}`);
+      if (!existsSync(abs(COMPONENTS))) throw new Error(`D1: ${COMPONENTS} n'a pas été écrit`);
+
+      const premier = readFileSync(abs(COMPONENTS), 'utf8');
+      const premierTokens = readFileSync(abs(TOKENS), 'utf8');
+
+      // ---- D4 : aucun habillage de showcase dans la sortie de production.
+      if (/showcase/.test(premier)) throw new Error('D4: le chrome de showcase de emit-html a fui dans components.pqr.css');
+      // Et le préfixe est TOTAL : une déclaration ou une référence nue rendrait
+      // la feuille silencieusement inerte sous Odoo.
+      const refNue = [...premier.matchAll(/var\((--[\w-]+)/g)].map((m) => m[1]).find((n) => !n.startsWith('--pqr-'));
+      if (refNue) throw new Error(`D4: référence non préfixée dans la sortie : var(${refNue})`);
+      const declNue = [...premierTokens.matchAll(/^\s*(--[\w-]+)\s*:/gm)].map((m) => m[1]).find((n) => !n.startsWith('--pqr-'));
+      if (declNue) throw new Error(`D4: déclaration non préfixée dans la sortie : ${declNue}`);
+
+      // ---- D1 : deux fois, octet pour octet.
+      if (assets().status !== 0) throw new Error('D1: seconde génération en échec');
+      if (readFileSync(abs(COMPONENTS), 'utf8') !== premier) throw new Error('D1: deux générations consécutives diffèrent');
+      const check = assets('--check');
+      if (check.status !== 0) throw new Error(`D1: --check rouge sur une sortie fraîche :\n${check.out}`);
+
+      // ---- D2 : la retouche est refusée, et NOMMÉE `tampered`.
+      const retouche = readFileSync(path.join(SCRATCH, 'evals/fixtures/odoo-production/generated-output/tamper.css'), 'utf8');
+      writeFileSync(abs(COMPONENTS), premier + retouche);
+      const apresRetouche = assets('--check');
+      if (apresRetouche.status === 0) throw new Error('D2: --check a accepté une sortie générée retouchée à la main');
+      if (!apresRetouche.out.includes('tampered')) throw new Error(`D2: le refus ne nomme pas \`tampered\` :\n${apresRetouche.out}`);
+      if (assets().status !== 0) throw new Error('D2: la régénération après retouche a échoué');
+      if (readFileSync(abs(COMPONENTS), 'utf8') !== premier) throw new Error('D2: la régénération n\'a pas restauré la sortie');
+
+      // ---- D3 : DÉRIVATION, pas transcription. Une valeur déplacée à la source
+      // doit bouger dans la sortie. Une copie prise une fois passerait D1, D2 et
+      // D4 sans broncher, et mourrait ici.
+      editJson('tokens/primitives.tokens.json', (t: any) => {
+        if (t?.radius?.['32']?.$value !== '32px') {
+          throw new Error(`D3: dérive de fixture — primitives radius.32 vaut ${JSON.stringify(t?.radius?.['32']?.$value)}, "32px" attendu`);
+        }
+        t.radius['32'].$value = '7px';
+      });
+      if (buildTokens().status !== 0) throw new Error('D3: build-tokens a échoué après mutation d\'un jeton source');
+      if (assets().status !== 0) throw new Error('D3: odoo:assets a échoué après mutation d\'un jeton source');
+      const mute = /--pqr-radius-32:\s*([^;]+);/.exec(readFileSync(abs(TOKENS), 'utf8'));
+      if (!mute) throw new Error('D3: --pqr-radius-32 a disparu de la sortie');
+      if (mute[1].trim() !== '7px') {
+        throw new Error(`D3: la source vaut 7px mais la sortie Odoo lit encore ${mute[1].trim()} — transcrite une fois, pas dérivée`);
+      }
+    }),
+  },
+  {
+    // 019 — la couverture des décisions d'authoring. Aucun verdict par défaut :
+    // une prop ou une part sans décision est un TROU, et un trou dans une
+    // politique d'édition se découvre en production.
+    //
+    // Quatre refus, chacun exigé PAR SON NOM :
+    //   R1  une occurrence sans verdict est nommée par son adresse canonique ;
+    //   R2  une adresse qui ne résout vers aucune occurrence est refusée ;
+    //   R3  une version fausse est distinguée d'un chemin faux ;
+    //   R4  un sélecteur non préfixé par la racine est refusé — sans quoi deux
+    //       instances de la même section partageraient leurs contrôles.
+    id: 'odoo-authoring-coverage-refusal',
+    claim: 'C2-refusal',
+    run: () => avecSchemasOdoo(() => {
+      const gate = (fixture: string) =>
+        run(TSX, ['scripts/odoo/check-authoring.ts', '--config', `evals/fixtures/odoo-production/${fixture}/presentation.authoring.json`]);
+
+      // ---- R1 : verdicts manquants, nommés par adresse canonique.
+      const manque = gate('missing-verdict');
+      if (manque.status === 0) throw new Error('R1: une config amputée de ses verdicts a été acceptée');
+      if (!manque.out.includes('manquant :')) throw new Error(`R1: le refus ne liste aucun verdict manquant :\n${manque.out}`);
+      // L'adresse doit être CANONIQUE : le chemin de composants, pas un nom court.
+      if (!/manquant : ds\.presentation \/ SectionHeader→ds\.section-header/.test(manque.out)) {
+        throw new Error(`R1: les manquants ne portent pas leur adresse canonique :\n${manque.out}`);
+      }
+      // Et l'occurrence DOUBLE de ds.button doit apparaître par ses DEUX chemins :
+      // une table indexée par nom les confondrait en un seul bouton.
+      const cheminsBouton = new Set(
+        [...manque.out.matchAll(/manquant : (.*?ds\.button) ::/g)].map((m) => m[1]),
+      );
+      if (cheminsBouton.size !== 2) {
+        throw new Error(`R1: ds.button attendu par 2 chemins d'occurrence distincts, ${cheminsBouton.size} vu(s) :\n${[...cheminsBouton].join('\n')}`);
+      }
+
+      // ---- R2/R3/R4 : chemin inexistant, version fausse, sélecteur non préfixé.
+      const invalide = gate('invalid-path');
+      if (invalide.status === 0) throw new Error('R2: une config aux adresses invalides a été acceptée');
+      if (!invalide.out.includes('chemin sans occurrence')) throw new Error(`R2: un chemin inexistant n'est pas refusé par son nom :\n${invalide.out}`);
+      if (!/version épinglée ds\.section-header@9\.9\.9/.test(invalide.out)) {
+        throw new Error(`R3: une version fausse n'est pas distinguée d'un chemin faux :\n${invalide.out}`);
+      }
+      if (!/non préfixé par « \.s_pqr_presentation »/.test(invalide.out)) {
+        throw new Error(`R4: un sélecteur non préfixé par la racine n'est pas refusé :\n${invalide.out}`);
+      }
+
+      // ---- Contre-épreuve : la porte n'est pas rouge par principe. Une config
+      // absente est refusée AUSSI, mais en le disant autrement — sans quoi les
+      // quatre refus ci-dessus ne prouveraient rien de plus qu'un script cassé.
+      const absente = run(TSX, ['scripts/odoo/check-authoring.ts', '--config', 'integrations/odoo/config/inexistante.authoring.json']);
+      if (absente.status === 0) throw new Error('la porte accepte une config absente');
+      if (!absente.out.includes("config(s) d'authoring absente(s)")) {
+        throw new Error(`une config absente doit être nommée comme telle, pas confondue avec un défaut de couverture :\n${absente.out}`);
+      }
+    }),
+  },
+  {
+    id: 'odoo-production-derivation-report',
+    claim: 'C2-refusal',
+    run: () => avecSchemasOdoo(() => {
+      const REGISTRY_REL = 'integrations/odoo/config/adaptation-registry.json';
+      const reportPath = path.join(SCRATCH, 'integrations/odoo/derivation-report.json');
+      const registryPath = path.join(SCRATCH, REGISTRY_REL);
+      const bridgePath = path.join(SCRATCH, 'integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css');
+      const build = (...args: string[]) => run(TSX, ['scripts/odoo/build-derivation-report.ts', ...args]);
+      /** Reconstruit, puis rend le rapport relu. */
+      const rebuild = () => { build(); return JSON.parse(readFileSync(reportPath, 'utf8')); };
+      const firstRun = build();
+      if (firstRun.status !== 0) throw new Error(`rapport canonique rouge:\n${firstRun.out}`);
+      const first = readFileSync(reportPath, 'utf8');
+      if (build().status !== 0 || readFileSync(reportPath, 'utf8') !== first) throw new Error('rapport non déterministe ×2');
+
+      const originalRegistry = readFileSync(registryPath, 'utf8');
+      const originalBridge = readFileSync(bridgePath, 'utf8');
+      // La restauration réécrit les OCTETS d'origine, jamais un re-formatage :
+      // `editJson` normalise l'indentation, ce qui ne doit pas fuir d'un volet
+      // à l'autre.
+      const restoreRegistry = () => writeFileSync(registryPath, originalRegistry);
+
+      editJson(REGISTRY_REL, (r) => { r.adaptations.reverse(); r.reasonCodes.reverse(); });
+      if (build().status !== 0 || readFileSync(reportPath, 'utf8') !== first) throw new Error('ordre du registre influence la sérialisation');
+
+      restoreRegistry();
+      editJson(REGISTRY_REL, (r) => { r.adaptations.pop(); });
+      if (rebuild().unclassified.blocks.length === 0) throw new Error('bloc sans registre non détecté');
+
+      restoreRegistry();
+      editJson(REGISTRY_REL, (r) => {
+        r.adaptations.push({ ...r.adaptations[0], adaptationId: 'ODOO-019-REGISTRY-WITHOUT-BLOCK' });
+      });
+      if (!rebuild().unclassified.registryEntries.includes('ODOO-019-REGISTRY-WITHOUT-BLOCK')) throw new Error('registre sans bloc non détecté');
+
+      restoreRegistry();
+      writeFileSync(bridgePath, `${originalBridge}\n/* ODOO-019-OUTER BEGIN */\n/* ODOO-019-INNER BEGIN */\n/* ODOO-019-INNER END */\n/* ODOO-019-OUTER END */\n`);
+      if (!rebuild().unclassified.blocks.some((value: string) => value.startsWith('imbrique/'))) throw new Error('marqueurs chevauchants non détectés');
+    }),
+  },
+  {
+    id: 'odoo-production-version-drift',
+    claim: 'C3-detection',
+    run: () => avecSchemasOdoo(() => {
+      const out = path.join(SCRATCH, 'version-report.json');
+      const scan = () => run(TSX, [
+        'scripts/odoo/scan-saved-versions.ts',
+        '--input', 'evals/fixtures/odoo-production/version-drift/cases.json',
+        '--out', out,
+      ]);
+      const result = scan();
+      if (result.status !== 0) throw new Error(`scanner version rouge:\n${result.out}`);
+      const report = JSON.parse(readFileSync(out, 'utf8'));
+      const states = Object.fromEntries(report.entries.map((entry: any) => [entry.caseId, entry.state]));
+      for (const expected of ['current', 'policy-stale', 'structure-stale', 'unknown']) {
+        if (states[expected] !== expected) throw new Error(`${expected}: état ${states[expected] ?? '(absent)'}`);
+      }
+      const first = readFileSync(out, 'utf8');
+      const second = scan();
+      if (second.status !== 0 || readFileSync(out, 'utf8') !== first) throw new Error('scanner version non déterministe');
+    }),
+  },
   {
     id: 'accordion-row-source-cleanup-extraction',
     claim: 'C5-extraction',

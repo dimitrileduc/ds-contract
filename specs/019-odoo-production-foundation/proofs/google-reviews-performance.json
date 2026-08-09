@@ -1,0 +1,21 @@
+{
+  "receiptId": "google-reviews-performance-odoo-019-foundation",
+  "scenarioId": "google-reviews-performance",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "google_reviews_contract_sample",
+  "observations": [
+    "[pass] échantillon de gestes — attendu « texte, booléen, ordre, repeat », observé « le scénario fonctionnel exécute édition de texte, initiale/vérifié/photo, ajout/suppression et monter sur une instance isolée »",
+    "[pass] mesure — attendu « p95 ou non-measured explicite », observé « non-measured : le scénario d’intégration recrée une base et compile les bundles Odoo à chaque exécution; sa durée globale ne serait pas une latence de geste exploitable »",
+    "[pass] absence de claim — attendu « aucune performance inventée », observé « aucun budget, p95 ou débit n’est déclaré »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/google-reviews-functional.json",
+      "sha256": "cccb2175c3876c73ea9ce703623c5ede953384299116452848261118ccff3129",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": ["ODOO-LIMIT-PERFORMANCE-NON-MEASURED"],
+  "durationMs": 0
+}

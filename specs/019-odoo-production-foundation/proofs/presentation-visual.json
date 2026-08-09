@@ -1,0 +1,20 @@
+{
+  "receiptId": "presentation-visual-odoo-019-foundation",
+  "scenarioId": "presentation-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "presentation-default",
+  "observations": [
+    "[pass] référence HTML — attendu « clip 1400×300, sujet default », observé « PNG capturé avec Chromium 151.0.7922.34 »",
+    "[pass] page Odoo publique — attendu « HTTP 200 et ds.presentation présent », observé « capture Odoo produite sur /piqueray-harness/presentation-visual »",
+    "[pass] comparaison — attendu « dimensions identiques et score mesuré », observé « 2.6092857142857144 % de pixels différents »",
+    "[pass] résidu attribué — attendu « cause dans le rapport canonique », observé « composition, contenu et dimensions alignés ; résidu concentré sur l’anti-aliasing et de faibles écarts de métriques des glyphes ; aucune revendication de parité pixel parfaite »"
+  ],
+  "artifacts": [
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/html/presentation-default.png", "sha256": "c02e831b2c27bf22ff613b16b01c2dc9f932f198f9c2e8e825fb10dc2b793c1e", "kind": "image" },
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/odoo/presentation-default.png", "sha256": "5a828bb8b8d84758090fb0be32f5fb0e42b6a251a42d5393e5e9704f341b8505", "kind": "image" },
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/diff/comparaison-image.json", "sha256": "2fcc736ad087ea0e2dc5d0b675e69347576249d1659d720a9f130d107b9f42ad", "kind": "report" }
+  ],
+  "limitCodes": [],
+  "durationMs": 0
+}

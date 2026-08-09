@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "generatorVersion": "1.0.0",
+  "coverage": {
+    "expectedProps": 36,
+    "decidedProps": 36,
+    "expectedParts": 66,
+    "decidedParts": 66,
+    "missingDecisionIds": [],
+    "extraDecisionIds": [],
+    "invalidAddresses": []
+  },
+  "generatedArtifacts": [
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css",
+      "status": "clean",
+      "expectedSha256": "97d1b9746443fbee11cd548bd46975dcfea2215deb5993557d85cf25f309f24a",
+      "actualSha256": "97d1b9746443fbee11cd548bd46975dcfea2215deb5993557d85cf25f309f24a",
+      "bytes": 15110
+    },
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css",
+      "status": "clean",
+      "expectedSha256": "762334dbae447584c312d6215a7890f15d331e7377ef44ef42209160769c48da",
+      "actualSha256": "762334dbae447584c312d6215a7890f15d331e7377ef44ef42209160769c48da",
+      "bytes": 1019
+    },
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/tokens.pqr.css",
+      "status": "clean",
+      "expectedSha256": "2a655cf04d77cd4779e1b45056db0d6352bb562a5c4c3143ce0257381631eb5d",
+      "actualSha256": "2a655cf04d77cd4779e1b45056db0d6352bb562a5c4c3143ce0257381631eb5d",
+      "bytes": 11193
+    },
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-400-normal.woff2",
+      "status": "clean",
+      "expectedSha256": "e66bcd2761ab6924b25ce70dafe10e57a39193c4fea1516730bd9cb5240af6c8",
+      "actualSha256": "e66bcd2761ab6924b25ce70dafe10e57a39193c4fea1516730bd9cb5240af6c8",
+      "bytes": 18780
+    },
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-500-normal.woff2",
+      "status": "clean",
+      "expectedSha256": "2b53300fb9471520df2f4905847fb7a209879b2029ae893c05c6ee346b1320cd",
+      "actualSha256": "2b53300fb9471520df2f4905847fb7a209879b2029ae893c05c6ee346b1320cd",
+      "bytes": 18748
+    },
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-600-normal.woff2",
+      "status": "clean",
+      "expectedSha256": "d857325c360f7128b347ca924c1974967aaa886ba47dad22e4042d6c38b26a83",
+      "actualSha256": "d857325c360f7128b347ca924c1974967aaa886ba47dad22e4042d6c38b26a83",
+      "bytes": 18688
+    },
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/fonts/montserrat-latin-700-normal.woff2",
+      "status": "clean",
+      "expectedSha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "actualSha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/img/README.md",
+      "status": "clean",
+      "expectedSha256": "055d67b4a72d239421f7ff3af94795166efea827cb05e1c3047e4b4de744d4ab",
+      "actualSha256": "055d67b4a72d239421f7ff3af94795166efea827cb05e1c3047e4b4de744d4ab",
+      "bytes": 478
+    }
+  ],
+  "manualDelta": {
+    "files": 10,
+    "blocks": 16,
+    "lines": 907,
+    "bytes": 52490,
+    "byReasonCode": [
+      {
+        "key": "odoo-builder-policy",
+        "files": 3,
+        "blocks": 5,
+        "lines": 363,
+        "bytes": 18234
+      },
+      {
+        "key": "odoo-internal-api",
+        "files": 1,
+        "blocks": 2,
+        "lines": 107,
+        "bytes": 4630
+      },
+      {
+        "key": "odoo-layout-bridge",
+        "files": 1,
+        "blocks": 2,
+        "lines": 23,
+        "bytes": 759
+      },
+      {
+        "key": "odoo-media-dialog",
+        "files": 1,
+        "blocks": 1,
+        "lines": 100,
+        "bytes": 3812
+      },
+      {
+        "key": "odoo-qweb-composition",
+        "files": 2,
+        "blocks": 4,
+        "lines": 138,
+        "bytes": 17043
+      },
+      {
+        "key": "odoo-repeat-dom",
+        "files": 1,
+        "blocks": 1,
+        "lines": 123,
+        "bytes": 5174
+      },
+      {
+        "key": "odoo-version-policy",
+        "files": 1,
+        "blocks": 1,
+        "lines": 53,
+        "bytes": 2838
+      }
+    ],
+    "byMechanism": [
+      {
+        "key": "builder-option",
+        "files": 3,
+        "blocks": 5,
+        "lines": 363,
+        "bytes": 18234
+      },
+      {
+        "key": "compatibility",
+        "files": 1,
+        "blocks": 2,
+        "lines": 107,
+        "bytes": 4630
+      },
+      {
+        "key": "media",
+        "files": 1,
+        "blocks": 1,
+        "lines": 100,
+        "bytes": 3812
+      },
+      {
+        "key": "odoo-bridge",
+        "files": 1,
+        "blocks": 2,
+        "lines": 23,
+        "bytes": 759
+      },
+      {
+        "key": "qweb",
+        "files": 2,
+        "blocks": 4,
+        "lines": 138,
+        "bytes": 17043
+      },
+      {
+        "key": "repeat-action",
+        "files": 1,
+        "blocks": 1,
+        "lines": 123,
+        "bytes": 5174
+      },
+      {
+        "key": "save-version",
+        "files": 1,
+        "blocks": 1,
+        "lines": 53,
+        "bytes": 2838
+      }
+    ]
+  },
+  "unclassified": {
+    "files": [],
+    "blocks": [],
+    "registryEntries": []
+  },
+  "canonicalDigest": "293c3e7c5d5f193f9af41f0fe659b110e4f7324744450fed3eb83e39e2a1b2ca"
+}

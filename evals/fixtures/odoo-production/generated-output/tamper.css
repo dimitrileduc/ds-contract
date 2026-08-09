@@ -1,0 +1,10 @@
+/* Retouche adversariale — spec 019, fixture `generated-output`.
+ *
+ * Le cas d'eval `odoo-production-generated-output` ajoute ce fragment à une
+ * sortie générée DANS SON SCRATCH, jamais dans l'arbre de travail, puis exige que
+ * `odoo:assets --check` la classe `tampered` et sorte non nul.
+ *
+ * La valeur ci-dessous est plausible et inoffensive à l'œil : c'est le point.
+ * Une retouche « juste un petit ajustement » est indistinguable d'une dérive,
+ * et c'est pourquoi la porte refuse au lieu d'arbitrer. */
+.presentation { padding-left: 17px; }

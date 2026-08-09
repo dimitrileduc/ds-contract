@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piqueray.example/schemas/odoo/authoring-config.schema.json",
+  "title": "Odoo Authoring Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "configId",
+    "authoringVersion",
+    "snapshotId",
+    "rootContract",
+    "rootActions",
+    "controls",
+    "parts"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "configId": { "$ref": "#/$defs/id" },
+    "authoringVersion": { "$ref": "#/$defs/semver" },
+    "snapshotId": { "$ref": "#/$defs/id" },
+    "rootContract": { "$ref": "#/$defs/contractRef" },
+    "rootActions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/rootActionDecision" },
+      "minItems": 1
+    },
+    "controls": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/controlDecision" }
+    },
+    "parts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/partDecision" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "$comment": "Identifiants QUE NOUS choisissons : configId, snapshotId, decisionId, reasonCode, ids de contrat. Kebab-case, minuscules.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._@/-]*$"
+    },
+    "localName": {
+      "$comment": "Noms VENUS DES CONTRATS : nom de prop, nom de part, part de composition. Corrigé le 2026-08-08 à l'implémentation de T009/T011 : mesuré sur les 5 contrats du périmètre, `$defs/id` refusait 9 props sur 30 (iconLeft, initialeVisible, photoUrl, …) et 24 parts sur 61 (SectionHeader, Bouton, avatarPhoto, lireLaSuite, …) — le camelCase et le PascalCase des contrats sont hors de son jeu de caractères. La config d'authoring aurait donc été inécrivable pour un tiers du graphe, et FR-006 (verdict pour chaque part atteignable) impossible à satisfaire. Le motif ci-dessous accepte 30/30 props et 61/61 parts, vérifié par exécution.",
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+    },
+    "partPathSegment": {
+      "$comment": "Un segment de `partPath`. `*` est le joker de repeat décrit par data-model.md §2 (« peut inclure un segment de repeat wildcard »). Avec les contrats d'aujourd'hui la frontière de repeat est portée par `componentSegment.repeat`, donc `*` n'est employé nulle part ; il reste exprimable pour ne pas interdire en silence ce que le modèle de données décrit.",
+      "type": "string",
+      "pattern": "^(\\*|[A-Za-z][A-Za-z0-9_-]*)$"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?$"
+    },
+    "contractRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/semver" }
+      }
+    },
+    "componentSegment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract"],
+      "properties": {
+        "contract": { "$ref": "#/$defs/contractRef" },
+        "viaPart": { "$ref": "#/$defs/localName" },
+        "repeat": { "type": "boolean", "default": false }
+      }
+    },
+    "componentPath": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/componentSegment" },
+      "minItems": 1
+    },
+    "baseAddress": {
+      "type": "object",
+      "properties": {
+        "componentPath": { "$ref": "#/$defs/componentPath" }
+      },
+      "required": ["componentPath"]
+    },
+    "propAddress": {
+      "allOf": [
+        { "$ref": "#/$defs/baseAddress" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["componentPath", "prop"],
+          "properties": {
+            "componentPath": { "$ref": "#/$defs/componentPath" },
+            "prop": { "$ref": "#/$defs/localName" }
+          }
+        }
+      ]
+    },
+    "partAddress": {
+      "allOf": [
+        { "$ref": "#/$defs/baseAddress" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["componentPath", "partPath"],
+          "properties": {
+            "componentPath": { "$ref": "#/$defs/componentPath" },
+            "partPath": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/partPathSegment" },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "rootActionDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "verdict"],
+      "properties": {
+        "action": {
+          "enum": ["move", "duplicate", "remove", "save-as-custom", "resize", "background"]
+        },
+        "verdict": { "enum": ["allowed", "forbidden", "out-of-capacity"] },
+        "reasonCode": { "$ref": "#/$defs/id" }
+      }
+    },
+    "visibleWhen": {
+      "$comment": "`prop` porte ici une ADRESSE complète, pas un nom : une condition peut viser une prop d'un autre niveau du graphe.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prop", "operator", "value"],
+      "properties": {
+        "prop": { "$ref": "#/$defs/propAddress" },
+        "operator": { "enum": ["equals", "not-equals", "truthy", "falsy"] },
+        "value": {}
+      }
+    },
+    "controlDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisionId", "address", "verdict", "mechanism"],
+      "properties": {
+        "decisionId": { "$ref": "#/$defs/id" },
+        "address": { "$ref": "#/$defs/propAddress" },
+        "verdict": {
+          "enum": ["controlled", "fixed-by-composition", "not-editable", "out-of-capacity"]
+        },
+        "mechanism": {
+          "enum": [
+            "plain-text",
+            "rich-text",
+            "boolean",
+            "enum",
+            "number",
+            "media",
+            "ordered-repeat",
+            "computed-display",
+            "none"
+          ]
+        },
+        "targetSelector": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "reasonCode": { "$ref": "#/$defs/id" },
+        "visibleWhen": { "$ref": "#/$defs/visibleWhen" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "verdict": { "const": "controlled" } } },
+          "then": {
+            "properties": { "mechanism": { "not": { "const": "none" } } },
+            "required": ["targetSelector"]
+          },
+          "else": {
+            "if": { "properties": { "verdict": { "const": "out-of-capacity" } } },
+            "then": { "required": ["reasonCode"] }
+          }
+        }
+      ]
+    },
+    "partDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decisionId",
+        "address",
+        "verdict",
+        "contentKind",
+        "selector",
+        "allowedMarks"
+      ],
+      "properties": {
+        "decisionId": { "$ref": "#/$defs/id" },
+        "address": { "$ref": "#/$defs/partAddress" },
+        "verdict": {
+          "enum": ["directly-editable", "fixed-by-composition", "not-editable", "out-of-capacity"]
+        },
+        "contentKind": {
+          "enum": ["plain-text", "rich-text", "media", "component", "repeat", "structural"]
+        },
+        "selector": { "type": "string", "minLength": 1 },
+        "allowedMarks": {
+          "type": "array",
+          "items": { "enum": ["strong", "em", "link", "line-break"] },
+          "uniqueItems": true
+        },
+        "reasonCode": { "$ref": "#/$defs/id" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "contentKind": { "const": "rich-text" } } },
+          "then": {},
+          "else": { "properties": { "allowedMarks": { "maxItems": 0 } } }
+        },
+        {
+          "if": { "properties": { "verdict": { "const": "out-of-capacity" } } },
+          "then": { "required": ["reasonCode"] }
+        }
+      ]
+    }
+  }
+}

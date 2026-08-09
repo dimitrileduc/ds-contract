@@ -1,0 +1,107 @@
+{
+  "assets": [
+    {
+      "id": "montserrat-latin-400-normal",
+      "kind": "font",
+      "path": "node_modules/@fontsource/montserrat/files/montserrat-latin-400-normal.woff2",
+      "sha256": "e66bcd2761ab6924b25ce70dafe10e57a39193c4fea1516730bd9cb5240af6c8"
+    },
+    {
+      "id": "montserrat-latin-500-normal",
+      "kind": "font",
+      "path": "node_modules/@fontsource/montserrat/files/montserrat-latin-500-normal.woff2",
+      "sha256": "2b53300fb9471520df2f4905847fb7a209879b2029ae893c05c6ee346b1320cd"
+    },
+    {
+      "id": "montserrat-latin-600-normal",
+      "kind": "font",
+      "path": "node_modules/@fontsource/montserrat/files/montserrat-latin-600-normal.woff2",
+      "sha256": "d857325c360f7128b347ca924c1974967aaa886ba47dad22e4042d6c38b26a83"
+    },
+    {
+      "id": "montserrat-latin-700-normal",
+      "kind": "font",
+      "path": "node_modules/@fontsource/montserrat/files/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "ds.button",
+      "kind": "contract",
+      "path": "contracts/button.contract.json",
+      "sha256": "646ba96e30de71cc710b30d6c3796063b033860ff7785d52a9fc11b70dd6dd59",
+      "version": "2.0.0"
+    },
+    {
+      "id": "ds.google-reviews",
+      "kind": "contract",
+      "path": "contracts/google-reviews.contract.json",
+      "sha256": "c8a1cd9f8a624702e44ccdcba11b0c19770acba876c5d2ddf08037501d0a37df",
+      "version": "1.0.0"
+    },
+    {
+      "id": "ds.presentation",
+      "kind": "contract",
+      "path": "contracts/presentation.contract.json",
+      "sha256": "2b47614d58a08f7756c25aa01cf6e60784520547bad71172b3bba5a496814cad",
+      "version": "2.5.0"
+    },
+    {
+      "id": "ds.review-card",
+      "kind": "contract",
+      "path": "contracts/review-card.contract.json",
+      "sha256": "2747d8388f2896ba445803801d676f81a0a630d8e25f37fb9c4f5d440cd94b04",
+      "version": "1.0.0"
+    },
+    {
+      "id": "ds.section-header",
+      "kind": "contract",
+      "path": "contracts/section-header.contract.json",
+      "sha256": "f89d59eb97b97232678fc6aa7d11bca4b18c3c67342b5a94bb8c5895aa08dd9c",
+      "version": "2.1.1"
+    }
+  ],
+  "graphDigest": "9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595",
+  "odoo": {
+    "image": "odoo:19.0-20260803",
+    "postgresImage": "postgres:15",
+    "sourceCommit": "ddcf4f8959ed7d185a4dc46195ac5d5a24e26891"
+  },
+  "registries": [
+    {
+      "id": "icons",
+      "kind": "registry",
+      "path": "contracts/icons.registry.json",
+      "sha256": "04248792e233e722f574a7dd9ff88213aded34d1bd9ea1ebfa5eb6b4ceab212b"
+    },
+    {
+      "id": "named-literals",
+      "kind": "registry",
+      "path": "contracts/named-literals.registry.json",
+      "sha256": "7a5d070aa12d1a6f76e6748f7e82019a5bbee9710b74211c515f52bfd20e75f3"
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "tokens": [
+    {
+      "id": "primitives",
+      "kind": "tokens",
+      "path": "tokens/primitives.tokens.json",
+      "sha256": "f26251397f6e3dad0388241fd9605e883702c0ac4d344bf5eae958dcddeb9bab"
+    },
+    {
+      "id": "semantic",
+      "kind": "tokens",
+      "path": "tokens/semantic.tokens.json",
+      "sha256": "c90c9555134d27a393f394e7ec3c168d0dd051885794b20f2dba39eea54dd669"
+    },
+    {
+      "id": "semantic.light",
+      "kind": "tokens",
+      "path": "tokens/modes/semantic.light.tokens.json",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    }
+  ]
+}

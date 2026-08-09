@@ -76,15 +76,34 @@ export function resetScratch() {
     path.join(ROOT, 'extract', 'figma', 'visual-parity', 'out'),
     path.join(ROOT, 'extract', 'figma', 'organism-audit', 'out'),
   ]);
-  for (const dir of ['contracts', 'tokens', 'scripts', 'core', 'parity', 'src', 'catalog', 'context', 'assets', 'extract', 'playground', 'workers', 'packages', 'figma-sync']) {
+  // 019 — `integrations/` porte l'addon Odoo de production. Les cas
+  // `odoo-production-*` exécutent `scripts/odoo/*` dans le scratch : sans mise
+  // en scène, la porte lirait un répertoire absent et son refus se lirait comme
+  // un défaut de la porte.
+  // Deux sous-arbres sont EXCLUS : la QA Odoo (scénarios Playwright, addon de
+  // banc) exige Docker et un navigateur, donc aucune eval ne peut l'exécuter ni
+  // ne la lit. Mesuré : 19 fichiers sur 34 et 47 % des octets, recopiés une fois
+  // par cas pour rien. Les deux cas `odoo-*` ne touchent que `config/` et
+  // `addons/piqueray_ds/static/src/css/generated/`.
+  const odooScratchSkips = new Set([
+    path.join(ROOT, 'integrations', 'odoo', 'qa'),
+    path.join(ROOT, 'integrations', 'odoo', 'addons', 'piqueray_ds_qa'),
+  ]);
+  // Les racines exclues, par répertoire de premier niveau. Une exclusion de plus
+  // est une entrée de plus ici, jamais un niveau de ternaire supplémentaire.
+  const scratchSkips = new Map([
+    ['extract', extractScratchRoots],
+    ['integrations', odooScratchSkips],
+  ]);
+  const scratchFilter = (dir: string): ((src: string) => boolean) | undefined => {
+    if (dir === 'packages') return (src) => path.basename(src) !== 'dist';
+    const skips = scratchSkips.get(dir);
+    return skips && ((src) => !skips.has(src));
+  };
+  for (const dir of ['contracts', 'tokens', 'scripts', 'core', 'parity', 'src', 'catalog', 'context', 'assets', 'extract', 'playground', 'workers', 'packages', 'figma-sync', 'integrations']) {
     cpSync(path.join(ROOT, dir), path.join(SCRATCH, dir), {
       recursive: true,
-      filter:
-        dir === 'packages'
-          ? (src) => path.basename(src) !== 'dist'
-          : dir === 'extract'
-            ? (src) => !extractScratchRoots.has(src)
-            : undefined,
+      filter: scratchFilter(dir),
     });
   }
   cpSync(path.join(ROOT, 'evals', 'fixtures'), path.join(SCRATCH, 'evals', 'fixtures'), {

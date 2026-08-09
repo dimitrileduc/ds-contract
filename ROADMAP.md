@@ -2,6 +2,118 @@
 
 The public roadmap lives in the documentation: **[docs/12-roadmap.md](docs/12-roadmap.md)**.
 
+## Séquence active — composants Odoo de production
+
+**Séquence approuvée le 2026-08-07.** L'objectif J5 ne change pas : les **13 sections** nécessaires
+au site doivent être disponibles dans Odoo, et la fermeture de leur graphe doit couvrir les
+**34 contrats**. Les atomes et molécules restent des modèles internes ; les surfaces réellement
+qualifiées dans l'éditeur sont les sections et les éléments de shell.
+
+Les specs **019 et 020 avancent en parallèle**. Les specs 019 à 024 privilégient la construction
+réelle avec un agent spécialisé et des preuves sur l'instance. Le builder déterministe est dérivé
+ensuite de ce qui aura effectivement tenu, en 025 — jamais imaginé avant les faits.
+
+Principes communs à toute la séquence :
+
+- les décisions d'authoring vivent dans une configuration versionnée séparant les **contrôles de
+  props** des **parts rendues**, avec chemins complets à travers les composants imbriqués ;
+- `components.css` et la feuille de tokens Odoo sont **générés et écrasés** à chaque build : un
+  agent ne peut pas les éditer ; toute adaptation Odoo manuelle vit à part et reste mesurable ;
+- `derivation-report.json` est produit mécaniquement depuis l'écart entre la sortie prédite par la
+  configuration et les adaptateurs réellement écrits — zéro jugement rédigé sur ce qui serait
+  « dérivable » ;
+- chaque bloc sauvegardé porte l'ID et la version du contrat. La **politique d'édition** peut évoluer
+  sur les blocs existants ; leur **structure HTML**, clonée puis stockée par Odoo, ne migre pas
+  automatiquement. Toute migration structurelle exige donc une décision et un geste nommés ;
+- aucune prop Figma, part visible, image ou capacité écartée ne peut rester sans verdict ;
+- les contrôles sont écrits avant les claims : déterminisme, refus d'un verdict manquant, refus
+  d'un chemin imbriqué invalide, installation, gestes éditeur, sauvegarde/réouverture et diff visuel.
+
+### 019 — `odoo-production-foundation` *(J1–J2)*
+
+Construire le module Odoo de production séparé du POC et établir le workflow réutilisable sur deux
+références déclarées propres : **`ds.presentation`** et **`ds.google-reviews`**.
+
+Livrables : schéma et configurations d'authoring (`controls` + `parts` imbriquées), modèles QWeb,
+CSS/tokens générés et protégés, réglages Odoo, répétition de `ReviewCard`, marqueurs de version,
+politique de migration, skill de construction, rapport mécanique du delta manuel, et preuves
+insertion → édition → sauvegarde → réouverture → rendu public → diff pixel.
+
+019 consomme des versions épinglées et ne modifie aucun contrat. Si 020 doit toucher une dépendance
+de `Presentation` ou `GoogleReviews`, le croisement est annoncé avant fusion et 019 est revalidée.
+
+### 020 — `figma-contract-readiness` *(J1–J2, en parallèle de 019)*
+
+Revue assistée, composant par composant, des **11 autres sections**. Le Figma vivant peut être cassé
+et n'est donc jamais pris seul comme référence. Pour chaque organisme, l'agent construit d'abord une
+chronologie depuis l'historique Figma disponible, les dumps JSON, captures, maquettes de pages et
+versions Git du contrat/HTML. Il localise la rupture probable, propose au plus quelques candidats de
+« dernière version saine » et compare ensuite le candidat recommandé au triplet courant
+**Figma ↔ contrat ↔ HTML**.
+
+Un **gate owner obligatoire intervient après ce pré-tri et avant toute réparation** : l'owner valide
+la référence saine, tranche changement voulu contre régression et décide défaut à réparer, accepté
+ou hors contrat. Après réparation, un second gate visuel court accepte le résultat. L'agent ne choisit
+jamais seul entre plusieurs intentions de design techniquement plausibles.
+
+Quand la cause descend dans un atome ou une molécule composée, 020 distingue une dépendance réellement
+fausse d'une mauvaise utilisation locale, calcule tous ses consommateurs et interdit de corriger un
+composant partagé pour un seul organisme sans revalider son graphe. Toute modification de `Button`,
+`SectionHeader`, `ReviewCard`, `Presentation` ou `GoogleReviews` déclenche notamment le repin et la
+revalidation affectée de 019.
+
+020 ferme le **diagnostic et la décision**, pas nécessairement tous les gros chantiers. Une réparation
+locale évidente peut rester dans 020; une évolution de schéma/moteur, une dépendance partagée, une
+restauration Figma massive, un problème d'images ou plusieurs gates humains devient une sous-spec de
+réparation nommée. La sortie exigée par organisme est : référence saine validée et receipted, cause,
+graphe d'impact, verdict (`ready`, `ready-with-exception`, `repair-*`, `accepted-defect`,
+`out-of-contract` ou `blocked-history`) et destination 021, 022 ou sous-spec. Aucun composant n'est
+choisi comme référence Odoo avant cette revue.
+
+### 021 — `odoo-production-wave-a` *(J2–J3)*
+
+Monter les sections déclarées prêtes par 020 dont l'authoring se compose uniquement des mécanismes
+déjà prouvés : texte/rich-text, média, booléen, variante simple, composition imbriquée et répétition
+simple. Chaque section ferme sa propre config, ses gestes éditeur et sa preuve visuelle avant de
+sortir de la vague.
+
+### 022 — `odoo-production-wave-b` *(J3–J4)*
+
+Monter les sections qui exigent une exception : variante structurelle, collection particulière,
+défaut Figma accepté ou adaptateur Odoo manuel. Les capacités métier complexes peuvent rester hors
+contrat, mais seulement avec un verdict explicite. Aucun cas particulier n'entre dans le mécanisme
+générique sans avoir été exercé sur l'instance.
+
+### 023 — `odoo-site-shell` *(J4–J5)*
+
+Intégrer **Header** et **Footer** à `website.layout`, avec navigation, liens, logo et CTA éditables,
+et vérifier leur coexistence avec toutes les sections. Ils ne sont pas déguisés en snippets de
+contenu ordinaires.
+
+### 024 — `odoo-production-gate` *(J5)*
+
+Qualifier l'ensemble avant le site : **13/13 sections**, fermeture **34/34 contrats**, installation
+et mise à jour propres, zéro fichier généré modifié, zéro verdict manquant, sauvegarde/réouverture
+sur les 13 surfaces, diff visuel par section, contrôles de sécurité, détection des blocs portant une
+ancienne version, et rapport exact des limites et comportements hors contrat.
+
+### 025 — `odoo-contract-builder` *(après la livraison production)*
+
+Consommer les configurations et adaptateurs éprouvés par 019–023, régénérer leurs sorties sans
+différence fonctionnelle ou visuelle, remplacer la mécanique manuelle et conserver les vraies
+exceptions. La progression se mesure par la réduction du delta manuel dans
+`derivation-report.json`.
+
+### Rectificatif courant de 018
+
+L'entrée historique de 018 plus bas décrit fidèlement sa **première clôture**, mais trois de ses
+conclusions sont périmées depuis la seconde session du 2026-08-07 : la gouvernance de
+`Presentation` a été écrite et exercée ; les options Odoo natives indésirables sont retirées ; et
+la comparaison HTML ↔ Odoo vaut désormais **0,0000 % sur `Button`, `SectionHeader` et
+`Presentation`**. Les limites qui restent dimensionnantes sont le deuxième bloc, les images, les
+répétitions, les variantes structurelles et l'absence de migration automatique du HTML déjà posé.
+La séquence 019–025 ci-dessus, et non l'ancien état de clôture, porte la décision courante.
+
 ## Prochaines specs (séquence arrêtée le 2026-07-31 · **état repris le 2026-08-06, à la clôture de 016**)
 
 > **Comment lire cette section.** Les points 1 et 2 ci-dessous sont l'état d'avant l'exécution : ils sont conservés parce qu'ils portent le raisonnement qui a dimensionné le chantier, mais **014 et 015 sont closes** et une de leurs prescriptions s'est révélée fausse à la mesure — voir « Ce que l'exécution a corrigé » juste après. La source vive de ce qui reste est le registre `specs/014-mesure-juste-triage/proofs/registre/causes.json § deferredWork` (lu par la porte de mesure, jamais de la prose) ; le tableau lisible est `specs/015-geometrie-gouvernee/RAPPORT-CLOTURE.md` §5.
@@ -69,12 +181,12 @@ raisonnement)* :
 Fait vérifié qui a cadré ce découpage : les gros écarts de parité visuelle des atomes/molécules sont **A5-image (6 lignes) et plancher renderer (15 lignes ≤3,6 %)** — la géométrie-en-tokens n'y changera rien ; ce qu'elle répare, ce sont les divergences des **organismes** (registre DW de 013). Deux populations, deux specs.
 
 5. **018 — `odoo-replique-manuelle`** (**close le 2026-08-07, partiellement — et la partialité est le résultat**) : spec de **dérisquage**, hors de la séquence 014→017. Trois contrats gouvernés répliqués **à la main** en blocs Odoo 19 sur une instance jetable, pour chiffrer ce que coûterait un émetteur `odoo`. **7 critères de succès sur 9 atteints, 1 partiel, 1 non atteint** — les deux manques ayant la **même cause unique** : la couche de réglages (T031–T035) n'a jamais été écrite.
-   **Ce que l'instance a confirmé** : nos jetons traversent Odoo — `ds.button` et `ds.section-header` à **0,0000 %** d'écart pixel contre la surface HTML de référence, `ds.presentation` à 4,17 %, un décalage horizontal **pur** de 15 px remonté jusqu'à sa règle (`.container` d'Odoo, `--gutter-x: 30px`) et imputable à un `.container` que **nous** avons introduit pour l'éditabilité ; une chaîne de `t-call` sur **3 niveaux** rend exactement ; `section > .container` rend le texte éditable **sans un attribut ni une ligne de JS** et **survit à l'enregistrement**.
-   **Ce qu'elle a infirmé** : **zéro levier de gouvernance tenu**. `o_not_editable` ferme les réglages et les zones de dépôt, mais **pas** l'édition de texte — le mécanisme qui ouvre le texte de la colonne droite ouvre aussi celui de la colonne gauche déclarée figée. Et 4 réglages natifs d'Odoo remontent sur notre bloc sans avoir été déclarés.
+   **Ce que l'instance a confirmé** : nos jetons traversent Odoo — `ds.button` et `ds.section-header` à **0,0000 %** d'écart pixel contre la surface HTML de référence, `ds.presentation` à 4,17 % au 2026-08-06 — **ramené à 0,0000 % le 2026-08-07** en remplaçant le `.container` de Bootstrap par une borne maison sans gouttière (`proofs/comparaison-image.json` final : 0 sur les trois). Le décalage était un déplacement horizontal **pur** de 15 px dû à `--gutter-x: 30px` ; une chaîne de `t-call` sur **3 niveaux** rend exactement ; `section > .container` rend le texte éditable **sans un attribut ni une ligne de JS** et **survit à l'enregistrement**.
+   **Gouvernance — état final corrigé** : le rapport intermédiaire concluait « zéro levier tenu » avant l'écriture de la couche de réglages. L'état final contribue les sélecteurs d'éditabilité depuis un `Plugin`, mesure **3 textes ouverts et 4 conteneurs fermés**, et écarte 8 classes d'options natives. Le trou restant est structurel : `Drag and move`, `Duplicate` et `Remove` restent proposés sur les descendants (`proofs/us2/gestes-us2-gouverne.json`).
    **Volumes** : 899 lignes écrites, dont 306 de commentaire ⇒ **505 lignes de code, 79 % mécaniques** (92 % hors instrument de mesure). Les 106 lignes de jugement tiennent en 4 décisions nommables.
-   **Recommandation du rapport** : construire l'émetteur, **mais instruire la gouvernance d'abord** — un émetteur qui génère parfaitement des blocs qu'un rédacteur peut déstructurer industrialise le problème au lieu de le résoudre. Ordre de grandeur adossé au précédent interne mesuré (`emit-wc.ts` = 1353 lignes, **un seul** type de fichier contre **trois** pour Odoo) : 2 à 3×, **hors** couche de réglages, dont le coût est inconnu.
+   **Recommandation corrigée** : construire l'émetteur après avoir reproduit la gouvernance prouvée et fermé le verrou structurel — un émetteur qui génère parfaitement des blocs qu'un rédacteur peut déstructurer industrialise le problème au lieu de le résoudre. Ordre de grandeur adossé au précédent interne mesuré (`emit-wc.ts` = 1353 lignes, **un seul** type de fichier contre **trois** pour Odoo) : 2 à 3× ; le coût de la couche de réglages du second bloc reste à mesurer.
    Livrable : `specs/018-odoo-replique-manuelle/RAPPORT-DECISION.md` — §6 liste **six** angles morts. Code de dépôt touché : exactement `scripts/build-tokens.mjs` (+4ᵉ sortie de jetons préfixée), `evals/run.ts` (+1 cas C1), `docs/03-token-pipeline.md`. **Re-pin : zéro**, vérifié par exécution.
-   **La suite naturelle, non ordonnancée** : une spec courte qui écrit T031–T035 sur ce même module et rend les 4 verdicts de levier pour de bon. Sans elle, on construirait un émetteur pour une cible dont on ignore si elle peut être gouvernée.
+   **La suite naturelle** : reproduire ces mécanismes dans l'addon de production et fermer par preuve le verrou structurel restant avant de généraliser l'émetteur.
 
 ### Ce que l'exécution a corrigé dans le plan ci-dessus (2026-08-05)
 

@@ -1,0 +1,32 @@
+{
+  "receiptId": "google-reviews-visual-odoo-019-foundation",
+  "scenarioId": "google-reviews-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "google-reviews-default",
+  "observations": [
+    "[pass] référence HTML — attendu « clip 1648×424, sujet default », observé « PNG capturé avec Chromium 151.0.7922.34 »",
+    "[pass] page Odoo publique — attendu « HTTP 200 et ds.google-reviews présent », observé « capture Odoo produite sur /piqueray-harness/google-reviews-visual »",
+    "[pass] comparaison — attendu « dimensions identiques et score mesuré », observé « 1.5961313885326982 % de pixels différents »",
+    "[pass] résidu attribué — attendu « cause explicite dans le rapport canonique », observé « clip ancré sur .pqr-mesure sans header ; résidu concentré sur l’anti-aliasing des glyphes, SVG et bordures, géométrie et contenu alignés ; aucune revendication de parité pixel parfaite »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/google-reviews-visual/html/google-reviews-default.png",
+      "sha256": "cb915675e44a7aa46652c8dcb94f828bcb6c6273a470fe14d8f45212f3416701",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/google-reviews-visual/odoo/google-reviews-default.png",
+      "sha256": "b70204b00ef65018be09e61be461f4039593f84bd81808cc4b0c5fe944e423a5",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/google-reviews-visual/diff/comparaison-image.json",
+      "sha256": "6d5eb500797e521dc2a42aaef177151077476f85698a6024b1aef66534f52694",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 0
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "fixture-missing-verdict",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": { "id": "ds.presentation", "version": "2.5.0" },
+  "rootActions": [{ "action": "move", "verdict": "allowed" }],
+  "controls": [
+    {
+      "decisionId": "fx-ctl-bouton",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.5.0" } }],
+        "prop": "bouton"
+      },
+      "verdict": "controlled",
+      "mechanism": "boolean",
+      "targetSelector": ".s_pqr_presentation .pqr-cta",
+      "label": "Afficher le bouton"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "fx-part-root",
+      "address": {
+        "componentPath": [{ "contract": { "id": "ds.presentation", "version": "2.5.0" } }],
+        "partPath": ["root"]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_presentation",
+      "allowedMarks": []
+    }
+  ]
+}

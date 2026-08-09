@@ -3,13 +3,19 @@ title: "Roadmap — what's left, prioritized"
 doc_id: 11-roadmap
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: living
-last_updated: 2026-07-21
+last_updated: 2026-08-09
 reading_order: 11
 prerequisites: [07-status-what-works, 08-status-what-doesnt-work]
 related: [03-determinism, 09-testing-and-gates]
 ---
 
 # Roadmap
+
+## Après la fondation Odoo 019
+
+- `021` et `022` peuvent porter les prochaines sections avec QWeb, authoring root-scoped et reçus de persistance déjà prouvés.
+- `025` peut industrialiser le builder à partir de `adaptation-registry.json`, `derivation-report.json` et `proofs/mechanism-handoff.json`.
+- Mesurer les latences de gestes sur un protocole stable avant de revendiquer un p95; ne pas convertir la limite actuelle en succès implicite.
 
 Ordered by impact toward the North Star (`02`). Every item preserves determinism
 (`03`) — none introduces AI into the conversion.
