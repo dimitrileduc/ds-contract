@@ -1,0 +1,13 @@
+021 / US2 — preuves rouges avant implémentation
+Exécuté le 2026-08-10 depuis le worktree autonome avec `npx tsx`.
+
+composed-parent-prop-forwarding-check.ts
+RED — Error: the emitted parent plan carries no exact parent→child property reference
+
+icon-instance-swap-visible-check.ts
+RED — Error: INSTANCE_SWAP glyph was still compiled as a static SVG
+
+shared-consumer-impact-check.ts
+RED — SyntaxError: impact.js does not provide an export named validateSharedConsumerImpacts
+
+Ces trois échecs sont attendus et précèdent les correctifs T029–T034.

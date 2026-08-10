@@ -429,3 +429,22 @@ Open VERIFY-BY-SPIKE items (each ≤ one plugin-console session): exact
 *3. **`width` on a text block means the text WRAPS at that width** (sharpens §5 from the other side of `white-space: nowrap`): the emitter used to fix the wrapper while the child TEXT stayed `WIDTH_AND_HEIGHT` and overflowed in one line; it now sets the TEXT to `textAutoResize: 'HEIGHT'` + `layoutSizingHorizontal: 'FILL'` (`core/emit-figma-script.ts`, the dated "016, CSS semantics" comment). Live receipt: Devis.Titre emitted 1498×50 against an origin of 900×100 (two lines); after the fix the Devis master returned 328→378 = origin (`specs/016-canvas-vrai/decisions.md` O-12, class 7). **No dedicated adversarial fixture backs this yet** — receipt level, named per the claims rule.*
 
 *4. **A set can gain a VARIANT axis on amend** (rename+merge, generalizing the State-axis rename): when a set gains a dimension, existing variants named without the new segments are completed at the spec's defaults (the old node IS that variant — instances point at it), an amend-built twin under the completed name merges into the historied node, and the block runs BEFORE the first `componentPropertyDefinitions` read (on an errored set that read throws — the amend could no longer repair itself). Live receipt: SectionHeader gained Emphase+Alignement, set 18→16 variants, healthy (`decisions.md` O-12, class 6; the dated comment and the `renamedVariants`/`mergedVariants` report fields sit in `core/emit-figma-script.ts`). **No dedicated adversarial fixture backs this yet** — receipt level, same caveat as 3.*
+
+*Addendum (2026-08-10, spec 021 — projection repair closed live): three
+formerly open projection classes now have named headless and live evidence.
+(1) `position:absolute` is lowered out of auto-layout flow and guarded by eval
+`figma-projection-repair-absolute-lowering`; Hero/SAV were rebuilt in place and
+the second rebuild is a no-op. (2) An exact composed `{parentProp}` route uses
+Figma's native nested-instance exposure (`isExposedInstance`): Figma correctly
+refuses retargeting `componentPropertyReferences` on an instance sublayer, so
+the emitter prunes the inert duplicate parent TEXT property and exposes the
+SectionHeader's real suffixed keys. Eval:
+`figma-projection-repair-composed-parent-prop-forwarding`; Coordonnées and
+Formulaire live witnesses changed visible text, restored it, and kept geometry.
+(3) Enum-driven `icon.asset` lowers to governed icon instances plus native
+`INSTANCE_SWAP` definitions with preferred registry values; static icons stay
+SVG. Eval: `figma-projection-repair-icon-instance-swap-visible`; live Button
+kept node `6:122`, CarouselControls kept `2077:2191`, and opposite chevrons were
+toggled then restored. Closure evidence lives under
+`specs/021-figma-projection-repair/proofs/`: 7/7 receipts, zero unexpected diff,
+and two live rebuilds entirely no-op.*

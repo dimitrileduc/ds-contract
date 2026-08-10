@@ -1,0 +1,229 @@
+{
+  "schemaVersion": "1.0.0",
+  "receiptId": "021-produits-e-commerce-accepted",
+  "campaignId": "021-figma-projection-repair",
+  "targetId": "produits-e-commerce",
+  "referenceId": "020-reference-produits-e-commerce",
+  "appliedOperationIds": [
+    "generated-button-carousel-controls"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "produits-e-commerce:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_master.structure.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:master",
+      "kind": "expected",
+      "description": "properties changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_master.properties.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_master.png"
+    },
+    {
+      "surfaceId": "produits-e-commerce:carousel-controls",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_carousel-controls.structure.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:carousel-controls",
+      "kind": "expected",
+      "description": "properties changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_carousel-controls.properties.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:carousel-controls",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_carousel-controls.png"
+    },
+    {
+      "surfaceId": "produits-e-commerce:instance:2116:4531",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_instance_2116_4531.structure.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:instance:2116:4531",
+      "kind": "expected",
+      "description": "properties changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_instance_2116_4531.properties.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:instance:2116:4531",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_instance_2116_4531.png"
+    },
+    {
+      "surfaceId": "produits-e-commerce:instance:2116:4595",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_instance_2116_4595.structure.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:instance:2116:4595",
+      "kind": "expected",
+      "description": "properties changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_instance_2116_4595.properties.json"
+    },
+    {
+      "surfaceId": "produits-e-commerce:instance:2116:4595",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_instance_2116_4595.png"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [
+    {
+      "consumerId": "ds.carousel-controls",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/carousel-controls.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.carte",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/carte.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.devis",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/devis.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.faq",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/faq.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.footer",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/footer.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.formulaire",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/formulaire.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.header",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/header.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.hero",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/hero.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.presentation",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/presentation.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.reassurances",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/reassurances.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.sav",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/sav.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.section-header",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/section-header.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "odoo-019-qualification",
+      "dependencyId": "Button",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "integrations/odoo/config/inputs.lock.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/odoo-019-decision.json"
+    }
+  ],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "The owner explicitly instructed the agent to fix the complete Organisms scope and continue. The post-repair package is accepted against the already-approved 020 reference because the 7/7 automated comparison reports zero unexpected diff, images and root instance identities are preserved, shared consumers are closed, and the second reconstruction is a strict no-op.",
+  "evidenceRefs": [
+    "specs/021-figma-projection-repair/proofs/before/produits-e-commerce_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/us4/comparison.json",
+    "specs/021-figma-projection-repair/campaign/owner-decisions/produits-e-commerce.json",
+    "specs/021-figma-projection-repair/proofs/us3/idempotence-receipt.json"
+  ],
+  "decidedAt": "2026-08-10T07:05:55Z"
+}

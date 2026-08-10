@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ds-contracts.local/specs/021/repair-campaign.schema.json",
+  "title": "Figma Projection Repair Campaign",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "campaignId",
+    "filePin",
+    "authorityRefs",
+    "targets",
+    "affectedSurfaces",
+    "consumerImpacts",
+    "allowedOperations",
+    "captureSets",
+    "state",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "campaignId": { "const": "021-figma-projection-repair" },
+    "filePin": { "$ref": "#/$defs/filePin" },
+    "authorityRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/repoPath" }
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": { "$ref": "#/$defs/target" },
+      "allOf": [
+        { "contains": { "properties": { "targetId": { "const": "hero" } }, "required": ["targetId"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "properties": { "targetId": { "const": "sav" } }, "required": ["targetId"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "properties": { "targetId": { "const": "categories-principales" } }, "required": ["targetId"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "properties": { "targetId": { "const": "realisations" } }, "required": ["targetId"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "properties": { "targetId": { "const": "produits-e-commerce" } }, "required": ["targetId"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "properties": { "targetId": { "const": "coordonnees" } }, "required": ["targetId"] }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "properties": { "targetId": { "const": "formulaire" } }, "required": ["targetId"] }, "minContains": 1, "maxContains": 1 }
+      ]
+    },
+    "affectedSurfaces": {
+      "type": "array",
+      "minItems": 7,
+      "items": { "$ref": "#/$defs/surface" }
+    },
+    "consumerImpacts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/consumerImpact" }
+    },
+    "allowedOperations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/operation" }
+    },
+    "captureSets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["before"],
+      "properties": {
+        "before": { "$ref": "#/$defs/captureSet" },
+        "after": { "$ref": "#/$defs/captureSet" },
+        "idempotence": { "$ref": "#/$defs/captureSet" }
+      }
+    },
+    "state": {
+      "enum": [
+        "draft",
+        "preflight-valid",
+        "captured",
+        "ready-to-apply",
+        "applied",
+        "verified",
+        "owner-accepted",
+        "owner-refused",
+        "refused-before-mutation",
+        "application-failed",
+        "verification-failed"
+      ]
+    },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*\\.\\.).+$"
+    },
+    "nodeId": {
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$"
+    },
+    "targetId": {
+      "enum": [
+        "hero",
+        "sav",
+        "categories-principales",
+        "realisations",
+        "produits-e-commerce",
+        "coordonnees",
+        "formulaire"
+      ]
+    },
+    "filePin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileKey", "versionId", "capturedAt"],
+      "properties": {
+        "fileKey": { "const": "d9FYAUcqdcNtsuaMgLefvJ" },
+        "versionId": { "type": "string", "minLength": 1 },
+        "fileName": { "type": "string" },
+        "capturedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["referenceId", "sourceKind", "subjectNodeId", "visualFacts", "decisionRef"],
+      "properties": {
+        "referenceId": { "type": "string", "minLength": 1 },
+        "sourceKind": { "enum": ["historical-version", "current-owner-approved", "contract-and-history"] },
+        "figmaVersionId": { "type": ["string", "null"] },
+        "subjectNodeId": { "$ref": "#/$defs/nodeId" },
+        "visualFacts": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "decisionRef": { "$ref": "#/$defs/repoPath" },
+        "renderRef": { "$ref": "#/$defs/repoPath" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "targetId",
+        "kind",
+        "masterNodeId",
+        "reference",
+        "affectedSurfaceIds",
+        "projectionDefectIds",
+        "allowedFields",
+        "protectedFacts"
+      ],
+      "properties": {
+        "targetId": { "$ref": "#/$defs/targetId" },
+        "kind": { "enum": ["generated-master", "direct-canvas", "shared-control", "composed-properties"] },
+        "masterNodeId": { "$ref": "#/$defs/nodeId" },
+        "variantNodeIds": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/nodeId" } },
+        "reference": { "$ref": "#/$defs/reference" },
+        "affectedSurfaceIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "projectionDefectIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "allowedFields": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "protectedFacts": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "size": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["surfaceId", "targetId", "role", "expectedSize", "impactStatus"],
+      "properties": {
+        "surfaceId": { "type": "string", "minLength": 1 },
+        "targetId": { "$ref": "#/$defs/targetId" },
+        "role": { "enum": ["master", "variant", "page-instance", "shared-consumer", "odoo-qualification"] },
+        "nodeId": { "oneOf": [{ "$ref": "#/$defs/nodeId" }, { "type": "null" }] },
+        "pageComposition": { "type": ["string", "null"] },
+        "structuralPath": { "type": ["string", "null"] },
+        "expectedSize": { "$ref": "#/$defs/size" },
+        "impactStatus": { "enum": ["pending", "unchanged", "revalidated", "refused", "not-applicable"] }
+      }
+    },
+    "consumerImpact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["consumerId", "dependencyId", "usage", "evidenceRefs", "status"],
+      "properties": {
+        "consumerId": { "type": "string", "minLength": 1 },
+        "dependencyId": { "type": "string", "minLength": 1 },
+        "usage": { "enum": ["contract", "figma", "odoo"] },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/repoPath" } },
+        "status": { "enum": ["pending", "unchanged", "revalidated", "refused"] },
+        "decisionRef": { "oneOf": [{ "$ref": "#/$defs/repoPath" }, { "type": "null" }] }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operationId", "targetId", "mechanism", "nodeId", "preconditions", "changes", "expectedPostconditions"],
+      "properties": {
+        "operationId": { "type": "string", "minLength": 1 },
+        "targetId": { "$ref": "#/$defs/targetId" },
+        "mechanism": { "enum": ["generated-amend", "set-properties", "resize", "reposition", "property-reference"] },
+        "nodeId": { "$ref": "#/$defs/nodeId" },
+        "structuralPath": { "type": ["string", "null"] },
+        "preconditions": { "type": "array", "minItems": 1, "items": { "type": "object" } },
+        "changes": { "type": "object", "minProperties": 1 },
+        "expectedPostconditions": { "type": "array", "minItems": 1, "items": { "type": "object" } }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifactId", "surfaceId", "kind", "path", "sha256", "byteLength", "status"],
+      "properties": {
+        "artifactId": { "type": "string", "minLength": 1 },
+        "surfaceId": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["png", "structure", "properties", "diff", "report"] },
+        "path": { "$ref": "#/$defs/repoPath" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "width": { "type": ["integer", "null"], "minimum": 1 },
+        "height": { "type": ["integer", "null"], "minimum": 1 },
+        "byteLength": { "type": "integer", "minimum": 1 },
+        "status": { "enum": ["valid", "missing", "empty", "wrong-size", "unreadable"] }
+      }
+    },
+    "imageFingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hostId", "structuralPath", "paintIndex", "imageHash", "scaleMode"],
+      "properties": {
+        "hostId": { "$ref": "#/$defs/nodeId" },
+        "structuralPath": { "type": "string" },
+        "paintIndex": { "type": "integer", "minimum": 0 },
+        "imageHash": { "type": "string", "minLength": 1 },
+        "scaleMode": { "enum": ["FILL", "FIT", "CROP", "TILE", "STRETCH"] },
+        "imageTransformHash": { "type": ["string", "null"] }
+      }
+    },
+    "instanceLink": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["instanceNodeId", "masterNodeId", "structuralPath", "overrideDigest"],
+      "properties": {
+        "instanceNodeId": { "$ref": "#/$defs/nodeId" },
+        "masterNodeId": { "$ref": "#/$defs/nodeId" },
+        "structuralPath": { "type": "string" },
+        "overrideDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "captureSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["captureSetId", "phase", "fileVersionId", "artifacts", "imageFingerprints", "instanceLinks", "complete"],
+      "properties": {
+        "captureSetId": { "type": "string", "minLength": 1 },
+        "phase": { "enum": ["before", "after", "idempotence"] },
+        "fileVersionId": { "type": "string", "minLength": 1 },
+        "artifacts": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/artifact" } },
+        "imageFingerprints": { "type": "array", "items": { "$ref": "#/$defs/imageFingerprint" } },
+        "instanceLinks": { "type": "array", "items": { "$ref": "#/$defs/instanceLink" } },
+        "complete": { "type": "boolean" }
+      }
+    }
+  }
+}

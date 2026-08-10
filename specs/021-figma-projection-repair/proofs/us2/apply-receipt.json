@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "021-figma-projection-repair",
+  "writer": "figma-desktop-bridge",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileName": "Piqueray (Copy)",
+  "applyPin": "2385797321547430456",
+  "resultPin": "2385978952503240149",
+  "dryRunRef": "specs/021-figma-projection-repair/proofs/us1/dry-run.json",
+  "operations": [
+    {
+      "operationId": "generated-button-carousel-controls",
+      "scripts": ["figma-sync/04-button.js", "figma-sync/05-carouselcontrols.js"],
+      "status": "applied",
+      "results": [
+        {"contractId": "ds.button", "nodeId": "6:122", "amended": true, "rebuiltVariants": 7, "photoVerdict": "vert"},
+        {"contractId": "ds.carousel-controls", "nodeId": "2077:2191", "amended": true, "photoVerdict": "vert"}
+      ]
+    },
+    {
+      "operationId": "generated-coordonnees",
+      "scripts": ["figma-sync/09-coordonnees.js"],
+      "status": "applied",
+      "results": [
+        {"contractId": "ds.coordonnees", "nodeId": "2104:2904", "amended": true, "removedInertParentProps": ["Accroche", "Titre"], "photoVerdict": "vert"}
+      ]
+    },
+    {
+      "operationId": "generated-formulaire",
+      "scripts": ["figma-sync/23-formulaire.js"],
+      "status": "applied",
+      "results": [
+        {"contractId": "ds.formulaire", "nodeId": "2096:2564", "amended": true, "removedInertParentProps": ["Accroche", "Titre"], "photoVerdict": "vert"}
+      ]
+    }
+  ],
+  "guardedAttempts": [
+    {"transport": "sandbox-fetch", "status": "refused-before-mutation", "reason": "Figma sandbox rejected localhost fetch"},
+    {"component": "Coordonnees", "status": "refused", "reason": "Figma forbids writing componentPropertyReferences on an instance sublayer", "resolution": "Use the public native isExposedInstance mechanism and prune inert duplicate parent properties"}
+  ],
+  "captureAfter": {
+    "captureSetId": "021-after-2385978952503240149",
+    "complete": true,
+    "artifacts": 72,
+    "imageFingerprints": 60,
+    "instanceLinks": 231
+  },
+  "status": "applied-and-recaptured",
+  "appliedAt": "2026-08-10T06:43:15Z"
+}

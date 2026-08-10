@@ -300,6 +300,78 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'figma-projection-repair-campaign-gates',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/campaign-gates-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-campaign-gates rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-absolute-lowering',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/absolute-lowering-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-absolute-lowering rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-direct-geometry',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/direct-geometry-repair-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-direct-geometry rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-growing-image-proportions',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/growing-image-proportions-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-growing-image-proportions rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-composed-parent-prop-forwarding',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/composed-parent-prop-forwarding-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-composed-parent-prop-forwarding rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-icon-instance-swap-visible',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/icon-instance-swap-visible-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-icon-instance-swap-visible rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-shared-consumer-impact',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/shared-consumer-impact-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-shared-consumer-impact rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-reconstruction-idempotence',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/reconstruction-idempotence-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-reconstruction-idempotence rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-repair-receipt-gates',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/repair-receipt-gates-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-repair-receipt-gates rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'icon-size-tokens-by-prop',
     claim: 'C3-detection',
     run: () => {
@@ -5450,6 +5522,23 @@ const cases: Case[] = [
           readdirSync(path.join(ROOT, 'assets', 'icons'))
             .filter((f) => f.endsWith('.svg'))
             .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
+        ),
+        iconComponents: new Map(
+          (read('contracts/icons.registry.json') as {
+            icons: Array<{
+              name: string;
+              asset: string;
+              figma: { componentName: string; key: string; nodeId: string };
+            }>;
+          }).icons.map((icon) => [
+            icon.name,
+            {
+              asset: icon.asset,
+              componentName: icon.figma.componentName,
+              key: icon.figma.key,
+              nodeId: icon.figma.nodeId,
+            },
+          ]),
         ),
       });
       const script = engine.buildComponentScript(card, byId);

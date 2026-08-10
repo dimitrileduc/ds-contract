@@ -28,7 +28,7 @@ import {
 
 type FigmaEngine = ReturnType<typeof createFigmaEngine>;
 import { polygonClipPath } from '../../../scripts/contract-schema.js';
-import { icons } from './data.js';
+import { iconComponents, icons } from './data.js';
 import { applyLinkedScope, linkedImportScope } from './linked-scope.js';
 import { sessionImportCss } from './preview.js';
 import { sessionRegistry } from './session-registry.js';
@@ -674,7 +674,7 @@ export function buildCanvasPreview(
     // (or a minted-only layer) has none — an empty default brand keeps the
     // engine's resolution semantics without inventing values.
     const brands = Object.keys(tree.brands).length > 0 ? tree.brands : { default: {} };
-    const engine: FigmaEngine = createFigmaEngine({ tokens: { ...tree, brands }, icons });
+    const engine: FigmaEngine = createFigmaEngine({ tokens: { ...tree, brands }, icons, iconComponents });
     const byName = new Map<string, Contract>([...byId.values()].map((c) => [c.name, c]));
 
     const cache = new Map<string, ComponentData | null>();

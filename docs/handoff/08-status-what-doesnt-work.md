@@ -3,7 +3,7 @@ title: "Status — what does NOT work (failures, frontier, blind spots)"
 doc_id: 08-status-what-doesnt-work
 audience: "Another AI platform with ZERO prior knowledge of this project"
 status: authoritative
-last_updated: 2026-08-09
+last_updated: 2026-08-10
 reading_order: 8
 prerequisites: [07-status-what-works]
 related: [10-history, 11-roadmap]
@@ -52,10 +52,13 @@ composite is a fail.**
 ## 2. The headless mock has blind spots — STRUCTURAL RISK
 
 `scripts/plugin-engine-mock-figma.mjs` is faithful for structure but not for
-rendering semantics. It let a real bug through (see #3 below) because it accepted
-anything from `createNodeFromSvg`. It also cannot catch the composite's layout /
-text-binding failures above, because it does not compute visual layout or reflect
-component-property text on nodes. **Every time a bug is found live, the fix must
+complete rendering semantics. It let a real bug through (see #3 below) because
+it accepted anything from `createNodeFromSvg`. It still cannot catch the
+composite's full visual layout because it does not implement Figma's complete
+layout engine. Spec 021 did close two narrower blind spots: the mock now reflects
+exact suffixed component-property changes onto visible text and mirrors native
+`INSTANCE_SWAP` changes onto the nested instance's `mainComponent`. Those
+closures do not turn it into a raster/layout oracle. **Every time a bug is found live, the fix must
 include teaching the mock to catch it headlessly** — otherwise the gates give
 false confidence. This is a permanent discipline, not a one-off.
 
@@ -87,23 +90,24 @@ run the plugin (or a stable Desktop Bridge for inspection). Do not burn time
 trying to shuttle the emitter through an MCP; it is a dead end (proven
 repeatedly).
 
-*Partially expired (update 2026-08-06, spec 016): the **generated per-component
+*Further narrowed (update 2026-08-10, spec 021): the **generated per-component
 scripts** (`figma-sync/NN-*.js`) were delivered through the desktop bridge at
-campaign scale, by serving them from a local HTTP server and evaluating them via
-`figma_execute` — the async IIFE envelope must be reconstituted around the
-served source (`specs/016-canvas-vrai/decisions.md` O-5;
-`specs/016-canvas-vrai/tools/serve-scripts.mjs`; 21/22 masters regenerated and
-bound through this route, then the last repaired — O-10, O-12). The per-call
-size caps and statelessness stand, and the full ~288KB plugin build remains
-human-run — what is dead is shuttling the emitter itself, not bridge delivery
-of its generated output.*
+campaign scale. In 021 the sandbox again refused localhost `fetch`, but the
+WebSocket Desktop Bridge accepted the generated source directly (93 KB for
+Button) and returned structured amend/no-op receipts. The MCP text-call limits
+and statelessness still stand, and the full packaged plugin remains the normal
+human UI path; the statement that an agent can never drive a bounded generated
+component script is now false. Evidence:
+`specs/021-figma-projection-repair/proofs/us2/apply-receipt.json` and
+`specs/021-figma-projection-repair/proofs/us3/live-rebuilds.json`.*
 
 ## 5. The figma-console Desktop Bridge is unstable — ENVIRONMENTAL
 
-It drops roughly every ~3 calls / on idle, and only connects to whichever file
-has the Desktop Bridge plugin open. Live inspection of a specific file requires
-the human to open that plugin there. Plan around it; don't rely on long live
-sessions.
+It can still drop on idle and only connects to files where the Desktop Bridge
+plugin is open. Spec 021 did, however, auto-discover the already-open Piqueray
+bridge and complete repeated sequential write/read calls, including two full
+six-component no-op runs. Treat reconnectability as an environmental
+constraint, not as proof that every three calls must fail.
 
 ## 6. What happens to an image at regeneration? — ANSWERED, with one gap still open
 
@@ -164,11 +168,10 @@ it does not replace it.
 - The composite Modal building correctly on a real canvas (fails — see #1).
 - `canvas → contract` for advanced composition *on real Figma* (only mock-gated).
 - `code → contract` at scale on real, foreign codebases beyond the tested set.
-- The Button's governed **icon choice** rendered on a real canvas as swappable
-  `INSTANCE_SWAP` instances — the emitter bakes glyph vectors headlessly (SVG
-  paint is not bindable at import); live menu ↔ swap-property alignment is proven
-  by the re-pulled parity `icons` snapshot (D8), not the byte-roundtrip. See
-  `docs/02-contract-spec.md` (Icon Registry → named limitation).
+- The Button's governed icon choice is no longer on this list: spec 021 proved
+  native `INSTANCE_SWAP` instances live, including 19 preferred registry values
+  on each glyph property and opposite CarouselControls chevrons toggled then
+  restored. Static, non-pilotable icons deliberately remain SVG.
 
 ## How to read this list
 

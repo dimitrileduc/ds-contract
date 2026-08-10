@@ -257,7 +257,7 @@ try {
 }
 check(
   'sync script constructs a REAL polygon with native rotation + ABSOLUTE placement + DROP_SHADOW effect + PIXELS line height',
-  ['figma.createPolygon()', 'node.rotation = -spec.shape.rotation', 'applyShapeAbsolute', "type: 'DROP_SHADOW'", "node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight }"].every((m) => script.includes(m)),
+  ['figma.createPolygon()', 'node.rotation = -spec.shape.rotation', 'applyAbsolute', "type: 'DROP_SHADOW'", "node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight }"].every((m) => script.includes(m)),
 );
 
 // ---------------------------------------------------------------------------

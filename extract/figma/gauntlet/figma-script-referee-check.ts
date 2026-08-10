@@ -18,7 +18,7 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../../../scripts/contract-schema.js';
-import { emitFigmaScript } from '../../../core/emit-figma-script.js';
+import { emitFigmaScript, type FigmaIconComponent } from '../../../core/emit-figma-script.js';
 
 const ROOT = process.cwd();
 const read = (p: string) => JSON.parse(readFileSync(path.join(ROOT, p), 'utf8')) as Record<string, unknown>;
@@ -54,6 +54,24 @@ const repoTrees = {
   light: read('tokens/modes/semantic.light.tokens.json'),
   dark: readOptional('tokens/modes/semantic.dark.tokens.json'),
 };
+const iconRegistry = read('contracts/icons.registry.json') as {
+  icons: Array<{
+    name: string;
+    asset: string;
+    figma: { componentName: string; key: string; nodeId: string };
+  }>;
+};
+const iconComponents = new Map<string, FigmaIconComponent>(
+  iconRegistry.icons.map((icon) => [
+    icon.name,
+    {
+      asset: icon.asset,
+      componentName: icon.figma.componentName,
+      key: icon.figma.key,
+      nodeId: icon.figma.nodeId,
+    },
+  ]),
+);
 
 console.log('figma-script referee (emit-figma-script calls validateContract)');
 {
@@ -65,7 +83,7 @@ console.log('figma-script referee (emit-figma-script calls validateContract)');
   (invalid.anatomy.root as { visibleWhen?: { prop: string } }).visibleWhen = { prop: 'nonexistent' };
   let refusal: string | null = null;
   try {
-    emitFigmaScript(invalid, { tokens: { ...repoTrees, brands }, icons, contracts: repoContracts });
+    emitFigmaScript(invalid, { tokens: { ...repoTrees, brands }, icons, iconComponents, contracts: repoContracts });
   } catch (e) {
     refusal = e instanceof Error ? e.message : String(e);
   }
@@ -73,7 +91,7 @@ console.log('figma-script referee (emit-figma-script calls validateContract)');
   check('the refusal is NAMED with the emitReact wording ("Refused — 1 contract violation(s)")', refusal?.startsWith('Refused — 1 contract violation(s)') === true);
   check('the violation names the part and prop (visibleWhen references unknown prop "nonexistent")', refusal?.includes('visibleWhen references unknown prop "nonexistent"') === true);
   // And the valid original still emits byte-for-byte the same script.
-  const script = emitFigmaScript(button, { tokens: { ...repoTrees, brands }, icons, contracts: repoContracts });
+  const script = emitFigmaScript(button, { tokens: { ...repoTrees, brands }, icons, iconComponents, contracts: repoContracts });
   check('the VALID repo contract still emits its sync script (golden untouched)', script.length > 0 && script.includes('ds.button'));
 }
 

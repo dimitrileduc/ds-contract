@@ -1,0 +1,7 @@
+Command: npx tsx evals/fixtures/figma-projection-repair/reconstruction-idempotence-check.ts
+Exit: non-zero (expected before T040/T041)
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module
+extract/figma/projection-repair/verify.js
+
+The fixture is registered as `figma-projection-repair-reconstruction-idempotence` and cannot turn green until capture normalization/comparison and the deterministic no-op receipt exist.

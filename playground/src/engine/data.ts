@@ -9,6 +9,7 @@ import {
   tokenCorpusFromJson,
   tokenInventoryFromJson,
   type Contract,
+  type FigmaIconComponent,
   type TokenTreeInput,
 } from '../../../core/index.js';
 
@@ -16,6 +17,7 @@ import primitives from '../../../tokens/primitives.tokens.json';
 import semantic from '../../../tokens/semantic.tokens.json';
 import light from '../../../tokens/modes/semantic.light.tokens.json';
 import brandDefault from '../../../tokens/modes/brand.default.tokens.json';
+import iconRegistry from '../../../contracts/icons.registry.json';
 
 // The generated token custom-property stylesheets (src/styles/tokens*.css) —
 // injected into the preview iframe so var(--…) references resolve, exactly
@@ -94,5 +96,17 @@ const vectorModules = import.meta.glob('../../../assets/vectors/*.svg', {
 export const icons = new Map<string, string>(
   Object.entries({ ...iconModules, ...vectorModules }).map(([p, svg]) => [
     p.split('/').pop()!.replace(/\.svg$/, ''), svg.trim(),
+  ]),
+);
+
+export const iconComponents = new Map<string, FigmaIconComponent>(
+  iconRegistry.icons.map((icon) => [
+    icon.name,
+    {
+      asset: icon.asset,
+      componentName: icon.figma.componentName,
+      key: icon.figma.key,
+      nodeId: icon.figma.nodeId,
+    },
   ]),
 );

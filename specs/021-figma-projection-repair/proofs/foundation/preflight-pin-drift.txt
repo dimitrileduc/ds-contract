@@ -1,0 +1,18 @@
+T012 — refus de préflight avant capture et avant mutation
+
+Commande :
+
+```bash
+npm run projection:repair -- \
+  --campaign specs/021-figma-projection-repair/campaign/campaign.json --preflight
+```
+
+Résultat : code de sortie `1`.
+
+```text
+file pin drift: expected 2385391614633344086, observed 2385747041460798575
+```
+
+Le manifeste reste épinglé sur la décision 020. Aucun PNG, dump de capture ou script de mutation
+n'a été produit ; aucune écriture canvas n'a été tentée. La suite exige soit la réouverture du pin
+020, soit une nouvelle décision owner qui examine et autorise explicitement la version observée.

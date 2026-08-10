@@ -65,7 +65,18 @@ console.log(
 );
 
 // --- load the bundle in a bare VM (window sandbox, no node globals) --------
-const { figma, root } = createFigmaMock();
+const { figma, root, firstPage } = createFigmaMock();
+// The shipping Piqueray file already contains the governed icon components.
+// Seed those exact identities into the mock before executing generated Button
+// scripts; absence must remain a named runtime refusal, never a name fallback.
+const iconRegistry = JSON.parse(read('contracts/icons.registry.json'));
+for (const icon of iconRegistry.icons) {
+  const component = figma.createComponent();
+  component.name = icon.figma.componentName;
+  component.id = icon.figma.nodeId;
+  component.key = icon.figma.key;
+  firstPage.appendChild(component);
+}
 const sandbox = { window: {}, console: { log() {}, warn() {}, error() {} } };
 vm.createContext(sandbox);
 vm.runInContext(bundle.code, sandbox, { timeout: 120_000 });

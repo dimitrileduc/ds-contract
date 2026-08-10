@@ -122,6 +122,7 @@ export {
   type ComponentData,
   type FigmaEngine,
   type FigmaEngineInput,
+  type FigmaIconComponent,
   type FigmaScriptCtx,
 } from './emit-figma-script.js';
 

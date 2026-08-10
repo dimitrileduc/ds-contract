@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "021-figma-projection-repair",
+  "file": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "fileName": "Piqueray (Copy)",
+    "pinBeforeWrite": "2385747041460798575",
+    "pinAtAfterCapture": "2385797321547430456",
+    "page": "DS · Organisms"
+  },
+  "writer": "Figma Desktop Bridge via serialized figma_execute sessions",
+  "operations": [
+    {
+      "operationId": "generated-hero",
+      "nodeId": "2111:3382",
+      "status": "applied",
+      "preconditions": ["component identity ds.hero", "nine image hosts each expose one Background image accueil", "photo guard enabled"],
+      "postconditions": {
+        "amended": true,
+        "width": 1728,
+        "height": 640,
+        "backgroundWidth": 1728,
+        "backgroundHeight": 640,
+        "preservedImages": 9,
+        "distinctInstanceImages": 8,
+        "photoVerdict": "vert"
+      },
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/hero_master.png"
+    },
+    {
+      "operationId": "hero-image-rehousing",
+      "nodeId": "2111:3382 and eight linked instances",
+      "status": "applied",
+      "preconditions": ["each host carries one root IMAGE fill", "each host carries one generated Background frame"],
+      "postconditions": {
+        "rootImageFills": 0,
+        "backgroundImageFillsPerHost": 1,
+        "uniqueInstanceImageHashes": 8,
+        "contentChanged": false
+      },
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/hero_instance_2111_3416.png"
+    },
+    {
+      "operationId": "generated-sav",
+      "nodeId": "2108:3105",
+      "status": "applied",
+      "preconditions": ["component identity ds.sav", "photo preservation pre-pass"],
+      "postconditions": {"amended": true, "preservedImages": 4, "photoVerdict": "vert"},
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/sav_instance_2108_3135.png"
+    },
+    {
+      "operationId": "direct-categories-principales",
+      "nodeId": "2115:4204,2115:4205,2115:4206",
+      "status": "applied",
+      "preconditions": ["three direct children remain linked INSTANCE nodes", "image hashes and content are protected"],
+      "postconditions": [
+        {"nodeId": "2115:4204", "width": 474, "height": 470.6648864746094, "x": 89, "imageHeight": 266.6648864746094},
+        {"nodeId": "2115:4205", "width": 474, "height": 497.6648864746094, "x": 627, "imageHeight": 266.6648864746094},
+        {"nodeId": "2115:4206", "width": 474, "height": 524.6649169921875, "x": 1165, "imageHeight": 266.6648864746094}
+      ],
+      "sourceGuard": "growing category image has constrainProportions=true",
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/categories-principales_master.png"
+    },
+    {
+      "operationId": "direct-realisations-heading",
+      "nodeId": "2117:4676,2170:6342",
+      "status": "applied",
+      "preconditions": ["parent 2117:4690 is the targeted component", "grid subtree and text content are protected"],
+      "postconditions": {
+        "block": {"width": 1319, "height": 100, "x": 204.5, "y": 128},
+        "sectionHeader": {"width": 628, "height": 100, "x": 0, "y": 0},
+        "wrapper": {"width": 627, "height": 96, "x": 692, "y": 4},
+        "grid": {"width": 1550, "height": 1146.5, "x": 89, "y": 276}
+      },
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/realisations_master.png"
+    }
+  ],
+  "capture": {
+    "captureSetId": "021-after-2385797321547430456",
+    "artifacts": 72,
+    "imageFingerprints": 60,
+    "instanceLinks": 155,
+    "complete": true
+  },
+  "verifiedAt": "2026-08-09T22:45:19+02:00"
+}

@@ -33,6 +33,7 @@ import {
   sortByDependencies,
   tokenCorpusFromJson,
   type Contract,
+  type FigmaIconComponent,
 } from '../../../core/index.js';
 
 // ---------------------------------------------------------------------------
@@ -52,6 +53,8 @@ export interface PluginEngineData {
   contracts: unknown[];
   /** SVG asset name → markup (assets/icons/ and assets/vectors/). */
   icons: Record<string, string>;
+  /** Governed icon enum value → exact local Figma component identity. */
+  iconComponents: Record<string, FigmaIconComponent>;
 }
 
 // ---------------------------------------------------------------------------
@@ -126,7 +129,8 @@ export interface InventoryRow {
 
 export function createPluginEngine(data: PluginEngineData) {
   const icons = new Map(Object.entries(data.icons));
-  const engine = createFigmaEngine({ tokens: data.tokens, icons });
+  const iconComponents = new Map(Object.entries(data.iconComponents));
+  const engine = createFigmaEngine({ tokens: data.tokens, icons, iconComponents });
   const corpus = tokenCorpusFromJson({
     primitives: data.tokens.primitives,
     semantic: data.tokens.semantic,

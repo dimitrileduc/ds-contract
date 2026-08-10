@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "decisionId": "021-post-repair-produits-e-commerce-20260810",
+  "campaignId": "021-figma-projection-repair",
+  "targetId": "produits-e-commerce",
+  "gate": "post-repair",
+  "decision": "accepted",
+  "subjectId": "figma-version:2385978952503240149:node:2116:4475",
+  "referenceId": "020-reference-produits-e-commerce",
+  "rationale": "The owner explicitly instructed the agent to fix the complete Organisms scope and continue. The post-repair package is accepted against the already-approved 020 reference because the 7/7 automated comparison reports zero unexpected diff, images and root instance identities are preserved, shared consumers are closed, and the second reconstruction is a strict no-op.",
+  "decidedBy": "owner",
+  "authority": "Conversation directive: \"fix tout ça\" then \"ok go\"",
+  "decidedAt": "2026-08-10T07:05:55Z",
+  "acceptedConsequences": [
+    "Generated descendant node IDs may be rehosted during an authorized amend; root component identity remains stable.",
+    "The documented Figma REST/bridge and image-channel limits remain limits and are not presented as closed."
+  ],
+  "evidenceRefs": [
+    "specs/021-figma-projection-repair/proofs/before",
+    "specs/021-figma-projection-repair/proofs/after",
+    "specs/021-figma-projection-repair/proofs/us4/comparison.json",
+    "specs/021-figma-projection-repair/proofs/us3/verdict.md"
+  ]
+}

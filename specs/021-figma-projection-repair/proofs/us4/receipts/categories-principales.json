@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0.0",
+  "receiptId": "021-categories-principales-accepted",
+  "campaignId": "021-figma-projection-repair",
+  "targetId": "categories-principales",
+  "referenceId": "020-reference-categories-principales",
+  "appliedOperationIds": [
+    "direct-categories-principales"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "categories-principales:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/categories-principales_master.structure.json"
+    },
+    {
+      "surfaceId": "categories-principales:master",
+      "kind": "expected",
+      "description": "properties changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/categories-principales_master.properties.json"
+    },
+    {
+      "surfaceId": "categories-principales:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/categories-principales_master.png"
+    },
+    {
+      "surfaceId": "categories-principales:instance:2115:4324",
+      "kind": "expected",
+      "description": "structure changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/categories-principales_instance_2115_4324.structure.json"
+    },
+    {
+      "surfaceId": "categories-principales:instance:2115:4324",
+      "kind": "expected",
+      "description": "properties changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/categories-principales_instance_2115_4324.properties.json"
+    },
+    {
+      "surfaceId": "categories-principales:instance:2115:4324",
+      "kind": "expected",
+      "description": "png changed inside the authorized direct-canvas repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/categories-principales_instance_2115_4324.png"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "The owner explicitly instructed the agent to fix the complete Organisms scope and continue. The post-repair package is accepted against the already-approved 020 reference because the 7/7 automated comparison reports zero unexpected diff, images and root instance identities are preserved, shared consumers are closed, and the second reconstruction is a strict no-op.",
+  "evidenceRefs": [
+    "specs/021-figma-projection-repair/proofs/before/categories-principales_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/after/categories-principales_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/us4/comparison.json",
+    "specs/021-figma-projection-repair/campaign/owner-decisions/categories-principales.json",
+    "specs/021-figma-projection-repair/proofs/us3/idempotence-receipt.json"
+  ],
+  "decidedAt": "2026-08-10T07:05:55Z"
+}

@@ -1,0 +1,19 @@
+Pré-correctif US1 (les deux fixtures doivent échouer avant T016--T020) :
+
+```text
+absolute-lowering-check.ts
+✘ ImagePlane declared position:absolute must become a full-parent out-of-flow plane
+✘ SavRow must use its parent static alignment (center / flex-end) after leaving flow
+✘ nested declared position:absolute plane is still in flow
+✘ ImagePlane did not become a parent-sized ABSOLUTE plane after append
+✘ SavRow static position is 0,0; expected 60,60
+✘ nested absolute plane or in-flow witness did not keep its intended layout mode
+
+direct-geometry-repair-check.ts
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module
+extract/figma/projection-repair/apply.js
+```
+
+Les deux cas sont ensuite enregistrés dans `evals/run.ts`; une porte globale
+reste donc rouge tant que le lowering et le moteur d'opérations bornées ne sont
+pas implémentés.

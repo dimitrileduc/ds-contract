@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v1.4.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v1.4.1)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -26,7 +26,9 @@ THOSE TWO GRADIENT_LINEAR PAINTS ARE NO LONGER LIMITS — carried since 015 (T02
 
 The instance restyle of the SectionHeader child's Titre (blanc / 54 px / 68 px / 700) is no longer a limit here: it is carried by that child contract's own `emphase: "hero"` axis since section-header v1.1.0.
 
-v1.4.0 (016/T042, lot B013-4): the Sous-titre paragraph stops being baked in — it rides the rich-text prop `sousTitre`, bound to the master's native TEXT property « SousTitre » (exposed by lot L-B013-4/T041; the 2026-08-05 live diagnosis showed this was the master's ONE unbound text — the title needed nothing, it was already governed through the SectionHeader instance's inherited TEXT property). Its two observed 700 ranges travel as governed segments (content.marks.strong). */
+v1.4.0 (016/T042, lot B013-4): the Sous-titre paragraph stops being baked in — it rides the rich-text prop `sousTitre`, bound to the master's native TEXT property « SousTitre » (exposed by lot L-B013-4/T041; the 2026-08-05 live diagnosis showed this was the master's ONE unbound text — the title needed nothing, it was already governed through the SectionHeader instance's inherited TEXT property). Its two observed 700 ranges travel as governed segments (content.marks.strong).
+
+v1.4.1 restores the measured 1728px root width explicitly so the absolutely positioned photo plane cannot collapse the auto-layout width to its content during regeneration. */
 export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
   {
     backgroundUrl = '',

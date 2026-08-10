@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.formulaire",
   "name": "Formulaire",
-  "version": "1.1.0",
-  "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "2.0.0",
+  "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.0.0 makes the existing Titre/Accroche controls live on the composed SectionHeader. Titre changes from flat text to rich-text so its governed marks survive parent→child forwarding; the prop name and visible default stay unchanged, while the type change is correctly major-versioned.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -57,9 +57,13 @@
     },
     {
       "name": "titre",
-      "type": "text",
-      "default": "Prenez contact avec nous dès maintenant !",
-      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass).",
+      "type": "rich-text",
+      "default": [
+        {
+          "text": "Prenez contact avec nous dès maintenant !"
+        }
+      ],
+      "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Type rich-text since 2.0.0 because the exact parent→SectionHeader mapping must preserve the child contract's governed marks instead of flattening them.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -87,15 +91,12 @@
           },
           "parts": {
             "SectionHeader": {
+              "description": "The exact {titre}/{accroche} mappings keep the existing parent TEXT properties live on the nested SectionHeader. The former literals made both exposed Figma controls orphaned.",
               "component": {
                 "id": "ds.section-header",
                 "props": {
-                  "titre": [
-                    {
-                      "text": "Prenez contact avec nous dès maintenant !"
-                    }
-                  ],
-                  "accroche": "Une demande de devis ? Une réparation ?",
+                  "titre": "{titre}",
+                  "accroche": "{accroche}",
                   "disposition": "standard"
                 }
               },

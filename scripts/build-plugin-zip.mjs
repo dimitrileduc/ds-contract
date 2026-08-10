@@ -144,6 +144,17 @@ function collectEngineData() {
         .map((f) => [f.replace(/\.svg$/, ''), readFileSync(join(dir, f), 'utf8')]);
     }),
   );
+  const iconComponents = Object.fromEntries(
+    readJson('contracts/icons.registry.json').icons.map((icon) => [
+      icon.name,
+      {
+        asset: icon.asset,
+        componentName: icon.figma.componentName,
+        key: icon.figma.key,
+        nodeId: icon.figma.nodeId,
+      },
+    ]),
+  );
   return {
     tokens: {
       primitives: readJson('tokens/primitives.tokens.json'),
@@ -155,6 +166,7 @@ function collectEngineData() {
     },
     contracts,
     icons,
+    iconComponents,
   };
 }
 

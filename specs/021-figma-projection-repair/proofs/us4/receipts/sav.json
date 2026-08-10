@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "1.0.0",
+  "receiptId": "021-sav-accepted",
+  "campaignId": "021-figma-projection-repair",
+  "targetId": "sav",
+  "referenceId": "020-reference-sav",
+  "appliedOperationIds": [
+    "generated-sav"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "sav:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/sav_master.structure.json"
+    },
+    {
+      "surfaceId": "sav:master",
+      "kind": "expected",
+      "description": "properties changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/sav_master.properties.json"
+    },
+    {
+      "surfaceId": "sav:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/sav_master.png"
+    },
+    {
+      "surfaceId": "sav:instance:2108:3135",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/sav_instance_2108_3135.structure.json"
+    },
+    {
+      "surfaceId": "sav:instance:2108:3135",
+      "kind": "expected",
+      "description": "properties changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/sav_instance_2108_3135.properties.json"
+    },
+    {
+      "surfaceId": "sav:instance:2108:3135",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/sav_instance_2108_3135.png"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [
+    {
+      "consumerId": "ds.accordion-row",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/accordion-row.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.devis",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/devis.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.footer",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/footer.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.hero",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/hero.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.member-picture",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/member-picture.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.nav-item",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/nav-item.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.sav",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/sav.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "odoo-019-qualification",
+      "dependencyId": "absolute-lowering",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "integrations/odoo/config/inputs.lock.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/odoo-019-decision.json"
+    },
+    {
+      "consumerId": "ds.coordonnees",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/coordonnees.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.faq",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/faq.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.formulaire",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/formulaire.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.hero",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/hero.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.presentation",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/presentation.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.reassurances",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/reassurances.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.sav",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/sav.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.texte-seo",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/texte-seo.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "odoo-019-qualification",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "integrations/odoo/config/inputs.lock.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/odoo-019-decision.json"
+    }
+  ],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "The owner explicitly instructed the agent to fix the complete Organisms scope and continue. The post-repair package is accepted against the already-approved 020 reference because the 7/7 automated comparison reports zero unexpected diff, images and root instance identities are preserved, shared consumers are closed, and the second reconstruction is a strict no-op.",
+  "evidenceRefs": [
+    "specs/021-figma-projection-repair/proofs/before/sav_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/after/sav_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/us4/comparison.json",
+    "specs/021-figma-projection-repair/campaign/owner-decisions/sav.json",
+    "specs/021-figma-projection-repair/proofs/us3/idempotence-receipt.json"
+  ],
+  "limits": [
+    "Generated descendant node IDs are normalized; root component IDs and keys remain authoritative."
+  ],
+  "decidedAt": "2026-08-10T07:05:55Z"
+}

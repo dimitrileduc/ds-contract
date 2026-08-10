@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "targetId": "realisations",
+  "filePin": "2385797321547430456",
+  "targetNodeId": "2117:4690",
+  "targetStructuralPath": "0",
+  "allowedFields": ["width", "x"],
+  "protectedPaths": ["0/0/0/0", "0/0/1/0", "0/1"],
+  "operations": [
+    {"nodeId":"2117:4676","structuralPath":"0/0","changes":{"width":1319,"x":204.5}},
+    {"nodeId":"2170:6342","structuralPath":"0/0/0","changes":{"width":628}}
+  ],
+  "postconditions": ["SectionHeader is 628px wide and wrapper starts at x=692", "SectionHeader and wrapper content are retained", "grid subtree is untouched", "heading remains inside the 1728px variant"]
+}

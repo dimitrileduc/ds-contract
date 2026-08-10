@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ds-contracts.local/specs/021/repair-receipt.schema.json",
+  "title": "Figma Projection Repair Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "receiptId",
+    "campaignId",
+    "targetId",
+    "referenceId",
+    "appliedOperationIds",
+    "expectedDiffs",
+    "unexpectedDiffs",
+    "imagePreservation",
+    "instancePreservation",
+    "consumerVerdicts",
+    "idempotence",
+    "ownerDecision",
+    "ownerRationale",
+    "evidenceRefs",
+    "decidedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "receiptId": { "type": "string", "minLength": 1 },
+    "campaignId": { "const": "021-figma-projection-repair" },
+    "targetId": { "$ref": "#/$defs/targetId" },
+    "referenceId": { "type": "string", "minLength": 1 },
+    "appliedOperationIds": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "expectedDiffs": { "type": "array", "items": { "$ref": "#/$defs/diff" } },
+    "unexpectedDiffs": { "type": "array", "items": { "$ref": "#/$defs/diff" } },
+    "imagePreservation": { "enum": ["pass", "fail", "not-applicable"] },
+    "instancePreservation": { "enum": ["pass", "fail"] },
+    "consumerVerdicts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/consumerVerdict" }
+    },
+    "idempotence": { "enum": ["pass", "fail"] },
+    "ownerDecision": { "enum": ["accepted", "refused"] },
+    "ownerRationale": { "type": "string", "minLength": 1 },
+    "evidenceRefs": {
+      "type": "array",
+      "minItems": 3,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/repoPath" }
+    },
+    "limits": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "decidedAt": { "type": "string", "format": "date-time" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "ownerDecision": { "const": "accepted" } }, "required": ["ownerDecision"] },
+      "then": {
+        "properties": {
+          "unexpectedDiffs": { "maxItems": 0 },
+          "imagePreservation": { "enum": ["pass", "not-applicable"] },
+          "instancePreservation": { "const": "pass" },
+          "idempotence": { "const": "pass" },
+          "consumerVerdicts": {
+            "items": {
+              "properties": { "status": { "enum": ["unchanged", "revalidated"] } }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*\\.\\.).+$"
+    },
+    "targetId": {
+      "enum": [
+        "hero",
+        "sav",
+        "categories-principales",
+        "realisations",
+        "produits-e-commerce",
+        "coordonnees",
+        "formulaire"
+      ]
+    },
+    "box": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "width": { "type": "number", "minimum": 0 },
+        "height": { "type": "number", "minimum": 0 }
+      }
+    },
+    "diff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["surfaceId", "kind", "description", "diffCount", "evidenceRef"],
+      "properties": {
+        "surfaceId": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["expected", "unexpected", "none"] },
+        "description": { "type": "string", "minLength": 1 },
+        "diffCount": { "type": "integer", "minimum": 0 },
+        "diffBox": { "oneOf": [{ "$ref": "#/$defs/box" }, { "type": "null" }] },
+        "evidenceRef": { "$ref": "#/$defs/repoPath" }
+      }
+    },
+    "consumerVerdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["consumerId", "dependencyId", "status", "evidenceRefs"],
+      "properties": {
+        "consumerId": { "type": "string", "minLength": 1 },
+        "dependencyId": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["unchanged", "revalidated", "refused"] },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/repoPath" } },
+        "decisionRef": { "oneOf": [{ "$ref": "#/$defs/repoPath" }, { "type": "null" }] }
+      }
+    }
+  }
+}
