@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "manifestId": "odoo-019-qualification",
   "snapshotId": "odoo-019-foundation",
-  "moduleVersion": "19.0.1.0.0",
+  "moduleVersion": "19.0.1.0.1",
   "environment": {
     "odooImage": "odoo:19.0-20260803",
     "postgresImage": "postgres:15",
@@ -42,7 +42,7 @@
       ],
       "artifacts": [],
       "limitCodes": [],
-      "durationMs": 102937
+      "durationMs": 145750
     },
     {
       "receiptId": "combined-isolation-odoo-019-foundation",
@@ -65,7 +65,7 @@
         }
       ],
       "limitCodes": [],
-      "durationMs": 100662
+      "durationMs": 143661
     },
     {
       "receiptId": "derivation-determinism-odoo-019-foundation",
@@ -74,7 +74,7 @@
       "status": "pass",
       "fixture": "derivation-report/cases",
       "observations": [
-        "[pass] production ×2 — rapport identique à l'octet, digest 6927e08d142dcf177b5c646b82e341fbc8e4c21a41889398d7ff9f090cc5e2b7",
+        "[pass] production ×2 — rapport identique à l'octet, canonicalDigest 2b27aac1cf4825a15cac18386bd8d4fd0c99fa1f0e819433606c262336cc34fb",
         "[pass] couverture — 16 blocs manuels enregistrés et 0 fichier/bloc/entrée de registre non classé",
         "[pass] refus — registre sans bloc, bloc sans registre et marqueurs chevauchants sont détectés",
         "[pass] ordre — permuter le registre ne modifie pas la sérialisation canonique"
@@ -127,7 +127,7 @@
         "[pass] racine — duplicate reste distinctement autorisé — attendu « commande visible et active », observé « visible · active »",
         "[pass] racine — remove reste distinctement autorisé — attendu « commande visible et active », observé « visible · active »",
         "[pass] racine — save-as-custom suit sa décision — attendu « commande absente », observé « commande absente »",
-        "[pass] racine — panneau limité à la politique Piqueray et aux gestes déclarés — attendu « 1 politique Piqueray, 0 action haute non déclarée, 0 champ natif », observé « 1 politique · 0 action(s) non déclarée(s) · 0 champ(s) · texte=\"Block Piqueray Structure gouvernée\" »",
+        "[pass] racine — panneau limité à la politique Piqueray et aux gestes déclarés — attendu « 1 politique Piqueray, 0 action haute non déclarée, 1 champ CTA déclaré, 0 champ non déclaré », observé « 1 politique · 0 action(s) non déclarée(s) · 1 champ(s) CTA · 0 champ(s) non déclaré(s) · texte=\"Piqueray · Présentation Piqueray Structure gouvernée Piqueray · Présentation Les contenus se modifient directement dans le bloc. Appel à l’action\" »",
         "[pass] racine — resize suit sa décision interdite — attendu « 0 poignée de resize active », observé « 0 poignée(s) active(s) »",
         "[pass] charge hostile — le vrai geste devient sauvegardable — attendu « 2 insertions acceptées, au moins 1 racine dirty, charges présentes », observé « 2/2 insertions · 1 dirty · riche=\"PQR-STRONG-OKPQR-EM-OUT﻿﻿PQR-LINK-OUT﻿﻿window.__pqrHostile=3\" · simple=\"PQR-PLAIN-ONLY\" »",
         "[pass] save — Odoo persiste effectivement la vue — attendu « RPC ir.ui.view/save HTTP 2xx », observé « HTTP 200 »",
@@ -153,7 +153,7 @@
         }
       ],
       "limitCodes": [],
-      "durationMs": 166003
+      "durationMs": 105508
     },
     {
       "receiptId": "google-reviews-functional-odoo-019-foundation",
@@ -165,7 +165,7 @@
         "[pass] la page de qualification Google Reviews est publique — attendu « HTTP 200 », observé « HTTP 200 »",
         "[pass] la page fonctionnelle démarre vide pour une insertion Website réelle — attendu « 0 instance », observé « 0 instance(s) »",
         "[pass] le QWeb public rend le sample contractuel Google Reviews — attendu « HTTP 200 · 1 × 5 cartes identifiées », observé « review-0:Prénom N. · review-1:Prénom N. · review-2:Prénom N. · review-3:Prénom N. · review-4:Prénom N. »",
-        "[pass] la page de qualification expose un #wrap sauvegardable — attendu « data-oe-model/id/xpath sur #wrap », observé « {\"model\":\"ir.ui.view\",\"id\":\"1320\",\"xpath\":\"/t[1]/t[1]/div[1]\"} »",
+        "[pass] la page de qualification expose un #wrap sauvegardable — attendu « data-oe-model/id/xpath sur #wrap », observé « {\"model\":\"ir.ui.view\",\"id\":\"1325\",\"xpath\":\"/t[1]/t[1]/div[1]\"} »",
         "[pass] le catalogue Website insère deux instances Google Reviews indépendantes — attendu « A=5 et B=5 cartes », observé « A=5 · B=5 »",
         "[pass] ajout ciblé — A passe de 5 à 6 sans fuite vers B — attendu « A=6, B=5 », observé « A=6 · B=5 »",
         "[pass] réordre ciblé — la nouvelle carte remonte dans A seulement — attendu « marque review-5 en avant-dernière position de A; B=5 », observé « A=review-0, review-1, review-2, review-3, review-5, review-4 · B=5 »",
@@ -186,7 +186,7 @@
         }
       ],
       "limitCodes": [],
-      "durationMs": 90404
+      "durationMs": 122415
     },
     {
       "receiptId": "google-reviews-performance-odoo-019-foundation",
@@ -202,7 +202,7 @@
       "artifacts": [
         {
           "path": "specs/019-odoo-production-foundation/proofs/google-reviews-functional.json",
-          "sha256": "cccb2175c3876c73ea9ce703623c5ede953384299116452848261118ccff3129",
+          "sha256": "b8738e4f15be9bb782eec343304a4ec30eb5495604f9be1093ad5905415b7541",
           "kind": "report"
         }
       ],
@@ -246,7 +246,7 @@
         }
       ],
       "limitCodes": [],
-      "durationMs": 85889
+      "durationMs": 123406
     },
     {
       "receiptId": "google-reviews-visual-odoo-019-foundation",
@@ -288,20 +288,20 @@
       "fixture": "two-sections-saved",
       "observations": [
         "[pass] clean install — les deux sections publiques répondent — attendu « 2 pages HTTP 200 remplies », observé « [{\"path\":\"/piqueray-harness/presentation-visual\",\"status\":200,\"chars\":363},{\"path\":\"/piqueray-harness/google-reviews-visual\",\"status\":200,\"chars\":435}] »",
-        "[pass] métadonnées — les deux racines portent versions et digest — attendu « 7 métadonnées présentes par racine », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"}] »",
+        "[pass] métadonnées — les deux racines portent versions et digest — attendu « 7 métadonnées présentes par racine », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"}] »",
         "[pass] update — odoo -u termine sans erreur — attendu « code 0 », observé « code 0 »",
         "[pass] update — contenu public intact — attendu « textes identiques avant/après », observé « [363,435] »",
-        "[pass] update — métadonnées intactes sans migration implicite — attendu « métadonnées identiques avant/après », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"}] »"
+        "[pass] update — métadonnées intactes sans migration implicite — attendu « métadonnées identiques avant/après », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"}] »"
       ],
       "artifacts": [
         {
           "path": "specs/019-odoo-production-foundation/proofs/install-update.before-after.json",
-          "sha256": "b432961111dfcd02b7941333f248d1dc5081a224e46fa9bbda8820505075347e",
+          "sha256": "7a9832bf4d13acc758d64fde5b0736f6f08f46f4f22ffcd1af36932f07e3dff9",
           "kind": "json"
         }
       ],
       "limitCodes": [],
-      "durationMs": 102937
+      "durationMs": 145749
     },
     {
       "receiptId": "presentation-functional-security-odoo-019-foundation",
@@ -319,17 +319,18 @@
         "[pass] save — Odoo persiste les deux instances — attendu « RPC save 2xx », observé « HTTP 200 »",
         "[pass] public — deux instances et états CTA persistés — attendu « HTTP 200 · A visible · B masqué », observé « [{\"title\":\"Titre instance A\",\"body\":\"Texte sûritalique interditlien hostile\",\"cta\":true,\"label\":\"CTA instance A\"},{\"title\":\"Titre instance B\",\"body\":\"Texte instance B\",\"cta\":false,\"label\":\"CTA instance B\"}] »",
         "[pass] public — rich-text strong uniquement et aucune charge exécutable — attendu « 1 strong · 0 tag/handler/URL hostile », observé « {\"strong\":1,\"forbiddenTags\":0,\"handlers\":[],\"executableUrls\":[]} »",
+        "[pass] responsive — SectionHeader Fill et Button Hug tiennent à 1728/1440 — attendu « header=largeur colonne · 0 overflow · titre contenu · CTA nowrap sur une ligne », observé « [{\"viewportWidth\":1728,\"rootWidth\":1728,\"rootOverflow\":0,\"columnWidth\":628,\"headerWidth\":628,\"headerDelta\":0,\"titleInside\":true,\"buttonWhiteSpace\":\"nowrap\",\"buttonLines\":1},{\"viewportWidth\":1440,\"rootWidth\":1440,\"rootOverflow\":0,\"columnWidth\":628,\"headerWidth\":628,\"headerDelta\":0,\"titleInside\":true,\"buttonWhiteSpace\":\"nowrap\",\"buttonLines\":1}] »",
         "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 instances et CTA opposés », observé « [{\"title\":\"Titre instance A\",\"body\":\"Texte sûritalique interditlien hostile\",\"cta\":true,\"label\":\"CTA instance A\"},{\"title\":\"Titre instance B\",\"body\":\"Texte instance B\",\"cta\":false,\"label\":\"CTA instance B\"}] »"
       ],
       "artifacts": [
         {
           "path": "specs/019-odoo-production-foundation/proofs/presentation-functional.public.json",
-          "sha256": "9616b066eac01ca0f2a9f81ed3acb16d4d84cc554a699f27c62dead594751fff",
+          "sha256": "384c34150e875954860f9dbabafb5ede83c476b441d19e1a84dbb42ea9b4555d",
           "kind": "json"
         }
       ],
       "limitCodes": [],
-      "durationMs": 91879
+      "durationMs": 127001
     },
     {
       "receiptId": "presentation-performance-security-odoo-019-foundation",
@@ -347,12 +348,12 @@
       "artifacts": [
         {
           "path": "specs/019-odoo-production-foundation/proofs/presentation-functional.json",
-          "sha256": "400014f7daf297e3ab6855bb903b0e5cd41b43c59f289dee13187b478380b1b0",
+          "sha256": "e6b501b32537d5a04aca79050e92970cc1b0c71840098dd1080b26996bf076d1",
           "kind": "report"
         },
         {
           "path": "specs/019-odoo-production-foundation/proofs/presentation-functional.public.json",
-          "sha256": "9616b066eac01ca0f2a9f81ed3acb16d4d84cc554a699f27c62dead594751fff",
+          "sha256": "384c34150e875954860f9dbabafb5ede83c476b441d19e1a84dbb42ea9b4555d",
           "kind": "json"
         }
       ],
@@ -420,8 +421,9 @@
       "fixture": "inputs-lock-current",
       "observations": [
         "[pass] lock — 5/5 contrats correspondent à l'état courant",
-        "[pass] graphDigest — 9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595",
-        "[pass] impact — aucun drift, aucun repin et aucun reçu à rejouer pour cette cause"
+        "[pass] graphDigest — 9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0",
+        "[pass] repin — ds.section-header 2.1.1→2.2.0 et ds.button 2.0.0→2.0.1; les trois autres contrats restent épinglés à leur version",
+        "[pass] impact — CSS généré, adresses d'authoring, métadonnées sauvegardées et politique de versions actualisés; scénarios Foundation, sections, isolation, install/update et visuels rejoués"
       ],
       "artifacts": [],
       "limitCodes": [],
@@ -444,12 +446,12 @@
       "artifacts": [
         {
           "path": "specs/019-odoo-production-foundation/proofs/version-policy.scan.json",
-          "sha256": "c8f7bad8217b1c9ce102cfa1ceb2b76ab70d677d0b068bc76f9a24f0b9f979b3",
+          "sha256": "7817c748d078b0bae638ef41769936f7623f1ee7d4869b8b4bbfd331f4500271",
           "kind": "report"
         }
       ],
       "limitCodes": [],
-      "durationMs": 14
+      "durationMs": 20
     },
     {
       "receiptId": "visual-summary-odoo-019-foundation",

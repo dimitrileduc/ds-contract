@@ -456,7 +456,7 @@
   flex-shrink: 0;
 }
 
-/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -480,6 +480,7 @@
   padding-inline: var(--pqr-space-32);
   --pqr-dsc-border-width: var(--pqr-border-width-0);
   text-transform: uppercase;
+  white-space: nowrap;
   position: relative;
 }
 
@@ -571,7 +572,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.2.0 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -581,10 +582,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--pqr-font-family-montserrat);
   gap: var(--pqr-space-8);
-  width: var(--pqr-size-section-header-root);
   align-self: stretch;
 }
 
@@ -598,6 +600,8 @@
 }
 
 .section-header__Accroche {
+  width: 100%;
+  min-width: 0;
   color: var(--pqr-color-noir-bleute);
   font-size: var(--pqr-font-size-20);
   font-weight: var(--pqr-font-weight-regular);
@@ -607,6 +611,8 @@
 }
 
 .section-header__Titre {
+  width: 100%;
+  min-width: 0;
   color: var(--pqr-color-noir-bleute);
   font-size: var(--pqr-font-size-40);
   font-weight: var(--pqr-font-weight-regular);

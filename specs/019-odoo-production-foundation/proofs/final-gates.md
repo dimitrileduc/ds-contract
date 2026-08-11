@@ -13,3 +13,15 @@
 | `npm run odoo:qualification -- --require-qualified` | pass | qualified-with-limits, 0 manquant/fail/skipped |
 
 Le premier sweep a révélé que les diagnostics de marqueurs imbriqués n'étaient pas sérialisables par le schéma. Après correction vers des identifiants canoniques, la relance propre a passé 199/199. Une tentative intermédiaire n'a pas démarré (`ENOTEMPTY`) parce que le premier scratch était encore actif; elle ne constitue pas un run d'evals.
+
+## Replay du repin — 2026-08-11
+
+| Porte | Statut | Résultat |
+|---|---:|---|
+| inputs / authoring / module | pass | 5 contrats au graphDigest `9cf060ab…`, couverture 36/36 props et 66/66 parts, module `19.0.1.0.1` |
+| assets / dérivation | pass | 8 sorties propres et déterministes, 16 blocs, 0 adaptation non classée |
+| Foundation / sections / sécurité | pass | éditabilité 44/44, Presentation 11/11, Google Reviews 15/15, sécurité Google Reviews 14/14 |
+| responsive | pass | SectionHeader Fill et Button Hug/nowrap sans overflow à 1728 et 1440 px |
+| isolation / install-update / versions | pass | 2+2 instances isolées, update intact, états current/stale/unknown reconnus |
+| visuel | pass mesuré | Presentation 2.6093 %, Google Reviews 1.5961 %, géométrie/contenu alignés et résidus attribués |
+| `npm run odoo:qualification -- --check --require-qualified` | pass | `qualified-with-limits`, 0 manquant/fail/skipped; seule la latence de geste reste non mesurée |

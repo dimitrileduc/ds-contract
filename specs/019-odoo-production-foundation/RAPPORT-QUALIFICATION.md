@@ -7,7 +7,7 @@ Les deux sections de production sont installables, éditables, sauvegardables et
 ## Réussites exercées
 
 - Google Reviews : deux instances, collection 0/1/5/6, média, sécurité, sauvegarde et public.
-- Presentation : deux instances, CTA opposés, rich-text contrôlé, sauvegarde et public.
+- Presentation : deux instances, CTA opposés, rich-text contrôlé, sauvegarde et public; SectionHeader Fill et Button Hug/nowrap vérifiés sans overflow à 1728 et 1440 px.
 - Versioning : états current, policy-stale, structure-stale et unknown; aucune migration structurelle implicite.
 - Installation/update : contenu et métadonnées intacts; public anonyme non éditable et rédacteur standard autorisé.
 - Coexistence : deux instances de chaque section restent isolées avant/après sauvegarde.
@@ -21,7 +21,7 @@ Les deux sections de production sont installables, éditables, sauvegardables et
 ## Hors contrat et non exercé
 
 - Aucune migration automatique du HTML structure-stale.
-- Aucun repin : les cinq contrats correspondent encore au lock.
+- Repin 2026-08-11 appliqué : SectionHeader 2.2.0 et Button 2.0.1; le lock, l'authoring, les assets, les métadonnées et les preuves utilisent le même graphDigest `9cf060ab…`.
 - Les composants internes ne sont pas posables séparément.
 
 Le statut final et les éventuels fail/skipped sont générés dans `proofs/qualification-manifest.json` après le sweep constitutionnel.

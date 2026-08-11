@@ -67,6 +67,42 @@ async function readState(page: { locator: (selector: string) => any }) {
   })));
 }
 
+async function readResponsiveLayout(page: Page) {
+  const widths = [1728, 1440] as const;
+  const observations = [];
+  for (const viewportWidth of widths) {
+    await page.setViewportSize({ width: viewportWidth, height: 900 });
+    const observed = await page.locator(ROOT).first().evaluate((root) => {
+      const host = root as HTMLElement;
+      const column = host.querySelector<HTMLElement>('[data-pqr-part="left-column"]');
+      const header = host.querySelector<HTMLElement>('[data-pqr-part="section-header-root"]');
+      const title = host.querySelector<HTMLElement>('[data-pqr-part="presentation-title"]');
+      const button = host.querySelector<HTMLElement>('[data-pqr-part="button-root"]');
+      const label = host.querySelector<HTMLElement>('[data-pqr-part="button-label"]');
+      if (!column || !header || !title || !button || !label) return null;
+      const rootRect = host.getBoundingClientRect();
+      const columnRect = column.getBoundingClientRect();
+      const headerRect = header.getBoundingClientRect();
+      const titleRect = title.getBoundingClientRect();
+      const labelRect = label.getBoundingClientRect();
+      const labelStyle = getComputedStyle(label);
+      const lineHeight = Number.parseFloat(labelStyle.lineHeight);
+      return {
+        rootWidth: rootRect.width,
+        rootOverflow: host.scrollWidth - host.clientWidth,
+        columnWidth: columnRect.width,
+        headerWidth: headerRect.width,
+        headerDelta: Math.abs(headerRect.width - columnRect.width),
+        titleInside: titleRect.left >= columnRect.left - 0.5 && titleRect.right <= columnRect.right + 0.5,
+        buttonWhiteSpace: getComputedStyle(button).whiteSpace,
+        buttonLines: Number.isFinite(lineHeight) && lineHeight > 0 ? Math.round(labelRect.height / lineHeight) : null,
+      };
+    });
+    observations.push({ viewportWidth, ...observed });
+  }
+  return observations;
+}
+
 async function main() {
   const started = Date.now();
   const receipt = new Recueil('presentation-functional-security', 'odoo-019-foundation', 'presentation-panel');
@@ -154,9 +190,16 @@ async function main() {
         handlers: [...root.querySelectorAll('*')].flatMap((node) => node.getAttributeNames().filter((name) => /^on/i.test(name))),
         executableUrls: [...root.querySelectorAll('[href], [src]')].map((node) => node.getAttribute('href') ?? node.getAttribute('src') ?? '').filter((value) => /^\s*(javascript|data|vbscript):/i.test(value)),
       }));
-      receipt.artefact(path.join(PROOFS, 'presentation-functional.public.json'), Buffer.from(JSON.stringify({ status: response?.status(), state, safety }, null, 2) + '\n'), 'json');
+      const responsive = await readResponsiveLayout(page);
+      receipt.artefact(path.join(PROOFS, 'presentation-functional.public.json'), Buffer.from(JSON.stringify({ status: response?.status(), state, safety, responsive }, null, 2) + '\n'), 'json');
       receipt.constateSi('public — deux instances et états CTA persistés', response?.status() === 200 && state.length === 2 && state[0].title === 'Titre instance A' && state[0].cta && state[1].title === 'Titre instance B' && !state[1].cta, 'HTTP 200 · A visible · B masqué', JSON.stringify(state));
       receipt.constateSi('public — rich-text strong uniquement et aucune charge exécutable', safety.strong === 1 && safety.forbiddenTags === 0 && safety.handlers.length === 0 && safety.executableUrls.length === 0, '1 strong · 0 tag/handler/URL hostile', JSON.stringify(safety));
+      receipt.constateSi(
+        'responsive — SectionHeader Fill et Button Hug tiennent à 1728/1440',
+        responsive.length === 2 && responsive.every((item) => item.headerDelta !== undefined && item.headerDelta <= 0.5 && item.rootOverflow !== undefined && item.rootOverflow <= 0.5 && item.titleInside === true && item.buttonWhiteSpace === 'nowrap' && item.buttonLines === 1),
+        'header=largeur colonne · 0 overflow · titre contenu · CTA nowrap sur une ligne',
+        JSON.stringify(responsive),
+      );
     } finally {
       await publicSession.context.close();
     }

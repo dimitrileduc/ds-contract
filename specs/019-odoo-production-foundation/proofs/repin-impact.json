@@ -6,8 +6,9 @@
   "fixture": "inputs-lock-current",
   "observations": [
     "[pass] lock — 5/5 contrats correspondent à l'état courant",
-    "[pass] graphDigest — 9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595",
-    "[pass] impact — aucun drift, aucun repin et aucun reçu à rejouer pour cette cause"
+    "[pass] graphDigest — 9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0",
+    "[pass] repin — ds.section-header 2.1.1→2.2.0 et ds.button 2.0.0→2.0.1; les trois autres contrats restent épinglés à leur version",
+    "[pass] impact — CSS généré, adresses d'authoring, métadonnées sauvegardées et politique de versions actualisés; scénarios Foundation, sections, isolation, install/update et visuels rejoués"
   ],
   "artifacts": [],
   "limitCodes": [],

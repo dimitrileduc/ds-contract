@@ -538,21 +538,27 @@ async function main() {
           present: true,
           controlesPiqueray: el.querySelectorAll('[data-pqr-root-policy]').length,
           actionsNonDeclarees: el.querySelectorAll('.oe_snippet_anchor, .oe_snippet_save').length,
-          champsNatifs: el.querySelectorAll('input, select, textarea').length,
+          champsDeclares: el.querySelectorAll(
+            '[data-pqr-control="show-cta"] input, [data-pqr-control="show-cta"] select, [data-pqr-control="show-cta"] textarea',
+          ).length,
+          champsNonDeclares: [...el.querySelectorAll('input, select, textarea')]
+            .filter((champ) => !champ.closest('[data-pqr-control="show-cta"]')).length,
           texte: (el as HTMLElement).innerText.replace(/\s+/g, ' ').trim(),
         })).catch(() => ({
           present: false,
           controlesPiqueray: 0,
           actionsNonDeclarees: -1,
-          champsNatifs: -1,
+          champsDeclares: -1,
+          champsNonDeclares: -1,
           texte: '(panneau absent)',
         }));
         recueil.constateSi(
           'racine — panneau limité à la politique Piqueray et aux gestes déclarés',
           inventairePanneau.present && inventairePanneau.controlesPiqueray === 1 &&
-            inventairePanneau.actionsNonDeclarees === 0 && inventairePanneau.champsNatifs === 0,
-          '1 politique Piqueray, 0 action haute non déclarée, 0 champ natif',
-          `${inventairePanneau.controlesPiqueray} politique · ${inventairePanneau.actionsNonDeclarees} action(s) non déclarée(s) · ${inventairePanneau.champsNatifs} champ(s) · texte=${JSON.stringify(inventairePanneau.texte)}`,
+            inventairePanneau.actionsNonDeclarees === 0 && inventairePanneau.champsDeclares === 1 &&
+            inventairePanneau.champsNonDeclares === 0,
+          '1 politique Piqueray, 0 action haute non déclarée, 1 champ CTA déclaré, 0 champ non déclaré',
+          `${inventairePanneau.controlesPiqueray} politique · ${inventairePanneau.actionsNonDeclarees} action(s) non déclarée(s) · ${inventairePanneau.champsDeclares} champ(s) CTA · ${inventairePanneau.champsNonDeclares} champ(s) non déclaré(s) · texte=${JSON.stringify(inventairePanneau.texte)}`,
         );
         const handlesResizeActifs = await page.locator(
           '.oe_overlay.oe_active .o_handle:not(.readonly):not(.d-none)',
@@ -679,7 +685,11 @@ async function main() {
         }
       }
       const journalErreurs = editeur?.journal.console ?? [];
-      if (journalErreurs.length > 0) recueil.limite('ODOO-LIMIT-EDITOR-CONSOLE-ERRORS');
+      if (journalErreurs.length > 0) {
+        console.log('  erreurs/warnings console éditeur :');
+        for (const ligne of journalErreurs) console.log(`    ${ligne}`);
+        recueil.limite('ODOO-LIMIT-EDITOR-CONSOLE-ERRORS');
+      }
     } finally {
       await editeur?.context.close();
     }

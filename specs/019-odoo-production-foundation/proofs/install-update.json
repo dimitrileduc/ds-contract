@@ -6,18 +6,18 @@
   "fixture": "two-sections-saved",
   "observations": [
     "[pass] clean install — les deux sections publiques répondent — attendu « 2 pages HTTP 200 remplies », observé « [{\"path\":\"/piqueray-harness/presentation-visual\",\"status\":200,\"chars\":363},{\"path\":\"/piqueray-harness/google-reviews-visual\",\"status\":200,\"chars\":435}] »",
-    "[pass] métadonnées — les deux racines portent versions et digest — attendu « 7 métadonnées présentes par racine », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"}] »",
+    "[pass] métadonnées — les deux racines portent versions et digest — attendu « 7 métadonnées présentes par racine », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"}] »",
     "[pass] update — odoo -u termine sans erreur — attendu « code 0 », observé « code 0 »",
     "[pass] update — contenu public intact — attendu « textes identiques avant/après », observé « [363,435] »",
-    "[pass] update — métadonnées intactes sans migration implicite — attendu « métadonnées identiques avant/après », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595\",\"vcss\":\"19.0.1.0.0\",\"vxml\":\"19.0.1.0.0\",\"vjs\":\"19.0.1.0.0\"}] »"
+    "[pass] update — métadonnées intactes sans migration implicite — attendu « métadonnées identiques avant/après », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"}] »"
   ],
   "artifacts": [
     {
       "path": "specs/019-odoo-production-foundation/proofs/install-update.before-after.json",
-      "sha256": "b432961111dfcd02b7941333f248d1dc5081a224e46fa9bbda8820505075347e",
+      "sha256": "7a9832bf4d13acc758d64fde5b0736f6f08f46f4f22ffcd1af36932f07e3dff9",
       "kind": "json"
     }
   ],
   "limitCodes": [],
-  "durationMs": 102937
+  "durationMs": 145749
 }

@@ -8,9 +8,9 @@ import { Plugin, registry, withSequence } from "./odoo19_compat";
 // `authoring.js` et invisible pour la politique de versions.
 import { PIQUERAY_ROOT_SELECTOR } from "./authoring";
 
-export const CURRENT_GRAPH_DIGEST = "9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595";
+export const CURRENT_GRAPH_DIGEST = "9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0";
 export const CURRENT_AUTHORING_VERSION = "1.0.0";
-export const CURRENT_MODULE_VERSION = "19.0.1.0.0";
+export const CURRENT_MODULE_VERSION = "19.0.1.0.1";
 const CONTRACT_VERSIONS = { "ds.presentation": "2.5.0", "ds.google-reviews": "1.0.0" };
 
 export function classifySavedRoot(root) {

@@ -202,6 +202,7 @@ invalide et une adaptation manuelle afin de vérifier le refus ou le comptage at
 
 - `ds.presentation` et `ds.google-reviews` sont les deux références déclarées propres au départ ; 020 ne les réaudite que si elle touche une dépendance commune.
 - Les versions observées à l'ouverture de la feature sont `ds.presentation@2.5.0`, `ds.section-header@2.1.1`, `ds.button@2.0.0`, `ds.google-reviews@1.0.0` et `ds.review-card@1.0.0`. Le snapshot effectif de qualification reste l'autorité si une coordination 020 impose un repin explicite.
+- Le repin explicite du 2026-08-11 fixe le snapshot effectif à `ds.presentation@2.5.0`, `ds.section-header@2.2.0`, `ds.button@2.0.1`, `ds.google-reviews@1.0.0` et `ds.review-card@1.0.0`, avec `graphDigest=9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0`. Les changements Fill/Hug sont dérivés des contrats et non recopiés depuis Figma.
 - La cible de qualification reste Odoo 19 épinglé sur la même lignée que le POC 018 ; un changement de version cible exige une nouvelle qualification de compatibilité.
 - Présentation et Google Reviews sont des sections de contenu. Les rédacteurs utilisent les permissions standard du site ; cette feature n'introduit pas un nouveau modèle de rôles.
 - Le rendu HTML produit depuis le contrat est la référence visuelle de la cible Odoo. Figma reste la surface amont déjà qualifiée pour ces deux sections, pas une source de styles à recopier directement.
