@@ -268,6 +268,7 @@ s'arrête sans génération ni application.
 Le workflow headless post-GO, ses refus, l'adaptateur de résultats Bridge et le
 format des reçus existent. La seule frontière live restante est le transport :
 ouvrir le Desktop Bridge sur le fichier épinglé et lui faire exécuter le script
-généré. Une future skill ne sera créée qu'après validation owner du workflow
-éprouvé. Elle pourra orchestrer l'audit et ce transport ; elle ne devra ni
-contenir de logique de composant ni contourner les validations du runner.
+généré. Après validation owner du workflow éprouvé, la skill repo-locale
+`.agents/skills/figma-component-repair` en orchestre l'audit et le transport.
+Elle ne contient aucune logique de composant et ne contourne aucune validation
+du runner.
