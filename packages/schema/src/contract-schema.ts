@@ -157,6 +157,8 @@ export const LayoutSchema = z
     /** Canvas-only authoring width used to present a fluid master at its
      *  historical desktop reference. It never caps the code surface. */
     referenceWidth: z.number().positive().optional(),
+    /** The component owns clipping of its painted planes. */
+    clip: z.boolean().optional(),
     /** Part takes remaining space (code: flex 1 1 auto; Figma: fill container). */
     grow: z.boolean().optional(),
     /** Children overlap (AvatarGroup): the gap token is applied as a NEGATIVE
@@ -1393,6 +1395,7 @@ export interface ResolvedLayout {
   justify?: 'start' | 'center' | 'end' | 'space-between';
   width?: 'fill';
   referenceWidth?: number;
+  clip?: boolean;
   grow?: boolean;
   overlap?: boolean;
   /** v15: flex-wrap: wrap (Figma layoutWrap 'WRAP'). */

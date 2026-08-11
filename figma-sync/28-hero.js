@@ -41,6 +41,7 @@ const COMPONENTS = [
             "width": 1728
           },
           "fillWidth": true,
+          "clipContent": true,
           "children": [
             {
               "type": "frame",
@@ -580,6 +581,7 @@ function applyFrameSpec(node, spec) {
   if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
     try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
   }
+  if (spec.clipContent) node.clipsContent = true;
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
   // 743px category card is used at 474px), Figma must scale that basis with

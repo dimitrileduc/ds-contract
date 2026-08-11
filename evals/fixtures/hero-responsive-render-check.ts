@@ -52,6 +52,7 @@ try {
       return {
         rootWidth: rootRect.width,
         rootOverflow: root.scrollWidth - root.clientWidth,
+        rootClip: getComputedStyle(root).overflow,
         wrapperOverflow: wrapper.scrollWidth - wrapper.clientWidth,
         subtitleWidth: subtitleRect.width,
         buttonWidth: buttonRect.width,
@@ -63,6 +64,7 @@ try {
     });
     if (Math.abs(facts.rootWidth - width) > 0.5) failures.push(`${width}: Hero width is ${facts.rootWidth}`);
     if (facts.rootOverflow > 0.5 || facts.wrapperOverflow > 0.5) failures.push(`${width}: overflow ${facts.rootOverflow}/${facts.wrapperOverflow}`);
+    if (facts.rootClip !== 'hidden') failures.push(`${width}: Hero root does not own clipping`);
     if (facts.buttonLines !== 1) failures.push(`${width}: Button label wraps to ${facts.buttonLines} lines`);
     if (facts.buttonRight > facts.wrapperRight + 0.5) failures.push(`${width}: Button leaves the wrapper`);
     if (facts.veil.width !== width || facts.veil.height !== 640 || facts.veil.z !== '1') failures.push(`${width}: veil geometry/stack drifted`);

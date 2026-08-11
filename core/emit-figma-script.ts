@@ -99,6 +99,8 @@ export interface NodeSpec {
   /** Numeric CSS stacking order. Canvas uses the contract's stable child
    *  order and keeps explicitly layered inset children at that index. */
   zIndex?: number;
+  /** Contract-owned clipping of painted child planes. */
+  clipContent?: boolean;
   /** visibleWhen on a boolean prop → node visibility bound to its BOOLEAN
    *  component property. (visibleWhen.equals is resolved at compile time:
    *  the part is simply omitted from non-matching variants.) */
@@ -2180,6 +2182,7 @@ function applyLayoutCarriage(
 ): void {
   const layout = resolveLayout(part, subst);
   if (layout?.width === 'fill') spec.fillWidth = true;
+  if (layout?.clip) spec.clipContent = true;
   if (layout?.referenceWidth !== undefined) {
     (spec.lits ??= {}).width = layout.referenceWidth;
   }
@@ -3548,6 +3551,10 @@ const fillWidthRootRuntime = (has: boolean): string =>
   }`
     : '';
 
+const clipContentRuntime = (has: boolean): string =>
+  has ? `
+  if (spec.clipContent) node.clipsContent = true;` : '';
+
 /** Contract → the single-component sync script text. #60 fix 2: the emitted
  *  runtime is AMEND-CAPABLE — it shares the batch sync runtime (syncOne →
  *  amendSet / amendComponent), so re-running a committed per-component
@@ -3631,6 +3638,7 @@ function buildSyncScript(
   const hasGradient = datas.some((d) => dataSome(d, (x) => x.gradient !== undefined));
   const hasInsetOverlay = datas.some((d) => dataSome(d, (x) => x.insetOverlay === true));
   const hasFillWidth = datas.some((d) => dataSome(d, (x) => x.fillWidth === true));
+  const hasClipContent = datas.some((d) => dataSome(d, (x) => x.clipContent === true));
   const hasZIndex = datas.some((d) => dataSome(d, (x) => x.zIndex !== undefined));
   // Round 5d: margin-box wrapper / outline-lowered OUTSIDE strokes /
   // single-paint glyph variable re-binding — all feature-gated so contracts
@@ -3953,7 +3961,7 @@ function applyFrameSpec(node, spec) {
       else node.primaryAxisSizingMode = 'FIXED';
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
-  }${litsRuntime(hasLits)}${gradientRuntime(hasGradient)}${fillWidthRootRuntime(hasFillWidth)}
+  }${litsRuntime(hasLits)}${gradientRuntime(hasGradient)}${fillWidthRootRuntime(hasFillWidth)}${clipContentRuntime(hasClipContent)}
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
   // 743px category card is used at 474px), Figma must scale that basis with

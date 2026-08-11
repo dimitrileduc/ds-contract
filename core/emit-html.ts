@@ -119,6 +119,7 @@ function layoutDecls(part: Part): string[] {
     d.push('width: 100%');
     if (!part.layout.grow) d.push('min-width: 0');
   }
+  if (part.layout?.clip) d.push('overflow: hidden');
   return d;
 }
 
@@ -198,6 +199,7 @@ function componentCss(contract: Contract): string[] {
     if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
     if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
     if (root.layout.width === 'fill') rootDecls.push('width: 100%', 'min-width: 0');
+    if (root.layout.clip) rootDecls.push('overflow: hidden');
   } else {
     rootDecls.push('display: inline-flex', 'align-items: center', 'justify-content: center');
   }

@@ -46,6 +46,7 @@ const button = wrapper?.children?.find((node) => node.name === 'Bouton');
 if (!heroRoot.fillWidth || heroRoot.lits?.width !== 1728) {
   failures.push('Hero root must be Fill with a 1728 canvas reference width');
 }
+if (!heroRoot.clipContent) failures.push('Hero root must clip its painted planes');
 if (heroRoot.lits?.fillClear !== true || heroRoot.gradient) {
   failures.push('Hero root must explicitly clear legacy fills; its gradient belongs to VoileNavigation');
 }

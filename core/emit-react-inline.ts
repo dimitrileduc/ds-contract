@@ -191,6 +191,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
         if (part.layout.align) s.alignItems = ALIGN_CSS[part.layout.align];
         if (part.layout.justify) s.justifyContent = JUSTIFY_CSS[part.layout.justify];
         if (part.layout.width === 'fill') { s.width = '100%'; s.minWidth = 0; }
+        if (part.layout.clip) s.overflow = 'hidden';
       } else {
         s.display = 'inline-flex';
         s.alignItems = 'center';
@@ -236,6 +237,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       }
       if (part.layout?.grow) { s.flex = '1 1 auto'; s.minWidth = 0; }
       if (part.layout?.width === 'fill') { s.width = '100%'; s.minWidth = 0; }
+      if (part.layout?.clip) s.overflow = 'hidden';
       if (part.overlay) Object.assign(s, { position: 'absolute' }, OVERLAY_CSS[part.overlay.placement]);
       // v9 shape: the shared projection, camelCased for style objects.
       if (part.shape) {

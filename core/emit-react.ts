@@ -1653,6 +1653,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         decls.push('width: 100%');
         if (!part.layout.grow) decls.push('min-width: 0');
       }
+      if (part.layout?.clip) decls.push('overflow: hidden');
       if (part.element && UA_MARGIN_ELEMENTS.has(part.element)) decls.push('margin: 0');
       if (part.overlay) decls.push('position: absolute', ...OVERLAY_CSS[part.overlay.placement]);
       if (part.shape) decls.push(...shapeCssDecls(part.shape));
@@ -1711,6 +1712,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
     if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
     if (root.layout.width === 'fill') rootDecls.push('width: 100%', 'min-width: 0');
+    if (root.layout.clip) rootDecls.push('overflow: hidden');
   } else {
     rootDecls.push('display: inline-flex', 'align-items: center', 'justify-content: center');
   }
@@ -2065,6 +2067,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       decls.push('width: 100%');
       if (!part.layout.grow) decls.push('min-width: 0');
     }
+    if (part.layout?.clip) decls.push('overflow: hidden');
     // UA-margin neutralization on NESTED parts (round 4): a promoted h2/p/ul
     // part would leak UA margins the real component resets — same discipline
     // as the root rule; captured nonzero margins arrive as minted overrides.
