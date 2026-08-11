@@ -69,9 +69,11 @@ import {
 
 
 export interface LayoutSpec {
-  mode: 'HORIZONTAL' | 'VERTICAL';
+  mode: 'HORIZONTAL' | 'VERTICAL' | 'GRID';
   primary: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
   counter: 'MIN' | 'CENTER' | 'MAX';
+  /** Bounded native grid: a fixed number of equal tracks. */
+  columns?: number;
   stretchChildren?: boolean;
   /** v15 (S4/matrix a.8): flex-wrap: wrap → layoutWrap 'WRAP' (native). */
   wrap?: boolean;
@@ -109,6 +111,8 @@ export interface NodeSpec {
   grow?: boolean;
   /** Parent-owned width → layoutSizingHorizontal FILL after append. */
   fillWidth?: boolean;
+  /** Fixed intrinsic ratio; Figma locks it after sizing/FILL is applied. */
+  aspectRatio?: number;
   /** Numeric CSS stacking order. Canvas uses the contract's stable child
    *  order and keeps explicitly layered inset children at that index. */
   zIndex?: number;
@@ -265,6 +269,8 @@ export interface NodeSpec {
     paddingLeft?: number;
     paddingRight?: number;
     itemSpacing?: number;
+    gridColumnGap?: number;
+    gridRowGap?: number;
     radius?: number;
     strokeWeight?: number;
     /** v15 (S4/matrix a.4): per-corner literal radii. */
@@ -998,6 +1004,14 @@ function layoutSpec(part: Part, isRoot: boolean, subst: Record<string, string> =
   if (!l && isRoot) {
     return { mode: 'HORIZONTAL', primary: 'CENTER', counter: 'CENTER' };
   }
+  if (l?.display === 'grid') {
+    return {
+      mode: 'GRID',
+      columns: l.columns,
+      primary: 'MIN',
+      counter: 'MIN',
+    };
+  }
   return {
     mode: l?.direction?.startsWith('column') ? 'VERTICAL' : 'HORIZONTAL',
     primary: l?.justify ? JUSTIFY_FIGMA[l.justify] : 'MIN',
@@ -1126,7 +1140,9 @@ function applyTokens(
         spec.bindings = { ...spec.bindings, paddingBottom: varName };
         break;
       case 'gap':
-        spec.bindings = { ...spec.bindings, itemSpacing: varName };
+        spec.bindings = spec.layout?.mode === 'GRID'
+          ? { ...spec.bindings, gridColumnGap: varName, gridRowGap: varName }
+          : { ...spec.bindings, itemSpacing: varName };
         break;
       // Round 5 (canvas-gate finding): the floor promotion carries the gap
       // LONGHANDS (column-gap/row-gap — Banner's InlineStack icon–title gap
@@ -1134,12 +1150,16 @@ function applyTokens(
       // maps to itemSpacing; the cross-axis one only matters under wrap and
       // stays CSS-side.
       case 'column-gap':
-        if ((spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') {
+        if (spec.layout?.mode === 'GRID') {
+          spec.bindings = { ...spec.bindings, gridColumnGap: varName };
+        } else if ((spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') {
           spec.bindings = { ...spec.bindings, itemSpacing: varName };
         }
         break;
       case 'row-gap':
-        if (spec.layout?.mode === 'VERTICAL') {
+        if (spec.layout?.mode === 'GRID') {
+          spec.bindings = { ...spec.bindings, gridRowGap: varName };
+        } else if (spec.layout?.mode === 'VERTICAL') {
           spec.bindings = { ...spec.bindings, itemSpacing: varName };
         }
         break;
@@ -1407,16 +1427,25 @@ function applyLiterals(spec: NodeSpec, lits: Record<string, string>, ctx: TextCt
       case 'padding-right': { const n = parseLitPx(value); if (n !== undefined) li().paddingRight = n; break; }
       case 'padding-top': { const n = parseLitPx(value); if (n !== undefined) li().paddingTop = n; break; }
       case 'padding-bottom': { const n = parseLitPx(value); if (n !== undefined) li().paddingBottom = n; break; }
-      case 'gap': { const n = parseLitPx(value); if (n !== undefined) li().itemSpacing = n; break; }
+      case 'gap': {
+        const n = parseLitPx(value);
+        if (n !== undefined) {
+          if (spec.layout?.mode === 'GRID') { li().gridColumnGap = n; li().gridRowGap = n; }
+          else li().itemSpacing = n;
+        }
+        break;
+      }
       // Round 5: gap longhands (see the token side) — main-axis only.
       case 'column-gap': {
         const n = parseLitPx(value);
-        if (n !== undefined && (spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') li().itemSpacing = n;
+        if (n !== undefined && spec.layout?.mode === 'GRID') li().gridColumnGap = n;
+        else if (n !== undefined && (spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') li().itemSpacing = n;
         break;
       }
       case 'row-gap': {
         const n = parseLitPx(value);
-        if (n !== undefined && spec.layout?.mode === 'VERTICAL') li().itemSpacing = n;
+        if (n !== undefined && spec.layout?.mode === 'GRID') li().gridRowGap = n;
+        else if (n !== undefined && spec.layout?.mode === 'VERTICAL') li().itemSpacing = n;
         break;
       }
       // Round 5: literal margin channels — same lowering as the token side.
@@ -2278,6 +2307,7 @@ function applyLayoutCarriage(
   if (layout?.referenceWidth !== undefined) {
     (spec.lits ??= {}).width = layout.referenceWidth;
   }
+  if (layout?.aspectRatio !== undefined) spec.aspectRatio = layout.aspectRatio;
   const zIndex = part.declared?.['z-index'];
   if (zIndex !== undefined && /^-?\d+$/.test(zIndex)) spec.zIndex = Number(zIndex);
 }
@@ -3473,6 +3503,27 @@ const wrapRuntime = (has: boolean): string =>
   if (l.wrap) node.layoutWrap = 'WRAP';`
     : '';
 
+/** Native fixed-track grid, feature-gated so non-grid scripts remain byte-stable. */
+const frameLayoutRuntime = (hasGrid: boolean, hasWrap: boolean): string => {
+  const axes = `node.primaryAxisAlignItems = l.primary;
+  node.counterAxisAlignItems = l.counter;${wrapRuntime(hasWrap)}
+  node.primaryAxisSizingMode = 'AUTO';
+  node.counterAxisSizingMode = 'AUTO';`;
+  if (!hasGrid) return axes;
+  return `if (l.mode === 'GRID') {
+    const columns = Math.max(1, Number(l.columns) || 1);
+    const flowChildren = (spec.children || []).filter((child) => !child.overlay && !child.insetOverlay);
+    node.gridColumnCount = columns;
+    node.gridRowCount = Math.max(1, Math.ceil(flowChildren.length / columns));
+    node.gridColumnSizes = Array.from({ length: columns }, () => ({ type: 'FLEX', value: 1 }));
+    node.gridRowSizes = Array.from({ length: node.gridRowCount }, () => ({ type: 'HUG' }));
+    node.gridAutoTracks = 'ROWS';
+    node.gridItemsPositioning = 'ROW_AUTO_FLOW';
+  } else {
+    ${axes.replaceAll('\n', '\n    ')}
+  }`;
+};
+
 /** v15 (S4/matrix a.2/a.6/a.9): declared text facts with native fields —
  *  letterSpacing, textCase, textDecoration, textAlignHorizontal, fontName
  *  family (first stack entry; Inter stands when unavailable — named limit),
@@ -3763,6 +3814,8 @@ const litsRuntime = (has: boolean): string =>
     if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
     if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
     if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
+    if (li.gridColumnGap !== undefined) node.gridColumnGap = li.gridColumnGap;
+    if (li.gridRowGap !== undefined) node.gridRowGap = li.gridRowGap;
     if (li.radius !== undefined) node.cornerRadius = li.radius;
     if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
     if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
@@ -3808,12 +3861,15 @@ const litsRuntime = (has: boolean): string =>
     }
     if (li.width !== undefined || li.height !== undefined) {
       node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
-      const horizontalIsPrimary = (spec.layout || { mode: 'HORIZONTAL' }).mode === 'HORIZONTAL';
-      if (li.width !== undefined) {
-        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
-      }
-      if (li.height !== undefined) {
-        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+      const mode = (spec.layout || { mode: 'HORIZONTAL' }).mode;
+      if (mode !== 'GRID') {
+        const horizontalIsPrimary = mode === 'HORIZONTAL';
+        if (li.width !== undefined) {
+          if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
+        }
+        if (li.height !== undefined) {
+          if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+        }
       }
     }
   }`
@@ -3830,6 +3886,21 @@ const fillWidthRootRuntime = (has: boolean): string =>
     try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
   }`
     : '';
+
+const aspectRatioRuntime = (has: boolean): string =>
+  has
+    ? `
+function applyAspectRatio(node, spec) {
+  if (!(spec.aspectRatio > 0)) return;
+  try {
+    if (typeof node.lockAspectRatio === 'function') node.lockAspectRatio();
+    else if ('constrainProportions' in node) node.constrainProportions = true;
+  } catch (e) { /* node kind or older API does not expose ratio locking */ }
+}`
+    : '';
+
+const aspectRatioCall = (has: boolean, node: string, spec: string): string =>
+  has ? `\n    applyAspectRatio(${node}, ${spec});` : '';
 
 const clipContentRuntime = (has: boolean): string =>
   has ? `
@@ -3914,10 +3985,12 @@ function buildSyncScript(
   const hasAbsolute = datas.some((d) => dataSome(d, (x) => x.absolute !== undefined));
   const hasLits = datas.some((d) => dataSome(d, (x) => x.lits !== undefined));
   const hasWrap = datas.some((d) => dataSome(d, (x) => x.layout?.wrap === true));
+  const hasGrid = datas.some((d) => dataSome(d, (x) => x.layout?.mode === 'GRID'));
   const hasEffectStack = datas.some((d) => dataSome(d, (x) => x.effectStack !== undefined));
   const hasGradient = datas.some((d) => dataSome(d, (x) => x.gradient !== undefined));
   const hasInsetOverlay = datas.some((d) => dataSome(d, (x) => x.insetOverlay === true));
   const hasFillWidth = datas.some((d) => dataSome(d, (x) => x.fillWidth === true));
+  const hasAspectRatio = datas.some((d) => dataSome(d, (x) => x.aspectRatio !== undefined));
   const hasClipContent = datas.some((d) => dataSome(d, (x) => x.clipContent === true));
   const hasZIndex = datas.some((d) => dataSome(d, (x) => x.zIndex !== undefined));
   // Round 5d: margin-box wrapper / outline-lowered OUTSIDE strokes /
@@ -4225,10 +4298,7 @@ async function ensureSlotUtility() {
 function applyFrameSpec(node, spec) {
   const l = spec.layout || { mode: 'HORIZONTAL', primary: 'MIN', counter: 'MIN' };
   node.layoutMode = l.mode;
-  node.primaryAxisAlignItems = l.primary;
-  node.counterAxisAlignItems = l.counter;${wrapRuntime(hasWrap)}
-  node.primaryAxisSizingMode = 'AUTO';
-  node.counterAxisSizingMode = 'AUTO';
+  ${frameLayoutRuntime(hasGrid, hasWrap)}
   if (node.type === 'FRAME') node.fills = [];
   for (const [field, varName] of Object.entries(spec.bindings || {})) {
     node.setBoundVariable(field, need(varName));
@@ -4244,13 +4314,17 @@ function applyFrameSpec(node, spec) {
     node.resize(w, h);
     const horizontalIsPrimary = l.mode === 'HORIZONTAL';
     if (spec.fixedWidth) {
-      if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
-      else node.counterAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
+        else node.counterAxisSizingMode = 'FIXED';
+      }
       node.setBoundVariable('width', need(spec.fixedWidth.varName));
     }
     if (spec.fixedHeight) {
-      if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
-      else node.primaryAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
+        else node.primaryAxisSizingMode = 'FIXED';
+      }
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }${litsRuntime(hasLits)}${gradientRuntime(hasGradient)}${fillWidthRootRuntime(hasFillWidth)}${clipContentRuntime(hasClipContent)}
@@ -4280,7 +4354,7 @@ function applyOverlay(parent, childNode, childSpec) {
     else { childNode.x = parent.width; childNode.y = 0; }
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
-${absoluteRuntime(hasAbsolute)}${insetOverlayRuntime(hasInsetOverlay, hasZIndex)}${marginBoxRuntime(hasMargins)}
+${absoluteRuntime(hasAbsolute)}${insetOverlayRuntime(hasInsetOverlay, hasZIndex)}${marginBoxRuntime(hasMargins)}${aspectRatioRuntime(hasAspectRatio)}
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -4449,6 +4523,7 @@ ${propertyBackedTextInWrapper}
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+${aspectRatioCall(hasAspectRatio, 'childNode', 'child')}
 ${propertyBackedTextInColumn('child', 'node')}
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
@@ -4982,6 +5057,7 @@ async function amendSet(set, C) {
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
+${aspectRatioCall(hasAspectRatio, 'childNode', 'childSpec')}
 ${propertyBackedTextInColumn('childSpec', 'comp')}
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
@@ -5169,6 +5245,7 @@ async function amendComponent(comp, C) {
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+${aspectRatioCall(hasAspectRatio, 'childNode', 'childSpec')}
 ${propertyBackedTextInColumn('childSpec', 'comp')}
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.

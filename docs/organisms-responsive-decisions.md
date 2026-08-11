@@ -116,9 +116,16 @@
 
 ### Equipe
 
-- Root et instance déjà Fill ; grille interne Fill.
-- Probe à 1440 : aucun débordement root ou imbriqué détecté.
-- Proposition : aucun changement desktop de largeur. Garder uniquement une vérification visuelle lors de la campagne globale.
+- Correction auditée le 2026-08-11 : le canvas historique était une GRID native
+  4×4, mais le contrat 016 ne portait qu'une approximation `flex-wrap` fixe à
+  1728. Le vert dépendait en plus du padding 89 survivant par inertie.
+- Décision owner du 2026-08-11 : root Fill dans son Container local de
+  présentation, sans gutter externe ; grille Fill à quatre colonnes égales et
+  cartes Fill dans leur cellule. Les gaps natifs sont 32/32. Le sample suit
+  l'ordre visuel historique.
+- La migration doit réordonner les instances existantes en place avant tout
+  rebuild afin que leurs portraits restent associés aux bons noms. Aucune
+  instance de Page n'est éditée directement.
 
 ### CategoriesPrincipales
 

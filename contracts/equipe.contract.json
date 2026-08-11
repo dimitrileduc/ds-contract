@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.equipe",
   "name": "Equipe",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Piqueray Equipe. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -33,17 +33,21 @@
       "layout": {
         "display": "flex",
         "direction": "row",
-        "justify": "center"
+        "justify": "center",
+        "width": "fill"
       },
       "parts": {
         "grid": {
           "layout": {
-            "direction": "row",
-            "grow": true,
-            "wrap": true
+            "display": "grid",
+            "columns": 4,
+            "width": "fill"
           },
           "parts": {
             "MemberCard": {
+              "layout": {
+                "width": "fill"
+              },
               "component": {
                 "id": "ds.member-card"
               },
@@ -57,30 +61,6 @@
                   {
                     "poste": "Gérant",
                     "nom": "Florian Piqueray"
-                  },
-                  {
-                    "poste": "Monteur",
-                    "nom": "Jordan"
-                  },
-                  {
-                    "poste": "Monteur",
-                    "nom": "Florian"
-                  },
-                  {
-                    "poste": "Dépanneur",
-                    "nom": "Hervé"
-                  },
-                  {
-                    "poste": "Poste",
-                    "nom": "Prénom"
-                  },
-                  {
-                    "poste": "Poste",
-                    "nom": "Prénom"
-                  },
-                  {
-                    "poste": "Poste",
-                    "nom": "Prénom"
                   },
                   {
                     "poste": "Collaboratrice admin & comptabilité",
@@ -108,17 +88,41 @@
                   },
                   {
                     "poste": "Monteur",
+                    "nom": "Grégory"
+                  },
+                  {
+                    "poste": "Monteur",
                     "nom": "Laurent"
                   },
                   {
                     "poste": "Monteur",
-                    "nom": "Grégory"
+                    "nom": "Jordan"
+                  },
+                  {
+                    "poste": "Monteur",
+                    "nom": "Florian"
+                  },
+                  {
+                    "poste": "Dépanneur",
+                    "nom": "Hervé"
+                  },
+                  {
+                    "poste": "Poste",
+                    "nom": "Prénom"
+                  },
+                  {
+                    "poste": "Poste",
+                    "nom": "Prénom"
+                  },
+                  {
+                    "poste": "Poste",
+                    "nom": "Prénom"
                   }
                 ]
               }
             }
           },
-          "description": "016 : flex-wrap ajouté (l'origine est une grille 4x4 de 16 MemberCards, 1550x1886 ; sans wrap le rebuild rendait UNE rangée de 448 et a-propos perdait 1438 px).",
+          "description": "Grille native 4 colonnes égales restaurée depuis l'authoring historique. Chaque MemberCard remplit sa cellule ; aucune largeur de viewport n'est encodée dans une variante.",
           "tokens": {
             "gap": "{size.equipe.gap-colonnes}",
             "row-gap": "{size.equipe.gap-rangees}"
@@ -126,8 +130,7 @@
         }
       },
       "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "width": "{size.equipe.root}"
+        "font-family": "{font.family.montserrat}"
       }
     }
   },

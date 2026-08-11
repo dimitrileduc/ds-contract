@@ -5,7 +5,7 @@ const COMPONENTS = [
     "setName": "Equipe",
     "contractId": "ds.equipe",
     "anchorKey": "786b6f6634939b2081530949058eddf071b22ab1",
-    "description": "Equipe — generated from contract ds.equipe v1.1.2",
+    "description": "Equipe — generated from contract ds.equipe v1.2.0",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -28,24 +28,20 @@ const COMPONENTS = [
             "counter": "MIN",
             "stretchChildren": true
           },
-          "fixedWidth": {
-            "px": 1728,
-            "varName": "size/equipe/root"
-          },
+          "fillWidth": true,
           "children": [
             {
               "type": "frame",
               "name": "grid",
               "layout": {
-                "mode": "HORIZONTAL",
+                "mode": "GRID",
+                "columns": 4,
                 "primary": "MIN",
-                "counter": "MIN",
-                "stretchChildren": true,
-                "wrap": true
+                "counter": "MIN"
               },
-              "grow": true,
               "bindings": {
-                "itemSpacing": "size/equipe/gap-colonnes"
+                "gridColumnGap": "size/equipe/gap-colonnes",
+                "gridRowGap": "size/equipe/gap-rangees"
               },
               "children": [
                 {
@@ -56,7 +52,8 @@ const COMPONENTS = [
                   "depProps": {
                     "Poste": "Gérante",
                     "Nom": "Cécilia Piqueray"
-                  }
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -66,7 +63,8 @@ const COMPONENTS = [
                   "depProps": {
                     "Poste": "Gérant",
                     "Nom": "Florian Piqueray"
-                  }
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -74,9 +72,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Monteur",
-                    "Nom": "Jordan"
-                  }
+                    "Poste": "Collaboratrice admin & comptabilité",
+                    "Nom": "Sandra Magermans"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -84,9 +83,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Monteur",
-                    "Nom": "Florian"
-                  }
+                    "Poste": "Collaborateur admin & gestion SAV",
+                    "Nom": "Arnaud Dahmen"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -94,9 +94,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Dépanneur",
-                    "Nom": "Hervé"
-                  }
+                    "Poste": "Peintre",
+                    "Nom": "Ricardo"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -104,9 +105,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Poste",
-                    "Nom": "Prénom"
-                  }
+                    "Poste": "Préparateur",
+                    "Nom": "Quentin"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -114,9 +116,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Poste",
-                    "Nom": "Prénom"
-                  }
+                    "Poste": "Monteur",
+                    "Nom": "Marc"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -124,9 +127,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Poste",
-                    "Nom": "Prénom"
-                  }
+                    "Poste": "Monteur",
+                    "Nom": "André"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -134,9 +138,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Collaboratrice admin & comptabilité",
-                    "Nom": "Sandra Magermans"
-                  }
+                    "Poste": "Monteur",
+                    "Nom": "Grégory"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -144,9 +149,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Collaborateur admin & gestion SAV",
-                    "Nom": "Arnaud Dahmen"
-                  }
+                    "Poste": "Monteur",
+                    "Nom": "Laurent"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -154,9 +160,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Peintre",
-                    "Nom": "Ricardo"
-                  }
+                    "Poste": "Monteur",
+                    "Nom": "Jordan"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -164,9 +171,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Préparateur",
-                    "Nom": "Quentin"
-                  }
+                    "Poste": "Monteur",
+                    "Nom": "Florian"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -174,9 +182,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Monteur",
-                    "Nom": "Marc"
-                  }
+                    "Poste": "Dépanneur",
+                    "Nom": "Hervé"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -184,9 +193,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Monteur",
-                    "Nom": "André"
-                  }
+                    "Poste": "Poste",
+                    "Nom": "Prénom"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -194,9 +204,10 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Monteur",
-                    "Nom": "Laurent"
-                  }
+                    "Poste": "Poste",
+                    "Nom": "Prénom"
+                  },
+                  "fillWidth": true
                 },
                 {
                   "type":"instance",
@@ -204,17 +215,19 @@ const COMPONENTS = [
                   "dep":"MemberCard",
                   "depId": "ds.member-card",
                   "depProps": {
-                    "Poste": "Monteur",
-                    "Nom": "Grégory"
-                  }
+                    "Poste": "Poste",
+                    "Nom": "Prénom"
+                  },
+                  "fillWidth": true
                 }
-              ]
+              ],
+              "fillWidth": true
             }
           ]
         }
       }
     ],
-    "colW": 1788
+    "colW": 380
   },
   {
     "setName": "FAQ",
@@ -2644,11 +2657,21 @@ async function ensureSlotUtility() {
 function applyFrameSpec(node, spec) {
   const l = spec.layout || { mode: 'HORIZONTAL', primary: 'MIN', counter: 'MIN' };
   node.layoutMode = l.mode;
-  node.primaryAxisAlignItems = l.primary;
-  node.counterAxisAlignItems = l.counter;
-  if (l.wrap) node.layoutWrap = 'WRAP';
-  node.primaryAxisSizingMode = 'AUTO';
-  node.counterAxisSizingMode = 'AUTO';
+  if (l.mode === 'GRID') {
+    const columns = Math.max(1, Number(l.columns) || 1);
+    const flowChildren = (spec.children || []).filter((child) => !child.overlay && !child.insetOverlay);
+    node.gridColumnCount = columns;
+    node.gridRowCount = Math.max(1, Math.ceil(flowChildren.length / columns));
+    node.gridColumnSizes = Array.from({ length: columns }, () => ({ type: 'FLEX', value: 1 }));
+    node.gridRowSizes = Array.from({ length: node.gridRowCount }, () => ({ type: 'HUG' }));
+    node.gridAutoTracks = 'ROWS';
+    node.gridItemsPositioning = 'ROW_AUTO_FLOW';
+  } else {
+    node.primaryAxisAlignItems = l.primary;
+      node.counterAxisAlignItems = l.counter;
+      node.primaryAxisSizingMode = 'AUTO';
+      node.counterAxisSizingMode = 'AUTO';
+  }
   if (node.type === 'FRAME') node.fills = [];
   for (const [field, varName] of Object.entries(spec.bindings || {})) {
     node.setBoundVariable(field, need(varName));
@@ -2664,13 +2687,17 @@ function applyFrameSpec(node, spec) {
     node.resize(w, h);
     const horizontalIsPrimary = l.mode === 'HORIZONTAL';
     if (spec.fixedWidth) {
-      if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
-      else node.counterAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
+        else node.counterAxisSizingMode = 'FIXED';
+      }
       node.setBoundVariable('width', need(spec.fixedWidth.varName));
     }
     if (spec.fixedHeight) {
-      if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
-      else node.primaryAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
+        else node.primaryAxisSizingMode = 'FIXED';
+      }
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }
@@ -2682,6 +2709,8 @@ function applyFrameSpec(node, spec) {
     if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
     if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
     if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
+    if (li.gridColumnGap !== undefined) node.gridColumnGap = li.gridColumnGap;
+    if (li.gridRowGap !== undefined) node.gridRowGap = li.gridRowGap;
     if (li.radius !== undefined) node.cornerRadius = li.radius;
     if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
     if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
@@ -2727,14 +2756,20 @@ function applyFrameSpec(node, spec) {
     }
     if (li.width !== undefined || li.height !== undefined) {
       node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
-      const horizontalIsPrimary = (spec.layout || { mode: 'HORIZONTAL' }).mode === 'HORIZONTAL';
-      if (li.width !== undefined) {
-        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
-      }
-      if (li.height !== undefined) {
-        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+      const mode = (spec.layout || { mode: 'HORIZONTAL' }).mode;
+      if (mode !== 'GRID') {
+        const horizontalIsPrimary = mode === 'HORIZONTAL';
+        if (li.width !== undefined) {
+          if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
+        }
+        if (li.height !== undefined) {
+          if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+        }
       }
     }
+  }
+  if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
+    try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
   }
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
@@ -2999,7 +3034,7 @@ async function buildNode(spec, registry) {
       // description.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (child.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((child.grow || child.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     } else if (
       spec.layout && spec.layout.stretchChildren &&
@@ -3009,6 +3044,7 @@ async function buildNode(spec, registry) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
 
+
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
     // width-CONSTRAINED parent (fixed width, or a stretch/grow context)
@@ -3017,7 +3053,7 @@ async function buildNode(spec, registry) {
     // HUG is the circular case Figma refuses. Measured live: the
     // SectionHeader title overflowed Presentation's 628 column in one line
     // (origin: two lines) — the Devis.Titre fix was this rule's local case.
-    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (child.grow || child.fillWidth || spec.fillWidth || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
     }
     applyInsetOverlay(node, childNode, child);
@@ -3538,15 +3574,16 @@ async function amendSet(set, C) {
           // #60 fix 4 (amend path): same empty-child declared default.
           try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
         }
-        if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+        if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
 
+
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
-        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+        if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
     applyInsetOverlay(comp, childNode, childSpec);
@@ -3727,15 +3764,16 @@ async function amendComponent(comp, C) {
       // #60 fix 4 (standalone amend path): same empty-child declared default.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
 
+
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
-    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
     applyInsetOverlay(comp, childNode, childSpec);

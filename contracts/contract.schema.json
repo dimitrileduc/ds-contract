@@ -567,8 +567,14 @@
               "type": "string",
               "enum": [
                 "flex",
-                "inline-flex"
+                "inline-flex",
+                "grid"
               ]
+            },
+            "columns": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
             },
             "direction": {
               "type": "string",
@@ -598,6 +604,10 @@
             "width": {
               "type": "string",
               "const": "fill"
+            },
+            "aspectRatio": {
+              "type": "number",
+              "exclusiveMinimum": 0
             },
             "referenceWidth": {
               "type": "number",

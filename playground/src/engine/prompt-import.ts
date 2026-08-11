@@ -70,7 +70,9 @@ const CONTRACT_TOOL = {
         type: 'object',
         additionalProperties: false,
         properties: {
-          display: { enum: ['flex', 'inline-flex'] },
+          display: { enum: ['flex', 'inline-flex', 'grid'] },
+          columns: { type: 'integer', minimum: 1 },
+          aspectRatio: { type: 'number', exclusiveMinimum: 0 },
           direction: { enum: ['row', 'column'] },
           align: { enum: ['start', 'center', 'end', 'stretch'] },
           justify: { enum: ['start', 'center', 'end', 'space-between'] },

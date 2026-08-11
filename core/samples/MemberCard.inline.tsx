@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/member-card.contract.json (ds.member-card v1.2.1)
+ * Source of truth: contracts/member-card.contract.json (ds.member-card v1.3.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -19,10 +19,11 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "center",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "gap": "16px",
-    "width": "364px"
+    "gap": "16px"
   },
   "text": {
     "display": "flex",

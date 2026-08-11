@@ -147,6 +147,12 @@ elles peuvent donc varier d'un organisme à l'autre. L'absence du Container, un
 root `FIXED` ou un doublon de présentation force un verdict `proposal` avant
 toute écriture.
 
+Pour une grille, le gate vérifie en plus le mode natif `GRID`, le nombre fixe
+de colonnes, les deux gaps, l'ordre visuel des enfants et leur Fill. Une
+ancienne grille MANUAL dont l'ordre d'arbre diffère de l'ordre visuel doit être
+réordonnée en place avant reconstruction ; les contenus et photos voyagent avec
+leurs instances. Un `flex-wrap` visuellement proche n'est pas une preuve Grid.
+
 ### Classification obligatoire des textes
 
 Pour chaque nœud texte du master et de ses dépendances déclarées, enregistrer

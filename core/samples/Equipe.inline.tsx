@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/equipe.contract.json (ds.equipe v1.1.2)
+ * Source of truth: contracts/equipe.contract.json (ds.equipe v1.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -22,18 +22,18 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "row",
     "justifyContent": "center",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
-    "fontFamily": "Montserrat, sans-serif",
-    "width": "1728px"
+    "fontFamily": "Montserrat, sans-serif"
   },
   "grid": {
-    "display": "flex",
-    "flexDirection": "row",
-    "flexWrap": "wrap",
-    "flex": "1 1 auto",
+    "display": "grid",
+    "gridTemplateColumns": "repeat(4, minmax(0, 1fr))",
+    "width": "100%",
     "minWidth": 0,
-    "gap": "31.333333px",
-    "rowGap": "32.666667px"
+    "gap": "32px",
+    "rowGap": "32px"
   }
 };
 
@@ -54,20 +54,20 @@ export const Equipe = forwardRef<HTMLDivElement, EquipeProps>(function Equipe(
       <div style={{ ...S.grid }}>
 <MemberCard poste="Gérante" nom="Cécilia Piqueray" />
 <MemberCard poste="Gérant" nom="Florian Piqueray" />
-<MemberCard poste="Monteur" nom="Jordan" />
-<MemberCard poste="Monteur" nom="Florian" />
-<MemberCard poste="Dépanneur" nom="Hervé" />
-<MemberCard poste="Poste" nom="Prénom" />
-<MemberCard poste="Poste" nom="Prénom" />
-<MemberCard poste="Poste" nom="Prénom" />
 <MemberCard poste="Collaboratrice admin & comptabilité" nom="Sandra Magermans" />
 <MemberCard poste="Collaborateur admin & gestion SAV" nom="Arnaud Dahmen" />
 <MemberCard poste="Peintre" nom="Ricardo" />
 <MemberCard poste="Préparateur" nom="Quentin" />
 <MemberCard poste="Monteur" nom="Marc" />
 <MemberCard poste="Monteur" nom="André" />
-<MemberCard poste="Monteur" nom="Laurent" />
 <MemberCard poste="Monteur" nom="Grégory" />
+<MemberCard poste="Monteur" nom="Laurent" />
+<MemberCard poste="Monteur" nom="Jordan" />
+<MemberCard poste="Monteur" nom="Florian" />
+<MemberCard poste="Dépanneur" nom="Hervé" />
+<MemberCard poste="Poste" nom="Prénom" />
+<MemberCard poste="Poste" nom="Prénom" />
+<MemberCard poste="Poste" nom="Prénom" />
 </div>
     </div>
   );

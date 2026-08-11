@@ -372,6 +372,14 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'figma-projection-repair-bounded-grid',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/bounded-grid-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-bounded-grid rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'figma-projection-repair-composed-parent-prop-forwarding',
     claim: 'C3-detection',
     run: () => {

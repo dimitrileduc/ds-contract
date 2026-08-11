@@ -148,12 +148,16 @@ export const PropSchema = z
 
 export const LayoutSchema = z
   .strictObject({
-    display: z.enum(['flex', 'inline-flex']).optional(),
+    display: z.enum(['flex', 'inline-flex', 'grid']).optional(),
+    /** Number of equal flexible tracks; valid only for display:grid. */
+    columns: z.number().int().positive().optional(),
     direction: z.enum(['row', 'column']).optional(),
     align: z.enum(['start', 'center', 'end', 'stretch']).optional(),
     justify: z.enum(['start', 'center', 'end', 'space-between']).optional(),
     /** The parent owns the rendered width (code: 100%; Figma: Fill container). */
     width: z.literal('fill').optional(),
+    /** Intrinsic width/height ratio retained while a parent-owned width changes. */
+    aspectRatio: z.number().positive().optional(),
     /** Canvas-only authoring width used to present a fluid master at its
      *  historical desktop reference. It never caps the code surface. */
     referenceWidth: z.number().positive().optional(),
@@ -173,6 +177,26 @@ export const LayoutSchema = z
   .refine((layout) => layout.referenceWidth === undefined || layout.width === 'fill', {
     message: 'referenceWidth is an authoring width for width:"fill" only',
     path: ['referenceWidth'],
+  })
+  .refine((layout) => layout.columns === undefined || layout.display === 'grid', {
+    message: 'columns requires display:"grid"',
+    path: ['columns'],
+  })
+  .refine((layout) => layout.display !== 'grid' || layout.columns !== undefined, {
+    message: 'display:"grid" requires columns',
+    path: ['columns'],
+  })
+  .superRefine((layout, ctx) => {
+    if (layout.display !== 'grid') return;
+    for (const field of ['direction', 'align', 'justify', 'wrap', 'overlap'] as const) {
+      if (layout[field] !== undefined) {
+        ctx.addIssue({
+          code: 'custom',
+          message: `display:"grid" does not support ${field} in the bounded fixed-track subset`,
+          path: [field],
+        });
+      }
+    }
   });
 
 /** v7: per-enum-value layout overrides (chat sender flip, toolbar density).
@@ -1389,11 +1413,13 @@ export type IconRegistry = z.infer<typeof IconRegistrySchema>;
  *  override (if the combo's value has one) merged over the base layout.
  *  With an empty subst (code side / no enum context) the base layout wins. */
 export interface ResolvedLayout {
-  display?: 'flex' | 'inline-flex';
+  display?: 'flex' | 'inline-flex' | 'grid';
+  columns?: number;
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   align?: 'start' | 'center' | 'end' | 'stretch';
   justify?: 'start' | 'center' | 'end' | 'space-between';
   width?: 'fill';
+  aspectRatio?: number;
   referenceWidth?: number;
   clip?: boolean;
   grow?: boolean;

@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/member-card.contract.json (ds.member-card v1.2.1)
+ * Source of truth: contracts/member-card.contract.json (ds.member-card v1.3.0)
  * Regenerate with: npm run generate
  */
 
@@ -14,10 +14,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-16);
-  width: var(--size-member-card-root);
 }
 
 .text {

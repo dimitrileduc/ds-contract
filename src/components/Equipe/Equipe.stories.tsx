@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/equipe.contract.json (ds.equipe v1.1.2)
+ * Source of truth: contracts/equipe.contract.json (ds.equipe v1.2.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -26,20 +26,20 @@ const meta = {
     items: [
       { poste: 'Gérante', nom: 'Cécilia Piqueray' },
       { poste: 'Gérant', nom: 'Florian Piqueray' },
-      { poste: 'Monteur', nom: 'Jordan' },
-      { poste: 'Monteur', nom: 'Florian' },
-      { poste: 'Dépanneur', nom: 'Hervé' },
-      { poste: 'Poste', nom: 'Prénom' },
-      { poste: 'Poste', nom: 'Prénom' },
-      { poste: 'Poste', nom: 'Prénom' },
       { poste: 'Collaboratrice admin & comptabilité', nom: 'Sandra Magermans' },
       { poste: 'Collaborateur admin & gestion SAV', nom: 'Arnaud Dahmen' },
       { poste: 'Peintre', nom: 'Ricardo' },
       { poste: 'Préparateur', nom: 'Quentin' },
       { poste: 'Monteur', nom: 'Marc' },
       { poste: 'Monteur', nom: 'André' },
-      { poste: 'Monteur', nom: 'Laurent' },
       { poste: 'Monteur', nom: 'Grégory' },
+      { poste: 'Monteur', nom: 'Laurent' },
+      { poste: 'Monteur', nom: 'Jordan' },
+      { poste: 'Monteur', nom: 'Florian' },
+      { poste: 'Dépanneur', nom: 'Hervé' },
+      { poste: 'Poste', nom: 'Prénom' },
+      { poste: 'Poste', nom: 'Prénom' },
+      { poste: 'Poste', nom: 'Prénom' },
     ],
   },
 } satisfies Meta<typeof Equipe>;

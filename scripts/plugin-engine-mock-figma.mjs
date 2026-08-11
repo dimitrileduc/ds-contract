@@ -69,6 +69,14 @@ export function createFigmaMock() {
       this.primaryAxisSizingMode = 'AUTO';
       this.counterAxisSizingMode = 'AUTO';
       this.itemSpacing = 0;
+      this.gridColumnCount = 1;
+      this.gridRowCount = 1;
+      this.gridColumnGap = 0;
+      this.gridRowGap = 0;
+      this.gridColumnSizes = [{ type: 'FLEX', value: 1 }];
+      this.gridRowSizes = [{ type: 'HUG' }];
+      this.gridAutoTracks = 'ROWS';
+      this.gridItemsPositioning = 'ROW_AUTO_FLOW';
       this.paddingTop = 0;
       this.paddingRight = 0;
       this.paddingBottom = 0;
@@ -242,6 +250,11 @@ export function createFigmaMock() {
 
     resizeWithoutConstraints(w, h) {
       this.resize(w, h);
+    }
+
+    lockAspectRatio() {
+      this.constrainProportions = true;
+      this.targetAspectRatio = this.height === 0 ? null : this.width / this.height;
     }
 
     setSharedPluginData(namespace, key, value) {

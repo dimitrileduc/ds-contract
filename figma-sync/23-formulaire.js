@@ -640,13 +640,17 @@ function applyFrameSpec(node, spec) {
     node.resize(w, h);
     const horizontalIsPrimary = l.mode === 'HORIZONTAL';
     if (spec.fixedWidth) {
-      if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
-      else node.counterAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
+        else node.counterAxisSizingMode = 'FIXED';
+      }
       node.setBoundVariable('width', need(spec.fixedWidth.varName));
     }
     if (spec.fixedHeight) {
-      if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
-      else node.primaryAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
+        else node.primaryAxisSizingMode = 'FIXED';
+      }
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }
@@ -849,6 +853,7 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+
 
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
@@ -1383,6 +1388,7 @@ async function amendSet(set, C) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
 
+
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
         if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
@@ -1569,6 +1575,7 @@ async function amendComponent(comp, C) {
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+
 
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.

@@ -683,13 +683,17 @@ function applyFrameSpec(node, spec) {
     node.resize(w, h);
     const horizontalIsPrimary = l.mode === 'HORIZONTAL';
     if (spec.fixedWidth) {
-      if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
-      else node.counterAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
+        else node.counterAxisSizingMode = 'FIXED';
+      }
       node.setBoundVariable('width', need(spec.fixedWidth.varName));
     }
     if (spec.fixedHeight) {
-      if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
-      else node.primaryAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
+        else node.primaryAxisSizingMode = 'FIXED';
+      }
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }
@@ -701,6 +705,8 @@ function applyFrameSpec(node, spec) {
     if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
     if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
     if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
+    if (li.gridColumnGap !== undefined) node.gridColumnGap = li.gridColumnGap;
+    if (li.gridRowGap !== undefined) node.gridRowGap = li.gridRowGap;
     if (li.radius !== undefined) node.cornerRadius = li.radius;
     if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
     if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
@@ -746,12 +752,15 @@ function applyFrameSpec(node, spec) {
     }
     if (li.width !== undefined || li.height !== undefined) {
       node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
-      const horizontalIsPrimary = (spec.layout || { mode: 'HORIZONTAL' }).mode === 'HORIZONTAL';
-      if (li.width !== undefined) {
-        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
-      }
-      if (li.height !== undefined) {
-        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+      const mode = (spec.layout || { mode: 'HORIZONTAL' }).mode;
+      if (mode !== 'GRID') {
+        const horizontalIsPrimary = mode === 'HORIZONTAL';
+        if (li.width !== undefined) {
+          if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
+        }
+        if (li.height !== undefined) {
+          if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+        }
       }
     }
   }
@@ -1007,6 +1016,7 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+
 
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
@@ -1544,6 +1554,7 @@ async function amendSet(set, C) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
 
+
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
         if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
@@ -1734,6 +1745,7 @@ async function amendComponent(comp, C) {
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+
 
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.

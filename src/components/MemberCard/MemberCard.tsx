@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/member-card.contract.json (ds.member-card v1.2.1)
+ * Source of truth: contracts/member-card.contract.json (ds.member-card v1.3.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';

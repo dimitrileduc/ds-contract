@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.member-picture",
   "name": "MemberPicture",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "category": "atom",
   "description": "Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius. The visible normal plane receives its code-only src and alt scalars from its composed parent.\n\n† A5 technical placeholder: the source IMAGE pixels of funIa are unavailable to the contract→canvas transport. That hidden-under-normal layer therefore keeps the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma, and the survol-only funIa plane remains outside the runtime photo API.",
   "semantics": {
@@ -36,7 +36,7 @@
     },
     {
       "name": "taille",
-      "description": "Code-side geometry selector for observed composed placements. The MemberCard instance is explicitly resized to 363.5px inside its 364px parent frame; the standalone atom keeps the 364px master geometry by default.",
+      "description": "Compatibility axis retained for existing consumers. Both values now use the same parent-owned fluid square geometry; the old 363.5px workaround belonged to the former fixed-track approximation.",
       "type": {
         "enum": [
           "standard",
@@ -84,24 +84,18 @@
   "states": [],
   "anatomy": {
     "root": {
-      "description": "Measured 364×364 circular clipping root; it is the positioned containing block for the two superposed photo planes. Its #D9D9D9 fill is only the generic technical A5 preview base, never a Piqueray colour.",
+      "description": "Square circular clipping root. The Figma master is presented at 364×364, while composed instances fill their parent width and retain a native 1:1 aspect ratio. Its #D9D9D9 fill is only the generic technical A5 preview base, never a Piqueray colour.",
+      "layout": {
+        "width": "fill",
+        "referenceWidth": 364,
+        "aspectRatio": 1
+      },
       "tokens": {
-        "font-family": "{font.family.montserrat}",
-        "width": "{size.member-picture.root}",
-        "height": "{size.member-picture.root}"
+        "font-family": "{font.family.montserrat}"
       },
       "literals": {
         "border-radius": "500px",
         "background-color": "#D9D9D9"
-      },
-      "tokensByProp": {
-        "prop": "taille",
-        "map": {
-          "member-card": {
-            "width": "{size.member-picture.root-member-card}",
-            "height": "{size.member-picture.root-member-card}"
-          }
-        }
       },
       "declared": {
         "position": "relative"
@@ -129,25 +123,11 @@
           "attrs": {
             "alt": ""
           },
-          "tokens": {
-            "width": "{size.member-picture.fun-ia}",
-            "height": "{size.member-picture.fun-ia}"
-          },
           "literals": {
             "border-radius": "500px"
           },
-          "tokensByProp": {
-            "prop": "taille",
-            "map": {
-              "member-card": {
-                "width": "{size.member-picture.fun-ia-member-card}",
-                "height": "{size.member-picture.fun-ia-member-card}"
-              }
-            }
-          },
           "declared": {
-            "position": "absolute",
-            "aspect-ratio": "1"
+            "position": "absolute"
           },
           "stylesWhen": [
             {
@@ -179,25 +159,11 @@
             "src": "{src}",
             "alt": "{alt}"
           },
-          "tokens": {
-            "width": "{size.member-picture.normal}",
-            "height": "{size.member-picture.normal}"
-          },
           "literals": {
             "border-radius": "500px"
           },
-          "tokensByProp": {
-            "prop": "taille",
-            "map": {
-              "member-card": {
-                "width": "{size.member-picture.normal-member-card}",
-                "height": "{size.member-picture.normal-member-card}"
-              }
-            }
-          },
           "declared": {
             "position": "absolute",
-            "aspect-ratio": "1",
             "transition": "opacity 300ms"
           },
           "stylesWhen": [

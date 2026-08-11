@@ -58,7 +58,7 @@ Repo references: [R1] `docs/STYLE-FIDELITY.md` · [R2] `scripts/contract-schema.
 | `position: absolute` + insets | **native** — `layoutPositioning: 'ABSOLUTE'` + constraints [S1] | — | carried (`overlay` vocabulary; insets whitelisted) [R2] | CARRY-BOTH |
 | `position: fixed \| sticky` | **no** — viewport/scroll concepts don't exist on canvas | — | whitelisted (code) | CARRY-CODE-ONLY |
 | `z-index` | **approx** — child order + `itemReverseZIndex` [S1] | — | whitelisted (code) | CARRY-WITH-NAMED-LIMIT |
-| `display: grid` + fixed templates | **native** — `layoutMode: 'GRID'` + `gridRowCount/gridColumnCount/gridRowSizes/gridColumnSizes/gridAutoTracks` [S1][S8] | `gridRowGap`, `gridColumnGap` (FLOAT) [S5] | absent | CARRY-BOTH (bounded template subset) |
+| `display: grid` + fixed templates | **native** — `layoutMode: 'GRID'` + `gridRowCount/gridColumnCount/gridRowSizes/gridColumnSizes/gridAutoTracks` [S1][S8] | `gridRowGap`, `gridColumnGap` (FLOAT) [S5] | carried contract→targets for a fixed number of equal tracks (`layout.columns`); reverse extraction still absent | CARRY-BOTH (bounded template subset) |
 | grid areas, `minmax()`, `auto-fit/fill`, subgrid | **no** — no responsive track functions | — | named-gap-adjacent (B10 class) | CARRY-CODE-ONLY |
 | `overflow: hidden \| visible` | **native** — `clipsContent` [S1] | — | A25 named (frames default clip) [R1] | CARRY-BOTH (trivial add) |
 | `overflow: scroll/auto` | **no** static equivalent (prototype scrolling is a presentation setting, not a rendered fact) | — | whitelisted (code) | CARRY-CODE-ONLY |
@@ -316,8 +316,9 @@ Fidelity raisers available today, unused by `core/emit-figma-script.ts`:
    content tokens/variables instead of literals.
 7. **Per-side stroke-weight bindings** [S5] — the emitter binds only uniform
    `strokeWeight`.
-8. **`layoutWrap` + `counterAxisSpacing` + GRID mode** [S1] — the layout
-   vocabulary stops at single-axis no-wrap flex.
+8. **Advanced GRID and reverse extraction** [S1] — fixed equal tracks now
+   project contract→CSS/Figma. Manual placement, responsive track functions,
+   and Figma→contract GRID extraction remain outside the bounded vocabulary.
 9. **`createNodeFromSvg` for icon glyph truth** [S8] — field evidence: Phase B
    divergence (B), Spinner glyphs baked `#000` because SVG paint isn't
    re-bound; importing via `createNodeFromSvg` and binding fills on the

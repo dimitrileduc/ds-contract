@@ -68,6 +68,8 @@ const BINDING_CSS: Record<string, string> = {
   paddingTop: 'padding-top',
   paddingBottom: 'padding-bottom',
   itemSpacing: 'gap',
+  gridColumnGap: 'column-gap',
+  gridRowGap: 'row-gap',
   topLeftRadius: 'border-top-left-radius',
   topRightRadius: 'border-top-right-radius',
   bottomLeftRadius: 'border-bottom-left-radius',
@@ -200,10 +202,15 @@ interface RenderCtx {
 function nodeStyle(spec: NodeSpec, ctx: RenderCtx): string {
   const d: string[] = [];
   if (spec.layout) {
-    d.push('display: flex');
-    d.push(`flex-direction: ${spec.layout.mode === 'VERTICAL' ? 'column' : 'row'}`);
-    d.push(`justify-content: ${PRIMARY_CSS[spec.layout.primary]}`);
-    d.push(`align-items: ${spec.layout.stretchChildren ? 'stretch' : COUNTER_CSS[spec.layout.counter]}`);
+    if (spec.layout.mode === 'GRID') {
+      d.push('display: grid');
+      d.push(`grid-template-columns: repeat(${spec.layout.columns ?? 1}, minmax(0, 1fr))`);
+    } else {
+      d.push('display: flex');
+      d.push(`flex-direction: ${spec.layout.mode === 'VERTICAL' ? 'column' : 'row'}`);
+      d.push(`justify-content: ${PRIMARY_CSS[spec.layout.primary]}`);
+      d.push(`align-items: ${spec.layout.stretchChildren ? 'stretch' : COUNTER_CSS[spec.layout.counter]}`);
+    }
   }
   if (spec.fill) d.push(`background-color: ${cssVarOf(spec.fill)}`);
   // Round 4 (canvas-gate finding): effect STACKS render — the runtime
@@ -287,6 +294,8 @@ function litStyles(spec: NodeSpec): string[] {
   if (li.paddingLeft !== undefined) d.push(`padding-left: ${li.paddingLeft}px`);
   if (li.paddingRight !== undefined) d.push(`padding-right: ${li.paddingRight}px`);
   if (li.itemSpacing !== undefined) d.push(`gap: ${li.itemSpacing}px`);
+  if (li.gridColumnGap !== undefined) d.push(`column-gap: ${li.gridColumnGap}px`);
+  if (li.gridRowGap !== undefined) d.push(`row-gap: ${li.gridRowGap}px`);
   if (li.radius !== undefined) d.push(`border-radius: ${li.radius}px`);
   if (li.strokeWeight !== undefined) d.push(`border-width: ${li.strokeWeight}px`, 'border-style: solid');
   // v15 per-corner radii / per-side widths (Round 5: the runtime applies
