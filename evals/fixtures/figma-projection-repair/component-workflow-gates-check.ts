@@ -57,7 +57,7 @@ const campaign = {
   consumerImpacts: [],
   allowedOperations: [{
     operationId: 'amend-hero-video', targetId: 'hero-video', mechanism: 'generated-amend', nodeId: '2151:5552',
-    preconditions: [{ field: 'nodeId', equals: '2151:5552' }], changes: { layoutSizingHorizontal: 'FILL' },
+    preconditions: [{ field: 'nodeId', equals: '2151:5552' }], changes: { generatedScriptRef: 'figma-sync/35-hero-video.js' },
     expectedPostconditions: [{ field: 'masterNodeId', equals: '2151:5552' }],
   }],
   captureSets: { before: { captureSetId: 'before', phase: 'before', fileVersionId: '2386120715962664149', artifacts: [], imageFingerprints: [], instanceLinks: [], complete: false } },
@@ -75,6 +75,25 @@ function refuse(value: unknown, code: string, label: string): void {
 }
 
 accept(campaign, 'valid single-component campaign');
+
+const sharedComponent = clone(campaign);
+sharedComponent.workflow.subjectKind = 'shared-component' as never;
+sharedComponent.workflow.historicalTextDecisions = { '1:9': campaign.authorityRefs[0] };
+sharedComponent.targets[0].kind = 'shared-control';
+sharedComponent.allowedOperations = [{
+  operationId: 'hug-shared-component', targetId: 'hero-video', mechanism: 'set-properties', nodeId: '2151:5552',
+  structuralPath: '0', changes: { layout: { layoutSizingVertical: 'HUG' } },
+  preconditions: [{ field: 'structuralPath', equals: '0' }], expectedPostconditions: [{ field: 'layoutSizingVertical', equals: 'HUG' }],
+}];
+accept(sharedComponent, 'valid shared-component campaign');
+
+const ungovernedHistoricalText = clone(sharedComponent);
+ungovernedHistoricalText.workflow.historicalTextDecisions['1:9'] = 'specs/absent-decision.json';
+refuse(ungovernedHistoricalText, 'campaign-shape', 'undeclared historical text decision');
+
+const sharedContainer = clone(sharedComponent);
+sharedContainer.allowedOperations[0].mechanism = 'ensure-organism-container';
+refuse(sharedContainer, 'operation-allowlist', 'shared component Container');
 
 const genericLayoutOperation = {
   operationId: 'fill-local-dependency', targetId: 'hero-video', mechanism: 'set-properties', nodeId: '2151:5552',
@@ -116,6 +135,10 @@ const noBackup = clone(campaign) as typeof campaign & { sourceBaseline?: typeof 
 delete noBackup.sourceBaseline;
 accept(noBackup, 'draft audit before source snapshot');
 
+const unsafeGeneratedRef = clone(campaign);
+unsafeGeneratedRef.allowedOperations[0].changes.generatedScriptRef = '../figma-sync/35-hero-video.js';
+refuse(unsafeGeneratedRef, 'operation-allowlist', 'unsafe generated amend reference');
+
 const liveNodes = new Map<string, Record<string, unknown>>([
   ['2151:5552', { id: '2151:5552', type: 'COMPONENT', name: 'HeroVideo' }],
   ['2170:6351', { id: '2170:6351', type: 'INSTANCE', name: 'HeroVideo usage', componentId: '2151:5552' }],
@@ -135,4 +158,4 @@ let usageRefused = false;
 try { assertComponentTopology(campaign as never, missingUsageNodes); } catch { usageRefused = true; }
 if (!usageRefused) throw new Error('consumer cardinality drift was not refused');
 
-console.log('✔ component workflow gates: one organism, audit-before-backup, local Container/FILL, protected facts, Page denylist, master uniqueness and consumer cardinality');
+console.log('✔ component workflow gates: one organism or shared component, audit-before-backup, bounded generated amend, scoped Container/FILL, protected facts, Page denylist, master uniqueness and consumer cardinality');

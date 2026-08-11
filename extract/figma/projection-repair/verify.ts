@@ -236,7 +236,8 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
     const unexpectedDiffs: DiffFinding[] = [];
     let unchangedArtifactCount = 0;
     for (const surface of surfaces) {
-      for (const kind of ['structure', 'properties', 'png'] as const) {
+      const artifactKinds = surface.role === 'hidden-instance' ? ['structure', 'properties'] as const : ['structure', 'properties', 'png'] as const;
+      for (const kind of artifactKinds) {
         const left = artifactFor(before, surface.surfaceId, kind);
         const right = artifactFor(after, surface.surfaceId, kind);
         if (!left || !right || left.status !== 'valid' || right.status !== 'valid') {

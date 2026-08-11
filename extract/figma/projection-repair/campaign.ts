@@ -50,7 +50,7 @@ const issue = (issues: RepairValidationIssue[], code: RepairIssueCode, issuePath
 const result = <T>(value: T, issues: RepairValidationIssue[]): RepairValidation<T> =>
   issues.length === 0 ? { ok: true, value, issues: [] } : { ok: false, value, issues };
 
-function completeCapture(value: unknown, surfaceIds: Set<string>): boolean {
+function completeCapture(value: unknown, surfaceIds: Set<string>, hiddenSurfaceIds = new Set<string>()): boolean {
   if (!record(value) || value.complete !== true || !Array.isArray(value.artifacts)) return false;
   const bySurface = new Map<string, Set<string>>();
   for (const artifact of value.artifacts) {
@@ -62,7 +62,8 @@ function completeCapture(value: unknown, surfaceIds: Set<string>): boolean {
     kinds.add(String(artifact.kind));
     bySurface.set(artifact.surfaceId, kinds);
   }
-  return [...surfaceIds].every((surfaceId) => bySurface.get(surfaceId)?.has('png') && bySurface.get(surfaceId)?.has('structure'));
+  return [...surfaceIds].every((surfaceId) => bySurface.get(surfaceId)?.has('structure') &&
+    (hiddenSurfaceIds.has(surfaceId) || bySurface.get(surfaceId)?.has('png')));
 }
 
 function completeFactCapture(value: unknown, surfaceIds: Set<string>): boolean {
@@ -94,17 +95,23 @@ function validateComponentWorkflow(
     issue(issues, 'campaign-shape', '$.sourceBaseline', 'source baseline, when present, must be a recoverable Git snapshot');
   }
   const workflow = candidate.workflow;
-  if (!record(workflow) || workflow.mode !== 'single-component' || workflow.subjectKind !== 'organism' || workflow.pageMutationPolicy !== 'forbid-direct' ||
+  if (!record(workflow) || workflow.mode !== 'single-component' || !['organism', 'shared-component'].includes(String(workflow.subjectKind)) || workflow.pageMutationPolicy !== 'forbid-direct' ||
     !safePath(workflow.evidenceRoot) || !safePath(workflow.ownerDecisionRoot) || !safePath(workflow.comparisonPath) ||
     !record(workflow.applyReceiptPaths) || !safePath(workflow.applyReceiptPaths.first) || !safePath(workflow.applyReceiptPaths.second) ||
     !stringArrayOrEmpty(workflow.directDependencies) || !stringArrayOrEmpty(workflow.sharedDependencies)) {
-    issue(issues, 'campaign-shape', '$.workflow', 'component workflow must target one organism, configure bounded evidence/receipt paths and forbid direct Page writes');
+    issue(issues, 'campaign-shape', '$.workflow', 'component workflow must target one organism or shared component, configure bounded evidence/receipt paths and forbid direct Page writes');
     return;
   }
   if (workflow.directRepairRefs !== undefined) {
     if (!record(workflow.directRepairRefs) || Object.entries(workflow.directRepairRefs).some(([targetId, value]) =>
       !declaredTargetIds.has(targetId) || !safePath(value))) {
       issue(issues, 'campaign-shape', '$.workflow.directRepairRefs', 'direct repair references must be target-bound repository paths');
+    }
+  }
+  if (workflow.historicalTextDecisions !== undefined) {
+    if (!record(workflow.historicalTextDecisions) || Object.entries(workflow.historicalTextDecisions).some(([textNodeId, value]) =>
+      !nodeId.test(textNodeId) || !safePath(value) || !Array.isArray(candidate.authorityRefs) || !candidate.authorityRefs.includes(value))) {
+      issue(issues, 'campaign-shape', '$.workflow.historicalTextDecisions', 'historical text decisions must map pinned text node ids to declared authority references');
     }
   }
   const pageNodeIds = new Set(
@@ -123,6 +130,13 @@ function validateComponentWorkflow(
   for (const [index, operation] of (Array.isArray(candidate.allowedOperations) ? candidate.allowedOperations : []).entries()) {
     if (record(operation) && pageNodeIds.has(String(operation.nodeId))) {
       issue(issues, 'operation-allowlist', `$.allowedOperations[${index}].nodeId`, 'direct operations on Page instances are forbidden');
+    }
+    if (record(operation) && operation.mechanism === 'generated-amend' &&
+      (!record(operation.changes) || !safePath(operation.changes.generatedScriptRef) || !String(operation.changes.generatedScriptRef).endsWith('.js'))) {
+      issue(issues, 'operation-allowlist', `$.allowedOperations[${index}].changes.generatedScriptRef`, 'generated amend requires one bounded generated JavaScript artifact');
+    }
+    if (workflow.subjectKind === 'shared-component' && record(operation) && operation.mechanism === 'ensure-organism-container') {
+      issue(issues, 'operation-allowlist', `$.allowedOperations[${index}].mechanism`, 'shared components cannot receive an organism Container operation');
     }
   }
 }
@@ -195,6 +209,7 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
 
   const surfaces = candidate.affectedSurfaces;
   const surfaceIds = new Set<string>();
+  const hiddenSurfaceIds = new Set<string>();
   if (!Array.isArray(surfaces) || surfaces.length < dynamicTargetIds.size) {
     issue(issues, 'surface-coverage', '$.affectedSurfaces', 'every target must have at least one affected surface');
   } else {
@@ -203,7 +218,10 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
         !record(surface.expectedSize) || typeof surface.expectedSize.width !== 'number' || surface.expectedSize.width <= 0 ||
         typeof surface.expectedSize.height !== 'number' || surface.expectedSize.height <= 0) {
         issue(issues, 'surface-coverage', `$.affectedSurfaces[${index}]`, 'surfaces must be unique, target-bound and have positive expected dimensions');
-      } else surfaceIds.add(surface.surfaceId);
+      } else {
+        surfaceIds.add(surface.surfaceId);
+        if (surface.role === 'hidden-instance') hiddenSurfaceIds.add(surface.surfaceId);
+      }
     }
     for (const targetId of dynamicTargetIds) {
       if (!surfaces.some((surface) => record(surface) && surface.targetId === targetId && surface.role === 'master')) {
@@ -235,7 +253,7 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
 
   if (!states.has(candidate.state as CampaignState)) issue(issues, 'state', '$.state', 'state is not part of the campaign state machine');
   const state = candidate.state as CampaignState;
-  const beforeComplete = record(captures) && completeCapture(captures.before, surfaceIds);
+  const beforeComplete = record(captures) && completeCapture(captures.before, surfaceIds, hiddenSurfaceIds);
   if (['captured', 'ready-to-apply', 'applied', 'verified', 'owner-accepted', 'owner-refused'].includes(state) && !beforeComplete) {
     issue(issues, 'capture-invalid', '$.captureSets.before', 'a complete valid before capture is required before the campaign can leave preflight');
   }
@@ -301,6 +319,6 @@ export function validateRepairReceipt(candidate: unknown): RepairValidation<Repa
   return result(candidate as unknown as RepairReceipt, issues);
 }
 
-export function isCaptureSetComplete(capture: CaptureSet, surfaces: readonly string[]): boolean {
-  return completeCapture(capture, new Set(surfaces));
+export function isCaptureSetComplete(capture: CaptureSet, surfaces: readonly string[], hiddenSurfaces: readonly string[] = []): boolean {
+  return completeCapture(capture, new Set(surfaces), new Set(hiddenSurfaces));
 }

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-faq-container",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386533441442286618",
+  "run": "first",
+  "scriptResults": [
+    {
+      "operationId": "ensure-faq-container",
+      "targetId": "faq",
+      "nodeId": "2104:2914",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [
+          "2455:4733"
+        ],
+        "changedNodeIds": [
+          "2104:2914",
+          "2455:4733"
+        ]
+      }
+    }
+  ],
+  "inspection": {
+    "masters": [
+      {
+        "targetId": "faq",
+        "nodeId": "2104:2914",
+        "componentKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
+        "masterCount": 1,
+        "variantNames": []
+      }
+    ],
+    "pageWrites": [],
+    "responsiveChecks": [
+      {
+        "targetId": "faq",
+        "width": 1440,
+        "overflow": true,
+        "overflowNodeIds": [
+          "2351:38059",
+          "I2351:38059;2351:36774",
+          "I2351:38059;2351:36775",
+          "2351:38072",
+          "I2351:38072;2347:34252",
+          "I2351:38072;2347:34249",
+          "I2351:38072;2347:34248",
+          "2351:38078",
+          "I2351:38078;2347:34252",
+          "I2351:38078;2347:34249",
+          "I2351:38078;2347:34248",
+          "I2351:38078;2347:34250",
+          "I2351:38078;2347:34251",
+          "2351:38084",
+          "I2351:38084;2347:34252",
+          "I2351:38084;2347:34249",
+          "I2351:38084;2347:34248",
+          "I2351:38084;2347:34250",
+          "I2351:38084;2347:34251"
+        ],
+        "overflowIssues": [
+          {
+            "nodeId": "2351:38059",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38059;2351:36774",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38059;2351:36775",
+            "reason": "container"
+          },
+          {
+            "nodeId": "2351:38072",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38072;2347:34252",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38072;2347:34249",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38072;2347:34248",
+            "reason": "container"
+          },
+          {
+            "nodeId": "2351:38078",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38078;2347:34252",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38078;2347:34249",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38078;2347:34248",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38078;2347:34250",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38078;2347:34251",
+            "reason": "container"
+          },
+          {
+            "nodeId": "2351:38084",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38084;2347:34252",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38084;2347:34249",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38084;2347:34248",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38084;2347:34250",
+            "reason": "container"
+          },
+          {
+            "nodeId": "I2351:38084;2347:34251",
+            "reason": "container"
+          }
+        ],
+        "screenshotRef": "specs/component-repairs/faq/run-001/responsive-1440-first.png"
+      }
+    ]
+  }
+}

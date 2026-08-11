@@ -96,7 +96,8 @@ function loadDirect(file: string, campaign: RepairCampaign): PlannedOperation[] 
 
 /** Creates an executable-authority plan but deliberately does not invoke a canvas writer. */
 export function dryRunCampaign(campaign: RepairCampaign, root = process.cwd(), targetFilter?: readonly RepairTargetId[]): DryRun {
-  if (campaign.state !== 'ready-to-apply' || !isCaptureSetComplete(campaign.captureSets.before, campaign.affectedSurfaces.map((surface) => surface.surfaceId))) {
+  const hiddenSurfaces = campaign.affectedSurfaces.filter((surface) => surface.role === 'hidden-instance').map((surface) => surface.surfaceId);
+  if (campaign.state !== 'ready-to-apply' || !isCaptureSetComplete(campaign.captureSets.before, campaign.affectedSurfaces.map((surface) => surface.surfaceId), hiddenSurfaces)) {
     throw new Error('dry-run requires a complete before capture and ready-to-apply state');
   }
   const includes = (targetId: RepairTargetId): boolean => !targetFilter || targetFilter.includes(targetId);

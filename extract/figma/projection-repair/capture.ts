@@ -114,7 +114,7 @@ export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<str
       .filter((node) => node.type === 'INSTANCE' && typeof node.id === 'string' && componentIds.has(String(node.componentId)))
       .map((node) => String(node.id)).sort();
     const declaredInstanceIds = campaign.affectedSurfaces
-      .filter((surface) => surface.targetId === target.targetId && ['page-instance', 'preview-instance'].includes(surface.role) && surface.nodeId)
+      .filter((surface) => surface.targetId === target.targetId && ['page-instance', 'preview-instance', 'hidden-instance'].includes(surface.role) && surface.nodeId)
       .map((surface) => surface.nodeId!).sort();
     if (stable(actualInstanceIds) !== stable(declaredInstanceIds)) {
       throw new Error(`preflight: consumer cardinality drift for ${target.targetId}: expected ${declaredInstanceIds.join(',') || '(none)'}, observed ${actualInstanceIds.join(',') || '(none)'}`);
@@ -232,6 +232,10 @@ export async function captureCampaign(
     artifacts.push({ artifactId: `${surface.surfaceId}:facts`, surfaceId: surface.surfaceId, kind: 'facts', path: path.relative(process.cwd(), factsPath), sha256: sha256(factsBytes), width: null, height: null, byteLength: Buffer.byteLength(factsBytes), status: 'valid' });
     imageRows.push(...imageFingerprints(node));
     links.push(...instanceLinks(node));
+    if (surface.role === 'hidden-instance') {
+      if (node.visible !== false) throw new Error(`capture: hidden instance ${surface.nodeId} is no longer hidden`);
+      continue;
+    }
     const url = images.images?.[surface.nodeId!];
     const pngPath = path.join(phaseRoot, `${base}.png`);
     if (!url || !size) {
@@ -247,7 +251,7 @@ export async function captureCampaign(
   }
   const complete = surfaces.length > 0 && surfaces.every((surface) => {
     const own = artifacts.filter((artifact) => artifact.surfaceId === surface.surfaceId);
-    return own.some((artifact) => artifact.kind === 'png' && artifact.status === 'valid') &&
+    return (surface.role === 'hidden-instance' || own.some((artifact) => artifact.kind === 'png' && artifact.status === 'valid')) &&
       own.some((artifact) => artifact.kind === 'structure' && artifact.status === 'valid') &&
       (campaign.schemaVersion !== '2.0.0' || own.some((artifact) => artifact.kind === 'facts' && artifact.status === 'valid'));
   });

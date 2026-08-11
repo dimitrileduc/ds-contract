@@ -57,7 +57,7 @@ export interface SourceBaseline {
 
 export interface ComponentRepairWorkflow {
   mode: 'single-component';
-  subjectKind: 'organism';
+  subjectKind: 'organism' | 'shared-component';
   evidenceRoot: string;
   ownerDecisionRoot: string;
   comparisonPath: string;
@@ -66,6 +66,7 @@ export interface ComponentRepairWorkflow {
   directDependencies: string[];
   sharedDependencies: string[];
   directRepairRefs?: Record<string, string>;
+  historicalTextDecisions?: Record<string, string>;
 }
 
 export type ComponentAuditVerdict = 'green' | 'proposal' | 'blocked';
@@ -80,7 +81,7 @@ export interface ComponentAuditReport {
   verdict: ComponentAuditVerdict;
   figmaWrites: [];
   container: {
-    status: 'pass' | 'fail';
+    status: 'pass' | 'fail' | 'not-applicable';
     masterNodeId: string;
     parentNodeId: string | null;
     parentName: string | null;
@@ -145,7 +146,7 @@ export interface RepairTarget {
 export interface AffectedSurface {
   surfaceId: string;
   targetId: RepairTargetId;
-  role: 'master' | 'variant' | 'page-instance' | 'page-context' | 'preview-instance' | 'shared-consumer' | 'odoo-qualification';
+  role: 'master' | 'variant' | 'page-instance' | 'page-context' | 'preview-instance' | 'hidden-instance' | 'shared-consumer' | 'odoo-qualification';
   nodeId: string | null;
   pageComposition: string | null;
   structuralPath: string | null;

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "revalidate-faq-after-shared-repairs",
+  "filePins": {
+    "before": "2386549228582551721",
+    "after": "2386549228582551721",
+    "idempotence": null
+  },
+  "ok": true,
+  "targetCount": 1,
+  "targets": [
+    {
+      "targetId": "faq",
+      "surfaceCount": 7,
+      "expectedDiffs": [],
+      "unexpectedDiffs": [],
+      "unchangedArtifactCount": 21,
+      "imagePreservation": "pass",
+      "imageComparison": {
+        "mode": "authorized-rehost",
+        "beforeUnique": 47,
+        "afterUnique": 47
+      },
+      "instancePreservation": "pass",
+      "consumerCount": 0,
+      "consumersClosed": true,
+      "limits": []
+    }
+  ],
+  "global": {
+    "beforeArtifacts": 28,
+    "afterArtifacts": 28,
+    "beforeImageFingerprints": 54,
+    "afterImageFingerprints": 54,
+    "uniqueImageHashesPreserved": true,
+    "beforeInstanceLinks": 262,
+    "afterInstanceLinks": 262,
+    "pendingConsumers": 0
+  }
+}

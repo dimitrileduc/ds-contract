@@ -1,0 +1,50 @@
+{
+  "campaignId": "repair-faq-container",
+  "filePin": "2386533441442286618",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "ensure-faq-container",
+      "targetId": "faq",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2104:2914",
+      "structuralPath": "0",
+      "changes": {
+        "containerName": "Container · FAQ",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1728,
+        "referenceHeight": 465,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2104:2913"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · FAQ"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

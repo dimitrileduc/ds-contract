@@ -104,7 +104,9 @@ une primitive ou une capacité partagée et que son blast radius la justifie.
 Le manifeste déclare notamment :
 
 - un `sourceBaseline` récupérable dans `refs/codex/backups/*` ;
-- `workflow.subjectKind: "organism"` pour activer le gate Container ;
+- `workflow.subjectKind: "organism"` pour activer le gate Container, ou
+  `"shared-component"` pour auditer un composant partagé sans lui inventer un
+  Container d'organisme ;
 - les `directDependencies` structurelles du composant, distinctes des
   `sharedDependencies` dont une modification aurait un blast radius ;
 - un fichier et une version Figma épinglés ;
@@ -180,6 +182,11 @@ autorisé. Un rich text ne constitue pas une permission générale de laisser se
 autres textes frères en valeurs brutes. Toute catégorie `historical-custom`
 sans décision traçable devient `defect`.
 
+Une exception historique déclarée dans
+`workflow.historicalTextDecisions` relie l'id exact du nœud texte à une
+`authorityRef` du manifeste. Elle protège les métriques et plages existantes ;
+elle n'autorise ni matching approché ni Text Style global de remplacement.
+
 La création ou la migration de Text Styles reste une opération séparée : elle
 doit vérifier la cardinalité et les définitions historiques exactes avant toute
 écriture, ne jamais adopter un style homonyme non marqué, puis produire un vrai
@@ -215,6 +222,11 @@ La capture écrit pour chaque surface : PNG, structure, propriétés et
 `facts.json`. Un usage Page possède deux surfaces : l'instance exacte et son
 contexte visuel, afin de voir notamment un Header superposé à un Hero.
 
+Une occurrence explicitement `visible:false` peut être déclarée
+`hidden-instance` : sa structure, ses propriétés et ses faits protégés restent
+obligatoires, mais aucun PNG n'est exigé puisque l'API Figma n'en exporte pas.
+Si elle redevient visible, la capture refuse cette classification.
+
 ## Application live
 
 Le CLI ne pilote pas Figma. Le Desktop Bridge ou le plugin exécute le plan
@@ -248,11 +260,12 @@ largeur de référence mais HUG sa hauteur afin qu'un texte qui reflowe ne soit 
 maquillé par une hauteur fixe.
 
 Le transport générique accepte trois familles bornées : création/adoption du
-Container d'organisme, `layoutSizingHorizontal` sur un nœud résolu par chemin
-structurel, et typographie gouvernée (`Text Style` identifié par le marqueur
+Container d'organisme, propriétés Auto Layout explicitement allowlistées sur un
+nœud résolu par chemin structurel (sizing, padding, axe, positionnement et
+contraintes), et typographie gouvernée (`Text Style` identifié par le marqueur
 `ds_contracts/textStyleToken` ou plages de fontes explicitement déclarées). Les
-homonymes non marqués, chemins ambigus, contenus texte différents et opérations
-sur Page sont refusés avant mutation.
+valeurs libres, homonymes non marqués, chemins ambigus, contenus texte différents
+et opérations sur Page sont refusés avant mutation.
 
 Le second reçu passe par la même porte avec `--run second`. Chaque opération
 doit alors être `no-op`, avec zéro nœud créé et zéro nœud modifié.

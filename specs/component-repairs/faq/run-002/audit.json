@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-faq-local-fill",
+  "targetId": "faq",
+  "inspectedAt": "2026-08-11T19:32:28.567Z",
+  "fileVersionId": "2386549228582551721",
+  "verdict": "green",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2104:2914",
+    "parentNodeId": "2455:4733",
+    "parentName": "Container · FAQ",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      1440
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "I2351:38059;2351:36774",
+      "structuralPath": "0/0",
+      "name": "Accroche",
+      "characters": "FAQ",
+      "classification": "named-exact",
+      "textStyleId": "2162:5836",
+      "textStyleName": "Accroche",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:38059;2351:36775",
+      "structuralPath": "0/1",
+      "name": "Titre",
+      "characters": "Questions fréquentes",
+      "classification": "named-exact",
+      "textStyleId": "5:42",
+      "textStyleName": "Titre 2",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:38072;2347:34248",
+      "structuralPath": "1/0/1/0",
+      "name": "Question",
+      "characters": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+      "classification": "named-exact",
+      "textStyleId": "5:45",
+      "textStyleName": "Titre 5",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:38078;2347:34248",
+      "structuralPath": "1/1/1/0",
+      "name": "Question",
+      "characters": "Quels types de bardages peuvent être intégrés sur les portes ?",
+      "classification": "named-exact",
+      "textStyleId": "5:45",
+      "textStyleName": "Titre 5",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:38084;2347:34248",
+      "structuralPath": "1/2/1/0",
+      "name": "Question",
+      "characters": "Assurez-vous la maintenance après l'installation ?",
+      "classification": "named-exact",
+      "textStyleId": "5:45",
+      "textStyleName": "Titre 5",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:38147;2410:6164",
+      "structuralPath": "2/1",
+      "name": "label",
+      "characters": "Contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.accordion-row",
+      "ds.button",
+      "ds.section-header"
+    ],
+    "observed": [
+      "ds.accordion-row",
+      "ds.button",
+      "ds.section-header"
+    ],
+    "undeclared": []
+  },
+  "findings": [],
+  "proposedChanges": []
+}

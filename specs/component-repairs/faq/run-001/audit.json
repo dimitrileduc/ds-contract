@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-faq-container",
+  "targetId": "faq",
+  "inspectedAt": "2026-08-11T17:56:17.463Z",
+  "fileVersionId": "2386533441442286618",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "fail",
+    "masterNodeId": "2104:2914",
+    "parentNodeId": "2104:2913",
+    "parentName": "FAQ",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": "FIXED",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      1440
+    ],
+    "issues": [
+      "master is not directly presented by a local FRAME Container",
+      "local Container is not auto-layout",
+      "local presentation parent is not named Container",
+      "organism master is not width FILL inside its local Container"
+    ]
+  },
+  "texts": [
+    {
+      "nodeId": "I2351:38059;2351:36774",
+      "structuralPath": "0/0",
+      "name": "Accroche",
+      "characters": "FAQ",
+      "classification": "named-exact",
+      "textStyleId": "2162:5836",
+      "textStyleName": "Accroche",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:38059;2351:36775",
+      "structuralPath": "0/1",
+      "name": "Titre",
+      "characters": "Questions fréquentes",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 2 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2351:38072;2347:34248",
+      "structuralPath": "1/0/1/0",
+      "name": "Question",
+      "characters": "Nos portes répondent-elles aux normes des bâtiments publics ?",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 5 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2351:38078;2347:34248",
+      "structuralPath": "1/1/1/0",
+      "name": "Question",
+      "characters": "Quels types de bardages peuvent être intégrés sur les portes ?",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 5 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2351:38084;2347:34248",
+      "structuralPath": "1/2/1/0",
+      "name": "Question",
+      "characters": "Assurez-vous la maintenance après l'installation ?",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 5 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "I2351:38147;2410:6164",
+      "structuralPath": "2/1",
+      "name": "label",
+      "characters": "Contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.accordion-row",
+      "ds.button",
+      "ds.section-header"
+    ],
+    "observed": [
+      "ds.accordion-row",
+      "ds.button",
+      "ds.section-header"
+    ],
+    "undeclared": []
+  },
+  "findings": [
+    {
+      "code": "organism-container",
+      "severity": "proposal",
+      "message": "master is not directly presented by a local FRAME Container; local Container is not auto-layout; local presentation parent is not named Container; organism master is not width FILL inside its local Container"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Titre (I2351:38059;2351:36775): raw typography exactly matches Titre 2 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Question (I2351:38072;2347:34248): raw typography exactly matches Titre 5 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Question (I2351:38078;2347:34248): raw typography exactly matches Titre 5 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Question (I2351:38084;2347:34248): raw typography exactly matches Titre 5 but the Text Style link is missing"
+    }
+  ],
+  "proposedChanges": [
+    "present the existing master in one local auto-layout Container and set its horizontal sizing to FILL",
+    "repair Text Style classification for Titre (I2351:38059;2351:36775)",
+    "repair Text Style classification for Question (I2351:38072;2347:34248)",
+    "repair Text Style classification for Question (I2351:38078;2347:34248)",
+    "repair Text Style classification for Question (I2351:38084;2347:34248)"
+  ]
+}

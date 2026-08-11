@@ -26,15 +26,18 @@ export function buildImpactInventory(root = process.cwd()): ConsumerImpact[] {
     const contractId = typeof contract.id === 'string' ? contract.id : relative;
     let usesButton = false;
     let usesSectionHeader = false;
+    let usesAccordionRow = false;
     let usesAbsolute = false;
     walk(contract.anatomy, (entry) => {
       if (object(entry.component) && entry.component.id === 'ds.button') usesButton = true;
       if (object(entry.component) && entry.component.id === 'ds.section-header') usesSectionHeader = true;
+      if (object(entry.component) && entry.component.id === 'ds.accordion-row') usesAccordionRow = true;
       if (object(entry.declared) && entry.declared.position === 'absolute') usesAbsolute = true;
     });
     for (const dependencyId of [
       ...(usesButton ? ['Button'] : []),
       ...(usesSectionHeader ? ['SectionHeader'] : []),
+      ...(usesAccordionRow ? ['AccordionRow'] : []),
       ...(usesAbsolute ? ['absolute-lowering'] : []),
     ]) {
       rows.push({ consumerId: contractId, dependencyId, usage: 'contract', evidenceRefs: [relative], status: 'pending', decisionRef: null });
@@ -46,7 +49,16 @@ export function buildImpactInventory(root = process.cwd()): ConsumerImpact[] {
   // be accepted. The lock is the authority; missing input is named in preflight.
   const odooLock = 'integrations/odoo/config/inputs.lock.json';
   if (existsSync(path.join(root, odooLock))) {
-    for (const dependencyId of ['Button', 'SectionHeader', 'absolute-lowering']) {
+    const lock = JSON.parse(readFileSync(path.join(root, odooLock), 'utf8')) as Json;
+    const lockedContracts = new Set(Array.isArray(lock.contracts)
+      ? lock.contracts.filter(object).map((entry) => String(entry.id ?? ''))
+      : []);
+    for (const dependencyId of [
+      ...(lockedContracts.has('ds.button') ? ['Button'] : []),
+      ...(lockedContracts.has('ds.section-header') ? ['SectionHeader'] : []),
+      ...(lockedContracts.has('ds.accordion-row') ? ['AccordionRow'] : []),
+      'absolute-lowering',
+    ]) {
       rows.push({ consumerId: 'odoo-019-qualification', dependencyId, usage: 'odoo', evidenceRefs: [odooLock], status: 'pending', decisionRef: null });
     }
   }

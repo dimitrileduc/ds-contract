@@ -138,8 +138,8 @@ export function organismContainerIssues(master: Json, parent: Json | null): stri
 }
 
 export async function auditComponentCampaign(campaign: RepairCampaign): Promise<ComponentAuditReport> {
-  if (campaign.schemaVersion !== '2.0.0' || campaign.workflow?.subjectKind !== 'organism' || campaign.targets.length !== 1) {
-    throw new Error('component audit requires one schema v2 organism target');
+  if (campaign.schemaVersion !== '2.0.0' || !campaign.workflow || campaign.targets.length !== 1) {
+    throw new Error('component audit requires one schema v2 target');
   }
   const inspection = await inspectFigmaCampaign(campaign, figmaToken(), {
     enforceVersionPin: false,
@@ -156,13 +156,22 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
     }
   });
   const parent = parents.get(target.masterNodeId) ?? null;
-  const containerIssues = organismContainerIssues(master, parent);
+  const containerApplicable = campaign.workflow.subjectKind === 'organism';
+  const containerIssues = containerApplicable ? organismContainerIssues(master, parent) : [];
 
   const styles = corpus();
   const texts: ComponentAuditReport['texts'] = [];
   walk(master, (node, structuralPath) => {
     if (node.type !== 'TEXT' || typeof node.id !== 'string') return;
-    const classified = classifyText(node, inspection.file, styles);
+    const historicalDecision = campaign.workflow?.historicalTextDecisions?.[node.id];
+    const classified = historicalDecision
+      ? {
+          classification: 'historical-custom' as const,
+          textStyleId: null,
+          textStyleName: null,
+          reasons: [`pixel-fidelity exception is documented by ${historicalDecision}`],
+        }
+      : classifyText(node, inspection.file, styles);
     texts.push({
       nodeId: node.id,
       structuralPath,
@@ -199,7 +208,7 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
     verdict: findings.length === 0 ? 'green' : 'proposal',
     figmaWrites: [],
     container: {
-      status: containerIssues.length === 0 ? 'pass' : 'fail',
+      status: !containerApplicable ? 'not-applicable' : containerIssues.length === 0 ? 'pass' : 'fail',
       masterNodeId: target.masterNodeId,
       parentNodeId: typeof parent?.id === 'string' ? parent.id : null,
       parentName: typeof parent?.name === 'string' ? parent.name : null,
