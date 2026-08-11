@@ -31,6 +31,8 @@ export interface LiveApplyReceipt {
     targetId: string;
     width: number;
     overflow: boolean;
+    overflowNodeIds?: string[];
+    overflowIssues?: Array<{ nodeId: string; reason: string }>;
     screenshotRef: string;
   }>;
 }
@@ -181,7 +183,9 @@ export function validateLiveApplyReceipt(
       .map((entry) => typeof entry.width === 'number' ? entry.width : Number.NaN)
       .sort((left, right) => left - right);
     if (JSON.stringify(expectedWidths) !== JSON.stringify(observedWidths) || responsiveChecks.some((entry) =>
-      !object(entry) || entry.overflow !== false || typeof entry.screenshotRef !== 'string' || entry.screenshotRef.length === 0)) {
+      !object(entry) || entry.overflow !== false ||
+      (entry.overflowNodeIds !== undefined && (!stringArray(entry.overflowNodeIds) || entry.overflowNodeIds.length > 0)) ||
+      typeof entry.screenshotRef !== 'string' || entry.screenshotRef.length === 0)) {
       issues.push(`responsive-check:${target.targetId}`);
     }
   }

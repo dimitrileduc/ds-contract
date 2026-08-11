@@ -87,11 +87,11 @@ function validateComponentWorkflow(
   issues: RepairValidationIssue[],
 ): void {
   const baseline = candidate.sourceBaseline;
-  if (!record(baseline) || typeof baseline.gitHead !== 'string' || !gitObject.test(baseline.gitHead) ||
+  if (baseline !== undefined && (!record(baseline) || typeof baseline.gitHead !== 'string' || !gitObject.test(baseline.gitHead) ||
     typeof baseline.worktreeTree !== 'string' || !gitObject.test(baseline.worktreeTree) ||
     typeof baseline.backupRef !== 'string' || !baseline.backupRef.startsWith('refs/') ||
-    typeof baseline.capturedAt !== 'string' || Number.isNaN(Date.parse(baseline.capturedAt))) {
-    issue(issues, 'campaign-shape', '$.sourceBaseline', 'component workflow requires a recoverable Git source baseline');
+    typeof baseline.capturedAt !== 'string' || Number.isNaN(Date.parse(baseline.capturedAt)))) {
+    issue(issues, 'campaign-shape', '$.sourceBaseline', 'source baseline, when present, must be a recoverable Git snapshot');
   }
   const workflow = candidate.workflow;
   if (!record(workflow) || workflow.mode !== 'single-component' || workflow.subjectKind !== 'organism' || workflow.pageMutationPolicy !== 'forbid-direct' ||
@@ -257,7 +257,11 @@ const normalTransitions: Record<CampaignState, CampaignState[]> = {
   'ready-to-apply': ['applied', 'refused-before-mutation'],
   applied: ['verified', 'application-failed', 'verification-failed'],
   verified: ['owner-accepted', 'owner-refused', 'verification-failed'],
-  'owner-accepted': [], 'owner-refused': [], 'refused-before-mutation': [], 'application-failed': [], 'verification-failed': [],
+  'owner-accepted': [], 'owner-refused': [], 'refused-before-mutation': [], 'application-failed': [],
+  // A failed comparison may be rerun after correcting a non-canvas gate or
+  // manifest classification. The CLI recomputes the complete comparison
+  // before this sole recovery transition; it cannot return to apply.
+  'verification-failed': ['verified'],
 };
 
 export function transitionCampaign(candidate: unknown, nextState: CampaignState): RepairValidation<RepairCampaign> {

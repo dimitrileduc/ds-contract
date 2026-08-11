@@ -1,0 +1,532 @@
+{
+  "campaignId": "repair-texte-seo-container",
+  "filePin": "2386533441442286618",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "ensure-texte-seo-container",
+      "targetId": "texte-seo",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2108:3123",
+      "structuralPath": "0",
+      "changes": {
+        "containerName": "Container · TexteSEO",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1728,
+        "referenceHeight": 383,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2108:3111"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · TexteSEO"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-texte-seo-section-header",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "0/0",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37782"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "0/0"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-texte-seo-accordion-row-1",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "3/0",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37856"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "3/0"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-texte-seo-accordion-row-2",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "3/1",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37867"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "3/1"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-texte-seo-accordion-row-3",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "3/2",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37880"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "3/2"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "restore-texte-seo-title-ranges",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "0/0/1",
+      "changes": {
+        "richText": {
+          "baseFont": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "ranges": [
+            {
+              "start": 14,
+              "end": 34,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            }
+          ]
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "I2351:37782;2351:36811"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Visitez notre showroom à Pepinster ou contactez-nous"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Visitez notre showroom à Pepinster ou contactez-nous"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "restore-texte-seo-paragraph-ranges",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "1/0",
+      "changes": {
+        "richText": {
+          "baseFont": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "ranges": [
+            {
+              "start": 68,
+              "end": 76,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            },
+            {
+              "start": 102,
+              "end": 111,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            },
+            {
+              "start": 123,
+              "end": 131,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            },
+            {
+              "start": 178,
+              "end": 211,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            },
+            {
+              "start": 213,
+              "end": 229,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            },
+            {
+              "start": 341,
+              "end": 348,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            }
+          ]
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37788"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire."
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "restore-texte-seo-accordion-content-ranges",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "3/1/2",
+      "changes": {
+        "richText": {
+          "baseFont": {
+            "family": "Montserrat",
+            "style": "Regular"
+          },
+          "ranges": [
+            {
+              "start": 141,
+              "end": 161,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            }
+          ]
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "I2351:37867;2347:34270"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée."
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée."
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-texte-seo-subtitle-style",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "2/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-5.size",
+          "name": "Titre 5"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37822"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Infos pratiques"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Infos pratiques"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-texte-seo-question-1-style",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "3/0/1/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.paragraphe-gras.size",
+          "name": "Paragraphe gras"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "I2351:37856;2347:34260"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Accès et parking"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Accès et parking"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-texte-seo-question-2-style",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "3/1/0/0/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.paragraphe-gras.size",
+          "name": "Paragraphe gras"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "I2351:37867;2347:34266"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Faut-il prendre rendez-vous ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Faut-il prendre rendez-vous ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-texte-seo-question-3-style",
+      "targetId": "texte-seo",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3123",
+      "structuralPath": "3/2/1/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.paragraphe-gras.size",
+          "name": "Paragraphe gras"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3123"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "I2351:37880;2347:34260"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Zones de déplacement pour devis"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Zones de déplacement pour devis"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

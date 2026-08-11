@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-texte-seo-container",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386533441442286618",
+  "run": "first",
+  "scriptResults": [
+    {
+      "operationId": "ensure-texte-seo-container",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [
+          "2455:4734"
+        ],
+        "changedNodeIds": [
+          "2108:3123",
+          "2455:4734"
+        ]
+      }
+    },
+    {
+      "operationId": "fill-texte-seo-section-header",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:37782"
+        ]
+      }
+    },
+    {
+      "operationId": "fill-texte-seo-accordion-row-1",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:37856"
+        ]
+      }
+    },
+    {
+      "operationId": "fill-texte-seo-accordion-row-2",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:37867"
+        ]
+      }
+    },
+    {
+      "operationId": "fill-texte-seo-accordion-row-3",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:37880"
+        ]
+      }
+    },
+    {
+      "operationId": "restore-texte-seo-title-ranges",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "I2351:37782;2351:36811"
+        ]
+      }
+    },
+    {
+      "operationId": "restore-texte-seo-paragraph-ranges",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:37788"
+        ]
+      }
+    },
+    {
+      "operationId": "restore-texte-seo-accordion-content-ranges",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "I2351:37867;2347:34270"
+        ]
+      }
+    },
+    {
+      "operationId": "link-texte-seo-subtitle-style",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:37822"
+        ]
+      }
+    },
+    {
+      "operationId": "link-texte-seo-question-1-style",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "I2351:37856;2347:34260"
+        ]
+      }
+    },
+    {
+      "operationId": "link-texte-seo-question-2-style",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "I2351:37867;2347:34266"
+        ]
+      }
+    },
+    {
+      "operationId": "link-texte-seo-question-3-style",
+      "targetId": "texte-seo",
+      "nodeId": "2108:3123",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "I2351:37880;2347:34260"
+        ]
+      }
+    }
+  ],
+  "inspection": {
+    "masters": [
+      {
+        "targetId": "texte-seo",
+        "nodeId": "2108:3123",
+        "componentKey": "6afcd1e695d555f3388cbc6f35d682711ad41ff9",
+        "masterCount": 1,
+        "variantNames": []
+      }
+    ],
+    "pageWrites": [],
+    "responsiveChecks": [
+      {
+        "targetId": "texte-seo",
+        "width": 1440,
+        "overflow": false,
+        "overflowNodeIds": [],
+        "overflowIssues": [],
+        "screenshotRef": "specs/component-repairs/texte-seo/run-001/responsive-1440-first.png"
+      }
+    ]
+  }
+}

@@ -108,6 +108,14 @@ if (illegalTransition.ok || !illegalTransition.issues.some((issue) => issue.code
   throw new Error('draft → verified must be refused before any mutation');
 }
 
+const failedVerification = { ...clone(validCampaign), state: 'verification-failed' as const };
+const recoveredVerification = transitionCampaign(failedVerification, 'verified');
+if (!recoveredVerification.ok) throw new Error('verification-failed → verified recovery was refused');
+const illegalRecovery = transitionCampaign(failedVerification, 'applied');
+if (illegalRecovery.ok || !illegalRecovery.issues.some((issue) => issue.code === 'state-transition')) {
+  throw new Error('verification-failed → applied must remain refused');
+}
+
 const acceptedReceipt = {
   schemaVersion: '1.0.0', receiptId: 'hero', campaignId: '021-figma-projection-repair', targetId: 'hero', referenceId: '020-hero',
   appliedOperationIds: ['generated-hero'], expectedDiffs: [], unexpectedDiffs: [], imagePreservation: 'pass',

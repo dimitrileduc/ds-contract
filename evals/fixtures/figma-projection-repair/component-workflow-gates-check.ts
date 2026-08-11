@@ -2,6 +2,7 @@ import { validateRepairCampaign } from '../../../extract/figma/projection-repair
 import { assertComponentTopology } from '../../../extract/figma/projection-repair/capture.js';
 import { REQUIRED_COMPONENT_PROTECTION_FACTS } from '../../../extract/figma/projection-repair/types.js';
 import { organismContainerIssues } from '../../../extract/figma/projection-repair/audit.js';
+import { validateBridgeOperation } from '../../../extract/figma/projection-repair/bridge-script.js';
 
 const clone = <T>(value: T): T => structuredClone(value);
 const objectId = 'a'.repeat(40);
@@ -75,6 +76,24 @@ function refuse(value: unknown, code: string, label: string): void {
 
 accept(campaign, 'valid single-component campaign');
 
+const genericLayoutOperation = {
+  operationId: 'fill-local-dependency', targetId: 'hero-video', mechanism: 'set-properties', nodeId: '2151:5552',
+  structuralPath: '3/0', changes: { layoutSizingHorizontal: 'FILL' },
+  preconditions: [{ field: 'structuralPath', equals: '3/0' }], postconditions: [{ field: 'layoutSizingHorizontal', equals: 'FILL' }], source: 'campaign.allowlist',
+} as const;
+if (validateBridgeOperation(genericLayoutOperation as never).length !== 0) throw new Error('generic structural-path layout operation was refused');
+const genericTextStyleOperation = {
+  ...genericLayoutOperation, operationId: 'link-governed-style', structuralPath: '2/0',
+  changes: { textStyle: { tokenPath: 'typography.titre-5.size', name: 'Titre 5' } },
+} as const;
+if (validateBridgeOperation(genericTextStyleOperation as never).length !== 0) throw new Error('marker-bound Text Style operation was refused');
+const genericRichOperation = {
+  ...genericLayoutOperation, operationId: 'restore-rich-ranges', structuralPath: '1/0',
+  changes: { richText: { baseFont: { family: 'Montserrat', style: 'Regular' }, ranges: [{ start: 2, end: 5, font: { family: 'Montserrat', style: 'Bold' } }] } },
+} as const;
+if (validateBridgeOperation(genericRichOperation as never).length !== 0) throw new Error('bounded rich-range operation was refused');
+if (validateBridgeOperation({ ...genericLayoutOperation, mechanism: 'generated-amend' } as never).length === 0) throw new Error('component-specific bridge mechanism was accepted');
+
 const containedMaster = { id: '1:1', type: 'COMPONENT', layoutSizingHorizontal: 'FILL' };
 const localContainer = { id: '1:2', type: 'FRAME', name: 'Container · HeroVideo', layoutMode: 'HORIZONTAL', children: [containedMaster] };
 if (organismContainerIssues(containedMaster, localContainer).length !== 0) throw new Error('valid organism Container was refused');
@@ -95,7 +114,7 @@ refuse(missingFact, 'target-shape', 'unaccounted gradient protection');
 
 const noBackup = clone(campaign) as typeof campaign & { sourceBaseline?: typeof campaign.sourceBaseline };
 delete noBackup.sourceBaseline;
-refuse(noBackup, 'campaign-shape', 'missing source baseline');
+accept(noBackup, 'draft audit before source snapshot');
 
 const liveNodes = new Map<string, Record<string, unknown>>([
   ['2151:5552', { id: '2151:5552', type: 'COMPONENT', name: 'HeroVideo' }],
@@ -116,4 +135,4 @@ let usageRefused = false;
 try { assertComponentTopology(campaign as never, missingUsageNodes); } catch { usageRefused = true; }
 if (!usageRefused) throw new Error('consumer cardinality drift was not refused');
 
-console.log('✔ component workflow gates: one organism, local Container/FILL, source backup, protected facts, Page denylist, master uniqueness and consumer cardinality');
+console.log('✔ component workflow gates: one organism, audit-before-backup, local Container/FILL, protected facts, Page denylist, master uniqueness and consumer cardinality');

@@ -238,14 +238,18 @@ async function verifyIdempotence(campaignPath: string): Promise<void> {
 
 async function verify(campaignPath: string): Promise<void> {
   const current = readCampaign(campaignPath);
-  if (current.state !== 'applied') fail(`verify requires applied state, got ${current.state}`);
+  if (!['applied', 'verification-failed'].includes(current.state)) {
+    fail(`verify requires applied or verification-failed state, got ${current.state}`);
+  }
   const comparison = verifyCampaignClosure(current, process.cwd());
   const output = path.resolve(process.cwd(), workflowPaths(current).comparisonPath);
   mkdirSync(path.dirname(output), { recursive: true });
   writeFileSync(output, `${JSON.stringify(comparison, null, 2)}\n`);
   if (!comparison.ok) {
-    const failed = transitionCampaign(current, 'verification-failed');
-    if (failed.ok) writeCampaign(campaignPath, failed.value);
+    if (current.state === 'applied') {
+      const failed = transitionCampaign(current, 'verification-failed');
+      if (failed.ok) writeCampaign(campaignPath, failed.value);
+    }
     fail('comparison contains an unexpected diff or an open preservation gate', 1);
   }
   const verified = transitionCampaign(current, 'verified');

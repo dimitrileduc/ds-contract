@@ -47,6 +47,11 @@ audit read-only du composant, de ses dépendances et de ses usages
 Une étape rouge bloque les suivantes. Le runner ne propose aucun fallback par
 nom, aucune correction locale et aucune écriture de Page.
 
+Un `verify` rouge peut être relancé dans l'état `verification-failed` uniquement
+après correction d'un gate non-canvas ou d'une classification du manifeste. La
+comparaison complète est recalculée et l'unique sortie autorisée est
+`verified` ; cet état ne permet ni nouvel apply, ni saut vers `finalize`.
+
 L'audit initial n'autorise aucune mutation, y compris lorsqu'un correctif paraît
 évident. Pour un composant déjà conforme, sa sortie attendue est explicitement
 `aucun changement proposé`. Pour un nouveau composant ou un composant non
@@ -235,6 +240,19 @@ npm run component:repair -- \
 Le reçu doit contenir exactement les opérations du dry-run, `pageWrites: []`,
 un seul master avec le même id/key, les mêmes variantes et un contrôle sans
 overflow pour chaque largeur de `responsiveWidths` avec sa capture.
+
+Le contrôle responsive inspecte le master et tous ses descendants effectivement
+visibles. Il refuse aussi un descendant coupé par un ancêtre `clipsContent`, même
+si le contour externe du master reste dans le Container. Le Container garde sa
+largeur de référence mais HUG sa hauteur afin qu'un texte qui reflowe ne soit pas
+maquillé par une hauteur fixe.
+
+Le transport générique accepte trois familles bornées : création/adoption du
+Container d'organisme, `layoutSizingHorizontal` sur un nœud résolu par chemin
+structurel, et typographie gouvernée (`Text Style` identifié par le marqueur
+`ds_contracts/textStyleToken` ou plages de fontes explicitement déclarées). Les
+homonymes non marqués, chemins ambigus, contenus texte différents et opérations
+sur Page sont refusés avant mutation.
 
 Le second reçu passe par la même porte avec `--run second`. Chaque opération
 doit alors être `no-op`, avec zéro nœud créé et zéro nœud modifié.
