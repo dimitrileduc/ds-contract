@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/section-header.contract.json (ds.section-header v2.1.1)
+ * Source of truth: contracts/section-header.contract.json (ds.section-header v2.2.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';

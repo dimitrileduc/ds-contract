@@ -595,6 +595,14 @@
                 "space-between"
               ]
             },
+            "width": {
+              "type": "string",
+              "const": "fill"
+            },
+            "referenceWidth": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
             "grow": {
               "type": "boolean"
             },

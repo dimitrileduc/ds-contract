@@ -146,22 +146,32 @@ export const PropSchema = z
     },
   );
 
-export const LayoutSchema = z.strictObject({
-  display: z.enum(['flex', 'inline-flex']).optional(),
-  direction: z.enum(['row', 'column']).optional(),
-  align: z.enum(['start', 'center', 'end', 'stretch']).optional(),
-  justify: z.enum(['start', 'center', 'end', 'space-between']).optional(),
-  /** Part takes remaining space (code: flex 1 1 auto; Figma: fill container). */
-  grow: z.boolean().optional(),
-  /** Children overlap (AvatarGroup): the gap token is applied as a NEGATIVE
-   *  child margin in CSS and as negative itemSpacing on the canvas. */
-  overlap: z.boolean().optional(),
-  /** v15 (S4/matrix a.8): flex-wrap: wrap — natively CARRY-BOTH (Figma
-   *  layoutWrap: 'WRAP'). Chip rows and tag groups wrap in every target
-   *  system; the counter-axis gap rides the same `gap` token (Figma
-   *  counterAxisSpacing follows itemSpacing unless a row-gap fact lands). */
-  wrap: z.boolean().optional(),
-});
+export const LayoutSchema = z
+  .strictObject({
+    display: z.enum(['flex', 'inline-flex']).optional(),
+    direction: z.enum(['row', 'column']).optional(),
+    align: z.enum(['start', 'center', 'end', 'stretch']).optional(),
+    justify: z.enum(['start', 'center', 'end', 'space-between']).optional(),
+    /** The parent owns the rendered width (code: 100%; Figma: Fill container). */
+    width: z.literal('fill').optional(),
+    /** Canvas-only authoring width used to present a fluid master at its
+     *  historical desktop reference. It never caps the code surface. */
+    referenceWidth: z.number().positive().optional(),
+    /** Part takes remaining space (code: flex 1 1 auto; Figma: fill container). */
+    grow: z.boolean().optional(),
+    /** Children overlap (AvatarGroup): the gap token is applied as a NEGATIVE
+     *  child margin in CSS and as negative itemSpacing on the canvas. */
+    overlap: z.boolean().optional(),
+    /** v15 (S4/matrix a.8): flex-wrap: wrap — natively CARRY-BOTH (Figma
+     *  layoutWrap: 'WRAP'). Chip rows and tag groups wrap in every target
+     *  system; the counter-axis gap rides the same `gap` token (Figma
+     *  counterAxisSpacing follows itemSpacing unless a row-gap fact lands). */
+    wrap: z.boolean().optional(),
+  })
+  .refine((layout) => layout.referenceWidth === undefined || layout.width === 'fill', {
+    message: 'referenceWidth is an authoring width for width:"fill" only',
+    path: ['referenceWidth'],
+  });
 
 /** v7: per-enum-value layout overrides (chat sender flip, toolbar density).
  *  A subset of LayoutSchema — plus REVERSED directions, which only make
@@ -575,6 +585,11 @@ export const DECLARED_CHANNELS: Record<string, DeclaredChannelSpec> = {
     note: 'The code-side shadow preserves the observed paint; the canvas keeps its native effect.',
   },
   // -- compositing ----------------------------------------------------------
+  'z-index': {
+    value: /^-?\d+$/,
+    canvas: 'draw',
+    note: 'Numeric stacking order is lowered to stable child order on the canvas.',
+  },
   isolation: {
     value: kw('auto', 'isolate'),
     canvas: 'annotate',
@@ -1376,6 +1391,8 @@ export interface ResolvedLayout {
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   align?: 'start' | 'center' | 'end' | 'stretch';
   justify?: 'start' | 'center' | 'end' | 'space-between';
+  width?: 'fill';
+  referenceWidth?: number;
   grow?: boolean;
   overlap?: boolean;
   /** v15: flex-wrap: wrap (Figma layoutWrap 'WRAP'). */

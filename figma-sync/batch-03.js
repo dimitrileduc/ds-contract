@@ -314,7 +314,7 @@ const COMPONENTS = [
     "setName": "Hero",
     "contractId": "ds.hero",
     "anchorKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
-    "description": "Hero — generated from contract ds.hero v1.4.1 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Hero — generated from contract ds.hero v1.5.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -344,31 +344,10 @@ const COMPONENTS = [
             "itemSpacing": "space/10"
           },
           "lits": {
+            "fillClear": true,
             "width": 1728
           },
-          "gradient": {
-            "angle": 0,
-            "stops": [
-              {
-                "color": {
-                  "r": 0,
-                  "g": 0,
-                  "b": 0,
-                  "a": 0
-                },
-                "position": 0.75
-              },
-              {
-                "color": {
-                  "r": 0,
-                  "g": 0,
-                  "b": 0,
-                  "a": 0.5
-                },
-                "position": 1
-              }
-            ]
-          },
+          "fillWidth": true,
           "children": [
             {
               "type": "frame",
@@ -378,6 +357,7 @@ const COMPONENTS = [
                 "primary": "MIN",
                 "counter": "MIN"
               },
+              "insetOverlay": true,
               "imgPlaceholder": true,
               "lits": {
                 "fillColor": {
@@ -387,7 +367,42 @@ const COMPONENTS = [
                 }
               },
               "children": [],
-              "insetOverlay": true
+              "zIndex": 0
+            },
+            {
+              "type": "frame",
+              "name": "VoileNavigation",
+              "layout": {
+                "mode": "HORIZONTAL",
+                "primary": "MIN",
+                "counter": "MIN"
+              },
+              "insetOverlay": true,
+              "gradient": {
+                "angle": 0,
+                "stops": [
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0
+                    },
+                    "position": 0.75
+                  },
+                  {
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.5
+                    },
+                    "position": 1
+                  }
+                ]
+              },
+              "children": [],
+              "zIndex": 1
             },
             {
               "type": "frame",
@@ -455,7 +470,8 @@ const COMPONENTS = [
                         "Disposition": "Standard",
                         "Emphase": "Hero",
                         "Alignement": "Gauche"
-                      }
+                      },
+                      "fillWidth": true
                     },
                     {
                       "type": "frame",
@@ -472,17 +488,14 @@ const COMPONENTS = [
                         {
                           "type": "text",
                           "name": "sousTitre",
-                          "fixedWidth": {
-                            "px": 1164,
-                            "varName": "size/hero/sous-titre"
-                          },
                           "characters": "La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.",
                           "fontSize": 24,
                           "fontStyle": "Medium",
                           "textFill": "color/blanc",
                           "lineHeight": 32,
                           "fontFamily": "Montserrat",
-                          "contentProp": "SousTitre"
+                          "contentProp": "SousTitre",
+                          "fillWidth": true
                         },
                         {
                           "type":"instance",
@@ -495,11 +508,15 @@ const COMPONENTS = [
                             "Libelle": "Demander un devis gratuit"
                           }
                         }
-                      ]
+                      ],
+                      "fillWidth": true
                     }
-                  ]
+                  ],
+                  "fillWidth": true
                 }
-              ]
+              ],
+              "fillWidth": true,
+              "zIndex": 2
             }
           ]
         }
@@ -2075,6 +2092,9 @@ function applyFrameSpec(node, spec) {
     const base = node.fills === figma.mixed ? [] : (node.fills || []);
     node.fills = base.concat([paint]);
   }
+  if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
+    try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
+  }
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
   // 743px category card is used at 474px), Figma must scale that basis with
@@ -2143,7 +2163,7 @@ function applyInsetOverlay(parent, childNode, childSpec) {
     // natural post-backdrop index — else the opaque backdrop sibling paints
     // over the glyph (the checkbox backdrop-over-glyph z-order the owner saw,
     // previously hand-corrected on canvas each re-amend).
-    if (!childNode.children || childNode.children.length === 0) {
+    if ((!childNode.children || childNode.children.length === 0) && childSpec.zIndex === undefined) {
       parent.insertChild(0, childNode);
     }
     childNode.layoutPositioning = 'ABSOLUTE';
@@ -2337,7 +2357,7 @@ async function buildNode(spec, registry) {
       // description.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (child.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((child.grow || child.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     } else if (
       spec.layout && spec.layout.stretchChildren &&
@@ -2361,7 +2381,7 @@ async function buildNode(spec, registry) {
     // HUG is the circular case Figma refuses. Measured live: the
     // SectionHeader title overflowed Presentation's 628 column in one line
     // (origin: two lines) — the Devis.Titre fix was this rule's local case.
-    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (child.grow || child.fillWidth || spec.fillWidth || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
     }
     applyInsetOverlay(node, childNode, child);
@@ -2882,7 +2902,7 @@ async function amendSet(set, C) {
           // #60 fix 4 (amend path): same empty-child declared default.
           try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
         }
-        if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+        if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -2896,7 +2916,7 @@ async function amendSet(set, C) {
     }
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
-        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+        if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
     applyInsetOverlay(comp, childNode, childSpec);
@@ -3077,7 +3097,7 @@ async function amendComponent(comp, C) {
       // #60 fix 4 (standalone amend path): same empty-child declared default.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -3091,7 +3111,7 @@ async function amendComponent(comp, C) {
     }
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
-    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
     applyInsetOverlay(comp, childNode, childSpec);

@@ -1649,6 +1649,10 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         if (part.layout?.justify) decls.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
       }
       if (part.layout?.grow) decls.push('flex: 1 1 auto', 'min-width: 0');
+      if (part.layout?.width === 'fill') {
+        decls.push('width: 100%');
+        if (!part.layout.grow) decls.push('min-width: 0');
+      }
       if (part.element && UA_MARGIN_ELEMENTS.has(part.element)) decls.push('margin: 0');
       if (part.overlay) decls.push('position: absolute', ...OVERLAY_CSS[part.overlay.placement]);
       if (part.shape) decls.push(...shapeCssDecls(part.shape));
@@ -1706,6 +1710,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
     if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
     if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
+    if (root.layout.width === 'fill') rootDecls.push('width: 100%', 'min-width: 0');
   } else {
     rootDecls.push('display: inline-flex', 'align-items: center', 'justify-content: center');
   }
@@ -2056,6 +2061,10 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       if (part.layout?.justify) decls.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
     }
     if (part.layout?.grow) decls.push('flex: 1 1 auto', 'min-width: 0');
+    if (part.layout?.width === 'fill') {
+      decls.push('width: 100%');
+      if (!part.layout.grow) decls.push('min-width: 0');
+    }
     // UA-margin neutralization on NESTED parts (round 4): a promoted h2/p/ul
     // part would leak UA margins the real component resets — same discipline
     // as the root rule; captured nonzero margins arrive as minted overrides.

@@ -94,6 +94,11 @@ export interface NodeSpec {
   fixedHeight?: { px: number; varName?: string };
   /** CSS grow → layoutSizingHorizontal FILL after append. */
   grow?: boolean;
+  /** Parent-owned width → layoutSizingHorizontal FILL after append. */
+  fillWidth?: boolean;
+  /** Numeric CSS stacking order. Canvas uses the contract's stable child
+   *  order and keeps explicitly layered inset children at that index. */
+  zIndex?: number;
   /** visibleWhen on a boolean prop → node visibility bound to its BOOLEAN
    *  component property. (visibleWhen.equals is resolved at compile time:
    *  the part is simply omitted from non-matching variants.) */
@@ -2137,6 +2142,7 @@ function partToSpecs(
         depProps: mapDepProps(dep, composedProps, subst, part.component!.text),
         ...(depPropRefs.length > 0 ? { depPropRefs } : {}),
       };
+      applyLayoutCarriage(spec, part, subst);
       applyVisibleWhen(spec, part, contract);
       return spec;
     });
@@ -2153,6 +2159,7 @@ function partToSpec(
   subst: Record<string, string>,
 ): NodeSpec {
   const spec = partToSpecInner(name, part, contract, byId, ctx, subst);
+  applyLayoutCarriage(spec, part, subst);
   // v7 overlay: stamped on whatever node kind the part compiled to; the
   // runtime applies it after the node is appended (layoutPositioning
   // requires an auto-layout parent).
@@ -2160,6 +2167,24 @@ function partToSpec(
   applyStylesWhenOpacity(spec, part, contract, subst);
   lowerDeclaredAbsolute(spec, part, subst);
   return spec;
+}
+
+/** Layout facts that belong to the node itself rather than its Auto Layout
+ *  axes. `referenceWidth` is a canvas authoring size only; code emitters
+ *  deliberately ignore it. Numeric z-index keeps explicit layer order from
+ *  being rewritten by the generic backdrop lowering. */
+function applyLayoutCarriage(
+  spec: NodeSpec,
+  part: Part,
+  subst: Record<string, string>,
+): void {
+  const layout = resolveLayout(part, subst);
+  if (layout?.width === 'fill') spec.fillWidth = true;
+  if (layout?.referenceWidth !== undefined) {
+    (spec.lits ??= {}).width = layout.referenceWidth;
+  }
+  const zIndex = part.declared?.['z-index'];
+  if (zIndex !== undefined && /^-?\d+$/.test(zIndex)) spec.zIndex = Number(zIndex);
 }
 
 function markInsetOverlay(spec: NodeSpec, offsets: NonNullable<ReturnType<typeof insetOverlayOffsets>>): void {
@@ -2725,6 +2750,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     // combo exactly like every child part's. Byte-neutral for contracts
     // without tokensByProp (resolveTokens returns the base map unchanged).
     const ctx = applyStyling(rootSpec, root, subst, {});
+    applyLayoutCarriage(rootSpec, root, subst);
     applyStylesWhenOpacity(rootSpec, root, contract, subst);
     // Round 5: parent aspect lowering + block-root width fact (see NodeSpec).
     applyChildAspect(rootSpec, root);
@@ -2807,6 +2833,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
         // Same resolveTokens rule as the base loop: per-combo tokensByProp
         // overrides apply BEFORE the state overrides layer on top.
         const baseCtx = applyStyling(rootSpec, root, subst, {});
+        applyLayoutCarriage(rootSpec, root, subst);
         const ctx = applyTokens(
           rootSpec,
           translateStateOverrides(overrides[stateName] ?? {}),
@@ -3395,7 +3422,7 @@ const absoluteCall = (has: boolean, args: string): string =>
  *  the empty-frame FILL default (which an out-of-flow node must not keep)
  *  is overridden, and only after appendChild (ABSOLUTE requires an
  *  auto-layout parent). Conditional emission — the golden discipline. */
-const insetOverlayRuntime = (has: boolean): string =>
+const insetOverlayRuntime = (has: boolean, hasZIndex = false): string =>
   has
     ? `
 // B-3 finding 5: an inset-0 overlay part (top/right/bottom/left all 0) is
@@ -3411,7 +3438,7 @@ function applyInsetOverlay(parent, childNode, childSpec) {
     // natural post-backdrop index — else the opaque backdrop sibling paints
     // over the glyph (the checkbox backdrop-over-glyph z-order the owner saw,
     // previously hand-corrected on canvas each re-amend).
-    if (!childNode.children || childNode.children.length === 0) {
+    if (${hasZIndex ? '(!childNode.children || childNode.children.length === 0) && childSpec.zIndex === undefined' : '!childNode.children || childNode.children.length === 0'}) {
       parent.insertChild(0, childNode);
     }
     childNode.layoutPositioning = 'ABSOLUTE';
@@ -3509,6 +3536,18 @@ const litsRuntime = (has: boolean): string =>
   }`
     : '';
 
+/** Parent-owned width. Feature-gated so contracts without `width:"fill"`
+ *  retain byte-identical runtime output. On creation the root may still be
+ *  page-level; on an anchored amend its Auto Layout presentation parent is
+ *  already present and can accept FILL immediately. */
+const fillWidthRootRuntime = (has: boolean): string =>
+  has
+    ? `
+  if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
+    try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
+  }`
+    : '';
+
 /** Contract → the single-component sync script text. #60 fix 2: the emitted
  *  runtime is AMEND-CAPABLE — it shares the batch sync runtime (syncOne →
  *  amendSet / amendComponent), so re-running a committed per-component
@@ -3591,6 +3630,8 @@ function buildSyncScript(
   const hasEffectStack = datas.some((d) => dataSome(d, (x) => x.effectStack !== undefined));
   const hasGradient = datas.some((d) => dataSome(d, (x) => x.gradient !== undefined));
   const hasInsetOverlay = datas.some((d) => dataSome(d, (x) => x.insetOverlay === true));
+  const hasFillWidth = datas.some((d) => dataSome(d, (x) => x.fillWidth === true));
+  const hasZIndex = datas.some((d) => dataSome(d, (x) => x.zIndex !== undefined));
   // Round 5d: margin-box wrapper / outline-lowered OUTSIDE strokes /
   // single-paint glyph variable re-binding — all feature-gated so contracts
   // without these facts emit byte-identical scripts (the golden discipline).
@@ -3912,7 +3953,7 @@ function applyFrameSpec(node, spec) {
       else node.primaryAxisSizingMode = 'FIXED';
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
-  }${litsRuntime(hasLits)}${gradientRuntime(hasGradient)}
+  }${litsRuntime(hasLits)}${gradientRuntime(hasGradient)}${fillWidthRootRuntime(hasFillWidth)}
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
   // 743px category card is used at 474px), Figma must scale that basis with
@@ -3939,7 +3980,7 @@ function applyOverlay(parent, childNode, childSpec) {
     else { childNode.x = parent.width; childNode.y = 0; }
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
-${absoluteRuntime(hasAbsolute)}${insetOverlayRuntime(hasInsetOverlay)}${marginBoxRuntime(hasMargins)}
+${absoluteRuntime(hasAbsolute)}${insetOverlayRuntime(hasInsetOverlay, hasZIndex)}${marginBoxRuntime(hasMargins)}
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -4096,7 +4137,7 @@ ${propertyBackedTextInWrapper}
       // description.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (child.grow && 'layoutSizingHorizontal' in childNode) {
+    if (${hasFillWidth ? '(child.grow || child.fillWidth)' : 'child.grow'} && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     } else if (
       spec.layout && spec.layout.stretchChildren &&
@@ -4114,7 +4155,7 @@ ${propertyBackedTextInColumn('child', 'node')}
     // HUG is the circular case Figma refuses. Measured live: the
     // SectionHeader title overflowed Presentation's 628 column in one line
     // (origin: two lines) — the Devis.Titre fix was this rule's local case.
-    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (${hasFillWidth ? 'child.grow || child.fillWidth || spec.fillWidth || ' : 'child.grow || '}spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
     }${insetOverlayCall(hasInsetOverlay, 'node, childNode, child')}${marginBoxCall(hasMargins, 'node, childNode, child')}
   }
@@ -4633,7 +4674,7 @@ async function amendSet(set, C) {
           // #60 fix 4 (amend path): same empty-child declared default.
           try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
         }
-        if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+        if (${hasFillWidth ? '(childSpec.grow || childSpec.fillWidth)' : 'childSpec.grow'} && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -4641,7 +4682,7 @@ async function amendSet(set, C) {
 ${propertyBackedTextInColumn('childSpec', 'comp')}
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
-        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+        if (childNode.type === 'TEXT' && (${hasFillWidth ? 'childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || ' : 'childSpec.grow || '}v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }${insetOverlayCall(hasInsetOverlay, 'comp, childNode, childSpec')}${marginBoxCall(hasMargins, 'comp, childNode, childSpec')}
       }
@@ -4820,7 +4861,7 @@ async function amendComponent(comp, C) {
       // #60 fix 4 (standalone amend path): same empty-child declared default.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+    if (${hasFillWidth ? '(childSpec.grow || childSpec.fillWidth)' : 'childSpec.grow'} && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -4828,7 +4869,7 @@ async function amendComponent(comp, C) {
 ${propertyBackedTextInColumn('childSpec', 'comp')}
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
-    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (${hasFillWidth ? 'childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || ' : 'childSpec.grow || '}v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }${insetOverlayCall(hasInsetOverlay, 'comp, childNode, childSpec')}
   }

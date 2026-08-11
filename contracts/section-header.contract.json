@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.section-header",
   "name": "SectionHeader",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -139,7 +139,9 @@
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 1550
       },
       "layoutByProp": {
         "prop": "disposition",
@@ -152,6 +154,9 @@
       },
       "parts": {
         "Accroche": {
+          "layout": {
+            "width": "fill"
+          },
           "content": {
             "prop": "accroche"
           },
@@ -172,6 +177,9 @@
           }
         },
         "Titre": {
+          "layout": {
+            "width": "fill"
+          },
           "content": {
             "prop": "titre",
             "marks": {
@@ -253,8 +261,7 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "gap": "{space.8}",
-        "width": "{size.section-header.root}"
+        "gap": "{space.8}"
       },
       "declared": {
         "align-self": "stretch"

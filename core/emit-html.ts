@@ -115,6 +115,10 @@ function layoutDecls(part: Part): string[] {
     if (part.layout?.justify) d.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
   }
   if (part.layout?.grow) d.push('flex: 1 1 auto', 'min-width: 0');
+  if (part.layout?.width === 'fill') {
+    d.push('width: 100%');
+    if (!part.layout.grow) d.push('min-width: 0');
+  }
   return d;
 }
 
@@ -193,6 +197,7 @@ function componentCss(contract: Contract): string[] {
     if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
     if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
     if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
+    if (root.layout.width === 'fill') rootDecls.push('width: 100%', 'min-width: 0');
   } else {
     rootDecls.push('display: inline-flex', 'align-items: center', 'justify-content: center');
   }

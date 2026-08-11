@@ -521,7 +521,7 @@ const COMPONENTS = [
     "setName": "Button",
     "contractId": "ds.button",
     "anchorKey": "e6fa6786ed120eb3f3507024f8cda9058ae661c6",
-    "description": "Button — generated from contract ds.button v2.0.0",
+    "description": "Button — generated from contract ds.button v2.0.1 †",
     "isSet": true,
     "boolProps": [
       {
@@ -1633,7 +1633,7 @@ const COMPONENTS = [
     "setName": "SectionHeader",
     "contractId": "ds.section-header",
     "anchorKey": "770d5801af6e899b9547461ea2c714a66e0fa356",
-    "description": "SectionHeader — generated from contract ds.section-header v2.1.1 †",
+    "description": "SectionHeader — generated from contract ds.section-header v2.2.0 †",
     "isSet": true,
     "boolProps": [
       {
@@ -1665,9 +1665,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -1683,7 +1683,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -1694,7 +1695,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 50,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -1714,9 +1716,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -1732,7 +1734,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -1743,7 +1746,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 50,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -1763,9 +1767,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -1781,7 +1785,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -1792,7 +1797,8 @@ const COMPONENTS = [
               "textFill": "color/blanc",
               "lineHeight": 68,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -1812,9 +1818,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -1830,7 +1836,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -1841,7 +1848,8 @@ const COMPONENTS = [
               "textFill": "color/blanc",
               "lineHeight": 68,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -1861,9 +1869,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -1879,7 +1887,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -1890,7 +1899,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 40,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -1910,9 +1920,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -1928,7 +1938,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -1939,7 +1950,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 40,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -1959,9 +1971,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -1977,7 +1989,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -1988,7 +2001,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 30,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -2008,9 +2022,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2026,7 +2040,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2037,7 +2052,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 30,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             }
           ]
         }
@@ -2057,9 +2073,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2075,7 +2091,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2086,7 +2103,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 40,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2116,9 +2134,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2134,7 +2152,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2145,7 +2164,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 40,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2175,9 +2195,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2193,7 +2213,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2204,7 +2225,8 @@ const COMPONENTS = [
               "textFill": "color/blanc",
               "lineHeight": 68,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2234,9 +2256,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2252,7 +2274,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2263,7 +2286,8 @@ const COMPONENTS = [
               "textFill": "color/blanc",
               "lineHeight": 68,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2293,9 +2317,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2311,7 +2335,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2322,7 +2347,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 40,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2352,9 +2378,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2370,7 +2396,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2381,7 +2408,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 40,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2411,9 +2439,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2429,7 +2457,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2440,7 +2469,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 30,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2470,9 +2500,9 @@ const COMPONENTS = [
           "bindings": {
             "itemSpacing": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/section-header/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1550
           },
           "children": [
             {
@@ -2488,7 +2518,8 @@ const COMPONENTS = [
               "fontFamily": "Montserrat",
               "contentProp": "Accroche",
               "visibleProp": "Accroche2",
-              "visibleDefault": true
+              "visibleDefault": true,
+              "fillWidth": true
             },
             {
               "type": "text",
@@ -2499,7 +2530,8 @@ const COMPONENTS = [
               "textFill": "color/noir-bleute",
               "lineHeight": 30,
               "fontFamily": "Montserrat",
-              "contentProp": "Titre"
+              "contentProp": "Titre",
+              "fillWidth": true
             },
             {
               "type":"instance",
@@ -2515,7 +2547,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1610
+    "colW": 380
   },
   {
     "setName": "Coordonnees",
@@ -3585,6 +3617,9 @@ function applyFrameSpec(node, spec) {
       }
     }
   }
+  if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
+    try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
+  }
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
   // 743px category card is used at 474px), Figma must scale that basis with
@@ -3820,7 +3855,7 @@ async function buildNode(spec, registry) {
       // description.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (child.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((child.grow || child.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     } else if (
       spec.layout && spec.layout.stretchChildren &&
@@ -3844,7 +3879,7 @@ async function buildNode(spec, registry) {
     // HUG is the circular case Figma refuses. Measured live: the
     // SectionHeader title overflowed Presentation's 628 column in one line
     // (origin: two lines) — the Devis.Titre fix was this rule's local case.
-    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (child.grow || child.fillWidth || spec.fillWidth || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
     }
     applyInsetOverlay(node, childNode, child);
@@ -4364,7 +4399,7 @@ async function amendSet(set, C) {
           // #60 fix 4 (amend path): same empty-child declared default.
           try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
         }
-        if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+        if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -4378,7 +4413,7 @@ async function amendSet(set, C) {
     }
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
-        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+        if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
     applyInsetOverlay(comp, childNode, childSpec);
@@ -4558,7 +4593,7 @@ async function amendComponent(comp, C) {
       // #60 fix 4 (standalone amend path): same empty-child declared default.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -4572,7 +4607,7 @@ async function amendComponent(comp, C) {
     }
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
-    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
     applyInsetOverlay(comp, childNode, childSpec);
