@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "recordedBy": "replay concluant de la frontière d'éditabilité après réalignement QA",
+  "recordedBy": "spike Hero sur instance Odoo propre",
   "recordedOn": "2026-08-11",
   "snapshotId": "odoo-019-foundation",
   "environment": {
@@ -23,6 +23,13 @@
       "resolution": "Le banc QA emploie désormais les vrais data-pqr-part de Presentation et distingue le champ CTA déclaré des champs natifs non déclarés. Le replay sur base propre passe sans modification de la politique d'authoring de production.",
       "evidence": "specs/019-odoo-production-foundation/proofs/editability-boundary.json — pass, 44 observations, 0 limitCode.",
       "closedOn": "2026-08-11"
+    },
+    {
+      "code": "ODOO-LIMIT-HERO-MEDIA-SPIKE-FAILED",
+      "status": "resolved",
+      "resolution": "La façade Hero laisse openMediaDialog remplacer le nœud, conserve uniquement l'état data:image marqué o_modified_image_to_save, puis restaure l'adresse data-pqr-part après fermeture. ImageSavePlugin finalise ensuite la pièce jointe en /web/image au save.",
+      "evidence": "specs/019-odoo-production-foundation/proofs/hero-functional.json — pass, 11 observations, upload/save/public/reopen et isolation A/B sur base neuve.",
+      "closedOn": "2026-08-11"
     }
   ],
   "whatIsEstablished": [
@@ -31,14 +38,15 @@
     "L'addon QA rend les 4 descendants candidats aux gestes Odoo ; 12 intentions move/duplicate/remove sont refusées sans mutation.",
     "Move, Duplicate et Remove restent visibles et actifs sur la racine ; le seul champ exposé est le CTA déclaré par Presentation et aucun champ natif non déclaré ne fuit.",
     "Les charges riches hostiles passent par la sauvegarde ; strong est conservé selon contrat, les marques non autorisées et attributs exécutables sont retirés.",
-    "Les scénarios réels Presentation et Google Reviews sont indépendamment verts sur leurs contrats editor/save/reopen/public/multi-instance."
+    "Les scénarios réels Presentation, Google Reviews et Hero sont indépendamment verts sur leurs contrats editor/save/reopen/public/multi-instance.",
+    "Le Hero laisse le média vide par défaut; l'upload Odoo devient une URL /web/image same-origin après save et reste isolé par instance."
   ],
   "scopeOfProof": {
     "qualified": "Mécanismes communs de la fondation sur le banc hostile T017b/T020b.",
-    "stillRequired": "Qualification visuelle et replay des scénarios d'intégration après toute évolution du contrat ou de l'authoring."
+    "stillRequired": "Replay des scénarios affectés après toute évolution future du contrat, du snapshot ou de l'authoring."
   },
   "nextStep": {
-    "task": "Conserver le snapshot qualifié comme prérequis avant le portage Hero",
-    "how": "Réutiliser les mécanismes prouvés, créer un snapshot/authoring propres au Hero et ne pas modifier rétroactivement ces reçus Foundation."
+    "task": "Conserver le snapshot à trois racines comme prérequis des prochains portages",
+    "how": "Réutiliser les mécanismes prouvés et ouvrir un authoring exhaustif par nouvelle racine, sans modifier rétroactivement les contrats."
   }
 }

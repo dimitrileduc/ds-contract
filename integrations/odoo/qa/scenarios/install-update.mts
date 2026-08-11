@@ -6,8 +6,8 @@ import {
   ouvrirSessionEditeur, ouvrirSessionPublique, withInstance,
 } from '../run.mts';
 
-const paths = ['/piqueray-harness/presentation-visual', '/piqueray-harness/google-reviews-visual'];
-const ROOTS = '.s_pqr_presentation, .s_pqr_google_reviews';
+const paths = ['/piqueray-harness/presentation-visual', '/piqueray-harness/google-reviews-visual', '/piqueray-harness/hero-visual'];
+const ROOTS = '.s_pqr_presentation, .s_pqr_google_reviews, .s_pqr_hero';
 
 async function snapshot(browser: any, env: any) {
   const session = await ouvrirSessionPublique(browser);
@@ -38,7 +38,7 @@ async function snapshot(browser: any, env: any) {
 
 async function main() {
   const started = Date.now();
-  const install = new Recueil('install-update', 'odoo-019-foundation', 'two-sections-saved');
+  const install = new Recueil('install-update', 'odoo-019-foundation', 'three-sections-saved');
   const authorization = new Recueil('authorization', 'odoo-019-foundation', 'anonymous-vs-designer');
   if (!dockerDisponible()) {
     install.saute('clean install/update', 'Docker indisponible', 'ODOO-LIMIT-NO-INSTANCE');
@@ -49,8 +49,8 @@ async function main() {
   }
   await withInstance(async ({ browser, env }) => {
     const before = await snapshot(browser, env);
-    install.constateSi('clean install — les deux sections publiques répondent', before.length === 2 && before.every((item) => item.status === 200 && item.text.length > 0), '2 pages HTTP 200 remplies', JSON.stringify(before.map((item) => ({ path: item.pathname, status: item.status, chars: item.text.length }))));
-    install.constateSi('métadonnées — les deux racines portent versions et digest', before.every((item) => Object.values(item.metadata).every(Boolean)), '7 métadonnées présentes par racine', JSON.stringify(before.map((item) => item.metadata)));
+    install.constateSi('clean install — les trois sections publiques répondent', before.length === 3 && before.every((item) => item.status === 200 && item.text.length > 0), '3 pages HTTP 200 remplies', JSON.stringify(before.map((item) => ({ path: item.pathname, status: item.status, chars: item.text.length }))));
+    install.constateSi('métadonnées — les trois racines portent versions et digest', before.every((item) => Object.values(item.metadata).every(Boolean)), '7 métadonnées présentes par racine', JSON.stringify(before.map((item) => item.metadata)));
 
     const updated = compose(['run', '--rm', 'odoo', 'odoo', '-d', env.dbName, '-u', 'piqueray_ds,piqueray_ds_qa', '--db_host=db', '--without-demo=True', '--stop-after-init', '--log-level=warn']);
     install.constateSi('update — odoo -u termine sans erreur', updated.status === 0, 'code 0', `code ${updated.status}`);

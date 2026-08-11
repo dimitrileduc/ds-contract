@@ -5,10 +5,10 @@
 - Portes finales : `final-gates.md`
 - Installation, update et droits : `install-update.json`, `authorization.json`
 - Versions : `version-policy.json`, `repin-impact.json`
-- Sections : `google-reviews-functional.json`, `google-reviews-security.json`, `presentation-functional.json`, `presentation-performance-security.json`
-- Visuel : `google-reviews-visual.json`, `presentation-visual.json`, `visual-summary.json`
+- Sections : `google-reviews-functional.json`, `google-reviews-security.json`, `presentation-functional.json`, `presentation-performance-security.json`, `hero-functional.json`
+- Visuel : `google-reviews-visual.json`, `presentation-visual.json`, `hero-visual.json`, `visual-summary.json`
 - Coexistence : `combined-isolation.json`
 - Dérivation et handoff : `derivation-determinism.json`, `mechanism-handoff.json`
 - Quickstart : `quickstart-run.json`
 
-Verdict : 2/2 sections et 5/5 contrats épinglés qualifiés. Limite acceptée : performance des gestes non mesurée. Aucun contrat, fichier Figma ou fichier `core/` n'a été modifié par 019.
+Verdict actif : 3/3 sections et 6/6 contrats épinglés qualifiés. Limite acceptée : performance des gestes non mesurée. Le portage Hero ne modifie aucun contrat, fichier Figma ou fichier `core/`.

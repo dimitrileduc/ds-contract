@@ -107,3 +107,71 @@ export class SetReviewAvatarAltAction extends BuilderAction {
     }
 }
 // ODOO-019-GOOGLE-REVIEWS-MEDIA END
+
+// ODOO-019-HERO-MEDIA BEGIN
+function heroRoot(editingElement) {
+    return editingElement?.closest?.(".s_pqr_hero") || null;
+}
+
+export function heroBackgroundImage(editingElement) {
+    const image = heroRoot(editingElement)?.querySelector(".hero__Background") || null;
+    // Le pipeline média natif reconstruit les attributs de l'image après upload
+    // et peut retirer l'adresse d'authoring. La classe contractuelle, elle,
+    // survit : on restaure donc l'adresse sur le même noeud, sans état parallèle.
+    if (image) image.dataset.pqrPart = "hero-background";
+    return image;
+}
+
+/** Le contrat ne transporte pas le bitmap Figma. Le seul transport autorisé en
+ * production est donc une pièce jointe publiée par le dialogue média Odoo. */
+export function reconcileHeroBackground(editingElement) {
+    const image = heroBackgroundImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    // Pendant le cycle natif, Odoo garde le bitmap traité en data URL et le
+    // marque explicitement pour ImageSavePlugin. Cette exception disparaît au
+    // before_save, qui produit ensuite une URL publiée /web/image. Sans la
+    // classe native, une data URL reste une source hostile et est supprimée.
+    const nativePending = image.classList.contains("o_modified_image_to_save") &&
+        /^data:image\/(?:gif|jpe?g|png|webp);base64,/i.test(source);
+    if (!isPublishedAvatarSource(source) && !nativePending) image.removeAttribute("src");
+    return Boolean(image.getAttribute("src"));
+}
+
+export class ReplaceHeroBackgroundAction extends BuilderAction {
+    static id = "pqrReplaceHeroBackground";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const root = heroRoot(editingElement);
+        const image = heroBackgroundImage(root);
+        if (!image) return null;
+        // Le dialogue remplace lui-même `node`, puis le pipeline before_save
+        // finalise toute image `o_modified_image_to_save`. Réécrire `src` dans
+        // onAttachmentChange casserait ce cycle et forcerait le placeholder.
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileHeroBackground(root);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileHeroBackground(editingElement);
+    }
+}
+
+export class SetHeroBackgroundAltAction extends BuilderAction {
+    static id = "pqrSetHeroBackgroundAlt";
+    getValue({ editingElement }) {
+        return heroBackgroundImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = heroBackgroundImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileHeroBackground(editingElement);
+    }
+}
+// ODOO-019-HERO-MEDIA END

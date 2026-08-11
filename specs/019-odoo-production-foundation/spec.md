@@ -213,3 +213,22 @@ invalide et une adaptation manuelle afin de vérifier le refus ou le comptage at
 - Le calendrier de la feature n'appartient pas à cette spec : J1–J2 pour 019 et l'objectif J5 pour les 13 sections sont fixés par la séquence approuvée le 2026-08-07 dans `ROADMAP.md`. C'est la source à citer quand le plan ou la recherche écartent une alternative pour raison de délai.
 
 La correction datée et ses reçus sont conservés dans `proofs/correction-premisse-018.md`.
+
+## Extension gouvernée — Hero (2026-08-11)
+
+À la demande de portage `ds.hero`, le snapshot actif étend la fondation historique sans réécrire
+son périmètre initial : 3 racines posables et 6 contrats dans la fermeture, avec
+`ds.hero@1.5.0` et `graphDigest=cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b`.
+Pour cette extension, les exigences FR-006 à FR-011 et FR-014 à FR-024 s'appliquent aussi au Hero.
+
+Le Hero est un bloc CMS instanciable. Sa valeur `backgroundUrl` est vide dans le template de
+production : aucune image métier n'est livrée par l'addon. Chaque rédacteur choisit un média via le
+sélecteur natif Odoo ; après sauvegarde, la source publiée doit être locale (`/web/image/...` ou
+`/web/content/...`) et rester propre à l'instance. `backgroundAlt`, titre, sous-titre et label CTA
+suivent les verdicts exhaustifs de `hero.authoring.json`. Le fond suit Fill, le CTA Hug/nowrap, et
+la qualification couvre 1728 et 1440 px sans inventer un breakpoint absent du contrat.
+
+Les critères SC-001, SC-002, SC-003, SC-006 et SC-010 se lisent donc, pour le snapshot actif,
+respectivement comme 3 sections, 6 contrats, deux instances de chacune, trois comparaisons et une
+installation/update des trois sections. Les formulations à 2/5 plus haut restent le dossier
+historique de la fondation initiale, pas l'état courant du lock.

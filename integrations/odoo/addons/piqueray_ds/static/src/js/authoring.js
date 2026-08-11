@@ -46,11 +46,16 @@ import {
     RemoveReviewAction,
     SetReviewBooleanAction,
 } from "./repeat_action";
-import { ReplaceReviewAvatarAction, SetReviewAvatarAltAction } from "./media_action";
+import {
+    ReplaceHeroBackgroundAction,
+    ReplaceReviewAvatarAction,
+    SetHeroBackgroundAltAction,
+    SetReviewAvatarAltAction,
+} from "./media_action";
 
 // ODOO-019-AUTHORING-ROOTS BEGIN
-/** Les deux seules racines posables. Fermées par défaut, sans exception. */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews"];
+/** Les seules racines posables. Fermées par défaut, sans exception. */
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -77,9 +82,16 @@ export const PRESENTATION_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_presentation ${part}`);
 export const PRESENTATION_RICH_TEXT =
     '.s_pqr_presentation [data-pqr-part="presentation-title"], .s_pqr_presentation [data-pqr-part="presentation-text"]';
-/** Les zones rich-text des deux racines, réunies une fois : le fournisseur de
+export const HERO_EDITABLE_PARTS = [
+    '[data-pqr-part="hero-title"]',
+    '[data-pqr-part="hero-subtitle"]',
+    '[data-pqr-part="hero-cta"] [data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_hero ${part}`);
+export const HERO_RICH_TEXT =
+    '.s_pqr_hero [data-pqr-part="hero-title"], .s_pqr_hero [data-pqr-part="hero-subtitle"]';
+/** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -93,6 +105,7 @@ export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 export const PIQUERAY_REOPENED = [
     ...PRESENTATION_EDITABLE_PARTS,
     ...GOOGLE_REVIEWS_EDITABLE_PARTS,
+    ...HERO_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -187,6 +200,12 @@ export class PiquerayPresentationOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+export class PiquerayHeroOption extends BaseOptionComponent {
+    static template = "piqueray_ds.HeroOption";
+    static selector = ".s_pqr_hero";
+    static editableOnly = false;
+}
+
 export class PiquerayAuthoringPlugin extends Plugin {
     static id = "piquerayAuthoringPlugin";
 
@@ -244,7 +263,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption],
         builder_actions: {
             AddReviewAction,
             RemoveReviewAction,
@@ -253,6 +272,8 @@ export class PiquerayAuthoringPlugin extends Plugin {
             SetReviewBooleanAction,
             ReplaceReviewAvatarAction,
             SetReviewAvatarAltAction,
+            ReplaceHeroBackgroundAction,
+            SetHeroBackgroundAltAction,
         },
 
         // Une zone `data-pqr-marks=""` est du texte simple : aucune toolbar de

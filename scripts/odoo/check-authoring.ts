@@ -42,6 +42,7 @@ import { runAsCli } from './lib/cli.js';
 export const ROOT_SELECTOR: Record<string, string> = {
   'ds.presentation': '.s_pqr_presentation',
   'ds.google-reviews': '.s_pqr_google_reviews',
+  'ds.hero': '.s_pqr_hero',
 };
 
 // ---------------------------------------------------------------------------
@@ -261,7 +262,7 @@ export function checkConfig(config: AuthoringConfig, source: string, contracts: 
       `rootContract ${rootId}@${config.rootContract.version} ; le dépôt porte @${contracts.get(rootId)?.version ?? '(absent)'}`,
     );
   }
-  if (!prefix) problemes.push(`racine « ${rootId} » hors des deux sections posables (${ROOT_CONTRACT_IDS.join(', ')})`);
+  if (!prefix) problemes.push(`racine « ${rootId} » hors des sections posables (${ROOT_CONTRACT_IDS.join(', ')})`);
 
   for (const d of config.controls) {
     noteId(d.decisionId, 'control');

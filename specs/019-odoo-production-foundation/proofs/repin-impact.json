@@ -5,10 +5,10 @@
   "status": "pass",
   "fixture": "inputs-lock-current",
   "observations": [
-    "[pass] lock — 5/5 contrats correspondent à l'état courant",
-    "[pass] graphDigest — 9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0",
-    "[pass] repin — ds.section-header 2.1.1→2.2.0 et ds.button 2.0.0→2.0.1; les trois autres contrats restent épinglés à leur version",
-    "[pass] impact — CSS généré, adresses d'authoring, métadonnées sauvegardées et politique de versions actualisés; scénarios Foundation, sections, isolation, install/update et visuels rejoués"
+    "[pass] lock — 6/6 contrats et toutes les sources épinglées correspondent à l'état courant",
+    "[pass] graphDigest — cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b",
+    "[pass] repin — ds.hero@1.5.0 ajouté; SectionHeader 2.2.0 et Button 2.0.1 conservés; le fichier de primitives intègre aussi les deux gaps Equipe à 32px du dernier commit",
+    "[pass] impact — assets et dérivation régénérés; install/update trois racines, Hero fonctionnel/visuel et isolation combinée 2×3 rejoués après le repin"
   ],
   "artifacts": [],
   "limitCodes": [],

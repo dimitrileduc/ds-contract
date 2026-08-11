@@ -3,21 +3,21 @@
   "scenarioId": "install-update",
   "snapshotId": "odoo-019-foundation",
   "status": "pass",
-  "fixture": "two-sections-saved",
+  "fixture": "three-sections-saved",
   "observations": [
-    "[pass] clean install — les deux sections publiques répondent — attendu « 2 pages HTTP 200 remplies », observé « [{\"path\":\"/piqueray-harness/presentation-visual\",\"status\":200,\"chars\":363},{\"path\":\"/piqueray-harness/google-reviews-visual\",\"status\":200,\"chars\":435}] »",
-    "[pass] métadonnées — les deux racines portent versions et digest — attendu « 7 métadonnées présentes par racine », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"}] »",
+    "[pass] clean install — les trois sections publiques répondent — attendu « 3 pages HTTP 200 remplies », observé « [{\"path\":\"/piqueray-harness/presentation-visual\",\"status\":200,\"chars\":363},{\"path\":\"/piqueray-harness/google-reviews-visual\",\"status\":200,\"chars\":435},{\"path\":\"/piqueray-harness/hero-visual\",\"status\":200,\"chars\":238}] »",
+    "[pass] métadonnées — les trois racines portent versions et digest — attendu « 7 métadonnées présentes par racine », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b\",\"vcss\":\"19.0.1.1.0\",\"vxml\":\"19.0.1.1.0\",\"vjs\":\"19.0.1.1.0\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b\",\"vcss\":\"19.0.1.1.0\",\"vxml\":\"19.0.1.1.0\",\"vjs\":\"19.0.1.1.0\"},{\"contract\":\"ds.hero\",\"contractVersion\":\"1.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b\",\"vcss\":\"19.0.1.1.0\",\"vxml\":\"19.0.1.1.0\",\"vjs\":\"19.0.1.1.0\"}] »",
     "[pass] update — odoo -u termine sans erreur — attendu « code 0 », observé « code 0 »",
-    "[pass] update — contenu public intact — attendu « textes identiques avant/après », observé « [363,435] »",
-    "[pass] update — métadonnées intactes sans migration implicite — attendu « métadonnées identiques avant/après », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0\",\"vcss\":\"19.0.1.0.1\",\"vxml\":\"19.0.1.0.1\",\"vjs\":\"19.0.1.0.1\"}] »"
+    "[pass] update — contenu public intact — attendu « textes identiques avant/après », observé « [363,435,238] »",
+    "[pass] update — métadonnées intactes sans migration implicite — attendu « métadonnées identiques avant/après », observé « [{\"contract\":\"ds.presentation\",\"contractVersion\":\"2.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b\",\"vcss\":\"19.0.1.1.0\",\"vxml\":\"19.0.1.1.0\",\"vjs\":\"19.0.1.1.0\"},{\"contract\":\"ds.google-reviews\",\"contractVersion\":\"1.0.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b\",\"vcss\":\"19.0.1.1.0\",\"vxml\":\"19.0.1.1.0\",\"vjs\":\"19.0.1.1.0\"},{\"contract\":\"ds.hero\",\"contractVersion\":\"1.5.0\",\"authoringVersion\":\"1.0.0\",\"graphDigest\":\"cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b\",\"vcss\":\"19.0.1.1.0\",\"vxml\":\"19.0.1.1.0\",\"vjs\":\"19.0.1.1.0\"}] »"
   ],
   "artifacts": [
     {
       "path": "specs/019-odoo-production-foundation/proofs/install-update.before-after.json",
-      "sha256": "7a9832bf4d13acc758d64fde5b0736f6f08f46f4f22ffcd1af36932f07e3dff9",
+      "sha256": "ece9053ae83654eb30be8339370938f1f6de54528bd2686f59715723bf05085c",
       "kind": "json"
     }
   ],
   "limitCodes": [],
-  "durationMs": 145749
+  "durationMs": 114869
 }

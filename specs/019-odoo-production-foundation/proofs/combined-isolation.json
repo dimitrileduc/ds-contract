@@ -3,21 +3,21 @@
   "scenarioId": "combined-isolation",
   "snapshotId": "odoo-019-foundation",
   "status": "pass",
-  "fixture": "two-by-two-sections",
+  "fixture": "two-by-three-sections",
   "observations": [
-    "[pass] page combinée — deux instances de chaque section — attendu « 2 Presentation + 2 GoogleReviews », observé « 2 + 2 »",
-    "[pass] édition — valeurs opposées sans fuite inter-section — attendu « 4 valeurs distinctes, CTA opposés, 5 cartes chacune », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}]} »",
+    "[pass] page combinée — deux instances de chaque section — attendu « 2 Presentation + 2 GoogleReviews + 2 Hero », observé « 2 + 2 + 2 »",
+    "[pass] édition — valeurs opposées sans fuite inter-section — attendu « 6 valeurs distinctes, CTA opposés, 5 cartes chacune », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}],\"heroes\":[{\"title\":\"Combiné Hero A\",\"subtitle\":\"La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.\"},{\"title\":\"Combiné Hero B\",\"subtitle\":\"La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.\"}]} »",
     "[pass] save combiné — vue persistée — attendu « RPC 2xx », observé « HTTP 200 »",
-    "[pass] public — quatre instances persistées sans fuite — attendu « HTTP 200 et valeurs A/B distinctes », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}]} »",
-    "[pass] éditeur rouvert — état combiné relu — attendu « CTA B masqué et avis B distinct », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}]} »"
+    "[pass] public — six instances persistées sans fuite — attendu « HTTP 200 et valeurs A/B distinctes sur trois sections », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}],\"heroes\":[{\"title\":\"Combiné Hero A\",\"subtitle\":\"La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.\"},{\"title\":\"Combiné Hero B\",\"subtitle\":\"La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.\"}]} »",
+    "[pass] éditeur rouvert — état combiné relu — attendu « CTA B masqué, avis B et Hero B distincts », observé « {\"presentations\":[{\"title\":\"Combiné Présentation A\",\"cta\":true},{\"title\":\"Combiné Présentation B\",\"cta\":false}],\"reviews\":[{\"qualifier\":\"Avis combinés A\",\"cards\":5},{\"qualifier\":\"Avis combinés B\",\"cards\":5}],\"heroes\":[{\"title\":\"Combiné Hero A\",\"subtitle\":\"La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.\"},{\"title\":\"Combiné Hero B\",\"subtitle\":\"La performance sans compromis, même en usage intensif. Atelier, bâtiment industriel, bâtiment public ou résidence : quelle que soit votre application, nous avons la solution idéale.\"}]} »"
   ],
   "artifacts": [
     {
       "path": "specs/019-odoo-production-foundation/proofs/combined-isolation.public.json",
-      "sha256": "dfb39e45478125f1024b695f552cf800eaa6c2700353f88c7836c684a50c5904",
+      "sha256": "e0ffb7e3f4c58dd3fab17a931fd712e821ad69eba553160851f01080082cb87f",
       "kind": "json"
     }
   ],
   "limitCodes": [],
-  "durationMs": 143661
+  "durationMs": 126182
 }

@@ -16,4 +16,12 @@
     </xpath>
   </template>
   <!-- ODOO-019-PRESENTATION-SNIPPET END -->
+  <!-- ODOO-019-HERO-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_hero" inherit_id="website.snippets" name="Piqueray · Hero dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_hero" string="Piqueray · Hero"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_cover.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-019-HERO-SNIPPET END -->
 </odoo>

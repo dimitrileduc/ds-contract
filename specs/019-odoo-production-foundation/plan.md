@@ -311,3 +311,12 @@ silencieusement : il déclenche repin et requalification affectée.
 Les adaptateurs QWeb/JS manuels et la frontière d'API Odoo interne ne sont pas des violations de
 sortie générée : ils sont des sources cible-specific, isolées, testées et comptées. Le générateur
 générique qui pourrait les supprimer reste volontairement dans 025 après accumulation des faits.
+
+## Extension d'exécution — `ds.hero` (2026-08-11)
+
+L'extension réutilise la fondation dans son ordre prescrit : snapshot/repin, décisions exhaustives,
+spike du média natif, QWeb et options, puis preuves. Elle ajoute `hero.authoring.json`, le template
+et l'entrée de snippet Hero, un contrôle média qui laisse Odoo posséder le remplacement/sauvegarde
+du nœud, et les scénarios fonctionnel, visuel, isolation combinée et install/update à trois racines.
+Le résultat n'ajoute ni émetteur Odoo dans `core/`, ni bitmap de contenu dans l'addon, ni migration
+automatique du HTML déjà sauvegardé.

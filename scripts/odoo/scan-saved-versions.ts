@@ -3,10 +3,10 @@ import path from 'node:path';
 import { canonicalJson, sha256 } from './lib/canonical.js';
 import { arg, runAsCli } from './lib/cli.js';
 
-const EXPECTED_GRAPH = '9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0';
+const EXPECTED_GRAPH = 'cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b';
 const AUTHORING = '1.0.0';
-const MODULE = '19.0.1.0.1';
-const CONTRACTS: Record<string, string> = { 'ds.presentation': '2.5.0', 'ds.google-reviews': '1.0.0' };
+const MODULE = '19.0.1.1.0';
+const CONTRACTS: Record<string, string> = { 'ds.presentation': '2.5.0', 'ds.google-reviews': '1.0.0', 'ds.hero': '1.5.0' };
 
 export type VersionState = 'current' | 'policy-stale' | 'structure-stale' | 'unknown';
 export interface SavedCase { id: string; html: string }
@@ -33,7 +33,7 @@ export function classify(attributes: Record<string, string>): VersionState {
 
 export function scanCases(cases: SavedCase[]) {
   const entries: ScanEntry[] = cases.flatMap<ScanEntry>(({ id, html }) => {
-    const tags = [...html.matchAll(/<(?:section|div)\b[^>]*(?:s_pqr_presentation|s_pqr_google_reviews)[^>]*>/g)].map((m) => m[0]);
+    const tags = [...html.matchAll(/<(?:section|div)\b[^>]*(?:s_pqr_presentation|s_pqr_google_reviews|s_pqr_hero)[^>]*>/g)].map((m) => m[0]);
     if (tags.length === 0) return [{ caseId: id, index: 0, contractId: null, state: 'unknown' as const, metadata: {} }];
     return tags.map((tag, index) => {
       const metadata = attrs(tag);

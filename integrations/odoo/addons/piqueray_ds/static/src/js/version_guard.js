@@ -8,10 +8,10 @@ import { Plugin, registry, withSequence } from "./odoo19_compat";
 // `authoring.js` et invisible pour la politique de versions.
 import { PIQUERAY_ROOT_SELECTOR } from "./authoring";
 
-export const CURRENT_GRAPH_DIGEST = "9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0";
+export const CURRENT_GRAPH_DIGEST = "cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b";
 export const CURRENT_AUTHORING_VERSION = "1.0.0";
-export const CURRENT_MODULE_VERSION = "19.0.1.0.1";
-const CONTRACT_VERSIONS = { "ds.presentation": "2.5.0", "ds.google-reviews": "1.0.0" };
+export const CURRENT_MODULE_VERSION = "19.0.1.1.0";
+const CONTRACT_VERSIONS = { "ds.presentation": "2.5.0", "ds.google-reviews": "1.0.0", "ds.hero": "1.5.0" };
 
 export function classifySavedRoot(root) {
     const id = root?.dataset?.dsContract;

@@ -13,15 +13,15 @@
     "description": """
 Sections posables dérivées des contrats Piqueray gouvernés.
 
-Deux racines seulement sont inscrites dans la bibliothèque de blocs :
-`ds.presentation` et `ds.google-reviews`. Leurs dépendances internes
+Trois racines seulement sont inscrites dans la bibliothèque de blocs :
+`ds.presentation`, `ds.google-reviews` et `ds.hero`. Leurs dépendances internes
 (`ds.section-header`, `ds.button`, `ds.review-card`) sont composées par QWeb et ne
 sont jamais posables séparément.
 
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.1.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",

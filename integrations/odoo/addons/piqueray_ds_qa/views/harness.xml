@@ -132,6 +132,21 @@
   </record>
   <!-- ODOO-019-HARNESS-PRESENTATION END -->
 
+  <!-- ODOO-019-HARNESS-HERO BEGIN -->
+  <template id="harness_hero" name="Piqueray — banc Hero">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_hero" model="website.page">
+    <field name="url">/piqueray-harness/hero</field><field name="view_id" ref="harness_hero"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_hero_visual" name="Piqueray — Hero visuel">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; height: 688px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_hero"/></div></div></t>
+  </template>
+  <record id="page_harness_hero_visual" model="website.page">
+    <field name="url">/piqueray-harness/hero-visual</field><field name="view_id" ref="harness_hero_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-HERO END -->
+
   <!-- ODOO-019-HARNESS-COMBINED BEGIN -->
   <template id="harness_combined" name="Piqueray — banc combiné">
     <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>

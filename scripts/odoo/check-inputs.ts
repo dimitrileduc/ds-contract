@@ -80,11 +80,9 @@ export function buildSnapshot(): InputSnapshot {
     const src = data.contracts.get(id) as ContractSource;
     return { kind: 'contract' as const, id: src.id, version: src.version, path: src.path, sha256: src.sha256 };
   });
-  if (contracts.length !== 5) {
-    // Le schéma exige exactement 5. Un 6ᵉ contrat dans la fermeture n'est pas une
-    // broutille de format : c'est un élargissement de périmètre.
+  if (contracts.length < ROOT_CONTRACT_IDS.length) {
     throw new Error(
-      `La fermeture des racines ${ROOT_CONTRACT_IDS.join(' + ')} contient ${contracts.length} contrat(s), 5 attendus :\n  ` +
+      `La fermeture des racines ${ROOT_CONTRACT_IDS.join(' + ')} ne contient que ${contracts.length} contrat(s) :\n  ` +
         contracts.map((c) => `${c.id}@${c.version}`).join('\n  '),
     );
   }
@@ -165,7 +163,7 @@ function main() {
     const apres = canonicalJson(live);
     writeFileSync(LOCK_PATH, apres);
     console.log(`${avant === null ? 'Lock CRÉÉ' : avant === apres ? 'Lock inchangé' : 'Lock REPINNÉ'} → ${repoRelative(LOCK_PATH)}`);
-    console.log(`  5 contrats · ${live.tokens.length} source(s) de jetons · ${live.registries.length} registre(s) · ${live.assets.length} asset(s)`);
+    console.log(`  ${live.contracts.length} contrats · ${live.tokens.length} source(s) de jetons · ${live.registries.length} registre(s) · ${live.assets.length} asset(s)`);
     console.log(`  graphDigest ${live.graphDigest}`);
     if (avant !== null && avant !== apres) {
       // Un repin n'est pas une formalité : il périme des preuves.

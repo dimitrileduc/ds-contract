@@ -6,6 +6,7 @@
  */
 /* Fermetures émises :
  *   ds.google-reviews → ds.google-reviews, ds.review-card
+ *   ds.hero → ds.button, ds.hero, ds.section-header
  *   ds.presentation → ds.button, ds.presentation, ds.section-header
  */
 
@@ -655,6 +656,101 @@
 
 .section-header--emphase-compact .section-header__Titre {
   font-size: var(--pqr-font-size-24);
+}
+
+/* Hero — from ds.hero v1.5.0 (core/emit-html.ts) */
+
+.hero, .hero *, .hero *::before, .hero *::after {
+  box-sizing: border-box;
+}
+
+.hero {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  height: var(--pqr-size-hero-root);
+  gap: var(--pqr-space-10);
+  background-color: transparent;
+  position: relative;
+}
+
+.hero__Background {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__VoileNavigation {
+  background-image: linear-gradient(to top, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__blocTexte {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  gap: var(--pqr-space-16);
+  position: relative;
+  z-index: 2;
+}
+
+.hero__Titres {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  gap: var(--pqr-space-16);
+  padding-top: var(--pqr-space-96);
+  padding-right: var(--pqr-space-89);
+  padding-bottom: var(--pqr-space-48);
+  padding-left: var(--pqr-space-89);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%);
+}
+
+.hero__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  gap: var(--pqr-space-32);
+}
+
+.hero__sousTitre {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  color: var(--pqr-color-blanc);
+  font-size: var(--pqr-font-size-24);
+  font-weight: var(--pqr-font-weight-medium);
+  line-height: var(--pqr-font-line-height-32);
+}
+
+.hero__sousTitre > strong {
+  font-weight: var(--pqr-font-weight-bold);
 }
 
 /* Presentation — from ds.presentation v2.5.0 (core/emit-html.ts) */

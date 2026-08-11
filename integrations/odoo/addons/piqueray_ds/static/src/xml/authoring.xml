@@ -52,4 +52,18 @@
   </t>
   <!-- ODOO-019-PRESENTATION-PANEL END -->
 
+  <!-- ODOO-019-HERO-PANEL BEGIN -->
+  <t t-name="piqueray_ds.HeroOption">
+    <BuilderRow label.translate="Piqueray · Hero">
+      <span data-pqr-control="hero-title"><span data-pqr-control="hero-subtitle"><span data-pqr-control="hero-cta-label">Le titre, le sous-titre et le CTA se modifient directement dans le bloc.</span></span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Image">
+      <span data-pqr-control="hero-background-url"><BuilderButton action="'pqrReplaceHeroBackground'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="hero-background-alt"><BuilderTextInput action="'pqrSetHeroBackgroundAlt'"/></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-HERO-PANEL END -->
+
 </templates>

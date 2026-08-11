@@ -286,12 +286,12 @@ function testVues() {
   }
 
   if (!existsSync(snippets)) {
-    saute('au plus 2 racines inscrites, aucun composant interne', 'snippets.xml absent — T028/T045');
+    saute(`au plus ${ROOT_CONTRACT_IDS.length} racines inscrites, aucun composant interne`, 'snippets.xml absent — T028/T045');
   } else {
     const src = readFileSync(snippets, 'utf8');
     const inscrits = [...src.matchAll(/t-snippet="([^"]+)"/g)].map((m) => m[1]);
-    if (inscrits.length > 2) ko('au plus 2 racines inscrites', `${inscrits.length} : ${inscrits.join(', ')}`);
-    else ok('au plus 2 racines inscrites', `${inscrits.length}`);
+    if (inscrits.length > ROOT_CONTRACT_IDS.length) ko(`au plus ${ROOT_CONTRACT_IDS.length} racines inscrites`, `${inscrits.length} : ${inscrits.join(', ')}`);
+    else ok(`au plus ${ROOT_CONTRACT_IDS.length} racines inscrites`, `${inscrits.length}`);
     const fautifs = INTERNES.filter((id) => src.includes(id.replace('ds.', '').replace(/-/g, '_')) && /t-snippet/.test(src));
     if (fautifs.length > 0 && inscrits.some((i) => fautifs.some((f) => i.includes(f)))) {
       ko('aucun composant interne posable', `inscrits à tort : ${fautifs.join(', ')}`);
