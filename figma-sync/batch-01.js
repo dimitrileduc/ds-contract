@@ -63,6 +63,7 @@ const COMPONENTS = [
               "characters": "Question",
               "fontSize": 20,
               "fontStyle": "Semi Bold",
+              "textStyle": "Titre 5",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 0,
@@ -164,6 +165,7 @@ const COMPONENTS = [
                   "characters": "Question",
                   "fontSize": 20,
                   "fontStyle": "Semi Bold",
+                  "textStyle": "Titre 5",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 25,
                   "letterSpacing": 0,
@@ -184,6 +186,7 @@ const COMPONENTS = [
               "characters": "Réponse",
               "fontSize": 14,
               "fontStyle": "Regular",
+              "textStyle": "Paragraphe",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
               "letterSpacing": 0,
@@ -265,6 +268,7 @@ const COMPONENTS = [
               "characters": "Question",
               "fontSize": 14,
               "fontStyle": "Bold",
+              "textStyle": "Paragraphe gras",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
               "letterSpacing": 0,
@@ -367,6 +371,7 @@ const COMPONENTS = [
                   "characters": "Question",
                   "fontSize": 14,
                   "fontStyle": "Bold",
+                  "textStyle": "Paragraphe gras",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 24,
                   "letterSpacing": 0,
@@ -387,6 +392,7 @@ const COMPONENTS = [
               "characters": "Réponse",
               "fontSize": 14,
               "fontStyle": "Regular",
+              "textStyle": "Paragraphe",
               "textFill": "color/noir-bleute",
               "lineHeight": 24,
               "letterSpacing": 0,
@@ -493,6 +499,7 @@ const COMPONENTS = [
                   "characters": "Conseils personnalisés",
                   "fontSize": 32,
                   "fontStyle": "Regular",
+                  "textStyle": "Titre 3",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 40,
                   "fontFamily": "Montserrat",
@@ -504,6 +511,7 @@ const COMPONENTS = [
                   "characters": "Devis gratuits effectués sur place, nous nous déplaçons chez vous",
                   "fontSize": 18,
                   "fontStyle": "Regular",
+                  "textStyle": "Lead",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 27,
                   "fontFamily": "Montserrat",
@@ -833,6 +841,7 @@ const COMPONENTS = [
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
+              "textStyle": "Libellé bouton",
               "textFill": "color/blanc",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -898,6 +907,7 @@ const COMPONENTS = [
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
+              "textStyle": "Libellé bouton",
               "textFill": "color/blanc",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -963,6 +973,7 @@ const COMPONENTS = [
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
+              "textStyle": "Libellé bouton",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -1028,6 +1039,7 @@ const COMPONENTS = [
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
+              "textStyle": "Libellé bouton",
               "textFill": "color/blanc",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -1096,6 +1108,7 @@ const COMPONENTS = [
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
+              "textStyle": "Libellé bouton",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -1161,6 +1174,7 @@ const COMPONENTS = [
               "characters": "Contactez-nous",
               "fontSize": 16,
               "fontStyle": "Medium",
+              "textStyle": "Libellé bouton",
               "textFill": "color/noir-bleute",
               "lineHeight": 22,
               "textCase": "UPPER",
@@ -1331,7 +1345,8 @@ const COMPONENTS = [
     "swapProps": [],
     "fontStyles": [
       "Medium",
-      "Regular"
+      "Regular",
+      "Bold"
     ],
     "variants": [
       {
@@ -1400,6 +1415,7 @@ const COMPONENTS = [
                   "characters": "Pour portes de garage",
                   "fontSize": 24,
                   "fontStyle": "Regular",
+                  "textStyle": "Titre 4",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 30,
                   "textAlignH": "CENTER",
@@ -1416,7 +1432,14 @@ const COMPONENTS = [
                   "lineHeight": 24,
                   "textAlignH": "CENTER",
                   "fontFamily": "Montserrat",
-                  "contentProp": "Texte"
+                  "contentProp": "Texte",
+                  "richTextRanges": [
+                    {
+                      "start": 0,
+                      "end": 22,
+                      "fontStyle": "Bold"
+                    }
+                  ]
                 }
               ]
             }
@@ -1508,7 +1531,14 @@ const COMPONENTS = [
                   "lineHeight": 27,
                   "textAlignH": "LEFT",
                   "fontFamily": "Montserrat",
-                  "contentProp": "Texte"
+                  "contentProp": "Texte",
+                  "richTextRanges": [
+                    {
+                      "start": 0,
+                      "end": 22,
+                      "fontStyle": "Bold"
+                    }
+                  ]
                 }
               ]
             },
@@ -1676,6 +1706,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -1727,6 +1758,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -1778,6 +1810,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -1829,6 +1862,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -1880,6 +1914,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -1931,6 +1966,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -1982,6 +2018,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2033,6 +2070,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2084,6 +2122,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2145,6 +2184,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2206,6 +2246,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2267,6 +2308,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2328,6 +2370,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2389,6 +2432,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2450,6 +2494,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2511,6 +2556,7 @@ const COMPONENTS = [
               "characters": "Plus de 50 ans d’expérience",
               "fontSize": 20,
               "fontStyle": "Regular",
+              "textStyle": "Accroche",
               "textFill": "color/noir-bleute",
               "lineHeight": 25,
               "letterSpacing": 3,
@@ -2563,7 +2609,8 @@ const COMPONENTS = [
     ],
     "swapProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -2671,7 +2718,8 @@ const COMPONENTS = [
                       "name": "AdresseEtiquette",
                       "characters": "Adresse",
                       "fontSize": 24,
-                      "fontStyle": "Medium",
+                      "fontStyle": "Regular",
+                      "textStyle": "Titre 4",
                       "textFill": "color/orange",
                       "lineHeight": 30,
                       "fontFamily": "Montserrat"
@@ -2681,7 +2729,8 @@ const COMPONENTS = [
                       "name": "AdresseValeur",
                       "characters": "Rue Alfred Drèze 7,\u20284860 Pepinster",
                       "fontSize": 18,
-                      "fontStyle": "Medium",
+                      "fontStyle": "Regular",
+                      "textStyle": "Lead",
                       "textFill": "color/noir-bleute",
                       "lineHeight": 27,
                       "textDecoration": "UNDERLINE",
@@ -2707,7 +2756,8 @@ const COMPONENTS = [
                       "name": "HorairesEtiquette",
                       "characters": "Horaires",
                       "fontSize": 24,
-                      "fontStyle": "Medium",
+                      "fontStyle": "Regular",
+                      "textStyle": "Titre 4",
                       "textFill": "color/orange",
                       "lineHeight": 30,
                       "fontFamily": "Montserrat"
@@ -2717,7 +2767,8 @@ const COMPONENTS = [
                       "name": "HorairesValeur",
                       "characters": "Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00",
                       "fontSize": 18,
-                      "fontStyle": "Medium",
+                      "fontStyle": "Regular",
+                      "textStyle": "Lead",
                       "textFill": "color/noir-bleute",
                       "lineHeight": 27,
                       "fontFamily": "Montserrat"
@@ -2742,7 +2793,8 @@ const COMPONENTS = [
                       "name": "ContactEtiquette",
                       "characters": "Contact",
                       "fontSize": 24,
-                      "fontStyle": "Medium",
+                      "fontStyle": "Regular",
+                      "textStyle": "Titre 4",
                       "textFill": "color/orange",
                       "lineHeight": 30,
                       "fontFamily": "Montserrat"
@@ -2752,7 +2804,8 @@ const COMPONENTS = [
                       "name": "tl32087463266EmailInfopi",
                       "characters": "Tél : +32 (0)87 46 32 66\r\u2028Email: info@piqueray.be",
                       "fontSize": 18,
-                      "fontStyle": "Medium",
+                      "fontStyle": "Regular",
+                      "textStyle": "Lead",
                       "textFill": "color/noir-bleute",
                       "lineHeight": 27,
                       "fontFamily": "Montserrat"
@@ -2777,7 +2830,8 @@ const COMPONENTS = [
                       "name": "SuivezNousEtiquette",
                       "characters": "Suivez-nous",
                       "fontSize": 24,
-                      "fontStyle": "Medium",
+                      "fontStyle": "Regular",
+                      "textStyle": "Titre 4",
                       "textFill": "color/orange",
                       "lineHeight": 30,
                       "fontFamily": "Montserrat"
@@ -2853,6 +2907,7 @@ const COMPONENTS = [
               "characters": "© 2025 Piqueray - CGV - Politique de confidentialité | Création de site internet ProduWeb",
               "fontSize": 14,
               "fontStyle": "Regular",
+              "textStyle": "Paragraphe",
               "textFill": "color/blanc",
               "lineHeight": 24,
               "fontFamily": "Montserrat",
@@ -2875,7 +2930,8 @@ const COMPONENTS = [
     "forwardedProps": [],
     "swapProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -2961,7 +3017,8 @@ const COMPONENTS = [
                   },
                   "characters": "Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous",
                   "fontSize": 40,
-                  "fontStyle": "Medium",
+                  "fontStyle": "Regular",
+                  "textStyle": "Titre 2",
                   "textFill": "color/blanc",
                   "lineHeight": 50,
                   "textAlignH": "CENTER",
@@ -3245,6 +3302,7 @@ const COMPONENTS = [
                   "characters": "Cécilia Piqueray",
                   "fontSize": 32,
                   "fontStyle": "Regular",
+                  "textStyle": "Titre 3",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 40,
                   "fontFamily": "Montserrat",
@@ -3256,6 +3314,7 @@ const COMPONENTS = [
                   "characters": "Gérante",
                   "fontSize": 16,
                   "fontStyle": "Semi Bold",
+                  "textStyle": "Titre 6",
                   "textFill": "color/orange",
                   "lineHeight": 20,
                   "fontFamily": "Montserrat",
@@ -3318,15 +3377,16 @@ const boundPaint = (varName, consumer) => {
 
 // Named text styles (synced by 01-tokens.js): consumers look up OUR styles
 // only — the ds_contracts/textStyleToken marker is identity, a foreign style
-// sharing a name is never used. Missing style (tokens script not run yet)
-// degrades gracefully: the raw fontName/fontSize already set on the node
-// stand until the next amend after the styles exist.
+// sharing a name is never used. A governed plain-text node must not silently
+// fall back to raw typography: missing or duplicate marked styles STOP.
 let _textStyleMap = null;
 async function ourTextStyle(name) {
   if (!_textStyleMap) {
     _textStyleMap = {};
     for (const s of await figma.getLocalTextStylesAsync()) {
-      if (s.getSharedPluginData('ds_contracts', 'textStyleToken')) _textStyleMap[s.name] = s;
+      if (!s.getSharedPluginData('ds_contracts', 'textStyleToken')) continue;
+      if (_textStyleMap[s.name]) throw new Error('Duplicate governed Text Style name: ' + s.name);
+      _textStyleMap[s.name] = s;
     }
   }
   return _textStyleMap[name] || null;
@@ -3367,6 +3427,169 @@ async function textFont(spec) {
   const used = (await resolveFont('Inter', style)) || (await resolveFont('Inter', 'Regular')) || { family: 'Inter', style: 'Regular' };
   fontFallbacks.push({ wanted: family + ' ' + style, used: used.family + ' ' + used.style });
   return used;
+}
+
+function basePropertyName(key) { return String(key || '').split('#')[0]; }
+async function applyRichTextRanges(node, ranges) {
+  if (!ranges || ranges.length === 0) return;
+  if (!node || node.type !== 'TEXT') throw new Error('Rich-text target is not a TEXT node');
+  const length = node.characters.length;
+  for (const range of ranges) {
+    if (range.start < 0 || range.end <= range.start || range.end > length) {
+      throw new Error('Invalid rich-text range ' + range.start + '..' + range.end + ' for TEXT length ' + length);
+    }
+    const current = node.getRangeFontName(range.start, Math.min(range.end, range.start + 1));
+    const family = current && typeof current === 'object' && current.family
+      ? current.family
+      : (node.fontName && typeof node.fontName === 'object' && node.fontName.family ? node.fontName.family : 'Inter');
+    const wanted = await resolveFont(family, range.fontStyle);
+    if (!wanted) throw new Error('Cannot load rich-text font: ' + family + ' ' + range.fontStyle);
+    node.setRangeFontName(range.start, range.end, wanted);
+  }
+}
+function textNodeForInstanceProperty(instance, property) {
+  const candidates = typeof instance.findAll === 'function'
+    ? instance.findAll((n) => n.type === 'TEXT' && n.componentPropertyReferences && n.componentPropertyReferences.characters)
+    : [];
+  return candidates.find((n) => basePropertyName(n.componentPropertyReferences.characters) === property) || null;
+}
+async function applyDepRichTextRanges(instance, entries) {
+  for (const entry of entries || []) {
+    const text = textNodeForInstanceProperty(instance, entry.property);
+    if (!text) throw new Error('Rich-text child property has no rendered TEXT target: ' + entry.property);
+    await applyRichTextRanges(text, entry.ranges);
+  }
+}
+
+function propertyValueByBase(node, base) {
+  if (node && node.type === 'INSTANCE') {
+    const key = Object.keys(node.componentProperties || {}).find((k) => basePropertyName(k) === base);
+    return key ? node.componentProperties[key].value : undefined;
+  }
+  if (node && (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET')) {
+    const key = Object.keys(node.componentPropertyDefinitions || {}).find((k) => basePropertyName(k) === base);
+    return key ? node.componentPropertyDefinitions[key].defaultValue : undefined;
+  }
+  return undefined;
+}
+function fontRanges(node) {
+  if (!node || node.type !== 'TEXT') return [];
+  if (typeof node.getStyledTextSegments !== 'function') {
+    const f = node.fontName;
+    return f && typeof f === 'object' && f.family
+      ? [{ start: 0, end: node.characters.length, fontName: { family: f.family, style: f.style } }]
+      : [];
+  }
+  return node.getStyledTextSegments(['fontName']).map((s) => ({
+    start: s.start, end: s.end,
+    fontName: s.fontName && typeof s.fontName === 'object' && s.fontName.family
+      ? { family: s.fontName.family, style: s.fontName.style }
+      : null,
+  }));
+}
+function sameValue(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+function preparerSauvetageConsommateurs(master, info) {
+  const hotes = [];
+  for (const h of info.hotes || []) {
+    if (h.role !== 'instance') continue;
+    const props = [], textes = [], espacements = [];
+    const pile = [{ n: h.node, c: '' }];
+    while (pile.length > 0) {
+      const item = pile.shift();
+      const n = item.n;
+      const ref = noeudAuChemin(master, item.c);
+      if (!ref) throw new Error('REFUS consommateurs — chemin absent du master avant mutation: hostId=' + h.hostId + ' chemin=' + item.c);
+      if (n.type === 'INSTANCE') {
+        const signature = Object.keys(n.componentProperties || {}).map(basePropertyName).sort();
+        for (const key of Object.keys(n.componentProperties || {})) {
+          const base = basePropertyName(key);
+          const value = n.componentProperties[key].value;
+          if (!sameValue(value, propertyValueByBase(ref, base))) props.push({ chemin: item.c, property: base, value: value, signature: signature });
+        }
+      }
+      if (n.type === 'TEXT') {
+        const ranges = fontRanges(n);
+        const refRanges = fontRanges(ref);
+        if (n.characters !== ref.characters || !sameValue(ranges, refRanges)) {
+          const property = n.componentPropertyReferences && n.componentPropertyReferences.characters
+            ? basePropertyName(n.componentPropertyReferences.characters)
+            : null;
+          textes.push({ chemin: item.c, property: property, characters: n.characters, ranges: ranges });
+        }
+      }
+      if (typeof n.itemSpacing === 'number' && typeof ref.itemSpacing === 'number' && n.itemSpacing !== ref.itemSpacing) {
+        espacements.push({ chemin: item.c, itemSpacing: n.itemSpacing });
+      }
+      const kids = n.children || [];
+      for (let i = 0; i < kids.length; i++) pile.push({ n: kids[i], c: cheminEnfantDe(item.c, i) });
+    }
+    hotes.push({ hostId: h.hostId, node: h.node, props: props, textes: textes, espacements: espacements });
+  }
+  return { hotes: hotes };
+}
+async function restaurerSauvetageConsommateurs(plan, report) {
+  const restored = [];
+  for (const h of plan.hotes || []) {
+    for (const p of h.props) {
+      let node = noeudAuChemin(h.node, p.chemin);
+      const carriesProperty = (n) => {
+        if (!n || n.type !== 'INSTANCE') return false;
+        const bases = Object.keys(n.componentProperties || {}).map(basePropertyName).sort();
+        return bases.indexOf(p.property) >= 0;
+      };
+      if (!carriesProperty(node)) {
+        let candidates = typeof h.node.findAll === 'function'
+          ? h.node.findAll((n) => carriesProperty(n))
+          : [];
+        // The complete property signature disambiguates two composed
+        // instances exposing the same property. It is a tie-breaker, not a
+        // prerequisite: Figma can add/remove dependency properties between
+        // the two snapshots while the governed property identity remains.
+        if (candidates.length > 1 && p.signature) {
+          const exact = candidates.filter((n) => sameValue(
+            Object.keys(n.componentProperties || {}).map(basePropertyName).sort(),
+            p.signature,
+          ));
+          if (exact.length > 0) candidates = exact;
+        }
+        if (candidates.length !== 1) {
+          throw new Error('REFUS consommateurs — instance introuvable ou ambiguë après reconstruction: hostId=' + h.hostId + ' chemin=' + p.chemin + ' property=' + p.property + ' candidates=' + candidates.length);
+        }
+        node = candidates[0];
+      }
+      setInstanceProps(node, { [p.property]: p.value });
+    }
+    for (const e of h.espacements) {
+      const node = noeudAuChemin(h.node, e.chemin);
+      if (!node || typeof node.itemSpacing !== 'number') throw new Error('REFUS consommateurs — gap introuvable après reconstruction: hostId=' + h.hostId + ' chemin=' + e.chemin);
+      node.itemSpacing = e.itemSpacing;
+    }
+    for (const t of h.textes) {
+      let node = noeudAuChemin(h.node, t.chemin);
+      if (
+        (!node || node.type !== 'TEXT' ||
+          (t.property && basePropertyName(node.componentPropertyReferences && node.componentPropertyReferences.characters) !== t.property)) &&
+        t.property
+      ) {
+        node = (typeof h.node.findAll === 'function'
+          ? h.node.findAll((n) => n.type === 'TEXT' && basePropertyName(n.componentPropertyReferences && n.componentPropertyReferences.characters) === t.property)
+          : [])[0] || null;
+      }
+      if (!node || node.type !== 'TEXT') throw new Error('REFUS consommateurs — TEXT introuvable après reconstruction: hostId=' + h.hostId + ' chemin=' + t.chemin);
+      for (const r of t.ranges) {
+        if (!r.fontName) throw new Error('REFUS consommateurs — fontName mixte illisible: hostId=' + h.hostId + ' chemin=' + t.chemin);
+        const loaded = await resolveFont(r.fontName.family, r.fontName.style);
+        if (!loaded) throw new Error('REFUS consommateurs — police introuvable: ' + r.fontName.family + ' ' + r.fontName.style);
+      }
+      if (node.characters !== t.characters) node.characters = t.characters;
+      for (const r of t.ranges) {
+        const loaded = await resolveFont(r.fontName.family, r.fontName.style);
+        node.setRangeFontName(r.start, r.end, loaded);
+      }
+    }
+    restored.push({ hostId: h.hostId, props: h.props.length, textes: h.textes.length, espacements: h.espacements.length });
+  }
+  report.consumerOverrides = { verdict: 'vert', hotes: restored };
 }
 const fontStyles = new Set(['Medium']);
 for (const C of COMPONENTS) for (const s of C.fontStyles) fontStyles.add(s);
@@ -3712,11 +3935,13 @@ async function buildNode(spec, registry) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.
       const st = await ourTextStyle(spec.textStyle);
-      if (st) { try { await node.setTextStyleIdAsync(st.id); } catch (e) { /* raw props stand */ } }
+      if (!st) throw new Error('Missing governed Text Style: ' + spec.textStyle);
+      await node.setTextStyleIdAsync(st.id);
     }
+    await applyRichTextRanges(node, spec.richTextRanges);
     if (spec.textFill) node.fills = [boundPaint(spec.textFill, node)];
     if (spec.contentProp) {
-      registry.texts.push({ prop: spec.contentProp, node, default: spec.characters || '' });
+      registry.texts.push({ prop: spec.contentProp, node, default: spec.characters || '', ranges: spec.richTextRanges || [] });
     }
     if (spec.fill || spec.fixedWidth || spec.fixedHeight || spec.bindings) {
       // Styled static text (page chips, dots, thumbs): wrap in a frame so
@@ -3767,6 +3992,7 @@ async function buildNode(spec, registry) {
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
+    await applyDepRichTextRanges(node, spec.depRichTextRanges);
     if (spec.depPropRefs && spec.depPropRefs.length > 0) {
       registry.forwards = registry.forwards || [];
       registry.forwards.push({ instance: node, mappings: spec.depPropRefs });
@@ -4374,6 +4600,7 @@ async function amendSet(set, C) {
   for (const v of EV) {
     let comp = existingByName.get(v.name);
     const registry = { texts: [], slots: [], visibles: [] };
+    let planConsommateurs = null;
     if (!comp) {
       comp = await buildNode(v.spec, registry);
       set.appendChild(comp);
@@ -4383,6 +4610,7 @@ async function amendSet(set, C) {
       // page), compter les accueils, DÉCIDER. Une empreinte sans accueil jette
       // ICI, une ligne avant la première démolition (§X, FR-003a).
       const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
+      planConsommateurs = preparerSauvetageConsommateurs(comp, planPhotos.info);
       for (const child of [...comp.children]) child.remove();
       applyFrameSpec(comp, v.spec);
       for (const childSpec of v.spec.children || []) {
@@ -4429,6 +4657,7 @@ async function amendSet(set, C) {
         report.editedDefaults.push(t.prop);
       }
       t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
+      await applyRichTextRanges(t.node, t.ranges);
     }
     for (const sl of registry.slots) {
       const util = await ensureSlotUtility();
@@ -4463,6 +4692,7 @@ async function amendSet(set, C) {
       wireIconSwapNodes(registry, swap.property, k);
     }
     wireDepPropForwards(registry);
+    if (planConsommateurs) await restaurerSauvetageConsommateurs(planConsommateurs, report);
   }
 
   // Contract default combo must be the FIRST variant (Figma default = first).
@@ -4577,6 +4807,7 @@ async function amendComponent(comp, C) {
   // instances de page, compter les accueils, DÉCIDER. Le refus tombe ici, une
   // ligne avant la première démolition (§X, FR-003a).
   const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
+  const planConsommateurs = preparerSauvetageConsommateurs(comp, planPhotos.info);
   for (const child of [...comp.children]) child.remove();
   applyFrameSpec(comp, v.spec);
   for (const childSpec of v.spec.children || []) {
@@ -4621,6 +4852,7 @@ async function amendComponent(comp, C) {
       report.editedDefaults.push(t.prop);
     }
     t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
+    await applyRichTextRanges(t.node, t.ranges);
   }
   for (const sl of registry.slots) {
     const util = await ensureSlotUtility();
@@ -4655,6 +4887,7 @@ async function amendComponent(comp, C) {
     wireIconSwapNodes(registry, swap.property, k);
   }
   wireDepPropForwards(registry);
+  await restaurerSauvetageConsommateurs(planConsommateurs, report);
   comp.description = C.description;
   comp.setSharedPluginData('ds_contracts', 'specHash', hash);
   return report;
@@ -4734,6 +4967,7 @@ async function syncOne(C) {
       const key = b.comp.addComponentProperty(t.prop, 'TEXT', t.default);
       propertyKeys[t.prop] = key;
       t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };
+      await applyRichTextRanges(t.node, t.ranges);
     }
     for (const s of b.registry.slots) {
       const util = await ensureSlotUtility();

@@ -40,6 +40,7 @@ const S: Record<string, CSSProperties> = {
   "Paragraphe": {
     "color": "#37373B",
     "fontSize": "14px",
+    "fontWeight": 400,
     "lineHeight": "24px"
   },
   "h3": {

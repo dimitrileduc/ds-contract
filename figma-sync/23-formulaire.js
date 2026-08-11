@@ -17,7 +17,8 @@ const COMPONENTS = [
     ],
     "swapProps": [],
     "fontStyles": [
-      "Medium"
+      "Medium",
+      "Regular"
     ],
     "variants": [
       {
@@ -340,8 +341,10 @@ const COMPONENTS = [
                   "type": "text",
                   "name": "TexteConsentement",
                   "characters": "En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.",
-                  "fontSize": 16,
-                  "fontStyle": "Medium",
+                  "fontSize": 14,
+                  "fontStyle": "Regular",
+                  "textStyle": "Paragraphe",
+                  "lineHeight": 24,
                   "fontFamily": "Montserrat",
                   "contentProp": "Consentement"
                 },
@@ -409,15 +412,16 @@ const boundPaint = (varName, consumer) => {
 
 // Named text styles (synced by 01-tokens.js): consumers look up OUR styles
 // only — the ds_contracts/textStyleToken marker is identity, a foreign style
-// sharing a name is never used. Missing style (tokens script not run yet)
-// degrades gracefully: the raw fontName/fontSize already set on the node
-// stand until the next amend after the styles exist.
+// sharing a name is never used. A governed plain-text node must not silently
+// fall back to raw typography: missing or duplicate marked styles STOP.
 let _textStyleMap = null;
 async function ourTextStyle(name) {
   if (!_textStyleMap) {
     _textStyleMap = {};
     for (const s of await figma.getLocalTextStylesAsync()) {
-      if (s.getSharedPluginData('ds_contracts', 'textStyleToken')) _textStyleMap[s.name] = s;
+      if (!s.getSharedPluginData('ds_contracts', 'textStyleToken')) continue;
+      if (_textStyleMap[s.name]) throw new Error('Duplicate governed Text Style name: ' + s.name);
+      _textStyleMap[s.name] = s;
     }
   }
   return _textStyleMap[name] || null;
@@ -693,6 +697,7 @@ async function buildNode(spec, registry) {
     node.fontName = await textFont(spec);
     node.fontSize = spec.fontSize || 16;
     node.characters = spec.characters || '';
+    if (typeof spec.lineHeight === 'number') node.lineHeight = { unit: 'PIXELS', value: spec.lineHeight };
     if (typeof spec.letterSpacing === 'number') node.letterSpacing = { unit: 'PIXELS', value: spec.letterSpacing };
     if (spec.textCase) node.textCase = spec.textCase;
     if (spec.textDecoration) node.textDecoration = spec.textDecoration;
@@ -702,7 +707,8 @@ async function buildNode(spec, registry) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.
       const st = await ourTextStyle(spec.textStyle);
-      if (st) { try { await node.setTextStyleIdAsync(st.id); } catch (e) { /* raw props stand */ } }
+      if (!st) throw new Error('Missing governed Text Style: ' + spec.textStyle);
+      await node.setTextStyleIdAsync(st.id);
     }
     if (spec.textFill) node.fills = [boundPaint(spec.textFill, node)];
     if (spec.contentProp) {

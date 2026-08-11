@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/section-header.contract.json (ds.section-header v2.1.1)
+ * Source of truth: contracts/section-header.contract.json (ds.section-header v2.2.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -19,13 +19,16 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "center",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
     "gap": "8px",
-    "width": "1550px",
     "alignSelf": "stretch"
   },
   "Accroche": {
+    "width": "100%",
+    "minWidth": 0,
     "color": "#26282C",
     "fontSize": "20px",
     "fontWeight": 400,
@@ -34,6 +37,8 @@ const S: Record<string, CSSProperties> = {
     "textTransform": "uppercase"
   },
   "Titre": {
+    "width": "100%",
+    "minWidth": 0,
     "color": "#26282C",
     "fontSize": "40px",
     "fontWeight": 400,
@@ -72,7 +77,7 @@ const V: Record<string, CSSProperties> = {
 export interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
   disposition?: 'standard' | 'avecCta';
   accroche?: string;
-  /** Une seule propriété TEXT Figma ("Titre"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas reste UNE valeur TEXT native : la concaténation à plat. */
+  /** Une seule propriété TEXT Figma ("Titre"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas garde UNE valeur TEXT native et applique les marques gouvernées par plages de caractères natives. */
   titre?: Array<{ text: string; strong?: boolean }>;
   /** Extracted from Figma "Accroche2" BOOLEAN property (added by sync pass). */
   accroche2?: boolean;

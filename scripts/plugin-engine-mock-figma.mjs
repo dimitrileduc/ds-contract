@@ -98,6 +98,7 @@ export function createFigmaMock() {
         this.characters = '';
         this.fontSize = 16;
         this.fontName = { family: 'Inter', style: 'Regular' };
+        this._fontRanges = [];
         this.letterSpacing = { unit: 'PERCENT', value: 0 };
         this.lineHeight = { unit: 'AUTO' };
         this.textCase = 'ORIGINAL';
@@ -423,6 +424,49 @@ export function createFigmaMock() {
       this.textStyleId = id;
     }
 
+    _fontAt(index) {
+      let out = this.fontName;
+      for (const range of this._fontRanges ?? []) {
+        if (index >= range.start && index < range.end) out = range.fontName;
+      }
+      return out;
+    }
+
+    getRangeFontName(start, end) {
+      if (this.type !== 'TEXT') throw new Error('in getRangeFontName: node is not TEXT');
+      if (end <= start) return this.fontName;
+      const first = this._fontAt(start);
+      for (let i = start + 1; i < end; i++) {
+        if (JSON.stringify(this._fontAt(i)) !== JSON.stringify(first)) return mixed;
+      }
+      return first;
+    }
+
+    setRangeFontName(start, end, fontName) {
+      if (this.type !== 'TEXT') throw new Error('in setRangeFontName: node is not TEXT');
+      if (start < 0 || end <= start || end > this.characters.length) {
+        throw new Error(`in setRangeFontName: invalid range ${start}..${end} for length ${this.characters.length}`);
+      }
+      this._fontRanges.push({ start, end, fontName: structuredClone(fontName) });
+    }
+
+    getStyledTextSegments() {
+      if (this.type !== 'TEXT') throw new Error('in getStyledTextSegments: node is not TEXT');
+      if (this.characters.length === 0) return [];
+      const out = [];
+      let start = 0;
+      let fontName = this._fontAt(0);
+      for (let i = 1; i <= this.characters.length; i++) {
+        const next = i < this.characters.length ? this._fontAt(i) : null;
+        if (i === this.characters.length || JSON.stringify(next) !== JSON.stringify(fontName)) {
+          out.push({ start, end: i, characters: this.characters.slice(start, i), fontName });
+          start = i;
+          fontName = next;
+        }
+      }
+      return out;
+    }
+
     async exportAsync(options = {}) {
       if (options.format !== 'SVG' || typeof this._svgExport !== 'string') {
         throw new Error('mock exportAsync supports only configured SVG fixtures');
@@ -456,7 +500,7 @@ export function createFigmaMock() {
       if (k === 'id' || k === 'key' || k === 'parent' || k === 'children' || k === '_shared') continue;
       if (k === '_fills' || k === 'strokes' || k === 'effects' || k === 'dashPattern') continue;
       if (k === '_instances' || k === '_mirrorOf') continue;
-      if (k === 'componentPropertyReferences' || k === 'componentProperties') {
+      if (k === 'componentPropertyReferences' || k === 'componentProperties' || k === '_fontRanges') {
         m[k] = structuredClone(v);
       } else {
         m[k] = v;
@@ -805,6 +849,5 @@ export function createFigmaMock() {
       },
     },
   };
-
   return { figma, root, firstPage, variables, collections, styles: allStyles };
 }

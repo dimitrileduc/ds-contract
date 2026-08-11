@@ -45,6 +45,7 @@ const S: Record<string, CSSProperties> = {
   "Titre": {
     "color": "#FFFFFF",
     "fontSize": "40px",
+    "fontWeight": 400,
     "width": "900px",
     "lineHeight": "50px",
     "textAlign": "center"

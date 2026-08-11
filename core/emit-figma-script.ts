@@ -50,9 +50,22 @@ import {
   type Contract,
   type Part,
   type Prop,
+  type RichTextSegment,
 } from '../scripts/contract-schema.js';
 import { flattenTokens, aliasTarget, px, type TokenEntry, type TokenTreeInput } from './tokens.js';
-import { isMultiRoot, isRichText, richTextPlain, topRoots, validateContract } from './emit-react.js';
+import {
+  deriveTextStyles as deriveNamedTextStyles,
+  effectiveLetterSpacingPx,
+  type DerivedTextStyle,
+} from './text-styles.js';
+import {
+  isMultiRoot,
+  isRichText,
+  richTextPlain,
+  richTextStrongStyle,
+  topRoots,
+  validateContract,
+} from './emit-react.js';
 
 
 export interface LayoutSpec {
@@ -278,11 +291,23 @@ export interface NodeSpec {
   textStyle?: string;
   textFill?: string;
   contentProp?: string;
+  /** Rich-text is one native Figma TEXT property, but its governed marks are
+   *  native character ranges. Keeping the ranges beside the flat characters
+   *  lets the runtime restore both facts instead of silently flattening the
+   *  marks during contract → canvas projection. */
+  richTextRanges?: Array<{ start: number; end: number; fontStyle: string }>;
   // instance
   dep?: string;
   /** 016: the dependency contract's ID — resolution rides the ds_contracts/contractId marker, never the layer name (§VIII). */
   depId?: string;
   depProps?: Record<string, string | boolean>;
+  /** Rich-text values fixed on a composed child. `depProps` carries the flat
+   *  native TEXT value; these ranges restyle the rendered descendant after
+   *  `setProperties`, at the child property's exact native address. */
+  depRichTextRanges?: Array<{
+    property: string;
+    ranges: Array<{ start: number; end: number; fontStyle: string }>;
+  }>;
   /** Exact composed-property mappings. Both sides are native Figma property
    * names; the runtime resolves their suffixed keys by identity and retargets
    * the child's visible property reference to the parent key. */
@@ -498,50 +523,18 @@ function scopesFor(dotPath: string, entry: TokenEntry): string[] {
 }
 
 // ---------------------------------------------------------------------------
-// Text styles derived from semantic typography tokens.
-//
-// Real design systems ship NAMED text styles, not per-node font soup. Every
-// semantic `font.<group>.size` leaf mints one style whose name mirrors the
-// token path ("control/md" ← font.control.size.md, "badge" ← font.badge.size).
-// The style's weight comes from the group's `font.<group>.weight` token when
-// declared, else the runtimes' text default ('Medium') — the same fallback a
-// bound text node gets, so definitions and consumers can match EXACTLY.
-// NOTE (016): named TEXT STYLES are still emitted with family Inter here — a
-// separate organ from raw text nodes, which now carry their prescribed family.
-// It is latent while TEXT_STYLES is empty (deriveTextStyles looks for
-// `font.<group>.size`, the foundation spells `typography.<role>.size`), but it
-// WILL spell Inter into all 18 styles the day that net fills. Named, not fixed
-// here: repairing it touches tokens/. Primitive font.size.* stays
-// style-less — text styles are semantic roles, not a size ramp.
+// Text styles derived from semantic typography recipes. A named style is a
+// composite recipe, so its canvas identity/name lives in group metadata while
+// family/size/weight/line-height/letter-spacing remain ordinary variables.
+// The legacy `font.<group>.size` convention stays supported for foreign sets.
 // ---------------------------------------------------------------------------
 
-interface DerivedTextStyle {
-  name: string;
-  /** The semantic size-token dot-path — the style's IDENTITY marker on the
-   *  canvas (sharedPluginData ds_contracts/textStyleToken; rename-safe). */
-  tokenPath: string;
-  fontSize: number;
-  fontStyle: string;
-}
-
-function deriveTextStyles(): DerivedTextStyle[] {
-  const out: DerivedTextStyle[] = [];
-  for (const [p] of semantic) {
-    const m = p.match(/^font\.(.+?)\.size(?:\.([^.]+))?$/);
-    if (!m) continue;
-    const group = m[1];
-    const name = [group, ...(m[2] ? [m[2]] : [])].join('/').split('.').join('/');
-    const weightPath = `font.${group}.weight`;
-    const fontStyle = semantic.has(weightPath)
-      ? (FONT_STYLE_BY_WEIGHT[px(resolveLiteral(weightPath))] ?? 'Medium')
-      : 'Medium';
-    out.push({ name, tokenPath: p, fontSize: px(resolveLiteral(p)), fontStyle });
-  }
-  return out.sort((a, b) => a.name.localeCompare(b.name));
-}
-
-const derivedTextStyles = deriveTextStyles();
-const textStyleByTokenPath = new Map(derivedTextStyles.map((t) => [t.tokenPath, t]));
+const derivedTextStyles = deriveNamedTextStyles({
+  semanticTree: input.tokens.semantic,
+  semantic,
+  resolveLiteral,
+  fontStyleByWeight: FONT_STYLE_BY_WEIGHT,
+});
 
 // ---------------------------------------------------------------------------
 // 01-tokens.js (unchanged mechanism from v1)
@@ -619,7 +612,7 @@ const BRAND = ${JSON.stringify(brand)};
 const BRAND_MODES = ${JSON.stringify(brandNames.map((n) => pascal(n)))};
 const SEMANTIC = ${JSON.stringify(sem)};
 const SEMANTIC_HAS_DARK = ${JSON.stringify(hasDark)};
-// Named text styles derived from semantic font.<group>.size tokens.
+// Named text styles derived from semantic typography recipes.
 const TEXT_STYLES = ${JSON.stringify(derivedTextStyles)};
 
 // File guard: multi-file bridge routing has been observed to hit the wrong
@@ -651,6 +644,54 @@ function hexToRgb(value) {
   };
   if (h.length === 8) c.a = parseInt(h.slice(6, 8), 16) / 255;
   return c;
+}
+
+// Text-style safety preflight runs BEFORE the first variable mutation.
+// Project recipes describe historical objects: 01-tokens may update them only
+// after a separate, reviewed migration attached their stable token markers.
+const localTextStyles = await figma.getLocalTextStylesAsync();
+const styleByToken = {};
+for (const s of localTextStyles) {
+  const tp = s.getSharedPluginData('ds_contracts', 'textStyleToken');
+  if (!tp) continue;
+  if (styleByToken[tp]) throw new Error('Duplicate Text Style identity marker: ' + tp);
+  styleByToken[tp] = s;
+}
+const TEXT_STYLE_ALIASES = { 'Semi Bold': ['Semi Bold', 'SemiBold'], 'Extra Light': ['Extra Light', 'ExtraLight'], 'Extra Bold': ['Extra Bold', 'ExtraBold'] };
+const compactStyle = (value) => String(value || '').replace(/\s+/g, '').toLowerCase();
+const sameNumber = (a, b) => typeof a === 'number' && Math.abs(a - b) < 0.001;
+const sameLineHeight = (actual, expected) => expected === undefined
+  ? actual && actual.unit === 'AUTO'
+  : actual && actual.unit === 'PIXELS' && sameNumber(actual.value, expected);
+const sameSpacing = (actual, expected) => actual && actual.unit === expected.unit && sameNumber(actual.value, expected.value);
+async function textStyleFont(t) {
+  for (const style of (TEXT_STYLE_ALIASES[t.fontStyle] || [t.fontStyle])) {
+    try {
+      const font = { family: t.fontFamily, style };
+      await figma.loadFontAsync(font);
+      return font;
+    } catch (e) { /* next spelling */ }
+  }
+  throw new Error('Cannot load Text Style font ' + t.fontFamily + ' ' + t.fontStyle + ' for ' + t.name);
+}
+const sameTextStyleDefinition = (style, t, font) =>
+  style.name === t.name &&
+  style.fontName && style.fontName.family === font.family &&
+  compactStyle(style.fontName.style) === compactStyle(font.style) &&
+  sameNumber(style.fontSize, t.fontSize) &&
+  sameLineHeight(style.lineHeight, t.lineHeight) &&
+  sameSpacing(style.letterSpacing, t.letterSpacing) &&
+  (style.textCase || 'ORIGINAL') === t.textCase;
+for (const t of TEXT_STYLES) {
+  if (!t.requiresExistingMarker) continue;
+  const s = styleByToken[t.tokenPath];
+  if (!s) {
+    throw new Error('Missing historical Text Style marker for ' + t.name + ' (' + t.tokenPath + '); run the reviewed marker-only migration first');
+  }
+  const font = await textStyleFont(t);
+  if (!sameTextStyleDefinition(s, t, font)) {
+    throw new Error('Historical Text Style "' + t.name + '" differs from its token recipe; refusing token writes');
+  }
 }
 
 const collections = await figma.variables.getLocalVariableCollectionsAsync();
@@ -743,30 +784,25 @@ for (const t of SEMANTIC) {
   v.setVariableCodeSyntax('WEB', t.codeSyntax);
 }
 
-// Text styles: upsert by IDENTITY MARKER (ds_contracts/textStyleToken =
-// the semantic size-token path), never by name — a rename on either side
-// must not fork identity, and a foreign style that happens to share a name
-// is never touched (same rule as component sets). Idempotent: re-runs
-// update the marked style in place.
-const localTextStyles = await figma.getLocalTextStylesAsync();
-const styleByToken = {};
-for (const s of localTextStyles) {
-  const tp = s.getSharedPluginData('ds_contracts', 'textStyleToken');
-  if (tp) styleByToken[tp] = s;
-}
+// Text styles reconcile by IDENTITY MARKER only. Historical Piqueray styles
+// were already verified above; name-based adoption is deliberately forbidden.
 let createdStyles = 0;
 for (const t of TEXT_STYLES) {
   let s = styleByToken[t.tokenPath];
+  const font = await textStyleFont(t);
   if (!s) {
+    if (t.requiresExistingMarker) throw new Error('Missing historical Text Style marker after preflight: ' + t.name);
     s = figma.createTextStyle();
+    createdStyles++;
     s.setSharedPluginData('ds_contracts', 'textStyleToken', t.tokenPath);
     styleByToken[t.tokenPath] = s;
-    createdStyles++;
   }
-  await figma.loadFontAsync({ family: 'Inter', style: t.fontStyle });
   s.name = t.name;
-  s.fontName = { family: 'Inter', style: t.fontStyle };
+  s.fontName = font;
   s.fontSize = t.fontSize;
+  s.lineHeight = t.lineHeight === undefined ? { unit: 'AUTO' } : { unit: 'PIXELS', value: t.lineHeight };
+  s.letterSpacing = t.letterSpacing;
+  s.textCase = t.textCase;
   s.description = 'ds_contracts: derived from tokens/' + t.tokenPath;
 }
 
@@ -1651,17 +1687,27 @@ function withPartStateOverrides(parts: Record<string, Part>, stateName: string):
   return changed ? out : parts;
 }
 
-/** The derived text style a compiled text node rides, or undefined. EXACT
- *  definition match only: the node's font-size token must be a style's
- *  identity path AND the node's effective weight (its own font-weight
- *  binding, or the 'Medium' runtime default) must equal the style's — a
- *  node that overrides the group's weight keeps raw props, honestly. */
+/** The named style a compiled plain-text node rides. Exact rendered recipe
+ *  only: contracts legitimately consume primitive font tokens, while named
+ *  styles are semantic composites. Matching by the size-token path therefore
+ *  loses every Piqueray style; matching the complete recipe does not guess. */
 function matchTextStyle(ctx: TextCtx): string | undefined {
-  if (!ctx.fontSizePath) return undefined;
-  const t = textStyleByTokenPath.get(ctx.fontSizePath);
-  if (!t) return undefined;
-  if (t.fontSize !== ctx.fontSize || t.fontStyle !== (ctx.fontStyle ?? 'Medium')) return undefined;
-  return t.name;
+  const compactStyle = (value: string) => value.replace(/\s+/g, '').toLowerCase();
+  const close = (a: number, b: number) => Math.abs(a - b) < 0.001;
+  const matches = derivedTextStyles.filter((style) =>
+    style.fontFamily.toLowerCase() === (ctx.fontFamily ?? 'Inter').toLowerCase() &&
+    ctx.fontSize !== undefined && close(style.fontSize, ctx.fontSize) &&
+    compactStyle(style.fontStyle) === compactStyle(ctx.fontStyle ?? 'Medium') &&
+    (style.lineHeight === undefined
+      ? ctx.lineHeight === undefined
+      : ctx.lineHeight !== undefined && close(style.lineHeight, ctx.lineHeight)) &&
+    close(effectiveLetterSpacingPx(style), ctx.letterSpacing ?? 0) &&
+    style.textCase === (ctx.textCase ?? 'ORIGINAL')
+  );
+  if (matches.length > 1) {
+    throw new Error(`Ambiguous Figma Text Style recipe: ${matches.map((style) => style.name).join(', ')}`);
+  }
+  return matches[0]?.name;
 }
 
 const isEnum = (p: Prop): p is Prop & { type: { enum: string[] } } =>
@@ -1816,6 +1862,52 @@ const nativeTextDefault = (prop: Prop | undefined, fallback: string): string => 
   if (prop && isRichText(prop)) return richTextPlain(prop.default);
   return typeof prop?.default === 'string' ? prop.default : fallback;
 };
+
+type RichTextStrongMark =
+  | string
+  | { 'font-weight': string; 'font-size'?: string; 'line-height'?: string };
+
+function richTextRanges(
+  segments: Array<RichTextSegment>,
+  mark: RichTextStrongMark | undefined,
+): NonNullable<NodeSpec['richTextRanges']> {
+  const weight = richTextStrongStyle(mark).fontWeight;
+  if (!weight) return [];
+  const token = weight.match(/^\{(.+)\}$/)?.[1];
+  const numeric = Number(token ? px(resolveLiteral(token)) : weight);
+  const fontStyle = Number.isFinite(numeric) ? (FONT_STYLE_BY_WEIGHT[numeric] ?? 'Medium') : 'Medium';
+  const out: NonNullable<NodeSpec['richTextRanges']> = [];
+  let start = 0;
+  for (const segment of segments) {
+    const end = start + segment.text.length;
+    if (segment.strong && end > start) out.push({ start, end, fontStyle });
+    start = end;
+  }
+  return out;
+}
+
+function richTextMarkForProp(contract: Contract, propName: string): RichTextStrongMark | undefined {
+  for (const { part } of walkAnatomy(contract)) {
+    if (part.content?.prop === propName) return part.content.marks?.strong;
+  }
+  return undefined;
+}
+
+function mapDepRichTextRanges(
+  dep: Contract,
+  props: Record<string, ComponentPropValue>,
+): NonNullable<NodeSpec['depRichTextRanges']> {
+  const out: NonNullable<NodeSpec['depRichTextRanges']> = [];
+  for (const [propName, rawValue] of Object.entries(props)) {
+    if (!Array.isArray(rawValue)) continue;
+    const depProp = dep.props.find((p) => p.name === propName && isRichText(p));
+    const property = depProp?.bindings.figma.property;
+    if (!property) continue;
+    const ranges = richTextRanges(rawValue, richTextMarkForProp(dep, propName));
+    if (ranges.length > 0) out.push({ property, ranges });
+  }
+  return out;
+}
 
 /** Map canonical prop values to Figma property/value pairs through the CHILD
  *  contract's bindings. `{parentProp}` values resolve through `subst` first. */
@@ -2378,12 +2470,14 @@ function partToSpecInner(
   if (part.component) {
     const dep = byId.get(part.component.id)!; // resolvability guaranteed by refuseUnresolvableRefs
     const depPropRefs = mapDepPropRefs(contract, dep, part.component.props ?? {});
+    const depRichTextRanges = mapDepRichTextRanges(dep, part.component.props ?? {});
     const spec: NodeSpec = {
       type: 'instance',
       name,
       dep: dep.name,
       depId: dep.id,
       depProps: mapDepProps(dep, part.component.props ?? {}, subst, part.component.text),
+      ...(depRichTextRanges.length > 0 ? { depRichTextRanges } : {}),
       ...(depPropRefs.length > 0 ? { depPropRefs } : {}),
     };
     // v20 (016): component.slots — the child's INSTANCE_SWAP slot content,
@@ -2481,11 +2575,17 @@ function partToSpecInner(
     spec.characters = nativeTextDefault(prop, contract.name);
     spec.fontSize = textCtx.fontSize ?? 16;
     spec.fontStyle = textCtx.fontStyle ?? 'Medium';
-    spec.textStyle = matchTextStyle(textCtx);
+    // A whole-node style would flatten the governed per-range strong marks.
+    // Rich text is the sole intentional exception to named-style linkage.
+    if (!isRichText(prop)) spec.textStyle = matchTextStyle(textCtx);
     spec.textFill = textCtx.textFill;
     if (textCtx.lineHeight !== undefined) spec.lineHeight = textCtx.lineHeight;
     Object.assign(spec, textExtras(textCtx));
     spec.contentProp = prop.bindings.figma.property;
+    if (isRichText(prop) && Array.isArray(prop.default)) {
+      const ranges = richTextRanges(prop.default, part.content.marks?.strong);
+      if (ranges.length > 0) spec.richTextRanges = ranges;
+    }
     applyVisibleWhen(spec, part, contract);
     return spec;
   }
@@ -2503,10 +2603,11 @@ function partToSpecInner(
     if (io) markInsetOverlay(spec, io);
   }
   const childCtx = applyStyling(spec, part, subst, ctx);
-  // Round 5: `img` parts — raster content is runtime data; the frame draws
-  // the standard image-placeholder wash (#D9D9D9), named in the fidelity
-  // notes via the flag. A contract-carried fill always wins.
-  if (part.element === 'img') {
+  // Round 5: raster parts — runtime media has no URL transport to Figma. Both
+  // img and video draw the standard placeholder; video is represented by its
+  // static poster IMAGE because native VideoPaint cannot be reconstructed
+  // deterministically from a contract. A contract-carried fill always wins.
+  if (part.element === 'img' || part.element === 'video') {
     spec.imgPlaceholder = true;
     if (!spec.fill && spec.lits?.fillColor === undefined && spec.lits?.fillClear === undefined) {
       (spec.lits ??= {}).fillColor = { r: 217 / 255, g: 217 / 255, b: 217 / 255 };
@@ -2736,6 +2837,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
       resolveDeclaredAbsoluteChildren(rootSpec);
       const collectStylesMR = (s: NodeSpec) => {
         if (s.fontStyle) fontStyles.add(s.fontStyle);
+        for (const r of s.richTextRanges ?? []) fontStyles.add(r.fontStyle);
+        for (const dep of s.depRichTextRanges ?? []) for (const r of dep.ranges) fontStyles.add(r.fontStyle);
         (s.children ?? []).forEach(collectStylesMR);
       };
       collectStylesMR(rootSpec);
@@ -2778,7 +2881,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
           characters: label,
           fontSize: ctx.fontSize ?? 16,
           fontStyle: ctx.fontStyle ?? 'Medium',
-          textStyle: matchTextStyle(ctx),
+          textStyle: isRichText(textProp) ? undefined : matchTextStyle(ctx),
           textFill: ctx.textFill,
           ...(ctx.lineHeight !== undefined ? { lineHeight: ctx.lineHeight } : {}),
           ...textExtras(ctx),
@@ -2788,6 +2891,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     }
     const collectStyles = (s: NodeSpec) => {
       if (s.fontStyle) fontStyles.add(s.fontStyle);
+      for (const r of s.richTextRanges ?? []) fontStyles.add(r.fontStyle);
+      for (const dep of s.depRichTextRanges ?? []) for (const r of dep.ranges) fontStyles.add(r.fontStyle);
       (s.children ?? []).forEach(collectStyles);
     };
     collectStyles(rootSpec);
@@ -2872,7 +2977,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
               characters: label,
               fontSize: ctx.fontSize ?? 16,
               fontStyle: ctx.fontStyle ?? 'Medium',
-              textStyle: matchTextStyle(ctx),
+              textStyle: isRichText(textProp) ? undefined : matchTextStyle(ctx),
               textFill: ctx.textFill,
               ...(ctx.lineHeight !== undefined ? { lineHeight: ctx.lineHeight } : {}),
               ...textExtras(ctx),
@@ -2882,6 +2987,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
         }
         const collectStyles = (s: NodeSpec) => {
           if (s.fontStyle) fontStyles.add(s.fontStyle);
+          for (const r of s.richTextRanges ?? []) fontStyles.add(r.fontStyle);
+          for (const dep of s.depRichTextRanges ?? []) for (const r of dep.ranges) fontStyles.add(r.fontStyle);
           (s.children ?? []).forEach(collectStyles);
         };
         collectStyles(rootSpec);
@@ -3381,6 +3488,179 @@ const textExtrasRuntime = (has: boolean): string =>
     if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }`
     : '';
 
+const richTextRuntime = (has: boolean): string =>
+  has
+    ? `
+function basePropertyName(key) { return String(key || '').split('#')[0]; }
+async function applyRichTextRanges(node, ranges) {
+  if (!ranges || ranges.length === 0) return;
+  if (!node || node.type !== 'TEXT') throw new Error('Rich-text target is not a TEXT node');
+  const length = node.characters.length;
+  for (const range of ranges) {
+    if (range.start < 0 || range.end <= range.start || range.end > length) {
+      throw new Error('Invalid rich-text range ' + range.start + '..' + range.end + ' for TEXT length ' + length);
+    }
+    const current = node.getRangeFontName(range.start, Math.min(range.end, range.start + 1));
+    const family = current && typeof current === 'object' && current.family
+      ? current.family
+      : (node.fontName && typeof node.fontName === 'object' && node.fontName.family ? node.fontName.family : 'Inter');
+    const wanted = await resolveFont(family, range.fontStyle);
+    if (!wanted) throw new Error('Cannot load rich-text font: ' + family + ' ' + range.fontStyle);
+    node.setRangeFontName(range.start, range.end, wanted);
+  }
+}
+function textNodeForInstanceProperty(instance, property) {
+  const candidates = typeof instance.findAll === 'function'
+    ? instance.findAll((n) => n.type === 'TEXT' && n.componentPropertyReferences && n.componentPropertyReferences.characters)
+    : [];
+  return candidates.find((n) => basePropertyName(n.componentPropertyReferences.characters) === property) || null;
+}
+async function applyDepRichTextRanges(instance, entries) {
+  for (const entry of entries || []) {
+    const text = textNodeForInstanceProperty(instance, entry.property);
+    if (!text) throw new Error('Rich-text child property has no rendered TEXT target: ' + entry.property);
+    await applyRichTextRanges(text, entry.ranges);
+  }
+}
+`
+    : '';
+
+const consumerTextOverrideRuntime = (has: boolean): string =>
+  has
+    ? `
+function propertyValueByBase(node, base) {
+  if (node && node.type === 'INSTANCE') {
+    const key = Object.keys(node.componentProperties || {}).find((k) => basePropertyName(k) === base);
+    return key ? node.componentProperties[key].value : undefined;
+  }
+  if (node && (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET')) {
+    const key = Object.keys(node.componentPropertyDefinitions || {}).find((k) => basePropertyName(k) === base);
+    return key ? node.componentPropertyDefinitions[key].defaultValue : undefined;
+  }
+  return undefined;
+}
+function fontRanges(node) {
+  if (!node || node.type !== 'TEXT') return [];
+  if (typeof node.getStyledTextSegments !== 'function') {
+    const f = node.fontName;
+    return f && typeof f === 'object' && f.family
+      ? [{ start: 0, end: node.characters.length, fontName: { family: f.family, style: f.style } }]
+      : [];
+  }
+  return node.getStyledTextSegments(['fontName']).map((s) => ({
+    start: s.start, end: s.end,
+    fontName: s.fontName && typeof s.fontName === 'object' && s.fontName.family
+      ? { family: s.fontName.family, style: s.fontName.style }
+      : null,
+  }));
+}
+function sameValue(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+function preparerSauvetageConsommateurs(master, info) {
+  const hotes = [];
+  for (const h of info.hotes || []) {
+    if (h.role !== 'instance') continue;
+    const props = [], textes = [], espacements = [];
+    const pile = [{ n: h.node, c: '' }];
+    while (pile.length > 0) {
+      const item = pile.shift();
+      const n = item.n;
+      const ref = noeudAuChemin(master, item.c);
+      if (!ref) throw new Error('REFUS consommateurs — chemin absent du master avant mutation: hostId=' + h.hostId + ' chemin=' + item.c);
+      if (n.type === 'INSTANCE') {
+        const signature = Object.keys(n.componentProperties || {}).map(basePropertyName).sort();
+        for (const key of Object.keys(n.componentProperties || {})) {
+          const base = basePropertyName(key);
+          const value = n.componentProperties[key].value;
+          if (!sameValue(value, propertyValueByBase(ref, base))) props.push({ chemin: item.c, property: base, value: value, signature: signature });
+        }
+      }
+      if (n.type === 'TEXT') {
+        const ranges = fontRanges(n);
+        const refRanges = fontRanges(ref);
+        if (n.characters !== ref.characters || !sameValue(ranges, refRanges)) {
+          const property = n.componentPropertyReferences && n.componentPropertyReferences.characters
+            ? basePropertyName(n.componentPropertyReferences.characters)
+            : null;
+          textes.push({ chemin: item.c, property: property, characters: n.characters, ranges: ranges });
+        }
+      }
+      if (typeof n.itemSpacing === 'number' && typeof ref.itemSpacing === 'number' && n.itemSpacing !== ref.itemSpacing) {
+        espacements.push({ chemin: item.c, itemSpacing: n.itemSpacing });
+      }
+      const kids = n.children || [];
+      for (let i = 0; i < kids.length; i++) pile.push({ n: kids[i], c: cheminEnfantDe(item.c, i) });
+    }
+    hotes.push({ hostId: h.hostId, node: h.node, props: props, textes: textes, espacements: espacements });
+  }
+  return { hotes: hotes };
+}
+async function restaurerSauvetageConsommateurs(plan, report) {
+  const restored = [];
+  for (const h of plan.hotes || []) {
+    for (const p of h.props) {
+      let node = noeudAuChemin(h.node, p.chemin);
+      const carriesProperty = (n) => {
+        if (!n || n.type !== 'INSTANCE') return false;
+        const bases = Object.keys(n.componentProperties || {}).map(basePropertyName).sort();
+        return bases.indexOf(p.property) >= 0;
+      };
+      if (!carriesProperty(node)) {
+        let candidates = typeof h.node.findAll === 'function'
+          ? h.node.findAll((n) => carriesProperty(n))
+          : [];
+        // The complete property signature disambiguates two composed
+        // instances exposing the same property. It is a tie-breaker, not a
+        // prerequisite: Figma can add/remove dependency properties between
+        // the two snapshots while the governed property identity remains.
+        if (candidates.length > 1 && p.signature) {
+          const exact = candidates.filter((n) => sameValue(
+            Object.keys(n.componentProperties || {}).map(basePropertyName).sort(),
+            p.signature,
+          ));
+          if (exact.length > 0) candidates = exact;
+        }
+        if (candidates.length !== 1) {
+          throw new Error('REFUS consommateurs — instance introuvable ou ambiguë après reconstruction: hostId=' + h.hostId + ' chemin=' + p.chemin + ' property=' + p.property + ' candidates=' + candidates.length);
+        }
+        node = candidates[0];
+      }
+      setInstanceProps(node, { [p.property]: p.value });
+    }
+    for (const e of h.espacements) {
+      const node = noeudAuChemin(h.node, e.chemin);
+      if (!node || typeof node.itemSpacing !== 'number') throw new Error('REFUS consommateurs — gap introuvable après reconstruction: hostId=' + h.hostId + ' chemin=' + e.chemin);
+      node.itemSpacing = e.itemSpacing;
+    }
+    for (const t of h.textes) {
+      let node = noeudAuChemin(h.node, t.chemin);
+      if (
+        (!node || node.type !== 'TEXT' ||
+          (t.property && basePropertyName(node.componentPropertyReferences && node.componentPropertyReferences.characters) !== t.property)) &&
+        t.property
+      ) {
+        node = (typeof h.node.findAll === 'function'
+          ? h.node.findAll((n) => n.type === 'TEXT' && basePropertyName(n.componentPropertyReferences && n.componentPropertyReferences.characters) === t.property)
+          : [])[0] || null;
+      }
+      if (!node || node.type !== 'TEXT') throw new Error('REFUS consommateurs — TEXT introuvable après reconstruction: hostId=' + h.hostId + ' chemin=' + t.chemin);
+      for (const r of t.ranges) {
+        if (!r.fontName) throw new Error('REFUS consommateurs — fontName mixte illisible: hostId=' + h.hostId + ' chemin=' + t.chemin);
+        const loaded = await resolveFont(r.fontName.family, r.fontName.style);
+        if (!loaded) throw new Error('REFUS consommateurs — police introuvable: ' + r.fontName.family + ' ' + r.fontName.style);
+      }
+      if (node.characters !== t.characters) node.characters = t.characters;
+      for (const r of t.ranges) {
+        const loaded = await resolveFont(r.fontName.family, r.fontName.style);
+        node.setRangeFontName(r.start, r.end, loaded);
+      }
+    }
+    restored.push({ hostId: h.hostId, props: h.props.length, textes: h.textes.length, espacements: h.espacements.length });
+  }
+  report.consumerOverrides = { verdict: 'vert', hotes: restored };
+}
+`
+    : '';
+
 /** v9 shape placement: layoutPositioning ABSOLUTE + constraints + exact
  *  offsets vs the parent box, AFTER append (mirrors applyOverlay). */
 const absoluteRuntime = (has: boolean): string =>
@@ -3675,6 +3955,17 @@ function buildSyncScript(
         x.textAlignH !== undefined || x.fontFamily !== undefined || x.textTruncation === true,
     ),
   );
+  const hasRichText = datas.some((d) =>
+    dataSome(d, (x) => (x.richTextRanges?.length ?? 0) > 0 || (x.depRichTextRanges?.length ?? 0) > 0),
+  );
+  // Consumer recovery is required when an image-bearing component composes
+  // another component: rebuilding changes child paths, while Page instances
+  // can legitimately carry nested property overrides (HeroVideo's Button is
+  // the first live case). Rich-text components already require the same
+  // recovery for native character ranges and copy.
+  const hasConsumerPreservation = hasRichText || datas.some((d) =>
+    dataSome(d, (x) => x.imgPlaceholder === true) && dataSome(d, (x) => x.type === 'instance'),
+  );
   return `${opts.header}
 const COMPONENTS = ${componentsJson};
 const ROW_H = 240, PAD = 40;
@@ -3725,15 +4016,16 @@ const boundPaint = (varName, consumer) => {
 
 // Named text styles (synced by 01-tokens.js): consumers look up OUR styles
 // only — the ds_contracts/textStyleToken marker is identity, a foreign style
-// sharing a name is never used. Missing style (tokens script not run yet)
-// degrades gracefully: the raw fontName/fontSize already set on the node
-// stand until the next amend after the styles exist.
+// sharing a name is never used. A governed plain-text node must not silently
+// fall back to raw typography: missing or duplicate marked styles STOP.
 let _textStyleMap = null;
 async function ourTextStyle(name) {
   if (!_textStyleMap) {
     _textStyleMap = {};
     for (const s of await figma.getLocalTextStylesAsync()) {
-      if (s.getSharedPluginData('ds_contracts', 'textStyleToken')) _textStyleMap[s.name] = s;
+      if (!s.getSharedPluginData('ds_contracts', 'textStyleToken')) continue;
+      if (_textStyleMap[s.name]) throw new Error('Duplicate governed Text Style name: ' + s.name);
+      _textStyleMap[s.name] = s;
     }
   }
   return _textStyleMap[name] || null;
@@ -3775,7 +4067,7 @@ async function textFont(spec) {
   fontFallbacks.push({ wanted: family + ' ' + style, used: used.family + ' ' + used.style });
   return used;
 }
-const fontStyles = new Set(['Medium']);
+${richTextRuntime(hasRichText || hasConsumerPreservation)}${consumerTextOverrideRuntime(hasConsumerPreservation)}const fontStyles = new Set(['Medium']);
 for (const C of COMPONENTS) for (const s of C.fontStyles) fontStyles.add(s);
 for (const style of fontStyles) {
   await resolveFont('Inter', style);
@@ -4013,11 +4305,13 @@ async function buildNode(spec, registry) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.
       const st = await ourTextStyle(spec.textStyle);
-      if (st) { try { await node.setTextStyleIdAsync(st.id); } catch (e) { /* raw props stand */ } }
-    }
+      if (!st) throw new Error('Missing governed Text Style: ' + spec.textStyle);
+      await node.setTextStyleIdAsync(st.id);
+    }${hasRichText ? `
+    await applyRichTextRanges(node, spec.richTextRanges);` : ''}
     if (spec.textFill) node.fills = [boundPaint(spec.textFill, node)];
     if (spec.contentProp) {
-      registry.texts.push({ prop: spec.contentProp, node, default: spec.characters || '' });
+      registry.texts.push({ prop: spec.contentProp, node, default: spec.characters || ''${hasRichText ? ', ranges: spec.richTextRanges || []' : ''} });
     }
     if (spec.fill || spec.fixedWidth || spec.fixedHeight || spec.bindings) {
       // Styled static text (page chips, dots, thumbs): wrap in a frame so
@@ -4058,7 +4352,8 @@ ${propertyBackedTextInWrapper}
     const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
-    if (spec.depProps) setInstanceProps(node, spec.depProps);
+    if (spec.depProps) setInstanceProps(node, spec.depProps);${hasRichText ? `
+    await applyDepRichTextRanges(node, spec.depRichTextRanges);` : ''}
     if (spec.depPropRefs && spec.depPropRefs.length > 0) {
       registry.forwards = registry.forwards || [];
       registry.forwards.push({ instance: node, mappings: spec.depPropRefs });
@@ -4656,7 +4951,7 @@ async function amendSet(set, C) {
 
   for (const v of EV) {
     let comp = existingByName.get(v.name);
-    const registry = { texts: [], slots: [], visibles: [] };
+    const registry = { texts: [], slots: [], visibles: [] };${hasConsumerPreservation ? '\n    let planConsommateurs = null;' : ''}
     if (!comp) {
       comp = await buildNode(v.spec, registry);
       set.appendChild(comp);
@@ -4665,7 +4960,7 @@ async function amendSet(set, C) {
       // 017 — PRÉ-PASSE avant toute mutation : relever (maître ET instances de
       // page), compter les accueils, DÉCIDER. Une empreinte sans accueil jette
       // ICI, une ligne avant la première démolition (§X, FR-003a).
-      const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
+      const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);${hasConsumerPreservation ? '\n      planConsommateurs = preparerSauvetageConsommateurs(comp, planPhotos.info);' : ''}
       for (const child of [...comp.children]) child.remove();
       applyFrameSpec(comp, v.spec);
       for (const childSpec of v.spec.children || []) {
@@ -4704,7 +4999,7 @@ ${propertyBackedTextInColumn('childSpec', 'comp')}
         set.editComponentProperty(k, { defaultValue: t.default });
         report.editedDefaults.push(t.prop);
       }
-      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };${hasRichText ? '\n      await applyRichTextRanges(t.node, t.ranges);' : ''}
     }
     for (const sl of registry.slots) {
       const util = await ensureSlotUtility();
@@ -4738,7 +5033,7 @@ ${propertyBackedTextInColumn('childSpec', 'comp')}
       if (!k) throw new Error('Governed icon swap property missing after amend: ' + swap.property);
       wireIconSwapNodes(registry, swap.property, k);
     }
-    wireDepPropForwards(registry);
+    wireDepPropForwards(registry);${hasConsumerPreservation ? '\n    if (planConsommateurs) await restaurerSauvetageConsommateurs(planConsommateurs, report);' : ''}
   }
 
   // Contract default combo must be the FIRST variant (Figma default = first).
@@ -4852,7 +5147,7 @@ async function amendComponent(comp, C) {
   // 017 — même PRÉ-PASSE que le chemin amendSet : relever le maître ET ses
   // instances de page, compter les accueils, DÉCIDER. Le refus tombe ici, une
   // ligne avant la première démolition (§X, FR-003a).
-  const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
+  const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);${hasConsumerPreservation ? '\n  const planConsommateurs = preparerSauvetageConsommateurs(comp, planPhotos.info);' : ''}
   for (const child of [...comp.children]) child.remove();
   applyFrameSpec(comp, v.spec);
   for (const childSpec of v.spec.children || []) {
@@ -4889,7 +5184,7 @@ ${propertyBackedTextInColumn('childSpec', 'comp')}
       comp.editComponentProperty(k, { defaultValue: t.default });
       report.editedDefaults.push(t.prop);
     }
-    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
+    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };${hasRichText ? '\n    await applyRichTextRanges(t.node, t.ranges);' : ''}
   }
   for (const sl of registry.slots) {
     const util = await ensureSlotUtility();
@@ -4923,7 +5218,7 @@ ${propertyBackedTextInColumn('childSpec', 'comp')}
     if (!k) throw new Error('Governed icon swap property missing after amend: ' + swap.property);
     wireIconSwapNodes(registry, swap.property, k);
   }
-  wireDepPropForwards(registry);
+  wireDepPropForwards(registry);${hasConsumerPreservation ? '\n  await restaurerSauvetageConsommateurs(planConsommateurs, report);' : ''}
   comp.description = C.description;
   comp.setSharedPluginData('ds_contracts', 'specHash', hash);
   return report;
@@ -5002,7 +5297,7 @@ async function syncOne(C) {
     for (const t of b.registry.texts) {
       const key = b.comp.addComponentProperty(t.prop, 'TEXT', t.default);
       propertyKeys[t.prop] = key;
-      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };${hasRichText ? '\n      await applyRichTextRanges(t.node, t.ranges);' : ''}
     }
     for (const s of b.registry.slots) {
       const util = await ensureSlotUtility();

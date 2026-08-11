@@ -26,6 +26,8 @@
     "build-storybook": "storybook build",
     "figma:plan": "tsx scripts/generate-figma.ts",
     "projection:repair": "tsx extract/figma/projection-repair/cli.ts",
+    "component:repair": "tsx extract/figma/projection-repair/cli.ts",
+    "component:repair:bridge": "node scripts/component-repair-bridge.mjs",
     "parity": "tsx parity/diff.ts",
     "eval": "tsx evals/run.ts",
     "plugin:zip": "node scripts/build-plugin-zip.mjs",

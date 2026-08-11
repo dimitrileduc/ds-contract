@@ -16,16 +16,19 @@
  *   - React/React-inline pass it through as `prop={[…]}`;
  *   - the static HTML surface renders the parent's segments (not the child's
  *     default) with semantic <strong>;
- *   - the canvas keeps ONE native TEXT value — the flat concatenation, the
- *     projection rule rich-text props already follow;
+ *   - the canvas keeps ONE native TEXT value and applies the governed marks
+ *     back as native character ranges;
  *   - a plain string on a text prop still works (every existing contract);
  *   - segments aimed at a NON rich-text child prop refuse BY NAME.
  */
 import { ContractSchema } from '../../scripts/contract-schema.js';
+import vm from 'node:vm';
 import { emitFigmaScript } from '../../core/emit-figma-script.js';
 import { emitHtml } from '../../core/emit-html.js';
 import { emitReact } from '../../core/emit-react.js';
 import { emitReactInline } from '../../core/emit-react-inline.js';
+// @ts-expect-error — untyped mock, exercised as the real Plugin API boundary.
+import { createFigmaMock } from '../../scripts/plugin-engine-mock-figma.mjs';
 
 const fail = (message: string): never => {
   console.error(`✘ component-rich-text-prop-value: ${message}`);
@@ -194,13 +197,33 @@ if (!html.includes('une histoire de famille')) {
   fail('HTML dropped the unmarked remainder of the parent segments');
 }
 
-// ── The canvas keeps ONE native TEXT value: the flat concatenation ───────────
+// ── The canvas keeps ONE native TEXT value plus governed native ranges ───────
 const figma = emitFigmaScript(parent, { tokens: tokenTree, icons: new Map(), contracts });
 if (figma.includes('[object Object]')) {
   fail('the Figma projection stringified the segment array unsafely');
 }
 if (!figma.includes(JSON.stringify(FLAT))) {
   fail(`the Figma projection did not flatten the segments to its native TEXT value ${JSON.stringify(FLAT)}`);
+}
+if (!figma.includes('"depRichTextRanges"') || !figma.includes('"start": 0') || !figma.includes('"end": 10')) {
+  fail('the Figma projection dropped the composed child strong range from its node spec');
+}
+if (!figma.includes('await applyDepRichTextRanges(node, spec.depRichTextRanges)') || !figma.includes('node.setRangeFontName')) {
+  fail('the Figma runtime does not apply the composed rich-text ranges natively');
+}
+if (!figma.includes('preparerSauvetageConsommateurs') || !figma.includes('restaurerSauvetageConsommateurs')) {
+  fail('the amend runtime does not preserve consumer copy/range overrides across a master rebuild');
+}
+
+const childFigma = emitFigmaScript(
+  ContractSchema.parse({
+    ...child,
+    props: child.props.map((p) => p.name === 'titre' ? { ...p, default: SEGMENTS } : p),
+  }),
+  { tokens: tokenTree, icons: new Map(), contracts },
+);
+if (!childFigma.includes('"richTextRanges"') || !childFigma.includes('await applyRichTextRanges(node, spec.richTextRanges)')) {
+  fail('a direct rich-text property default lost its native strong range');
 }
 
 // ── A parent may also THREAD its own rich-text prop into the child ───────────
@@ -349,6 +372,63 @@ if (!refusal.includes('accroche') || !refusal.includes('rich-text')) {
   fail(
     `the refusal did not name the prop and the reason — got:\n    ${refusal.split('\n').slice(0, 4).join('\n    ')}`,
   );
+}
+
+// ── A page consumer survives an in-place master rebuild ─────────────────────
+{
+  const { figma: figmaApi, root } = createFigmaMock();
+  const context = vm.createContext({ figma: figmaApi, console: { log() {}, warn() {}, error() {} } });
+  const run = (source: string) => vm.runInContext(`(async () => {\n${source}\n})()`, context, { timeout: 120_000 });
+  await run(emitFigmaScript(child, { tokens: tokenTree, icons: new Map(), contracts }));
+  await run(figma);
+  const master = root.findOne((n: any) => n.getSharedPluginData?.('ds_contracts', 'contractId') === parent.id);
+  if (!master) fail('mock canvas did not create the composed rich-text master');
+  const pageHero = master.createInstance();
+  figmaApi.currentPage.appendChild(pageHero);
+  const nested = pageHero.findOne((n: any) => n.type === 'INSTANCE');
+  const title = nested?.findOne((n: any) => n.type === 'TEXT' && n.name === 'Titre');
+  const titleKey = Object.keys(nested?.componentProperties ?? {}).find((k) => k.split('#')[0] === 'Titre');
+  if (!nested || !title || !titleKey) fail('mock page instance has no nested native Titre property');
+  const pageCopy = 'Discutons de votre projet';
+  nested.setProperties({ [titleKey]: pageCopy });
+  title.setRangeFontName(0, pageCopy.length, { family: 'Inter', style: 'Regular' });
+  title.setRangeFontName(9, 19, { family: 'Inter', style: 'Bold' });
+  pageHero.itemSpacing = 16;
+
+  const changedParent = ContractSchema.parse({
+    ...parent,
+    anatomy: {
+      root: {
+        ...parent.anatomy.root,
+        layout: { display: 'flex', direction: 'column' },
+        literals: { gap: '12px' },
+      },
+    },
+  });
+  const changedContracts = new Map([[child.id, child], [changedParent.id, changedParent]]);
+  const result: any = await run(emitFigmaScript(changedParent, {
+    tokens: tokenTree, icons: new Map(), contracts: changedContracts,
+  }));
+  const restoredNested = pageHero.findOne((n: any) => n.type === 'INSTANCE');
+  const restoredTitle = restoredNested?.findOne((n: any) => n.type === 'TEXT' && n.name === 'Titre');
+  if (restoredTitle?.characters !== pageCopy) fail('master rebuild erased the page instance copy');
+  const restoredRanges = restoredTitle.getStyledTextSegments(['fontName']).map((s: any) => [s.start, s.end, s.fontName.style]);
+  if (JSON.stringify(restoredRanges) !== JSON.stringify([[0, 9, 'Regular'], [9, 19, 'Bold'], [19, 25, 'Regular']])) {
+    fail(`master rebuild erased or changed page title weights: ${JSON.stringify(restoredRanges)}`);
+  }
+  if (pageHero.itemSpacing !== 16) fail('master rebuild erased the page instance CTA/text spacing override');
+  const reports = result?.results ?? [];
+  if (!reports.some((r: any) => r.consumerOverrides?.verdict === 'vert')) {
+    fail('consumer restoration did not produce an explicit green report');
+  }
+
+  const second: any = await run(emitFigmaScript(changedParent, {
+    tokens: tokenTree, icons: new Map(), contracts: changedContracts,
+  }));
+  if (!(second?.results ?? []).some((r: any) => r.skipped === true && r.reason === 'unchanged')) {
+    fail('second identical projection was not a true no-op');
+  }
+  if (restoredTitle.characters !== pageCopy) fail('true no-op changed the restored page copy');
 }
 
 console.log(

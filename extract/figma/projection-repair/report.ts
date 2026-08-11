@@ -12,7 +12,7 @@ export interface ApplyOperationVerdict {
 }
 export interface IdempotenceReceipt {
   schemaVersion: '1.0.0';
-  campaignId: '021-figma-projection-repair';
+  campaignId: string;
   status: 'pass';
   comparisonHash: string;
   operations: ApplyOperationVerdict[];
@@ -22,6 +22,7 @@ export interface IdempotenceReceipt {
 export function buildIdempotenceReceipt(
   comparison: IdempotenceComparison,
   operations: ApplyOperationVerdict[],
+  campaignId = '021-figma-projection-repair',
 ): IdempotenceReceipt {
   if (!comparison.ok) {
     throw new Error(`idempotence refused — ${comparison.differences.map((difference) => difference.category).join(', ')}`);
@@ -40,7 +41,7 @@ export function buildIdempotenceReceipt(
   })).digest('hex');
   return {
     schemaVersion: '1.0.0',
-    campaignId: '021-figma-projection-repair',
+    campaignId,
     status: 'pass',
     comparisonHash,
     operations: normalizedOperations,
@@ -48,6 +49,8 @@ export function buildIdempotenceReceipt(
 }
 
 export interface RepairReceiptInput {
+  schemaVersion?: '1.0.0' | '2.0.0';
+  campaignId?: string;
   targetId: RepairTargetId;
   referenceId: string;
   appliedOperationIds: string[];
@@ -85,9 +88,9 @@ export function buildRepairReceipt(input: RepairReceiptInput): RepairReceiptBuil
   if (new Set(input.evidenceRefs).size !== input.evidenceRefs.length || input.evidenceRefs.length < 3) issues.push('evidence-refs');
   if (issues.length > 0) return { ok: false, issues };
   const receipt: RepairReceipt = {
-    schemaVersion: '1.0.0',
-    receiptId: `021-${input.targetId}-${input.ownerDecision}`,
-    campaignId: '021-figma-projection-repair',
+    schemaVersion: input.schemaVersion ?? '1.0.0',
+    receiptId: `${input.campaignId ?? '021'}-${input.targetId}-${input.ownerDecision}`,
+    campaignId: input.campaignId ?? '021-figma-projection-repair',
     targetId: input.targetId,
     referenceId: input.referenceId,
     appliedOperationIds: [...new Set(input.appliedOperationIds)].sort(),

@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -22,6 +22,7 @@
   padding-inline: var(--space-32);
   --dsc-border-width: var(--border-width-0);
   text-transform: uppercase;
+  white-space: nowrap;
   position: relative;
 }
 
@@ -113,7 +114,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.2.0 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -123,10 +124,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-8);
-  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -140,6 +142,8 @@
 }
 
 .section-header__Accroche {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-regular);
@@ -149,6 +153,8 @@
 }
 
 .section-header__Titre {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
   font-size: var(--font-size-40);
   font-weight: var(--font-weight-regular);
@@ -193,7 +199,7 @@
   font-size: var(--font-size-24);
 }
 
-/* Hero — from ds.hero v1.4.0 (core/emit-html.ts) */
+/* Hero — from ds.hero v1.5.0 (core/emit-html.ts) */
 
 .hero, .hero *, .hero *::before, .hero *::after {
   box-sizing: border-box;
@@ -204,19 +210,38 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
   border: 0;
   font-family: var(--font-family-montserrat);
   height: var(--size-hero-root);
   gap: var(--space-10);
-  background-image: linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%);
+  background-color: transparent;
   position: relative;
 }
 
 .hero__Background {
   position: absolute;
   object-fit: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
+}
+
+.hero__VoileNavigation {
+  background-image: linear-gradient(to top, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero__blocTexte {
@@ -225,14 +250,18 @@
   align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
+  width: 100%;
   gap: var(--space-16);
   position: relative;
+  z-index: 2;
 }
 
 .hero__Titres {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-16);
   padding-top: var(--space-96);
   padding-right: var(--space-89);
@@ -246,15 +275,18 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: center;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-32);
 }
 
 .hero__sousTitre {
   flex: 1 1 auto;
   min-width: 0;
-  width: var(--size-hero-sous-titre);
+  width: 100%;
   color: var(--color-blanc);
   font-size: var(--font-size-24);
+  font-weight: var(--font-weight-medium);
   line-height: var(--font-line-height-32);
 }
 

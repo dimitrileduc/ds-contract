@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -22,6 +22,7 @@
   padding-inline: var(--space-32);
   --dsc-border-width: var(--border-width-0);
   text-transform: uppercase;
+  white-space: nowrap;
   position: relative;
 }
 
@@ -169,6 +170,7 @@
 .devis__Titre {
   color: var(--color-blanc);
   font-size: var(--font-size-40);
+  font-weight: var(--font-weight-regular);
   width: var(--size-devis-titre);
   line-height: 50px;
   text-align: center;

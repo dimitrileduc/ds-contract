@@ -40,7 +40,7 @@ export function validateDirectRepair(value: unknown): DirectRepairValidation {
 }
 
 interface DirectRepairFile {
-  schemaVersion: '1.0.0'; targetId: 'categories-principales' | 'realisations'; filePin: string;
+  schemaVersion: '1.0.0'; targetId: string; filePin: string;
   targetNodeId: string; targetStructuralPath: string; allowedFields: string[]; protectedPaths: string[];
   operations: Array<{ nodeId: string; structuralPath: string; changes: Record<string, number> }>;
   postconditions: string[];
@@ -105,8 +105,11 @@ export function dryRunCampaign(campaign: RepairCampaign, root = process.cwd(), t
     nodeId: operation.nodeId, structuralPath: operation.structuralPath ?? null, changes: operation.changes,
     preconditions: operation.preconditions, postconditions: operation.expectedPostconditions, source: 'campaign.allowlist',
   }));
-  for (const targetId of ['categories-principales', 'realisations'] as const) {
-    if (includes(targetId)) operations.push(...loadDirect(path.resolve(root, directFiles[targetId]), campaign));
+  const configuredDirectFiles: Record<string, string> = campaign.schemaVersion === '2.0.0'
+    ? (campaign.workflow?.directRepairRefs ?? {})
+    : directFiles;
+  for (const [targetId, file] of Object.entries(configuredDirectFiles)) {
+    if (includes(targetId)) operations.push(...loadDirect(path.resolve(root, file), campaign));
   }
   return { campaignId: campaign.campaignId, filePin: campaign.filePin.versionId, state: campaign.state, operations };
 }
@@ -116,6 +119,7 @@ export function dryRunCampaign(campaign: RepairCampaign, root = process.cwd(), t
 export interface CanvasWriter {
   assertPreconditions(operation: PlannedOperation): Promise<void>;
   applyGeneratedAmend(operation: PlannedOperation): Promise<void>;
+  ensureOrganismContainer(operation: PlannedOperation): Promise<void>;
   resize(operation: PlannedOperation): Promise<void>;
   reposition(operation: PlannedOperation): Promise<void>;
   setProperties(operation: PlannedOperation): Promise<void>;
@@ -126,6 +130,7 @@ export async function applyCampaign(plan: DryRun, writer: CanvasWriter): Promise
   for (const operation of plan.operations) {
     await writer.assertPreconditions(operation);
     if (operation.mechanism === 'generated-amend') await writer.applyGeneratedAmend(operation);
+    else if (operation.mechanism === 'ensure-organism-container') await writer.ensureOrganismContainer(operation);
     else if (operation.mechanism === 'resize') await writer.resize(operation);
     else if (operation.mechanism === 'reposition') await writer.reposition(operation);
     else await writer.setProperties(operation);

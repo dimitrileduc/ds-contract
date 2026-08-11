@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-hero-video-calibration",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386482317851487818",
+  "run": "first",
+  "scriptResults": [
+    {
+      "operationId": "ensure-hero-video-container",
+      "targetId": "hero-video",
+      "nodeId": "2151:5552",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [
+          "2448:4731"
+        ],
+        "changedNodeIds": [
+          "2151:5552",
+          "2448:4731"
+        ]
+      }
+    }
+  ],
+  "inspection": {
+    "masters": [
+      {
+        "targetId": "hero-video",
+        "nodeId": "2151:5552",
+        "componentKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+        "masterCount": 1,
+        "variantNames": []
+      }
+    ],
+    "pageWrites": [],
+    "responsiveChecks": [
+      {
+        "targetId": "hero-video",
+        "width": 1440,
+        "overflow": false,
+        "screenshotRef": "specs/component-repairs/hero-video/run-001/responsive-1440-first.png"
+      }
+    ]
+  }
+}

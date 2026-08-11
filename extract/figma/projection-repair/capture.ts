@@ -8,6 +8,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { FIGMA_API_BASE } from '../rest/fetch.js';
+import { collectSurfaceFacts } from './facts.js';
 import type { AffectedSurface, CapturePhase, CaptureSet, EvidenceArtifact, ImageFingerprint, InstanceLink, RepairCampaign } from './types.js';
 
 type Json = Record<string, unknown>;
@@ -48,7 +49,7 @@ async function getBytes(url: string, token: string): Promise<Uint8Array> {
   return new Uint8Array(await response.arrayBuffer());
 }
 
-interface Inspection { versionId: string; nodes: Map<string, Json>; file: Json; }
+export interface FigmaInspection { versionId: string; nodes: Map<string, Json>; file: Json; }
 
 function walk(node: unknown, fn: (entry: Json, position: string) => void, position = ''): void {
   if (!object(node)) return;
@@ -70,25 +71,63 @@ function pngDimensions(bytes: Uint8Array): { width: number; height: number } | n
   return width > 0 && height > 0 ? { width, height } : null;
 }
 
-export async function inspectFigmaCampaign(campaign: RepairCampaign, token = figmaToken()): Promise<Inspection> {
+export async function inspectFigmaCampaign(
+  campaign: RepairCampaign,
+  token = figmaToken(),
+  options: { enforceVersionPin?: boolean; enforceTopology?: boolean } = {},
+): Promise<FigmaInspection> {
   const [versions, file] = await Promise.all([
     getJson<{ versions?: Array<{ id?: string }> }>(`/v1/files/${campaign.filePin.fileKey}/versions`, token),
     getJson<Json>(`/v1/files/${campaign.filePin.fileKey}`, token),
   ]);
   const versionId = versions.versions?.[0]?.id;
   if (!versionId || !/^\d+$/.test(versionId)) throw new Error('Figma versions response does not expose a current numeric version id');
-  if (versionId !== campaign.filePin.versionId) throw new Error(`file pin drift: expected ${campaign.filePin.versionId}, observed ${versionId}`);
+  if (options.enforceVersionPin !== false && versionId !== campaign.filePin.versionId) throw new Error(`file pin drift: expected ${campaign.filePin.versionId}, observed ${versionId}`);
   const nodes = new Map<string, Json>();
   walk(file.document, (node) => { if (typeof node.id === 'string') nodes.set(node.id, node); });
   for (const target of campaign.targets) if (!nodes.has(target.masterNodeId)) throw new Error(`preflight: target ${target.targetId} node ${target.masterNodeId} is absent from the pinned file`);
+  if (campaign.schemaVersion === '2.0.0' && options.enforceTopology !== false) assertComponentTopology(campaign, nodes);
   return { versionId, nodes, file };
 }
 
+/** Refuse duplicate masters, variant drift and undeclared consumers before a
+ * writer can be created. Names are a duplicate/variant snapshot only; node ids
+ * remain the mutation identity. */
+export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<string, Json>): void {
+  for (const target of campaign.targets) {
+    const master = nodes.get(target.masterNodeId);
+    if (!master) throw new Error(`preflight: master ${target.masterNodeId} is absent`);
+    const sameNamedMasters = [...nodes.values()].filter((node) =>
+      (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') && node.name === target.expectedMasterName);
+    if (sameNamedMasters.length !== 1 || sameNamedMasters[0]?.id !== target.masterNodeId) {
+      throw new Error(`preflight: expected exactly one master ${target.expectedMasterName}, observed ${sameNamedMasters.length}`);
+    }
+    const actualVariantNames = master.type === 'COMPONENT_SET' && Array.isArray(master.children)
+      ? master.children.filter((child) => object(child) && child.type === 'COMPONENT').map((child) => String((child as Json).name ?? '')).sort()
+      : [];
+    const expectedVariantNames = [...(target.expectedVariantNames ?? [])].sort();
+    if (stable(actualVariantNames) !== stable(expectedVariantNames)) {
+      throw new Error(`preflight: variant snapshot drift for ${target.targetId}: expected ${expectedVariantNames.join(' | ') || '(none)'}, observed ${actualVariantNames.join(' | ') || '(none)'}`);
+    }
+    const componentIds = new Set([target.masterNodeId, ...(target.variantNodeIds ?? [])]);
+    const actualInstanceIds = [...nodes.values()]
+      .filter((node) => node.type === 'INSTANCE' && typeof node.id === 'string' && componentIds.has(String(node.componentId)))
+      .map((node) => String(node.id)).sort();
+    const declaredInstanceIds = campaign.affectedSurfaces
+      .filter((surface) => surface.targetId === target.targetId && ['page-instance', 'preview-instance'].includes(surface.role) && surface.nodeId)
+      .map((surface) => surface.nodeId!).sort();
+    if (stable(actualInstanceIds) !== stable(declaredInstanceIds)) {
+      throw new Error(`preflight: consumer cardinality drift for ${target.targetId}: expected ${declaredInstanceIds.join(',') || '(none)'}, observed ${actualInstanceIds.join(',') || '(none)'}`);
+    }
+  }
+}
+
 /** Adds every instance by component identity; names never participate. */
-export function discoverAffectedSurfaces(campaign: RepairCampaign, inspection: Inspection): RepairCampaign {
+export function discoverAffectedSurfaces(campaign: RepairCampaign, inspection: FigmaInspection): RepairCampaign {
   const existing = new Set(campaign.affectedSurfaces.map((surface) => surface.nodeId).filter((id): id is string => id !== null));
   const added: AffectedSurface[] = [];
   for (const target of campaign.targets) {
+    if (campaign.schemaVersion === '2.0.0') continue;
     const ids = new Set([target.masterNodeId, ...(target.variantNodeIds ?? [])]);
     for (const node of inspection.nodes.values()) {
       if (node.type !== 'INSTANCE' || typeof node.id !== 'string' || !ids.has(String(node.componentId)) || existing.has(node.id)) continue;
@@ -161,7 +200,7 @@ export async function captureCampaign(
   outputRoot: string,
   token = figmaToken(),
 ): Promise<{ campaign: RepairCampaign; capture: CaptureSet }> {
-  const inspection = await inspectFigmaCampaign(campaign, token);
+  const inspection = await inspectFigmaCampaign(campaign, token, { enforceVersionPin: phase === 'before' });
   const surfaces = campaign.affectedSurfaces.filter((surface) => surface.nodeId !== null);
   const ids = surfaces.map((surface) => surface.nodeId!);
   const response = await getJson<{ nodes?: Record<string, { document?: Json }> }>(`/v1/files/${campaign.filePin.fileKey}/nodes?ids=${encodeURIComponent(ids.join(','))}`, token);
@@ -187,6 +226,10 @@ export async function captureCampaign(
     const propertyBytes = `${stable(properties(node))}\n`;
     writeFileSync(propertyPath, propertyBytes);
     artifacts.push({ artifactId: `${surface.surfaceId}:properties`, surfaceId: surface.surfaceId, kind: 'properties', path: path.relative(process.cwd(), propertyPath), sha256: sha256(propertyBytes), width: null, height: null, byteLength: Buffer.byteLength(propertyBytes), status: 'valid' });
+    const factsPath = path.join(phaseRoot, `${base}.facts.json`);
+    const factsBytes = `${stable(collectSurfaceFacts(node))}\n`;
+    writeFileSync(factsPath, factsBytes);
+    artifacts.push({ artifactId: `${surface.surfaceId}:facts`, surfaceId: surface.surfaceId, kind: 'facts', path: path.relative(process.cwd(), factsPath), sha256: sha256(factsBytes), width: null, height: null, byteLength: Buffer.byteLength(factsBytes), status: 'valid' });
     imageRows.push(...imageFingerprints(node));
     links.push(...instanceLinks(node));
     const url = images.images?.[surface.nodeId!];
@@ -204,9 +247,11 @@ export async function captureCampaign(
   }
   const complete = surfaces.length > 0 && surfaces.every((surface) => {
     const own = artifacts.filter((artifact) => artifact.surfaceId === surface.surfaceId);
-    return own.some((artifact) => artifact.kind === 'png' && artifact.status === 'valid') && own.some((artifact) => artifact.kind === 'structure' && artifact.status === 'valid');
+    return own.some((artifact) => artifact.kind === 'png' && artifact.status === 'valid') &&
+      own.some((artifact) => artifact.kind === 'structure' && artifact.status === 'valid') &&
+      (campaign.schemaVersion !== '2.0.0' || own.some((artifact) => artifact.kind === 'facts' && artifact.status === 'valid'));
   });
-  const capture: CaptureSet = { captureSetId: `021-${phase}-${campaign.filePin.versionId}`, phase, fileVersionId: inspection.versionId, artifacts, imageFingerprints: imageRows, instanceLinks: links, complete };
+  const capture: CaptureSet = { captureSetId: `${campaign.campaignId}-${phase}-${campaign.filePin.versionId}`, phase, fileVersionId: inspection.versionId, artifacts, imageFingerprints: imageRows, instanceLinks: links, complete };
   const captureSets = { ...campaign.captureSets, [phase]: capture };
   const nextState = phase === 'before' && complete ? 'ready-to-apply' : campaign.state;
   return { campaign: { ...campaign, captureSets, state: nextState }, capture };

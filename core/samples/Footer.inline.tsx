@@ -67,6 +67,7 @@ const S: Record<string, CSSProperties> = {
   },
   "TitreReseaux": {
     "color": "#F98A0B",
+    "fontWeight": 400,
     "fontSize": "24px",
     "lineHeight": "30px"
   },

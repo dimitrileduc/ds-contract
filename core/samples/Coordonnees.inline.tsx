@@ -50,11 +50,13 @@ const S: Record<string, CSSProperties> = {
   "AdresseEtiquette": {
     "color": "#F98A0B",
     "fontSize": "24px",
+    "fontWeight": 400,
     "lineHeight": "30px"
   },
   "AdresseValeur": {
     "color": "#26282C",
     "fontSize": "18px",
+    "fontWeight": 400,
     "lineHeight": "27px",
     "whiteSpace": "pre-line",
     "textDecorationLine": "underline"
@@ -67,11 +69,13 @@ const S: Record<string, CSSProperties> = {
   "HorairesEtiquette": {
     "color": "#F98A0B",
     "fontSize": "24px",
+    "fontWeight": 400,
     "lineHeight": "30px"
   },
   "HorairesValeur": {
     "color": "#26282C",
     "fontSize": "18px",
+    "fontWeight": 400,
     "lineHeight": "27px"
   },
   "Contact": {
@@ -82,11 +86,13 @@ const S: Record<string, CSSProperties> = {
   "ContactEtiquette": {
     "color": "#F98A0B",
     "fontSize": "24px",
+    "fontWeight": 400,
     "lineHeight": "30px"
   },
   "tl32087463266EmailInfopi": {
     "color": "#26282C",
     "fontSize": "18px",
+    "fontWeight": 400,
     "lineHeight": "27px",
     "whiteSpace": "pre-line"
   },
@@ -98,6 +104,7 @@ const S: Record<string, CSSProperties> = {
   "SuivezNousEtiquette": {
     "color": "#F98A0B",
     "fontSize": "24px",
+    "fontWeight": 400,
     "lineHeight": "30px"
   },
   "rseauxSociaux": {

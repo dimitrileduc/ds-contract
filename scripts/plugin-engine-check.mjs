@@ -77,6 +77,23 @@ for (const icon of iconRegistry.icons) {
   component.key = icon.figma.key;
   firstPage.appendChild(component);
 }
+// Piqueray is a brownfield file: its 18 historical Text Styles must have
+// passed the reviewed marker-only migration before the normal tokens step.
+// Seed that exact post-migration state from an independent historical fixture
+// so this check cannot hide name adoption or duplicate creation.
+const historicalTextStyles = JSON.parse(read('evals/fixtures/figma-text-styles-piqueray.expected.json'));
+for (const recipe of historicalTextStyles) {
+  const style = figma.createTextStyle();
+  style.name = recipe.name;
+  style.fontName = { family: recipe.fontFamily, style: recipe.fontStyle };
+  style.fontSize = recipe.fontSize;
+  style.lineHeight = recipe.lineHeight === undefined
+    ? { unit: 'AUTO' }
+    : { unit: 'PIXELS', value: recipe.lineHeight };
+  style.letterSpacing = recipe.letterSpacing;
+  style.textCase = recipe.textCase;
+  style.setSharedPluginData('ds_contracts', 'textStyleToken', recipe.tokenPath);
+}
 const sandbox = { window: {}, console: { log() {}, warn() {}, error() {} } };
 vm.createContext(sandbox);
 vm.runInContext(bundle.code, sandbox, { timeout: 120_000 });

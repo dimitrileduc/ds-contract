@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/formulaire.contract.json (ds.formulaire v1.1.0)
+ * Source of truth: contracts/formulaire.contract.json (ds.formulaire v2.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -82,7 +82,11 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "gap": "16px"
   },
-  "TexteConsentement": {}
+  "TexteConsentement": {
+    "fontSize": "14px",
+    "fontWeight": 400,
+    "lineHeight": "24px"
+  }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
@@ -93,19 +97,19 @@ export interface FormulaireProps extends HTMLAttributes<HTMLDivElement> {
   items?: Array<{ texte: string; titre: string }>;
   /** Extracted from Figma "Accroche" TEXT property (added by sync pass). */
   accroche?: string;
-  /** Extracted from Figma "Titre" TEXT property (added by sync pass). */
-  titre?: string;
+  /** Extracted from Figma "Titre" TEXT property (added by sync pass). Type rich-text since 2.0.0 because the exact parent→SectionHeader mapping must preserve the child contract's governed marks instead of flattening them. */
+  titre?: Array<{ text: string; strong?: boolean }>;
 }
 
-/** Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
+/** Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.0.0 makes the existing Titre/Accroche controls live on the composed SectionHeader. Titre changes from flat text to rich-text so its governed marks survive parent→child forwarding; the prop name and visible default stay unchanged, while the type change is correctly major-versioned. */
 export const Formulaire = forwardRef<HTMLDivElement, FormulaireProps>(function Formulaire(
-  { consentement = 'En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.', accroche = 'Une demande de devis ? Une réparation ?', titre = 'Prenez contact avec nous dès maintenant !', items, style, children, ...rest },
+  { consentement = 'En cliquant sur «Envoyer», je confirme avoir lu et accepté la politique de confidentialité.', accroche = 'Une demande de devis ? Une réparation ?', titre = [{"text":"Prenez contact avec nous dès maintenant !"}], items, style, children, ...rest },
   ref,
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
       <div style={{ ...S.column }}>
-<SectionHeader titre={[{"text":"Prenez contact avec nous dès maintenant !"}]} accroche="Une demande de devis ? Une réparation ?" disposition="standard" />
+<SectionHeader titre={titre} accroche={accroche} disposition="standard" />
 <div style={{ ...S.features }}>
 <Avantage texte="Devis gratuits effectués sur place, nous nous déplaçons chez vous" titre="Conseils personnalisés" />
 <Avantage texte="Marque Hormann renommée, qualité allemande" titre="Produits de qualité" />

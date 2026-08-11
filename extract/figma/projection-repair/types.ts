@@ -1,7 +1,15 @@
-/** Données versionnées de la campagne 021. Aucun accès Figma ne vit ici. */
+/**
+ * Données versionnées des campagnes de réparation Figma.
+ *
+ * `1.0.0` reste le format historique fermé de la campagne 021. `2.0.0` est
+ * l'enveloppe réutilisable mono-composant : chemins de preuves, fichier cible
+ * et protections y sont déclarés par le manifeste plutôt que codés dans le
+ * runner. Aucun accès Figma ne vit ici.
+ */
 
 export const REPAIR_CAMPAIGN_ID = '021-figma-projection-repair' as const;
 export const REPAIR_SCHEMA_VERSION = '1.0.0' as const;
+export const COMPONENT_REPAIR_SCHEMA_VERSION = '2.0.0' as const;
 export const REPAIR_TARGET_IDS = [
   'hero',
   'sav',
@@ -12,12 +20,95 @@ export const REPAIR_TARGET_IDS = [
   'formulaire',
 ] as const;
 
-export type RepairTargetId = (typeof REPAIR_TARGET_IDS)[number];
+export type LegacyRepairTargetId = (typeof REPAIR_TARGET_IDS)[number];
+export type RepairTargetId = string;
 export type CampaignState =
   | 'draft' | 'preflight-valid' | 'captured' | 'ready-to-apply' | 'applied' | 'verified'
   | 'owner-accepted' | 'owner-refused' | 'refused-before-mutation' | 'application-failed' | 'verification-failed';
 export type ImpactStatus = 'pending' | 'unchanged' | 'revalidated' | 'refused' | 'not-applicable';
 export type CapturePhase = 'before' | 'after' | 'idempotence';
+
+export const REQUIRED_COMPONENT_PROTECTION_FACTS = [
+  'master-identity',
+  'variant-cardinality',
+  'variant-names',
+  'image-paints',
+  'gradient-paints',
+  'text-content',
+  'text-ranges',
+  'text-styles',
+  'instance-links',
+  'instance-overrides',
+  'page-node-identity',
+] as const;
+
+export type ProtectedFact =
+  | (typeof REQUIRED_COMPONENT_PROTECTION_FACTS)[number]
+  | 'video-paints'
+  | 'geometry'
+  | 'responsive-overflow';
+
+export interface SourceBaseline {
+  gitHead: string;
+  worktreeTree: string;
+  backupRef: string;
+  capturedAt: string;
+}
+
+export interface ComponentRepairWorkflow {
+  mode: 'single-component';
+  subjectKind: 'organism';
+  evidenceRoot: string;
+  ownerDecisionRoot: string;
+  comparisonPath: string;
+  applyReceiptPaths: { first: string; second: string };
+  pageMutationPolicy: 'forbid-direct';
+  directDependencies: string[];
+  sharedDependencies: string[];
+  directRepairRefs?: Record<string, string>;
+}
+
+export type ComponentAuditVerdict = 'green' | 'proposal' | 'blocked';
+export type TextAuditClassification = 'named-exact' | 'rich-ranges' | 'historical-custom' | 'defect';
+
+export interface ComponentAuditReport {
+  schemaVersion: '1.0.0';
+  campaignId: string;
+  targetId: string;
+  inspectedAt: string;
+  fileVersionId: string;
+  verdict: ComponentAuditVerdict;
+  figmaWrites: [];
+  container: {
+    status: 'pass' | 'fail';
+    masterNodeId: string;
+    parentNodeId: string | null;
+    parentName: string | null;
+    parentType: string | null;
+    parentLayoutMode: string | null;
+    masterLayoutSizingHorizontal: string | null;
+    referenceWidth: number | null;
+    responsiveWidths: number[];
+    issues: string[];
+  };
+  texts: Array<{
+    nodeId: string;
+    structuralPath: string;
+    name: string;
+    characters: string;
+    classification: TextAuditClassification;
+    textStyleId: string | null;
+    textStyleName: string | null;
+    reasons: string[];
+  }>;
+  dependencies: {
+    declared: string[];
+    observed: string[];
+    undeclared: string[];
+  };
+  findings: Array<{ code: string; severity: 'proposal' | 'blocked'; message: string }>;
+  proposedChanges: string[];
+}
 
 export interface ValidatedReference {
   referenceId: string;
@@ -39,16 +130,26 @@ export interface RepairTarget {
   projectionDefectIds: string[];
   allowedFields: string[];
   protectedFacts: string[];
+  /** Facts allowed to move intentionally; every other required fact is a hard
+   *  before/after gate in schema v2. */
+  allowedFactChanges?: ProtectedFact[];
+  /** Display name is used only to refuse duplicate masters. Identity remains
+   *  the pinned node id/key. */
+  expectedMasterName?: string;
+  expectedVariantNames?: string[];
+  /** Reduced desktop widths exercised on an isolated instance after apply. */
+  responsiveWidths?: number[];
   ownerDecision?: 'accepted' | 'refused' | null;
 }
 
 export interface AffectedSurface {
   surfaceId: string;
   targetId: RepairTargetId;
-  role: 'master' | 'variant' | 'page-instance' | 'shared-consumer' | 'odoo-qualification';
+  role: 'master' | 'variant' | 'page-instance' | 'page-context' | 'preview-instance' | 'shared-consumer' | 'odoo-qualification';
   nodeId: string | null;
   pageComposition: string | null;
   structuralPath: string | null;
+  contextForSurfaceId?: string | null;
   expectedSize: { width: number; height: number };
   impactStatus: ImpactStatus;
 }
@@ -56,7 +157,7 @@ export interface AffectedSurface {
 export interface EvidenceArtifact {
   artifactId: string;
   surfaceId: string;
-  kind: 'png' | 'structure' | 'properties' | 'diff' | 'report';
+  kind: 'png' | 'structure' | 'properties' | 'facts' | 'diff' | 'report';
   path: string;
   sha256: string;
   width: number | null;
@@ -113,7 +214,7 @@ export interface ConsumerImpact {
 export interface RepairOperation {
   operationId: string;
   targetId: RepairTargetId;
-  mechanism: 'generated-amend' | 'set-properties' | 'resize' | 'reposition' | 'property-reference';
+  mechanism: 'generated-amend' | 'ensure-organism-container' | 'set-properties' | 'resize' | 'reposition' | 'property-reference';
   nodeId: string;
   structuralPath?: string | null;
   preconditions: Record<string, unknown>[];
@@ -122,8 +223,8 @@ export interface RepairOperation {
 }
 
 export interface RepairCampaign {
-  schemaVersion: typeof REPAIR_SCHEMA_VERSION;
-  campaignId: typeof REPAIR_CAMPAIGN_ID;
+  schemaVersion: typeof REPAIR_SCHEMA_VERSION | typeof COMPONENT_REPAIR_SCHEMA_VERSION;
+  campaignId: string;
   filePin: { fileKey: string; versionId: string; fileName?: string; capturedAt: string };
   authorityRefs: string[];
   targets: RepairTarget[];
@@ -133,6 +234,8 @@ export interface RepairCampaign {
   captureSets: { before: CaptureSet; after?: CaptureSet; idempotence?: CaptureSet };
   state: CampaignState;
   createdAt: string;
+  sourceBaseline?: SourceBaseline;
+  workflow?: ComponentRepairWorkflow;
 }
 
 export interface DiffFinding {
@@ -145,9 +248,9 @@ export interface DiffFinding {
 }
 
 export interface RepairReceipt {
-  schemaVersion: typeof REPAIR_SCHEMA_VERSION;
+  schemaVersion: typeof REPAIR_SCHEMA_VERSION | typeof COMPONENT_REPAIR_SCHEMA_VERSION;
   receiptId: string;
-  campaignId: typeof REPAIR_CAMPAIGN_ID;
+  campaignId: string;
   targetId: RepairTargetId;
   referenceId: string;
   appliedOperationIds: string[];

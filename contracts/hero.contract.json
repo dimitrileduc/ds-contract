@@ -39,7 +39,7 @@
     },
     {
       "name": "sousTitre",
-      "description": "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection flattens to the property's native string value.",
+      "description": "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges.",
       "type": "rich-text",
       "default": [
         {
@@ -104,7 +104,7 @@
         "VoileNavigation": {
           "description": "Mandatory Hero-owned top veil. It sits above the photo and below all Hero content so an overlaid Page header remains readable without a Page-specific patch.",
           "literals": {
-            "background-image": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)"
+            "background-image": "linear-gradient(to top, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%)"
           },
           "declared": {
             "position": "absolute",
@@ -189,11 +189,12 @@
                         "grow": true,
                         "width": "fill"
                       },
-                      "tokens": {
-                        "color": "{color.blanc}",
-                        "font-size": "{font.size.24}",
-                        "line-height": "{font.line-height.32}"
-                      },
+                    "tokens": {
+                      "color": "{color.blanc}",
+                      "font-size": "{font.size.24}",
+                      "font-weight": "{font.weight.medium}",
+                      "line-height": "{font.line-height.32}"
+                    },
                       "content": {
                         "prop": "sousTitre",
                         "marks": {

@@ -1,6 +1,7 @@
 /** Strict, deterministic comparison gates for campaign 021. */
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { compareProtectedFacts, type SurfaceFacts } from './facts.js';
 import type { CaptureSet, DiffFinding, ImageFingerprint, InstanceLink, RepairCampaign, RepairTargetId } from './types.js';
 
 type JsonRecord = Record<string, unknown>;
@@ -178,7 +179,7 @@ export interface TargetClosureVerdict {
 }
 export interface CampaignClosureComparison {
   schemaVersion: '1.0.0';
-  campaignId: '021-figma-projection-repair';
+  campaignId: string;
   filePins: { before: string; after: string; idempotence: string | null };
   ok: boolean;
   targetCount: number;
@@ -192,8 +193,17 @@ export interface CampaignClosureComparison {
   };
 }
 
-function artifactFor(capture: CaptureSet, surfaceId: string, kind: 'structure' | 'properties' | 'png') {
+function artifactFor(capture: CaptureSet, surfaceId: string, kind: 'structure' | 'properties' | 'facts' | 'png') {
   return capture.artifacts.find((artifact) => artifact.surfaceId === surfaceId && artifact.kind === kind);
+}
+
+function readFacts(capture: CaptureSet, surfaceId: string, root: string): SurfaceFacts | null {
+  const artifact = artifactFor(capture, surfaceId, 'facts');
+  if (!artifact || artifact.status !== 'valid') return null;
+  try {
+    const parsed = JSON.parse(readFileSync(path.resolve(root, artifact.path), 'utf8'));
+    return record(parsed) && record(parsed.digests) ? parsed as unknown as SurfaceFacts : null;
+  } catch { return null; }
 }
 
 function readStructure(capture: CaptureSet, surfaceId: string, root: string): JsonRecord | null {
@@ -254,6 +264,25 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
           });
         }
       }
+      if (campaign.schemaVersion === '2.0.0') {
+        const leftFacts = readFacts(before, surface.surfaceId, root);
+        const rightFacts = readFacts(after, surface.surfaceId, root);
+        if (!leftFacts || !rightFacts) {
+          unexpectedDiffs.push({
+            surfaceId: surface.surfaceId, kind: 'unexpected', description: 'protected-facts capture missing or invalid', diffCount: 1,
+            evidenceRef: artifactFor(after, surface.surfaceId, 'facts')?.path ?? campaign.workflow?.comparisonPath ?? 'proofs/comparison.json',
+          });
+        } else {
+          const differences = compareProtectedFacts(leftFacts, rightFacts, target.protectedFacts);
+          for (const difference of differences) unexpectedDiffs.push({
+            surfaceId: surface.surfaceId,
+            kind: 'unexpected',
+            description: `protected fact changed: ${difference.fact}`,
+            diffCount: 1,
+            evidenceRef: artifactFor(after, surface.surfaceId, 'facts')?.path ?? campaign.workflow?.comparisonPath ?? 'proofs/comparison.json',
+          });
+        }
+      }
     }
     const consumers = campaign.consumerImpacts.filter((consumer) =>
       target.projectionDefectIds.some((defect) => defect === consumer.dependencyId ||
@@ -297,10 +326,11 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
       limits: target.kind === 'generated-master' ? ['Generated descendant node IDs are normalized; root component IDs and keys remain authoritative.'] : [],
     };
   });
-  const ok = before.complete && after.complete && campaign.captureSets.idempotence?.complete === true &&
+  const idempotenceReady = campaign.schemaVersion === '2.0.0' || campaign.captureSets.idempotence?.complete === true;
+  const ok = before.complete && after.complete && idempotenceReady &&
     uniqueImageHashesPreserved && pendingConsumers === 0 && targets.every((target) => target.unexpectedDiffs.length === 0);
   return {
-    schemaVersion: '1.0.0', campaignId: '021-figma-projection-repair',
+    schemaVersion: '1.0.0', campaignId: campaign.campaignId,
     filePins: { before: before.fileVersionId, after: after.fileVersionId, idempotence: campaign.captureSets.idempotence?.fileVersionId ?? null },
     ok, targetCount: targets.length, targets,
     global: {

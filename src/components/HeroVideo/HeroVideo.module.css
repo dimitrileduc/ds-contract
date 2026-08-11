@@ -1,0 +1,82 @@
+/* GENERATED FILE — DO NOT EDIT.
+ * Source of truth: contracts/hero-video.contract.json (ds.hero-video v1.0.0)
+ * Regenerate with: npm run generate
+ */
+
+.root,
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: border-box;
+}
+
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  height: var(--size-hero-video-root);
+  gap: var(--space-10);
+  padding-top: var(--space-48);
+  padding-right: var(--space-89);
+  padding-bottom: var(--space-48);
+  padding-left: var(--space-89);
+  background-color: transparent;
+  position: relative;
+}
+
+.Background {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.VoileBas {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.5) 100%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.VoileNavigation {
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.5) 100%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.Text {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.Accroche {
+  width: 100%;
+  min-width: 0;
+  color: var(--color-blanc);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-44);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--font-line-height-48);
+}

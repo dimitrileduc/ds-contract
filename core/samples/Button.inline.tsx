@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/button.contract.json (ds.button v2.0.0)
+ * Source of truth: contracts/button.contract.json (ds.button v2.0.1)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -51,7 +51,8 @@ const S: Record<string, CSSProperties> = {
     "paddingBlock": "16px",
     "paddingInline": "32px",
     "borderWidth": "0px",
-    "textTransform": "uppercase"
+    "textTransform": "uppercase",
+    "whiteSpace": "nowrap"
   },
   "iconLeft": {
     "display": "inline-flex",

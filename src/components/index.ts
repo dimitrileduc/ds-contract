@@ -16,6 +16,7 @@ export * from './Formulaire';
 export * from './GoogleReviews';
 export * from './Header';
 export * from './Hero';
+export * from './HeroVideo';
 export * from './Input';
 export * from './MemberCard';
 export * from './MemberPicture';

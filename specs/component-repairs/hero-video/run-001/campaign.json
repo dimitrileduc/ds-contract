@@ -1,0 +1,988 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "repair-hero-video-calibration",
+  "sourceBaseline": {
+    "gitHead": "ee2262a9b2c2d5a8598d8373f9a90e9be871c037",
+    "worktreeTree": "797d3eea3609caf82495d5344900ff295a1dfac5",
+    "backupRef": "refs/codex/backups/hero-video-container-ready-20260811",
+    "capturedAt": "2026-08-11T15:19:24.679Z"
+  },
+  "workflow": {
+    "mode": "single-component",
+    "subjectKind": "organism",
+    "evidenceRoot": "specs/component-repairs/hero-video/run-001",
+    "ownerDecisionRoot": "specs/component-repairs/hero-video/run-001/owner",
+    "comparisonPath": "specs/component-repairs/hero-video/run-001/comparison.json",
+    "applyReceiptPaths": {
+      "first": "specs/component-repairs/hero-video/run-001/apply-first.json",
+      "second": "specs/component-repairs/hero-video/run-001/apply-second.json"
+    },
+    "pageMutationPolicy": "forbid-direct",
+    "directDependencies": [
+      "ds.button"
+    ],
+    "sharedDependencies": []
+  },
+  "filePin": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "versionId": "2386482317851487818",
+    "fileName": "Piqueray--Copy-",
+    "capturedAt": "2026-08-11T15:13:33.382Z"
+  },
+  "authorityRefs": [
+    "specs/021-figma-projection-repair/proofs/hero-video-recovery.json"
+  ],
+  "targets": [
+    {
+      "targetId": "hero-video",
+      "kind": "generated-master",
+      "masterNodeId": "2151:5552",
+      "reference": {
+        "referenceId": "hero-video-owner-reference",
+        "sourceKind": "contract-and-history",
+        "figmaVersionId": "2386120715962664149",
+        "subjectNodeId": "2151:5552",
+        "visualFacts": [
+          "1728x720 reference size",
+          "historical poster IMAGE",
+          "bottom and navigation gradients",
+          "44/48 Montserrat Regular direct title",
+          "Page copy and CTA overrides preserved"
+        ],
+        "decisionRef": "specs/021-figma-projection-repair/proofs/hero-video-recovery.json"
+      },
+      "affectedSurfaceIds": [
+        "hero-video:master",
+        "hero-video:page:2170-6351",
+        "hero-video:page-context:210-328"
+      ],
+      "projectionDefectIds": [
+        "organism-container"
+      ],
+      "allowedFields": [
+        "parentNodeId",
+        "containerName",
+        "layoutMode",
+        "layoutSizingHorizontal"
+      ],
+      "protectedFacts": [
+        "master-identity",
+        "variant-cardinality",
+        "variant-names",
+        "image-paints",
+        "gradient-paints",
+        "text-content",
+        "text-ranges",
+        "text-styles",
+        "instance-links",
+        "instance-overrides",
+        "page-node-identity"
+      ],
+      "allowedFactChanges": [
+        "video-paints",
+        "geometry",
+        "responsive-overflow"
+      ],
+      "expectedMasterName": "HeroVideo",
+      "expectedVariantNames": [],
+      "responsiveWidths": [
+        1440
+      ]
+    }
+  ],
+  "affectedSurfaces": [
+    {
+      "surfaceId": "hero-video:master",
+      "targetId": "hero-video",
+      "role": "master",
+      "nodeId": "2151:5552",
+      "pageComposition": null,
+      "structuralPath": "0",
+      "expectedSize": {
+        "width": 1728,
+        "height": 720
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "hero-video:page:2170-6351",
+      "targetId": "hero-video",
+      "role": "page-instance",
+      "nodeId": "2170:6351",
+      "pageComposition": "Hero et catégories",
+      "structuralPath": "0",
+      "expectedSize": {
+        "width": 1728,
+        "height": 720
+      },
+      "impactStatus": "pending"
+    },
+    {
+      "surfaceId": "hero-video:page-context:210-328",
+      "targetId": "hero-video",
+      "role": "page-context",
+      "nodeId": "210:328",
+      "pageComposition": "Hero et catégories",
+      "structuralPath": "0",
+      "contextForSurfaceId": "hero-video:page:2170-6351",
+      "expectedSize": {
+        "width": 1728,
+        "height": 1186
+      },
+      "impactStatus": "pending"
+    }
+  ],
+  "consumerImpacts": [],
+  "allowedOperations": [
+    {
+      "operationId": "ensure-hero-video-container",
+      "targetId": "hero-video",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2151:5552",
+      "structuralPath": "0",
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2151:5552"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2170:6360"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "changes": {
+        "containerName": "Container · HeroVideo",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1728,
+        "referenceHeight": 720,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "expectedPostconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2151:5552"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · HeroVideo"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ]
+    }
+  ],
+  "captureSets": {
+    "before": {
+      "captureSetId": "repair-hero-video-calibration-before-2386482317851487818",
+      "phase": "before",
+      "fileVersionId": "2386482317851487818",
+      "artifacts": [
+        {
+          "artifactId": "hero-video:master:structure",
+          "surfaceId": "hero-video:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_master.structure.json",
+          "sha256": "440086dab1e4b4b8ade14f9ebd1b93f7162e5c22cd8bcc118e8baced3c2f9631",
+          "width": null,
+          "height": null,
+          "byteLength": 32715,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:properties",
+          "surfaceId": "hero-video:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_master.properties.json",
+          "sha256": "a08e1f700abb0f5fed1d90259911e3571cb8128090a127cb475af4fd5c9e5ac2",
+          "width": null,
+          "height": null,
+          "byteLength": 6968,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:facts",
+          "surfaceId": "hero-video:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_master.facts.json",
+          "sha256": "218eedab3c492ac8f2950eeea933b2d74d560ce7c7663cb6b4907f3e8160afce",
+          "width": null,
+          "height": null,
+          "byteLength": 14553,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:png",
+          "surfaceId": "hero-video:master",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_master.png",
+          "sha256": "5b9da60fb69d64c4f1f3a8ce384148447cd7bdc02539a9574329d3497ae6600d",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 2432214,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:structure",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page_2170-6351.structure.json",
+          "sha256": "719ebc4f20c08085fb7129afb76fca5ee292606a4d76ec71f7254ade356fb709",
+          "width": null,
+          "height": null,
+          "byteLength": 33398,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:properties",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page_2170-6351.properties.json",
+          "sha256": "c2030f1691a890974b6238c978a315d2d76610d3a9b382b95a4233d406491b5c",
+          "width": null,
+          "height": null,
+          "byteLength": 7012,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:facts",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page_2170-6351.facts.json",
+          "sha256": "a6d596d22dad8aae8996620f479a7c0854650eced85b987ffb5df6de4ac6ad85",
+          "width": null,
+          "height": null,
+          "byteLength": 15275,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:png",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page_2170-6351.png",
+          "sha256": "e83808b907a96f8d66b42e0fae9c5909f714176026c6e00a10556e4a037d305f",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 2431968,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:structure",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page-context_210-328.structure.json",
+          "sha256": "c52fb6e4f79bd3394bc6837b6a0336a930a18d3a9d2a6c9f34343a6cc87fe542",
+          "width": null,
+          "height": null,
+          "byteLength": 93943,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:properties",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page-context_210-328.properties.json",
+          "sha256": "74ac93a53e9001ec2fd85da62f1e3e06131aa2e18f8aff938dbeec3dab7ed537",
+          "width": null,
+          "height": null,
+          "byteLength": 7295,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:facts",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page-context_210-328.facts.json",
+          "sha256": "42902c0f94001509d4d94fde28b18ab60609ba958e2d5bb5ba386f0abbb3ad40",
+          "width": null,
+          "height": null,
+          "byteLength": 29020,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:png",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/before/hero-video_page-context_210-328.png",
+          "sha256": "a1a487a649f6a2e5bfa80c0f8bd565194a944299e7ceb47c0f563c05838d41dc",
+          "width": 1728,
+          "height": 1186,
+          "byteLength": 3467868,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2439:4691",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2439:4691",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2115:4160",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2115:4168",
+          "structuralPath": "1/1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2439:4691",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "I2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "",
+          "overrideDigest": "98d94a124ffdfe8947c29f3ccd9a5557b7f07b276a17bc9b983de474df277c1b"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "1",
+          "overrideDigest": "e813e3ff0bbd252e4f8cada9886033383be872344b94e0355c49281427894b10"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "0",
+          "overrideDigest": "98d94a124ffdfe8947c29f3ccd9a5557b7f07b276a17bc9b983de474df277c1b"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2115:4167",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2115:4175",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    },
+    "after": {
+      "captureSetId": "repair-hero-video-calibration-after-2386482317851487818",
+      "phase": "after",
+      "fileVersionId": "2386482317851487818",
+      "artifacts": [
+        {
+          "artifactId": "hero-video:master:structure",
+          "surfaceId": "hero-video:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_master.structure.json",
+          "sha256": "a4d2346bfc74e122587e8091c40c1ea739fe3990d58a4885f9384fae48148fb9",
+          "width": null,
+          "height": null,
+          "byteLength": 32761,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:properties",
+          "surfaceId": "hero-video:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_master.properties.json",
+          "sha256": "a08e1f700abb0f5fed1d90259911e3571cb8128090a127cb475af4fd5c9e5ac2",
+          "width": null,
+          "height": null,
+          "byteLength": 6968,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:facts",
+          "surfaceId": "hero-video:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_master.facts.json",
+          "sha256": "6fac5dced314b301c98f37915036fbae3b9facd9376781bcab0443d42edf81e7",
+          "width": null,
+          "height": null,
+          "byteLength": 14552,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:png",
+          "surfaceId": "hero-video:master",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_master.png",
+          "sha256": "5b9da60fb69d64c4f1f3a8ce384148447cd7bdc02539a9574329d3497ae6600d",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 2432214,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:structure",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page_2170-6351.structure.json",
+          "sha256": "719ebc4f20c08085fb7129afb76fca5ee292606a4d76ec71f7254ade356fb709",
+          "width": null,
+          "height": null,
+          "byteLength": 33398,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:properties",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page_2170-6351.properties.json",
+          "sha256": "c2030f1691a890974b6238c978a315d2d76610d3a9b382b95a4233d406491b5c",
+          "width": null,
+          "height": null,
+          "byteLength": 7012,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:facts",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page_2170-6351.facts.json",
+          "sha256": "a6d596d22dad8aae8996620f479a7c0854650eced85b987ffb5df6de4ac6ad85",
+          "width": null,
+          "height": null,
+          "byteLength": 15275,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:png",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page_2170-6351.png",
+          "sha256": "e83808b907a96f8d66b42e0fae9c5909f714176026c6e00a10556e4a037d305f",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 2431968,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:structure",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page-context_210-328.structure.json",
+          "sha256": "c52fb6e4f79bd3394bc6837b6a0336a930a18d3a9d2a6c9f34343a6cc87fe542",
+          "width": null,
+          "height": null,
+          "byteLength": 93943,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:properties",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page-context_210-328.properties.json",
+          "sha256": "74ac93a53e9001ec2fd85da62f1e3e06131aa2e18f8aff938dbeec3dab7ed537",
+          "width": null,
+          "height": null,
+          "byteLength": 7295,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:facts",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page-context_210-328.facts.json",
+          "sha256": "42902c0f94001509d4d94fde28b18ab60609ba958e2d5bb5ba386f0abbb3ad40",
+          "width": null,
+          "height": null,
+          "byteLength": 29020,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:png",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/after/hero-video_page-context_210-328.png",
+          "sha256": "a1a487a649f6a2e5bfa80c0f8bd565194a944299e7ceb47c0f563c05838d41dc",
+          "width": 1728,
+          "height": 1186,
+          "byteLength": 3467868,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2439:4691",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2439:4691",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2115:4160",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2115:4168",
+          "structuralPath": "1/1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2439:4691",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "I2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "",
+          "overrideDigest": "98d94a124ffdfe8947c29f3ccd9a5557b7f07b276a17bc9b983de474df277c1b"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "1",
+          "overrideDigest": "e813e3ff0bbd252e4f8cada9886033383be872344b94e0355c49281427894b10"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "0",
+          "overrideDigest": "98d94a124ffdfe8947c29f3ccd9a5557b7f07b276a17bc9b983de474df277c1b"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2115:4167",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2115:4175",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    },
+    "idempotence": {
+      "captureSetId": "repair-hero-video-calibration-idempotence-2386482317851487818",
+      "phase": "idempotence",
+      "fileVersionId": "2386491573484816096",
+      "artifacts": [
+        {
+          "artifactId": "hero-video:master:structure",
+          "surfaceId": "hero-video:master",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_master.structure.json",
+          "sha256": "a4d2346bfc74e122587e8091c40c1ea739fe3990d58a4885f9384fae48148fb9",
+          "width": null,
+          "height": null,
+          "byteLength": 32761,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:properties",
+          "surfaceId": "hero-video:master",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_master.properties.json",
+          "sha256": "a08e1f700abb0f5fed1d90259911e3571cb8128090a127cb475af4fd5c9e5ac2",
+          "width": null,
+          "height": null,
+          "byteLength": 6968,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:facts",
+          "surfaceId": "hero-video:master",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_master.facts.json",
+          "sha256": "6fac5dced314b301c98f37915036fbae3b9facd9376781bcab0443d42edf81e7",
+          "width": null,
+          "height": null,
+          "byteLength": 14552,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:master:png",
+          "surfaceId": "hero-video:master",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_master.png",
+          "sha256": "5b9da60fb69d64c4f1f3a8ce384148447cd7bdc02539a9574329d3497ae6600d",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 2432214,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:structure",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page_2170-6351.structure.json",
+          "sha256": "719ebc4f20c08085fb7129afb76fca5ee292606a4d76ec71f7254ade356fb709",
+          "width": null,
+          "height": null,
+          "byteLength": 33398,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:properties",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page_2170-6351.properties.json",
+          "sha256": "c2030f1691a890974b6238c978a315d2d76610d3a9b382b95a4233d406491b5c",
+          "width": null,
+          "height": null,
+          "byteLength": 7012,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:facts",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page_2170-6351.facts.json",
+          "sha256": "a6d596d22dad8aae8996620f479a7c0854650eced85b987ffb5df6de4ac6ad85",
+          "width": null,
+          "height": null,
+          "byteLength": 15275,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page:2170-6351:png",
+          "surfaceId": "hero-video:page:2170-6351",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page_2170-6351.png",
+          "sha256": "e83808b907a96f8d66b42e0fae9c5909f714176026c6e00a10556e4a037d305f",
+          "width": 1728,
+          "height": 720,
+          "byteLength": 2431968,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:structure",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "structure",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page-context_210-328.structure.json",
+          "sha256": "c52fb6e4f79bd3394bc6837b6a0336a930a18d3a9d2a6c9f34343a6cc87fe542",
+          "width": null,
+          "height": null,
+          "byteLength": 93943,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:properties",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "properties",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page-context_210-328.properties.json",
+          "sha256": "74ac93a53e9001ec2fd85da62f1e3e06131aa2e18f8aff938dbeec3dab7ed537",
+          "width": null,
+          "height": null,
+          "byteLength": 7295,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:facts",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "facts",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page-context_210-328.facts.json",
+          "sha256": "42902c0f94001509d4d94fde28b18ab60609ba958e2d5bb5ba386f0abbb3ad40",
+          "width": null,
+          "height": null,
+          "byteLength": 29020,
+          "status": "valid"
+        },
+        {
+          "artifactId": "hero-video:page-context:210-328:png",
+          "surfaceId": "hero-video:page-context:210-328",
+          "kind": "png",
+          "path": "specs/component-repairs/hero-video/run-001/idempotence/hero-video_page-context_210-328.png",
+          "sha256": "a1a487a649f6a2e5bfa80c0f8bd565194a944299e7ceb47c0f563c05838d41dc",
+          "width": 1728,
+          "height": 1186,
+          "byteLength": 3467868,
+          "status": "valid"
+        }
+      ],
+      "imageFingerprints": [
+        {
+          "hostId": "2439:4691",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2439:4691",
+          "structuralPath": "0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2115:4160",
+          "structuralPath": "1/0",
+          "paintIndex": 0,
+          "imageHash": "f08d845ee4ed18b5c95787e4fd23ceafdcda38be",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2115:4392;2115:4168",
+          "structuralPath": "1/1",
+          "paintIndex": 0,
+          "imageHash": "cc37fe3bc6f00b7621d88304cb907e250050b67e",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        },
+        {
+          "hostId": "I2170:6351;2439:4691",
+          "structuralPath": "0/0",
+          "paintIndex": 0,
+          "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+          "scaleMode": "FILL",
+          "imageTransformHash": null
+        }
+      ],
+      "instanceLinks": [
+        {
+          "instanceNodeId": "2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "0f6c4d797966eecb665cb6fd0c11372adc6f183beb159d3c6c8507b87d6a8a4d"
+        },
+        {
+          "instanceNodeId": "I2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "",
+          "overrideDigest": "98d94a124ffdfe8947c29f3ccd9a5557b7f07b276a17bc9b983de474df277c1b"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "2115:4392",
+          "masterNodeId": "2115:4273",
+          "structuralPath": "1",
+          "overrideDigest": "e813e3ff0bbd252e4f8cada9886033383be872344b94e0355c49281427894b10"
+        },
+        {
+          "instanceNodeId": "2170:6351",
+          "masterNodeId": "2151:5552",
+          "structuralPath": "0",
+          "overrideDigest": "98d94a124ffdfe8947c29f3ccd9a5557b7f07b276a17bc9b983de474df277c1b"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2115:4167",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/0/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2115:4392;2115:4175",
+          "masterNodeId": "6:104",
+          "structuralPath": "1/1/1/0/1",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701",
+          "masterNodeId": "6:135",
+          "structuralPath": "0/4",
+          "overrideDigest": "b77b43902084ab3fd60d8dfbac9b6d9570cb0fc40435fcd7bd16aa7e124bc124"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6131",
+          "masterNodeId": "6:99",
+          "structuralPath": "0/4/0",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        {
+          "instanceNodeId": "I2170:6351;2439:4701;2410:6134",
+          "masterNodeId": "6:104",
+          "structuralPath": "0/4/2",
+          "overrideDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        }
+      ],
+      "complete": true
+    }
+  },
+  "state": "verified",
+  "createdAt": "2026-08-11T12:00:00.000Z"
+}

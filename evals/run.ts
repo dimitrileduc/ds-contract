@@ -280,6 +280,14 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'figma-text-styles-piqueray',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-text-styles-piqueray-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-text-styles-piqueray rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'figma-border-color-without-width',
     claim: 'C3-detection',
     run: () => {
@@ -305,6 +313,38 @@ const cases: Case[] = [
     run: () => {
       const r = run(TSX, ['evals/fixtures/figma-projection-repair/campaign-gates-check.ts']);
       if (r.status !== 0) throw new Error(`fixture figma-projection-repair-campaign-gates rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-workflow-gates',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/component-workflow-gates-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-workflow-gates rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-source-baseline',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/source-baseline-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-source-baseline rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-protected-facts',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/protected-facts-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-protected-facts rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-live-apply-receipt',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/live-apply-receipt-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-live-apply-receipt rouge:\n${r.out}`);
     },
   },
   {

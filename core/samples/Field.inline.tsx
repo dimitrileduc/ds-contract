@@ -38,8 +38,7 @@ const S: Record<string, CSSProperties> = {
   "MentionOptionnelle": {
     "color": "#9BA4B5",
     "fontSize": "14px",
-    "fontWeight": 400,
-    "lineHeight": "17.066px"
+    "fontWeight": 400
   },
   "Saisie": {
     "display": "flex",
@@ -49,8 +48,7 @@ const S: Record<string, CSSProperties> = {
   "messageErreur": {
     "fontSize": "14px",
     "fontWeight": 400,
-    "color": "#D32F2F",
-    "lineHeight": "17px"
+    "color": "#D32F2F"
   }
 };
 

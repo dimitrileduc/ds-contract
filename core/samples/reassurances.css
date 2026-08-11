@@ -1,4 +1,4 @@
-/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -22,6 +22,7 @@
   padding-inline: var(--space-32);
   --dsc-border-width: var(--border-width-0);
   text-transform: uppercase;
+  white-space: nowrap;
   position: relative;
 }
 
@@ -113,7 +114,7 @@
   flex-shrink: 0;
 }
 
-/* SectionHeader — from ds.section-header v2.1.1 (core/emit-html.ts) */
+/* SectionHeader — from ds.section-header v2.2.0 (core/emit-html.ts) */
 
 .section-header, .section-header *, .section-header *::before, .section-header *::after {
   box-sizing: border-box;
@@ -123,10 +124,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-8);
-  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -140,6 +142,8 @@
 }
 
 .section-header__Accroche {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-regular);
@@ -149,6 +153,8 @@
 }
 
 .section-header__Titre {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
   font-size: var(--font-size-40);
   font-weight: var(--font-weight-regular);
@@ -193,7 +199,7 @@
   font-size: var(--font-size-24);
 }
 
-/* Carte — from ds.carte v2.0.0 (core/emit-html.ts) */
+/* Carte — from ds.carte v2.0.1 (core/emit-html.ts) */
 
 .carte, .carte *, .carte *::before, .carte *::after {
   box-sizing: border-box;

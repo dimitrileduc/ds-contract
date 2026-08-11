@@ -190,3 +190,88 @@ if (!lineA.includes('preservedImages') && !lineA.includes('HASH-A')) {
 console.log(
   'img-paint-preserved-on-amend ok: an out-of-contract IMAGE paint survives both amend shapes (matched BY POSITION on the img node, order-rehoused from the root), survives on a PAGE INSTANCE without being confused with the master\'s own photo, the fresh-create placeholder is unchanged, and the amend report names every preserved paint',
 );
+
+// ---------------------------------------------------------------------------
+// CASE E — HeroVideo's static poster and nested Page CTA override.
+// The second contract shape inserts a governed scrim before the CTA, so the
+// Button path changes. Recovery must use native component-property identity,
+// not the stale numeric path, and must preserve the poster IMAGE. Native
+// VideoPaint is deliberately outside the deterministic Figma projection.
+// ---------------------------------------------------------------------------
+const mediaButton = ContractSchema.parse({
+  id: 'fixture.media-button', name: 'MediaButton', version: '1.0.0', status: 'draft',
+  description: 'Minimal nested CTA used to prove Page override recovery.',
+  semantics: { element: 'button' },
+  props: [{
+    name: 'label', type: 'text', default: 'Contactez-nous',
+    bindings: { figma: { kind: 'TEXT', property: 'Label' }, code: { prop: 'label' } },
+  }],
+  states: [], events: [],
+  anatomy: { root: { parts: { Label: { content: { prop: 'label' } } } } },
+  anchors: { figma: { fileKey: null, componentSetKey: null }, code: { importPath: 'src/components/MediaButton', export: 'MediaButton' } },
+});
+const mkMediaParent = (withScrim: boolean) => ContractSchema.parse({
+  id: 'fixture.media-parent', name: 'MediaParent', version: withScrim ? '1.0.1' : '1.0.0', status: 'draft',
+  description: 'Video organism with a static Figma poster and nested CTA.',
+  semantics: { element: 'section' },
+  props: [
+    { name: 'posterUrl', type: 'text', default: '', bindings: { figma: { kind: 'NONE' }, code: { prop: 'posterUrl' } } },
+  ],
+  states: [], events: [],
+  anatomy: {
+    root: {
+      layout: { display: 'flex', direction: 'row' },
+      parts: {
+        Background: {
+          element: 'img', attrs: { src: '{posterUrl}', alt: '' },
+          declared: { position: 'absolute', top: '0', right: '0', bottom: '0', left: '0' },
+        },
+        ...(withScrim ? { Scrim: { literals: { 'background-color': 'rgba(0,0,0,0.5)' } } } : {}),
+        CTA: { component: { id: 'fixture.media-button', props: { label: 'Contactez-nous' } } },
+      },
+    },
+  },
+  anchors: { figma: { fileKey: null, componentSetKey: null }, code: { importPath: 'src/components/MediaParent', export: 'MediaParent' } },
+});
+const emitWithDeps = (contract: ReturnType<typeof mkMediaParent> | typeof mediaButton) => {
+  const parent = contract.id === 'fixture.media-parent' ? contract : mkMediaParent(false);
+  const deps = new Map([[mediaButton.id, mediaButton], [parent.id, parent]]);
+  return emitFigmaScript(contract, { tokens: tokenTree, icons: new Map(), contracts: deps });
+};
+
+await runScript(emitWithDeps(mediaButton));
+await runScript(emitWithDeps(mkMediaParent(false)));
+const mediaMaster = marker('fixture.media-parent');
+if (!mediaMaster) fail('E: create did not produce the video parent');
+const mediaInstance = (mediaMaster as any).createInstance();
+(figma as any).currentPage.appendChild(mediaInstance);
+const mediaStack = [{ type: 'IMAGE', imageHash: 'POSTER-E', scaleMode: 'FILL', visible: true }];
+mediaMaster.fills = mediaStack;
+mediaInstance.fills = mediaStack;
+const ctaBefore = findByName(mediaInstance, 'CTA');
+if (!ctaBefore || ctaBefore.type !== 'INSTANCE') fail('E: nested CTA instance missing before amend');
+ctaBefore.setProperties({ Label: 'En savoir plus' });
+
+const mediaReport = await runScript(emitWithDeps(mkMediaParent(true))) as any;
+for (const [host, node] of [
+  ['master', findByName(marker('fixture.media-parent'), 'Background')],
+  ['Page instance', findByName(mediaInstance, 'Background')],
+] as const) {
+  const paints = Array.isArray(node?.fills) ? node.fills : [];
+  if (
+    paints.length !== 1 || paints[0].type !== 'IMAGE' || paints[0].imageHash !== 'POSTER-E'
+  ) {
+    fail(`E: ${host} lost its static poster IMAGE — got ${JSON.stringify(paints)}`);
+  }
+}
+const ctaAfter = findByName(mediaInstance, 'CTA');
+const labelKey = Object.keys(ctaAfter?.componentProperties ?? {}).find((k) => k.split('#')[0] === 'Label');
+if (!labelKey || ctaAfter.componentProperties[labelKey].value !== 'En savoir plus') {
+  fail(`E: Page CTA copy override did not survive the structural path change — got ${JSON.stringify(ctaAfter?.componentProperties)}`);
+}
+const mediaLine = JSON.stringify(mediaReport);
+if (!mediaLine.includes('POSTER-E') || !mediaLine.includes('consumerOverrides')) {
+  fail(`E: report does not prove both poster and consumer recovery — got ${mediaLine.slice(0, 400)}`);
+}
+
+console.log('hero-video poster recovery ok: the static IMAGE placeholder and nested Page CTA copy survive a structural master rebuild');
