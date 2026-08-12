@@ -20,7 +20,8 @@ export const REPAIR_TARGET_IDS = [
   'formulaire',
 ] as const;
 
-export type LegacyRepairTargetId = (typeof REPAIR_TARGET_IDS)[number];
+/** Open by design: a v2 component run names its own targets, so this is not
+ *  narrowed to `REPAIR_TARGET_IDS` (which covers the legacy 021 campaign only). */
 export type RepairTargetId = string;
 export type CampaignState =
   | 'draft' | 'preflight-valid' | 'captured' | 'ready-to-apply' | 'applied' | 'verified'

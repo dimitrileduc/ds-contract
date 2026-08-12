@@ -1,10 +1,8 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { DryRun, PlannedOperation } from './apply.js';
+import { isObject as object, type JsonRecord as Json } from './json.js';
 import type { RepairCampaign } from './types.js';
-
-type Json = Record<string, unknown>;
-const object = (value: unknown): value is Json => typeof value === 'object' && value !== null && !Array.isArray(value);
 
 /** The component bridge owns only reusable, bounded operations. Component
  * anatomy stays in the campaign structural paths; names and node ids never

@@ -2,21 +2,11 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { compareProtectedFacts, type SurfaceFacts } from './facts.js';
+import { canonicalize, isObject, stableJson, type JsonRecord } from './json.js';
 import type { CaptureSet, DiffFinding, ImageFingerprint, InstanceLink, RepairCampaign, RepairTargetId } from './types.js';
 
-type JsonRecord = Record<string, unknown>;
-const record = (value: unknown): value is JsonRecord => typeof value === 'object' && value !== null && !Array.isArray(value);
-
-/** Canonical JSON retains identities and values while removing object-order noise. */
-export function canonicalize(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(canonicalize);
-  if (!record(value)) return value;
-  return Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonicalize(value[key])]));
-}
-
-export function stableJson(value: unknown): string {
-  return JSON.stringify(canonicalize(value));
-}
+const record = isObject;
+export { canonicalize, stableJson };
 
 export interface ReconstructionMaterial {
   capture: CaptureSet;
@@ -130,39 +120,41 @@ export function classifyAllowedChanges(changes: FieldChange[], allowedFields: re
 
 export interface PreservationComparison<T> { ok: boolean; missing: T[]; extra: T[]; changed: Array<{ before: T; after: T }> }
 
-const imageAddress = (image: ImageFingerprint): string => `${image.hostId}\0${image.structuralPath}\0${image.paintIndex}`;
-/** Exact positional IMAGE gate; equal hashes at exchanged addresses are a failure. */
-export function compareImageFingerprints(
-  before: ImageFingerprint[],
-  after: ImageFingerprint[],
-): PreservationComparison<ImageFingerprint> {
-  const left = new Map(before.map((image) => [imageAddress(image), image]));
-  const right = new Map(after.map((image) => [imageAddress(image), image]));
-  const missing = [...left].filter(([key]) => !right.has(key)).map(([, image]) => image);
-  const extra = [...right].filter(([key]) => !left.has(key)).map(([, image]) => image);
-  const changed = [...left].flatMap(([key, image]) => {
+/**
+ * Preservation is one comparison in both cases: pair by ADDRESS, then require
+ * the paired values to be byte-equal. Only the address spelling differs, so
+ * only the address spelling is passed in — a fix to `changed` detection now
+ * lands on both gates at once.
+ */
+function comparePreserved<T>(
+  before: T[],
+  after: T[],
+  address: (item: T) => string,
+): PreservationComparison<T> {
+  const left = new Map(before.map((item) => [address(item), item]));
+  const right = new Map(after.map((item) => [address(item), item]));
+  const missing = [...left].filter(([key]) => !right.has(key)).map(([, item]) => item);
+  const extra = [...right].filter(([key]) => !left.has(key)).map(([, item]) => item);
+  const changed = [...left].flatMap(([key, item]) => {
     const other = right.get(key);
-    return other && stableJson(image) !== stableJson(other) ? [{ before: image, after: other }] : [];
+    return other && stableJson(item) !== stableJson(other) ? [{ before: item, after: other }] : [];
   });
   return { ok: missing.length === 0 && extra.length === 0 && changed.length === 0, missing, extra, changed };
 }
 
+const imageAddress = (image: ImageFingerprint): string => `${image.hostId}\0${image.structuralPath}\0${image.paintIndex}`;
+/** Exact positional IMAGE gate; equal hashes at exchanged addresses are a failure. */
+export const compareImageFingerprints = (
+  before: ImageFingerprint[],
+  after: ImageFingerprint[],
+): PreservationComparison<ImageFingerprint> => comparePreserved(before, after, imageAddress);
+
 const linkAddress = (link: InstanceLink): string => `${link.instanceNodeId}\0${link.structuralPath}`;
 /** Exact identity + override gate for stable instance addresses. */
-export function compareInstanceLinks(
+export const compareInstanceLinks = (
   before: InstanceLink[],
   after: InstanceLink[],
-): PreservationComparison<InstanceLink> {
-  const left = new Map(before.map((link) => [linkAddress(link), link]));
-  const right = new Map(after.map((link) => [linkAddress(link), link]));
-  const missing = [...left].filter(([key]) => !right.has(key)).map(([, link]) => link);
-  const extra = [...right].filter(([key]) => !left.has(key)).map(([, link]) => link);
-  const changed = [...left].flatMap(([key, link]) => {
-    const other = right.get(key);
-    return other && stableJson(link) !== stableJson(other) ? [{ before: link, after: other }] : [];
-  });
-  return { ok: missing.length === 0 && extra.length === 0 && changed.length === 0, missing, extra, changed };
-}
+): PreservationComparison<InstanceLink> => comparePreserved(before, after, linkAddress);
 
 export interface TargetClosureVerdict {
   targetId: RepairTargetId;
@@ -193,8 +185,26 @@ export interface CampaignClosureComparison {
   };
 }
 
+/**
+ * `artifactFor` runs ~14 times per surface across the closure loop, over a list
+ * that holds every artifact of the campaign (~180). Indexing once per capture
+ * set keeps every call site unchanged and makes the lookup O(1). The WeakMap is
+ * keyed by the capture set itself, so the index dies with it.
+ */
+const artifactIndexes = new WeakMap<CaptureSet, Map<string, CaptureSet['artifacts'][number]>>();
+
 function artifactFor(capture: CaptureSet, surfaceId: string, kind: 'structure' | 'properties' | 'facts' | 'png') {
-  return capture.artifacts.find((artifact) => artifact.surfaceId === surfaceId && artifact.kind === kind);
+  let index = artifactIndexes.get(capture);
+  if (!index) {
+    index = new Map();
+    // First writer wins, matching the `.find()` this replaces.
+    for (const artifact of capture.artifacts) {
+      const key = `${artifact.surfaceId}\0${artifact.kind}`;
+      if (!index.has(key)) index.set(key, artifact);
+    }
+    artifactIndexes.set(capture, index);
+  }
+  return index.get(`${surfaceId}\0${kind}`);
 }
 
 function readFacts(capture: CaptureSet, surfaceId: string, root: string): SurfaceFacts | null {

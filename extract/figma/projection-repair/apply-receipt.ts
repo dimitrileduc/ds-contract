@@ -1,3 +1,4 @@
+import { isObject as object } from './json.js';
 import type { DryRun } from './apply.js';
 import type { RepairCampaign } from './types.js';
 
@@ -56,7 +57,7 @@ export interface BridgeApplyEnvelope {
   };
 }
 
-const object = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
+/** Deliberately looser than `campaign.ts`'s: a receipt may carry empty ids. */
 const stringArray = (value: unknown): value is string[] => Array.isArray(value) && value.every((entry) => typeof entry === 'string');
 const stableStrings = (values: readonly string[]): string => JSON.stringify([...values].sort());
 

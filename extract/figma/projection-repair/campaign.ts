@@ -1,5 +1,6 @@
 /** Pure validation and state algebra for the 021 repair campaign. */
 import path from 'node:path';
+import { isObject } from './json.js';
 import {
   COMPONENT_REPAIR_SCHEMA_VERSION,
   REQUIRED_COMPONENT_PROTECTION_FACTS,
@@ -41,9 +42,10 @@ const states = new Set<CampaignState>([
 const targetIds = new Set<string>(REPAIR_TARGET_IDS);
 const safePath = (value: unknown): value is string =>
   typeof value === 'string' && value.length > 0 && !path.isAbsolute(value) && !value.split(/[\\/]+/).includes('..');
-const record = (value: unknown): value is RecordValue => typeof value === 'object' && value !== null && !Array.isArray(value);
+const record = isObject as (value: unknown) => value is RecordValue;
+/** An empty array satisfies this: `every` is vacuously true. The former
+ *  `stringArrayOrEmpty` spelling was the same predicate under a second name. */
 const stringArray = (value: unknown): value is string[] => Array.isArray(value) && value.every((entry) => typeof entry === 'string' && entry.length > 0);
-const stringArrayOrEmpty = (value: unknown): value is string[] => Array.isArray(value) && value.every((entry) => typeof entry === 'string' && entry.length > 0);
 const issue = (issues: RepairValidationIssue[], code: RepairIssueCode, issuePath: string, message: string): void => {
   issues.push({ code, path: issuePath, message });
 };
@@ -98,7 +100,7 @@ function validateComponentWorkflow(
   if (!record(workflow) || workflow.mode !== 'single-component' || !['organism', 'shared-component'].includes(String(workflow.subjectKind)) || workflow.pageMutationPolicy !== 'forbid-direct' ||
     !safePath(workflow.evidenceRoot) || !safePath(workflow.ownerDecisionRoot) || !safePath(workflow.comparisonPath) ||
     !record(workflow.applyReceiptPaths) || !safePath(workflow.applyReceiptPaths.first) || !safePath(workflow.applyReceiptPaths.second) ||
-    !stringArrayOrEmpty(workflow.directDependencies) || !stringArrayOrEmpty(workflow.sharedDependencies)) {
+    !stringArray(workflow.directDependencies) || !stringArray(workflow.sharedDependencies)) {
     issue(issues, 'campaign-shape', '$.workflow', 'component workflow must target one organism or shared component, configure bounded evidence/receipt paths and forbid direct Page writes');
     return;
   }
@@ -190,12 +192,12 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
       issue(issues, 'direct-target', `${targetPath}.kind`, 'only Catégories principales and Réalisations may be direct-canvas repairs');
     }
     if (component) {
-      if (typeof target.expectedMasterName !== 'string' || target.expectedMasterName.length === 0 || !stringArrayOrEmpty(target.expectedVariantNames) ||
+      if (typeof target.expectedMasterName !== 'string' || target.expectedMasterName.length === 0 || !stringArray(target.expectedVariantNames) ||
         !Array.isArray(target.responsiveWidths) || target.responsiveWidths.length === 0 || target.responsiveWidths.some((width) => typeof width !== 'number' || !Number.isFinite(width) || width <= 0)) {
         issue(issues, 'target-shape', targetPath, 'component target must pin master/variant snapshots and at least one reduced responsive width');
       }
       const protectedFacts = new Set(stringArray(target.protectedFacts) ? target.protectedFacts : []);
-      const allowedFacts = new Set(stringArrayOrEmpty(target.allowedFactChanges) ? target.allowedFactChanges : []);
+      const allowedFacts = new Set(stringArray(target.allowedFactChanges) ? target.allowedFactChanges : []);
       if ([...protectedFacts, ...allowedFacts].some((fact) => !knownProtectedFacts.has(fact)) || [...protectedFacts].some((fact) => allowedFacts.has(fact))) {
         issue(issues, 'target-shape', `${targetPath}.protectedFacts`, 'protected and allowed fact names must be known and disjoint');
       }

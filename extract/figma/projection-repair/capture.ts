@@ -3,39 +3,19 @@
  * The module never calls a mutating Plugin API method; application lives in
  * apply.ts and remains gated by a complete `before` set.
  */
-import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
 import { FIGMA_API_BASE } from '../rest/fetch.js';
+import { figmaToken } from '../../fidelity-matrix/scripts/env.js';
 import { collectSurfaceFacts } from './facts.js';
+import { isObject as object, sha256Of as sha256, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
 import type { AffectedSurface, CapturePhase, CaptureSet, EvidenceArtifact, ImageFingerprint, InstanceLink, RepairCampaign } from './types.js';
 
-type Json = Record<string, unknown>;
-const object = (value: unknown): value is Json => typeof value === 'object' && value !== null && !Array.isArray(value);
-const sha256 = (value: Uint8Array | string): string => createHash('sha256').update(value).digest('hex');
 const safeName = (value: string): string => value.replace(/[^a-zA-Z0-9._-]+/g, '_');
-const canonical = (value: unknown): unknown => {
-  if (Array.isArray(value)) return value.map(canonical);
-  if (!object(value)) return value;
-  return Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])]));
-};
-const stable = (value: unknown): string => JSON.stringify(canonical(value), null, 2);
+/** Evidence files stay indented — they are read by humans during a repair. */
+const stable = (value: unknown): string => stableJson(value, 2);
 
-export function figmaToken(): string {
-  if (process.env.FIGMA_TOKEN) return process.env.FIGMA_TOKEN;
-  const candidates = [path.resolve(process.cwd(), '.env.local')];
-  try {
-    const common = execFileSync('git', ['rev-parse', '--path-format=absolute', '--git-common-dir'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
-    if (common) candidates.push(path.join(path.dirname(common), '.env.local'));
-  } catch { /* the cwd candidate remains valid outside git */ }
-  for (const candidate of candidates) {
-    if (!existsSync(candidate)) continue;
-    const match = readFileSync(candidate, 'utf8').match(/^FIGMA_TOKEN\s*=\s*"?([^"\n]+)"?\s*$/m);
-    if (match) return match[1].trim();
-  }
-  throw new Error('FIGMA_TOKEN not found (environment or .env.local)');
-}
+export { figmaToken };
 
 async function getJson<T>(route: string, token: string): Promise<T> {
   const response = await fetch(`${FIGMA_API_BASE}${route}`, { headers: { 'X-Figma-Token': token } });
@@ -49,13 +29,21 @@ async function getBytes(url: string, token: string): Promise<Uint8Array> {
   return new Uint8Array(await response.arrayBuffer());
 }
 
-export interface FigmaInspection { versionId: string; nodes: Map<string, Json>; file: Json; }
-
-function walk(node: unknown, fn: (entry: Json, position: string) => void, position = ''): void {
-  if (!object(node)) return;
-  fn(node, position);
-  if (Array.isArray(node.children)) node.children.forEach((child, index) => walk(child, fn, position ? `${position}/${index}` : String(index)));
+/** Bounded fan-out. Results are returned in INPUT order, never completion
+ *  order, so every downstream write and hash stays byte-identical. */
+async function mapBounded<T, R>(items: T[], limit: number, run: (item: T) => Promise<R>): Promise<R[]> {
+  const results = new Array<R>(items.length);
+  let cursor = 0;
+  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
+    for (let index = cursor++; index < items.length; index = cursor++) {
+      results[index] = await run(items[index]);
+    }
+  });
+  await Promise.all(workers);
+  return results;
 }
+
+export interface FigmaInspection { versionId: string; nodes: Map<string, Json>; file: Json; }
 
 function dimensions(node: Json): { width: number; height: number } | null {
   const box = object(node.absoluteBoundingBox) ? node.absoluteBoundingBox : object(node.boundingBox) ? node.boundingBox : null;
@@ -94,11 +82,30 @@ export async function inspectFigmaCampaign(
  * writer can be created. Names are a duplicate/variant snapshot only; node ids
  * remain the mutation identity. */
 export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<string, Json>): void {
+  // One pass builds both indices. The previous shape materialised the whole
+  // node array twice per target — 14 full copies of a 10k+ node file for the
+  // 7 live targets — to answer two O(1) questions. Insertion follows traversal
+  // order and both consumers still sort, so the observed values are identical.
+  const mastersByName = new Map<string, Json[]>();
+  const instancesByComponentId = new Map<string, Json[]>();
+  for (const node of nodes.values()) {
+    if (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') {
+      const name = String(node.name ?? '');
+      const bucket = mastersByName.get(name);
+      if (bucket) bucket.push(node); else mastersByName.set(name, [node]);
+    } else if (node.type === 'INSTANCE' && typeof node.id === 'string') {
+      const componentId = String(node.componentId);
+      const bucket = instancesByComponentId.get(componentId);
+      if (bucket) bucket.push(node); else instancesByComponentId.set(componentId, [node]);
+    }
+  }
   for (const target of campaign.targets) {
     const master = nodes.get(target.masterNodeId);
     if (!master) throw new Error(`preflight: master ${target.masterNodeId} is absent`);
-    const sameNamedMasters = [...nodes.values()].filter((node) =>
-      (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET') && node.name === target.expectedMasterName);
+    // v2 validation guarantees a non-empty name; an absent one matches nothing,
+    // exactly as the previous `node.name === target.expectedMasterName` filter did.
+    const expectedName = target.expectedMasterName;
+    const sameNamedMasters = expectedName === undefined ? [] : mastersByName.get(expectedName) ?? [];
     if (sameNamedMasters.length !== 1 || sameNamedMasters[0]?.id !== target.masterNodeId) {
       throw new Error(`preflight: expected exactly one master ${target.expectedMasterName}, observed ${sameNamedMasters.length}`);
     }
@@ -110,8 +117,8 @@ export function assertComponentTopology(campaign: RepairCampaign, nodes: Map<str
       throw new Error(`preflight: variant snapshot drift for ${target.targetId}: expected ${expectedVariantNames.join(' | ') || '(none)'}, observed ${actualVariantNames.join(' | ') || '(none)'}`);
     }
     const componentIds = new Set([target.masterNodeId, ...(target.variantNodeIds ?? [])]);
-    const actualInstanceIds = [...nodes.values()]
-      .filter((node) => node.type === 'INSTANCE' && typeof node.id === 'string' && componentIds.has(String(node.componentId)))
+    const actualInstanceIds = [...componentIds]
+      .flatMap((componentId) => instancesByComponentId.get(componentId) ?? [])
       .map((node) => String(node.id)).sort();
     const declaredInstanceIds = campaign.affectedSurfaces
       .filter((surface) => surface.targetId === target.targetId && ['page-instance', 'preview-instance', 'hidden-instance'].includes(surface.role) && surface.nodeId)
@@ -210,6 +217,17 @@ export async function captureCampaign(
   const artifacts: EvidenceArtifact[] = [];
   const imageRows: ImageFingerprint[] = [];
   const links: InstanceLink[] = [];
+  // The renders are independent pre-signed downloads (~850 KB × 24 per phase).
+  // Fetching them serially inside the loop below spent the whole capture
+  // waiting on one round trip at a time; the loop itself is unchanged and still
+  // writes and hashes in surface order.
+  const pngTargets = surfaces.filter((surface) =>
+    surface.role !== 'hidden-instance' &&
+    response.nodes?.[surface.nodeId!]?.document &&
+    images.images?.[surface.nodeId!]);
+  const pngBytes = new Map<string, Uint8Array>();
+  const fetched = await mapBounded(pngTargets, 8, (surface) => getBytes(images.images![surface.nodeId!]!, token));
+  pngTargets.forEach((surface, index) => pngBytes.set(surface.surfaceId, fetched[index]));
   for (const surface of surfaces) {
     const node = response.nodes?.[surface.nodeId!]?.document;
     const base = safeName(surface.surfaceId);
@@ -242,7 +260,7 @@ export async function captureCampaign(
       artifacts.push({ artifactId: `${surface.surfaceId}:png`, surfaceId: surface.surfaceId, kind: 'png', path: path.relative(process.cwd(), pngPath), sha256: '0'.repeat(64), width: size?.width ?? null, height: size?.height ?? null, byteLength: 1, status: !url ? 'missing' : 'wrong-size' });
       continue;
     }
-    const bytes = await getBytes(url, token);
+    const bytes = pngBytes.get(surface.surfaceId) ?? await getBytes(url, token);
     writeFileSync(pngPath, bytes);
     const raster = pngDimensions(bytes);
     // The Figma export can include overflow outside a component's layout box; capture that

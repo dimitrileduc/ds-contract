@@ -1,6 +1,6 @@
 /** Deterministic receipts and terminal reporting for campaign 021. */
-import { createHash } from 'node:crypto';
-import { canonicalize, stableJson, type IdempotenceComparison } from './verify.js';
+import { canonicalize, sha256Of, stableJson } from './json.js';
+import { type IdempotenceComparison } from './verify.js';
 import { validateRepairReceipt } from './campaign.js';
 import type { DiffFinding, RepairReceipt, RepairTargetId } from './types.js';
 
@@ -34,11 +34,11 @@ export function buildIdempotenceReceipt(
   if (nonNoOps.length > 0) {
     throw new Error(`idempotence refused — second apply changed ${nonNoOps.map((operation) => operation.operationId).join(', ')}`);
   }
-  const comparisonHash = createHash('sha256').update(stableJson({
+  const comparisonHash = sha256Of(stableJson({
     after: comparison.normalizedAfter,
     idempotence: comparison.normalizedIdempotence,
     operations: normalizedOperations,
-  })).digest('hex');
+  }));
   return {
     schemaVersion: '1.0.0',
     campaignId,

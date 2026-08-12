@@ -2,10 +2,12 @@ import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { tokenCorpusFromJson } from '../../../core/token-corpus.js';
 import { inspectFigmaCampaign, figmaToken } from './capture.js';
+import { isObject, walkStructural as walk } from './json.js';
 import type { ComponentAuditReport, RepairCampaign, TextAuditClassification } from './types.js';
 
+/** `any` here is deliberate: the audit visitors read Figma dump fields loosely. */
 type Json = Record<string, any>;
-const object = (value: unknown): value is Json => typeof value === 'object' && value !== null && !Array.isArray(value);
+const object = isObject as (value: unknown) => value is Json;
 
 function json(relativePath: string): Record<string, unknown> {
   return JSON.parse(readFileSync(path.resolve(process.cwd(), relativePath), 'utf8')) as Record<string, unknown>;
@@ -17,18 +19,6 @@ function corpus() {
     semantic: json('tokens/semantic.tokens.json'),
     light: json('tokens/modes/semantic.light.tokens.json'),
     brandDefault: json('tokens/modes/brand.default.tokens.json'),
-  });
-}
-
-function walk(
-  node: Json,
-  visit: (entry: Json, structuralPath: string) => void,
-  structuralPath = '',
-): void {
-  visit(node, structuralPath);
-  if (!Array.isArray(node.children)) return;
-  node.children.forEach((child, index) => {
-    if (object(child)) walk(child, visit, structuralPath ? `${structuralPath}/${index}` : String(index));
   });
 }
 

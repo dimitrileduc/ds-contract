@@ -1,11 +1,11 @@
 /** Deterministic, source-based inventory of every shared repair consumer. */
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { isObject as object, type JsonRecord as Json } from './json.js';
 import type { ConsumerImpact } from './types.js';
 
-type Json = Record<string, unknown>;
-const object = (value: unknown): value is Json => typeof value === 'object' && value !== null && !Array.isArray(value);
-
+/** Distinct from `walkStructural`: this descends every object VALUE, not just
+ *  `children`, and carries no structural path — contract JSON, not a node tree. */
 function walk(value: unknown, visit: (entry: Json) => void): void {
   if (Array.isArray(value)) { value.forEach((entry) => walk(entry, visit)); return; }
   if (!object(value)) return;

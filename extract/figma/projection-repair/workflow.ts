@@ -60,10 +60,3 @@ export function workflowPaths(campaign: RepairCampaign): RepairWorkflowPaths {
     closurePath: relativeJoin(root, 'closure.md'),
   };
 }
-
-export function captureRoot(campaign: RepairCampaign, phase: 'before' | 'after' | 'idempotence'): string {
-  const paths = workflowPaths(campaign);
-  if (phase === 'before') return paths.beforeRoot;
-  if (phase === 'after') return paths.afterRoot;
-  return paths.idempotenceRoot;
-}

@@ -1,21 +1,7 @@
-import { createHash } from 'node:crypto';
+import { isObject as object, sha256Of, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
 import type { ProtectedFact } from './types.js';
 
-type Json = Record<string, unknown>;
-const object = (value: unknown): value is Json => typeof value === 'object' && value !== null && !Array.isArray(value);
-const canonical = (value: unknown): unknown => {
-  if (Array.isArray(value)) return value.map(canonical);
-  if (!object(value)) return value;
-  return Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])]));
-};
-const stable = (value: unknown): string => JSON.stringify(canonical(value));
-const digest = (value: unknown): string => createHash('sha256').update(stable(value)).digest('hex');
-
-function walk(node: unknown, visit: (entry: Json, path: string) => void, path = ''): void {
-  if (!object(node)) return;
-  visit(node, path);
-  if (Array.isArray(node.children)) node.children.forEach((child, index) => walk(child, visit, path ? `${path}/${index}` : String(index)));
-}
+const digest = (value: unknown): string => sha256Of(stableJson(value));
 
 function paints(entry: Json): Array<{ field: string; index: number; paint: Json }> {
   const rows: Array<{ field: string; index: number; paint: Json }> = [];
