@@ -1,6 +1,6 @@
 /** Browser proof for the Hero pilot at its reference and reduced widths. */
 import { mkdirSync, readFileSync } from 'node:fs';
-import { chromium } from 'playwright-core';
+import { launchBrowser } from '../../extract/figma/visual-parity/render.js';
 import { emitHtml } from '../../core/emit-html.js';
 import { ContractSchema } from '../../packages/schema/src/contract-schema.js';
 
@@ -18,10 +18,7 @@ const markup = emitted.html.replace(
   'src=""',
   'src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="',
 );
-const browser = await chromium.launch({
-  executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  headless: true,
-});
+const { browser } = await launchBrowser();
 const page = await browser.newPage({ viewport: { width: 1728, height: 700 } });
 const failures: string[] = [];
 const evidenceRoot = '/tmp/hero-pilot-evidence/code-after';
