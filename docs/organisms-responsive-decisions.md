@@ -36,7 +36,7 @@
 | Footer | 9 × `FIXED 1728` | La rangée principale dépasse à 1440. | Mécanique desktop |
 | Header | 9 × `FIXED 1728` | Le passage en Fill seul crée un chevauchement à 1440. | Décision navigation/breakpoint |
 | HeroVideo | 1 × `FIXED 1728` | Le passage du root en Fill suffit à 1440. | Mécanique |
-| Avis Google | 8 × `FIXED 1552` | Carousel/crop implicite et flèches dans des wrappers quasi nuls. | Décision carousel + fix structurel |
+| Avis Google | 8 × `FIXED 1552` | Fausse rangée de cartes fixes et flèches dans des wrappers quasi nuls. | Grille 5 colonnes Fill + fix structurel |
 
 ## Constats détaillés
 
@@ -84,11 +84,12 @@
 
 ### SAV
 
-- Le root et sa section interne sont `HUG/FIXED 1550`.
-- Le `SectionHeader` de 1550 est placé dans un bloc de 546 et rogné de 1004 px dès la largeur nominale.
-- La rangée de contenu est fixe à 1288 ; les deux moitiés photo/texte restent autour de 641/647.
-- À 1262, le root seul déborde de 288 px. Une simple normalisation du root ne suffit pas : section, rangée, colonnes et backgrounds doivent être coordonnés.
-- Proposition : root/section/rangée Fill, colonnes flexibles, `SectionHeader` Fill ; conserver les éléments photo décoratifs fixes ou absolus à l'intérieur de la zone image. À valider visuellement car c'est une composition, pas une simple grille.
+- Décision owner du 2026-08-11 : le cadre de contenu porte un padding horizontal fixe de `131 px`, sans `max-width`. À la référence 1550, la zone utile reste donc exactement à 1288 ; à 1262, elle devient 1000.
+- Le root et la section sont Fill. Le fond historique devient une bande absolue de 475 px ; la rangée reste en flux, alignée en bas, Fill et paddée. Cette structure conserve les coordonnées de référence `fond y=0` et `row y=116` tout en laissant la row suivre son parent.
+- Les deux colonnes sont Fill. Le `SectionHeader`, l'inner, le paragraphe et la photo technicien suivent leur colonne ; l'inset droit de la photo conserve ses 563 px à la référence.
+- Le paragraphe est Hug avec ses trois ranges Bold restaurés. Il reste sans Text Style global, conformément à la règle rich text.
+- Preuves mécaniques : `specs/component-repairs/sav/run-001/`. Le contrôle 1262 ne relève aucun overflow descendant ; le second passage produit 15 opérations `unchanged`, zéro nœud créé/modifié et `pageWrites: []`.
+- Les défauts partagés du titre simple `SectionHeader` et de la couleur de flèche `Button` restent hors de cette écriture SAV et exigent leur propre blast radius.
 
 ### TexteSEO
 
@@ -183,17 +184,19 @@
 ### Avis Google
 
 - Les 8 instances sont fixes à 1552 et placées dans des `GROUP`, pas dans des Containers auto-layout.
-- Le root, `resume` et `cartes` savent se réduire, mais le groupe de cartes conserve ses cartes fixes ; à 1262, la cinquième dépasse de 287 px et est rognée.
+- Le root, `resume` et `cartes` savent se réduire, mais le groupe de cartes a été projeté comme une rangée de cartes fixes ; à 1262, cette projection rogne la cinquième carte.
 - Les wrappers `flecheGauche` et `flecheDroite` font environ `0,0001 px` alors que leurs pastilles font 30 px et sont clippées. C'est un défaut structurel présent à la largeur nominale.
-- Décision statique : remplacer les groupes de page par des Containers, root et viewport en Fill avec clip explicite, track en Hug et cartes à largeur fixe de carousel. Les contrôles sont ancrés au viewport et sortent des wrappers quasi nuls.
-- Le crop doit être déterminé uniquement par la largeur du viewport. Défilement, nombre de pas, boucle et autres interactions du carousel restent hors scope ; chaque instance actuelle doit conserver son rendu de référence.
+- Décision owner du 2026-08-12 : remplacer la rangée par une grille native de **5 colonnes égales**. Chaque `Review-card` est en **Fill** dans sa cellule ; la largeur observée d'une carte n'est qu'un résultat de la largeur disponible, jamais une règle fixe.
+- Les contrôles gauche/droite sont ancrés en overlay sur les bords du viewport et ne participent pas au calcul des colonnes. À largeur réduite, les cinq colonnes se réduisent ensemble : aucun crop de la cinquième carte.
+- La hauteur du root est **Auto/Hug**. Les `328 px` mesurés restent une `min-height` gouvernée pour préserver le rendu nominal à cinq cartes ; une seconde rangée créée par l'authoring agrandit la section naturellement.
+- Le master est présenté dans un Container local et remplit ce parent. Les 8 instances Page, leurs contenus, leurs médias et leurs overrides restent intacts ; aucune Page n'est modifiée directement.
 
 ## Dépendances partagées à traiter une seule fois
 
 - `SectionHeader` : 16 variantes de master à 1550. Une taille de master fixe est acceptable dans le component set, mais les instances doivent être Fill dans leur parent. Plusieurs variantes gardent encore `Accroche` ou `Titre` en Fixed après resize ; leurs enfants doivent être normalisés.
 - `AccordionRow` : 4 variantes de master à 1550. Les instances utilisées dans FAQ et TexteSEO doivent remplir le frame `accordion` ; leurs enfants internes doivent suivre.
 - Cartes de grille : `Carte/Reassurance` (363,5) et `Carte/Categorie` (743) peuvent être redimensionnées correctement quand l'instance est Fill. Leur largeur fixe actuelle doit rester uniquement dans un vrai track de carousel.
-- `ProductCard` (364) et les cartes d'avis peuvent légitimement rester fixes dans un track, à condition que viewport, clipping et contrôles soient explicitement modélisés.
+- `ProductCard` (364) peut légitimement rester fixe dans un track. Les cartes d'avis d'`Avis Google` suivent leur décision propre : cinq cellules égales et cartes Fill.
 
 ## Lots possibles pour le scope
 

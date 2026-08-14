@@ -581,6 +581,16 @@
       }
     },
     "sav": {
+      "content-padding": {
+        "$type": "dimension",
+        "$description": "SAV desktop content inset approved by the owner on 2026-08-11. At the 1550px reference it leaves the historical 1288px content row; at 1262px it leaves 1000px without introducing a viewport variant.",
+        "$value": "131px"
+      },
+      "image-right-inset": {
+        "$type": "dimension",
+        "$description": "SAV image-column trailing inset. With two equal Fill columns at the 1550px reference it preserves the historical 563px technician plane while allowing that plane to shrink at reduced desktop widths.",
+        "$value": "78px"
+      },
       "section-w": {
         "$type": "dimension",
         "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
@@ -598,8 +608,8 @@
       },
       "background-h": {
         "$type": "dimension",
-        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/background/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "475px"
+        "$description": "Owner-aligned from the repaired live SAV master on 2026-08-11: the section background covers the complete 677px section height. This token is local to ds.sav.",
+        "$value": "677px"
       },
       "row-w": {
         "$type": "dimension",
@@ -658,8 +668,8 @@
       },
       "img-group-background-h": {
         "$type": "dimension",
-        "$description": "Authored from ds.sav's already-governed anatomy at /anatomy/root/parts/section/parts/row/parts/imgGroup/parts/ImgGroupBackground/literals (already extracted from the Figma dump when the contract was authored; this mint carries the same value forward, never rounded) — minted from-dump so anatomy references tokens, not literals. Minted 015, 2026-08-04.",
-        "$value": "478px"
+        "$description": "Owner-aligned from the repaired live SAV master on 2026-08-11: the light-blue technician background covers the complete 561px image-group height. This token is local to ds.sav.",
+        "$value": "561px"
       },
       "img-w": {
         "$type": "dimension",

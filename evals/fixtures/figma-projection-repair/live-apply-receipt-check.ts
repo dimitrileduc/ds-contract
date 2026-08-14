@@ -56,8 +56,24 @@ refuse('duplicate master', { ...structuredClone(first), masters: [{ ...first.mas
 refuse('variant drift', { ...structuredClone(first), masters: [{ ...first.masters[0], variantNames: ['Width=1440'] }] }, 'first', 'master-drift');
 refuse('missing operation', { ...structuredClone(first), operations: [] }, 'first', 'operation-cardinality');
 refuse('responsive overflow', { ...structuredClone(first), responsiveChecks: [{ ...first.responsiveChecks[0], overflow: true }] }, 'first', 'responsive-check');
+const documentedOverflowCampaign = structuredClone(campaign) as any;
+documentedOverflowCampaign.targets[0].allowedFactChanges = ['responsive-overflow'];
+const documentedOverflow = structuredClone(first) as any;
+documentedOverflow.responsiveChecks[0] = {
+  ...documentedOverflow.responsiveChecks[0], overflow: true,
+  overflowNodeIds: ['12:34'], overflowIssues: [{ nodeId: '12:34', reason: 'container' }],
+};
+if (!validateLiveApplyReceipt(documentedOverflow, documentedOverflowCampaign, plan, 'first').ok) {
+  throw new Error('explicitly allowed and fully documented responsive overflow was refused');
+}
+const undocumentedOverflow = structuredClone(documentedOverflow);
+undocumentedOverflow.responsiveChecks[0].overflowIssues = [];
+const undocumentedResult = validateLiveApplyReceipt(undocumentedOverflow, documentedOverflowCampaign, plan, 'first');
+if (undocumentedResult.ok || !undocumentedResult.issues.includes('responsive-check:hero-video')) {
+  throw new Error('allowed but undocumented responsive overflow was accepted');
+}
 refuse('second apply created node', {
   ...structuredClone(second), operations: [{ ...second.operations[0], status: 'amended', createdNodeIds: ['9:2'] }],
 }, 'second', 'second-run-mutated');
 
-console.log('✔ live apply receipts refuse Page writes, duplicate/variant drift, missing operations and any non-no-op second run');
+console.log('✔ live apply receipts refuse Page writes, duplicate/variant drift, missing operations, undocumented overflow and any non-no-op second run');

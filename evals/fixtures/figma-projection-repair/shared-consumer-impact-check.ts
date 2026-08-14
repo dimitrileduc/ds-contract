@@ -1,5 +1,5 @@
 /** 021 / US2 — every shared Button/SectionHeader/Odoo consumer must be present and closed. */
-import { validateSharedConsumerImpacts } from '../../../extract/figma/projection-repair/impact.js';
+import { mergeConsumerImpacts, validateSharedConsumerImpacts } from '../../../extract/figma/projection-repair/impact.js';
 
 const expected = [
   { consumerId: 'ds.carousel-controls', dependencyId: 'Button', usage: 'contract', evidenceRefs: ['contracts/carousel-controls.contract.json'], status: 'pending', decisionRef: null },
@@ -32,6 +32,15 @@ odooWithoutDecision[2].decisionRef = null as never;
 const odooResult = validateSharedConsumerImpacts(expected, odooWithoutDecision);
 if (odooResult.ok || !odooResult.issues.some((issue) => issue.code === 'consumer-decision-missing')) {
   throw new Error('an Odoo revalidation without an explicit decision was not refused');
+}
+
+const explicitRoot = {
+  consumerId: 'odoo-google-reviews', dependencyId: 'ds.google-reviews', usage: 'odoo' as const,
+  evidenceRefs: ['integrations/odoo/config/inputs.lock.json'], status: 'pending' as const, decisionRef: null,
+};
+const merged = mergeConsumerImpacts(expected, [explicitRoot]);
+if (merged.length !== expected.length + 1 || !merged.some((impact) => impact.dependencyId === 'ds.google-reviews')) {
+  throw new Error('an explicitly declared production-root consumer was dropped by preflight impact merging');
 }
 
 console.log('✔ shared consumer impacts: absent, pending and decision-less Odoo consumers are refused');

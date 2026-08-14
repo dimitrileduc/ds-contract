@@ -34,7 +34,12 @@ const contract = ContractSchema.parse({
   version: '1.0.0',
   description: 'Four equal columns, two independent gaps and parent-owned children.',
   semantics: { element: 'div' },
-  props: [],
+  props: [
+    {
+      name: 'controls', type: 'boolean', default: true,
+      bindings: { figma: { kind: 'BOOLEAN', property: 'Controls' }, code: { prop: 'controls' } },
+    },
+  ],
   states: [],
   anatomy: {
     root: {
@@ -44,6 +49,16 @@ const contract = ContractSchema.parse({
           layout: { display: 'grid', columns: 4, width: 'fill' },
           tokens: { gap: '{fx.gap}', 'row-gap': '{fx.row}' },
           parts: boxes,
+        },
+        previous: {
+          layout: { display: 'flex', align: 'center', justify: 'center' },
+          literals: { width: '30px', height: '30px' },
+          visibleWhen: { prop: 'controls' },
+          declared: { position: 'absolute' },
+          stylesWhen: [{
+            prop: 'controls',
+            styles: { position: 'absolute', left: '-15px', top: '50%', transform: 'translateY(-50%)' },
+          }],
         },
       },
     },
@@ -101,6 +116,10 @@ if (gridSpec.bindings?.gridColumnGap !== 'fx/gap' || gridSpec.bindings?.gridRowG
 if (!gridSpec.children?.every((child) => child.fillWidth)) {
   throw new Error('Figma compile lost Fill on one or more grid children');
 }
+const previousSpec = data.variants[0]?.spec.children?.find((node) => node.name === 'previous');
+if (previousSpec?.absolute?.h !== 'MIN' || previousSpec.absolute.left !== -15 || previousSpec.absolute.v !== 'CENTER') {
+  throw new Error(`Figma compile lost conditional absolute frame placement: ${JSON.stringify(previousSpec?.absolute)}`);
+}
 
 const script = emitFigmaScript(contract, { tokens: tokens as never, icons: new Map(), contracts: byId });
 for (const marker of ["l.mode === 'GRID'", 'gridColumnCount = columns', 'gridColumnSizes = Array.from', "gridItemsPositioning = 'ROW_AUTO_FLOW'"]) {
@@ -129,6 +148,10 @@ if (!grid.children.every((child: any) => child.layoutSizingHorizontal === 'FILL'
 }
 if (grid.children[0]?.constrainProportions !== true) {
   throw new Error('mock runtime did not lock the declared child aspect ratio');
+}
+const previous = master?.findOne((node: any) => node.name === 'previous') as any;
+if (!previous || previous.layoutPositioning !== 'ABSOLUTE' || previous.x !== -15 || previous.constraints?.vertical !== 'CENTER') {
+  throw new Error(`mock runtime did not place the conditional absolute frame: ${JSON.stringify({ positioning: previous?.layoutPositioning, x: previous?.x, constraints: previous?.constraints })}`);
 }
 
 const masterId = master.id;

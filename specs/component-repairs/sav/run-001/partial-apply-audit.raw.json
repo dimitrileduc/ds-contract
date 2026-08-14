@@ -1,0 +1,483 @@
+{
+  "run": "audit",
+  "scriptResults": [],
+  "file": {
+    "key": "d9FYAUcqdcNtsuaMgLefvJ",
+    "name": "Piqueray (Copy)"
+  },
+  "masterCardinality": 1,
+  "master": {
+    "id": "2108:3105",
+    "key": "bf5e147a9b56206eba9c73045d533c9868b445b2",
+    "name": "SAV",
+    "type": "COMPONENT",
+    "page": "DS · Organisms",
+    "parent": {
+      "id": "2455:4735",
+      "name": "Container · SAV",
+      "type": "FRAME",
+      "layoutMode": "HORIZONTAL"
+    },
+    "box": {
+      "x": 0,
+      "y": 0,
+      "width": 1550,
+      "height": 677
+    },
+    "layoutMode": "HORIZONTAL",
+    "horizontal": "FILL",
+    "vertical": "HUG",
+    "clipsContent": false,
+    "children": [
+      {
+        "id": "2410:6937",
+        "name": "section",
+        "type": "FRAME",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1550,
+          "height": 677
+        },
+        "layoutMode": "HORIZONTAL",
+        "horizontal": "FILL",
+        "vertical": "FIXED"
+      }
+    ],
+    "componentPropertyDefinitions": {
+      "Titre#2351:50": {
+        "type": "TEXT",
+        "defaultValue": "Dépannage / SAV"
+      },
+      "Texte#2351:51": {
+        "type": "TEXT",
+        "defaultValue": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+      }
+    },
+    "images": [
+      {
+        "nodeId": "2410:6938",
+        "nodeName": "background",
+        "paintIndex": 0,
+        "imageHash": "3e173874828861c294938a12deea5a5a7a1799dd",
+        "scaleMode": "FILL"
+      },
+      {
+        "nodeId": "2410:6958",
+        "nodeName": "img",
+        "paintIndex": 0,
+        "imageHash": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+        "scaleMode": "FIT"
+      }
+    ],
+    "texts": [
+      {
+        "id": "I2410:6943;2351:36776",
+        "name": "Accroche",
+        "characters": "Plus de 50 ans d’expérience",
+        "textStyleId": "S:95b753c21c8ac1c9d71514e8aa60610e588a7307,",
+        "textStyleName": "Accroche",
+        "componentPropertyReferences": {
+          "visible": "Accroche2#2169:64",
+          "characters": "Accroche#2090:46"
+        },
+        "segments": [
+          {
+            "start": 0,
+            "end": 27,
+            "characters": "Plus de 50 ans d’expérience",
+            "fontName": {
+              "family": "Montserrat",
+              "style": "Regular"
+            },
+            "fontSize": 20,
+            "fontWeight": 400,
+            "lineHeight": {
+              "unit": "PIXELS",
+              "value": 25
+            },
+            "letterSpacing": {
+              "unit": "PERCENT",
+              "value": 15
+            },
+            "textCase": "UPPER"
+          }
+        ]
+      },
+      {
+        "id": "I2410:6943;2351:36777",
+        "name": "Titre",
+        "characters": "Dépannage / SAV",
+        "textStyleId": "",
+        "textStyleName": null,
+        "componentPropertyReferences": {
+          "characters": "Titre#2090:47"
+        },
+        "segments": [
+          {
+            "start": 0,
+            "end": 15,
+            "characters": "Dépannage / SAV",
+            "fontName": {
+              "family": "Montserrat",
+              "style": "Regular"
+            },
+            "fontSize": 40,
+            "fontWeight": 400,
+            "lineHeight": {
+              "unit": "PIXELS",
+              "value": 50
+            },
+            "letterSpacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "textCase": "ORIGINAL"
+          }
+        ]
+      },
+      {
+        "id": "2410:6948",
+        "name": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+        "textStyleId": "",
+        "textStyleName": null,
+        "componentPropertyReferences": {
+          "characters": "Texte#2351:51"
+        },
+        "segments": [
+          {
+            "start": 0,
+            "end": 324,
+            "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+            "fontName": {
+              "family": "Montserrat",
+              "style": "Medium"
+            },
+            "fontSize": 18,
+            "fontWeight": 500,
+            "lineHeight": {
+              "unit": "PIXELS",
+              "value": 27
+            },
+            "letterSpacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "textCase": "ORIGINAL"
+          }
+        ]
+      },
+      {
+        "id": "I2410:6950;2410:6101",
+        "name": "label",
+        "characters": "Demander de l’aide",
+        "textStyleId": "S:f9c30d6fe6972755f7b6995ab0c227afa0c60aab,",
+        "textStyleName": "Libellé bouton",
+        "componentPropertyReferences": {
+          "characters": "Libelle#2044:28"
+        },
+        "segments": [
+          {
+            "start": 0,
+            "end": 18,
+            "characters": "Demander de l’aide",
+            "fontName": {
+              "family": "Montserrat",
+              "style": "Medium"
+            },
+            "fontSize": 16,
+            "fontWeight": 500,
+            "lineHeight": {
+              "unit": "PIXELS",
+              "value": 22
+            },
+            "letterSpacing": {
+              "unit": "PERCENT",
+              "value": 0
+            },
+            "textCase": "UPPER"
+          }
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "id": "2410:6943",
+        "name": "SectionHeader",
+        "mainComponentId": "2338:29029",
+        "mainComponentName": "Disposition=Standard, Emphase=Standard, Alignement=Gauche",
+        "mainParentId": "2090:2397",
+        "mainParentName": "SectionHeader",
+        "componentProperties": {
+          "Accroche2#2169:64": {
+            "type": "BOOLEAN",
+            "value": false
+          },
+          "Titre#2090:47": {
+            "type": "TEXT",
+            "value": "Dépannage / SAV"
+          },
+          "Accroche#2090:46": {
+            "type": "TEXT",
+            "value": "Plus de 50 ans d’expérience"
+          },
+          "Disposition": {
+            "value": "Standard",
+            "type": "VARIANT",
+            "boundVariables": {}
+          },
+          "Emphase": {
+            "value": "Standard",
+            "type": "VARIANT",
+            "boundVariables": {}
+          },
+          "Alignement": {
+            "value": "Gauche",
+            "type": "VARIANT",
+            "boundVariables": {}
+          }
+        }
+      },
+      {
+        "id": "2410:6950",
+        "name": "Bouton",
+        "mainComponentId": "6:107",
+        "mainComponentName": "Style=Default",
+        "mainParentId": "6:122",
+        "mainParentName": "Bouton",
+        "componentProperties": {
+          "Glyphe droite#2028:21": {
+            "type": "INSTANCE_SWAP",
+            "value": "6:104",
+            "preferredValues": [
+              {
+                "type": "COMPONENT",
+                "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "260b884e25dbeb857d92c788868f075448c25d16"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "4583f5973482fbd560e3a81035d3225b04410045"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+              }
+            ]
+          },
+          "Glyphe gauche#2028:14": {
+            "type": "INSTANCE_SWAP",
+            "value": "6:99",
+            "preferredValues": [
+              {
+                "type": "COMPONENT",
+                "key": "ace5d8b67130291fbd265415134c45599d294b6a"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "20efe0347620fd90d43a5f156fe743d0b015f16b"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "ff3fb6e1664e37bc72e44e9542a2ea3abada9697"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "b1c170a183c5da83c2aa9a0f4440c1a5dbc99f60"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "260b884e25dbeb857d92c788868f075448c25d16"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "fe22c56502376cffe6c6a2a7b5ac9945ed636781"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "57edb362f6842817a0130ad9ebd5b531b36c57e3"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "ccc8dd83120d004d9ee6a9b945a52bf57d7bfa47"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "8825e487906a06701e6e87987c10bb1e4195bb1b"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "621b6b36b4db98fee4a7dab6b649f78d6255f62d"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "4583f5973482fbd560e3a81035d3225b04410045"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "192ed18bad3ea48010a50c53afed3ebcf920f0a5"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "8a405ce4e36d1b4f47454b3ed19e36572a8f376f"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "b93576522d25e558dee053c6f0b517f43e683fef"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "ca491cca315a8c97b372b53f3e1532d4771cacdd"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "db3d036dbc1284c356fef54113b29afab9d6580a"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "a3820c3581b97b107cf1b3f34af63bb7d284978c"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "a31ac0893475dd12f3dd806b54c1cd86acf2776e"
+              },
+              {
+                "type": "COMPONENT",
+                "key": "effda951d950a7ab05d4745ab1ab90cca8da3176"
+              }
+            ]
+          },
+          "Icone droite#2024:7": {
+            "type": "BOOLEAN",
+            "value": true
+          },
+          "Libelle#2044:28": {
+            "type": "TEXT",
+            "value": "Demander de l’aide"
+          },
+          "Icone gauche#2024:0": {
+            "type": "BOOLEAN",
+            "value": false
+          },
+          "Style": {
+            "value": "Default",
+            "type": "VARIANT",
+            "boundVariables": {}
+          }
+        }
+      },
+      {
+        "id": "I2410:6950;2410:6099",
+        "name": "iconLeft",
+        "mainComponentId": "6:99",
+        "mainComponentName": "ArrowLeft",
+        "mainParentId": "2053:1257",
+        "mainParentName": "Icônes",
+        "componentProperties": {}
+      },
+      {
+        "id": "I2410:6950;2410:6116",
+        "name": "iconRight",
+        "mainComponentId": "6:104",
+        "mainComponentName": "ArrowRight",
+        "mainParentId": "2053:1257",
+        "mainParentName": "Icônes",
+        "componentProperties": {}
+      }
+    ]
+  },
+  "pageInstances": [
+    {
+      "id": "2108:3135",
+      "page": "Pages",
+      "parent": {
+        "id": "210:326",
+        "name": "Accueil",
+        "type": "FRAME",
+        "layoutMode": "VERTICAL"
+      },
+      "box": {
+        "x": 89,
+        "y": 1656,
+        "width": 1550,
+        "height": 677
+      },
+      "horizontal": "FIXED",
+      "vertical": "HUG",
+      "componentProperties": {
+        "Titre#2351:50": {
+          "type": "TEXT",
+          "value": "Dépannage / SAV"
+        },
+        "Texte#2351:51": {
+          "type": "TEXT",
+          "value": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+        }
+      }
+    }
+  ]
+}

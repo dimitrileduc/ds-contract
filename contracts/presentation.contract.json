@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.presentation",
   "name": "Presentation",
-  "version": "2.5.0",
-  "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+  "version": "2.6.0",
+  "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -89,19 +89,23 @@
         "display": "flex",
         "direction": "row",
         "align": "start",
-        "justify": "center"
+        "justify": "center",
+        "width": "fill",
+        "referenceWidth": 1287
       },
       "parts": {
         "colGauche": {
-          "description": "Colonne gauche de la grille (016) : une instance composée ne peut pas être restylée par le parent — la largeur d'origine (628, le titre wrappe en 2 lignes) vit sur ce wrapper structurel.",
+          "description": "Colonne gauche fluide de la composition à deux colonnes. Elle partage l'espace disponible avec wrapper ; le Container consommateur possède les paddings externes.",
           "layout": {
-            "direction": "column"
-          },
-          "tokens": {
-            "width": "{size.presentation.col-gauche}"
+            "direction": "column",
+            "grow": true,
+            "width": "fill"
           },
           "parts": {
             "SectionHeader": {
+              "layout": {
+                "width": "fill"
+              },
               "component": {
                 "id": "ds.section-header",
                 "props": {
@@ -127,11 +131,12 @@
         "wrapper": {
           "layout": {
             "direction": "column",
-            "align": "start"
+            "align": "start",
+            "grow": true,
+            "width": "fill"
           },
           "tokens": {
-            "gap": "{space.16}",
-            "width": "{size.presentation.wrapper}"
+            "gap": "{space.16}"
           },
           "parts": {
             "Texte": {

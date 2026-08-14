@@ -2,10 +2,10 @@
   "$schema": "./contract.schema.json",
   "id": "ds.google-reviews",
   "name": "GoogleReviews",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "status": "draft",
   "category": "section",
-  "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Hauteur du root contrainte à la hauteur mesurée de l'aplat (neutralité de hauteur, R20) — une adoption qui changerait cette hauteur est un STOP, jamais une donnée.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nSimplification nommée : les flèches sont modélisées comme des enfants flex adjacents à la rangée de cartes (pas un overlay/positionnement absolu) — l'aplat les montre en léger chevauchement des bords de carte 1/5 ; à raffiner pendant la convergence (T040) si l'écart mesuré le justifie.",
+  "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.",
   "semantics": {
     "element": "section",
     "provenance": "authored"
@@ -110,7 +110,7 @@
         "background-color": "{color.blanc}",
         "font-family": "{font.family.montserrat}",
         "width": "{size.google-reviews.root-w}",
-        "height": "{size.google-reviews.root-h}",
+        "min-height": "{size.google-reviews.root-h}",
         "gap": "{space.12}",
         "padding-top": "{space.4}",
         "padding-bottom": "{space.8}",
@@ -287,17 +287,20 @@
             }
           }
         },
-        "cartes": {
-          "description": "Structure 3 colonnes (T040, demande owner) : flèche | groupe des 5 cartes | flèche. Gap 0 à l'extérieur, 8 px entre les cartes (mesuré) — le groupe central prend toute la largeur restante, ce qui donne aux cartes 288 px au lieu de 285 quand les flèches partageaient le même gap. ⚠️ LIMITE NOMMÉE : dans l'aplat les flèches CHEVAUCHENT les cartes (flèche gauche x=0→46 px natifs, carte 1 à x=16 : 30 px de recouvrement) ; les cartes y démarrent donc à 16 px natifs contre 58 ici. Aucun mécanisme de superposition n'existe sur les DEUX surfaces dans ce moteur : `stylesWhen` (position/left/transform/z-index) est « Canvas v1: not represented », et `layout.overlap` est code-only aussi (0 occurrence dans core/emit-figma-script.ts — le « negative itemSpacing » annoncé en commentaire n'est pas implémenté) ; `margin-*` n'est dans aucun registre de canaux. Résidu assumé : ~28 CSS de décalage horizontal, identique sur les deux surfaces (donc code≡canevas préservé). Correctif moteur → backlog. ⚠️ `align` vaut « center » et NON « stretch », et ce n'est pas cosmétique : `core/emit-figma-script.ts:871` active `stretchChildren` dès qu'une part porte un `layout` sans `align` explicite OU avec `align: stretch`, et `:3315` pose alors `layoutSizingHorizontal = FILL` sur tout enfant dépourvu de largeur issue d'un TOKEN (les deux seules sources de `fixedWidth` sont `:1115`/`:1120`). Avec « stretch », les literals `width: 0px` des deux conteneurs de flèche étaient écrasés et les 3 colonnes se partageaient la largeur en tiers égaux (169,3 px chacune, mesuré sur le canevas le 26/07) — les instances de carte y échappant seules (`:3316`, `child.type !== 'instance'`), 5 cartes de 299 px débordaient d'un parent de 169. « center » éteint ce défaut d'origine et rend visuellement l'identique côté code, les cartes tenant déjà leur hauteur égale par leur propre `min-height: 239px`.",
+      "cartes": {
+        "description": "Viewport positionné des avis. Autorité owner du 2026-08-12 : les cinq cartes forment une grille native de cinq colonnes égales ; chaque carte remplit sa cellule. Les flèches gauche et droite sont superposées aux bords et ne participent jamais au calcul des colonnes.",
           "layout": {
             "display": "flex",
             "direction": "row",
             "align": "center",
             "justify": "space-between"
           },
-          "parts": {
-            "flecheGauche": {
-              "description": "Flèche de carrousel gauche — dessinée en part (jamais un component-ref vers ds.button, R5). ⚠️ Conteneur à LARGEUR NULLE + pastille à `min-width` (T040, demande owner) : c'est le seul moyen, sans positionnement absolu ni marge négative (aucun des deux n'existe sur les DEUX surfaces dans ce moteur), de faire chevaucher la flèche sur les cartes comme l'aplat le montre — le conteneur ne consomme aucune largeur de rangée, la pastille déborde symétriquement de part et d'autre du bord. Sans `min-width` sur la pastille, flex-shrink l'écrase à zéro et la flèche disparaît (constaté, corrigé).",
+        "declared": {
+          "position": "relative"
+        },
+        "parts": {
+          "flecheGauche": {
+            "description": "Contrôle gauche superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit left -15 px.",
               "visibleWhen": {
                 "prop": "montrerControles"
               },
@@ -306,10 +309,20 @@
                 "align": "center",
                 "justify": "center"
               },
-              "tokens": {
-                "width": "{space.0}",
-                "min-width": "{space.0}"
-              },
+            "declared": {
+              "position": "absolute"
+            },
+            "stylesWhen": [
+              {
+                "prop": "montrerControles",
+                "styles": {
+                  "position": "absolute",
+                  "left": "-15px",
+                  "top": "50%",
+                  "transform": "translateY(-50%)"
+                }
+              }
+            ],
               "parts": {
                 "pastilleGauche": {
                   "layout": {
@@ -339,20 +352,22 @@
                 }
               }
             },
-            "groupeCartes": {
-              "description": "Groupe central des 5 cartes — `grow` pour prendre toute la largeur laissée par les deux flèches.",
-              "layout": {
-                "display": "flex",
-                "direction": "row",
-                "align": "stretch",
-                "grow": true
+          "groupeCartes": {
+            "description": "Grille native de cinq colonnes égales. Sa largeur vient du viewport ; aucune largeur de carte n'est une règle de layout ici.",
+            "layout": {
+              "display": "grid",
+              "columns": 5,
+              "width": "fill"
               },
               "tokens": {
                 "gap": "{space.8}"
               },
               "parts": {
-                "carte": {
-                  "description": "Un repeat+component n'a pas de wrapper propre à styliser — le partage de largeur égal entre les 5 instances est porté par `grow:true` sur la racine de ds.review-card (trouvaille T040, voir sa description).",
+              "carte": {
+                "description": "Chaque instance Review-card remplit sa cellule de grille ; le contrat partagé ds.review-card reste inchangé.",
+                "layout": {
+                  "width": "fill"
+                },
                   "repeat": {
                     "itemsProp": "avis",
                     "sample": [
@@ -424,8 +439,8 @@
                 }
               }
             },
-            "flecheDroite": {
-              "description": "Flèche de carrousel droite — dessinée en part (jamais un component-ref vers ds.button, R5). ⚠️ Conteneur à LARGEUR NULLE + pastille à `min-width` (T040, demande owner) : c'est le seul moyen, sans positionnement absolu ni marge négative (aucun des deux n'existe sur les DEUX surfaces dans ce moteur), de faire chevaucher la flèche sur les cartes comme l'aplat le montre — le conteneur ne consomme aucune largeur de rangée, la pastille déborde symétriquement de part et d'autre du bord. Sans `min-width` sur la pastille, flex-shrink l'écrase à zéro et la flèche disparaît (constaté, corrigé).",
+          "flecheDroite": {
+            "description": "Contrôle droit superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit right -15 px.",
               "visibleWhen": {
                 "prop": "montrerControles"
               },
@@ -434,10 +449,20 @@
                 "align": "center",
                 "justify": "center"
               },
-              "tokens": {
-                "width": "{space.0}",
-                "min-width": "{space.0}"
-              },
+            "declared": {
+              "position": "absolute"
+            },
+            "stylesWhen": [
+              {
+                "prop": "montrerControles",
+                "styles": {
+                  "position": "absolute",
+                  "right": "-15px",
+                  "top": "50%",
+                  "transform": "translateY(-50%)"
+                }
+              }
+            ],
               "parts": {
                 "pastilleDroite": {
                   "layout": {

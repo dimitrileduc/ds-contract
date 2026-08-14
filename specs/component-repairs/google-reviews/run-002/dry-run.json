@@ -1,0 +1,58 @@
+{
+  "campaignId": "repair-google-reviews-height-auto",
+  "filePin": "2386730476747356856",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "repair-google-reviews-height-auto-in-place",
+      "targetId": "google-reviews",
+      "mechanism": "generated-amend",
+      "nodeId": "2178:7381",
+      "structuralPath": "",
+      "changes": {
+        "generatedScriptRef": "specs/component-repairs/google-reviews/run-002/repair-height-auto.js"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2178:7381"
+        },
+        {
+          "field": "nodeName",
+          "equals": "Avis Google"
+        },
+        {
+          "field": "gridColumnCount",
+          "equals": 5
+        },
+        {
+          "field": "pageWrites",
+          "equals": 0
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "primaryAxisSizingMode",
+          "equals": "AUTO"
+        },
+        {
+          "field": "layoutSizingVertical",
+          "equals": "HUG"
+        },
+        {
+          "field": "minHeightVariable",
+          "equals": "size/google-reviews/root-h"
+        },
+        {
+          "field": "nominalHeight",
+          "equals": 328
+        },
+        {
+          "field": "pageWrites",
+          "equals": 0
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

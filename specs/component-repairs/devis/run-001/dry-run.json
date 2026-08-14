@@ -1,0 +1,50 @@
+{
+  "campaignId": "repair-devis",
+  "filePin": "2386738228628876811",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "ensure-devis-container",
+      "targetId": "devis",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2096:2524",
+      "structuralPath": "",
+      "changes": {
+        "containerName": "Container · Devis",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1728,
+        "referenceHeight": 378,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2096:2524"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2096:2535"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2096:2524"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · Devis"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

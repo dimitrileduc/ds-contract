@@ -1,0 +1,1895 @@
+{
+  "run": "audit-owner-current",
+  "scriptResults": [],
+  "file": {
+    "key": "d9FYAUcqdcNtsuaMgLefvJ",
+    "name": "Piqueray (Copy)"
+  },
+  "master": {
+    "id": "2108:3105",
+    "name": "SAV",
+    "type": "COMPONENT",
+    "box": {
+      "x": 0,
+      "y": 0,
+      "width": 1550,
+      "height": 677
+    },
+    "layoutMode": "HORIZONTAL",
+    "layoutPositioning": "AUTO",
+    "horizontal": "FILL",
+    "vertical": "HUG",
+    "paddingTop": 0,
+    "paddingRight": 0,
+    "paddingBottom": 0,
+    "paddingLeft": 0,
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "fills": [],
+    "children": [
+      {
+        "id": "2410:6937",
+        "name": "section",
+        "type": "FRAME",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1550,
+          "height": 677
+        },
+        "layoutMode": "VERTICAL",
+        "layoutPositioning": "AUTO",
+        "horizontal": "FILL",
+        "vertical": "FIXED",
+        "paddingTop": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "constraints": {
+          "horizontal": "MIN",
+          "vertical": "MIN"
+        },
+        "fills": [],
+        "children": [
+          {
+            "id": "2410:6938",
+            "name": "background",
+            "type": "FRAME",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 1550,
+              "height": 677
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutPositioning": "ABSOLUTE",
+            "horizontal": "FIXED",
+            "vertical": "FIXED",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "constraints": {
+              "horizontal": "STRETCH",
+              "vertical": "MIN"
+            },
+            "fills": [
+              {
+                "type": "IMAGE",
+                "imageHash": "3e173874828861c294938a12deea5a5a7a1799dd",
+                "scaleMode": "FILL"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "2410:6939",
+            "name": "row",
+            "type": "FRAME",
+            "box": {
+              "x": 0,
+              "y": 116,
+              "width": 1550,
+              "height": 561
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutPositioning": "AUTO",
+            "horizontal": "FILL",
+            "vertical": "FIXED",
+            "paddingTop": 0,
+            "paddingRight": 131,
+            "paddingBottom": 0,
+            "paddingLeft": 131,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fills": [],
+            "children": [
+              {
+                "id": "2410:6940",
+                "name": "wrapper",
+                "type": "FRAME",
+                "box": {
+                  "x": 131,
+                  "y": 0,
+                  "width": 651,
+                  "height": 561
+                },
+                "layoutMode": "HORIZONTAL",
+                "layoutPositioning": "AUTO",
+                "horizontal": "FILL",
+                "vertical": "FIXED",
+                "paddingTop": 48,
+                "paddingRight": 47,
+                "paddingBottom": 0,
+                "paddingLeft": 48,
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fills": [],
+                "children": [
+                  {
+                    "id": "2410:6941",
+                    "name": "WrapperBackground",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 0,
+                      "y": 0,
+                      "width": 651,
+                      "height": 561
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "ABSOLUTE",
+                    "horizontal": "FIXED",
+                    "vertical": "FIXED",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "MAX"
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "imageHash": null,
+                        "scaleMode": null
+                      }
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "2410:6942",
+                    "name": "inner",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 48,
+                      "y": 48,
+                      "width": 556,
+                      "height": 365
+                    },
+                    "layoutMode": "VERTICAL",
+                    "layoutPositioning": "AUTO",
+                    "horizontal": "FILL",
+                    "vertical": "HUG",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fills": [],
+                    "children": [
+                      {
+                        "id": "2410:6943",
+                        "name": "SectionHeader",
+                        "type": "INSTANCE",
+                        "box": {
+                          "x": 0,
+                          "y": 0,
+                          "width": 556,
+                          "height": 50
+                        },
+                        "layoutMode": "VERTICAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "FILL",
+                        "vertical": "HUG",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "imageHash": null,
+                            "scaleMode": null
+                          }
+                        ],
+                        "children": [
+                          {
+                            "id": "I2410:6943;2351:36776",
+                            "name": "Accroche",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 0,
+                              "y": 0,
+                              "width": 1550,
+                              "height": 25
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FIXED",
+                            "vertical": "FIXED",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          },
+                          {
+                            "id": "I2410:6943;2351:36777",
+                            "name": "Titre",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 0,
+                              "y": 0,
+                              "width": 556,
+                              "height": 50
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FILL",
+                            "vertical": "HUG",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "id": "2410:6949",
+                        "name": "vousRencontrezUnProblmeA",
+                        "type": "FRAME",
+                        "box": {
+                          "x": 0,
+                          "y": 82,
+                          "width": 556,
+                          "height": 197
+                        },
+                        "layoutMode": "HORIZONTAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "FILL",
+                        "vertical": "HUG",
+                        "paddingTop": 4,
+                        "paddingRight": 0,
+                        "paddingBottom": 4,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [],
+                        "children": [
+                          {
+                            "id": "2410:6948",
+                            "name": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 0,
+                              "y": 4,
+                              "width": 556,
+                              "height": 189
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FILL",
+                            "vertical": "HUG",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "id": "2410:6950",
+                        "name": "Bouton",
+                        "type": "INSTANCE",
+                        "box": {
+                          "x": 0,
+                          "y": 311,
+                          "width": 279,
+                          "height": 54
+                        },
+                        "layoutMode": "HORIZONTAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "HUG",
+                        "vertical": "HUG",
+                        "paddingTop": 16,
+                        "paddingRight": 32,
+                        "paddingBottom": 16,
+                        "paddingLeft": 32,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "imageHash": null,
+                            "scaleMode": null
+                          }
+                        ],
+                        "children": [
+                          {
+                            "id": "I2410:6950;2410:6099",
+                            "name": "iconLeft",
+                            "type": "INSTANCE",
+                            "box": {
+                              "x": 32,
+                              "y": 17,
+                              "width": 20,
+                              "height": 20
+                            },
+                            "layoutMode": "NONE",
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FIXED",
+                            "vertical": "FIXED",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": [
+                              {
+                                "id": "I2410:6950;2410:6099;6:98",
+                                "name": "Tracé",
+                                "type": "VECTOR",
+                                "box": {
+                                  "x": 0.7358202934265137,
+                                  "y": 4.741289138793945,
+                                  "width": 18.69124984741211,
+                                  "height": 10.517420768737793
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FIXED",
+                                "vertical": "FIXED",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "SCALE",
+                                  "vertical": "SCALE"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "I2410:6950;2410:6101",
+                            "name": "label",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 32,
+                              "y": 16,
+                              "width": 185,
+                              "height": 22
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "HUG",
+                            "vertical": "HUG",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          },
+                          {
+                            "id": "I2410:6950;2410:6116",
+                            "name": "iconRight",
+                            "type": "INSTANCE",
+                            "box": {
+                              "x": 227,
+                              "y": 17,
+                              "width": 20,
+                              "height": 20
+                            },
+                            "layoutMode": "NONE",
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FIXED",
+                            "vertical": "FIXED",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": [
+                              {
+                                "id": "I2410:6950;2410:6116;6:103",
+                                "name": "Tracé",
+                                "type": "VECTOR",
+                                "box": {
+                                  "x": 0.625,
+                                  "y": 4.741289138793945,
+                                  "width": 18.691328048706055,
+                                  "height": 10.517420768737793
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FIXED",
+                                "vertical": "FIXED",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "SCALE",
+                                  "vertical": "SCALE"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "2410:6956",
+                "name": "imgGroup",
+                "type": "FRAME",
+                "box": {
+                  "x": 782,
+                  "y": 0,
+                  "width": 637,
+                  "height": 561
+                },
+                "layoutMode": "HORIZONTAL",
+                "layoutPositioning": "AUTO",
+                "horizontal": "FILL",
+                "vertical": "FIXED",
+                "paddingTop": 0,
+                "paddingRight": 78,
+                "paddingBottom": 0,
+                "paddingLeft": 3,
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fills": [],
+                "children": [
+                  {
+                    "id": "2410:6957",
+                    "name": "ImgGroupBackground",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 0,
+                      "y": 0,
+                      "width": 637,
+                      "height": 561
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "ABSOLUTE",
+                    "horizontal": "FIXED",
+                    "vertical": "FIXED",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "MIN"
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "imageHash": null,
+                        "scaleMode": null
+                      }
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "2410:6958",
+                    "name": "img",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 3,
+                      "y": 57,
+                      "width": 556,
+                      "height": 504
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "AUTO",
+                    "horizontal": "FILL",
+                    "vertical": "FIXED",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fills": [
+                      {
+                        "type": "IMAGE",
+                        "imageHash": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+                        "scaleMode": "FIT"
+                      }
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "masterParent": {
+    "id": "2455:4735",
+    "name": "Container · SAV",
+    "type": "FRAME",
+    "box": {
+      "x": 41,
+      "y": 50,
+      "width": 1550,
+      "height": 677
+    },
+    "layoutMode": "HORIZONTAL",
+    "layoutPositioning": "AUTO",
+    "horizontal": "FIXED",
+    "vertical": "HUG",
+    "paddingTop": 0,
+    "paddingRight": 0,
+    "paddingBottom": 0,
+    "paddingLeft": 0,
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "fills": [],
+    "children": [
+      {
+        "id": "2108:3105",
+        "name": "SAV",
+        "type": "COMPONENT",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1550,
+          "height": 677
+        },
+        "layoutMode": "HORIZONTAL",
+        "layoutPositioning": "AUTO",
+        "horizontal": "FILL",
+        "vertical": "HUG",
+        "paddingTop": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "constraints": {
+          "horizontal": "MIN",
+          "vertical": "MIN"
+        },
+        "fills": [],
+        "children": [
+          {
+            "id": "2410:6937",
+            "name": "section",
+            "type": "FRAME",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 1550,
+              "height": 677
+            },
+            "layoutMode": "VERTICAL",
+            "layoutPositioning": "AUTO",
+            "horizontal": "FILL",
+            "vertical": "FIXED",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fills": [],
+            "children": [
+              {
+                "id": "2410:6938",
+                "name": "background",
+                "type": "FRAME",
+                "box": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 1550,
+                  "height": 677
+                },
+                "layoutMode": "HORIZONTAL",
+                "layoutPositioning": "ABSOLUTE",
+                "horizontal": "FIXED",
+                "vertical": "FIXED",
+                "paddingTop": 0,
+                "paddingRight": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "constraints": {
+                  "horizontal": "STRETCH",
+                  "vertical": "MIN"
+                },
+                "fills": [
+                  {
+                    "type": "IMAGE",
+                    "imageHash": "3e173874828861c294938a12deea5a5a7a1799dd",
+                    "scaleMode": "FILL"
+                  }
+                ],
+                "children": []
+              },
+              {
+                "id": "2410:6939",
+                "name": "row",
+                "type": "FRAME",
+                "box": {
+                  "x": 0,
+                  "y": 116,
+                  "width": 1550,
+                  "height": 561
+                },
+                "layoutMode": "HORIZONTAL",
+                "layoutPositioning": "AUTO",
+                "horizontal": "FILL",
+                "vertical": "FIXED",
+                "paddingTop": 0,
+                "paddingRight": 131,
+                "paddingBottom": 0,
+                "paddingLeft": 131,
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fills": [],
+                "children": [
+                  {
+                    "id": "2410:6940",
+                    "name": "wrapper",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 131,
+                      "y": 0,
+                      "width": 651,
+                      "height": 561
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "AUTO",
+                    "horizontal": "FILL",
+                    "vertical": "FIXED",
+                    "paddingTop": 48,
+                    "paddingRight": 47,
+                    "paddingBottom": 0,
+                    "paddingLeft": 48,
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fills": [],
+                    "children": [
+                      {
+                        "id": "2410:6941",
+                        "name": "WrapperBackground",
+                        "type": "FRAME",
+                        "box": {
+                          "x": 0,
+                          "y": 0,
+                          "width": 651,
+                          "height": 561
+                        },
+                        "layoutMode": "HORIZONTAL",
+                        "layoutPositioning": "ABSOLUTE",
+                        "horizontal": "FIXED",
+                        "vertical": "FIXED",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "STRETCH",
+                          "vertical": "MAX"
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "imageHash": null,
+                            "scaleMode": null
+                          }
+                        ],
+                        "children": []
+                      },
+                      {
+                        "id": "2410:6942",
+                        "name": "inner",
+                        "type": "FRAME",
+                        "box": {
+                          "x": 48,
+                          "y": 48,
+                          "width": 556,
+                          "height": 365
+                        },
+                        "layoutMode": "VERTICAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "FILL",
+                        "vertical": "HUG",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [],
+                        "children": [
+                          {
+                            "id": "2410:6943",
+                            "name": "SectionHeader",
+                            "type": "INSTANCE",
+                            "box": {
+                              "x": 0,
+                              "y": 0,
+                              "width": 556,
+                              "height": 50
+                            },
+                            "layoutMode": "VERTICAL",
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FILL",
+                            "vertical": "HUG",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": [
+                              {
+                                "id": "I2410:6943;2351:36776",
+                                "name": "Accroche",
+                                "type": "TEXT",
+                                "box": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 1550,
+                                  "height": 25
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FIXED",
+                                "vertical": "FIXED",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "MIN",
+                                  "vertical": "MIN"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              },
+                              {
+                                "id": "I2410:6943;2351:36777",
+                                "name": "Titre",
+                                "type": "TEXT",
+                                "box": {
+                                  "x": 0,
+                                  "y": 0,
+                                  "width": 556,
+                                  "height": 50
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FILL",
+                                "vertical": "HUG",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "MIN",
+                                  "vertical": "MIN"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "2410:6949",
+                            "name": "vousRencontrezUnProblmeA",
+                            "type": "FRAME",
+                            "box": {
+                              "x": 0,
+                              "y": 82,
+                              "width": 556,
+                              "height": 197
+                            },
+                            "layoutMode": "HORIZONTAL",
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FILL",
+                            "vertical": "HUG",
+                            "paddingTop": 4,
+                            "paddingRight": 0,
+                            "paddingBottom": 4,
+                            "paddingLeft": 0,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [],
+                            "children": [
+                              {
+                                "id": "2410:6948",
+                                "name": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                                "type": "TEXT",
+                                "box": {
+                                  "x": 0,
+                                  "y": 4,
+                                  "width": 556,
+                                  "height": 189
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FILL",
+                                "vertical": "HUG",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "MIN",
+                                  "vertical": "MIN"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "2410:6950",
+                            "name": "Bouton",
+                            "type": "INSTANCE",
+                            "box": {
+                              "x": 0,
+                              "y": 311,
+                              "width": 279,
+                              "height": 54
+                            },
+                            "layoutMode": "HORIZONTAL",
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "HUG",
+                            "vertical": "HUG",
+                            "paddingTop": 16,
+                            "paddingRight": 32,
+                            "paddingBottom": 16,
+                            "paddingLeft": 32,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": [
+                              {
+                                "id": "I2410:6950;2410:6099",
+                                "name": "iconLeft",
+                                "type": "INSTANCE",
+                                "box": {
+                                  "x": 32,
+                                  "y": 17,
+                                  "width": 20,
+                                  "height": 20
+                                },
+                                "layoutMode": "NONE",
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FIXED",
+                                "vertical": "FIXED",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "constraints": {
+                                  "horizontal": "MIN",
+                                  "vertical": "MIN"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "id": "I2410:6950;2410:6099;6:98",
+                                    "name": "Tracé",
+                                    "type": "VECTOR",
+                                    "box": {
+                                      "x": 0.7358202934265137,
+                                      "y": 4.741289138793945,
+                                      "width": 18.69124984741211,
+                                      "height": 10.517420768737793
+                                    },
+                                    "layoutMode": null,
+                                    "layoutPositioning": "AUTO",
+                                    "horizontal": "FIXED",
+                                    "vertical": "FIXED",
+                                    "paddingTop": null,
+                                    "paddingRight": null,
+                                    "paddingBottom": null,
+                                    "paddingLeft": null,
+                                    "constraints": {
+                                      "horizontal": "SCALE",
+                                      "vertical": "SCALE"
+                                    },
+                                    "fills": [
+                                      {
+                                        "type": "SOLID",
+                                        "imageHash": null,
+                                        "scaleMode": null
+                                      }
+                                    ],
+                                    "children": []
+                                  }
+                                ]
+                              },
+                              {
+                                "id": "I2410:6950;2410:6101",
+                                "name": "label",
+                                "type": "TEXT",
+                                "box": {
+                                  "x": 32,
+                                  "y": 16,
+                                  "width": 185,
+                                  "height": 22
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "HUG",
+                                "vertical": "HUG",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "MIN",
+                                  "vertical": "MIN"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              },
+                              {
+                                "id": "I2410:6950;2410:6116",
+                                "name": "iconRight",
+                                "type": "INSTANCE",
+                                "box": {
+                                  "x": 227,
+                                  "y": 17,
+                                  "width": 20,
+                                  "height": 20
+                                },
+                                "layoutMode": "NONE",
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FIXED",
+                                "vertical": "FIXED",
+                                "paddingTop": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "paddingLeft": 0,
+                                "constraints": {
+                                  "horizontal": "MIN",
+                                  "vertical": "MIN"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": [
+                                  {
+                                    "id": "I2410:6950;2410:6116;6:103",
+                                    "name": "Tracé",
+                                    "type": "VECTOR",
+                                    "box": {
+                                      "x": 0.625,
+                                      "y": 4.741289138793945,
+                                      "width": 18.691328048706055,
+                                      "height": 10.517420768737793
+                                    },
+                                    "layoutMode": null,
+                                    "layoutPositioning": "AUTO",
+                                    "horizontal": "FIXED",
+                                    "vertical": "FIXED",
+                                    "paddingTop": null,
+                                    "paddingRight": null,
+                                    "paddingBottom": null,
+                                    "paddingLeft": null,
+                                    "constraints": {
+                                      "horizontal": "SCALE",
+                                      "vertical": "SCALE"
+                                    },
+                                    "fills": [
+                                      {
+                                        "type": "SOLID",
+                                        "imageHash": null,
+                                        "scaleMode": null
+                                      }
+                                    ],
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "id": "2410:6956",
+                    "name": "imgGroup",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 782,
+                      "y": 0,
+                      "width": 637,
+                      "height": 561
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "AUTO",
+                    "horizontal": "FILL",
+                    "vertical": "FIXED",
+                    "paddingTop": 0,
+                    "paddingRight": 78,
+                    "paddingBottom": 0,
+                    "paddingLeft": 3,
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fills": [],
+                    "children": [
+                      {
+                        "id": "2410:6957",
+                        "name": "ImgGroupBackground",
+                        "type": "FRAME",
+                        "box": {
+                          "x": 0,
+                          "y": 0,
+                          "width": 637,
+                          "height": 561
+                        },
+                        "layoutMode": "HORIZONTAL",
+                        "layoutPositioning": "ABSOLUTE",
+                        "horizontal": "FIXED",
+                        "vertical": "FIXED",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "STRETCH",
+                          "vertical": "MIN"
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "imageHash": null,
+                            "scaleMode": null
+                          }
+                        ],
+                        "children": []
+                      },
+                      {
+                        "id": "2410:6958",
+                        "name": "img",
+                        "type": "FRAME",
+                        "box": {
+                          "x": 3,
+                          "y": 57,
+                          "width": 556,
+                          "height": 504
+                        },
+                        "layoutMode": "HORIZONTAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "FILL",
+                        "vertical": "FIXED",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [
+                          {
+                            "type": "IMAGE",
+                            "imageHash": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+                            "scaleMode": "FIT"
+                          }
+                        ],
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "pageInstance": {
+    "id": "2108:3135",
+    "name": "SAV",
+    "type": "INSTANCE",
+    "box": {
+      "x": 89,
+      "y": 1656,
+      "width": 1550,
+      "height": 677
+    },
+    "layoutMode": "HORIZONTAL",
+    "layoutPositioning": "AUTO",
+    "horizontal": "FIXED",
+    "vertical": "HUG",
+    "paddingTop": 0,
+    "paddingRight": 0,
+    "paddingBottom": 0,
+    "paddingLeft": 0,
+    "constraints": {
+      "horizontal": "MIN",
+      "vertical": "MIN"
+    },
+    "fills": [],
+    "children": [
+      {
+        "id": "I2108:3135;2410:6937",
+        "name": "section",
+        "type": "FRAME",
+        "box": {
+          "x": 0,
+          "y": 0,
+          "width": 1550,
+          "height": 677
+        },
+        "layoutMode": "VERTICAL",
+        "layoutPositioning": "AUTO",
+        "horizontal": "FILL",
+        "vertical": "FIXED",
+        "paddingTop": 0,
+        "paddingRight": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "constraints": {
+          "horizontal": "MIN",
+          "vertical": "MIN"
+        },
+        "fills": [],
+        "children": [
+          {
+            "id": "I2108:3135;2410:6938",
+            "name": "background",
+            "type": "FRAME",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 1550,
+              "height": 677
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutPositioning": "ABSOLUTE",
+            "horizontal": "FIXED",
+            "vertical": "FIXED",
+            "paddingTop": 0,
+            "paddingRight": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "constraints": {
+              "horizontal": "STRETCH",
+              "vertical": "MIN"
+            },
+            "fills": [
+              {
+                "type": "IMAGE",
+                "imageHash": "3e173874828861c294938a12deea5a5a7a1799dd",
+                "scaleMode": "FILL"
+              }
+            ],
+            "children": []
+          },
+          {
+            "id": "I2108:3135;2410:6939",
+            "name": "row",
+            "type": "FRAME",
+            "box": {
+              "x": 0,
+              "y": 116,
+              "width": 1550,
+              "height": 561
+            },
+            "layoutMode": "HORIZONTAL",
+            "layoutPositioning": "AUTO",
+            "horizontal": "FILL",
+            "vertical": "FIXED",
+            "paddingTop": 0,
+            "paddingRight": 131,
+            "paddingBottom": 0,
+            "paddingLeft": 131,
+            "constraints": {
+              "horizontal": "MIN",
+              "vertical": "MIN"
+            },
+            "fills": [],
+            "children": [
+              {
+                "id": "I2108:3135;2410:6940",
+                "name": "wrapper",
+                "type": "FRAME",
+                "box": {
+                  "x": 131,
+                  "y": 0,
+                  "width": 651,
+                  "height": 561
+                },
+                "layoutMode": "HORIZONTAL",
+                "layoutPositioning": "AUTO",
+                "horizontal": "FILL",
+                "vertical": "FIXED",
+                "paddingTop": 48,
+                "paddingRight": 47,
+                "paddingBottom": 0,
+                "paddingLeft": 48,
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fills": [],
+                "children": [
+                  {
+                    "id": "I2108:3135;2410:6941",
+                    "name": "WrapperBackground",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 0,
+                      "y": 0,
+                      "width": 651,
+                      "height": 561
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "ABSOLUTE",
+                    "horizontal": "FIXED",
+                    "vertical": "FIXED",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "MAX"
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "imageHash": null,
+                        "scaleMode": null
+                      }
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "I2108:3135;2410:6942",
+                    "name": "inner",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 48,
+                      "y": 48,
+                      "width": 556,
+                      "height": 365
+                    },
+                    "layoutMode": "VERTICAL",
+                    "layoutPositioning": "AUTO",
+                    "horizontal": "FILL",
+                    "vertical": "HUG",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fills": [],
+                    "children": [
+                      {
+                        "id": "I2108:3135;2410:6943",
+                        "name": "SectionHeader",
+                        "type": "INSTANCE",
+                        "box": {
+                          "x": 0,
+                          "y": 0,
+                          "width": 556,
+                          "height": 50
+                        },
+                        "layoutMode": "VERTICAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "FILL",
+                        "vertical": "HUG",
+                        "paddingTop": 0,
+                        "paddingRight": 0,
+                        "paddingBottom": 0,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "imageHash": null,
+                            "scaleMode": null
+                          }
+                        ],
+                        "children": [
+                          {
+                            "id": "I2108:3135;2410:6943;2351:36776",
+                            "name": "Accroche",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 0,
+                              "y": 0,
+                              "width": 1550,
+                              "height": 25
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FIXED",
+                            "vertical": "FIXED",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          },
+                          {
+                            "id": "I2108:3135;2410:6943;2351:36777",
+                            "name": "Titre",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 0,
+                              "y": 0,
+                              "width": 556,
+                              "height": 50
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FILL",
+                            "vertical": "HUG",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "id": "I2108:3135;2410:6949",
+                        "name": "vousRencontrezUnProblmeA",
+                        "type": "FRAME",
+                        "box": {
+                          "x": 0,
+                          "y": 82,
+                          "width": 556,
+                          "height": 197
+                        },
+                        "layoutMode": "HORIZONTAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "FILL",
+                        "vertical": "HUG",
+                        "paddingTop": 4,
+                        "paddingRight": 0,
+                        "paddingBottom": 4,
+                        "paddingLeft": 0,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [],
+                        "children": [
+                          {
+                            "id": "I2108:3135;2410:6948",
+                            "name": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 0,
+                              "y": 4,
+                              "width": 556,
+                              "height": 189
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FILL",
+                            "vertical": "HUG",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "id": "I2108:3135;2410:6950",
+                        "name": "Bouton",
+                        "type": "INSTANCE",
+                        "box": {
+                          "x": 0,
+                          "y": 311,
+                          "width": 279,
+                          "height": 54
+                        },
+                        "layoutMode": "HORIZONTAL",
+                        "layoutPositioning": "AUTO",
+                        "horizontal": "HUG",
+                        "vertical": "HUG",
+                        "paddingTop": 16,
+                        "paddingRight": 32,
+                        "paddingBottom": 16,
+                        "paddingLeft": 32,
+                        "constraints": {
+                          "horizontal": "MIN",
+                          "vertical": "MIN"
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "imageHash": null,
+                            "scaleMode": null
+                          }
+                        ],
+                        "children": [
+                          {
+                            "id": "I2108:3135;2410:6950;2410:6099",
+                            "name": "iconLeft",
+                            "type": "INSTANCE",
+                            "box": {
+                              "x": 32,
+                              "y": 17,
+                              "width": 20,
+                              "height": 20
+                            },
+                            "layoutMode": "NONE",
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FIXED",
+                            "vertical": "FIXED",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": [
+                              {
+                                "id": "I2108:3135;2410:6950;2410:6099;6:98",
+                                "name": "Tracé",
+                                "type": "VECTOR",
+                                "box": {
+                                  "x": 0.7358202934265137,
+                                  "y": 4.741289138793945,
+                                  "width": 18.69124984741211,
+                                  "height": 10.517420768737793
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FIXED",
+                                "vertical": "FIXED",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "SCALE",
+                                  "vertical": "SCALE"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              }
+                            ]
+                          },
+                          {
+                            "id": "I2108:3135;2410:6950;2410:6101",
+                            "name": "label",
+                            "type": "TEXT",
+                            "box": {
+                              "x": 32,
+                              "y": 16,
+                              "width": 185,
+                              "height": 22
+                            },
+                            "layoutMode": null,
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "HUG",
+                            "vertical": "HUG",
+                            "paddingTop": null,
+                            "paddingRight": null,
+                            "paddingBottom": null,
+                            "paddingLeft": null,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": []
+                          },
+                          {
+                            "id": "I2108:3135;2410:6950;2410:6116",
+                            "name": "iconRight",
+                            "type": "INSTANCE",
+                            "box": {
+                              "x": 227,
+                              "y": 17,
+                              "width": 20,
+                              "height": 20
+                            },
+                            "layoutMode": "NONE",
+                            "layoutPositioning": "AUTO",
+                            "horizontal": "FIXED",
+                            "vertical": "FIXED",
+                            "paddingTop": 0,
+                            "paddingRight": 0,
+                            "paddingBottom": 0,
+                            "paddingLeft": 0,
+                            "constraints": {
+                              "horizontal": "MIN",
+                              "vertical": "MIN"
+                            },
+                            "fills": [
+                              {
+                                "type": "SOLID",
+                                "imageHash": null,
+                                "scaleMode": null
+                              }
+                            ],
+                            "children": [
+                              {
+                                "id": "I2108:3135;2410:6950;2410:6116;6:103",
+                                "name": "Tracé",
+                                "type": "VECTOR",
+                                "box": {
+                                  "x": 0.625,
+                                  "y": 4.741289138793945,
+                                  "width": 18.691328048706055,
+                                  "height": 10.517420768737793
+                                },
+                                "layoutMode": null,
+                                "layoutPositioning": "AUTO",
+                                "horizontal": "FIXED",
+                                "vertical": "FIXED",
+                                "paddingTop": null,
+                                "paddingRight": null,
+                                "paddingBottom": null,
+                                "paddingLeft": null,
+                                "constraints": {
+                                  "horizontal": "SCALE",
+                                  "vertical": "SCALE"
+                                },
+                                "fills": [
+                                  {
+                                    "type": "SOLID",
+                                    "imageHash": null,
+                                    "scaleMode": null
+                                  }
+                                ],
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "I2108:3135;2410:6956",
+                "name": "imgGroup",
+                "type": "FRAME",
+                "box": {
+                  "x": 782,
+                  "y": 0,
+                  "width": 637,
+                  "height": 561
+                },
+                "layoutMode": "HORIZONTAL",
+                "layoutPositioning": "AUTO",
+                "horizontal": "FILL",
+                "vertical": "FIXED",
+                "paddingTop": 0,
+                "paddingRight": 78,
+                "paddingBottom": 0,
+                "paddingLeft": 3,
+                "constraints": {
+                  "horizontal": "MIN",
+                  "vertical": "MIN"
+                },
+                "fills": [],
+                "children": [
+                  {
+                    "id": "I2108:3135;2410:6957",
+                    "name": "ImgGroupBackground",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 0,
+                      "y": 0,
+                      "width": 637,
+                      "height": 561
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "ABSOLUTE",
+                    "horizontal": "FIXED",
+                    "vertical": "FIXED",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "STRETCH",
+                      "vertical": "MIN"
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "imageHash": null,
+                        "scaleMode": null
+                      }
+                    ],
+                    "children": []
+                  },
+                  {
+                    "id": "I2108:3135;2410:6958",
+                    "name": "img",
+                    "type": "FRAME",
+                    "box": {
+                      "x": 3,
+                      "y": 57,
+                      "width": 556,
+                      "height": 504
+                    },
+                    "layoutMode": "HORIZONTAL",
+                    "layoutPositioning": "AUTO",
+                    "horizontal": "FILL",
+                    "vertical": "FIXED",
+                    "paddingTop": 0,
+                    "paddingRight": 0,
+                    "paddingBottom": 0,
+                    "paddingLeft": 0,
+                    "constraints": {
+                      "horizontal": "MIN",
+                      "vertical": "MIN"
+                    },
+                    "fills": [
+                      {
+                        "type": "IMAGE",
+                        "imageHash": "429c615cb090b3aa0800188acda4bc59cc6445b0",
+                        "scaleMode": "FIT"
+                      }
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "pageWrites": []
+}

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-sav-responsive",
+  "filePins": {
+    "before": "2386540638664390344",
+    "after": "2386540638664390344",
+    "idempotence": null
+  },
+  "ok": true,
+  "targetCount": 1,
+  "targets": [
+    {
+      "targetId": "sav",
+      "surfaceCount": 3,
+      "expectedDiffs": [
+        {
+          "surfaceId": "sav:master",
+          "kind": "expected",
+          "description": "structure changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/sav/run-001/after/sav_master.structure.json"
+        },
+        {
+          "surfaceId": "sav:master",
+          "kind": "expected",
+          "description": "png changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/sav/run-001/after/sav_master.png"
+        },
+        {
+          "surfaceId": "sav:page:2108-3135",
+          "kind": "expected",
+          "description": "structure changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/sav/run-001/after/sav_page_2108-3135.structure.json"
+        },
+        {
+          "surfaceId": "sav:page:2108-3135",
+          "kind": "expected",
+          "description": "png changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/sav/run-001/after/sav_page_2108-3135.png"
+        },
+        {
+          "surfaceId": "sav:page-context:210-326",
+          "kind": "expected",
+          "description": "structure changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/sav/run-001/after/sav_page-context_210-326.structure.json"
+        },
+        {
+          "surfaceId": "sav:page-context:210-326",
+          "kind": "expected",
+          "description": "png changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/sav/run-001/after/sav_page-context_210-326.png"
+        }
+      ],
+      "unexpectedDiffs": [],
+      "unchangedArtifactCount": 3,
+      "imagePreservation": "pass",
+      "imageComparison": {
+        "mode": "authorized-rehost",
+        "beforeUnique": 15,
+        "afterUnique": 15
+      },
+      "instancePreservation": "pass",
+      "consumerCount": 0,
+      "consumersClosed": true,
+      "limits": [
+        "Generated descendant node IDs are normalized; root component IDs and keys remain authoritative."
+      ]
+    }
+  ],
+  "global": {
+    "beforeArtifacts": 12,
+    "afterArtifacts": 12,
+    "beforeImageFingerprints": 20,
+    "afterImageFingerprints": 20,
+    "uniqueImageHashesPreserved": true,
+    "beforeInstanceLinks": 83,
+    "afterInstanceLinks": 83,
+    "pendingConsumers": 0
+  }
+}

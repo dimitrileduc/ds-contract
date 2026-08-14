@@ -13,6 +13,10 @@ const contract = ContractSchema.parse({
     literals: { width: '200px', height: '100px' },
     parts: {
       ImagePlane: { element: 'img', declared: { position: 'absolute', 'object-fit': 'cover' } },
+      FillTopBand: {
+        element: 'img', layout: { width: 'fill' }, literals: { height: '30px' },
+        declared: { position: 'absolute', top: '0', right: '0', left: '0', 'object-fit': 'cover' },
+      },
       SavRow: {
         layout: { direction: 'row' }, literals: { width: '80px', height: '40px' },
         declared: { position: 'absolute', 'align-self': 'flex-end' },
@@ -20,6 +24,10 @@ const contract = ContractSchema.parse({
           NestedPlane: { literals: { width: '80px', height: '40px' }, declared: { position: 'absolute', 'align-self': 'flex-start' } },
           FlowWitness: { literals: { width: '20px', height: '20px' } },
         },
+      },
+      FillRow: {
+        layout: { direction: 'row', width: 'fill' }, literals: { height: '30px' },
+        declared: { position: 'absolute', 'align-self': 'flex-end' },
       },
       RootWitness: { literals: { width: '20px', height: '20px' } },
     },
@@ -40,11 +48,17 @@ for (const component of JSON.parse(encoded)) for (const variant of component.var
 if (specs.ImagePlane?.insetOverlay !== true) {
   errors.push('ImagePlane declared position:absolute must become a full-parent out-of-flow plane');
 }
+if (specs.FillTopBand?.insetOverlay !== true || specs.FillTopBand?.insetPartialV !== true || specs.FillTopBand?.fillWidth !== true) {
+  errors.push('FillTopBand must lower to a width-stretched partial inset plane');
+}
 if (specs.SavRow?.absolute?.h !== 'CENTER' || specs.SavRow?.absolute?.v !== 'MAX') {
   errors.push('SavRow must use its parent static alignment (center / flex-end) after leaving flow');
 }
 if (!specs.NestedPlane?.absolute) {
   errors.push('nested declared position:absolute plane is still in flow');
+}
+if (specs.FillRow?.fillWidth !== true || specs.FillRow?.absolute?.v !== 'MAX') {
+  errors.push('FillRow must carry both absolute placement and parent-owned width');
 }
 if (specs.RootWitness?.absolute || specs.RootWitness?.insetOverlay) {
   errors.push('in-flow witness was incorrectly made absolute');
@@ -61,15 +75,23 @@ try {
   if (nodes.ImagePlane?.layoutPositioning !== 'ABSOLUTE' || nodes.ImagePlane?.width !== 200 || nodes.ImagePlane?.height !== 100) {
     errors.push('ImagePlane did not become a parent-sized ABSOLUTE plane after append');
   }
+  if (nodes.FillTopBand?.layoutPositioning !== 'ABSOLUTE' || nodes.FillTopBand?.layoutSizingHorizontal === 'FILL' ||
+    nodes.FillTopBand?.constraints?.horizontal !== 'STRETCH' || nodes.FillTopBand?.width !== 200 || nodes.FillTopBand?.height !== 30) {
+    errors.push('FillTopBand did not leave flow as a fixed-sized, STRETCH-constrained top band');
+  }
   if (nodes.SavRow?.layoutPositioning !== 'ABSOLUTE' || nodes.SavRow?.x !== 60 || nodes.SavRow?.y !== 60) {
     errors.push(`SavRow static position is ${nodes.SavRow?.x},${nodes.SavRow?.y}; expected 60,60`);
   }
   if (nodes.NestedPlane?.layoutPositioning !== 'ABSOLUTE' || nodes.FlowWitness?.layoutPositioning !== 'AUTO') {
     errors.push('nested absolute plane or in-flow witness did not keep its intended layout mode');
   }
+  if (nodes.FillRow?.layoutPositioning !== 'ABSOLUTE' || nodes.FillRow?.constraints?.horizontal !== 'STRETCH' ||
+    nodes.FillRow?.x !== 0 || nodes.FillRow?.width !== 200 || nodes.FillRow?.y !== 70) {
+    errors.push(`FillRow did not stretch to its parent: x=${nodes.FillRow?.x}, y=${nodes.FillRow?.y}, width=${nodes.FillRow?.width}`);
+  }
 } catch (error) {
   errors.push(`emitted absolute script did not execute: ${String(error)}`);
 }
 
 if (errors.length) throw new Error(errors.join('\n'));
-console.log('✔ absolute lowering: image plane, static alignment, nested SAV plane and flow witness are distinct');
+console.log('✔ absolute lowering: image plane, static alignment, absolute Fill stretch, nested plane and flow witness are distinct');

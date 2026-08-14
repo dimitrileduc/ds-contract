@@ -2,8 +2,8 @@
   "$schema": "./contract.schema.json",
   "id": "ds.sav",
   "name": "SAV",
-  "version": "1.3.0",
-  "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
+  "version": "1.4.0",
+  "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
   "semantics": {
     "element": "div",
     "provenance": "extracted"
@@ -127,19 +127,21 @@
       "layout": {
         "display": "flex",
         "direction": "row",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 1550
       },
       "parts": {
         "section": {
-          "description": "Frame porteur de la section (FRAME Figma 2169:6222, 1550×677, `layoutMode` NONE). Une frame Figma sans auto-layout place ses enfants par coordonnées : `background` en (0,0) et `row` en (131,116). La projection CSS de ce plan libre est le contexte de positionnement (`position: relative`) plus l'alignement flex qui reproduit chaque coordonnée observée : `background` reste EN FLUX (`align: start` → y=0, et sa largeur égale celle de la section → x=0) et c'est `row` qui sort du flux, où `justify: center` lui donne son x=131 ((1550−1288)/2) et `align-self: flex-end` son y=116 (677−561). C'est cette répartition-là et pas l'inverse parce que l'émetteur impose `width/height: 100%` à toute part `img` en `position: absolute` (chrome d'incrustation, core/emit-react.ts) : le plan photo perdrait sa hauteur observée de 475 px.",
+          "description": "Porteur SAV réparé (FRAME Figma 2169:6222, 1550×677 à la référence). Auto-layout vertical Fill : le fond absolu couvre la section en (0,0) et la rangée Fill de 561 px s'aligne en bas à y=116.",
           "layout": {
             "display": "flex",
-            "direction": "row",
-            "justify": "center",
-            "align": "start"
+            "direction": "column",
+            "justify": "end",
+            "align": "start",
+            "width": "fill"
           },
           "tokens": {
-            "width": "{size.sav.section-w}",
             "height": "{size.sav.section-h}"
           },
           "declared": {
@@ -147,32 +149,36 @@
           },
           "parts": {
             "background": {
-              "description": "Plan image pleine largeur de la section (RECTANGLE Figma 2108:3094, 1550×475 en (0,0) de `section`). Son `fills[0]` est un paint IMAGE, `scaleMode` FILL, `imageRef` 3e173874828861c294938a12deea5a5a7a1799dd — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : `background-image: url()` est natif des deux côtés mais n'a aucun canal de contrat, donc l'`imageRef` est consigné ici et ne peut pas être lié. Porté malgré tout : le porteur `img` avec `src`/`alt` fournis par le code et `object-fit: cover`, orthographe CSS du `scaleMode` FILL observé. Le plan reste EN FLUX et garde sa boîte observée de 1550×475 ; c'est `row` qui sort du flux pour passer devant lui.",
+              "description": "Plan image pleine largeur de la section (RECTANGLE Figma 2108:3094, 1550×677 en (0,0) à la référence owner du 2026-08-11). Son `fills[0]` est un paint IMAGE, `scaleMode` FILL, `imageRef` 3e173874828861c294938a12deea5a5a7a1799dd — LIMITE NOMMÉE A5 (docs/FIGMA-CAPABILITY-MATRIX.md) : l'`imageRef` est consigné ici et fourni au code par `backgroundUrl`. Le plan est absolu derrière la rangée et couvre toute la section.",
               "element": "img",
               "attrs": {
                 "src": "{backgroundUrl}",
                 "alt": "{backgroundAlt}"
               },
               "tokens": {
-                "width": "{size.sav.background-w}",
                 "height": "{size.sav.background-h}"
               },
+              "layout": {
+                "width": "fill"
+              },
               "declared": {
-                "object-fit": "cover"
+                "object-fit": "cover",
+                "position": "absolute",
+                "top": "0",
+                "right": "0",
+                "left": "0"
               }
             },
             "row": {
-              "description": "Rangée de contenu (FRAME Figma 2169:6200, HORIZONTAL, 1288×561, `itemSpacing` 0). Hors flux : sa position statique reproduit ses coordonnées observées (`justify: center` du parent → x=131, `align-self: flex-end` → y=116) et, étant positionnée, elle peint AU-DESSUS du plan photo resté en flux.",
+              "description": "Rangée de contenu (FRAME Figma 2169:6200, HORIZONTAL Fill, 1550×561 à la référence). Les paddings horizontaux de 131 px produisent 1288 px utiles ; la rangée reste en flux et s'aligne en bas de la section à y=116.",
               "layout": {
-                "direction": "row"
+                "direction": "row",
+                "width": "fill"
               },
               "tokens": {
-                "width": "{size.sav.row-w}",
-                "height": "{size.sav.row-h}"
-              },
-              "declared": {
-                "position": "absolute",
-                "align-self": "flex-end"
+                "height": "{size.sav.row-h}",
+                "padding-left": "{size.sav.content-padding}",
+                "padding-right": "{size.sav.content-padding}"
               },
               "parts": {
                 "wrapper": {
@@ -181,10 +187,11 @@
                     "display": "flex",
                     "direction": "row",
                     "justify": "center",
-                    "align": "start"
+                    "align": "start",
+                    "grow": true,
+                    "width": "fill"
                   },
                   "tokens": {
-                    "width": "{size.sav.wrapper-w}",
                     "height": "{size.sav.wrapper-h}",
                     "padding-top": "{space.48}",
                     "padding-left": "{space.48}",
@@ -198,8 +205,10 @@
                       "description": "Plan blanc de la colonne (RECTANGLE Figma 2108:3100, 641×561 en (0,0) de `wrapper`). Hors flux pour passer derrière `inner` ; `align-self: flex-end` annule exactement le `padding-top` de 48 px du parent (48 + (513 − 561) = 0). Limite nommée, résidu mesuré : sur l'axe principal la position statique tombe à x = 0,5 px et non 0 (48 + (546 − 641)/2), soit un liseré d'un demi-pixel au bord gauche — le vocabulaire de contrat n'a aucun canal `top`/`left` hors `stylesWhen`, et `stylesWhen` exige une prop booléenne ou enum que ce master n'expose pas.",
                       "tokens": {
                         "background-color": "{color.blanc}",
-                        "width": "{size.sav.wrapper-background-w}",
                         "height": "{size.sav.wrapper-background-h}"
+                      },
+                      "layout": {
+                        "width": "fill"
                       },
                       "declared": {
                         "position": "absolute",
@@ -210,17 +219,20 @@
                       "description": "Pile de contenu (FRAME Figma 2108:3101, VERTICAL, 546×365, `itemSpacing` 32). `counterAxisAlignItems` est ABSENT sur le master, c'est-à-dire MIN : l'alignement transversal est `start`, pas `stretch` — le `Bouton` observé HUG à 279 px de large, il ne remplit pas la colonne. `position: relative` la remet dans le plan de peinture de `WrapperBackground`, où l'ordre du DOM la fait peindre AU-DESSUS : sans ça le plan blanc, seul positionné, recouvrait titre et texte.",
                       "layout": {
                         "direction": "column",
-                        "align": "start"
+                        "align": "start",
+                        "width": "fill"
                       },
                       "tokens": {
-                        "gap": "{space.32}",
-                        "width": "{size.sav.inner}"
+                        "gap": "{space.32}"
                       },
                       "declared": {
                         "position": "relative"
                       },
                       "parts": {
-                        "SectionHeader": {
+                    "SectionHeader": {
+                      "layout": {
+                        "width": "fill"
+                      },
                           "component": {
                             "id": "ds.section-header",
                             "props": {
@@ -244,12 +256,16 @@
                               "strong": "{font.weight.bold}"
                             }
                           },
-                          "tokens": {
-                            "color": "{color.noir}",
-                            "font-size": "{font.size.18}",
-                            "line-height": "{font.line-height.27}",
-                            "height": "{size.sav.vous-rencontrez-un-problme-a}"
-                          },
+                      "tokens": {
+                        "color": "{color.noir}",
+                        "font-size": "{font.size.18}",
+                        "line-height": "{font.line-height.27}",
+                        "padding-top": "{space.4}",
+                        "padding-bottom": "{space.4}"
+                      },
+                      "layout": {
+                        "width": "fill"
+                      },
                           "declared": {
                             "white-space": "pre-line"
                           }
@@ -268,29 +284,33 @@
                   }
                 },
                 "imgGroup": {
-                  "description": "Colonne image (FRAME Figma 2169:5846, 647×561, `layoutMode` NONE). Ses deux enfants se superposent : `ImgGroupBackground` en (0,0) sur 647×478 et `img` en (3,57) sur 563×504. `align: end` donne à `img` son y=57 (561 − 504) et le `padding-left` de 3 px son x=3 ; `{size.sav.img-group-w}` porte désormais la boîte TOTALE (647px, padding-inclus) sous `box-sizing: border-box` (T013). Corrigé le 2026-08-04 (Phase 6, named-repair) : la valeur portée jusque-là (644px) était le calcul CONTENU (647−3), correct seulement sous l'ancien défaut content-box.",
-                  "layout": {
-                    "display": "flex",
-                    "direction": "row",
-                    "justify": "start",
-                    "align": "end"
-                  },
-                  "tokens": {
-                    "width": "{size.sav.img-group-w}",
-                    "height": "{size.sav.img-group-h}",
-                    "padding-left": "{space.3}"
+                  "description": "Colonne image Fill (FRAME Figma 2169:5846, 637×561 à la référence owner du 2026-08-11). `ImgGroupBackground` couvre toute la colonne en (0,0) ; `img` reste posé en (3,57), haut de 504 px, avec un inset droit de 78 px.",
+              "layout": {
+                "display": "flex",
+                "direction": "row",
+                "justify": "start",
+                "align": "end",
+                "grow": true,
+                "width": "fill"
+              },
+              "tokens": {
+                "height": "{size.sav.img-group-h}",
+                "padding-left": "{space.3}",
+                "padding-right": "{size.sav.image-right-inset}"
                   },
                   "declared": {
                     "position": "relative"
                   },
                   "parts": {
-                    "ImgGroupBackground": {
-                      "description": "Plan bleu clair de la colonne image (RECTANGLE Figma 2108:3097, 647×478 en (0,0) de `img-group`). Hors flux pour passer derrière `img` ; `align-self: flex-start` fixe exactement son y=0. Limite nommée, résidu mesuré : sur l'axe principal sa position statique suit le `padding-left` du parent et tombe à x = 3 px et non 0, soit deux liserés de 3 px (bord gauche manquant, débord de 3 px à droite recouvert par la colonne suivante) — même cause que sur `WrapperBackground` : aucun canal `top`/`left` hors `stylesWhen`.",
-                      "tokens": {
-                        "background-color": "{color.bleu-clair}",
-                        "width": "{size.sav.img-group-background-w}",
-                        "height": "{size.sav.img-group-background-h}"
-                      },
+                "ImgGroupBackground": {
+                      "description": "Plan bleu clair de la colonne image (RECTANGLE Figma 2108:3097, 637×561 en (0,0) à la référence owner du 2026-08-11). Absolu et Fill derrière la photo, il couvre désormais toute la hauteur de `imgGroup`.",
+                  "tokens": {
+                    "background-color": "{color.bleu-clair}",
+                    "height": "{size.sav.img-group-background-h}"
+                  },
+                  "layout": {
+                    "width": "fill"
+                  },
                       "declared": {
                         "position": "absolute",
                         "align-self": "flex-start"
@@ -303,10 +323,12 @@
                         "src": "{imageUrl}",
                         "alt": "{imageAlt}"
                       },
-                      "tokens": {
-                        "width": "{size.sav.img-w}",
-                        "height": "{size.sav.img-h}"
-                      },
+                  "tokens": {
+                    "height": "{size.sav.img-h}"
+                  },
+                  "layout": {
+                    "width": "fill"
+                  },
                       "declared": {
                         "position": "relative",
                         "object-fit": "contain"

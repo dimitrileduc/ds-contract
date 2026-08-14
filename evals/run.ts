@@ -3449,7 +3449,7 @@ const cases: Case[] = [
               'background-image': '{s4.grad}',
               'box-shadow': '{s4.shadow-stack}',
             },
-            declared: { cursor: 'pointer', 'user-select': 'none', position: 'relative' },
+            declared: { cursor: 'pointer', 'user-select': 'none', position: 'relative', 'z-index': '3' },
             declaredStates: { disabled: { cursor: 'pointer' } },
             parts: {
               label: {
@@ -3473,16 +3473,25 @@ const cases: Case[] = [
       if (errs.length > 0) throw new Error('fixture must validate: ' + errs.join('; '));
       // Grammar refusals stay refusals: position outside the relative class,
       // channels outside the registry, values outside the bounded grammar.
+      // 2026-08-12: z-index GRADUATED into DECLARED_CHANNELS (numeric stacking
+      // lowered to stable child order — schema note). The stale expectation
+      // "z-index refuses as non-registry" is replaced by BOTH sides of the
+      // new truth: a keyword refuses by the channel's bounded grammar, and a
+      // numeric value lifts into the compiled spec (asserted below on `va`).
       const bad = structuredClone(fixture);
       bad.anatomy.root.declared.position = 'fixed';
-      bad.anatomy.root.declared['z-index'] = '3';
+      bad.anatomy.root.declared['z-index'] = 'auto';
+      bad.anatomy.root.declared.float = 'left';
       const badErrs: string[] = [];
       coreValidateContract(bad, new Map([[bad.id, bad]]), badErrs, new Map());
       if (!badErrs.some((e) => e.includes('"position"') && e.includes('bounded grammar'))) {
         throw new Error('position: fixed must refuse by grammar; got: ' + badErrs.join('; '));
       }
-      if (!badErrs.some((e) => e.includes('"z-index"') && e.includes('not a declared channel'))) {
-        throw new Error('z-index must refuse as a non-registry channel; got: ' + badErrs.join('; '));
+      if (!badErrs.some((e) => e.includes('"z-index"') && e.includes('bounded grammar'))) {
+        throw new Error('z-index: auto must refuse by the channel grammar; got: ' + badErrs.join('; '));
+      }
+      if (!badErrs.some((e) => e.includes('"float"') && e.includes('not a declared channel'))) {
+        throw new Error('float must refuse as a non-registry channel; got: ' + badErrs.join('; '));
       }
       const engine = createFigmaEngine({
         tokens: {
@@ -3507,6 +3516,7 @@ const cases: Case[] = [
       if (va.bindings?.topLeftRadius !== 's4/radius-tl') throw new Error('per-corner radius must BIND topLeftRadius');
       if (va.bindings?.strokeTopWeight !== 's4/bw-top') throw new Error('per-side width must BIND strokeTopWeight');
       if (va.layout?.wrap !== true) throw new Error('layout.wrap must compile to LayoutSpec.wrap');
+      if (va.zIndex !== 3) throw new Error('numeric z-index must lift into the compiled spec (declared channel), got ' + JSON.stringify(va.zIndex));
       if (va.gradient?.angle !== 180 || va.gradient.stops.length !== 2) throw new Error('gradient must parse angle + stops: ' + JSON.stringify(va.gradient));
       const stop2 = va.gradient.stops[1];
       if (stop2.position !== 1 || stop2.color.b !== 1 || stop2.color.a !== 0.5) throw new Error('gradient stop 2 must carry rgba + position: ' + JSON.stringify(stop2));

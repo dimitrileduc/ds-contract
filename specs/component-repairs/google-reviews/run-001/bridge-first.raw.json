@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-google-reviews",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386730476747356856",
+  "run": "first",
+  "scriptResults": [
+    {
+      "operationId": "repair-google-reviews-grid-in-place",
+      "targetId": "google-reviews",
+      "nodeId": "2178:7381",
+      "result": {
+        "applied": true,
+        "amended": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2178:7381"
+        ]
+      }
+    },
+    {
+      "operationId": "ensure-google-reviews-container",
+      "targetId": "google-reviews",
+      "nodeId": "2178:7381",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [
+          "2463:4780"
+        ],
+        "changedNodeIds": [
+          "2178:7381",
+          "2463:4780"
+        ]
+      }
+    }
+  ],
+  "inspection": {
+    "masters": [
+      {
+        "targetId": "google-reviews",
+        "nodeId": "2178:7381",
+        "componentKey": "9bc775b834830afc0b67841e8d341cf2efa3037c",
+        "masterCount": 1,
+        "variantNames": []
+      }
+    ],
+    "pageWrites": [],
+    "responsiveChecks": [
+      {
+        "targetId": "google-reviews",
+        "width": 1262,
+        "overflow": true,
+        "overflowNodeIds": [
+          "2351:38283",
+          "2351:38284",
+          "2351:38285",
+          "2351:38286",
+          "2351:38287",
+          "2351:38288",
+          "2351:38307",
+          "2351:38308",
+          "2351:38675",
+          "2351:38676"
+        ],
+        "overflowIssues": [
+          {
+            "nodeId": "2351:38283",
+            "reason": "clipped-by:2351:38281"
+          },
+          {
+            "nodeId": "2351:38284",
+            "reason": "clipped-by:2351:38281"
+          },
+          {
+            "nodeId": "2351:38285",
+            "reason": "clipped-by:2351:38281"
+          },
+          {
+            "nodeId": "2351:38286",
+            "reason": "clipped-by:2351:38281"
+          },
+          {
+            "nodeId": "2351:38287",
+            "reason": "clipped-by:2351:38281"
+          },
+          {
+            "nodeId": "2351:38288",
+            "reason": "clipped-by:2351:38281"
+          },
+          {
+            "nodeId": "2351:38307",
+            "reason": "container"
+          },
+          {
+            "nodeId": "2351:38308",
+            "reason": "container"
+          },
+          {
+            "nodeId": "2351:38675",
+            "reason": "container"
+          },
+          {
+            "nodeId": "2351:38676",
+            "reason": "container"
+          }
+        ],
+        "screenshotRef": "specs/component-repairs/google-reviews/run-001/responsive-1262-first.png"
+      }
+    ]
+  }
+}

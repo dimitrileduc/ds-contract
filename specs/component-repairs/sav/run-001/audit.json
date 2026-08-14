@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-sav-responsive",
+  "targetId": "sav",
+  "inspectedAt": "2026-08-11T18:28:03.907Z",
+  "fileVersionId": "2386540638664390344",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "fail",
+    "masterNodeId": "2108:3105",
+    "parentNodeId": "2108:3091",
+    "parentName": "SAV",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": "HUG",
+    "referenceWidth": 1550,
+    "responsiveWidths": [
+      1262
+    ],
+    "issues": [
+      "master is not directly presented by a local FRAME Container",
+      "local Container is not auto-layout",
+      "local presentation parent is not named Container",
+      "organism master is not width FILL inside its local Container"
+    ]
+  },
+  "texts": [
+    {
+      "nodeId": "I2410:6943;2351:36776",
+      "structuralPath": "0/1/0/1/0/0",
+      "name": "Accroche",
+      "characters": "Plus de 50 ans d’expérience",
+      "classification": "named-exact",
+      "textStyleId": "2162:5836",
+      "textStyleName": "Accroche",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2410:6943;2351:36777",
+      "structuralPath": "0/1/0/1/0/1",
+      "name": "Titre",
+      "characters": "Dépannage / SAV",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography exactly matches Titre 2 but the Text Style link is missing"
+      ]
+    },
+    {
+      "nodeId": "2410:6948",
+      "structuralPath": "0/1/0/1/1/0",
+      "name": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+      "characters": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "I2410:6950;2410:6101",
+      "structuralPath": "0/1/0/1/2/1",
+      "name": "label",
+      "characters": "Demander de l’aide",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button",
+      "ds.section-header"
+    ],
+    "observed": [
+      "ds.button",
+      "ds.section-header"
+    ],
+    "undeclared": []
+  },
+  "findings": [
+    {
+      "code": "organism-container",
+      "severity": "proposal",
+      "message": "master is not directly presented by a local FRAME Container; local Container is not auto-layout; local presentation parent is not named Container; organism master is not width FILL inside its local Container"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Titre (I2410:6943;2351:36777): raw typography exactly matches Titre 2 but the Text Style link is missing"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider ! (2410:6948): raw typography has no documented rich ranges or historical-custom decision"
+    }
+  ],
+  "proposedChanges": [
+    "present the existing master in one local auto-layout Container and set its horizontal sizing to FILL",
+    "repair Text Style classification for Titre (I2410:6943;2351:36777)",
+    "repair Text Style classification for Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ? Pas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider ! (2410:6948)"
+  ]
+}

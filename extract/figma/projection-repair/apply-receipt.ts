@@ -183,10 +183,18 @@ export function validateLiveApplyReceipt(
       .filter(object)
       .map((entry) => typeof entry.width === 'number' ? entry.width : Number.NaN)
       .sort((left, right) => left - right);
-    if (JSON.stringify(expectedWidths) !== JSON.stringify(observedWidths) || responsiveChecks.some((entry) =>
-      !object(entry) || entry.overflow !== false ||
-      (entry.overflowNodeIds !== undefined && (!stringArray(entry.overflowNodeIds) || entry.overflowNodeIds.length > 0)) ||
-      typeof entry.screenshotRef !== 'string' || entry.screenshotRef.length === 0)) {
+    const allowsDocumentedOverflow = target.allowedFactChanges?.includes('responsive-overflow') === true;
+    const invalidResponsiveCheck = (entry: unknown): boolean => {
+      if (!object(entry) || typeof entry.screenshotRef !== 'string' || entry.screenshotRef.length === 0) return true;
+      if (entry.overflow === true) {
+        const ids = stringArray(entry.overflowNodeIds) ? entry.overflowNodeIds : [];
+        return !allowsDocumentedOverflow || ids.length === 0 || !Array.isArray(entry.overflowIssues) || entry.overflowIssues.length === 0 ||
+          entry.overflowIssues.some((issue) => !object(issue) || typeof issue.nodeId !== 'string' || !ids.includes(issue.nodeId) ||
+            typeof issue.reason !== 'string' || issue.reason.length === 0);
+      }
+      return entry.overflow !== false || (entry.overflowNodeIds !== undefined && (!stringArray(entry.overflowNodeIds) || entry.overflowNodeIds.length > 0));
+    };
+    if (JSON.stringify(expectedWidths) !== JSON.stringify(observedWidths) || responsiveChecks.some(invalidResponsiveCheck)) {
       issues.push(`responsive-check:${target.targetId}`);
     }
   }
