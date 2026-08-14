@@ -193,7 +193,14 @@ function findComponentByName(name, contractId) {
   throw new Error('Dependency component not found in file: ' + name + ' (sync it first)');
 }
 
+// Icon identity is immutable within one execution: the same ~16 registry refs
+// resolve for every icon-instance of every variant, so the id lookup and the
+// full-page fallback scan run once per ref, not once per reference.
+const iconComponentCache = new Map();
 async function findIconComponent(ref) {
+  const cacheKey = ref.nodeId + '|' + (ref.key || '');
+  const cached = iconComponentCache.get(cacheKey);
+  if (cached) return cached;
   let hit = typeof figma.getNodeByIdAsync === 'function' ? await figma.getNodeByIdAsync(ref.nodeId) : null;
   if (hit && hit.type !== 'COMPONENT' && hit.type !== 'COMPONENT_SET') hit = null;
   if (!hit || (ref.key && hit.key !== ref.key)) {
@@ -208,7 +215,9 @@ async function findIconComponent(ref) {
   if (!hit) {
     throw new Error('Governed icon component not found: ' + ref.asset + ' (nodeId=' + ref.nodeId + ', key=' + ref.key + ')');
   }
-  return hit.type === 'COMPONENT_SET' ? hit.defaultVariant : hit;
+  const resolved = hit.type === 'COMPONENT_SET' ? hit.defaultVariant : hit;
+  iconComponentCache.set(cacheKey, resolved);
+  return resolved;
 }
 
 async function iconSwapDefinition(spec) {
@@ -235,16 +244,16 @@ function wireDepPropForwards(registry) {
   for (const entry of registry.forwards || []) {
     const childKeys = Object.keys(entry.instance.componentProperties || {});
     for (const mapping of entry.mappings) {
-      const childKey = childKeys.find(
+      const found = childKeys.some(
         (key) => key === mapping.childProperty || key.indexOf(mapping.childProperty + '#') === 0,
       );
-      if (!childKey) throw new Error('Child property definition not found for forwarding: ' + mapping.childProperty);
-      // Real Figma refuses writes to componentPropertyReferences on an
-      // instance sublayer. isExposedInstance is its public, native API for
-      // surfacing the nested component's own suffixed property identities at
-      // the containing component instance level.
-      entry.instance.isExposedInstance = true;
+      if (!found) throw new Error('Child property definition not found for forwarding: ' + mapping.childProperty);
     }
+    // Real Figma refuses writes to componentPropertyReferences on an
+    // instance sublayer. isExposedInstance is its public, native API for
+    // surfacing the nested component's own suffixed property identities at
+    // the containing component instance level — one flag per instance.
+    if (entry.mappings.length > 0) entry.instance.isExposedInstance = true;
   }
 }
 
@@ -913,6 +922,107 @@ function restaurerPhotos(spec, comp, plan, report, contractId) {
   if (plan.accueilsAttendus > report.photos.accueilsParHote) report.photos.accueilsParHote = plan.accueilsAttendus;
 }
 
+// Shared by amendSet and amendComponent (their only difference was the
+// receiver): reconcile the target's governed property definitions with the
+// contract — drop forwarded TEXT props, upsert BOOLEAN/TEXT defs and their
+// defaults, upsert INSTANCE_SWAP defs against the governed icon registry.
+async function upsertGovernedProperties(host, C, defs, newKeys, defKey, report) {
+  for (const name of C.forwardedProps || []) {
+    const k = defKey(name);
+    if (k && defs[k]?.type === 'TEXT') {
+      host.deleteComponentProperty(k);
+      delete defs[k];
+      report.removedForwardedProps = report.removedForwardedProps || [];
+      report.removedForwardedProps.push(name);
+    }
+  }
+  for (const w of [
+    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
+    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
+  ]) {
+    const k = defKey(w.name);
+    if (!k) { newKeys[w.name] = host.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
+    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
+      host.editComponentProperty(k, { defaultValue: w.def });
+      report.editedDefaults.push(w.name);
+    }
+  }
+  for (const swap of C.swapProps || []) {
+    const resolvedSwap = await iconSwapDefinition(swap);
+    let k = defKey(swap.property);
+    if (!k) {
+      k = host.addComponentProperty(
+        swap.property,
+        'INSTANCE_SWAP',
+        resolvedSwap.defaultId,
+        { preferredValues: resolvedSwap.preferredValues },
+      );
+      newKeys[swap.property] = k;
+      report.addedProps.push(swap.property);
+    } else if (defs[k]?.type !== 'INSTANCE_SWAP') {
+      throw new Error('Property type mismatch for governed icon swap: ' + swap.property);
+    } else {
+      const beforePreferred = JSON.stringify(defs[k].preferredValues || []);
+      const afterPreferred = JSON.stringify(resolvedSwap.preferredValues);
+      if (defs[k].defaultValue !== resolvedSwap.defaultId || beforePreferred !== afterPreferred) {
+        host.editComponentProperty(k, {
+          defaultValue: resolvedSwap.defaultId,
+          preferredValues: resolvedSwap.preferredValues,
+        });
+        if (!report.editedDefaults.includes(swap.property)) report.editedDefaults.push(swap.property);
+      }
+    }
+  }
+}
+
+// Shared amend epilogue (same receiver-only difference): bind every registry
+// entry — TEXT characters, slot mains + optional visibility, visibility
+// booleans, governed icon swaps — then expose composed-property forwards.
+async function wireGovernedReferences(host, C, registry, defs, newKeys, defKey, report) {
+  for (const t of registry.texts) {
+    let k = defKey(t.prop);
+    if (!k) { k = host.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
+    else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
+      host.editComponentProperty(k, { defaultValue: t.default });
+      report.editedDefaults.push(t.prop);
+    }
+    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
+  }
+  for (const sl of registry.slots) {
+    const util = await ensureSlotUtility();
+    let k = defKey(sl.spec.slotProperty);
+    if (!k) {
+      const preferred = [];
+      for (const depName of sl.spec.slotAccepts || []) {
+        const target = findComponentByName(depName);
+        preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
+      }
+      k = host.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
+        preferred.length > 0 ? { preferredValues: preferred } : undefined);
+      newKeys[sl.spec.slotProperty] = k;
+      report.addedProps.push(sl.spec.slotProperty);
+    }
+    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
+    if (sl.spec.slotOptional) {
+      let vk = defKey('Show ' + sl.spec.slotProperty);
+      if (!vk) { vk = host.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
+      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
+    }
+  }
+  for (const vis of registry.visibles) {
+    const k = defKey(vis.prop);
+    if (!k) continue;
+    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
+    vis.node.visible = vis.default;
+  }
+  for (const swap of C.swapProps || []) {
+    const k = defKey(swap.property);
+    if (!k) throw new Error('Governed icon swap property missing after amend: ' + swap.property);
+    wireIconSwapNodes(registry, swap.property, k);
+  }
+  wireDepPropForwards(registry);
+}
+
 async function amendSet(set, C) {
   set.setSharedPluginData('ds_contracts', 'contractId', C.contractId);
   const hash = specHash(C);
@@ -990,54 +1100,7 @@ async function amendSet(set, C) {
   const newKeys = {};
   const defKey = (name) => newKeys[name] ||
     Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-
-  for (const name of C.forwardedProps || []) {
-    const k = defKey(name);
-    if (k && defs[k]?.type === 'TEXT') {
-      set.deleteComponentProperty(k);
-      delete defs[k];
-      report.removedForwardedProps = report.removedForwardedProps || [];
-      report.removedForwardedProps.push(name);
-    }
-  }
-
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      set.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
-  for (const swap of C.swapProps || []) {
-    const resolvedSwap = await iconSwapDefinition(swap);
-    let k = defKey(swap.property);
-    if (!k) {
-      k = set.addComponentProperty(
-        swap.property,
-        'INSTANCE_SWAP',
-        resolvedSwap.defaultId,
-        { preferredValues: resolvedSwap.preferredValues },
-      );
-      newKeys[swap.property] = k;
-      report.addedProps.push(swap.property);
-    } else if (defs[k]?.type !== 'INSTANCE_SWAP') {
-      throw new Error('Property type mismatch for governed icon swap: ' + swap.property);
-    } else {
-      const beforePreferred = JSON.stringify(defs[k].preferredValues || []);
-      const afterPreferred = JSON.stringify(resolvedSwap.preferredValues);
-      if (defs[k].defaultValue !== resolvedSwap.defaultId || beforePreferred !== afterPreferred) {
-        set.editComponentProperty(k, {
-          defaultValue: resolvedSwap.defaultId,
-          preferredValues: resolvedSwap.preferredValues,
-        });
-        if (!report.editedDefaults.includes(swap.property)) report.editedDefaults.push(swap.property);
-      }
-    }
-  }
+  await upsertGovernedProperties(set, C, defs, newKeys, defKey, report);
 
   const existingByName = new Map(set.children.map((ch) => [ch.name, ch]));
 
@@ -1085,48 +1148,7 @@ async function amendSet(set, C) {
       restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
       report.rebuiltVariants++;
     }
-    for (const t of registry.texts) {
-      let k = defKey(t.prop);
-      if (!k) { k = set.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
-      else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
-        set.editComponentProperty(k, { defaultValue: t.default });
-        report.editedDefaults.push(t.prop);
-      }
-      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
-    }
-    for (const sl of registry.slots) {
-      const util = await ensureSlotUtility();
-      let k = defKey(sl.spec.slotProperty);
-      if (!k) {
-        const preferred = [];
-        for (const depName of sl.spec.slotAccepts || []) {
-          const target = findComponentByName(depName);
-          preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
-        }
-        k = set.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
-          preferred.length > 0 ? { preferredValues: preferred } : undefined);
-        newKeys[sl.spec.slotProperty] = k;
-        report.addedProps.push(sl.spec.slotProperty);
-      }
-      sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
-      if (sl.spec.slotOptional) {
-        let vk = defKey('Show ' + sl.spec.slotProperty);
-        if (!vk) { vk = set.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-        sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
-      }
-    }
-    for (const vis of registry.visibles) {
-      const k = defKey(vis.prop);
-      if (!k) continue;
-      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
-      vis.node.visible = vis.default;
-    }
-    for (const swap of C.swapProps || []) {
-      const k = defKey(swap.property);
-      if (!k) throw new Error('Governed icon swap property missing after amend: ' + swap.property);
-      wireIconSwapNodes(registry, swap.property, k);
-    }
-    wireDepPropForwards(registry);
+    await wireGovernedReferences(set, C, registry, defs, newKeys, defKey, report);
   }
 
   // Contract default combo must be the FIRST variant (Figma default = first).
@@ -1189,52 +1211,7 @@ async function amendComponent(comp, C) {
   const newKeys = {};
   const defKey = (name) => newKeys[name] ||
     Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-  for (const name of C.forwardedProps || []) {
-    const k = defKey(name);
-    if (k && defs[k]?.type === 'TEXT') {
-      comp.deleteComponentProperty(k);
-      delete defs[k];
-      report.removedForwardedProps = report.removedForwardedProps || [];
-      report.removedForwardedProps.push(name);
-    }
-  }
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = comp.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      comp.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
-  for (const swap of C.swapProps || []) {
-    const resolvedSwap = await iconSwapDefinition(swap);
-    let k = defKey(swap.property);
-    if (!k) {
-      k = comp.addComponentProperty(
-        swap.property,
-        'INSTANCE_SWAP',
-        resolvedSwap.defaultId,
-        { preferredValues: resolvedSwap.preferredValues },
-      );
-      newKeys[swap.property] = k;
-      report.addedProps.push(swap.property);
-    } else if (defs[k]?.type !== 'INSTANCE_SWAP') {
-      throw new Error('Property type mismatch for governed icon swap: ' + swap.property);
-    } else {
-      const beforePreferred = JSON.stringify(defs[k].preferredValues || []);
-      const afterPreferred = JSON.stringify(resolvedSwap.preferredValues);
-      if (defs[k].defaultValue !== resolvedSwap.defaultId || beforePreferred !== afterPreferred) {
-        comp.editComponentProperty(k, {
-          defaultValue: resolvedSwap.defaultId,
-          preferredValues: resolvedSwap.preferredValues,
-        });
-        if (!report.editedDefaults.includes(swap.property)) report.editedDefaults.push(swap.property);
-      }
-    }
-  }
+  await upsertGovernedProperties(comp, C, defs, newKeys, defKey, report);
   const v = C.variants[0];
   const registry = { texts: [], slots: [], visibles: [] };
   // 017 — même PRÉ-PASSE que le chemin amendSet : relever le maître ET ses
@@ -1271,48 +1248,7 @@ async function amendComponent(comp, C) {
     }
   }
   restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
-  for (const t of registry.texts) {
-    let k = defKey(t.prop);
-    if (!k) { k = comp.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
-    else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
-      comp.editComponentProperty(k, { defaultValue: t.default });
-      report.editedDefaults.push(t.prop);
-    }
-    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
-  }
-  for (const sl of registry.slots) {
-    const util = await ensureSlotUtility();
-    let k = defKey(sl.spec.slotProperty);
-    if (!k) {
-      const preferred = [];
-      for (const depName of sl.spec.slotAccepts || []) {
-        const target = findComponentByName(depName);
-        preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
-      }
-      k = comp.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
-        preferred.length > 0 ? { preferredValues: preferred } : undefined);
-      newKeys[sl.spec.slotProperty] = k;
-      report.addedProps.push(sl.spec.slotProperty);
-    }
-    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
-    if (sl.spec.slotOptional) {
-      let vk = defKey('Show ' + sl.spec.slotProperty);
-      if (!vk) { vk = comp.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
-    }
-  }
-  for (const vis of registry.visibles) {
-    const k = defKey(vis.prop);
-    if (!k) continue;
-    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
-    vis.node.visible = vis.default;
-  }
-  for (const swap of C.swapProps || []) {
-    const k = defKey(swap.property);
-    if (!k) throw new Error('Governed icon swap property missing after amend: ' + swap.property);
-    wireIconSwapNodes(registry, swap.property, k);
-  }
-  wireDepPropForwards(registry);
+  await wireGovernedReferences(comp, C, registry, defs, newKeys, defKey, report);
   comp.description = C.description;
   comp.setSharedPluginData('ds_contracts', 'specHash', hash);
   return report;
@@ -1387,10 +1323,8 @@ async function syncOne(C) {
     built.push({ v, comp, registry });
   }
   for (const b of built) {
-    const propertyKeys = {};
     for (const t of b.registry.texts) {
       const key = b.comp.addComponentProperty(t.prop, 'TEXT', t.default);
-      propertyKeys[t.prop] = key;
       t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };
     }
     for (const s of b.registry.slots) {
@@ -1409,21 +1343,18 @@ async function syncOne(C) {
         s.defaultId || util.id,
         preferred.length > 0 ? { preferredValues: preferred } : undefined,
       );
-      propertyKeys[s.spec.slotProperty] = key;
       s.instance.componentPropertyReferences = { ...(s.instance.componentPropertyReferences || {}), mainComponent: key };
       if (s.spec.slotOptional) {
         const vkey = b.comp.addComponentProperty('Show ' + s.spec.slotProperty, 'BOOLEAN', true);
-        propertyKeys['Show ' + s.spec.slotProperty] = vkey;
         s.wrapper.componentPropertyReferences = { ...(s.wrapper.componentPropertyReferences || {}), visible: vkey };
       }
     }
     const boolKeys = {};
     for (const bp of C.boolProps) {
       boolKeys[bp.property] = b.comp.addComponentProperty(bp.property, 'BOOLEAN', bp.default);
-      propertyKeys[bp.property] = boolKeys[bp.property];
     }
     for (const tp of C.textProps || []) {
-      propertyKeys[tp.property] = b.comp.addComponentProperty(tp.property, 'TEXT', tp.default);
+      b.comp.addComponentProperty(tp.property, 'TEXT', tp.default);
     }
     for (const swap of C.swapProps || []) {
       const resolvedSwap = await iconSwapDefinition(swap);
@@ -1433,7 +1364,6 @@ async function syncOne(C) {
         resolvedSwap.defaultId,
         { preferredValues: resolvedSwap.preferredValues },
       );
-      propertyKeys[swap.property] = key;
       wireIconSwapNodes(b.registry, swap.property, key);
     }
     for (const vis of b.registry.visibles) {
@@ -1442,8 +1372,6 @@ async function syncOne(C) {
       vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: key };
       vis.node.visible = vis.default;
     }
-    const defKey = (name) => propertyKeys[name] ||
-      Object.keys(b.comp.componentPropertyDefinitions || {}).find((key) => key.split('#')[0] === name) || null;
     wireDepPropForwards(b.registry);
   }
 

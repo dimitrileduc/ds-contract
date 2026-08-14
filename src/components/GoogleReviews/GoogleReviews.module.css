@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v1.0.0)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v1.0.2)
  * Regenerate with: npm run generate
  */
 
@@ -14,10 +14,11 @@
   display: flex;
   flex-direction: column;
   border: 0;
+  position: relative;
   background-color: var(--color-blanc);
   font-family: var(--font-family-montserrat);
   width: var(--size-google-reviews-root-w);
-  height: var(--size-google-reviews-root-h);
+  min-height: var(--size-google-reviews-root-h);
   gap: var(--space-12);
   padding-top: var(--space-4);
   padding-bottom: var(--space-8);
@@ -162,14 +163,21 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .flecheGauche {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--space-0);
-  min-width: var(--space-0);
+  position: absolute;
+}
+
+.root[data-montrer-controles] .flecheGauche {
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .pastilleGauche {
@@ -197,10 +205,9 @@
 }
 
 .groupeCartes {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  width: 100%;
   min-width: 0;
   gap: var(--space-8);
 }
@@ -209,8 +216,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--space-0);
-  min-width: var(--space-0);
+  position: absolute;
+}
+
+.root[data-montrer-controles] .flecheDroite {
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .pastilleDroite {
