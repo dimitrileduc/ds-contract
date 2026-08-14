@@ -25,7 +25,7 @@ import {
 } from '../scripts/contract-schema.js';
 import { buildPlan as proposePrBuildPlan, contentsPutBody, summarize as proposePrSummarize } from '../packages/cli/src/commands/propose-pr.js';
 import { emitReact as coreEmitReact, isMultiRoot as coreIsMultiRoot, validateContract as coreValidateContract } from '../core/emit-react.js';
-import { createFigmaEngine } from '../core/emit-figma-script.js';
+import { createFigmaEngine, iconComponentsFromRegistry, type IconRegistryEntry } from '../core/emit-figma-script.js';
 import { emitHtml as coreEmitHtml } from '../core/emit-html.js';
 import { tokenInventoryFromJson } from '../core/tokens.js';
 // DEPTH BUILD Stage A+B pins (pure — production capture/anatomy over committed
@@ -245,9 +245,9 @@ export {
   ContractSchema, schemaResolveTokens,
   proposePrBuildPlan, contentsPutBody, proposePrSummarize,
   coreEmitReact, coreIsMultiRoot, coreValidateContract,
-  createFigmaEngine, coreEmitHtml, tokenInventoryFromJson,
+  createFigmaEngine, iconComponentsFromRegistry, coreEmitHtml, tokenInventoryFromJson,
   loadCaptureConfig, propSpaceFor,
   depthBuildUnion, buildMultiRootUnion, descendToRealRoots, depthNameUnion,
   depthPromoteAnatomy, promoteMultiRootAnatomy, depthKebab,
 };
-export type { TokenLookup, SchemaContract, SchemaPart, DepthCapture, DepthNode };
+export type { IconRegistryEntry, TokenLookup, SchemaContract, SchemaPart, DepthCapture, DepthNode };

@@ -35,6 +35,32 @@ const imageHashOfBytes = (bytes) => {
   return `img-${h.toString(16)}-${bytes.length}`;
 };
 
+/** Seed the migrated historical Text Styles a brownfield file carries: one
+ * mock style per recipe at its exact metrics, marker-stamped with the
+ * ds_contracts/textStyleToken identity — the reviewed marker-only migration's
+ * RESULT, which every check that exercises the tokens step must precede.
+ * `omitMarkerFor` leaves exactly one style unmarked (the negative fixture for
+ * the adoption-refusal path). Returns the seeded count. */
+export function seedMarkedTextStyles(figma, recipes, { omitMarkerFor } = {}) {
+  let seeded = 0;
+  for (const recipe of recipes) {
+    const style = figma.createTextStyle();
+    style.name = recipe.name;
+    style.fontName = { family: recipe.fontFamily, style: recipe.fontStyle };
+    style.fontSize = recipe.fontSize;
+    style.lineHeight = recipe.lineHeight === undefined
+      ? { unit: 'AUTO' }
+      : { unit: 'PIXELS', value: recipe.lineHeight };
+    style.letterSpacing = recipe.letterSpacing;
+    style.textCase = recipe.textCase;
+    if (recipe.name !== omitMarkerFor) {
+      style.setSharedPluginData('ds_contracts', 'textStyleToken', recipe.tokenPath);
+    }
+    seeded++;
+  }
+  return seeded;
+}
+
 export function createFigmaMock() {
   const allStyles = [];
   const collections = [];
@@ -270,8 +296,17 @@ export function createFigmaMock() {
     }
 
     findOne(cb) {
-      for (const n of this.findAll()) if (cb(n)) return n;
-      return null;
+      // Same pre-order visit as findAll, but stops at the first hit instead of
+      // materializing every descendant — emitted scripts call this per lookup.
+      const walk = (node) => {
+        for (const child of node.children ?? []) {
+          if (cb(child)) return child;
+          const hit = walk(child);
+          if (hit) return hit;
+        }
+        return null;
+      };
+      return walk(this);
     }
 
     findAll(cb) {

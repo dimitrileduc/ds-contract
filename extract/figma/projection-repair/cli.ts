@@ -5,10 +5,10 @@ import { captureCampaign, discoverAffectedSurfaces, figmaToken, inspectFigmaCamp
 import { dryRunCampaign } from './apply.js';
 import { normalizeBridgeApplyEnvelope, validateLiveApplyReceipt } from './apply-receipt.js';
 import { transitionCampaign, validateRepairCampaign } from './campaign.js';
-import { buildImpactInventory, impactInventoryIsComplete } from './impact.js';
+import { buildImpactInventory, impactInventoryIsComplete, mergeConsumerImpacts } from './impact.js';
 import { buildIdempotenceReceipt, buildRepairReceipt } from './report.js';
 import type { CapturePhase, RepairCampaign } from './types.js';
-import { compareReconstructionIdempotence, loadReconstructionMaterial, verifyCampaignClosure } from './verify.js';
+import { compareReconstructionIdempotence, consumersForTarget, loadReconstructionMaterial, verifyCampaignClosure } from './verify.js';
 import { snapshotSourceBaseline, verifySourceBaseline } from './source-baseline.js';
 import { workflowPaths } from './workflow.js';
 import { auditComponentCampaign } from './audit.js';
@@ -98,9 +98,12 @@ async function preflight(campaignPath: string): Promise<void> {
   }
   const inspection = await inspectFigmaCampaign(current, figmaToken());
   const discovered = discoverAffectedSurfaces(current, inspection);
-  const impacts = current.schemaVersion === '2.0.0' && (current.workflow?.sharedDependencies.length ?? 0) === 0
+  const discoveredImpacts = current.schemaVersion === '2.0.0' && (current.workflow?.sharedDependencies.length ?? 0) === 0
     ? []
     : buildImpactInventory().filter((impact) => current.schemaVersion !== '2.0.0' || current.workflow!.sharedDependencies.includes(impact.dependencyId));
+  const impacts = current.schemaVersion === '2.0.0'
+    ? mergeConsumerImpacts(discoveredImpacts, current.consumerImpacts)
+    : discoveredImpacts;
   if (impacts.length > 0 && !impactInventoryIsComplete(impacts)) fail('shared impact inventory is incomplete');
   const next = { ...discovered, consumerImpacts: impacts, state: 'preflight-valid' as const };
   const validation = transitionCampaign({ ...next, state: 'draft' }, 'preflight-valid');
@@ -286,11 +289,7 @@ async function finalize(campaignPath: string): Promise<void> {
     const decision = decisions.get(target.targetId);
     const verdict = comparison.targets.find((entry) => entry.targetId === target.targetId);
     if (!decision || !verdict) fail(`missing closure package for ${target.targetId}`);
-    const consumers = current.consumerImpacts.filter((consumer) =>
-      target.projectionDefectIds.some((defect) => defect === consumer.dependencyId ||
-        (defect === 'icon-instance-swap' && consumer.dependencyId === 'Button') ||
-        (defect === 'composed-prop-forwarding' && consumer.dependencyId === 'SectionHeader')),
-    );
+    const consumers = consumersForTarget(current, target);
     const beforeEvidence = current.captureSets.before.artifacts.find((artifact) => target.affectedSurfaceIds.includes(artifact.surfaceId))?.path;
     const afterEvidence = current.captureSets.after?.artifacts.find((artifact) => target.affectedSurfaceIds.includes(artifact.surfaceId))?.path;
     if (!beforeEvidence || !afterEvidence) fail(`missing before/after evidence for ${target.targetId}`);
@@ -396,7 +395,9 @@ async function main(): Promise<void> {
   if (action === '--verify') return verify(campaignPath);
   if (action === '--finalize') return finalize(campaignPath);
   if (action === '--dry-run') return dryRun(campaignPath, targets);
-  fail(`${action} is unavailable until its guarded implementation task is complete`, 1);
+  // Every member of `actions` is dispatched above; this is the defensive
+  // backstop for an action added to the tuple without its handler.
+  fail(`unhandled action ${action}`, 1);
 }
 
 main().catch((error) => fail(error instanceof Error ? error.message : String(error), 1));

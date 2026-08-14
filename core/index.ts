@@ -119,11 +119,13 @@ export { emitReactInline, type EmitReactInlineCtx, type EmitReactInlineResult } 
 export {
   createFigmaEngine,
   emitFigmaScript,
+  iconComponentsFromRegistry,
   type ComponentData,
   type FigmaEngine,
   type FigmaEngineInput,
   type FigmaIconComponent,
   type FigmaScriptCtx,
+  type IconRegistryEntry,
 } from './emit-figma-script.js';
 
 // The emitter registry — pluggability as a type. registerEmitter() opens it

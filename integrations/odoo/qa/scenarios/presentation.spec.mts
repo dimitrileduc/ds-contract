@@ -1,10 +1,11 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { Frame, Page } from 'playwright-core';
+import type { Frame, Locator, Page } from 'playwright-core';
 import { PROOFS, REPO, Recueil } from '../lib/receipt.mts';
+import { enterEditor as enterHarnessEditor, select as sharedSelect, visibleCount } from '../lib/editor.mts';
 import {
-  EDITOR_TIMEOUT_MS, NAV_TIMEOUT_MS, baseUrl, dockerDisponible,
+  NAV_TIMEOUT_MS, baseUrl, dockerDisponible,
   ouvrirSessionEditeur, ouvrirSessionPublique, withInstance, type QaEnv,
 } from '../run.mts';
 
@@ -12,21 +13,7 @@ const ROOT = '.s_pqr_presentation';
 const HARNESS_PATH = '/piqueray-harness/presentation';
 const fixture = JSON.parse(readFileSync(path.join(REPO, 'integrations/odoo/qa/fixtures/presentation-panel.json'), 'utf8'));
 
-async function enterEditor(page: Page, env: QaEnv): Promise<Frame | null> {
-  await page.goto(`${baseUrl(env)}/odoo/action-website.website_preview?path=${encodeURIComponent(HARNESS_PATH)}&enable_editor=1`, {
-    waitUntil: 'domcontentloaded', timeout: EDITOR_TIMEOUT_MS,
-  });
-  const deadline = Date.now() + EDITOR_TIMEOUT_MS;
-  while (Date.now() < deadline) {
-    for (const frame of page.frames()) {
-      if (!frame.url().includes(HARNESS_PATH)) continue;
-      if ((await page.locator('body.o_builder_open').count()) > 0 &&
-        (await frame.locator('[contenteditable="true"]').count().catch(() => 0)) > 0) return frame;
-    }
-    await page.waitForTimeout(400);
-  }
-  return null;
-}
+const enterEditor = (page: Page, env: QaEnv): Promise<Frame | null> => enterHarnessEditor(page, env, HARNESS_PATH);
 
 async function insertPresentation(page: Page): Promise<void> {
   const content = page.locator('.o_snippet_thumbnail')
@@ -44,19 +31,8 @@ async function insertPresentation(page: Page): Promise<void> {
 const panel = (page: Page) => page.locator('.options-container:visible')
   .filter({ has: page.locator('[data-pqr-control="show-cta"]') }).first();
 
-async function select(frame: Frame, root: any): Promise<void> {
-  await root.click({ position: { x: 8, y: 8 } });
-  await frame.page().waitForTimeout(350);
-}
-
-async function visibleCount(page: Page, selector: string): Promise<number> {
-  const nodes = page.locator(selector);
-  let count = 0;
-  for (let i = 0; i < await nodes.count(); i += 1) {
-    if (await nodes.nth(i).isVisible().catch(() => false)) count += 1;
-  }
-  return count;
-}
+/** Le délai de pose du panneau reste celui que ce scénario a toujours utilisé. */
+const select = (frame: Frame, root: Locator) => sharedSelect(frame, root, 350);
 
 async function readState(page: { locator: (selector: string) => any }) {
   return page.locator(ROOT).evaluateAll((roots: Element[]) => roots.map((root) => ({

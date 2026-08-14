@@ -1,6 +1,5 @@
-import { readFileSync, readdirSync } from 'node:fs';
-import path from 'node:path';
-import { tokenCorpusFromJson } from '../../../core/token-corpus.js';
+import type { TokenCorpus } from '../../../core/token-corpus.js';
+import { loadRepoData } from '../../fidelity-matrix/scripts/lib.js';
 import { inspectFigmaCampaign, figmaToken } from './capture.js';
 import { isObject, walkStructural as walk } from './json.js';
 import type { ComponentAuditReport, RepairCampaign, TextAuditClassification } from './types.js';
@@ -9,20 +8,7 @@ import type { ComponentAuditReport, RepairCampaign, TextAuditClassification } fr
 type Json = Record<string, any>;
 const object = isObject as (value: unknown) => value is Json;
 
-function json(relativePath: string): Record<string, unknown> {
-  return JSON.parse(readFileSync(path.resolve(process.cwd(), relativePath), 'utf8')) as Record<string, unknown>;
-}
-
-function corpus() {
-  return tokenCorpusFromJson({
-    primitives: json('tokens/primitives.tokens.json'),
-    semantic: json('tokens/semantic.tokens.json'),
-    light: json('tokens/modes/semantic.light.tokens.json'),
-    brandDefault: json('tokens/modes/brand.default.tokens.json'),
-  });
-}
-
-function metricMatches(node: Json, expected: ReturnType<typeof corpus>['textStyles'][number]): boolean {
+function metricMatches(node: Json, expected: TokenCorpus['textStyles'][number]): boolean {
   const style = object(node.style) ? node.style : {};
   return style.fontFamily === expected.fontFamily &&
     style.fontSize === expected.fontSize &&
@@ -41,7 +27,7 @@ function styleName(file: Json, styleId: string | null): string | null {
   return null;
 }
 
-function classifyText(node: Json, file: Json, styles: ReturnType<typeof corpus>): {
+function classifyText(node: Json, file: Json, styles: TokenCorpus): {
   classification: TextAuditClassification;
   textStyleId: string | null;
   textStyleName: string | null;
@@ -79,20 +65,8 @@ function classifyText(node: Json, file: Json, styles: ReturnType<typeof corpus>)
   };
 }
 
-function contractIdsByMasterNodeId(): Map<string, string> {
-  const contractsRoot = path.resolve(process.cwd(), 'contracts');
-  const ids = new Map<string, string>();
-  for (const name of readdirSync(contractsRoot).filter((entry) => entry.endsWith('.contract.json'))) {
-    const contract = JSON.parse(readFileSync(path.join(contractsRoot, name), 'utf8')) as Json;
-    const nodeId = contract.anchors?.figma?.nodeId;
-    if (typeof contract.id === 'string' && typeof nodeId === 'string') ids.set(nodeId, contract.id);
-  }
-  return ids;
-}
-
-function directDependencies(master: Json, nodes: Map<string, Json>, parents: Map<string, Json>): string[] {
+function directDependencies(master: Json, nodes: Map<string, Json>, parents: Map<string, Json>, contractIds: Map<string, string>): string[] {
   const names = new Set<string>();
-  const contractIds = contractIdsByMasterNodeId();
   const visit = (node: Json): void => {
     for (const child of Array.isArray(node.children) ? node.children : []) {
       if (!object(child)) continue;
@@ -139,17 +113,27 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
   const master = inspection.nodes.get(target.masterNodeId);
   if (!master) throw new Error(`audit: master ${target.masterNodeId} is absent from the current file`);
 
+  // The inspection already walked the whole document once to build its
+  // id-indexed map; the parent relation falls out of that map without a
+  // second full-tree traversal.
   const parents = new Map<string, Json>();
-  walk(inspection.file.document as Json, (node) => {
+  for (const node of inspection.nodes.values()) {
     for (const child of Array.isArray(node.children) ? node.children : []) {
       if (object(child) && typeof child.id === 'string') parents.set(child.id, node);
     }
-  });
+  }
   const parent = parents.get(target.masterNodeId) ?? null;
   const containerApplicable = campaign.workflow.subjectKind === 'organism';
   const containerIssues = containerApplicable ? organismContainerIssues(master, parent) : [];
 
-  const styles = corpus();
+  // The shared loader parses contracts through the schema, so a malformed
+  // contract refuses the audit by name instead of shaping a wrong report.
+  const repo = loadRepoData();
+  const styles = repo.corpus;
+  const contractIds = new Map<string, string>(
+    [...repo.contracts.values()].flatMap((contract) =>
+      typeof contract.anchors.figma.nodeId === 'string' ? [[contract.anchors.figma.nodeId, contract.id] as const] : []),
+  );
   const texts: ComponentAuditReport['texts'] = [];
   walk(master, (node, structuralPath) => {
     if (node.type !== 'TEXT' || typeof node.id !== 'string') return;
@@ -171,7 +155,7 @@ export async function auditComponentCampaign(campaign: RepairCampaign): Promise<
     });
   });
 
-  const observedDependencies = directDependencies(master, inspection.nodes, parents);
+  const observedDependencies = directDependencies(master, inspection.nodes, parents, contractIds);
   const declaredDependencies = [...campaign.workflow.directDependencies].sort();
   const declaredNormalized = new Set(declaredDependencies.map((name) => name.toLowerCase()));
   const undeclaredDependencies = observedDependencies.filter((name) => !declaredNormalized.has(name.toLowerCase()));

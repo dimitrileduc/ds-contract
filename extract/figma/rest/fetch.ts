@@ -92,7 +92,9 @@ export interface ClientOptions {
   apiBase?: string;
 }
 
-async function get(path: string, token: string, opts: ClientOptions): Promise<unknown> {
+/** Authenticated GET against the Figma REST API — the one transport every
+ * caller in extract/ shares (routes stay caller-owned and verbatim). */
+export async function figmaRestGet(path: string, token: string, opts: ClientOptions = {}): Promise<unknown> {
   const fetchImpl = opts.fetchImpl ?? (fetch as unknown as FetchLike);
   const res = await fetchImpl(`${opts.apiBase ?? FIGMA_API_BASE}${path}`, {
     headers: { 'X-Figma-Token': token },
@@ -113,7 +115,7 @@ export async function fetchNodes(
   opts: ClientOptions = {},
 ): Promise<RestNodesResponse> {
   const ids = encodeURIComponent(nodeIds.join(','));
-  return (await get(`/v1/files/${fileKey}/nodes?ids=${ids}`, token, opts)) as RestNodesResponse;
+  return (await figmaRestGet(`/v1/files/${fileKey}/nodes?ids=${ids}`, token, opts)) as RestNodesResponse;
 }
 
 /**
@@ -127,7 +129,7 @@ export async function fetchVariables(
   opts: ClientOptions = {},
 ): Promise<RestVariablesResponse | undefined> {
   try {
-    return (await get(`/v1/files/${fileKey}/variables/local`, token, opts)) as RestVariablesResponse;
+    return (await figmaRestGet(`/v1/files/${fileKey}/variables/local`, token, opts)) as RestVariablesResponse;
   } catch (e) {
     const status = (e as Error & { status?: number }).status;
     if (status === 403 || status === 404) return undefined;
@@ -144,7 +146,7 @@ interface RestFileResponse {
 }
 
 export async function fetchFile(fileKey: string, token: string, opts: ClientOptions = {}): Promise<RestFileResponse> {
-  return (await get(`/v1/files/${fileKey}`, token, opts)) as RestFileResponse;
+  return (await figmaRestGet(`/v1/files/${fileKey}`, token, opts)) as RestFileResponse;
 }
 
 /**
@@ -162,7 +164,7 @@ export async function fetchSvgs(
 ): Promise<Record<string, string | null>> {
   const fetchImpl = opts.fetchImpl ?? (fetch as unknown as FetchLike);
   const ids = encodeURIComponent(nodeIds.join(','));
-  const body = (await get(`/v1/images/${fileKey}?ids=${ids}&format=svg`, token, opts)) as {
+  const body = (await figmaRestGet(`/v1/images/${fileKey}?ids=${ids}&format=svg`, token, opts)) as {
     err: string | null;
     images: Record<string, string | null>;
   };

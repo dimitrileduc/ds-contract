@@ -31,6 +31,7 @@ import {
   ContractSchema, schemaResolveTokens, type SchemaContract, type SchemaPart,
   proposePrBuildPlan, contentsPutBody, proposePrSummarize,
   coreEmitReact, coreIsMultiRoot, coreValidateContract, createFigmaEngine, coreEmitHtml,
+  iconComponentsFromRegistry, type IconRegistryEntry,
   tokenInventoryFromJson, loadCaptureConfig, propSpaceFor,
   depthBuildUnion, buildMultiRootUnion, descendToRealRoots, depthNameUnion,
   depthPromoteAnatomy, promoteMultiRootAnatomy, type DepthCapture, type DepthNode, depthKebab,
@@ -5581,23 +5582,7 @@ const cases: Case[] = [
             .filter((f) => f.endsWith('.svg'))
             .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
         ),
-        iconComponents: new Map(
-          (read('contracts/icons.registry.json') as {
-            icons: Array<{
-              name: string;
-              asset: string;
-              figma: { componentName: string; key: string; nodeId: string };
-            }>;
-          }).icons.map((icon) => [
-            icon.name,
-            {
-              asset: icon.asset,
-              componentName: icon.figma.componentName,
-              key: icon.figma.key,
-              nodeId: icon.figma.nodeId,
-            },
-          ]),
-        ),
+        iconComponents: iconComponentsFromRegistry(read('contracts/icons.registry.json') as { icons: IconRegistryEntry[] }),
       });
       const script = engine.buildComponentScript(card, byId);
       const comp = JSON.parse(script.match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
@@ -5783,9 +5768,17 @@ const cases: Case[] = [
       // no root geometry, the absolute children contribute no intrinsic size
       // and the generated root collapses to 0×0.
       // 015: root's width/height moved from literals to tokens (geometry-
-      // rides-tokens conversion) — delete from the field that now actually
-      // carries them, or this constructs a contract identical to `member`.
+      // rides-tokens conversion). v1.3.0 (projection-repair, 2026-08-12):
+      // they moved AGAIN — the fluid square rides layout.referenceWidth +
+      // layout.aspectRatio (planes are inset-0 and follow the parent).
+      // Delete from the field that NOW carries the geometry, or this
+      // constructs a contract identical to `member` and refuses nothing.
       const collapsedContract = ContractSchema.parse(JSON.parse(JSON.stringify(member)));
+      const collapsedLayout = collapsedContract.anatomy.root.layout as
+        | { referenceWidth?: number; aspectRatio?: number }
+        | undefined;
+      delete collapsedLayout?.referenceWidth;
+      delete collapsedLayout?.aspectRatio;
       delete collapsedContract.anatomy.root.tokens?.width;
       delete collapsedContract.anatomy.root.tokens?.height;
       const collapsedById = new Map(byId);
@@ -5797,14 +5790,15 @@ const cases: Case[] = [
       if (!refused) throw new Error('A MemberPicture contract that generates a 0×0 root was accepted');
       for (const required of [
         // 015: root/funIa/normal width+height moved from literal px to
-        // per-part tokens (geometry-rides-tokens) — the generated CSS now
-        // carries var() references (each 364px via a distinct custom
-        // property), never the raw literal.
-        '.root {', 'width: var(--size-member-picture-root);', 'height: var(--size-member-picture-root);',
+        // per-part tokens (geometry-rides-tokens). v1.3.0 (projection-repair,
+        // 2026-08-12): the fixed 364 tokens gave way to the fluid square —
+        // the root rides width:100% + aspect-ratio:1 (referenceWidth is a
+        // canvas authoring size only), each plane rides width/height:100%
+        // inside its inset-0 overlay.
+        '.root {', 'width: 100%;', 'aspect-ratio: 1;',
         'border-radius: 500px;', 'background-color: #d9d9d9;', 'position: relative;',
         '.etat-defaut {', '.etat-survol {', 'overflow: hidden;',
-        '.funIa {', 'width: var(--size-member-picture-fun-ia);', 'height: var(--size-member-picture-fun-ia);',
-        '.normal {', 'width: var(--size-member-picture-normal);', 'height: var(--size-member-picture-normal);',
+        '.funIa {', '.normal {', 'height: 100%;',
         'position: absolute;', 'top: 0px;', 'right: 0px;', 'bottom: 0px;', 'left: 0px;',
         'transition: opacity 300ms;',
       ]) {

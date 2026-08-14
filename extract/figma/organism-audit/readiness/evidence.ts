@@ -1,29 +1,20 @@
-import { createHash } from 'node:crypto';
+import { canonicalize, sha256Of } from '../../projection-repair/json.js';
 
 /** Locale-independent ordering for byte-stable proof material. */
 export function compareStableText(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
 }
 
-/** JSON serialization with key ordering made explicit: proof IDs are byte reproducible. */
+/** Byte-reproducible proof material in the evidence format (2-space indent +
+ * trailing newline). The canonical key ordering itself has ONE definition —
+ * extract/figma/projection-repair/json.ts — and its code-unit sort is the
+ * same ordering `compareStableText` spells; two spellings of "canonical"
+ * would silently produce two digest families. */
 export function stableJson(value: unknown): string {
-  const visit = (input: unknown): unknown => {
-    if (Array.isArray(input)) return input.map(visit);
-    if (input !== null && typeof input === 'object') {
-      return Object.fromEntries(
-        Object.entries(input as Record<string, unknown>)
-          .sort(([left], [right]) => compareStableText(left, right))
-          .map(([key, child]) => [key, visit(child)]),
-      );
-    }
-    return input;
-  };
-  return `${JSON.stringify(visit(value), null, 2)}\n`;
+  return `${JSON.stringify(canonicalize(value), null, 2)}\n`;
 }
 
-export function sha256(value: string | Uint8Array): string {
-  return createHash('sha256').update(value).digest('hex');
-}
+export const sha256 = sha256Of;
 
 export type EvidenceAvailability = 'available' | 'missing' | 'refused' | 'unrecoverable';
 export const EVIDENCE_AVAILABILITY: readonly EvidenceAvailability[] = [

@@ -38,7 +38,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { buildEngineBundle } from './build-plugin-zip.mjs';
-import { createFigmaMock } from './plugin-engine-mock-figma.mjs';
+import { createFigmaMock, seedMarkedTextStyles } from './plugin-engine-mock-figma.mjs';
 
 const ROOT = process.cwd();
 const read = (p) => readFileSync(path.join(ROOT, p), 'utf8');
@@ -98,13 +98,29 @@ const findBuilt = (root) => {
   };
   return f(root);
 };
+// Historical Piqueray Text Styles adopt by MARKER only (ds_contracts/
+// textStyleToken); creating them is deliberately forbidden and a blank file
+// refuses with "run the reviewed marker-only migration first" — the guard
+// working as designed. A blank mock is un-migrated by construction, so the
+// roundtrip seeds the migration's RESULT before the first step: the marked
+// styles at their exact token recipes, the same seeding the
+// figma-text-styles-piqueray eval fixture performs (2026-08-12).
+function seedMigratedTextStyles(figma, planSteps) {
+  const source = planSteps.map((step) => step.code).find((code) => code.includes('const TEXT_STYLES ='));
+  if (!source) return 0;
+  const recipes = JSON.parse(source.match(/const TEXT_STYLES = (\[[\s\S]*?\]);/)[1]);
+  return seedMarkedTextStyles(figma, recipes.filter((recipe) => recipe.requiresExistingMarker));
+}
+
 let fp1, fp2, firstDump;
 for (const pass of [1, 2]) {
-  const { DSC, root, runScript } = contractToCanvas();
+  const { DSC, figma, root, runScript } = contractToCanvas();
   const parsed = DSC.parseIncomingText(bundleText);
   if (!parsed.ok) fail(`engine refused the contract bundle: ${JSON.stringify(parsed.issues ?? parsed)}`);
   const plan = DSC.planGenerate(parsed.contracts, { withTokens: true, fileKey: '' });
   if (!plan.ok) fail(`planGenerate refused: ${plan.issues.map((i) => i.headline).join('; ')}`);
+  const seeded = seedMigratedTextStyles(figma, plan.steps);
+  if (pass === 1 && seeded > 0) ok(`mock seeded with ${seeded} migrated (marker-stamped) historical Text Styles`);
   for (const step of plan.steps) await runScript(step.code);
   const built = findBuilt(root);
   if (!built) fail(`${SET_NAME} was not built`);

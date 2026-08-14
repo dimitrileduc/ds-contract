@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { compareProtectedFacts, type SurfaceFacts } from './facts.js';
 import { canonicalize, isObject, stableJson, type JsonRecord } from './json.js';
-import type { CaptureSet, DiffFinding, ImageFingerprint, InstanceLink, RepairCampaign, RepairTargetId } from './types.js';
+import type { CaptureSet, ConsumerImpact, DiffFinding, ImageFingerprint, InstanceLink, RepairCampaign, RepairTarget, RepairTargetId } from './types.js';
 
 const record = isObject;
 export { canonicalize, stableJson };
@@ -230,6 +230,17 @@ function rootIdentity(node: JsonRecord | null): { id: unknown; type: unknown; co
   return { id: node.id, type: node.type, componentId: node.componentId ?? null, props: node.componentProperties ?? {} };
 }
 
+/** The one home of the defect-class → scanner-dependency aliasing. The two
+ * alias rows are the only classes any current campaign declares; a defect
+ * class outside this table selects no consumers (open enum — the receipt then
+ * closes vacuously, a named limit of the current vocabulary). */
+export function consumersForTarget(campaign: RepairCampaign, target: RepairTarget): ConsumerImpact[] {
+  return campaign.consumerImpacts.filter((consumer) =>
+    target.projectionDefectIds.some((defect) => defect === consumer.dependencyId ||
+      (defect === 'icon-instance-swap' && consumer.dependencyId === 'Button') ||
+      (defect === 'composed-prop-forwarding' && consumer.dependencyId === 'SectionHeader')));
+}
+
 /** Full campaign comparison. Generated descendants may be rehosted, but image
  *  content remains globally complete and direct-canvas IMAGE addresses remain exact. */
 export function verifyCampaignClosure(campaign: RepairCampaign, root = process.cwd()): CampaignClosureComparison {
@@ -295,26 +306,18 @@ export function verifyCampaignClosure(campaign: RepairCampaign, root = process.c
         }
       }
     }
-    const consumers = campaign.consumerImpacts.filter((consumer) =>
-      target.projectionDefectIds.some((defect) => defect === consumer.dependencyId ||
-        (defect === 'icon-instance-swap' && consumer.dependencyId === 'Button') ||
-        (defect === 'composed-prop-forwarding' && consumer.dependencyId === 'SectionHeader')),
-    );
+    const consumers = consumersForTarget(campaign, target);
     const consumersClosed = consumers.every((consumer) => consumer.status !== 'pending' && consumer.status !== 'refused');
     if (!consumersClosed) unexpectedDiffs.push({
       surfaceId: `${target.targetId}:consumers`, kind: 'unexpected', description: 'one or more shared consumers remain open', diffCount: 1,
       evidenceRef: 'specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json',
     });
-    const directImageComparison = target.kind === 'direct-canvas'
-      ? compareImageFingerprints(before.imageFingerprints, after.imageFingerprints)
-      : null;
-    // Direct targets did not rebuild IMAGE hosts. The capture inventory is
-    // global, so its exact equality is stronger than a target slice; generated
-    // targets use the explicit authorized-rehost path plus global hash closure.
+    // Both target kinds close on the same global hash gate: exact positional
+    // equality implies hash-set equality, so a stricter per-address pass could
+    // never flip this verdict. `imageComparison.mode` below records which
+    // preservation regime (exact-address vs authorized-rehost) the target ran under.
     const imagePreservation = beforeHashes.size === 0 ? 'not-applicable'
-      : target.kind === 'direct-canvas'
-        ? (directImageComparison!.ok || uniqueImageHashesPreserved ? 'pass' : 'fail')
-        : uniqueImageHashesPreserved ? 'pass' : 'fail';
+      : uniqueImageHashesPreserved ? 'pass' : 'fail';
     if (imagePreservation === 'fail') unexpectedDiffs.push({
       surfaceId: `${target.targetId}:images`, kind: 'unexpected', description: 'IMAGE content preservation failed', diffCount: 1,
       evidenceRef: 'specs/021-figma-projection-repair/proofs/us4/comparison.json',

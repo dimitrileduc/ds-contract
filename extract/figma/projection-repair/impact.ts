@@ -13,6 +13,16 @@ function walk(value: unknown, visit: (entry: Json) => void): void {
   Object.values(value).forEach((entry) => walk(entry, visit));
 }
 
+/** The scanner's shared engine dependencies — the ONE home of the contract-id →
+ * dependency-label pairs, consumed by both the contract sweep and the Odoo lock
+ * below. A repaired component outside this table yields no discovered
+ * consumers (open enum — a named limit of the scanner, not a silent pass). */
+const SHARED_DEPENDENCIES = [
+  { contractId: 'ds.button', dependencyId: 'Button' },
+  { contractId: 'ds.section-header', dependencyId: 'SectionHeader' },
+  { contractId: 'ds.accordion-row', dependencyId: 'AccordionRow' },
+] as const;
+
 /**
  * Contract ids and structural paths are identity. Display/layer names are never
  * consulted to decide whether a consumer is affected.
@@ -24,20 +34,14 @@ export function buildImpactInventory(root = process.cwd()): ConsumerImpact[] {
     const relative = `contracts/${file}`;
     const contract = JSON.parse(readFileSync(path.join(contractsDir, file), 'utf8')) as Json;
     const contractId = typeof contract.id === 'string' ? contract.id : relative;
-    let usesButton = false;
-    let usesSectionHeader = false;
-    let usesAccordionRow = false;
+    const usedContractIds = new Set<string>();
     let usesAbsolute = false;
     walk(contract.anatomy, (entry) => {
-      if (object(entry.component) && entry.component.id === 'ds.button') usesButton = true;
-      if (object(entry.component) && entry.component.id === 'ds.section-header') usesSectionHeader = true;
-      if (object(entry.component) && entry.component.id === 'ds.accordion-row') usesAccordionRow = true;
+      if (object(entry.component) && typeof entry.component.id === 'string') usedContractIds.add(entry.component.id);
       if (object(entry.declared) && entry.declared.position === 'absolute') usesAbsolute = true;
     });
     for (const dependencyId of [
-      ...(usesButton ? ['Button'] : []),
-      ...(usesSectionHeader ? ['SectionHeader'] : []),
-      ...(usesAccordionRow ? ['AccordionRow'] : []),
+      ...SHARED_DEPENDENCIES.filter((dependency) => usedContractIds.has(dependency.contractId)).map((dependency) => dependency.dependencyId),
       ...(usesAbsolute ? ['absolute-lowering'] : []),
     ]) {
       rows.push({ consumerId: contractId, dependencyId, usage: 'contract', evidenceRefs: [relative], status: 'pending', decisionRef: null });
@@ -54,9 +58,7 @@ export function buildImpactInventory(root = process.cwd()): ConsumerImpact[] {
       ? lock.contracts.filter(object).map((entry) => String(entry.id ?? ''))
       : []);
     for (const dependencyId of [
-      ...(lockedContracts.has('ds.button') ? ['Button'] : []),
-      ...(lockedContracts.has('ds.section-header') ? ['SectionHeader'] : []),
-      ...(lockedContracts.has('ds.accordion-row') ? ['AccordionRow'] : []),
+      ...SHARED_DEPENDENCIES.filter((dependency) => lockedContracts.has(dependency.contractId)).map((dependency) => dependency.dependencyId),
       'absolute-lowering',
     ]) {
       rows.push({ consumerId: 'odoo-019-qualification', dependencyId, usage: 'odoo', evidenceRefs: [odooLock], status: 'pending', decisionRef: null });
@@ -78,6 +80,23 @@ export interface ConsumerImpactIssue {
 
 const impactIdentity = (impact: Pick<ConsumerImpact, 'consumerId' | 'dependencyId' | 'usage'>): string =>
   `${impact.usage}:${impact.dependencyId}:${impact.consumerId}`;
+
+/** Preflight discovery is authoritative for dependencies the generic scanner
+ * knows. Explicit target consumers remain additive: a component campaign may
+ * name a production root (for example an Odoo-qualified organism) without
+ * pretending that root is one of the scanner's shared engine dependencies. */
+export function mergeConsumerImpacts(
+  discovered: readonly ConsumerImpact[],
+  declared: readonly ConsumerImpact[],
+): ConsumerImpact[] {
+  const merged = new Map<string, ConsumerImpact>();
+  for (const impact of declared) merged.set(impactIdentity(impact), { ...impact, evidenceRefs: [...impact.evidenceRefs] });
+  for (const impact of discovered) merged.set(impactIdentity(impact), { ...impact, evidenceRefs: [...impact.evidenceRefs] });
+  return [...merged.values()].sort((left, right) =>
+    left.dependencyId.localeCompare(right.dependencyId) ||
+    left.consumerId.localeCompare(right.consumerId) ||
+    left.usage.localeCompare(right.usage));
+}
 
 /** Close the exact source-derived graph. An absent row, an open status, or an
  * Odoo revalidation without its explicit decision blocks the owner receipt. */

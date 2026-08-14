@@ -5,7 +5,7 @@
  * réponse coûte un cycle d'installation complet :
  *   · le manifeste est-il lisible, versionné 19.0.x.y.z, dépendant de `website` ?
  *   · chaque fichier `data` et chaque asset de bundle EXISTE-t-il ?
- *   · combien de racines la bibliothèque de blocs expose-t-elle (2 au maximum) ?
+ *   · combien de racines la bibliothèque expose-t-elle (au plus le nombre de racines déclarées) ?
  *   · un composant interne est-il devenu posable par accident ?
  *   · une `section` est-elle imbriquée dans une autre à travers la chaîne `t-call` ?
  *   · les images du compose sont-elles celles du lock ?
@@ -332,12 +332,77 @@ function testImages() {
   } else ok("le lock et l'épinglage du script concordent");
 }
 
+/**
+ * La politique de versions a UN calculateur (check-inputs → le lock) et TROIS
+ * transcriptions manuelles : `version_guard.js` (le vif), `scan-saved-versions.ts`
+ * (l'arbitre) et les attributs `data-ds-contract-version` de `components.xml`.
+ * L'eval de dérive compare l'arbitre à ses propres fixtures, jamais au lock —
+ * deux copies en retard du même repin restent donc vertes ENSEMBLE (constaté le
+ * 2026-08-12 : l'arbitre resté deux repins en arrière classait « structure-stale »
+ * des blocs courants). Cette porte ancre chaque transcription au lock, et la
+ * version module des deux classificateurs au manifeste.
+ */
+function testVersions() {
+  let lock: ReturnType<typeof readLock>;
+  try { lock = readLock(); } catch (e) {
+    saute('les transcriptions de versions concordent avec le lock', String(e instanceof Error ? e.message : e));
+    return;
+  }
+  const lockVersions = new Map(lock.contracts.map((entry) => [entry.id, entry.version] as [string, string]));
+  const manifestVersion = existsSync(MANIFEST)
+    ? readFileSync(MANIFEST, 'utf8').match(/"version":\s*"([^"]+)"/)?.[1]
+    : undefined;
+  const fautes: string[] = [];
+  const compare = (source: string, id: string, version: string) => {
+    const attendu = lockVersions.get(id);
+    if (!attendu) fautes.push(`${source} : ${id} absent du lock`);
+    else if (version !== attendu) fautes.push(`${source} : ${id} ${version} ≠ lock ${attendu}`);
+  };
+  const compareModule = (source: string, version: string | undefined) => {
+    if (!version) fautes.push(`${source} : version module illisible`);
+    else if (manifestVersion && version !== manifestVersion) fautes.push(`${source} : module ${version} ≠ manifeste ${manifestVersion}`);
+  };
+
+  const guardSrc = readFileSync(path.join(ADDON, 'static', 'src', 'js', 'version_guard.js'), 'utf8');
+  const guardDigest = guardSrc.match(/CURRENT_GRAPH_DIGEST = "([0-9a-f]{64})"/)?.[1];
+  if (guardDigest !== lock.graphDigest) fautes.push(`version_guard.js : digest ${guardDigest ?? '(illisible)'} ≠ lock ${lock.graphDigest}`);
+  compareModule('version_guard.js', guardSrc.match(/CURRENT_MODULE_VERSION = "([^"]+)"/)?.[1]);
+  const guardMap = guardSrc.match(/const CONTRACT_VERSIONS = (\{[^}]*\})/)?.[1];
+  if (!guardMap) fautes.push('version_guard.js : CONTRACT_VERSIONS illisible');
+  else for (const [, id, version] of guardMap.matchAll(/"(ds\.[a-z0-9-]+)":\s*"([^"]+)"/g)) compare('version_guard.js', id, version);
+
+  const scanSrc = readFileSync(repoPath('scripts', 'odoo', 'scan-saved-versions.ts'), 'utf8');
+  const scanDigest = scanSrc.match(/EXPECTED_GRAPH = '([0-9a-f]{64})'/)?.[1];
+  if (scanDigest !== lock.graphDigest) fautes.push(`scan-saved-versions.ts : digest ${scanDigest ?? '(illisible)'} ≠ lock ${lock.graphDigest}`);
+  compareModule('scan-saved-versions.ts', scanSrc.match(/const MODULE = '([^']+)'/)?.[1]);
+  const scanMap = scanSrc.match(/const CONTRACTS: Record<string, string> = (\{[^}]*\})/)?.[1];
+  if (!scanMap) fautes.push('scan-saved-versions.ts : CONTRACTS illisible');
+  else for (const [, id, version] of scanMap.matchAll(/'(ds\.[a-z0-9-]+)':\s*'([^']+)'/g)) compare('scan-saved-versions.ts', id, version);
+
+  const componentsPath = path.join(ADDON, 'views', 'components.xml');
+  if (!existsSync(componentsPath)) {
+    saute('les versions de components.xml concordent avec le lock', 'components.xml absent — T028/T045');
+  } else {
+    const xml = readFileSync(componentsPath, 'utf8');
+    const paires = [...xml.matchAll(/data-ds-contract="(ds\.[a-z0-9-]+)"\s+data-ds-contract-version="([^"]+)"/g)];
+    const declarations = (xml.match(/data-ds-contract="/g) ?? []).length;
+    if (paires.length !== declarations) {
+      fautes.push(`components.xml : ${declarations} déclarations mais ${paires.length} paires contract/version appariées (attributs réordonnés ?)`);
+    }
+    for (const [, id, version] of paires) compare('components.xml', id, version);
+  }
+
+  if (fautes.length > 0) ko('les transcriptions de versions concordent avec le lock', fautes.join('\n      '));
+  else ok('les transcriptions de versions concordent avec le lock', `${lockVersions.size} contrats du lock, 3 transcriptions + version module ancrées`);
+}
+
 function main() {
   const strict = process.argv.includes('--strict');
   console.log('Porte de structure du module Odoo — sans instance, sans Docker.\n');
   testManifeste();
   testVues();
   testImages();
+  testVersions();
   const code = tally.resume(strict);
   if (code !== 0) process.exit(code);
 }

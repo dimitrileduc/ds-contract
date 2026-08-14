@@ -581,16 +581,24 @@ const fixContractTool = {
           'e.g. "{color.feedback.{variant}.background}".',
       },
       layout: {
+        // Hand-written mirror of LayoutSchema (packages/schema/src/
+        // contract-schema.ts) — keep the key set identical or the assist
+        // path silently refuses layouts the governed schema accepts.
         type: 'object',
         additionalProperties: false,
         properties: {
           display: { enum: ['flex', 'inline-flex', 'grid'] },
           columns: { type: 'integer', minimum: 1 },
-          aspectRatio: { type: 'number', exclusiveMinimum: 0 },
           direction: { enum: ['row', 'column'] },
           align: { enum: ['start', 'center', 'end', 'stretch'] },
           justify: { enum: ['start', 'center', 'end', 'space-between'] },
+          width: { enum: ['fill'] },
+          aspectRatio: { type: 'number', exclusiveMinimum: 0 },
+          referenceWidth: { type: 'number', exclusiveMinimum: 0 },
+          clip: { type: 'boolean' },
           grow: { type: 'boolean' },
+          overlap: { type: 'boolean' },
+          wrap: { type: 'boolean' },
         },
       },
       part: {

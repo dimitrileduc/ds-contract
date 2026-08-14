@@ -6,10 +6,10 @@
  */
 import {
   ContractSchema,
+  iconComponentsFromRegistry,
   tokenCorpusFromJson,
   tokenInventoryFromJson,
   type Contract,
-  type FigmaIconComponent,
   type TokenTreeInput,
 } from '../../../core/index.js';
 
@@ -99,14 +99,4 @@ export const icons = new Map<string, string>(
   ]),
 );
 
-export const iconComponents = new Map<string, FigmaIconComponent>(
-  iconRegistry.icons.map((icon) => [
-    icon.name,
-    {
-      asset: icon.asset,
-      componentName: icon.figma.componentName,
-      key: icon.figma.key,
-      nodeId: icon.figma.nodeId,
-    },
-  ]),
-);
+export const iconComponents = iconComponentsFromRegistry(iconRegistry);

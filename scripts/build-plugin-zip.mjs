@@ -144,6 +144,8 @@ function collectEngineData() {
         .map((f) => [f.replace(/\.svg$/, ''), readFileSync(join(dir, f), 'utf8')]);
     }),
   );
+  // Mirrors core/emit-figma-script.ts iconComponentsFromRegistry — this script
+  // runs under plain node and cannot import the .ts helper; keep in lockstep.
   const iconComponents = Object.fromEntries(
     readJson('contracts/icons.registry.json').icons.map((icon) => [
       icon.name,

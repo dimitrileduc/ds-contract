@@ -113,8 +113,13 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
   const variants = node.type === 'COMPONENT_SET' && Array.isArray(node.children)
     ? node.children.filter((child) => object(child) && child.type === 'COMPONENT').map((child) => ({ id: (child as Json).id ?? null, name: (child as Json).name ?? null }))
     : [];
+  // One identity value serves two fact names: each surface digests its own
+  // root, so the master surface reads it as master identity and the page-host
+  // surface as page-node identity. The names stay distinct because campaign
+  // manifests protect them per surface kind; the value is deliberately shared.
+  const rootIdentity = { id: node.id ?? null, type: node.type ?? null, componentId: node.componentId ?? null };
   const values: Record<ProtectedFact, unknown> = {
-    'master-identity': { id: node.id ?? null, type: node.type ?? null, componentId: node.componentId ?? null },
+    'master-identity': rootIdentity,
     'variant-cardinality': variants.length,
     'variant-names': variants.map((variant) => variant.name),
     'image-paints': imagePaints,
@@ -125,7 +130,7 @@ export function collectSurfaceFacts(node: Json): SurfaceFacts {
     'text-styles': textStyles,
     'instance-links': instanceLinks,
     'instance-overrides': instanceOverrides,
-    'page-node-identity': { id: node.id ?? null, type: node.type ?? null, componentId: node.componentId ?? null },
+    'page-node-identity': rootIdentity,
     geometry,
     'responsive-overflow': responsiveOverflow,
   };

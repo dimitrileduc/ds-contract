@@ -5,9 +5,6 @@ export interface RepairWorkflowPaths {
   evidenceRoot: string;
   auditPath: string;
   bridgeScriptPaths: { first: string; second: string };
-  beforeRoot: string;
-  afterRoot: string;
-  idempotenceRoot: string;
   dryRunPath: string;
   comparisonPath: string;
   firstApplyReceiptPath: string;
@@ -31,9 +28,6 @@ export function workflowPaths(campaign: RepairCampaign): RepairWorkflowPaths {
       evidenceRoot: root,
       auditPath: relativeJoin(root, 'audit.json'),
       bridgeScriptPaths: { first: relativeJoin(root, 'bridge-first.js'), second: relativeJoin(root, 'bridge-second.js') },
-      beforeRoot: relativeJoin(root, 'before'),
-      afterRoot: relativeJoin(root, 'after'),
-      idempotenceRoot: relativeJoin(root, 'idempotence'),
       dryRunPath: relativeJoin(root, 'dry-run.json'),
       comparisonPath: campaign.workflow.comparisonPath,
       firstApplyReceiptPath: campaign.workflow.applyReceiptPaths.first,
@@ -48,9 +42,6 @@ export function workflowPaths(campaign: RepairCampaign): RepairWorkflowPaths {
     evidenceRoot: root,
     auditPath: relativeJoin(root, 'audit.json'),
     bridgeScriptPaths: { first: relativeJoin(root, 'bridge-first.js'), second: relativeJoin(root, 'bridge-second.js') },
-    beforeRoot: relativeJoin(root, 'before'),
-    afterRoot: relativeJoin(root, 'after'),
-    idempotenceRoot: relativeJoin(root, 'idempotence'),
     dryRunPath: relativeJoin(root, 'us1/dry-run.json'),
     comparisonPath: relativeJoin(root, 'us4/comparison.json'),
     firstApplyReceiptPath: relativeJoin(root, 'us3/live-rebuilds.json'),

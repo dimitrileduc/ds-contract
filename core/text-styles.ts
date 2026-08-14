@@ -14,10 +14,7 @@ export interface DerivedTextStyle {
   name: string;
   /** Stable identity marker stored in ds_contracts/textStyleToken. */
   tokenPath: string;
-  familyPath?: string;
   weightPath?: string;
-  lineHeightPath?: string;
-  letterSpacingPath?: string;
   fontFamily: string;
   fontSize: number;
   fontWeight: number;
@@ -107,10 +104,7 @@ export function deriveTextStyles(input: DeriveTextStylesInput): DerivedTextStyle
       out.push({
         name: ext.name,
         tokenPath: sizePath,
-        familyPath,
         weightPath,
-        ...(hasLineHeight ? { lineHeightPath } : {}),
-        ...(hasLetterSpacing ? { letterSpacingPath } : {}),
         fontFamily: firstFamily(resolveLiteral(familyPath)),
         fontSize: px(resolveLiteral(sizePath)),
         fontWeight,

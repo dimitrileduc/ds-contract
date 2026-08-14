@@ -2,6 +2,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { isCaptureSetComplete } from './campaign.js';
+import { isObject } from './json.js';
 import type { RepairCampaign, RepairOperation, RepairTargetId } from './types.js';
 
 export interface DirectRepairInput {
@@ -20,7 +21,8 @@ const DIRECT_TARGETS = {
   realisations: { nodeId: '2117:4690', structuralPath: '0', allowed: ['width', 'x'] },
 } as const;
 
-/** Pure gate used both by the adversarial fixture and the file-backed plan. */
+/** Pure gate exercised by the adversarial eval fixture (direct-geometry-repair-check).
+ * The file-backed plan path is `loadDirect` below, which re-validates from campaign data. */
 export function validateDirectRepair(value: unknown): DirectRepairValidation {
   const input = value as Partial<DirectRepairInput>;
   const reasons: string[] = [];
@@ -58,9 +60,6 @@ const directFiles: Record<'categories-principales' | 'realisations', string> = {
   'categories-principales': 'specs/021-figma-projection-repair/repairs/categories-principales.json',
   realisations: 'specs/021-figma-projection-repair/repairs/realisations.json',
 };
-const asObject = (value: unknown): Record<string, unknown> =>
-  typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : {};
-
 function loadDirect(file: string, campaign: RepairCampaign): PlannedOperation[] {
   if (!existsSync(file)) throw new Error(`direct repair declaration is missing: ${file}`);
   const repair = JSON.parse(readFileSync(file, 'utf8')) as DirectRepairFile;
@@ -72,7 +71,7 @@ function loadDirect(file: string, campaign: RepairCampaign): PlannedOperation[] 
     throw new Error(`direct repair declaration failed pin/target/protection gate: ${repair.targetId}`);
   }
   if (repair.allowedFields.some((field) => !target.allowedFields.includes(field))) throw new Error(`direct repair allowlist exceeds target grant: ${repair.targetId}`);
-  return repair.operations.flatMap((operation, operationIndex) => Object.entries(asObject(operation.changes)).map(([field, value]) => {
+  return repair.operations.flatMap((operation, operationIndex) => Object.entries(isObject(operation.changes) ? operation.changes : {}).map(([field, value]) => {
     if (!repair.allowedFields.includes(field) || !target.allowedFields.includes(field) || typeof value !== 'number') {
       throw new Error(`direct repair operation ${repair.targetId}/${operationIndex} changes forbidden field ${field}`);
     }
@@ -113,29 +112,4 @@ export function dryRunCampaign(campaign: RepairCampaign, root = process.cwd(), t
     if (includes(targetId)) operations.push(...loadDirect(path.resolve(root, file), campaign));
   }
   return { campaignId: campaign.campaignId, filePin: campaign.filePin.versionId, state: campaign.state, operations };
-}
-
-/** The only mutation seam. An adapter must be supplied by the desktop bridge;
- * REST tokens never gain write authority here. */
-export interface CanvasWriter {
-  assertPreconditions(operation: PlannedOperation): Promise<void>;
-  applyGeneratedAmend(operation: PlannedOperation): Promise<void>;
-  ensureOrganismContainer(operation: PlannedOperation): Promise<void>;
-  resize(operation: PlannedOperation): Promise<void>;
-  reposition(operation: PlannedOperation): Promise<void>;
-  setProperties(operation: PlannedOperation): Promise<void>;
-  assertPostconditions(operation: PlannedOperation): Promise<void>;
-}
-
-export async function applyCampaign(plan: DryRun, writer: CanvasWriter): Promise<PlannedOperation[]> {
-  for (const operation of plan.operations) {
-    await writer.assertPreconditions(operation);
-    if (operation.mechanism === 'generated-amend') await writer.applyGeneratedAmend(operation);
-    else if (operation.mechanism === 'ensure-organism-container') await writer.ensureOrganismContainer(operation);
-    else if (operation.mechanism === 'resize') await writer.resize(operation);
-    else if (operation.mechanism === 'reposition') await writer.reposition(operation);
-    else await writer.setProperties(operation);
-    await writer.assertPostconditions(operation);
-  }
-  return plan.operations;
 }

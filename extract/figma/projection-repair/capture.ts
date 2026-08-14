@@ -5,7 +5,7 @@
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { FIGMA_API_BASE } from '../rest/fetch.js';
+import { figmaRestGet } from '../rest/fetch.js';
 import { figmaToken } from '../../fidelity-matrix/scripts/env.js';
 import { collectSurfaceFacts } from './facts.js';
 import { isObject as object, sha256Of as sha256, stableJson, walkStructural as walk, type JsonRecord as Json } from './json.js';
@@ -17,11 +17,8 @@ const stable = (value: unknown): string => stableJson(value, 2);
 
 export { figmaToken };
 
-async function getJson<T>(route: string, token: string): Promise<T> {
-  const response = await fetch(`${FIGMA_API_BASE}${route}`, { headers: { 'X-Figma-Token': token } });
-  if (!response.ok) throw new Error(`Figma API ${response.status} on ${route}: ${(await response.text()).slice(0, 240)}`);
-  return response.json() as Promise<T>;
-}
+/** Typed veneer over the shared REST transport; routes stay verbatim here. */
+const getJson = <T>(route: string, token: string): Promise<T> => figmaRestGet(route, token) as Promise<T>;
 
 async function getBytes(url: string, token: string): Promise<Uint8Array> {
   const response = await fetch(url, { headers: { 'X-Figma-Token': token } });
@@ -210,8 +207,12 @@ export async function captureCampaign(
   const inspection = await inspectFigmaCampaign(campaign, token, { enforceVersionPin: phase === 'before' });
   const surfaces = campaign.affectedSurfaces.filter((surface) => surface.nodeId !== null);
   const ids = surfaces.map((surface) => surface.nodeId!);
-  const response = await getJson<{ nodes?: Record<string, { document?: Json }> }>(`/v1/files/${campaign.filePin.fileKey}/nodes?ids=${encodeURIComponent(ids.join(','))}`, token);
-  const images = await getJson<{ images?: Record<string, string | null> }>(`/v1/images/${campaign.filePin.fileKey}?ids=${encodeURIComponent(ids.join(','))}&format=png&scale=1`, token);
+  // Node documents and render URLs both derive their ids from the campaign,
+  // not from each other — one round trip instead of two sequential ones.
+  const [response, images] = await Promise.all([
+    getJson<{ nodes?: Record<string, { document?: Json }> }>(`/v1/files/${campaign.filePin.fileKey}/nodes?ids=${encodeURIComponent(ids.join(','))}`, token),
+    getJson<{ images?: Record<string, string | null> }>(`/v1/images/${campaign.filePin.fileKey}?ids=${encodeURIComponent(ids.join(','))}&format=png&scale=1`, token),
+  ]);
   const phaseRoot = path.resolve(outputRoot, phase);
   mkdirSync(phaseRoot, { recursive: true });
   const artifacts: EvidenceArtifact[] = [];

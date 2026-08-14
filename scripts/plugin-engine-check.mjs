@@ -38,7 +38,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { buildEngineBundle, verifyEngineReceipt } from './build-plugin-zip.mjs';
-import { createFigmaMock } from './plugin-engine-mock-figma.mjs';
+import { createFigmaMock, seedMarkedTextStyles } from './plugin-engine-mock-figma.mjs';
 
 const ROOT = process.cwd();
 const read = (p) => readFileSync(path.join(ROOT, p), 'utf8');
@@ -82,18 +82,7 @@ for (const icon of iconRegistry.icons) {
 // Seed that exact post-migration state from an independent historical fixture
 // so this check cannot hide name adoption or duplicate creation.
 const historicalTextStyles = JSON.parse(read('evals/fixtures/figma-text-styles-piqueray.expected.json'));
-for (const recipe of historicalTextStyles) {
-  const style = figma.createTextStyle();
-  style.name = recipe.name;
-  style.fontName = { family: recipe.fontFamily, style: recipe.fontStyle };
-  style.fontSize = recipe.fontSize;
-  style.lineHeight = recipe.lineHeight === undefined
-    ? { unit: 'AUTO' }
-    : { unit: 'PIXELS', value: recipe.lineHeight };
-  style.letterSpacing = recipe.letterSpacing;
-  style.textCase = recipe.textCase;
-  style.setSharedPluginData('ds_contracts', 'textStyleToken', recipe.tokenPath);
-}
+seedMarkedTextStyles(figma, historicalTextStyles);
 const sandbox = { window: {}, console: { log() {}, warn() {}, error() {} } };
 vm.createContext(sandbox);
 vm.runInContext(bundle.code, sandbox, { timeout: 120_000 });

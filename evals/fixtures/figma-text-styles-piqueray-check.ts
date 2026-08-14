@@ -6,8 +6,8 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { ContractSchema, type Contract } from '../../scripts/contract-schema.js';
-import { createFigmaEngine, type FigmaIconComponent, type NodeSpec } from '../../core/emit-figma-script.js';
-import { createFigmaMock } from '../../scripts/plugin-engine-mock-figma.mjs';
+import { createFigmaEngine, iconComponentsFromRegistry, type IconRegistryEntry, type NodeSpec } from '../../core/emit-figma-script.js';
+import { createFigmaMock, seedMarkedTextStyles } from '../../scripts/plugin-engine-mock-figma.mjs';
 
 const ROOT = process.cwd();
 const readJson = (relative: string) => JSON.parse(readFileSync(path.join(ROOT, relative), 'utf8'));
@@ -23,21 +23,13 @@ const icons = new Map<string, string>();
 for (const directory of ['icons', 'vectors']) {
   for (const name of readdirSync(path.join(ROOT, 'assets', directory))) {
     if (name.endsWith('.svg')) {
-      icons.set(name.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', directory, name), 'utf8'));
+      // .trim() matches scripts/generate-figma.ts — the pipeline this fixture guards.
+      icons.set(name.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', directory, name), 'utf8').trim());
     }
   }
 }
-const iconRegistry = readJson('contracts/icons.registry.json') as {
-  icons: Array<{ name: string; asset: string; figma: { componentName: string; key: string; nodeId: string } }>;
-};
-const iconComponents = new Map<string, FigmaIconComponent>(
-  iconRegistry.icons.map((icon) => [icon.name, {
-    asset: icon.asset,
-    componentName: icon.figma.componentName,
-    key: icon.figma.key,
-    nodeId: icon.figma.nodeId,
-  }]),
-);
+const iconRegistry = readJson('contracts/icons.registry.json') as { icons: IconRegistryEntry[] };
+const iconComponents = iconComponentsFromRegistry(iconRegistry);
 const engine = createFigmaEngine({
   tokens: {
     primitives: readJson('tokens/primitives.tokens.json'),
@@ -124,22 +116,8 @@ if (tokensScript.indexOf('Missing historical Text Style marker') > tokensScript.
   fail('historical Text Style preflight must run before any variable creation');
 }
 
-const seedHistoricalStyles = (figma: any, omitMarkerFor?: string) => {
-  for (const recipe of expectedStyles as any[]) {
-    const style = figma.createTextStyle();
-    style.name = recipe.name;
-    style.fontName = { family: recipe.fontFamily, style: recipe.fontStyle };
-    style.fontSize = recipe.fontSize;
-    style.lineHeight = recipe.lineHeight === undefined
-      ? { unit: 'AUTO' }
-      : { unit: 'PIXELS', value: recipe.lineHeight };
-    style.letterSpacing = recipe.letterSpacing;
-    style.textCase = recipe.textCase;
-    if (recipe.name !== omitMarkerFor) {
-      style.setSharedPluginData('ds_contracts', 'textStyleToken', recipe.tokenPath);
-    }
-  }
-};
+const seedHistoricalStyles = (figma: any, omitMarkerFor?: string) =>
+  seedMarkedTextStyles(figma, expectedStyles as any[], { omitMarkerFor });
 const executeTokens = (figma: any) =>
   Function('figma', `return (async () => {\n${tokensScript}\n})()`)(figma);
 

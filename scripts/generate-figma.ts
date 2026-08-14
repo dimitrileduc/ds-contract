@@ -18,8 +18,9 @@ import path from 'node:path';
 import { ContractSchema, sortByDependencies } from './contract-schema.js';
 import {
   createFigmaEngine,
+  iconComponentsFromRegistry,
   type ComponentData,
-  type FigmaIconComponent,
+  type IconRegistryEntry,
 } from '../core/emit-figma-script.js';
 
 const ROOT = process.cwd();
@@ -51,24 +52,8 @@ for (const subdir of ['icons', 'vectors']) {
 // Governed icon identity is data, not a consumer-layer name heuristic. The
 // browser-pure engine receives the exact componentName/key/nodeId triplet for
 // every registry asset and uses nodeId→key resolution on the live canvas.
-const iconRegistry = read('contracts/icons.registry.json') as {
-  icons: Array<{
-    name: string;
-    asset: string;
-    figma: { componentName: string; key: string; nodeId: string };
-  }>;
-};
-const iconComponents = new Map<string, FigmaIconComponent>(
-  iconRegistry.icons.map((icon) => [
-    icon.name,
-    {
-      asset: icon.asset,
-      componentName: icon.figma.componentName,
-      key: icon.figma.key,
-      nodeId: icon.figma.nodeId,
-    },
-  ]),
-);
+const iconRegistry = read('contracts/icons.registry.json') as { icons: IconRegistryEntry[] };
+const iconComponents = iconComponentsFromRegistry(iconRegistry);
 
 // 017 (FR-003b) — le registre gouverné des levées du refus photo. `core/` ne
 // lit aucun fichier (§VII, browser-pure) : c'est la coquille CLI qui le lit et

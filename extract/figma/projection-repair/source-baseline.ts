@@ -41,9 +41,8 @@ export function snapshotSourceBaseline(
 
 export function verifySourceBaseline(root: string, baseline: SourceBaseline): void {
   if (!safeBackupRef.test(baseline.backupRef) || baseline.backupRef.includes('..')) throw new Error(`unsafe backup ref: ${baseline.backupRef}`);
-  const commit = git(root, ['rev-parse', `${baseline.backupRef}^{commit}`]);
-  const tree = git(root, ['rev-parse', `${commit}^{tree}`]);
-  const parent = git(root, ['rev-parse', `${commit}^`]);
+  const ref = `${baseline.backupRef}^{commit}`;
+  const [tree, parent] = git(root, ['rev-parse', `${ref}^{tree}`, `${ref}^`]).split('\n');
   if (tree !== baseline.worktreeTree) throw new Error(`source baseline tree drift: expected ${baseline.worktreeTree}, observed ${tree}`);
   if (parent !== baseline.gitHead) throw new Error(`source baseline parent drift: expected ${baseline.gitHead}, observed ${parent}`);
 }

@@ -35,10 +35,6 @@ const knownProtectedFacts = new Set<string>([
   ...REQUIRED_COMPONENT_PROTECTION_FACTS,
   'video-paints', 'geometry', 'responsive-overflow',
 ]);
-const states = new Set<CampaignState>([
-  'draft', 'preflight-valid', 'captured', 'ready-to-apply', 'applied', 'verified',
-  'owner-accepted', 'owner-refused', 'refused-before-mutation', 'application-failed', 'verification-failed',
-]);
 const targetIds = new Set<string>(REPAIR_TARGET_IDS);
 const safePath = (value: unknown): value is string =>
   typeof value === 'string' && value.length > 0 && !path.isAbsolute(value) && !value.split(/[\\/]+/).includes('..');
@@ -253,7 +249,9 @@ export function validateRepairCampaign(candidate: unknown): RepairValidation<Rep
     if (captures.idempotence !== undefined) validateCapture(captures.idempotence, '$.captureSets.idempotence', issues);
   }
 
-  if (!states.has(candidate.state as CampaignState)) issue(issues, 'state', '$.state', 'state is not part of the campaign state machine');
+  // `normalTransitions` is exhaustive over CampaignState by its type, so its
+  // keys ARE the state list; `hasOwn` keeps prototype keys out of the gate.
+  if (!Object.hasOwn(normalTransitions, String(candidate.state))) issue(issues, 'state', '$.state', 'state is not part of the campaign state machine');
   const state = candidate.state as CampaignState;
   const beforeComplete = record(captures) && completeCapture(captures.before, surfaceIds, hiddenSurfaceIds);
   if (['captured', 'ready-to-apply', 'applied', 'verified', 'owner-accepted', 'owner-refused'].includes(state) && !beforeComplete) {

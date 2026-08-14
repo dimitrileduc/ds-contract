@@ -23,9 +23,9 @@ export function validateBridgeOperation(operation: PlannedOperation): string[] {
     ['FILL', 'HUG', 'FIXED'].includes(String(changes.layoutSizingHorizontal))) return [];
   if (keys.length === 1 && keys[0] === 'layout' && object(changes.layout)) {
     const layout = changes.layout;
-    const allowed = new Set(['layoutMode', 'primaryAxisAlignItems', 'layoutPositioning', 'layoutSizingHorizontal', 'layoutSizingVertical', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft', 'horizontalConstraint', 'verticalConstraint', 'width', 'x', 'y']);
+    // Each disjunct pins its own key name, so the disjunction IS the allowlist.
     const entries = Object.entries(layout);
-    if (entries.length > 0 && entries.every(([key, value]) => allowed.has(key) && (
+    if (entries.length > 0 && entries.every(([key, value]) => (
       (['layoutSizingHorizontal', 'layoutSizingVertical'].includes(key) && ['FILL', 'HUG', 'FIXED'].includes(String(value))) ||
       (key === 'layoutMode' && ['HORIZONTAL', 'VERTICAL'].includes(String(value))) ||
       (key === 'primaryAxisAlignItems' && ['MIN', 'CENTER', 'MAX', 'SPACE_BETWEEN'].includes(String(value))) ||
@@ -84,11 +84,29 @@ const MARK_NS = 'ds_contracts';
 const MARK_KEY = 'organismContainerFor';
 const TEXT_STYLE_MARK = 'textStyleToken';
 const all = [];
-for (const page of figma.root.children) all.push(...page.findAll(() => true));
+for (const page of figma.root.children) for (const node of page.findAll(() => true)) all.push(node);
 const pageOf = (node) => { let cursor = node; while (cursor && cursor.type !== 'PAGE') cursor = cursor.parent; return cursor; };
 const componentLike = (node) => node && (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET' || node.type === 'INSTANCE');
 const masterLike = (node) => node && (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET');
-const markedContainers = (targetId) => all.filter((node) => node.type === 'FRAME' && node.getSharedPluginData(MARK_NS, MARK_KEY) === targetId);
+// One pass over the script-start snapshot builds both lookups. Operations keep
+// resolving against pre-mutation state exactly as the per-operation filters
+// over \`all\` did — a container created mid-run was never visible to either.
+const mastersByName = new Map();
+const markedContainersByTarget = new Map();
+for (const node of all) {
+  if (masterLike(node)) {
+    const bucket = mastersByName.get(node.name);
+    if (bucket) bucket.push(node); else mastersByName.set(node.name, [node]);
+  } else if (node.type === 'FRAME') {
+    const mark = node.getSharedPluginData(MARK_NS, MARK_KEY);
+    if (mark) {
+      const bucket = markedContainersByTarget.get(mark);
+      if (bucket) bucket.push(node); else markedContainersByTarget.set(mark, [node]);
+    }
+  }
+}
+const sameNamedMasters = (name) => mastersByName.get(name) ?? [];
+const markedContainers = (targetId) => markedContainersByTarget.get(targetId) ?? [];
 const resolvePath = (root, structuralPath) => {
   let node = root;
   for (const raw of String(structuralPath || '').split('/').filter(Boolean)) {
@@ -263,7 +281,7 @@ for (const operation of INPUT.operations) {
     const root = await figma.getNodeByIdAsync(operation.nodeId);
     if (!root || !masterLike(root)) throw new Error('Pinned generated-amend master absent: ' + operation.nodeId);
     if (pageOf(root)?.name === 'Pages') throw new Error('Refused Page master write: ' + root.id);
-    const sameNamed = all.filter((node) => masterLike(node) && node.name === target.expectedMasterName);
+    const sameNamed = sameNamedMasters(target.expectedMasterName);
     if (sameNamed.length !== 1 || sameNamed[0].id !== root.id) throw new Error('Master cardinality drift: ' + target.expectedMasterName);
     const generatedRunner = GENERATED_RUNNERS[operation.operationId];
     if (typeof generatedRunner !== 'function') throw new Error('Missing generated runner: ' + operation.operationId);
@@ -293,7 +311,7 @@ for (const operation of INPUT.operations) {
   const master = await figma.getNodeByIdAsync(operation.nodeId);
   if (!master || !masterLike(master)) throw new Error('Pinned master absent: ' + operation.nodeId);
   if (pageOf(master)?.name === 'Pages') throw new Error('Refused Page master write: ' + master.id);
-  const sameNamed = all.filter((node) => masterLike(node) && node.name === target.expectedMasterName);
+  const sameNamed = sameNamedMasters(target.expectedMasterName);
   if (sameNamed.length !== 1 || sameNamed[0].id !== master.id) throw new Error('Master cardinality drift: ' + target.expectedMasterName);
   const changes = operation.changes;
   const expectedParentId = operation.preconditions.find((entry) => entry.field === 'parentNodeId')?.equals;
@@ -355,7 +373,7 @@ const responsiveImages = [];
 for (const target of INPUT.targets) {
   const master = await figma.getNodeByIdAsync(target.masterNodeId);
   if (!master) throw new Error('Post-apply master absent: ' + target.masterNodeId);
-  const sameNamed = all.filter((node) => masterLike(node) && node.name === target.expectedMasterName);
+  const sameNamed = sameNamedMasters(target.expectedMasterName);
   const variantNames = master.type === 'COMPONENT_SET' ? master.children.filter((node) => node.type === 'COMPONENT').map((node) => node.name).sort() : [];
   masters.push({ targetId: target.targetId, nodeId: master.id, componentKey: master.key, masterCount: sameNamed.length, variantNames });
   let container = containerByTarget.get(target.targetId) || markedContainers(target.targetId)[0] || null;
