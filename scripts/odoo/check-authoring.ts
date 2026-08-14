@@ -43,6 +43,11 @@ export const ROOT_SELECTOR: Record<string, string> = {
   'ds.presentation': '.s_pqr_presentation',
   'ds.google-reviews': '.s_pqr_google_reviews',
   'ds.hero': '.s_pqr_hero',
+  'ds.equipe': '.s_pqr_equipe',
+  'ds.sav': '.s_pqr_sav',
+  'ds.devis': '.s_pqr_devis',
+  'ds.texte-seo': '.s_pqr_texte_seo',
+  'ds.faq': '.s_pqr_faq',
 };
 
 // ---------------------------------------------------------------------------

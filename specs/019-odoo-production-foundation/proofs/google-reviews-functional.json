@@ -8,7 +8,7 @@
     "[pass] la page de qualification Google Reviews est publique — attendu « HTTP 200 », observé « HTTP 200 »",
     "[pass] la page fonctionnelle démarre vide pour une insertion Website réelle — attendu « 0 instance », observé « 0 instance(s) »",
     "[pass] le QWeb public rend le sample contractuel Google Reviews — attendu « HTTP 200 · 1 × 5 cartes identifiées », observé « review-0:Prénom N. · review-1:Prénom N. · review-2:Prénom N. · review-3:Prénom N. · review-4:Prénom N. »",
-    "[pass] la page de qualification expose un #wrap sauvegardable — attendu « data-oe-model/id/xpath sur #wrap », observé « {\"model\":\"ir.ui.view\",\"id\":\"1327\",\"xpath\":\"/t[1]/t[1]/div[1]\"} »",
+    "[pass] la page de qualification expose un #wrap sauvegardable — attendu « data-oe-model/id/xpath sur #wrap », observé « {\"model\":\"ir.ui.view\",\"id\":\"1343\",\"xpath\":\"/t[1]/t[1]/div[1]\"} »",
     "[pass] le catalogue Website insère deux instances Google Reviews indépendantes — attendu « A=5 et B=5 cartes », observé « A=5 · B=5 »",
     "[pass] ajout ciblé — A passe de 5 à 6 sans fuite vers B — attendu « A=6, B=5 », observé « A=6 · B=5 »",
     "[pass] réordre ciblé — la nouvelle carte remonte dans A seulement — attendu « marque review-5 en avant-dernière position de A; B=5 », observé « A=review-0, review-1, review-2, review-3, review-5, review-4 · B=5 »",
@@ -29,5 +29,5 @@
     }
   ],
   "limitCodes": [],
-  "durationMs": 110734
+  "durationMs": 135652
 }

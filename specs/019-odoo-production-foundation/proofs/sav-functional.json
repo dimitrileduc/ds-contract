@@ -1,0 +1,29 @@
+{
+  "receiptId": "sav-functional-security-odoo-019-foundation",
+  "scenarioId": "sav-functional-security",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "sav-panel",
+  "observations": [
+    "[pass] catalogue — deux SAV indépendants sont insérés — attendu « 2 racines », observé « 2 racine(s) »",
+    "[pass] panneau — inventaire SAV strict — attendu « sav-background-alt, sav-background-url, sav-body, sav-cta-label, sav-photo-alt, sav-photo-url, sav-title », observé « sav-background-alt, sav-background-url, sav-body, sav-cta-label, sav-photo-alt, sav-photo-url, sav-title »",
+    "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
+    "[pass] racine — actions Odoo interdites absentes — attendu « save-as-custom, resize, background, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0,\"background\":0} »",
+    "[pass] média — dialogue Odoo limité aux images — attendu « Images seulement », observé « Images »",
+    "[pass] édition et médias — deux plans remplis sur A, B totalement isolée — attendu « A : 2 médias remplis (Odoo publié ou pending natif) + 2 alts · B : aucun média », observé « [{\"title\":\"SAV instance A\",\"photo\":{\"source\":\"data:image/*;base64,…\",\"alt\":\"Technicien Piqueray en intervention\",\"pending\":true},\"fond\":{\"source\":\"data:image/*;base64,…\",\"alt\":\"Atelier Piqueray\",\"pending\":true}},{\"title\":\"SAV instance B\",\"photo\":{\"source\":\"\",\"alt\":\"\",\"pending\":false},\"fond\":{\"source\":\"\",\"alt\":\"\",\"pending\":false}}] »",
+    "[pass] save — Odoo persiste les deux SAV — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — contenu, deux médias same-origin distincts et isolation persistent — attendu « HTTP 200 · A : 2 médias /web/ distincts + alts · B sans média », observé « [{\"title\":\"SAV instance A\",\"photo\":{\"source\":\"/web/image/308-ad815f8a/home-light.webp\",\"alt\":\"Technicien Piqueray en intervention\",\"pending\":false},\"fond\":{\"source\":\"/web/image/307-d5188ae7/how-model-light.webp\",\"alt\":\"Atelier Piqueray\",\"pending\":false}},{\"title\":\"SAV instance B\",\"photo\":{\"source\":\"\",\"alt\":\"\",\"pending\":false},\"fond\":{\"source\":\"\",\"alt\":\"\",\"pending\":false}}] »",
+    "[pass] public — strong et br déclarés survivent, em/lien/handler neutralisés — attendu « 1 strong · 1 br · 0 em/a/script · 0 handler/URL hostile », observé « {\"strong\":1,\"br\":1,\"forbidden\":0,\"safety\":{\"handlers\":[],\"executableUrls\":[]}} »",
+    "[pass] responsive — hauteur contractuelle, fond couvrant et colonnes côte à côte à 1728/1440 — attendu « hauteur 677 · 0 overflow · fond couvrant · 2 colonnes · pre-line », observé « [{\"width\":1728,\"sectionHeight\":677,\"overflow\":0,\"fondDelta\":0,\"colonnesCoteACote\":true,\"texteInside\":true,\"ctaInside\":true,\"texteWhiteSpace\":\"pre-line\"},{\"width\":1440,\"sectionHeight\":677,\"overflow\":0,\"fondDelta\":0,\"colonnesCoteACote\":true,\"texteInside\":true,\"ctaInside\":true,\"texteWhiteSpace\":\"pre-line\"}] »",
+    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 SAV relus, médias et br de A conservés », observé « [{\"title\":\"SAV instance A\",\"br\":1,\"photoAlt\":\"Technicien Piqueray en intervention\",\"fondAlt\":\"Atelier Piqueray\"},{\"title\":\"SAV instance B\",\"br\":1,\"photoAlt\":\"\",\"fondAlt\":\"\"}] »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/sav-functional.public.json",
+      "sha256": "3fc92d262f53cfa36c84b531b00c65bbd1da94d413acfa1fb33c8bcd7517dbd4",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 133772
+}

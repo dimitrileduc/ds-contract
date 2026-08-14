@@ -1,0 +1,31 @@
+{
+  "receiptId": "equipe-visual-odoo-019-foundation",
+  "scenarioId": "equipe-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "equipe-default",
+  "observations": [
+    "[pass] captures — référence HTML, public Odoo et rapport existent — attendu « 3 artefacts », observé « 3 artefacts »",
+    "[pass] comparaison — dimensions identiques et score mesuré — attendu « statut mesurée, score numérique », observé « mesurée · 0 % »",
+    "[pass] rendu — sample contractuel strictement identique — attendu « 0 % de pixels différents, aucun résidu », observé « 0 % · cause=null · justification=null »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/equipe-visual/html/equipe-default.png",
+      "sha256": "3eaba8f48a0662c389dc2203508382512726869ce918f5b6f326744d62be61ad",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/equipe-visual/odoo/equipe-default.png",
+      "sha256": "ec05bce4dda540c7a60ddc0b8f6aed471579b171dc63869a73267d9b5d9204d6",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/equipe-visual/diff/comparaison-image.json",
+      "sha256": "7f02839c86c47dbd13473d7c37b63d75eb68164560114f9c7ccce21f5284ae81",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 6
+}

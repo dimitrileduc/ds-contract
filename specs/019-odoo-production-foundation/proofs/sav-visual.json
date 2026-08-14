@@ -1,0 +1,31 @@
+{
+  "receiptId": "sav-visual-odoo-019-foundation",
+  "scenarioId": "sav-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "sav-default",
+  "observations": [
+    "[pass] captures — référence HTML, public Odoo et rapport existent — attendu « 3 artefacts », observé « 3 artefacts »",
+    "[pass] comparaison — dimensions identiques et score mesuré — attendu « statut mesurée, score numérique », observé « mesurée · 0.030015968236157268 % »",
+    "[pass] résidu — mesure nommée, cause et justification portées au rapport canonique — attendu « 0.030015968236157268 % · cause et justification non nulles », observé « 0.030015968236157268 % · cause=portée · justification=portée — icônes src=\"\" des deux plans A5 côté référence + glyphe de flèche du gabarit partagé; le paragraphe (5 insécables, 3 strong, 1 br) casse à l'identique »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/sav-visual/html/sav-default.png",
+      "sha256": "c25fe207301b7df3ed1bb8e2420a8a9f0fbec607370e0f0d9bc8209d3586bdb2",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/sav-visual/odoo/sav-default.png",
+      "sha256": "d092974686616a0d66af89a9eb75506a8fee1bc3d0ce919ff38a8a48727b505a",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/sav-visual/diff/comparaison-image.json",
+      "sha256": "df5ded31da5e0fdf30bf061792dfc416aa7f50acda0f8b57d5d3fe70f7a8aea6",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 4
+}

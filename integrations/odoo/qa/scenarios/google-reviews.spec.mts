@@ -230,7 +230,10 @@ async function main() {
       );
 
       const addedMarker = (await markers(firstRoot)).at(-1) ?? '(absent)';
-      await firstRoot.locator(CARD).last().click({ position: { x: 8, y: 8 } });
+      // Les flèches owner-approved chevauchent volontairement 15 px du bord
+      // des cartes extrêmes. Le geste QA cible l'intérieur de la carte, pas
+      // la hitbox légitime du contrôle de carrousel.
+      await firstRoot.locator(CARD).last().click({ position: { x: 40, y: 8 } });
       await editorPage.waitForTimeout(100);
       const currentCardPanel = cardPanel(editorPage);
       await currentCardPanel.getByRole('button', { name: 'Monter' }).click();
@@ -254,7 +257,7 @@ async function main() {
       // La collection ne porte pas de cardinalité minimale : atteindre zéro
       // doit garder le panneau racine capable d'ajouter la première carte.
       while (await firstRoot.locator(CARD).count() > 0) {
-        await firstRoot.locator(CARD).first().click({ position: { x: 8, y: 8 } });
+        await firstRoot.locator(CARD).first().click({ position: { x: 40, y: 8 } });
         await editorPage.waitForTimeout(100);
         await cardPanel(editorPage).getByRole('button', { name: 'Supprimer l’avis' }).click();
         await editorPage.waitForTimeout(100);
@@ -279,7 +282,7 @@ async function main() {
       const firstCard = firstRoot.locator(CARD).first();
       await replaceText(firstCard.locator('[data-pqr-part="auteur"]'), 'QA Alice');
       await replaceText(firstCard.locator('[data-pqr-part="temoignage"]'), 'Avis QA persistant');
-      await firstCard.click({ position: { x: 8, y: 8 } });
+      await firstCard.click({ position: { x: 40, y: 8 } });
       await editorPage.waitForTimeout(150);
       const activeCardPanel = cardPanel(editorPage);
       const initialToggle = activeCardPanel.locator('[data-action-param="initialeVisible"] input');

@@ -14,10 +14,10 @@ décide qui a le droit de l'éditer, et ce qu'un écart signifie.
 
 ### 1. Canonique — la source de vérité, **lue, jamais copiée**
 
-Les six contrats de la fermeture active, les jetons et les registres du dépôt.
+Les contrats de la fermeture active (14 au lock du 2026-08-12), les jetons et les registres du dépôt.
 
 ```text
-contracts/{presentation,section-header,button,google-reviews,review-card,hero}.contract.json
+contracts/{presentation,section-header,button,google-reviews,review-card,hero,equipe,member-card,member-picture,sav,devis,faq,accordion-row,texte-seo}.contract.json
 tokens/*.tokens.json
 contracts/icons.registry.json · contracts/named-literals.registry.json
 ```
@@ -36,6 +36,8 @@ explicite**, qui invalide les preuves affectées.
 config/presentation.authoring.json      # T042
 config/google-reviews.authoring.json    # T026
 config/hero.authoring.json              # extension Hero 2026-08-11
+config/equipe.authoring.json            # extension Équipe 2026-08-11
+config/devis.authoring.json             # extension Devis 2026-08-12
 config/adaptation-registry.json         # T062
 config/inputs.lock.json                 # T010
 ```
@@ -177,6 +179,26 @@ source et ne permet ni URL externe ni URL exécutable. `backgroundAlt` reste éd
 
 Cette séparation permet à deux Hero placés sur des pages différentes de partager le même contrat
 et la même politique tout en conservant leurs propres image, alt et contenu sauvegardés.
+
+### Règle média d’Équipe
+
+`ds.member-card.imageUrl` et `imageAlt` pilotent le plan `normal` de l’occurrence imbriquée
+`ds.member-picture`. Le dialogue média natif doit conserver son état temporaire
+`o_modified_image_to_save` jusqu’au save : réécrire `src` dans `onAttachmentChange` force Odoo à
+sauvegarder son placeholder. La façade restaure seulement l’adresse `data-pqr-part`, exige une
+source same-origin `/web/image|content/`, puis laisse `ImageSavePlugin` finaliser le média. Un
+`alt=""` reste une alternative décorative valide et ne masque pas le portrait : Odoo vide l'alt
+quand une pièce jointe existante est choisie, et la visibilité doit refléter immédiatement le
+nouveau `src`. Le plan technique `funIa`, l’état `defaut` et la taille `member-card` restent figés
+par composition.
+
+### Règle canvas commune aux images
+
+Hero, Google Reviews et Équipe remplacent leurs médias uniquement par le bouton métier de leur
+panneau Piqueray. Un clic direct sur un bitmap ne doit jamais rouvrir les conteneurs natifs Odoo
+`ReplaceMediaOption`, `ImageToolOption` ou `ImageAndFaOption` : remplacement direct, crop, filtre,
+lien, tooltip, dimensions, forme, format, transformation, alignement et style restent interdits.
+La fermeture est root-scopée sur les quatre racines et son geste canvas est exercé sur Odoo propre.
 
 ## Typage
 

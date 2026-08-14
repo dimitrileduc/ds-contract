@@ -24,7 +24,7 @@ import { ContractSchema, type Contract, type Part } from '../../contract-schema.
 import { repoPath, repoRelative, sortedBy, canonicalJson, sha256 } from './canonical.js';
 
 /** Les sections posables. Tout le reste de leur fermeture reste interne. */
-export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero'] as const;
+export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo'] as const;
 
 /** Sources de jetons réellement lues par le build d'assets. Triées. */
 export const TOKEN_SOURCES = [
@@ -51,7 +51,7 @@ export interface ContractSource {
 /**
  * Tous les contrats du dépôt, indexés par id, avec leur chemin et leur empreinte.
  *
- * On charge TOUT le répertoire, pas seulement les cinq : `emitHtml` exige un
+ * On charge TOUT le répertoire, pas seulement la fermeture active : `emitHtml` exige un
  * contexte qui contienne chaque dépendance transitive, et une sélection
  * pré-filtrée transformerait une référence oubliée en « contrat absent » tardif
  * plutôt qu'en fermeture correcte.
@@ -188,7 +188,7 @@ export function graphDigest(closure: readonly string[], contracts: Map<string, C
 
 export interface OdooRepoData {
   readonly contracts: Map<string, ContractSource>;
-  /** Ids de la fermeture des deux racines, triés. */
+  /** Ids de la fermeture des racines posables, triés. */
   readonly closure: readonly string[];
   readonly graphDigest: string;
 }

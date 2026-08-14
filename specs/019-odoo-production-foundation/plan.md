@@ -320,3 +320,11 @@ et l'entrée de snippet Hero, un contrôle média qui laisse Odoo posséder le r
 du nœud, et les scénarios fonctionnel, visuel, isolation combinée et install/update à trois racines.
 Le résultat n'ajoute ni émetteur Odoo dans `core/`, ni bitmap de contenu dans l'addon, ni migration
 automatique du HTML déjà sauvegardé.
+
+## Extension d'exécution — `ds.equipe` (2026-08-11)
+
+L'extension suit le même ordre : snapshot vert puis repin, authoring exhaustif sur les chemins
+Équipe → MemberCard[] → MemberPicture, spike repeat/fermeture, QWeb composé, façade média native,
+preuves fonctionnelle et visuelle, isolation combinée 2×4 et install/update à quatre racines. Le
+premier spike média a révélé puis fermé la perte `src`/`alt` causée par une réécriture prématurée de
+`src`; la pipeline finale laisse `ImageSavePlugin` produire l'URL `/web/image` au save.

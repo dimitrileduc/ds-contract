@@ -7,13 +7,13 @@
   "observations": [
     "[pass] référence HTML — attendu « clip 1400×300, sujet default », observé « PNG capturé avec Chromium 151.0.7922.34 »",
     "[pass] page Odoo publique — attendu « HTTP 200 et ds.presentation présent », observé « capture Odoo produite sur /piqueray-harness/presentation-visual »",
-    "[pass] comparaison — attendu « dimensions identiques et score mesuré », observé « 2.6092857142857144 % de pixels différents »",
-    "[pass] résidu attribué — attendu « cause dans le rapport canonique », observé « composition, contenu et dimensions alignés ; résidu concentré sur l’anti-aliasing et de faibles écarts de métriques des glyphes ; aucune revendication de parité pixel parfaite »"
+    "[pass] comparaison — attendu « dimensions identiques et score mesuré », observé « 0,0073214285714285725 % de pixels différents »",
+    "[pass] résidu attribué — attendu « cause dans le rapport canonique », observé « 123 pixels uniquement dans une boîte 36×22 px autour de la flèche du CTA, dus à son anti-aliasing ; composition, contenu, dimensions et colonnes sont identiques »"
   ],
   "artifacts": [
-    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/html/presentation-default.png", "sha256": "c02e831b2c27bf22ff613b16b01c2dc9f932f198f9c2e8e825fb10dc2b793c1e", "kind": "image" },
-    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/odoo/presentation-default.png", "sha256": "5a828bb8b8d84758090fb0be32f5fb0e42b6a251a42d5393e5e9704f341b8505", "kind": "image" },
-    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/diff/comparaison-image.json", "sha256": "2fcc736ad087ea0e2dc5d0b675e69347576249d1659d720a9f130d107b9f42ad", "kind": "report" }
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/html/presentation-default.png", "sha256": "41c236f6db9d67e19f87babdb6ce1c0abd86a6720b3f97aa64c526ac27278baa", "kind": "image" },
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/odoo/presentation-default.png", "sha256": "2205087b18f4858798ecde0d7c818f34a181be54c6a3ab09bbb231f1d14a8c8b", "kind": "image" },
+    { "path": "specs/019-odoo-production-foundation/proofs/presentation-visual/diff/comparaison-image.json", "sha256": "da9cc9dd291668d31878e1136420190f5e506f4594b3db3bca01d5c33e3763a8", "kind": "report" }
   ],
   "limitCodes": [],
   "durationMs": 0

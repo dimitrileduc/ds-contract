@@ -1,0 +1,31 @@
+{
+  "receiptId": "faq-visual-odoo-019-foundation",
+  "scenarioId": "faq-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "faq-default",
+  "observations": [
+    "[pass] captures — référence HTML, public Odoo et rapport existent — attendu « 3 artefacts », observé « 3 artefacts »",
+    "[pass] comparaison — dimensions identiques et score mesuré — attendu « statut mesurée, score numérique », observé « mesurée · 0.01728353857890148 % »",
+    "[pass] résidu — mesure nommée avec cause portée au rapport canonique — attendu « 0.01728353857890148 % · cause et justification renseignées », observé « 0.01728353857890148 % · cause=« anti-aliasing des chevrons SVG des trois rangées et de la flèche du CTA » »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/faq-visual/reference/faq-default.png",
+      "sha256": "36eee84a9dc126c2f79b97566c7e8fa134309b489c878e6312f5217fd33cdc39",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/faq-visual/odoo/faq-default.png",
+      "sha256": "146ee94e99b4de4c5682bf81366fe8a93758701bf32e9b75a59fbf7c4b1a79ac",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/faq-visual/diff/comparaison-image.json",
+      "sha256": "4c293bed13b97a5c5e874c12b3b8ba6a8144c48fad183798b8d0d629d63cd41f",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 4
+}

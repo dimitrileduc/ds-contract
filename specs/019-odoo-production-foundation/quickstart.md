@@ -9,7 +9,7 @@ livrer par 019.
 - Node.js ≥ 20 et dépendances du worktree installées;
 - Docker avec les images exactes du snapshot;
 - Chromium Playwright installé dans le worktree;
-- aucun changement non repinné dans les six contrats de la fermeture ou leurs entrées;
+- aucun changement non repinné dans les neuf contrats de la fermeture ou leurs entrées;
 - ports locaux de la QA Odoo disponibles.
 
 Le lock à contrôler est `integrations/odoo/config/inputs.lock.json`. Les formats attendus sont dans
@@ -24,7 +24,7 @@ npm run odoo:authoring:check
 
 Résultat attendu :
 
-- 3 racines et 6 contrats résolus aux versions/hash épinglés;
+- 4 racines et 9 contrats résolus aux versions/hash épinglés;
 - couverture complète des props et parts annoncées par chaque config, puis de leurs occurrences imbriquées;
 - 0 verdict manquant/dupliqué, 0 chemin ambigu/invalide;
 - tout sélecteur de part préfixé par sa racine.
@@ -60,7 +60,7 @@ npm run odoo:qa:smoke
 ```
 
 Résultat attendu : module `piqueray_ds` installé sur l'image exacte, aucune erreur JS/XML bloquante,
-exactement trois entrées de snippets (`Presentation`, `Google Reviews`, `Hero`) et aucun composant interne
+exactement quatre entrées de snippets (`Presentation`, `Google Reviews`, `Hero`, `Équipe`) et aucun composant interne
 posable.
 
 ## 4. Qualifier `GoogleReviews` en premier
@@ -110,6 +110,15 @@ overflow et le CTA conserve son comportement hug/nowrap.
 
 ## 7. Vérifier sécurité et compatibilité
 
+Avant cette étape, qualifier Équipe :
+
+```bash
+npx tsx integrations/odoo/qa/scenarios/equipe.spec.mts
+```
+
+Le scénario couvre deux instances, les cardinalités 0/1/16/17, l’édition nom/poste, le portrait
+Odoo avec alt, save/reopen/public et la grille quatre colonnes sans overflow à 1728/1440.
+
 ```bash
 npm run odoo:qa:security
 npm run odoo:qa:compat
@@ -132,7 +141,7 @@ Attendus :
 npm run odoo:qa:update
 ```
 
-Le test part d'une base contenant les trois sections remplies, met à jour l'addon, puis contrôle la
+Le test part d'une base contenant les quatre sections remplies, met à jour l'addon, puis contrôle la
 lisibilité, le contenu, les métadonnées de version et le public. Il distingue explicitement ce que
 `-u` met à jour (assets/politique/templates futurs) de ce qu'il ne réécrit pas (HTML déjà posé).
 
@@ -142,7 +151,7 @@ lisibilité, le contenu, les métadonnées de version et le public. Il distingue
 npm run odoo:qa:visual
 ```
 
-Pour chacune des trois racines, la référence HTML et Odoo utilisent le même snapshot, contenu,
+Pour chacune des quatre racines, la référence HTML et Odoo utilisent le même snapshot, contenu,
 viewport, fontes, état et clip. Le reçu fournit les deux PNG, le diff et le JSON de mesure. La cible
 est `0.0000 %`; tout résidu est chiffré et accepté explicitement. Un smoke séparé vérifie la vraie
 page Odoo, sans confondre son chrome avec le clip strict du composant.

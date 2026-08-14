@@ -147,6 +147,21 @@
   </record>
   <!-- ODOO-019-HARNESS-HERO END -->
 
+  <!-- ODOO-019-HARNESS-EQUIPE BEGIN -->
+  <template id="harness_equipe" name="Piqueray — banc Équipe">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_equipe" model="website.page">
+    <field name="url">/piqueray-harness/equipe</field><field name="view_id" ref="harness_equipe"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_equipe_visual" name="Piqueray — Équipe visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; height: 2117px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_equipe"/></div></div></t>
+  </template>
+  <record id="page_harness_equipe_visual" model="website.page">
+    <field name="url">/piqueray-harness/equipe-visual</field><field name="view_id" ref="harness_equipe_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-EQUIPE END -->
+
   <!-- ODOO-019-HARNESS-COMBINED BEGIN -->
   <template id="harness_combined" name="Piqueray — banc combiné">
     <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
@@ -155,4 +170,63 @@
     <field name="url">/piqueray-harness/combined</field><field name="view_id" ref="harness_combined"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-019-HARNESS-COMBINED END -->
+  <!-- ODOO-019-HARNESS-DEVIS BEGIN -->
+  <template id="harness_devis" name="Piqueray — banc Devis">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_devis" model="website.page">
+    <field name="url">/piqueray-harness/devis</field><field name="view_id" ref="harness_devis"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_devis_visual" name="Piqueray — Devis visuel">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; min-height: 426px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_devis"/></div></div></t>
+  </template>
+  <record id="page_harness_devis_visual" model="website.page">
+    <field name="url">/piqueray-harness/devis-visual</field><field name="view_id" ref="harness_devis_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-DEVIS END -->
+
+  <!-- ODOO-019-HARNESS-FAQ BEGIN -->
+  <template id="harness_faq" name="Piqueray — banc FAQ">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_faq" model="website.page">
+    <field name="url">/piqueray-harness/faq</field><field name="view_id" ref="harness_faq"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- Une seule racine, même padding/clip que le renderer HTML de référence :
+       FAQ fermée 1728×448 + 24px de cadre de part et d'autre. -->
+  <template id="harness_faq_visual" name="Piqueray — FAQ visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; min-height: 496px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_faq"/></div></div></t>
+  </template>
+  <record id="page_harness_faq_visual" model="website.page">
+    <field name="url">/piqueray-harness/faq-visual</field><field name="view_id" ref="harness_faq_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-FAQ END -->
+  <!-- ODOO-019-HARNESS-SAV BEGIN -->
+  <template id="harness_sav" name="Piqueray — banc SAV">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_sav" model="website.page">
+    <field name="url">/piqueray-harness/sav</field><field name="view_id" ref="harness_sav"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_sav_visual" name="Piqueray — SAV visuel">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1598px; height: 725px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_sav"/></div></div></t>
+  </template>
+  <record id="page_harness_sav_visual" model="website.page">
+    <field name="url">/piqueray-harness/sav-visual</field><field name="view_id" ref="harness_sav_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-SAV END -->
+  <!-- ODOO-019-HARNESS-TEXTE-SEO BEGIN -->
+  <template id="harness_texte_seo" name="Piqueray — banc Texte SEO">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_texte_seo" model="website.page">
+    <field name="url">/piqueray-harness/texte-seo</field><field name="view_id" ref="harness_texte_seo"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_texte_seo_visual" name="Piqueray — Texte SEO visuel">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; height: 431px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_texte_seo"/></div></div></t>
+  </template>
+  <record id="page_harness_texte_seo_visual" model="website.page">
+    <field name="url">/piqueray-harness/texte-seo-visual</field><field name="view_id" ref="harness_texte_seo_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-019-HARNESS-TEXTE-SEO END -->
 </odoo>

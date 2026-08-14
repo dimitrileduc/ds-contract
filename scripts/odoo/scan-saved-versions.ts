@@ -3,10 +3,10 @@ import path from 'node:path';
 import { canonicalJson, sha256 } from './lib/canonical.js';
 import { arg, runAsCli } from './lib/cli.js';
 
-const EXPECTED_GRAPH = 'cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b';
+const EXPECTED_GRAPH = '497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3';
 const AUTHORING = '1.0.0';
-const MODULE = '19.0.1.1.0';
-const CONTRACTS: Record<string, string> = { 'ds.presentation': '2.5.0', 'ds.google-reviews': '1.0.0', 'ds.hero': '1.5.0' };
+const MODULE = '19.0.1.3.0';
+const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '1.0.2', 'ds.presentation': '2.6.0', 'ds.hero': '1.5.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '1.2.0', 'ds.sav': '1.4.0', 'ds.texte-seo': '2.1.0' };
 
 export type VersionState = 'current' | 'policy-stale' | 'structure-stale' | 'unknown';
 export interface SavedCase { id: string; html: string }
@@ -33,7 +33,7 @@ export function classify(attributes: Record<string, string>): VersionState {
 
 export function scanCases(cases: SavedCase[]) {
   const entries: ScanEntry[] = cases.flatMap<ScanEntry>(({ id, html }) => {
-    const tags = [...html.matchAll(/<(?:section|div)\b[^>]*(?:s_pqr_presentation|s_pqr_google_reviews|s_pqr_hero)[^>]*>/g)].map((m) => m[0]);
+    const tags = [...html.matchAll(/<(?:section|div)\b[^>]*(?:s_pqr_google_reviews|s_pqr_presentation|s_pqr_hero|s_pqr_equipe|s_pqr_faq|s_pqr_devis|s_pqr_sav|s_pqr_texte_seo)[^>]*>/g)].map((m) => m[0]);
     if (tags.length === 0) return [{ caseId: id, index: 0, contractId: null, state: 'unknown' as const, metadata: {} }];
     return tags.map((tag, index) => {
       const metadata = attrs(tag);

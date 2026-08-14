@@ -1,0 +1,27 @@
+{
+  "receiptId": "faq-mechanism-spike-odoo-019-foundation",
+  "scenarioId": "faq-mechanism-spike",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "faq-contract-sample",
+  "observations": [
+    "[pass] catalogue — deux FAQ rendent leurs 3 questions fermées — attendu « racines=2, A=3, B=3 », observé « racines=2 · A=3 · B=3 »",
+    "[pass] frontière — titre ouvert, rangée/déclencheur fermés, contenu caché — attendu « rangée=false, titre=true, déclencheur=false, contenu invisible », observé « {\"rowEditable\":false,\"titreEditable\":true,\"contenuEditable\":true,\"contenuVisible\":false,\"triggerEditable\":false} »",
+    "[pass] édition — un vrai clic sur le titre traverse l'overlay du déclencheur — attendu « clic servi puis frappe visible », observé « texte après frappe : « No — éditées portes répondent-elles aux normes des bâtiments publics ? » »",
+    "[pass] bascule panneau — la rangée A1 s'ouvre, B1 reste fermée — attendu « A1 ouverte (classe+hidden+aria), B1 fermée », observé « A1={\"open\":true,\"closed\":false,\"contenuHidden\":false,\"contenuVisible\":true,\"chevronDownHidden\":true,\"chevronUpHidden\":false,\"ariaExpanded\":\"true\"} · B1={\"open\":false,\"closed\":true,\"contenuHidden\":true,\"contenuVisible\":false,\"chevronDownHidden\":false,\"chevronUpHidden\":true,\"ariaExpanded\":\"false\"} »",
+    "[pass] édition — la réponse ouverte accepte une frappe réelle — attendu « contenu éditable, texte « Réponse spike A1 » », observé « éditable=true · texte=« Réponse spike A1 » »",
+    "[pass] édition — le clic déclencheur ne bascule pas (interaction publique absente) — attendu « A2 reste fermée après clic trigger en édition », observé « {\"open\":false,\"closed\":true,\"contenuHidden\":true,\"contenuVisible\":false,\"chevronDownHidden\":false,\"chevronUpHidden\":true,\"ariaExpanded\":\"false\"} »",
+    "[pass] repeat — ajout ciblé, rangée neuve FERMÉE en fin — attendu « A=4 (dernière fermée), B=3 », observé « A=4 · B=3 · dernière={\"open\":false,\"closed\":true,\"contenuHidden\":true,\"contenuVisible\":false,\"chevronDownHidden\":false,\"chevronUpHidden\":true,\"ariaExpanded\":\"false\"} »",
+    "[pass] repeat — réordre ciblé — attendu « faq-3 en avant-dernière position de A », observé « faq-0, faq-1, faq-3, faq-2 »",
+    "[pass] repeat — suppression ciblée — attendu « A=3, B=3 », observé « A=3 · B=3 »",
+    "[pass] save — le DOM FAQ est persisté (A1 ouverte au moment du save) — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — 2 racines, A1 rouverte OUVERTE comme sauvegardée, réponse éditée servie — attendu « racines=2, A1 ouverte, contenu « Réponse spike A1 » », observé « racines=2 · A1={\"open\":true,\"closed\":false,\"contenuHidden\":false,\"contenuVisible\":true,\"chevronDownHidden\":true,\"chevronUpHidden\":false,\"ariaExpanded\":\"true\"} · contenu=« Réponse spike A1 » »",
+    "[pass] public — clic déclencheur ferme A1 — attendu « A1 fermée », observé « {\"open\":false,\"closed\":true,\"contenuHidden\":true,\"contenuVisible\":false,\"chevronDownHidden\":false,\"chevronUpHidden\":true,\"ariaExpanded\":\"false\"} »",
+    "[pass] public — A2 s'ouvre puis se referme au clic — attendu « A2 ouverte après 1er clic, fermée après 2e », observé « après 1er clic={\"open\":true,\"closed\":false,\"contenuHidden\":false,\"contenuVisible\":true,\"chevronDownHidden\":true,\"chevronUpHidden\":false,\"ariaExpanded\":\"true\"} · après 2e={\"open\":false,\"closed\":true,\"contenuHidden\":true,\"contenuVisible\":false,\"chevronDownHidden\":false,\"chevronUpHidden\":true,\"ariaExpanded\":\"false\"} »",
+    "[pass] public — bascule B1 indépendante, A1 inchangée — attendu « B1 ouverte, A1 fermée », observé « B1={\"open\":true,\"closed\":false,\"contenuHidden\":false,\"contenuVisible\":true,\"chevronDownHidden\":true,\"chevronUpHidden\":false,\"ariaExpanded\":\"true\"} · A1={\"open\":false,\"closed\":true,\"contenuHidden\":true,\"contenuVisible\":false,\"chevronDownHidden\":false,\"chevronUpHidden\":true,\"ariaExpanded\":\"false\"} »",
+    "[pass] public — aucune erreur console imputable à piqueray_ds — attendu « 0 erreur », observé « 0 erreur »"
+  ],
+  "artifacts": [],
+  "limitCodes": [],
+  "durationMs": 161054
+}

@@ -1,0 +1,20 @@
+{
+  "receiptId": "equipe-mechanism-spike-odoo-019-foundation",
+  "scenarioId": "equipe-mechanism-spike",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "equipe-contract-sample",
+  "observations": [
+    "[pass] catalogue — deux Équipes rendent leur sample — attendu « A=16, B=16 », observé « racines=2 · A=16 · B=16 »",
+    "[pass] frontière — textes ouverts, carte et média fermés — attendu « carte=false, média=false, nom=true, poste=true », observé « {\"cardEditable\":false,\"pictureEditable\":false,\"nameEditable\":true,\"roleEditable\":true} »",
+    "[pass] édition directe — les deux textes nommés acceptent une frappe réelle — attendu « Membre spike A / Rôle spike A », observé « Membre spike A / Rôle spike A »",
+    "[pass] repeat — ajout ciblé sans fuite — attendu « A=17, B=16 », observé « A=17 · B=16 »",
+    "[pass] repeat — réordre ciblé — attendu « member-16 en avant-dernière position de A », observé « member-0, member-1, member-2, member-3, member-4, member-5, member-6, member-7, member-8, member-9, member-10, member-11, member-12, member-13, member-14, member-16, member-15 »",
+    "[pass] repeat — suppression ciblée — attendu « A=16, B=16 », observé « A=16 · B=16 »",
+    "[pass] save — le DOM Équipe est persisté — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] reopen — deux instances et les textes survivent sans état parallèle — attendu « A=16 éditée, B=16 intacte », observé « [{\"count\":16,\"name\":\"Membre spike A\",\"role\":\"Rôle spike A\"},{\"count\":16,\"name\":\"Cécilia Piqueray\",\"role\":\"Gérante\"}] »"
+  ],
+  "artifacts": [],
+  "limitCodes": [],
+  "durationMs": 108185
+}

@@ -12,6 +12,15 @@
 .s_pqr_google_reviews:not(.pqr-controls-visible) [data-pqr-controls] {
   display: none;
 }
+
+/* Le repeat QWeb rend directement la racine de ReviewCard : ce pont porte
+ * donc le Fill déclaré sur la part composée `carte`, sans modifier le contrat
+ * standalone de ReviewCard ni ses autres consommateurs. */
+.s_pqr_google_reviews [data-pqr-review-list] > [data-pqr-review-card] {
+  width: 100%;
+  min-width: 0;
+}
+
 /* ODOO-019-GOOGLE-REVIEWS-BRIDGE END */
 
 /* ODOO-019-PRESENTATION-MECHANICS BEGIN */
@@ -23,3 +32,60 @@
   display: contents;
 }
 /* ODOO-019-PRESENTATION-MECHANICS END */
+
+/* ODOO-019-TEXTE-SEO-MECHANICS BEGIN
+ * Mêmes états mécaniques que la FAQ : plan inactif sous `hidden`, classes
+ * d'état posées par le mécanisme partagé (faq_toggle.js). Spécificité petit :
+ * le groupe de titre garde la hauteur de contrat size.accordion-row.title
+ * (32px, sans déclinaison petit) alors que la rangée fermée de référence se
+ * mesure sur le seul titre (24px) — `display: contents` dissout la boîte à
+ * l'état fermé ; l'état ouvert retrouve la boîte de 32px du contrat. */
+.s_pqr_texte_seo [hidden] {
+  display: none !important;
+}
+
+.s_pqr_texte_seo .accordion-row--etat-ferme [data-pqr-part="title-group"] {
+  display: contents;
+}
+
+/* En ÉDITION, le déclencheur est inerte (l'interaction publique n'y tourne pas)
+ * mais son overlay intercepterait le clic du rédacteur sur la question — même
+ * parade que la FAQ, scopée par la classe d'éditeur du noyau. */
+.odoo-editor-editable .s_pqr_texte_seo [data-pqr-part="trigger"] {
+  pointer-events: none;
+}
+/* ODOO-019-TEXTE-SEO-MECHANICS END */
+
+/* ODOO-019-FAQ-MECHANICS BEGIN
+ *
+ * Mécanique seulement, aucune valeur visuelle dupliquée. Le DOM FAQ porte les
+ * deux plans d'état d'une rangée ; le plan inactif est `hidden`, et les classes
+ * générées posent des `display` plus spécifiques que la règle UA — d'où le
+ * `!important`, même motif que Google Reviews. */
+/* En ÉDITION, le déclencheur ne sert à rien (l'interaction publique n'y tourne
+ * pas — mesuré au spike) mais son overlay couvre la moitié haute du titre et
+ * intercepterait le clic du rédacteur. `odoo-editor-editable` est la classe
+ * posée par le noyau sur la zone éditable (html_editor/editor.js:144). */
+.odoo-editor-editable .s_pqr_faq [data-pqr-part="trigger"] {
+  pointer-events: none;
+}
+
+.s_pqr_faq [hidden] {
+  display: none !important;
+}
+
+/* Le wrapper CTA est un hook d'adressage (data-pqr-part="faq-cta"), pas une
+ * part du contrat : `display: contents` le retire du layout, même motif que le
+ * CTA de Présentation. */
+.s_pqr_faq [data-pqr-part="faq-cta"] {
+  display: contents;
+}
+
+/* Le plan unifié fermé/ouvert garde le groupe de titre dans les deux états ;
+ * en état fermé, la référence porte `gap` sur la rangée elle-même
+ * (space-between + gap {space.24}) — le groupe reprend le même jeton pour que
+ * l'écart minimal titre/chevron survive au wrapper. */
+.s_pqr_faq .accordion-row__title {
+  gap: var(--pqr-space-24);
+}
+/* ODOO-019-FAQ-MECHANICS END */

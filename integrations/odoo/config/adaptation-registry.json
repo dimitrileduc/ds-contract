@@ -1,34 +1,674 @@
 {
   "schemaVersion": "1.0.0",
   "reasonCodes": [
-    { "code": "odoo-qweb-composition", "description": "Projection manuelle d'une composition contractuelle en templates QWeb." },
-    { "code": "odoo-builder-policy", "description": "Adaptation aux ressources et panneaux du Website Builder Odoo." },
-    { "code": "odoo-repeat-dom", "description": "Mutation d'une collection sauvegardée dans le DOM Odoo." },
-    { "code": "odoo-media-dialog", "description": "Encapsulation sûre du dialogue média natif." },
-    { "code": "odoo-version-policy", "description": "Métadonnées et classification de compatibilité du HTML sauvegardé." },
-    { "code": "odoo-layout-bridge", "description": "Pont CSS limité aux états mécaniques du builder." },
-    { "code": "odoo-internal-api", "description": "Frontière isolée avec les APIs internes d'Odoo 19." }
+    {
+      "code": "odoo-qweb-composition",
+      "description": "Projection manuelle d'une composition contractuelle en templates QWeb."
+    },
+    {
+      "code": "odoo-builder-policy",
+      "description": "Adaptation aux ressources et panneaux du Website Builder Odoo."
+    },
+    {
+      "code": "odoo-repeat-dom",
+      "description": "Mutation d'une collection sauvegardée dans le DOM Odoo."
+    },
+    {
+      "code": "odoo-media-dialog",
+      "description": "Encapsulation sûre du dialogue média natif."
+    },
+    {
+      "code": "odoo-version-policy",
+      "description": "Métadonnées et classification de compatibilité du HTML sauvegardé."
+    },
+    {
+      "code": "odoo-layout-bridge",
+      "description": "Pont CSS limité aux états mécaniques du builder."
+    },
+    {
+      "code": "odoo-internal-api",
+      "description": "Frontière isolée avec les APIs internes d'Odoo 19."
+    }
   ],
   "adaptations": [
-    { "adaptationId": "ODOO-019-GOOGLE-REVIEWS-QWEB", "path": "integrations/odoo/addons/piqueray_ds/views/components.xml", "rootContracts": ["ds.google-reviews"], "reasonCode": "odoo-qweb-composition", "decisionRefs": ["T027", "T028"], "mechanism": "qweb" },
-    { "adaptationId": "ODOO-019-PRESENTATION-QWEB", "path": "integrations/odoo/addons/piqueray_ds/views/components.xml", "rootContracts": ["ds.presentation"], "reasonCode": "odoo-qweb-composition", "decisionRefs": ["T043", "T044", "T045"], "mechanism": "qweb" },
-    { "adaptationId": "ODOO-019-HERO-QWEB", "path": "integrations/odoo/addons/piqueray_ds/views/components.xml", "rootContracts": ["ds.hero"], "reasonCode": "odoo-qweb-composition", "decisionRefs": ["hero.authoring.json"], "mechanism": "qweb" },
-    { "adaptationId": "ODOO-019-GOOGLE-REVIEWS-SNIPPET", "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml", "rootContracts": ["ds.google-reviews"], "reasonCode": "odoo-qweb-composition", "decisionRefs": ["T028"], "mechanism": "qweb" },
-    { "adaptationId": "ODOO-019-PRESENTATION-SNIPPET", "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml", "rootContracts": ["ds.presentation"], "reasonCode": "odoo-qweb-composition", "decisionRefs": ["T045"], "mechanism": "qweb" },
-    { "adaptationId": "ODOO-019-HERO-SNIPPET", "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml", "rootContracts": ["ds.hero"], "reasonCode": "odoo-qweb-composition", "decisionRefs": ["hero.authoring.json"], "mechanism": "qweb" },
-    { "adaptationId": "ODOO-019-AUTHORING-ROOTS", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js", "rootContracts": ["ds.presentation", "ds.google-reviews", "ds.hero"], "reasonCode": "odoo-builder-policy", "decisionRefs": ["T019", "T032", "T046", "hero.authoring.json"], "mechanism": "builder-option" },
-    { "adaptationId": "ODOO-019-AUTHORING-PLUGIN", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js", "rootContracts": ["ds.presentation", "ds.google-reviews", "ds.hero"], "reasonCode": "odoo-builder-policy", "decisionRefs": ["T019", "T032", "T046", "hero.authoring.json"], "mechanism": "builder-option" },
-    { "adaptationId": "ODOO-019-GOOGLE-REVIEWS-PANEL", "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml", "rootContracts": ["ds.google-reviews"], "reasonCode": "odoo-builder-policy", "decisionRefs": ["T031"], "mechanism": "builder-option" },
-    { "adaptationId": "ODOO-019-PRESENTATION-PANEL", "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml", "rootContracts": ["ds.presentation"], "reasonCode": "odoo-builder-policy", "decisionRefs": ["T046"], "mechanism": "builder-option" },
-    { "adaptationId": "ODOO-019-HERO-PANEL", "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml", "rootContracts": ["ds.hero"], "reasonCode": "odoo-builder-policy", "decisionRefs": ["hero.authoring.json"], "mechanism": "builder-option" },
-    { "adaptationId": "ODOO-019-GOOGLE-REVIEWS-REPEAT", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js", "rootContracts": ["ds.google-reviews"], "reasonCode": "odoo-repeat-dom", "decisionRefs": ["T029"], "mechanism": "repeat-action" },
-    { "adaptationId": "ODOO-019-GOOGLE-REVIEWS-MEDIA", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js", "rootContracts": ["ds.google-reviews"], "reasonCode": "odoo-media-dialog", "decisionRefs": ["T030"], "mechanism": "media" },
-    { "adaptationId": "ODOO-019-HERO-MEDIA", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js", "rootContracts": ["ds.hero"], "reasonCode": "odoo-media-dialog", "decisionRefs": ["hero-background-url", "hero-background-alt"], "mechanism": "media" },
-    { "adaptationId": "ODOO-019-RICHTEXT-ALLOWLIST", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/rich_text_guard.js", "rootContracts": ["ds.presentation", "ds.google-reviews", "ds.hero"], "reasonCode": "odoo-builder-policy", "decisionRefs": ["T019", "T036", "T050", "hero.authoring.json"], "mechanism": "builder-option" },
-    { "adaptationId": "ODOO-019-VERSION-GUARD", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/version_guard.js", "rootContracts": ["ds.presentation", "ds.google-reviews", "ds.hero"], "reasonCode": "odoo-version-policy", "decisionRefs": ["T053", "T054", "hero.authoring.json"], "mechanism": "save-version" },
-    { "adaptationId": "ODOO-019-GOOGLE-REVIEWS-BRIDGE", "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css", "rootContracts": ["ds.google-reviews"], "reasonCode": "odoo-layout-bridge", "decisionRefs": ["T033"], "mechanism": "odoo-bridge" },
-    { "adaptationId": "ODOO-019-PRESENTATION-MECHANICS", "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css", "rootContracts": ["ds.presentation"], "reasonCode": "odoo-layout-bridge", "decisionRefs": ["T047"], "mechanism": "odoo-bridge" },
-    { "adaptationId": "ODOO-019-COMPAT-SENTINEL", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/odoo19_compat.js", "rootContracts": ["ds.presentation", "ds.google-reviews", "ds.hero"], "reasonCode": "odoo-internal-api", "decisionRefs": ["T018"], "mechanism": "compatibility" },
-    { "adaptationId": "ODOO-019-COMPAT-EXPORTS", "path": "integrations/odoo/addons/piqueray_ds/static/src/js/odoo19_compat.js", "rootContracts": ["ds.presentation", "ds.google-reviews", "ds.hero"], "reasonCode": "odoo-internal-api", "decisionRefs": ["T018"], "mechanism": "compatibility" }
+    {
+      "adaptationId": "ODOO-019-GOOGLE-REVIEWS-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.google-reviews"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "T027",
+        "T028"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-PRESENTATION-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.presentation"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "T043",
+        "T044",
+        "T045"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-HERO-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.hero"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "hero.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-EQUIPE-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.equipe"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "equipe.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-GOOGLE-REVIEWS-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.google-reviews"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "T028"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-PRESENTATION-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.presentation"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "T045"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-HERO-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.hero"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "hero.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-EQUIPE-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.equipe"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "equipe.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-AUTHORING-ROOTS",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js",
+      "rootContracts": [
+        "ds.presentation",
+        "ds.google-reviews",
+        "ds.hero",
+        "ds.equipe",
+        "ds.devis",
+        "ds.faq",
+        "ds.sav",
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "T019",
+        "T032",
+        "T046",
+        "hero.authoring.json",
+        "equipe.authoring.json",
+        "devis.authoring.json",
+        "faq.authoring.json",
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-AUTHORING-PLUGIN",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js",
+      "rootContracts": [
+        "ds.presentation",
+        "ds.google-reviews",
+        "ds.hero",
+        "ds.equipe",
+        "ds.devis",
+        "ds.faq",
+        "ds.sav",
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "T019",
+        "T032",
+        "T046",
+        "hero.authoring.json",
+        "equipe.authoring.json",
+        "devis.authoring.json",
+        "faq.authoring.json",
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-GOOGLE-REVIEWS-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.google-reviews"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "T031"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-PRESENTATION-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.presentation"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "T046"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-HERO-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.hero"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "hero.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-EQUIPE-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.equipe"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "equipe.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-GOOGLE-REVIEWS-REPEAT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js",
+      "rootContracts": [
+        "ds.google-reviews"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "T029"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-019-GOOGLE-REVIEWS-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.google-reviews"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "T030"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-019-HERO-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.hero"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "hero-background-url",
+        "hero-background-alt"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-019-EQUIPE-REPEAT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js",
+      "rootContracts": [
+        "ds.equipe"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "equipe-collection"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-019-EQUIPE-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.equipe"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "member-image-url",
+        "member-image-alt"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-019-RICHTEXT-ALLOWLIST",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/rich_text_guard.js",
+      "rootContracts": [
+        "ds.presentation",
+        "ds.google-reviews",
+        "ds.hero",
+        "ds.equipe",
+        "ds.faq",
+        "ds.sav",
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "T019",
+        "T036",
+        "T050",
+        "hero.authoring.json",
+        "equipe.authoring.json",
+        "faq.authoring.json",
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-VERSION-GUARD",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/version_guard.js",
+      "rootContracts": [
+        "ds.presentation",
+        "ds.google-reviews",
+        "ds.hero",
+        "ds.equipe",
+        "ds.devis",
+        "ds.faq",
+        "ds.sav",
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-version-policy",
+      "decisionRefs": [
+        "T053",
+        "T054",
+        "hero.authoring.json",
+        "equipe.authoring.json",
+        "devis.authoring.json",
+        "faq.authoring.json",
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "save-version"
+    },
+    {
+      "adaptationId": "ODOO-019-GOOGLE-REVIEWS-BRIDGE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.google-reviews"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "T033"
+      ],
+      "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-019-PRESENTATION-MECHANICS",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.presentation"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "T047"
+      ],
+      "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-019-COMPAT-SENTINEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/odoo19_compat.js",
+      "rootContracts": [
+        "ds.presentation",
+        "ds.google-reviews",
+        "ds.hero",
+        "ds.equipe",
+        "ds.devis",
+        "ds.sav"
+      ],
+      "reasonCode": "odoo-internal-api",
+      "decisionRefs": [
+        "T018",
+        "devis.authoring.json",
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "compatibility"
+    },
+    {
+      "adaptationId": "ODOO-019-COMPAT-EXPORTS",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/odoo19_compat.js",
+      "rootContracts": [
+        "ds.presentation",
+        "ds.google-reviews",
+        "ds.hero",
+        "ds.equipe",
+        "ds.devis",
+        "ds.sav"
+      ],
+      "reasonCode": "odoo-internal-api",
+      "decisionRefs": [
+        "T018",
+        "devis.authoring.json",
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "compatibility"
+    },
+    {
+      "adaptationId": "ODOO-019-DEVIS-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.devis"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "devis.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-DEVIS-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.devis"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "devis.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-DEVIS-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.devis"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "devis.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-DEVIS-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.devis"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "devis-background-url",
+        "devis-background-alt"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-019-FAQ-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.faq"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "faq.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-FAQ-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.faq"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "faq.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-FAQ-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.faq"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "faq.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-FAQ-REPEAT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js",
+      "rootContracts": [
+        "ds.faq"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "faq-collection",
+        "faq-row-etat"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-019-FAQ-TOGGLE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/faq_toggle.js",
+      "rootContracts": [
+        "ds.faq"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "faq-row-etat"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-019-FAQ-INTERACTION",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/faq_interaction.js",
+      "rootContracts": [
+        "ds.faq"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "faq-row-etat"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-019-FAQ-MECHANICS",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.faq"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "faq.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-019-SAV-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.sav"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-SAV-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.sav"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-SAV-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.sav"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "sav.authoring.json",
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-SAV-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.sav"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "sav-background-url",
+        "sav-background-alt",
+        "sav-photo-url",
+        "sav-photo-alt"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-019-TEXTE-SEO-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-TEXTE-SEO-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-019-TEXTE-SEO-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-019-TEXTE-SEO-REPEAT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js",
+      "rootContracts": [
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "seo-collection",
+        "seo-row-etat"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-019-TEXTE-SEO-INTERACTION",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/texte_seo_interaction.js",
+      "rootContracts": [
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "seo-row-etat"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-019-TEXTE-SEO-MECHANICS",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.texte-seo"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "texte-seo.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
+    }
   ]
 }

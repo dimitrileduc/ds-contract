@@ -57,9 +57,10 @@
       {'auteur': 'Prénom N.', 'initiale': 'P', 'date': 'il y a 6 mois', 'texte': 'Un témoignage neutre, exemple générique de contenu.', 'tronque': False, 'initialeVisible': True, 'photo': False, 'photoUrl': '', 'photoAlt': '', 'verifie': True}
     ]"/>
     <section class="s_pqr_google_reviews google-reviews pqr-controls-visible" data-snippet="s_pqr_google_reviews" data-name="Piqueray · Google Reviews"
-             data-ds-contract="ds.google-reviews" data-ds-contract-version="1.0.0" data-ds-authoring-version="1.0.0"
-             data-ds-graph-digest="cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b"
-             data-vcss="19.0.1.1.0" data-vxml="19.0.1.1.0" data-vjs="19.0.1.1.0"
+             data-ds-contract="ds.google-reviews" data-ds-contract-version="1.0.2" data-ds-authoring-version="1.0.0"
+             data-montrer-controles=""
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-default" data-pqr-part="root">
       <div class="google-reviews__resume" data-pqr-part="resume">
         <div class="google-reviews__infos" data-pqr-part="infos">
@@ -106,9 +107,9 @@
 
   <template id="s_pqr_presentation" name="Piqueray · Présentation">
     <section class="s_pqr_presentation presentation pqr-cta-on" data-snippet="s_pqr_presentation" data-name="Piqueray · Présentation"
-             data-ds-contract="ds.presentation" data-ds-contract-version="2.5.0" data-ds-authoring-version="1.0.0"
-             data-ds-graph-digest="cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b"
-             data-vcss="19.0.1.1.0" data-vxml="19.0.1.1.0" data-vjs="19.0.1.1.0"
+             data-ds-contract="ds.presentation" data-ds-contract-version="2.6.0" data-ds-authoring-version="1.0.0"
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="presentation-default" data-pqr-part="root">
       <div class="presentation__colGauche" data-pqr-part="left-column">
         <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'moyen'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'presentation-title'"/><t t-set="title_html"><strong>Piqueray, </strong><span>une histoire de famille </span></t></t>
@@ -127,8 +128,8 @@
   <template id="s_pqr_hero" name="Piqueray · Hero">
     <section class="s_pqr_hero hero" data-snippet="s_pqr_hero" data-name="Piqueray · Hero"
              data-ds-contract="ds.hero" data-ds-contract-version="1.5.0" data-ds-authoring-version="1.0.0"
-             data-ds-graph-digest="cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b"
-             data-vcss="19.0.1.1.0" data-vxml="19.0.1.1.0" data-vjs="19.0.1.1.0"
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
       <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt=""/>
       <div class="hero__VoileNavigation oe_unremovable oe_unmovable" data-pqr-part="hero-navigation-veil"/>
@@ -146,4 +147,207 @@
     </section>
   </template>
   <!-- ODOO-019-HERO-QWEB END -->
+
+  <!-- ODOO-019-EQUIPE-QWEB BEGIN -->
+  <!-- Atome interne : deux plans d'image, sans surface posable autonome. -->
+  <template id="member_picture" name="Piqueray · MemberPicture">
+    <div class="member-picture member-picture--etat-defaut member-picture--taille-member-card"
+         data-pqr-part="member-picture-root">
+      <img class="member-picture__funIa" alt="" data-pqr-part="member-picture-underlay"/>
+      <img class="member-picture__normal o_editable_media"
+           t-att-src="member.get('imageUrl') or None"
+           t-att-alt="member.get('imageAlt', '')"
+           data-pqr-part="member-picture-normal"/>
+    </div>
+  </template>
+
+  <!-- Molécule interne : composée par t-call, jamais inscrite comme snippet. -->
+  <template id="member_card" name="Piqueray · MemberCard">
+    <article class="member-card oe_unremovable oe_unmovable"
+             data-pqr-member-card="" data-pqr-part="member-card-root"
+             t-attf-data-pqr-member-marker="member-#{member_index}">
+      <t t-call="piqueray_ds.member_picture"><t t-set="member" t-value="member"/></t>
+      <div class="member-card__text" data-pqr-part="member-text">
+        <span class="member-card__Nom o_pqr_editable" data-pqr-part="member-name" data-pqr-marks=""><t t-esc="member.get('nom', 'Prénom')"/></span>
+        <span class="member-card__Poste o_pqr_editable" data-pqr-part="member-role" data-pqr-marks=""><t t-esc="member.get('poste', 'Poste')"/></span>
+      </div>
+    </article>
+  </template>
+
+  <template id="s_pqr_equipe" name="Piqueray · Équipe">
+    <t t-set="members" t-value="[
+      {'poste': 'Gérante', 'nom': 'Cécilia Piqueray', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Gérant', 'nom': 'Florian Piqueray', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Collaboratrice admin &amp; comptabilité', 'nom': 'Sandra Magermans', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Collaborateur admin &amp; gestion SAV', 'nom': 'Arnaud Dahmen', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Peintre', 'nom': 'Ricardo', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Préparateur', 'nom': 'Quentin', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Monteur', 'nom': 'Marc', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Monteur', 'nom': 'André', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Monteur', 'nom': 'Grégory', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Monteur', 'nom': 'Laurent', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Monteur', 'nom': 'Jordan', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Monteur', 'nom': 'Florian', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Dépanneur', 'nom': 'Hervé', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Poste', 'nom': 'Prénom', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Poste', 'nom': 'Prénom', 'imageUrl': '', 'imageAlt': ''},
+      {'poste': 'Poste', 'nom': 'Prénom', 'imageUrl': '', 'imageAlt': ''}
+    ]"/>
+    <section class="s_pqr_equipe equipe" data-snippet="s_pqr_equipe" data-name="Piqueray · Équipe"
+             data-ds-contract="ds.equipe" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.0.0"
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="equipe-default" data-pqr-part="root">
+      <div class="equipe__grid" data-pqr-member-list="" data-pqr-part="member-grid">
+        <t t-foreach="members" t-as="member"><t t-call="piqueray_ds.member_card"><t t-set="member" t-value="member"/><t t-set="member_index" t-value="member_index"/></t></t>
+      </div>
+      <template data-pqr-member-blueprint=""><t t-call="piqueray_ds.member_card"><t t-set="member" t-value="{'poste': 'Poste', 'nom': 'Prénom', 'imageUrl': '', 'imageAlt': ''}"/><t t-set="member_index" t-value="'blueprint'"/></t></template>
+    </section>
+  </template>
+  <!-- ODOO-019-EQUIPE-QWEB END -->
+
+  <!-- ODOO-019-FAQ-QWEB BEGIN -->
+  <template id="pqr_chevron_down_32"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.29302 12.7071C6.90249 12.3166 6.90249 11.6836 7.29302 11.293C7.68354 10.9025 8.31655 10.9025 8.70708 11.293L16 18.586L23.293 11.293C23.6835 10.9025 24.3166 10.9025 24.7071 11.293C25.0976 11.6836 25.0976 12.3166 24.7071 12.7071L16.7071 20.7071C16.3166 21.0976 15.6835 21.0976 15.293 20.7071L7.29302 12.7071Z" fill="currentColor"/></svg></template>
+  <template id="pqr_chevron_up_32"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.29302 19.293C6.90249 19.6835 6.90249 20.3166 7.29302 20.7071C7.68354 21.0976 8.31655 21.0976 8.70708 20.7071L16 13.4141L23.293 20.7071C23.6835 21.0976 24.3166 21.0976 24.7071 20.7071C25.0976 20.3166 25.0976 19.6835 24.7071 19.293L16.7071 11.293C16.3166 10.9025 15.6835 10.9025 15.293 11.293L7.29302 19.293Z" fill="currentColor"/></svg></template>
+
+  <!-- Molécule interne : composée par t-call, jamais inscrite comme snippet.
+       Le DOM porte les DEUX plans d'état (fermé/ouvert), le plan inactif sous
+       `hidden` : le rendu de référence omet les parts invisibles, mais un HTML
+       sauvegardé ne se re-rend jamais — sans les deux plans, la réponse d'une
+       rangée fermée n'existerait nulle part. Un seul élément de titre sert les
+       deux états : `Titre` et `TitreOuvert` portent les mêmes jetons
+       (size.accordion-row.titre = titre-ouvert = 32px, typographie identique). -->
+  <template id="faq_accordion_row" name="Piqueray · AccordionRow">
+    <div class="accordion-row accordion-row--taille-grand accordion-row--etat-ferme oe_unremovable oe_unmovable"
+         data-pqr-faq-row="" data-pqr-part="accordion-row-root"
+         t-attf-data-pqr-faq-marker="faq-#{question_index}">
+      <div class="accordion-row__title" data-pqr-part="title-group">
+        <span class="accordion-row__Titre o_pqr_editable" data-pqr-part="titre" data-pqr-marks=""><t t-esc="question.get('titre', 'Question')"/></span>
+        <span class="accordion-row__ChevronDown" aria-hidden="true" data-pqr-part="chevron-down"><t t-call="piqueray_ds.pqr_chevron_down_32"/></span>
+        <span class="accordion-row__ChevronUp" aria-hidden="true" data-pqr-part="chevron-up" hidden="hidden"><t t-call="piqueray_ds.pqr_chevron_up_32"/></span>
+      </div>
+      <span class="accordion-row__Contenu o_pqr_editable" data-pqr-part="contenu" data-pqr-marks="strong" hidden="hidden"><t t-esc="question.get('contenu', 'Réponse')"/></span>
+      <button type="button" class="accordion-row__trigger" data-pqr-part="trigger" aria-expanded="false" t-att-aria-label="question.get('titre', 'Question')"></button>
+    </div>
+  </template>
+
+  <template id="s_pqr_faq" name="Piqueray · FAQ">
+    <t t-set="questions" t-value="[
+      {'titre': 'Nos portes répondent-elles aux normes des bâtiments publics ?', 'contenu': 'Réponse'},
+      {'titre': 'Quels types de bardages peuvent être intégrés sur les portes ?', 'contenu': 'Nos portes sont conçues pour recevoir tout type de bardage, garantissant une intégration parfaite à votre façade. Nous travaillons notamment avec les bardages Renson, Trespa, Alubond, Bois ou Eternit.'},
+      {'titre': 'Assurez-vous la maintenance après l\'installation ?', 'contenu': 'Réponse'}
+    ]"/>
+    <section class="s_pqr_faq faq" data-snippet="s_pqr_faq" data-name="Piqueray · FAQ"
+             data-ds-contract="ds.faq" data-ds-contract-version="1.3.0" data-ds-authoring-version="1.0.0"
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="faq-default" data-pqr-part="root">
+      <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'FAQ'"/><t t-set="title_part" t-value="'faq-title'"/><t t-set="title_html"><span>Questions fréquentes</span></t></t>
+      <div class="faq__accordion" data-pqr-faq-list="" data-pqr-part="accordion">
+        <t t-foreach="questions" t-as="question"><t t-call="piqueray_ds.faq_accordion_row"><t t-set="question" t-value="question"/><t t-set="question_index" t-value="question_index"/></t></t>
+      </div>
+      <template data-pqr-faq-blueprint=""><t t-call="piqueray_ds.faq_accordion_row"><t t-set="question" t-value="{'titre': 'Nouvelle question ?', 'contenu': 'Réponse'}"/><t t-set="question_index" t-value="'blueprint'"/></t></template>
+      <div class="faq__cta" data-pqr-part="faq-cta">
+        <t t-call="piqueray_ds.pqr_button"><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Contactez-nous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
+      </div>
+    </section>
+  </template>
+  <!-- ODOO-019-FAQ-QWEB END -->
+  <!-- ODOO-019-DEVIS-QWEB BEGIN -->
+  <template id="s_pqr_devis" name="Piqueray · Devis">
+    <section class="s_pqr_devis devis" data-snippet="s_pqr_devis" data-name="Piqueray · Devis"
+             data-ds-contract="ds.devis" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.0.0"
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="devis-default" data-pqr-part="root"
+             data-fond="">
+      <img class="devis__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="devis-background" alt=""/>
+      <div class="devis__Voile oe_unremovable oe_unmovable" data-pqr-part="devis-veil"/>
+      <div class="devis__Container oe_unremovable oe_unmovable" data-pqr-part="devis-container">
+        <span class="devis__Titre o_pqr_editable" data-pqr-part="devis-title" data-pqr-marks="">Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous</span>
+        <div class="devis__Bouton oe_unremovable oe_unmovable" data-pqr-part="devis-cta">
+          <t t-call="piqueray_ds.pqr_button"><t t-set="variant" t-value="'outlineBlanc'"/><t t-set="label" t-value="'Prendre rendez-vous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
+        </div>
+      </div>
+    </section>
+  </template>
+  <!-- ODOO-019-DEVIS-QWEB END -->
+  <!-- ODOO-019-SAV-QWEB BEGIN -->
+  <template id="s_pqr_sav" name="Piqueray · SAV">
+    <section class="s_pqr_sav sav" data-snippet="s_pqr_sav" data-name="Piqueray · SAV"
+             data-ds-contract="ds.sav" data-ds-contract-version="1.4.0" data-ds-authoring-version="1.0.0"
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="sav-default" data-pqr-part="root">
+      <div class="sav__section oe_unremovable oe_unmovable" data-pqr-part="sav-section">
+        <img class="sav__background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="sav-background" alt=""/>
+        <div class="sav__row oe_unremovable oe_unmovable" data-pqr-part="sav-row">
+          <div class="sav__wrapper oe_unremovable oe_unmovable" data-pqr-part="sav-wrapper">
+            <div class="sav__WrapperBackground oe_unremovable oe_unmovable" data-pqr-part="sav-wrapper-background"/>
+            <div class="sav__inner oe_unremovable oe_unmovable" data-pqr-part="sav-inner">
+              <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'sav-title'"/><t t-set="title_html"><span>Dépannage / SAV</span></t></t>
+              <span class="sav__vousRencontrezUnProblmeA o_pqr_editable" data-pqr-part="sav-text" data-pqr-marks="strong,line-break"><span>Vous rencontrez un problème avec </span><strong>votre installation </strong><span>Hörmann à Liège ? Il y a une panne de courant et </span><strong>votre porte de garage</strong><span> ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?</span><br/><span>Pas de panique, Piqueray, </span><strong>votre distributeur Hörmann en province de Liège</strong><span> est là pour vous aider !</span></span>
+              <div class="sav__Bouton oe_unremovable oe_unmovable" data-pqr-part="sav-cta">
+                <t t-call="piqueray_ds.pqr_button"><t t-set="variant" t-value="'default'"/><t t-set="label" t-value="'Demander de l’aide'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
+              </div>
+            </div>
+          </div>
+          <div class="sav__imgGroup oe_unremovable oe_unmovable" data-pqr-part="sav-img-group">
+            <div class="sav__ImgGroupBackground oe_unremovable oe_unmovable" data-pqr-part="sav-img-group-background"/>
+            <img class="sav__img o_editable_media oe_unremovable oe_unmovable" data-pqr-part="sav-photo" alt=""/>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+  <!-- ODOO-019-SAV-QWEB END -->
+  <!-- ODOO-019-TEXTE-SEO-QWEB BEGIN -->
+  <!-- Rangée composée par t-call, jamais inscrite comme snippet. Même patron
+       que la FAQ : les DEUX plans d'état dans le DOM sauvegardé, plan inactif
+       sous `hidden`, UN SEUL élément de titre (Titre et TitreOuvert portent la
+       même typographie en petit : size.accordion-row.titre-petit =
+       titre-ouvert-petit = 24px). La bascule d'état est le mécanisme partagé
+       de faq_toggle.js ; seule l'adresse des rangées diffère. -->
+  <template id="texte_seo_row" name="Piqueray · TexteSEO Ligne">
+    <t t-set="ouvert" t-value="row.get('etat') == 'ouvert'"/>
+    <div t-attf-class="accordion-row accordion-row--taille-petit accordion-row--etat-#{'ouvert' if ouvert else 'ferme'} oe_unremovable oe_unmovable"
+         data-pqr-accordion-row="" data-pqr-part="accordion-row-root"
+         t-attf-data-pqr-seo-marker="row-#{row_index}">
+      <div class="accordion-row__title" data-pqr-part="title-group">
+        <span class="accordion-row__Titre o_pqr_editable" data-pqr-part="titre" data-pqr-marks=""><t t-esc="row.get('titre', 'Question')"/></span>
+        <span class="accordion-row__ChevronDown" aria-hidden="true" data-pqr-part="chevron-down" t-att-hidden="'hidden' if ouvert else None"><t t-call="piqueray_ds.pqr_chevron_down_32"/></span>
+        <span class="accordion-row__ChevronUp" aria-hidden="true" data-pqr-part="chevron-up" t-att-hidden="None if ouvert else 'hidden'"><t t-call="piqueray_ds.pqr_chevron_up_32"/></span>
+      </div>
+      <span class="accordion-row__Contenu o_pqr_editable" data-pqr-part="contenu" data-pqr-marks="" t-att-hidden="None if ouvert else 'hidden'"><t t-esc="row.get('contenu', 'Réponse')"/></span>
+      <button type="button" class="accordion-row__trigger" data-pqr-part="trigger" t-att-aria-expanded="'true' if ouvert else 'false'" t-att-aria-label="row.get('titre', 'Question')"></button>
+    </div>
+  </template>
+
+  <template id="s_pqr_texte_seo" name="Piqueray · Texte SEO">
+    <t t-set="rows" t-value="[
+      {'titre': 'Accès et parking', 'contenu': 'Réponse', 'etat': 'ferme'},
+      {'titre': 'Faut-il prendre rendez-vous ?', 'contenu': 'Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.', 'etat': 'ouvert'},
+      {'titre': 'Zones de déplacement pour devis', 'contenu': 'Réponse', 'etat': 'ferme'}
+    ]"/>
+    <section class="s_pqr_texte_seo texte-seo" data-snippet="s_pqr_texte_seo" data-name="Piqueray · Texte SEO"
+             data-ds-contract="ds.texte-seo" data-ds-contract-version="2.1.0" data-ds-authoring-version="1.0.0"
+             data-ds-graph-digest="497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3"
+             data-vcss="19.0.1.3.0" data-vxml="19.0.1.3.0" data-vjs="19.0.1.3.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="texte-seo-default" data-pqr-part="root">
+      <div class="texte-seo__h2" data-pqr-part="texte-seo-h2">
+        <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'compact'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'texte-seo-title'"/><t t-set="title_html"><span>Visitez notre </span><strong>showroom à Pepinster</strong><span> ou contactez-nous</span></t></t>
+      </div>
+      <div class="texte-seo__p" data-pqr-part="texte-seo-p">
+        <span class="texte-seo__Paragraphe o_pqr_editable" data-pqr-part="texte-seo-text" data-pqr-marks="">Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.</span>
+      </div>
+      <div class="texte-seo__h3" data-pqr-part="texte-seo-h3">
+        <span class="texte-seo__SousTitre o_pqr_editable" data-pqr-part="texte-seo-subtitle" data-pqr-marks="">Infos pratiques</span>
+      </div>
+      <div class="texte-seo__accordion" data-pqr-accordion-list="" data-pqr-part="accordion">
+        <t t-foreach="rows" t-as="row"><t t-call="piqueray_ds.texte_seo_row"><t t-set="row" t-value="row"/><t t-set="row_index" t-value="row_index"/></t></t>
+      </div>
+      <template data-pqr-accordion-blueprint=""><t t-call="piqueray_ds.texte_seo_row"><t t-set="row" t-value="{'titre': 'Nouvelle question', 'contenu': 'Réponse', 'etat': 'ferme'}"/><t t-set="row_index" t-value="'blueprint'"/></t></template>
+    </section>
+  </template>
+  <!-- ODOO-019-TEXTE-SEO-QWEB END -->
 </odoo>

@@ -3,13 +3,15 @@
   "scenarioId": "visual-summary",
   "snapshotId": "odoo-019-foundation",
   "status": "pass",
-  "fixture": "three-sections-strict-visual",
+  "fixture": "governed-sections-strict-visual",
   "observations": [
     "[pass] differ — self-test 6 pass, géométrie identique et refus des dimensions différentes",
     "[pass] Google Reviews — comparaison mesurée à 1.5961313885326982 %, cause attribuée dans le rapport canonique",
     "[pass] Presentation — comparaison mesurée à 2.6092857142857144 %, cause attribuée dans le rapport canonique",
     "[pass] Hero — comparaison mesurée à 0.007386110674628117 %, sans bitmap par défaut et sans claim pixel-perfect",
-    "[pass] public combiné — 2+2+2 instances persistées, valeurs distinctes et aucune fuite"
+    "[pass] Équipe — comparaison mesurée à 0 %, sample contractuel strictement identique",
+    "[pass] Devis — comparaison mesurée à 0.02663314723173878 %, cause anti-aliasing attribuée dans le rapport canonique, sans bitmap par défaut et sans claim pixel-perfect",
+    "[pass] public combiné — 2 instances par famille (Présentation, Google Reviews, Hero, Équipe, Devis, SAV au rejeu du 2026-08-12), valeurs distinctes et aucune fuite"
   ],
   "artifacts": [],
   "limitCodes": [],

@@ -24,4 +24,44 @@
     </xpath>
   </template>
   <!-- ODOO-019-HERO-SNIPPET END -->
+  <!-- ODOO-019-EQUIPE-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_equipe" inherit_id="website.snippets" name="Piqueray · Équipe dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_equipe" string="Piqueray · Équipe"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_team.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-019-EQUIPE-SNIPPET END -->
+  <!-- ODOO-019-FAQ-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_faq" inherit_id="website.snippets" name="Piqueray · FAQ dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_faq" string="Piqueray · FAQ"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_accordion.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-019-FAQ-SNIPPET END -->
+  <!-- ODOO-019-DEVIS-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_devis" inherit_id="website.snippets" name="Piqueray · Devis dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_devis" string="Piqueray · Devis"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_cover.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-019-DEVIS-SNIPPET END -->
+  <!-- ODOO-019-SAV-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_sav" inherit_id="website.snippets" name="Piqueray · SAV dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_sav" string="Piqueray · SAV"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_text_image.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-019-SAV-SNIPPET END -->
+  <!-- ODOO-019-TEXTE-SEO-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_texte_seo" inherit_id="website.snippets" name="Piqueray · Texte SEO dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_texte_seo" string="Piqueray · Texte SEO"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_accordion.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-019-TEXTE-SEO-SNIPPET END -->
 </odoo>

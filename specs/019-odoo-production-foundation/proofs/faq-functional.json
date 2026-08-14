@@ -1,0 +1,25 @@
+{
+  "receiptId": "faq-functional-odoo-019-foundation",
+  "scenarioId": "faq-functional",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "faq-panel.json",
+  "observations": [
+    "[pass] QWeb — le sample canonique rend 3 questions fermées, accroche et CTA — attendu « HTTP 200 · 1 racine · 3 fermées · accroche FAQ · CTA Contactez-nous », observé « {\"status\":200,\"state\":[{\"rows\":[{\"marker\":\"faq-0\",\"titre\":\"Nos portes répondent-elles aux normes des bâtiments publics ?\",\"open\":false},{\"marker\":\"faq-1\",\"titre\":\"Quels types de bardages peuvent être intégrés sur les portes ?\",\"open\":false},{\"marker\":\"faq-2\",\"titre\":\"Assurez-vous la maintenance après l'installation ?\",\"open\":false}],\"eyebrow\":\"FAQ\",\"title\":\"Questions fréquentes\",\"cta\":\"Contactez-nous\"}]} »",
+    "[pass] catalogue — deux FAQ indépendantes sont insérées — attendu « A=3, B=3 », observé « racines=2 · A=3 · B=3 »",
+    "[pass] panneau racine — inventaire strict et actions déclarées — attendu « faq-collection, faq-cta-label, faq-title · move, duplicate, remove », observé « faq-collection, faq-cta-label, faq-title · duplicate, move, remove »",
+    "[pass] panneau rangée — inventaire strict — attendu « faq-row-contenu, faq-row-etat, faq-row-move-down, faq-row-move-up, faq-row-remove, faq-row-titre », observé « faq-row-contenu, faq-row-etat, faq-row-move-down, faq-row-move-up, faq-row-remove, faq-row-titre »",
+    "[pass] édition — titre par frappe réelle, réponse dans la rangée ouverte — attendu « frappe QA insérée dans le titre · contenu « Réponse QA finale » », observé « titre=« Nos portes répondent-elles aux  QAnormes des bâtiments publics ? » · contenu=« Réponse QA finale » »",
+    "[pass] repeat — cardinalité 1 sans fuite — attendu « A=1, B=3 », observé « A=1 · B=3 »",
+    "[pass] repeat — cardinalité 0 sans fuite — attendu « A=0, B=3 », observé « A=0 · B=3 »",
+    "[pass] repeat — le blueprint recrée une question depuis zéro — attendu « A=1, B=3 », observé « A=1 · B=3 »",
+    "[pass] save — Odoo persiste les deux FAQ — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — A=1 blueprint fermée, B=3 avec B1 sauvegardée ouverte — attendu « HTTP 200 · A=1 fermée · B=3, B1 ouverte », observé « [{\"rows\":[{\"open\":false}]},{\"rows\":[{\"open\":true},{\"open\":false},{\"open\":false}]}] »",
+    "[pass] public — bascule réelle sur le HTML sauvegardé, zéro handler inline — attendu « B1 se referme au clic · 0 handler · 0 URL exécutable », observé « b1Fermée=true · {\"handlers\":[],\"executableUrls\":[]} »",
+    "[pass] public — aucune erreur console imputable à piqueray_ds — attendu « 0 erreur », observé « 0 erreur »",
+    "[pass] reopen — A=1, B=3 avec B1 ouverte et sa réponse, sans état parallèle — attendu « A=1 · B=3, B1 ouverte, réponse intacte », observé « [{\"count\":1,\"b1open\":false,\"contenu\":\"Réponse\"},{\"count\":3,\"b1open\":true,\"contenu\":\"Réponse B1 sauvegardée ouverte\"}] »"
+  ],
+  "artifacts": [],
+  "limitCodes": [],
+  "durationMs": 135174
+}

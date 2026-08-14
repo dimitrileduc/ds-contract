@@ -34,28 +34,51 @@ import {
     DISABLED_NAMESPACE,
     closestElement,
     assertOdoo19Environment,
+    excludeNativeImageOptionsForRoots,
     excludeNativeOptionsForRoots,
     excludeUndeclaredTopActionsForRoots,
     governResizeForRoots,
     withSequence,
 } from "./odoo19_compat";
 import {
+    AddFaqRowAction,
+    AddMemberAction,
     AddReviewAction,
+    MoveFaqRowDownAction,
+    MoveFaqRowUpAction,
+    MoveMemberDownAction,
+    MoveMemberUpAction,
     MoveReviewDownAction,
     MoveReviewUpAction,
+    RemoveFaqRowAction,
+    RemoveMemberAction,
     RemoveReviewAction,
     SetReviewBooleanAction,
+    ToggleFaqRowAction,
+    AddTexteSeoRowAction,
+    MoveTexteSeoRowDownAction,
+    MoveTexteSeoRowUpAction,
+    RemoveTexteSeoRowAction,
+    ToggleTexteSeoRowAction,
 } from "./repeat_action";
 import {
+    ReplaceDevisBackgroundAction,
+    ReplaceMemberPortraitAction,
     ReplaceHeroBackgroundAction,
     ReplaceReviewAvatarAction,
+    SetMemberPortraitAltAction,
     SetHeroBackgroundAltAction,
+    SetDevisBackgroundAltAction,
     SetReviewAvatarAltAction,
+    ReplaceSavBackgroundAction,
+    ReplaceSavPhotoAction,
+    SetSavBackgroundAltAction,
+    SetSavPhotoAltAction,
 } from "./media_action";
 
 // ODOO-019-AUTHORING-ROOTS BEGIN
 /** Les seules racines posables. Fermées par défaut, sans exception. */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero"];
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -89,9 +112,41 @@ export const HERO_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_hero ${part}`);
 export const HERO_RICH_TEXT =
     '.s_pqr_hero [data-pqr-part="hero-title"], .s_pqr_hero [data-pqr-part="hero-subtitle"]';
+export const EQUIPE_EDITABLE_PARTS = [
+    '[data-pqr-member-card] [data-pqr-part="member-name"]',
+    '[data-pqr-member-card] [data-pqr-part="member-role"]',
+].map((part) => `.s_pqr_equipe ${part}`);
+export const FAQ_EDITABLE_PARTS = [
+    '[data-pqr-part="faq-title"]',
+    '[data-pqr-faq-row] [data-pqr-part="titre"]',
+    '[data-pqr-faq-row] [data-pqr-part="contenu"]',
+    '[data-pqr-part="faq-cta"] [data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_faq ${part}`);
+export const FAQ_RICH_TEXT =
+    '.s_pqr_faq [data-pqr-part="faq-title"], .s_pqr_faq [data-pqr-faq-row] [data-pqr-part="contenu"]';
+export const DEVIS_EDITABLE_PARTS = [
+    '[data-pqr-part="devis-title"]',
+    '[data-pqr-part="devis-cta"] [data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_devis ${part}`);
+export const SAV_EDITABLE_PARTS = [
+    '[data-pqr-part="sav-title"]',
+    '[data-pqr-part="sav-text"]',
+    '[data-pqr-part="sav-cta"] [data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_sav ${part}`);
+export const SAV_RICH_TEXT =
+    '.s_pqr_sav [data-pqr-part="sav-title"], .s_pqr_sav [data-pqr-part="sav-text"]';
+export const TEXTE_SEO_EDITABLE_PARTS = [
+    '[data-pqr-part="texte-seo-title"]',
+    '[data-pqr-part="texte-seo-text"]',
+    '[data-pqr-part="texte-seo-subtitle"]',
+    '[data-pqr-accordion-row] [data-pqr-part="titre"]',
+    '[data-pqr-accordion-row] [data-pqr-part="contenu"]',
+].map((part) => `.s_pqr_texte_seo ${part}`);
+export const TEXTE_SEO_RICH_TEXT =
+    '.s_pqr_texte_seo [data-pqr-part="texte-seo-title"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -106,6 +161,11 @@ export const PIQUERAY_REOPENED = [
     ...PRESENTATION_EDITABLE_PARTS,
     ...GOOGLE_REVIEWS_EDITABLE_PARTS,
     ...HERO_EDITABLE_PARTS,
+    ...EQUIPE_EDITABLE_PARTS,
+    ...FAQ_EDITABLE_PARTS,
+    ...DEVIS_EDITABLE_PARTS,
+    ...SAV_EDITABLE_PARTS,
+    ...TEXTE_SEO_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -161,6 +221,7 @@ function normalizePiqueray(changedRoot) {
 }
 
 excludeNativeOptionsForRoots(PIQUERAY_ROOTS);
+excludeNativeImageOptionsForRoots(PIQUERAY_ROOTS);
 excludeUndeclaredTopActionsForRoots(PIQUERAY_ROOTS);
 governResizeForRoots(PIQUERAY_ROOTS);
 // ODOO-019-AUTHORING-ROOTS END
@@ -203,6 +264,54 @@ export class PiquerayPresentationOption extends BaseOptionComponent {
 export class PiquerayHeroOption extends BaseOptionComponent {
     static template = "piqueray_ds.HeroOption";
     static selector = ".s_pqr_hero";
+    static editableOnly = false;
+}
+
+export class PiquerayEquipeOption extends BaseOptionComponent {
+    static template = "piqueray_ds.EquipeOption";
+    static selector = ".s_pqr_equipe";
+    static editableOnly = false;
+}
+
+export class PiquerayMemberCardOption extends BaseOptionComponent {
+    static template = "piqueray_ds.MemberCardOption";
+    static selector = ".s_pqr_equipe [data-pqr-member-card]";
+    static editableOnly = false;
+}
+
+export class PiquerayDevisOption extends BaseOptionComponent {
+    static template = "piqueray_ds.DevisOption";
+    static selector = ".s_pqr_devis";
+    static editableOnly = false;
+}
+
+export class PiquerayFaqOption extends BaseOptionComponent {
+    static template = "piqueray_ds.FaqOption";
+    static selector = ".s_pqr_faq";
+    static editableOnly = false;
+}
+
+export class PiquerayFaqRowOption extends BaseOptionComponent {
+    static template = "piqueray_ds.FaqRowOption";
+    static selector = ".s_pqr_faq [data-pqr-faq-row]";
+    static editableOnly = false;
+}
+
+export class PiqueraySavOption extends BaseOptionComponent {
+    static template = "piqueray_ds.SavOption";
+    static selector = ".s_pqr_sav";
+    static editableOnly = false;
+}
+
+export class PiquerayTexteSeoOption extends BaseOptionComponent {
+    static template = "piqueray_ds.TexteSeoOption";
+    static selector = ".s_pqr_texte_seo";
+    static editableOnly = false;
+}
+
+export class PiquerayTexteSeoRowOption extends BaseOptionComponent {
+    static template = "piqueray_ds.TexteSeoRowOption";
+    static selector = ".s_pqr_texte_seo [data-pqr-accordion-row]";
     static editableOnly = false;
 }
 
@@ -263,17 +372,39 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption],
         builder_actions: {
+            AddMemberAction,
+            RemoveMemberAction,
+            MoveMemberUpAction,
+            MoveMemberDownAction,
             AddReviewAction,
             RemoveReviewAction,
             MoveReviewUpAction,
             MoveReviewDownAction,
             SetReviewBooleanAction,
+            AddFaqRowAction,
+            RemoveFaqRowAction,
+            MoveFaqRowUpAction,
+            MoveFaqRowDownAction,
+            ToggleFaqRowAction,
+            AddTexteSeoRowAction,
+            RemoveTexteSeoRowAction,
+            MoveTexteSeoRowUpAction,
+            MoveTexteSeoRowDownAction,
+            ToggleTexteSeoRowAction,
             ReplaceReviewAvatarAction,
             SetReviewAvatarAltAction,
             ReplaceHeroBackgroundAction,
             SetHeroBackgroundAltAction,
+            ReplaceMemberPortraitAction,
+            SetMemberPortraitAltAction,
+            ReplaceDevisBackgroundAction,
+            SetDevisBackgroundAltAction,
+            ReplaceSavBackgroundAction,
+            SetSavBackgroundAltAction,
+            ReplaceSavPhotoAction,
+            SetSavPhotoAltAction,
         },
 
         // Une zone `data-pqr-marks=""` est du texte simple : aucune toolbar de

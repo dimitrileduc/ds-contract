@@ -1,0 +1,29 @@
+{
+  "receiptId": "texte-seo-functional-odoo-019-foundation",
+  "scenarioId": "texte-seo-functional",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "texte-seo-contract-sample",
+  "observations": [
+    "[pass] catalogue — deux Texte SEO rendent leur sample — attendu « A=3 lignes, B=3 lignes », observé « racines=2 · A=3 · B=3 »",
+    "[pass] sample — la 2e ligne se pose ouverte, les deux autres fermées (contrat) — attendu « fermé / ouvert / fermé, aria et hidden cohérents », observé « [{\"open\":false,\"ariaExpanded\":\"false\",\"contenuHidden\":true,\"chevronDownHidden\":false,\"chevronUpHidden\":true},{\"open\":true,\"ariaExpanded\":\"true\",\"contenuHidden\":false,\"chevronDownHidden\":true,\"chevronUpHidden\":false},{\"open\":false,\"ariaExpanded\":\"false\",\"contenuHidden\":true,\"chevronDownHidden\":false,\"chevronUpHidden\":true}] »",
+    "[pass] frontière — les cinq textes décidés ouverts, la structure fermée — attendu « racine=false, titre/texte/sous-titre/question/réponse=true, liste/trigger=false », observé « {\"rootEditable\":false,\"titleEditable\":true,\"textEditable\":true,\"subtitleEditable\":true,\"rowTitreEditable\":true,\"openContenuEditable\":true,\"listEditable\":false,\"triggerEditable\":false} »",
+    "[pass] édition — un vrai clic sur la question traverse l'overlay et accepte la frappe — attendu « Question spike A1 », observé « Question spike A1 »",
+    "[pass] panneau — « Ouverte au chargement » ouvre la ligne ciblée sans fuite vers B — attendu « A1 ouverte (classe, aria, hidden), B1 toujours fermée », observé « {\"afterToggle\":{\"open\":true,\"ariaExpanded\":\"true\",\"contenuHidden\":false,\"chevronDownHidden\":true,\"chevronUpHidden\":false},\"b1Untouched\":{\"open\":false,\"ariaExpanded\":\"false\",\"contenuHidden\":true,\"chevronDownHidden\":false,\"chevronUpHidden\":true}} »",
+    "[pass] édition — la réponse ouverte accepte une frappe réelle — attendu « Réponse spike A1 », observé « Réponse spike A1 »",
+    "[pass] édition — le déclencheur est inerte (interaction publique absente de l'éditeur) — attendu « B2 reste ouverte, aucune bascule sauvage », observé « {\"beforeInert\":{\"open\":true,\"ariaExpanded\":\"true\",\"contenuHidden\":false,\"chevronDownHidden\":true,\"chevronUpHidden\":false},\"afterInert\":{\"open\":true,\"ariaExpanded\":\"true\",\"contenuHidden\":false,\"chevronDownHidden\":true,\"chevronUpHidden\":false}} »",
+    "[pass] édition — le sous-titre accepte une frappe réelle — attendu « Sous-titre spike », observé « Sous-titre spike »",
+    "[pass] repeat — ajout ciblé, ligne neuve FERMÉE, sans fuite — attendu « A=4 (nouvelle fermée), B=3 », observé « A=4 · B=3 · ajoutée={\"open\":false,\"ariaExpanded\":\"false\",\"contenuHidden\":true,\"chevronDownHidden\":false,\"chevronUpHidden\":true} »",
+    "[pass] repeat — réordre ciblé — attendu « row-3 en avant-dernière position de A », observé « row-0, row-1, row-3, row-2 »",
+    "[pass] repeat — suppression ciblée — attendu « A=3, B=3 », observé « A=3 · B=3 »",
+    "[pass] save — le DOM Texte SEO est persisté (A1 ouverte au moment du save) — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] reopen — états par ligne et textes survivent, B intacte — attendu « A=[ouverte, ouverte, fermée] éditée · B=[fermée, ouverte, fermée] intacte », observé « [{\"rows\":3,\"opens\":[true,true,false],\"subtitle\":\"Sous-titre spike\",\"titre1\":\"Question spike A1\",\"contenu1\":\"Réponse spike A1\"},{\"rows\":3,\"opens\":[false,true,false],\"subtitle\":\"Infos pratiques\",\"titre1\":\"Accès et parking\",\"contenu1\":\"Réponse\"}] »",
+    "[pass] public — aucune zone contenteditable — attendu « 0 contenteditable », observé « 0 »",
+    "[pass] public — A1 servie OUVERTE comme sauvegardée, réponse éditée servie — attendu « A1 ouverte au chargement avec la réponse éditée », observé « {\"servedOpen\":{\"open\":true,\"ariaExpanded\":\"true\",\"contenuHidden\":false,\"chevronDownHidden\":true,\"chevronUpHidden\":false},\"contenu\":\"Réponse spike A1\"} »",
+    "[pass] public — le trigger replie puis redéplie la ligne (Interaction du noyau) — attendu « ouverte → fermée → ouverte, aria et hidden suivent », observé « {\"closed\":{\"open\":false,\"ariaExpanded\":\"false\",\"contenuHidden\":true,\"chevronDownHidden\":false,\"chevronUpHidden\":true},\"reopenedRow\":{\"open\":true,\"ariaExpanded\":\"true\",\"contenuHidden\":false,\"chevronDownHidden\":true,\"chevronUpHidden\":false}} »",
+    "[pass] public — zéro erreur console pendant la bascule — attendu « 0 erreur », observé « 0 »"
+  ],
+  "artifacts": [],
+  "limitCodes": [],
+  "durationMs": 193790
+}

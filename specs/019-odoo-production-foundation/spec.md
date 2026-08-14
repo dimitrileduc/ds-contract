@@ -232,3 +232,16 @@ Les critères SC-001, SC-002, SC-003, SC-006 et SC-010 se lisent donc, pour le s
 respectivement comme 3 sections, 6 contrats, deux instances de chacune, trois comparaisons et une
 installation/update des trois sections. Les formulations à 2/5 plus haut restent le dossier
 historique de la fondation initiale, pas l'état courant du lock.
+
+## Extension gouvernée — Équipe (2026-08-11)
+
+Le portage `ds.equipe@1.2.0` ajoute une quatrième racine et les dépendances
+`ds.member-card@1.3.0` et `ds.member-picture@1.3.0`. Le snapshot actif contient donc 4 racines,
+9 contrats et porte `graphDigest=96f4b959c53e893983181fd16bd6a9b19713a9f03b73af2f1b13e00db07c02c0`.
+
+La politique autorise la collection ordonnée, le nom, le poste, le portrait et son alternative.
+L’état et la taille de MemberPicture ainsi que toute la structure restent fixés par composition.
+La qualification couvre deux instances, les cardinalités 0/1/16/17, save/reopen/public, un média
+same-origin exploitable, la grille 4 colonnes à 1728/1440 et une comparaison visuelle stricte.
+Les critères de sortie actifs se lisent désormais comme 4 sections, 9 contrats, deux instances de
+chacune, quatre comparaisons et une installation/update des quatre sections.

@@ -6,8 +6,8 @@ import {
   ouvrirSessionEditeur, ouvrirSessionPublique, withInstance,
 } from '../run.mts';
 
-const paths = ['/piqueray-harness/presentation-visual', '/piqueray-harness/google-reviews-visual', '/piqueray-harness/hero-visual'];
-const ROOTS = '.s_pqr_presentation, .s_pqr_google_reviews, .s_pqr_hero';
+const paths = ['/piqueray-harness/presentation-visual', '/piqueray-harness/google-reviews-visual', '/piqueray-harness/hero-visual', '/piqueray-harness/equipe-visual', '/piqueray-harness/devis-visual', '/piqueray-harness/sav-visual'];
+const ROOTS = '.s_pqr_presentation, .s_pqr_google_reviews, .s_pqr_hero, .s_pqr_equipe, .s_pqr_devis, .s_pqr_sav';
 
 async function snapshot(browser: any, env: any) {
   const session = await ouvrirSessionPublique(browser);
@@ -38,7 +38,7 @@ async function snapshot(browser: any, env: any) {
 
 async function main() {
   const started = Date.now();
-  const install = new Recueil('install-update', 'odoo-019-foundation', 'three-sections-saved');
+  const install = new Recueil('install-update', 'odoo-019-foundation', 'four-sections-saved');
   const authorization = new Recueil('authorization', 'odoo-019-foundation', 'anonymous-vs-designer');
   if (!dockerDisponible()) {
     install.saute('clean install/update', 'Docker indisponible', 'ODOO-LIMIT-NO-INSTANCE');
@@ -49,8 +49,8 @@ async function main() {
   }
   await withInstance(async ({ browser, env }) => {
     const before = await snapshot(browser, env);
-    install.constateSi('clean install — les trois sections publiques répondent', before.length === 3 && before.every((item) => item.status === 200 && item.text.length > 0), '3 pages HTTP 200 remplies', JSON.stringify(before.map((item) => ({ path: item.pathname, status: item.status, chars: item.text.length }))));
-    install.constateSi('métadonnées — les trois racines portent versions et digest', before.every((item) => Object.values(item.metadata).every(Boolean)), '7 métadonnées présentes par racine', JSON.stringify(before.map((item) => item.metadata)));
+    install.constateSi('clean install — chaque section publique répond', before.length === paths.length && before.every((item) => item.status === 200 && item.text.length > 0), `${paths.length} pages HTTP 200 remplies`, JSON.stringify(before.map((item) => ({ path: item.pathname, status: item.status, chars: item.text.length }))));
+    install.constateSi('métadonnées — chaque racine porte versions et digest', before.every((item) => Object.values(item.metadata).every(Boolean)), '7 métadonnées présentes par racine', JSON.stringify(before.map((item) => item.metadata)));
 
     const updated = compose(['run', '--rm', 'odoo', 'odoo', '-d', env.dbName, '-u', 'piqueray_ds,piqueray_ds_qa', '--db_host=db', '--without-demo=True', '--stop-after-init', '--log-level=warn']);
     install.constateSi('update — odoo -u termine sans erreur', updated.status === 0, 'code 0', `code ${updated.status}`);
@@ -68,11 +68,17 @@ async function main() {
       await page.goto(`${baseUrl(env)}/odoo/action-website.website_preview?path=${encodeURIComponent(paths[0])}&enable_editor=1`, { waitUntil: 'domcontentloaded', timeout: 120_000 });
       const deadline = Date.now() + 120_000;
       let editable = 0;
-      while (Date.now() < deadline && editable < 3) {
+      let builderOpen = 0;
+      // Attendre LES DEUX conditions assérées, comme enterEditor : le chrome
+      // builder (body.o_builder_open, document haut) peut arriver APRÈS les
+      // zones éditables de l'iframe sur une compilation de bundles à froid —
+      // course mesurée le 2026-08-12 (« 4 zone(s) · builder=0 »).
+      while (Date.now() < deadline && (editable < 3 || builderOpen !== 1)) {
+        builderOpen = await page.locator('body.o_builder_open').count();
         for (const frame of page.frames()) if (frame.url().includes(paths[0])) editable = await frame.locator('.s_pqr_presentation [contenteditable="true"], .s_pqr_google_reviews [contenteditable="true"]').count().catch(() => 0);
-        if (!editable) await page.waitForTimeout(400);
+        if (editable < 3 || builderOpen !== 1) await page.waitForTimeout(400);
       }
-      authorization.constateSi('rédacteur standard — édition disponible après update', editable >= 3 && await page.locator('body.o_builder_open').count() === 1, 'builder ouvert et ≥3 zones éditables', `${editable} zone(s)`);
+      authorization.constateSi('rédacteur standard — édition disponible après update', editable >= 3 && builderOpen === 1, 'builder ouvert et ≥3 zones éditables', `${editable} zone(s) · builder=${builderOpen}`);
     } finally { await editor.context.close(); }
   });
   const a = install.ecrire('install-update.json', Date.now() - started);

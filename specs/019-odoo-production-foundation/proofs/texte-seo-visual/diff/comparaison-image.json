@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "subjectsModule": "integrations/odoo/qa/visual/subjects/texte-seo.mts",
+  "plancherDeTolerance": null,
+  "raisonDuPlancher": null,
+  "lignes": [
+    {
+      "composant": "ds.texte-seo",
+      "sujet": "texte-seo-default",
+      "statut": "mesurée",
+      "avant": "specs/019-odoo-production-foundation/proofs/texte-seo-visual/html/texte-seo-default.png",
+      "apres": "specs/019-odoo-production-foundation/proofs/texte-seo-visual/odoo/texte-seo-default.png",
+      "score": 0.007446541669279488,
+      "cause": "anti-aliasing des chevrons SVG des trois rangées",
+      "justification": "228 pixels device (0,0074 %) dans une bande de 26 px de large sur la colonne des chevrons (bbox x:3289-3315, y:527-781 à l'échelle 2), trois chevrons de 24 px (taille petit) ; composition, dimensions et textes alignés au pixel — rasterisation différente des mêmes tracés vectoriels entre la page de référence et la page Odoo. Même classe de résidu que la FAQ (0,0173 %, chevrons 32 px + flèche CTA).",
+      "raisonImpossible": null
+    }
+  ]
+}

@@ -5,7 +5,7 @@
  * dimensions et format restent hors de la surface déclarée.
  */
 import { BuilderAction } from "./odoo19_compat";
-import { findCard } from "./repeat_action";
+import { findCard, findMemberCard } from "./repeat_action";
 
 // ODOO-019-GOOGLE-REVIEWS-MEDIA BEGIN
 function avatarHost(card) {
@@ -175,3 +175,243 @@ export class SetHeroBackgroundAltAction extends BuilderAction {
     }
 }
 // ODOO-019-HERO-MEDIA END
+
+// ODOO-019-EQUIPE-MEDIA BEGIN
+export function memberPortraitImage(editingElement) {
+    const image = findMemberCard(editingElement)?.querySelector(".member-picture__normal") || null;
+    // Le dialogue média peut reconstruire le noeud et retirer l'adresse
+    // d'authoring. La classe contractuelle survit et permet de la restaurer.
+    if (image) image.dataset.pqrPart = "member-picture-normal";
+    return image;
+}
+
+export function reconcileMemberPortrait(editingElement) {
+    const image = memberPortraitImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    const nativePending = image.classList.contains("o_modified_image_to_save") &&
+        /^data:image\/(?:gif|jpe?g|png|webp);base64,/i.test(source);
+    if (!isPublishedAvatarSource(source) && !nativePending) image.removeAttribute("src");
+    // `alt=""` est une alternative décorative valide. Surtout, Odoo remet
+    // l'alt à vide lorsqu'un rédacteur choisit une pièce jointe existante :
+    // masquer alors l'image fait croire que la sélection n'a rien changé.
+    // La source sûre décide donc seule de la visibilité; l'alt reste piloté
+    // séparément par le contrôle métier et toujours présent dans le DOM.
+    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
+    const visible = Boolean(image.getAttribute("src"));
+    image.hidden = !visible;
+    return visible;
+}
+
+export class ReplaceMemberPortraitAction extends BuilderAction {
+    static id = "pqrReplaceMemberPortrait";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const card = findMemberCard(editingElement);
+        const image = memberPortraitImage(card);
+        if (!card || !image) return null;
+        // Comme pour Hero, le cycle natif doit conserver son data URL marquée
+        // jusqu'à ImageSavePlugin. Réécrire `src` dans onAttachmentChange
+        // force Odoo à sauvegarder son placeholder à la place du portrait.
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileMemberPortrait(card);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileMemberPortrait(editingElement);
+    }
+}
+
+export class SetMemberPortraitAltAction extends BuilderAction {
+    static id = "pqrSetMemberPortraitAlt";
+    getValue({ editingElement }) {
+        return memberPortraitImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = memberPortraitImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileMemberPortrait(editingElement);
+    }
+}
+// ODOO-019-EQUIPE-MEDIA END
+
+// ODOO-019-DEVIS-MEDIA BEGIN
+function devisRoot(editingElement) {
+    return editingElement?.closest?.(".s_pqr_devis") || null;
+}
+
+export function devisBackgroundImage(editingElement) {
+    const image = devisRoot(editingElement)?.querySelector(".devis__Background") || null;
+    // Même règle que Hero : le pipeline média natif peut reconstruire les
+    // attributs du noeud ; la classe contractuelle survit et sert d'ancre pour
+    // restaurer l'adresse d'authoring, sans état parallèle.
+    if (image) image.dataset.pqrPart = "devis-background";
+    return image;
+}
+
+/** Le contrat ne transporte pas le bitmap Figma (liaison NONE, défaut vide).
+ * Le seul transport autorisé en production est une pièce jointe publiée par le
+ * dialogue média Odoo — même frontière que Hero. */
+export function reconcileDevisBackground(editingElement) {
+    const image = devisBackgroundImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    const nativePending = image.classList.contains("o_modified_image_to_save") &&
+        /^data:image\/(?:gif|jpe?g|png|webp);base64,/i.test(source);
+    if (!isPublishedAvatarSource(source) && !nativePending) image.removeAttribute("src");
+    // `alt=""` reste une alternative décorative valide (plan déclaré décoratif
+    // par le contrat) ; l'alt ne décide jamais de la visibilité.
+    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
+    return Boolean(image.getAttribute("src"));
+}
+
+export class ReplaceDevisBackgroundAction extends BuilderAction {
+    static id = "pqrReplaceDevisBackground";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const root = devisRoot(editingElement);
+        const image = devisBackgroundImage(root);
+        if (!image) return null;
+        // Le dialogue remplace lui-même `node`, puis before_save finalise toute
+        // image `o_modified_image_to_save`. Réécrire `src` dans
+        // onAttachmentChange forcerait Odoo à sauvegarder son placeholder.
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileDevisBackground(root);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileDevisBackground(editingElement);
+    }
+}
+
+export class SetDevisBackgroundAltAction extends BuilderAction {
+    static id = "pqrSetDevisBackgroundAlt";
+    getValue({ editingElement }) {
+        return devisBackgroundImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = devisBackgroundImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileDevisBackground(editingElement);
+    }
+}
+// ODOO-019-DEVIS-MEDIA END
+
+// ODOO-019-SAV-MEDIA BEGIN
+function savRoot(editingElement) {
+    return editingElement?.closest?.(".s_pqr_sav") || null;
+}
+
+export function savBackgroundImage(editingElement) {
+    const image = savRoot(editingElement)?.querySelector(".sav__background") || null;
+    // Le pipeline média natif reconstruit les attributs de l'image après upload
+    // et peut retirer l'adresse d'authoring. La classe contractuelle survit :
+    // on restaure l'adresse sur le même noeud, sans état parallèle.
+    if (image) image.dataset.pqrPart = "sav-background";
+    return image;
+}
+
+export function savPhotoImage(editingElement) {
+    const image = savRoot(editingElement)?.querySelector(".sav__img") || null;
+    if (image) image.dataset.pqrPart = "sav-photo";
+    return image;
+}
+
+/** Deux plans d'image sur la même racine : la réconciliation est commune, la
+ * résolution du noeud reste propre à chaque plan pour qu'un remplacement ne
+ * touche jamais l'autre. Comme pour Hero, le cycle natif conserve sa data URL
+ * marquée `o_modified_image_to_save` jusqu'à ImageSavePlugin. Un `alt` vide
+ * reste une alternative décorative valide et ne masque jamais le plan. */
+function reconcileSavImage(image) {
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    const nativePending = image.classList.contains("o_modified_image_to_save") &&
+        /^data:image\/(?:gif|jpe?g|png|webp);base64,/i.test(source);
+    if (!isPublishedAvatarSource(source) && !nativePending) image.removeAttribute("src");
+    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
+    return Boolean(image.getAttribute("src"));
+}
+
+export const reconcileSavBackground = (editingElement) => reconcileSavImage(savBackgroundImage(editingElement));
+export const reconcileSavPhoto = (editingElement) => reconcileSavImage(savPhotoImage(editingElement));
+
+export class ReplaceSavBackgroundAction extends BuilderAction {
+    static id = "pqrReplaceSavBackground";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const image = savBackgroundImage(editingElement);
+        if (!image) return null;
+        // Le dialogue remplace lui-même `node` ; réécrire `src` dans
+        // onAttachmentChange forcerait Odoo à sauvegarder son placeholder.
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileSavBackground(editingElement);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileSavBackground(editingElement);
+    }
+}
+
+export class SetSavBackgroundAltAction extends BuilderAction {
+    static id = "pqrSetSavBackgroundAlt";
+    getValue({ editingElement }) {
+        return savBackgroundImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = savBackgroundImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileSavBackground(editingElement);
+    }
+}
+
+export class ReplaceSavPhotoAction extends BuilderAction {
+    static id = "pqrReplaceSavPhoto";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const image = savPhotoImage(editingElement);
+        if (!image) return null;
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileSavPhoto(editingElement);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileSavPhoto(editingElement);
+    }
+}
+
+export class SetSavPhotoAltAction extends BuilderAction {
+    static id = "pqrSetSavPhotoAlt";
+    getValue({ editingElement }) {
+        return savPhotoImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = savPhotoImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileSavPhoto(editingElement);
+    }
+}
+// ODOO-019-SAV-MEDIA END

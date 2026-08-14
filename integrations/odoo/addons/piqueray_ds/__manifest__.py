@@ -13,15 +13,17 @@
     "description": """
 Sections posables dérivées des contrats Piqueray gouvernés.
 
-Trois racines seulement sont inscrites dans la bibliothèque de blocs :
-`ds.presentation`, `ds.google-reviews` et `ds.hero`. Leurs dépendances internes
-(`ds.section-header`, `ds.button`, `ds.review-card`) sont composées par QWeb et ne
-sont jamais posables séparément.
+Huit racines seulement sont inscrites dans la bibliothèque de blocs :
+`ds.presentation`, `ds.google-reviews`, `ds.hero`, `ds.equipe`, `ds.faq`,
+`ds.devis`, `ds.sav` et `ds.texte-seo`. Leurs dépendances internes
+(`ds.section-header`, `ds.button`, `ds.review-card`, `ds.member-card`,
+`ds.member-picture`, `ds.accordion-row`) sont composées par QWeb et ne sont
+jamais posables séparément.
 
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.3.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",
@@ -49,11 +51,19 @@ Les feuilles sous `static/src/css/generated/` sont produites par
             "piqueray_ds/static/src/css/generated/components.pqr.css",
             # Zone manuelle — mécanique Odoo seulement (T033).
             "piqueray_ds/static/src/css/odoo-bridge.css",
+            # Dépliage public de la FAQ : bascule pure + Interaction du noyau 19.
+            "piqueray_ds/static/src/js/faq_toggle.js",
+            "piqueray_ds/static/src/js/faq_interaction.js",
+            # Dépliage public du Texte SEO : réutilise la bascule partagée.
+            "piqueray_ds/static/src/js/texte_seo_interaction.js",
         ],
         # Chargé uniquement dans l'éditeur de site.
         "website.website_builder_assets": [
             # Frontière unique avec les APIs internes d'Odoo 19 (T018).
             "piqueray_ds/static/src/js/odoo19_compat.js",
+            # La bascule FAQ est partagée avec le frontend : le builder vit dans
+            # la fenêtre haute, son bundle doit donc porter sa propre copie.
+            "piqueray_ds/static/src/js/faq_toggle.js",
             # Actions métier chargées avant le plugin qui les enregistre (T029/T030).
             "piqueray_ds/static/src/js/repeat_action.js",
             "piqueray_ds/static/src/js/media_action.js",

@@ -5,10 +5,12 @@
   "status": "pass",
   "fixture": "inputs-lock-current",
   "observations": [
-    "[pass] lock — 6/6 contrats et toutes les sources épinglées correspondent à l'état courant",
-    "[pass] graphDigest — cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b",
-    "[pass] repin — ds.hero@1.5.0 ajouté; SectionHeader 2.2.0 et Button 2.0.1 conservés; le fichier de primitives intègre aussi les deux gaps Equipe à 32px du dernier commit",
-    "[pass] impact — assets et dérivation régénérés; install/update trois racines, Hero fonctionnel/visuel et isolation combinée 2×3 rejoués après le repin"
+    "[pass] lock — 14/14 contrats et toutes les sources épinglées correspondent à l'état courant",
+    "[pass] graphDigest — 497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3",
+    "[pass] repin — 2026-08-12, trois vagues parallèles convergentes : ds.sav@1.4.0, ds.devis@1.2.0, ds.faq@1.3.0 (+ds.accordion-row@1.2.0 par fermeture) et ds.texte-seo@2.1.0 ajoutés ; les neuf contrats précédents conservés ; google-reviews 1.0.1 → 1.0.2 en cours de route",
+    "[pass] impact vague Devis — assets et dérivation régénérés ; devis-functional 15/15 et devis-visual 3/3 produits sur installation propre isolée (COMPOSE_PROJECT_NAME dédié) ; install-update, authorization, combined-isolation (2 instances × 6 familles, SAV incluse) et version-policy rejoués sous le digest courant",
+    "[pass] arbitre de versions — scan-saved-versions.ts et son fixture d'eval réalignés sur le lock courant (ils étaient restés deux repins en arrière, verts par auto-cohérence) ; version_guard.js porte le digest courant, 19.0.1.3.0 et les 8 racines",
+    "[fail→à rejouer] reçus par section des autres vagues — google-reviews (contrat bumpé 1.0.2), sav, faq, texte-seo : leurs reçus fonctionnels/visuels appartiennent à leurs vagues et doivent être rejoués sous le digest courant avant tout claim de qualification globale"
   ],
   "artifacts": [],
   "limitCodes": [],

@@ -27,6 +27,13 @@
   ],
   "contracts": [
     {
+      "id": "ds.accordion-row",
+      "kind": "contract",
+      "path": "contracts/accordion-row.contract.json",
+      "sha256": "52ed8d72816cab10bf77bc4b362e188581b0e1eb6ce2ccd37f31fe09c08a715b",
+      "version": "1.2.0"
+    },
+    {
       "id": "ds.button",
       "kind": "contract",
       "path": "contracts/button.contract.json",
@@ -34,11 +41,32 @@
       "version": "2.0.1"
     },
     {
+      "id": "ds.devis",
+      "kind": "contract",
+      "path": "contracts/devis.contract.json",
+      "sha256": "1b08e87f267f09a406b6eda8707d20d51bee81b98a74427c518796419e0644b9",
+      "version": "1.2.0"
+    },
+    {
+      "id": "ds.equipe",
+      "kind": "contract",
+      "path": "contracts/equipe.contract.json",
+      "sha256": "1170a1497b4f6f1771637e98ff672ec48e2ad28ce1e3276ac328e46ae6966fc2",
+      "version": "1.2.0"
+    },
+    {
+      "id": "ds.faq",
+      "kind": "contract",
+      "path": "contracts/faq.contract.json",
+      "sha256": "cdd5a5a6bdc244bcbe9ddc62fb9382b4e40666b4d3bc058f8d8ccdc74828da1b",
+      "version": "1.3.0"
+    },
+    {
       "id": "ds.google-reviews",
       "kind": "contract",
       "path": "contracts/google-reviews.contract.json",
-      "sha256": "c8a1cd9f8a624702e44ccdcba11b0c19770acba876c5d2ddf08037501d0a37df",
-      "version": "1.0.0"
+      "sha256": "eb648699160478a319ef0598622c583509e0c2b3e880b4ecfad848035e32c215",
+      "version": "1.0.2"
     },
     {
       "id": "ds.hero",
@@ -48,11 +76,25 @@
       "version": "1.5.0"
     },
     {
+      "id": "ds.member-card",
+      "kind": "contract",
+      "path": "contracts/member-card.contract.json",
+      "sha256": "bd39d7720e795e49102d1a605b3a329614e59c2a1ef04d56f69b7d151ce218d4",
+      "version": "1.3.0"
+    },
+    {
+      "id": "ds.member-picture",
+      "kind": "contract",
+      "path": "contracts/member-picture.contract.json",
+      "sha256": "425bbe1739c8d22dfbb5102071496cfafe7a4f7a9d446b8a0d8da2e2dd231c2c",
+      "version": "1.3.0"
+    },
+    {
       "id": "ds.presentation",
       "kind": "contract",
       "path": "contracts/presentation.contract.json",
-      "sha256": "2b47614d58a08f7756c25aa01cf6e60784520547bad71172b3bba5a496814cad",
-      "version": "2.5.0"
+      "sha256": "b5a3408b951c7b1d7585203cdb94bda964280c134a70cbaf5a990a3a38437d00",
+      "version": "2.6.0"
     },
     {
       "id": "ds.review-card",
@@ -62,14 +104,28 @@
       "version": "1.0.0"
     },
     {
+      "id": "ds.sav",
+      "kind": "contract",
+      "path": "contracts/sav.contract.json",
+      "sha256": "a1cd2c9e772e33d61c00542b5f0bd23a4167173a495902619bfcf6e14874cca3",
+      "version": "1.4.0"
+    },
+    {
       "id": "ds.section-header",
       "kind": "contract",
       "path": "contracts/section-header.contract.json",
       "sha256": "c4020634786d9d7d237f3d843c8899a8c65728bbb16a94b52be5266ba5235e87",
       "version": "2.2.0"
+    },
+    {
+      "id": "ds.texte-seo",
+      "kind": "contract",
+      "path": "contracts/texte-seo.contract.json",
+      "sha256": "1508a782013bcc05cdff1108622d78b89f429513147c63ef67d91c6da4c848ca",
+      "version": "2.1.0"
     }
   ],
-  "graphDigest": "cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b",
+  "graphDigest": "497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3",
   "odoo": {
     "image": "odoo:19.0-20260803",
     "postgresImage": "postgres:15",
@@ -86,7 +142,7 @@
       "id": "named-literals",
       "kind": "registry",
       "path": "contracts/named-literals.registry.json",
-      "sha256": "7a5d070aa12d1a6f76e6748f7e82019a5bbee9710b74211c515f52bfd20e75f3"
+      "sha256": "219b139524a653a16777c0774adbb7a12655c0ca119ff63e2785d4e5ac845716"
     }
   ],
   "schemaVersion": "1.0.0",
@@ -96,7 +152,7 @@
       "id": "primitives",
       "kind": "tokens",
       "path": "tokens/primitives.tokens.json",
-      "sha256": "d327d410d158f4c6c6a931bcbbc5783cd3973e4056bbf804576901e13820304c"
+      "sha256": "f428a01915e13d5c23a2c966a6f7f9d261726bdc804b0c7af00ef9132987b546"
     },
     {
       "id": "semantic",

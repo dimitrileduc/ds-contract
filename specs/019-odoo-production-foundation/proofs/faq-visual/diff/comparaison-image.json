@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "subjectsModule": "integrations/odoo/qa/visual/subjects/faq.mts",
+  "plancherDeTolerance": null,
+  "raisonDuPlancher": null,
+  "lignes": [
+    {
+      "composant": "ds.faq",
+      "sujet": "faq-default",
+      "statut": "mesurée",
+      "avant": "specs/019-odoo-production-foundation/proofs/faq-visual/reference/faq-default.png",
+      "apres": "specs/019-odoo-production-foundation/proofs/faq-visual/odoo/faq-default.png",
+      "score": 0.01728353857890148,
+      "cause": "anti-aliasing des chevrons SVG des trois rangées et de la flèche du CTA",
+      "justification": "609 pixels (0,0173 %) répartis en quatre bandes régulières (~162 px/bande de 200 device px, bbox x:1922-3310 y:365-854 à l'échelle 2) correspondant aux trois rangées et au CTA ; composition, dimensions et contenus alignés — rasterisation différente des mêmes tracés vectoriels entre la page de référence et la page Odoo",
+      "raisonImpossible": null
+    }
+  ]
+}

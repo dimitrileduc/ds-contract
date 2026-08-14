@@ -14,16 +14,16 @@
     "[pass] save — Odoo persiste les deux instances — attendu « RPC save 2xx », observé « HTTP 200 »",
     "[pass] public — deux instances et états CTA persistés — attendu « HTTP 200 · A visible · B masqué », observé « [{\"title\":\"Titre instance A\",\"body\":\"Texte sûritalique interditlien hostile\",\"cta\":true,\"label\":\"CTA instance A\"},{\"title\":\"Titre instance B\",\"body\":\"Texte instance B\",\"cta\":false,\"label\":\"CTA instance B\"}] »",
     "[pass] public — rich-text strong uniquement et aucune charge exécutable — attendu « 1 strong · 0 tag/handler/URL hostile », observé « {\"strong\":1,\"forbiddenTags\":0,\"handlers\":[],\"executableUrls\":[]} »",
-    "[pass] responsive — SectionHeader Fill et Button Hug tiennent à 1728/1440 — attendu « header=largeur colonne · 0 overflow · titre contenu · CTA nowrap sur une ligne », observé « [{\"viewportWidth\":1728,\"rootWidth\":1728,\"rootOverflow\":0,\"columnWidth\":628,\"headerWidth\":628,\"headerDelta\":0,\"titleInside\":true,\"buttonWhiteSpace\":\"nowrap\",\"buttonLines\":1},{\"viewportWidth\":1440,\"rootWidth\":1440,\"rootOverflow\":0,\"columnWidth\":628,\"headerWidth\":628,\"headerDelta\":0,\"titleInside\":true,\"buttonWhiteSpace\":\"nowrap\",\"buttonLines\":1}] »",
+    "[pass] responsive — SectionHeader Fill et Button Hug tiennent à 1728/1440 — attendu « header=largeur colonne · 0 overflow · titre contenu · CTA nowrap sur une ligne », observé « [{\"viewportWidth\":1728,\"rootWidth\":1728,\"rootOverflow\":0,\"columnWidth\":848,\"headerWidth\":848,\"headerDelta\":0,\"titleInside\":true,\"buttonWhiteSpace\":\"nowrap\",\"buttonLines\":1},{\"viewportWidth\":1440,\"rootWidth\":1440,\"rootOverflow\":0,\"columnWidth\":704,\"headerWidth\":704,\"headerDelta\":0,\"titleInside\":true,\"buttonWhiteSpace\":\"nowrap\",\"buttonLines\":1}] »",
     "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 instances et CTA opposés », observé « [{\"title\":\"Titre instance A\",\"body\":\"Texte sûritalique interditlien hostile\",\"cta\":true,\"label\":\"CTA instance A\"},{\"title\":\"Titre instance B\",\"body\":\"Texte instance B\",\"cta\":false,\"label\":\"CTA instance B\"}] »"
   ],
   "artifacts": [
     {
       "path": "specs/019-odoo-production-foundation/proofs/presentation-functional.public.json",
-      "sha256": "384c34150e875954860f9dbabafb5ede83c476b441d19e1a84dbb42ea9b4555d",
+      "sha256": "2467453f5718a79b7f33d499a752d37f29858f10656c02870712d6fa201f2076",
       "kind": "json"
     }
   ],
   "limitCodes": [],
-  "durationMs": 103595
+  "durationMs": 104982
 }

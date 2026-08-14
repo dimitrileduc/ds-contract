@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "subjectsModule": "integrations/odoo/qa/visual/subjects/sav.mts",
+  "plancherDeTolerance": null,
+  "raisonDuPlancher": null,
+  "lignes": [
+    {
+      "composant": "ds.sav",
+      "sujet": "sav-default",
+      "statut": "mesurée",
+      "avant": "specs/019-odoo-production-foundation/proofs/sav-visual/html/sav-default.png",
+      "apres": "specs/019-odoo-production-foundation/proofs/sav-visual/odoo/sav-default.png",
+      "score": 0.030015968236157268,
+      "cause": "icônes d'image cassée des deux plans A5 côté référence (emitHtml émet src=\"\", le QWeb omet src) + glyphe de flèche du gabarit partagé pqr_button (trait) ≠ icône gouvernée arrow-right (aplat) émise par la référence",
+      "justification": "même classe de résidu que Hero (0,0074 % avec un seul plan) : aucun bitmap n'est transporté par contrat (limite A5), et la flèche du gabarit partagé est la divergence préexistante acceptée par les quatre sections déjà qualifiées ; le paragraphe, ses 5 espaces insécables U+00A0, ses 3 plages fortes et son saut de ligne dur cassent à l'identique des deux côtés (corrigé du 2026-08-12 : le texte QWeb est régénéré depuis le contrat au point de code près)",
+      "raisonImpossible": null
+    }
+  ]
+}

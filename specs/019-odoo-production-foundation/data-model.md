@@ -29,8 +29,10 @@ Le chemin référence la source du dépôt, jamais une copie sous `integrations/
 
 - Le snapshot initial portait `ds.presentation@2.5.0` et `ds.google-reviews@1.0.0`.
 - L'extension du 2026-08-11 ajoute `ds.hero@1.5.0` comme troisième racine posable.
+- L'extension Équipe du 2026-08-11 ajoute `ds.equipe@1.2.0` comme quatrième racine posable.
 - La fermeture active contient `ds.presentation`, `ds.section-header`, `ds.button`,
-  `ds.google-reviews`, `ds.review-card` et `ds.hero`.
+  `ds.google-reviews`, `ds.review-card`, `ds.hero`, `ds.equipe`, `ds.member-card` et
+  `ds.member-picture`.
 - Tout hash ou version observé différent met le snapshot en état `drifted`.
 - Un repin est une action explicite qui invalide les anciennes preuves affectées.
 
