@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-member-card-text-align",
+  "targetId": "member-card",
+  "inspectedAt": "2026-08-18T07:40:31.141Z",
+  "fileVersionId": "2388960690060214520",
+  "verdict": "green",
+  "figmaWrites": [],
+  "container": {
+    "status": "not-applicable",
+    "masterNodeId": "2074:2072",
+    "parentNodeId": "2094:2476",
+    "parentName": "Member-card",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": "FIXED",
+    "referenceWidth": 364,
+    "responsiveWidths": [
+      364,
+      320
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2351:35252",
+      "structuralPath": "1/0",
+      "name": "Nom",
+      "characters": "Cécilia Piqueray",
+      "classification": "named-exact",
+      "textStyleId": "5:43",
+      "textStyleName": "Titre 3",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "2351:35349",
+      "structuralPath": "1/1",
+      "name": "Poste",
+      "characters": "Gérante",
+      "classification": "named-exact",
+      "textStyleId": "5:46",
+      "textStyleName": "Titre 6",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.member-picture"
+    ],
+    "observed": [
+      "ds.member-picture"
+    ],
+    "undeclared": []
+  },
+  "findings": [],
+  "proposedChanges": []
+}

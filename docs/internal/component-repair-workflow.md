@@ -263,9 +263,14 @@ Le transport générique accepte trois familles bornées : création/adoption du
 Container d'organisme, propriétés Auto Layout explicitement allowlistées sur un
 nœud résolu par chemin structurel (sizing, padding, axe, positionnement et
 contraintes), et typographie gouvernée (`Text Style` identifié par le marqueur
-`ds_contracts/textStyleToken` ou plages de fontes explicitement déclarées). Les
-valeurs libres, homonymes non marqués, chemins ambigus, contenus texte différents
-et opérations sur Page sont refusés avant mutation.
+`ds_contracts/textStyleToken`, plages de fontes explicitement déclarées, ou
+alignement texte borné `textAlign` ∈ LEFT|CENTER|RIGHT|JUSTIFIED — ajouté le
+2026-08-18 par le run member-card : `textAlignHorizontal` est un fait natif TEXT
+hors Text Style, et un `generated-amend` est disproportionné pour lui — la
+pré-passe photos 017 refuse à juste titre toute reconstruction d'un composite
+porteur de paints, 66 empreintes relevées sur member-card). Les valeurs libres,
+homonymes non marqués, chemins ambigus, contenus texte différents et opérations
+sur Page sont refusés avant mutation.
 
 Le second reçu passe par la même porte avec `--run second`. Chaque opération
 doit alors être `no-op`, avec zéro nœud créé et zéro nœud modifié.

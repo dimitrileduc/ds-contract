@@ -31,6 +31,18 @@ const variant: any = {
     return instance;
   },
 };
+// Nœud TEXT gouverné — exerce la famille textAlign du transport (2026-08-18,
+// run member-card) : LEFT → CENTER au premier passage, no-op strict au second.
+const nomText: any = {
+  id: '2:3', type: 'TEXT', name: 'Nom', parent: variant, children: [],
+  x: 0, y: 0, width: 254, height: 40, characters: 'Cécilia Piqueray', textAlignHorizontal: 'LEFT',
+  getRangeAllFontNames() { return [{ family: 'Montserrat', style: 'Regular' }]; },
+  get absoluteBoundingBox() {
+    const box = this.parent?.absoluteBoundingBox ?? { x: 0, y: 0 };
+    return { x: box.x + this.x, y: box.y + this.y, width: this.width, height: this.height };
+  },
+};
+variant.children.push(nomText);
 set.children.push(variant);
 page.children.push(set);
 
@@ -40,6 +52,7 @@ const figma: any = {
   root: { children: [page] },
   currentPage: page,
   async loadAllPagesAsync() {},
+  async loadFontAsync() {},
   async getNodeByIdAsync(id: string) { return descendants(page).find((node: any) => node.id === id) ?? null; },
   createFrame() {
     const frame: any = {
@@ -69,16 +82,26 @@ const campaign = {
 const plan = { operations: [{
   operationId: 'hug-shared-height', targetId: 'section-header', mechanism: 'set-properties', nodeId: set.id, structuralPath: '0',
   preconditions: [{ field: 'resolvedNodeId', equals: variant.id }], changes: { layout: { layoutSizingVertical: 'HUG' } },
+}, {
+  operationId: 'center-nom', targetId: 'section-header', mechanism: 'set-properties', nodeId: set.id, structuralPath: '0/0',
+  preconditions: [
+    { field: 'resolvedNodeId', equals: nomText.id },
+    { field: 'nodeType', equals: 'TEXT' },
+    { field: 'characters', equals: 'Cécilia Piqueray' },
+  ],
+  changes: { textAlign: { value: 'CENTER' } },
 }]} as never;
 
 const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor as new (...args: string[]) => (...values: unknown[]) => Promise<any>;
 const first = await new AsyncFunction('figma', emitBridgeApplyScript(campaign, plan, 'first'))(figma);
 if (variant.layoutSizingVertical !== 'HUG' || first.scriptResults[0].result.applied !== true) throw new Error('shared component layout repair did not apply');
+if (nomText.textAlignHorizontal !== 'CENTER' || first.scriptResults[1].result.applied !== true) throw new Error('text-align repair did not apply');
 if (first.inspection.responsiveChecks.length !== 2 || first.inspection.responsiveChecks.some((entry: any) => entry.overflow !== false)) throw new Error('shared responsive proof failed');
 if (page.children.some((node: any) => String(node.name).startsWith('Component repair responsive proof'))) throw new Error('transient responsive frame survived first run');
 
 const second = await new AsyncFunction('figma', emitBridgeApplyScript(campaign, plan, 'second'))(figma);
 if (second.scriptResults[0].result.reason !== 'unchanged' || second.scriptResults[0].result.changedNodeIds.length !== 0) throw new Error('shared second run was not a no-op');
+if (second.scriptResults[1].result.reason !== 'unchanged' || nomText.textAlignHorizontal !== 'CENTER') throw new Error('text-align second run was not a no-op');
 if (page.children.some((node: any) => String(node.name).startsWith('Component repair responsive proof'))) throw new Error('transient responsive frame survived second run');
 
 console.log('✔ shared component bridge repairs in place, tests two widths through a transient instance, removes it and is a strict second-run no-op');

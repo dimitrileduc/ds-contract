@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "audit-review-card-note-et-avatar",
+  "targetId": "review-card",
+  "inspectedAt": "2026-08-18T08:41:05.258Z",
+  "fileVersionId": "2388975494825376322",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "not-applicable",
+    "masterNodeId": "2178:7349",
+    "parentNodeId": "2182:7950",
+    "parentName": "Review-card",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": "FIXED",
+    "referenceWidth": 299,
+    "responsiveWidths": [
+      1262
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2338:25209",
+      "structuralPath": "0/0/0/0",
+      "name": "initialeTexte",
+      "characters": "P",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2338:25212",
+      "structuralPath": "0/0/2/0",
+      "name": "auteur",
+      "characters": "Prénom N.",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2338:25213",
+      "structuralPath": "0/0/2/1",
+      "name": "date",
+      "characters": "il y a 2 mois",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2338:25234",
+      "structuralPath": "2",
+      "name": "temoignage",
+      "characters": "Un témoignage neutre, exemple générique de contenu.",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    },
+    {
+      "nodeId": "2338:25235",
+      "structuralPath": "3",
+      "name": "lireLaSuite",
+      "characters": "Lire la suite",
+      "classification": "defect",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "raw typography has no documented rich ranges or historical-custom decision"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [],
+    "observed": [],
+    "undeclared": []
+  },
+  "findings": [
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "initialeTexte (2338:25209): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "auteur (2338:25212): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "date (2338:25213): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "temoignage (2338:25234): raw typography has no documented rich ranges or historical-custom decision"
+    },
+    {
+      "code": "text-style",
+      "severity": "proposal",
+      "message": "lireLaSuite (2338:25235): raw typography has no documented rich ranges or historical-custom decision"
+    }
+  ],
+  "proposedChanges": [
+    "repair Text Style classification for initialeTexte (2338:25209)",
+    "repair Text Style classification for auteur (2338:25212)",
+    "repair Text Style classification for date (2338:25213)",
+    "repair Text Style classification for temoignage (2338:25234)",
+    "repair Text Style classification for lireLaSuite (2338:25235)"
+  ]
+}

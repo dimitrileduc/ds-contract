@@ -40,6 +40,14 @@ export function validateBridgeOperation(operation: PlannedOperation): string[] {
   if (keys.length === 1 && keys[0] === 'textStyle' && object(changes.textStyle) &&
     typeof changes.textStyle.tokenPath === 'string' && changes.textStyle.tokenPath.length > 0 &&
     typeof changes.textStyle.name === 'string' && changes.textStyle.name.length > 0) return [];
+  // Alignement texte borné (2026-08-18, run member-card) : textAlignHorizontal
+  // est un fait natif TEXT hors Text Style — la famille typographie ne le
+  // portait pas, et generated-amend est disproportionné (une reconstruction
+  // complète, refusée par la pré-passe photos 017 sur tout composite porteur
+  // de paints — 66 empreintes relevées sur member-card, reçu du run-001).
+  // L'enum est l'allowlist ; toute autre valeur se refuse par le nom.
+  if (keys.length === 1 && keys[0] === 'textAlign' && object(changes.textAlign) &&
+    ['LEFT', 'CENTER', 'RIGHT', 'JUSTIFIED'].includes(String(changes.textAlign.value))) return [];
   if (keys.length === 1 && keys[0] === 'richText' && object(changes.richText) && object(changes.richText.baseFont) &&
     typeof changes.richText.baseFont.family === 'string' && typeof changes.richText.baseFont.style === 'string' &&
     Array.isArray(changes.richText.ranges) && changes.richText.ranges.every((range) => object(range) &&
@@ -130,6 +138,7 @@ const readPrecondition = (node, root, operation, field) => {
   if (field === 'height') return node.height;
   if (['paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft'].includes(field)) return field in node ? node[field] : undefined;
   if (field === 'textStyleId') return node.type === 'TEXT' && typeof node.textStyleId === 'string' ? node.textStyleId : null;
+  if (field === 'textAlignHorizontal') return node.type === 'TEXT' ? node.textAlignHorizontal : undefined;
   throw new Error('Unsupported set-properties precondition: ' + field);
 };
 const assertOperationPreconditions = (node, root, operation) => {
@@ -223,6 +232,18 @@ const applySetProperties = async (operation) => {
       await node.setTextStyleIdAsync(style.id);
       changed = true;
     }
+  } else if (changes.textAlign) {
+    // L'enum est refusé à l'ÉMISSION (validateBridgeOperation, appelé sur
+    // chaque opération par emitBridgeApplyScript) : le re-tester ici ferait une
+    // deuxième allowlist, et c'est la copie non testée qui dériverait. Les
+    // familles voisines (layoutSizingHorizontal, layout) ne re-testent pas les
+    // leurs, pour exactement cette raison.
+    if (node.type !== 'TEXT') throw new Error('Text-align target is not TEXT at ' + operation.structuralPath);
+    if (node.textAlignHorizontal !== changes.textAlign.value) {
+      await loadTextFonts(node);
+      node.textAlignHorizontal = changes.textAlign.value;
+      changed = true;
+    }
   } else if (changes.richText) {
     if (node.type !== 'TEXT') throw new Error('Rich-range target is not TEXT at ' + operation.structuralPath);
     if (typeof node.textStyleId === 'string' && node.textStyleId) throw new Error('Rich-range target unexpectedly owns a whole-node Text Style: ' + node.id);
@@ -249,6 +270,7 @@ const applySetProperties = async (operation) => {
     const expected = await governedTextStyle(changes.textStyle.tokenPath, changes.textStyle.name);
     if (node.textStyleId !== expected.id) throw new Error('Text Style postcondition failed: ' + operation.operationId);
   }
+  if (changes.textAlign && node.textAlignHorizontal !== changes.textAlign.value) throw new Error('Text-align postcondition failed: ' + operation.operationId);
   if (changes.richText && !richTextMatches(node, changes.richText)) throw new Error('Rich-range postcondition failed: ' + operation.operationId);
   return { node, changed };
 };

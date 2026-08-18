@@ -1,0 +1,104 @@
+{
+  "entries": [
+    {
+      "definitions": {},
+      "nodeId": "2351:38613",
+      "references": {},
+      "structuralPath": "",
+      "values": {
+        "Alt photo#2480:6": {
+          "type": "TEXT",
+          "value": ""
+        },
+        "Auteur#2480:1": {
+          "type": "TEXT",
+          "value": "Prénom N."
+        },
+        "Avatar": {
+          "boundVariables": {},
+          "type": "VARIANT",
+          "value": "Initiale"
+        },
+        "Date#2480:2": {
+          "type": "TEXT",
+          "value": "il y a 5 mois"
+        },
+        "Initiale#2480:0": {
+          "type": "TEXT",
+          "value": "P"
+        },
+        "Témoignage#2480:3": {
+          "type": "TEXT",
+          "value": "Un témoignage neutre, exemple générique de contenu."
+        },
+        "URL photo#2480:5": {
+          "type": "TEXT",
+          "value": ""
+        },
+        "Vérifié#2480:4": {
+          "type": "BOOLEAN",
+          "value": true
+        }
+      }
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2351:38613;2338:25209",
+      "references": {
+        "characters": "Initiale#2480:0"
+      },
+      "structuralPath": "0/0/0/0",
+      "values": {}
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2351:38613;2338:25212",
+      "references": {
+        "characters": "Auteur#2480:1"
+      },
+      "structuralPath": "0/0/2/0",
+      "values": {}
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2351:38613;2338:25213",
+      "references": {
+        "characters": "Date#2480:2"
+      },
+      "structuralPath": "0/0/2/1",
+      "values": {}
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2351:38613;2480:4726",
+      "references": {},
+      "structuralPath": "1/0",
+      "values": {
+        "Note": {
+          "boundVariables": {},
+          "type": "VARIANT",
+          "value": "5"
+        }
+      }
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2351:38613;2338:25231",
+      "references": {
+        "visible": "Vérifié#2480:4"
+      },
+      "structuralPath": "1/1",
+      "values": {}
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2351:38613;2338:25234",
+      "references": {
+        "characters": "Témoignage#2480:3"
+      },
+      "structuralPath": "2",
+      "values": {}
+    }
+  ],
+  "schemaVersion": "1.0.0"
+}

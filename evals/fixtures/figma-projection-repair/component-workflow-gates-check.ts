@@ -111,6 +111,12 @@ const genericRichOperation = {
   changes: { richText: { baseFont: { family: 'Montserrat', style: 'Regular' }, ranges: [{ start: 2, end: 5, font: { family: 'Montserrat', style: 'Bold' } }] } },
 } as const;
 if (validateBridgeOperation(genericRichOperation as never).length !== 0) throw new Error('bounded rich-range operation was refused');
+const genericTextAlignOperation = {
+  ...genericLayoutOperation, operationId: 'center-governed-text', structuralPath: '1/1',
+  changes: { textAlign: { value: 'CENTER' } },
+} as const;
+if (validateBridgeOperation(genericTextAlignOperation as never).length !== 0) throw new Error('bounded text-align operation was refused');
+if (validateBridgeOperation({ ...genericTextAlignOperation, changes: { textAlign: { value: 'MIDDLE' } } } as never).length === 0) throw new Error('unbounded text-align value was accepted');
 if (validateBridgeOperation({ ...genericLayoutOperation, mechanism: 'generated-amend' } as never).length === 0) throw new Error('component-specific bridge mechanism was accepted');
 
 const containedMaster = { id: '1:1', type: 'COMPONENT', layoutSizingHorizontal: 'FILL' };

@@ -19,8 +19,8 @@ marked **VERIFY-BY-SPIKE** rather than asserted.
 |---|---|
 | Figma expression | **native** (a node field expresses it directly) · **approx** (expressible only through a named transform — documented, deterministic) · **no** (inexpressible on canvas nodes) |
 | Bindable | the exact variable-bindable field(s), or — . Bindability is what lets the canvas carry the *token*, not just the resolved value. |
-| Contract today | **carried** (OK/MINTED per STYLE-FIDELITY) · **whitelisted** (`STYLES_WHEN_ALLOWED` literal, code-side) · **named-gap** (receipted drop, A/B row cited) · **absent** (no vocabulary, never observed) |
-| Verdict | **CARRY-BOTH** · **CARRY-CODE-ONLY** (declared; canvas gets an annotation) · **CARRY-WITH-NAMED-LIMIT** (carried on both; canvas rendering is a documented approximation) |
+| Contract today | **carried** (OK/MINTED per STYLE-FIDELITY) · **whitelisted** (`STYLES_WHEN_ALLOWED` literal, code-side) · **named-gap** (receipted drop, A/B row cited) · **absent** (no vocabulary, never observed) · **absent-by-decision** (expressible, weighed, deliberately left out — the row says where it lives instead) |
+| Verdict | **CARRY-BOTH** · **CARRY-CODE-ONLY** (declared; canvas gets an annotation) · **CARRY-WITH-NAMED-LIMIT** (carried on both; canvas rendering is a documented approximation) · **HOST-ONLY** (no contract carries it on any surface; it lives in a host integration and is governed there, never in `contracts/`) |
 
 Repo references: [R1] `docs/STYLE-FIDELITY.md` · [R2] `scripts/contract-schema.ts`
 · [R3] `core/emit-figma-script.ts` (canvas whitelist at `applyTokens`, ~line 577)
@@ -177,6 +177,18 @@ Repo references: [R1] `docs/STYLE-FIDELITY.md` · [R2] `scripts/contract-schema.
 | `pointer-events`, `user-select`, `resize`, `touch-action` | **no** | — | whitelisted / absent | CARRY-CODE-ONLY |
 | `scrollbar-*`, `scroll-snap-*`, `overscroll-behavior`, `scroll-behavior` | **no** static equivalent | — | absent | CARRY-CODE-ONLY |
 | live `:hover/:active/:focus-visible` behavior | **no** — states render only as opt-in preview variants (`figmaStatePreviews`, shipped) [R2] | state-preview fields bind normally | carried (C4) | CARRY-WITH-NAMED-LIMIT (standing) |
+| `<a href>` navigation — a control that NAVIGATES rather than acts | **no** — the canvas has no link concept; a prototype reaction is a presentation setting, not a rendered fact | — | absent-by-decision — no contract carries a link on any surface; `ds.button` keeps `semantics.element: "button"` and the React surface renders `<button>` | HOST-ONLY (see the note below) |
+
+**Navigation is a HOST adaptation, not a contract capability — owner decision, 2026-08-18. Do not re-litigate this from first principles; the argument was had and is recorded here.**
+
+Both halves of it are true at once, which is why it reads as a contradiction until you separate them:
+
+- **A CTA that navigates must be an `<a href>` on every HTML surface.** That is HTML semantics, not a React detail: a navigating `<button>` breaks middle-click, ctrl-click, "open in new tab" and right-click → copy link, and a screen reader announces "button" while the page changes. React, `html`, `react-inline` and Odoo QWeb are all HTML surfaces; only Figma has nothing to express.
+- **But the destination is CONTENT, not design.** It is set per instance by the site editor, it never appears on canvas, and there is nothing for a token or a variable to bind. A contract prop would be a promise only one surface could keep.
+
+So the link lives in the Odoo integration and is governed there: `link_href` on the `pqr_button` QWeb template (present → `<a>`, absent → `<button>`, rendering identical because `.button` is 100 % class-driven), a `BuilderUrlPicker` row per section with a bounded grammar (same-origin absolutes folded to root-relative, `javascript:` refused), and one registry entry — `ODOO-019-CTA-LIEN-BRIDGE` in `integrations/odoo/config/adaptation-registry.json`, which names every root contract it serves. No `*.authoring.json` decision exists for it, and that is deliberate: authoring decisions address the contract graph, adaptations address the host.
+
+**The other choice was weighed, and the engine supports it.** The archived `docs/reference/demo-archive/breadcrumb-item.contract.json` renders a part with `"element": "a"` plus `"attrs": { "href": "{href}" }`, and `ds.button`'s root already uses the `attrs` channel (`{"type": "button"}`) — so putting `href` on `ds.button` is expressible today, with no schema change. It was rejected because it would make the contract carry site content. If that trade is ever re-decided, this is the paragraph to edit, and the receipt to cite.
 
 ### 10 · Conditionals & carriers
 

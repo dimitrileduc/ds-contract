@@ -1,0 +1,52 @@
+{
+  "entries": [
+    {
+      "definitions": {
+        "Nom#2074:36": {
+          "defaultValue": "Cécilia Piqueray",
+          "type": "TEXT"
+        },
+        "Poste#2074:37": {
+          "defaultValue": "Gérante",
+          "type": "TEXT"
+        }
+      },
+      "nodeId": "2074:2072",
+      "references": {},
+      "structuralPath": "",
+      "values": {}
+    },
+    {
+      "definitions": {},
+      "nodeId": "2351:35248",
+      "references": {},
+      "structuralPath": "0",
+      "values": {
+        "Etat": {
+          "boundVariables": {},
+          "type": "VARIANT",
+          "value": "Defaut"
+        }
+      }
+    },
+    {
+      "definitions": {},
+      "nodeId": "2351:35252",
+      "references": {
+        "characters": "Nom#2074:36"
+      },
+      "structuralPath": "1/0",
+      "values": {}
+    },
+    {
+      "definitions": {},
+      "nodeId": "2351:35349",
+      "references": {
+        "characters": "Poste#2074:37"
+      },
+      "structuralPath": "1/1",
+      "values": {}
+    }
+  ],
+  "schemaVersion": "1.0.0"
+}

@@ -1,0 +1,37 @@
+{
+  "comparaisonId": "review-card-notation-2026-08-18",
+  "methode": "digests par axe des captures run-001/before (avant mutation) contre run-002/before (après mutation), même instrument",
+  "deviation": "les gestes ont été appliqués directement par le pont figma-console, pas par emit-bridge-script/normalize-apply/record-apply ; aucun reçu canonique d'application n'existe pour ce run, et le verify du runner ne peut donc pas être invoqué",
+  "surfacesComparees": 87,
+  "axesInchanges": [
+    "gradient-paints",
+    "image-paints",
+    "master-identity",
+    "page-node-identity",
+    "responsive-overflow",
+    "variant-cardinality",
+    "variant-names",
+    "video-paints"
+  ],
+  "axesModifies": {
+    "geometry": 87,
+    "instance-links": 87,
+    "instance-overrides": 87,
+    "text-content": 41,
+    "text-ranges": 41,
+    "text-styles": 41
+  },
+  "texte": {
+    "noeudsAvant": 1706,
+    "noeudsApres": 1706,
+    "surfacesDontLeContenuDiffere": 0
+  },
+  "boitesRacineModifiees": 0,
+  "gestes": [
+    "création du set Notation (2480:4725), 5 variantes Note=1..5",
+    "Review-card : bandeau d'étoiles brut remplacé par une instance de Notation",
+    "Review-card : propriété Tronqué supprimée, lireLaSuite toujours visible",
+    "Review-card : booléens Avatar initiale / Avatar photo remplacés par la variante Avatar=Initiale|Photo",
+    "Avis Google : bandeau du résumé remplacé par une instance de Notation (113 -> 117 px)"
+  ]
+}

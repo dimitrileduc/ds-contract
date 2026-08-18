@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-member-card-text-align",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2388960690060214520",
+  "run": "first",
+  "operations": [
+    {
+      "operationId": "center-member-nom",
+      "targetId": "member-card",
+      "nodeId": "2074:2072",
+      "status": "applied",
+      "createdNodeIds": [],
+      "changedNodeIds": [
+        "2351:35252"
+      ]
+    },
+    {
+      "operationId": "center-member-poste",
+      "targetId": "member-card",
+      "nodeId": "2074:2072",
+      "status": "applied",
+      "createdNodeIds": [],
+      "changedNodeIds": [
+        "2351:35349"
+      ]
+    }
+  ],
+  "masters": [
+    {
+      "targetId": "member-card",
+      "nodeId": "2074:2072",
+      "componentKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
+      "masterCount": 1,
+      "variantNames": []
+    }
+  ],
+  "pageWrites": [],
+  "responsiveChecks": [
+    {
+      "targetId": "member-card",
+      "width": 364,
+      "overflow": false,
+      "overflowNodeIds": [],
+      "overflowIssues": [],
+      "screenshotRef": "specs/component-repairs/member-card/run-001/responsive-364-first.png"
+    },
+    {
+      "targetId": "member-card",
+      "width": 320,
+      "overflow": false,
+      "overflowNodeIds": [],
+      "overflowIssues": [],
+      "screenshotRef": "specs/component-repairs/member-card/run-001/responsive-320-first.png"
+    }
+  ]
+}
