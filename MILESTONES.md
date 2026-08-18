@@ -4,6 +4,32 @@ A dated log of what this system has **proven**, in order. Every entry is backed
 by receipts in the repo — commits, pilot write-ups, eval cases, or live-file
 forensics. Nothing here is aspirational; the roadmap holds the aspirations.
 
+## 2026-08-18 — deux tinyspecs rétroactives : la note d'avis gouvernée et le CTA-lien Odoo
+
+Du travail réel fait pendant la branche 021 sur décision owner, mais **hors de tout
+périmètre spec** (021 = réparation Figma, 019 = clos), documenté après coup au lieu
+d'être laissé aux seules descriptions de contrat. Deux tinyspecs, deux commits :
+
+- **`review-card-2.0.0-notation`** (commit `1d33bce`) — `ds.review-card` promu **2.0.0**
+  (majeur) : les booléens `tronque`/`initialeVisible`/`photo`/`verifie` disparaissent,
+  l'avatar devient **une variante exclusive** `Initiale`\|`Photo`, la note d'avis
+  redevient éditable via le nouvel atome gouverné **`ds.notation`** (cinq bandes
+  exclusives, glyphe interne `star-empty`). `ds.google-reviews` **2.0.0** le consomme.
+  Cas eval T064 réécrit : l'exclusivité de l'avatar est désormais **structurelle**, plus
+  une convention d'appelant. `npm run eval` **219/219**.
+- **`odoo-cta-link-review-note`** (commit `cc6cd0d`) — trois extensions de gouvernance
+  dans l'addon Odoo **19.0.1.4.0**, étendant 019 (clos) : CTA-lien gouverné (action
+  unique `pqrSetCtaHref` sur `actionParam`, repli même-origine, `javascript:` refusé,
+  projection `<a>`/`<button>` selon `link_href`), note d'avis au panneau (`BuilderSelect`),
+  avatar **dérivé** de la présence d'une photo publiée avec `alt` dérivé de l'auteur.
+  Repin sur la fermeture 2.0.0 (digest `102c372a…`). QA rejouée verte sur instance Docker
+  neuve : Hero 13/13, Présentation 13/13, Google Reviews 15/15, Sécurité 14/14,
+  Versioning 6/6 ; quatre portes Odoo vertes.
+
+La chaîne noyau du CTA-lien a été **vérifiée sur la source Odoo 19.0** réelle
+(`~/odoo`, branche 19.0) : `BuilderUrlPicker` → `actionParam` → `convertParamToObject`
+→ `{mainParam}`, et `BuilderSelectItem` rend `data-action-param` sur le nœud cliqué.
+
 ## 2026-08-06 — Photos honnêtes : deux rapports cessent de dire le faux (spec 017)
 
 > **Trou de journal, nommé plutôt que comblé en silence.** Ce fichier saute des
