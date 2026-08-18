@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-faq-local-fill",
+  "filePins": {
+    "before": "2386548683709062472",
+    "after": "2386548683709062472",
+    "idempotence": null
+  },
+  "ok": true,
+  "targetCount": 1,
+  "targets": [
+    {
+      "targetId": "faq",
+      "surfaceCount": 7,
+      "expectedDiffs": [
+        {
+          "surfaceId": "faq:master",
+          "kind": "expected",
+          "description": "structure changed inside the authorized composed-properties repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/faq/run-002/after/faq_master.structure.json"
+        },
+        {
+          "surfaceId": "faq:page:2106-3035",
+          "kind": "expected",
+          "description": "structure changed inside the authorized composed-properties repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/faq/run-002/after/faq_page_2106-3035.structure.json"
+        },
+        {
+          "surfaceId": "faq:page-context:237-969",
+          "kind": "expected",
+          "description": "structure changed inside the authorized composed-properties repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/faq/run-002/after/faq_page-context_237-969.structure.json"
+        },
+        {
+          "surfaceId": "faq:page:2106-3010",
+          "kind": "expected",
+          "description": "structure changed inside the authorized composed-properties repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/faq/run-002/after/faq_page_2106-3010.structure.json"
+        },
+        {
+          "surfaceId": "faq:page-context:387-720",
+          "kind": "expected",
+          "description": "structure changed inside the authorized composed-properties repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/faq/run-002/after/faq_page-context_387-720.structure.json"
+        },
+        {
+          "surfaceId": "faq:page:2106-3060",
+          "kind": "expected",
+          "description": "structure changed inside the authorized composed-properties repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/faq/run-002/after/faq_page_2106-3060.structure.json"
+        },
+        {
+          "surfaceId": "faq:page-context:230-376",
+          "kind": "expected",
+          "description": "structure changed inside the authorized composed-properties repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/faq/run-002/after/faq_page-context_230-376.structure.json"
+        }
+      ],
+      "unexpectedDiffs": [],
+      "unchangedArtifactCount": 14,
+      "imagePreservation": "pass",
+      "imageComparison": {
+        "mode": "authorized-rehost",
+        "beforeUnique": 47,
+        "afterUnique": 47
+      },
+      "instancePreservation": "pass",
+      "consumerCount": 0,
+      "consumersClosed": true,
+      "limits": []
+    }
+  ],
+  "global": {
+    "beforeArtifacts": 28,
+    "afterArtifacts": 28,
+    "beforeImageFingerprints": 54,
+    "afterImageFingerprints": 54,
+    "uniqueImageHashesPreserved": true,
+    "beforeInstanceLinks": 262,
+    "afterInstanceLinks": 262,
+    "pendingConsumers": 0
+  }
+}

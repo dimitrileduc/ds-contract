@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-presentation-responsive",
+  "targetId": "presentation",
+  "inspectedAt": "2026-08-12T07:04:54.541Z",
+  "fileVersionId": "2386730476747356856",
+  "verdict": "proposal",
+  "figmaWrites": [],
+  "container": {
+    "status": "fail",
+    "masterNodeId": "2103:2824",
+    "parentNodeId": "2103:2823",
+    "parentName": "Présentation",
+    "parentType": "SECTION",
+    "parentLayoutMode": null,
+    "masterLayoutSizingHorizontal": "HUG",
+    "referenceWidth": 1287,
+    "responsiveWidths": [
+      1262
+    ],
+    "issues": [
+      "master is not directly presented by a local FRAME Container",
+      "local Container is not auto-layout",
+      "local presentation parent is not named Container",
+      "organism master is not width FILL inside its local Container"
+    ]
+  },
+  "texts": [
+    {
+      "nodeId": "I2351:37031;2351:36806",
+      "structuralPath": "0/0/0",
+      "name": "Accroche",
+      "characters": "Plus de 50 ans d’expérience",
+      "classification": "named-exact",
+      "textStyleId": "2162:5836",
+      "textStyleName": "Accroche",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37031;2351:36807",
+      "structuralPath": "0/0/1",
+      "name": "Titre",
+      "characters": "Piqueray, une histoire de famille ",
+      "classification": "named-exact",
+      "textStyleId": "5:43",
+      "textStyleName": "Titre 3",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "2351:37037",
+      "structuralPath": "1/0",
+      "name": "Texte",
+      "characters": "Depuis plus de 50 ans, la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de proximité et d'excellence technique. Dépositaire officiel Hörmann, nous allions la force d'un leader mondial à la souplesse d'une PME locale.",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "I2351:37050;2410:6138",
+      "structuralPath": "1/1/1",
+      "name": "label",
+      "characters": "Contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button",
+      "ds.section-header"
+    ],
+    "observed": [
+      "ds.button",
+      "ds.section-header"
+    ],
+    "undeclared": []
+  },
+  "findings": [
+    {
+      "code": "organism-container",
+      "severity": "proposal",
+      "message": "master is not directly presented by a local FRAME Container; local Container is not auto-layout; local presentation parent is not named Container; organism master is not width FILL inside its local Container"
+    }
+  ],
+  "proposedChanges": [
+    "present the existing master in one local auto-layout Container and set its horizontal sizing to FILL"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "campaignId": "repair-faq-accordion-distribution",
+  "filePin": "2386569320965617771",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "faq-accordion-row-1-space-between",
+      "targetId": "faq",
+      "mechanism": "set-properties",
+      "nodeId": "2104:2914",
+      "structuralPath": "1/0",
+      "changes": {
+        "layout": {
+          "primaryAxisAlignItems": "SPACE_BETWEEN"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:38072"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/0"
+        },
+        {
+          "field": "primaryAxisAlignItems",
+          "equals": "MIN"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "primaryAxisAlignItems",
+          "equals": "SPACE_BETWEEN"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "faq-accordion-row-2-space-between",
+      "targetId": "faq",
+      "mechanism": "set-properties",
+      "nodeId": "2104:2914",
+      "structuralPath": "1/1",
+      "changes": {
+        "layout": {
+          "primaryAxisAlignItems": "SPACE_BETWEEN"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:38078"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/1"
+        },
+        {
+          "field": "primaryAxisAlignItems",
+          "equals": "MIN"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "primaryAxisAlignItems",
+          "equals": "SPACE_BETWEEN"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "faq-accordion-row-3-space-between",
+      "targetId": "faq",
+      "mechanism": "set-properties",
+      "nodeId": "2104:2914",
+      "structuralPath": "1/2",
+      "changes": {
+        "layout": {
+          "primaryAxisAlignItems": "SPACE_BETWEEN"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:38084"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/2"
+        },
+        {
+          "field": "primaryAxisAlignItems",
+          "equals": "MIN"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "primaryAxisAlignItems",
+          "equals": "SPACE_BETWEEN"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

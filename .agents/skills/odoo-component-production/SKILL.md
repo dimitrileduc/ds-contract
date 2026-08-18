@@ -123,6 +123,70 @@ Retours de terrain obligatoires :
   contenteditables et peut produire un faux vert ;
 - la sélection qui engage le builder exige un vrai geste Playwright. `HTMLElement.click()` ne
   traverse pas toujours la pipeline de sélection native.
+- fermer les options natives de la racine ne ferme pas les conteneurs image qui ciblent directement
+  `img`. Exclure explicitement `ReplaceMediaOption`, `ImageToolOption` et `ImageAndFaOption` sur les
+  images de chaque racine, puis cliquer le bitmap réel et inventorier le chrome visible. Une preuve
+  faite sur la carte parente ne détecte pas ce trou (constaté avec Équipe, 2026-08-11).
+- un upload et la sélection d'une pièce jointe existante ne sont pas le même chemin média. Tester
+  les deux avec deux images distinctes, comparer réellement les `src`, puis save/public/reopen.
+  Odoo peut remettre `alt=""` lors d'une sélection existante : si l'alt vide est admis comme texte
+  décoratif, il ne doit pas masquer la nouvelle source (constaté avec Équipe, 2026-08-11).
+- un saut de ligne dur d'un contrat rich-text voyage en `<br/>` dans le QWeb (zone tenue sur UNE
+  ligne XML — `white-space: pre-line` dessinerait aussi les retours du pretty-print), et la zone
+  doit déclarer `line-break` dans `data-pqr-marks` : le guard supprime silencieusement tout `<br>`
+  non déclaré au premier save — y compris celui du contenu PAR DÉFAUT, avant toute édition du
+  rédacteur. Shift+Enter produit un `<br>` réel qui survit une fois la marque déclarée
+  (constaté avec SAV, 2026-08-12 — reçu `sav-mechanism-spike.json`, 9/9).
+
+- jamais deux vagues de qualification sur la même instance : `qa/run.mts` honore les
+  variables de processus (`COMPOSE_PROJECT_NAME`, `PQR_ODOO_PORT`, `PQR_ODOO_GEVENT_PORT`,
+  `PQR_DB_NAME`), donc chaque vague prend SA pile et SES volumes. Trois sections portées en
+  parallèle visaient la même base jetable — les reçus se seraient écrasés mutuellement
+  (constaté avec Devis/SAV/FAQ, 2026-08-12).
+- un callback `evaluate()` Playwright ne doit contenir AUCUNE fonction nommée imbriquée :
+  tsx/esbuild (keepNames) y injecte le helper `__name`, absent du contexte de page, et le
+  scénario meurt d'un `ReferenceError` APRÈS le save — les constats déjà émis semblent bons
+  et le reçu n'est jamais écrit (constaté avec Devis, 2026-08-12).
+- le code de sortie du scénario fait foi : jamais de `| tail` (ni aucun pipe) sur la commande
+  qui l'exécute — un crash sort en 0 à travers le pipe et se lit comme un vert
+  (constaté avec Devis, 2026-08-12).
+- un état contractuel piloté par `visibleWhen` (accordéon fermé/ouvert) exige un DOM à DEUX
+  plans : le rendu de référence `emitHtml` OMET les parts invisibles, mais un HTML sauvegardé ne
+  se re-rend jamais — sans le plan inactif posé sous `hidden`, la réponse d'une rangée fermée
+  n'existerait nulle part, ni pour le rédacteur ni pour le visiteur. Le bridge doit porter
+  `<racine> [hidden] { display: none !important; }` : les classes générées posent des `display`
+  plus spécifiques que la règle UA (constaté avec FAQ, 2026-08-12 — spike 15/15, visuel 0,0173 %).
+- un déclencheur en overlay absolu au-dessus d'un texte éditable intercepte le clic du rédacteur
+  sur la moitié qu'il couvre. En édition il est inerte (les interactions publiques ne tournent pas
+  dans l'iframe d'édition — mesuré : le clic ne bascule pas, `website/__manifest__.py` retire les
+  `*.edit.js` du bundle frontend), donc la parade est un `pointer-events: none` scopé par la classe
+  d'éditeur du noyau `.odoo-editor-editable` (posée par `html_editor/editor.js:144`) ; la bascule
+  d'édition passe alors par le panneau, jamais par le bitmap (constaté avec FAQ, 2026-08-12).
+- `keyboard.press('End')` ne déplace PAS le curseur dans un contenteditable de l'éditeur : une
+  frappe réelle s'insère au point de clic, ce qui est le comportement que le rédacteur obtient.
+  Asserter l'INSERTION (`includes` + longueur), jamais la position — deux reçus ont viré au rouge
+  sur une assertion `endsWith` qui testait la navigation clavier au lieu du geste
+  (constaté avec FAQ, 2026-08-12).
+- un geste public sur une Interaction ne part qu'après une PORTE DE DISPONIBILITÉ : le module
+  présent dans `odoo.loader.modules` ET la file `odoo.loader.jobs` vide (puis ~400 ms de marge).
+  Cliquer dès `domcontentloaded` frappe un déclencheur SANS handler : le clic « réussit », rien ne
+  bascule, zéro erreur console — le reçu lit un faux négatif pendant qu'une sonde à +3 s bascule
+  parfaitement. Un `waitForTimeout` nu est un pari ; la porte sur le loader est un fait
+  (constaté avec Texte SEO, 2026-08-12 — run 4 rouge, run 5 17/17).
+- « `<html> intercepts pointer events` » en boucle peut vouloir dire : le point de clic est HORS
+  VIEWPORT. Une rangée dont le contrat gèle la largeur (accordion-row : 1550 px) démarre à
+  `bbox.x` NÉGATIF dans l'iframe d'édition (~1300 px utiles avec le panneau) — un clic à (8,8)
+  ne touche RIEN (`elementsFromPoint` : pile vide). Sonder les coordonnées AVANT d'accuser un
+  overlay — trois relances sur hypothèses ont coûté ce qu'une sonde de 30 lignes a tranché —
+  puis viser la zone visible de la rangée (extrémité chevron, `x = largeur − 24`)
+  (constaté avec Texte SEO, 2026-08-12).
+- le mécanisme accordéon de l'addon est UNIQUE : `faq_toggle.js` est la machine d'état partagée
+  (classes `accordion-row--etat-*`, `hidden` des deux plans, aria resynchronisé). Un nouveau
+  porteur d'accordéon IMPORTE `setFaqRowState`/`isFaqRowOpen`/`toggleFaqRow` et n'en réécrit
+  aucune ligne ; seuls ses marqueurs de rangée/liste et son Interaction root-scopée lui
+  appartiennent. Candidat au renommage `accordion_toggle.js` à un moment calme, quand plus
+  aucune vague n'a le fichier en vol (Texte SEO réutilise FAQ, 2026-08-12 — spike 17/17,
+  visuel 0,0074 %).
 
 ### 5 bis. Versions — signaler sans migrer
 
@@ -131,6 +195,12 @@ jour du template ne remplace donc pas les anciennes copies. Persister séparéme
 digest de graphe et version d'authoring, puis classer `current`, `policy-stale`, `structure-stale` ou
 `unknown`. Seule la politique peut être réappliquée automatiquement. Une structure ancienne est
 signalée ; elle n'est jamais réécrite sans migration explicite et qualifiée.
+
+Au repin, réaligner LES DEUX classificateurs — `version_guard.js` (le vif) ET
+`scripts/odoo/scan-saved-versions.ts` (l'arbitre) avec son fixture d'eval
+`evals/fixtures/odoo-production/version-drift/cases.json`. L'arbitre est auto-cohérent :
+resté deux repins en arrière, il demeurait vert tout en classant « structure-stale » des
+blocs parfaitement courants (constaté le 2026-08-12).
 
 ### 6. Delta mesuré — laisser les chiffres parler
 
@@ -168,6 +238,9 @@ Une situation que ce guide ne couvre pas se traite ainsi, **dans cet ordre** :
 3. **Si le vocabulaire de config ou le registre manque d'un terme**, le corriger **là**, tout de
    suite, plutôt que d'ajouter un cas spécial silencieux. Un cas spécial non enregistré est
    exactement ce que le rapport de dérivation existe pour rendre impossible.
+   Lors de l'ajout d'une racine posable, vérifier aussi les schémas qui énumèrent encore les
+   `rootContracts` connus : le registre peut être exhaustif tout en restant impossible à valider
+   si son vocabulaire est resté figé à la vague précédente (constaté avec `ds.equipe`, 2026-08-11).
 4. **Écrire la découverte dans ce guide.** Ce qui n'est pas écrit ici sera redécouvert au prix fort
    par la vague suivante.
 

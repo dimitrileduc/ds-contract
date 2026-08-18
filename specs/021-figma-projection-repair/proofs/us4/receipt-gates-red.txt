@@ -1,0 +1,6 @@
+Command: npx tsx evals/fixtures/figma-projection-repair/repair-receipt-gates-check.ts
+Exit: non-zero (expected before T047/T048)
+
+SyntaxError: extract/figma/projection-repair/report.js does not provide an export named `buildRepairReceipt`.
+
+The fixture is registered as `figma-projection-repair-repair-receipt-gates`. It exercises invalid capture, image permutation, link/override drift, a diff outside the allowlist, an open consumer, failed idempotence and an absent owner decision.

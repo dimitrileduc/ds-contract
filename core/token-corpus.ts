@@ -6,7 +6,10 @@
  * SUGGESTIONS (suggestions are reported, never emitted — an unbound canvas
  * value never silently becomes a token). No node:* imports.
  */
-import { flattenTokens, aliasTarget, px, type TokenEntry } from './tokens.js';
+import { flattenTokens, aliasTarget, type TokenEntry } from './tokens.js';
+import { deriveTextStyles, type DerivedTextStyle } from './text-styles.js';
+
+export type { DerivedTextStyle } from './text-styles.js';
 
 export const FONT_STYLE_BY_WEIGHT: Record<number, string> = {
   400: 'Regular',
@@ -15,25 +18,13 @@ export const FONT_STYLE_BY_WEIGHT: Record<number, string> = {
   700: 'Bold',
 };
 
-export interface DerivedTextStyle {
-  /** Style name as it appears on the canvas ("badge", "control/sm"). */
-  name: string;
-  /** The semantic size-token dot-path — the style's identity. */
-  tokenPath: string;
-  /** The group's weight-token dot-path, when the group declares one. */
-  weightPath?: string;
-  fontSize: number;
-  fontStyle: string;
-}
-
 export interface TokenCorpus {
   /** Semantic layer (aliases) — the layer contracts bind. */
   semantic: Map<string, TokenEntry>;
   /** Resolve a dot-path to its literal (default brand, light mode). */
   resolveLiteral(dotPath: string): unknown;
   has(dotPath: string): boolean;
-  /** Named text styles derived from font.<group>.size tokens — recomputed
-   *  exactly as the generator derives them. */
+  /** Named text styles recomputed exactly as the generator derives them. */
   textStyles: DerivedTextStyle[];
   textStyleByName: Map<string, DerivedTextStyle>;
   /** First rendered family name → token path (case-insensitive). Figma stores
@@ -71,26 +62,12 @@ export function tokenCorpusFromJson(input: TokenCorpusInput): TokenCorpus {
     throw new Error(`Cannot resolve token "${dotPath}"`);
   };
 
-  const textStyles: DerivedTextStyle[] = [];
-  for (const [p] of semantic) {
-    const m = p.match(/^font\.(.+?)\.size(?:\.([^.]+))?$/);
-    if (!m) continue;
-    const group = m[1];
-    const name = [group, ...(m[2] ? [m[2]] : [])].join('/').split('.').join('/');
-    const weightPath = `font.${group}.weight`;
-    const hasWeight = semantic.has(weightPath);
-    const fontStyle = hasWeight
-      ? (FONT_STYLE_BY_WEIGHT[px(resolveLiteral(weightPath))] ?? 'Medium')
-      : 'Medium';
-    textStyles.push({
-      name,
-      tokenPath: p,
-      ...(hasWeight ? { weightPath } : {}),
-      fontSize: px(resolveLiteral(p)),
-      fontStyle,
-    });
-  }
-  textStyles.sort((a, b) => a.name.localeCompare(b.name));
+  const textStyles = deriveTextStyles({
+    semanticTree: input.semantic,
+    semantic,
+    resolveLiteral,
+    fontStyleByWeight: FONT_STYLE_BY_WEIGHT,
+  });
 
   const fontFamilyPathByName = new Map<string, string>();
   for (const layer of [primitives, semantic, light]) {

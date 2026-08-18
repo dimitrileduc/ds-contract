@@ -50,22 +50,37 @@ import {
   type Contract,
   type Part,
   type Prop,
+  type RichTextSegment,
 } from '../scripts/contract-schema.js';
 import { flattenTokens, aliasTarget, px, type TokenEntry, type TokenTreeInput } from './tokens.js';
-import { isMultiRoot, isRichText, richTextPlain, topRoots, validateContract } from './emit-react.js';
+import {
+  deriveTextStyles as deriveNamedTextStyles,
+  effectiveLetterSpacingPx,
+  type DerivedTextStyle,
+} from './text-styles.js';
+import {
+  isMultiRoot,
+  isRichText,
+  richTextPlain,
+  richTextStrongStyle,
+  topRoots,
+  validateContract,
+} from './emit-react.js';
 
 
 export interface LayoutSpec {
-  mode: 'HORIZONTAL' | 'VERTICAL';
+  mode: 'HORIZONTAL' | 'VERTICAL' | 'GRID';
   primary: 'MIN' | 'CENTER' | 'MAX' | 'SPACE_BETWEEN';
   counter: 'MIN' | 'CENTER' | 'MAX';
+  /** Bounded native grid: a fixed number of equal tracks. */
+  columns?: number;
   stretchChildren?: boolean;
   /** v15 (S4/matrix a.8): flex-wrap: wrap → layoutWrap 'WRAP' (native). */
   wrap?: boolean;
 }
 
 export interface NodeSpec {
-  type: 'root' | 'frame' | 'text' | 'instance' | 'slot' | 'svg' | 'shape';
+  type: 'root' | 'frame' | 'text' | 'instance' | 'slot' | 'svg' | 'shape' | 'icon-instance';
   /** Round 4: intrinsic glyph size for square icon specs (contract icon.size). */
   iconSize?: number;
   /** v18: intrinsic rectangular dimensions for a governed vector asset. */
@@ -94,6 +109,15 @@ export interface NodeSpec {
   fixedHeight?: { px: number; varName?: string };
   /** CSS grow → layoutSizingHorizontal FILL after append. */
   grow?: boolean;
+  /** Parent-owned width → layoutSizingHorizontal FILL after append. */
+  fillWidth?: boolean;
+  /** Fixed intrinsic ratio; Figma locks it after sizing/FILL is applied. */
+  aspectRatio?: number;
+  /** Numeric CSS stacking order. Canvas uses the contract's stable child
+   *  order and keeps explicitly layered inset children at that index. */
+  zIndex?: number;
+  /** Contract-owned clipping of painted child planes. */
+  clipContent?: boolean;
   /** visibleWhen on a boolean prop → node visibility bound to its BOOLEAN
    *  component property. (visibleWhen.equals is resolved at compile time:
    *  the part is simply omitted from non-matching variants.) */
@@ -120,7 +144,12 @@ export interface NodeSpec {
    *  grammar: position:absolute + px/50% offsets + translate(-50%)). The
    *  runtime sets layoutPositioning ABSOLUTE + constraints + exact offsets
    *  after append. h/v: MIN pins left/top, MAX right/bottom, CENTER centers. */
-  absolute?: { h: 'MIN' | 'MAX' | 'CENTER'; v: 'MIN' | 'MAX' | 'CENTER'; left?: number; right?: number; top?: number; bottom?: number };
+  absolute?: {
+    h: 'MIN' | 'MAX' | 'CENTER'; v: 'MIN' | 'MAX' | 'CENTER';
+    left?: number; right?: number; top?: number; bottom?: number;
+    /** Compiler-only markers, stripped before the spec reaches the runtime. */
+    declared?: boolean; alignSelf?: string;
+  };
   /** Single DROP_SHADOW (dump v1.2 box-shadow grammar), parsed at compile
    *  time from the resolved box-shadow token value — the runtime applies it
    *  as a native effect. color is 6- or 8-digit hex. */
@@ -240,6 +269,8 @@ export interface NodeSpec {
     paddingLeft?: number;
     paddingRight?: number;
     itemSpacing?: number;
+    gridColumnGap?: number;
+    gridRowGap?: number;
     radius?: number;
     strokeWeight?: number;
     /** v15 (S4/matrix a.4): per-corner literal radii. */
@@ -266,17 +297,37 @@ export interface NodeSpec {
   textStyle?: string;
   textFill?: string;
   contentProp?: string;
+  /** Rich-text is one native Figma TEXT property, but its governed marks are
+   *  native character ranges. Keeping the ranges beside the flat characters
+   *  lets the runtime restore both facts instead of silently flattening the
+   *  marks during contract → canvas projection. */
+  richTextRanges?: Array<{ start: number; end: number; fontStyle: string }>;
   // instance
   dep?: string;
   /** 016: the dependency contract's ID — resolution rides the ds_contracts/contractId marker, never the layer name (§VIII). */
   depId?: string;
   depProps?: Record<string, string | boolean>;
+  /** Rich-text values fixed on a composed child. `depProps` carries the flat
+   *  native TEXT value; these ranges restyle the rendered descendant after
+   *  `setProperties`, at the child property's exact native address. */
+  depRichTextRanges?: Array<{
+    property: string;
+    ranges: Array<{ start: number; end: number; fontStyle: string }>;
+  }>;
+  /** Exact composed-property mappings. Both sides are native Figma property
+   * names; the runtime resolves their suffixed keys by identity and retargets
+   * the child's visible property reference to the parent key. */
+  depPropRefs?: Array<{ parentProperty: string; childProperty: string }>;
   /** v20 (016): content for the composed child's INSTANCE_SWAP slots — the
    *  contract-carried override that parent rebuilds regenerate instead of
    *  erasing (D7 family). `property` is the child's slot property name;
    *  `dep`/`depId` identify the slotted contract (marker-resolved); `props`
    *  are already mapped through the slotted contract's bindings. */
   depSlots?: Array<{ property: string; dep: string; depId?: string; props?: Record<string, string | boolean> }>;
+  /** Governed icon instance selected by an INSTANCE_SWAP-bound enum. Static
+   * icon assets never carry these fields and remain imported SVG nodes. */
+  iconComponent?: FigmaIconComponent;
+  iconSwapProperty?: string;
   // slot
   slotProperty?: string;
   slotOptional?: boolean;
@@ -312,6 +363,17 @@ export interface ComponentData {
    *  StatusDot.label) — added as unbound TEXT properties so the API surface
    *  matches the contract. */
   textProps: Array<{ property: string; default: string }>;
+  /** Parent TEXT props routed verbatim into a composed child. Figma cannot
+   *  retarget an instance sublayer's componentPropertyReferences; the native
+   *  mechanism is to expose that primary nested instance instead. These names
+   *  are therefore omitted from inert parent definitions and pruned on amend. */
+  forwardedProps: string[];
+  /** Native icon swap properties resolved exclusively from icons.registry. */
+  swapProps: Array<{
+    property: string;
+    defaultComponent: FigmaIconComponent;
+    preferredComponents: FigmaIconComponent[];
+  }>;
   fontStyles: string[];
   variants: VariantSpec[];
   /** figmaStatePreviews: canvas-only preview variants carrying the "State"
@@ -342,11 +404,41 @@ export interface AcquittementPhoto {
   receiptId: string;
 }
 
+/** Browser-pure projection of one contracts/icons.registry.json entry. */
+export interface FigmaIconComponent {
+  asset: string;
+  componentName: string;
+  key: string;
+  nodeId: string;
+}
+
+/** One governed icon as the registry document spells it. */
+export interface IconRegistryEntry {
+  name: string;
+  asset: string;
+  figma: { componentName: string; key: string; nodeId: string };
+}
+
+/** The ONE projection of the parsed icon registry into engine input — data in,
+ * identity map out, so registry shape changes land in a single place. */
+export function iconComponentsFromRegistry(
+  registry: { icons: readonly IconRegistryEntry[] },
+): Map<string, FigmaIconComponent> {
+  return new Map(registry.icons.map((icon) => [icon.name, {
+    asset: icon.asset,
+    componentName: icon.figma.componentName,
+    key: icon.figma.key,
+    nodeId: icon.figma.nodeId,
+  }]));
+}
+
 /** Data the engine needs — parsed trees and assets, never paths. */
 export interface FigmaEngineInput {
   tokens: TokenTreeInput;
   /** Icon asset name → SVG markup (assets/icons/*.svg on the CLI side). */
   icons: Map<string, string>;
+  /** Governed icon asset name → exact local component identity. */
+  iconComponents?: Map<string, FigmaIconComponent>;
   /** 017 : le registre gouverné des levées du refus photo
    *  (`specs/017-photos-honnetes/registre/acquittements-photos.json`), passé
    *  EN DONNÉES — `core/` ne lit aucun fichier (§VII, browser-pure). Absent ou
@@ -457,50 +549,18 @@ function scopesFor(dotPath: string, entry: TokenEntry): string[] {
 }
 
 // ---------------------------------------------------------------------------
-// Text styles derived from semantic typography tokens.
-//
-// Real design systems ship NAMED text styles, not per-node font soup. Every
-// semantic `font.<group>.size` leaf mints one style whose name mirrors the
-// token path ("control/md" ← font.control.size.md, "badge" ← font.badge.size).
-// The style's weight comes from the group's `font.<group>.weight` token when
-// declared, else the runtimes' text default ('Medium') — the same fallback a
-// bound text node gets, so definitions and consumers can match EXACTLY.
-// NOTE (016): named TEXT STYLES are still emitted with family Inter here — a
-// separate organ from raw text nodes, which now carry their prescribed family.
-// It is latent while TEXT_STYLES is empty (deriveTextStyles looks for
-// `font.<group>.size`, the foundation spells `typography.<role>.size`), but it
-// WILL spell Inter into all 18 styles the day that net fills. Named, not fixed
-// here: repairing it touches tokens/. Primitive font.size.* stays
-// style-less — text styles are semantic roles, not a size ramp.
+// Text styles derived from semantic typography recipes. A named style is a
+// composite recipe, so its canvas identity/name lives in group metadata while
+// family/size/weight/line-height/letter-spacing remain ordinary variables.
+// The legacy `font.<group>.size` convention stays supported for foreign sets.
 // ---------------------------------------------------------------------------
 
-interface DerivedTextStyle {
-  name: string;
-  /** The semantic size-token dot-path — the style's IDENTITY marker on the
-   *  canvas (sharedPluginData ds_contracts/textStyleToken; rename-safe). */
-  tokenPath: string;
-  fontSize: number;
-  fontStyle: string;
-}
-
-function deriveTextStyles(): DerivedTextStyle[] {
-  const out: DerivedTextStyle[] = [];
-  for (const [p] of semantic) {
-    const m = p.match(/^font\.(.+?)\.size(?:\.([^.]+))?$/);
-    if (!m) continue;
-    const group = m[1];
-    const name = [group, ...(m[2] ? [m[2]] : [])].join('/').split('.').join('/');
-    const weightPath = `font.${group}.weight`;
-    const fontStyle = semantic.has(weightPath)
-      ? (FONT_STYLE_BY_WEIGHT[px(resolveLiteral(weightPath))] ?? 'Medium')
-      : 'Medium';
-    out.push({ name, tokenPath: p, fontSize: px(resolveLiteral(p)), fontStyle });
-  }
-  return out.sort((a, b) => a.name.localeCompare(b.name));
-}
-
-const derivedTextStyles = deriveTextStyles();
-const textStyleByTokenPath = new Map(derivedTextStyles.map((t) => [t.tokenPath, t]));
+const derivedTextStyles = deriveNamedTextStyles({
+  semanticTree: input.tokens.semantic,
+  semantic,
+  resolveLiteral,
+  fontStyleByWeight: FONT_STYLE_BY_WEIGHT,
+});
 
 // ---------------------------------------------------------------------------
 // 01-tokens.js (unchanged mechanism from v1)
@@ -578,7 +638,7 @@ const BRAND = ${JSON.stringify(brand)};
 const BRAND_MODES = ${JSON.stringify(brandNames.map((n) => pascal(n)))};
 const SEMANTIC = ${JSON.stringify(sem)};
 const SEMANTIC_HAS_DARK = ${JSON.stringify(hasDark)};
-// Named text styles derived from semantic font.<group>.size tokens.
+// Named text styles derived from semantic typography recipes.
 const TEXT_STYLES = ${JSON.stringify(derivedTextStyles)};
 
 // File guard: multi-file bridge routing has been observed to hit the wrong
@@ -610,6 +670,54 @@ function hexToRgb(value) {
   };
   if (h.length === 8) c.a = parseInt(h.slice(6, 8), 16) / 255;
   return c;
+}
+
+// Text-style safety preflight runs BEFORE the first variable mutation.
+// Project recipes describe historical objects: 01-tokens may update them only
+// after a separate, reviewed migration attached their stable token markers.
+const localTextStyles = await figma.getLocalTextStylesAsync();
+const styleByToken = {};
+for (const s of localTextStyles) {
+  const tp = s.getSharedPluginData('ds_contracts', 'textStyleToken');
+  if (!tp) continue;
+  if (styleByToken[tp]) throw new Error('Duplicate Text Style identity marker: ' + tp);
+  styleByToken[tp] = s;
+}
+const TEXT_STYLE_ALIASES = { 'Semi Bold': ['Semi Bold', 'SemiBold'], 'Extra Light': ['Extra Light', 'ExtraLight'], 'Extra Bold': ['Extra Bold', 'ExtraBold'] };
+const compactStyle = (value) => String(value || '').replace(/\\s+/g, '').toLowerCase();
+const sameNumber = (a, b) => typeof a === 'number' && Math.abs(a - b) < 0.001;
+const sameLineHeight = (actual, expected) => expected === undefined
+  ? actual && actual.unit === 'AUTO'
+  : actual && actual.unit === 'PIXELS' && sameNumber(actual.value, expected);
+const sameSpacing = (actual, expected) => actual && actual.unit === expected.unit && sameNumber(actual.value, expected.value);
+async function textStyleFont(t) {
+  for (const style of (TEXT_STYLE_ALIASES[t.fontStyle] || [t.fontStyle])) {
+    try {
+      const font = { family: t.fontFamily, style };
+      await figma.loadFontAsync(font);
+      return font;
+    } catch (e) { /* next spelling */ }
+  }
+  throw new Error('Cannot load Text Style font ' + t.fontFamily + ' ' + t.fontStyle + ' for ' + t.name);
+}
+const sameTextStyleDefinition = (style, t, font) =>
+  style.name === t.name &&
+  style.fontName && style.fontName.family === font.family &&
+  compactStyle(style.fontName.style) === compactStyle(font.style) &&
+  sameNumber(style.fontSize, t.fontSize) &&
+  sameLineHeight(style.lineHeight, t.lineHeight) &&
+  sameSpacing(style.letterSpacing, t.letterSpacing) &&
+  (style.textCase || 'ORIGINAL') === t.textCase;
+for (const t of TEXT_STYLES) {
+  if (!t.requiresExistingMarker) continue;
+  const s = styleByToken[t.tokenPath];
+  if (!s) {
+    throw new Error('Missing historical Text Style marker for ' + t.name + ' (' + t.tokenPath + '); run the reviewed marker-only migration first');
+  }
+  const font = await textStyleFont(t);
+  if (!sameTextStyleDefinition(s, t, font)) {
+    throw new Error('Historical Text Style "' + t.name + '" differs from its token recipe; refusing token writes');
+  }
 }
 
 const collections = await figma.variables.getLocalVariableCollectionsAsync();
@@ -702,30 +810,25 @@ for (const t of SEMANTIC) {
   v.setVariableCodeSyntax('WEB', t.codeSyntax);
 }
 
-// Text styles: upsert by IDENTITY MARKER (ds_contracts/textStyleToken =
-// the semantic size-token path), never by name — a rename on either side
-// must not fork identity, and a foreign style that happens to share a name
-// is never touched (same rule as component sets). Idempotent: re-runs
-// update the marked style in place.
-const localTextStyles = await figma.getLocalTextStylesAsync();
-const styleByToken = {};
-for (const s of localTextStyles) {
-  const tp = s.getSharedPluginData('ds_contracts', 'textStyleToken');
-  if (tp) styleByToken[tp] = s;
-}
+// Text styles reconcile by IDENTITY MARKER only. Historical Piqueray styles
+// were already verified above; name-based adoption is deliberately forbidden.
 let createdStyles = 0;
 for (const t of TEXT_STYLES) {
   let s = styleByToken[t.tokenPath];
+  const font = await textStyleFont(t);
   if (!s) {
+    if (t.requiresExistingMarker) throw new Error('Missing historical Text Style marker after preflight: ' + t.name);
     s = figma.createTextStyle();
+    createdStyles++;
     s.setSharedPluginData('ds_contracts', 'textStyleToken', t.tokenPath);
     styleByToken[t.tokenPath] = s;
-    createdStyles++;
   }
-  await figma.loadFontAsync({ family: 'Inter', style: t.fontStyle });
   s.name = t.name;
-  s.fontName = { family: 'Inter', style: t.fontStyle };
+  s.fontName = font;
   s.fontSize = t.fontSize;
+  s.lineHeight = t.lineHeight === undefined ? { unit: 'AUTO' } : { unit: 'PIXELS', value: t.lineHeight };
+  s.letterSpacing = t.letterSpacing;
+  s.textCase = t.textCase;
   s.description = 'ds_contracts: derived from tokens/' + t.tokenPath;
 }
 
@@ -921,6 +1024,14 @@ function layoutSpec(part: Part, isRoot: boolean, subst: Record<string, string> =
   if (!l && isRoot) {
     return { mode: 'HORIZONTAL', primary: 'CENTER', counter: 'CENTER' };
   }
+  if (l?.display === 'grid') {
+    return {
+      mode: 'GRID',
+      columns: l.columns,
+      primary: 'MIN',
+      counter: 'MIN',
+    };
+  }
   return {
     mode: l?.direction?.startsWith('column') ? 'VERTICAL' : 'HORIZONTAL',
     primary: l?.justify ? JUSTIFY_FIGMA[l.justify] : 'MIN',
@@ -1049,7 +1160,9 @@ function applyTokens(
         spec.bindings = { ...spec.bindings, paddingBottom: varName };
         break;
       case 'gap':
-        spec.bindings = { ...spec.bindings, itemSpacing: varName };
+        spec.bindings = spec.layout?.mode === 'GRID'
+          ? { ...spec.bindings, gridColumnGap: varName, gridRowGap: varName }
+          : { ...spec.bindings, itemSpacing: varName };
         break;
       // Round 5 (canvas-gate finding): the floor promotion carries the gap
       // LONGHANDS (column-gap/row-gap — Banner's InlineStack icon–title gap
@@ -1057,12 +1170,16 @@ function applyTokens(
       // maps to itemSpacing; the cross-axis one only matters under wrap and
       // stays CSS-side.
       case 'column-gap':
-        if ((spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') {
+        if (spec.layout?.mode === 'GRID') {
+          spec.bindings = { ...spec.bindings, gridColumnGap: varName };
+        } else if ((spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') {
           spec.bindings = { ...spec.bindings, itemSpacing: varName };
         }
         break;
       case 'row-gap':
-        if (spec.layout?.mode === 'VERTICAL') {
+        if (spec.layout?.mode === 'GRID') {
+          spec.bindings = { ...spec.bindings, gridRowGap: varName };
+        } else if (spec.layout?.mode === 'VERTICAL') {
           spec.bindings = { ...spec.bindings, itemSpacing: varName };
         }
         break;
@@ -1330,16 +1447,25 @@ function applyLiterals(spec: NodeSpec, lits: Record<string, string>, ctx: TextCt
       case 'padding-right': { const n = parseLitPx(value); if (n !== undefined) li().paddingRight = n; break; }
       case 'padding-top': { const n = parseLitPx(value); if (n !== undefined) li().paddingTop = n; break; }
       case 'padding-bottom': { const n = parseLitPx(value); if (n !== undefined) li().paddingBottom = n; break; }
-      case 'gap': { const n = parseLitPx(value); if (n !== undefined) li().itemSpacing = n; break; }
+      case 'gap': {
+        const n = parseLitPx(value);
+        if (n !== undefined) {
+          if (spec.layout?.mode === 'GRID') { li().gridColumnGap = n; li().gridRowGap = n; }
+          else li().itemSpacing = n;
+        }
+        break;
+      }
       // Round 5: gap longhands (see the token side) — main-axis only.
       case 'column-gap': {
         const n = parseLitPx(value);
-        if (n !== undefined && (spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') li().itemSpacing = n;
+        if (n !== undefined && spec.layout?.mode === 'GRID') li().gridColumnGap = n;
+        else if (n !== undefined && (spec.layout?.mode ?? 'HORIZONTAL') === 'HORIZONTAL') li().itemSpacing = n;
         break;
       }
       case 'row-gap': {
         const n = parseLitPx(value);
-        if (n !== undefined && spec.layout?.mode === 'VERTICAL') li().itemSpacing = n;
+        if (n !== undefined && spec.layout?.mode === 'GRID') li().gridRowGap = n;
+        else if (n !== undefined && spec.layout?.mode === 'VERTICAL') li().itemSpacing = n;
         break;
       }
       // Round 5: literal margin channels — same lowering as the token side.
@@ -1610,17 +1736,27 @@ function withPartStateOverrides(parts: Record<string, Part>, stateName: string):
   return changed ? out : parts;
 }
 
-/** The derived text style a compiled text node rides, or undefined. EXACT
- *  definition match only: the node's font-size token must be a style's
- *  identity path AND the node's effective weight (its own font-weight
- *  binding, or the 'Medium' runtime default) must equal the style's — a
- *  node that overrides the group's weight keeps raw props, honestly. */
+/** The named style a compiled plain-text node rides. Exact rendered recipe
+ *  only: contracts legitimately consume primitive font tokens, while named
+ *  styles are semantic composites. Matching by the size-token path therefore
+ *  loses every Piqueray style; matching the complete recipe does not guess. */
 function matchTextStyle(ctx: TextCtx): string | undefined {
-  if (!ctx.fontSizePath) return undefined;
-  const t = textStyleByTokenPath.get(ctx.fontSizePath);
-  if (!t) return undefined;
-  if (t.fontSize !== ctx.fontSize || t.fontStyle !== (ctx.fontStyle ?? 'Medium')) return undefined;
-  return t.name;
+  const compactStyle = (value: string) => value.replace(/\s+/g, '').toLowerCase();
+  const close = (a: number, b: number) => Math.abs(a - b) < 0.001;
+  const matches = derivedTextStyles.filter((style) =>
+    style.fontFamily.toLowerCase() === (ctx.fontFamily ?? 'Inter').toLowerCase() &&
+    ctx.fontSize !== undefined && close(style.fontSize, ctx.fontSize) &&
+    compactStyle(style.fontStyle) === compactStyle(ctx.fontStyle ?? 'Medium') &&
+    (style.lineHeight === undefined
+      ? ctx.lineHeight === undefined
+      : ctx.lineHeight !== undefined && close(style.lineHeight, ctx.lineHeight)) &&
+    close(effectiveLetterSpacingPx(style), ctx.letterSpacing ?? 0) &&
+    style.textCase === (ctx.textCase ?? 'ORIGINAL')
+  );
+  if (matches.length > 1) {
+    throw new Error(`Ambiguous Figma Text Style recipe: ${matches.map((style) => style.name).join(', ')}`);
+  }
+  return matches[0]?.name;
 }
 
 const isEnum = (p: Prop): p is Prop & { type: { enum: string[] } } =>
@@ -1628,6 +1764,7 @@ const isEnum = (p: Prop): p is Prop & { type: { enum: string[] } } =>
 
 // Icon assets (assets/icons/*.svg) — same source the code generator inlines.
 const iconAssets = input.icons;
+const iconComponents = input.iconComponents ?? new Map<string, FigmaIconComponent>();
 
 /** Compile an icon part to a concrete SVG for one variant: resolve the
  *  `{prop}` asset reference through subst, and bake currentColor to the
@@ -1775,6 +1912,52 @@ const nativeTextDefault = (prop: Prop | undefined, fallback: string): string => 
   return typeof prop?.default === 'string' ? prop.default : fallback;
 };
 
+type RichTextStrongMark =
+  | string
+  | { 'font-weight': string; 'font-size'?: string; 'line-height'?: string };
+
+function richTextRanges(
+  segments: Array<RichTextSegment>,
+  mark: RichTextStrongMark | undefined,
+): NonNullable<NodeSpec['richTextRanges']> {
+  const weight = richTextStrongStyle(mark).fontWeight;
+  if (!weight) return [];
+  const token = weight.match(/^\{(.+)\}$/)?.[1];
+  const numeric = Number(token ? px(resolveLiteral(token)) : weight);
+  const fontStyle = Number.isFinite(numeric) ? (FONT_STYLE_BY_WEIGHT[numeric] ?? 'Medium') : 'Medium';
+  const out: NonNullable<NodeSpec['richTextRanges']> = [];
+  let start = 0;
+  for (const segment of segments) {
+    const end = start + segment.text.length;
+    if (segment.strong && end > start) out.push({ start, end, fontStyle });
+    start = end;
+  }
+  return out;
+}
+
+function richTextMarkForProp(contract: Contract, propName: string): RichTextStrongMark | undefined {
+  for (const { part } of walkAnatomy(contract)) {
+    if (part.content?.prop === propName) return part.content.marks?.strong;
+  }
+  return undefined;
+}
+
+function mapDepRichTextRanges(
+  dep: Contract,
+  props: Record<string, ComponentPropValue>,
+): NonNullable<NodeSpec['depRichTextRanges']> {
+  const out: NonNullable<NodeSpec['depRichTextRanges']> = [];
+  for (const [propName, rawValue] of Object.entries(props)) {
+    if (!Array.isArray(rawValue)) continue;
+    const depProp = dep.props.find((p) => p.name === propName && isRichText(p));
+    const property = depProp?.bindings.figma.property;
+    if (!property) continue;
+    const ranges = richTextRanges(rawValue, richTextMarkForProp(dep, propName));
+    if (ranges.length > 0) out.push({ property, ranges });
+  }
+  return out;
+}
+
 /** Map canonical prop values to Figma property/value pairs through the CHILD
  *  contract's bindings. `{parentProp}` values resolve through `subst` first. */
 function mapDepProps(
@@ -1806,13 +1989,42 @@ function mapDepProps(
       }
     }
     if (typeof value === 'boolean') out[depProp.bindings.figma.property!] = value;
-    else out[depProp.bindings.figma.property!] = depProp.bindings.figma.values?.[value] ?? value;
+    else if (depProp.bindings.figma.kind === 'INSTANCE_SWAP' && iconComponents.has(value)) {
+      out[depProp.bindings.figma.property!] = iconComponents.get(value)!.nodeId;
+    } else out[depProp.bindings.figma.property!] = depProp.bindings.figma.values?.[value] ?? value;
   }
   if (text !== undefined) {
     const textProp = dep.props.find((p) => isTextLikeProp(p) && p.bindings.code.prop === 'children');
     if (textProp) out[textProp.bindings.figma.property!] = text;
   }
   return out;
+}
+
+/** Preserve only exact `{parentProp}` mappings whose native endpoints are
+ * both TEXT properties. Literal child props remain literal witnesses. */
+function mapDepPropRefs(
+  contract: Contract,
+  dep: Contract,
+  props: Record<string, ComponentPropValue>,
+): NonNullable<NodeSpec['depPropRefs']> {
+  const refs: NonNullable<NodeSpec['depPropRefs']> = [];
+  for (const [childPropName, rawValue] of Object.entries(props)) {
+    if (typeof rawValue !== 'string') continue;
+    const match = rawValue.match(PARENT_PROP_REF);
+    if (!match) continue;
+    const parentProp = contract.props.find((prop) => prop.name === match[1]);
+    const childProp = dep.props.find((prop) => prop.name === childPropName);
+    if (
+      !parentProp || !childProp ||
+      parentProp.bindings.figma.kind !== 'TEXT' ||
+      childProp.bindings.figma.kind !== 'TEXT'
+    ) continue;
+    refs.push({
+      parentProperty: parentProp.bindings.figma.property!,
+      childProperty: childProp.bindings.figma.property!,
+    });
+  }
+  return refs;
 }
 
 /** visibleWhen on a boolean prop → runtime visibility binding fields.
@@ -2063,13 +2275,17 @@ function partToSpecs(
       // props (numbers spell as strings on the canvas — TEXT properties).
       const fields: Record<string, string | boolean> = {};
       for (const [k, v] of Object.entries(rec)) fields[k] = typeof v === 'number' ? String(v) : v;
+      const composedProps = { ...(part.component!.props ?? {}), ...fields };
+      const depPropRefs = mapDepPropRefs(contract, dep, composedProps);
       const spec: NodeSpec = {
         type: 'instance',
         name: i === 0 ? name : `${name} ${i + 1}`,
         dep: dep.name,
         depId: dep.id,
-        depProps: mapDepProps(dep, { ...(part.component!.props ?? {}), ...fields }, subst, part.component!.text),
+        depProps: mapDepProps(dep, composedProps, subst, part.component!.text),
+        ...(depPropRefs.length > 0 ? { depPropRefs } : {}),
       };
+      applyLayoutCarriage(spec, part, subst);
       applyVisibleWhen(spec, part, contract);
       return spec;
     });
@@ -2086,12 +2302,111 @@ function partToSpec(
   subst: Record<string, string>,
 ): NodeSpec {
   const spec = partToSpecInner(name, part, contract, byId, ctx, subst);
+  applyLayoutCarriage(spec, part, subst);
+  // Conditional absolute placement belongs to the part, independently of
+  // the concrete Figma node kind it compiles to. Shapes already exercised
+  // this grammar; frames and component instances must carry it as well.
+  const placement = shapePlacement(part, contract, subst);
+  if (placement.absolute) spec.absolute = placement.absolute;
+  if (placement.rotation !== undefined && spec.shape) spec.shape.rotation = placement.rotation;
   // v7 overlay: stamped on whatever node kind the part compiled to; the
   // runtime applies it after the node is appended (layoutPositioning
   // requires an auto-layout parent).
   if (part.overlay) spec.overlay = part.overlay;
   applyStylesWhenOpacity(spec, part, contract, subst);
+  lowerDeclaredAbsolute(spec, part, subst);
   return spec;
+}
+
+/** Layout facts that belong to the node itself rather than its Auto Layout
+ *  axes. `referenceWidth` is a canvas authoring size only; code emitters
+ *  deliberately ignore it. Numeric z-index keeps explicit layer order from
+ *  being rewritten by the generic backdrop lowering. */
+function applyLayoutCarriage(
+  spec: NodeSpec,
+  part: Part,
+  subst: Record<string, string>,
+): void {
+  const layout = resolveLayout(part, subst);
+  if (layout?.width === 'fill') spec.fillWidth = true;
+  if (layout?.clip) spec.clipContent = true;
+  if (layout?.referenceWidth !== undefined) {
+    (spec.lits ??= {}).width = layout.referenceWidth;
+  }
+  if (layout?.aspectRatio !== undefined) {
+    spec.aspectRatio = layout.aspectRatio;
+    // The ratio must MATERIALIZE the height wherever the width is already
+    // known and no height channel is carried: the runtime lock
+    // (lockAspectRatio/constrainProportions) constrains future edits but
+    // sizes nothing, so a ratio-only master would land at height 0 — its
+    // planes are absolute and contribute no flow height (MemberPicture,
+    // 364×0 measured). Same derivation as the declared `aspect-ratio`
+    // lowering above (Avatar/Thumbnail): height = width / ratio.
+    const width = spec.fixedWidth?.px ?? spec.lits?.width;
+    if (
+      layout.aspectRatio > 0 &&
+      width !== undefined &&
+      !spec.fixedHeight &&
+      spec.lits?.height === undefined
+    ) {
+      (spec.lits ??= {}).height = width / layout.aspectRatio;
+    }
+  }
+  const zIndex = part.declared?.['z-index'];
+  if (zIndex !== undefined && /^-?\d+$/.test(zIndex)) spec.zIndex = Number(zIndex);
+}
+
+function markInsetOverlay(spec: NodeSpec, offsets: NonNullable<ReturnType<typeof insetOverlayOffsets>>): void {
+  spec.insetOverlay = true;
+  if (offsets.partialV) spec.insetPartialV = true;
+  if (offsets.top !== 0 || offsets.right !== 0 || offsets.bottom !== 0 || offsets.left !== 0) {
+    spec.insetOffsets = { top: offsets.top, right: offsets.right, bottom: offsets.bottom, left: offsets.left };
+  }
+}
+
+/** Every declared absolute part is an out-of-flow plan. An unbounded image
+ * plane fills its positioning parent; other parts retain CSS's static flex
+ * alignment until the completed parent spec resolves that alignment. */
+function lowerDeclaredAbsolute(spec: NodeSpec, part: Part, subst: Record<string, string>): void {
+  if (part.declared?.['position'] !== 'absolute') return;
+  const inset = insetOverlayOffsets(part, subst);
+  if (inset) {
+    markInsetOverlay(spec, inset);
+    return;
+  }
+  if (part.element === 'img') {
+    markInsetOverlay(spec, { top: 0, right: 0, bottom: 0, left: 0 });
+    return;
+  }
+  if (!spec.absolute) {
+    spec.absolute = { h: 'MIN', v: 'MIN', declared: true, alignSelf: String(part.declared?.['align-self'] ?? '') };
+  }
+}
+
+const axisAlignment = (value: string | undefined): 'MIN' | 'MAX' | 'CENTER' =>
+  value === 'MAX' || value === 'flex-end' ? 'MAX' : value === 'CENTER' || value === 'center' ? 'CENTER' : 'MIN';
+
+/** Resolve CSS's static flex position only after both parent and child specs
+ * exist. No component name participates: the parent layout and the child's
+ * declared `align-self` are the whole rule. */
+function resolveDeclaredAbsoluteChildren(parent: NodeSpec): void {
+  for (const child of parent.children ?? []) {
+    const a = child.absolute;
+    if (a?.declared) {
+      const primary = axisAlignment(parent.layout?.primary);
+      const counter = axisAlignment(a.alignSelf || parent.layout?.counter);
+      if (parent.layout?.mode === 'VERTICAL') {
+        a.h = counter;
+        a.v = primary;
+      } else {
+        a.h = primary;
+        a.v = counter;
+      }
+      delete a.declared;
+      delete a.alignSelf;
+    }
+    resolveDeclaredAbsoluteChildren(child);
+  }
 }
 
 /** The `slot.control` border-color resolved to a Figma variable name for this
@@ -2144,6 +2459,35 @@ function partToSpecInner(
     return spec;
   }
   if (part.icon) {
+    const assetRef = part.icon.asset.match(PARENT_PROP_REF);
+    const swapProp = assetRef
+      ? contract.props.find(
+          (prop) =>
+            prop.name === assetRef[1] &&
+            isEnum(prop) &&
+            prop.bindings.figma.kind === 'INSTANCE_SWAP',
+        )
+      : undefined;
+    if (swapProp) {
+      const asset = subst[swapProp.name];
+      if (asset === undefined) throw new Error(`Cannot resolve icon asset reference "{${swapProp.name}}"`);
+      const iconComponent = iconComponents.get(asset);
+      if (!iconComponent) {
+        throw new Error(
+          `Unknown governed icon component "${asset}" for ${contract.id}.${name} (expected contracts/icons.registry.json identity)`,
+        );
+      }
+      const spec: NodeSpec = {
+        type: 'icon-instance',
+        name,
+        iconComponent,
+        iconSwapProperty: swapProp.bindings.figma.property,
+        grow: part.layout?.grow || undefined,
+        ...(part.icon.size ? { iconSize: part.icon.size } : {}),
+      };
+      applyVisibleWhen(spec, part, contract);
+      return spec;
+    }
     // The part's own tokens (e.g. a color override) apply to the glyph.
     const iconCtx = applyTokens({ type: 'frame', name: '_' }, resolveTokens(part, subst), subst, ctx);
     const markup = iconSvg(part, subst, iconCtx);
@@ -2199,12 +2543,16 @@ function partToSpecInner(
   }
   if (part.component) {
     const dep = byId.get(part.component.id)!; // resolvability guaranteed by refuseUnresolvableRefs
+    const depPropRefs = mapDepPropRefs(contract, dep, part.component.props ?? {});
+    const depRichTextRanges = mapDepRichTextRanges(dep, part.component.props ?? {});
     const spec: NodeSpec = {
       type: 'instance',
       name,
       dep: dep.name,
       depId: dep.id,
       depProps: mapDepProps(dep, part.component.props ?? {}, subst, part.component.text),
+      ...(depRichTextRanges.length > 0 ? { depRichTextRanges } : {}),
+      ...(depPropRefs.length > 0 ? { depPropRefs } : {}),
     };
     // v20 (016): component.slots — the child's INSTANCE_SWAP slot content,
     // carried by the contract so parent rebuilds regenerate it instead of
@@ -2301,11 +2649,17 @@ function partToSpecInner(
     spec.characters = nativeTextDefault(prop, contract.name);
     spec.fontSize = textCtx.fontSize ?? 16;
     spec.fontStyle = textCtx.fontStyle ?? 'Medium';
-    spec.textStyle = matchTextStyle(textCtx);
+    // A whole-node style would flatten the governed per-range strong marks.
+    // Rich text is the sole intentional exception to named-style linkage.
+    if (!isRichText(prop)) spec.textStyle = matchTextStyle(textCtx);
     spec.textFill = textCtx.textFill;
     if (textCtx.lineHeight !== undefined) spec.lineHeight = textCtx.lineHeight;
     Object.assign(spec, textExtras(textCtx));
     spec.contentProp = prop.bindings.figma.property;
+    if (isRichText(prop) && Array.isArray(prop.default)) {
+      const ranges = richTextRanges(prop.default, part.content.marks?.strong);
+      if (ranges.length > 0) spec.richTextRanges = ranges;
+    }
     applyVisibleWhen(spec, part, contract);
     return spec;
   }
@@ -2320,21 +2674,14 @@ function partToSpecInner(
   // offsets carried too).
   {
     const io = insetOverlayOffsets(part, subst);
-    if (io) {
-      spec.insetOverlay = true;
-      // 016: top/left/right without bottom — pin the top, keep the node's own
-      // height (the runtime reads the flag; absent = full-stretch, byte-stable).
-      if (io.partialV) spec.insetPartialV = true;
-      if (io.top !== 0 || io.right !== 0 || io.bottom !== 0 || io.left !== 0) {
-        spec.insetOffsets = { top: io.top, right: io.right, bottom: io.bottom, left: io.left };
-      }
-    }
+    if (io) markInsetOverlay(spec, io);
   }
   const childCtx = applyStyling(spec, part, subst, ctx);
-  // Round 5: `img` parts — raster content is runtime data; the frame draws
-  // the standard image-placeholder wash (#D9D9D9), named in the fidelity
-  // notes via the flag. A contract-carried fill always wins.
-  if (part.element === 'img') {
+  // Round 5: raster parts — runtime media has no URL transport to Figma. Both
+  // img and video draw the standard placeholder; video is represented by its
+  // static poster IMAGE because native VideoPaint cannot be reconstructed
+  // deterministically from a contract. A contract-carried fill always wins.
+  if (part.element === 'img' || part.element === 'video') {
     spec.imgPlaceholder = true;
     if (!spec.fill && spec.lits?.fillColor === undefined && spec.lits?.fillClear === undefined) {
       (spec.lits ??= {}).fillColor = { r: 217 / 255, g: 217 / 255, b: 217 / 255 };
@@ -2346,6 +2693,7 @@ function partToSpecInner(
     partToSpecs(childName, child, contract, byId, childCtx, subst),
   );
   if (isReversed(part, subst)) spec.children.reverse();
+  resolveDeclaredAbsoluteChildren(spec);
   // Round 5f (CLASS 3): an inset-0 overlay that CONTAINS content — the
   // Checkbox check glyph, the RadioButton dot — must CENTER it in the control
   // box. The captured display:block carried no centering, so the glyph pinned
@@ -2420,6 +2768,36 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   // rather than fabricating one variant per icon choice).
   const variantEnums = enums.filter((p) => p.bindings.figma.kind === 'VARIANT');
   const swapEnums = enums.filter((p) => p.bindings.figma.kind === 'INSTANCE_SWAP');
+  const iconDrivenSwapNames = new Set(
+    [...walkAnatomy(contract)]
+      .map(({ part }) => part.icon?.asset.match(PARENT_PROP_REF)?.[1])
+      .filter((name): name is string => name !== undefined),
+  );
+  const swapPropsData = swapEnums
+    .filter((prop) => iconDrivenSwapNames.has(prop.name))
+    .map((prop) => {
+      const defaultAsset = prop.default === undefined ? null : String(prop.default);
+      const defaultComponent = defaultAsset ? iconComponents.get(defaultAsset) : undefined;
+      if (!defaultAsset || !defaultComponent) {
+        throw new Error(
+          `${contract.id}: INSTANCE_SWAP property "${prop.name}" default has no governed icon identity in contracts/icons.registry.json`,
+        );
+      }
+      const preferredComponents = prop.type.enum.map((asset) => {
+        const component = iconComponents.get(asset);
+        if (!component) {
+          throw new Error(
+            `${contract.id}: INSTANCE_SWAP property "${prop.name}" value "${asset}" has no governed icon identity in contracts/icons.registry.json`,
+          );
+        }
+        return component;
+      });
+      return {
+        property: prop.bindings.figma.property!,
+        defaultComponent,
+        preferredComponents,
+      };
+    });
   const textProp = contract.props.find(
     (p) => isTextLikeProp(p) && p.bindings.code.prop === 'children',
   );
@@ -2530,8 +2908,11 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
       rootSpec.children = topRoots(contract).flatMap(([childName, child]) =>
         partToSpecs(childName, child, contract, byId, ctx, subst),
       );
+      resolveDeclaredAbsoluteChildren(rootSpec);
       const collectStylesMR = (s: NodeSpec) => {
         if (s.fontStyle) fontStyles.add(s.fontStyle);
+        for (const r of s.richTextRanges ?? []) fontStyles.add(r.fontStyle);
+        for (const dep of s.depRichTextRanges ?? []) for (const r of dep.ranges) fontStyles.add(r.fontStyle);
         (s.children ?? []).forEach(collectStylesMR);
       };
       collectStylesMR(rootSpec);
@@ -2549,6 +2930,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     // combo exactly like every child part's. Byte-neutral for contracts
     // without tokensByProp (resolveTokens returns the base map unchanged).
     const ctx = applyStyling(rootSpec, root, subst, {});
+    applyLayoutCarriage(rootSpec, root, subst);
     applyStylesWhenOpacity(rootSpec, root, contract, subst);
     // Round 5: parent aspect lowering + block-root width fact (see NodeSpec).
     applyChildAspect(rootSpec, root);
@@ -2564,6 +2946,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
         partToSpecs(childName, child, contract, byId, ctx, subst),
       );
       if (isReversed(root, subst)) rootSpec.children.reverse();
+      resolveDeclaredAbsoluteChildren(rootSpec);
     } else if (textProp) {
       rootSpec.children = [
         {
@@ -2572,7 +2955,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
           characters: label,
           fontSize: ctx.fontSize ?? 16,
           fontStyle: ctx.fontStyle ?? 'Medium',
-          textStyle: matchTextStyle(ctx),
+          textStyle: isRichText(textProp) ? undefined : matchTextStyle(ctx),
           textFill: ctx.textFill,
           ...(ctx.lineHeight !== undefined ? { lineHeight: ctx.lineHeight } : {}),
           ...textExtras(ctx),
@@ -2582,6 +2965,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     }
     const collectStyles = (s: NodeSpec) => {
       if (s.fontStyle) fontStyles.add(s.fontStyle);
+      for (const r of s.richTextRanges ?? []) fontStyles.add(r.fontStyle);
+      for (const dep of s.depRichTextRanges ?? []) for (const r of dep.ranges) fontStyles.add(r.fontStyle);
       (s.children ?? []).forEach(collectStyles);
     };
     collectStyles(rootSpec);
@@ -2630,6 +3015,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
         // Same resolveTokens rule as the base loop: per-combo tokensByProp
         // overrides apply BEFORE the state overrides layer on top.
         const baseCtx = applyStyling(rootSpec, root, subst, {});
+        applyLayoutCarriage(rootSpec, root, subst);
         const ctx = applyTokens(
           rootSpec,
           translateStateOverrides(overrides[stateName] ?? {}),
@@ -2656,6 +3042,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
             partToSpecs(childName, child, contract, byId, ctx, subst),
           );
           if (isReversed(root, subst)) rootSpec.children.reverse();
+          resolveDeclaredAbsoluteChildren(rootSpec);
         } else if (textProp) {
           rootSpec.children = [
             {
@@ -2664,7 +3051,7 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
               characters: label,
               fontSize: ctx.fontSize ?? 16,
               fontStyle: ctx.fontStyle ?? 'Medium',
-              textStyle: matchTextStyle(ctx),
+              textStyle: isRichText(textProp) ? undefined : matchTextStyle(ctx),
               textFill: ctx.textFill,
               ...(ctx.lineHeight !== undefined ? { lineHeight: ctx.lineHeight } : {}),
               ...textExtras(ctx),
@@ -2674,6 +3061,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
         }
         const collectStyles = (s: NodeSpec) => {
           if (s.fontStyle) fontStyles.add(s.fontStyle);
+          for (const r of s.richTextRanges ?? []) fontStyles.add(r.fontStyle);
+          for (const dep of s.depRichTextRanges ?? []) for (const r of dep.ranges) fontStyles.add(r.fontStyle);
           (s.children ?? []).forEach(collectStyles);
         };
         collectStyles(rootSpec);
@@ -2684,8 +3073,10 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
 
   // Text props bound to a text node somewhere in the compiled specs.
   const boundTextProps = new Set<string>();
+  const forwardedTextProps = new Set<string>();
   const collectBound = (s: NodeSpec) => {
     if (s.contentProp) boundTextProps.add(s.contentProp);
+    for (const mapping of s.depPropRefs ?? []) forwardedTextProps.add(mapping.parentProperty);
     (s.children ?? []).forEach(collectBound);
   };
   variants.forEach((v) => collectBound(v.spec));
@@ -2694,7 +3085,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
       (p) =>
         (p.type === 'text' || p.type === 'rich-text' || p.type === 'number') &&
         p.bindings.figma.kind === 'TEXT' &&
-        !boundTextProps.has(p.bindings.figma.property!),
+        !boundTextProps.has(p.bindings.figma.property!) &&
+        !forwardedTextProps.has(p.bindings.figma.property!),
     )
     .map((p) => ({
       property: p.bindings.figma.property!,
@@ -2759,6 +3151,16 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
   };
   for (const v of variants) stripMarginVars(v.spec);
   for (const v of stateVariants) stripMarginVars(v.spec);
+  // Static inset materialization (2026-08-12): an inset-overlay child covers
+  // its parent's padding box, so wherever the parent's size is statically
+  // known the child's size is a derivable FACT — without it, a plane whose
+  // parent went fluid (fill + referenceWidth + aspectRatio, MemberPicture's
+  // photo planes) compiles to 0×0 and the master lands collapsed. COMPILE
+  // side, before specHash: the stored hash and the live engine mirror must
+  // never disagree (plugin-engine-check pin caught the serialization-side
+  // first draft of this pass).
+  for (const v of variants) materializeInsetOverlaySizes(v.spec);
+  for (const v of stateVariants) materializeInsetOverlaySizes(v.spec);
   // Meter parts are runtime-sized (the canvas shows the defaults' fraction;
   // height follows the track) — a code-only fact like the rest.
   const hasMeter = walkAnatomy(contract).some((w) => w.part.meter);
@@ -2815,6 +3217,8 @@ function compileComponentData(contract: Contract, byId: Map<string, Contract>): 
     isSet: variants.length + stateVariants.length > 1,
     boolProps: boolPropsData,
     textProps: textOnlyProps,
+    forwardedProps: [...forwardedTextProps].sort(),
+    swapProps: swapPropsData,
     fontStyles: [...fontStyles],
     variants,
     ...(stateVariants.length > 0 ? { stateVariants } : {}),
@@ -3153,6 +3557,27 @@ const wrapRuntime = (has: boolean): string =>
   if (l.wrap) node.layoutWrap = 'WRAP';`
     : '';
 
+/** Native fixed-track grid, feature-gated so non-grid scripts remain byte-stable. */
+const frameLayoutRuntime = (hasGrid: boolean, hasWrap: boolean): string => {
+  const axes = `node.primaryAxisAlignItems = l.primary;
+  node.counterAxisAlignItems = l.counter;${wrapRuntime(hasWrap)}
+  node.primaryAxisSizingMode = 'AUTO';
+  node.counterAxisSizingMode = 'AUTO';`;
+  if (!hasGrid) return axes;
+  return `if (l.mode === 'GRID') {
+    const columns = Math.max(1, Number(l.columns) || 1);
+    const flowChildren = (spec.children || []).filter((child) => !child.overlay && !child.insetOverlay);
+    node.gridColumnCount = columns;
+    node.gridRowCount = Math.max(1, Math.ceil(flowChildren.length / columns));
+    node.gridColumnSizes = Array.from({ length: columns }, () => ({ type: 'FLEX', value: 1 }));
+    node.gridRowSizes = Array.from({ length: node.gridRowCount }, () => ({ type: 'HUG' }));
+    node.gridAutoTracks = 'ROWS';
+    node.gridItemsPositioning = 'ROW_AUTO_FLOW';
+  } else {
+    ${axes.replaceAll('\n', '\n    ')}
+  }`;
+};
+
 /** v15 (S4/matrix a.2/a.6/a.9): declared text facts with native fields —
  *  letterSpacing, textCase, textDecoration, textAlignHorizontal, fontName
  *  family (first stack entry; Inter stands when unavailable — named limit),
@@ -3168,44 +3593,223 @@ const textExtrasRuntime = (has: boolean): string =>
     if (spec.textTruncation) { try { node.textTruncation = 'ENDING'; } catch (e) { /* older API */ } }`
     : '';
 
+const richTextRuntime = (has: boolean): string =>
+  has
+    ? `
+function basePropertyName(key) { return String(key || '').split('#')[0]; }
+async function applyRichTextRanges(node, ranges) {
+  if (!ranges || ranges.length === 0) return;
+  if (!node || node.type !== 'TEXT') throw new Error('Rich-text target is not a TEXT node');
+  const length = node.characters.length;
+  for (const range of ranges) {
+    if (range.start < 0 || range.end <= range.start || range.end > length) {
+      throw new Error('Invalid rich-text range ' + range.start + '..' + range.end + ' for TEXT length ' + length);
+    }
+    const current = node.getRangeFontName(range.start, Math.min(range.end, range.start + 1));
+    const family = current && typeof current === 'object' && current.family
+      ? current.family
+      : (node.fontName && typeof node.fontName === 'object' && node.fontName.family ? node.fontName.family : 'Inter');
+    const wanted = await resolveFont(family, range.fontStyle);
+    if (!wanted) throw new Error('Cannot load rich-text font: ' + family + ' ' + range.fontStyle);
+    node.setRangeFontName(range.start, range.end, wanted);
+  }
+}
+function textNodeForInstanceProperty(instance, property) {
+  const candidates = typeof instance.findAll === 'function'
+    ? instance.findAll((n) => n.type === 'TEXT' && n.componentPropertyReferences && n.componentPropertyReferences.characters)
+    : [];
+  return candidates.find((n) => basePropertyName(n.componentPropertyReferences.characters) === property) || null;
+}
+async function applyDepRichTextRanges(instance, entries) {
+  for (const entry of entries || []) {
+    const text = textNodeForInstanceProperty(instance, entry.property);
+    if (!text) throw new Error('Rich-text child property has no rendered TEXT target: ' + entry.property);
+    await applyRichTextRanges(text, entry.ranges);
+  }
+}
+`
+    : '';
+
+const consumerTextOverrideRuntime = (has: boolean): string =>
+  has
+    ? `
+function propertyValueByBase(node, base) {
+  if (node && node.type === 'INSTANCE') {
+    const key = Object.keys(node.componentProperties || {}).find((k) => basePropertyName(k) === base);
+    return key ? node.componentProperties[key].value : undefined;
+  }
+  if (node && (node.type === 'COMPONENT' || node.type === 'COMPONENT_SET')) {
+    const key = Object.keys(node.componentPropertyDefinitions || {}).find((k) => basePropertyName(k) === base);
+    return key ? node.componentPropertyDefinitions[key].defaultValue : undefined;
+  }
+  return undefined;
+}
+function fontRanges(node) {
+  if (!node || node.type !== 'TEXT') return [];
+  if (typeof node.getStyledTextSegments !== 'function') {
+    const f = node.fontName;
+    return f && typeof f === 'object' && f.family
+      ? [{ start: 0, end: node.characters.length, fontName: { family: f.family, style: f.style } }]
+      : [];
+  }
+  return node.getStyledTextSegments(['fontName']).map((s) => ({
+    start: s.start, end: s.end,
+    fontName: s.fontName && typeof s.fontName === 'object' && s.fontName.family
+      ? { family: s.fontName.family, style: s.fontName.style }
+      : null,
+  }));
+}
+function sameValue(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+function preparerSauvetageConsommateurs(master, info) {
+  const hotes = [];
+  for (const h of info.hotes || []) {
+    if (h.role !== 'instance') continue;
+    const props = [], textes = [], espacements = [];
+    // Cursor queue (same FIFO order as shift, without the O(n) pops); the
+    // master reference rides each entry so the parallel descent replaces a
+    // per-node noeudAuChemin walk from the root. A missing reference at any
+    // depth still surfaces as the same named refusal when its entry is read.
+    const pile = [{ n: h.node, ref: master, c: '' }];
+    let cursor = 0;
+    while (cursor < pile.length) {
+      const item = pile[cursor++];
+      const n = item.n;
+      const ref = item.ref;
+      if (!ref) throw new Error('REFUS consommateurs — chemin absent du master avant mutation: hostId=' + h.hostId + ' chemin=' + item.c);
+      if (n.type === 'INSTANCE') {
+        const signature = Object.keys(n.componentProperties || {}).map(basePropertyName).sort();
+        for (const key of Object.keys(n.componentProperties || {})) {
+          const base = basePropertyName(key);
+          const value = n.componentProperties[key].value;
+          if (!sameValue(value, propertyValueByBase(ref, base))) props.push({ chemin: item.c, property: base, value: value, signature: signature });
+        }
+      }
+      if (n.type === 'TEXT') {
+        const ranges = fontRanges(n);
+        const refRanges = fontRanges(ref);
+        if (n.characters !== ref.characters || !sameValue(ranges, refRanges)) {
+          const property = n.componentPropertyReferences && n.componentPropertyReferences.characters
+            ? basePropertyName(n.componentPropertyReferences.characters)
+            : null;
+          textes.push({ chemin: item.c, property: property, characters: n.characters, ranges: ranges });
+        }
+      }
+      if (typeof n.itemSpacing === 'number' && typeof ref.itemSpacing === 'number' && n.itemSpacing !== ref.itemSpacing) {
+        espacements.push({ chemin: item.c, itemSpacing: n.itemSpacing });
+      }
+      const kids = n.children || [];
+      const refKids = ref.children || [];
+      for (let i = 0; i < kids.length; i++) pile.push({ n: kids[i], ref: refKids[i], c: cheminEnfantDe(item.c, i) });
+    }
+    hotes.push({ hostId: h.hostId, node: h.node, props: props, textes: textes, espacements: espacements });
+  }
+  return { hotes: hotes };
+}
+async function restaurerSauvetageConsommateurs(plan, report) {
+  const restored = [];
+  for (const h of plan.hotes || []) {
+    for (const p of h.props) {
+      let node = noeudAuChemin(h.node, p.chemin);
+      const carriesProperty = (n) => {
+        if (!n || n.type !== 'INSTANCE') return false;
+        const bases = Object.keys(n.componentProperties || {}).map(basePropertyName).sort();
+        return bases.indexOf(p.property) >= 0;
+      };
+      if (!carriesProperty(node)) {
+        let candidates = typeof h.node.findAll === 'function'
+          ? h.node.findAll((n) => carriesProperty(n))
+          : [];
+        // The complete property signature disambiguates two composed
+        // instances exposing the same property. It is a tie-breaker, not a
+        // prerequisite: Figma can add/remove dependency properties between
+        // the two snapshots while the governed property identity remains.
+        if (candidates.length > 1 && p.signature) {
+          const exact = candidates.filter((n) => sameValue(
+            Object.keys(n.componentProperties || {}).map(basePropertyName).sort(),
+            p.signature,
+          ));
+          if (exact.length > 0) candidates = exact;
+        }
+        if (candidates.length !== 1) {
+          throw new Error('REFUS consommateurs — instance introuvable ou ambiguë après reconstruction: hostId=' + h.hostId + ' chemin=' + p.chemin + ' property=' + p.property + ' candidates=' + candidates.length);
+        }
+        node = candidates[0];
+      }
+      setInstanceProps(node, { [p.property]: p.value });
+    }
+    for (const e of h.espacements) {
+      const node = noeudAuChemin(h.node, e.chemin);
+      if (!node || typeof node.itemSpacing !== 'number') throw new Error('REFUS consommateurs — gap introuvable après reconstruction: hostId=' + h.hostId + ' chemin=' + e.chemin);
+      node.itemSpacing = e.itemSpacing;
+    }
+    for (const t of h.textes) {
+      let node = noeudAuChemin(h.node, t.chemin);
+      if (
+        (!node || node.type !== 'TEXT' ||
+          (t.property && basePropertyName(node.componentPropertyReferences && node.componentPropertyReferences.characters) !== t.property)) &&
+        t.property
+      ) {
+        node = (typeof h.node.findAll === 'function'
+          ? h.node.findAll((n) => n.type === 'TEXT' && basePropertyName(n.componentPropertyReferences && n.componentPropertyReferences.characters) === t.property)
+          : [])[0] || null;
+      }
+      if (!node || node.type !== 'TEXT') throw new Error('REFUS consommateurs — TEXT introuvable après reconstruction: hostId=' + h.hostId + ' chemin=' + t.chemin);
+      for (const r of t.ranges) {
+        if (!r.fontName) throw new Error('REFUS consommateurs — fontName mixte illisible: hostId=' + h.hostId + ' chemin=' + t.chemin);
+        const loaded = await resolveFont(r.fontName.family, r.fontName.style);
+        if (!loaded) throw new Error('REFUS consommateurs — police introuvable: ' + r.fontName.family + ' ' + r.fontName.style);
+      }
+      if (node.characters !== t.characters) node.characters = t.characters;
+      for (const r of t.ranges) {
+        const loaded = await resolveFont(r.fontName.family, r.fontName.style);
+        node.setRangeFontName(r.start, r.end, loaded);
+      }
+    }
+    restored.push({ hostId: h.hostId, props: h.props.length, textes: h.textes.length, espacements: h.espacements.length });
+  }
+  report.consumerOverrides = { verdict: 'vert', hotes: restored };
+}
+`
+    : '';
+
 /** v9 shape placement: layoutPositioning ABSOLUTE + constraints + exact
  *  offsets vs the parent box, AFTER append (mirrors applyOverlay). */
 const absoluteRuntime = (has: boolean): string =>
   has
     ? `
-// v9 shape placement: exact offsets vs the parent box, after append.
-function applyShapeAbsolute(parent, childNode, childSpec) {
+// Generic declared/shape absolute placement: exact offsets vs the parent box,
+// after append. Refuse instead of silently leaving a declared absolute part in
+// the flow of a non-auto-layout parent.
+function applyAbsolute(parent, childNode, childSpec) {
   if (!childSpec.absolute) return;
-  try {
-    childNode.layoutPositioning = 'ABSOLUTE';
-    const a = childSpec.absolute;
-    childNode.constraints = {
-      horizontal: a.h === 'MAX' ? 'MAX' : a.h === 'CENTER' ? 'CENTER' : 'MIN',
-      vertical: a.v === 'MAX' ? 'MAX' : a.v === 'CENTER' ? 'CENTER' : 'MIN',
-    };
-    const w = childSpec.shape ? childSpec.shape.width : childNode.width;
-    const h = childSpec.shape ? childSpec.shape.height : childNode.height;
-    // Center of the intrinsic box in parent coordinates (MIN pins left/top,
-    // MAX pins right/bottom, CENTER centers):
-    const cx = a.left !== undefined ? a.left + w / 2 : a.right !== undefined ? parent.width - a.right - w / 2 : parent.width / 2;
-    const cy = a.top !== undefined ? a.top + h / 2 : a.bottom !== undefined ? parent.height - a.bottom - h / 2 : parent.height / 2;
-    // Rotation moves the measured box — correct against the actual bounds.
-    const bb = childNode.absoluteBoundingBox;
-    const pb = parent.absoluteBoundingBox;
-    if (bb && pb) {
-      childNode.x += cx - bb.width / 2 - (bb.x - pb.x);
-      childNode.y += cy - bb.height / 2 - (bb.y - pb.y);
-    } else {
-      childNode.x = cx - w / 2;
-      childNode.y = cy - h / 2;
-    }
-  } catch (e) { /* parent not auto-layout — leave in flow */ }
+  if (!parent || parent.layoutMode === 'NONE') throw new Error('absolute placement requires an auto-layout parent');
+  childNode.layoutPositioning = 'ABSOLUTE';
+  const a = childSpec.absolute;
+  childNode.constraints = {
+    horizontal: childSpec.fillWidth ? 'STRETCH' : a.h === 'MAX' ? 'MAX' : a.h === 'CENTER' ? 'CENTER' : 'MIN',
+    vertical: a.v === 'MAX' ? 'MAX' : a.v === 'CENTER' ? 'CENTER' : 'MIN',
+  };
+  if (childSpec.fillWidth) childNode.resize(parent.width, childNode.height);
+  const w = childSpec.shape ? childSpec.shape.width : childNode.width;
+  const h = childSpec.shape ? childSpec.shape.height : childNode.height;
+  const cx = a.left !== undefined ? a.left + w / 2 : a.right !== undefined ? parent.width - a.right - w / 2 : a.h === 'MAX' ? parent.width - w / 2 : a.h === 'MIN' ? w / 2 : parent.width / 2;
+  const cy = a.top !== undefined ? a.top + h / 2 : a.bottom !== undefined ? parent.height - a.bottom - h / 2 : a.v === 'MAX' ? parent.height - h / 2 : a.v === 'MIN' ? h / 2 : parent.height / 2;
+  // Rotation moves the measured box — correct against the actual bounds.
+  const bb = childNode.absoluteBoundingBox;
+  const pb = parent.absoluteBoundingBox;
+  if (bb && pb) {
+    childNode.x += cx - bb.width / 2 - (bb.x - pb.x);
+    childNode.y += cy - bb.height / 2 - (bb.y - pb.y);
+  } else {
+    childNode.x = cx - w / 2;
+    childNode.y = cy - h / 2;
+  }
 }
 `
     : '';
 const absoluteCall = (has: boolean, args: string): string =>
   has ? `
-    applyShapeAbsolute(${args});` : '';
+    applyAbsolute(${args});` : '';
 
 /** B-3 finding 5: inset-0 overlay lowering — layoutPositioning ABSOLUTE,
  *  x/y 0, STRETCH/STRETCH constraints, sized to the parent, inserted BEHIND
@@ -3213,7 +3817,7 @@ const absoluteCall = (has: boolean, args: string): string =>
  *  the empty-frame FILL default (which an out-of-flow node must not keep)
  *  is overridden, and only after appendChild (ABSOLUTE requires an
  *  auto-layout parent). Conditional emission — the golden discipline. */
-const insetOverlayRuntime = (has: boolean): string =>
+const insetOverlayRuntime = (has: boolean, hasZIndex = false): string =>
   has
     ? `
 // B-3 finding 5: an inset-0 overlay part (top/right/bottom/left all 0) is
@@ -3229,9 +3833,12 @@ function applyInsetOverlay(parent, childNode, childSpec) {
     // natural post-backdrop index — else the opaque backdrop sibling paints
     // over the glyph (the checkbox backdrop-over-glyph z-order the owner saw,
     // previously hand-corrected on canvas each re-amend).
-    if (!childNode.children || childNode.children.length === 0) {
+    if (${hasZIndex ? '(!childNode.children || childNode.children.length === 0) && childSpec.zIndex === undefined' : '!childNode.children || childNode.children.length === 0'}) {
       parent.insertChild(0, childNode);
     }
+    // Figma forbids FILL sizing on an absolute auto-layout child. The inset
+    // constraints own the width after it leaves flow.
+    if ('layoutSizingHorizontal' in childNode && childNode.layoutSizingHorizontal === 'FILL') childNode.layoutSizingHorizontal = 'FIXED';
     childNode.layoutPositioning = 'ABSOLUTE';
     const o = childSpec.insetOffsets || { top: 0, right: 0, bottom: 0, left: 0 };
     childNode.x = o.left;
@@ -3271,6 +3878,8 @@ const litsRuntime = (has: boolean): string =>
     if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
     if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
     if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
+    if (li.gridColumnGap !== undefined) node.gridColumnGap = li.gridColumnGap;
+    if (li.gridRowGap !== undefined) node.gridRowGap = li.gridRowGap;
     if (li.radius !== undefined) node.cornerRadius = li.radius;
     if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
     if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
@@ -3316,16 +3925,50 @@ const litsRuntime = (has: boolean): string =>
     }
     if (li.width !== undefined || li.height !== undefined) {
       node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
-      const horizontalIsPrimary = (spec.layout || { mode: 'HORIZONTAL' }).mode === 'HORIZONTAL';
-      if (li.width !== undefined) {
-        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
-      }
-      if (li.height !== undefined) {
-        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+      const mode = (spec.layout || { mode: 'HORIZONTAL' }).mode;
+      if (mode !== 'GRID') {
+        const horizontalIsPrimary = mode === 'HORIZONTAL';
+        if (li.width !== undefined) {
+          if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
+        }
+        if (li.height !== undefined) {
+          if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+        }
       }
     }
   }`
     : '';
+
+/** Parent-owned width. Feature-gated so contracts without `width:"fill"`
+ *  retain byte-identical runtime output. On creation the root may still be
+ *  page-level; on an anchored amend its Auto Layout presentation parent is
+ *  already present and can accept FILL immediately. */
+const fillWidthRootRuntime = (has: boolean): string =>
+  has
+    ? `
+  if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
+    try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
+  }`
+    : '';
+
+const aspectRatioRuntime = (has: boolean): string =>
+  has
+    ? `
+function applyAspectRatio(node, spec) {
+  if (!(spec.aspectRatio > 0)) return;
+  try {
+    if (typeof node.lockAspectRatio === 'function') node.lockAspectRatio();
+    else if ('constrainProportions' in node) node.constrainProportions = true;
+  } catch (e) { /* node kind or older API does not expose ratio locking */ }
+}`
+    : '';
+
+const aspectRatioCall = (has: boolean, node: string, spec: string): string =>
+  has ? `\n    applyAspectRatio(${node}, ${spec});` : '';
+
+const clipContentRuntime = (has: boolean): string =>
+  has ? `
+  if (spec.clipContent) node.clipsContent = true;` : '';
 
 /** Contract → the single-component sync script text. #60 fix 2: the emitted
  *  runtime is AMEND-CAPABLE — it shares the batch sync runtime (syncOne →
@@ -3376,6 +4019,31 @@ function buildBatchScript(datas: ComponentData[], fileKey: string | null): strin
   });
 }
 
+/** An inset-overlay child's size follows its parent's box minus its inset
+ *  offsets. Height is skipped for partial vertical insets (insetPartialV):
+ *  there the flow still owns it. Already-carried sizes are never overwritten. */
+function materializeInsetOverlaySizes(spec: NodeSpec): void {
+  const parentWidth = spec.fixedWidth?.px ?? spec.lits?.width;
+  const parentHeight = spec.fixedHeight?.px ?? spec.lits?.height;
+  for (const child of spec.children ?? []) {
+    if (child.insetOverlay) {
+      const o = child.insetOffsets ?? { top: 0, right: 0, bottom: 0, left: 0 };
+      if (parentWidth !== undefined && !child.fixedWidth && child.lits?.width === undefined) {
+        (child.lits ??= {}).width = Math.max(0, parentWidth - o.left - o.right);
+      }
+      if (
+        parentHeight !== undefined &&
+        !child.insetPartialV &&
+        !child.fixedHeight &&
+        child.lits?.height === undefined
+      ) {
+        (child.lits ??= {}).height = Math.max(0, parentHeight - o.top - o.bottom);
+      }
+    }
+    materializeInsetOverlaySizes(child);
+  }
+}
+
 /** The ONE sync runtime (create + in-place amend), shared by the batch
  *  script and (#60 fix 2) every per-component script. `preamble` carries the
  *  minted-variable upsert for playground per-component emissions. */
@@ -3406,9 +4074,14 @@ function buildSyncScript(
   const hasAbsolute = datas.some((d) => dataSome(d, (x) => x.absolute !== undefined));
   const hasLits = datas.some((d) => dataSome(d, (x) => x.lits !== undefined));
   const hasWrap = datas.some((d) => dataSome(d, (x) => x.layout?.wrap === true));
+  const hasGrid = datas.some((d) => dataSome(d, (x) => x.layout?.mode === 'GRID'));
   const hasEffectStack = datas.some((d) => dataSome(d, (x) => x.effectStack !== undefined));
   const hasGradient = datas.some((d) => dataSome(d, (x) => x.gradient !== undefined));
   const hasInsetOverlay = datas.some((d) => dataSome(d, (x) => x.insetOverlay === true));
+  const hasFillWidth = datas.some((d) => dataSome(d, (x) => x.fillWidth === true));
+  const hasAspectRatio = datas.some((d) => dataSome(d, (x) => x.aspectRatio !== undefined));
+  const hasClipContent = datas.some((d) => dataSome(d, (x) => x.clipContent === true));
+  const hasZIndex = datas.some((d) => dataSome(d, (x) => x.zIndex !== undefined));
   // Round 5d: margin-box wrapper / outline-lowered OUTSIDE strokes /
   // single-paint glyph variable re-binding — all feature-gated so contracts
   // without these facts emit byte-identical scripts (the golden discipline).
@@ -3416,6 +4089,26 @@ function buildSyncScript(
   const hasStrokeOutside = datas.some((d) => dataSome(d, (x) => x.strokeOutside === true));
   const hasStrokeClear = datas.some((d) => dataSome(d, (x) => x.strokeClear === true));
   const hasSvgPaint = datas.some((d) => dataSome(d, (x) => x.svgPaintVar !== undefined));
+  const hasPropertyBackedFixedHeightText = datas.some((d) => dataSome(d, (x) =>
+    x.type === 'text' && x.contentProp !== undefined && x.fixedHeight !== undefined && x.fixedWidth === undefined,
+  ));
+  const propertyBackedTextInWrapper = hasPropertyBackedFixedHeightText ? `
+      // A component-property text with only a fixed height is still a block
+      // in a vertical auto-layout column: its parent supplies the width. The
+      // native TEXT must therefore wrap inside its generated wrapper.
+      if (spec.contentProp && spec.fixedHeight && !spec.fixedWidth && spec.characters) {
+        try {
+          node.textAutoResize = 'HEIGHT';
+          node.layoutSizingHorizontal = 'FILL';
+        } catch (e) { /* wrapper is an auto-layout parent in supported Figma */ }
+      }` : '';
+  const propertyBackedTextInColumn = (child: string, parent: string) => hasPropertyBackedFixedHeightText ? `
+    // A property-backed, fixed-height text wrapper has no intrinsic width in
+    // CSS. In a vertical column it fills the cross axis and its native TEXT
+    // child wraps at that width.
+    if (${child}.contentProp && ${child}.fixedHeight && !${child}.fixedWidth && ${parent}.layoutMode === 'VERTICAL') {
+      try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* parent is not auto-layout */ }
+    }` : '';
   const hasTextExtras = datas.some((d) =>
     dataSome(
       d,
@@ -3423,6 +4116,17 @@ function buildSyncScript(
         x.letterSpacing !== undefined || x.textCase !== undefined || x.textDecoration !== undefined ||
         x.textAlignH !== undefined || x.fontFamily !== undefined || x.textTruncation === true,
     ),
+  );
+  const hasRichText = datas.some((d) =>
+    dataSome(d, (x) => (x.richTextRanges?.length ?? 0) > 0 || (x.depRichTextRanges?.length ?? 0) > 0),
+  );
+  // Consumer recovery is required when an image-bearing component composes
+  // another component: rebuilding changes child paths, while Page instances
+  // can legitimately carry nested property overrides (HeroVideo's Button is
+  // the first live case). Rich-text components already require the same
+  // recovery for native character ranges and copy.
+  const hasConsumerPreservation = hasRichText || datas.some((d) =>
+    dataSome(d, (x) => x.imgPlaceholder === true) && dataSome(d, (x) => x.type === 'instance'),
   );
   return `${opts.header}
 const COMPONENTS = ${componentsJson};
@@ -3474,15 +4178,16 @@ const boundPaint = (varName, consumer) => {
 
 // Named text styles (synced by 01-tokens.js): consumers look up OUR styles
 // only — the ds_contracts/textStyleToken marker is identity, a foreign style
-// sharing a name is never used. Missing style (tokens script not run yet)
-// degrades gracefully: the raw fontName/fontSize already set on the node
-// stand until the next amend after the styles exist.
+// sharing a name is never used. A governed plain-text node must not silently
+// fall back to raw typography: missing or duplicate marked styles STOP.
 let _textStyleMap = null;
 async function ourTextStyle(name) {
   if (!_textStyleMap) {
     _textStyleMap = {};
     for (const s of await figma.getLocalTextStylesAsync()) {
-      if (s.getSharedPluginData('ds_contracts', 'textStyleToken')) _textStyleMap[s.name] = s;
+      if (!s.getSharedPluginData('ds_contracts', 'textStyleToken')) continue;
+      if (_textStyleMap[s.name]) throw new Error('Duplicate governed Text Style name: ' + s.name);
+      _textStyleMap[s.name] = s;
     }
   }
   return _textStyleMap[name] || null;
@@ -3524,7 +4229,7 @@ async function textFont(spec) {
   fontFallbacks.push({ wanted: family + ' ' + style, used: used.family + ' ' + used.style });
   return used;
 }
-const fontStyles = new Set(['Medium']);
+${richTextRuntime(hasConsumerPreservation)}${consumerTextOverrideRuntime(hasConsumerPreservation)}const fontStyles = new Set(['Medium']);
 for (const C of COMPONENTS) for (const s of C.fontStyles) fontStyles.add(s);
 for (const style of fontStyles) {
   await resolveFont('Inter', style);
@@ -3565,6 +4270,70 @@ function findComponentByName(name, contractId) {
     if (hit) return hit;
   }
   throw new Error('Dependency component not found in file: ' + name + ' (sync it first)');
+}
+
+// Icon identity is immutable within one execution: the same ~16 registry refs
+// resolve for every icon-instance of every variant, so the id lookup and the
+// full-page fallback scan run once per ref, not once per reference.
+const iconComponentCache = new Map();
+async function findIconComponent(ref) {
+  const cacheKey = ref.nodeId + '|' + (ref.key || '');
+  const cached = iconComponentCache.get(cacheKey);
+  if (cached) return cached;
+  let hit = typeof figma.getNodeByIdAsync === 'function' ? await figma.getNodeByIdAsync(ref.nodeId) : null;
+  if (hit && hit.type !== 'COMPONENT' && hit.type !== 'COMPONENT_SET') hit = null;
+  if (!hit || (ref.key && hit.key !== ref.key)) {
+    hit = null;
+    for (const page of figma.root.children) {
+      const byKey = page.findOne(
+        (n) => (n.type === 'COMPONENT' || n.type === 'COMPONENT_SET') && n.key === ref.key,
+      );
+      if (byKey) { hit = byKey; break; }
+    }
+  }
+  if (!hit) {
+    throw new Error('Governed icon component not found: ' + ref.asset + ' (nodeId=' + ref.nodeId + ', key=' + ref.key + ')');
+  }
+  const resolved = hit.type === 'COMPONENT_SET' ? hit.defaultVariant : hit;
+  iconComponentCache.set(cacheKey, resolved);
+  return resolved;
+}
+
+async function iconSwapDefinition(spec) {
+  const defaultMain = await findIconComponent(spec.defaultComponent);
+  const preferredValues = [];
+  for (const ref of spec.preferredComponents || []) {
+    const main = await findIconComponent(ref);
+    preferredValues.push({ type: 'COMPONENT', key: main.key });
+  }
+  return { defaultId: defaultMain.id, preferredValues: preferredValues };
+}
+
+function wireIconSwapNodes(registry, property, key) {
+  for (const entry of registry.iconSwaps || []) {
+    if (entry.property !== property) continue;
+    entry.instance.componentPropertyReferences = {
+      ...(entry.instance.componentPropertyReferences || {}),
+      mainComponent: key,
+    };
+  }
+}
+
+function wireDepPropForwards(registry) {
+  for (const entry of registry.forwards || []) {
+    const childKeys = Object.keys(entry.instance.componentProperties || {});
+    for (const mapping of entry.mappings) {
+      const found = childKeys.some(
+        (key) => key === mapping.childProperty || key.indexOf(mapping.childProperty + '#') === 0,
+      );
+      if (!found) throw new Error('Child property definition not found for forwarding: ' + mapping.childProperty);
+    }
+    // Real Figma refuses writes to componentPropertyReferences on an
+    // instance sublayer. isExposedInstance is its public, native API for
+    // surfacing the nested component's own suffixed property identities at
+    // the containing component instance level — one flag per instance.
+    if (entry.mappings.length > 0) entry.instance.isExposedInstance = true;
+  }
 }
 
 function setInstanceProps(inst, props) {
@@ -3627,10 +4396,7 @@ async function ensureSlotUtility() {
 function applyFrameSpec(node, spec) {
   const l = spec.layout || { mode: 'HORIZONTAL', primary: 'MIN', counter: 'MIN' };
   node.layoutMode = l.mode;
-  node.primaryAxisAlignItems = l.primary;
-  node.counterAxisAlignItems = l.counter;${wrapRuntime(hasWrap)}
-  node.primaryAxisSizingMode = 'AUTO';
-  node.counterAxisSizingMode = 'AUTO';
+  ${frameLayoutRuntime(hasGrid, hasWrap)}
   if (node.type === 'FRAME') node.fills = [];
   for (const [field, varName] of Object.entries(spec.bindings || {})) {
     node.setBoundVariable(field, need(varName));
@@ -3646,16 +4412,27 @@ function applyFrameSpec(node, spec) {
     node.resize(w, h);
     const horizontalIsPrimary = l.mode === 'HORIZONTAL';
     if (spec.fixedWidth) {
-      if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
-      else node.counterAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
+        else node.counterAxisSizingMode = 'FIXED';
+      }
       node.setBoundVariable('width', need(spec.fixedWidth.varName));
     }
     if (spec.fixedHeight) {
-      if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
-      else node.primaryAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
+        else node.primaryAxisSizingMode = 'FIXED';
+      }
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
-  }${litsRuntime(hasLits)}${gradientRuntime(hasGradient)}
+  }${litsRuntime(hasLits)}${gradientRuntime(hasGradient)}${fillWidthRootRuntime(hasFillWidth)}${clipContentRuntime(hasClipContent)}
+  // A growing image with a fixed master-height is a proportional image plane,
+  // not a permanently tall crop. When a consumer narrows the component (the
+  // 743px category card is used at 474px), Figma must scale that basis with
+  // the width instead of retaining the master's 418px height.
+  if (spec.imgPlaceholder && spec.grow && spec.fixedHeight && 'constrainProportions' in node) {
+    node.constrainProportions = true;
+  }
 }
 
 // v7 overlay: out-of-flow edge attachment. Must run AFTER appendChild —
@@ -3675,7 +4452,7 @@ function applyOverlay(parent, childNode, childSpec) {
     else { childNode.x = parent.width; childNode.y = 0; }
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
-${absoluteRuntime(hasAbsolute)}${insetOverlayRuntime(hasInsetOverlay)}${marginBoxRuntime(hasMargins)}
+${absoluteRuntime(hasAbsolute)}${insetOverlayRuntime(hasInsetOverlay, hasZIndex)}${marginBoxRuntime(hasMargins)}${aspectRatioRuntime(hasAspectRatio)}
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -3685,6 +4462,12 @@ async function buildNode(spec, registry) {
     const svgWidth = spec.svgSize ? spec.svgSize.width : spec.iconSize;
     const svgHeight = spec.svgSize ? spec.svgSize.height : spec.iconSize;
     if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);${svgPaintRuntime(hasSvgPaint)}
+  } else if (spec.type === 'icon-instance') {
+    const main = await findIconComponent(spec.iconComponent);
+    node = main.createInstance();
+    if (spec.iconSize) node.resize(spec.iconSize, spec.iconSize);
+    registry.iconSwaps = registry.iconSwaps || [];
+    registry.iconSwaps.push({ property: spec.iconSwapProperty, instance: node });
   } else if (spec.type === 'text') {
     node = figma.createText();
     node.fontName = await textFont(spec);
@@ -3694,11 +4477,13 @@ async function buildNode(spec, registry) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.
       const st = await ourTextStyle(spec.textStyle);
-      if (st) { try { await node.setTextStyleIdAsync(st.id); } catch (e) { /* raw props stand */ } }
-    }
+      if (!st) throw new Error('Missing governed Text Style: ' + spec.textStyle);
+      await node.setTextStyleIdAsync(st.id);
+    }${hasRichText ? `
+    await applyRichTextRanges(node, spec.richTextRanges);` : ''}
     if (spec.textFill) node.fills = [boundPaint(spec.textFill, node)];
     if (spec.contentProp) {
-      registry.texts.push({ prop: spec.contentProp, node, default: spec.characters || '' });
+      registry.texts.push({ prop: spec.contentProp, node, default: spec.characters || ''${hasRichText ? ', ranges: spec.richTextRanges || []' : ''} });
     }
     if (spec.fill || spec.fixedWidth || spec.fixedHeight || spec.bindings) {
       // Styled static text (page chips, dots, thumbs): wrap in a frame so
@@ -3731,6 +4516,7 @@ async function buildNode(spec, registry) {
           } catch (e) { /* older figma: leave auto */ }
         }
       }
+${propertyBackedTextInWrapper}
       wrap.name = spec.name;
       node = wrap;
     }
@@ -3738,7 +4524,12 @@ async function buildNode(spec, registry) {
     const target = findComponentByName(spec.dep, spec.depId);
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
-    if (spec.depProps) setInstanceProps(node, spec.depProps);
+    if (spec.depProps) setInstanceProps(node, spec.depProps);${hasRichText ? `
+    await applyDepRichTextRanges(node, spec.depRichTextRanges);` : ''}
+    if (spec.depPropRefs && spec.depPropRefs.length > 0) {
+      registry.forwards = registry.forwards || [];
+      registry.forwards.push({ instance: node, mappings: spec.depPropRefs });
+    }
     // v20 (016): contract-carried slot content on the composed instance — the
     // swap rides the child's INSTANCE_SWAP property (identity by marker, never
     // layer name), then the slotted instance's own props are set on the nested
@@ -3821,7 +4612,7 @@ async function buildNode(spec, registry) {
       // description.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (child.grow && 'layoutSizingHorizontal' in childNode) {
+    if (${hasFillWidth ? '(child.grow || child.fillWidth)' : 'child.grow'} && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     } else if (
       spec.layout && spec.layout.stretchChildren &&
@@ -3830,6 +4621,8 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+${aspectRatioCall(hasAspectRatio, 'childNode', 'child')}
+${propertyBackedTextInColumn('child', 'node')}
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
     // width-CONSTRAINED parent (fixed width, or a stretch/grow context)
@@ -3838,7 +4631,7 @@ async function buildNode(spec, registry) {
     // HUG is the circular case Figma refuses. Measured live: the
     // SectionHeader title overflowed Presentation's 628 column in one line
     // (origin: two lines) — the Devis.Titre fix was this rule's local case.
-    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (${hasFillWidth ? 'child.grow || child.fillWidth || spec.fillWidth || ' : 'child.grow || '}spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
     }${insetOverlayCall(hasInsetOverlay, 'node, childNode, child')}${marginBoxCall(hasMargins, 'node, childNode, child')}
   }
@@ -4201,6 +4994,107 @@ function restaurerPhotos(spec, comp, plan, report, contractId) {
   if (plan.accueilsAttendus > report.photos.accueilsParHote) report.photos.accueilsParHote = plan.accueilsAttendus;
 }
 
+// Shared by amendSet and amendComponent (their only difference was the
+// receiver): reconcile the target's governed property definitions with the
+// contract — drop forwarded TEXT props, upsert BOOLEAN/TEXT defs and their
+// defaults, upsert INSTANCE_SWAP defs against the governed icon registry.
+async function upsertGovernedProperties(host, C, defs, newKeys, defKey, report) {
+  for (const name of C.forwardedProps || []) {
+    const k = defKey(name);
+    if (k && defs[k]?.type === 'TEXT') {
+      host.deleteComponentProperty(k);
+      delete defs[k];
+      report.removedForwardedProps = report.removedForwardedProps || [];
+      report.removedForwardedProps.push(name);
+    }
+  }
+  for (const w of [
+    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
+    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
+  ]) {
+    const k = defKey(w.name);
+    if (!k) { newKeys[w.name] = host.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
+    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
+      host.editComponentProperty(k, { defaultValue: w.def });
+      report.editedDefaults.push(w.name);
+    }
+  }
+  for (const swap of C.swapProps || []) {
+    const resolvedSwap = await iconSwapDefinition(swap);
+    let k = defKey(swap.property);
+    if (!k) {
+      k = host.addComponentProperty(
+        swap.property,
+        'INSTANCE_SWAP',
+        resolvedSwap.defaultId,
+        { preferredValues: resolvedSwap.preferredValues },
+      );
+      newKeys[swap.property] = k;
+      report.addedProps.push(swap.property);
+    } else if (defs[k]?.type !== 'INSTANCE_SWAP') {
+      throw new Error('Property type mismatch for governed icon swap: ' + swap.property);
+    } else {
+      const beforePreferred = JSON.stringify(defs[k].preferredValues || []);
+      const afterPreferred = JSON.stringify(resolvedSwap.preferredValues);
+      if (defs[k].defaultValue !== resolvedSwap.defaultId || beforePreferred !== afterPreferred) {
+        host.editComponentProperty(k, {
+          defaultValue: resolvedSwap.defaultId,
+          preferredValues: resolvedSwap.preferredValues,
+        });
+        if (!report.editedDefaults.includes(swap.property)) report.editedDefaults.push(swap.property);
+      }
+    }
+  }
+}
+
+// Shared amend epilogue (same receiver-only difference): bind every registry
+// entry — TEXT characters, slot mains + optional visibility, visibility
+// booleans, governed icon swaps — then expose composed-property forwards.
+async function wireGovernedReferences(host, C, registry, defs, newKeys, defKey, report) {
+  for (const t of registry.texts) {
+    let k = defKey(t.prop);
+    if (!k) { k = host.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
+    else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
+      host.editComponentProperty(k, { defaultValue: t.default });
+      report.editedDefaults.push(t.prop);
+    }
+    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };${hasRichText ? '\n    await applyRichTextRanges(t.node, t.ranges);' : ''}
+  }
+  for (const sl of registry.slots) {
+    const util = await ensureSlotUtility();
+    let k = defKey(sl.spec.slotProperty);
+    if (!k) {
+      const preferred = [];
+      for (const depName of sl.spec.slotAccepts || []) {
+        const target = findComponentByName(depName);
+        preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
+      }
+      k = host.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
+        preferred.length > 0 ? { preferredValues: preferred } : undefined);
+      newKeys[sl.spec.slotProperty] = k;
+      report.addedProps.push(sl.spec.slotProperty);
+    }
+    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
+    if (sl.spec.slotOptional) {
+      let vk = defKey('Show ' + sl.spec.slotProperty);
+      if (!vk) { vk = host.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
+      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
+    }
+  }
+  for (const vis of registry.visibles) {
+    const k = defKey(vis.prop);
+    if (!k) continue;
+    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
+    vis.node.visible = vis.default;
+  }
+  for (const swap of C.swapProps || []) {
+    const k = defKey(swap.property);
+    if (!k) throw new Error('Governed icon swap property missing after amend: ' + swap.property);
+    wireIconSwapNodes(registry, swap.property, k);
+  }
+  wireDepPropForwards(registry);
+}
+
 async function amendSet(set, C) {
   set.setSharedPluginData('ds_contracts', 'contractId', C.contractId);
   const hash = specHash(C);
@@ -4278,24 +5172,13 @@ async function amendSet(set, C) {
   const newKeys = {};
   const defKey = (name) => newKeys[name] ||
     Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      set.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
+  await upsertGovernedProperties(set, C, defs, newKeys, defKey, report);
 
   const existingByName = new Map(set.children.map((ch) => [ch.name, ch]));
 
   for (const v of EV) {
     let comp = existingByName.get(v.name);
-    const registry = { texts: [], slots: [], visibles: [] };
+    const registry = { texts: [], slots: [], visibles: [] };${hasConsumerPreservation ? '\n    let planConsommateurs = null;' : ''}
     if (!comp) {
       comp = await buildNode(v.spec, registry);
       set.appendChild(comp);
@@ -4304,7 +5187,7 @@ async function amendSet(set, C) {
       // 017 — PRÉ-PASSE avant toute mutation : relever (maître ET instances de
       // page), compter les accueils, DÉCIDER. Une empreinte sans accueil jette
       // ICI, une ligne avant la première démolition (§X, FR-003a).
-      const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
+      const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);${hasConsumerPreservation ? '\n      planConsommateurs = preparerSauvetageConsommateurs(comp, planPhotos.info);' : ''}
       for (const child of [...comp.children]) child.remove();
       applyFrameSpec(comp, v.spec);
       for (const childSpec of v.spec.children || []) {
@@ -4321,56 +5204,23 @@ async function amendSet(set, C) {
           // #60 fix 4 (amend path): same empty-child declared default.
           try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
         }
-        if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+        if (${hasFillWidth ? '(childSpec.grow || childSpec.fillWidth)' : 'childSpec.grow'} && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
+${aspectRatioCall(hasAspectRatio, 'childNode', 'childSpec')}
+${propertyBackedTextInColumn('childSpec', 'comp')}
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
-        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+        if (childNode.type === 'TEXT' && (${hasFillWidth ? 'childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || ' : 'childSpec.grow || '}v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }${insetOverlayCall(hasInsetOverlay, 'comp, childNode, childSpec')}${marginBoxCall(hasMargins, 'comp, childNode, childSpec')}
       }
       restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
       report.rebuiltVariants++;
     }
-    for (const t of registry.texts) {
-      let k = defKey(t.prop);
-      if (!k) { k = set.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
-      else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
-        set.editComponentProperty(k, { defaultValue: t.default });
-        report.editedDefaults.push(t.prop);
-      }
-      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
-    }
-    for (const sl of registry.slots) {
-      const util = await ensureSlotUtility();
-      let k = defKey(sl.spec.slotProperty);
-      if (!k) {
-        const preferred = [];
-        for (const depName of sl.spec.slotAccepts || []) {
-          const target = findComponentByName(depName);
-          preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
-        }
-        k = set.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
-          preferred.length > 0 ? { preferredValues: preferred } : undefined);
-        newKeys[sl.spec.slotProperty] = k;
-        report.addedProps.push(sl.spec.slotProperty);
-      }
-      sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
-      if (sl.spec.slotOptional) {
-        let vk = defKey('Show ' + sl.spec.slotProperty);
-        if (!vk) { vk = set.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-        sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
-      }
-    }
-    for (const vis of registry.visibles) {
-      const k = defKey(vis.prop);
-      if (!k) continue;
-      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
-      vis.node.visible = vis.default;
-    }
+    await wireGovernedReferences(set, C, registry, defs, newKeys, defKey, report);${hasConsumerPreservation ? '\n    if (planConsommateurs) await restaurerSauvetageConsommateurs(planConsommateurs, report);' : ''}
   }
 
   // Contract default combo must be the FIRST variant (Figma default = first).
@@ -4433,23 +5283,13 @@ async function amendComponent(comp, C) {
   const newKeys = {};
   const defKey = (name) => newKeys[name] ||
     Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = comp.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      comp.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
+  await upsertGovernedProperties(comp, C, defs, newKeys, defKey, report);
   const v = C.variants[0];
   const registry = { texts: [], slots: [], visibles: [] };
   // 017 — même PRÉ-PASSE que le chemin amendSet : relever le maître ET ses
   // instances de page, compter les accueils, DÉCIDER. Le refus tombe ici, une
   // ligne avant la première démolition (§X, FR-003a).
-  const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);
+  const planPhotos = await preparerSauvetagePhotos(comp, [v.spec]);${hasConsumerPreservation ? '\n  const planConsommateurs = preparerSauvetageConsommateurs(comp, planPhotos.info);' : ''}
   for (const child of [...comp.children]) child.remove();
   applyFrameSpec(comp, v.spec);
   for (const childSpec of v.spec.children || []) {
@@ -4466,54 +5306,21 @@ async function amendComponent(comp, C) {
       // #60 fix 4 (standalone amend path): same empty-child declared default.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+    if (${hasFillWidth ? '(childSpec.grow || childSpec.fillWidth)' : 'childSpec.grow'} && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+${aspectRatioCall(hasAspectRatio, 'childNode', 'childSpec')}
+${propertyBackedTextInColumn('childSpec', 'comp')}
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
-    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (${hasFillWidth ? 'childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || ' : 'childSpec.grow || '}v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }${insetOverlayCall(hasInsetOverlay, 'comp, childNode, childSpec')}
   }
   restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
-  for (const t of registry.texts) {
-    let k = defKey(t.prop);
-    if (!k) { k = comp.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
-    else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
-      comp.editComponentProperty(k, { defaultValue: t.default });
-      report.editedDefaults.push(t.prop);
-    }
-    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
-  }
-  for (const sl of registry.slots) {
-    const util = await ensureSlotUtility();
-    let k = defKey(sl.spec.slotProperty);
-    if (!k) {
-      const preferred = [];
-      for (const depName of sl.spec.slotAccepts || []) {
-        const target = findComponentByName(depName);
-        preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
-      }
-      k = comp.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
-        preferred.length > 0 ? { preferredValues: preferred } : undefined);
-      newKeys[sl.spec.slotProperty] = k;
-      report.addedProps.push(sl.spec.slotProperty);
-    }
-    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
-    if (sl.spec.slotOptional) {
-      let vk = defKey('Show ' + sl.spec.slotProperty);
-      if (!vk) { vk = comp.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
-    }
-  }
-  for (const vis of registry.visibles) {
-    const k = defKey(vis.prop);
-    if (!k) continue;
-    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
-    vis.node.visible = vis.default;
-  }
+  await wireGovernedReferences(comp, C, registry, defs, newKeys, defKey, report);${hasConsumerPreservation ? '\n  await restaurerSauvetageConsommateurs(planConsommateurs, report);' : ''}
   comp.description = C.description;
   comp.setSharedPluginData('ds_contracts', 'specHash', hash);
   return report;
@@ -4590,7 +5397,7 @@ async function syncOne(C) {
   for (const b of built) {
     for (const t of b.registry.texts) {
       const key = b.comp.addComponentProperty(t.prop, 'TEXT', t.default);
-      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };
+      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: key };${hasRichText ? '\n      await applyRichTextRanges(t.node, t.ranges);' : ''}
     }
     for (const s of b.registry.slots) {
       const util = await ensureSlotUtility();
@@ -4621,12 +5428,23 @@ async function syncOne(C) {
     for (const tp of C.textProps || []) {
       b.comp.addComponentProperty(tp.property, 'TEXT', tp.default);
     }
+    for (const swap of C.swapProps || []) {
+      const resolvedSwap = await iconSwapDefinition(swap);
+      const key = b.comp.addComponentProperty(
+        swap.property,
+        'INSTANCE_SWAP',
+        resolvedSwap.defaultId,
+        { preferredValues: resolvedSwap.preferredValues },
+      );
+      wireIconSwapNodes(b.registry, swap.property, key);
+    }
     for (const vis of b.registry.visibles) {
       const key = boolKeys[vis.prop];
       if (!key) continue;
       vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: key };
       vis.node.visible = vis.default;
     }
+    wireDepPropForwards(b.registry);
   }
 
   let target;

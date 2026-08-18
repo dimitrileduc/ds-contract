@@ -30,8 +30,7 @@
     "contracts": {
       "type": "array",
       "items": { "$ref": "#/$defs/pinnedVersionedInput" },
-      "minItems": 5,
-      "maxItems": 5
+      "minItems": 1
     },
     "tokens": {
       "type": "array",

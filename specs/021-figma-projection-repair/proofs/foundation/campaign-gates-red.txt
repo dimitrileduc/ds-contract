@@ -1,0 +1,14 @@
+T004 — preuve rouge avant implémentation
+
+Commande :
+
+```bash
+npx tsx evals/fixtures/figma-projection-repair/campaign-gates-check.ts
+```
+
+Résultat : code de sortie `1`.
+
+Le module `extract/figma/projection-repair/campaign.js` est absent. La fixture ne peut donc pas
+valider la campagne, les pins, les captures, les transitions ni les reçus. Cette absence est la
+preuve de départ ; l'implémentation suivante doit rendre la même fixture verte sans interaction
+Figma.

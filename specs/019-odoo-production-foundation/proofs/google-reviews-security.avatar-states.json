@@ -1,37 +1,18 @@
 {
-  "both": {
-    "initial": true,
-    "photo": true,
-    "photoFlag": "true",
-    "rawSource": "/web/image/303-b01eb99b/home-light.png",
-    "alt": "Portrait QA"
-  },
-  "photoOnly": {
+  "avecPhoto": {
     "initial": false,
     "photo": true,
-    "photoFlag": "true",
-    "rawSource": "/web/image/303-b01eb99b/home-light.png",
+    "avatarFlag": "Photo",
+    "rawSource": "data:image/*;base64,…",
+    "pending": true,
     "alt": "Portrait QA"
   },
-  "neither": {
-    "initial": false,
-    "photo": false,
-    "photoFlag": "false",
-    "rawSource": "/web/image/303-b01eb99b/home-light.png",
-    "alt": "Portrait QA"
-  },
-  "initialOnly": {
+  "sansPhoto": {
     "initial": true,
     "photo": false,
-    "photoFlag": "false",
-    "rawSource": "/web/image/303-b01eb99b/home-light.png",
-    "alt": "Portrait QA"
-  },
-  "restored": {
-    "initial": true,
-    "photo": true,
-    "photoFlag": "true",
-    "rawSource": "/web/image/303-b01eb99b/home-light.png",
+    "avatarFlag": "Initiale",
+    "rawSource": null,
+    "pending": true,
     "alt": "Portrait QA"
   }
 }

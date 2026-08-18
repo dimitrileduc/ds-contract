@@ -11,6 +11,8 @@ const COMPONENTS = [
     "isSet": false,
     "boolProps": [],
     "textProps": [],
+    "forwardedProps": [],
+    "swapProps": [],
     "fontStyles": [
       "Medium",
       "Regular"
@@ -43,6 +45,7 @@ const COMPONENTS = [
               "characters": "Adresse",
               "fontSize": 24,
               "fontStyle": "Regular",
+              "textStyle": "Titre 4",
               "textFill": "color/orange",
               "lineHeight": 30,
               "fontFamily": "Montserrat",
@@ -54,6 +57,7 @@ const COMPONENTS = [
               "characters": "Rue Alfred Drèze 7, \u20284860 Pepinster",
               "fontSize": 18,
               "fontStyle": "Regular",
+              "textStyle": "Lead",
               "textFill": "color/blanc",
               "lineHeight": 27,
               "fontFamily": "Montserrat",
@@ -114,15 +118,16 @@ const boundPaint = (varName, consumer) => {
 
 // Named text styles (synced by 01-tokens.js): consumers look up OUR styles
 // only — the ds_contracts/textStyleToken marker is identity, a foreign style
-// sharing a name is never used. Missing style (tokens script not run yet)
-// degrades gracefully: the raw fontName/fontSize already set on the node
-// stand until the next amend after the styles exist.
+// sharing a name is never used. A governed plain-text node must not silently
+// fall back to raw typography: missing or duplicate marked styles STOP.
 let _textStyleMap = null;
 async function ourTextStyle(name) {
   if (!_textStyleMap) {
     _textStyleMap = {};
     for (const s of await figma.getLocalTextStylesAsync()) {
-      if (s.getSharedPluginData('ds_contracts', 'textStyleToken')) _textStyleMap[s.name] = s;
+      if (!s.getSharedPluginData('ds_contracts', 'textStyleToken')) continue;
+      if (_textStyleMap[s.name]) throw new Error('Duplicate governed Text Style name: ' + s.name);
+      _textStyleMap[s.name] = s;
     }
   }
   return _textStyleMap[name] || null;
@@ -207,6 +212,70 @@ function findComponentByName(name, contractId) {
   throw new Error('Dependency component not found in file: ' + name + ' (sync it first)');
 }
 
+// Icon identity is immutable within one execution: the same ~16 registry refs
+// resolve for every icon-instance of every variant, so the id lookup and the
+// full-page fallback scan run once per ref, not once per reference.
+const iconComponentCache = new Map();
+async function findIconComponent(ref) {
+  const cacheKey = ref.nodeId + '|' + (ref.key || '');
+  const cached = iconComponentCache.get(cacheKey);
+  if (cached) return cached;
+  let hit = typeof figma.getNodeByIdAsync === 'function' ? await figma.getNodeByIdAsync(ref.nodeId) : null;
+  if (hit && hit.type !== 'COMPONENT' && hit.type !== 'COMPONENT_SET') hit = null;
+  if (!hit || (ref.key && hit.key !== ref.key)) {
+    hit = null;
+    for (const page of figma.root.children) {
+      const byKey = page.findOne(
+        (n) => (n.type === 'COMPONENT' || n.type === 'COMPONENT_SET') && n.key === ref.key,
+      );
+      if (byKey) { hit = byKey; break; }
+    }
+  }
+  if (!hit) {
+    throw new Error('Governed icon component not found: ' + ref.asset + ' (nodeId=' + ref.nodeId + ', key=' + ref.key + ')');
+  }
+  const resolved = hit.type === 'COMPONENT_SET' ? hit.defaultVariant : hit;
+  iconComponentCache.set(cacheKey, resolved);
+  return resolved;
+}
+
+async function iconSwapDefinition(spec) {
+  const defaultMain = await findIconComponent(spec.defaultComponent);
+  const preferredValues = [];
+  for (const ref of spec.preferredComponents || []) {
+    const main = await findIconComponent(ref);
+    preferredValues.push({ type: 'COMPONENT', key: main.key });
+  }
+  return { defaultId: defaultMain.id, preferredValues: preferredValues };
+}
+
+function wireIconSwapNodes(registry, property, key) {
+  for (const entry of registry.iconSwaps || []) {
+    if (entry.property !== property) continue;
+    entry.instance.componentPropertyReferences = {
+      ...(entry.instance.componentPropertyReferences || {}),
+      mainComponent: key,
+    };
+  }
+}
+
+function wireDepPropForwards(registry) {
+  for (const entry of registry.forwards || []) {
+    const childKeys = Object.keys(entry.instance.componentProperties || {});
+    for (const mapping of entry.mappings) {
+      const found = childKeys.some(
+        (key) => key === mapping.childProperty || key.indexOf(mapping.childProperty + '#') === 0,
+      );
+      if (!found) throw new Error('Child property definition not found for forwarding: ' + mapping.childProperty);
+    }
+    // Real Figma refuses writes to componentPropertyReferences on an
+    // instance sublayer. isExposedInstance is its public, native API for
+    // surfacing the nested component's own suffixed property identities at
+    // the containing component instance level — one flag per instance.
+    if (entry.mappings.length > 0) entry.instance.isExposedInstance = true;
+  }
+}
+
 function setInstanceProps(inst, props) {
   const available = Object.keys(inst.componentProperties);
   const resolved = {};
@@ -286,15 +355,26 @@ function applyFrameSpec(node, spec) {
     node.resize(w, h);
     const horizontalIsPrimary = l.mode === 'HORIZONTAL';
     if (spec.fixedWidth) {
-      if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
-      else node.counterAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED';
+        else node.counterAxisSizingMode = 'FIXED';
+      }
       node.setBoundVariable('width', need(spec.fixedWidth.varName));
     }
     if (spec.fixedHeight) {
-      if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
-      else node.primaryAxisSizingMode = 'FIXED';
+      if (l.mode !== 'GRID') {
+        if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED';
+        else node.primaryAxisSizingMode = 'FIXED';
+      }
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
+  }
+  // A growing image with a fixed master-height is a proportional image plane,
+  // not a permanently tall crop. When a consumer narrows the component (the
+  // 743px category card is used at 474px), Figma must scale that basis with
+  // the width instead of retaining the master's 418px height.
+  if (spec.imgPlaceholder && spec.grow && spec.fixedHeight && 'constrainProportions' in node) {
+    node.constrainProportions = true;
   }
 }
 
@@ -325,6 +405,12 @@ async function buildNode(spec, registry) {
     const svgWidth = spec.svgSize ? spec.svgSize.width : spec.iconSize;
     const svgHeight = spec.svgSize ? spec.svgSize.height : spec.iconSize;
     if (svgWidth && svgHeight) node.resize(svgWidth, svgHeight);
+  } else if (spec.type === 'icon-instance') {
+    const main = await findIconComponent(spec.iconComponent);
+    node = main.createInstance();
+    if (spec.iconSize) node.resize(spec.iconSize, spec.iconSize);
+    registry.iconSwaps = registry.iconSwaps || [];
+    registry.iconSwaps.push({ property: spec.iconSwapProperty, instance: node });
   } else if (spec.type === 'text') {
     node = figma.createText();
     node.fontName = await textFont(spec);
@@ -340,7 +426,8 @@ async function buildNode(spec, registry) {
       // Exact-definition match compiled in: ride the named style. Text
       // styles own typography only — the bound fill paint below coexists.
       const st = await ourTextStyle(spec.textStyle);
-      if (st) { try { await node.setTextStyleIdAsync(st.id); } catch (e) { /* raw props stand */ } }
+      if (!st) throw new Error('Missing governed Text Style: ' + spec.textStyle);
+      await node.setTextStyleIdAsync(st.id);
     }
     if (spec.textFill) node.fills = [boundPaint(spec.textFill, node)];
     if (spec.contentProp) {
@@ -377,6 +464,7 @@ async function buildNode(spec, registry) {
           } catch (e) { /* older figma: leave auto */ }
         }
       }
+
       wrap.name = spec.name;
       node = wrap;
     }
@@ -385,6 +473,10 @@ async function buildNode(spec, registry) {
     const main = target.type === 'COMPONENT_SET' ? target.defaultVariant : target;
     node = main.createInstance();
     if (spec.depProps) setInstanceProps(node, spec.depProps);
+    if (spec.depPropRefs && spec.depPropRefs.length > 0) {
+      registry.forwards = registry.forwards || [];
+      registry.forwards.push({ instance: node, mappings: spec.depPropRefs });
+    }
     // v20 (016): contract-carried slot content on the composed instance — the
     // swap rides the child's INSTANCE_SWAP property (identity by marker, never
     // layer name), then the slotted instance's own props are set on the nested
@@ -476,6 +568,8 @@ async function buildNode(spec, registry) {
     ) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
+
+
     // 016, CSS text-flow rule: in CSS every text wraps at its block's width —
     // Figma's auto-width has no CSS equivalent. A TEXT child of a
     // width-CONSTRAINED parent (fixed width, or a stretch/grow context)
@@ -847,6 +941,107 @@ function restaurerPhotos(spec, comp, plan, report, contractId) {
   if (plan.accueilsAttendus > report.photos.accueilsParHote) report.photos.accueilsParHote = plan.accueilsAttendus;
 }
 
+// Shared by amendSet and amendComponent (their only difference was the
+// receiver): reconcile the target's governed property definitions with the
+// contract — drop forwarded TEXT props, upsert BOOLEAN/TEXT defs and their
+// defaults, upsert INSTANCE_SWAP defs against the governed icon registry.
+async function upsertGovernedProperties(host, C, defs, newKeys, defKey, report) {
+  for (const name of C.forwardedProps || []) {
+    const k = defKey(name);
+    if (k && defs[k]?.type === 'TEXT') {
+      host.deleteComponentProperty(k);
+      delete defs[k];
+      report.removedForwardedProps = report.removedForwardedProps || [];
+      report.removedForwardedProps.push(name);
+    }
+  }
+  for (const w of [
+    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
+    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
+  ]) {
+    const k = defKey(w.name);
+    if (!k) { newKeys[w.name] = host.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
+    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
+      host.editComponentProperty(k, { defaultValue: w.def });
+      report.editedDefaults.push(w.name);
+    }
+  }
+  for (const swap of C.swapProps || []) {
+    const resolvedSwap = await iconSwapDefinition(swap);
+    let k = defKey(swap.property);
+    if (!k) {
+      k = host.addComponentProperty(
+        swap.property,
+        'INSTANCE_SWAP',
+        resolvedSwap.defaultId,
+        { preferredValues: resolvedSwap.preferredValues },
+      );
+      newKeys[swap.property] = k;
+      report.addedProps.push(swap.property);
+    } else if (defs[k]?.type !== 'INSTANCE_SWAP') {
+      throw new Error('Property type mismatch for governed icon swap: ' + swap.property);
+    } else {
+      const beforePreferred = JSON.stringify(defs[k].preferredValues || []);
+      const afterPreferred = JSON.stringify(resolvedSwap.preferredValues);
+      if (defs[k].defaultValue !== resolvedSwap.defaultId || beforePreferred !== afterPreferred) {
+        host.editComponentProperty(k, {
+          defaultValue: resolvedSwap.defaultId,
+          preferredValues: resolvedSwap.preferredValues,
+        });
+        if (!report.editedDefaults.includes(swap.property)) report.editedDefaults.push(swap.property);
+      }
+    }
+  }
+}
+
+// Shared amend epilogue (same receiver-only difference): bind every registry
+// entry — TEXT characters, slot mains + optional visibility, visibility
+// booleans, governed icon swaps — then expose composed-property forwards.
+async function wireGovernedReferences(host, C, registry, defs, newKeys, defKey, report) {
+  for (const t of registry.texts) {
+    let k = defKey(t.prop);
+    if (!k) { k = host.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
+    else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
+      host.editComponentProperty(k, { defaultValue: t.default });
+      report.editedDefaults.push(t.prop);
+    }
+    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
+  }
+  for (const sl of registry.slots) {
+    const util = await ensureSlotUtility();
+    let k = defKey(sl.spec.slotProperty);
+    if (!k) {
+      const preferred = [];
+      for (const depName of sl.spec.slotAccepts || []) {
+        const target = findComponentByName(depName);
+        preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
+      }
+      k = host.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
+        preferred.length > 0 ? { preferredValues: preferred } : undefined);
+      newKeys[sl.spec.slotProperty] = k;
+      report.addedProps.push(sl.spec.slotProperty);
+    }
+    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
+    if (sl.spec.slotOptional) {
+      let vk = defKey('Show ' + sl.spec.slotProperty);
+      if (!vk) { vk = host.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
+      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
+    }
+  }
+  for (const vis of registry.visibles) {
+    const k = defKey(vis.prop);
+    if (!k) continue;
+    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
+    vis.node.visible = vis.default;
+  }
+  for (const swap of C.swapProps || []) {
+    const k = defKey(swap.property);
+    if (!k) throw new Error('Governed icon swap property missing after amend: ' + swap.property);
+    wireIconSwapNodes(registry, swap.property, k);
+  }
+  wireDepPropForwards(registry);
+}
+
 async function amendSet(set, C) {
   set.setSharedPluginData('ds_contracts', 'contractId', C.contractId);
   const hash = specHash(C);
@@ -924,18 +1119,7 @@ async function amendSet(set, C) {
   const newKeys = {};
   const defKey = (name) => newKeys[name] ||
     Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = set.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      set.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
+  await upsertGovernedProperties(set, C, defs, newKeys, defKey, report);
 
   const existingByName = new Map(set.children.map((ch) => [ch.name, ch]));
 
@@ -972,6 +1156,8 @@ async function amendSet(set, C) {
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
+
+
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
         if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
@@ -981,42 +1167,7 @@ async function amendSet(set, C) {
       restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
       report.rebuiltVariants++;
     }
-    for (const t of registry.texts) {
-      let k = defKey(t.prop);
-      if (!k) { k = set.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
-      else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
-        set.editComponentProperty(k, { defaultValue: t.default });
-        report.editedDefaults.push(t.prop);
-      }
-      t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
-    }
-    for (const sl of registry.slots) {
-      const util = await ensureSlotUtility();
-      let k = defKey(sl.spec.slotProperty);
-      if (!k) {
-        const preferred = [];
-        for (const depName of sl.spec.slotAccepts || []) {
-          const target = findComponentByName(depName);
-          preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
-        }
-        k = set.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
-          preferred.length > 0 ? { preferredValues: preferred } : undefined);
-        newKeys[sl.spec.slotProperty] = k;
-        report.addedProps.push(sl.spec.slotProperty);
-      }
-      sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
-      if (sl.spec.slotOptional) {
-        let vk = defKey('Show ' + sl.spec.slotProperty);
-        if (!vk) { vk = set.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-        sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
-      }
-    }
-    for (const vis of registry.visibles) {
-      const k = defKey(vis.prop);
-      if (!k) continue;
-      vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
-      vis.node.visible = vis.default;
-    }
+    await wireGovernedReferences(set, C, registry, defs, newKeys, defKey, report);
   }
 
   // Contract default combo must be the FIRST variant (Figma default = first).
@@ -1079,17 +1230,7 @@ async function amendComponent(comp, C) {
   const newKeys = {};
   const defKey = (name) => newKeys[name] ||
     Object.keys(defs).find((k) => k.split('#')[0] === name) || null;
-  for (const w of [
-    ...C.boolProps.map((bp) => ({ name: bp.property, type: 'BOOLEAN', def: bp.default })),
-    ...(C.textProps || []).map((tp) => ({ name: tp.property, type: 'TEXT', def: tp.default })),
-  ]) {
-    const k = defKey(w.name);
-    if (!k) { newKeys[w.name] = comp.addComponentProperty(w.name, w.type, w.def); report.addedProps.push(w.name); }
-    else if (defs[k].type === w.type && defs[k].defaultValue !== w.def) {
-      comp.editComponentProperty(k, { defaultValue: w.def });
-      report.editedDefaults.push(w.name);
-    }
-  }
+  await upsertGovernedProperties(comp, C, defs, newKeys, defKey, report);
   const v = C.variants[0];
   const registry = { texts: [], slots: [], visibles: [] };
   // 017 — même PRÉ-PASSE que le chemin amendSet : relever le maître ET ses
@@ -1117,6 +1258,8 @@ async function amendComponent(comp, C) {
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
+
+
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
     if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
@@ -1124,42 +1267,7 @@ async function amendComponent(comp, C) {
     }
   }
   restaurerPhotos(v.spec, comp, planPhotos, report, C.contractId);
-  for (const t of registry.texts) {
-    let k = defKey(t.prop);
-    if (!k) { k = comp.addComponentProperty(t.prop, 'TEXT', t.default); newKeys[t.prop] = k; report.addedProps.push(t.prop); }
-    else if (defs[k] && defs[k].defaultValue !== t.default && !report.editedDefaults.includes(t.prop)) {
-      comp.editComponentProperty(k, { defaultValue: t.default });
-      report.editedDefaults.push(t.prop);
-    }
-    t.node.componentPropertyReferences = { ...(t.node.componentPropertyReferences || {}), characters: k };
-  }
-  for (const sl of registry.slots) {
-    const util = await ensureSlotUtility();
-    let k = defKey(sl.spec.slotProperty);
-    if (!k) {
-      const preferred = [];
-      for (const depName of sl.spec.slotAccepts || []) {
-        const target = findComponentByName(depName);
-        preferred.push({ type: target.type === 'COMPONENT_SET' ? 'COMPONENT_SET' : 'COMPONENT', key: target.key });
-      }
-      k = comp.addComponentProperty(sl.spec.slotProperty, 'INSTANCE_SWAP', sl.defaultId || util.id,
-        preferred.length > 0 ? { preferredValues: preferred } : undefined);
-      newKeys[sl.spec.slotProperty] = k;
-      report.addedProps.push(sl.spec.slotProperty);
-    }
-    sl.instance.componentPropertyReferences = { ...(sl.instance.componentPropertyReferences || {}), mainComponent: k };
-    if (sl.spec.slotOptional) {
-      let vk = defKey('Show ' + sl.spec.slotProperty);
-      if (!vk) { vk = comp.addComponentProperty('Show ' + sl.spec.slotProperty, 'BOOLEAN', true); newKeys['Show ' + sl.spec.slotProperty] = vk; }
-      sl.wrapper.componentPropertyReferences = { ...(sl.wrapper.componentPropertyReferences || {}), visible: vk };
-    }
-  }
-  for (const vis of registry.visibles) {
-    const k = defKey(vis.prop);
-    if (!k) continue;
-    vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: k };
-    vis.node.visible = vis.default;
-  }
+  await wireGovernedReferences(comp, C, registry, defs, newKeys, defKey, report);
   comp.description = C.description;
   comp.setSharedPluginData('ds_contracts', 'specHash', hash);
   return report;
@@ -1267,12 +1375,23 @@ async function syncOne(C) {
     for (const tp of C.textProps || []) {
       b.comp.addComponentProperty(tp.property, 'TEXT', tp.default);
     }
+    for (const swap of C.swapProps || []) {
+      const resolvedSwap = await iconSwapDefinition(swap);
+      const key = b.comp.addComponentProperty(
+        swap.property,
+        'INSTANCE_SWAP',
+        resolvedSwap.defaultId,
+        { preferredValues: resolvedSwap.preferredValues },
+      );
+      wireIconSwapNodes(b.registry, swap.property, key);
+    }
     for (const vis of b.registry.visibles) {
       const key = boolKeys[vis.prop];
       if (!key) continue;
       vis.node.componentPropertyReferences = { ...(vis.node.componentPropertyReferences || {}), visible: key };
       vis.node.visible = vis.default;
     }
+    wireDepPropForwards(b.registry);
   }
 
   let target;

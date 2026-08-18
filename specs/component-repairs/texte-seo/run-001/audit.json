@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-texte-seo-container",
+  "targetId": "texte-seo",
+  "inspectedAt": "2026-08-11T18:23:48.357Z",
+  "fileVersionId": "2386540638664390344",
+  "verdict": "green",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2108:3123",
+    "parentNodeId": "2455:4734",
+    "parentName": "Container · TexteSEO",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      1440
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "I2351:37782;2351:36810",
+      "structuralPath": "0/0/0",
+      "name": "Accroche",
+      "characters": "Plus de 50 ans d’expérience",
+      "classification": "named-exact",
+      "textStyleId": "2162:5836",
+      "textStyleName": "Accroche",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37782;2351:36811",
+      "structuralPath": "0/0/1",
+      "name": "Titre",
+      "characters": "Visitez notre showroom à Pepinster ou contactez-nous",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "2351:37788",
+      "structuralPath": "1/0",
+      "name": "Paragraphe",
+      "characters": "Rien ne vaut le toucher et la vue pour choisir ses finitions. Notre showroom situé rue Alfred Drèze à Pepinster (proche de Verviers) vous permet de découvrir en taille réelle nos portes de garage, motorisations et portes d'entrée. Vous pourrez y comparer les textures (Woodgrain, Silkgrain), les coloris et tester la robustesse des produits Hörmann. Nos conseillers sont à votre disposition pour étudier vos plans et vous orienter vers la meilleure solution technique et budgétaire.",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "2351:37822",
+      "structuralPath": "2/0",
+      "name": "SousTitre",
+      "characters": "Infos pratiques",
+      "classification": "named-exact",
+      "textStyleId": "5:45",
+      "textStyleName": "Titre 5",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37856;2347:34260",
+      "structuralPath": "3/0/1/0",
+      "name": "Question",
+      "characters": "Accès et parking",
+      "classification": "named-exact",
+      "textStyleId": "2162:5835",
+      "textStyleName": "Paragraphe gras",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37867;2347:34266",
+      "structuralPath": "3/1/0/0/0",
+      "name": "Question",
+      "characters": "Faut-il prendre rendez-vous ?",
+      "classification": "named-exact",
+      "textStyleId": "2162:5835",
+      "textStyleName": "Paragraphe gras",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2351:37867;2347:34270",
+      "structuralPath": "3/1/2",
+      "name": "Contenu",
+      "characters": "Pour une simple visite découverte, le showroom est ouvert aux horaires indiqués. Pour une étude approfondie de projet avec un conseiller, la prise de rendez-vous est conseillée.",
+      "classification": "rich-ranges",
+      "textStyleId": null,
+      "textStyleName": null,
+      "reasons": [
+        "native character ranges are present; no whole-node Text Style is required"
+      ]
+    },
+    {
+      "nodeId": "I2351:37880;2347:34260",
+      "structuralPath": "3/2/1/0",
+      "name": "Question",
+      "characters": "Zones de déplacement pour devis",
+      "classification": "named-exact",
+      "textStyleId": "2162:5835",
+      "textStyleName": "Paragraphe gras",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.accordion-row",
+      "ds.section-header"
+    ],
+    "observed": [
+      "ds.accordion-row",
+      "ds.section-header"
+    ],
+    "undeclared": []
+  },
+  "findings": [],
+  "proposedChanges": []
+}

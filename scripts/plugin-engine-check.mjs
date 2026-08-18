@@ -38,7 +38,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { buildEngineBundle, verifyEngineReceipt } from './build-plugin-zip.mjs';
-import { createFigmaMock } from './plugin-engine-mock-figma.mjs';
+import { createFigmaMock, seedMarkedTextStyles } from './plugin-engine-mock-figma.mjs';
 
 const ROOT = process.cwd();
 const read = (p) => readFileSync(path.join(ROOT, p), 'utf8');
@@ -65,7 +65,24 @@ console.log(
 );
 
 // --- load the bundle in a bare VM (window sandbox, no node globals) --------
-const { figma, root } = createFigmaMock();
+const { figma, root, firstPage } = createFigmaMock();
+// The shipping Piqueray file already contains the governed icon components.
+// Seed those exact identities into the mock before executing generated Button
+// scripts; absence must remain a named runtime refusal, never a name fallback.
+const iconRegistry = JSON.parse(read('contracts/icons.registry.json'));
+for (const icon of iconRegistry.icons) {
+  const component = figma.createComponent();
+  component.name = icon.figma.componentName;
+  component.id = icon.figma.nodeId;
+  component.key = icon.figma.key;
+  firstPage.appendChild(component);
+}
+// Piqueray is a brownfield file: its 18 historical Text Styles must have
+// passed the reviewed marker-only migration before the normal tokens step.
+// Seed that exact post-migration state from an independent historical fixture
+// so this check cannot hide name adoption or duplicate creation.
+const historicalTextStyles = JSON.parse(read('evals/fixtures/figma-text-styles-piqueray.expected.json'));
+seedMarkedTextStyles(figma, historicalTextStyles);
 const sandbox = { window: {}, console: { log() {}, warn() {}, error() {} } };
 vm.createContext(sandbox);
 vm.runInContext(bundle.code, sandbox, { timeout: 120_000 });

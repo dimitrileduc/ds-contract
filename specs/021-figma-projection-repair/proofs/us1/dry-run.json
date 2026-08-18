@@ -1,0 +1,87 @@
+{
+  "campaignId": "021-figma-projection-repair",
+  "filePin": "2385797321547430456",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "generated-button-carousel-controls",
+      "targetId": "produits-e-commerce",
+      "mechanism": "generated-amend",
+      "nodeId": "2077:2191",
+      "structuralPath": null,
+      "changes": {
+        "sources": [
+          "contracts/button.contract.json",
+          "contracts/carousel-controls.contract.json"
+        ]
+      },
+      "preconditions": [
+        {
+          "field": "type",
+          "equals": "COMPONENT"
+        },
+        {
+          "field": "fileVersionId",
+          "equals": "2385797321547430456"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "instanceSwapReferences",
+          "equals": "live"
+        },
+        {
+          "field": "opposedChevrons",
+          "equals": true
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "generated-coordonnees",
+      "targetId": "coordonnees",
+      "mechanism": "property-reference",
+      "nodeId": "2104:2904",
+      "structuralPath": null,
+      "changes": {
+        "source": "contracts/coordonnees.contract.json"
+      },
+      "preconditions": [
+        {
+          "field": "type",
+          "equals": "COMPONENT"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "references",
+          "equals": "live"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "generated-formulaire",
+      "targetId": "formulaire",
+      "mechanism": "property-reference",
+      "nodeId": "2096:2564",
+      "structuralPath": null,
+      "changes": {
+        "source": "contracts/formulaire.contract.json"
+      },
+      "preconditions": [
+        {
+          "field": "type",
+          "equals": "COMPONENT"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "references",
+          "equals": "live"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

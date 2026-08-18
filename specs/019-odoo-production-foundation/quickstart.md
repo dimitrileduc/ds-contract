@@ -9,7 +9,7 @@ livrer par 019.
 - Node.js ≥ 20 et dépendances du worktree installées;
 - Docker avec les images exactes du snapshot;
 - Chromium Playwright installé dans le worktree;
-- aucun changement non repinné dans les cinq contrats ou leurs entrées;
+- aucun changement non repinné dans les neuf contrats de la fermeture ou leurs entrées;
 - ports locaux de la QA Odoo disponibles.
 
 Le lock à contrôler est `integrations/odoo/config/inputs.lock.json`. Les formats attendus sont dans
@@ -24,8 +24,8 @@ npm run odoo:authoring:check
 
 Résultat attendu :
 
-- 2 racines et 5 contrats résolus aux versions/hash épinglés;
-- couverture complète des 30 props et 61 parts locales, puis de leurs occurrences imbriquées;
+- 4 racines et 9 contrats résolus aux versions/hash épinglés;
+- couverture complète des props et parts annoncées par chaque config, puis de leurs occurrences imbriquées;
 - 0 verdict manquant/dupliqué, 0 chemin ambigu/invalide;
 - tout sélecteur de part préfixé par sa racine.
 
@@ -60,7 +60,7 @@ npm run odoo:qa:smoke
 ```
 
 Résultat attendu : module `piqueray_ds` installé sur l'image exacte, aucune erreur JS/XML bloquante,
-exactement deux entrées de snippets (`Presentation`, `Google Reviews`) et aucun composant interne
+exactement quatre entrées de snippets (`Presentation`, `Google Reviews`, `Hero`, `Équipe`) et aucun composant interne
 posable.
 
 ## 4. Qualifier `GoogleReviews` en premier
@@ -96,7 +96,28 @@ Le scénario insère deux Présentations, applique contenus et CTA opposés, pui
 panneau, textes simples, rich-text gras uniquement, save/reopen et rendu public. La preuve ne peut
 pas être reprise telle quelle de 018 : elle est refaite dans le module produit sur base propre.
 
-## 6. Vérifier sécurité et compatibilité
+## 6. Qualifier `Hero`
+
+```bash
+npx tsx integrations/odoo/qa/scenarios/hero.spec.mts
+```
+
+Le scénario insère deux Hero sans image embarquée, exerce les textes, le CTA, le remplacement média
+natif et le `alt`, puis contrôle isolation, save/reopen et public. Le média temporaire appartient au
+cycle de sauvegarde Odoo et doit devenir une URL locale `/web/image/...`; les sources externes,
+exécutables ou data arbitraires sont refusées. À 1728 et 1440 px, le fond remplit la section sans
+overflow et le CTA conserve son comportement hug/nowrap.
+
+## 7. Vérifier sécurité et compatibilité
+
+Avant cette étape, qualifier Équipe :
+
+```bash
+npx tsx integrations/odoo/qa/scenarios/equipe.spec.mts
+```
+
+Le scénario couvre deux instances, les cardinalités 0/1/16/17, l’édition nom/poste, le portrait
+Odoo avec alt, save/reopen/public et la grille quatre colonnes sans overflow à 1728/1440.
 
 ```bash
 npm run odoo:qa:security
@@ -114,28 +135,28 @@ Attendus :
 - une politique d'authoring plus récente est réappliquée à la réouverture;
 - un digest structurel ancien est signalé, jamais prétendument migré.
 
-## 7. Installation, mise à jour et persistance
+## 8. Installation, mise à jour et persistance
 
 ```bash
 npm run odoo:qa:update
 ```
 
-Le test part d'une base contenant les deux sections remplies, met à jour l'addon, puis contrôle la
+Le test part d'une base contenant les quatre sections remplies, met à jour l'addon, puis contrôle la
 lisibilité, le contenu, les métadonnées de version et le public. Il distingue explicitement ce que
 `-u` met à jour (assets/politique/templates futurs) de ce qu'il ne réécrit pas (HTML déjà posé).
 
-## 8. Comparaison visuelle
+## 9. Comparaison visuelle
 
 ```bash
 npm run odoo:qa:visual
 ```
 
-Pour chacune des deux racines, la référence HTML et Odoo utilisent le même snapshot, contenu,
+Pour chacune des quatre racines, la référence HTML et Odoo utilisent le même snapshot, contenu,
 viewport, fontes, état et clip. Le reçu fournit les deux PNG, le diff et le JSON de mesure. La cible
 est `0.0000 %`; tout résidu est chiffré et accepté explicitement. Un smoke séparé vérifie la vraie
 page Odoo, sans confondre son chrome avec le clip strict du composant.
 
-## 9. Contrôles nommés et sweep final
+## 10. Contrôles nommés et sweep final
 
 Après l'ajout des nouveaux cas de 019, exécuter le sweep du dépôt avant clôture. **Il n'existe pas de
 filtre par cas** : `npm run eval` est câblé sur `tsx evals/run.ts` et ne lit aucun argument de
@@ -160,7 +181,7 @@ Le plan n'a relancé aucun `/eval`; ces commandes appartiennent à la qualificat
 l'implémentation. Le harness d'eval doit copier `integrations/` dans son scratch avant d'activer les
 nouveaux cas.
 
-## 10. Reçu de sortie
+## 11. Reçu de sortie
 
 La clôture exige :
 

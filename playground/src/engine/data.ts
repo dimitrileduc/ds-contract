@@ -6,6 +6,7 @@
  */
 import {
   ContractSchema,
+  iconComponentsFromRegistry,
   tokenCorpusFromJson,
   tokenInventoryFromJson,
   type Contract,
@@ -16,6 +17,7 @@ import primitives from '../../../tokens/primitives.tokens.json';
 import semantic from '../../../tokens/semantic.tokens.json';
 import light from '../../../tokens/modes/semantic.light.tokens.json';
 import brandDefault from '../../../tokens/modes/brand.default.tokens.json';
+import iconRegistry from '../../../contracts/icons.registry.json';
 
 // The generated token custom-property stylesheets (src/styles/tokens*.css) —
 // injected into the preview iframe so var(--…) references resolve, exactly
@@ -96,3 +98,5 @@ export const icons = new Map<string, string>(
     p.split('/').pop()!.replace(/\.svg$/, ''), svg.trim(),
   ]),
 );
+
+export const iconComponents = iconComponentsFromRegistry(iconRegistry);

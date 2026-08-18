@@ -42,7 +42,7 @@
     "[pass] racine — duplicate reste distinctement autorisé — attendu « commande visible et active », observé « visible · active »",
     "[pass] racine — remove reste distinctement autorisé — attendu « commande visible et active », observé « visible · active »",
     "[pass] racine — save-as-custom suit sa décision — attendu « commande absente », observé « commande absente »",
-    "[pass] racine — panneau limité à la politique Piqueray et aux gestes déclarés — attendu « 1 politique Piqueray, 0 action haute non déclarée, 0 champ natif », observé « 1 politique · 0 action(s) non déclarée(s) · 0 champ(s) · texte=\"Block Piqueray Structure gouvernée\" »",
+    "[pass] racine — panneau limité à la politique Piqueray et aux gestes déclarés — attendu « 1 politique Piqueray, 0 action haute non déclarée, 1 champ CTA déclaré, 0 champ non déclaré », observé « 1 politique · 0 action(s) non déclarée(s) · 1 champ(s) CTA · 0 champ(s) non déclaré(s) · texte=\"Piqueray · Présentation Piqueray Structure gouvernée Piqueray · Présentation Les contenus se modifient directement dans le bloc. Appel à l’action\" »",
     "[pass] racine — resize suit sa décision interdite — attendu « 0 poignée de resize active », observé « 0 poignée(s) active(s) »",
     "[pass] charge hostile — le vrai geste devient sauvegardable — attendu « 2 insertions acceptées, au moins 1 racine dirty, charges présentes », observé « 2/2 insertions · 1 dirty · riche=\"PQR-STRONG-OKPQR-EM-OUT﻿﻿PQR-LINK-OUT﻿﻿window.__pqrHostile=3\" · simple=\"PQR-PLAIN-ONLY\" »",
     "[pass] save — Odoo persiste effectivement la vue — attendu « RPC ir.ui.view/save HTTP 2xx », observé « HTTP 200 »",
@@ -68,5 +68,5 @@
     }
   ],
   "limitCodes": [],
-  "durationMs": 166003
+  "durationMs": 92082
 }

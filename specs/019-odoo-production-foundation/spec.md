@@ -202,6 +202,7 @@ invalide et une adaptation manuelle afin de vérifier le refus ou le comptage at
 
 - `ds.presentation` et `ds.google-reviews` sont les deux références déclarées propres au départ ; 020 ne les réaudite que si elle touche une dépendance commune.
 - Les versions observées à l'ouverture de la feature sont `ds.presentation@2.5.0`, `ds.section-header@2.1.1`, `ds.button@2.0.0`, `ds.google-reviews@1.0.0` et `ds.review-card@1.0.0`. Le snapshot effectif de qualification reste l'autorité si une coordination 020 impose un repin explicite.
+- Le repin explicite du 2026-08-11 fixe le snapshot effectif à `ds.presentation@2.5.0`, `ds.section-header@2.2.0`, `ds.button@2.0.1`, `ds.google-reviews@1.0.0` et `ds.review-card@1.0.0`, avec `graphDigest=9cf060ab2f36fecfcf9f54903725ef86648b1fd43cdb8f57acedc66e89d8f9f0`. Les changements Fill/Hug sont dérivés des contrats et non recopiés depuis Figma.
 - La cible de qualification reste Odoo 19 épinglé sur la même lignée que le POC 018 ; un changement de version cible exige une nouvelle qualification de compatibilité.
 - Présentation et Google Reviews sont des sections de contenu. Les rédacteurs utilisent les permissions standard du site ; cette feature n'introduit pas un nouveau modèle de rôles.
 - Le rendu HTML produit depuis le contrat est la référence visuelle de la cible Odoo. Figma reste la surface amont déjà qualifiée pour ces deux sections, pas une source de styles à recopier directement.
@@ -212,3 +213,35 @@ invalide et une adaptation manuelle afin de vérifier le refus ou le comptage at
 - Le calendrier de la feature n'appartient pas à cette spec : J1–J2 pour 019 et l'objectif J5 pour les 13 sections sont fixés par la séquence approuvée le 2026-08-07 dans `ROADMAP.md`. C'est la source à citer quand le plan ou la recherche écartent une alternative pour raison de délai.
 
 La correction datée et ses reçus sont conservés dans `proofs/correction-premisse-018.md`.
+
+## Extension gouvernée — Hero (2026-08-11)
+
+À la demande de portage `ds.hero`, le snapshot actif étend la fondation historique sans réécrire
+son périmètre initial : 3 racines posables et 6 contrats dans la fermeture, avec
+`ds.hero@1.5.0` et `graphDigest=cac34666a20a13d86d285e8d600e9fbf8da86b56e08404afba6ee5949c2fff1b`.
+Pour cette extension, les exigences FR-006 à FR-011 et FR-014 à FR-024 s'appliquent aussi au Hero.
+
+Le Hero est un bloc CMS instanciable. Sa valeur `backgroundUrl` est vide dans le template de
+production : aucune image métier n'est livrée par l'addon. Chaque rédacteur choisit un média via le
+sélecteur natif Odoo ; après sauvegarde, la source publiée doit être locale (`/web/image/...` ou
+`/web/content/...`) et rester propre à l'instance. `backgroundAlt`, titre, sous-titre et label CTA
+suivent les verdicts exhaustifs de `hero.authoring.json`. Le fond suit Fill, le CTA Hug/nowrap, et
+la qualification couvre 1728 et 1440 px sans inventer un breakpoint absent du contrat.
+
+Les critères SC-001, SC-002, SC-003, SC-006 et SC-010 se lisent donc, pour le snapshot actif,
+respectivement comme 3 sections, 6 contrats, deux instances de chacune, trois comparaisons et une
+installation/update des trois sections. Les formulations à 2/5 plus haut restent le dossier
+historique de la fondation initiale, pas l'état courant du lock.
+
+## Extension gouvernée — Équipe (2026-08-11)
+
+Le portage `ds.equipe@1.2.0` ajoute une quatrième racine et les dépendances
+`ds.member-card@1.3.0` et `ds.member-picture@1.3.0`. Le snapshot actif contient donc 4 racines,
+9 contrats et porte `graphDigest=96f4b959c53e893983181fd16bd6a9b19713a9f03b73af2f1b13e00db07c02c0`.
+
+La politique autorise la collection ordonnée, le nom, le poste, le portrait et son alternative.
+L’état et la taille de MemberPicture ainsi que toute la structure restent fixés par composition.
+La qualification couvre deux instances, les cardinalités 0/1/16/17, save/reopen/public, un média
+same-origin exploitable, la grille 4 colonnes à 1728/1440 et une comparaison visuelle stricte.
+Les critères de sortie actifs se lisent désormais comme 4 sections, 9 contrats, deux instances de
+chacune, quatre comparaisons et une installation/update des quatre sections.

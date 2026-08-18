@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "2.0.0",
+  "receiptId": "repair-faq-accordion-distribution-faq-accepted",
+  "campaignId": "repair-faq-accordion-distribution",
+  "targetId": "faq",
+  "referenceId": "faq-live-1151-visual-diagnostic",
+  "appliedOperationIds": [
+    "faq-accordion-row-1-space-between",
+    "faq-accordion-row-2-space-between",
+    "faq-accordion-row-3-space-between"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "faq:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_master.structure.json"
+    },
+    {
+      "surfaceId": "faq:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_master.png"
+    },
+    {
+      "surfaceId": "faq:page:2106-3035",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page_2106-3035.structure.json"
+    },
+    {
+      "surfaceId": "faq:page:2106-3035",
+      "kind": "expected",
+      "description": "png changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page_2106-3035.png"
+    },
+    {
+      "surfaceId": "faq:page-context:237-969",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page-context_237-969.structure.json"
+    },
+    {
+      "surfaceId": "faq:page-context:237-969",
+      "kind": "expected",
+      "description": "png changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page-context_237-969.png"
+    },
+    {
+      "surfaceId": "faq:page:2106-3010",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page_2106-3010.structure.json"
+    },
+    {
+      "surfaceId": "faq:page:2106-3010",
+      "kind": "expected",
+      "description": "png changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page_2106-3010.png"
+    },
+    {
+      "surfaceId": "faq:page-context:387-720",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page-context_387-720.structure.json"
+    },
+    {
+      "surfaceId": "faq:page-context:387-720",
+      "kind": "expected",
+      "description": "png changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page-context_387-720.png"
+    },
+    {
+      "surfaceId": "faq:page:2106-3060",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page_2106-3060.structure.json"
+    },
+    {
+      "surfaceId": "faq:page:2106-3060",
+      "kind": "expected",
+      "description": "png changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page_2106-3060.png"
+    },
+    {
+      "surfaceId": "faq:page-context:230-376",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page-context_230-376.structure.json"
+    },
+    {
+      "surfaceId": "faq:page-context:230-376",
+      "kind": "expected",
+      "description": "png changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/faq/run-004/after/faq_page-context_230-376.png"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "GO explicite de l'owner pour réparer SectionHeader et AccordionRow proprement selon la skill; validation visuelle finale du cas 1151 px avec chevrons alignés à droite et rich text protégé.",
+  "evidenceRefs": [
+    "specs/component-repairs/faq/run-004/before/faq_master.structure.json",
+    "specs/component-repairs/faq/run-004/after/faq_master.structure.json",
+    "specs/component-repairs/faq/run-004/comparison.json",
+    "specs/component-repairs/faq/run-004/owner/faq.json",
+    "specs/component-repairs/faq/run-004/idempotence-receipt.json"
+  ],
+  "decidedAt": "2026-08-11T20:35:00+02:00"
+}

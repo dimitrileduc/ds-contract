@@ -1,0 +1,137 @@
+{
+  "campaignId": "repair-presentation-responsive",
+  "filePin": "2386730476747356856",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "ensure-presentation-container",
+      "targetId": "presentation",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2103:2824",
+      "structuralPath": "",
+      "changes": {
+        "containerName": "Container · Presentation",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1287,
+        "referenceHeight": 142,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2103:2824"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2103:2823"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2103:2824"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · Presentation"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-presentation-left-column",
+      "targetId": "presentation",
+      "mechanism": "set-properties",
+      "nodeId": "2103:2824",
+      "structuralPath": "0",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "colGauche"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FIXED"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-presentation-section-header",
+      "targetId": "presentation",
+      "mechanism": "set-properties",
+      "nodeId": "2103:2824",
+      "structuralPath": "0/0",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "SectionHeader"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FIXED"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-presentation-content-column",
+      "targetId": "presentation",
+      "mechanism": "set-properties",
+      "nodeId": "2103:2824",
+      "structuralPath": "1",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "wrapper"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FIXED"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

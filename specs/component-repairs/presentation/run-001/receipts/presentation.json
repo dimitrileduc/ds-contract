@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "2.0.0",
+  "receiptId": "repair-presentation-responsive-presentation-accepted",
+  "campaignId": "repair-presentation-responsive",
+  "targetId": "presentation",
+  "referenceId": "presentation-contract-history-and-owner-layout",
+  "appliedOperationIds": [
+    "ensure-presentation-container",
+    "fill-presentation-content-column",
+    "fill-presentation-left-column",
+    "fill-presentation-section-header"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "presentation:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_master.structure.json"
+    },
+    {
+      "surfaceId": "presentation:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_master.png"
+    },
+    {
+      "surfaceId": "presentation:page:2104-2958",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page_2104-2958.structure.json"
+    },
+    {
+      "surfaceId": "presentation:page:2104-2958",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page_2104-2958.png"
+    },
+    {
+      "surfaceId": "presentation:page-context:258-1887",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page-context_258-1887.structure.json"
+    },
+    {
+      "surfaceId": "presentation:page-context:258-1887",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page-context_258-1887.png"
+    },
+    {
+      "surfaceId": "presentation:page:2105-2990",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page_2105-2990.structure.json"
+    },
+    {
+      "surfaceId": "presentation:page:2105-2990",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page_2105-2990.png"
+    },
+    {
+      "surfaceId": "presentation:page-context:226-112",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page-context_226-112.structure.json"
+    },
+    {
+      "surfaceId": "presentation:page-context:226-112",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page-context_226-112.png"
+    },
+    {
+      "surfaceId": "presentation:page:2106-3000",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page_2106-3000.structure.json"
+    },
+    {
+      "surfaceId": "presentation:page:2106-3000",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page_2106-3000.png"
+    },
+    {
+      "surfaceId": "presentation:page-context:210-326",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page-context_210-326.structure.json"
+    },
+    {
+      "surfaceId": "presentation:page-context:210-326",
+      "kind": "expected",
+      "description": "png changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/presentation/run-001/after/presentation_page-context_210-326.png"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "L’owner confirme le comportement livré : root Full width, deux colonnes flexibles égales 1:1 et gap inter-colonnes fixe de 32 px. Presentation ne porte ni padding externe ni max-width ; la largeur, le centrage et les marges extérieures restent la responsabilité du parent consommateur.",
+  "evidenceRefs": [
+    "specs/component-repairs/presentation/run-001/before/presentation_master.structure.json",
+    "specs/component-repairs/presentation/run-001/after/presentation_master.structure.json",
+    "specs/component-repairs/presentation/run-001/comparison.json",
+    "specs/component-repairs/presentation/run-001/owner/presentation.json",
+    "specs/component-repairs/presentation/run-001/idempotence-receipt.json"
+  ],
+  "limits": [
+    "Generated descendant node IDs are normalized; root component IDs and keys remain authoritative."
+  ],
+  "decidedAt": "2026-08-12T07:40:24Z"
+}

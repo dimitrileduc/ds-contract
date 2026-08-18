@@ -1642,13 +1642,24 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       if (part.component) continue; // instances style themselves via their own contract
       const decls: string[] = [];
       if (isStructural(part)) {
-        decls.push(`display: ${part.layout?.display ?? 'flex'}`);
-        if (part.layout?.direction) decls.push(`flex-direction: ${part.layout.direction}`);
-        if (part.layout?.wrap) decls.push('flex-wrap: wrap');
-        if (part.layout?.align) decls.push(`align-items: ${ALIGN_CSS[part.layout.align]}`);
-        if (part.layout?.justify) decls.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
+        const display = part.layout?.display ?? 'flex';
+        decls.push(`display: ${display}`);
+        if (display === 'grid') {
+          if (part.layout?.columns) decls.push(`grid-template-columns: repeat(${part.layout.columns}, minmax(0, 1fr))`);
+        } else {
+          if (part.layout?.direction) decls.push(`flex-direction: ${part.layout.direction}`);
+          if (part.layout?.wrap) decls.push('flex-wrap: wrap');
+          if (part.layout?.align) decls.push(`align-items: ${ALIGN_CSS[part.layout.align]}`);
+          if (part.layout?.justify) decls.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
+        }
       }
       if (part.layout?.grow) decls.push('flex: 1 1 auto', 'min-width: 0');
+      if (part.layout?.aspectRatio !== undefined) decls.push(`aspect-ratio: ${part.layout.aspectRatio}`);
+      if (part.layout?.width === 'fill') {
+        decls.push('width: 100%');
+        if (!part.layout.grow) decls.push('min-width: 0');
+      }
+      if (part.layout?.clip) decls.push('overflow: hidden');
       if (part.element && UA_MARGIN_ELEMENTS.has(part.element)) decls.push('margin: 0');
       if (part.overlay) decls.push('position: absolute', ...OVERLAY_CSS[part.overlay.placement]);
       if (part.shape) decls.push(...shapeCssDecls(part.shape));
@@ -1701,11 +1712,19 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
   const root = contract.anatomy.root;
   const rootDecls: string[] = [];
   if (root.layout) {
-    rootDecls.push(`display: ${root.layout.display ?? 'flex'}`);
-    if (root.layout.direction) rootDecls.push(`flex-direction: ${root.layout.direction}`);
-    if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
-    if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
-    if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
+    const display = root.layout.display ?? 'flex';
+    rootDecls.push(`display: ${display}`);
+    if (display === 'grid') {
+      if (root.layout.columns) rootDecls.push(`grid-template-columns: repeat(${root.layout.columns}, minmax(0, 1fr))`);
+    } else {
+      if (root.layout.direction) rootDecls.push(`flex-direction: ${root.layout.direction}`);
+      if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
+      if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
+      if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
+    }
+    if (root.layout.width === 'fill') rootDecls.push('width: 100%', 'min-width: 0');
+    if (root.layout.aspectRatio !== undefined) rootDecls.push(`aspect-ratio: ${root.layout.aspectRatio}`);
+    if (root.layout.clip) rootDecls.push('overflow: hidden');
   } else {
     rootDecls.push('display: inline-flex', 'align-items: center', 'justify-content: center');
   }
@@ -2049,13 +2068,24 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     if (part.component) continue; // instances style themselves via their own contract
     const decls: string[] = [];
     if (isStructural(part)) {
-      decls.push(`display: ${part.layout?.display ?? 'flex'}`);
-      if (part.layout?.direction) decls.push(`flex-direction: ${part.layout.direction}`);
-      if (part.layout?.wrap) decls.push('flex-wrap: wrap');
-      if (part.layout?.align) decls.push(`align-items: ${ALIGN_CSS[part.layout.align]}`);
-      if (part.layout?.justify) decls.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
+      const display = part.layout?.display ?? 'flex';
+      decls.push(`display: ${display}`);
+      if (display === 'grid') {
+        if (part.layout?.columns) decls.push(`grid-template-columns: repeat(${part.layout.columns}, minmax(0, 1fr))`);
+      } else {
+        if (part.layout?.direction) decls.push(`flex-direction: ${part.layout.direction}`);
+        if (part.layout?.wrap) decls.push('flex-wrap: wrap');
+        if (part.layout?.align) decls.push(`align-items: ${ALIGN_CSS[part.layout.align]}`);
+        if (part.layout?.justify) decls.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
+      }
     }
     if (part.layout?.grow) decls.push('flex: 1 1 auto', 'min-width: 0');
+    if (part.layout?.aspectRatio !== undefined) decls.push(`aspect-ratio: ${part.layout.aspectRatio}`);
+    if (part.layout?.width === 'fill') {
+      decls.push('width: 100%');
+      if (!part.layout.grow) decls.push('min-width: 0');
+    }
+    if (part.layout?.clip) decls.push('overflow: hidden');
     // UA-margin neutralization on NESTED parts (round 4): a promoted h2/p/ul
     // part would leak UA margins the real component resets — same discipline
     // as the root rule; captured nonzero margins arrive as minted overrides.

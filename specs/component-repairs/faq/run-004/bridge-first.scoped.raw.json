@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-faq-accordion-distribution",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386569320965617771",
+  "run": "first",
+  "scriptResults": [
+    {
+      "operationId": "faq-accordion-row-1-space-between",
+      "targetId": "faq",
+      "nodeId": "2104:2914",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:38072"
+        ]
+      }
+    },
+    {
+      "operationId": "faq-accordion-row-2-space-between",
+      "targetId": "faq",
+      "nodeId": "2104:2914",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:38078"
+        ]
+      }
+    },
+    {
+      "operationId": "faq-accordion-row-3-space-between",
+      "targetId": "faq",
+      "nodeId": "2104:2914",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2351:38084"
+        ]
+      }
+    }
+  ],
+  "inspection": {
+    "masters": [
+      {
+        "targetId": "faq",
+        "nodeId": "2104:2914",
+        "componentKey": "0df659be188a72700e42e2afbf30e95bb38db5f1",
+        "masterCount": 1,
+        "variantNames": []
+      }
+    ],
+    "pageWrites": [],
+    "responsiveChecks": [
+      {
+        "targetId": "faq",
+        "width": 1440,
+        "overflow": false,
+        "overflowNodeIds": [],
+        "overflowIssues": [],
+        "screenshotRef": "specs/component-repairs/faq/run-004/responsive-1440-first.png"
+      },
+      {
+        "targetId": "faq",
+        "width": 1151,
+        "overflow": false,
+        "overflowNodeIds": [],
+        "overflowIssues": [],
+        "screenshotRef": "specs/component-repairs/faq/run-004/responsive-1151-first.png"
+      }
+    ]
+  }
+}

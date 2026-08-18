@@ -1,0 +1,31 @@
+{
+  "receiptId": "hero-visual-odoo-019-foundation",
+  "scenarioId": "hero-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "hero-default",
+  "observations": [
+    "[pass] captures — référence HTML, public Odoo et rapport existent — attendu « 3 artefacts », observé « 3 artefacts »",
+    "[pass] comparaison — dimensions identiques et score mesuré — attendu « statut mesurée, score numérique », observé « mesurée · 0.007386110674628117 % »",
+    "[pass] résidu — mesure nommée sans revendication pixel-perfect — attendu « 0.007386110674628117 % sur le défaut sans bitmap », observé « 0.007386110674628117 % · composition, dimensions et contenu alignés; résidu d’anti-aliasing uniquement »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/hero-visual/reference/hero-default.png",
+      "sha256": "d28cb37b72002c606d562ada5269999dbe9fe986839fb49ba775bdc1ba927ef1",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/hero-visual/odoo/hero-default.png",
+      "sha256": "02783959424b376c433b7646bde6008e269eaee103bdedb1b537e08fb7196423",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/hero-visual/diff/comparaison-image.json",
+      "sha256": "f96c6bd1be1f28db297f812186dfdf2bd31e97a9e167d2d356a1f07328d99465",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 3
+}

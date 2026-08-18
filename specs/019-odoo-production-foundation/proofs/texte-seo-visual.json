@@ -1,0 +1,31 @@
+{
+  "receiptId": "texte-seo-visual-odoo-019-foundation",
+  "scenarioId": "texte-seo-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "texte-seo-default",
+  "observations": [
+    "[pass] captures — référence HTML, public Odoo et rapport existent — attendu « 3 artefacts », observé « 3 artefacts »",
+    "[pass] comparaison — dimensions identiques et score mesuré — attendu « statut mesurée, score numérique », observé « mesurée · 0.007446541669279488 % »",
+    "[pass] résidu — mesure nommée avec cause portée au rapport canonique — attendu « 0.007446541669279488 % · cause et justification renseignées », observé « 0.007446541669279488 % · cause=« anti-aliasing des chevrons SVG des trois rangées » »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/texte-seo-visual/html/texte-seo-default.png",
+      "sha256": "c5895873cf22f3d9c90d8e94f5ca948cfc317338281df4ef18ce3de893e2e732",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/texte-seo-visual/odoo/texte-seo-default.png",
+      "sha256": "7d4e508c8394bfded85bd07990241e3f0de8960ab56022339e65a4a0dbcd1a26",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/texte-seo-visual/diff/comparaison-image.json",
+      "sha256": "158deaa60af41379fc62c767562a96a77838e8fe43d19698eae1a5bdb077d49c",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 5
+}

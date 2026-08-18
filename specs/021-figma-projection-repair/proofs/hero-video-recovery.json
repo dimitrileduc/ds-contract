@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-11",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "contractId": "ds.hero-video",
+  "master": {
+    "nodeId": "2151:5552",
+    "key": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+    "name": "HeroVideo",
+    "size": {
+      "width": 1728,
+      "height": 720
+    },
+    "layout": {
+      "mode": "HORIZONTAL",
+      "justify": "SPACE_BETWEEN",
+      "align": "MAX",
+      "gap": 10,
+      "padding": {
+        "top": 48,
+        "right": 89,
+        "bottom": 48,
+        "left": 89
+      },
+      "clipsContent": false
+    },
+    "mediaPaints": [
+      {
+        "type": "IMAGE",
+        "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+        "scaleMode": "FILL",
+        "imageTransform": [[1, 0, 0], [0, 1, 0]]
+      },
+      {
+        "type": "VIDEO",
+        "videoHash": "7e838240ba0fe775cdcc9a1b150b60fdc66bada1",
+        "scaleMode": "FILL"
+      }
+    ],
+    "scrims": [
+      {
+        "role": "bottom",
+        "gradientTransform": [[0, 1, 0], [-1, 0, 1]],
+        "stops": [
+          { "position": 0.8, "rgba": [0, 0, 0, 0] },
+          { "position": 1, "rgba": [0, 0, 0, 0.5] }
+        ]
+      },
+      {
+        "role": "navigation",
+        "gradientTransform": [[0, -1, 1], [1, 0, 0]],
+        "stops": [
+          { "position": 0.75, "rgba": [0, 0, 0, 0] },
+          { "position": 1, "rgba": [0, 0, 0, 0.5] }
+        ]
+      }
+    ],
+    "title": {
+      "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "font": { "family": "Montserrat", "style": "Regular", "size": 44, "lineHeight": 48 },
+      "textStyleId": ""
+    },
+    "button": {
+      "label": "Contactez-nous",
+      "variant": "Outline blanc",
+      "iconLeft": false,
+      "iconRight": false,
+      "rightGlyphNodeId": "6:104",
+      "size": { "width": 219, "height": 54 }
+    },
+    "beforeScreenshot": {
+      "nodeId": "2151:5552",
+      "sha256": "808441ce6cd04527dbcbfd84727e0cc1873dcb626522529a341f06a476628446"
+    }
+  },
+  "pageUsages": [
+    {
+      "page": "Pages",
+      "parentNodeId": "210:328",
+      "parentName": "Hero et catégories",
+      "instanceNodeId": "2170:6351",
+      "size": { "width": 1728, "height": 720 },
+      "title": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "button": {
+        "label": "En savoir plus",
+        "variant": "Outline blanc",
+        "iconLeft": false,
+        "iconRight": true,
+        "rightGlyphNodeId": "6:104",
+        "size": { "width": 232, "height": 54 }
+      },
+      "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+      "videoHash": "7e838240ba0fe775cdcc9a1b150b60fdc66bada1",
+      "beforeScreenshot": {
+        "nodeId": "210:328",
+        "sha256": "2a20c4520d8d964bf262dd85430ec7a5322092d7acb3e6cbc8529bf00ba3e7b7"
+      }
+    }
+  ],
+  "sectionHeaderDecision": {
+    "verdict": "keep-direct-title",
+    "reason": "HeroVideo is one 44/48 Regular title plus a sibling CTA. SectionHeader has no pixel-equivalent emphasis: its governed sizes are 54/68, 40/50, 32/40 and 24/30. Adding a fifth variant for one consumer would expand the API and structure without reuse or fidelity gain.",
+    "historicalDecision": "specs/005-figma-source-cleanup/decisions.md#l5-section-header-6-adoption--hero-video"
+  },
+  "after": {
+    "decision": "Figma uses the historical poster IMAGE as the deterministic video placeholder; native VideoPaint is intentionally not projected.",
+    "master": {
+      "nodeId": "2151:5552",
+      "size": { "width": 1728, "height": 720 },
+      "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+      "videoPaintCount": 0,
+      "title": {
+        "font": { "family": "Montserrat", "style": "Regular", "size": 44, "lineHeight": 48 },
+        "textStyleId": ""
+      },
+      "button": { "label": "Contactez-nous", "iconRight": false },
+      "screenshot": {
+        "nodeId": "2151:5552",
+        "sha256": "682aa4f74a3bcc2f8c12135feb212b37caa76ebe76db25143cb33fa0af2e3033"
+      }
+    },
+    "pageUsage": {
+      "parentNodeId": "210:328",
+      "instanceNodeId": "2170:6351",
+      "imageHash": "dfaa8d2046343398e067aade577f177137d32cce",
+      "videoPaintCount": 0,
+      "button": { "label": "En savoir plus", "iconRight": true },
+      "screenshot": {
+        "nodeId": "210:328",
+        "sha256": "a2209bd5bf94ab1e281d5cb033f5dde9d71146972243fd5c82cc957f43b16e72"
+      }
+    },
+    "responsive1440": {
+      "root": { "width": 1440, "height": 720 },
+      "background": { "x": 0, "width": 1440 },
+      "text": { "x": 89, "width": 1033, "right": 1122 },
+      "button": { "x": 1132, "width": 219, "right": 1351 },
+      "gap": 10,
+      "overflow": false
+    },
+    "apply": {
+      "first": "amended; photo verdict vert on master and Page instance; 2 nested CTA properties and 1 text override preserved",
+      "second": "skipped; reason unchanged; createdNodeIds empty"
+    }
+  }
+}

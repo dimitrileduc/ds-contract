@@ -1,0 +1,518 @@
+{
+  "schemaVersion": "2.0.0",
+  "receiptId": "repair-member-card-text-align-member-card-accepted",
+  "campaignId": "repair-member-card-text-align",
+  "targetId": "member-card",
+  "referenceId": "member-card-contract-history",
+  "appliedOperationIds": [
+    "center-member-nom",
+    "center-member-poste"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "member-card:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_master.structure.json"
+    },
+    {
+      "surfaceId": "member-card:master",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_master.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-01:2351:36548",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-01_2351_36548.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-01:2351:36548",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-01_2351_36548.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-02:2351:36555",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-02_2351_36555.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-02:2351:36555",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-02_2351_36555.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-03:2351:36604",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-03_2351_36604.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-03:2351:36604",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-03_2351_36604.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-04:2351:36611",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-04_2351_36611.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-04:2351:36611",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-04_2351_36611.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-05:2351:36618",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-05_2351_36618.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-05:2351:36618",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-05_2351_36618.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-06:2351:36625",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-06_2351_36625.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-06:2351:36625",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-06_2351_36625.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-07:2351:36632",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-07_2351_36632.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-07:2351:36632",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-07_2351_36632.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-08:2351:36639",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-08_2351_36639.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-08:2351:36639",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-08_2351_36639.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-09:2351:36653",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-09_2351_36653.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-09:2351:36653",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-09_2351_36653.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-10:2351:36646",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-10_2351_36646.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-10:2351:36646",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-10_2351_36646.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-11:2351:36562",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-11_2351_36562.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-11:2351:36562",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-11_2351_36562.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-12:2351:36569",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-12_2351_36569.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-12:2351:36569",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-12_2351_36569.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-13:2351:36576",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-13_2351_36576.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-13:2351:36576",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-13_2351_36576.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-14:2351:36583",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-14_2351_36583.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-14:2351:36583",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-14_2351_36583.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-15:2351:36590",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-15_2351_36590.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-15:2351:36590",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-15_2351_36590.png"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-16:2351:36597",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-16_2351_36597.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:equipe-16:2351:36597",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_equipe-16_2351_36597.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-01:I2115:4044;2351:36548",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-01_I2115_4044_2351_36548.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-01:I2115:4044;2351:36548",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-01_I2115_4044_2351_36548.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-02:I2115:4044;2351:36555",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-02_I2115_4044_2351_36555.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-02:I2115:4044;2351:36555",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-02_I2115_4044_2351_36555.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-03:I2115:4044;2351:36604",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-03_I2115_4044_2351_36604.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-03:I2115:4044;2351:36604",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-03_I2115_4044_2351_36604.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-04:I2115:4044;2351:36611",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-04_I2115_4044_2351_36611.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-04:I2115:4044;2351:36611",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-04_I2115_4044_2351_36611.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-05:I2115:4044;2351:36618",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-05_I2115_4044_2351_36618.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-05:I2115:4044;2351:36618",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-05_I2115_4044_2351_36618.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-06:I2115:4044;2351:36625",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-06_I2115_4044_2351_36625.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-06:I2115:4044;2351:36625",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-06_I2115_4044_2351_36625.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-07:I2115:4044;2351:36632",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-07_I2115_4044_2351_36632.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-07:I2115:4044;2351:36632",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-07_I2115_4044_2351_36632.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-08:I2115:4044;2351:36639",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-08_I2115_4044_2351_36639.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-08:I2115:4044;2351:36639",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-08_I2115_4044_2351_36639.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-09:I2115:4044;2351:36653",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-09_I2115_4044_2351_36653.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-09:I2115:4044;2351:36653",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-09_I2115_4044_2351_36653.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-10:I2115:4044;2351:36646",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-10_I2115_4044_2351_36646.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-10:I2115:4044;2351:36646",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-10_I2115_4044_2351_36646.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-11:I2115:4044;2351:36562",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-11_I2115_4044_2351_36562.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-11:I2115:4044;2351:36562",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-11_I2115_4044_2351_36562.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-12:I2115:4044;2351:36569",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-12_I2115_4044_2351_36569.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-12:I2115:4044;2351:36569",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-12_I2115_4044_2351_36569.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-13:I2115:4044;2351:36576",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-13_I2115_4044_2351_36576.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-13:I2115:4044;2351:36576",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-13_I2115_4044_2351_36576.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-14:I2115:4044;2351:36583",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-14_I2115_4044_2351_36583.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-14:I2115:4044;2351:36583",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-14_I2115_4044_2351_36583.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-15:I2115:4044;2351:36590",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-15_I2115_4044_2351_36590.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-15:I2115:4044;2351:36590",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-15_I2115_4044_2351_36590.png"
+    },
+    {
+      "surfaceId": "member-card:instance:page-16:I2115:4044;2351:36597",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-16_I2115_4044_2351_36597.structure.json"
+    },
+    {
+      "surfaceId": "member-card:instance:page-16:I2115:4044;2351:36597",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_instance_page-16_I2115_4044_2351_36597.png"
+    },
+    {
+      "surfaceId": "member-card:consumer:equipe-master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_consumer_equipe-master.structure.json"
+    },
+    {
+      "surfaceId": "member-card:consumer:equipe-master",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_consumer_equipe-master.png"
+    },
+    {
+      "surfaceId": "member-card:consumer:equipe-page",
+      "kind": "expected",
+      "description": "structure changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_consumer_equipe-page.structure.json"
+    },
+    {
+      "surfaceId": "member-card:consumer:equipe-page",
+      "kind": "expected",
+      "description": "png changed inside the authorized shared-control repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/member-card/run-001/after/member-card_consumer_equipe-page.png"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "Owner (Dimitri) a vérifié le 2026-08-18 : master Figma OK (Nom/Poste centrés), et page Odoo 8269 publique OK après recompilation des bundles (« ça m'a l'air bon » après capture des replis centrés à largeur réduite).",
+  "evidenceRefs": [
+    "specs/component-repairs/member-card/run-001/before/member-card_master.structure.json",
+    "specs/component-repairs/member-card/run-001/after/member-card_master.structure.json",
+    "specs/component-repairs/member-card/run-001/comparison.json",
+    "specs/component-repairs/member-card/run-001/owner/member-card.json",
+    "specs/component-repairs/member-card/run-001/idempotence-receipt.json"
+  ],
+  "decidedAt": "2026-08-18T11:00:00+02:00"
+}

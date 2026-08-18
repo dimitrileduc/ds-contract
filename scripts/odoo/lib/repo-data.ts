@@ -1,5 +1,5 @@
 /**
- * Chargement des sources du dépôt et parcours du graphe des deux racines.
+ * Chargement des sources du dépôt et parcours du graphe des racines Odoo.
  * Spec 019, tâche T008.
  *
  * ── Aucune copie, jamais ─────────────────────────────────────────────────────
@@ -9,14 +9,10 @@
  * (`inputs.lock.json`) existe pour rendre impossible.
  *
  * ── Le graphe, et pourquoi il est calculé plutôt qu'écrit ────────────────────
- * La fermeture des deux racines est DÉRIVÉE de l'anatomie. L'écrire à la main
+ * La fermeture des racines est DÉRIVÉE de l'anatomie. L'écrire à la main
  * dans une constante donnerait une liste qui vieillit en silence : le jour où un
- * contrat gagne une référence, la liste manuelle continuerait de dire cinq.
- * Vérifié par exécution au 2026-08-08 : la fermeture rend exactement les cinq
- * contrats attendus, 30 props et 61 parts locales — les chiffres du plan. Seule
- * la fermeture est encore CALCULÉE ici ; les deux comptes étaient portés par un
- * champ que personne ne lisait, et un chiffre que rien ne consomme se périme
- * sans bruit — la vérification ci-dessus reste datée, pas continue.
+ * contrat gagne une référence, la liste manuelle continuerait de décrire une
+ * fermeture périmée. Le lock conserve la fermeture exacte observée et son digest.
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -27,8 +23,8 @@ import path from 'node:path';
 import { ContractSchema, type Contract, type Part } from '../../contract-schema.js';
 import { repoPath, repoRelative, sortedBy, canonicalJson, sha256 } from './canonical.js';
 
-/** Les deux seules sections posables. Tout le reste du graphe est interne. */
-export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews'] as const;
+/** Les sections posables. Tout le reste de leur fermeture reste interne. */
+export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo'] as const;
 
 /** Sources de jetons réellement lues par le build d'assets. Triées. */
 export const TOKEN_SOURCES = [
@@ -55,7 +51,7 @@ export interface ContractSource {
 /**
  * Tous les contrats du dépôt, indexés par id, avec leur chemin et leur empreinte.
  *
- * On charge TOUT le répertoire, pas seulement les cinq : `emitHtml` exige un
+ * On charge TOUT le répertoire, pas seulement la fermeture active : `emitHtml` exige un
  * contexte qui contienne chaque dépendance transitive, et une sélection
  * pré-filtrée transformerait une référence oubliée en « contrat absent » tardif
  * plutôt qu'en fermeture correcte.
@@ -192,7 +188,7 @@ export function graphDigest(closure: readonly string[], contracts: Map<string, C
 
 export interface OdooRepoData {
   readonly contracts: Map<string, ContractSource>;
-  /** Ids de la fermeture des deux racines, triés. */
+  /** Ids de la fermeture des racines posables, triés. */
   readonly closure: readonly string[];
   readonly graphDigest: string;
 }
@@ -202,4 +198,3 @@ export function loadOdooRepoData(): OdooRepoData {
   const closure = closureOf(ROOT_CONTRACT_IDS, contracts);
   return { contracts, closure, graphDigest: graphDigest(closure, contracts) };
 }
-

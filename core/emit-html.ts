@@ -108,13 +108,24 @@ function layoutOverrideDecls(o: {
 function layoutDecls(part: Part): string[] {
   const d: string[] = [];
   if (isStructural(part)) {
-    d.push(`display: ${part.layout?.display ?? 'flex'}`);
-    if (part.layout?.direction) d.push(`flex-direction: ${part.layout.direction}`);
-    if (part.layout?.wrap) d.push('flex-wrap: wrap');
-    if (part.layout?.align) d.push(`align-items: ${ALIGN_CSS[part.layout.align]}`);
-    if (part.layout?.justify) d.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
+    const display = part.layout?.display ?? 'flex';
+    d.push(`display: ${display}`);
+    if (display === 'grid') {
+      if (part.layout?.columns) d.push(`grid-template-columns: repeat(${part.layout.columns}, minmax(0, 1fr))`);
+    } else {
+      if (part.layout?.direction) d.push(`flex-direction: ${part.layout.direction}`);
+      if (part.layout?.wrap) d.push('flex-wrap: wrap');
+      if (part.layout?.align) d.push(`align-items: ${ALIGN_CSS[part.layout.align]}`);
+      if (part.layout?.justify) d.push(`justify-content: ${JUSTIFY_CSS[part.layout.justify]}`);
+    }
   }
   if (part.layout?.grow) d.push('flex: 1 1 auto', 'min-width: 0');
+  if (part.layout?.aspectRatio !== undefined) d.push(`aspect-ratio: ${part.layout.aspectRatio}`);
+  if (part.layout?.width === 'fill') {
+    d.push('width: 100%');
+    if (!part.layout.grow) d.push('min-width: 0');
+  }
+  if (part.layout?.clip) d.push('overflow: hidden');
   return d;
 }
 
@@ -188,11 +199,19 @@ function componentCss(contract: Contract): string[] {
   const root = contract.anatomy.root;
   const rootDecls: string[] = [];
   if (root.layout) {
-    rootDecls.push(`display: ${root.layout.display ?? 'flex'}`);
-    if (root.layout.direction) rootDecls.push(`flex-direction: ${root.layout.direction}`);
-    if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
-    if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
-    if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
+    const display = root.layout.display ?? 'flex';
+    rootDecls.push(`display: ${display}`);
+    if (display === 'grid') {
+      if (root.layout.columns) rootDecls.push(`grid-template-columns: repeat(${root.layout.columns}, minmax(0, 1fr))`);
+    } else {
+      if (root.layout.direction) rootDecls.push(`flex-direction: ${root.layout.direction}`);
+      if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
+      if (root.layout.align) rootDecls.push(`align-items: ${ALIGN_CSS[root.layout.align]}`);
+      if (root.layout.justify) rootDecls.push(`justify-content: ${JUSTIFY_CSS[root.layout.justify]}`);
+    }
+    if (root.layout.width === 'fill') rootDecls.push('width: 100%', 'min-width: 0');
+    if (root.layout.aspectRatio !== undefined) rootDecls.push(`aspect-ratio: ${root.layout.aspectRatio}`);
+    if (root.layout.clip) rootDecls.push('overflow: hidden');
   } else {
     rootDecls.push('display: inline-flex', 'align-items: center', 'justify-content: center');
   }

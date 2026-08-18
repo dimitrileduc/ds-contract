@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "1.0.0",
+  "receiptId": "021-coordonnees-accepted",
+  "campaignId": "021-figma-projection-repair",
+  "targetId": "coordonnees",
+  "referenceId": "020-reference-coordonnees",
+  "appliedOperationIds": [
+    "generated-coordonnees"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "coordonnees:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/coordonnees_master.structure.json"
+    },
+    {
+      "surfaceId": "coordonnees:master",
+      "kind": "expected",
+      "description": "properties changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/coordonnees_master.properties.json"
+    },
+    {
+      "surfaceId": "coordonnees:usage:2192:9815",
+      "kind": "expected",
+      "description": "structure changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/coordonnees_usage_2192_9815.structure.json"
+    },
+    {
+      "surfaceId": "coordonnees:usage:2192:9815",
+      "kind": "expected",
+      "description": "properties changed inside the authorized composed-properties repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/021-figma-projection-repair/proofs/after/coordonnees_usage_2192_9815.properties.json"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [
+    {
+      "consumerId": "ds.coordonnees",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/coordonnees.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.faq",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/faq.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.formulaire",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/formulaire.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.hero",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/hero.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.presentation",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/presentation.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.reassurances",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/reassurances.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.sav",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/sav.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "ds.texte-seo",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "contracts/texte-seo.contract.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/consumer-verdicts.json"
+    },
+    {
+      "consumerId": "odoo-019-qualification",
+      "dependencyId": "SectionHeader",
+      "status": "revalidated",
+      "evidenceRefs": [
+        "integrations/odoo/config/inputs.lock.json"
+      ],
+      "decisionRef": "specs/021-figma-projection-repair/proofs/us2/odoo-019-decision.json"
+    }
+  ],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "The owner explicitly instructed the agent to fix the complete Organisms scope and continue. The post-repair package is accepted against the already-approved 020 reference because the 7/7 automated comparison reports zero unexpected diff, images and root instance identities are preserved, shared consumers are closed, and the second reconstruction is a strict no-op.",
+  "evidenceRefs": [
+    "specs/021-figma-projection-repair/proofs/before/coordonnees_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/after/coordonnees_master.structure.json",
+    "specs/021-figma-projection-repair/proofs/us4/comparison.json",
+    "specs/021-figma-projection-repair/campaign/owner-decisions/coordonnees.json",
+    "specs/021-figma-projection-repair/proofs/us3/idempotence-receipt.json"
+  ],
+  "decidedAt": "2026-08-10T07:05:55Z"
+}

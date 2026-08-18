@@ -1,0 +1,97 @@
+{
+  "campaignId": "repair-google-reviews",
+  "filePin": "2386730476747356856",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "repair-google-reviews-grid-in-place",
+      "targetId": "google-reviews",
+      "mechanism": "generated-amend",
+      "nodeId": "2178:7381",
+      "structuralPath": "",
+      "changes": {
+        "generatedScriptRef": "specs/component-repairs/google-reviews/run-001/repair-in-place.js"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2178:7381"
+        },
+        {
+          "field": "nodeName",
+          "equals": "Avis Google"
+        },
+        {
+          "field": "pageWrites",
+          "equals": 0
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutMode",
+          "equals": "GRID"
+        },
+        {
+          "field": "gridColumnCount",
+          "equals": 5
+        },
+        {
+          "field": "reviewCardSizing",
+          "equals": "FILL"
+        },
+        {
+          "field": "controls",
+          "equals": "ABSOLUTE_OVERLAY"
+        },
+        {
+          "field": "pageWrites",
+          "equals": 0
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "ensure-google-reviews-container",
+      "targetId": "google-reviews",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2178:7381",
+      "structuralPath": "",
+      "changes": {
+        "containerName": "Container · Avis Google",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1552,
+        "referenceHeight": 328,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2178:7381"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2182:7951"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2178:7381"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · Avis Google"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

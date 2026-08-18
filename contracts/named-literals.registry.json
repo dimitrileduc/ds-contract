@@ -4,11 +4,11 @@
   "entries": [
     {
       "contractId": "ds.hero",
-      "pointer": "/anatomy/root/literals/background-image",
+      "pointer": "/anatomy/root/parts/VoileNavigation/literals/background-image",
       "channel": "background-image",
-      "value": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)",
-      "reason": "Voile GRADIENT_LINEAR du master hero (fills[2]) — un token gradient à usage unique fabriquerait un faux vocabulaire.",
-      "decidedOn": "2026-08-04",
+      "value": "linear-gradient(to top, rgba(0,0,0,0) 55%, rgba(0,0,0,0.7) 100%)",
+      "reason": "Voile GRADIENT_LINEAR du master hero — un token gradient à usage unique fabriquerait un faux vocabulaire. Le voile a quitté la racine pour sa propre part `VoileNavigation` (pile responsive gouvernée, 021) et sa valeur a été re-réglée de 75%/0.5 à 55%/0.7 pour qu'un header superposé reste lisible ; l'entrée suit le littéral au lieu de rester orpheline.",
+      "decidedOn": "2026-08-12",
       "receiptId": "hero-gradients-named-literal"
     },
     {
@@ -19,6 +19,24 @@
       "reason": "Voile GRADIENT_LINEAR de la part Titres (fills[0]) — un token gradient à usage unique fabriquerait un faux vocabulaire.",
       "decidedOn": "2026-08-04",
       "receiptId": "hero-gradients-named-literal"
+    },
+    {
+      "contractId": "ds.hero-video",
+      "pointer": "/anatomy/root/parts/VoileNavigation/literals/background-image",
+      "channel": "background-image",
+      "value": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)",
+      "reason": "Voile haut historique porté par HeroVideo pour qu'une navigation superposée reste lisible sur l'usage Page — même doctrine que les voiles de `ds.hero` : un token gradient à usage unique fabriquerait un faux vocabulaire.",
+      "decidedOn": "2026-08-12",
+      "receiptId": "hero-video-gradients-named-literal"
+    },
+    {
+      "contractId": "ds.hero-video",
+      "pointer": "/anatomy/root/parts/VoileBas/literals/background-image",
+      "channel": "background-image",
+      "value": "linear-gradient(to bottom, rgba(0,0,0,0) 80%, rgba(0,0,0,0.5) 100%)",
+      "reason": "Voile bas historique soutenant le titre et le CTA — même doctrine que les voiles de `ds.hero` : un token gradient à usage unique fabriquerait un faux vocabulaire.",
+      "decidedOn": "2026-08-12",
+      "receiptId": "hero-video-gradients-named-literal"
     }
   ]
 }

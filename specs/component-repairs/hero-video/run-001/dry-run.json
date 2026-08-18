@@ -1,0 +1,50 @@
+{
+  "campaignId": "repair-hero-video-calibration",
+  "filePin": "2386482317851487818",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "ensure-hero-video-container",
+      "targetId": "hero-video",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2151:5552",
+      "structuralPath": "0",
+      "changes": {
+        "containerName": "Container · HeroVideo",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1728,
+        "referenceHeight": 720,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2151:5552"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2170:6360"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2151:5552"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · HeroVideo"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-presentation-responsive",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386730476747356856",
+  "run": "second",
+  "operations": [
+    {
+      "operationId": "ensure-presentation-container",
+      "targetId": "presentation",
+      "nodeId": "2103:2824",
+      "status": "no-op",
+      "createdNodeIds": [],
+      "changedNodeIds": []
+    },
+    {
+      "operationId": "fill-presentation-left-column",
+      "targetId": "presentation",
+      "nodeId": "2103:2824",
+      "status": "no-op",
+      "createdNodeIds": [],
+      "changedNodeIds": []
+    },
+    {
+      "operationId": "fill-presentation-section-header",
+      "targetId": "presentation",
+      "nodeId": "2103:2824",
+      "status": "no-op",
+      "createdNodeIds": [],
+      "changedNodeIds": []
+    },
+    {
+      "operationId": "fill-presentation-content-column",
+      "targetId": "presentation",
+      "nodeId": "2103:2824",
+      "status": "no-op",
+      "createdNodeIds": [],
+      "changedNodeIds": []
+    }
+  ],
+  "masters": [
+    {
+      "targetId": "presentation",
+      "nodeId": "2103:2824",
+      "componentKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8",
+      "masterCount": 1,
+      "variantNames": []
+    }
+  ],
+  "pageWrites": [],
+  "responsiveChecks": [
+    {
+      "targetId": "presentation",
+      "width": 1262,
+      "overflow": false,
+      "overflowNodeIds": [],
+      "overflowIssues": [],
+      "screenshotRef": "specs/component-repairs/presentation/run-001/responsive-1262-second.png"
+    }
+  ]
+}

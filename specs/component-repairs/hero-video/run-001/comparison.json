@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-hero-video-calibration",
+  "filePins": {
+    "before": "2386482317851487818",
+    "after": "2386482317851487818",
+    "idempotence": null
+  },
+  "ok": true,
+  "targetCount": 1,
+  "targets": [
+    {
+      "targetId": "hero-video",
+      "surfaceCount": 3,
+      "expectedDiffs": [
+        {
+          "surfaceId": "hero-video:master",
+          "kind": "expected",
+          "description": "structure changed inside the authorized generated-master repair surface",
+          "diffCount": 1,
+          "evidenceRef": "specs/component-repairs/hero-video/run-001/after/hero-video_master.structure.json"
+        }
+      ],
+      "unexpectedDiffs": [],
+      "unchangedArtifactCount": 8,
+      "imagePreservation": "pass",
+      "imageComparison": {
+        "mode": "authorized-rehost",
+        "beforeUnique": 3,
+        "afterUnique": 3
+      },
+      "instancePreservation": "pass",
+      "consumerCount": 0,
+      "consumersClosed": true,
+      "limits": [
+        "Generated descendant node IDs are normalized; root component IDs and keys remain authoritative."
+      ]
+    }
+  ],
+  "global": {
+    "beforeArtifacts": 12,
+    "afterArtifacts": 12,
+    "beforeImageFingerprints": 5,
+    "afterImageFingerprints": 5,
+    "uniqueImageHashesPreserved": true,
+    "beforeInstanceLinks": 14,
+    "afterInstanceLinks": 14,
+    "pendingConsumers": 0
+  }
+}

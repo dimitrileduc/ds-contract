@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "targetId": "categories-principales",
+  "filePin": "2385797321547430456",
+  "targetNodeId": "2115:4275",
+  "targetStructuralPath": "0",
+  "allowedFields": ["width", "x"],
+  "protectedPaths": [
+    "0/0/0", "0/0/1", "0/0/2",
+    "0/1/0", "0/1/1", "0/1/2",
+    "0/2/0", "0/2/1", "0/2/2"
+  ],
+  "operations": [
+    {"nodeId":"2115:4204","structuralPath":"0/0","changes":{"width":474,"x":89}},
+    {"nodeId":"2115:4205","structuralPath":"0/1","changes":{"width":474,"x":627}},
+    {"nodeId":"2115:4206","structuralPath":"0/2","changes":{"width":474,"x":1165}}
+  ],
+  "postconditions": ["three cards remain linked instances", "all card content remains visible", "no content or grid child is edited"]
+}

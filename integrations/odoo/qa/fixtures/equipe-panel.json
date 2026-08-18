@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "1.0.0",
+  "rootSelector": ".s_pqr_equipe",
+  "rootControls": ["member-collection"],
+  "cardControls": ["member-image-alt", "member-image-url", "member-move-down", "member-move-up", "member-name", "member-remove", "member-role"],
+  "rootActions": ["move", "duplicate", "remove"],
+  "forbiddenRootActions": ["save-as-custom", "resize", "background", "anchor"],
+  "forbiddenNativeOptions": ["crop", "filter", "link", "tooltip", "dimension", "format", "shape", "transform", "replace image", "replace media", "alignment", "style"]
+}

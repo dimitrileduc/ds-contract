@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.2.1)
+ * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.3.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -30,7 +30,7 @@ const meta = {
       control: 'select',
       options: ['standard', 'member-card'],
       description:
-        'Code-side geometry selector for observed composed placements. The MemberCard instance is explicitly resized to 363.5px inside its 364px parent frame; the standalone atom keeps the 364px master geometry by default.',
+        'Compatibility axis retained for existing consumers. Both values now use the same parent-owned fluid square geometry; the old 363.5px workaround belonged to the former fixed-track approximation.',
     },
     src: {
       control: 'text',

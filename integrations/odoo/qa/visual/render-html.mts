@@ -80,7 +80,7 @@ export function fragmentFor(subject: Subject, ctx: ReturnType<typeof buildEmitCt
  *  condition documentée de cet émetteur — « the page must include the token
  *  stylesheet or the custom properties resolve to nothing ». Côté Odoo, la même
  *  matière arrive préfixée `--pqr-` par la sortie générée (T012). */
-export function documentFor(body: string, css: string, tokensCss: string): string {
+export function documentFor(body: string, css: string, tokensCss: string, frameContentWidth?: number): string {
   return [
     '<!doctype html>',
     '<html lang="fr"><head><meta charset="utf-8">',
@@ -91,7 +91,7 @@ export function documentFor(body: string, css: string, tokensCss: string): strin
     `<style>
       html, body { margin: 0; padding: 0; background: var(--color-blanc); }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .pqr-mesure { position: absolute; top: 0; left: 0; padding: var(--space-${FRAME_PADDING_TOKEN}); background: var(--color-blanc); }
+      .pqr-mesure { position: absolute; top: 0; left: 0; padding: var(--space-${FRAME_PADDING_TOKEN}); background: var(--color-blanc);${frameContentWidth ? ` width: ${frameContentWidth}px; box-sizing: content-box;` : ''} }
     </style>`,
     `<style>${css}</style>`,
     '</head><body>',
@@ -150,7 +150,7 @@ async function main() {
   try {
     for (const s of subjects) {
       const { body, css } = fragmentFor(s, ctx);
-      const { png, box } = await renderSubject(browser, s, documentFor(body, css, ctx.tokensCss));
+      const { png, box } = await renderSubject(browser, s, documentFor(body, css, ctx.tokensCss, s.frameContentWidth));
       if (measure) {
         const fits = box !== null && box.width <= s.clip.width && box.height <= s.clip.height;
         if (!fits) deborde++;

@@ -419,9 +419,11 @@ function layoutPage(): { route: string; html: string } {
       'layout',
       'The layout block',
       ['generated', 'curated'],
-      `<p>One vocabulary, two projections: flexbox on the code side, auto-layout on the canvas. The properties are the intersection both surfaces can honor — that is the point.</p>` +
+      `<p>One bounded vocabulary, two projections: flex/grid on the code side and native auto-layout/grid on the canvas. The properties are the intersection both surfaces can honor — that is the point.</p>` +
         fieldList(LayoutSchema as AnySchema, {
-          display: '<code>flex</code> or <code>inline-flex</code> (code); auto-layout either way on the canvas.',
+          display: '<code>flex</code>, <code>inline-flex</code>, or the bounded equal-track <code>grid</code> subset.',
+          columns: 'Required for grid: a fixed positive number of equal <code>minmax(0, 1fr)</code> tracks; native <code>gridColumnCount</code> on canvas.',
+          aspectRatio: 'Intrinsic width/height ratio for fluid children; CSS <code>aspect-ratio</code> and native Figma ratio locking.',
           direction: 'Row or column. Reversed directions exist only as per-variant overrides (see below) — the canvas has no reverse, so they are compiled away.',
           align: 'Cross-axis alignment.',
           justify: 'Main-axis distribution.',

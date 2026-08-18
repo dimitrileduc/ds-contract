@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.2.1)
+ * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.3.0)
  * Regenerate with: npm run generate
  */
 
@@ -11,21 +11,15 @@
 }
 
 .root {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: var(--size-member-picture-root);
-  height: var(--size-member-picture-root);
   border-radius: 500px;
   background-color: #d9d9d9;
   position: relative;
-}
-
-.taille-member-card {
-  width: var(--size-member-picture-root-member-card);
-  height: var(--size-member-picture-root-member-card);
 }
 
 .etat-defaut {
@@ -37,21 +31,10 @@
 }
 
 .funIa {
-  width: var(--size-member-picture-fun-ia);
-  height: var(--size-member-picture-fun-ia);
   border-radius: 500px;
   position: absolute;
-  aspect-ratio: 1;
   width: 100%;
   height: 100%;
-}
-
-.taille-member-card .funIa {
-  width: var(--size-member-picture-fun-ia-member-card);
-}
-
-.taille-member-card .funIa {
-  height: var(--size-member-picture-fun-ia-member-card);
 }
 
 .etat-defaut .funIa {
@@ -69,22 +52,11 @@
 }
 
 .normal {
-  width: var(--size-member-picture-normal);
-  height: var(--size-member-picture-normal);
   border-radius: 500px;
   position: absolute;
-  aspect-ratio: 1;
   transition: opacity 300ms;
   width: 100%;
   height: 100%;
-}
-
-.taille-member-card .normal {
-  width: var(--size-member-picture-normal-member-card);
-}
-
-.taille-member-card .normal {
-  height: var(--size-member-picture-normal-member-card);
 }
 
 .etat-defaut .normal {

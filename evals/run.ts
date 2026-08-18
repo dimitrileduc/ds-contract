@@ -31,6 +31,7 @@ import {
   ContractSchema, schemaResolveTokens, type SchemaContract, type SchemaPart,
   proposePrBuildPlan, contentsPutBody, proposePrSummarize,
   coreEmitReact, coreIsMultiRoot, coreValidateContract, createFigmaEngine, coreEmitHtml,
+  iconComponentsFromRegistry, type IconRegistryEntry,
   tokenInventoryFromJson, loadCaptureConfig, propSpaceFor,
   depthBuildUnion, buildMultiRootUnion, descendToRealRoots, depthNameUnion,
   depthPromoteAnatomy, promoteMultiRootAnatomy, type DepthCapture, type DepthNode, depthKebab,
@@ -280,6 +281,14 @@ const cases: Case[] = [
     },
   },
   {
+    id: 'figma-text-styles-piqueray',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-text-styles-piqueray-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-text-styles-piqueray rouge:\n${r.out}`);
+    },
+  },
+  {
     id: 'figma-border-color-without-width',
     claim: 'C3-detection',
     run: () => {
@@ -297,6 +306,118 @@ const cases: Case[] = [
       // une fixture que rien ne lance ne protège rien).
       const r = run(TSX, ['evals/fixtures/absolute-part-out-of-flow-check.ts']);
       if (r.status !== 0) throw new Error(`fixture absolute-part-out-of-flow rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-campaign-gates',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/campaign-gates-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-campaign-gates rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-workflow-gates',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/component-workflow-gates-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-workflow-gates rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-source-baseline',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/source-baseline-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-source-baseline rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-protected-facts',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/protected-facts-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-protected-facts rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'component-repair-live-apply-receipt',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/live-apply-receipt-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture component-repair-live-apply-receipt rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-absolute-lowering',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/absolute-lowering-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-absolute-lowering rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-direct-geometry',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/direct-geometry-repair-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-direct-geometry rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-growing-image-proportions',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/growing-image-proportions-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-growing-image-proportions rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-bounded-grid',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/bounded-grid-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-bounded-grid rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-composed-parent-prop-forwarding',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/composed-parent-prop-forwarding-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-composed-parent-prop-forwarding rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-icon-instance-swap-visible',
+    claim: 'C3-detection',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/icon-instance-swap-visible-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-icon-instance-swap-visible rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-shared-consumer-impact',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/shared-consumer-impact-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-shared-consumer-impact rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-reconstruction-idempotence',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/reconstruction-idempotence-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-reconstruction-idempotence rouge:\n${r.out}`);
+    },
+  },
+  {
+    id: 'figma-projection-repair-repair-receipt-gates',
+    claim: 'C2-refusal',
+    run: () => {
+      const r = run(TSX, ['evals/fixtures/figma-projection-repair/repair-receipt-gates-check.ts']);
+      if (r.status !== 0) throw new Error(`fixture figma-projection-repair-repair-receipt-gates rouge:\n${r.out}`);
     },
   },
   {
@@ -3329,7 +3450,7 @@ const cases: Case[] = [
               'background-image': '{s4.grad}',
               'box-shadow': '{s4.shadow-stack}',
             },
-            declared: { cursor: 'pointer', 'user-select': 'none', position: 'relative' },
+            declared: { cursor: 'pointer', 'user-select': 'none', position: 'relative', 'z-index': '3' },
             declaredStates: { disabled: { cursor: 'pointer' } },
             parts: {
               label: {
@@ -3353,16 +3474,25 @@ const cases: Case[] = [
       if (errs.length > 0) throw new Error('fixture must validate: ' + errs.join('; '));
       // Grammar refusals stay refusals: position outside the relative class,
       // channels outside the registry, values outside the bounded grammar.
+      // 2026-08-12: z-index GRADUATED into DECLARED_CHANNELS (numeric stacking
+      // lowered to stable child order — schema note). The stale expectation
+      // "z-index refuses as non-registry" is replaced by BOTH sides of the
+      // new truth: a keyword refuses by the channel's bounded grammar, and a
+      // numeric value lifts into the compiled spec (asserted below on `va`).
       const bad = structuredClone(fixture);
       bad.anatomy.root.declared.position = 'fixed';
-      bad.anatomy.root.declared['z-index'] = '3';
+      bad.anatomy.root.declared['z-index'] = 'auto';
+      bad.anatomy.root.declared.float = 'left';
       const badErrs: string[] = [];
       coreValidateContract(bad, new Map([[bad.id, bad]]), badErrs, new Map());
       if (!badErrs.some((e) => e.includes('"position"') && e.includes('bounded grammar'))) {
         throw new Error('position: fixed must refuse by grammar; got: ' + badErrs.join('; '));
       }
-      if (!badErrs.some((e) => e.includes('"z-index"') && e.includes('not a declared channel'))) {
-        throw new Error('z-index must refuse as a non-registry channel; got: ' + badErrs.join('; '));
+      if (!badErrs.some((e) => e.includes('"z-index"') && e.includes('bounded grammar'))) {
+        throw new Error('z-index: auto must refuse by the channel grammar; got: ' + badErrs.join('; '));
+      }
+      if (!badErrs.some((e) => e.includes('"float"') && e.includes('not a declared channel'))) {
+        throw new Error('float must refuse as a non-registry channel; got: ' + badErrs.join('; '));
       }
       const engine = createFigmaEngine({
         tokens: {
@@ -3387,6 +3517,7 @@ const cases: Case[] = [
       if (va.bindings?.topLeftRadius !== 's4/radius-tl') throw new Error('per-corner radius must BIND topLeftRadius');
       if (va.bindings?.strokeTopWeight !== 's4/bw-top') throw new Error('per-side width must BIND strokeTopWeight');
       if (va.layout?.wrap !== true) throw new Error('layout.wrap must compile to LayoutSpec.wrap');
+      if (va.zIndex !== 3) throw new Error('numeric z-index must lift into the compiled spec (declared channel), got ' + JSON.stringify(va.zIndex));
       if (va.gradient?.angle !== 180 || va.gradient.stops.length !== 2) throw new Error('gradient must parse angle + stops: ' + JSON.stringify(va.gradient));
       const stop2 = va.gradient.stops[1];
       if (stop2.position !== 1 || stop2.color.b !== 1 || stop2.color.a !== 0.5) throw new Error('gradient stop 2 must carry rgba + position: ' + JSON.stringify(stop2));
@@ -5257,19 +5388,19 @@ const cases: Case[] = [
     },
   },
   {
-    // T064 (spec 006, US3): ds.review-card's initial/photo avatar exclusivity
-    // is a CONVENTION, never a schema constraint. `visibleWhen` has no
-    // negation and no XOR/enum-style construct across two independent
-    // BOOLEAN props (an enum axis would break per-item variation inside
-    // google-reviews' `repeat`, R7/T033) — so `initialeVisible` and `photo`
-    // gate their parts completely independently (core/emit-react.ts
-    // wrapVisibleWhen, one `{cond ? (...) : null}` per part, no cross-part
-    // awareness). This pins that BOTH parts render when BOTH props are true
-    // — proving the schema does not, and structurally cannot, prevent the
-    // double-avatar case — so the exclusion stays a documented convention
-    // (contract description) that callers must honor themselves, never a
-    // silent claim of enforcement (Constitution V).
-    id: 'review-card-avatar-exclusivity-is-convention-not-schema',
+    // T064 (spec 006) RÉÉCRIT le 2026-08-18 sur décision owner. L'ancien cas
+    // pinnait l'inverse de celui-ci : que l'exclusivité photo/initiale était
+    // une CONVENTION que le schéma ne pouvait pas tenir (deux BOOLEAN
+    // indépendants, `visibleWhen` sans négation), et que la description du
+    // contrat ne devait donc pas prétendre l'imposer (Constitution V).
+    //
+    // L'owner a supprimé les deux bascules : l'avatar est maintenant UNE
+    // variante `avatar` à deux valeurs, donc l'exclusivité est STRUCTURELLE —
+    // l'état « les deux à la fois » n'a plus de représentation possible. Ce
+    // cas garde la même exigence d'honnêteté, tournée dans l'autre sens : il
+    // refuse le retour des deux booléens, et vérifie que les deux parts sont
+    // gardées par la MÊME prop testée sur deux valeurs différentes.
+    id: 'review-card-avatar-exclusivity-is-schema-enforced',
     claim: 'C3-detection',
     run: () => {
       const byId = new Map(
@@ -5280,17 +5411,17 @@ const cases: Case[] = [
       );
       const card = byId.get('ds.review-card');
       if (!card) throw new Error('contracts/review-card.contract.json missing ds.review-card');
-      const initialeProp = card.props.find((p) => p.name === 'initialeVisible');
-      const photoProp = card.props.find((p) => p.name === 'photo');
-      if (!initialeProp || !photoProp) throw new Error('ds.review-card lost initialeVisible/photo props');
-      // Schema-level: no shared enum, no mutual negation wired between them.
-      if (typeof initialeProp.type !== 'string' || initialeProp.type !== 'boolean') {
-        throw new Error('initialeVisible is no longer a plain boolean — exclusivity proof must be re-derived');
+      for (const disparu of ['initialeVisible', 'photo']) {
+        if (card.props.some((p) => p.name === disparu)) {
+          throw new Error(`ds.review-card a retrouvé la prop booléenne "${disparu}" — l'exclusivité redeviendrait une convention`);
+        }
       }
-      if (typeof photoProp.type !== 'string' || photoProp.type !== 'boolean') {
-        throw new Error('photo is no longer a plain boolean — exclusivity proof must be re-derived');
+      const avatar = card.props.find((p) => p.name === 'avatar');
+      if (!avatar) throw new Error('ds.review-card n\'a pas de prop `avatar`');
+      const valeurs = typeof avatar.type === 'object' && 'enum' in avatar.type ? avatar.type.enum : null;
+      if (!valeurs || valeurs.length !== 2 || !valeurs.includes('Initiale') || !valeurs.includes('Photo')) {
+        throw new Error(`\`avatar\` doit être un enum Initiale|Photo, lu : ${JSON.stringify(avatar.type)}`);
       }
-      // Runtime: emit and confirm BOTH gated parts render when BOTH are true.
       const icons = new Map(
         readdirSync(path.join(ROOT, 'assets', 'icons'))
           .filter((f) => f.endsWith('.svg'))
@@ -5303,23 +5434,19 @@ const cases: Case[] = [
         read('tokens/modes/semantic.light.tokens.json'),
       ]);
       const { tsx } = coreEmitReact(card, { tokens: tokenInv, icons, contracts: byId });
-      // Same-line only ([^?\n]*, not [^?]*) — the earlier greedy version
-      // crossed newlines and could latch onto an unrelated `{photo` inside
-      // the root's `data-photo={photo || undefined}` attribute, then read
-      // through to the NEXT `?` several lines later (the initialeVisible
-      // ternary), producing a false cross-reference. Anchoring the wrapper
-      // ternary to its own line is what "independent gate" actually means.
-      const initialeCond = tsx.match(/\{(initialeVisible[^?\n]*)\?\s*\(/);
-      const photoCond = tsx.match(/\{(photo[^?\n]*)\?\s*\(/);
-      if (!initialeCond) throw new Error(`emitted TSX has no independent gate on initialeVisible:\n${tsx.slice(0, 800)}`);
-      if (!photoCond) throw new Error(`emitted TSX has no independent gate on photo:\n${tsx.slice(0, 800)}`);
-      // The two conditions must be SEPARATE ternaries — neither referencing
-      // the other prop — which is exactly what "no cross-part awareness"
-      // means: setting both true, both branches independently pass.
-      if (initialeCond[1].includes('photo') || photoCond[1].includes('initialeVisible')) {
-        throw new Error(`gates are cross-referencing — exclusivity would be SCHEMA-enforced, contradicting the contract's own description:\n${initialeCond[1]} / ${photoCond[1]}`);
+      // Les deux gardes doivent tester la MÊME prop sur deux valeurs distinctes :
+      // c'est ce qui rend l'état double irreprésentable, au lieu de reposer sur
+      // la discipline de l'appelant.
+      const gardes = [...tsx.matchAll(/\{(avatar[^?\n]*)\?\s*\(/g)].map((m) => m[1]);
+      if (gardes.length !== 2) {
+        throw new Error(`attendu 2 gardes sur \`avatar\`, trouvé ${gardes.length} : ${JSON.stringify(gardes)}`);
       }
-      console.log('review-card-avatar-exclusivity-is-convention-not-schema: initialeVisible and photo gate independently (separate {cond ? (...) : null} per part, no cross-reference) — both true renders BOTH avatars; the exclusion stays a documented convention, never a schema constraint');
+      const cible = (g: string) => (g.includes("'Initiale'") ? 'Initiale' : g.includes("'Photo'") ? 'Photo' : null);
+      const cibles = gardes.map(cible);
+      if (new Set(cibles).size !== 2 || cibles.includes(null)) {
+        throw new Error(`les deux gardes doivent viser des valeurs différentes, lu : ${JSON.stringify(gardes)}`);
+      }
+      console.log('review-card-avatar-exclusivity-is-schema-enforced: les deux booléens ont disparu; `avatar` est un enum Initiale|Photo et les deux parts sont gardées par la même prop sur deux valeurs distinctes — l\'état « deux avatars » n\'a plus de représentation, l\'exclusivité n\'est plus une convention');
     },
   },
   {
@@ -5451,6 +5578,7 @@ const cases: Case[] = [
             .filter((f) => f.endsWith('.svg'))
             .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(ROOT, 'assets', 'icons', f), 'utf8').trim()]),
         ),
+        iconComponents: iconComponentsFromRegistry(read('contracts/icons.registry.json') as { icons: IconRegistryEntry[] }),
       });
       const script = engine.buildComponentScript(card, byId);
       const comp = JSON.parse(script.match(/const COMPONENTS = (\[[\s\S]*?\n\]);/)![1])[0];
@@ -5462,9 +5590,17 @@ const cases: Case[] = [
         }
         return null;
       };
-      const va = comp.variants[0].spec;
-      const photoSpec = findByName(va, 'avatarPhoto');
-      if (!photoSpec) throw new Error(`compiled spec has no "avatarPhoto" node:\n${JSON.stringify(va, null, 2).slice(0, 1500)}`);
+      // 2026-08-18 : ds.review-card est devenu un set de deux variantes
+      // (Avatar=Initiale | Avatar=Photo). `visibleWhen` se résout PAR VARIANTE
+      // côté canevas, donc la part photo n'existe que dans la variante Photo —
+      // lire `variants[0]` en dur cherchait la preuve A5 dans la seule variante
+      // qui, par construction, ne peut pas la porter.
+      const photoSpec = comp.variants
+        .map((v: any) => findByName(v.spec, 'avatarPhoto'))
+        .find((hit: any) => hit);
+      if (!photoSpec) {
+        throw new Error(`aucune variante ne compile un nœud "avatarPhoto" (variantes : ${comp.variants.map((v: any) => v.name).join(', ')}) :\n${JSON.stringify(comp.variants[0].spec, null, 2).slice(0, 1200)}`);
+      }
       if (photoSpec.imgPlaceholder !== true) throw new Error(`avatarPhoto must compile with imgPlaceholder:true, got: ${JSON.stringify(photoSpec)}`);
       const grey = photoSpec.lits?.fillColor;
       if (!grey || Math.abs(grey.r - 217 / 255) > 0.001 || Math.abs(grey.g - 217 / 255) > 0.001 || Math.abs(grey.b - 217 / 255) > 0.001) {
@@ -5636,9 +5772,17 @@ const cases: Case[] = [
       // no root geometry, the absolute children contribute no intrinsic size
       // and the generated root collapses to 0×0.
       // 015: root's width/height moved from literals to tokens (geometry-
-      // rides-tokens conversion) — delete from the field that now actually
-      // carries them, or this constructs a contract identical to `member`.
+      // rides-tokens conversion). v1.3.0 (projection-repair, 2026-08-12):
+      // they moved AGAIN — the fluid square rides layout.referenceWidth +
+      // layout.aspectRatio (planes are inset-0 and follow the parent).
+      // Delete from the field that NOW carries the geometry, or this
+      // constructs a contract identical to `member` and refuses nothing.
       const collapsedContract = ContractSchema.parse(JSON.parse(JSON.stringify(member)));
+      const collapsedLayout = collapsedContract.anatomy.root.layout as
+        | { referenceWidth?: number; aspectRatio?: number }
+        | undefined;
+      delete collapsedLayout?.referenceWidth;
+      delete collapsedLayout?.aspectRatio;
       delete collapsedContract.anatomy.root.tokens?.width;
       delete collapsedContract.anatomy.root.tokens?.height;
       const collapsedById = new Map(byId);
@@ -5650,14 +5794,15 @@ const cases: Case[] = [
       if (!refused) throw new Error('A MemberPicture contract that generates a 0×0 root was accepted');
       for (const required of [
         // 015: root/funIa/normal width+height moved from literal px to
-        // per-part tokens (geometry-rides-tokens) — the generated CSS now
-        // carries var() references (each 364px via a distinct custom
-        // property), never the raw literal.
-        '.root {', 'width: var(--size-member-picture-root);', 'height: var(--size-member-picture-root);',
+        // per-part tokens (geometry-rides-tokens). v1.3.0 (projection-repair,
+        // 2026-08-12): the fixed 364 tokens gave way to the fluid square —
+        // the root rides width:100% + aspect-ratio:1 (referenceWidth is a
+        // canvas authoring size only), each plane rides width/height:100%
+        // inside its inset-0 overlay.
+        '.root {', 'width: 100%;', 'aspect-ratio: 1;',
         'border-radius: 500px;', 'background-color: #d9d9d9;', 'position: relative;',
         '.etat-defaut {', '.etat-survol {', 'overflow: hidden;',
-        '.funIa {', 'width: var(--size-member-picture-fun-ia);', 'height: var(--size-member-picture-fun-ia);',
-        '.normal {', 'width: var(--size-member-picture-normal);', 'height: var(--size-member-picture-normal);',
+        '.funIa {', '.normal {', 'height: 100%;',
         'position: absolute;', 'top: 0px;', 'right: 0px;', 'bottom: 0px;', 'left: 0px;',
         'transition: opacity 300ms;',
       ]) {

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.2.0)
+ * Source of truth: contracts/member-picture.contract.json (ds.member-picture v1.3.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -15,55 +15,36 @@ import type { CSSProperties, HTMLAttributes } from 'react';
 
 const S: Record<string, CSSProperties> = {
   "root": {
-    "display": "inline-flex",
-    "alignItems": "center",
-    "justifyContent": "center",
+    "display": "flex",
+    "width": "100%",
+    "minWidth": 0,
+    "aspectRatio": 1,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "width": "364px",
-    "height": "364px",
     "borderRadius": "500px",
     "backgroundColor": "#D9D9D9",
     "position": "relative"
   },
   "funIa": {
-    "width": "364px",
-    "height": "364px",
     "borderRadius": "500px",
-    "position": "absolute",
-    "aspectRatio": "1"
+    "position": "absolute"
   },
   "normal": {
-    "width": "364px",
-    "height": "364px",
     "borderRadius": "500px",
     "position": "absolute",
-    "aspectRatio": "1",
     "transition": "opacity 300ms"
   }
 };
 
 /** Per-variant overrides, resolved per enum value: "prop-value:part" → styles. */
-const V: Record<string, CSSProperties> = {
-  "taille-member-card:root": {
-    "width": "363.5px",
-    "height": "363.5px"
-  },
-  "taille-member-card:funIa": {
-    "width": "363.5px",
-    "height": "363.5px"
-  },
-  "taille-member-card:normal": {
-    "width": "363.5px",
-    "height": "363.5px"
-  }
-};
+const V: Record<string, CSSProperties> = {};
 
 export interface MemberPictureProps extends HTMLAttributes<HTMLDivElement> {
   /** Visual state: default (no overlay) or hover (overlay visible). Extracted from the VARIANT property « Etat » on the Figma master. */
   etat?: 'defaut' | 'survol';
-  /** Code-side geometry selector for observed composed placements. The MemberCard instance is explicitly resized to 363.5px inside its 364px parent frame; the standalone atom keeps the 364px master geometry by default. */
+  /** Compatibility axis retained for existing consumers. Both values now use the same parent-owned fluid square geometry; the old 363.5px workaround belonged to the former fixed-track approximation. */
   taille?: 'standard' | 'member-card';
+  /** La ROUTE du portrait, jamais ses octets. Figma n'expose aucune propriete de composant pour ces pixels (trou A5, matrice ligne 91, colonne Bindable : image content not bindable) : le contrat porte la route, la photo arrive a l'execution. Defaut vide, et il le reste. Le root de ce composant porte deliberement un lavis technique #D9D9D9 comme base de previsualisation A5 : c'est un fait de CONTRAT, pas une frontiere image. La photo qu'un designer voit sur le canevas est une maquette, hors contrat, preservee a la regeneration par une passe de sauvetage explicite (docs/handoff/08-status-what-doesnt-work.md, §6). */
   src?: string;
   alt?: string;
 }
@@ -78,11 +59,11 @@ export const MemberPicture = forwardRef<HTMLDivElement, MemberPictureProps>(func
   ref,
 ) {
   return (
-    <div ref={ref} style={{ ...S.root, ...(V[`taille-${taille}:root`] ?? {}), ...(etat === 'defaut' ? {"overflow":"hidden"} : {}), ...(etat === 'survol' ? {"overflow":"hidden"} : {}), ...style }}  {...rest}>
-      <img style={{ ...S.funIa, ...(V[`taille-${taille}:funIa`] ?? {}), ...(etat === 'defaut' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px"} : {}), ...(etat === 'survol' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px"} : {}) }} alt="">
+    <div ref={ref} style={{ ...S.root, ...(etat === 'defaut' ? {"overflow":"hidden"} : {}), ...(etat === 'survol' ? {"overflow":"hidden"} : {}), ...style }}  {...rest}>
+      <img style={{ ...S.funIa, ...(etat === 'defaut' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px"} : {}), ...(etat === 'survol' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px"} : {}) }} alt="">
 
 </img>
-<img style={{ ...S.normal, ...(V[`taille-${taille}:normal`] ?? {}), ...(etat === 'defaut' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px","opacity":"1"} : {}), ...(etat === 'survol' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px","opacity":"0"} : {}) }} src={String(src)} alt={String(alt)}>
+<img style={{ ...S.normal, ...(etat === 'defaut' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px","opacity":"1"} : {}), ...(etat === 'survol' ? {"top":"0px","right":"0px","bottom":"0px","left":"0px","opacity":"0"} : {}) }} src={String(src)} alt={String(alt)}>
 
 </img>
     </div>

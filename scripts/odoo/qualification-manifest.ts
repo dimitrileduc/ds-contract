@@ -7,6 +7,12 @@ import { validateOrThrow } from './lib/schemas.js';
 const REQUIRED = [
   'editability-boundary', 'google-reviews-functional', 'google-reviews-security', 'google-reviews-visual',
   'presentation-functional-security', 'presentation-visual', 'presentation-performance-security',
+  'hero-functional-security', 'hero-visual',
+  'equipe-functional-security', 'equipe-visual',
+  'devis-functional-security', 'devis-visual',
+  'faq-functional', 'faq-visual',
+  'sav-functional-security', 'sav-visual',
+  'texte-seo-functional', 'texte-seo-visual',
   'install-update', 'version-policy', 'authorization', 'combined-isolation', 'visual-summary', 'quickstart-run',
 ];
 const ACCEPTED_LIMITS = new Set(['ODOO-LIMIT-PERFORMANCE-NON-MEASURED']);
@@ -38,7 +44,7 @@ export function buildManifest(proofsDir: string) {
   const hasUnaccepted = limits.some((limit) => !limit.accepted);
   const releaseStatus = failed.length || hasUnaccepted ? 'failed' : missing.length || skipped.length ? 'incomplete' : limits.length ? 'qualified-with-limits' : 'qualified';
   const manifest = {
-    schemaVersion: '1.0.0', manifestId: 'odoo-019-qualification', snapshotId: 'odoo-019-foundation', moduleVersion: '19.0.1.0.0',
+    schemaVersion: '1.0.0', manifestId: 'odoo-019-qualification', snapshotId: 'odoo-019-foundation', moduleVersion: '19.0.1.2.0',
     environment: { odooImage: 'odoo:19.0-20260803', postgresImage: 'postgres:15', browser: 'Chromium 151.0.7922.34', viewport: { width: 1728, height: 504, deviceScaleFactor: 2 }, locale: 'fr-FR' },
     requiredScenarios: REQUIRED, receipts: receipts.sort((a, b) => a.scenarioId.localeCompare(b.scenarioId)), limits, releaseStatus,
   };

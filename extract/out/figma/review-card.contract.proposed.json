@@ -10,6 +10,29 @@
   },
   "props": [
     {
+      "name": "avatar",
+      "type": {
+        "enum": [
+          "initiale",
+          "photo"
+        ]
+      },
+      "default": "initiale",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Avatar",
+          "values": {
+            "initiale": "Initiale",
+            "photo": "Photo"
+          }
+        },
+        "code": {
+          "prop": "avatar"
+        }
+      }
+    },
+    {
       "name": "initiale",
       "type": "text",
       "default": "P",
@@ -66,34 +89,6 @@
       }
     },
     {
-      "name": "avatarInitiale",
-      "type": "boolean",
-      "default": true,
-      "bindings": {
-        "figma": {
-          "kind": "BOOLEAN",
-          "property": "Avatar initiale"
-        },
-        "code": {
-          "prop": "avatarInitiale"
-        }
-      }
-    },
-    {
-      "name": "avatarPhoto",
-      "type": "boolean",
-      "default": false,
-      "bindings": {
-        "figma": {
-          "kind": "BOOLEAN",
-          "property": "Avatar photo"
-        },
-        "code": {
-          "prop": "avatarPhoto"
-        }
-      }
-    },
-    {
       "name": "vRifi",
       "type": "boolean",
       "default": true,
@@ -113,7 +108,8 @@
     "root": {
       "layout": {
         "display": "flex",
-        "direction": "column"
+        "direction": "column",
+        "align": "stretch"
       },
       "parts": {
         "entete": {
@@ -135,26 +131,36 @@
                     "justify": "center",
                     "align": "center"
                   },
-                  "tokens": {
-                    "background-color": "{color.bleu-gris}"
-                  },
-                  "visibleWhen": {
-                    "prop": "avatarInitiale"
-                  },
                   "parts": {
                     "initialeTexte": {
                       "content": {
                         "prop": "initiale"
                       },
                       "tokens": {
-                        "color": "{color.blanc}"
+                        "font-family": "{font.family.montserrat}",
+                        "color": "{imported.shared.color-ffffff}",
+                        "font-size": "{imported.review-card.entete-profil-avatar-initiale-initiale-texte.font-size}",
+                        "font-weight": "{imported.review-card.entete-profil-avatar-initiale-initiale-texte.font-weight}",
+                        "letter-spacing": "{imported.shared.size-0}",
+                        "line-height": "{imported.review-card.entete-profil-avatar-initiale-initiale-texte.line-height}"
                       }
                     }
+                  },
+                  "tokens": {
+                    "background-color": "{imported.review-card.entete-profil-avatar-initiale.background-color}",
+                    "border-radius": "{imported.review-card.entete-profil-avatar-initiale.border-radius}",
+                    "min-width": "{imported.shared.size-40}",
+                    "width": "{imported.shared.size-40}",
+                    "height": "{imported.shared.size-40}"
                   }
                 },
                 "avatarPhoto": {
-                  "visibleWhen": {
-                    "prop": "avatarPhoto"
+                  "tokens": {
+                    "background-color": "{imported.review-card.entete-profil-avatar-photo.background-color}",
+                    "border-radius": "{imported.review-card.entete-profil-avatar-photo.border-radius}",
+                    "min-width": "{imported.shared.size-40}",
+                    "width": "{imported.shared.size-40}",
+                    "height": "{imported.shared.size-40}"
                   }
                 },
                 "identite": {
@@ -167,23 +173,61 @@
                     "auteur": {
                       "content": {
                         "prop": "auteur"
+                      },
+                      "tokens": {
+                        "font-family": "{font.family.montserrat}",
+                        "font-size": "{typography.titre-6.size}",
+                        "font-weight": "{typography.titre-6.weight}",
+                        "color": "{imported.shared.color-000000}",
+                        "letter-spacing": "{imported.shared.size-0}",
+                        "line-height": "{imported.review-card.entete-profil-identite-auteur.line-height}"
                       }
                     },
                     "date": {
                       "content": {
                         "prop": "date"
+                      },
+                      "tokens": {
+                        "font-family": "{font.family.montserrat}",
+                        "color": "{imported.shared.color-000000}",
+                        "font-size": "{imported.shared.size-14}",
+                        "font-weight": "{imported.shared.num-500}",
+                        "letter-spacing": "{imported.shared.size-0}",
+                        "line-height": "{imported.review-card.entete-profil-identite-date.line-height}"
                       }
                     }
+                  },
+                  "tokens": {
+                    "gap": "{imported.review-card.entete-profil-identite.gap}"
                   }
                 }
+              },
+              "tokens": {
+                "gap": "{imported.review-card.entete-profil.gap}"
               }
             },
             "marque": {
               "parts": {
-                "Vector": {},
-                "vector2": {},
-                "vector3": {},
-                "vector4": {}
+                "Vector": {
+                  "tokens": {
+                    "background-color": "{imported.review-card.entete-marque-vector.background-color}"
+                  }
+                },
+                "vector2": {
+                  "tokens": {
+                    "background-color": "{imported.review-card.entete-marque-vector-2.background-color}"
+                  }
+                },
+                "vector3": {
+                  "tokens": {
+                    "background-color": "{imported.review-card.entete-marque-vector-3.background-color}"
+                  }
+                },
+                "vector4": {
+                  "tokens": {
+                    "background-color": "{imported.review-card.entete-marque-vector-4.background-color}"
+                  }
+                }
               }
             }
           }
@@ -195,35 +239,10 @@
           },
           "parts": {
             "etoiles": {
-              "layout": {
-                "direction": "row",
-                "align": "center"
-              },
-              "parts": {
-                "etoile1": {
-                  "parts": {
-                    "etoile1Vector": {}
-                  }
-                },
-                "etoile2": {
-                  "parts": {
-                    "etoile2Vector": {}
-                  }
-                },
-                "etoile3": {
-                  "parts": {
-                    "etoile3Vector": {}
-                  }
-                },
-                "etoile4": {
-                  "parts": {
-                    "etoile4Vector": {}
-                  }
-                },
-                "etoile5": {
-                  "parts": {
-                    "etoile5Vector": {}
-                  }
+              "component": {
+                "id": "ds.notation",
+                "props": {
+                  "note": "5"
                 }
               }
             },
@@ -239,33 +258,70 @@
               "parts": {
                 "coche": {
                   "parts": {
-                    "cocheVector": {}
+                    "cocheVector": {
+                      "tokens": {
+                        "border-color": "{imported.shared.color-ffffff}",
+                        "border-width": "{imported.review-card.notation-verification-coche-vector.border-width}"
+                      }
+                    }
                   }
                 }
+              },
+              "tokens": {
+                "background-color": "{imported.shared.color-000000}",
+                "border-radius": "{imported.shared.size-8}",
+                "min-width": "{imported.shared.size-16}",
+                "width": "{imported.shared.size-16}",
+                "height": "{imported.shared.size-16}"
               }
             }
+          },
+          "tokens": {
+            "gap": "{imported.shared.size-8}"
           }
         },
         "temoignage": {
           "content": {
             "prop": "tMoignage"
+          },
+          "tokens": {
+            "font-family": "{font.family.montserrat}",
+            "color": "{imported.shared.color-000000}",
+            "font-size": "{imported.shared.size-14}",
+            "font-weight": "{imported.shared.num-500}",
+            "letter-spacing": "{imported.shared.size-0}",
+            "line-height": "{imported.review-card.temoignage.line-height}"
           }
         },
         "lireLaSuite": {
-          "text": "Lire la suite"
+          "text": "Lire la suite",
+          "tokens": {
+            "font-family": "{font.family.montserrat}",
+            "color": "{imported.shared.color-000000}",
+            "font-size": "{imported.shared.size-14}",
+            "font-weight": "{imported.shared.num-500}",
+            "letter-spacing": "{imported.shared.size-0}"
+          }
         }
       },
       "tokens": {
-        "background-color": "{color.blanc}",
-        "border-color": "{color.bleu-clair}"
+        "background-color": "{imported.shared.color-ffffff}",
+        "border-color": "{imported.review-card.root.border-color}",
+        "gap": "{imported.shared.size-14}",
+        "padding-inline": "{imported.review-card.root.padding-inline}",
+        "padding-block": "{imported.review-card.root.padding-block}",
+        "border-radius": "{imported.shared.size-8}",
+        "border-width": "{imported.review-card.root.border-width}",
+        "min-height": "{imported.review-card.root.min-height}",
+        "width": "{imported.review-card.root.width}"
       }
     }
   },
   "anchors": {
     "figma": {
       "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-      "componentSetKey": "3826fdc9975d42b1661e14494476701676759671",
-      "nodeId": "2178:7349"
+      "componentSetKey": "864876fc02245c65ef4216bc4355e4128f79d181",
+      "nodeId": "2480:5253"
     },
     "code": {
       "importPath": "src/components/ReviewCard",

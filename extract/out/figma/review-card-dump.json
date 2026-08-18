@@ -1,0 +1,903 @@
+{
+  "_provenance": {
+    "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+    "extractedAt": "2026-08-18",
+    "note": "Node-tree dump mapped from the Figma REST API (extract/figma/rest/map.ts, dump v1.7) for design→contract proposal.",
+    "dumpVersion": "1.7"
+  },
+  "Review-card": {
+    "setName": "Review-card",
+    "type": "COMPONENT_SET",
+    "nodeId": "2480:5253",
+    "key": "864876fc02245c65ef4216bc4355e4128f79d181",
+    "boolDefaults": {
+      "Vérifié": true
+    },
+    "variants": [
+      {
+        "name": "Avatar=Initiale",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 299,
+          "height": 239
+        },
+        "layout": {
+          "mode": "VERTICAL",
+          "primary": "MIN",
+          "counter": "MIN",
+          "spacing": 14,
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "FIXED"
+        },
+        "cornerRadius": 8,
+        "fill": {
+          "hex": "ffffff"
+        },
+        "stroke": {
+          "hex": "f4f6fa"
+        },
+        "strokeWeight": 1,
+        "strokeAlign": "INSIDE",
+        "minHeight": 239,
+        "children": [
+          {
+            "name": "entete",
+            "type": "FRAME",
+            "bbox": {
+              "width": 251,
+              "height": 40
+            },
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primary": "SPACE_BETWEEN",
+              "counter": "CENTER",
+              "spacing": 0,
+              "padding": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "primarySizing": "FIXED",
+              "counterSizing": "AUTO"
+            },
+            "fillWidth": true,
+            "children": [
+              {
+                "name": "profil",
+                "type": "FRAME",
+                "bbox": {
+                  "width": 140,
+                  "height": 40
+                },
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "primary": "MIN",
+                  "counter": "CENTER",
+                  "spacing": 12,
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "primarySizing": "AUTO",
+                  "counterSizing": "AUTO"
+                },
+                "children": [
+                  {
+                    "name": "avatarInitiale",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 40,
+                      "height": 40
+                    },
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "primary": "CENTER",
+                      "counter": "CENTER",
+                      "spacing": 0,
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "primarySizing": "FIXED",
+                      "counterSizing": "FIXED"
+                    },
+                    "cornerRadius": 20,
+                    "fill": {
+                      "hex": "9ba4b5"
+                    },
+                    "minWidth": 40,
+                    "children": [
+                      {
+                        "name": "initialeTexte",
+                        "type": "TEXT",
+                        "bbox": {
+                          "width": 14,
+                          "height": 18
+                        },
+                        "text": {
+                          "characters": "P",
+                          "fontSize": 18,
+                          "fontFamily": "Montserrat",
+                          "fontStyle": "Semi Bold",
+                          "letterSpacing": 0,
+                          "autoResize": "WIDTH_AND_HEIGHT",
+                          "lineHeight": 18
+                        },
+                        "fill": {
+                          "hex": "ffffff"
+                        },
+                        "propRefs": {
+                          "characters": "Initiale"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "avatarPhoto",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 40,
+                      "height": 40
+                    },
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "primary": "MIN",
+                      "counter": "MIN",
+                      "spacing": 0,
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "primarySizing": "FIXED",
+                      "counterSizing": "FIXED"
+                    },
+                    "cornerRadius": 20,
+                    "fill": {
+                      "hex": "d9d9d9"
+                    },
+                    "minWidth": 40,
+                    "hidden": true,
+                    "children": []
+                  },
+                  {
+                    "name": "identite",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 88,
+                      "height": 39
+                    },
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "primary": "CENTER",
+                      "counter": "MIN",
+                      "spacing": 2,
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "primarySizing": "AUTO",
+                      "counterSizing": "AUTO"
+                    },
+                    "children": [
+                      {
+                        "name": "auteur",
+                        "type": "TEXT",
+                        "bbox": {
+                          "width": 88,
+                          "height": 20
+                        },
+                        "fillWidth": true,
+                        "text": {
+                          "characters": "Prénom N.",
+                          "fontSize": 16,
+                          "fontFamily": "Montserrat",
+                          "fontStyle": "Semi Bold",
+                          "letterSpacing": 0,
+                          "autoResize": "HEIGHT",
+                          "lineHeight": 19.200000762939453
+                        },
+                        "fill": {
+                          "hex": "000000"
+                        },
+                        "propRefs": {
+                          "characters": "Auteur"
+                        }
+                      },
+                      {
+                        "name": "date",
+                        "type": "TEXT",
+                        "bbox": {
+                          "width": 88,
+                          "height": 17
+                        },
+                        "fillWidth": true,
+                        "text": {
+                          "characters": "il y a 2 mois",
+                          "fontSize": 14,
+                          "fontFamily": "Montserrat",
+                          "fontStyle": "Medium",
+                          "letterSpacing": 0,
+                          "autoResize": "HEIGHT",
+                          "lineHeight": 16.799999237060547
+                        },
+                        "fill": {
+                          "hex": "000000"
+                        },
+                        "propRefs": {
+                          "characters": "Date"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "marque",
+                "type": "FRAME",
+                "bbox": {
+                  "width": 18,
+                  "height": 18
+                },
+                "children": [
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 7.92,
+                      "height": 7.76
+                    },
+                    "fill": {
+                      "hex": "4285f4"
+                    }
+                  },
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 12.83,
+                      "height": 6.67
+                    },
+                    "fill": {
+                      "hex": "34a853"
+                    }
+                  },
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 3.63,
+                      "height": 7.4
+                    },
+                    "fill": {
+                      "hex": "fbbc05"
+                    }
+                  },
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 12.89,
+                      "height": 6.68
+                    },
+                    "fill": {
+                      "hex": "ea4335"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "notation",
+            "type": "FRAME",
+            "bbox": {
+              "width": 251,
+              "height": 16
+            },
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primary": "MIN",
+              "counter": "CENTER",
+              "spacing": 8,
+              "padding": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "primarySizing": "FIXED",
+              "counterSizing": "AUTO"
+            },
+            "fillWidth": true,
+            "children": [
+              {
+                "name": "etoiles",
+                "type": "INSTANCE",
+                "bbox": {
+                  "width": 92,
+                  "height": 16
+                },
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "primary": "MIN",
+                  "counter": "CENTER",
+                  "spacing": 3,
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "primarySizing": "AUTO",
+                  "counterSizing": "AUTO"
+                },
+                "instanceOf": "Notation",
+                "instanceKey": "8ec622a24a87a19abf0fd61ace59a99473cdfc0b",
+                "instanceSetKey": "f4c58cae2c9fd826992f874527429c560c6e0f0f",
+                "componentProperties": {
+                  "Note": "5"
+                }
+              },
+              {
+                "name": "verification",
+                "type": "FRAME",
+                "bbox": {
+                  "width": 16,
+                  "height": 16
+                },
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "primary": "CENTER",
+                  "counter": "CENTER",
+                  "spacing": 0,
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "primarySizing": "FIXED",
+                  "counterSizing": "FIXED"
+                },
+                "cornerRadius": 8,
+                "fill": {
+                  "hex": "000000"
+                },
+                "minWidth": 16,
+                "propRefs": {
+                  "visible": "Vérifié"
+                },
+                "children": [
+                  {
+                    "name": "coche",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 10,
+                      "height": 10
+                    },
+                    "children": [
+                      {
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "bbox": {
+                          "width": 8.08,
+                          "height": 6.15
+                        },
+                        "stroke": {
+                          "hex": "ffffff"
+                        },
+                        "strokeWeight": 1.5384615659713745,
+                        "strokeAlign": "CENTER"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "temoignage",
+            "type": "TEXT",
+            "bbox": {
+              "width": 251,
+              "height": 40
+            },
+            "fillWidth": true,
+            "text": {
+              "characters": "Un témoignage neutre, exemple générique de contenu.",
+              "fontSize": 14,
+              "fontFamily": "Montserrat",
+              "fontStyle": "Medium",
+              "letterSpacing": 0,
+              "autoResize": "HEIGHT",
+              "lineHeight": 19.600000381469727
+            },
+            "fill": {
+              "hex": "000000"
+            },
+            "propRefs": {
+              "characters": "Témoignage"
+            }
+          },
+          {
+            "name": "lireLaSuite",
+            "type": "TEXT",
+            "bbox": {
+              "width": 251,
+              "height": 17
+            },
+            "fillWidth": true,
+            "text": {
+              "characters": "Lire la suite",
+              "fontSize": 14,
+              "fontFamily": "Montserrat",
+              "fontStyle": "Medium",
+              "letterSpacing": 0,
+              "autoResize": "HEIGHT"
+            },
+            "fill": {
+              "hex": "000000"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Avatar=Photo",
+        "type": "COMPONENT",
+        "bbox": {
+          "width": 299,
+          "height": 239
+        },
+        "layout": {
+          "mode": "VERTICAL",
+          "primary": "MIN",
+          "counter": "MIN",
+          "spacing": 14,
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "primarySizing": "AUTO",
+          "counterSizing": "FIXED"
+        },
+        "cornerRadius": 8,
+        "fill": {
+          "hex": "ffffff"
+        },
+        "stroke": {
+          "hex": "f4f6fa"
+        },
+        "strokeWeight": 1,
+        "strokeAlign": "INSIDE",
+        "minHeight": 239,
+        "children": [
+          {
+            "name": "entete",
+            "type": "FRAME",
+            "bbox": {
+              "width": 251,
+              "height": 40
+            },
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primary": "SPACE_BETWEEN",
+              "counter": "CENTER",
+              "spacing": 0,
+              "padding": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "primarySizing": "FIXED",
+              "counterSizing": "AUTO"
+            },
+            "fillWidth": true,
+            "children": [
+              {
+                "name": "profil",
+                "type": "FRAME",
+                "bbox": {
+                  "width": 140,
+                  "height": 40
+                },
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "primary": "MIN",
+                  "counter": "CENTER",
+                  "spacing": 12,
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "primarySizing": "AUTO",
+                  "counterSizing": "AUTO"
+                },
+                "children": [
+                  {
+                    "name": "avatarInitiale",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 40,
+                      "height": 40
+                    },
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "primary": "CENTER",
+                      "counter": "CENTER",
+                      "spacing": 0,
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "primarySizing": "FIXED",
+                      "counterSizing": "FIXED"
+                    },
+                    "cornerRadius": 20,
+                    "fill": {
+                      "hex": "9ba4b5"
+                    },
+                    "minWidth": 40,
+                    "hidden": true,
+                    "children": [
+                      {
+                        "name": "initialeTexte",
+                        "type": "TEXT",
+                        "bbox": {
+                          "width": 14,
+                          "height": 18
+                        },
+                        "text": {
+                          "characters": "P",
+                          "fontSize": 18,
+                          "fontFamily": "Montserrat",
+                          "fontStyle": "Semi Bold",
+                          "letterSpacing": 0,
+                          "autoResize": "WIDTH_AND_HEIGHT",
+                          "lineHeight": 18
+                        },
+                        "fill": {
+                          "hex": "ffffff"
+                        },
+                        "propRefs": {
+                          "characters": "Initiale"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "avatarPhoto",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 40,
+                      "height": 40
+                    },
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "primary": "MIN",
+                      "counter": "MIN",
+                      "spacing": 0,
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "primarySizing": "FIXED",
+                      "counterSizing": "FIXED"
+                    },
+                    "cornerRadius": 20,
+                    "fill": {
+                      "hex": "d9d9d9"
+                    },
+                    "minWidth": 40,
+                    "children": []
+                  },
+                  {
+                    "name": "identite",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 88,
+                      "height": 39
+                    },
+                    "layout": {
+                      "mode": "VERTICAL",
+                      "primary": "CENTER",
+                      "counter": "MIN",
+                      "spacing": 2,
+                      "padding": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "primarySizing": "AUTO",
+                      "counterSizing": "AUTO"
+                    },
+                    "children": [
+                      {
+                        "name": "auteur",
+                        "type": "TEXT",
+                        "bbox": {
+                          "width": 88,
+                          "height": 20
+                        },
+                        "fillWidth": true,
+                        "text": {
+                          "characters": "Prénom N.",
+                          "fontSize": 16,
+                          "fontFamily": "Montserrat",
+                          "fontStyle": "Semi Bold",
+                          "letterSpacing": 0,
+                          "autoResize": "HEIGHT",
+                          "lineHeight": 19.200000762939453
+                        },
+                        "fill": {
+                          "hex": "000000"
+                        },
+                        "propRefs": {
+                          "characters": "Auteur"
+                        }
+                      },
+                      {
+                        "name": "date",
+                        "type": "TEXT",
+                        "bbox": {
+                          "width": 88,
+                          "height": 17
+                        },
+                        "fillWidth": true,
+                        "text": {
+                          "characters": "il y a 2 mois",
+                          "fontSize": 14,
+                          "fontFamily": "Montserrat",
+                          "fontStyle": "Medium",
+                          "letterSpacing": 0,
+                          "autoResize": "HEIGHT",
+                          "lineHeight": 16.799999237060547
+                        },
+                        "fill": {
+                          "hex": "000000"
+                        },
+                        "propRefs": {
+                          "characters": "Date"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "marque",
+                "type": "FRAME",
+                "bbox": {
+                  "width": 18,
+                  "height": 18
+                },
+                "children": [
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 7.92,
+                      "height": 7.76
+                    },
+                    "fill": {
+                      "hex": "4285f4"
+                    }
+                  },
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 12.83,
+                      "height": 6.67
+                    },
+                    "fill": {
+                      "hex": "34a853"
+                    }
+                  },
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 3.63,
+                      "height": 7.4
+                    },
+                    "fill": {
+                      "hex": "fbbc05"
+                    }
+                  },
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "bbox": {
+                      "width": 12.89,
+                      "height": 6.68
+                    },
+                    "fill": {
+                      "hex": "ea4335"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "notation",
+            "type": "FRAME",
+            "bbox": {
+              "width": 251,
+              "height": 16
+            },
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primary": "MIN",
+              "counter": "CENTER",
+              "spacing": 8,
+              "padding": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "primarySizing": "FIXED",
+              "counterSizing": "AUTO"
+            },
+            "fillWidth": true,
+            "children": [
+              {
+                "name": "etoiles",
+                "type": "INSTANCE",
+                "bbox": {
+                  "width": 92,
+                  "height": 16
+                },
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "primary": "MIN",
+                  "counter": "CENTER",
+                  "spacing": 3,
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "primarySizing": "AUTO",
+                  "counterSizing": "AUTO"
+                },
+                "instanceOf": "Notation",
+                "instanceKey": "8ec622a24a87a19abf0fd61ace59a99473cdfc0b",
+                "instanceSetKey": "f4c58cae2c9fd826992f874527429c560c6e0f0f",
+                "componentProperties": {
+                  "Note": "5"
+                }
+              },
+              {
+                "name": "verification",
+                "type": "FRAME",
+                "bbox": {
+                  "width": 16,
+                  "height": 16
+                },
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "primary": "CENTER",
+                  "counter": "CENTER",
+                  "spacing": 0,
+                  "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "primarySizing": "FIXED",
+                  "counterSizing": "FIXED"
+                },
+                "cornerRadius": 8,
+                "fill": {
+                  "hex": "000000"
+                },
+                "minWidth": 16,
+                "propRefs": {
+                  "visible": "Vérifié"
+                },
+                "children": [
+                  {
+                    "name": "coche",
+                    "type": "FRAME",
+                    "bbox": {
+                      "width": 10,
+                      "height": 10
+                    },
+                    "children": [
+                      {
+                        "name": "Vector",
+                        "type": "VECTOR",
+                        "bbox": {
+                          "width": 8.08,
+                          "height": 6.15
+                        },
+                        "stroke": {
+                          "hex": "ffffff"
+                        },
+                        "strokeWeight": 1.5384615659713745,
+                        "strokeAlign": "CENTER"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "temoignage",
+            "type": "TEXT",
+            "bbox": {
+              "width": 251,
+              "height": 40
+            },
+            "fillWidth": true,
+            "text": {
+              "characters": "Un témoignage neutre, exemple générique de contenu.",
+              "fontSize": 14,
+              "fontFamily": "Montserrat",
+              "fontStyle": "Medium",
+              "letterSpacing": 0,
+              "autoResize": "HEIGHT",
+              "lineHeight": 19.600000381469727
+            },
+            "fill": {
+              "hex": "000000"
+            },
+            "propRefs": {
+              "characters": "Témoignage"
+            }
+          },
+          {
+            "name": "lireLaSuite",
+            "type": "TEXT",
+            "bbox": {
+              "width": 251,
+              "height": 17
+            },
+            "fillWidth": true,
+            "text": {
+              "characters": "Lire la suite",
+              "fontSize": 14,
+              "fontFamily": "Montserrat",
+              "fontStyle": "Medium",
+              "letterSpacing": 0,
+              "autoResize": "HEIGHT"
+            },
+            "fill": {
+              "hex": "000000"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

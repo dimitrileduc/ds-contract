@@ -1,0 +1,37 @@
+{
+  "receiptId": "equipe-functional-security-odoo-019-foundation",
+  "scenarioId": "equipe-functional-security",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "equipe-contract-sample",
+  "observations": [
+    "[pass] QWeb — le sample canonique rend 16 membres nommés — attendu « HTTP 200 · 1 × 16 membres », observé « [{\"count\":16,\"first\":{\"marker\":\"member-0\",\"name\":\"Cécilia Piqueray\",\"role\":\"Gérante\",\"image\":false,\"source\":\"\",\"alt\":\"\"},\"last\":{\"marker\":\"member-15\",\"name\":\"Prénom\",\"role\":\"Poste\",\"image\":false,\"source\":\"\",\"alt\":\"\"}}] »",
+    "[pass] catalogue — deux Équipes indépendantes sont insérées — attendu « A=16, B=16 », observé « racines=2 · A=16 · B=16 »",
+    "[pass] panneau racine — inventaire strict et actions déclarées — attendu « member-collection · move, duplicate, remove », observé « member-collection · duplicate, move, remove »",
+    "[pass] panneau carte et frontière — contrôle exhaustif, textes seuls ouverts — attendu « member-image-alt, member-image-url, member-move-down, member-move-up, member-name, member-remove, member-role », observé « member-image-alt, member-image-url, member-move-down, member-move-up, member-name, member-remove, member-role · {\"cardEditable\":false,\"pictureEditable\":false,\"nameEditable\":true,\"roleEditable\":true} »",
+    "[pass] repeat — ajout 16→17 ciblé sans fuite vers B — attendu « A=17, B=16 », observé « A=17 · B=16 »",
+    "[pass] repeat — réordre ciblé — attendu « member-16 avant-dernier », observé « member-0, member-1, member-2, member-3, member-4, member-5, member-6, member-7, member-8, member-9, member-10, member-11, member-12, member-13, member-14, member-16, member-15 »",
+    "[pass] repeat — cardinalité 1 sans fuite — attendu « A=1, B=16 », observé « A=1 · B=16 »",
+    "[pass] repeat — cardinalité 0 sans fuite — attendu « A=0, B=16 », observé « A=0 · B=16 »",
+    "[pass] repeat — le blueprint recrée le premier membre depuis zéro — attendu « A=1, B=16 », observé « A=1 · B=16 »",
+    "[pass] média — chrome visible limité aux images — attendu « Images seulement », observé « Images »",
+    "[pass] média — upload visible immédiatement avec alt décoratif vide — attendu « visible · source Odoo · alt=\"\" », observé « {\"marker\":\"member-1\",\"name\":\"Membre QA final\",\"role\":\"Poste QA final\",\"image\":true,\"source\":\"data:image/*;base64,…\",\"alt\":\"\"} »",
+    "[pass] média — une pièce jointe existante remplace réellement le portrait — attendu « source différente de l’upload B · portrait visible avant alt », observé « {\"secondChanged\":true,\"existingChanged\":true,\"member\":{\"marker\":\"member-1\",\"name\":\"Membre QA final\",\"role\":\"Poste QA final\",\"image\":true,\"source\":\"data:image/*;base64,…\",\"alt\":\"\"}} »",
+    "[pass] média — conteneur visible, source sûre et alt exploitable — attendu « visible · source Odoo · alt non vide », observé « {\"marker\":\"member-1\",\"name\":\"Membre QA final\",\"role\":\"Poste QA final\",\"image\":true,\"source\":\"data:image/*;base64,…\",\"alt\":\"Portrait du membre QA\"} »",
+    "[pass] canvas portrait — aucun remplacement direct ni style image natif — attendu « replace/crop/filter/link/shape/format/style absents », observé « aucune option native »",
+    "[pass] save — Odoo persiste les deux Équipes — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — A=1 éditée avec portrait, B=16 intacte — attendu « HTTP 200 · A=1 complète · B=16 », observé « [{\"count\":1,\"first\":{\"marker\":\"member-1\",\"name\":\"Membre QA final\",\"role\":\"Poste QA final\",\"image\":true,\"source\":\"/web/image/307-3c94a936/home-light.webp\",\"alt\":\"Portrait du membre QA\"}},{\"count\":16,\"first\":{\"marker\":\"member-0\",\"name\":\"Cécilia Piqueray\",\"role\":\"Gérante\",\"image\":false,\"source\":\"\",\"alt\":\"\"}}] »",
+    "[pass] sécurité — aucun handler ni URL exécutable — attendu « 0 handler, 0 URL exécutable », observé « {\"handlers\":[],\"executableUrls\":[]} »",
+    "[pass] responsive — grille native 4 colonnes à 1728/1440 sans overflow — attendu « 4 colonnes · image carrée · 0 overflow », observé « [{\"width\":1728,\"rootWidth\":1728,\"overflow\":0,\"columns\":4,\"firstRowAligned\":true,\"fifthOnNextRow\":true,\"pictureSquareDelta\":0},{\"width\":1440,\"rootWidth\":1440,\"overflow\":0,\"columns\":4,\"firstRowAligned\":true,\"fifthOnNextRow\":true,\"pictureSquareDelta\":0}] »",
+    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « A=1 avec portrait · B=16 », observé « [{\"count\":1,\"first\":{\"marker\":\"member-1\",\"name\":\"Membre QA final\",\"role\":\"Poste QA final\",\"image\":true,\"source\":\"/web/image/307-3c94a936/home-light.webp\",\"alt\":\"Portrait du membre QA\"}},{\"count\":16,\"first\":{\"marker\":\"member-0\",\"name\":\"Cécilia Piqueray\",\"role\":\"Gérante\",\"image\":false,\"source\":\"\",\"alt\":\"\"}}] »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/equipe-functional.public.json",
+      "sha256": "d7a8967881576b49fbd9c4cb800849e459e24994a08d573a39c5ad8884b8009d",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 114447
+}

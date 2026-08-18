@@ -4,7 +4,7 @@
  * ── Mince par décision ──────────────────────────────────────────────────────
  * Ce script ne produit NI QWeb, NI options Odoo, NI migration. Il produit
  * exactement ce que le dépôt sait déjà dériver : les jetons, la CSS contractuelle
- * des deux fermetures, les fontes. Tout le reste est une source manuelle, comptée
+ * des fermetures déclarées, les fontes. Tout le reste est une source manuelle, comptée
  * comme telle par le rapport de dérivation.
  *
  * `core/emit-html.ts` n'est pas modifié : ajouter un préfixe Odoo à un émetteur
@@ -274,4 +274,3 @@ function main() {
 }
 
 runAsCli(import.meta.url, main);
-

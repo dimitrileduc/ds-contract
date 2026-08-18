@@ -1,0 +1,42 @@
+{
+  "id": "ds.hero-video",
+  "name": "HeroVideo",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Piqueray HeroVideo. Extracted from the historical in-place component 2151:5552 on Accueil, reviewed and adopted — not authored. The root is fluid at a 1728 px canvas reference and keeps the historical 720 px height. Code supports a video URL and poster; Figma deliberately projects the poster as a static IMAGE placeholder because native VideoPaint cannot be reconstructed deterministically. The two governed scrims belong to HeroVideo itself. The single 44/48 title remains direct because no existing SectionHeader emphasis is pixel-equivalent.",
+  "figma": {
+    "representation": "component",
+    "componentSetKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490"
+  },
+  "props": [
+    {
+      "name": "backgroundUrl",
+      "type": "string",
+      "default": "",
+      "description": "Code-side poster source. On canvas, this poster is the deterministic static placeholder for the video."
+    },
+    {
+      "name": "videoUrl",
+      "type": "string",
+      "default": "",
+      "description": "Code-side video source. Figma's native videoHash has no contract-to-code URL transport, so the canvas intentionally uses only the static poster placeholder."
+    },
+    {
+      "name": "backgroundAlt",
+      "type": "string",
+      "default": "",
+      "description": "Alternative text for the decorative poster plane."
+    },
+    {
+      "name": "accroche",
+      "type": "string",
+      "default": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "description": "Historical HeroVideo title, including the non-breaking spaces around HÖRMANN. Bound as one native Figma TEXT property so future instance copy remains governed."
+    }
+  ],
+  "children": {
+    "kind": "none"
+  },
+  "slots": []
+}

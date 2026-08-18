@@ -67,10 +67,13 @@ import { ScrollButtonOption } from "@website/builder/plugins/options/scroll_butt
 import { ContentWidthOption } from "@website/builder/plugins/content_width_option_plugin";
 import { VisibilityOption } from "@website/builder/plugins/options/visibility_option";
 import { LayoutOption } from "@website/builder/plugins/layout_option/layout_option";
+import { ImageAndFaOption } from "@html_builder/plugins/image/image_tool_option_plugin";
+import { ImageToolOption } from "@html_builder/plugins/image/image_tool_option";
+import { ReplaceMediaOption } from "@html_builder/plugins/image/replace_media_option";
 
 /** Imports internes dont l'existence est une hypothèse de compatibilité. Les
  * centraliser ici garantit qu'un renommage casse un seul module au chargement. */
-export const ODOO19_NATIVE_OPTIONS = [
+const ODOO19_ROOT_NATIVE_OPTIONS = [
     WebsiteBackgroundCarouselOption,
     WebsiteBackgroundBGColorImageOption,
     WebsiteBackgroundBGColorOption,
@@ -79,6 +82,15 @@ export const ODOO19_NATIVE_OPTIONS = [
     VisibilityOption,
     LayoutOption,
     ScrollButtonOption,
+];
+export const ODOO19_NATIVE_IMAGE_OPTIONS = [
+    ReplaceMediaOption,
+    ImageToolOption,
+    ImageAndFaOption,
+];
+export const ODOO19_NATIVE_OPTIONS = [
+    ...ODOO19_ROOT_NATIVE_OPTIONS,
+    ...ODOO19_NATIVE_IMAGE_OPTIONS,
 ];
 const ODOO19_BACKGROUND_OPTIONS = new Set([
     WebsiteBackgroundCarouselOption,
@@ -91,7 +103,7 @@ const ODOO19_BACKGROUND_OPTIONS = new Set([
  * `computeContainers()` relit `static exclude` à chaque sélection sur l'image
  * épinglée ; la mutation est donc volontaire, nommée et bornée ici. */
 export function excludeNativeOptionsForRoots(rootSelectors) {
-    for (const Option of ODOO19_NATIVE_OPTIONS) {
+    for (const Option of ODOO19_ROOT_NATIVE_OPTIONS) {
         for (const rootSelector of rootSelectors) {
             // Background est une vraie rootAction : la surface native reste
             // disponible si — et seulement si — le verdict DOM l'autorise.
@@ -100,6 +112,23 @@ export function excludeNativeOptionsForRoots(rootSelectors) {
             const exclusion = ODOO19_BACKGROUND_OPTIONS.has(Option)
                 ? `${rootSelector}:not([data-pqr-root-actions~="background"])`
                 : rootSelector;
+            const actuel = Option.exclude || "";
+            const exclusions = actuel.split(",").map((value) => value.trim()).filter(Boolean);
+            if (!exclusions.includes(exclusion)) {
+                Option.exclude = actuel ? `${actuel}, ${exclusion}` : exclusion;
+            }
+        }
+    }
+}
+
+/** Ferme la voie canvas des bitmaps Piqueray. Le média reste remplaçable par
+ * nos actions gouvernées, mais les conteneurs natifs ReplaceMedia, ImageTool
+ * (crop/filter/shape/format/transform) et alignement/style ne doivent jamais
+ * s'appliquer à une image située sous une racine Piqueray. */
+export function excludeNativeImageOptionsForRoots(rootSelectors) {
+    for (const Option of ODOO19_NATIVE_IMAGE_OPTIONS) {
+        for (const rootSelector of rootSelectors) {
+            const exclusion = `${rootSelector} img`;
             const actuel = Option.exclude || "";
             const exclusions = actuel.split(",").map((value) => value.trim()).filter(Boolean);
             if (!exclusions.includes(exclusion)) {
@@ -227,7 +256,7 @@ export function assertOdoo19Environment(plugin) {
             "registre de plugins",
             "classes Plugin / BaseOptionComponent et getResource",
             "ressources content_(not_)editable_selectors composées",
-            "8 classes d'options natives",
+            "11 classes d'options natives, dont 3 conteneurs image",
             "action AnchorPlugin et 3 descripteurs de resize",
             "namespace de toolbar",
         ],

@@ -1,0 +1,303 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.notation",
+  "name": "Notation",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "atom",
+  "description": "Bandeau de cinq étoiles portant une note entière de 1 à 5. Créé le 2026-08-18 sur demande owner : la note d'un avis était le seul fait important non éditable (ni en code, ni dans Odoo), parce que la spec 006 avait supprimé l'axe `note` (R7) sur deux prémisses — tous les avis mesurés étaient à 5/5, et l'icône gouvernée `star` est orange intrinsèque. La première prémisse tombe (décision owner) ; la seconde tient, d'où le glyphe interne `star-empty` (même géométrie, gris) qui rend la paire pleine/vide possible.\n\nPourquoi CINQ bandes plutôt qu'une bande paramétrée — les trois mécanismes plus économiques ont été testés et refusés par le moteur, pas par goût : (1) `visibleWhen` ne teste qu'UNE valeur d'enum (pas de « parmi »), donc « étoile 3 visible si note ≥ 3 » est inexprimable ; (2) `meter` rend un `<div>` de largeur fractionnaire SANS enfants (core/emit-react.ts:3087), donc pas de bandeau d'étoiles à l'intérieur ; (3) `star.svg` porte `fill=\"#F98A0B\"` en dur et ne se recolore pas par `currentColor`. Cinq bandes exclusives projettent en revanche exactement les cinq variantes du master Figma `Notation` (2480:4725).\n\nLa demi-étoile est ÉCARTÉE, pas oubliée : décision owner du 2026-08-18, la note d'un avis est un entier de 1 à 5. La barre-résumé d'`Avis Google` continue d'afficher sa moyenne « 4.8 » en texte à côté de cinq étoiles pleines — c'est un affichage de moyenne, pas une note d'avis, et il ne demande donc rien à cet atome. Rouvrir la question coûterait soit un pas de 0,5 (dix variantes), soit un remplissage partiel.",
+  "semantics": {
+    "element": "div",
+    "provenance": "authored"
+  },
+  "a11y": {
+    "role": "img"
+  },
+  "props": [
+    {
+      "name": "note",
+      "type": {
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      },
+      "default": "5",
+      "description": "Nombre d'étoiles pleines. Entier : un avis Google porte une note entière, la moyenne fractionnaire n'existe qu'au niveau du résumé.",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Note",
+          "values": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
+          }
+        },
+        "code": {
+          "prop": "note"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "description": "Enveloppe des cinq bandes exclusives. Une seule est rendue à la fois — la projection Figma résout `visibleWhen` par variante, donc le master porte cinq variantes et non cinq calques superposés.",
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "align": "center"
+      },
+      "parts": {
+        "note1": {
+          "visibleWhen": {
+            "prop": "note",
+            "equals": "1"
+          },
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "tokens": {
+            "gap": "{space.3}"
+          },
+          "parts": {
+            "note1Etoile1": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note1Etoile2": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            },
+            "note1Etoile3": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            },
+            "note1Etoile4": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            },
+            "note1Etoile5": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            }
+          }
+        },
+        "note2": {
+          "visibleWhen": {
+            "prop": "note",
+            "equals": "2"
+          },
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "tokens": {
+            "gap": "{space.3}"
+          },
+          "parts": {
+            "note2Etoile1": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note2Etoile2": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note2Etoile3": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            },
+            "note2Etoile4": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            },
+            "note2Etoile5": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            }
+          }
+        },
+        "note3": {
+          "visibleWhen": {
+            "prop": "note",
+            "equals": "3"
+          },
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "tokens": {
+            "gap": "{space.3}"
+          },
+          "parts": {
+            "note3Etoile1": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note3Etoile2": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note3Etoile3": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note3Etoile4": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            },
+            "note3Etoile5": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            }
+          }
+        },
+        "note4": {
+          "visibleWhen": {
+            "prop": "note",
+            "equals": "4"
+          },
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "tokens": {
+            "gap": "{space.3}"
+          },
+          "parts": {
+            "note4Etoile1": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note4Etoile2": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note4Etoile3": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note4Etoile4": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note4Etoile5": {
+              "icon": {
+                "asset": "star-empty",
+                "size": 16
+              }
+            }
+          }
+        },
+        "note5": {
+          "visibleWhen": {
+            "prop": "note",
+            "equals": "5"
+          },
+          "layout": {
+            "display": "flex",
+            "direction": "row",
+            "align": "center"
+          },
+          "tokens": {
+            "gap": "{space.3}"
+          },
+          "parts": {
+            "note5Etoile1": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note5Etoile2": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note5Etoile3": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note5Etoile4": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            },
+            "note5Etoile5": {
+              "icon": {
+                "asset": "star",
+                "size": 16
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "85029a113e23bf7faec3a0714b983d4a824b0722",
+      "nodeId": "2480:5365",
+      "dumpedAt": "2026-08-18"
+    },
+    "code": {
+      "importPath": "src/components/Notation",
+      "export": "Notation"
+    }
+  }
+}

@@ -16,20 +16,23 @@ Verrou reproductible des entrées consommées par une qualification.
 | `snapshotId` | identifiant | Stable, unique dans l'intégration |
 | `odoo.image` | chaîne | Tag d'image exact, jamais flottant |
 | `odoo.sourceCommit` | SHA Git | Commit de référence des APIs builder |
-| `contracts[]` | `PinnedInput` | Exactement les 5 contrats du périmètre |
+| `contracts[]` | `PinnedInput` | Fermeture exacte des racines actives |
 | `tokens[]` | `PinnedInput` | Sources de tokens réellement lues |
 | `registries[]` | `PinnedInput` | Icônes et littéraux nommés utilisés |
 | `assets[]` | `PinnedInput` | Fontes/images copiées par le build |
-| `graphDigest` | SHA-256 | Digest canonique de la fermeture des 2 racines |
+| `graphDigest` | SHA-256 | Digest canonique de la fermeture des racines actives |
 
 Un `PinnedInput` contient `path`, `kind`, `id`, `version` si la source est versionnée, et `sha256`.
 Le chemin référence la source du dépôt, jamais une copie sous `integrations/odoo/`.
 
 ### Validation
 
-- Les racines sont `ds.presentation@2.5.0` et `ds.google-reviews@1.0.0` au snapshot initial.
-- La fermeture contient exactement `ds.presentation`, `ds.section-header`, `ds.button`,
-  `ds.google-reviews` et `ds.review-card`.
+- Le snapshot initial portait `ds.presentation@2.5.0` et `ds.google-reviews@1.0.0`.
+- L'extension du 2026-08-11 ajoute `ds.hero@1.5.0` comme troisième racine posable.
+- L'extension Équipe du 2026-08-11 ajoute `ds.equipe@1.2.0` comme quatrième racine posable.
+- La fermeture active contient `ds.presentation`, `ds.section-header`, `ds.button`,
+  `ds.google-reviews`, `ds.review-card`, `ds.hero`, `ds.equipe`, `ds.member-card` et
+  `ds.member-picture`.
 - Tout hash ou version observé différent met le snapshot en état `drifted`.
 - Un repin est une action explicite qui invalide les anciennes preuves affectées.
 
@@ -42,7 +45,7 @@ Décisions owner pour une section racine et toutes ses occurrences imbriquées.
 | `schemaVersion` | version | Obligatoire |
 | `configId` | identifiant | Unique et stable |
 | `authoringVersion` | semver | Bump à chaque changement de politique |
-| `rootContract` | `{id, version}` | Une des 2 sections posables |
+| `rootContract` | `{id, version}` | Une des sections posables du snapshot |
 | `snapshotId` | référence | Doit résoudre vers le lock actif |
 | `rootActions` | `RootActionDecision[]` | Un verdict explicite par action connue |
 | `controls` | `ControlDecision[]` | Décisions de props |
@@ -90,8 +93,8 @@ Mécanismes initiaux : `plain-text`, `rich-text`, `boolean`, `enum`, `number`, `
 
 ### Couverture
 
-Le validateur calcule la fermeture depuis le snapshot. Il attend un verdict unique pour chacune des
-30 props et 61 parts locales, puis vérifie les occurrences imbriquées et les wildcards de repeat.
+Le validateur calcule la fermeture depuis le snapshot. Il attend un verdict unique pour chaque prop
+et chaque part locale, puis vérifie les occurrences imbriquées et les wildcards de repeat.
 Une part conditionnelle absente au rendu courant reste obligatoire dans la config.
 
 ## 3. `AdaptationRegistry`

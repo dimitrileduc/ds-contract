@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "5cd48b7",
+    "gitCommit": "f279da78",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -77,7 +77,7 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -130,7 +130,7 @@
     {
       "id": "ds.section-header",
       "name": "SectionHeader",
-      "version": "2.1.1",
+      "version": "2.2.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -185,7 +185,7 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.2.1",
+      "version": "1.3.0",
       "status": "draft",
       "category": "atom",
       "propNames": [
@@ -199,7 +199,7 @@
     {
       "id": "ds.member-card",
       "name": "MemberCard",
-      "version": "1.2.1",
+      "version": "1.4.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -213,7 +213,7 @@
     {
       "id": "ds.equipe",
       "name": "Equipe",
-      "version": "1.1.2",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -315,7 +315,7 @@
     {
       "id": "ds.formulaire",
       "name": "Formulaire",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -349,7 +349,7 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -388,12 +388,27 @@
       "summary": "Piqueray Header."
     },
     {
-      "id": "ds.hero",
-      "name": "Hero",
-      "version": "1.4.0",
+      "id": "ds.hero-video",
+      "name": "HeroVideo",
+      "version": "1.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
+        "backgroundUrl",
+        "videoUrl",
+        "backgroundAlt",
+        "accroche"
+      ],
+      "summary": "Piqueray HeroVideo."
+    },
+    {
+      "id": "ds.hero",
+      "name": "Hero",
+      "version": "1.6.0",
+      "status": "draft",
+      "category": "section",
+      "propNames": [
+        "ctaHref",
         "backgroundUrl",
         "backgroundAlt",
         "sousTitre"
@@ -403,7 +418,7 @@
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "2.5.0",
+      "version": "2.6.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -455,7 +470,7 @@
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "status": "draft",
       "category": "section",
       "propNames": [

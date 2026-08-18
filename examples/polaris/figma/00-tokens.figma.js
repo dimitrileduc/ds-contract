@@ -9,8 +9,8 @@ const BRAND = [];
 const BRAND_MODES = ["Default"];
 const SEMANTIC = [{"name":"font/body-lg/size","type":"FLOAT","light":"p/text-body-lg-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-body-lg-size)"},{"name":"font/body-lg/weight","type":"FLOAT","light":"p/text-body-lg-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-body-lg-weight)"},{"name":"font/body-md/size","type":"FLOAT","light":"p/text-body-md-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-body-md-size)"},{"name":"font/body-md/weight","type":"FLOAT","light":"p/text-body-md-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-body-md-weight)"},{"name":"font/body-sm/size","type":"FLOAT","light":"p/text-body-sm-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-body-sm-size)"},{"name":"font/body-sm/weight","type":"FLOAT","light":"p/text-body-sm-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-body-sm-weight)"},{"name":"font/body-xs/size","type":"FLOAT","light":"p/text-body-xs-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-body-xs-size)"},{"name":"font/body-xs/weight","type":"FLOAT","light":"p/text-body-xs-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-body-xs-weight)"},{"name":"font/heading-2xl/size","type":"FLOAT","light":"p/text-heading-2xl-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-heading-2xl-size)"},{"name":"font/heading-2xl/weight","type":"FLOAT","light":"p/text-heading-2xl-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-heading-2xl-weight)"},{"name":"font/heading-3xl/size","type":"FLOAT","light":"p/text-heading-3xl-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-heading-3xl-size)"},{"name":"font/heading-3xl/weight","type":"FLOAT","light":"p/text-heading-3xl-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-heading-3xl-weight)"},{"name":"font/heading-lg/size","type":"FLOAT","light":"p/text-heading-lg-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-heading-lg-size)"},{"name":"font/heading-lg/weight","type":"FLOAT","light":"p/text-heading-lg-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-heading-lg-weight)"},{"name":"font/heading-md/size","type":"FLOAT","light":"p/text-heading-md-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-heading-md-size)"},{"name":"font/heading-md/weight","type":"FLOAT","light":"p/text-heading-md-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-heading-md-weight)"},{"name":"font/heading-sm/size","type":"FLOAT","light":"p/text-heading-sm-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-heading-sm-size)"},{"name":"font/heading-sm/weight","type":"FLOAT","light":"p/text-heading-sm-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-heading-sm-weight)"},{"name":"font/heading-xl/size","type":"FLOAT","light":"p/text-heading-xl-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-heading-xl-size)"},{"name":"font/heading-xl/weight","type":"FLOAT","light":"p/text-heading-xl-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-heading-xl-weight)"},{"name":"font/heading-xs/size","type":"FLOAT","light":"p/text-heading-xs-font-size","scopes":["FONT_SIZE"],"codeSyntax":"var(--font-heading-xs-size)"},{"name":"font/heading-xs/weight","type":"FLOAT","light":"p/text-heading-xs-font-weight","scopes":["ALL_SCOPES"],"codeSyntax":"var(--font-heading-xs-weight)"}];
 const SEMANTIC_HAS_DARK = false;
-// Named text styles derived from semantic font.<group>.size tokens.
-const TEXT_STYLES = [{"name":"body-lg","tokenPath":"font.body-lg.size","fontSize":14,"fontStyle":"Medium"},{"name":"body-md","tokenPath":"font.body-md.size","fontSize":13,"fontStyle":"Medium"},{"name":"body-sm","tokenPath":"font.body-sm.size","fontSize":12,"fontStyle":"Medium"},{"name":"body-xs","tokenPath":"font.body-xs.size","fontSize":11,"fontStyle":"Medium"},{"name":"heading-2xl","tokenPath":"font.heading-2xl.size","fontSize":30,"fontStyle":"Bold"},{"name":"heading-3xl","tokenPath":"font.heading-3xl.size","fontSize":36,"fontStyle":"Bold"},{"name":"heading-lg","tokenPath":"font.heading-lg.size","fontSize":20,"fontStyle":"Medium"},{"name":"heading-md","tokenPath":"font.heading-md.size","fontSize":14,"fontStyle":"Medium"},{"name":"heading-sm","tokenPath":"font.heading-sm.size","fontSize":13,"fontStyle":"Medium"},{"name":"heading-xl","tokenPath":"font.heading-xl.size","fontSize":24,"fontStyle":"Bold"},{"name":"heading-xs","tokenPath":"font.heading-xs.size","fontSize":12,"fontStyle":"Medium"}];
+// Named text styles derived from semantic typography recipes.
+const TEXT_STYLES = [{"name":"body-lg","tokenPath":"font.body-lg.size","weightPath":"font.body-lg.weight","fontFamily":"Inter","fontSize":14,"fontWeight":450,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"body-md","tokenPath":"font.body-md.size","weightPath":"font.body-md.weight","fontFamily":"Inter","fontSize":13,"fontWeight":450,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"body-sm","tokenPath":"font.body-sm.size","weightPath":"font.body-sm.weight","fontFamily":"Inter","fontSize":12,"fontWeight":450,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"body-xs","tokenPath":"font.body-xs.size","weightPath":"font.body-xs.weight","fontFamily":"Inter","fontSize":11,"fontWeight":450,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"heading-2xl","tokenPath":"font.heading-2xl.size","weightPath":"font.heading-2xl.weight","fontFamily":"Inter","fontSize":30,"fontWeight":700,"fontStyle":"Bold","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"heading-3xl","tokenPath":"font.heading-3xl.size","weightPath":"font.heading-3xl.weight","fontFamily":"Inter","fontSize":36,"fontWeight":700,"fontStyle":"Bold","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"heading-lg","tokenPath":"font.heading-lg.size","weightPath":"font.heading-lg.weight","fontFamily":"Inter","fontSize":20,"fontWeight":650,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"heading-md","tokenPath":"font.heading-md.size","weightPath":"font.heading-md.weight","fontFamily":"Inter","fontSize":14,"fontWeight":650,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"heading-sm","tokenPath":"font.heading-sm.size","weightPath":"font.heading-sm.weight","fontFamily":"Inter","fontSize":13,"fontWeight":650,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"heading-xl","tokenPath":"font.heading-xl.size","weightPath":"font.heading-xl.weight","fontFamily":"Inter","fontSize":24,"fontWeight":700,"fontStyle":"Bold","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false},{"name":"heading-xs","tokenPath":"font.heading-xs.size","weightPath":"font.heading-xs.weight","fontFamily":"Inter","fontSize":12,"fontWeight":650,"fontStyle":"Medium","letterSpacing":{"unit":"PIXELS","value":0},"textCase":"ORIGINAL","requiresExistingMarker":false}];
 
 // File guard: multi-file bridge routing has been observed to hit the wrong
 // file — never write without verifying the target.
@@ -41,6 +41,54 @@ function hexToRgb(value) {
   };
   if (h.length === 8) c.a = parseInt(h.slice(6, 8), 16) / 255;
   return c;
+}
+
+// Text-style safety preflight runs BEFORE the first variable mutation.
+// Project recipes describe historical objects: 01-tokens may update them only
+// after a separate, reviewed migration attached their stable token markers.
+const localTextStyles = await figma.getLocalTextStylesAsync();
+const styleByToken = {};
+for (const s of localTextStyles) {
+  const tp = s.getSharedPluginData('ds_contracts', 'textStyleToken');
+  if (!tp) continue;
+  if (styleByToken[tp]) throw new Error('Duplicate Text Style identity marker: ' + tp);
+  styleByToken[tp] = s;
+}
+const TEXT_STYLE_ALIASES = { 'Semi Bold': ['Semi Bold', 'SemiBold'], 'Extra Light': ['Extra Light', 'ExtraLight'], 'Extra Bold': ['Extra Bold', 'ExtraBold'] };
+const compactStyle = (value) => String(value || '').replace(/\s+/g, '').toLowerCase();
+const sameNumber = (a, b) => typeof a === 'number' && Math.abs(a - b) < 0.001;
+const sameLineHeight = (actual, expected) => expected === undefined
+  ? actual && actual.unit === 'AUTO'
+  : actual && actual.unit === 'PIXELS' && sameNumber(actual.value, expected);
+const sameSpacing = (actual, expected) => actual && actual.unit === expected.unit && sameNumber(actual.value, expected.value);
+async function textStyleFont(t) {
+  for (const style of (TEXT_STYLE_ALIASES[t.fontStyle] || [t.fontStyle])) {
+    try {
+      const font = { family: t.fontFamily, style };
+      await figma.loadFontAsync(font);
+      return font;
+    } catch (e) { /* next spelling */ }
+  }
+  throw new Error('Cannot load Text Style font ' + t.fontFamily + ' ' + t.fontStyle + ' for ' + t.name);
+}
+const sameTextStyleDefinition = (style, t, font) =>
+  style.name === t.name &&
+  style.fontName && style.fontName.family === font.family &&
+  compactStyle(style.fontName.style) === compactStyle(font.style) &&
+  sameNumber(style.fontSize, t.fontSize) &&
+  sameLineHeight(style.lineHeight, t.lineHeight) &&
+  sameSpacing(style.letterSpacing, t.letterSpacing) &&
+  (style.textCase || 'ORIGINAL') === t.textCase;
+for (const t of TEXT_STYLES) {
+  if (!t.requiresExistingMarker) continue;
+  const s = styleByToken[t.tokenPath];
+  if (!s) {
+    throw new Error('Missing historical Text Style marker for ' + t.name + ' (' + t.tokenPath + '); run the reviewed marker-only migration first');
+  }
+  const font = await textStyleFont(t);
+  if (!sameTextStyleDefinition(s, t, font)) {
+    throw new Error('Historical Text Style "' + t.name + '" differs from its token recipe; refusing token writes');
+  }
 }
 
 const collections = await figma.variables.getLocalVariableCollectionsAsync();
@@ -133,30 +181,25 @@ for (const t of SEMANTIC) {
   v.setVariableCodeSyntax('WEB', t.codeSyntax);
 }
 
-// Text styles: upsert by IDENTITY MARKER (ds_contracts/textStyleToken =
-// the semantic size-token path), never by name — a rename on either side
-// must not fork identity, and a foreign style that happens to share a name
-// is never touched (same rule as component sets). Idempotent: re-runs
-// update the marked style in place.
-const localTextStyles = await figma.getLocalTextStylesAsync();
-const styleByToken = {};
-for (const s of localTextStyles) {
-  const tp = s.getSharedPluginData('ds_contracts', 'textStyleToken');
-  if (tp) styleByToken[tp] = s;
-}
+// Text styles reconcile by IDENTITY MARKER only. Historical Piqueray styles
+// were already verified above; name-based adoption is deliberately forbidden.
 let createdStyles = 0;
 for (const t of TEXT_STYLES) {
   let s = styleByToken[t.tokenPath];
+  const font = await textStyleFont(t);
   if (!s) {
+    if (t.requiresExistingMarker) throw new Error('Missing historical Text Style marker after preflight: ' + t.name);
     s = figma.createTextStyle();
+    createdStyles++;
     s.setSharedPluginData('ds_contracts', 'textStyleToken', t.tokenPath);
     styleByToken[t.tokenPath] = s;
-    createdStyles++;
   }
-  await figma.loadFontAsync({ family: 'Inter', style: t.fontStyle });
   s.name = t.name;
-  s.fontName = { family: 'Inter', style: t.fontStyle };
+  s.fontName = font;
   s.fontSize = t.fontSize;
+  s.lineHeight = t.lineHeight === undefined ? { unit: 'AUTO' } : { unit: 'PIXELS', value: t.lineHeight };
+  s.letterSpacing = t.letterSpacing;
+  s.textCase = t.textCase;
   s.description = 'ds_contracts: derived from tokens/' + t.tokenPath;
 }
 

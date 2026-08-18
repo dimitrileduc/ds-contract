@@ -311,3 +311,20 @@ silencieusement : il déclenche repin et requalification affectée.
 Les adaptateurs QWeb/JS manuels et la frontière d'API Odoo interne ne sont pas des violations de
 sortie générée : ils sont des sources cible-specific, isolées, testées et comptées. Le générateur
 générique qui pourrait les supprimer reste volontairement dans 025 après accumulation des faits.
+
+## Extension d'exécution — `ds.hero` (2026-08-11)
+
+L'extension réutilise la fondation dans son ordre prescrit : snapshot/repin, décisions exhaustives,
+spike du média natif, QWeb et options, puis preuves. Elle ajoute `hero.authoring.json`, le template
+et l'entrée de snippet Hero, un contrôle média qui laisse Odoo posséder le remplacement/sauvegarde
+du nœud, et les scénarios fonctionnel, visuel, isolation combinée et install/update à trois racines.
+Le résultat n'ajoute ni émetteur Odoo dans `core/`, ni bitmap de contenu dans l'addon, ni migration
+automatique du HTML déjà sauvegardé.
+
+## Extension d'exécution — `ds.equipe` (2026-08-11)
+
+L'extension suit le même ordre : snapshot vert puis repin, authoring exhaustif sur les chemins
+Équipe → MemberCard[] → MemberPicture, spike repeat/fermeture, QWeb composé, façade média native,
+preuves fonctionnelle et visuelle, isolation combinée 2×4 et install/update à quatre racines. Le
+premier spike média a révélé puis fermé la perte `src`/`alt` causée par une réécriture prématurée de
+`src`; la pipeline finale laisse `ImageSavePlugin` produire l'URL `/web/image` au save.

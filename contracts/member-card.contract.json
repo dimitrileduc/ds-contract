@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.member-card",
   "name": "MemberCard",
-  "version": "1.2.1",
+  "version": "1.4.0",
   "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides are explicit code-only photo data, propagated to the composed MemberPicture without flattening its image anatomy.",
   "semantics": {
     "element": "div",
@@ -71,7 +71,9 @@
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 364
       },
       "geometryJustification": {
         "cause": "typographic-subpixel-rounding",
@@ -95,6 +97,10 @@
       },
       "parts": {
         "MemberPicture": {
+          "layout": {
+            "width": "fill",
+            "aspectRatio": 1
+          },
           "component": {
             "id": "ds.member-picture",
             "props": {
@@ -125,6 +131,9 @@
               },
               "literals": {
                 "line-height": "40px"
+              },
+              "declared": {
+                "text-align": "center"
               }
             },
             "Poste": {
@@ -138,6 +147,9 @@
               },
               "literals": {
                 "line-height": "20px"
+              },
+              "declared": {
+                "text-align": "center"
               }
             }
           }
@@ -145,8 +157,7 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "gap": "{space.16}",
-        "width": "{size.member-card.root}"
+        "gap": "{space.16}"
       }
     }
   },

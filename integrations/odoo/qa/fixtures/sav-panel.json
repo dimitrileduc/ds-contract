@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "rootSelector": ".s_pqr_sav",
+  "rootControls": [
+    "sav-background-alt",
+    "sav-background-url",
+    "sav-body",
+    "sav-cta-label",
+    "sav-photo-alt",
+    "sav-photo-url",
+    "sav-title"
+  ],
+  "rootActions": [
+    "move",
+    "duplicate",
+    "remove"
+  ],
+  "forbiddenRootActions": [
+    "save-as-custom",
+    "resize",
+    "background",
+    "anchor"
+  ],
+  "forbiddenNativeOptions": [
+    "crop",
+    "filter",
+    "link",
+    "tooltip",
+    "dimension",
+    "format",
+    "shape",
+    "transform",
+    "replace image",
+    "replace media",
+    "alignment",
+    "style"
+  ]
+}

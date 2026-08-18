@@ -8,14 +8,14 @@
     "[pass] la page de qualification Google Reviews est publique — attendu « HTTP 200 », observé « HTTP 200 »",
     "[pass] la page fonctionnelle démarre vide pour une insertion Website réelle — attendu « 0 instance », observé « 0 instance(s) »",
     "[pass] le QWeb public rend le sample contractuel Google Reviews — attendu « HTTP 200 · 1 × 5 cartes identifiées », observé « review-0:Prénom N. · review-1:Prénom N. · review-2:Prénom N. · review-3:Prénom N. · review-4:Prénom N. »",
-    "[pass] la page de qualification expose un #wrap sauvegardable — attendu « data-oe-model/id/xpath sur #wrap », observé « {\"model\":\"ir.ui.view\",\"id\":\"1320\",\"xpath\":\"/t[1]/t[1]/div[1]\"} »",
+    "[pass] la page de qualification expose un #wrap sauvegardable — attendu « data-oe-model/id/xpath sur #wrap », observé « {\"model\":\"ir.ui.view\",\"id\":\"1346\",\"xpath\":\"/t[1]/t[1]/div[1]\"} »",
     "[pass] le catalogue Website insère deux instances Google Reviews indépendantes — attendu « A=5 et B=5 cartes », observé « A=5 · B=5 »",
     "[pass] ajout ciblé — A passe de 5 à 6 sans fuite vers B — attendu « A=6, B=5 », observé « A=6 · B=5 »",
     "[pass] réordre ciblé — la nouvelle carte remonte dans A seulement — attendu « marque review-5 en avant-dernière position de A; B=5 », observé « A=review-0, review-1, review-2, review-3, review-5, review-4 · B=5 »",
     "[pass] suppression ciblée — A revient à 5 sans fuite vers B — attendu « A=5, B=5 », observé « A=5 · B=5 »",
     "[pass] collection vide — A accepte zéro carte sans toucher B — attendu « A=0, B=5 », observé « A=0 · B=5 »",
     "[pass] collection vide — A recrée sa première carte — attendu « A=1, B=5 », observé « A=1 · B=5 »",
-    "[pass] booléens carte et photo incomplète restent locaux et sûrs — attendu « initiale=false, vérifié=false, photo incomplète repliée », observé « {\"initiale\":\"false\",\"verifie\":\"false\",\"photo\":\"false\",\"avatarHidden\":true} »",
+    "[pass] note pilotée depuis le panneau, avatar dérivé, badge inconditionnel — attendu « note=3 (bande note3 seule visible), avatar=Initiale faute de photo publiée, badge vérifié présent », observé « {\"note\":\"3\",\"avatar\":\"Initiale\",\"bandeVisible\":\"note3\",\"photoHidden\":true,\"badge\":true} »",
     "[pass] remplacement avatar — dialogue média limité aux images — attendu « un dialogue, seul onglet Images », observé « 1 dialogue · onglets=Images »",
     "[pass] sauvegarde — Odoo persiste la vue Google Reviews — attendu « RPC ir.ui.view/save HTTP 2xx », observé « HTTP 200 »",
     "[pass] public anonyme — A sauvegarde la carte QA, B garde ses cinq samples — attendu « A=1 avec contenu QA; B=5 samples », observé « #1:1:QA Alice · #2:5:Prénom N. »",
@@ -29,5 +29,5 @@
     }
   ],
   "limitCodes": [],
-  "durationMs": 90404
+  "durationMs": 96071
 }

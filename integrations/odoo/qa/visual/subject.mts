@@ -73,6 +73,9 @@ export interface Subject {
   /** Élément qui définit l'origine du clip côté Odoo. Sans ce sélecteur, la
    * capture commence à l'origine de la page (utile au self-test synthétique). */
   readonly odooClipSelector?: string;
+  /** Largeur de contenu imposée au cadre HTML pour les racines fluides. Le
+   *  padding FRAME_PADDING_TOKEN reste ajouté autour et appartient au clip. */
+  readonly frameContentWidth?: number;
   /** Clip épinglé en px CSS, identique des deux côtés. Origine (0,0) = coin
    *  haut-gauche de la page, marge du cadre incluse. */
   readonly clip: { readonly width: number; readonly height: number };
@@ -130,6 +133,9 @@ export async function loadSubjects(spec: string): Promise<readonly Subject[]> {
     }
     if (!s.clip || !(s.clip.width > 0) || !(s.clip.height > 0)) {
       throw new Error(`${spec} : sujet « ${s.key} » sans clip positif.`);
+    }
+    if (s.frameContentWidth !== undefined && !(s.frameContentWidth > 0)) {
+      throw new Error(`${spec} : sujet « ${s.key} » avec frameContentWidth non positif.`);
     }
     if (cles.has(s.key)) throw new Error(`${spec} : clé de sujet dupliquée « ${s.key} » — les captures s'écraseraient.`);
     if (urls.has(s.odooPath)) throw new Error(`${spec} : \`odooPath\` dupliqué « ${s.odooPath} ».`);

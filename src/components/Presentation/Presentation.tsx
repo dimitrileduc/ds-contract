@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.5.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.6.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -16,7 +16,7 @@ export interface PresentationProps extends HTMLAttributes<HTMLDivElement> {
   titre?: string;
 }
 
-/** Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
+/** Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing. */
 export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(function Presentation(
   {
     bouton = true,

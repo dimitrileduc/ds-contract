@@ -27,42 +27,112 @@
   ],
   "contracts": [
     {
+      "id": "ds.accordion-row",
+      "kind": "contract",
+      "path": "contracts/accordion-row.contract.json",
+      "sha256": "52ed8d72816cab10bf77bc4b362e188581b0e1eb6ce2ccd37f31fe09c08a715b",
+      "version": "1.2.0"
+    },
+    {
       "id": "ds.button",
       "kind": "contract",
       "path": "contracts/button.contract.json",
-      "sha256": "646ba96e30de71cc710b30d6c3796063b033860ff7785d52a9fc11b70dd6dd59",
-      "version": "2.0.0"
+      "sha256": "d50a3bac1a4a3c0fa9110f97659b03716114079260b6e4bd0fb76f43aeabb2bb",
+      "version": "2.0.1"
+    },
+    {
+      "id": "ds.devis",
+      "kind": "contract",
+      "path": "contracts/devis.contract.json",
+      "sha256": "1b08e87f267f09a406b6eda8707d20d51bee81b98a74427c518796419e0644b9",
+      "version": "1.2.0"
+    },
+    {
+      "id": "ds.equipe",
+      "kind": "contract",
+      "path": "contracts/equipe.contract.json",
+      "sha256": "1170a1497b4f6f1771637e98ff672ec48e2ad28ce1e3276ac328e46ae6966fc2",
+      "version": "1.2.0"
+    },
+    {
+      "id": "ds.faq",
+      "kind": "contract",
+      "path": "contracts/faq.contract.json",
+      "sha256": "cdd5a5a6bdc244bcbe9ddc62fb9382b4e40666b4d3bc058f8d8ccdc74828da1b",
+      "version": "1.3.0"
     },
     {
       "id": "ds.google-reviews",
       "kind": "contract",
       "path": "contracts/google-reviews.contract.json",
-      "sha256": "c8a1cd9f8a624702e44ccdcba11b0c19770acba876c5d2ddf08037501d0a37df",
+      "sha256": "c34c5acd43acee4b65bbcaabb59a9eddbfd1e89b4f12ce442674b2829d0a5e21",
+      "version": "2.0.0"
+    },
+    {
+      "id": "ds.hero",
+      "kind": "contract",
+      "path": "contracts/hero.contract.json",
+      "sha256": "c317c3761a66deccdce573a9e7a53eda6b176d88ecfbce1ca98a0dfef79b1db9",
+      "version": "1.5.0"
+    },
+    {
+      "id": "ds.member-card",
+      "kind": "contract",
+      "path": "contracts/member-card.contract.json",
+      "sha256": "de61fd512da2a2bd6dd8d4a38d55bcfb1a2a89961069ae9899f79c3f3aec8c9d",
+      "version": "1.4.0"
+    },
+    {
+      "id": "ds.member-picture",
+      "kind": "contract",
+      "path": "contracts/member-picture.contract.json",
+      "sha256": "425bbe1739c8d22dfbb5102071496cfafe7a4f7a9d446b8a0d8da2e2dd231c2c",
+      "version": "1.3.0"
+    },
+    {
+      "id": "ds.notation",
+      "kind": "contract",
+      "path": "contracts/notation.contract.json",
+      "sha256": "c9f32af47bbffaa9ef40355626e532bbe9cf14b3c0dae4764526b5d6a76725f8",
       "version": "1.0.0"
     },
     {
       "id": "ds.presentation",
       "kind": "contract",
       "path": "contracts/presentation.contract.json",
-      "sha256": "2b47614d58a08f7756c25aa01cf6e60784520547bad71172b3bba5a496814cad",
-      "version": "2.5.0"
+      "sha256": "b5a3408b951c7b1d7585203cdb94bda964280c134a70cbaf5a990a3a38437d00",
+      "version": "2.6.0"
     },
     {
       "id": "ds.review-card",
       "kind": "contract",
       "path": "contracts/review-card.contract.json",
-      "sha256": "2747d8388f2896ba445803801d676f81a0a630d8e25f37fb9c4f5d440cd94b04",
-      "version": "1.0.0"
+      "sha256": "d4b23d8aec9a29c14dc3213d37ee6e9f20bdf278485f922577d7a9523a01ea97",
+      "version": "2.0.0"
+    },
+    {
+      "id": "ds.sav",
+      "kind": "contract",
+      "path": "contracts/sav.contract.json",
+      "sha256": "a1cd2c9e772e33d61c00542b5f0bd23a4167173a495902619bfcf6e14874cca3",
+      "version": "1.4.0"
     },
     {
       "id": "ds.section-header",
       "kind": "contract",
       "path": "contracts/section-header.contract.json",
-      "sha256": "f89d59eb97b97232678fc6aa7d11bca4b18c3c67342b5a94bb8c5895aa08dd9c",
-      "version": "2.1.1"
+      "sha256": "c4020634786d9d7d237f3d843c8899a8c65728bbb16a94b52be5266ba5235e87",
+      "version": "2.2.0"
+    },
+    {
+      "id": "ds.texte-seo",
+      "kind": "contract",
+      "path": "contracts/texte-seo.contract.json",
+      "sha256": "1508a782013bcc05cdff1108622d78b89f429513147c63ef67d91c6da4c848ca",
+      "version": "2.1.0"
     }
   ],
-  "graphDigest": "9151f14301045d95c6c003663fdafc7da4da505cda0e2da5e45e768101135595",
+  "graphDigest": "102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc",
   "odoo": {
     "image": "odoo:19.0-20260803",
     "postgresImage": "postgres:15",
@@ -79,7 +149,7 @@
       "id": "named-literals",
       "kind": "registry",
       "path": "contracts/named-literals.registry.json",
-      "sha256": "7a5d070aa12d1a6f76e6748f7e82019a5bbee9710b74211c515f52bfd20e75f3"
+      "sha256": "219b139524a653a16777c0774adbb7a12655c0ca119ff63e2785d4e5ac845716"
     }
   ],
   "schemaVersion": "1.0.0",
@@ -89,13 +159,13 @@
       "id": "primitives",
       "kind": "tokens",
       "path": "tokens/primitives.tokens.json",
-      "sha256": "f26251397f6e3dad0388241fd9605e883702c0ac4d344bf5eae958dcddeb9bab"
+      "sha256": "f428a01915e13d5c23a2c966a6f7f9d261726bdc804b0c7af00ef9132987b546"
     },
     {
       "id": "semantic",
       "kind": "tokens",
       "path": "tokens/semantic.tokens.json",
-      "sha256": "c90c9555134d27a393f394e7ec3c168d0dd051885794b20f2dba39eea54dd669"
+      "sha256": "da6eb475ed66df3d7ac0f96229f5d8d235a54af2b61ba6b494722dd7b60b783c"
     },
     {
       "id": "semantic.light",

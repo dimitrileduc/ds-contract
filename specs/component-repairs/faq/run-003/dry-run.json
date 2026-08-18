@@ -1,0 +1,147 @@
+{
+  "campaignId": "revalidate-faq-after-shared-repairs",
+  "filePin": "2386549228582551721",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "fill-faq-section-header-instance",
+      "targetId": "faq",
+      "mechanism": "set-properties",
+      "nodeId": "2104:2914",
+      "structuralPath": "0",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:38059"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "0"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-faq-accordion-row-1",
+      "targetId": "faq",
+      "mechanism": "set-properties",
+      "nodeId": "2104:2914",
+      "structuralPath": "1/0",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:38072"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/0"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-faq-accordion-row-2",
+      "targetId": "faq",
+      "mechanism": "set-properties",
+      "nodeId": "2104:2914",
+      "structuralPath": "1/1",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:38078"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/1"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-faq-accordion-row-3",
+      "targetId": "faq",
+      "mechanism": "set-properties",
+      "nodeId": "2104:2914",
+      "structuralPath": "1/2",
+      "changes": {
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2104:2914"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:38084"
+        },
+        {
+          "field": "nodeType",
+          "equals": "INSTANCE"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/2"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

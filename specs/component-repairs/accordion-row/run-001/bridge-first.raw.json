@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-accordion-row",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386549228582551721",
+  "run": "first",
+  "scriptResults": [
+    {
+      "operationId": "link-grand-closed-question-style",
+      "targetId": "accordion-row",
+      "nodeId": "2059:1417",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2347:34248"
+        ]
+      }
+    },
+    {
+      "operationId": "link-question-02-style",
+      "targetId": "accordion-row",
+      "nodeId": "2059:1417",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2347:34260"
+        ]
+      }
+    },
+    {
+      "operationId": "link-question-03-style",
+      "targetId": "accordion-row",
+      "nodeId": "2059:1417",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2347:34254"
+        ]
+      }
+    },
+    {
+      "operationId": "link-contenu-04-style",
+      "targetId": "accordion-row",
+      "nodeId": "2059:1417",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2347:34258"
+        ]
+      }
+    },
+    {
+      "operationId": "link-question-05-style",
+      "targetId": "accordion-row",
+      "nodeId": "2059:1417",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2347:34266"
+        ]
+      }
+    },
+    {
+      "operationId": "link-contenu-06-style",
+      "targetId": "accordion-row",
+      "nodeId": "2059:1417",
+      "result": {
+        "applied": true,
+        "createdNodeIds": [],
+        "changedNodeIds": [
+          "2347:34270"
+        ]
+      }
+    }
+  ],
+  "inspection": {
+    "masters": [
+      {
+        "targetId": "accordion-row",
+        "nodeId": "2059:1417",
+        "componentKey": "6b15207fffd75082f1f8c423eab771aa6709179d",
+        "masterCount": 1,
+        "variantNames": [
+          "Taille=Grand, Etat=Ferme",
+          "Taille=Grand, Etat=Ouvert",
+          "Taille=Petit, Etat=Ferme",
+          "Taille=Petit, Etat=Ouvert"
+        ]
+      }
+    ],
+    "pageWrites": [],
+    "responsiveChecks": [
+      {
+        "targetId": "accordion-row",
+        "width": 1440,
+        "overflow": false,
+        "overflowNodeIds": [],
+        "overflowIssues": [],
+        "screenshotRef": "specs/component-repairs/accordion-row/run-001/responsive-1440-first.png"
+      },
+      {
+        "targetId": "accordion-row",
+        "width": 768,
+        "overflow": false,
+        "overflowNodeIds": [],
+        "overflowIssues": [],
+        "screenshotRef": "specs/component-repairs/accordion-row/run-001/responsive-768-first.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "receiptId": "devis-visual-odoo-019-foundation",
+  "scenarioId": "devis-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "devis-default",
+  "observations": [
+    "[pass] captures — référence HTML, public Odoo et rapport existent — attendu « 3 artefacts », observé « 3 artefacts »",
+    "[pass] comparaison — dimensions identiques et score mesuré — attendu « statut mesurée, score numérique », observé « mesurée · 0.02663314723173878 % »",
+    "[pass] résidu — mesure nommée sans revendication pixel-perfect — attendu « 0.02663314723173878 % · cause anti-aliasing portée au rapport canonique », observé « 0.02663314723173878 % · cause anti-aliasing · fond noir + voile sans bitmap, texte et liseré du CTA seuls contours »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/devis-visual/reference/devis-default.png",
+      "sha256": "4abeae50447f2c44d14f54d3b03715d0801d5e6fd1a7f93b4ec2118e25e38e4f",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/devis-visual/odoo/devis-default.png",
+      "sha256": "6cc19ef769582e94efde08af7c7d7fbe82ba58f3413e57fa8b00901f5f7d3535",
+      "kind": "image"
+    },
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/devis-visual/diff/comparaison-image.json",
+      "sha256": "0efc05a93c548b2ab11ecbcecc091bb35a728b7786404663b6def355fb0ed9e0",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 4
+}

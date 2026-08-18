@@ -73,8 +73,14 @@ export function readQaEnv(): QaEnv {
     if (m) vars.set(m[1], m[2]);
   }
   return {
-    odooPort: vars.get('PQR_ODOO_PORT') ?? '8069',
-    dbName: vars.get('PQR_DB_NAME') ?? 'piqueray_qa',
+    // Les variables de PROCESSUS priment sur le fichier — même précédence que
+    // l'interpolation de docker compose (shell > --env-file). C'est ce qui
+    // permet à plusieurs vagues de qualification simultanées de s'isoler
+    // (COMPOSE_PROJECT_NAME + PQR_ODOO_PORT propres) sans se disputer le
+    // fichier `.env` partagé. Constaté le 2026-08-12 : trois sections portées
+    // en parallèle visaient la même base jetable.
+    odooPort: process.env.PQR_ODOO_PORT ?? vars.get('PQR_ODOO_PORT') ?? '8069',
+    dbName: process.env.PQR_DB_NAME ?? vars.get('PQR_DB_NAME') ?? 'piqueray_qa',
     // Une base créée par la CLI Odoo sans données de démo ouvre sur admin/admin.
     adminLogin: 'admin',
     adminPassword: 'admin',

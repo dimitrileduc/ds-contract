@@ -35,6 +35,32 @@ const imageHashOfBytes = (bytes) => {
   return `img-${h.toString(16)}-${bytes.length}`;
 };
 
+/** Seed the migrated historical Text Styles a brownfield file carries: one
+ * mock style per recipe at its exact metrics, marker-stamped with the
+ * ds_contracts/textStyleToken identity — the reviewed marker-only migration's
+ * RESULT, which every check that exercises the tokens step must precede.
+ * `omitMarkerFor` leaves exactly one style unmarked (the negative fixture for
+ * the adoption-refusal path). Returns the seeded count. */
+export function seedMarkedTextStyles(figma, recipes, { omitMarkerFor } = {}) {
+  let seeded = 0;
+  for (const recipe of recipes) {
+    const style = figma.createTextStyle();
+    style.name = recipe.name;
+    style.fontName = { family: recipe.fontFamily, style: recipe.fontStyle };
+    style.fontSize = recipe.fontSize;
+    style.lineHeight = recipe.lineHeight === undefined
+      ? { unit: 'AUTO' }
+      : { unit: 'PIXELS', value: recipe.lineHeight };
+    style.letterSpacing = recipe.letterSpacing;
+    style.textCase = recipe.textCase;
+    if (recipe.name !== omitMarkerFor) {
+      style.setSharedPluginData('ds_contracts', 'textStyleToken', recipe.tokenPath);
+    }
+    seeded++;
+  }
+  return seeded;
+}
+
 export function createFigmaMock() {
   const allStyles = [];
   const collections = [];
@@ -69,14 +95,23 @@ export function createFigmaMock() {
       this.primaryAxisSizingMode = 'AUTO';
       this.counterAxisSizingMode = 'AUTO';
       this.itemSpacing = 0;
+      this.gridColumnCount = 1;
+      this.gridRowCount = 1;
+      this.gridColumnGap = 0;
+      this.gridRowGap = 0;
+      this.gridColumnSizes = [{ type: 'FLEX', value: 1 }];
+      this.gridRowSizes = [{ type: 'HUG' }];
+      this.gridAutoTracks = 'ROWS';
+      this.gridItemsPositioning = 'ROW_AUTO_FLOW';
       this.paddingTop = 0;
       this.paddingRight = 0;
       this.paddingBottom = 0;
       this.paddingLeft = 0;
       this.layoutSizingHorizontal = 'HUG';
       this.layoutSizingVertical = 'HUG';
-      this.layoutPositioning = 'AUTO';
+      this._layoutPositioning = 'AUTO';
       this.constraints = { horizontal: 'MIN', vertical: 'MIN' };
+      this.constrainProportions = false;
       this.minWidth = null;
       this.maxWidth = null;
       this.minHeight = null;
@@ -85,6 +120,7 @@ export function createFigmaMock() {
       this.description = '';
       this.boundVariables = {};
       this.componentPropertyReferences = {};
+      this.isExposedInstance = false;
       this._shared = new Map();
       this._svgExport = null;
       // 017 : le nœud de maître dont celui-ci est le MIROIR (null si ce n'en est
@@ -96,6 +132,7 @@ export function createFigmaMock() {
         this.characters = '';
         this.fontSize = 16;
         this.fontName = { family: 'Inter', style: 'Regular' };
+        this._fontRanges = [];
         this.letterSpacing = { unit: 'PERCENT', value: 0 };
         this.lineHeight = { unit: 'AUTO' };
         this.textCase = 'ORIGINAL';
@@ -134,6 +171,43 @@ export function createFigmaMock() {
         }
       }
       this._fills = arr;
+    }
+
+    get layoutPositioning() { return this._layoutPositioning; }
+    set layoutPositioning(value) {
+      if (value === 'ABSOLUTE' && (!this.parent || this.parent.layoutMode === 'NONE')) {
+        throw new Error('in layoutPositioning: ABSOLUTE requires an auto-layout parent');
+      }
+      this._layoutPositioning = value;
+      if (value === 'ABSOLUTE') this.parent?._reflowAfterAbsolute();
+    }
+
+    get absoluteBoundingBox() {
+      let x = this.x;
+      let y = this.y;
+      for (let parent = this.parent; parent && parent.type !== 'DOCUMENT'; parent = parent.parent) {
+        x += parent.x ?? 0;
+        y += parent.y ?? 0;
+      }
+      return { x, y, width: this.width, height: this.height };
+    }
+
+    _reflowAfterAbsolute() {
+      if (!this.children || this.layoutMode === 'NONE') return;
+      const horizontal = this.layoutMode === 'HORIZONTAL';
+      let cursor = horizontal ? this.paddingLeft : this.paddingTop;
+      for (const child of this.children) {
+        if (child.layoutPositioning === 'ABSOLUTE') continue;
+        if (horizontal) {
+          child.x = cursor;
+          child.y = this.counterAxisAlignItems === 'MAX' ? this.height - this.paddingBottom - child.height : this.counterAxisAlignItems === 'CENTER' ? (this.height - child.height) / 2 : this.paddingTop;
+          cursor += child.width + this.itemSpacing;
+        } else {
+          child.x = this.counterAxisAlignItems === 'MAX' ? this.width - this.paddingRight - child.width : this.counterAxisAlignItems === 'CENTER' ? (this.width - child.width) / 2 : this.paddingLeft;
+          child.y = cursor;
+          cursor += child.height + this.itemSpacing;
+        }
+      }
     }
 
     appendChild(node) {
@@ -204,6 +278,11 @@ export function createFigmaMock() {
       this.resize(w, h);
     }
 
+    lockAspectRatio() {
+      this.constrainProportions = true;
+      this.targetAspectRatio = this.height === 0 ? null : this.width / this.height;
+    }
+
     setSharedPluginData(namespace, key, value) {
       this._shared.set(`${namespace}/${key}`, value);
     }
@@ -217,8 +296,17 @@ export function createFigmaMock() {
     }
 
     findOne(cb) {
-      for (const n of this.findAll()) if (cb(n)) return n;
-      return null;
+      // Same pre-order visit as findAll, but stops at the first hit instead of
+      // materializing every descendant — emitted scripts call this per lookup.
+      const walk = (node) => {
+        for (const child of node.children ?? []) {
+          if (cb(child)) return child;
+          const hit = walk(child);
+          if (hit) return hit;
+        }
+        return null;
+      };
+      return walk(this);
     }
 
     findAll(cb) {
@@ -291,6 +379,20 @@ export function createFigmaMock() {
       throw new Error(`editComponentProperty: no property ${key}`);
     }
 
+    deleteComponentProperty(key) {
+      if (this._propDefs?.[key]) {
+        delete this._propDefs[key];
+        return;
+      }
+      for (const ch of this.children ?? []) {
+        if (ch._propDefs?.[key]) {
+          delete ch._propDefs[key];
+          return;
+        }
+      }
+      throw new Error(`deleteComponentProperty: no property ${key}`);
+    }
+
     // --- component/instance ------------------------------------------------
     get defaultVariant() {
       return this.children?.[0] ?? null;
@@ -325,11 +427,19 @@ export function createFigmaMock() {
             type: inst.componentProperties[key]?.type ?? 'TEXT',
             value,
           };
+          applyComponentPropertyToInstance(inst, key, value);
         }
       };
+      Object.defineProperty(inst, 'exposedInstances', {
+        configurable: true,
+        get: () => inst.findAll((node) => node.type === 'INSTANCE' && node._mirrorOf?.isExposedInstance === true),
+      });
       inst.getMainComponentAsync = async () => inst._mainComponent;
       inst.width = this.width;
       inst.height = this.height;
+      for (const [key, property] of Object.entries(inst.componentProperties)) {
+        applyComponentPropertyToInstance(inst, key, property.value);
+      }
       return inst;
     }
 
@@ -360,6 +470,49 @@ export function createFigmaMock() {
 
     async setTextStyleIdAsync(id) {
       this.textStyleId = id;
+    }
+
+    _fontAt(index) {
+      let out = this.fontName;
+      for (const range of this._fontRanges ?? []) {
+        if (index >= range.start && index < range.end) out = range.fontName;
+      }
+      return out;
+    }
+
+    getRangeFontName(start, end) {
+      if (this.type !== 'TEXT') throw new Error('in getRangeFontName: node is not TEXT');
+      if (end <= start) return this.fontName;
+      const first = this._fontAt(start);
+      for (let i = start + 1; i < end; i++) {
+        if (JSON.stringify(this._fontAt(i)) !== JSON.stringify(first)) return mixed;
+      }
+      return first;
+    }
+
+    setRangeFontName(start, end, fontName) {
+      if (this.type !== 'TEXT') throw new Error('in setRangeFontName: node is not TEXT');
+      if (start < 0 || end <= start || end > this.characters.length) {
+        throw new Error(`in setRangeFontName: invalid range ${start}..${end} for length ${this.characters.length}`);
+      }
+      this._fontRanges.push({ start, end, fontName: structuredClone(fontName) });
+    }
+
+    getStyledTextSegments() {
+      if (this.type !== 'TEXT') throw new Error('in getStyledTextSegments: node is not TEXT');
+      if (this.characters.length === 0) return [];
+      const out = [];
+      let start = 0;
+      let fontName = this._fontAt(0);
+      for (let i = 1; i <= this.characters.length; i++) {
+        const next = i < this.characters.length ? this._fontAt(i) : null;
+        if (i === this.characters.length || JSON.stringify(next) !== JSON.stringify(fontName)) {
+          out.push({ start, end: i, characters: this.characters.slice(start, i), fontName });
+          start = i;
+          fontName = next;
+        }
+      }
+      return out;
     }
 
     async exportAsync(options = {}) {
@@ -395,7 +548,11 @@ export function createFigmaMock() {
       if (k === 'id' || k === 'key' || k === 'parent' || k === 'children' || k === '_shared') continue;
       if (k === '_fills' || k === 'strokes' || k === 'effects' || k === 'dashPattern') continue;
       if (k === '_instances' || k === '_mirrorOf') continue;
-      m[k] = v;
+      if (k === 'componentPropertyReferences' || k === 'componentProperties' || k === '_fontRanges') {
+        m[k] = structuredClone(v);
+      } else {
+        m[k] = v;
+      }
     }
     m._fills = Array.isArray(master.fills) ? master.fills.map((p) => ({ ...p })) : [];
     m.strokes = Array.isArray(master.strokes) ? master.strokes.map((p) => ({ ...p })) : [];
@@ -404,7 +561,43 @@ export function createFigmaMock() {
     m._mirrorOf = master;
     m.parent = parent;
     if (master.children) m.children = master.children.map((ch) => mirrorSubtree(ch, m));
+    if (m.type === 'INSTANCE') {
+      m.getMainComponentAsync = async () => m._mainComponent;
+      m.setProperties = (props) => {
+        for (const [key, value] of Object.entries(props)) {
+          m.componentProperties[key] = {
+            type: m.componentProperties[key]?.type ?? 'TEXT',
+            value,
+          };
+          applyComponentPropertyToInstance(m, key, value);
+        }
+      };
+    }
     return m;
+  }
+
+  /** Native component-property semantics needed by composed TEXT forwarding
+   * and INSTANCE_SWAP glyphs. References use exact suffixed keys. */
+  function applyComponentPropertyToInstance(instance, key, value) {
+    const nodes = [instance, ...(instance.findAll?.() ?? [])];
+    for (const node of nodes) {
+      for (const [field, reference] of Object.entries(node.componentPropertyReferences ?? {})) {
+        if (reference !== key) continue;
+        if (field === 'characters' && node.type === 'TEXT') {
+          node.characters = String(value);
+        } else if (field === 'visible') {
+          node.visible = Boolean(value);
+        } else if (field === 'mainComponent') {
+          const target = root.id === value ? root : root.findOne((candidate) => candidate.id === value);
+          const main = target?.type === 'COMPONENT_SET' ? target.defaultVariant : target;
+          if (!main || main.type !== 'COMPONENT') {
+            throw new Error(`in setProperties: INSTANCE_SWAP target ${String(value)} is not a component`);
+          }
+          node._mainComponent = main;
+          node.children = (main.children ?? []).map((child) => mirrorSubtree(child, node));
+        }
+      }
+    }
   }
 
   /** Réaligne les enfants d'un miroir sur ceux de son maître : un miroir déjà
@@ -704,6 +897,5 @@ export function createFigmaMock() {
       },
     },
   };
-
   return { figma, root, firstPage, variables, collections, styles: allStyles };
 }

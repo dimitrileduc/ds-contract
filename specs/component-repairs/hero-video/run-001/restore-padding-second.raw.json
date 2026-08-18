@@ -1,0 +1,31 @@
+{
+  "run": "second",
+  "scriptResults": [
+    {
+      "operationId": "restore-hero-video-padding",
+      "targetId": "hero-video",
+      "nodeId": "2151:5552",
+      "result": {
+        "skipped": true,
+        "reason": "unchanged",
+        "createdNodeIds": [],
+        "changedNodeIds": []
+      }
+    }
+  ],
+  "inspection": {
+    "pageWrites": [],
+    "master": {
+      "id": "2151:5552",
+      "key": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "paddingTop": 48,
+      "paddingRight": 89,
+      "paddingBottom": 48,
+      "paddingLeft": 89
+    },
+    "pageInstance": {
+      "id": "2170:6351",
+      "componentId": "2151:5552"
+    }
+  }
+}

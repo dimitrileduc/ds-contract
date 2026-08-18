@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "2.0.0",
+  "receiptId": "repair-devis-devis-accepted",
+  "campaignId": "repair-devis",
+  "targetId": "devis",
+  "referenceId": "devis-owner-reference",
+  "appliedOperationIds": [
+    "ensure-devis-container"
+  ],
+  "expectedDiffs": [
+    {
+      "surfaceId": "devis:master",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_master.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2642",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2642.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:258-1887",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_258-1887.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2651",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2651.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:249-1510",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_249-1510.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2660",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2660.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:237-969",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_237-969.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2669",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2669.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:237-705",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_237-705.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2678",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2678.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:387-720",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_387-720.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2687",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2687.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:230-376",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_230-376.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2696",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2696.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:226-112",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_226-112.structure.json"
+    },
+    {
+      "surfaceId": "devis:page:2096-2705",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page_2096-2705.structure.json"
+    },
+    {
+      "surfaceId": "devis:page-context:210-326",
+      "kind": "expected",
+      "description": "structure changed inside the authorized generated-master repair surface",
+      "diffCount": 1,
+      "evidenceRef": "specs/component-repairs/devis/run-001/after/devis_page-context_210-326.structure.json"
+    }
+  ],
+  "unexpectedDiffs": [],
+  "imagePreservation": "pass",
+  "instancePreservation": "pass",
+  "consumerVerdicts": [],
+  "idempotence": "pass",
+  "ownerDecision": "accepted",
+  "ownerRationale": "L’owner a revu les preuves avant/après et le rendu 1440, a confirmé que le résultat lui paraît bon puis a répondu « ok ». Il accepte la réparation mono-composant Devis, avec les huit instances Page FIXED 1728 explicitement hors périmètre de cette campagne.",
+  "evidenceRefs": [
+    "specs/component-repairs/devis/run-001/before/devis_master.structure.json",
+    "specs/component-repairs/devis/run-001/after/devis_master.structure.json",
+    "specs/component-repairs/devis/run-001/comparison.json",
+    "specs/component-repairs/devis/run-001/owner/devis.json",
+    "specs/component-repairs/devis/run-001/idempotence-receipt.json"
+  ],
+  "limits": [
+    "Generated descendant node IDs are normalized; root component IDs and keys remain authoritative."
+  ],
+  "decidedAt": "2026-08-12T07:12:23Z"
+}

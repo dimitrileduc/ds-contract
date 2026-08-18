@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "decisionId": "021-us2-odoo-019-revalidation",
+  "decidedAt": "2026-08-10T00:00:00+02:00",
+  "decision": "revalidated",
+  "rationale": "The source-derived impact graph contains the exact 30 Button, SectionHeader and absolute-lowering consumers with no missing or extra row. The complete build regenerated the Odoo assets and derivation report successfully after the shared emitter and Formulaire contract changes.",
+  "dependencies": [
+    "Button",
+    "SectionHeader",
+    "absolute-lowering"
+  ],
+  "evidenceRefs": [
+    "integrations/odoo/config/inputs.lock.json",
+    "integrations/odoo/derivation-report.json",
+    "specs/021-figma-projection-repair/proofs/us2/tests-red.txt"
+  ]
+}

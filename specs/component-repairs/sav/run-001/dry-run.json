@@ -1,0 +1,465 @@
+{
+  "campaignId": "repair-sav-responsive",
+  "filePin": "2386540638664390344",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "ensure-sav-container",
+      "targetId": "sav",
+      "mechanism": "ensure-organism-container",
+      "nodeId": "2108:3105",
+      "structuralPath": "",
+      "changes": {
+        "containerName": "Container · SAV",
+        "layoutMode": "HORIZONTAL",
+        "referenceWidth": 1550,
+        "referenceHeight": 677,
+        "layoutSizingHorizontal": "FILL"
+      },
+      "preconditions": [
+        {
+          "field": "nodeId",
+          "equals": "2108:3105"
+        },
+        {
+          "field": "parentNodeId",
+          "equals": "2108:3091"
+        },
+        {
+          "field": "parentType",
+          "equals": "SECTION"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2108:3105"
+        },
+        {
+          "field": "parentName",
+          "equals": "Container · SAV"
+        },
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-section",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0",
+      "changes": {
+        "layout": {
+          "layoutMode": "VERTICAL",
+          "primaryAxisAlignItems": "MAX",
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "section"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-background",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/0",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FIXED"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "background"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FIXED"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "position-sav-background",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/0",
+      "changes": {
+        "layout": {
+          "width": "parent",
+          "horizontalConstraint": "STRETCH",
+          "verticalConstraint": "MIN",
+          "layoutPositioning": "ABSOLUTE",
+          "x": 0,
+          "y": 0
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "background"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutPositioning",
+          "equals": "ABSOLUTE"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "pad-and-fill-sav-row",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1",
+      "changes": {
+        "layout": {
+          "layoutPositioning": "AUTO",
+          "layoutSizingHorizontal": "FILL",
+          "paddingLeft": 131,
+          "paddingRight": 131
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "row"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "width",
+          "equals": 1550
+        },
+        {
+          "field": "paddingLeft",
+          "equals": 131
+        },
+        {
+          "field": "paddingRight",
+          "equals": 131
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-wrapper",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/0",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "wrapper"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-wrapper-background",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/0/0",
+      "changes": {
+        "layout": {
+          "width": "parent",
+          "horizontalConstraint": "STRETCH"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "WrapperBackground"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-inner",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/0/1",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "inner"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-section-header",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/0/1/0",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "SectionHeader"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "restore-sav-button-label-style",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/0/1/2/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.libelle-bouton.size",
+          "name": "Libellé bouton"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Demander de l’aide"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "textStyleName",
+          "equals": "Libellé bouton"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "hug-sav-rich-paragraph",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/0/1/1",
+      "changes": {
+        "layout": {
+          "layoutSizingVertical": "HUG",
+          "paddingTop": 4,
+          "paddingBottom": 4
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "vousRencontrezUnProblmeA"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingVertical",
+          "equals": "HUG"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "restore-sav-rich-ranges",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/0/1/1/0",
+      "changes": {
+        "richText": {
+          "baseFont": {
+            "family": "Montserrat",
+            "style": "Medium"
+          },
+          "ranges": [
+            {
+              "start": 33,
+              "end": 52,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            },
+            {
+              "start": 101,
+              "end": 122,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            },
+            {
+              "start": 252,
+              "end": 299,
+              "font": {
+                "family": "Montserrat",
+                "style": "Bold"
+              }
+            }
+          ]
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "characters",
+          "equals": "Vous rencontrez un problème avec votre installation Hörmann à Liège ? Il y a une panne de courant et votre porte de garage ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?\nPas de panique, Piqueray, votre distributeur Hörmann en province de Liège est là pour vous aider !"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "richTextRangeCount",
+          "equals": 4
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-image-group",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/1",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL",
+          "paddingRight": 78
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "imgGroup"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        },
+        {
+          "field": "paddingRight",
+          "equals": 78
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-image-background",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/1/0",
+      "changes": {
+        "layout": {
+          "width": "parent",
+          "horizontalConstraint": "STRETCH"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "ImgGroupBackground"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "fill-sav-technician-image",
+      "targetId": "sav",
+      "mechanism": "set-properties",
+      "nodeId": "2108:3105",
+      "structuralPath": "0/1/1/1",
+      "changes": {
+        "layout": {
+          "layoutSizingHorizontal": "FILL"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "nodeName",
+          "equals": "img"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingHorizontal",
+          "equals": "FILL"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

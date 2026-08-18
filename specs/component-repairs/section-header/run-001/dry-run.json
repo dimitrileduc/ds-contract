@@ -1,0 +1,548 @@
+{
+  "campaignId": "repair-section-header",
+  "filePin": "2386548683709062472",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "hug-standard-centre-height",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "0",
+      "changes": {
+        "layout": {
+          "layoutSizingVertical": "HUG"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2090:2385"
+        },
+        {
+          "field": "nodeType",
+          "equals": "COMPONENT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "0"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "layoutSizingVertical",
+          "equals": "HUG"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-01-titre-2",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "0/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-2.size",
+          "name": "Titre 2"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36775"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "0/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-02-titre-3",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "1/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-3.size",
+          "name": "Titre 3"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36813"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-03-titre-2",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "2/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-2.size",
+          "name": "Titre 2"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36777"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "2/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-04-titre-3",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "5/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-3.size",
+          "name": "Titre 3"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36805"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "5/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-05-titre-3",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "6/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-3.size",
+          "name": "Titre 3"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36807"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "6/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-06-titre-4",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "7/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-4.size",
+          "name": "Titre 4"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36809"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "7/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-07-titre-4",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "8/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-4.size",
+          "name": "Titre 4"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36811"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "8/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-08-titre-3",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "9/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-3.size",
+          "name": "Titre 3"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36920"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "9/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-09-titre-3",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "12/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-3.size",
+          "name": "Titre 3"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36977"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "12/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-10-titre-3",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "13/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-3.size",
+          "name": "Titre 3"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:36990"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "13/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-11-titre-4",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "14/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-4.size",
+          "name": "Titre 4"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37003"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "14/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-title-12-titre-4",
+      "targetId": "section-header",
+      "mechanism": "set-properties",
+      "nodeId": "2090:2397",
+      "structuralPath": "15/1",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-4.size",
+          "name": "Titre 4"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2090:2397"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:37016"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "15/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Pourquoi choisir Piqueray ?"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

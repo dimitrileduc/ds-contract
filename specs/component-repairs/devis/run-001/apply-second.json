@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-devis",
+  "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+  "fileVersionId": "2386738228628876811",
+  "run": "second",
+  "operations": [
+    {
+      "operationId": "ensure-devis-container",
+      "targetId": "devis",
+      "nodeId": "2096:2524",
+      "status": "no-op",
+      "createdNodeIds": [],
+      "changedNodeIds": []
+    }
+  ],
+  "masters": [
+    {
+      "targetId": "devis",
+      "nodeId": "2096:2524",
+      "componentKey": "0caac7487988d0da129211e64a40545163149a6f",
+      "masterCount": 1,
+      "variantNames": []
+    }
+  ],
+  "pageWrites": [],
+  "responsiveChecks": [
+    {
+      "targetId": "devis",
+      "width": 1440,
+      "overflow": false,
+      "overflowNodeIds": [],
+      "overflowIssues": [],
+      "screenshotRef": "specs/component-repairs/devis/run-001/responsive-1440-second.png"
+    }
+  ]
+}

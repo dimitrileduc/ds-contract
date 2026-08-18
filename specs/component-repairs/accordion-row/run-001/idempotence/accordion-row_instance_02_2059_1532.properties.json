@@ -1,0 +1,49 @@
+{
+  "entries": [
+    {
+      "definitions": {},
+      "nodeId": "2059:1532",
+      "references": {},
+      "structuralPath": "",
+      "values": {
+        "Contenu#2059:18": {
+          "type": "TEXT",
+          "value": "Utilisez le débrayage de secours manuel (cordon intérieur)."
+        },
+        "Etat": {
+          "boundVariables": {},
+          "type": "VARIANT",
+          "value": "Ouvert"
+        },
+        "Taille": {
+          "boundVariables": {},
+          "type": "VARIANT",
+          "value": "Grand"
+        },
+        "Titre#2059:13": {
+          "type": "TEXT",
+          "value": "Votre porte est bloquée par une panne de courant ?"
+        }
+      }
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2059:1532;2347:34254",
+      "references": {
+        "characters": "Titre#2059:13"
+      },
+      "structuralPath": "0/0/0",
+      "values": {}
+    },
+    {
+      "definitions": {},
+      "nodeId": "I2059:1532;2347:34258",
+      "references": {
+        "characters": "Contenu#2059:18"
+      },
+      "structuralPath": "2",
+      "values": {}
+    }
+  ],
+  "schemaVersion": "1.0.0"
+}

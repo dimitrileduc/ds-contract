@@ -1,0 +1,89 @@
+{
+  "campaignId": "repair-member-card-text-align",
+  "filePin": "2388960690060214520",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "center-member-nom",
+      "targetId": "member-card",
+      "mechanism": "set-properties",
+      "nodeId": "2074:2072",
+      "structuralPath": "1/0",
+      "changes": {
+        "textAlign": {
+          "value": "CENTER"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2074:2072"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:35252"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/0"
+        },
+        {
+          "field": "characters",
+          "equals": "Cécilia Piqueray"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Cécilia Piqueray"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "center-member-poste",
+      "targetId": "member-card",
+      "mechanism": "set-properties",
+      "nodeId": "2074:2072",
+      "structuralPath": "1/1",
+      "changes": {
+        "textAlign": {
+          "value": "CENTER"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2074:2072"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2351:35349"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/1"
+        },
+        {
+          "field": "characters",
+          "equals": "Gérante"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Gérante"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

@@ -101,7 +101,7 @@
   left: 0px;
 }
 
-/* Button — from ds.button v2.0.0 (core/emit-html.ts) */
+/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
 
 .button, .button *, .button *::before, .button *::after {
   box-sizing: border-box;
@@ -125,6 +125,7 @@
   padding-inline: var(--space-32);
   --dsc-border-width: var(--border-width-0);
   text-transform: uppercase;
+  white-space: nowrap;
   position: relative;
 }
 

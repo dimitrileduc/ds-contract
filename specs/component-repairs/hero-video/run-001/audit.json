@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "repair-hero-video-calibration",
+  "targetId": "hero-video",
+  "inspectedAt": "2026-08-11T16:10:59.160Z",
+  "fileVersionId": "2386499278103642498",
+  "verdict": "green",
+  "figmaWrites": [],
+  "container": {
+    "status": "pass",
+    "masterNodeId": "2151:5552",
+    "parentNodeId": "2448:4731",
+    "parentName": "Container · HeroVideo",
+    "parentType": "FRAME",
+    "parentLayoutMode": "HORIZONTAL",
+    "masterLayoutSizingHorizontal": "FILL",
+    "referenceWidth": 1728,
+    "responsiveWidths": [
+      1440
+    ],
+    "issues": []
+  },
+  "texts": [
+    {
+      "nodeId": "2439:4695",
+      "structuralPath": "3/0",
+      "name": "Accroche",
+      "characters": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "classification": "named-exact",
+      "textStyleId": "2170:6388",
+      "textStyleName": "Titre Hero vidéo",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    },
+    {
+      "nodeId": "I2439:4701;2410:6133",
+      "structuralPath": "4/1",
+      "name": "label",
+      "characters": "Contactez-nous",
+      "classification": "named-exact",
+      "textStyleId": "2162:5834",
+      "textStyleName": "Libellé bouton",
+      "reasons": [
+        "governed Text Style name and metrics match exactly"
+      ]
+    }
+  ],
+  "dependencies": {
+    "declared": [
+      "ds.button"
+    ],
+    "observed": [
+      "ds.button"
+    ],
+    "undeclared": []
+  },
+  "findings": [],
+  "proposedChanges": []
+}

@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.section-header",
   "name": "SectionHeader",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -54,7 +54,7 @@
           "text": "Pourquoi choisir Piqueray ?"
         }
       ],
-      "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas reste UNE valeur TEXT native : la concaténation à plat.",
+      "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas garde UNE valeur TEXT native et applique les marques gouvernées par plages de caractères natives.",
       "bindings": {
         "figma": {
           "kind": "TEXT",
@@ -139,7 +139,9 @@
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 1550
       },
       "layoutByProp": {
         "prop": "disposition",
@@ -152,6 +154,9 @@
       },
       "parts": {
         "Accroche": {
+          "layout": {
+            "width": "fill"
+          },
           "content": {
             "prop": "accroche"
           },
@@ -172,6 +177,9 @@
           }
         },
         "Titre": {
+          "layout": {
+            "width": "fill"
+          },
           "content": {
             "prop": "titre",
             "marks": {
@@ -253,8 +261,7 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "gap": "{space.8}",
-        "width": "{size.section-header.root}"
+        "gap": "{space.8}"
       },
       "declared": {
         "align-self": "stretch"

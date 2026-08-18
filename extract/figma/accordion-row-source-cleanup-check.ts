@@ -86,7 +86,13 @@ for (const partName of ['Titre', 'TitreOuvert'] as const) {
   const part = partName === 'Titre' ? root.parts?.Titre : root.parts?.title?.parts?.TitreOuvert;
   check(`${partName}: family, size, weight, line-height and tracking all carry`, part?.tokens?.['font-family'] === '{font.family.montserrat}' && part.tokens['font-size']?.includes('{taille}') === true && part.tokens['font-weight']?.includes('{taille}') === true && part.tokens['line-height']?.includes('{taille}') === true && part.tokens['letter-spacing'] === '{imported.shared.size-0}');
 }
-check('Contenu typography carries 14/400/24 with Montserrat and tracking 0', root.parts?.Contenu?.tokens?.['font-family'] === '{font.family.montserrat}' && minted.get(root.parts.Contenu.tokens['font-size']!) === '14px' && minted.get(root.parts.Contenu.tokens['font-weight']!) === '400' && minted.get(root.parts.Contenu.tokens['line-height']!) === '24px' && minted.get(root.parts.Contenu.tokens['letter-spacing']!) === '0px');
+// 2026-08-12 : la campagne projection-repair a minté les tokens typography.* ;
+// l'extraction lie désormais size/weight du Contenu aux porteurs GOUVERNÉS
+// ({typography.paragraphe.*} = 14px/400, vérifié dans tokens/semantic) au lieu
+// de frapper des imported.* — mêmes valeurs, meilleur porteur (lier avant de
+// frapper). line-height reste minté (la liaison typo couvre size/weight
+// aujourd'hui) et le tracking partagé reste {imported.shared.size-0}.
+check('Contenu typography carries 14/400/24 with Montserrat and tracking 0', root.parts?.Contenu?.tokens?.['font-family'] === '{font.family.montserrat}' && root.parts.Contenu.tokens['font-size'] === '{typography.paragraphe.size}' && root.parts.Contenu.tokens['font-weight'] === '{typography.paragraphe.weight}' && minted.get(root.parts.Contenu.tokens['line-height']!) === '24px' && minted.get(root.parts.Contenu.tokens['letter-spacing']!) === '0px');
 for (const [partName, asset] of [['ChevronDown', 'chevron-down'], ['ChevronUp', 'chevron-up']] as const) {
   const part = partName === 'ChevronDown' ? root.parts?.ChevronDown : root.parts?.title?.parts?.ChevronUp;
   check(`${partName}: governed asset is 32px with Petit 24px override`, part?.icon?.asset === asset && part.icon.size === 32 && part.literalsByProp?.[0]?.map?.petit?.width === '24px' && part.literalsByProp?.[0]?.map?.petit?.height === '24px');

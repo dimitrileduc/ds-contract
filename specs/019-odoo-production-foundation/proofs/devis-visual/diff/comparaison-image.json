@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "subjectsModule": "integrations/odoo/qa/visual/subjects/devis.mts",
+  "plancherDeTolerance": null,
+  "raisonDuPlancher": null,
+  "lignes": [
+    {
+      "composant": "ds.devis",
+      "sujet": "devis-default",
+      "statut": "mesurée",
+      "avant": "specs/019-odoo-production-foundation/proofs/devis-visual/reference/devis-default.png",
+      "apres": "specs/019-odoo-production-foundation/proofs/devis-visual/odoo/devis-default.png",
+      "score": 0.02663314723173878,
+      "cause": "anti-aliasing",
+      "justification": "Dimensions et composition identiques (clip mesuré 1776×426 des deux côtés) ; les pixels différents suivent les contours du texte Montserrat et du liseré du bouton — rasterisation Chromium de la référence vs pipeline d'assets Odoo, aucun décalage structurel.",
+      "raisonImpossible": null
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "5cd48b7",
+    "gitCommit": "f279da78",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -223,6 +223,7 @@
       "--size-google-reviews-root-h",
       "--size-google-reviews-pastille-gauche",
       "--size-google-reviews-pastille-droite",
+      "--size-hero-video-root",
       "--size-hero-sous-titre",
       "--size-hero-root",
       "--size-member-card-root",
@@ -246,6 +247,8 @@
       "--size-review-card-avatar-initiale",
       "--size-review-card-avatar-photo",
       "--size-review-card-verification",
+      "--size-sav-content-padding",
+      "--size-sav-image-right-inset",
       "--size-sav-section-w",
       "--size-sav-section-h",
       "--size-sav-background-w",
@@ -438,7 +441,7 @@
     {
       "id": "ds.button",
       "name": "Button",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "status": "draft",
       "category": "atom",
       "description": "Piqueray button. Seven variants extracted from the Figma « Bouton » set (Default, Orange, Blanc, Outline blanc, Link, Outline noir, Icône seule), bound to Piqueray primitives.\n\nThe label (children) is bound to the « Libelle » TEXT property, added to the master in the single Step 3 update (002-governed-icons-button) — the label is genuinely editable on both sides now, closing the 001 declared parity finding (it used to be static Figma text, not a component property).\n\nThe two nested icons are leading/trailing slots gated by the BOOLEAN properties « Icone gauche »/« Icone droite » (iconLeft/iconRight boolean props) and steerable to any icon in the governed registry (contracts/icons.registry.json, ds.icons) via the INSTANCE_SWAP-bound enum props iconLeftGlyph/iconRightGlyph (Figma properties « Glyphe gauche »/« Glyphe droite », preferredValues narrowed to the governed registry in the same Step 3 update; the code enum tracks the registry exactly — widened from 13 to 16 when spec 004 added the facebook/instagram/star social glyphs (icons.registry.json v1.1.0), while the Figma master's swap menu still lists the original 13, a named divergence legued to the next write-authorized iteration since spec 004 is read-only), defaulting to the file's own arrow-left/arrow-right glyphs.\n\nExtracted by propose-figma's D5 lowering pass from the post-Step-0-cleanup dump, reviewed and adopted — not authored. Any icon a designer picks on a mockup page is reproducible in code by naming it; the enum is refused by name at build if it ever drifts from the registry.",
@@ -657,7 +660,7 @@
     {
       "id": "ds.section-header",
       "name": "SectionHeader",
-      "version": "2.1.1",
+      "version": "2.2.0",
       "status": "draft",
       "category": "molecule",
       "description": "Piqueray SectionHeader. Extracted from the Figma COMPONENT_SET on DS · Molécules, reviewed and adopted — not authored.",
@@ -687,7 +690,7 @@
               "text": "Pourquoi choisir Piqueray ?"
             }
           ],
-          "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas reste UNE valeur TEXT native : la concaténation à plat."
+          "description": "Une seule propriété TEXT Figma (\"Titre\"), à graisses MIXTES chez trois consommateurs : presentation dessine « Piqueray, » en Bold puis le reste en Regular (I2169:6246;2090:2387), texte-seo met « showroom à Pepinster » en Bold au milieu de la phrase (I2170:6361;2090:2387), hero met « Portes de garage » en Bold et « industrielles » en Light (I2169:6264;2090:2387). Les cinq autres consommateurs passent un segment unique. La projection canvas garde UNE valeur TEXT native et applique les marques gouvernées par plages de caractères natives."
         },
         {
           "name": "accroche2",
@@ -834,7 +837,7 @@
     {
       "id": "ds.member-picture",
       "name": "MemberPicture",
-      "version": "1.2.1",
+      "version": "1.3.0",
       "status": "draft",
       "category": "atom",
       "description": "Piqueray member picture. A circular member-photo component with two states, extracted from the Figma COMPONENT_SET « MemberPicture » on DS · Atomes, reviewed and adopted — not authored.\n\nThe etat variant stacks two 364×364 circular image planes: normal is opaque in defaut and transparent in survol, with a 300ms opacity transition. The root clips both planes at its 500px radius. The visible normal plane receives its code-only src and alt scalars from its composed parent.\n\n† A5 technical placeholder: the source IMAGE pixels of funIa are unavailable to the contract→canvas transport. That hidden-under-normal layer therefore keeps the engine's generic #D9D9D9 image-placeholder wash. This is not a Piqueray colour extracted from Figma, and the survol-only funIa plane remains outside the runtime photo API.",
@@ -859,7 +862,7 @@
             "member-card"
           ],
           "default": "standard",
-          "description": "Code-side geometry selector for observed composed placements. The MemberCard instance is explicitly resized to 363.5px inside its 364px parent frame; the standalone atom keeps the 364px master geometry by default."
+          "description": "Compatibility axis retained for existing consumers. Both values now use the same parent-owned fluid square geometry; the old 363.5px workaround belonged to the former fixed-track approximation."
         },
         {
           "name": "src",
@@ -881,7 +884,7 @@
     {
       "id": "ds.member-card",
       "name": "MemberCard",
-      "version": "1.2.1",
+      "version": "1.4.0",
       "status": "draft",
       "category": "molecule",
       "description": "Piqueray MemberCard. Extracted from the Figma COMPONENT on DS · Molécules, reviewed and adopted — not authored. Portrait IMAGE overrides are explicit code-only photo data, propagated to the composed MemberPicture without flattening its image anatomy.",
@@ -920,7 +923,7 @@
     {
       "id": "ds.equipe",
       "name": "Equipe",
-      "version": "1.1.2",
+      "version": "1.2.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Equipe. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -1173,10 +1176,10 @@
     {
       "id": "ds.formulaire",
       "name": "Formulaire",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray Formulaire. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.0.0 makes the existing Titre/Accroche controls live on the composed SectionHeader. Titre changes from flat text to rich-text so its governed marks survive parent→child forwarding; the prop name and visible default stay unchanged, while the type change is correctly major-versioned.",
       "figma": {
         "representation": "component",
         "componentSetKey": "b588bcccec2ae782382324bcda5fc257b91defd5"
@@ -1205,8 +1208,12 @@
         {
           "name": "titre",
           "type": "string",
-          "default": "Prenez contact avec nous dès maintenant !",
-          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass)."
+          "default": [
+            {
+              "text": "Prenez contact avec nous dès maintenant !"
+            }
+          ],
+          "description": "Extracted from Figma \"Titre\" TEXT property (added by sync pass). Type rich-text since 2.0.0 because the exact parent→SectionHeader mapping must preserve the child contract's governed marks instead of flattening them."
         }
       ],
       "children": {
@@ -1289,10 +1296,10 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "status": "draft",
       "category": "section",
-      "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Hauteur du root contrainte à la hauteur mesurée de l'aplat (neutralité de hauteur, R20) — une adoption qui changerait cette hauteur est un STOP, jamais une donnée.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nSimplification nommée : les flèches sont modélisées comme des enfants flex adjacents à la rangée de cartes (pas un overlay/positionnement absolu) — l'aplat les montre en léger chevauchement des bords de carte 1/5 ; à raffiner pendant la convergence (T040) si l'écart mesuré le justifie.",
+      "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.",
       "figma": {
         "representation": "component",
         "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c"
@@ -1420,17 +1427,65 @@
       "slots": []
     },
     {
-      "id": "ds.hero",
-      "name": "Hero",
-      "version": "1.4.0",
+      "id": "ds.hero-video",
+      "name": "HeroVideo",
+      "version": "1.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nv1.2.0 carries the root's photographic IMAGE fill (fills[0], imageRef b9ae58d2e309c55241eb843c1a36d90d087c1483, scaleMode FILL) as an absolutely-positioned `img` plane painted UNDER the content block — the same superposed-planes vocabulary ds.member-picture already uses, with DOM order alone deciding the stacking (no z-index channel exists, and none is needed: two positioned siblings paint in tree order). The bitmap reaches the coded surface through code-only `backgroundUrl` / `backgroundAlt` scalars (bindings.figma NONE) because `background-image: url()` is still the OPEN A5 / §a.7 gap of docs/FIGMA-CAPABILITY-MATRIX.md: the canvas side keeps the engine's generic image placeholder while the React surface renders the real pixels — the same split spec 006 documented for ds.review-card's avatarPhoto.\n\nTHOSE TWO GRADIENT_LINEAR PAINTS ARE NO LONGER LIMITS — carried since 015 (T028–T032, 2026-08-04): the root's darkening overlay (fills[2] — `linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)`) and the Titres scrim (fills[0] — `linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%)`). The blocker was real and is now lifted at its root: `background-image` joined LITERAL_CHANNELS with its OWN bounded grammar (`linear-gradient(...)` only — radial/conic still refuse BY NAME, eval `gradient-literal-channel`), so the channel no longer resolves through a DTCG token reference alone. Both values are declared in `contracts/named-literals.registry.json` (receipt `hero-gradients-named-literal`) — named literals the geometry gate reads live, never invisible values: a single-use gradient token would have manufactured a fake vocabulary. The weight was measured, not guessed: the two veils darken 452 of the root's 640 px rows and accounted for 28.07 % of the master's pixels; carrying them measured 27.83 % → 10.66 % residual (receipt `hero-gradient-carry.md`, attributed cause `gradient-carry`). The remaining residual is the photo plane (A5 / §a.7), already named above. A single flat rgba() veil over the same two bands was measured too and bottomed out near 12 %, so approximating them would have both invented a Figma fact and still failed.\n\nThe instance restyle of the SectionHeader child's Titre (blanc / 54 px / 68 px / 700) is no longer a limit here: it is carried by that child contract's own `emphase: \"hero\"` axis since section-header v1.1.0.\n\nv1.4.0 (016/T042, lot B013-4): the Sous-titre paragraph stops being baked in — it rides the rich-text prop `sousTitre`, bound to the master's native TEXT property « SousTitre » (exposed by lot L-B013-4/T041; the 2026-08-05 live diagnosis showed this was the master's ONE unbound text — the title needed nothing, it was already governed through the SectionHeader instance's inherited TEXT property). Its two observed 700 ranges travel as governed segments (content.marks.strong).",
+      "description": "Piqueray HeroVideo. Extracted from the historical in-place component 2151:5552 on Accueil, reviewed and adopted — not authored. The root is fluid at a 1728 px canvas reference and keeps the historical 720 px height. Code supports a video URL and poster; Figma deliberately projects the poster as a static IMAGE placeholder because native VideoPaint cannot be reconstructed deterministically. The two governed scrims belong to HeroVideo itself. The single 44/48 title remains direct because no existing SectionHeader emphasis is pixel-equivalent.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490"
+      },
+      "props": [
+        {
+          "name": "backgroundUrl",
+          "type": "string",
+          "default": "",
+          "description": "Code-side poster source. On canvas, this poster is the deterministic static placeholder for the video."
+        },
+        {
+          "name": "videoUrl",
+          "type": "string",
+          "default": "",
+          "description": "Code-side video source. Figma's native videoHash has no contract-to-code URL transport, so the canvas intentionally uses only the static poster placeholder."
+        },
+        {
+          "name": "backgroundAlt",
+          "type": "string",
+          "default": "",
+          "description": "Alternative text for the decorative poster plane."
+        },
+        {
+          "name": "accroche",
+          "type": "string",
+          "default": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+          "description": "Historical HeroVideo title, including the non-breaking spaces around HÖRMANN. Bound as one native Figma TEXT property so future instance copy remains governed."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.hero",
+      "name": "Hero",
+      "version": "1.6.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
       "figma": {
         "representation": "component",
         "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a"
       },
       "props": [
+        {
+          "name": "ctaHref",
+          "type": "string",
+          "default": "#",
+          "description": "Code-only navigation target of the hero CTA — a CTA navigates, so web surfaces render the Bouton part as a LINK carrying this target. Site-relative by convention ('/devis', '#ancre'): the host never enters governed content. The canvas has no link concept — NONE binding, same class as backgroundUrl."
+        },
         {
           "name": "backgroundUrl",
           "type": "string",
@@ -1465,7 +1520,7 @@
               "text": "."
             }
           ],
-          "description": "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection flattens to the property's native string value."
+          "description": "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges."
         }
       ],
       "children": {
@@ -1476,10 +1531,10 @@
     {
       "id": "ds.presentation",
       "name": "Presentation",
-      "version": "2.5.0",
+      "version": "2.6.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
+      "description": "Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing.",
       "figma": {
         "representation": "component",
         "componentSetKey": "fcaecbed56225701058c0fd703e6a19f7a5b53a8"
@@ -1656,10 +1711,10 @@
     {
       "id": "ds.sav",
       "name": "SAV",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "status": "draft",
       "category": "section",
-      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
+      "description": "Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.\n\nLimites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.\n\nv1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.\n\nv1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop.",
       "figma": {
         "representation": "component",
         "componentSetKey": "bf5e147a9b56206eba9c73045d533c9868b445b2"

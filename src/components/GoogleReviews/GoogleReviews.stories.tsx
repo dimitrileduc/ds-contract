@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v1.0.0)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v2.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Hauteur du root contrainte à la hauteur mesurée de l'aplat (neutralité de hauteur, R20) — une adoption qui changerait cette hauteur est un STOP, jamais une donnée.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nSimplification nommée : les flèches sont modélisées comme des enfants flex adjacents à la rangée de cartes (pas un overlay/positionnement absolu) — l'aplat les montre en léger chevauchement des bords de carte 1/5 ; à raffiner pendant la convergence (T040) si l'écart mesuré le justifie.",
+          "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.\n\nPromotion 2.0.0 (2026-08-18). MAJEUR par ricochet de ds.review-card 2.0.0 : la collection `avis` perd trois champs (`tronque`, `initialeVisible`, `photo`) et en gagne deux (`avatar`, `note`). Le mapping d'un `repeat` se fait PAR NOM, donc la forme d'un enregistrement d'avis suit celle des props de l'enfant, sans exception.",
       },
     },
   },
@@ -52,60 +52,50 @@ const meta = {
         initiale: 'P',
         date: 'il y a 2 mois',
         texte: 'Un témoignage neutre, exemple générique de contenu.',
-        initialeVisible: true,
-        photo: false,
+        avatar: 'Initiale',
+        note: '5',
         photoUrl: '',
         photoAlt: '',
-        verifie: true,
-        tronque: false,
       },
       {
         auteur: 'Prénom N.',
         initiale: 'P',
         date: 'il y a 3 mois',
         texte: 'Un témoignage neutre, exemple générique de contenu.',
-        initialeVisible: true,
-        photo: false,
+        avatar: 'Initiale',
+        note: '5',
         photoUrl: '',
         photoAlt: '',
-        verifie: true,
-        tronque: false,
       },
       {
         auteur: 'Prénom N.',
         initiale: 'P',
         date: 'il y a 4 mois',
         texte: 'Un témoignage neutre, exemple générique de contenu.',
-        initialeVisible: true,
-        photo: false,
+        avatar: 'Initiale',
+        note: '5',
         photoUrl: '',
         photoAlt: '',
-        verifie: true,
-        tronque: false,
       },
       {
         auteur: 'Prénom N.',
         initiale: 'P',
         date: 'il y a 5 mois',
         texte: 'Un témoignage neutre, exemple générique de contenu.',
-        initialeVisible: true,
-        photo: false,
+        avatar: 'Initiale',
+        note: '5',
         photoUrl: '',
         photoAlt: '',
-        verifie: true,
-        tronque: false,
       },
       {
         auteur: 'Prénom N.',
         initiale: 'P',
         date: 'il y a 6 mois',
         texte: 'Un témoignage neutre, exemple générique de contenu.',
-        initialeVisible: true,
-        photo: false,
+        avatar: 'Initiale',
+        note: '5',
         photoUrl: '',
         photoAlt: '',
-        verifie: true,
-        tronque: false,
       },
     ],
   },

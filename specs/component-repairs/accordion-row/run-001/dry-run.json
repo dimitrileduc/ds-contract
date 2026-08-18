@@ -1,0 +1,259 @@
+{
+  "campaignId": "repair-accordion-row",
+  "filePin": "2386549228582551721",
+  "state": "ready-to-apply",
+  "operations": [
+    {
+      "operationId": "link-grand-closed-question-style",
+      "targetId": "accordion-row",
+      "mechanism": "set-properties",
+      "nodeId": "2059:1417",
+      "structuralPath": "0/1/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-5.size",
+          "name": "Titre 5"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2059:1417"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2347:34248"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "0/1/0"
+        },
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-question-02-style",
+      "targetId": "accordion-row",
+      "mechanism": "set-properties",
+      "nodeId": "2059:1417",
+      "structuralPath": "1/1/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.paragraphe-gras.size",
+          "name": "Paragraphe gras"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2059:1417"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2347:34260"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "1/1/0"
+        },
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-question-03-style",
+      "targetId": "accordion-row",
+      "mechanism": "set-properties",
+      "nodeId": "2059:1417",
+      "structuralPath": "2/0/0/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.titre-5.size",
+          "name": "Titre 5"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2059:1417"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2347:34254"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "2/0/0/0"
+        },
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-contenu-04-style",
+      "targetId": "accordion-row",
+      "mechanism": "set-properties",
+      "nodeId": "2059:1417",
+      "structuralPath": "2/2",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.paragraphe.size",
+          "name": "Paragraphe"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2059:1417"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2347:34258"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "2/2"
+        },
+        {
+          "field": "characters",
+          "equals": "Réponse"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Réponse"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-question-05-style",
+      "targetId": "accordion-row",
+      "mechanism": "set-properties",
+      "nodeId": "2059:1417",
+      "structuralPath": "3/0/0/0",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.paragraphe-gras.size",
+          "name": "Paragraphe gras"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2059:1417"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2347:34266"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "3/0/0/0"
+        },
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Question"
+        }
+      ],
+      "source": "campaign.allowlist"
+    },
+    {
+      "operationId": "link-contenu-06-style",
+      "targetId": "accordion-row",
+      "mechanism": "set-properties",
+      "nodeId": "2059:1417",
+      "structuralPath": "3/2",
+      "changes": {
+        "textStyle": {
+          "tokenPath": "typography.paragraphe.size",
+          "name": "Paragraphe"
+        }
+      },
+      "preconditions": [
+        {
+          "field": "masterNodeId",
+          "equals": "2059:1417"
+        },
+        {
+          "field": "resolvedNodeId",
+          "equals": "2347:34270"
+        },
+        {
+          "field": "nodeType",
+          "equals": "TEXT"
+        },
+        {
+          "field": "structuralPath",
+          "equals": "3/2"
+        },
+        {
+          "field": "characters",
+          "equals": "Réponse"
+        }
+      ],
+      "postconditions": [
+        {
+          "field": "characters",
+          "equals": "Réponse"
+        }
+      ],
+      "source": "campaign.allowlist"
+    }
+  ]
+}

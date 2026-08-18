@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/section-header.contract.json (ds.section-header v2.1.1)
+ * Source of truth: contracts/section-header.contract.json (ds.section-header v2.2.0)
  * Regenerate with: npm run generate
  */
 
@@ -14,10 +14,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-8);
-  width: var(--size-section-header-root);
   align-self: stretch;
 }
 
@@ -31,6 +32,8 @@
 }
 
 .Accroche {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
   font-size: var(--font-size-20);
   font-weight: var(--font-weight-regular);
@@ -40,6 +43,8 @@
 }
 
 .Titre {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir-bleute);
   font-size: var(--font-size-40);
   font-weight: var(--font-weight-regular);

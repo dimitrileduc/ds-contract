@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "campaignId": "021-figma-projection-repair",
+  "filePin": "2385978952503240149",
+  "status": "revalidated",
+  "impactGraph": {
+    "expected": 30,
+    "observed": 30,
+    "missing": [],
+    "extra": [],
+    "pending": 0,
+    "groups": [
+      {"dependencyId": "absolute-lowering", "count": 8, "contracts": ["ds.accordion-row", "ds.devis", "ds.footer", "ds.hero", "ds.member-picture", "ds.nav-item", "ds.sav"], "odoo": ["odoo-019-qualification"], "verdict": "revalidated"},
+      {"dependencyId": "Button", "count": 13, "contracts": ["ds.carousel-controls", "ds.carte", "ds.devis", "ds.faq", "ds.footer", "ds.formulaire", "ds.header", "ds.hero", "ds.presentation", "ds.reassurances", "ds.sav", "ds.section-header"], "odoo": ["odoo-019-qualification"], "verdict": "revalidated"},
+      {"dependencyId": "SectionHeader", "count": 9, "contracts": ["ds.coordonnees", "ds.faq", "ds.formulaire", "ds.hero", "ds.presentation", "ds.reassurances", "ds.sav", "ds.texte-seo"], "odoo": ["odoo-019-qualification"], "verdict": "revalidated"}
+    ]
+  },
+  "witnesses": {
+    "button": {"nodeId": "6:122", "leftProperty": "Glyphe gauche#2028:14", "rightProperty": "Glyphe droite#2028:21", "preferredValuesPerProperty": 19, "verdict": "INSTANCE_SWAP live"},
+    "carouselControls": {
+      "nodeId": "2077:2191",
+      "geometryBefore": {"x": 40, "y": 60, "width": 104, "height": 52},
+      "geometryAfter": {"x": 40, "y": 60, "width": 104, "height": 52},
+      "previous": {"before": "27:83", "toggled": "27:86", "restored": "27:83"},
+      "next": {"before": "27:86", "toggled": "27:83", "restored": "27:86"},
+      "verdict": "opposed glyphs visible and restored"
+    },
+    "coordonnees": {
+      "nodeId": "2192:9815",
+      "exposedPropertyKeys": ["Accroche#2090:46", "Titre#2090:47"],
+      "before": ["Contact", "Nos coordonnées"],
+      "changed": ["Témoin contact", "Témoin coordonnées"],
+      "restored": ["Contact", "Nos coordonnées"],
+      "geometryBefore": {"x": 0, "y": 1619, "width": 1728, "height": 597},
+      "geometryAfter": {"x": 0, "y": 1619, "width": 1728, "height": 597}
+    },
+    "formulaire": {
+      "nodeId": "2096:2714",
+      "exposedPropertyKeys": ["Accroche#2090:46", "Titre#2090:47"],
+      "before": ["Une demande de devis ? Une réparation ?", "Prenez contact avec nous dès maintenant !"],
+      "changed": ["Témoin devis", "Témoin formulaire"],
+      "restored": ["Une demande de devis ? Une réparation ?", "Prenez contact avec nous dès maintenant !"],
+      "geometryBefore": {"x": 89, "y": 768, "width": 1550, "height": 723},
+      "geometryAfter": {"x": 89, "y": 768, "width": 1550, "height": 723}
+    }
+  },
+  "evidenceRefs": [
+    "specs/021-figma-projection-repair/proofs/us2/apply-receipt.json",
+    "specs/021-figma-projection-repair/proofs/us2/odoo-019-decision.json",
+    "specs/021-figma-projection-repair/proofs/after/produits-e-commerce_carousel-controls.png",
+    "specs/021-figma-projection-repair/proofs/after/coordonnees_usage_2192_9815.png",
+    "specs/021-figma-projection-repair/proofs/after/formulaire_usage_2096_2714.png"
+  ]
+}

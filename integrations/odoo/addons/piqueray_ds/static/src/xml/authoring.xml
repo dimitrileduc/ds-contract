@@ -30,10 +30,26 @@
     <BuilderRow label.translate="Carte d’avis">
       <span data-pqr-control="author"><span data-pqr-control="initial"><span data-pqr-control="date"><span data-pqr-control="testimonial">Auteur, initiale, date et témoignage se modifient directement.</span></span></span></span>
     </BuilderRow>
-    <BuilderRow label.translate="Afficher Lire la suite"><span data-pqr-control="truncated"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'tronque'"/></span></BuilderRow>
-    <BuilderRow label.translate="Afficher l’initiale"><span data-pqr-control="show-initial"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'initialeVisible'"/></span></BuilderRow>
-    <BuilderRow label.translate="Afficher la photo"><span data-pqr-control="show-photo"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'photo'"/></span></BuilderRow>
-    <BuilderRow label.translate="Avis vérifié"><span data-pqr-control="verified"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'verifie'"/></span></BuilderRow>
+    <!-- Note : contrôle `enum` de ds.review-card.note (décision review-note).
+         Patron repris de l'option native `html_builder.RatingOption`, qui pilote
+         sa notation par BuilderSelect/BuilderSelectItem. Les trois bascules
+         d'avant (Lire la suite, initiale, photo) ont disparu en 2.0.0 : la
+         première n'avait plus d'objet, les deux autres sont remplacées par la
+         dérivation photo→sinon initiale. -->
+    <BuilderRow label.translate="Note">
+      <span data-pqr-control="review-note">
+        <!-- `preview="false"` comme TOUTES les actions de ce panneau : sans lui,
+             survoler le menu rejoue `apply` puis un revert par entrée traversée,
+             et cette action déplace cinq `hidden` à chaque passage. -->
+        <BuilderSelect>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'1'" preview="false">1 étoile</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'2'" preview="false">2 étoiles</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'3'" preview="false">3 étoiles</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'4'" preview="false">4 étoiles</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'5'" preview="false">5 étoiles</BuilderSelectItem>
+        </BuilderSelect>
+      </span>
+    </BuilderRow>
     <BuilderRow label.translate="Avatar"><span data-pqr-control="replace-avatar"><BuilderButton action="'pqrReplaceReviewAvatar'" preview="false">Remplacer</BuilderButton></span></BuilderRow>
     <BuilderRow label.translate="Alternative"><span data-pqr-control="avatar-alt"><BuilderTextInput action="'pqrSetReviewAvatarAlt'"/></span></BuilderRow>
     <BuilderRow label.translate="Ordre"><span data-pqr-control="move-up"><BuilderButton action="'pqrMoveReviewUp'" preview="false">Monter</BuilderButton></span><span data-pqr-control="move-down"><BuilderButton action="'pqrMoveReviewDown'" preview="false">Descendre</BuilderButton></span></BuilderRow>
@@ -49,7 +65,153 @@
     <BuilderRow label.translate="Appel à l’action">
       <span data-pqr-control="show-cta"><BuilderCheckbox classAction="'pqr-cta-on'"/></span>
     </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <!-- Même mécanique que le Hero : BuilderUrlPicker (le module website
+           l'étend d'office avec get_suggested_links) et notre action garde sa
+           porte — repli même origine, javascript: refusé. -->
+      <span data-pqr-control="cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'presentation-cta'"/></span>
+    </BuilderRow>
   </t>
   <!-- ODOO-019-PRESENTATION-PANEL END -->
 
+  <!-- ODOO-019-HERO-PANEL BEGIN -->
+  <t t-name="piqueray_ds.HeroOption">
+    <BuilderRow label.translate="Piqueray · Hero">
+      <span data-pqr-control="hero-title"><span data-pqr-control="hero-subtitle"><span data-pqr-control="hero-cta-label">Le titre, le sous-titre et le CTA se modifient directement dans le bloc.</span></span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Image">
+      <span data-pqr-control="hero-background-url"><BuilderButton action="'pqrReplaceHeroBackground'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="hero-background-alt"><BuilderTextInput action="'pqrSetHeroBackgroundAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <!-- BuilderUrlPicker : le module website l'étend d'office avec
+           l'autocomplétion des pages du site (get_suggested_links) ; notre
+           action garde sa porte (repli même origine, javascript: refusé). -->
+      <span data-pqr-control="hero-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'hero-cta'"/></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-HERO-PANEL END -->
+
+  <!-- ODOO-019-EQUIPE-PANEL BEGIN -->
+  <t t-name="piqueray_ds.EquipeOption">
+    <BuilderRow label.translate="Piqueray · Équipe">
+      <span data-pqr-control="member-collection">Collection gouvernée</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Membres">
+      <span data-pqr-control="member-collection"><BuilderButton action="'pqrAddMember'" preview="false">Ajouter un membre</BuilderButton></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.MemberCardOption">
+    <BuilderRow label.translate="Membre">
+      <span data-pqr-control="member-name"><span data-pqr-control="member-role">Le nom et le poste se modifient directement.</span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Portrait">
+      <span data-pqr-control="member-image-url"><BuilderButton action="'pqrReplaceMemberPortrait'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="member-image-alt"><BuilderTextInput action="'pqrSetMemberPortraitAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ordre">
+      <span data-pqr-control="member-move-up"><BuilderButton action="'pqrMoveMemberUp'" preview="false">Monter</BuilderButton></span>
+      <span data-pqr-control="member-move-down"><BuilderButton action="'pqrMoveMemberDown'" preview="false">Descendre</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Collection">
+      <span data-pqr-control="member-remove"><BuilderButton action="'pqrRemoveMember'" preview="false" type="'danger'">Supprimer le membre</BuilderButton></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-EQUIPE-PANEL END -->
+
+  <!-- ODOO-019-FAQ-PANEL BEGIN -->
+  <t t-name="piqueray_ds.FaqOption">
+    <BuilderRow label.translate="Piqueray · FAQ">
+      <span data-pqr-control="faq-collection">Collection gouvernée</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Questions">
+      <span data-pqr-control="faq-collection"><BuilderButton action="'pqrAddFaqRow'" preview="false">Ajouter une question</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Contenus">
+      <span data-pqr-control="faq-title"><span data-pqr-control="faq-cta-label">Le titre de section et le libellé du CTA se modifient directement dans le bloc.</span></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.FaqRowOption">
+    <BuilderRow label.translate="Question">
+      <span data-pqr-control="faq-row-titre"><span data-pqr-control="faq-row-contenu">La question se modifie directement ; ouvrir la rangée pour modifier la réponse.</span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Question ouverte">
+      <span data-pqr-control="faq-row-etat"><BuilderCheckbox action="'pqrToggleFaqRow'" preview="false"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ordre">
+      <span data-pqr-control="faq-row-move-up"><BuilderButton action="'pqrMoveFaqRowUp'" preview="false">Monter</BuilderButton></span>
+      <span data-pqr-control="faq-row-move-down"><BuilderButton action="'pqrMoveFaqRowDown'" preview="false">Descendre</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Collection">
+      <span data-pqr-control="faq-row-remove"><BuilderButton action="'pqrRemoveFaqRow'" preview="false" type="'danger'">Supprimer la question</BuilderButton></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-FAQ-PANEL END -->
+
+  <!-- ODOO-019-DEVIS-PANEL BEGIN -->
+  <t t-name="piqueray_ds.DevisOption">
+    <BuilderRow label.translate="Piqueray · Devis">
+      <span data-pqr-control="devis-title"><span data-pqr-control="devis-cta-label">Le titre et le CTA se modifient directement dans le bloc.</span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Image">
+      <span data-pqr-control="devis-background-url"><BuilderButton action="'pqrReplaceDevisBackground'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="devis-background-alt"><BuilderTextInput action="'pqrSetDevisBackgroundAlt'"/></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-DEVIS-PANEL END -->
+
+  <!-- ODOO-019-SAV-PANEL BEGIN -->
+  <t t-name="piqueray_ds.SavOption">
+    <BuilderRow label.translate="Piqueray · SAV">
+      <span data-pqr-control="sav-title"><span data-pqr-control="sav-body"><span data-pqr-control="sav-cta-label">Le titre, le texte et le CTA se modifient directement dans le bloc.</span></span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Image de fond">
+      <span data-pqr-control="sav-background-url"><BuilderButton action="'pqrReplaceSavBackground'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative du fond">
+      <span data-pqr-control="sav-background-alt"><BuilderTextInput action="'pqrSetSavBackgroundAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Photo">
+      <span data-pqr-control="sav-photo-url"><BuilderButton action="'pqrReplaceSavPhoto'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative de la photo">
+      <span data-pqr-control="sav-photo-alt"><BuilderTextInput action="'pqrSetSavPhotoAlt'"/></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-SAV-PANEL END -->
+
+  <!-- ODOO-019-TEXTE-SEO-PANEL BEGIN -->
+  <t t-name="piqueray_ds.TexteSeoOption">
+    <BuilderRow label.translate="Piqueray · Texte SEO">
+      <span data-pqr-control="title"><span data-pqr-control="body"><span data-pqr-control="subtitle">Le titre, le paragraphe et le sous-titre se modifient directement dans le bloc.</span></span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Questions">
+      <span data-pqr-control="accordion-collection"><BuilderButton action="'pqrAddTexteSeoRow'" preview="false">Ajouter une question</BuilderButton></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.TexteSeoRowOption">
+    <BuilderRow label.translate="Question">
+      <span data-pqr-control="row-titre"><span data-pqr-control="row-contenu">La question et la réponse se modifient directement (ouvrez la ligne pour la réponse).</span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ouverte au chargement">
+      <span data-pqr-control="row-etat"><BuilderCheckbox action="'pqrToggleTexteSeoRow'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ordre">
+      <span data-pqr-control="row-move-up"><BuilderButton action="'pqrMoveTexteSeoRowUp'" preview="false">Monter</BuilderButton></span>
+      <span data-pqr-control="row-move-down"><BuilderButton action="'pqrMoveTexteSeoRowDown'" preview="false">Descendre</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Collection">
+      <span data-pqr-control="row-remove"><BuilderButton action="'pqrRemoveTexteSeoRow'" preview="false" type="'danger'">Supprimer la question</BuilderButton></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-019-TEXTE-SEO-PANEL END -->
 </templates>

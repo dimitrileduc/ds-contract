@@ -1,0 +1,202 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.hero-video",
+  "name": "HeroVideo",
+  "version": "1.0.0",
+  "status": "draft",
+  "category": "section",
+  "description": "Piqueray HeroVideo. Extracted from the historical in-place component 2151:5552 on Accueil, reviewed and adopted — not authored. The root is fluid at a 1728 px canvas reference and keeps the historical 720 px height. Code supports a video URL and poster; Figma deliberately projects the poster as a static IMAGE placeholder because native VideoPaint cannot be reconstructed deterministically. The two governed scrims belong to HeroVideo itself. The single 44/48 title remains direct because no existing SectionHeader emphasis is pixel-equivalent.",
+  "semantics": {
+    "element": "section",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "backgroundUrl",
+      "description": "Code-side poster source. On canvas, this poster is the deterministic static placeholder for the video.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "backgroundUrl"
+        }
+      }
+    },
+    {
+      "name": "videoUrl",
+      "description": "Code-side video source. Figma's native videoHash has no contract-to-code URL transport, so the canvas intentionally uses only the static poster placeholder.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "videoUrl"
+        }
+      }
+    },
+    {
+      "name": "backgroundAlt",
+      "description": "Alternative text for the decorative poster plane.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "backgroundAlt"
+        }
+      }
+    },
+    {
+      "name": "accroche",
+      "description": "Historical HeroVideo title, including the non-breaking spaces around HÖRMANN. Bound as one native Figma TEXT property so future instance copy remains governed.",
+      "type": "text",
+      "default": "Le numéro 1 des portes HÖRMANN en Province de Liège !",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Accroche"
+        },
+        "code": {
+          "prop": "accroche"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "row",
+        "justify": "start",
+        "align": "end",
+        "width": "fill",
+        "referenceWidth": 1728
+      },
+      "parts": {
+        "Background": {
+          "description": "Out-of-flow media reception plane. Code renders video plus poster; Figma renders and preserves only the static poster IMAGE.",
+          "element": "video",
+          "attrs": {
+            "src": "{videoUrl}",
+            "poster": "{backgroundUrl}",
+            "aria-label": "{backgroundAlt}"
+          },
+          "declared": {
+            "position": "absolute",
+            "object-fit": "cover",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "z-index": "0"
+          }
+        },
+        "VoileBas": {
+          "description": "Historical bottom scrim supporting the title and CTA.",
+          "literals": {
+            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 80%, rgba(0,0,0,0.5) 100%)"
+          },
+          "declared": {
+            "position": "absolute",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "z-index": "1",
+            "pointer-events": "none"
+          }
+        },
+        "VoileNavigation": {
+          "description": "Historical top veil, owned by HeroVideo so an overlaid navigation remains readable on the Page usage.",
+          "literals": {
+            "background-image": "linear-gradient(to top, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%)"
+          },
+          "declared": {
+            "position": "absolute",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "z-index": "1",
+            "pointer-events": "none"
+          }
+        },
+        "Text": {
+          "layout": {
+            "direction": "column",
+            "align": "stretch",
+            "grow": true,
+            "width": "fill"
+          },
+          "declared": {
+            "position": "relative",
+            "z-index": "2"
+          },
+          "parts": {
+            "Accroche": {
+              "layout": {
+                "width": "fill"
+              },
+              "content": {
+                "prop": "accroche"
+              },
+              "tokens": {
+                "color": "{color.blanc}",
+                "font-family": "{font.family.montserrat}",
+                "font-size": "{font.size.44}",
+                "font-weight": "{font.weight.regular}",
+                "line-height": "{font.line-height.48}"
+              }
+            }
+          }
+        },
+        "Bouton": {
+          "component": {
+            "id": "ds.button",
+            "text": "Contactez-nous",
+            "props": {
+              "variant": "outlineBlanc",
+              "iconLeft": false,
+              "iconRight": false,
+              "iconRightGlyph": "arrow-right"
+            }
+          }
+        }
+      },
+      "tokens": {
+        "height": "{size.hero-video.root}",
+        "gap": "{space.10}",
+        "padding-top": "{space.48}",
+        "padding-right": "{space.89}",
+        "padding-bottom": "{space.48}",
+        "padding-left": "{space.89}"
+      },
+      "literals": {
+        "background-color": "transparent"
+      },
+      "declared": {
+        "position": "relative"
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "36011e51b8bc0b221a1ba6f9108709b5bd1c4490",
+      "nodeId": "2151:5552",
+      "dumpedAt": "2026-08-11"
+    },
+    "code": {
+      "importPath": "src/components/HeroVideo",
+      "export": "HeroVideo"
+    }
+  }
+}
