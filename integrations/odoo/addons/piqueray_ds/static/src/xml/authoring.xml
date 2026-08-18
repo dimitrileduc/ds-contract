@@ -30,10 +30,26 @@
     <BuilderRow label.translate="Carte d’avis">
       <span data-pqr-control="author"><span data-pqr-control="initial"><span data-pqr-control="date"><span data-pqr-control="testimonial">Auteur, initiale, date et témoignage se modifient directement.</span></span></span></span>
     </BuilderRow>
-    <BuilderRow label.translate="Afficher Lire la suite"><span data-pqr-control="truncated"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'tronque'"/></span></BuilderRow>
-    <BuilderRow label.translate="Afficher l’initiale"><span data-pqr-control="show-initial"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'initialeVisible'"/></span></BuilderRow>
-    <BuilderRow label.translate="Afficher la photo"><span data-pqr-control="show-photo"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'photo'"/></span></BuilderRow>
-    <BuilderRow label.translate="Avis vérifié"><span data-pqr-control="verified"><BuilderCheckbox action="'pqrSetReviewBoolean'" actionParam="'verifie'"/></span></BuilderRow>
+    <!-- Note : contrôle `enum` de ds.review-card.note (décision review-note).
+         Patron repris de l'option native `html_builder.RatingOption`, qui pilote
+         sa notation par BuilderSelect/BuilderSelectItem. Les trois bascules
+         d'avant (Lire la suite, initiale, photo) ont disparu en 2.0.0 : la
+         première n'avait plus d'objet, les deux autres sont remplacées par la
+         dérivation photo→sinon initiale. -->
+    <BuilderRow label.translate="Note">
+      <span data-pqr-control="review-note">
+        <!-- `preview="false"` comme TOUTES les actions de ce panneau : sans lui,
+             survoler le menu rejoue `apply` puis un revert par entrée traversée,
+             et cette action déplace cinq `hidden` à chaque passage. -->
+        <BuilderSelect>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'1'" preview="false">1 étoile</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'2'" preview="false">2 étoiles</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'3'" preview="false">3 étoiles</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'4'" preview="false">4 étoiles</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetReviewNote'" actionParam="'5'" preview="false">5 étoiles</BuilderSelectItem>
+        </BuilderSelect>
+      </span>
+    </BuilderRow>
     <BuilderRow label.translate="Avatar"><span data-pqr-control="replace-avatar"><BuilderButton action="'pqrReplaceReviewAvatar'" preview="false">Remplacer</BuilderButton></span></BuilderRow>
     <BuilderRow label.translate="Alternative"><span data-pqr-control="avatar-alt"><BuilderTextInput action="'pqrSetReviewAvatarAlt'"/></span></BuilderRow>
     <BuilderRow label.translate="Ordre"><span data-pqr-control="move-up"><BuilderButton action="'pqrMoveReviewUp'" preview="false">Monter</BuilderButton></span><span data-pqr-control="move-down"><BuilderButton action="'pqrMoveReviewDown'" preview="false">Descendre</BuilderButton></span></BuilderRow>
@@ -49,6 +65,12 @@
     <BuilderRow label.translate="Appel à l’action">
       <span data-pqr-control="show-cta"><BuilderCheckbox classAction="'pqr-cta-on'"/></span>
     </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <!-- Même mécanique que le Hero : BuilderUrlPicker (le module website
+           l'étend d'office avec get_suggested_links) et notre action garde sa
+           porte — repli même origine, javascript: refusé. -->
+      <span data-pqr-control="cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'presentation-cta'"/></span>
+    </BuilderRow>
   </t>
   <!-- ODOO-019-PRESENTATION-PANEL END -->
 
@@ -62,6 +84,12 @@
     </BuilderRow>
     <BuilderRow label.translate="Alternative">
       <span data-pqr-control="hero-background-alt"><BuilderTextInput action="'pqrSetHeroBackgroundAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <!-- BuilderUrlPicker : le module website l'étend d'office avec
+           l'autocomplétion des pages du site (get_suggested_links) ; notre
+           action garde sa porte (repli même origine, javascript: refusé). -->
+      <span data-pqr-control="hero-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'hero-cta'"/></span>
     </BuilderRow>
   </t>
   <!-- ODOO-019-HERO-PANEL END -->

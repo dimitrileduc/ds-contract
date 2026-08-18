@@ -89,42 +89,36 @@ export class MoveReviewDownAction extends BuilderAction {
     apply({ editingElement }) { moveReview(findCard(editingElement), "down"); }
 }
 
-/** Les booléens restent indépendants : photo et initiale ne forment pas un enum. */
-export class SetReviewBooleanAction extends BuilderAction {
-    static id = "pqrSetReviewBoolean";
-    // BuilderCheckbox consulte `isApplied` (et non `getValue`, réservé aux
-    // champs de saisie) pour initialiser son état. Garder cette lecture sur la
-    // carte sélectionnée évite qu'un booléen d'une autre instance colore le
-    // panneau courant.
-    isApplied({ editingElement, params: { mainParam } }) {
-        return findCard(editingElement)?.dataset?.[mainParam] === "true";
+/** Note de l'avis — contrôle `enum` de ds.review-card.note (décision review-note).
+ *
+ * Les CINQ bandes de ds.notation sont présentes dans le DOM sauvegardé ; cette
+ * action ne fait que déplacer le `hidden`. Elle ne construit rien : un bloc Odoo
+ * posé est une copie HTML gelée, et une action qui fabriquerait la bande
+ * manquante recréerait le défaut mesuré le 2026-08-18 sur la pastille photo —
+ * un panneau qui modifie la structure au lieu de la révéler.
+ */
+export class SetReviewNoteAction extends BuilderAction {
+    static id = "pqrSetReviewNote";
+    /** Un seul foyer pour la note lue ET son défaut : `isApplied` en dérive,
+     * pour qu'un changement de défaut n'ait pas à être écrit deux fois. */
+    getValue({ editingElement }) {
+        return findCard(editingElement)?.dataset?.note ?? "5";
+    }
+    isApplied(arg) {
+        return this.getValue(arg) === String(arg.params.mainParam);
     }
     apply({ editingElement, params: { mainParam } }) {
         const card = findCard(editingElement);
-        if (!card || !["tronque", "initialeVisible", "photo", "verifie"].includes(mainParam)) return;
-        // Ces contrôles sont tous des bascules. Après un remount de panneau,
-        // le widget Checkbox peut encore afficher son ancien état; le DOM de
-        // la carte est la source sauvegardée, donc c'est lui qui décide du
-        // prochain état plutôt qu'une valeur visuelle périmée.
-        const value = card.dataset[mainParam] !== "true";
-        card.dataset[mainParam] = value ? "true" : "false";
-        const map = {
-            tronque: "[data-pqr-part='lire-la-suite']",
-            initialeVisible: "[data-pqr-part='avatar-initiale']",
-            verifie: "[data-pqr-part='verification']",
-        };
-        const target = map[mainParam];
-        if (target) for (const el of card.querySelectorAll(target)) el.hidden = !value;
-        if (mainParam === "photo") {
-            const photo = card.querySelector("[data-pqr-part='avatar-photo']");
-            const image = photo?.querySelector("img");
-            // « Afficher photo » ne peut pas matérialiser une image incomplète.
-            // Une carte sans source/alt reste repliée; une image complète garde
-            // la bascule indépendante de l'initiale.
-            const complete = Boolean(image?.getAttribute("src")) && Boolean(image?.getAttribute("alt")?.trim());
-            const visible = value && complete;
-            card.dataset.photo = visible ? "true" : "false";
-            if (photo) photo.hidden = !visible;
+        const note = String(mainParam);
+        if (!card || !["1", "2", "3", "4", "5"].includes(note)) return;
+        // La note est persistée UNE fois, sur la carte : les cinq `hidden` en
+        // dérivent. Un miroir sur la racine `.notation` n'avait aucun lecteur.
+        card.dataset.note = note;
+        // UNE traversée : les cinq bandes sont les enfants directs de la racine
+        // `.notation`. Cinq `querySelectorAll` successifs re-parcouraient tout
+        // le sous-arbre de la notation (~80 nœuds) une fois par valeur.
+        for (const bande of card.querySelectorAll("[data-pqr-part='etoiles'] .notation > [data-pqr-part]")) {
+            bande.hidden = bande.getAttribute("data-pqr-part") !== `note${note}`;
         }
     }
 }

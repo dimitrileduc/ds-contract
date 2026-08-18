@@ -23,7 +23,7 @@ jamais posables séparément.
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.3.0",
+    "version": "19.0.1.4.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",

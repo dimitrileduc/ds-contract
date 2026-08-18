@@ -3,10 +3,10 @@ import path from 'node:path';
 import { canonicalJson, sha256 } from './lib/canonical.js';
 import { arg, runAsCli } from './lib/cli.js';
 
-const EXPECTED_GRAPH = '497bc8dcf492821780b44c8d11526c08ee1511f9d9d972bb156a1feac7f6c4e3';
-const AUTHORING = '1.0.0';
-const MODULE = '19.0.1.3.0';
-const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '1.0.2', 'ds.presentation': '2.6.0', 'ds.hero': '1.5.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '1.2.0', 'ds.sav': '1.4.0', 'ds.texte-seo': '2.1.0' };
+const EXPECTED_GRAPH = '102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc';
+const AUTHORING = '1.1.0';
+const MODULE = '19.0.1.4.0';
+const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '2.0.0', 'ds.presentation': '2.6.0', 'ds.hero': '1.5.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '1.2.0', 'ds.sav': '1.4.0', 'ds.texte-seo': '2.1.0' };
 
 export type VersionState = 'current' | 'policy-stale' | 'structure-stale' | 'unknown';
 export interface SavedCase { id: string; html: string }

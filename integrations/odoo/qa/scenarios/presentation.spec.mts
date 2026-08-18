@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Frame, Locator, Page } from 'playwright-core';
 import { PROOFS, REPO, Recueil } from '../lib/receipt.mts';
-import { enterEditor as enterHarnessEditor, select as sharedSelect, visibleCount } from '../lib/editor.mts';
+import { enterEditor as enterHarnessEditor, frapperAuClicHumain, poserHref, select as sharedSelect, visibleCount } from '../lib/editor.mts';
 import {
   NAV_TIMEOUT_MS, baseUrl, dockerDisponible,
   ouvrirSessionEditeur, ouvrirSessionPublique, withInstance, type QaEnv,
@@ -121,6 +121,28 @@ async function main() {
       };
       const leaked = fixture.forbiddenRootActions.filter((name: keyof typeof visibleForbidden) => visibleForbidden[name] > 0);
       receipt.constateSi('racine — actions Odoo interdites absentes du chrome visible', leaked.length === 0, 'save-as-custom, resize, background, anchor absents', leaked.length ? leaked.join(', ') : JSON.stringify(visibleForbidden));
+
+      // Édition HUMAINE du libellé CTA (geste partagé — voir lib/editor.mts) :
+      // même mécanique de vol de focus par un ancêtre focusable que le Hero,
+      // mesurée le 2026-08-18.
+      const libelleCta = first.locator('[data-pqr-part="presentation-cta"] [data-pqr-part="button-label"]');
+      const texteCtaApresClic = await frapperAuClicHumain(libelleCta, '•');
+      receipt.constateSi('CTA — libellé éditable au clic humain', texteCtaApresClic?.includes('•') === true, 'clic souris réel puis frappe insérée dans le libellé', texteCtaApresClic === null ? 'libellé non cliquable' : `texte observé : ${texteCtaApresClic}`);
+
+      // Le LIEN du CTA est une ADAPTATION ODOO, pas une prop de contrat :
+      // aucun contrat ne porte de notion de lien et `ds.button` reste un
+      // <button> côté React. Gouverné au registre (ODOO-019-CTA-LIEN-BRIDGE),
+      // grammaire vérifiée ici — même porte que le Hero.
+      await select(frame, first);
+      const champHref = panel(page).locator('[data-pqr-control="cta-href"] input');
+      const ancreCta = first.locator('[data-pqr-part="presentation-cta"] a[data-pqr-part="button-root"]');
+      const hrefReplie = await poserHref(champHref, ancreCta, `${baseUrl(env)}/promo`);
+      const hrefApresInjection = await poserHref(champHref, ancreCta, 'javascript:alert(1)');
+      const hrefFinal = await poserHref(champHref, ancreCta, '/contact');
+      receipt.constateSi('CTA — lien gouverné au panneau (relatif, origine repliée, javascript refusé)',
+        hrefReplie === '/promo' && hrefApresInjection === '/promo' && hrefFinal === '/contact',
+        'absolu même origine → /promo · javascript: ignoré · /contact accepté',
+        `replié: ${hrefReplie} · après injection: ${hrefApresInjection} · final: ${hrefFinal}`);
 
       await first.locator('[data-pqr-part="presentation-title"]').fill('Titre instance A');
       await first.locator('[data-pqr-part="presentation-text"]').fill('Texte instance A');

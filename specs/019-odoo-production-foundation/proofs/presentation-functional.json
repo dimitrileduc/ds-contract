@@ -6,9 +6,11 @@
   "fixture": "presentation-panel",
   "observations": [
     "[pass] catalogue — deux Présentations indépendantes sont insérées — attendu « 2 racines », observé « 2 racine(s) »",
-    "[pass] panneau — inventaire Piqueray strict — attendu « body, cta-label, show-cta, title », observé « body, cta-label, show-cta, title »",
+    "[pass] panneau — inventaire Piqueray strict — attendu « body, cta-href, cta-label, show-cta, title », observé « body, cta-href, cta-label, show-cta, title »",
     "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
     "[pass] racine — actions Odoo interdites absentes du chrome visible — attendu « save-as-custom, resize, background, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0,\"background\":0} »",
+    "[pass] CTA — libellé éditable au clic humain — attendu « clic souris réel puis frappe insérée dans le libellé », observé « texte observé : Contact•ez-nous »",
+    "[pass] CTA — lien gouverné au panneau (relatif, origine repliée, javascript refusé) — attendu « absolu même origine → /promo · javascript: ignoré · /contact accepté », observé « replié: /promo · après injection: /promo · final: /contact »",
     "[pass] édition — contenus et CTA opposés restent isolés — attendu « A éditée CTA visible · B éditée CTA masqué », observé « [{\"title\":\"Titre instance A\",\"body\":\"Texte instance A\",\"cta\":true,\"label\":\"CTA instance A\"},{\"title\":\"Titre instance B\",\"body\":\"Texte instance B\",\"cta\":false,\"label\":\"CTA instance B\"}] »",
     "[pass] rich-text hostile — insertion dirty exercée — attendu « insertHTML + dirty », observé « insert=true dirty=1 »",
     "[pass] save — Odoo persiste les deux instances — attendu « RPC save 2xx », observé « HTTP 200 »",
@@ -25,5 +27,5 @@
     }
   ],
   "limitCodes": [],
-  "durationMs": 104982
+  "durationMs": 97021
 }

@@ -8,7 +8,7 @@
  *   ds.devis → ds.button, ds.devis
  *   ds.equipe → ds.equipe, ds.member-card, ds.member-picture
  *   ds.faq → ds.accordion-row, ds.button, ds.faq, ds.section-header
- *   ds.google-reviews → ds.google-reviews, ds.review-card
+ *   ds.google-reviews → ds.google-reviews, ds.notation, ds.review-card
  *   ds.hero → ds.button, ds.hero, ds.section-header
  *   ds.presentation → ds.button, ds.presentation, ds.section-header
  *   ds.sav → ds.button, ds.sav, ds.section-header
@@ -264,7 +264,7 @@
   opacity: 0;
 }
 
-/* MemberCard — from ds.member-card v1.3.0 (core/emit-html.ts) */
+/* MemberCard — from ds.member-card v1.4.0 (core/emit-html.ts) */
 
 .member-card, .member-card *, .member-card *::before, .member-card *::after {
   box-sizing: border-box;
@@ -293,6 +293,7 @@
   font-size: var(--pqr-font-size-32);
   font-weight: var(--pqr-font-weight-regular);
   line-height: 40px;
+  text-align: center;
 }
 
 .member-card__Poste {
@@ -300,6 +301,7 @@
   font-size: var(--pqr-font-size-16);
   font-weight: var(--pqr-font-weight-semibold);
   line-height: 20px;
+  text-align: center;
 }
 
 /* Equipe — from ds.equipe v1.2.0 (core/emit-html.ts) */
@@ -614,7 +616,330 @@
   align-self: stretch;
 }
 
-/* ReviewCard — from ds.review-card v1.0.0 (core/emit-html.ts) */
+/* Notation — from ds.notation v1.0.0 (core/emit-html.ts) */
+
+.notation, .notation *, .notation *::before, .notation *::after {
+  box-sizing: border-box;
+}
+
+.notation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+}
+
+.notation__note1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--pqr-space-3);
+}
+
+.notation__note1Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--pqr-space-3);
+}
+
+.notation__note2Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--pqr-space-3);
+}
+
+.notation__note3Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--pqr-space-3);
+}
+
+.notation__note4Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--pqr-space-3);
+}
+
+.notation__note5Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* ReviewCard — from ds.review-card v2.0.0 (core/emit-html.ts) */
 
 .review-card, .review-card *, .review-card *::before, .review-card *::after {
   box-sizing: border-box;
@@ -719,68 +1044,6 @@
   gap: var(--pqr-space-8);
 }
 
-.review-card__etoiles {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--pqr-space-3);
-}
-
-.review-card__etoile1 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile1 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile2 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile2 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile3 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile3 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile4 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile4 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile5 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile5 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
 .review-card__verification {
   display: flex;
   align-items: center;
@@ -817,7 +1080,7 @@
   color: #8A8A8A;
 }
 
-/* GoogleReviews — from ds.google-reviews v1.0.2 (core/emit-html.ts) */
+/* GoogleReviews — from ds.google-reviews v2.0.0 (core/emit-html.ts) */
 
 .google-reviews, .google-reviews *, .google-reviews *::before, .google-reviews *::after {
   box-sizing: border-box;

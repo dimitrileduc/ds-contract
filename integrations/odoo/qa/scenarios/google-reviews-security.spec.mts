@@ -99,11 +99,20 @@ async function avatarState(card: any) {
     const initial = node.querySelector('[data-pqr-part="avatar-initiale"]') as HTMLElement | null;
     const photo = node.querySelector('[data-pqr-part="avatar-photo"]') as HTMLElement | null;
     const image = photo?.querySelector('img') as HTMLImageElement | null;
+    const source = image?.getAttribute('src') ?? null;
+    // Le cycle média natif laisse la data URL marquée jusqu'au before_save.
+    // Elle est tronquée ici — comme le fait `hero.spec.mts` — pour qu'un reçu
+    // commité ne transporte pas 138 ko de base64.
+    const pending = image?.classList.contains('o_modified_image_to_save') ?? false;
     return {
       initial: Boolean(initial && !initial.hidden),
       photo: Boolean(photo && !photo.hidden),
-      photoFlag: (node as HTMLElement).dataset.photo ?? null,
-      rawSource: image?.getAttribute('src') ?? null,
+      // 2.0.0 : `data-photo` n'a plus d'écrivain — le fait persisté est
+      // `data-avatar`, dérivé par reconcileAvatar. Lire l'ancien attribut
+      // rendait `null` et faisait échouer deux constats sur un état correct.
+      avatarFlag: (node as HTMLElement).dataset.avatar ?? null,
+      rawSource: pending && source?.startsWith('data:image/') ? 'data:image/*;base64,…' : source,
+      pending,
       alt: image?.getAttribute('alt') ?? null,
     };
   });
@@ -201,8 +210,8 @@ async function main() {
       );
 
       // Le vrai dialogue Odoo accepte le fichier, sauvegarde l'attachment et
-      // rappelle l'action. Sans alt, la politique replie l'avatar : c'est la
-      // première des quatre combinaisons, mesurée avant de la modifier.
+      // rappelle l'action. En 2.0.0 la photo s'affiche AUSSITÔT : l'alternative
+      // est dérivée de l'auteur, elle ne conditionne plus l'affichage.
       await currentCardPanel.getByRole('button', { name: 'Remplacer' }).click();
       const mediaDialog = page.locator('.modal')
         .filter({ has: page.locator('.o_select_media_dialog') })
@@ -219,11 +228,19 @@ async function main() {
       await mediaDialog.waitFor({ state: 'hidden', timeout: 30_000 });
       await page.waitForTimeout(300);
       const uploadedWithoutAlt = await avatarState(card);
+      // Mesuré le 2026-08-18 : au sortir du dialogue, la source est encore la
+      // data URL native marquée — le before_save ne l'a pas encore publiée.
+      // C'est l'exception assumée de `sourceEnAttenteNative`, pas un défaut ;
+      // le Hero l'exprime déjà ainsi (« publié OU pending natif »).
+      const sourceSaine = uploadedWithoutAlt.rawSource !== null && (
+        /^(\/web\/(image|content)\/|https?:\/\/[^/]+\/web\/(image|content)\/)/.test(uploadedWithoutAlt.rawSource) ||
+        (uploadedWithoutAlt.pending && uploadedWithoutAlt.rawSource === 'data:image/*;base64,…')
+      );
       receipt.constateSi(
-        'avatar sans alt — upload Odoo retenu mais replié',
-        Boolean(uploadedWithoutAlt.rawSource && /^(\/web\/(image|content)\/|https?:\/\/[^/]+\/web\/(image|content)\/)/.test(uploadedWithoutAlt.rawSource)) &&
-          uploadedWithoutAlt.photo === false && uploadedWithoutAlt.photoFlag === 'false',
-        'source Odoo /web/image ou /web/content, photo masquée, data-photo=false',
+        'avatar sans alt — upload Odoo affiché, alternative dérivée',
+        sourceSaine && uploadedWithoutAlt.photo === true && uploadedWithoutAlt.avatarFlag === 'Photo' &&
+          Boolean(uploadedWithoutAlt.alt?.trim()),
+        'source Odoo publiée ou pending natif, photo visible, data-avatar=Photo, alt dérivé non vide',
         JSON.stringify(uploadedWithoutAlt),
       );
 
@@ -232,32 +249,30 @@ async function main() {
       await altInput().press('Tab');
       await page.waitForTimeout(180);
       const both = await avatarState(card);
-      const setBoolean = async (param: 'initialeVisible' | 'photo', expected: boolean) => {
-        await selectInFrame(frame, `${ROOT} ${CARD}`);
-        const toggle = cardPanel(page).locator(`[data-action-param="${param}"] input`).first();
-        const attribute = param === 'photo' ? 'data-photo' : 'data-initiale-visible';
-        if ((await card.getAttribute(attribute)) !== String(expected)) await toggle.click();
-        await page.waitForTimeout(140);
-      };
-      await setBoolean('initialeVisible', false);
-      const photoOnly = await avatarState(card);
-      await setBoolean('photo', false);
-      const neither = await avatarState(card);
-      await setBoolean('initialeVisible', true);
-      const initialOnly = await avatarState(card);
-      await setBoolean('photo', true);
-      const states = { both, photoOnly, neither, initialOnly, restored: await avatarState(card) };
+      // 2.0.0 (2026-08-18) : les deux booléens ont disparu. Il n'y a plus quatre
+      // états indépendants — dont deux absurdes, aucun avatar et les deux à la
+      // fois — mais DEUX états exclusifs, décidés par la présence d'une source
+      // publiée et non par une bascule du rédacteur. Ce contrôle vérifie la
+      // dérivation dans les deux sens, y compris le retour à l'initiale.
+      const avecPhoto = both;
+      await card.evaluate((node) => {
+        const image = node.querySelector('[data-pqr-part="avatar-photo"] img') as HTMLImageElement | null;
+        if (image) image.removeAttribute('src');
+      });
+      await altInput().fill('Portrait QA');
+      await altInput().press('Tab');
+      await page.waitForTimeout(200);
+      const sansPhoto = await avatarState(card);
+      const states = { avecPhoto, sansPhoto };
       receipt.artefact(
         path.join(PROOFS, 'google-reviews-security.avatar-states.json'),
         Buffer.from(JSON.stringify(states, null, 2) + '\n'),
         'json',
       );
       receipt.constateSi(
-        'avatar — les quatre états photo/initiale restent indépendants',
-        both.initial && both.photo && !photoOnly.initial && photoOnly.photo &&
-          !neither.initial && !neither.photo && initialOnly.initial && !initialOnly.photo &&
-          states.restored.initial && states.restored.photo,
-        'initiale+photo, photo seule, aucune, initiale seule, puis restauration',
+        'avatar — deux états exclusifs, dérivés de la présence d\'une photo publiée',
+        avecPhoto.photo && !avecPhoto.initial && !sansPhoto.photo && sansPhoto.initial,
+        'photo publiée → forme Photo seule ; source retirée → initiale seule',
         JSON.stringify(states),
       );
 
@@ -278,7 +293,7 @@ async function main() {
       }
       receipt.constateSi(
         'média hostile — sources exécutables, vides ou cassées retirées',
-        rejectedSources.every(({ state }) => state.rawSource === null && state.photo === false && state.photoFlag === 'false'),
+        rejectedSources.every(({ state }) => state.rawSource === null && state.photo === false && state.avatarFlag === 'Initiale'),
         `${hostileFixture.media.invalidSources.length} sources retirées et avatar replié`,
         JSON.stringify(rejectedSources),
       );

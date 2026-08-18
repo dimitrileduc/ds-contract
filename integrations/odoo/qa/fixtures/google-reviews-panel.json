@@ -13,17 +13,17 @@
     "initial",
     "date",
     "testimonial",
-    "truncated",
-    "show-initial",
-    "show-photo",
-    "verified",
+    "review-note",
     "replace-avatar",
     "avatar-alt",
     "move-up",
     "move-down",
     "remove-review"
   ],
-  "expectedAvatarControls": ["replace-avatar", "avatar-alt"],
+  "expectedAvatarControls": [
+    "replace-avatar",
+    "avatar-alt"
+  ],
   "forbiddenNativeImageOptions": [
     "crop",
     "filters",
@@ -32,7 +32,16 @@
     "dimensions",
     "format"
   ],
-  "forbiddenRootActions": ["save-as-custom", "resize", "background", "anchor"],
-  "rootActions": ["move", "duplicate", "remove"],
-  "notes": "Les contrôles sont nommés par data-pqr-control. Aucun champ d'image natif ne peut être compté comme un contrôle Piqueray."
+  "forbiddenRootActions": [
+    "save-as-custom",
+    "resize",
+    "background",
+    "anchor"
+  ],
+  "rootActions": [
+    "move",
+    "duplicate",
+    "remove"
+  ],
+  "notes": "Les contrôles sont nommés par data-pqr-control. Aucun champ d'image natif ne peut être compté comme un contrôle Piqueray. 2026-08-18 (review-card 2.0.0) : truncated / show-initial / show-photo / verified ont disparu — « Lire la suite » et le badge vérifié sont inconditionnels, et l'avatar est dérivé de la présence d'une photo. review-note les remplace : c'est le seul contrôle enum de la carte."
 }

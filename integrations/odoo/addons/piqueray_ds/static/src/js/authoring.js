@@ -30,6 +30,7 @@
 import {
     Plugin,
     BaseOptionComponent,
+    BuilderAction,
     registry,
     DISABLED_NAMESPACE,
     closestElement,
@@ -53,7 +54,7 @@ import {
     RemoveFaqRowAction,
     RemoveMemberAction,
     RemoveReviewAction,
-    SetReviewBooleanAction,
+    SetReviewNoteAction,
     ToggleFaqRowAction,
     AddTexteSeoRowAction,
     MoveTexteSeoRowDownAction,
@@ -315,6 +316,61 @@ export class PiquerayTexteSeoRowOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+/** Le lien d'un CTA est réglé au panneau (le popover natif est inatteignable :
+ * l'ancre est hors hit-testing en édition pour que son libellé reste éditable
+ * — voir odoo-bridge.css, ODOO-019-CTA-LIEN-BRIDGE). Bonne pratique du noyau
+ * (website.py:501 : `cta_btn_href: '/contactus'`) : l'interne se stocke en
+ * RELATIF racine, l'hôte n'entre jamais dans le HTML sauvegardé.
+ *
+ * C'est une ADAPTATION ODOO, pas une prop de contrat : aucun contrat ne porte
+ * de notion de lien et `ds.button` reste un <button> côté React. Sa
+ * gouvernance vit donc au registre d'adaptations, pas dans un
+ * `*.authoring.json` — décision owner du 2026-08-18. */
+const CTA_HREF_AUTORISE = /^(#|\/(?!\/)|https?:\/\/|mailto:|tel:)/i;
+export function normaliserCtaHref(valeur, origine) {
+    const brut = String(valeur ?? "").trim();
+    if (!brut) return null;
+    // Un absolu MÊME ORIGINE (collé depuis la barre d'adresse) est replié en
+    // chemin relatif : une URL locale ne peut pas cuire dans une sauvegarde
+    // qui partira en production.
+    if (brut === origine || brut.startsWith(`${origine}/`) || brut.startsWith(`${origine}#`)) {
+        const repli = brut.slice(origine.length) || "/";
+        return CTA_HREF_AUTORISE.test(repli) ? repli : null;
+    }
+    return CTA_HREF_AUTORISE.test(brut) ? brut : null;
+}
+
+/** Une seule mécanique, UNE seule action : la part qui porte le CTA arrive par
+ * le canal de paramètre du builder (`actionParam` au gabarit → `params.mainParam`
+ * ici), pas par une sous-classe. Une sous-classe par section coûterait trois
+ * éditions à chaque nouveau CTA (la classe, l'entrée `builder_actions`, la
+ * rangée XML) pour un mécanisme déjà générique, et une part mal orthographiée
+ * s'y perdrait sans trace.
+ *
+ * Chaîne vérifiée dans le noyau 19.0 : `BuilderUrlPicker.props` reprend
+ * `basicContainerBuilderComponentProps`, qui déclare `actionParam`
+ * (html_builder/core/utils.js) ; `getCustomAction()` le passe par
+ * `convertParamToObject`, qui emballe un scalaire en `{ mainParam }` ; et
+ * `getValue` est appelé avec `{ editingElement, params: actionParam }`. */
+export class SetCtaHrefAction extends BuilderAction {
+    static id = "pqrSetCtaHref";
+    ancre(editingElement, part) {
+        return part ? editingElement.querySelector(`[data-pqr-part="${part}"] a[data-pqr-part="button-root"]`) : null;
+    }
+    getValue({ editingElement, params: { mainParam } = {} }) {
+        return this.ancre(editingElement, mainParam)?.getAttribute("href") || "";
+    }
+    apply({ editingElement, value, params: { mainParam } = {} }) {
+        const ancre = this.ancre(editingElement, mainParam);
+        if (!ancre) return;
+        const href = normaliserCtaHref(value, window.location.origin);
+        // Entrée hors grammaire (javascript:, //hôte, vide…) : on REFUSE sans
+        // casser le lien existant — la dégradation se voit au champ, pas au DOM.
+        if (href === null) return;
+        ancre.setAttribute("href", href);
+    }
+}
+
 export class PiquerayAuthoringPlugin extends Plugin {
     static id = "piquerayAuthoringPlugin";
 
@@ -374,6 +430,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
         // overlays structurels natifs d'Odoo.
         builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption],
         builder_actions: {
+            SetCtaHrefAction,
             AddMemberAction,
             RemoveMemberAction,
             MoveMemberUpAction,
@@ -382,7 +439,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
             RemoveReviewAction,
             MoveReviewUpAction,
             MoveReviewDownAction,
-            SetReviewBooleanAction,
+            SetReviewNoteAction,
             AddFaqRowAction,
             RemoveFaqRowAction,
             MoveFaqRowUpAction,

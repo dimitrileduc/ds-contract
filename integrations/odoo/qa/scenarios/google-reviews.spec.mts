@@ -285,27 +285,38 @@ async function main() {
       await firstCard.click({ position: { x: 40, y: 8 } });
       await editorPage.waitForTimeout(150);
       const activeCardPanel = cardPanel(editorPage);
-      const initialToggle = activeCardPanel.locator('[data-action-param="initialeVisible"] input');
-      const verifiedToggle = activeCardPanel.locator('[data-action-param="verifie"] input');
-      const photoToggle = activeCardPanel.locator('[data-action-param="photo"] input');
-      const initialWasVisible = await initialToggle.isChecked();
-      const verifiedWasVisible = await verifiedToggle.isChecked();
-      if (initialWasVisible) await initialToggle.click();
-      if (verifiedWasVisible) await verifiedToggle.click();
-      if (!(await photoToggle.isChecked())) await photoToggle.click();
-      await editorPage.waitForTimeout(150);
-      const incompleteAvatar = await firstCard.evaluate((card) => ({
-        initiale: card.getAttribute('data-initiale-visible'),
-        verifie: card.getAttribute('data-verifie'),
-        photo: card.getAttribute('data-photo'),
-        avatarHidden: (card.querySelector('[data-pqr-part="avatar-photo"]') as HTMLElement | null)?.hidden ?? true,
+      // 2.0.0 (2026-08-18) : les trois bascules ont disparu. « Lire la suite » et
+      // le badge vérifié sont inconditionnels, l'avatar est DÉRIVÉ de la présence
+      // d'une photo publiée, et la note est le seul contrôle enum de la carte.
+      // Ce bloc exerçait les bascules ; il exerce maintenant ce qui les remplace.
+      const noteSelect = activeCardPanel
+        .locator('[data-pqr-control="review-note"] button, [data-pqr-control="review-note"] .dropdown-toggle')
+        .first();
+      await noteSelect.click();
+      await editorPage.waitForTimeout(300);
+      // Adressé par l'identifiant gouverné, jamais par la copie française :
+      // `BuilderSelectItem` rend `data-action-param` sur le nœud même qu'on
+      // clique (html_builder/core/building_blocks/builder_select_item.xml).
+      // Reformuler « 3 étoiles » ne doit pas casser un test qui ne parle pas
+      // de libellés.
+      await editorPage.locator('.o-dropdown--menu, .dropdown-menu')
+        .locator('[data-action-param="3"]').first().click();
+      await editorPage.waitForTimeout(250);
+      const etatCarte = await firstCard.evaluate((card) => ({
+        note: card.getAttribute('data-note'),
+        avatar: card.getAttribute('data-avatar'),
+        bandeVisible: [...card.querySelectorAll('[data-pqr-part^="note"]')]
+          .filter((b) => /^note[1-5]$/.test(b.getAttribute('data-pqr-part') || '') && !(b as HTMLElement).hidden)
+          .map((b) => b.getAttribute('data-pqr-part'))[0] ?? null,
+        photoHidden: (card.querySelector('[data-pqr-part="avatar-photo"]') as HTMLElement | null)?.hidden ?? true,
+        badge: Boolean(card.querySelector('[data-pqr-part="verification"]')),
       }));
       receipt.constateSi(
-        'booléens carte et photo incomplète restent locaux et sûrs',
-        incompleteAvatar.initiale === 'false' && incompleteAvatar.verifie === 'false' &&
-          incompleteAvatar.photo === 'false' && Boolean(incompleteAvatar.avatarHidden),
-        'initiale=false, vérifié=false, photo incomplète repliée',
-        JSON.stringify(incompleteAvatar),
+        'note pilotée depuis le panneau, avatar dérivé, badge inconditionnel',
+        etatCarte.note === '3' && etatCarte.bandeVisible === 'note3'
+          && etatCarte.avatar === 'Initiale' && Boolean(etatCarte.photoHidden) && etatCarte.badge,
+        'note=3 (bande note3 seule visible), avatar=Initiale faute de photo publiée, badge vérifié présent',
+        JSON.stringify(etatCarte),
       );
 
       // La surface média est réellement ouverte, mais limitée au seul onglet

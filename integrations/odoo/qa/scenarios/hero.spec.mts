@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Frame, Page } from 'playwright-core';
 import { PROOFS, REPO, Recueil } from '../lib/receipt.mts';
-import { enterEditor as enterHarnessEditor, select, visibleCount } from '../lib/editor.mts';
+import { enterEditor as enterHarnessEditor, frapperAuClicHumain, poserHref, select, visibleCount } from '../lib/editor.mts';
 import {
   NAV_TIMEOUT_MS, baseUrl, dockerDisponible,
   ouvrirSessionEditeur, ouvrirSessionPublique, withInstance, type QaEnv,
@@ -123,6 +123,31 @@ async function main() {
       };
       const leaked = fixture.forbiddenRootActions.filter((name: keyof typeof forbiddenVisible) => forbiddenVisible[name] > 0);
       receipt.constateSi('racine — actions Odoo interdites absentes', leaked.length === 0, 'save-as-custom, resize, background, anchor absents', leaked.length ? leaked.join(', ') : JSON.stringify(forbiddenVisible));
+
+      // Édition HUMAINE du libellé CTA (geste partagé — voir lib/editor.mts) :
+      // ce constat échoue si le CTA redevient un contrôle qui avale la souris,
+      // le bug mesuré le 2026-08-18 et corrigé en CTA-lien <a>.
+      const libelleCta = first.locator('[data-pqr-part="hero-cta"] [data-pqr-part="button-label"]');
+      const texteCtaApresClic = await frapperAuClicHumain(libelleCta, '•');
+      receipt.constateSi('CTA — libellé éditable au clic humain', texteCtaApresClic?.includes('•') === true, 'clic souris réel puis frappe insérée dans le libellé', texteCtaApresClic === null ? 'libellé non cliquable' : `texte observé : ${texteCtaApresClic}`);
+
+      // Le LIEN du CTA est une ADAPTATION ODOO, pas une prop de contrat : les
+      // contrats ne portent aucune notion de lien et `ds.button` reste un
+      // <button> sur la surface React. Sa gouvernance vit donc au registre
+      // (ODOO-019-CTA-LIEN-BRIDGE), et sa grammaire est vérifiée ici : relatif
+      // accepté, absolu même origine replié en relatif (l'hôte n'entre jamais
+      // dans le HTML sauvegardé — patron noyau website.py:501), javascript:
+      // refusé. Décidé par l'owner le 2026-08-18 (option « b »).
+      await select(frame, first);
+      const champHref = panel(page).locator('[data-pqr-control="hero-cta-href"] input');
+      const ancreCta = first.locator('[data-pqr-part="hero-cta"] a[data-pqr-part="button-root"]');
+      const hrefReplie = await poserHref(champHref, ancreCta, `${baseUrl(env)}/promo`);
+      const hrefApresInjection = await poserHref(champHref, ancreCta, 'javascript:alert(1)');
+      const hrefFinal = await poserHref(champHref, ancreCta, '/devis');
+      receipt.constateSi('CTA — lien gouverné au panneau (relatif, origine repliée, javascript refusé)',
+        hrefReplie === '/promo' && hrefApresInjection === '/promo' && hrefFinal === '/devis',
+        'absolu même origine → /promo · javascript: ignoré · /devis accepté',
+        `replié: ${hrefReplie} · après injection: ${hrefApresInjection} · final: ${hrefFinal}`);
 
       await first.locator('[data-pqr-part="hero-title"]').fill('Hero instance A');
       await first.locator('[data-pqr-part="hero-subtitle"]').fill('Sous-titre instance A');

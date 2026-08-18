@@ -39,6 +39,46 @@ export async function select(frame: Frame, root: Locator, settleMs = 400): Promi
   await frame.page().waitForTimeout(settleMs);
 }
 
+/** Édition HUMAINE d'un îlot gouverné : vrai clic souris puis frappe — jamais
+ * `fill()`, qui focalise par programme et masque un ancêtre focusable volant le
+ * focus au libellé (mesuré le 2026-08-18 sur le CTA du Hero, sur `<button>`
+ * PUIS sur `<a href>`). `locator.click()` EST ce geste réel : il attend
+ * l'actionnabilité, défile jusqu'au nœud, puis clique en son centre — un
+ * `boundingBox()` lu à l'avance perdrait ces deux garanties et cliquerait des
+ * coordonnées périmées dès que la cible est sous la ligne de flottaison. Même
+ * idiome que l'édition de titre de la FAQ (`faq.spec.mts`).
+ *
+ * Rend le texte observé après frappe, ou `null` si la cible n'est pas
+ * cliquable — pour que l'appelant en fasse un constat plutôt qu'une exception. */
+export async function frapperAuClicHumain(cible: Locator, texte: string, settleMs = 400): Promise<string | null> {
+  const page = cible.page();
+  try {
+    await cible.click({ timeout: 5000 });
+  } catch {
+    return null;
+  }
+  await page.waitForTimeout(settleMs);
+  await page.keyboard.type(texte);
+  await page.waitForTimeout(200);
+  return ((await cible.textContent()) ?? '').trim();
+}
+
+/** Pose une valeur dans un `BuilderUrlPicker` et rend le `href` réellement
+ * obtenu sur l'ancre visée. Le picker ouvre un menu de suggestions qui CONSOMME
+ * Enter : Échap le ferme, Tab committe la valeur tapée par le blur. Séquence
+ * non évidente et porteuse — elle a donc un seul foyer, comme l'attente
+ * d'`enterEditor` : une copie locale la fera dériver au prochain changement
+ * Odoo du picker. */
+export async function poserHref(champ: Locator, ancre: Locator, valeur: string, settleMs = 300): Promise<string | null> {
+  const page = champ.page();
+  await champ.click();
+  await champ.fill(valeur);
+  await page.keyboard.press('Escape');
+  await champ.press('Tab');
+  await page.waitForTimeout(settleMs);
+  return ancre.getAttribute('href');
+}
+
 /** Compte les nœuds réellement VISIBLES — `count()` seul compterait les
  * poignées natives présentes mais masquées. */
 export async function visibleCount(page: Page, selector: string): Promise<number> {

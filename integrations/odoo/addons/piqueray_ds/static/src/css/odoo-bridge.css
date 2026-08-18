@@ -89,3 +89,43 @@
   gap: var(--pqr-space-24);
 }
 /* ODOO-019-FAQ-MECHANICS END */
+
+/* ODOO-019-CTA-LIEN-BRIDGE BEGIN
+ * Neutralisation UA, pas une valeur de design : un CTA-lien (a.button) hérite
+ * du soulignement UA des ancres, et le contrat ne porte aucun canal
+ * text-decoration. Tout le reste du rendu vient des classes générées.
+ *
+ * Scopé aux racines Piqueray comme toute autre règle de ce pont : la feuille
+ * part dans `web.assets_frontend`, donc un sélecteur nu habillerait aussi les
+ * `a.button` du reste du site client. */
+.s_pqr_hero a.button,
+.s_pqr_presentation a.button,
+.s_pqr_faq a.button,
+.s_pqr_devis a.button,
+.s_pqr_sav a.button,
+.s_pqr_texte_seo a.button,
+.s_pqr_equipe a.button,
+.s_pqr_google_reviews a.button {
+  text-decoration: none;
+}
+
+/* En ÉDITION, l'hôte du CTA ne doit pas disputer le focus à son libellé : nos
+ * zones éditables sont des ÎLOTS gouvernés (pas une section entièrement
+ * éditable comme les snippets natifs), et tout ancêtre focusable gagne le focus
+ * contre l'îlot — mesuré le 2026-08-18 sur <button> PUIS sur <a href>.
+ *
+ * La parade est donc keyée sur le HOOK d'hôte, jamais sur la balise : `<a>` et
+ * `<button>` portent tous deux `data-pqr-part="button-root"`, et quatre des six
+ * appels de `pqr_button` rendent encore un `<button>` — dont les CTA FAQ, Devis
+ * et SAV, dont les libellés sont déclarés éditables (authoring.js,
+ * {FAQ,DEVIS,SAV}_EDITABLE_PARTS). Même forme que les déclencheurs FAQ/Texte
+ * SEO plus haut, qui keyent sur [data-pqr-part="trigger"] et non sur une
+ * balise. Le lien reste pleinement actif sur le site publié. */
+.odoo-editor-editable [data-pqr-part="button-root"] {
+  pointer-events: none;
+}
+
+.odoo-editor-editable [data-pqr-part="button-root"] .button__label {
+  pointer-events: auto;
+}
+/* ODOO-019-CTA-LIEN-BRIDGE END */

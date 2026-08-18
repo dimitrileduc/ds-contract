@@ -98,6 +98,13 @@ async function responsive(page: Page, rootIndex = 0) {
       const tops = cards.slice(0, 5).map((card) => Math.round(card.getBoundingClientRect().top));
       const firstPicture = cards[0].querySelector<HTMLElement>('[data-pqr-part="member-picture-root"]');
       const pictureRect = firstPicture?.getBoundingClientRect();
+      // Témoin 2026-08-18 (run member-card, contrat 1.4.0) : l'alignement des
+      // textes est mesuré en PROPRIÉTÉ CALCULÉE, pas à l'œil — un texte HUG
+      // centré par sa boîte paraît centré sur UNE ligne et se cale à gauche au
+      // repli. Cette classe de défaut n'avait aucun témoin (constat owner sur
+      // l'instance 8269, largeur réduite).
+      const nameNode = cards[0].querySelector<HTMLElement>('[data-pqr-part="member-name"]');
+      const roleNode = cards[0].querySelector<HTMLElement>('[data-pqr-part="member-role"]');
       return {
         width: viewportWidth,
         rootWidth: host.getBoundingClientRect().width,
@@ -106,6 +113,8 @@ async function responsive(page: Page, rootIndex = 0) {
         firstRowAligned: new Set(tops.slice(0, 4)).size === 1,
         fifthOnNextRow: tops[4] > tops[0],
         pictureSquareDelta: pictureRect ? Math.abs(pictureRect.width - pictureRect.height) : null,
+        nameTextAlign: nameNode ? getComputedStyle(nameNode).textAlign : null,
+        roleTextAlign: roleNode ? getComputedStyle(roleNode).textAlign : null,
       };
     }, width));
   }
@@ -315,6 +324,7 @@ async function main() {
       receipt.constateSi('public — A=1 éditée avec portrait, B=16 intacte', response?.status() === 200 && saved.length === 2 && saved[0].count === 1 && saved[0].members[0]?.name === 'Membre QA final' && saved[0].members[0]?.role === 'Poste QA final' && saved[0].members[0]?.image && /\/web\/(image|content)\//.test(saved[0].members[0]?.source ?? '') && saved[1].count === 16, 'HTTP 200 · A=1 complète · B=16', JSON.stringify(saved.map((root: any) => ({ count: root.count, first: root.members[0] }))));
       receipt.constateSi('sécurité — aucun handler ni URL exécutable', safety.handlers.length === 0 && safety.executableUrls.length === 0, '0 handler, 0 URL exécutable', JSON.stringify(safety));
       receipt.constateSi('responsive — grille native 4 colonnes à 1728/1440 sans overflow', layout.length === 2 && layout.every((item: any) => !item.missing && item.overflow <= 0.5 && item.columns === 4 && item.firstRowAligned && item.fifthOnNextRow && item.pictureSquareDelta !== null && item.pictureSquareDelta <= 0.5), '4 colonnes · image carrée · 0 overflow', JSON.stringify(layout));
+      receipt.constateSi('responsive — Nom/Poste centrés en propriété calculée (member-card 1.4.0, repli de ligne couvert)', layout.every((item: any) => item.nameTextAlign === 'center' && item.roleTextAlign === 'center'), 'text-align: center aux deux largeurs', JSON.stringify(layout.map((item: any) => ({ width: item.width, nameTextAlign: item.nameTextAlign, roleTextAlign: item.roleTextAlign }))));
     } finally {
       await publicSession.context.close();
     }
