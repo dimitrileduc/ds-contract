@@ -3219,7 +3219,7 @@ const COMPONENTS = [
     "setName": "MemberCard",
     "contractId": "ds.member-card",
     "anchorKey": "0b23b8d87dfa08866cc767b34c18fedddf39a4d8",
-    "description": "MemberCard — generated from contract ds.member-card v1.3.0",
+    "description": "MemberCard — generated from contract ds.member-card v1.4.0",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -3283,6 +3283,7 @@ const COMPONENTS = [
                   "textStyle": "Titre 3",
                   "textFill": "color/noir-bleute",
                   "lineHeight": 40,
+                  "textAlignH": "CENTER",
                   "fontFamily": "Montserrat",
                   "contentProp": "Nom"
                 },
@@ -3295,6 +3296,7 @@ const COMPONENTS = [
                   "textStyle": "Titre 6",
                   "textFill": "color/orange",
                   "lineHeight": 20,
+                  "textAlignH": "CENTER",
                   "fontFamily": "Montserrat",
                   "contentProp": "Poste"
                 }

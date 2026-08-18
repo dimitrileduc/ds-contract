@@ -2,10 +2,10 @@
   "$schema": "./contract.schema.json",
   "id": "ds.google-reviews",
   "name": "GoogleReviews",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "status": "draft",
   "category": "section",
-  "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.",
+  "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.\n\nPromotion 2.0.0 (2026-08-18). MAJEUR par ricochet de ds.review-card 2.0.0 : la collection `avis` perd trois champs (`tronque`, `initialeVisible`, `photo`) et en gagne deux (`avatar`, `note`). Le mapping d'un `repeat` se fait PAR NOM, donc la forme d'un enregistrement d'avis suit celle des props de l'enfant, sans exception.",
   "semantics": {
     "element": "section",
     "provenance": "authored"
@@ -78,12 +78,23 @@
           "initiale": "text",
           "date": "text",
           "texte": "text",
-          "tronque": "boolean",
-          "initialeVisible": "boolean",
-          "photo": "boolean",
+          "avatar": {
+            "enum": [
+              "Initiale",
+              "Photo"
+            ]
+          },
+          "note": {
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
           "photoUrl": "text",
-          "photoAlt": "text",
-          "verifie": "boolean"
+          "photoAlt": "text"
         }
       },
       "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010).",
@@ -287,20 +298,20 @@
             }
           }
         },
-      "cartes": {
-        "description": "Viewport positionné des avis. Autorité owner du 2026-08-12 : les cinq cartes forment une grille native de cinq colonnes égales ; chaque carte remplit sa cellule. Les flèches gauche et droite sont superposées aux bords et ne participent jamais au calcul des colonnes.",
+        "cartes": {
+          "description": "Viewport positionné des avis. Autorité owner du 2026-08-12 : les cinq cartes forment une grille native de cinq colonnes égales ; chaque carte remplit sa cellule. Les flèches gauche et droite sont superposées aux bords et ne participent jamais au calcul des colonnes.",
           "layout": {
             "display": "flex",
             "direction": "row",
             "align": "center",
             "justify": "space-between"
           },
-        "declared": {
-          "position": "relative"
-        },
-        "parts": {
-          "flecheGauche": {
-            "description": "Contrôle gauche superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit left -15 px.",
+          "declared": {
+            "position": "relative"
+          },
+          "parts": {
+            "flecheGauche": {
+              "description": "Contrôle gauche superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit left -15 px.",
               "visibleWhen": {
                 "prop": "montrerControles"
               },
@@ -309,20 +320,20 @@
                 "align": "center",
                 "justify": "center"
               },
-            "declared": {
-              "position": "absolute"
-            },
-            "stylesWhen": [
-              {
-                "prop": "montrerControles",
-                "styles": {
-                  "position": "absolute",
-                  "left": "-15px",
-                  "top": "50%",
-                  "transform": "translateY(-50%)"
+              "declared": {
+                "position": "absolute"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "montrerControles",
+                  "styles": {
+                    "position": "absolute",
+                    "left": "-15px",
+                    "top": "50%",
+                    "transform": "translateY(-50%)"
+                  }
                 }
-              }
-            ],
+              ],
               "parts": {
                 "pastilleGauche": {
                   "layout": {
@@ -352,22 +363,22 @@
                 }
               }
             },
-          "groupeCartes": {
-            "description": "Grille native de cinq colonnes égales. Sa largeur vient du viewport ; aucune largeur de carte n'est une règle de layout ici.",
-            "layout": {
-              "display": "grid",
-              "columns": 5,
-              "width": "fill"
+            "groupeCartes": {
+              "description": "Grille native de cinq colonnes égales. Sa largeur vient du viewport ; aucune largeur de carte n'est une règle de layout ici.",
+              "layout": {
+                "display": "grid",
+                "columns": 5,
+                "width": "fill"
               },
               "tokens": {
                 "gap": "{space.8}"
               },
               "parts": {
-              "carte": {
-                "description": "Chaque instance Review-card remplit sa cellule de grille ; le contrat partagé ds.review-card reste inchangé.",
-                "layout": {
-                  "width": "fill"
-                },
+                "carte": {
+                  "description": "Chaque instance Review-card remplit sa cellule de grille ; le contrat partagé ds.review-card reste inchangé.",
+                  "layout": {
+                    "width": "fill"
+                  },
                   "repeat": {
                     "itemsProp": "avis",
                     "sample": [
@@ -376,60 +387,50 @@
                         "initiale": "P",
                         "date": "il y a 2 mois",
                         "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "initialeVisible": true,
-                        "photo": false,
+                        "avatar": "Initiale",
+                        "note": "5",
                         "photoUrl": "",
-                        "photoAlt": "",
-                        "verifie": true,
-                        "tronque": false
+                        "photoAlt": ""
                       },
                       {
                         "auteur": "Prénom N.",
                         "initiale": "P",
                         "date": "il y a 3 mois",
                         "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "initialeVisible": true,
-                        "photo": false,
+                        "avatar": "Initiale",
+                        "note": "5",
                         "photoUrl": "",
-                        "photoAlt": "",
-                        "verifie": true,
-                        "tronque": false
+                        "photoAlt": ""
                       },
                       {
                         "auteur": "Prénom N.",
                         "initiale": "P",
                         "date": "il y a 4 mois",
                         "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "initialeVisible": true,
-                        "photo": false,
+                        "avatar": "Initiale",
+                        "note": "5",
                         "photoUrl": "",
-                        "photoAlt": "",
-                        "verifie": true,
-                        "tronque": false
+                        "photoAlt": ""
                       },
                       {
                         "auteur": "Prénom N.",
                         "initiale": "P",
                         "date": "il y a 5 mois",
                         "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "initialeVisible": true,
-                        "photo": false,
+                        "avatar": "Initiale",
+                        "note": "5",
                         "photoUrl": "",
-                        "photoAlt": "",
-                        "verifie": true,
-                        "tronque": false
+                        "photoAlt": ""
                       },
                       {
                         "auteur": "Prénom N.",
                         "initiale": "P",
                         "date": "il y a 6 mois",
                         "texte": "Un témoignage neutre, exemple générique de contenu.",
-                        "initialeVisible": true,
-                        "photo": false,
+                        "avatar": "Initiale",
+                        "note": "5",
                         "photoUrl": "",
-                        "photoAlt": "",
-                        "verifie": true,
-                        "tronque": false
+                        "photoAlt": ""
                       }
                     ]
                   },
@@ -439,8 +440,8 @@
                 }
               }
             },
-          "flecheDroite": {
-            "description": "Contrôle droit superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit right -15 px.",
+            "flecheDroite": {
+              "description": "Contrôle droit superposé au bord du viewport, hors du calcul des cinq colonnes. La pastille de 30 px est centrée sur le bord, soit right -15 px.",
               "visibleWhen": {
                 "prop": "montrerControles"
               },
@@ -449,20 +450,20 @@
                 "align": "center",
                 "justify": "center"
               },
-            "declared": {
-              "position": "absolute"
-            },
-            "stylesWhen": [
-              {
-                "prop": "montrerControles",
-                "styles": {
-                  "position": "absolute",
-                  "right": "-15px",
-                  "top": "50%",
-                  "transform": "translateY(-50%)"
+              "declared": {
+                "position": "absolute"
+              },
+              "stylesWhen": [
+                {
+                  "prop": "montrerControles",
+                  "styles": {
+                    "position": "absolute",
+                    "right": "-15px",
+                    "top": "50%",
+                    "transform": "translateY(-50%)"
+                  }
                 }
-              }
-            ],
+              ],
               "parts": {
                 "pastilleDroite": {
                   "layout": {

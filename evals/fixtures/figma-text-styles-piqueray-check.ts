@@ -183,17 +183,25 @@ const rich = textNodes.filter((record) => record.rich);
 const plain = textNodes.filter((record) => !record.rich);
 const linked = plain.filter(({ node }) => Boolean(node.textStyle));
 const custom = plain.filter(({ node }) => !node.textStyle);
-if (linked.length !== 62 || custom.length !== 11 || rich.length !== 21) {
-  fail(`global gate expected 62 linked / 11 historical custom / 21 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+// 2026-08-18 : 11 -> 15. ds.review-card est devenu un set de deux variantes
+// (Avatar=Initiale | Avatar=Photo), donc quatre de ses textes — auteur, date,
+// temoignage, lireLaSuite — sont comptés une fois par variante. Le cinquième
+// (initialeTexte) n'existe que dans la variante Initiale. Aucun texte nouveau,
+// aucun texte réparé : ces cinq-là restent des DÉFAUTS (typo brute, sans Text
+// Style gouverné), relevés par l'audit du run
+// specs/component-repairs/review-card/run-001/audit.json. Ce compte les
+// dénombre, il ne les absout pas.
+if (linked.length !== 62 || custom.length !== 15 || rich.length !== 21) {
+  fail(`global gate expected 62 linked / 15 historical custom / 21 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
   counts[owner] = (counts[owner] ?? 0) + 1;
   return counts;
 }, {});
-const expectedCustomOwners = { 'ds.carte': 1, 'ds.google-reviews': 5, 'ds.review-card': 5 };
+const expectedCustomOwners = { 'ds.carte': 1, 'ds.google-reviews': 5, 'ds.review-card': 9 };
 if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log('figma-text-styles-piqueray ok: 18 independent recipes; strict marker preflight; 62 linked / 11 historical custom / 21 rich; second token apply preserves ids');
+console.log('figma-text-styles-piqueray ok: 18 independent recipes; strict marker preflight; 62 linked / 15 historical custom / 21 rich; second token apply preserves ids');

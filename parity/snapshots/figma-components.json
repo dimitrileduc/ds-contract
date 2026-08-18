@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1786518191541,
+  "extractedAt": 1787050054742,
   "sets": [
     {
       "name": "Input",
@@ -902,73 +902,60 @@
     },
     {
       "name": "Review-card",
-      "nodeId": "2178:7349",
-      "key": "3826fdc9975d42b1661e14494476701676759671",
-      "description": "ReviewCard — generated from contract ds.review-card v1.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
-      "variantCount": 1,
+      "nodeId": "2480:5253",
+      "key": "864876fc02245c65ef4216bc4355e4128f79d181",
+      "description": "",
+      "variantCount": 2,
       "properties": {
-        "Initiale#2178:67": {
+        "Initiale#2480:0": {
           "type": "TEXT",
           "defaultValue": "P",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Auteur#2178:68": {
+        "Auteur#2480:1": {
           "type": "TEXT",
           "defaultValue": "Prénom N.",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Date#2178:69": {
+        "Date#2480:2": {
           "type": "TEXT",
           "defaultValue": "il y a 2 mois",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Témoignage#2178:70": {
+        "Témoignage#2480:3": {
           "type": "TEXT",
           "defaultValue": "Un témoignage neutre, exemple générique de contenu.",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Tronqué#2178:71": {
-          "type": "BOOLEAN",
-          "defaultValue": false,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Avatar initiale#2178:72": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Avatar photo#2178:73": {
-          "type": "BOOLEAN",
-          "defaultValue": false,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "Vérifié#2178:74": {
-          "type": "BOOLEAN",
-          "defaultValue": true,
-          "variantOptions": null,
-          "preferredValues": null
-        },
-        "URL photo#2178:75": {
+        "URL photo#2480:5": {
           "type": "TEXT",
           "defaultValue": "",
           "variantOptions": null,
           "preferredValues": null
         },
-        "Alt photo#2178:76": {
+        "Alt photo#2480:6": {
           "type": "TEXT",
           "defaultValue": "",
           "variantOptions": null,
+          "preferredValues": null
+        },
+        "Avatar": {
+          "type": "VARIANT",
+          "defaultValue": "Initiale",
+          "variantOptions": [
+            "Initiale",
+            "Photo"
+          ],
           "preferredValues": null
         }
       },
-      "nestedInstances": []
+      "nestedInstances": [
+        "Notation"
+      ]
     },
     {
       "name": "Devis",
@@ -1336,8 +1323,40 @@
         }
       },
       "nestedInstances": [
+        "Notation",
         "Review-card"
       ]
+    },
+    {
+      "name": "Notation",
+      "nodeId": "2480:5365",
+      "key": "85029a113e23bf7faec3a0714b983d4a824b0722",
+      "description": "Notation — bandeau de cinq étoiles, note 1 à 5. Destiné à ds.notation ; consommé par Review-card et par le résumé de Avis Google.",
+      "variantCount": 5,
+      "properties": {
+        "Note": {
+          "type": "VARIANT",
+          "defaultValue": "5",
+          "variantOptions": [
+            "5",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": []
+    },
+    {
+      "name": "Etoile vide",
+      "nodeId": "2480:5363",
+      "key": "d81e9895fa1953957d98abce4a9e9015f36d505f",
+      "description": "Étoile vide — position non atteinte d’une note. Même géométrie que Etoile, remplissage color/gris-clair.",
+      "variantCount": 1,
+      "properties": {},
+      "nestedInstances": []
     }
   ]
 }

@@ -5388,19 +5388,19 @@ const cases: Case[] = [
     },
   },
   {
-    // T064 (spec 006, US3): ds.review-card's initial/photo avatar exclusivity
-    // is a CONVENTION, never a schema constraint. `visibleWhen` has no
-    // negation and no XOR/enum-style construct across two independent
-    // BOOLEAN props (an enum axis would break per-item variation inside
-    // google-reviews' `repeat`, R7/T033) — so `initialeVisible` and `photo`
-    // gate their parts completely independently (core/emit-react.ts
-    // wrapVisibleWhen, one `{cond ? (...) : null}` per part, no cross-part
-    // awareness). This pins that BOTH parts render when BOTH props are true
-    // — proving the schema does not, and structurally cannot, prevent the
-    // double-avatar case — so the exclusion stays a documented convention
-    // (contract description) that callers must honor themselves, never a
-    // silent claim of enforcement (Constitution V).
-    id: 'review-card-avatar-exclusivity-is-convention-not-schema',
+    // T064 (spec 006) RÉÉCRIT le 2026-08-18 sur décision owner. L'ancien cas
+    // pinnait l'inverse de celui-ci : que l'exclusivité photo/initiale était
+    // une CONVENTION que le schéma ne pouvait pas tenir (deux BOOLEAN
+    // indépendants, `visibleWhen` sans négation), et que la description du
+    // contrat ne devait donc pas prétendre l'imposer (Constitution V).
+    //
+    // L'owner a supprimé les deux bascules : l'avatar est maintenant UNE
+    // variante `avatar` à deux valeurs, donc l'exclusivité est STRUCTURELLE —
+    // l'état « les deux à la fois » n'a plus de représentation possible. Ce
+    // cas garde la même exigence d'honnêteté, tournée dans l'autre sens : il
+    // refuse le retour des deux booléens, et vérifie que les deux parts sont
+    // gardées par la MÊME prop testée sur deux valeurs différentes.
+    id: 'review-card-avatar-exclusivity-is-schema-enforced',
     claim: 'C3-detection',
     run: () => {
       const byId = new Map(
@@ -5411,17 +5411,17 @@ const cases: Case[] = [
       );
       const card = byId.get('ds.review-card');
       if (!card) throw new Error('contracts/review-card.contract.json missing ds.review-card');
-      const initialeProp = card.props.find((p) => p.name === 'initialeVisible');
-      const photoProp = card.props.find((p) => p.name === 'photo');
-      if (!initialeProp || !photoProp) throw new Error('ds.review-card lost initialeVisible/photo props');
-      // Schema-level: no shared enum, no mutual negation wired between them.
-      if (typeof initialeProp.type !== 'string' || initialeProp.type !== 'boolean') {
-        throw new Error('initialeVisible is no longer a plain boolean — exclusivity proof must be re-derived');
+      for (const disparu of ['initialeVisible', 'photo']) {
+        if (card.props.some((p) => p.name === disparu)) {
+          throw new Error(`ds.review-card a retrouvé la prop booléenne "${disparu}" — l'exclusivité redeviendrait une convention`);
+        }
       }
-      if (typeof photoProp.type !== 'string' || photoProp.type !== 'boolean') {
-        throw new Error('photo is no longer a plain boolean — exclusivity proof must be re-derived');
+      const avatar = card.props.find((p) => p.name === 'avatar');
+      if (!avatar) throw new Error('ds.review-card n\'a pas de prop `avatar`');
+      const valeurs = typeof avatar.type === 'object' && 'enum' in avatar.type ? avatar.type.enum : null;
+      if (!valeurs || valeurs.length !== 2 || !valeurs.includes('Initiale') || !valeurs.includes('Photo')) {
+        throw new Error(`\`avatar\` doit être un enum Initiale|Photo, lu : ${JSON.stringify(avatar.type)}`);
       }
-      // Runtime: emit and confirm BOTH gated parts render when BOTH are true.
       const icons = new Map(
         readdirSync(path.join(ROOT, 'assets', 'icons'))
           .filter((f) => f.endsWith('.svg'))
@@ -5434,23 +5434,19 @@ const cases: Case[] = [
         read('tokens/modes/semantic.light.tokens.json'),
       ]);
       const { tsx } = coreEmitReact(card, { tokens: tokenInv, icons, contracts: byId });
-      // Same-line only ([^?\n]*, not [^?]*) — the earlier greedy version
-      // crossed newlines and could latch onto an unrelated `{photo` inside
-      // the root's `data-photo={photo || undefined}` attribute, then read
-      // through to the NEXT `?` several lines later (the initialeVisible
-      // ternary), producing a false cross-reference. Anchoring the wrapper
-      // ternary to its own line is what "independent gate" actually means.
-      const initialeCond = tsx.match(/\{(initialeVisible[^?\n]*)\?\s*\(/);
-      const photoCond = tsx.match(/\{(photo[^?\n]*)\?\s*\(/);
-      if (!initialeCond) throw new Error(`emitted TSX has no independent gate on initialeVisible:\n${tsx.slice(0, 800)}`);
-      if (!photoCond) throw new Error(`emitted TSX has no independent gate on photo:\n${tsx.slice(0, 800)}`);
-      // The two conditions must be SEPARATE ternaries — neither referencing
-      // the other prop — which is exactly what "no cross-part awareness"
-      // means: setting both true, both branches independently pass.
-      if (initialeCond[1].includes('photo') || photoCond[1].includes('initialeVisible')) {
-        throw new Error(`gates are cross-referencing — exclusivity would be SCHEMA-enforced, contradicting the contract's own description:\n${initialeCond[1]} / ${photoCond[1]}`);
+      // Les deux gardes doivent tester la MÊME prop sur deux valeurs distinctes :
+      // c'est ce qui rend l'état double irreprésentable, au lieu de reposer sur
+      // la discipline de l'appelant.
+      const gardes = [...tsx.matchAll(/\{(avatar[^?\n]*)\?\s*\(/g)].map((m) => m[1]);
+      if (gardes.length !== 2) {
+        throw new Error(`attendu 2 gardes sur \`avatar\`, trouvé ${gardes.length} : ${JSON.stringify(gardes)}`);
       }
-      console.log('review-card-avatar-exclusivity-is-convention-not-schema: initialeVisible and photo gate independently (separate {cond ? (...) : null} per part, no cross-reference) — both true renders BOTH avatars; the exclusion stays a documented convention, never a schema constraint');
+      const cible = (g: string) => (g.includes("'Initiale'") ? 'Initiale' : g.includes("'Photo'") ? 'Photo' : null);
+      const cibles = gardes.map(cible);
+      if (new Set(cibles).size !== 2 || cibles.includes(null)) {
+        throw new Error(`les deux gardes doivent viser des valeurs différentes, lu : ${JSON.stringify(gardes)}`);
+      }
+      console.log('review-card-avatar-exclusivity-is-schema-enforced: les deux booléens ont disparu; `avatar` est un enum Initiale|Photo et les deux parts sont gardées par la même prop sur deux valeurs distinctes — l\'état « deux avatars » n\'a plus de représentation, l\'exclusivité n\'est plus une convention');
     },
   },
   {
@@ -5594,9 +5590,17 @@ const cases: Case[] = [
         }
         return null;
       };
-      const va = comp.variants[0].spec;
-      const photoSpec = findByName(va, 'avatarPhoto');
-      if (!photoSpec) throw new Error(`compiled spec has no "avatarPhoto" node:\n${JSON.stringify(va, null, 2).slice(0, 1500)}`);
+      // 2026-08-18 : ds.review-card est devenu un set de deux variantes
+      // (Avatar=Initiale | Avatar=Photo). `visibleWhen` se résout PAR VARIANTE
+      // côté canevas, donc la part photo n'existe que dans la variante Photo —
+      // lire `variants[0]` en dur cherchait la preuve A5 dans la seule variante
+      // qui, par construction, ne peut pas la porter.
+      const photoSpec = comp.variants
+        .map((v: any) => findByName(v.spec, 'avatarPhoto'))
+        .find((hit: any) => hit);
+      if (!photoSpec) {
+        throw new Error(`aucune variante ne compile un nœud "avatarPhoto" (variantes : ${comp.variants.map((v: any) => v.name).join(', ')}) :\n${JSON.stringify(comp.variants[0].spec, null, 2).slice(0, 1200)}`);
+      }
       if (photoSpec.imgPlaceholder !== true) throw new Error(`avatarPhoto must compile with imgPlaceholder:true, got: ${JSON.stringify(photoSpec)}`);
       const grey = photoSpec.lits?.fillColor;
       if (!grey || Math.abs(grey.r - 217 / 255) > 0.001 || Math.abs(grey.g - 217 / 255) > 0.001 || Math.abs(grey.b - 217 / 255) > 0.001) {

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v1.0.2)
+ * Source of truth: contracts/google-reviews.contract.json (ds.google-reviews v2.0.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -10,7 +10,7 @@ import styles from './GoogleReviews.module.css';
 
 const ICONS: Record<string, string> = {
   'google-wordmark':
-    '<svg width="74" height="24" viewBox="0 0 74 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<text x="0" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#4285F4">G</text>\n<text x="18" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#EA4335">o</text>\n<text x="32" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#FBBC05">o</text>\n<text x="46" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#4285F4">g</text>\n<text x="60" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#34A853">l</text>\n<text x="66" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#EA4335">e</text>\n</svg>',
+    '<svg width="74" height="24" viewBox="0 0 74 24" overflow="visible" fill="none" xmlns="http://www.w3.org/2000/svg">\n<text x="0" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#4285F4">G</text>\n<text x="18" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#EA4335">o</text>\n<text x="32" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#FBBC05">o</text>\n<text x="46" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#4285F4">g</text>\n<text x="60" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#34A853">l</text>\n<text x="66" y="18" font-family="Montserrat, sans-serif" font-size="22" font-weight="500" fill="#EA4335">e</text>\n</svg>',
   star: '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>\n</svg>',
   'chevron-left':
     '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M19.293 7.29302C19.6835 6.90249 20.3165 6.90249 20.707 7.29302C21.0975 7.68354 21.0975 8.31655 20.707 8.70708L13.414 16L20.707 23.293C21.0975 23.6835 21.0975 24.3166 20.707 24.7071C20.3165 25.0976 19.6835 25.0976 19.293 24.7071L11.293 16.7071C10.9024 16.3166 10.9024 15.6835 11.293 15.293L19.293 7.29302Z" fill="currentColor"/>\n</svg>',
@@ -32,12 +32,10 @@ export interface GoogleReviewsProps extends HTMLAttributes<HTMLElement> {
     initiale: string;
     date: string;
     texte: string;
-    tronque: boolean;
-    initialeVisible: boolean;
-    photo: boolean;
+    avatar: 'Initiale' | 'Photo';
+    note: '1' | '2' | '3' | '4' | '5';
     photoUrl: string;
     photoAlt: string;
-    verifie: boolean;
   }>;
 }
 
@@ -47,7 +45,9 @@ Contrat d'abord, master généré (R1) : le master naît générique (`repeat.sa
 
 Interdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).
 
-Décision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes. */
+Décision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.
+
+Promotion 2.0.0 (2026-08-18). MAJEUR par ricochet de ds.review-card 2.0.0 : la collection `avis` perd trois champs (`tronque`, `initialeVisible`, `photo`) et en gagne deux (`avatar`, `note`). Le mapping d'un `repeat` se fait PAR NOM, donc la forme d'un enregistrement d'avis suit celle des props de l'enfant, sans exception. */
 export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(function GoogleReviews(
   {
     montrerControles = true,
@@ -132,12 +132,10 @@ export const GoogleReviews = forwardRef<HTMLElement, GoogleReviewsProps>(functio
               initiale={item.initiale}
               date={item.date}
               texte={item.texte}
-              tronque={item.tronque}
-              initialeVisible={item.initialeVisible}
-              photo={item.photo}
+              avatar={item.avatar}
+              note={item.note}
               photoUrl={item.photoUrl}
               photoAlt={item.photoAlt}
-              verifie={item.verifie}
             />
           ))}
         </div>

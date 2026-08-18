@@ -21,6 +21,7 @@ export * from './Input';
 export * from './MemberCard';
 export * from './MemberPicture';
 export * from './NavItem';
+export * from './Notation';
 export * from './PiquerayLogo';
 export * from './Presentation';
 export * from './ProductCard';
