@@ -1,0 +1,57 @@
+{
+  "schemaNote": "Artefact du gate humain (FR-001..003) — granularité DÉCISION, transcrit après validation en integrations/odoo/config/reassurances.authoring.json (schéma 019 authoring-config.schema.json, vocabulaire identique).",
+  "sectionId": "reassurances",
+  "rootContract": { "id": "ds.reassurances", "version": "1.2.0" },
+  "status": "validated",
+  "gate": {
+    "decidedBy": "owner",
+    "decidedAt": "2026-08-19",
+    "deviations": []
+  },
+  "resolvedQuestions": {
+    "Q-R1": "Figée « 4 cartes » — réponse owner : « c'est une grille de 4 colonnes ». Pas de réglage de variante ; la collection se comporte en grille de 4 colonnes (au-delà de 4 cartes : passage à la ligne, précédent Équipe ; en dessous : rangée centrée) — geste d'addon exercé au QA.",
+    "Q-R2": "Libellé éditable + lien au panneau (mécanisme SetCtaHrefAction) validés.",
+    "Q-R3": "Les 4 gestes validés : ajouter, supprimer, monter, descendre — bornes 0..n."
+  },
+  "rootActions": [
+    { "action": "move", "verdict": "allowed" },
+    { "action": "duplicate", "verdict": "allowed" },
+    { "action": "remove", "verdict": "allowed" },
+    { "action": "save-as-custom", "verdict": "forbidden" },
+    { "action": "resize", "verdict": "forbidden" },
+    { "action": "background", "verdict": "forbidden" }
+  ],
+  "controls": [
+    { "id": "R1", "prop": "disposition", "verdict": "not-editable", "mechanism": "none", "note": "VALIDÉ AU GATE (« grille de 4 colonnes ») — figée « 4Cartes » : un bloc posé ne se re-rend jamais, le nombre de cartes appartient aux gestes de collection ; 5Cartes/QuatreCartesDeuxCta = plans CTA + largeur de carte par variante (285px) = exception structurelle exclue de la vague contenu" },
+    { "id": "R2", "prop": "items", "verdict": "controlled", "mechanism": "ordered-repeat", "gesture": "Panneau : ajouter (blueprint sans src), supprimer, monter, descendre — gestes natifs de l'éditeur sur une carte neutralisés ; bornes 0..n", "note": "Q-R3 — précédent : équipe (0/1/16/17), google-reviews" },
+    { "id": "R2a", "path": ["ds.carte@2.0.1 via Carte (repeat)"], "prop": "titre", "verdict": "controlled", "mechanism": "plain-text", "gesture": "En ligne, par carte" },
+    { "id": "R2b", "path": ["ds.carte@2.0.1 via Carte (repeat)"], "prop": "texte", "verdict": "controlled", "mechanism": "rich-text", "marks": ["strong"], "gesture": "En ligne + gras, par carte", "note": "Le défaut porte une première phrase en gras" },
+    { "id": "R2c", "path": ["ds.carte@2.0.1 via Carte (repeat)"], "prop": "imageUrl", "verdict": "controlled", "mechanism": "computed-display", "gesture": "Bouton « Remplacer l'image » par carte → dialogue média natif, /web/image ; pose SANS src", "note": "Précédent : portrait équipe" },
+    { "id": "R2d", "path": ["ds.carte@2.0.1 via Carte (repeat)"], "prop": "imageAlt", "verdict": "controlled", "mechanism": "plain-text", "gesture": "Champ alt au panneau de carte", "note": "LIMITE NOMMÉE : la route items du contrat ne porte pas d'alt — la valeur vit dans l'instance Odoo, comme l'URL (précédent SetMemberPortraitAltAction)" },
+    { "id": "R3", "path": ["ds.section-header@2.2.0 via SectionHeader"], "prop": "titre|accroche|accroche2|disposition|emphase|alignement", "verdict": "fixed-by-composition", "mechanism": "none", "note": "La composition passe des littéraux — aucune prop racine ne route (US2 : « textes fixés par la composition »)" },
+    { "id": "R4", "path": ["ds.carte@2.0.1 via Carte (repeat)"], "prop": "disposition", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Fixée « reassurance »" },
+    { "id": "R5", "path": ["ds.carte@2.0.1 via Carte (repeat)"], "prop": "ctaLabel|ctaIconLeftGlyph|ctaIconRightGlyph", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Plan Categorie, jamais rendu" },
+    { "id": "R6", "path": ["ds.button@2.0.1 via BoutonQuatreCartes"], "prop": "children", "verdict": "controlled", "mechanism": "plain-text", "gesture": "Q-R2 — libellé en ligne + lien au panneau (SetCtaHrefAction, grammaire same-origin/https/mailto/tel, javascript: refusé)", "note": "Cohérence : les 6 CTA posés sont tous éditables ; alternative au gate : bouton entièrement figé" },
+    { "id": "R7", "path": ["ds.button@2.0.1 via BoutonQuatreCartes"], "prop": "variant|iconLeft|iconRight|iconLeftGlyph|iconRightGlyph", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Identité du DS, politique constante des 8 sections" },
+    { "id": "R8", "path": ["ds.button via BoutonCinqCartes | Boutons.Bouton | Boutons.BoutonSecondaire"], "prop": "toutes (children, variant, icônes, glyphes)", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Plans des variantes non exposées, jamais rendus (R1)" }
+  ],
+  "parts": [
+    { "id": "S1", "partPath": ["root"], "verdict": "not-editable", "contentKind": "structural" },
+    { "id": "S2", "partPath": ["root", "SectionHeader"], "child": "ds.section-header (root, Accroche, Titre, Bouton)", "verdict": "fixed-by-composition", "contentKind": "structural", "note": "Textes non éditables — le geste de texte lui-même est bloqué (edge « verrou contourné ») ; Bouton du header jamais rendu" },
+    { "id": "S3", "partPath": ["root", "items"], "verdict": "not-editable", "contentKind": "repeat", "note": "Conteneur du repeat ; gestes via R2 uniquement" },
+    { "id": "S4", "partPath": ["root", "items", "Carte", "(root)"], "verdict": "not-editable", "contentKind": "structural", "note": "Répétée, marquée par POSITION (data-pqr-carte-marker)" },
+    { "id": "S5", "partPath": ["root", "items", "Carte", "reassuranceImage"], "verdict": "not-editable", "contentKind": "media", "note": "Clic direct fermé ; remplacement via R2c" },
+    { "id": "S6", "partPath": ["root", "items", "Carte", "categorieImage"], "verdict": "fixed-by-composition", "contentKind": "media", "note": "Jamais rendu (R4)" },
+    { "id": "S7", "partPath": ["root", "items", "Carte", "text"], "verdict": "not-editable", "contentKind": "structural" },
+    { "id": "S8", "partPath": ["root", "items", "Carte", "text", "TitreReassurance"], "verdict": "directly-editable", "contentKind": "plain-text", "gesture": "En ligne", "note": "Surface de R2a" },
+    { "id": "S9", "partPath": ["root", "items", "Carte", "text", "TexteReassurance"], "verdict": "directly-editable", "contentKind": "rich-text", "marks": ["strong"], "gesture": "En ligne + gras", "note": "Surface de R2b" },
+    { "id": "S10", "partPath": ["root", "items", "Carte", "text", "TitreCategorie|TexteCategorie"], "verdict": "fixed-by-composition", "contentKind": "structural", "note": "Plans Categorie, jamais rendus ; idem Carte.Bouton(+action)" },
+    { "id": "S11", "partPath": ["root", "BoutonQuatreCartes"], "verdict": "not-editable", "contentKind": "component", "note": "Hôte structurel (parade focus button-root) ; seule la zone button-label est rouverte si Q-R2 = éditable" },
+    { "id": "S12", "partPath": ["root", "BoutonCinqCartes | Boutons | Boutons.Bouton | Boutons.BoutonSecondaire"], "verdict": "fixed-by-composition", "contentKind": "component", "note": "Jamais rendus (R1)" }
+  ],
+  "widthAdaptation": {
+    "note": "FR-007 — racine 1550px non imposée à la page (largeur fluide plafonnée au naturel), cartes 364px rétrécissables (min-width: 0) ; DW-002 nommé : la source déborde d'elle-même de 2px (4×364+3×32=1552 dans 1550), le CSS rétrécit — comportement fidèle documenté ; zéro débordement à 1728 et 1440 px ; contrat intact.",
+    "marker": "ODOO-022-REASSURANCES-BRIDGE",
+    "reasonCode": "odoo-layout-bridge"
+  }
+}

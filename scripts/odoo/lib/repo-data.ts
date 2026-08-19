@@ -23,8 +23,10 @@ import path from 'node:path';
 import { ContractSchema, type Contract, type Part } from '../../contract-schema.js';
 import { repoPath, repoRelative, sortedBy, canonicalJson, sha256 } from './canonical.js';
 
-/** Les sections posables. Tout le reste de leur fermeture reste interne. */
-export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo'] as const;
+/** Les sections posables. Tout le reste de leur fermeture reste interne.
+ *  Wave B (spec 022) ajoute `ds.coordonnees` et `ds.reassurances` : 8 → 10
+ *  racines. La fermeture calculée tire `ds.carte` en plus (par Réassurances). */
+export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo', 'ds.coordonnees', 'ds.reassurances'] as const;
 
 /** Sources de jetons réellement lues par le build d'assets. Triées. */
 export const TOKEN_SOURCES = [

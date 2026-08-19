@@ -41,6 +41,20 @@
       "version": "2.0.1"
     },
     {
+      "id": "ds.carte",
+      "kind": "contract",
+      "path": "contracts/carte.contract.json",
+      "sha256": "310f917955acbaa4e3a9e73495535172ca4ba45602b5a6ad272230e54f0bdb17",
+      "version": "2.0.1"
+    },
+    {
+      "id": "ds.coordonnees",
+      "kind": "contract",
+      "path": "contracts/coordonnees.contract.json",
+      "sha256": "5c2768463246f7e7587eaec4f6eca21f08e086d05527ee6091e9f81a11275ac5",
+      "version": "2.2.0"
+    },
+    {
       "id": "ds.devis",
       "kind": "contract",
       "path": "contracts/devis.contract.json",
@@ -104,6 +118,13 @@
       "version": "2.6.0"
     },
     {
+      "id": "ds.reassurances",
+      "kind": "contract",
+      "path": "contracts/reassurances.contract.json",
+      "sha256": "256bf4e98d8009fe7717b1d7d20a15660a41ed3af722da486323afbc3af41f68",
+      "version": "1.2.0"
+    },
+    {
       "id": "ds.review-card",
       "kind": "contract",
       "path": "contracts/review-card.contract.json",
@@ -132,7 +153,7 @@
       "version": "2.1.0"
     }
   ],
-  "graphDigest": "102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc",
+  "graphDigest": "8b31b0228e3a568d4f32004b82e72a62993938567d412bdfcf35021d428986e4",
   "odoo": {
     "image": "odoo:19.0-20260803",
     "postgresImage": "postgres:15",

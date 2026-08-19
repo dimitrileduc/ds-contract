@@ -13,17 +13,17 @@
     "description": """
 Sections posables dérivées des contrats Piqueray gouvernés.
 
-Huit racines seulement sont inscrites dans la bibliothèque de blocs :
+Dix racines seulement sont inscrites dans la bibliothèque de blocs :
 `ds.presentation`, `ds.google-reviews`, `ds.hero`, `ds.equipe`, `ds.faq`,
-`ds.devis`, `ds.sav` et `ds.texte-seo`. Leurs dépendances internes
-(`ds.section-header`, `ds.button`, `ds.review-card`, `ds.member-card`,
-`ds.member-picture`, `ds.accordion-row`) sont composées par QWeb et ne sont
-jamais posables séparément.
+`ds.devis`, `ds.sav`, `ds.texte-seo`, `ds.coordonnees` et `ds.reassurances`.
+Leurs dépendances internes (`ds.section-header`, `ds.button`,
+`ds.review-card`, `ds.member-card`, `ds.member-picture`, `ds.accordion-row`,
+`ds.carte`) sont composées par QWeb et ne sont jamais posables séparément.
 
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.4.0",
+    "version": "19.0.1.5.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",
