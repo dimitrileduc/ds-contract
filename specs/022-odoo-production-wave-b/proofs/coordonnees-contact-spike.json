@@ -1,0 +1,23 @@
+{
+  "receiptId": "coordonnees-contact-spike-odoo-019-foundation",
+  "scenarioId": "coordonnees-contact-spike",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "coordonnees-contact-sample",
+  "observations": [
+    "[pass] défaut — tel:/mailto: + saut de ligne pre-line + soulignement — attendu « 2 liens · white-space pre-line · ≥1 saut brut · souligné », observé « {\"telHref\":\"tel:+3287463266\",\"mailHref\":\"mailto:info@piqueray.be\",\"links\":2,\"br\":0,\"whiteSpace\":\"pre-line\",\"rawNewlines\":1,\"underline\":true,\"text\":\"Tél : +32 (0)87 46 32 66 Email: info@piqueray.be\"} »",
+    "[pass] édition — Shift+Enter ajoute un saut (br), les 2 liens survivent — attendu « 2 liens conservés · ≥1 <br> · « Fax » présent », observé « {\"links\":2,\"br\":1,\"text\":\"Tél : +32 (0)87 46 32 66 Email: info@piqueray.be Fax : 087 00 00 00\"} »",
+    "[pass] save — Odoo persiste le bloc édité — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] reopen — liens, saut et « Fax » relus du DOM sauvegardé — attendu « 2 liens · tel:/mailto: · saut conservé · « Fax » », observé « {\"telHref\":\"tel:+3287463266\",\"mailHref\":\"mailto:info@piqueray.be\",\"links\":2,\"br\":1,\"whiteSpace\":\"pre-line\",\"rawNewlines\":1,\"underline\":true,\"text\":\"Tél : +32 (0)87 46 32 66 Email: info@piqueray.be Fax : 087 00 00 00\"} »",
+    "[pass] public — liens tel:/mailto: soulignés, saut conservé, aucune URL exécutable — attendu « HTTP 200 · 2 liens soulignés · saut · 0 URL exécutable », observé « {\"telHref\":\"tel:+3287463266\",\"mailHref\":\"mailto:info@piqueray.be\",\"links\":2,\"br\":1,\"whiteSpace\":\"pre-line\",\"rawNewlines\":1,\"underline\":true,\"text\":\"Tél : +32 (0)87 46 32 66 Email: info@piqueray.beFax : 087 00 00 00\",\"executable\":0} »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/coordonnees-contact-spike.public.json",
+      "sha256": "1ea1da9f81ef184f58fdad62596aed42e06f5fc9dd430890dc6289176dd0335c",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 97449
+}

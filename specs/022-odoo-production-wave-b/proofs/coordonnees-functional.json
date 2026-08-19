@@ -1,0 +1,33 @@
+{
+  "receiptId": "coordonnees-functional-odoo-019-foundation",
+  "scenarioId": "coordonnees-functional",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "coordonnees-panel",
+  "observations": [
+    "[pass] catalogue — deux Coordonnées indépendantes sont insérées — attendu « 2 racines », observé « 2 racine(s) »",
+    "[pass] panneau — inventaire Piqueray strict — attendu « coordonnees-address, coordonnees-contact, coordonnees-eyebrow, coordonnees-facebook-href, coordonnees-hours, coordonnees-instagram-href, coordonnees-social-label, coordonnees-title », observé « coordonnees-address, coordonnees-contact, coordonnees-eyebrow, coordonnees-facebook-href, coordonnees-hours, coordonnees-instagram-href, coordonnees-social-label, coordonnees-title »",
+    "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
+    "[pass] racine — actions Odoo interdites absentes du chrome visible — attendu « save-as-custom, resize, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0} »",
+    "[pass] défaut — bloc contact = liens tel:/mailto: + saut de ligne (pre-line) — attendu « tel: + mailto: + white-space pre-line », observé « {\"tel\":\"tel:+3287463266\",\"mail\":\"mailto:info@piqueray.be\",\"ws\":\"pre-line\"} »",
+    "[pass] défaut — plan Google en placeholder (aucun src) — attendu « src absent (placeholder) », observé « src=null »",
+    "[pass] éditions autorisées — accroche, titre et étiquette reçoivent la frappe — attendu « les trois zones acceptent la frappe au clic humain », observé « {\"eyebrow\":\"ContactNous joindre —\",\"title\":\"Pourquoi choisir Piqueray ?★\",\"addr\":\"AdresseNos\"} »",
+    "[pass] tentative interdite — plan et wrapper structurel ne sont pas éditables — attendu « contenteditable ≠ true sur le plan et le wrapper », observé « map=null wrapper=null »",
+    "[pass] lien Facebook — gouverné au panneau (origine repliée, javascript refusé, https accepté) — attendu « absolu même origine → /promo · javascript: ignoré · https accepté », observé « replié: /promo · injection: /promo · final: https://facebook.com/piqueray »",
+    "[pass] isolation — édition de B laisse A intacte — attendu « A = « Nous joindre… » · B = « Instance B… » », observé « [\"ContactNous joindre —\",\"ContactInstance B —\"] »",
+    "[pass] save — Odoo persiste les deux instances — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — deux instances et éditions persistées — attendu « HTTP 200 · A et B distinctes », observé « [\"ContactNous joindre —\",\"ContactInstance B —\"] »",
+    "[pass] public — bloc contact : liens conservés, italique et URL exécutable retirés — attendu « ≥2 liens · 0 em/script · 0 URL exécutable », observé « {\"contactLinks\":3,\"forbiddenTags\":0,\"executableUrls\":[]} »",
+    "[pass] w-auto — zéro débordement à 1728 et 1440, wrapper 576 tenu, plan fléchit — attendu « 0 overflow · wrapper≈576 · mapWidth(1440) < mapWidth(1728) », observé « [{\"viewportWidth\":1728,\"rootWidth\":1728,\"rootOverflow\":0,\"wrapperWidth\":576,\"mapWidth\":1152},{\"viewportWidth\":1440,\"rootWidth\":1440,\"rootOverflow\":0,\"wrapperWidth\":576,\"mapWidth\":864}] »",
+    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 instances persistées », observé « [\"ContactNous joindre —\",\"ContactInstance B —\"] »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/coordonnees-functional.public.json",
+      "sha256": "5208cff6f232ddfe4d35fc3e9d0934cff6d60ff9db005bd3f3561b83bd05db60",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 109846
+}

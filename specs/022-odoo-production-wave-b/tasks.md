@@ -102,7 +102,7 @@ persistance) et mesurer le delta visuel contre la référence 020.
       `1.0.0`, `rootContract` `ds.coordonnees@2.2.0`, `snapshotId` du lock repinné, 100 % des
       props/parts dépliées (C1–C10, P1–P21), aucun verdict par défaut ; `npm run odoo:authoring:check`
       au vert.
-- [ ] T010 [US1] **SPIKE D9 — AVANT le QWeb final** : exécuter pose → édition → save → reopen →
+- [X] T010 [US1] **SPIKE D9 — AVANT le QWeb final** : exécuter pose → édition → save → reopen →
       public sur le bloc Tél/Email (survie du saut de ligne `\r`/pre-line + soulignement segmentaire
       via marques `link` + `line-break`, option A validée au gate) dans
       `integrations/odoo/qa/scenarios/coordonnees-spike.spec.mts` ; reçu factuel archivé sous
@@ -141,7 +141,7 @@ persistance) et mesurer le delta visuel contre la référence 020.
       (le refus donne la boîte) dans `integrations/odoo/qa/visual/subjects/coordonnees.mts`, page de
       mesure publique dans `integrations/odoo/addons/piqueray_ds_qa/views/harness.xml`
       (dépend de T011 ; même fichier harness que T026 → en série).
-- [ ] T017 [US1] Scénario QA `coordonnees.spec.mts` dans
+- [X] T017 [US1] Scénario QA `coordonnees.spec.mts` dans
       `integrations/odoo/qa/scenarios/coordonnees.spec.mts` couvrant FR-015 : pose, rendu par
       défaut, **w-auto à 1728 ET 1440** (racine + enfants, zéro débordement, largeurs fixes non
       imposées — SC-008), éditions autorisées, tentatives interdites (**geste de texte direct sur
