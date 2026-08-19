@@ -72,4 +72,12 @@
     </xpath>
   </template>
   <!-- ODOO-022-COORDONNEES-SNIPPET END -->
+  <!-- ODOO-022-REASSURANCES-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_reassurances" inherit_id="website.snippets" name="Piqueray · Réassurances dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_reassurances" string="Piqueray · Réassurances"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_features.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-022-REASSURANCES-SNIPPET END -->
 </odoo>

@@ -402,3 +402,92 @@ export class ToggleTexteSeoRowAction extends BuilderAction {
     apply({ editingElement }) { toggleFaqRow(findTexteSeoRow(editingElement)); }
 }
 // ODOO-019-TEXTE-SEO-REPEAT END
+
+// ODOO-022-REASSURANCES-REPEAT BEGIN
+// Collection de cartes ordonnée, sans état JSON parallèle — le DOM sauvegardé est
+// la seule source (aucune liste JSON ne survit au premier save). Même patron que
+// GoogleReviews/Équipe : Add depuis le blueprint inerte, Remove/Move sur le DOM,
+// bornes 0..n. Les gestes NATIFS d'une carte (dupliquer/supprimer/déplacer) sont
+// neutralisés par `is_unremovable_selector` sur les descendants (authoring.js).
+export const REASSURANCES_ROOT = ".s_pqr_reassurances";
+export const CARTE = "[data-pqr-carte]";
+export const CARTE_LIST = "[data-pqr-carte-list]";
+
+export const findReassurancesRoot = (element) => element?.closest?.(REASSURANCES_ROOT) || null;
+export const findCarte = (element) => element?.closest?.(CARTE) || null;
+
+export function cartesOf(root) {
+    return root ? [...root.querySelectorAll(`${CARTE_LIST} > ${CARTE}`)] : [];
+}
+
+export function normalizeCartes(root) {
+    for (const [index, carte] of cartesOf(root).entries()) {
+        carte.dataset.pqrCarteIndex = String(index);
+        if (!carte.dataset.pqrCarteMarker) carte.dataset.pqrCarteMarker = `carte-${index + 1}`;
+    }
+}
+
+function nextCarteMarker(root) {
+    const used = new Set(cartesOf(root).map((carte) => carte.dataset.pqrCarteMarker));
+    let index = 1;
+    while (used.has(`carte-${index}`)) index += 1;
+    return `carte-${index}`;
+}
+
+/** Ajoute depuis le blueprint inerte ; l'état vide reste donc ajoutable. */
+export function addCarte(root) {
+    const list = root?.querySelector(CARTE_LIST);
+    const blueprint = root?.querySelector("template[data-pqr-carte-blueprint]");
+    const candidate = blueprint?.content?.firstElementChild;
+    if (!list || !candidate) throw new Error("[piqueray_ds] blueprint Carte introuvable");
+    const carte = candidate.cloneNode(true);
+    carte.dataset.pqrCarteMarker = nextCarteMarker(root);
+    list.append(carte);
+    normalizeCartes(root);
+    return carte;
+}
+
+export function removeCarte(carte) {
+    const root = findReassurancesRoot(carte);
+    if (!root || !carte?.isConnected) return false;
+    carte.remove();
+    normalizeCartes(root);
+    return true;
+}
+
+export function moveCarte(carte, direction) {
+    const root = findReassurancesRoot(carte);
+    if (!root || !carte?.isConnected) return false;
+    if (direction === "up") {
+        const previous = carte.previousElementSibling;
+        if (!previous?.matches(CARTE)) return false;
+        previous.before(carte);
+    } else {
+        const next = carte.nextElementSibling;
+        if (!next?.matches(CARTE)) return false;
+        next.after(carte);
+    }
+    normalizeCartes(root);
+    return true;
+}
+
+export class AddCarteAction extends BuilderAction {
+    static id = "pqrAddCarte";
+    apply({ editingElement }) { addCarte(findReassurancesRoot(editingElement)); }
+}
+
+export class RemoveCarteAction extends BuilderAction {
+    static id = "pqrRemoveCarte";
+    apply({ editingElement }) { removeCarte(findCarte(editingElement)); }
+}
+
+export class MoveCarteUpAction extends BuilderAction {
+    static id = "pqrMoveCarteUp";
+    apply({ editingElement }) { moveCarte(findCarte(editingElement), "up"); }
+}
+
+export class MoveCarteDownAction extends BuilderAction {
+    static id = "pqrMoveCarteDown";
+    apply({ editingElement }) { moveCarte(findCarte(editingElement), "down"); }
+}
+// ODOO-022-REASSURANCES-REPEAT END

@@ -174,13 +174,13 @@ delta visuel contre la référence 020.
 **Note série**: US2 partage `components.xml`, `snippets.xml`, `authoring.js`, `authoring.xml`,
 `media_action.js`, `odoo-bridge.css`, `adaptation-registry.json`, `harness.xml` avec US1 → après US1.
 
-- [ ] T019 [US2] Transcrire 1:1 la table 2 validée
+- [X] T019 [US2] Transcrire 1:1 la table 2 validée
       (`contracts/reassurances.editable-scope.json`) vers
       `integrations/odoo/config/reassurances.authoring.json` — schéma 019 figé,
       `authoringVersion` `1.0.0`, `rootContract` `ds.reassurances@1.2.0`, `snapshotId` du lock ;
       100 % des props/parts dépliées, occurrences `ds.carte`/`ds.section-header`/`ds.button`
       comprises (R1–R8, S1–S12), aucun verdict par défaut ; `npm run odoo:authoring:check` au vert.
-- [ ] T020 [US2] QWeb du snippet Réassurances — racine `s_pqr_reassurances` (attributs `data-ds-*`
+- [X] T020 [US2] QWeb du snippet Réassurances — racine `s_pqr_reassurances` (attributs `data-ds-*`
       + nouveau `graphDigest`, actions de racine), en-tête via `pqr_section_header` avec **littéraux
       fixés** (R3, textes non éditables), liste de cartes `data-pqr-carte-list` + items marqués **par
       position** `data-pqr-carte-marker="carte-N"` + blueprint `<template data-pqr-carte-blueprint>`
@@ -188,33 +188,33 @@ delta visuel contre la référence 020.
       dans `integrations/odoo/addons/piqueray_ds/views/components.xml` et inscription bibliothèque
       `group="content"` dans `integrations/odoo/addons/piqueray_ds/views/snippets.xml`
       (marqueurs `ODOO-022-REASSURANCES-QWEB` / `-SNIPPET`).
-- [ ] T021 [US2] Actions de collection `Add/Remove/MoveUp/MoveDown CarteAction` (blueprint neutre,
+- [X] T021 [US2] Actions de collection `Add/Remove/MoveUp/MoveDown CarteAction` (blueprint neutre,
       bornes 0..n) et neutralisation des gestes natifs (duplication/suppression/déplacement d'une
       carte via `is_unremovable_selector` sur descendants) dans
       `integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js`
       (marqueur `ODOO-022-REASSURANCES-REPEAT`).
-- [ ] T022 [US2] Action média `ReplaceCarteImageAction` par carte (`items[].imageUrl` → dialogue
+- [X] T022 [US2] Action média `ReplaceCarteImageAction` par carte (`items[].imageUrl` → dialogue
       média natif `/web/image`, pose sans src) + champ `alt` d'instance (R2d, **limite nommée** :
       la route `items` du contrat ne porte pas d'alt) dans
       `integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js`
       (marqueur `ODOO-022-REASSURANCES-MEDIA`).
-- [ ] T023 [US2] Panneaux + CTA Réassurances dans
+- [X] T023 [US2] Panneaux + CTA Réassurances dans
       `integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js` et
       `integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml` : par carte `titre`
       (texte simple) + `texte` (rich-text `strong`), libellé CTA éditable + lien au panneau
       (`BuilderUrlPicker`, `SetCtaHrefAction`, `javascript:` refusé) ; en-tête et glyphes/variante
       **non rouverts** (fixés par composition) — marqueurs `ODOO-022-REASSURANCES-PANEL`,
       `ODOO-022-CARTE-PANEL`.
-- [ ] T024 [US2] Pont de largeur `ODOO-022-REASSURANCES-BRIDGE` (racine 1550px non imposée à la
+- [X] T024 [US2] Pont de largeur `ODOO-022-REASSURANCES-BRIDGE` (racine 1550px non imposée à la
       page, largeur fluide plafonnée au naturel ; cartes 364px rétrécissables `min-width: 0` ;
       **grille de 4 colonnes** — au-delà de 4 cartes passage à la ligne, précédent Équipe ; en
       dessous rangée centrée) dans
       `integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css` ; **DW-002 nommé** (la
       source Figma déborde d'elle-même de 2px : 4×364+3×32=1552 dans 1550, le CSS rétrécit).
-- [ ] T025 [US2] Enregistrer les marqueurs `ODOO-022-REASSURANCES-*` (QWEB, SNIPPET, REPEAT, MEDIA,
+- [X] T025 [US2] Enregistrer les marqueurs `ODOO-022-REASSURANCES-*` (QWEB, SNIPPET, REPEAT, MEDIA,
       PANEL, BRIDGE) + `ODOO-022-CARTE-PANEL` dans
       `integrations/odoo/config/adaptation-registry.json` ; `npm run odoo:derivation:check` au vert.
-- [ ] T026 [US2] Sujet visuel `reassurances` — clip épinglé par `render-html.mts --measure` dans
+- [X] T026 [US2] Sujet visuel `reassurances` — clip épinglé par `render-html.mts --measure` dans
       `integrations/odoo/qa/visual/subjects/reassurances.mts`, page de mesure publique dans
       `integrations/odoo/addons/piqueray_ds_qa/views/harness.xml` (dépend de T020 ; même harness que
       T016 → en série).
@@ -225,7 +225,7 @@ delta visuel contre la référence 020.
       texte d'une carte, première/dernière carte, geste interdit), en-tête/CTA fixés → geste de
       texte bloqué, isolation, persistance save/reopen/public ; reçu sous
       `specs/022-odoo-production-wave-b/proofs/` (dépend de T020–T025).
-- [ ] T028 [US2] Mesurer le delta visuel Réassurances contre la référence 020 via `compare.mts` ;
+- [X] T028 [US2] Mesurer le delta visuel Réassurances contre la référence 020 via `compare.mts` ;
       écarts non nuls chiffrés + attribués (SC-003, DW-002 nommé si applicable) ; reçu chiffré sous
       `specs/022-odoo-production-wave-b/proofs/` (dépend de T026, T027).
 

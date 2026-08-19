@@ -232,4 +232,40 @@
     </BuilderRow>
   </t>
   <!-- ODOO-022-COORDONNEES-PANEL END -->
+
+  <!-- ODOO-022-REASSURANCES-PANEL BEGIN -->
+  <t t-name="piqueray_ds.ReassurancesOption">
+    <BuilderRow label.translate="Piqueray · Réassurances">
+      <span data-pqr-control="reassurances-collection">Collection gouvernée (grille de 4 colonnes)</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Cartes">
+      <span data-pqr-control="reassurances-collection"><BuilderButton action="'pqrAddCarte'" preview="false">Ajouter une carte</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Libellé du CTA">
+      <span data-pqr-control="reassurances-cta-label">Le libellé du CTA se modifie directement dans le bloc.</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="reassurances-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'reassurances-cta'"/></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.CarteOption">
+    <BuilderRow label.translate="Carte">
+      <span data-pqr-control="carte-title"><span data-pqr-control="carte-body">Le titre et le texte de la carte se modifient directement.</span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Image">
+      <span data-pqr-control="carte-image-url"><BuilderButton action="'pqrReplaceCarteImage'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="carte-image-alt"><BuilderTextInput action="'pqrSetCarteImageAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ordre">
+      <span data-pqr-control="carte-move-up"><BuilderButton action="'pqrMoveCarteUp'" preview="false">Monter</BuilderButton></span>
+      <span data-pqr-control="carte-move-down"><BuilderButton action="'pqrMoveCarteDown'" preview="false">Descendre</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Collection">
+      <span data-pqr-control="carte-remove"><BuilderButton action="'pqrRemoveCarte'" preview="false" type="'danger'">Supprimer la carte</BuilderButton></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-022-REASSURANCES-PANEL END -->
 </templates>

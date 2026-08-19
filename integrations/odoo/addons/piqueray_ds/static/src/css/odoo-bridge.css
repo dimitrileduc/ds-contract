@@ -172,3 +172,34 @@
   pointer-events: none;
 }
 /* ODOO-022-COORDONNEES-BRIDGE END */
+
+/* ODOO-022-REASSURANCES-BRIDGE BEGIN
+ * Adaptation de largeur root-scopée (FR-007), aucune valeur de design dupliquée.
+ * La racine porte une largeur FIXE fidèle à Figma (1550) ; sans pont, elle
+ * l'imposerait à la page. « C'est une grille de 4 colonnes » (owner, gate
+ * 2026-08-19) : la rangée flex du contrat devient une grille de 4 colonnes
+ * fluides — au-delà de 4 cartes, passage à la ligne (précédent Équipe) ; en
+ * dessous, rangée centrée ; sur page étroite, les colonnes rétrécissent.
+ * DW-002 nommé : la source déborde d'elle-même de 2px (4×364+3×32=1552 dans
+ * 1550) ; minmax(0, …) rétrécit — comportement fidèle documenté. Contrat intact. */
+.s_pqr_reassurances.reassurances {
+  width: 100%;
+  max-width: var(--pqr-size-reassurances-root);
+}
+.s_pqr_reassurances .reassurances__items {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, var(--pqr-size-carte-root)));
+  justify-content: center;
+}
+/* Les cartes remplissent leur cellule (0..363.5) au lieu de leur largeur fixe,
+ * et rétrécissent sous leur largeur de contenu (min-width: 0). */
+.s_pqr_reassurances [data-pqr-carte-list] > [data-pqr-carte] {
+  width: auto;
+  min-width: 0;
+}
+/* Le wrapper CTA est un hook d'adressage (data-pqr-part), pas une part du
+ * contrat : display:contents le retire du layout (même motif que presentation-cta). */
+.s_pqr_reassurances [data-pqr-part="reassurances-cta"] {
+  display: contents;
+}
+/* ODOO-022-REASSURANCES-BRIDGE END */

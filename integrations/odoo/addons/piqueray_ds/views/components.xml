@@ -444,4 +444,49 @@ Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
     </section>
   </template>
   <!-- ODOO-022-COORDONNEES-QWEB END -->
+  <!-- ODOO-022-REASSURANCES-QWEB BEGIN -->
+  <!-- Carte de réassurance — molécule interne, composée par t-call, jamais
+       inscrite comme snippet. Le plan `categorie` (image + titre/texte catégorie +
+       bouton) n'est jamais rendu en disposition 4Cartes : ses parts sont fixées
+       par composition au contrat. L'image naît SANS src (jamais d'image cassée) ;
+       la photo de production entre au montage (dialogue média, /web/image). -->
+  <template id="carte_reassurance" name="Piqueray · Carte (réassurance)">
+    <article class="carte carte--disposition-reassurance carte--ctaIconLeftGlyph-pdf carte--ctaIconRightGlyph-download oe_unremovable oe_unmovable"
+             data-pqr-carte="" data-pqr-part="carte-root"
+             t-attf-data-pqr-carte-marker="carte-#{carte_index}">
+      <img class="carte__reassuranceImage o_editable_media" data-pqr-part="carte-image"
+           t-att-src="carte.get('imageUrl') or None" t-att-alt="carte.get('imageAlt', '')"/>
+      <div class="carte__text" data-pqr-part="carte-text">
+        <span class="carte__TitreReassurance o_pqr_editable" data-pqr-part="carte-title" data-pqr-marks=""><t t-esc="carte.get('titre', 'Titre')"/></span>
+        <span class="carte__TexteReassurance o_pqr_editable" data-pqr-part="carte-body" data-pqr-marks="strong"><strong>SupraMatic &amp; ProMatic.</strong><span> Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.</span></span>
+      </div>
+    </article>
+  </template>
+
+  <template id="s_pqr_reassurances" name="Piqueray · Réassurances">
+    <t t-set="cartes" t-value="[
+      {'titre': 'Sécurité et conformité', 'imageUrl': '', 'imageAlt': ''},
+      {'titre': 'Intégration parfaite', 'imageUrl': '', 'imageAlt': ''},
+      {'titre': 'Moteur performant', 'imageUrl': '', 'imageAlt': ''},
+      {'titre': 'SAV &amp; maintenance dédiés', 'imageUrl': '', 'imageAlt': ''}
+    ]"/>
+    <section class="s_pqr_reassurances reassurances reassurances--disposition-4Cartes" data-snippet="s_pqr_reassurances" data-name="Piqueray · Réassurances"
+             data-ds-contract="ds.reassurances" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.1.0"
+             data-ds-graph-digest="8b31b0228e3a568d4f32004b82e72a62993938567d412bdfcf35021d428986e4"
+             data-vcss="19.0.1.5.0" data-vxml="19.0.1.5.0" data-vjs="19.0.1.5.0"
+             data-pqr-root-actions="move duplicate remove" data-pqr-instance="reassurances-default" data-pqr-part="root">
+      <!-- En-tête FIXÉ par composition (littéraux, textes non éditables — R3). -->
+      <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'reassurances-title'"/><t t-set="title_html"><span>Pourquoi choisir nos portes de garage industrielles ?</span></t></t>
+      <div class="reassurances__items" data-pqr-carte-list="" data-pqr-part="reassurances-items">
+        <t t-foreach="cartes" t-as="carte"><t t-call="piqueray_ds.carte_reassurance"><t t-set="carte" t-value="carte"/><t t-set="carte_index" t-value="carte_index"/></t></t>
+      </div>
+      <template data-pqr-carte-blueprint=""><t t-call="piqueray_ds.carte_reassurance"><t t-set="carte" t-value="{'titre': 'Nouvel argument', 'imageUrl': '', 'imageAlt': ''}"/><t t-set="carte_index" t-value="'blueprint'"/></t></template>
+      <!-- CTA : libellé éditable + lien au panneau (R6/Q-R2). Le wrapper est un
+           hook d'adressage (data-pqr-part), dissous au pont (display:contents). -->
+      <div class="reassurances__cta" data-pqr-part="reassurances-cta">
+        <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Contactez-nous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
+      </div>
+    </section>
+  </template>
+  <!-- ODOO-022-REASSURANCES-QWEB END -->
 </odoo>

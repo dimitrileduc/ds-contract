@@ -61,8 +61,14 @@ import {
     MoveTexteSeoRowUpAction,
     RemoveTexteSeoRowAction,
     ToggleTexteSeoRowAction,
+    AddCarteAction,
+    RemoveCarteAction,
+    MoveCarteUpAction,
+    MoveCarteDownAction,
 } from "./repeat_action";
 import {
+    ReplaceCarteImageAction,
+    SetCarteImageAltAction,
     ReplaceDevisBackgroundAction,
     ReplaceMemberPortraitAction,
     ReplaceHeroBackgroundAction,
@@ -81,7 +87,7 @@ import {
 /** Les seules racines posables. Fermées par défaut, sans exception.
  *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
  *  (US2). */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees"];
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -168,9 +174,20 @@ export const COORDONNEES_EDITABLE_PARTS = [
  *  line-break (touche Entrée, aucun bouton). */
 export const COORDONNEES_RICH_TEXT =
     '.s_pqr_coordonnees [data-pqr-part="coordonnees-title"]';
+/** ODOO-022 (US2) — Réassurances : SEULES les cartes s'éditent (titre simple,
+ *  texte rich `strong`) + le libellé du CTA. L'en-tête est FIXÉ par composition
+ *  (R3), donc absent des zones rouvertes ; les glyphes/variante du CTA aussi. Les
+ *  gestes de collection (ajouter/supprimer/monter/descendre) vivent au panneau. */
+export const REASSURANCES_EDITABLE_PARTS = [
+    '[data-pqr-carte] [data-pqr-part="carte-title"]',
+    '[data-pqr-carte] [data-pqr-part="carte-body"]',
+    '[data-pqr-part="reassurances-cta"] [data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_reassurances ${part}`);
+export const REASSURANCES_RICH_TEXT =
+    '.s_pqr_reassurances [data-pqr-carte] [data-pqr-part="carte-body"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -191,6 +208,7 @@ export const PIQUERAY_REOPENED = [
     ...SAV_EDITABLE_PARTS,
     ...TEXTE_SEO_EDITABLE_PARTS,
     ...COORDONNEES_EDITABLE_PARTS,
+    ...REASSURANCES_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -349,6 +367,21 @@ export class PiquerayCoordonneesOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+// ODOO-022 (US2) — panneaux Réassurances : la racine porte la collection
+// (ajouter une carte) + le CTA (libellé/lien) ; la carte porte son édition
+// (titre/texte), son image et les gestes d'ordre/suppression.
+export class PiquerayReassurancesOption extends BaseOptionComponent {
+    static template = "piqueray_ds.ReassurancesOption";
+    static selector = ".s_pqr_reassurances";
+    static editableOnly = false;
+}
+
+export class PiquerayCarteOption extends BaseOptionComponent {
+    static template = "piqueray_ds.CarteOption";
+    static selector = ".s_pqr_reassurances [data-pqr-carte]";
+    static editableOnly = false;
+}
+
 /** Le lien d'un CTA est réglé au panneau (le popover natif est inatteignable :
  * l'ancre est hors hit-testing en édition pour que son libellé reste éditable
  * — voir odoo-bridge.css, ODOO-019-CTA-LIEN-BRIDGE). Bonne pratique du noyau
@@ -486,10 +519,16 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption],
         builder_actions: {
             SetCtaHrefAction,
             SetLinkHrefAction,
+            AddCarteAction,
+            RemoveCarteAction,
+            MoveCarteUpAction,
+            MoveCarteDownAction,
+            ReplaceCarteImageAction,
+            SetCarteImageAltAction,
             AddMemberAction,
             RemoveMemberAction,
             MoveMemberUpAction,

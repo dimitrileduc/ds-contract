@@ -5,7 +5,7 @@
  * dimensions et format restent hors de la surface déclarée.
  */
 import { BuilderAction } from "./odoo19_compat";
-import { findCard, findMemberCard } from "./repeat_action";
+import { findCard, findMemberCard, findCarte } from "./repeat_action";
 
 // ODOO-019-GOOGLE-REVIEWS-MEDIA BEGIN
 function avatarHost(card) {
@@ -459,3 +459,65 @@ export class SetSavPhotoAltAction extends BuilderAction {
     }
 }
 // ODOO-019-SAV-MEDIA END
+
+// ODOO-022-REASSURANCES-MEDIA BEGIN
+// Image de carte (R2c) — même façade que le portrait Équipe : dialogue média
+// natif, source publiée /web/image only, cycle o_modified_image_to_save préservé.
+// Différence assumée : PAS de bascule `hidden`. La carte n'a qu'UN plan (pas
+// d'underlay funIa) ; masquer l'image vide effondrerait la boîte et ferait
+// diverger la mesure visuelle du contrat, qui pose une boîte vide dimensionnée.
+export function carteImage(editingElement) {
+    const image = findCarte(editingElement)?.querySelector(".carte__reassuranceImage") || null;
+    // Le dialogue média peut reconstruire le nœud et retirer l'adresse
+    // d'authoring ; la classe contractuelle survit et permet de la restaurer.
+    if (image) image.dataset.pqrPart = "carte-image";
+    return image;
+}
+
+export function reconcileCarteImage(editingElement) {
+    const image = carteImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
+    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
+    return Boolean(image.getAttribute("src"));
+}
+
+export class ReplaceCarteImageAction extends BuilderAction {
+    static id = "pqrReplaceCarteImage";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const carte = findCarte(editingElement);
+        const image = carteImage(carte);
+        if (!carte || !image) return null;
+        // Le cycle natif conserve son data URL marquée jusqu'à ImageSavePlugin :
+        // réécrire `src` dans onAttachmentChange forcerait le placeholder.
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileCarteImage(carte);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileCarteImage(editingElement);
+    }
+}
+
+// R2d — LIMITE NOMMÉE : la route `items` du contrat ne porte pas d'alt ; la
+// valeur vit dans l'instance Odoo, comme l'URL (précédent SetMemberPortraitAlt).
+export class SetCarteImageAltAction extends BuilderAction {
+    static id = "pqrSetCarteImageAlt";
+    getValue({ editingElement }) {
+        return carteImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = carteImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileCarteImage(editingElement);
+    }
+}
+// ODOO-022-REASSURANCES-MEDIA END

@@ -731,6 +731,78 @@
         "coordonnees.authoring.json"
       ],
       "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-022-REASSURANCES-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.reassurances"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "reassurances.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-022-REASSURANCES-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.reassurances"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "reassurances.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-022-REASSURANCES-REPEAT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js",
+      "rootContracts": [
+        "ds.reassurances"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "reassurances.authoring.json"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-022-REASSURANCES-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.reassurances"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "reassurances.authoring.json"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-022-REASSURANCES-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.reassurances"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "reassurances.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-022-REASSURANCES-BRIDGE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.reassurances"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "reassurances.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
     }
   ]
 }

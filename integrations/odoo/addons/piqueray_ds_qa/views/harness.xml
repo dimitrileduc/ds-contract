@@ -247,4 +247,19 @@
     <field name="url">/piqueray-harness/coordonnees-visual</field><field name="view_id" ref="harness_coordonnees_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-022-HARNESS-COORDONNEES END -->
+  <!-- ODOO-022-HARNESS-REASSURANCES BEGIN -->
+  <template id="harness_reassurances" name="Piqueray — banc Réassurances">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_reassurances" model="website.page">
+    <field name="url">/piqueray-harness/reassurances</field><field name="view_id" ref="harness_reassurances"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- Page de mesure : la racine rendue au clip épinglé (1598×806). -->
+  <template id="harness_reassurances_visual" name="Piqueray — Réassurances visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1598px; height: 806px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_reassurances"/></div></div></t>
+  </template>
+  <record id="page_harness_reassurances_visual" model="website.page">
+    <field name="url">/piqueray-harness/reassurances-visual</field><field name="view_id" ref="harness_reassurances_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-022-HARNESS-REASSURANCES END -->
 </odoo>
