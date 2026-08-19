@@ -214,4 +214,22 @@
     </BuilderRow>
   </t>
   <!-- ODOO-019-TEXTE-SEO-PANEL END -->
+
+  <!-- ODOO-022-COORDONNEES-PANEL BEGIN -->
+  <t t-name="piqueray_ds.CoordonneesOption">
+    <BuilderRow label.translate="Piqueray · Coordonnées">
+      <span data-pqr-control="coordonnees-title"><span data-pqr-control="coordonnees-eyebrow"><span data-pqr-control="coordonnees-address"><span data-pqr-control="coordonnees-hours"><span data-pqr-control="coordonnees-contact"><span data-pqr-control="coordonnees-social-label">Le titre, l’accroche, les étiquettes/valeurs et les liens Tél/Email (dans le bloc contact) se modifient directement dans le bloc.</span></span></span></span></span></span>
+    </BuilderRow>
+    <!-- Q-C2 = Option A : icônes sociales cliquables, URL réglée au panneau
+         (SetLinkHrefAction, grammaire same-origin/https/mailto/tel, javascript:
+         refusé). Le plan Google n'a AUCUNE action média : placeholder jusqu'à
+         l'API custom (décision gate 2026-08-19). -->
+    <BuilderRow label.translate="Lien Facebook">
+      <span data-pqr-control="coordonnees-facebook-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'coordonnees-facebook-link'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien Instagram">
+      <span data-pqr-control="coordonnees-instagram-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'coordonnees-instagram-link'"/></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-022-COORDONNEES-PANEL END -->
 </templates>

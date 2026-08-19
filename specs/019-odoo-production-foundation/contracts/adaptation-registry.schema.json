@@ -40,14 +40,14 @@
         "mechanism"
       ],
       "properties": {
-        "adaptationId": { "type": "string", "pattern": "^ODOO-019-[A-Z0-9-]+$" },
+        "adaptationId": { "type": "string", "pattern": "^ODOO-\\d{3}-[A-Z0-9-]+$" },
         "path": {
           "type": "string",
           "pattern": "^integrations/odoo/addons/piqueray_ds/(?!.*\\.\\.).+$"
         },
         "rootContracts": {
           "type": "array",
-          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq"] },
+          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances"] },
           "minItems": 1,
           "uniqueItems": true
         },

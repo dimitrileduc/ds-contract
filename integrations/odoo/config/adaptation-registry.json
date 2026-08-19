@@ -683,6 +683,54 @@
         "presentation.authoring.json"
       ],
       "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-022-COORDONNEES-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.coordonnees"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "coordonnees.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-022-COORDONNEES-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.coordonnees"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "coordonnees.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-022-COORDONNEES-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.coordonnees"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "coordonnees.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-022-COORDONNEES-BRIDGE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.coordonnees"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "coordonnees.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
     }
   ]
 }

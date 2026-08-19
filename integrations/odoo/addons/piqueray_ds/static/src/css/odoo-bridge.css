@@ -129,3 +129,46 @@
   pointer-events: auto;
 }
 /* ODOO-019-CTA-LIEN-BRIDGE END */
+
+/* ODOO-022-COORDONNEES-BRIDGE BEGIN
+ * Adaptation de largeur root-scopée (FR-007), aucune valeur de design dupliquée.
+ * La racine porte des largeurs FIXES fidèles à Figma (plan 1152 + wrapper 576 =
+ * 1728) ; sans pont, le `min-width` du plan déborderait sur une page plus
+ * étroite. Précédent exact : ODOO-019-GOOGLE-REVIEWS-BRIDGE (width:100%;
+ * min-width:0 sur l'enfant répété). Le contrat n'est pas modifié. */
+.s_pqr_coordonnees.coordonnees {
+  width: 100%;
+  max-width: 100%;
+}
+/* Le plan fléchit : son min-width de contrat est neutralisé, il absorbe tout le
+ * rétrécissement. */
+.s_pqr_coordonnees .coordonnees__googleMap {
+  min-width: 0;
+}
+/* Le wrapper garde ses 576px (ne participe pas au rétrécissement flex). */
+.s_pqr_coordonnees .coordonnees__wrapper {
+  flex-shrink: 0;
+}
+
+/* Q-C1 = Option A : le bloc contact rend ses liens tel:/mailto: comme le contrat
+ * rendait ses <u> — soulignés, à la couleur d'hôte. Neutralisation UA seulement
+ * (le contrat ne porte aucun canal text-decoration/color de lien). */
+.s_pqr_coordonnees [data-pqr-part="coordonnees-contact-block"] a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Q-C2 = Option A : icône sociale cliquable, sans surface visuelle ajoutée. */
+.s_pqr_coordonnees [data-pqr-part="coordonnees-social-icons"] a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+}
+
+/* En ÉDITION, l'ancre sociale est inerte : un clic sélectionne le bloc (panneau)
+ * au lieu de naviguer. Le lien reste pleinement actif sur le site publié. Même
+ * forme que la parade CTA-lien plus haut, keyée sur le hook, pas la balise. */
+.odoo-editor-editable .s_pqr_coordonnees [data-pqr-part="coordonnees-social-icons"] a {
+  pointer-events: none;
+}
+/* ODOO-022-COORDONNEES-BRIDGE END */

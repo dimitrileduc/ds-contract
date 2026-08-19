@@ -96,7 +96,7 @@ persistance) et mesurer le delta visuel contre la référence 020.
 
 **Dépendance de gate**: toutes les tâches US1 dépendent de T002 (table 1 = `validated`).
 
-- [ ] T009 [US1] Transcrire 1:1 la table 1 validée
+- [X] T009 [US1] Transcrire 1:1 la table 1 validée
       (`contracts/coordonnees.editable-scope.json`) vers
       `integrations/odoo/config/coordonnees.authoring.json` — schéma 019 figé, `authoringVersion`
       `1.0.0`, `rootContract` `ds.coordonnees@2.2.0`, `snapshotId` du lock repinné, 100 % des
@@ -108,7 +108,7 @@ persistance) et mesurer le delta visuel contre la référence 020.
       `integrations/odoo/qa/scenarios/coordonnees-spike.spec.mts` ; reçu factuel archivé sous
       `specs/022-odoo-production-wave-b/proofs/` ; **échec ⇒ retour au gate**, jamais contourné
       (leçon 018 : « lu mais non confirmé » = à exécuter).
-- [ ] T011 [US1] QWeb du snippet Coordonnées — racine `s_pqr_coordonnees` (attributs `data-ds-*`
+- [X] T011 [US1] QWeb du snippet Coordonnées — racine `s_pqr_coordonnees` (attributs `data-ds-*`
       dont le nouveau `graphDigest`, `data-pqr-root-actions="move duplicate remove"`,
       `data-pqr-part="root"`), en-tête via template partagé `pqr_section_header`, blocs Adresse /
       Horaires / Contact / Suivez-nous, plan Google `<img>` **placeholder sans src** (décision gate),
@@ -116,7 +116,7 @@ persistance) et mesurer le delta visuel contre la référence 020.
       inscription bibliothèque `group="content"` dans
       `integrations/odoo/addons/piqueray_ds/views/snippets.xml`
       (marqueurs `ODOO-022-COORDONNEES-QWEB` / `-SNIPPET` ; dépend de T010).
-- [ ] T012 [US1] Ouvertures + panneaux d'authoring Coordonnées dans
+- [X] T012 [US1] Ouvertures + panneaux d'authoring Coordonnées dans
       `integrations/odoo/addons/piqueray_ds/static/src/js/authoring.js` et
       `integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml` : zones rouvertes C3
       `accroche` (routée) + C4 `titre` (rich-text `strong`) + étiquettes/valeurs P9–P19
@@ -124,20 +124,20 @@ persistance) et mesurer le delta visuel contre la référence 020.
       sociaux réglés au panneau (grammaire same-origin/`https`/`mailto:`/`tel:`, `javascript:`
       refusé) — marqueurs `ODOO-022-COORDONNEES-PANEL`, `ODOO-022-CONTACT-LIENS`,
       `ODOO-022-SOCIAL-LIENS` (dépend de T011).
-- [ ] T013 [US1] Confirmer la politique média du plan Google : **AUCUNE action média** au panneau
+- [X] T013 [US1] Confirmer la politique média du plan Google : **AUCUNE action média** au panneau
       (placeholder jusqu'à l'API custom, décision gate), clic direct fermé (conteneurs natifs
       `ReplaceMediaOption`/`ImageToolOption`/`ImageAndFaOption` — règle canvas commune) ; vérifier
       qu'aucun geste de remplacement n'est offert dans
       `integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js` (pas d'action `mapUrl`).
-- [ ] T014 [US1] Pont de largeur `ODOO-022-COORDONNEES-BRIDGE` (racine étirée à la page ;
+- [X] T014 [US1] Pont de largeur `ODOO-022-COORDONNEES-BRIDGE` (racine étirée à la page ;
       `googleMap` perd son `min-width` de contrat et fléchit ; wrapper garde ses 576px) dans
       `integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css` — contrat non modifié
       (FR-005/FR-007).
-- [ ] T015 [US1] Enregistrer les marqueurs `ODOO-022-COORDONNEES-*` (QWEB, SNIPPET, PANEL,
+- [X] T015 [US1] Enregistrer les marqueurs `ODOO-022-COORDONNEES-*` (QWEB, SNIPPET, PANEL,
       CONTACT-LIENS, SOCIAL-LIENS, BRIDGE) dans
       `integrations/odoo/config/adaptation-registry.json` (reasonCodes existants) ;
       `npm run odoo:derivation:check` au vert (bloc↔entrée 1:1, sans chevauchement).
-- [ ] T016 [US1] Sujet visuel `coordonnees` — clip épinglé obtenu par `render-html.mts --measure`
+- [X] T016 [US1] Sujet visuel `coordonnees` — clip épinglé obtenu par `render-html.mts --measure`
       (le refus donne la boîte) dans `integrations/odoo/qa/visual/subjects/coordonnees.mts`, page de
       mesure publique dans `integrations/odoo/addons/piqueray_ds_qa/views/harness.xml`
       (dépend de T011 ; même fichier harness que T026 → en série).
@@ -148,7 +148,7 @@ persistance) et mesurer le delta visuel contre la référence 020.
       CHAQUE zone non éditable** + gestes natifs — edge « verrou contourné » 018), isolation (2 pages
       + 2 instances même page), persistance save/reopen/public identiques ; reçu JSON sous
       `specs/022-odoo-production-wave-b/proofs/` (dépend de T012–T015).
-- [ ] T018 [US1] Mesurer le delta visuel Coordonnées contre la référence 020 via
+- [X] T018 [US1] Mesurer le delta visuel Coordonnées contre la référence 020 via
       `compare.mts` (`extract/image-parity` inchangé) ; tout écart non nul **chiffré + attribué à
       une cause nommée** (SC-003) ; reçu chiffré sous `specs/022-odoo-production-wave-b/proofs/`
       (dépend de T016, T017).

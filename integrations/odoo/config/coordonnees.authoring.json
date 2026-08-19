@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-coordonnees-authoring",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": {
+    "id": "ds.coordonnees",
+    "version": "2.2.0"
+  },
+  "rootActions": [
+    { "action": "move", "verdict": "allowed" },
+    { "action": "duplicate", "verdict": "allowed" },
+    { "action": "remove", "verdict": "allowed" },
+    { "action": "save-as-custom", "verdict": "forbidden" },
+    { "action": "resize", "verdict": "forbidden" },
+    { "action": "background", "verdict": "forbidden" }
+  ],
+  "controls": [
+    {
+      "decisionId": "coordonnees-map-url",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "prop": "mapUrl" },
+      "verdict": "not-editable",
+      "mechanism": "none",
+      "reasonCode": "coordonnees-map-placeholder"
+    },
+    {
+      "decisionId": "coordonnees-map-alt",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "prop": "mapAlt" },
+      "verdict": "not-editable",
+      "mechanism": "none",
+      "reasonCode": "coordonnees-map-placeholder"
+    },
+    {
+      "decisionId": "coordonnees-accroche",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "prop": "accroche" },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-eyebrow\"]",
+      "label": "Accroche"
+    },
+    {
+      "decisionId": "coordonnees-titre",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "prop": "titre" },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-title\"]",
+      "label": "Titre"
+    },
+    {
+      "decisionId": "coordonnees-section-disposition",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "prop": "disposition" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-alignment",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "prop": "alignement" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-emphasis",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "prop": "emphase" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-show-eyebrow",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "prop": "accroche2" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-title",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "prop": "titre" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-eyebrow",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "prop": "accroche" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-button-variant",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "prop": "variant" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-button-label",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "prop": "children" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-button-left",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "prop": "iconLeft" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-button-right",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "prop": "iconRight" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-button-left-glyph",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "prop": "iconLeftGlyph" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "coordonnees-section-button-right-glyph",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "prop": "iconRightGlyph" },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "coordonnees-part-root",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-map",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "googleMap" ] },
+      "verdict": "not-editable", "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-map\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-wrapper",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-wrapper\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-section",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "SectionHeader" ] },
+      "verdict": "not-editable", "contentKind": "component",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-address",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Adresse" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-address-label",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Adresse", "AdresseEtiquette" ] },
+      "verdict": "directly-editable", "contentKind": "plain-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address-label\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-address-value",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Adresse", "AdresseValeur" ] },
+      "verdict": "directly-editable", "contentKind": "rich-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-address-value\"]", "allowedMarks": [ "line-break" ]
+    },
+    {
+      "decisionId": "coordonnees-part-hours",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Horaires" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-hours-label",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Horaires", "HorairesEtiquette" ] },
+      "verdict": "directly-editable", "contentKind": "plain-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours-label\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-hours-value",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Horaires", "HorairesValeur" ] },
+      "verdict": "directly-editable", "contentKind": "rich-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-hours-value\"]", "allowedMarks": [ "line-break" ]
+    },
+    {
+      "decisionId": "coordonnees-part-contact",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Contact" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-contact-label",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Contact", "ContactEtiquette" ] },
+      "verdict": "directly-editable", "contentKind": "plain-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact-label\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-contact-block",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "Contact", "tl32087463266EmailInfopi" ] },
+      "verdict": "directly-editable", "contentKind": "rich-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-contact-block\"]", "allowedMarks": [ "link", "line-break" ]
+    },
+    {
+      "decisionId": "coordonnees-part-social",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "suivezNous" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-social-label",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "suivezNous", "SuivezNousEtiquette" ] },
+      "verdict": "directly-editable", "contentKind": "plain-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social-label\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-social-icons",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "suivezNous", "rseauxSociaux" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-social-icons\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-facebook",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "suivezNous", "rseauxSociaux", "Facebook" ] },
+      "verdict": "not-editable", "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-facebook\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-part-instagram",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } } ], "partPath": [ "root", "wrapper", "suivezNous", "rseauxSociaux", "Instagram" ] },
+      "verdict": "not-editable", "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-instagram\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-part-root",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "partPath": [ "root" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-part-eyebrow",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "partPath": [ "root", "Accroche" ] },
+      "verdict": "directly-editable", "contentKind": "plain-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-eyebrow\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-part-title",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "partPath": [ "root", "Titre" ] },
+      "verdict": "directly-editable", "contentKind": "rich-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"coordonnees-title\"]", "allowedMarks": [ "strong" ]
+    },
+    {
+      "decisionId": "coordonnees-section-part-button",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" } ], "partPath": [ "root", "Bouton" ] },
+      "verdict": "fixed-by-composition", "contentKind": "component",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-button-part-root",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "partPath": [ "root" ] },
+      "verdict": "not-editable", "contentKind": "structural",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-button-part-left",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "partPath": [ "root", "iconLeft" ] },
+      "verdict": "not-editable", "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-left\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-button-part-only",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "partPath": [ "root", "iconOnlyIcon" ] },
+      "verdict": "not-editable", "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-only\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-button-part-right",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "partPath": [ "root", "iconRight" ] },
+      "verdict": "not-editable", "contentKind": "media",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-icon-right\"]", "allowedMarks": []
+    },
+    {
+      "decisionId": "coordonnees-section-button-part-label",
+      "address": { "componentPath": [ { "contract": { "id": "ds.coordonnees", "version": "2.2.0" } }, { "contract": { "id": "ds.section-header", "version": "2.2.0" }, "viaPart": "SectionHeader" }, { "contract": { "id": "ds.button", "version": "2.0.1" }, "viaPart": "Bouton" } ], "partPath": [ "root", "label" ] },
+      "verdict": "not-editable", "contentKind": "plain-text",
+      "selector": ".s_pqr_coordonnees [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-label\"]", "allowedMarks": []
+    }
+  ]
+}

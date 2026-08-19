@@ -229,4 +229,22 @@
     <field name="url">/piqueray-harness/texte-seo-visual</field><field name="view_id" ref="harness_texte_seo_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-019-HARNESS-TEXTE-SEO END -->
+  <!-- ODOO-022-HARNESS-COORDONNEES BEGIN -->
+  <!-- Page vide : le scénario y pose la racine depuis la bibliothèque Website
+       (un #wrap que le Builder sait sauvegarder). -->
+  <template id="harness_coordonnees" name="Piqueray — banc Coordonnées">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_coordonnees" model="website.page">
+    <field name="url">/piqueray-harness/coordonnees</field><field name="view_id" ref="harness_coordonnees"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- Page de mesure : la racine rendue au clip épinglé (1776×660, boîte donnée
+       par le refus de render-html.mts en mode mesure). -->
+  <template id="harness_coordonnees_visual" name="Piqueray — Coordonnées visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; height: 660px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_coordonnees"/></div></div></t>
+  </template>
+  <record id="page_harness_coordonnees_visual" model="website.page">
+    <field name="url">/piqueray-harness/coordonnees-visual</field><field name="view_id" ref="harness_coordonnees_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-022-HARNESS-COORDONNEES END -->
 </odoo>

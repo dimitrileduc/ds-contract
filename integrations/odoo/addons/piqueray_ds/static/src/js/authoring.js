@@ -78,8 +78,10 @@ import {
 } from "./media_action";
 
 // ODOO-019-AUTHORING-ROOTS BEGIN
-/** Les seules racines posables. Fermées par défaut, sans exception. */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo"];
+/** Les seules racines posables. Fermées par défaut, sans exception.
+ *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
+ *  (US2). */
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -145,9 +147,30 @@ export const TEXTE_SEO_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_texte_seo ${part}`);
 export const TEXTE_SEO_RICH_TEXT =
     '.s_pqr_texte_seo [data-pqr-part="texte-seo-title"]';
+/** ODOO-022 (US1) — Coordonnées : « du texte et des liens réseaux sociaux »
+ *  (mots owner). Accroche (eyebrow, routée C3), titre (rich-text C4),
+ *  étiquettes/valeurs Adresse/Horaires/Contact/Suivez-nous, et le bloc Tél/Email
+ *  (marques link+line-break, Q-C1 Option A). Le soulignement du bloc contact et
+ *  la couleur des ancres sociales sont posés au pont, jamais au contrat. */
+export const COORDONNEES_EDITABLE_PARTS = [
+    '[data-pqr-part="section-header-eyebrow"]',
+    '[data-pqr-part="coordonnees-title"]',
+    '[data-pqr-part="coordonnees-address-label"]',
+    '[data-pqr-part="coordonnees-address-value"]',
+    '[data-pqr-part="coordonnees-hours-label"]',
+    '[data-pqr-part="coordonnees-hours-value"]',
+    '[data-pqr-part="coordonnees-contact-label"]',
+    '[data-pqr-part="coordonnees-contact-block"]',
+    '[data-pqr-part="coordonnees-social-label"]',
+].map((part) => `.s_pqr_coordonnees ${part}`);
+/** Seul le titre porte la marque `strong` ; le bloc contact porte link+line-break
+ *  (barre native + garde au save), les valeurs Adresse/Horaires portent
+ *  line-break (touche Entrée, aucun bouton). */
+export const COORDONNEES_RICH_TEXT =
+    '.s_pqr_coordonnees [data-pqr-part="coordonnees-title"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -167,6 +190,7 @@ export const PIQUERAY_REOPENED = [
     ...DEVIS_EDITABLE_PARTS,
     ...SAV_EDITABLE_PARTS,
     ...TEXTE_SEO_EDITABLE_PARTS,
+    ...COORDONNEES_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -316,6 +340,15 @@ export class PiquerayTexteSeoRowOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+// ODOO-022 (US1) — panneau Coordonnées. Le texte se modifie en ligne ; le
+// panneau ne porte que les liens réseaux sociaux (Q-C2). Aucune action média :
+// le plan Google est un placeholder jusqu'à l'API custom (décision gate).
+export class PiquerayCoordonneesOption extends BaseOptionComponent {
+    static template = "piqueray_ds.CoordonneesOption";
+    static selector = ".s_pqr_coordonnees";
+    static editableOnly = false;
+}
+
 /** Le lien d'un CTA est réglé au panneau (le popover natif est inatteignable :
  * l'ancre est hors hit-testing en édition pour que son libellé reste éditable
  * — voir odoo-bridge.css, ODOO-019-CTA-LIEN-BRIDGE). Bonne pratique du noyau
@@ -366,6 +399,31 @@ export class SetCtaHrefAction extends BuilderAction {
         const href = normaliserCtaHref(value, window.location.origin);
         // Entrée hors grammaire (javascript:, //hôte, vide…) : on REFUSE sans
         // casser le lien existant — la dégradation se voit au champ, pas au DOM.
+        if (href === null) return;
+        ancre.setAttribute("href", href);
+    }
+}
+
+/** ODOO-022 — variante générique du lien : l'ancre PORTE elle-même l'adresse
+ * `data-pqr-part` (icône sociale cliquable, Q-C2), au lieu d'être un
+ * `a[data-pqr-part="button-root"]` sous une part hôte. Même grammaire, même
+ * porte (repli même origine, `javascript:` refusé) que le lien CTA — une seule
+ * mécanique, paramétrée par part. */
+export class SetLinkHrefAction extends BuilderAction {
+    static id = "pqrSetLinkHref";
+    ancre(editingElement, part) {
+        if (!part) return null;
+        return editingElement.matches?.(`a[data-pqr-part="${part}"]`)
+            ? editingElement
+            : editingElement.querySelector(`a[data-pqr-part="${part}"]`);
+    }
+    getValue({ editingElement, params: { mainParam } = {} }) {
+        return this.ancre(editingElement, mainParam)?.getAttribute("href") || "";
+    }
+    apply({ editingElement, value, params: { mainParam } = {} }) {
+        const ancre = this.ancre(editingElement, mainParam);
+        if (!ancre) return;
+        const href = normaliserCtaHref(value, window.location.origin);
         if (href === null) return;
         ancre.setAttribute("href", href);
     }
@@ -428,9 +486,10 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption],
         builder_actions: {
             SetCtaHrefAction,
+            SetLinkHrefAction,
             AddMemberAction,
             RemoveMemberAction,
             MoveMemberUpAction,

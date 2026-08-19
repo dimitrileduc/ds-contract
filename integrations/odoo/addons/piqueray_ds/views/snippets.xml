@@ -64,4 +64,12 @@
     </xpath>
   </template>
   <!-- ODOO-019-TEXTE-SEO-SNIPPET END -->
+  <!-- ODOO-022-COORDONNEES-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_coordonnees" inherit_id="website.snippets" name="Piqueray · Coordonnées dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_coordonnees" string="Piqueray · Coordonnées"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_text_image.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-022-COORDONNEES-SNIPPET END -->
 </odoo>
