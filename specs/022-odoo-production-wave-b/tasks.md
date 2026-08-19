@@ -246,21 +246,21 @@ QA des deux sections, mesure visuelle, vérification lock/digest) et produire le
 
 **Dépendance**: US3 dépend de US1 (T009–T018) ET US2 (T019–T028) livrées.
 
-- [ ] T029 [US3] Mettre à jour les inventaires attendus **8 → 10** (racines couvertes, panneaux) dans
+- [X] T029 [US3] Mettre à jour les inventaires attendus **8 → 10** (racines couvertes, panneaux) dans
       `integrations/odoo/qa/fixtures/` (nouvelles fixtures Coordonnées/Réassurances si le banc les
       attend) — les 10 racines et leurs inventaires deviennent la référence de non-régression.
-- [ ] T030 [US3] Rejouer la non-régression sur instance propre : les 8 scénarios de section
+- [X] T030 [US3] Rejouer la non-régression sur instance propre : les 8 scénarios de section
       existants + `combined-isolation.spec.mts` + `editability-boundary.spec.mts` +
       `versioning.spec.mts` + `install-update.mts` dans `integrations/odoo/qa/scenarios/` ; reçus
       verts archivés sous `specs/022-odoo-production-wave-b/proofs/` (zéro régression, SC-006).
-- [ ] T031 [US3] `npm run odoo:module:check` au vert : versions/lock/digest ancrés sur les **10**
+- [X] T031 [US3] `npm run odoo:module:check` au vert : versions/lock/digest ancrés sur les **10**
       racines QWeb sans divergence résiduelle (FR-013) — vérifie la cascade T004/T007 + les racines
       neuves T011/T020 ; verdict archivé dans
       `specs/022-odoo-production-wave-b/proofs/module-check.json`.
-- [ ] T032 [US3] `npm run odoo:visual:selftest -- --strict` et `npm run odoo:qualification` au vert
+- [X] T032 [US3] `npm run odoo:visual:selftest -- --strict` et `npm run odoo:qualification` au vert
       (un contrôle sauté est dit sauté — honnêteté §V) ; verdict archivé dans
       `specs/022-odoo-production-wave-b/proofs/qualification-gates.json`.
-- [ ] T033 [US3] Sweep COMPLET dans le worktree — portes Odoo :
+- [X] T033 [US3] Sweep COMPLET dans le worktree — portes Odoo :
       `npm run odoo:inputs:check && npm run odoo:authoring:check && npm run odoo:assets -- --check &&`
       `npm run odoo:derivation:check && npm run odoo:module:check && npm run odoo:typecheck &&`
       `npm run odoo:visual:selftest -- --strict` — plus le sweep constitution du dépôt :
@@ -268,7 +268,7 @@ QA des deux sections, mesure visuelle, vérification lock/digest) et produire le
       `npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs &&`
       `npx tsc --noEmit && npx tsc -p tsconfig.build.json` ; consigner N/N d'eval réel sous
       `specs/022-odoo-production-wave-b/proofs/` (jamais codé en dur).
-- [ ] T034 [US3] Rédiger le rapport de qualification dans
+- [X] T034 [US3] Rédiger le rapport de qualification dans
       `specs/022-odoo-production-wave-b/proofs/qualification-report.md` : deltas visuels chiffrés +
       chaque écart non nul attribué à une cause nommée (SC-003), table gate → comportement conforme
       (SC-007), non-régression 8 sections (SC-006), alignement versions/lock/digest (FR-013), état
@@ -282,11 +282,11 @@ QA des deux sections, mesure visuelle, vérification lock/digest) et produire le
 
 **Purpose**: Nommer les limites et valider le parcours de bout en bout.
 
-- [ ] T035 [P] Documenter les **limites nommées** (honnêteté §V) — DW-002 (débordement source de
+- [X] T035 [P] Documenter les **limites nommées** (honnêteté §V) — DW-002 (débordement source de
       2px), R2d (alt de carte hors route contractuelle), bloc posé = **copie figée** (constat 018,
       re-documenté), plan Google en placeholder jusqu'à l'API custom (hors vague 022) — dans
       `specs/022-odoo-production-wave-b/proofs/limits.md` et en miroir au registre du gate.
-- [ ] T036 Rejouer `quickstart.md` de bout en bout sur instance propre (6 étapes : gate, instance,
+- [X] T036 Rejouer `quickstart.md` de bout en bout sur instance propre (6 étapes : gate, instance,
       boucle de portage, QA par section, delta visuel, qualification) et confirmer chaque étape
       verte ; consigner sous `specs/022-odoo-production-wave-b/proofs/quickstart-run.md`.
 
