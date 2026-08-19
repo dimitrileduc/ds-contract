@@ -1,0 +1,34 @@
+{
+  "receiptId": "reassurances-functional-odoo-019-foundation",
+  "scenarioId": "reassurances-functional",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "reassurances-panel",
+  "observations": [
+    "[pass] catalogue — deux Réassurances indépendantes sont insérées — attendu « 2 racines », observé « 2 racine(s) »",
+    "[pass] panneau racine — inventaire Piqueray strict — attendu « reassurances-collection, reassurances-cta-href, reassurances-cta-label », observé « reassurances-collection, reassurances-cta-href, reassurances-cta-label »",
+    "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
+    "[pass] racine — actions Odoo interdites absentes du chrome visible — attendu « save-as-custom, resize, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0} »",
+    "[pass] défaut — 4 cartes, CTA « Contactez-nous », en-tête fixé par composition — attendu « 4 cartes · CTA Contactez-nous · en-tête « Pourquoi choisir… » », observé « {\"n\":4,\"cta\":\"Contactez-nous\",\"header\":\"Pourquoi choisir nos portes de garage industrielles ?\"} »",
+    "[pass] édition carte 0 — titre reçoit la frappe, carte 1 intacte — attendu « carte 0 = « ★ … » · carte 1 inchangée », observé « [\"Sécurité et ★ conformité\",\"Intégration parfaite\"] »",
+    "[pass] en-tête fixé — le titre de section n'est pas éditable — attendu « contenteditable ≠ true sur le titre d'en-tête », observé « contenteditable=null »",
+    "[pass] geste natif — aucune suppression native de carte offerte — attendu « 0 poignée de suppression native », observé « 0 poignée(s) »",
+    "[pass] collection — ajouter puis supprimer (bornes n±1) — attendu « ajouter → 5 · supprimer → 4 », observé « ajouter → 5 · supprimer → 4 »",
+    "[pass] collection — monter la carte 1 la place en tête — attendu « les deux premières cartes permutent », observé « {\"before\":[\"Sécurité et ★ conformité\",\"Intégration parfaite\"],\"after\":[\"Intégration parfaite\",\"Sécurité et ★ conformité\"]} »",
+    "[pass] CTA — libellé éditable + lien gouverné (javascript refusé, relatif accepté) — attendu « libellé frappé · javascript ignoré · /contact accepté », observé « {\"label\":\"Contact•ez-nous\",\"inj\":\"#\",\"final\":\"/contact\"} »",
+    "[pass] isolation — édition de B laisse A intacte — attendu « B carte 0 = « B0 … » · A intacte », observé « {\"a0\":\"Intégration parfaite\",\"b0\":\"B0 Sécurité et conformité\"} »",
+    "[pass] save — Odoo persiste les deux instances — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — deux instances et éditions persistées — attendu « HTTP 200 · A ★ · B B0 », observé « [[\"Intégration parfaite\",\"Sécurité et ★ conformité\",\"Moteur performant\",\"SAV & maintenance dédiés\"],[\"B0 Sécurité et conformité\",\"Intégration parfaite\",\"Moteur performant\",\"SAV & maintenance dédiés\"]] »",
+    "[pass] w-auto — grille 4 colonnes, zéro débordement à 1728 et 1440 — attendu « 0 overflow · 4 cartes sur la première rangée aux deux largeurs », observé « [{\"viewportWidth\":1728,\"rootWidth\":1550,\"rootOverflow\":0,\"carteCount\":4,\"firstRowCount\":4},{\"viewportWidth\":1440,\"rootWidth\":1440,\"rootOverflow\":0,\"carteCount\":4,\"firstRowCount\":4}] »",
+    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 instances persistées », observé « [[\"Intégration parfaite\",\"Sécurité et ★ conformité\",\"Moteur performant\",\"SAV & maintenance dédiés\"],[\"B0 Sécurité et conformité\",\"Intégration parfaite\",\"Moteur performant\",\"SAV & maintenance dédiés\"]] »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/reassurances-functional.public.json",
+      "sha256": "4422bf6e97bb613a55ae92aa31a1d5f92e5c16de1f0423dcb7d44f064e07e8ba",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 103210
+}

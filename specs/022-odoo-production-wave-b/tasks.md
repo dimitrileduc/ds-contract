@@ -218,7 +218,7 @@ delta visuel contre la référence 020.
       `integrations/odoo/qa/visual/subjects/reassurances.mts`, page de mesure publique dans
       `integrations/odoo/addons/piqueray_ds_qa/views/harness.xml` (dépend de T020 ; même harness que
       T016 → en série).
-- [ ] T027 [US2] Scénario QA `reassurances.spec.mts` dans
+- [X] T027 [US2] Scénario QA `reassurances.spec.mts` dans
       `integrations/odoo/qa/scenarios/reassurances.spec.mts` : pose, rendu par défaut, w-auto
       1728/1440 (SC-008), édition carte N sans toucher N+1, **4 gestes de collection** {ajouter,
       supprimer, monter, descendre} bornes 0..n + **gestes natifs neutralisés**, edges (vider le
