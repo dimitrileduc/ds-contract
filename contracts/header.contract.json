@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.header",
   "name": "Header",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
   "semantics": {
     "element": "div",
@@ -36,7 +36,9 @@
         "display": "flex",
         "direction": "row",
         "justify": "space-between",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 1728
       },
       "parts": {
         "PiquerayLogo": {
@@ -149,7 +151,6 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "width": "{size.header.root}",
         "padding-left": "{space.89}",
         "padding-right": "{space.89}",
         "padding-top": "{space.16}",

@@ -16,6 +16,10 @@ const TARGETS = [
   repoPath('integrations/odoo/addons/piqueray_ds/static/src/js'),
   repoPath('integrations/odoo/addons/piqueray_ds/static/src/xml'),
   repoPath('integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css'),
+  // Spec 022 : le semis du menu (ODOO-022-MENU-SEED) vit dans data/*.xml. La
+  // migration `.py` n'est PAS scannée (filtre js|xml|css) — c'est un crochet
+  // « une fois », pas une zone de rendu comptée ; seule la donnée semée l'est.
+  repoPath('integrations/odoo/addons/piqueray_ds/data'),
 ];
 
 function filesUnder(target: string): string[] {
@@ -37,8 +41,8 @@ export function extractBlocks(files: string[]): { blocks: Block[]; overlap: stri
     let offset = 0;
     let found = 0;
     lines.forEach((line, index) => {
-      const begin = /\b(ODOO-019-[A-Z0-9-]+) BEGIN\b/.exec(line);
-      const end = /\b(ODOO-019-[A-Z0-9-]+) END\b/.exec(line);
+      const begin = /\b(ODOO-\d{3}-[A-Z0-9-]+) BEGIN\b/.exec(line);
+      const end = /\b(ODOO-\d{3}-[A-Z0-9-]+) END\b/.exec(line);
       if (begin) {
         found += 1;
         if (stack.length) overlap.push(`imbrique/${repoRelative(file)}/${index + 1}/${begin[1]}/dans/${stack.at(-1)?.id}`);

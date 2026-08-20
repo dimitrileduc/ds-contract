@@ -229,4 +229,22 @@
     <field name="url">/piqueray-harness/texte-seo-visual</field><field name="view_id" ref="harness_texte_seo_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-019-HARNESS-TEXTE-SEO END -->
+
+  <!-- ODOO-022-HARNESS-HEADER BEGIN
+       Le SHELL en banc visuel (SC-001). Contrairement aux sections, le header est
+       un gabarit système (il n'existe pas de racine posable à insérer) : on rend la
+       BARRE standalone `piqueray_ds.header_bar` dans le cadre de mesure. Fond du
+       cadre = var(pqr-color-noir-bleute) (le composant est à encre claire ; même
+       fond sombre que la vitrine de référence, surface dark). Le bar porte son
+       propre fond sombre par le pont FOND-SOMBRE, les deux coïncident. La barre lit
+       le menu semé `website.menu_id.child_id`, dont les 4 tops = les 4 libellés du
+       sample de référence (verrou D2). Largeur 1776 = 1728 + 2×24. Hauteur = clip
+       imprimé par render-html.mts en mode mesure. -->
+  <template id="harness_header_visual" name="Piqueray — Header visuel">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; height: 134px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-noir-bleute); position: relative; z-index: 1;"><t t-call="piqueray_ds.header_bar"/></div></div></t>
+  </template>
+  <record id="page_harness_header_visual" model="website.page">
+    <field name="url">/piqueray-harness/header-visual</field><field name="view_id" ref="harness_header_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-022-HARNESS-HEADER END -->
 </odoo>

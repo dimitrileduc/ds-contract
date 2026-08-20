@@ -32,7 +32,7 @@ import path from 'node:path';
 import { emitHtml } from '../../core/index.js';
 import { loadRepoData } from '../../extract/fidelity-matrix/scripts/lib.js';
 import { generatedHeader, repoPath, repoRelative, sha256, sortedBy } from './lib/canonical.js';
-import { ROOT_CONTRACT_IDS, closureOf, loadAllContracts } from './lib/repo-data.js';
+import { ALL_ROOT_CONTRACT_IDS, closureOf, loadAllContracts } from './lib/repo-data.js';
 import { FONT_SOURCES } from './check-inputs.js';
 import { runAsCli } from './lib/cli.js';
 
@@ -97,7 +97,10 @@ export function buildArtifacts(): Artifact[] {
   const repo = repoData();
   const ctx = { tokens: repo.inventory, icons: repo.icons, contracts: repo.contracts };
   const sources = loadAllContracts();
-  const roots = [...ROOT_CONTRACT_IDS].sort();
+  // Posables ∪ shell : la CSS de la fermeture du header (nav-item, piqueray-logo,
+  // et button — déjà émis par les posables, donc absorbé par la déduplication)
+  // rejoint la feuille. Le gabarit système consomme ces classes (spec 022).
+  const roots = [...ALL_ROOT_CONTRACT_IDS].sort();
 
   // --- 1. Jetons : la même source que la surface HTML, préfixée. ------------
   const tokensCss =

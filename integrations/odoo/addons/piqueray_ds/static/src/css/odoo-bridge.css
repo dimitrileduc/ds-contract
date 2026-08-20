@@ -105,7 +105,8 @@
 .s_pqr_sav a.button,
 .s_pqr_texte_seo a.button,
 .s_pqr_equipe a.button,
-.s_pqr_google_reviews a.button {
+.s_pqr_google_reviews a.button,
+.header a.button {
   text-decoration: none;
 }
 
@@ -129,3 +130,31 @@
   pointer-events: auto;
 }
 /* ODOO-019-CTA-LIEN-BRIDGE END */
+
+/* ODOO-022-FOND-SOMBRE BEGIN
+ * Fond sombre sous la barre, Odoo SEULEMENT (ni contrat ni Figma — clarification
+ * de spec, FR-015). Le contrat ds.header 2.0.0 est Transparent (aucun fond) : la
+ * barre à encre claire (logo wordmark blanc, liens blancs, icônes blanches) exige
+ * un fond sombre pour être lisible et mesurable. La superposition sur le hero est
+ * hors périmètre (nommée). La valeur roule en VARIABLE GÉNÉRÉE
+ * (`--pqr-color-noir-bleute`), jamais en littéral (règle geometry-rides-tokens).
+ *
+ * Posé sur NOTRE barre (`.header`, hook `data-pqr-shell="header"`), le conteneur
+ * du contrat. La largeur de la barre est celle du contrat (size.header.root =
+ * 1728px, fixe) : le comportement plein-largeur/responsive est un différé nommé
+ * (rapport de clôture). */
+.header[data-pqr-shell="header"] {
+  background-color: var(--pqr-color-noir-bleute);
+}
+
+/* Mécanique Odoo, aucune valeur de design. La zone manuelle enveloppe le logo
+ * dans un `<a>` d'accueil (nom accessible, projection §2) que le contrat ne porte
+ * pas : sans réglage, cette ancre INLINE prend une hauteur de ligne supérieure à
+ * la boîte 34px du logo et, centrée dans la barre, le remonte de ~3,5px. La rendre
+ * `flex` la ramène à la boîte exacte du logo — le rendu redevient celui de la
+ * référence (mesuré : logo y 46,5 → 50). */
+.header__logoLink {
+  display: flex;
+  align-items: center;
+}
+/* ODOO-022-FOND-SOMBRE END */

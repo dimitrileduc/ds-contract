@@ -1,0 +1,25 @@
+{
+  "receiptId": "header-menu-odoo-019-foundation",
+  "scenarioId": "header-menu",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "seeded-menu-edited",
+  "observations": [
+    "[pass] baseline — barre semée rendue, lien simple présent — attendu « nav-item + nav-item__libell », observé « nav-item / nav-item__libell »",
+    "[pass] SC-003 — ajout « Actualités » conservé après réouverture publique — attendu « présent », observé « [\"Dépannage/SAV\",\"Portes de garage\",\"Portes d’entrée\",\"Actualités\",\"Notre histoire\",\"Partenaire\"] »",
+    "[pass] SC-003 — renommage « À propos » → « Notre histoire » conservé — attendu « « Notre histoire », plus « À propos » », observé « [\"Dépannage/SAV\",\"Portes de garage\",\"Portes d’entrée\",\"Actualités\",\"Notre histoire\",\"Partenaire\"] »",
+    "[pass] SC-003 — réordonnancement pris en compte (Dépannage/SAV avancé) — attendu « Dépannage/SAV avant Notre histoire », observé « [\"Dépannage/SAV\",\"Portes de garage\",\"Portes d’entrée\",\"Actualités\",\"Notre histoire\",\"Partenaire\"] »",
+    "[pass] SC-002/FR-005 — URL externe : nouvel onglet respecté — attendu « href externe + target=_blank », observé « {\"label\":\"Partenaire\",\"href\":\"https://partenaire.example\",\"target\":\"_blank\",\"chevron\":false,\"classes\":\"nav-item\",\"libellClasses\":\"nav-item__libell\"} »",
+    "[pass] SC-002 — un lien simple ajouté garde le balisage exact — attendu « nav-item + nav-item__libell, sans chevron », observé « nav-item / nav-item__libell / chevron false »",
+    "[pass] FR-008 — un parent nouvellement doté d'un enfant obtient le chevron — attendu « chevron présent », observé « {\"label\":\"Notre histoire\",\"href\":\"#\",\"target\":null,\"chevron\":true,\"classes\":\"nav-item\",\"libellClasses\":\"nav-item__libell\"} »",
+    "[pass] SC-003 — Dépannage/SAV désormais dans le sous-menu de Notre histoire — attendu « présent en sous-menu », observé « [\"Portes résidentielles\",\"Portes industrielles\",\"Motorisation\",\"Dépannage/SAV\"] »",
+    "[pass] edge — profondeur ≥ 3 rend la barre sans casse (logo/CTA/icônes intacts) — attendu « barre complète rendue », observé « logo true cta true icons true items 5 »",
+    "[pass] edge — menu vidé : la barre (logo, CTA, icônes) se rend sans zone cassée — attendu « logo+CTA+icônes, 0 lien, aucune casse », observé « logo true cta true icons true items 0 »",
+    "[pass] edge — restauration par édition standard : la barre est reconstruite — attendu « ≥4 liens rendus à nouveau », observé « 5 liens, logo true »",
+    "[pass] SC-002 — après tout le cycle, le balisage des liens simples est inchangé — attendu « tous nav-item + nav-item__libell », observé « [\"nav-item\",\"nav-item\",\"nav-item\",\"nav-item\",\"nav-item\"] »"
+  ],
+  "artifacts": [],
+  "limitCodes": [
+    "SC-002-003-ORM-EDIT-NOT-OWL-DIALOG"
+  ]
+}

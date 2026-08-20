@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ZONE MANUELLE COMPTÉE (spec 022). Le header n'est PAS une sortie générée : il est
+  écrit à la main, borné par des marqueurs ODOO-022-* BEGIN/END, et compté par le
+  registre d'adaptations (odoo:derivation:check).
+
+  Route (spike S1, proofs/spike-header.json) : un gabarit qui HÉRITE `website.layout`
+  et REMPLACE la zone `//header//nav` — le patron EXACT de `website.template_header_default`.
+  Le nôtre naît INACTIF ; la migration/le post_init_hook (ODOO-022-MENU-SEED) l'active et
+  désactive le header par défaut. Le dialogue « Éditer le menu » d'Odoo opère sur
+  `website.menu` indépendamment : notre gabarit n'est qu'un LECTEUR de cette donnée.
+
+  Balisage : les classes de la CSS générée (`components.pqr.css`, fermeture de ds.header)
+  + `data-pqr-part`. L'unique variante 2.0.0 (Transparent) — aucun conditionnement, la prop
+  `fond` n'existe plus. Le fond sombre est posé côté Odoo seulement (ODOO-022-FOND-SOMBRE).
+-->
+<odoo>
+  <!-- ODOO-022-HEADER-ACTIF BEGIN -->
+  <!--
+    Une entrée de menu, feuille ou déroulant, avec le mapping d'ÉTAT ACTIF.
+    Spike S1b (proofs/spike-actif.json) : l'actif est calculé SERVEUR par
+    `website.menu._is_active()` (page courante OU parent d'une page courante,
+    récursif) — aucun bundle JS. On projette ce booléen natif sur les canaux de
+    ds.nav-item : l'attribut `data-actif` (que la CSS générée conditionne pour le
+    Soulignement) + `aria-current="page"`. Le déroulant est le balisage Bootstrap
+    d'Odoo PAR DÉFAUT (FR-009 — sous-menu non piquerayisé, différé nommé) ; son
+    entrée active garde la classe `active` d'Odoo.
+  -->
+  <template id="header_nav_entry" name="Piqueray · Header — entrée de nav">
+    <t t-set="is_active" t-value="submenu._is_active()"/>
+    <t t-if="not submenu.child_id">
+      <a t-att-href="submenu._clean_url()" class="nav-item" data-pqr-part="nav-item-root"
+         t-att-data-actif="'true' if is_active else None"
+         t-att-aria-current="'page' if is_active else None"
+         t-att-target="'_blank' if submenu.new_window else None"
+         t-att-rel="'noopener' if submenu.new_window else None">
+        <span class="nav-item__libell" data-pqr-part="nav-item-libelle"><t t-esc="submenu.name"/></span>
+        <span t-if="is_active" class="nav-item__Soulignement" data-pqr-part="nav-item-soulignement"/>
+      </a>
+    </t>
+    <t t-else="">
+      <div class="header__navItemDropdown dropdown" data-pqr-part="nav-item-dropdown">
+        <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+           class="nav-item" data-pqr-part="nav-item-root" data-chevron="true"
+           t-att-data-actif="'true' if is_active else None"
+           t-att-aria-current="'page' if is_active else None">
+          <span class="nav-item__libell" data-pqr-part="nav-item-libelle"><t t-esc="submenu.name"/></span>
+          <span class="nav-item__OcticonChevronDown12" aria-hidden="true" data-pqr-part="nav-item-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.00003 11.7666C7.73336 11.7666 7.4667 11.6333 7.33336 11.5L2.93336 7.09998C2.53336 6.69998 2.53336 6.03331 2.93336 5.63331C3.33336 5.23331 4.00003 5.23331 4.40003 5.63331L8.00003 9.23331L11.6 5.63331C12 5.23331 12.6667 5.23331 13.0667 5.63331C13.4667 6.03331 13.4667 6.69998 13.0667 7.09998L8.80003 11.3666C8.53336 11.6333 8.2667 11.7666 8.00003 11.7666Z" fill="white"/></svg></span>
+          <span t-if="is_active" class="nav-item__Soulignement" data-pqr-part="nav-item-soulignement"/>
+        </a>
+        <ul class="dropdown-menu">
+          <t t-foreach="submenu.child_id" t-as="child">
+            <li>
+              <t t-set="child_active" t-value="child._is_active()"/>
+              <a t-attf-class="dropdown-item #{'active' if child_active else ''}"
+                 t-att-href="child._clean_url()"
+                 t-att-target="'_blank' if child.new_window else None"
+                 t-att-rel="'noopener' if child.new_window else None"
+                 t-att-aria-current="'page' if child_active else None"><t t-esc="child.name"/></a>
+            </li>
+          </t>
+        </ul>
+      </div>
+    </t>
+  </template>
+  <!-- ODOO-022-HEADER-ACTIF END -->
+
+  <!-- ODOO-022-HEADER-QWEB BEGIN -->
+  <!--
+    La BARRE, en gabarit STANDALONE : le header système (xpath ci-dessous) la
+    rend, et le banc visuel de la QA la rend AUSSI dans son cadre de mesure — une
+    seule composition, deux hôtes. `data-ds-contract="ds.header"` est le hook de
+    PRÉSENCE du capteur d'image (capture-odoo.mts) ; il n'est PAS une métadonnée de
+    version de HTML sauvegardé (le header n'est jamais sauvegardé, il se re-rend à
+    chaque requête) — d'où l'absence de data-ds-*-version, et il n'est pas scanné.
+  -->
+  <template id="header_bar" name="Piqueray · Header (barre)">
+      <div class="header" data-pqr-part="root" data-pqr-shell="header" data-ds-contract="ds.header">
+        <!-- Logo : composition ds.piqueray-logo variante `blanc` (marque orange +
+             wordmark blanc). La zone manuelle N'AJOUTE qu'un lien d'accueil + un nom
+             accessible — les SVG gouvernés sont inlinés (emit-html n'émet pas les
+             vectorAsset ; la CSS `.piqueray-logo__Marque svg` les attend). -->
+        <a href="/" class="header__logoLink" aria-label="Accueil — Piqueray" data-pqr-part="logo-link">
+          <div class="piqueray-logo piqueray-logo--couleur-blanc" data-pqr-part="piqueray-logo-root">
+            <span class="piqueray-logo__Marque" aria-hidden="true" data-pqr-part="piqueray-logo-marque"><svg width="26" height="34" viewBox="0 0 26 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.1055 24.8174L14.2798 29.2841V25.9386L22.1055 21.4551V24.8174ZM22.1055 20.2534L14.2798 24.7311V21.3133L22.1055 16.8312V20.2534ZM22.1055 15.6296L14.2798 20.1049V16.8365L22.1055 12.3545V15.6296ZM22.1055 11.1509L14.2798 15.6296L11.1246 13.6149L18.7416 9.09769L22.1055 11.1509ZM25.9629 26.5818V7.4177L12.9815 0L0 7.4177V26.5818L12.9815 34L25.9629 26.5818Z" fill="currentColor"/></svg></span>
+            <span class="piqueray-logo__Wordmark" aria-hidden="true" data-pqr-part="piqueray-logo-wordmark"><svg width="146" height="25" viewBox="0 0 146 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g><path d="M13.1842 0.0494995C13.8015 0.0494995 14.3304 0.272122 14.7716 0.717373C15.2121 1.16325 15.4327 1.7001 15.4327 2.32726V11.9325C15.4327 12.5934 15.2121 13.1455 14.7716 13.5914C14.3304 14.0373 13.8015 14.2599 13.1842 14.2599H4.58545V21.6866H0V0.0494995H13.1842ZM10.8912 4.65399H4.58545V9.6554H10.8912V4.65399Z" fill="currentColor"/><path d="M25.5216 0.0488281H20.8402V21.6866H25.5216V0.0488281Z" fill="currentColor"/><path d="M41.0675 25.0044L39.0675 21.6866H32.7046C32.0377 21.6866 31.477 21.4729 31.0225 21.0429C30.568 20.6142 30.341 20.0697 30.341 19.4089V2.32726C30.341 1.7001 30.568 1.16325 31.0225 0.717373C31.477 0.272122 32.0377 0.0494995 32.7046 0.0494995H44.0675C44.7331 0.0494995 45.2944 0.272122 45.7489 0.717373C46.2035 1.16325 46.4304 1.7001 46.4304 2.32726V19.4089C46.4304 19.9711 46.2486 20.466 45.885 20.8947C45.5214 21.3241 45.0675 21.588 44.522 21.6866L46.5671 25.0044H41.0675ZM41.7496 4.65399H35.0224V17.0828H41.7496V4.65399Z" fill="currentColor"/><path d="M64.6068 21.6867H53.537C52.8899 21.6867 52.3457 21.4724 51.9045 21.043C51.4639 20.6143 51.2433 20.0699 51.2433 19.409V0H55.8294V17.0822H62.3131V0H66.8999V19.409C66.8999 20.0699 66.6793 20.6143 66.2381 21.043C65.7975 21.4724 65.2527 21.6867 64.6068 21.6867Z" fill="currentColor"/><path d="M75.8445 4.70387V8.66467H81.1826V13.2196H75.8445V17.132H85.5386V21.6869H71.5318V0.0491333H85.5386V4.70387H75.8445Z" fill="currentColor"/><path d="M101.656 21.6866L97.2461 14.2599H93.9823V21.6866H89.4401V0.0494995H102.538C103.185 0.0494995 103.729 0.272122 104.17 0.717373C104.612 1.16325 104.831 1.7001 104.831 2.32726V11.9325C104.831 12.5934 104.612 13.1455 104.17 13.5914C103.729 14.0373 103.185 14.2599 102.538 14.2599L106.949 21.6866L101.656 21.6866ZM93.9823 9.65476H100.289V4.65336H93.9823V9.65476Z" fill="currentColor"/><path d="M122.914 21.687L121.414 16.5864H114.269L112.726 21.687H108.051L114.358 0.098877H121.282L127.589 21.687H122.914ZM117.842 4.65376L115.637 11.9329H120.003L117.842 4.65376Z" fill="currentColor"/><path d="M138.438 11.8089V21.7118H133.895V11.8089L126.662 0.0740356H132.881L136.188 5.37248L139.452 0.0740356H145.67L138.438 11.8089Z" fill="currentColor"/></g></svg></span>
+          </div>
+        </a>
+        <div class="header__navWrapper" data-pqr-part="nav-wrapper">
+          <nav class="header__nav" data-pqr-part="nav" aria-label="Navigation principale">
+            <!-- Le menu : donnée native website.menu (spike S1). Libellé, cible, ordre,
+                 imbrication appartiennent au client — jamais en dur (FR-004). Chevron ssi
+                 enfants ; sous-menu = déroulant Bootstrap/Odoo par défaut. -->
+            <t t-foreach="website.menu_id.child_id" t-as="submenu">
+              <t t-call="piqueray_ds.header_nav_entry"/>
+            </t>
+            <!-- CTA — pont existant ODOO-019-CTA-LIEN-BRIDGE (pqr_button + link_href).
+                 Variante figée `blanc`, flèche à droite, libellé « Contactez-nous » :
+                 non éditable cette itération (verdict not-editable, header.authoring.json). -->
+            <t t-call="piqueray_ds.pqr_button">
+              <t t-set="link_href" t-value="'/contactez-nous'"/>
+              <t t-set="variant" t-value="'blanc'"/>
+              <t t-set="label" t-value="'Contactez-nous'"/>
+              <t t-set="icon_left" t-value="False"/>
+              <t t-set="icon_right" t-value="True"/>
+              <t t-set="glyph_left" t-value="'arrow-left'"/>
+              <t t-set="glyph_right" t-value="'arrow-right'"/>
+            </t>
+          </nav>
+          <!-- Icônes search/user/cart : 24px, encre blanche par la CSS du combo,
+               aria-hidden, INERTES — limite nommée (recherche/compte/panier différés). -->
+          <div class="header__iconsNav" data-pqr-part="icons-nav">
+            <span class="header__Search" aria-hidden="true" data-pqr-part="icon-search"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.3337 14.6667C24.3337 13.3973 24.0831 12.1404 23.5974 10.9675C23.1116 9.7947 22.4003 8.72846 21.5026 7.83081C20.605 6.93317 19.5387 6.22189 18.3659 5.73608C17.1931 5.25028 15.9362 4.99976 14.6667 4.99976C13.3972 4.99976 12.1403 5.25028 10.9675 5.73608C9.79462 6.22189 8.72841 6.93315 7.83075 7.83081C6.01785 9.64371 4.99969 12.1029 4.99969 14.6667C4.99971 17.2306 6.01786 19.6898 7.83075 21.5027C9.64365 23.3156 12.1029 24.3337 14.6667 24.3337C17.2305 24.3337 19.6897 23.3156 21.5026 21.5027C22.4003 20.605 23.1115 19.5388 23.5974 18.366C24.0832 17.1931 24.3337 15.9362 24.3337 14.6667ZM26.3337 14.6667C26.3337 16.1989 26.0313 17.7161 25.445 19.1316C24.9867 20.238 24.3591 21.2632 23.5905 22.1765L28.7067 27.2927C29.0972 27.6832 29.0972 28.3163 28.7067 28.7068C28.3162 29.0973 27.6832 29.0973 27.2927 28.7068L22.1765 23.5906C20.0817 25.3535 17.4258 26.3337 14.6667 26.3337C11.5724 26.3337 8.60466 25.1047 6.41669 22.9167C4.22872 20.7288 2.99971 17.761 2.99969 14.6667C2.99969 11.5725 4.22871 8.60472 6.41669 6.41675C7.50006 5.33337 8.78634 4.47377 10.2018 3.88745C11.6173 3.30116 13.1346 2.99976 14.6667 2.99976C16.1988 2.99976 17.7161 3.30114 19.1315 3.88745C20.547 4.47377 21.8333 5.33337 22.9167 6.41675C24 7.50006 24.8587 8.78651 25.445 10.2019C26.0313 11.6174 26.3337 13.1346 26.3337 14.6667Z" fill="currentColor"/></svg></span>
+            <span class="header__User" aria-hidden="true" data-pqr-part="icon-user"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.3336 7.99963C20.3334 5.60655 18.3928 3.66663 15.9996 3.66663C13.6067 3.6668 11.6668 5.60666 11.6666 7.99963C11.6666 10.3928 13.6065 12.3334 15.9996 12.3336C18.3929 12.3336 20.3336 10.3929 20.3336 7.99963ZM22.3336 7.99963C22.3336 11.4974 19.4974 14.3336 15.9996 14.3336C12.502 14.3334 9.66663 11.4973 9.66663 7.99963C9.6668 4.50209 12.5021 1.6668 15.9996 1.66663C19.4973 1.66663 22.3334 4.50198 22.3336 7.99963Z" fill="currentColor"/><path d="M25.6663 23.3333C25.6663 22.1984 24.8381 20.9668 23.0521 19.9622C21.2975 18.9752 18.8062 18.3333 16.0003 18.3333C13.1942 18.3333 10.7022 18.9751 8.94756 19.9622C7.16163 20.9668 6.33331 22.1984 6.33331 23.3333C6.33331 25.0767 6.38721 26.0581 7.29815 26.8C7.79217 27.2024 8.61802 27.5949 10.0315 27.8811C11.4408 28.1664 13.368 28.3333 16.0003 28.3333C18.939 28.3332 20.9952 28.1254 22.4319 27.7786C22.9688 27.649 23.5094 27.979 23.639 28.5159C23.7685 29.0526 23.4383 29.5932 22.9017 29.7229C21.2452 30.1227 19.0105 30.3332 16.0003 30.3333C13.2994 30.3333 11.2258 30.164 9.63506 29.842C8.04875 29.5209 6.87474 29.0343 6.03545 28.3508C4.27984 26.9211 4.33331 24.9031 4.33331 23.3333C4.33331 21.1549 5.89256 19.386 7.9671 18.219C10.0731 17.0344 12.9157 16.3333 16.0003 16.3333C19.0847 16.3333 21.9266 17.0344 24.0325 18.219C26.1071 19.386 27.6663 21.1548 27.6663 23.3333C27.6663 23.5617 27.6662 23.7866 27.6644 24.0081C27.6599 24.5603 27.2078 25.0047 26.6556 25.0002C26.1034 24.9956 25.6599 24.5436 25.6644 23.9915C25.6661 23.7757 25.6663 23.5563 25.6663 23.3333Z" fill="currentColor"/></svg></span>
+            <span class="header__Cart" aria-hidden="true" data-pqr-part="icon-cart"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.333 26C12.333 25.7348 12.2276 25.4805 12.04 25.293C11.8525 25.1056 11.5981 25 11.333 25C11.0679 25.0001 10.8134 25.1055 10.626 25.293C10.4385 25.4805 10.333 25.7349 10.333 26C10.333 26.2652 10.4385 26.5195 10.626 26.7071C10.8134 26.8945 11.0679 27 11.333 27C11.5981 27 11.8525 26.8945 12.04 26.7071C12.2276 26.5195 12.333 26.2653 12.333 26ZM23 26C23 25.7348 22.8945 25.4805 22.707 25.293C22.5195 25.1055 22.2652 25 22 25C21.7348 25 21.4805 25.1055 21.2929 25.293C21.1054 25.4805 21 25.7348 21 26C21 26.2653 21.1054 26.5195 21.2929 26.7071C21.4805 26.8946 21.7348 27 22 27C22.2652 27 22.5195 26.8946 22.707 26.7071C22.8945 26.5195 23 26.2653 23 26ZM3.71677 3.04105C4.24623 2.88469 4.80233 3.18739 4.95896 3.71683L5.69333 6.20023H25.2324C27.61 6.20048 29.4416 8.34754 28.9101 10.6573L28.8506 10.8809L26.6455 18.3477C26.1738 19.9381 24.6832 21 23.0263 21H10.8164C9.15863 21 7.66553 19.938 7.19529 18.3477L3.04099 4.28324C2.88463 3.75378 3.18733 3.19768 3.71677 3.04105ZM9.11326 17.7803C9.32034 18.4807 10.0021 19 10.8164 19H23.0263C23.8387 19 24.5191 18.4821 24.7275 17.7793L26.9326 10.3145C27.2327 9.29964 26.4523 8.20048 25.2324 8.20023H6.28415L9.11326 17.7803ZM14.333 26C14.333 26.7955 14.0175 27.5586 13.4551 28.1211C12.8924 28.6837 12.1286 29 11.333 29C10.5374 29 9.77442 28.6837 9.21189 28.1211C8.64938 27.5585 8.33298 26.7956 8.33298 26C8.33298 25.2045 8.64938 24.4415 9.21189 23.8789C9.77442 23.3164 10.5374 23.0001 11.333 23C12.1286 23 12.8924 23.3163 13.4551 23.8789C14.0175 24.4415 14.333 25.2045 14.333 26ZM25 26C25 26.7957 24.6837 27.5585 24.1211 28.1211C23.5585 28.6837 22.7956 29 22 29C21.2043 29 20.4415 28.6837 19.8789 28.1211C19.3163 27.5585 19 26.7957 19 26C19 25.2044 19.3163 24.4416 19.8789 23.8789C20.4415 23.3163 21.2043 23 22 23C22.7956 23 23.5585 23.3163 24.1211 23.8789C24.6837 24.4415 25 25.2044 25 26Z" fill="currentColor"/></svg></span>
+          </div>
+        </div>
+      </div>
+  </template>
+
+  <!-- Le header SYSTÈME : hérite website.layout, remplace la zone nav native par
+       NOTRE barre. Naît INACTIF — la finalisation (hooks.py / migration) l'active
+       et désactive le header par défaut d'Odoo (spike S1). -->
+  <template id="template_header_piqueray" inherit_id="website.layout" name="Piqueray · Header (shell)" active="False">
+    <xpath expr="//header//nav" position="replace">
+      <t t-call="piqueray_ds.header_bar"/>
+    </xpath>
+  </template>
+  <!-- ODOO-022-HEADER-QWEB END -->
+</odoo>

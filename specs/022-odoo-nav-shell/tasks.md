@@ -148,7 +148,7 @@ et comparer la barre rendue à la référence validée — logo, liens simples, 
 
 ### Implementation for User Story 1
 
-- [ ] T014 [US1] Introduire la catégorie de racine **shell** dans `scripts/odoo/lib/repo-data.ts`
+- [X] T014 [US1] Introduire la catégorie de racine **shell** dans `scripts/odoo/lib/repo-data.ts`
       (`SHELL_CONTRACT_IDS = ['ds.header']`, `closureOf` inchangé) et adapter les portes :
       `scripts/odoo/check-module.ts` (racine posable ⇒ snippet inscrit ; racine **shell ⇒ snippet
       INTERDIT**, FR-001), `build-assets.ts` (émet la CSS des fermetures posables ∪ shell — dédup
@@ -158,14 +158,14 @@ et comparer la barre rendue à la référence validée — logo, liens simples, 
       `MECANISMES_PAR_TYPE` avec `native-menu` sur `arrayOf` (items) ET sur `text`
       (nav-item libelle/href)** — vérifié : l'enum actuel ne le porte pas, `computed-display`
       existe déjà. (research D12/D13 ; data-model §1.6/§1.7)
-- [ ] T015 [US1] Repin explicite de `integrations/odoo/config/inputs.lock.json` :
+- [X] T015 [US1] Repin explicite de `integrations/odoo/config/inputs.lock.json` :
       `header@2.0.0`, `nav-item@1.2.0`, `piqueray-logo@1.0.0` (chemin + version + **SHA-256**, les
       deux requis — 3 entrées NEUVES, vérifié : aucune des trois n'est au lock aujourd'hui) ;
       `npm run odoo:inputs:check` (rouge attendu avant repin, vert après). (D12)
-- [ ] T016 [US1] `npm run odoo:assets` — émet les blocs `header/nav-item/piqueray-logo` dans
+- [X] T016 [US1] `npm run odoo:assets` — émet les blocs `header/nav-item/piqueray-logo` dans
       `integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css` (button déjà
       présent) — puis `npm run odoo:assets -- --check` (tribunal byte-identique ; jamais à la main).
-- [ ] T017 [US1] Créer `integrations/odoo/config/header.authoring.json` exhaustif (schéma 019 : un
+- [X] T017 [US1] Créer `integrations/odoo/config/header.authoring.json` exhaustif (schéma 019 : un
       verdict par prop/part, occurrences imbriquées comprises) avec le **mécanisme additif
       `native-menu`** (porté par T014) ; `items`→`controlled`/`native-menu` (la prop `fond`
       n'existe plus — aucun verdict à porter), nav-item `libelle`/`href`→`controlled`/`native-menu`,
@@ -173,7 +173,7 @@ et comparer la barre rendue à la référence validée — logo, liens simples, 
       `not-editable`, icônes→`fixed-by-composition` (inertes, limite nommée), `rootActions` shell
       `forbidden` (options natives de header NON restreintes — déviation nommée).
       `npm run odoo:authoring:check`. (research D13 ; data-model §1.7)
-- [ ] T018 [US1] Écrire le gabarit QWeb `integrations/odoo/addons/piqueray_ds/views/header.xml`
+- [X] T018 [US1] Écrire le gabarit QWeb `integrations/odoo/addons/piqueray_ds/views/header.xml`
       (bloc `ODOO-022-HEADER-QWEB`) : branchement zone header système (route S1, **jamais**
       `website.snippets`), classes de la CSS générée + `data-pqr-part` (unique variante — aucun
       conditionnement), logo `ds.piqueray-logo` variante `blanc` (lien accueil + nom accessible),
@@ -183,34 +183,34 @@ et comparer la barre rendue à la référence validée — logo, liens simples, 
       URL/page, `new_window` respecté, **chevron ssi enfants**, sous-menu au balisage déroulant
       Odoo/Bootstrap PAR DÉFAUT), cas **menu vide** rendu sans casse. Interdits : libellé/cible/
       ordre en dur (FR-004). (contracts/odoo-projection.md §2 ; research D6/D7/D10)
-- [ ] T019 [US1] Mapper l'**état actif** (bloc `ODOO-022-HEADER-ACTIF` dans `views/header.xml`, ou
+- [X] T019 [US1] Mapper l'**état actif** (bloc `ODOO-022-HEADER-ACTIF` dans `views/header.xml`, ou
       un JS de bundle frontend si S1b l'exige) : l'actif calculé par Odoo (page courante OU **parent
       d'une page courante**) pose la classe `actif` attendue par la CSS de `ds.nav-item` +
       `aria-current="page"` ; l'entrée de sous-menu active reste au style Odoo par défaut.
       (research D9 ; FR-007/SC-005)
-- [ ] T020 [P] [US1] Fond sombre (bloc `ODOO-022-FOND-SOMBRE`) dans
+- [X] T020 [P] [US1] Fond sombre (bloc `ODOO-022-FOND-SOMBRE`) dans
       `integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css` :
       `background-color: var(--pqr-color-noir-bleute)` sur le conteneur header — **Odoo seulement**
       (ni contrat ni Figma), **variable générée jamais littéral**. (research D11 ; FR-015)
-- [ ] T021 [P] [US1] Semis du menu (bloc `ODOO-022-MENU-SEED`) dans
+- [X] T021 [P] [US1] Semis du menu (bloc `ODOO-022-MENU-SEED`) dans
       `integrations/odoo/addons/piqueray_ds/data/…` (+ `migrations/…` si S2 l'exige) : données
       `noupdate="1"` créant l'arborescence D8 (placement « Motorisation » porté en commentaire
       `confidence: "inferred"`), retrait des entrées par défaut « Home »/« Contact us »,
       rattachement au bon `website_id`. **Une fois, jamais re-joué** (FR-016). (data-model §2.2)
-- [ ] T022 [US1] Enregistrer les 4 adaptations `ODOO-022-*` dans
+- [X] T022 [US1] Enregistrer les 4 adaptations `ODOO-022-*` dans
       `integrations/odoo/config/adaptation-registry.json` (chacune `reasonCode` + `mechanism` ;
       bloc sans entrée ⇒ `odoo:derivation:check` rouge) ; bumper le manifeste
       `integrations/odoo/addons/piqueray_ds/__manifest__.py` à `19.0.1.5.0` (vérifié : courant
       `19.0.1.4.0`) + liste `data` (vues + semis). Portes : `npm run odoo:module:check && npm run
       odoo:derivation:check && npm run odoo:typecheck`. (contracts/odoo-projection.md §5)
-- [ ] T023 [US1] Créer le sujet visuel `integrations/odoo/qa/visual/subjects/header.mts` (schéma
+- [X] T023 [US1] Créer le sujet visuel `integrations/odoo/qa/visual/subjects/header.mts` (schéma
       `Subject` 019 : `contractId: ds.header`, `showcaseLabel` = l'unique combo, `odooPath` page
       de mesure publique, **clip épinglé** imprimé par `render-html.mts --measure`). (research D14.1)
-- [ ] T024 [US1] **Preuve SC-001** : `integrations/odoo/qa/scenarios/header-visual.mts` — capturer la
+- [X] T024 [US1] **Preuve SC-001** : `integrations/odoo/qa/scenarios/header-visual.mts` — capturer la
       barre (Transparent sur fond `--pqr-color-noir-bleute`), comparer via `extract/image-parity`
       inchangé, verdict **sous la tolérance** du harnais (`compare.mts`) ; reçu sous `proofs/`. Lancer
       aussi `npx tsx integrations/odoo/qa/visual/selftest.mts --strict`. (SC-001 ; FR-002/003)
-- [ ] T025 [US1] **Preuve SC-004/SC-005** : `integrations/odoo/qa/scenarios/header-nav.spec.mts` —
+- [X] T025 [US1] **Preuve SC-004/SC-005** : `integrations/odoo/qa/scenarios/header-nav.spec.mts` —
       ouverture + navigation de chaque déroulant (lien à
       enfants, style Odoo par défaut accepté) ; soulignement exact sur chaque page atteignable du
       menu semé, **cas « parent d'enfant actif » inclus**. La QA crée les pages cibles minimales
@@ -236,7 +236,7 @@ research D7).
 
 ### Implementation for User Story 2
 
-- [ ] T026 [US2] **Preuve SC-002/SC-003** : `integrations/odoo/qa/scenarios/header-menu.spec.mts` —
+- [X] T026 [US2] **Preuve SC-002/SC-003** : `integrations/odoo/qa/scenarios/header-menu.spec.mts` —
       depuis le menu semé : ajouter, renommer, réordonner, imbriquer un lien, en pointer un vers une
       **page interne** puis un autre vers une **URL externe** (`new_window` respecté) → enregistrer →
       rouvrir **éditeur ET public**. Assertions : contenu **100 % conservé** (SC-003, FR-006), balisage
@@ -264,13 +264,13 @@ l'invariance). Le bump réel 2.0.0 (phase amont) EST l'évolution — aucun chan
 
 ### Implementation for User Story 3
 
-- [ ] T027 [US3] **Preuve SC-006** : `integrations/odoo/qa/scenarios/header-regen.spec.mts` +
+- [X] T027 [US3] **Preuve SC-006** : `integrations/odoo/qa/scenarios/header-regen.spec.mts` +
       `proofs/sc-006-regeneration.json` — capture avant, puis régénération complète
       `contrat → npm run build → npm run odoo:assets → update module` **SANS toucher au menu** ;
       assertions : l'apparence en ligne provient du contrat re-épinglé 2.0.0 (régénérable, **non
       figée à la main** — FR-010) ET `website.menu` (modifié par le scénario US2) est
       **byte-identique** avant/après (FR-016). (research D14.4)
-- [ ] T028 [US3] Vérifier que les **8 sections de contenu** déjà en ligne restent **intactes** après
+- [X] T028 [US3] Vérifier que les **8 sections de contenu** déjà en ligne restent **intactes** après
       livraison du shell (FR-012 ; scénario d'acceptation 3 d'US3) — contrôle DOM/visuel ; reçu
       sous `proofs/`.
 
@@ -282,16 +282,16 @@ l'invariance). Le bump réel 2.0.0 (phase amont) EST l'évolution — aucun chan
 
 **Purpose** : portes finales, clôture honnête et cohérence de journal.
 
-- [ ] T029 Sweep FINAL vert DANS le worktree — constitutionnel (T010) **+** suite Odoo :
+- [X] T029 Sweep FINAL vert DANS le worktree — constitutionnel (T010) **+** suite Odoo :
       `npm run odoo:inputs:check && npm run odoo:authoring:check && npm run odoo:assets -- --check &&
       npm run odoo:module:check && npm run odoo:derivation:check && npm run odoo:typecheck && npm run
       odoo:visual:selftest -- --strict`.
-- [ ] T030 [P] Dérouler `specs/022-odoo-nav-shell/quickstart.md` de bout en bout comme validation
+- [X] T030 [P] Dérouler `specs/022-odoo-nav-shell/quickstart.md` de bout en bout comme validation
       finale (garde-fous permanents §8 compris : un seul geste canvas §X déjà consommé, generated
       jamais à la main, menu jamais réécrit, jetons jamais littéraux).
-- [ ] T031 [P] Filer l'entrée datée 022 dans `MILESTONES.md` (le compte d'eval imprimé par
+- [X] T031 [P] Filer l'entrée datée 022 dans `MILESTONES.md` (le compte d'eval imprimé par
       `npm run eval` fait foi ; noter le trou de journal spécifié en mémoire projet, non silencieux).
-- [ ] T032 Rédiger le **rapport de clôture** `specs/022-odoo-nav-shell/proofs/RAPPORT-CLOTURE.md`
+- [X] T032 Rédiger le **rapport de clôture** `specs/022-odoo-nav-shell/proofs/RAPPORT-CLOTURE.md`
       nommant toutes les limites (constitution V) : icônes inertes, sous-menu au style Odoo par
       défaut, hover/mobile/overlay-hero différés, menu très long au comportement Odoo par défaut
       (débordement desktop — distinct du mobile), sémantique React `<div>` racine différée,
@@ -299,7 +299,7 @@ l'invariance). Le bump réel 2.0.0 (phase amont) EST l'évolution — aucun chan
       `inferred`, **retrait Solid : geste canvas §X + version nommée, reçus cités**, rouges
       pré-existants (`odoo:qualification`, `editability-boundary` 43/44) **cités sans
       re-diagnostic**. (data-model §3 ; contracts/odoo-projection.md §6)
-- [ ] T033 **(conditionnel, nommé — pas silencieux)** Si la qualification finale de 022 exige un
+- [X] T033 **(conditionnel, nommé — pas silencieux)** Si la qualification finale de 022 exige un
       manifeste vert : remettre en cohérence le reçu 019 `odoo:qualification` (préalable nommé,
       research D16) — sinon laisser tel quel (politique : ne pas aggraver les rouges pré-existants).
 

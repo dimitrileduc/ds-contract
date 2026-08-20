@@ -9,6 +9,7 @@
  *   ds.equipe → ds.equipe, ds.member-card, ds.member-picture
  *   ds.faq → ds.accordion-row, ds.button, ds.faq, ds.section-header
  *   ds.google-reviews → ds.google-reviews, ds.notation, ds.review-card
+ *   ds.header → ds.button, ds.header, ds.nav-item, ds.piqueray-logo
  *   ds.hero → ds.button, ds.hero, ds.section-header
  *   ds.presentation → ds.button, ds.presentation, ds.section-header
  *   ds.sav → ds.button, ds.sav, ds.section-header
@@ -1333,6 +1334,187 @@
 }
 
 .google-reviews__iconeDroite {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* PiquerayLogo — from ds.piqueray-logo v1.0.0 (core/emit-html.ts) */
+
+.piqueray-logo, .piqueray-logo *, .piqueray-logo *::before, .piqueray-logo *::after {
+  box-sizing: border-box;
+}
+
+.piqueray-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  position: relative;
+  width: var(--pqr-size-logo-width);
+  height: var(--pqr-size-logo-height);
+}
+
+.piqueray-logo__Marque svg {
+  display: block;
+  width: 25.96292495727539px;
+  height: 34px;
+}
+
+.piqueray-logo__Marque {
+  display: inline-flex;
+  flex-shrink: 0;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: var(--pqr-color-orange);
+}
+
+.piqueray-logo__Wordmark svg {
+  display: block;
+  width: 145.67019653320312px;
+  height: 25.00434112548828px;
+}
+
+.piqueray-logo__Wordmark {
+  display: inline-flex;
+  flex-shrink: 0;
+  position: absolute;
+  left: 34.329803466796875px;
+  top: 5.959875106811523px;
+  color: var(--pqr-color-bleu);
+}
+
+.piqueray-logo--couleur-blanc .piqueray-logo__Wordmark {
+  color: var(--pqr-color-blanc);
+}
+
+/* NavItem — from ds.nav-item v1.2.0 (core/emit-html.ts) */
+
+.nav-item, .nav-item *, .nav-item *::before, .nav-item *::after {
+  box-sizing: border-box;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  font-size: var(--pqr-font-size-16);
+  font-weight: var(--pqr-font-weight-medium);
+  gap: var(--pqr-space-8);
+  line-height: 16px;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration-line: none;
+  text-rendering: geometricprecision;
+}
+
+.nav-item__libell {
+  color: var(--pqr-color-blanc);
+}
+
+.nav-item__OcticonChevronDown12 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.nav-item__OcticonChevronDown12 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.nav-item[data-chevron] .nav-item__OcticonChevronDown12 svg {
+  transform: translateY(-1px);
+}
+
+.nav-item__Soulignement {
+  background-color: var(--pqr-color-blanc);
+  height: var(--pqr-size-nav-item-soulignement);
+  position: absolute;
+}
+
+.nav-item[data-actif] .nav-item__Soulignement {
+  right: 0px;
+  top: 22px;
+  left: 0px;
+}
+
+/* Header — from ds.header v2.1.0 (core/emit-html.ts) */
+
+.header, .header *, .header *::before, .header *::after {
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  padding-left: var(--pqr-space-89);
+  padding-right: var(--pqr-space-89);
+  padding-top: var(--pqr-space-16);
+  padding-bottom: var(--pqr-space-16);
+}
+
+.header__navWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--pqr-space-64);
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pqr-space-32);
+}
+
+.header__iconsNav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--pqr-space-16);
+  color: var(--pqr-color-blanc);
+}
+
+.header__Search svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.header__Search {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.header__User svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.header__User {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.header__Cart svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.header__Cart {
   display: inline-flex;
   flex-shrink: 0;
 }

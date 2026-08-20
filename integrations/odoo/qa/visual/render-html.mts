@@ -24,8 +24,9 @@
  *   npx tsx integrations/odoo/qa/visual/render-html.mts --subjects <mod> --out <dir>
  *   npx tsx integrations/odoo/qa/visual/render-html.mts --subjects <mod> --measure
  */
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Browser } from 'playwright-core';
 import { embeddedFontFaces, launchBrowser } from '../../../../extract/figma/visual-parity/render.js';
 import { loadRepoData } from '../../../../extract/fidelity-matrix/scripts/lib.js';
@@ -54,6 +55,54 @@ export function buildEmitCtx() {
   return { tokens: inventory, icons, contracts, tokensCss };
 }
 
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const REPO = path.resolve(HERE, '..', '..', '..', '..');
+
+/**
+ * Injecte les SVG des parts `vectorAsset` gouvernées dans le fragment de
+ * référence (spec 022). RAISON : `core/emit-html.ts` ne rend AUCUN vectorAsset —
+ * il émet une `<span data-part="…"></span>` VIDE là où la CSS générée attend
+ * `.piqueray-logo__Marque svg`. La surface RÉELLE (React, et le QWeb livré) inline
+ * pourtant le SVG depuis `assets/vectors/`. Sans cette réparation d'INSTRUMENT, la
+ * vitrine de référence du header rendrait un logo vide et SC-001 mesurerait ce
+ * vide contre le vrai logo. On lit la MÊME source gouvernée (`assets/vectors/`),
+ * on n'invente rien. Aucun effet sur les sections 019 : elles ne portent pas de
+ * vectorAsset (leurs icônes sont des `icon` du registre, que emit-html inline).
+ */
+function collectVectorParts(anatomy: Record<string, unknown> | undefined): Array<{ key: string; asset: string }> {
+  const out: Array<{ key: string; asset: string }> = [];
+  const walk = (parts: Record<string, unknown> | undefined) => {
+    for (const key of Object.keys(parts ?? {})) {
+      const part = (parts as Record<string, { vectorAsset?: { asset?: string }; parts?: Record<string, unknown> }>)[key];
+      const asset = part?.vectorAsset?.asset;
+      if (typeof asset === 'string') out.push({ key, asset });
+      if (part?.parts) walk(part.parts);
+    }
+  };
+  walk(anatomy);
+  return out;
+}
+
+export function injectGovernedVectors(body: string, ctx: ReturnType<typeof buildEmitCtx>): string {
+  let out = body;
+  const done = new Set<string>();
+  for (const contract of ctx.contracts.values()) {
+    for (const { key, asset } of collectVectorParts((contract as { anatomy?: Record<string, unknown> }).anatomy)) {
+      if (done.has(key)) continue;
+      const svgPath = path.join(REPO, 'assets', 'vectors', `${asset}.svg`);
+      if (!existsSync(svgPath)) continue;
+      const svg = readFileSync(svgPath, 'utf8').trim();
+      const escKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      // La span vectorAsset émise par emit-html est TOUJOURS vide : on n'injecte
+      // que dans une paire ouvrante/`</span>` immédiatement adjacente.
+      const re = new RegExp(`(<span\\b[^>]*\\bdata-part="${escKey}"[^>]*>)</span>`, 'g');
+      out = out.replace(re, `$1${svg}</span>`);
+      done.add(key);
+    }
+  }
+  return out;
+}
+
 /** Le fragment rendu pour un sujet : la vignette du showcase que le module de
  *  sujets NOMME, et que la page de mesure Odoo doit reproduire prop pour prop.
  *  Prendre « la première » vignette est faux : le showcase varie une prop à la
@@ -73,14 +122,21 @@ export function fragmentFor(subject: Subject, ctx: ReturnType<typeof buildEmitCt
       `Vignette « ${subject.showcaseLabel} » introuvable pour ${subject.contractId}. Présentes : ${seen.join(' · ')}`,
     );
   }
-  return { body: m[1].trim(), css };
+  // Répare le trou vectorAsset d'emit-html AVANT la mesure (spec 022) : la
+  // référence doit porter le MÊME logo gouverné que la surface livrée.
+  return { body: injectGovernedVectors(m[1].trim(), ctx), css };
 }
 
 /** `tokensCss` est la feuille de jetons SANS préfixe (`src/styles/tokens.css`) :
  *  condition documentée de cet émetteur — « the page must include the token
  *  stylesheet or the custom properties resolve to nothing ». Côté Odoo, la même
  *  matière arrive préfixée `--pqr-` par la sortie générée (T012). */
-export function documentFor(body: string, css: string, tokensCss: string, frameContentWidth?: number): string {
+export function documentFor(body: string, css: string, tokensCss: string, frameContentWidth?: number, surface: 'light' | 'dark' = 'light'): string {
+  // Fond du cadre, DES DEUX CÔTÉS (spec 022). `dark` = `--pqr-color-noir-bleute`
+  // côté Odoo ; ici, côté référence, la feuille de jetons est NON préfixée
+  // (`src/styles/tokens.css`), donc `--color-noir-bleute`. La page de mesure Odoo
+  // pose le même fond sombre sur son propre cadre (harness.xml).
+  const surfaceBg = surface === 'dark' ? 'var(--color-noir-bleute)' : 'var(--color-blanc)';
   return [
     '<!doctype html>',
     '<html lang="fr"><head><meta charset="utf-8">',
@@ -89,9 +145,9 @@ export function documentFor(body: string, css: string, tokensCss: string, frameC
     // Le MÊME cadre que la page de mesure Odoo : fond opaque, marge identique,
     // animations neutralisées, composant à une origine fixe.
     `<style>
-      html, body { margin: 0; padding: 0; background: var(--color-blanc); }
+      html, body { margin: 0; padding: 0; background: ${surfaceBg}; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .pqr-mesure { position: absolute; top: 0; left: 0; padding: var(--space-${FRAME_PADDING_TOKEN}); background: var(--color-blanc);${frameContentWidth ? ` width: ${frameContentWidth}px; box-sizing: content-box;` : ''} }
+      .pqr-mesure { position: absolute; top: 0; left: 0; padding: var(--space-${FRAME_PADDING_TOKEN}); background: ${surfaceBg};${frameContentWidth ? ` width: ${frameContentWidth}px; box-sizing: content-box;` : ''} }
     </style>`,
     `<style>${css}</style>`,
     '</head><body>',
@@ -150,7 +206,7 @@ async function main() {
   try {
     for (const s of subjects) {
       const { body, css } = fragmentFor(s, ctx);
-      const { png, box } = await renderSubject(browser, s, documentFor(body, css, ctx.tokensCss, s.frameContentWidth));
+      const { png, box } = await renderSubject(browser, s, documentFor(body, css, ctx.tokensCss, s.frameContentWidth, s.surface));
       if (measure) {
         const fits = box !== null && box.width <= s.clip.width && box.height <= s.clip.height;
         if (!fits) deborde++;

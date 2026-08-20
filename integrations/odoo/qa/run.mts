@@ -113,6 +113,16 @@ export function compose(args: string[], timeoutMs = 600_000): CmdResult {
   return { status: r.status ?? -1, out: `${r.stdout ?? ''}${r.stderr ?? ''}` };
 }
 
+/** Exécute un script Python dans le shell Odoo de l'instance et rend
+ *  stdout+stderr concaténés. La MÊME invocation `docker compose run … odoo shell`
+ *  que `creerRedacteur`, factorisée pour les scénarios qui pilotent la base
+ *  (semis de menu, fixtures de pages, cliché du menu). */
+export function odooShell(env: QaEnv, py: string): string {
+  const r = spawnSync('docker', ['compose', '-f', COMPOSE, 'run', '--rm', '-T', 'odoo', 'odoo', 'shell', '-d', env.dbName, '--db_host=db', '--log-level=warn', '--no-http'],
+    { cwd: REPO, encoding: 'utf8', input: py, timeout: 300_000, env: { ...process.env } });
+  return `${r.stdout ?? ''}${r.stderr ?? ''}`;
+}
+
 export function dockerDisponible(): string | null {
   const r = spawnSync('docker', ['info', '--format', '{{.ServerVersion}}'], { encoding: 'utf8', timeout: 30_000 });
   if (r.status !== 0) return null;

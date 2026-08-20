@@ -97,7 +97,7 @@ const COMPONENTS = [
     "setName": "Header",
     "contractId": "ds.header",
     "anchorKey": "4165b8449f68916cca476b62454ede85eea13420",
-    "description": "Header — generated from contract ds.header v2.0.0",
+    "description": "Header — generated from contract ds.header v2.1.0",
     "isSet": false,
     "boolProps": [],
     "textProps": [],
@@ -119,15 +119,15 @@ const COMPONENTS = [
             "primary": "SPACE_BETWEEN",
             "counter": "CENTER"
           },
-          "fixedWidth": {
-            "px": 1728,
-            "varName": "size/header/root"
-          },
           "bindings": {
             "paddingLeft": "space/89",
             "paddingRight": "space/89",
             "paddingTop": "space/16",
             "paddingBottom": "space/16"
+          },
+          "fillWidth": true,
+          "lits": {
+            "width": 1728
           },
           "children": [
             {
@@ -263,7 +263,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1788
+    "colW": 380
   },
   {
     "setName": "HeroVideo",

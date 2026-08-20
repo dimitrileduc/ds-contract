@@ -26,6 +26,28 @@ import { repoPath, repoRelative, sortedBy, canonicalJson, sha256 } from './canon
 /** Les sections posables. Tout le reste de leur fermeture reste interne. */
 export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo'] as const;
 
+/**
+ * Les racines **shell** : rendues par un gabarit SYSTÈME (le header d'Odoo), pas
+ * par la bibliothèque de blocs. Spec 022.
+ *
+ * Distinctes des posables sur un point qui n'est pas cosmétique : une racine
+ * shell N'EST PAS inscriptible comme snippet (FR-001 — le header est un layout,
+ * pas un bloc droppable), et son HTML n'est JAMAIS sauvegardé (il se re-rend à
+ * chaque requête) — d'où deux conséquences tenues ailleurs :
+ *   · `check-module` exige l'ABSENCE d'inscription snippet pour ces racines ;
+ *   · le `graphDigest` reste celui des seules posables (il signe la structure du
+ *     HTML SAUVEGARDÉ ; y fondre le shell marquerait à tort « structure-stale »
+ *     chaque section sauvegardée au premier changement du header). Le shell entre
+ *     au lock par son sha256 par-entrée, pas par le digest — voir `check-inputs`.
+ * Leur CSS de fermeture est néanmoins émise (le gabarit consomme les classes).
+ */
+export const SHELL_CONTRACT_IDS = ['ds.header'] as const;
+
+/** Toutes les racines de l'intégration — posables ∪ shell, triées. La CSS et le
+ *  lock couvrent cette union ; seule la staleness du HTML sauvegardé (digest,
+ *  scan) reste cantonnée aux posables. */
+export const ALL_ROOT_CONTRACT_IDS = [...ROOT_CONTRACT_IDS, ...SHELL_CONTRACT_IDS] as const;
+
 /** Sources de jetons réellement lues par le build d'assets. Triées. */
 export const TOKEN_SOURCES = [
   'tokens/primitives.tokens.json',

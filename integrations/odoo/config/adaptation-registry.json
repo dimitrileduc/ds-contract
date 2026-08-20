@@ -28,6 +28,14 @@
     {
       "code": "odoo-internal-api",
       "description": "Frontière isolée avec les APIs internes d'Odoo 19."
+    },
+    {
+      "code": "odoo-native-menu",
+      "description": "Rendu et état actif de la navigation depuis la donnée et la sémantique natives website.menu (spec 022)."
+    },
+    {
+      "code": "odoo-menu-seed",
+      "description": "Semis unique de l'arborescence de menu à la livraison ; le menu appartient ensuite au client (spec 022, FR-016)."
     }
   ],
   "adaptations": [
@@ -675,12 +683,64 @@
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
       "rootContracts": [
         "ds.hero",
-        "ds.presentation"
+        "ds.presentation",
+        "ds.header"
       ],
       "reasonCode": "odoo-layout-bridge",
       "decisionRefs": [
         "hero.authoring.json",
-        "presentation.authoring.json"
+        "presentation.authoring.json",
+        "header.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-022-HEADER-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/header.xml",
+      "rootContracts": [
+        "ds.header"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "header.authoring.json",
+        "T018"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-022-HEADER-ACTIF",
+      "path": "integrations/odoo/addons/piqueray_ds/views/header.xml",
+      "rootContracts": [
+        "ds.header"
+      ],
+      "reasonCode": "odoo-native-menu",
+      "decisionRefs": [
+        "header.authoring.json",
+        "T019"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-022-MENU-SEED",
+      "path": "integrations/odoo/addons/piqueray_ds/data/menu_seed.xml",
+      "rootContracts": [
+        "ds.header"
+      ],
+      "reasonCode": "odoo-menu-seed",
+      "decisionRefs": [
+        "T021"
+      ],
+      "mechanism": "seed"
+    },
+    {
+      "adaptationId": "ODOO-022-FOND-SOMBRE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.header"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "T020"
       ],
       "mechanism": "odoo-bridge"
     }

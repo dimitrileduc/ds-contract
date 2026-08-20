@@ -76,6 +76,12 @@ export interface Subject {
   /** Largeur de contenu imposée au cadre HTML pour les racines fluides. Le
    *  padding FRAME_PADDING_TOKEN reste ajouté autour et appartient au clip. */
   readonly frameContentWidth?: number;
+  /** Fond du cadre de mesure, DES DEUX CÔTÉS (spec 022). Par défaut `light`
+   *  (blanc) — la convention 019. `dark` (`--pqr-color-noir-bleute`) sert un
+   *  composant à ENCRE CLAIRE comme le header Transparent : sur blanc, son wordmark
+   *  blanc et ses liens blancs seraient invisibles, et la mesure comparerait deux
+   *  vides. La page de mesure Odoo pose le même fond sombre sur son cadre. */
+  readonly surface?: 'light' | 'dark';
   /** Clip épinglé en px CSS, identique des deux côtés. Origine (0,0) = coin
    *  haut-gauche de la page, marge du cadre incluse. */
   readonly clip: { readonly width: number; readonly height: number };
@@ -87,10 +93,19 @@ export interface SubjectModule {
 }
 
 /** Viewport : au moins le clip, plus une garde, pour qu'aucun composant ne se
- *  replie à cause d'un conteneur trop étroit. */
+ *  replie à cause d'un conteneur trop étroit.
+ *
+ *  La garde de HAUTEUR est portée à 200 (spec 022). RAISON : `screenshot({clip})`
+ *  ne capture que `clip ∩ viewport` (pas de scroll implicite). Depuis que le shell
+ *  022 est actif, TOUTES les pages de mesure portent le header système (~86 px de
+ *  haut), qui pousse la `.pqr-mesure` vers le bas d'autant — l'origine du clip suit
+ *  (odooClipSelector), mais son bas dépassait l'ancienne garde de 80 px de 6 px, et
+ *  la capture était tronquée. 200 couvre le header + une marge. Sans effet sur le
+ *  contenu du clip (le header reste AU-DESSUS de la zone capturée) ni sur la
+ *  référence (sa `.pqr-mesure` est à l'origine). */
 export const viewportFor = (s: Subject) => ({
   width: s.clip.width + 80,
-  height: s.clip.height + 80,
+  height: s.clip.height + 200,
 });
 
 // ---------------------------------------------------------------------------

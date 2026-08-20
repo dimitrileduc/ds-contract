@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ZONE MANUELLE COMPTÉE (spec 022). Semis UNIQUE de l'arborescence de menu de la
+  maquette (data-model §2.2), à la livraison. `noupdate="1"` : Odoo crée chaque
+  enregistrement s'il est absent, ne l'écrase JAMAIS s'il existe — c'est ce qui
+  protège le menu du CLIENT d'une régénération ou d'une mise à jour ultérieure
+  (FR-016). Après le semis, le menu appartient au client : aucun chemin de code ne
+  le réécrit.
+
+  Spike S2 (proofs/spike-seed.json), point dur OBSERVÉ : les menus PAR SITE n'ont
+  AUCUN external id (le root du site non plus). Le `parent_id` des 4 tops ne peut
+  donc PAS se référencer ici — il est posé après-coup, en Python, vers
+  `website.menu_id` du site (hooks.py / migration). Les 3 enfants, eux, référencent
+  leur top par NOTRE xml_id : cette relation-là est exprimable en XML.
+-->
+<odoo>
+  <data noupdate="1">
+    <!-- ODOO-022-MENU-SEED BEGIN -->
+
+    <!-- 1. Portes de garage (chevron dérivé : a des enfants) -->
+    <record id="menu_portes_garage" model="website.menu">
+      <field name="name">Portes de garage</field>
+      <field name="url">/portes-de-garage</field>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="10"/>
+    </record>
+    <record id="menu_portes_residentielles" model="website.menu">
+      <field name="name">Portes résidentielles</field>
+      <field name="url">/portes-residentielles</field>
+      <field name="parent_id" ref="menu_portes_garage"/>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="10"/>
+    </record>
+    <record id="menu_portes_industrielles" model="website.menu">
+      <field name="name">Portes industrielles</field>
+      <field name="url">/portes-industrielles</field>
+      <field name="parent_id" ref="menu_portes_garage"/>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="20"/>
+    </record>
+
+    <!-- 2. Portes d'entrée (chevron dérivé : a un enfant) -->
+    <record id="menu_portes_entree" model="website.menu">
+      <field name="name">Portes d’entrée</field>
+      <field name="url">/portes-entree</field>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="20"/>
+    </record>
+    <!-- « Motorisation » : placement INFÉRÉ (data-model §2.2, confidence: inferred).
+         La maquette ne dessine aucun panneau de sous-menu ; le master pose un
+         chevron sur « Portes d'entrée » qui exige au moins un enfant. Le menu
+         appartient au client dès la livraison — re-ranger cette entrée est une
+         édition standard. -->
+    <record id="menu_motorisation" model="website.menu">
+      <field name="name">Motorisation</field>
+      <field name="url">/motorisation</field>
+      <field name="parent_id" ref="menu_portes_entree"/>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="10"/>
+    </record>
+
+    <!-- 3. Dépannage/SAV (feuille) -->
+    <record id="menu_depannage_sav" model="website.menu">
+      <field name="name">Dépannage/SAV</field>
+      <field name="url">/depannage-sav</field>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="30"/>
+    </record>
+
+    <!-- 4. À propos (feuille) -->
+    <record id="menu_a_propos" model="website.menu">
+      <field name="name">À propos</field>
+      <field name="url">/a-propos</field>
+      <field name="website_id" ref="website.default_website"/>
+      <field name="sequence" eval="40"/>
+    </record>
+
+    <!-- ODOO-022-MENU-SEED END -->
+  </data>
+</odoo>

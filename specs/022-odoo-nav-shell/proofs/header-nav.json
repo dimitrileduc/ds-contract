@@ -1,0 +1,24 @@
+{
+  "receiptId": "header-nav-odoo-019-foundation",
+  "scenarioId": "header-nav",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "seeded-menu",
+  "observations": [
+    "[pass] fixtures — pages cibles minimales créées (publiées, hors addon) — attendu « 8 pages », observé « FIXTURES_OK ou échec »",
+    "[pass] SC-004 — le déroulant « Portes de garage » s'ouvre et ses enfants sont navigables — attendu « ouvert (show + aria-expanded), enfants à href interne », observé « ouvert true, aria true, hrefs [\"/portes-residentielles\",\"/portes-industrielles\"] »",
+    "[pass] SC-004 — le déroulant « Portes d’entrée » s'ouvre et ses enfants sont navigables — attendu « ouvert (show + aria-expanded), enfants à href interne », observé « ouvert true, aria true, hrefs [\"/motorisation\"] »",
+    "[pass] SC-005 — /depannage-sav → « Dépannage/SAV » souligné (aria-current + Soulignement, unique) — attendu « 1 actif « Dépannage/SAV » », observé « [{\"label\":\"Dépannage/SAV\",\"aria\":\"page\",\"soul\":true}] »",
+    "[pass] SC-005 — /a-propos → « À propos » souligné (aria-current + Soulignement, unique) — attendu « 1 actif « À propos » », observé « [{\"label\":\"À propos\",\"aria\":\"page\",\"soul\":true}] »",
+    "[pass] SC-005 — /portes-residentielles → « Portes de garage » souligné (aria-current + Soulignement, unique) — attendu « 1 actif « Portes de garage » », observé « [{\"label\":\"Portes de garage\",\"aria\":\"page\",\"soul\":true}] »",
+    "[pass] SC-005 — /portes-residentielles → entrée de sous-menu « Portes résidentielles » active (style Odoo) — attendu « active « Portes résidentielles » », observé « [\"Portes résidentielles\"] »",
+    "[pass] SC-005 — /portes-industrielles → « Portes de garage » souligné (aria-current + Soulignement, unique) — attendu « 1 actif « Portes de garage » », observé « [{\"label\":\"Portes de garage\",\"aria\":\"page\",\"soul\":true}] »",
+    "[pass] SC-005 — /portes-industrielles → entrée de sous-menu « Portes industrielles » active (style Odoo) — attendu « active « Portes industrielles » », observé « [\"Portes industrielles\"] »",
+    "[pass] SC-005 — /motorisation → « Portes d’entrée » souligné (aria-current + Soulignement, unique) — attendu « 1 actif « Portes d’entrée » », observé « [{\"label\":\"Portes d’entrée\",\"aria\":\"page\",\"soul\":true}] »",
+    "[pass] SC-005 — /motorisation → entrée de sous-menu « Motorisation » active (style Odoo) — attendu « active « Motorisation » », observé « [\"Motorisation\"] »"
+  ],
+  "artifacts": [],
+  "limitCodes": [
+    "SC-004-SUBMENU-ODOO-DEFAULT-STYLE"
+  ]
+}
