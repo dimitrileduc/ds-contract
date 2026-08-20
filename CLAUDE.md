@@ -61,6 +61,10 @@ Notes:
 - Two checks (one eval + the visual-parity instrument) drive real Chromium; if missing, the error names the fix (`npx playwright install chromium` or set `PLAYWRIGHT_CHROMIUM_PATH`).
 - Targeted checks (there is **no single-eval filter flag**): `npm run emitters:check`, `npm run mint:check`, `npm run mint:code:check`, `npm run extract:figma:*:check` (dialog, composite, tooltip, theme, repeat, …), `npm run parity`.
 
+## Pont Figma (figma-console MCP) — règles de ports
+
+Chaque session Claude spawne SON serveur figma-console ; le plugin Desktop Bridge se connecte à TOUS les serveurs des ports **9223-9232** (« Connected to N AI apps » = N serveurs en plage). Un serveur retombé sur 9233+ est hors plage → session sans pont. **Ne jamais forcer `FIGMA_WS_PORT` dans `.claude/settings.json`** (ça met toutes les sessions du repo sur la même chaise et le repli va hors plage). Les squatteurs habituels sont les figma-console **parasites spawnés par auggie** (`--mcp-auto-workspace`) — pour en libérer un : tuer la branche entière (parasite + `npm exec` + l'auggie superviseur, sinon respawn en ms), poser le port libéré dans `~/.claude.json` → `mcpServers.figma-console.env.FIGMA_WS_PORT` (la config gagne sur l'env de session, figé au démarrage), puis `/mcp` + rouvrir le plugin. Vérifier : `figma_get_status` probe → `portFallbackUsed:false`. Recette complète en mémoire projet (`pont-figma-ports-satures`).
+
 ## Architecture
 
 Flow is **outward from the contract to both surfaces, and back in as promotions** — surfaces never sync side-to-side. An engineer's new prop and a designer's color change take the same path: flagged by the differ → promoted into the contract as a reviewable diff → regenerated to the other surface.
