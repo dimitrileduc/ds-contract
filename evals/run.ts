@@ -3355,6 +3355,81 @@ const cases: Case[] = [
     },
   },
   {
+    // spec 023 (E1): the section's `colonnes` {2,3} enum drives a grid part's
+    // track count through a per-enum `columns` override on layoutByProp —
+    // CARRY-BOTH (code emits grid-template-columns:repeat(N,minmax(0,1fr)) under
+    // the enum class; the canvas sets gridColumnCount per compiled combo,
+    // emit-figma-script l.3568 reading the resolved layout). The override is
+    // licit ONLY when the part's BASE layout is display:"grid" — a columns
+    // override on a non-grid part is refused BY NAME, the value-level mirror of
+    // the base columns↔grid refine (contract-schema.ts l.181-187). This case
+    // backs the capability BEFORE any docs claim (Principle II): the positive
+    // path emits BOTH track templates, the negative path fails validation with a
+    // named message. (The Figma-side byte determinism lands in golden.json when
+    // the ds.categories-principales section contract is extracted — task T030.)
+    id: 'columns-override-grid-only',
+    claim: 'C2-refusal',
+    run: () => {
+      const mk = (baseLayout: Record<string, unknown>): SchemaContract =>
+        ContractSchema.parse({
+          id: 'ds.evalcolumns',
+          name: 'EvalColumns',
+          version: '1.0.0',
+          description: 'Eval fixture — E1 columns override.',
+          semantics: { element: 'div' },
+          props: [
+            {
+              name: 'colonnes',
+              type: { enum: ['2', '3'] },
+              default: '2',
+              bindings: { figma: { kind: 'VARIANT', property: 'Colonnes' }, code: { prop: 'colonnes' } },
+            },
+            {
+              name: 'titre',
+              type: 'text',
+              bindings: { figma: { kind: 'TEXT', property: 'Titre' }, code: { prop: 'titre' } },
+            },
+          ],
+          anatomy: {
+            root: {
+              layout: { display: 'flex', direction: 'column' },
+              parts: {
+                grid: {
+                  layout: baseLayout,
+                  layoutByProp: { prop: 'colonnes', map: { '3': { columns: 3 } } },
+                  parts: { cell: { content: { prop: 'titre' } } },
+                },
+              },
+            },
+          },
+          anchors: {
+            figma: { fileKey: null, componentSetKey: null },
+            code: { importPath: 'src/components/EvalColumns', export: 'EvalColumns' },
+          },
+        });
+      // Positive: base grid → validates clean AND emits both track templates
+      // (base repeat(2) + the enum-class override repeat(3)).
+      const okc = mk({ display: 'grid', columns: 2 });
+      const okErrs: string[] = [];
+      coreValidateContract(okc, new Map([[okc.id, okc]]), okErrs, new Map());
+      if (okErrs.length > 0) throw new Error(`grid + columns override must validate: ${okErrs.join('; ')}`);
+      const { css } = coreEmitReact(okc, { tokens: new Set(), icons: new Map(), contracts: new Map() });
+      if (!css.includes('grid-template-columns: repeat(2, minmax(0, 1fr))')) {
+        throw new Error('base grid track template (2) missing from emitted CSS');
+      }
+      if (!css.includes('grid-template-columns: repeat(3, minmax(0, 1fr))')) {
+        throw new Error('per-enum columns override track template (3) missing from emitted CSS');
+      }
+      // Negative: base non-grid → refused BY NAME (columns requires grid).
+      const badc = mk({ display: 'flex', direction: 'column' });
+      const badErrs: string[] = [];
+      coreValidateContract(badc, new Map([[badc.id, badc]]), badErrs, new Map());
+      if (!badErrs.some((e) => e.includes('sets columns but the part\'s base layout is not display:"grid"'))) {
+        throw new Error(`columns override on non-grid part must refuse by name; got: ${badErrs.join('; ') || '(none)'}`);
+      }
+    },
+  },
+  {
     // COVERAGE ROUND workstream 4: the filed Phase B emitter bugs are dead
     // at the source — the emitted token script parses rgb()/rgba() verbatim
     // values (alpha preserved), the emitted shape branch carries stroke +

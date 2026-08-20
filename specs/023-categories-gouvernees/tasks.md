@@ -147,24 +147,34 @@ octet-identiques sur deux exécutions**.
 > T020–T025 pourraient techniquement démarrer plus tôt, mais elles ne sont **consommées** que par
 > l'extraction (T027).
 
-- [ ] T020 [US1] E1 (schéma, additif) : ajouter `columns?: number` (entier positif optionnel) à
+- [X] T020 [US1] E1 (schéma, additif) : ajouter `columns?: number` (entier positif optionnel) à
       `VariantLayoutSchema` — `packages/schema/src/contract-schema.ts:207` — + **règle de refus
       nommée** dans `validateContract` (un override `columns` n'est licite que si le layout de base
       de la part est `display: "grid"`, miroir l. 181-187). Champ optionnel only, jamais repurposé (VI).
-- [ ] T021 [P] [US1] E1 émetteur code : la règle d'enum-classe émise par `layoutByProp` porte
+- [X] T021 [P] [US1] E1 émetteur code : la règle d'enum-classe émise par `layoutByProp` porte
       `grid-template-columns: repeat(N, minmax(0, 1fr))` dans `core/emit-react.ts` (même forme que
       la base, l. 1648/1718).
 - [ ] T022 [P] [US1] E1 émetteur Figma : le combo compilé porte `columns` → `gridColumnCount` /
       `gridRowCount` existants dans `core/emit-figma-script.ts` (l. 3568-3572) ; **vérifier sur le
       mock au 1er build** la transmission des props parent→item sous `repeat` (research D4 — nommée,
       pas supposée).
-- [ ] T023 [US1] E1 eval de refus (`columns` hors grid → **refus par nom**) + déterminisme :
+      **▸ 2026-08-20 (partiel)** : moitié `columns`→`gridColumnCount` **vérifiée par lecture** —
+      `layoutSpec` (`emit-figma-script.ts` l.1023→1030) passe le `columns` **résolu** du merge
+      base+override à `gridColumnCount` (l.3568) : **aucun changement d'émetteur requis** (déjà
+      couvert par le chemin grid existant). Moitié D4 (transmission `style` parent→item sous
+      `repeat`) **en attente du 1er build de la section** (T030), exactement comme research D4 le
+      prescrit (« à vérifier sur le mock au premier build »). Case laissée `[ ]` jusqu'à ce build.
+- [X] T023 [US1] E1 eval de refus (`columns` hors grid → **refus par nom**) + déterminisme :
       ajouter la fixture + le cas dans `evals/`, lancer `npm run eval`, re-pin `evals/golden.json`
       revu (`scripts/update-golden.mjs`) — **AVANT toute phrase de capacité** (Principe II) — dépend de T020.
 - [ ] T024 [US1] Fidélité du mock (VII) : si un défaut live-only apparaît à la projection E1,
       double correctif — `core/emit-figma-script.ts` **et** `scripts/plugin-engine-mock-figma.mjs`
       (le mock apprend à l'attraper headless pour toujours).
-- [ ] T025 [US1] E1 doc (claim APRÈS l'eval — Principe II ; le bump de docs/02 est le
+      **▸ 2026-08-20 (non déclenchée)** : aucune correction d'émetteur Figma pour E1 (le combo lit le
+      `columns` résolu par le chemin grid existant) ⇒ aucun défaut live-only à apprendre au mock à ce
+      stade. À **re-évaluer au 1er build de la section** (T030) : si la projection révèle un écart
+      mock↔live sur `columns`/`repeat`, appliquer le double correctif (émetteur **et** mock).
+- [X] T025 [US1] E1 doc (claim APRÈS l'eval — Principe II ; le bump de docs/02 est le
       Principe VI) : documenter le champ `columns` dans `docs/02-contract-spec.md`.
 - [ ] T026 [US1] **Acquérir l'entrée d'extraction** : relevé frais **post-Gate B** de la source
       nettoyée (dump des 2 masters — REST `FIGMA_TOKEN` ou pont —, consigné sous `audits/` ; dump
