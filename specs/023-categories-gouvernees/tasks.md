@@ -114,29 +114,29 @@ octet-identiques sur deux exécutions**.
 
 ### US1b — Avant-capture §X intégrale → mutations conformes au Gate A → Gate B
 
-- [ ] T012 [US1] **Avant-capture §X INTÉGRALE** (FR-006) : les **7 usages + les 2 masters** (image
+- [X] T012 [US1] **Avant-capture §X INTÉGRALE** (FR-006) : les **7 usages + les 2 masters** (image
       rendue + dump structure), via `extract/figma/page-parity/` — vérifier **chaque** capture non
       vide et correctement dimensionnée avant de continuer (jamais un pilote) → registre
       `specs/023-categories-gouvernees/proofs/captures/` (data-model §4). Version native « avant »
       (`saveVersionHistoryAsync`).
-- [ ] T013 [US1] Muter le master section **conformément au Gate A** : axes orthogonaux
+- [X] T013 [US1] Muter le master section **conformément au Gate A** : axes orthogonaux
       `Style × Colonnes {2,3}`, **suppression de l'axe « Disposition »** et de ses valeurs non-layout
       (FR-009) — via le pont figma-console (mono-session, zone unique, §XI sans objet).
-- [ ] T014 [US1] Officialiser le **style superposé** comme variante de la molécule : plan photo
+- [X] T014 [US1] Officialiser le **style superposé** comme variante de la molécule : plan photo
       `position: absolute` + contenu `relative` + **flèche = icône `arrow-right` du registre**
       (`contracts/icons.registry.json`), patron `ds.hero` — l'affordance est une part officielle,
       jamais un calque caché (FR-007, research D2).
-- [ ] T015 [US1] Rebrancher **chaque copie locale** en instance du master gouverné, conformément
+- [X] T015 [US1] Rebrancher **chaque copie locale** en instance du master gouverné, conformément
       aux décisions par copie du Gate A ; après réparation **zéro** copie locale subsiste (FR-010).
-- [ ] T016 [US1] Re-pointer les **7 usages** sur le master gouverné en **préservant le colonnage
+- [X] T016 [US1] Re-pointer les **7 usages** sur le master gouverné en **préservant le colonnage
       actuel** (6×2, 1×3) et le contenu de chaque usage (FR-011).
-- [ ] T017 [US1] Remodeler « **Rdv** » en **instance renseignée** d'un des deux styles (contenu,
+- [X] T017 [US1] Remodeler « **Rdv** » en **instance renseignée** d'un des deux styles (contenu,
       texte, lien et apparence préservés à l'identique), plus jamais une variante (FR-009).
-- [ ] T018 [US1] Capture d'**après** + `pixelmatch` **par usage** ; version native « après »
+- [X] T018 [US1] Capture d'**après** + `pixelmatch` **par usage** ; version native « après »
       (`saveVersionHistoryAsync`) ; produire `gates/gate-b-pixel.json` (`status: proposed`) : les 7
       deltas chiffrés, **cause nommée** pour tout delta non nul, conformité aux décisions du Gate A.
 
-- [ ] T019 [US1] ⛔ **GATE B** — présenter la comparaison pixel avant/après des 7 usages à l'owner
+- [X] T019 [US1] ⛔ **GATE B** — présenter la comparaison pixel avant/après des 7 usages à l'owner
       (FR-002) ; validation ; `gates/gate-b-pixel.json` → `status: validated` + trace `proofs/gate-b.md`.
       **Bloque la déclaration « repair neutre » et l'extraction des contrats.**
 

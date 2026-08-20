@@ -1,0 +1,44 @@
+{
+  "gate": "B",
+  "status": "validated",
+  "titre": "Vérification après mutation — 7 usages propres + déviation structure assumée",
+  "nature": "PAS un pixel-identique strict : l'owner a demandé en cours de route un changement de MÉCANISME (padding porté par un Container de présentation, section en w-fill pad 0) — donc repair + amélioration de structure assumée, rendu visuel préservé.",
+  "avantCapture": "specs/023-categories-gouvernees/proofs/captures/before/ (10 PNG REST, 7 usages + 3 masters, relevés avant toute mutation)",
+  "apresVerification": "capture live des 7 containers d'usage (plugin runtime) — chacun contrôlé visuellement",
+  "usages": [
+    { "id": "2115:4392", "page": "Accueil", "style": "superpose", "colonnes": 2, "verdict": "propre", "note": "cartes 743, marge 89 via container" },
+    { "id": "2115:4278", "page": "Portes de garage", "style": "superpose", "colonnes": 2, "verdict": "propre" },
+    { "id": "2115:4438", "page": "Portes de garage résidentielles", "style": "empile", "colonnes": 2, "verdict": "propre", "note": "photos résidentielles restaurées (perdues au swap, récupérées version AVANT)" },
+    { "id": "2115:4297", "page": "Portes de garage industrielles", "style": "empile", "colonnes": 2, "verdict": "propre" },
+    { "id": "2115:4411", "page": "Portes d'entrée", "style": "empile", "colonnes": 2, "verdict": "propre", "note": "photos acier/aluminium restaurées" },
+    { "id": "2115:4324", "page": "Motorisation", "style": "empile", "colonnes": 3, "verdict": "propre", "note": "3 cartes 474" },
+    { "id": "2115:4364", "page": "Dépannage/SAV", "style": "empile", "colonnes": 2, "verdict": "propre", "note": "carte Maintenance : bouton encadré + libellé « Prendre rendez-vous »" }
+  ],
+  "deviationsStructure": [
+    {
+      "sujet": "Padding de section",
+      "avant": "89px porté PAR la section (comme la majorité des sections du fichier)",
+      "apres": "section en w-fill pad 0 (comme le composant Equipe) ; le 89px est porté par un « Container · CategoriesPrincipales » de présentation",
+      "regleOdoo": "le Container n'est PAS transposé côté contrat/Odoo — seule la section w-fill l'est",
+      "decidePar": "owner (2026-08-20)"
+    },
+    {
+      "sujet": "Largeur de la variante Superpose",
+      "avant": "1552 (incohérent avec les empilées à 1728)",
+      "apres": "1728 — uniformisé ; toutes les cartes à 743 (2 col) / 474 (3 col)"
+    }
+  ],
+  "copiesLocales": "zéro après réparation (les 3 copies locales converties en instances de la molécule gouvernée)",
+  "photosPerteEtRecuperation": "le swapComponent a préservé le texte mais PERDU les images sur usage3/5 ; hashes originaux récupérés via REST sur la version « AVANT 023 » et re-posés (leçon : capturer TOUTES les images avant un swap, ne pas s'y fier)",
+  "versionsNatives": [
+    "AVANT 023 (2389752828059100000)",
+    "APRÈS 023 (2389781304245355456)",
+    "photos restaurées (2389795322456792270)",
+    "cartes FILL (2389827113825951557)",
+    "montage Equipe container (2389830944365073900)"
+  ],
+  "decidedBy": "owner",
+  "decidedAt": "2026-08-20",
+  "deviations": [],
+  "evidenceRefs": ["proofs/captures/before/", "proofs/gate-b.md"]
+}
