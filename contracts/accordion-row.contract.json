@@ -115,7 +115,9 @@
         "display": "flex",
         "direction": "row",
         "justify": "space-between",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 1550
       },
       "layoutByProp": {
         "prop": "etat",
@@ -336,8 +338,7 @@
       "tokens": {
         "border-bottom-width": "{border-width.1}",
         "gap": "{space.24}",
-        "padding-block": "{space.16}",
-        "width": "{size.accordion-row.root}"
+        "padding-block": "{space.16}"
       },
       "literals": {
         "border-color": "#000000"

@@ -35,9 +35,9 @@ const COMPONENTS = [
             "paddingTop": "space/96",
             "paddingBottom": "space/96"
           },
-          "fixedWidth": {
-            "px": 1728,
-            "varName": "size/devis/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1728
           },
           "children": [
             {
@@ -128,7 +128,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1788
+    "colW": 380
   }
 ];
 const ROW_H = 240, PAD = 40;
@@ -666,6 +666,9 @@ function applyFrameSpec(node, spec) {
       }
     }
   }
+  if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
+    try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
+  }
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
   // 743px category card is used at 474px), Figma must scale that basis with
@@ -894,7 +897,7 @@ async function buildNode(spec, registry) {
       // description.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (child.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((child.grow || child.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     } else if (
       spec.layout && spec.layout.stretchChildren &&
@@ -913,7 +916,7 @@ async function buildNode(spec, registry) {
     // HUG is the circular case Figma refuses. Measured live: the
     // SectionHeader title overflowed Presentation's 628 column in one line
     // (origin: two lines) — the Devis.Titre fix was this rule's local case.
-    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (child.grow || child.fillWidth || spec.fillWidth || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
     }
     applyInsetOverlay(node, childNode, child);
@@ -1489,7 +1492,7 @@ async function amendSet(set, C) {
           // #60 fix 4 (amend path): same empty-child declared default.
           try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
         }
-        if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+        if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -1498,7 +1501,7 @@ async function amendSet(set, C) {
 
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
-        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+        if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
     applyInsetOverlay(comp, childNode, childSpec);
@@ -1594,7 +1597,7 @@ async function amendComponent(comp, C) {
       // #60 fix 4 (standalone amend path): same empty-child declared default.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -1603,7 +1606,7 @@ async function amendComponent(comp, C) {
 
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
-    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
     applyInsetOverlay(comp, childNode, childSpec);

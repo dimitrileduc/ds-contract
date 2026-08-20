@@ -36,10 +36,6 @@ const COMPONENTS = [
             "paddingTop": "space/16",
             "paddingBottom": "space/16"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/accordion-row/root"
-          },
           "lits": {
             "strokeColor": {
               "r": 0,
@@ -50,8 +46,10 @@ const COMPONENTS = [
               "top": 0,
               "right": 0,
               "left": 0
-            }
+            },
+            "width": 1550
           },
+          "fillWidth": true,
           "children": [
             {
               "type": "text",
@@ -125,10 +123,6 @@ const COMPONENTS = [
             "paddingTop": "space/16",
             "paddingBottom": "space/16"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/accordion-row/root"
-          },
           "lits": {
             "strokeColor": {
               "r": 0,
@@ -139,8 +133,10 @@ const COMPONENTS = [
               "top": 0,
               "right": 0,
               "left": 0
-            }
+            },
+            "width": 1550
           },
+          "fillWidth": true,
           "children": [
             {
               "type": "frame",
@@ -242,10 +238,6 @@ const COMPONENTS = [
             "paddingTop": "space/8",
             "paddingBottom": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/accordion-row/root"
-          },
           "lits": {
             "strokeColor": {
               "r": 0.14901960784313725,
@@ -257,8 +249,10 @@ const COMPONENTS = [
               "top": 0,
               "right": 0,
               "left": 0
-            }
+            },
+            "width": 1550
           },
+          "fillWidth": true,
           "children": [
             {
               "type": "text",
@@ -332,10 +326,6 @@ const COMPONENTS = [
             "paddingTop": "space/8",
             "paddingBottom": "space/8"
           },
-          "fixedWidth": {
-            "px": 1550,
-            "varName": "size/accordion-row/root"
-          },
           "lits": {
             "strokeColor": {
               "r": 0.14901960784313725,
@@ -347,8 +337,10 @@ const COMPONENTS = [
               "top": 0,
               "right": 0,
               "left": 0
-            }
+            },
+            "width": 1550
           },
+          "fillWidth": true,
           "children": [
             {
               "type": "frame",
@@ -433,7 +425,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1610
+    "colW": 380
   },
   {
     "setName": "Avantage",
@@ -2955,9 +2947,9 @@ const COMPONENTS = [
             "paddingTop": "space/96",
             "paddingBottom": "space/96"
           },
-          "fixedWidth": {
-            "px": 1728,
-            "varName": "size/devis/root"
+          "fillWidth": true,
+          "lits": {
+            "width": 1728
           },
           "children": [
             {
@@ -3048,7 +3040,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1788
+    "colW": 380
   },
   {
     "setName": "MemberPicture",

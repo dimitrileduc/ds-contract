@@ -135,6 +135,9 @@
     <BuilderRow label.translate="Contenus">
       <span data-pqr-control="faq-title"><span data-pqr-control="faq-cta-label">Le titre de section et le libellé du CTA se modifient directement dans le bloc.</span></span>
     </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="faq-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'faq-cta'"/></span>
+    </BuilderRow>
   </t>
 
   <t t-name="piqueray_ds.FaqRowOption">
@@ -165,6 +168,9 @@
     <BuilderRow label.translate="Alternative">
       <span data-pqr-control="devis-background-alt"><BuilderTextInput action="'pqrSetDevisBackgroundAlt'"/></span>
     </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="devis-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'devis-cta'"/></span>
+    </BuilderRow>
   </t>
   <!-- ODOO-019-DEVIS-PANEL END -->
 
@@ -184,6 +190,9 @@
     </BuilderRow>
     <BuilderRow label.translate="Alternative de la photo">
       <span data-pqr-control="sav-photo-alt"><BuilderTextInput action="'pqrSetSavPhotoAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="sav-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'sav-cta'"/></span>
     </BuilderRow>
   </t>
   <!-- ODOO-019-SAV-PANEL END -->

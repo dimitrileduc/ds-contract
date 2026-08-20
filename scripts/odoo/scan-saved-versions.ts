@@ -3,7 +3,7 @@ import path from 'node:path';
 import { canonicalJson, sha256 } from './lib/canonical.js';
 import { arg, runAsCli } from './lib/cli.js';
 
-const EXPECTED_GRAPH = '8b31b0228e3a568d4f32004b82e72a62993938567d412bdfcf35021d428986e4';
+const EXPECTED_GRAPH = 'e8b7e2127b5eb8ffe626bea707b6698187412df7580900d04712ed958bdd8322';
 const AUTHORING = '1.1.0';
 const MODULE = '19.0.1.5.0';
 const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '2.0.0', 'ds.presentation': '2.6.0', 'ds.hero': '1.5.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '1.2.0', 'ds.sav': '1.4.0', 'ds.texte-seo': '2.1.0', 'ds.coordonnees': '2.2.0', 'ds.reassurances': '1.2.0' };

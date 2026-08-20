@@ -14,12 +14,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   background-color: var(--color-noir-pur);
   font-family: var(--font-family-montserrat);
   padding-top: var(--space-96);
   padding-bottom: var(--space-96);
-  width: var(--size-devis-root);
   position: relative;
 }
 
