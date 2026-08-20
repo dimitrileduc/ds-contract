@@ -294,7 +294,7 @@ isolation et persistance aux trois points de contrôle.
 
 ### Gate D — table d'éditabilité (AVANT tout Odoo)
 
-- [ ] T037 [US2] Produire la **table de verdicts d'éditabilité**
+- [X] T037 [US2] Produire la **table de verdicts d'éditabilité**
       `specs/023-categories-gouvernees/contracts/categories.editable-scope.json` (`status: proposed`,
       format 022) : **100 % des props ET des parts des DEUX contrats** — y compris les occurrences
       des contrats composés (`ds.button`, icône flèche) — chaque entrée portant l'un des 4 verdicts
