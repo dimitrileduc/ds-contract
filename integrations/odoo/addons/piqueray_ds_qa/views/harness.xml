@@ -229,4 +229,25 @@
     <field name="url">/piqueray-harness/texte-seo-visual</field><field name="view_id" ref="harness_texte_seo_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-019-HARNESS-TEXTE-SEO END -->
+
+  <!-- HARNESS-SHOWCASE BEGIN — page de revue : les 8 sections gouvernées empilées
+       sur un seul lien éditeur, pour tout vérifier d'un coup. Banc uniquement. -->
+  <template id="harness_showcase" name="Piqueray — les 8 sections">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure">
+        <t t-call="piqueray_ds.s_pqr_hero"/>
+        <t t-call="piqueray_ds.s_pqr_presentation"/>
+        <t t-call="piqueray_ds.s_pqr_google_reviews"/>
+        <t t-call="piqueray_ds.s_pqr_sav"/>
+        <t t-call="piqueray_ds.s_pqr_equipe"/>
+        <t t-call="piqueray_ds.s_pqr_faq"/>
+        <t t-call="piqueray_ds.s_pqr_devis"/>
+        <t t-call="piqueray_ds.s_pqr_texte_seo"/>
+      </div>
+    </t>
+  </template>
+  <record id="page_harness_showcase" model="website.page">
+    <field name="url">/piqueray-harness/showcase</field><field name="view_id" ref="harness_showcase"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- HARNESS-SHOWCASE END -->
 </odoo>
