@@ -1,7 +1,7 @@
 {
   "fileName": "Piqueray (Copy)",
   "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
-  "extractedAt": 1787050054742,
+  "extractedAt": 1787253546726,
   "sets": [
     {
       "name": "Input",
@@ -651,6 +651,39 @@
       "nestedInstances": []
     },
     {
+      "name": "CarteCategorie",
+      "nodeId": "2495:6770",
+      "key": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
+      "description": "",
+      "variantCount": 2,
+      "properties": {
+        "Titre#2495:11": {
+          "type": "TEXT",
+          "defaultValue": "Pour portes de garage",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Texte#2495:12": {
+          "type": "TEXT",
+          "defaultValue": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+          "variantOptions": null,
+          "preferredValues": null
+        },
+        "Style": {
+          "type": "VARIANT",
+          "defaultValue": "Superpose",
+          "variantOptions": [
+            "Superpose",
+            "Empile"
+          ],
+          "preferredValues": null
+        }
+      },
+      "nestedInstances": [
+        "ArrowRight"
+      ]
+    },
+    {
       "name": "Carte/Categorie",
       "nodeId": "2063:1611",
       "key": "9fdaa971c9512d85eac458fcfef47525e5787b78",
@@ -1173,19 +1206,27 @@
       "description": "Anciennement nommé « Catégories principales » sur le canvas. Section Catégories principales — met en avant les grandes catégories de produits (types de portes) juste après le bloc Hero, sur la plupart des pages du site. Une propriété Disposition (4 valeurs) fait varier la mise en page et le nombre de cartes affichées (2 ou 3) ; sur la variante Pleine largeur · RDV, une carte devient un bloc de rendez-vous. Seules les 3 variantes Pleine largeur instancient la molécule Carte ; la variante Standard reste construite en natif, non pilotable depuis l'instance.",
       "variantCount": 4,
       "properties": {
-        "Disposition": {
+        "Style": {
           "type": "VARIANT",
-          "defaultValue": "Standard",
+          "defaultValue": "Superpose",
           "variantOptions": [
-            "Standard",
-            "Pleine largeur",
-            "PleineLargeurRdv",
-            "PleineLargeurTroisCartes"
+            "Superpose",
+            "Empile"
+          ],
+          "preferredValues": null
+        },
+        "Colonnes": {
+          "type": "VARIANT",
+          "defaultValue": "2",
+          "variantOptions": [
+            "2",
+            "3"
           ],
           "preferredValues": null
         }
       },
       "nestedInstances": [
+        "CarteCategorie",
         "ArrowRight"
       ]
     },

@@ -2,7 +2,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "f279da78",
+    "gitCommit": "e2ea5392",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -553,6 +553,69 @@
       "slots": []
     },
     {
+      "id": "ds.carte-categorie",
+      "name": "CarteCategorie",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Piqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "0d1a03d07abf7225fb560b3d4163dd3575132c62"
+      },
+      "props": [
+        {
+          "name": "style",
+          "type": [
+            "superpose",
+            "empile"
+          ],
+          "default": "superpose"
+        },
+        {
+          "name": "ctaType",
+          "type": [
+            "lien",
+            "bouton"
+          ],
+          "default": "lien",
+          "description": "Type de CTA gouverné de la carte empilée (Gate A, 2026-08-20). `lien` = ds.button Link à icônes pdf/download ; `bouton` = ds.button outlineNoir encadré à flèche. LIMITE NOMMÉE : le master CarteCategorie n'expose AUCUN axe VARIANT pour ce type (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé (autorat assumé au Gate A au-dessus d'une source incomplète). N'a d'effet que sur le style empilé."
+        },
+        {
+          "name": "titre",
+          "type": "string",
+          "default": "Pour portes de garage"
+        },
+        {
+          "name": "texte",
+          "type": "string",
+          "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+          "description": "Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique)."
+        },
+        {
+          "name": "imageUrl",
+          "type": "string",
+          "default": "",
+          "description": "La ROUTE de l'image, jamais ses octets (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md l.91 ; reprise verbatim de ds.carte.imageUrl). Défaut vide et il le reste ; le canevas dessine le lavis technique #D9D9D9, la photo maquette est hors contrat et préservée à la régénération par la passe de sauvetage."
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "name": "ctaLabel",
+          "type": "string",
+          "default": "Contactez-nous",
+          "description": "Libellé du CTA du style empilé — contenu libre (Gate A : le texte du CTA n'est jamais l'option). Binding NONE (précédent ds.carte.ctaLabel : la propriété TEXT vit sur le Button imbriqué, pas au niveau du set)."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
       "id": "ds.carte",
       "name": "Carte",
       "version": "2.0.1",
@@ -624,6 +687,52 @@
           ],
           "default": "download",
           "description": "Nested Categorie Link Button trailing glyph retained from the concrete nested Figma instance."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.categories-principales",
+      "name": "CategoriesPrincipales",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "section",
+      "description": "Piqueray section « Catégories principales ». Extracted from the cleaned Figma COMPONENT_SET on DS · Organisms (2115:4277), reviewed at Gate A — not authored. A repeated collection of ds.carte-categorie in a governed grid, with a closed `colonnes` {2,3} enum. Le colonnage est un CHOIX DE DESIGN porté par la section (extension de schéma E1 `layoutByProp.columns`), jamais dérivé du nombre de cartes ; au-delà du compte, les cartes passent à la ligne sur la même grille (wrap natif). Le `style` est transmis à chaque carte répétée (composition), donc verdict Odoo `fixed-by-composition` — pas un choix rédacteur.\n\nNettoyage de source (Gate A/B, 2026-08-20) : l'axe menteur « Disposition » à 4 valeurs (qui mélangeait style de carte, nombre de colonnes et un contenu déguisé « Rdv ») est remplacé par deux axes orthogonaux Style × Colonnes. « Rdv » redevient une instance renseignée, plus jamais une variante.\n\nLimite nommée : la prop `ctaType` de la carte n'est PAS transportée par item (les champs d'un `arrayOf` sont plats par le schéma) — toutes les cartes d'une section rendent le CTA par défaut de la molécule (lien). L'usage à CTA mixte (carte Maintenance à bouton encadré « Prendre rendez-vous ») est porté hors de cette composition (couche Odoo/usage) — nommé, pas contourné en silence.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "94f64a369a5db615d68935bb353614eaaadbffc2"
+      },
+      "props": [
+        {
+          "name": "style",
+          "type": [
+            "superpose",
+            "empile"
+          ],
+          "default": "superpose",
+          "description": "Style des cartes, transmis à chaque carte répétée (component.props {style}). Verdict Odoo attendu : fixed-by-composition (pas un choix rédacteur cette itération)."
+        },
+        {
+          "name": "colonnes",
+          "type": [
+            "2",
+            "3"
+          ],
+          "default": "2",
+          "description": "Nombre de colonnes de la grille — enum FERMÉ {2,3}, aucune autre valeur offrable. Porté par la section (extension E1 layoutByProp.columns sur la part grid) ; au-delà du compte de cartes, wrap natif sur la même grille."
+        },
+        {
+          "name": "cartes",
+          "type": {
+            "arrayOf": {
+              "titre": "text",
+              "texte": "text"
+            }
+          },
+          "description": "Collection de cartes-catégories. Champs `titre` et `texte` (plats — un arrayOf ne porte que text/number/boolean par le schéma). Le `sample` est relevé de la source (contenus réels des usages), jamais inventé. LIMITE : pas de champ `ctaType` par carte (voir description du contrat)."
         }
       ],
       "children": {
@@ -1222,15 +1331,45 @@
       "slots": []
     },
     {
-      "id": "ds.review-card",
-      "name": "ReviewCard",
+      "id": "ds.notation",
+      "name": "Notation",
       "version": "1.0.0",
       "status": "draft",
-      "category": "molecule",
-      "description": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).\n\nLimites nommées (measures/mesures-aplat.md, measures/faisabilite-canaux.md) : (1) l'exclusion pastille/photo est une CONVENTION de deux booléens indépendants, pas une contrainte de schéma — `visibleWhen` n'a pas de négation et un axe d'enum romprait la variation par item du `repeat` ; (2) la couleur de fond de la pastille-initiale est FIXE et gouvernée — les 5 avis réels portent 5 teintes différentes, non modélisables (aucun canal ne lie une couleur CSS à une valeur de texte libre par item) ; écart assumé, arbitré par l'owner (« la couleur, rien à faire ») ; (3) l'avatar photo reste un aplat gris + † sur le canevas — trou A5, non refermé (R6) ; le pixel réel est un override de fill IMAGE hors contrat, appliqué après le dernier amend ; (4) la séparation carte/fond du widget réel est une ombre douce (mesurée par balayage de bord : dégradé lisse sur ~15px) — `box-shadow` étant hors des deux registres de canaux, le repli est une bordure fine 1px, seul canal disponible.",
+      "category": "atom",
+      "description": "Bandeau de cinq étoiles portant une note entière de 1 à 5. Créé le 2026-08-18 sur demande owner : la note d'un avis était le seul fait important non éditable (ni en code, ni dans Odoo), parce que la spec 006 avait supprimé l'axe `note` (R7) sur deux prémisses — tous les avis mesurés étaient à 5/5, et l'icône gouvernée `star` est orange intrinsèque. La première prémisse tombe (décision owner) ; la seconde tient, d'où le glyphe interne `star-empty` (même géométrie, gris) qui rend la paire pleine/vide possible.\n\nPourquoi CINQ bandes plutôt qu'une bande paramétrée — les trois mécanismes plus économiques ont été testés et refusés par le moteur, pas par goût : (1) `visibleWhen` ne teste qu'UNE valeur d'enum (pas de « parmi »), donc « étoile 3 visible si note ≥ 3 » est inexprimable ; (2) `meter` rend un `<div>` de largeur fractionnaire SANS enfants (core/emit-react.ts:3087), donc pas de bandeau d'étoiles à l'intérieur ; (3) `star.svg` porte `fill=\"#F98A0B\"` en dur et ne se recolore pas par `currentColor`. Cinq bandes exclusives projettent en revanche exactement les cinq variantes du master Figma `Notation` (2480:4725).\n\nLa demi-étoile est ÉCARTÉE, pas oubliée : décision owner du 2026-08-18, la note d'un avis est un entier de 1 à 5. La barre-résumé d'`Avis Google` continue d'afficher sa moyenne « 4.8 » en texte à côté de cinq étoiles pleines — c'est un affichage de moyenne, pas une note d'avis, et il ne demande donc rien à cet atome. Rouvrir la question coûterait soit un pas de 0,5 (dix variantes), soit un remplissage partiel.",
       "figma": {
         "representation": "component",
-        "componentSetKey": "3826fdc9975d42b1661e14494476701676759671"
+        "componentSetKey": "85029a113e23bf7faec3a0714b983d4a824b0722"
+      },
+      "props": [
+        {
+          "name": "note",
+          "type": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "default": "5",
+          "description": "Nombre d'étoiles pleines. Entier : un avis Google porte une note entière, la moyenne fractionnaire n'existe qu'au niveau du résumé."
+        }
+      ],
+      "children": {
+        "kind": "none"
+      },
+      "slots": []
+    },
+    {
+      "id": "ds.review-card",
+      "name": "ReviewCard",
+      "version": "2.0.0",
+      "status": "draft",
+      "category": "molecule",
+      "description": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006). Contrat d'abord, master généré : aucun master dessiné à la main (première du dépôt, R1). Le master reste GÉNÉRIQUE par construction (contenu d'exemple neutre) ; le contenu réel des avis vit sur les 8 occurrences adoptées, porté par propriétés (jamais par override brut).\n\nLimites nommées (measures/mesures-aplat.md, measures/faisabilite-canaux.md) : (1) l'exclusion pastille/photo est une CONVENTION de deux booléens indépendants, pas une contrainte de schéma — `visibleWhen` n'a pas de négation et un axe d'enum romprait la variation par item du `repeat` ; (2) la couleur de fond de la pastille-initiale est FIXE et gouvernée — les 5 avis réels portent 5 teintes différentes, non modélisables (aucun canal ne lie une couleur CSS à une valeur de texte libre par item) ; écart assumé, arbitré par l'owner (« la couleur, rien à faire ») ; (3) l'avatar photo reste un aplat gris + † sur le canevas — trou A5, non refermé (R6) ; le pixel réel est un override de fill IMAGE hors contrat, appliqué après le dernier amend ; (4) la séparation carte/fond du widget réel est une ombre douce (mesurée par balayage de bord : dégradé lisse sur ~15px) — `box-shadow` étant hors des deux registres de canaux, le repli est une bordure fine 1px, seul canal disponible.\n\nPromotion 2.0.0 (2026-08-18, demande owner). MAJEUR : trois props retirées. (1) `tronque` disparaît — « Lire la suite » était caché sur les instances alors que le master l'affichait toujours ; l'owner le veut visible partout, la prop n'avait donc plus d'objet. (2) `initialeVisible` et `photo` étaient DEUX booléens indépendants, ce que la limite (1) ci-dessus nommait déjà comme une convention fragile : ils autorisaient les deux états absurdes (aucun avatar, ou les deux à la fois) et exposaient au rédacteur Odoo deux bascules là où la règle métier est « photo s'il y a une photo, sinon initiale ». Ils sont remplacés par UNE variante `avatar`, exclusive par construction. Le master Figma est devenu un set de deux variantes le même jour ; la variante `Avatar=Initiale` conserve l'id et la clé historiques, donc les 45 instances survivent (vérifié : 45/45, textes intacts). (3) `note` apparaît — la note d'un avis était le seul fait important non éditable. Elle est portée par le composant imbriqué `ds.notation` (cinq bandes exclusives ; voir son contrat pour les trois mécanismes moins coûteux testés et refusés par le moteur). Son binding Figma est `NONE` À DESSEIN : le porter en VARIANT sur la carte forcerait un produit Avatar × Note = dix variantes du master. La contrepartie est nommée — le canevas montre toujours la note par défaut, et les cinq états se lisent sur l'atome `Notation`, pas sur la carte. (Au passage : la limite (1) d'origine affirmait qu'« une prop scalaire ne peut pas être figma.kind NONE » ; re-testé sur le schéma le 2026-08-18, c'est faux — seul l'inverse est imposé, les props `arrayOf` DOIVENT être NONE.) La prop `verifie` disparaît elle aussi (même geste, même raison que `tronque`) : le badge est inconditionnel.\n\nTEXTES — sans Text Style, comme 172 des 332 textes du fichier (compté le 2026-08-18). Les cinq textes de la carte (initialeTexte, auteur, date, temoignage, lireLaSuite) ne portent aucun Text Style. Ce n'est PAS une singularité de ce composant : sur les 332 nœuds texte des masters, 160 portent un style, 0 lient une variable de typographie, 172 n'ont ni l'un ni l'autre. Les variables `font/size/*`, `font/weight/*` et `typography/*` existent mais alimentent les Text Styles ; sur un nœud texte, seule la couleur est liée — aucun nœud du fichier ne lie sa taille ou sa graisse. Aucun des 18 styles ne correspond exactement à ces cinq recettes : initialeTexte est SemiBold 18/18 quand le seul style à 18 (« Lead ») est Regular 18/27 ; auteur est SemiBold 16/19,2 quand « Titre 6 » est SemiBold 16/20 ; date, temoignage et lireLaSuite sont Medium 14 quand les trois styles à 14 sont Regular ou Bold. Ces valeurs (19,2 = 16×1,2 ; 16,8 = 14×1,2 ; 19,6 = 14×1,4) sont des interlignes de navigateur héritées du widget tiers dont la carte a été extraite en 006, pas des valeurs dessinées. Les rapprocher d'un style voisin changerait le rendu d'un contenu client adopté, et le workflow interdit le rapprochement « au plus proche ». La réparation utile n'est donc pas locale à ce composant : c'est une passe de typographie sur les 172, à décider par l'owner.",
+      "figma": {
+        "representation": "component",
+        "componentSetKey": "864876fc02245c65ef4216bc4355e4128f79d181"
       },
       "props": [
         {
@@ -1256,20 +1395,25 @@
           "required": true
         },
         {
-          "name": "tronque",
-          "type": "boolean",
-          "default": false,
-          "description": "Trouvaille de la convergence T040 : le widget affiche un lien « Lire la suite » sous les avis qu'il a lui-même tronqués (ellipse déjà présente dans `texte`), absent sur les avis complets (mesuré : Thierry Picard, carte 4). La troncature multi-lignes elle-même reste refusée (R10, `-webkit-line-clamp` hors registre) — ce booléen ne gouverne QUE la visibilité du lien."
+          "name": "avatar",
+          "type": [
+            "Initiale",
+            "Photo"
+          ],
+          "default": "Initiale",
+          "description": "Forme de l'avatar. Exclusive par construction — remplace les deux booléens indépendants de la 1.0.0. Côté produit la règle est dérivée : photo s'il y a une photo publiée, sinon initiale."
         },
         {
-          "name": "initialeVisible",
-          "type": "boolean",
-          "default": true
-        },
-        {
-          "name": "photo",
-          "type": "boolean",
-          "default": false
+          "name": "note",
+          "type": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "default": "5",
+          "description": "Note de l'avis, transmise telle quelle à ds.notation. Binding canevas NONE : voir la promotion 2.0.0 dans la description du contrat."
         },
         {
           "name": "photoUrl",
@@ -1281,11 +1425,6 @@
           "name": "photoAlt",
           "type": "string",
           "default": ""
-        },
-        {
-          "name": "verifie",
-          "type": "boolean",
-          "default": true
         }
       ],
       "children": {
@@ -1296,10 +1435,10 @@
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "1.0.2",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
-      "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.",
+      "description": "Le bloc « Avis Google » — dernier aplat tiers du fichier Piqueray (widget Trustindex/Google, spec 006). Périmètre = le RECTANGLE de l'aplat seul (1552 × ~328 dessiné), PAS le GROUP entier : l'instance de Section-header voisine reste un frère intact (FR-008), jamais absorbée dans ce contrat. Le root est en hauteur Auto/Hug avec 328 px comme hauteur minimale gouvernée : le sample nominal reste identique, tandis qu'une rangée supplémentaire issue de l'authoring agrandit la section sans overflow.\n\nContrat d'abord, master généré (R1) : le master naît générique (`repeat.sample` porte 5 enregistrements neutres) ; le contenu réel des 8 occurrences vit en overrides de propriétés sur les instances de carte imbriquées (FR-010, via le mécanisme documenté R8 — aucune prop de section ne porte la collection côté canevas, `avis` est figma.kind:'NONE' par construction).\n\nInterdit dur : AUCUN `component`-ref vers `ds.button` dans ce contrat (R5) — la résolution des dépendances imbriquées se fait par NOM (`findComponentByName`), le contrat dirait `Button`, le master vivant s'appelle « Bouton » : le script poussé échouerait. Les flèches de carrousel et le CTA « Écrire un avis » sont donc dessinés en parts (frame + icon.asset / texte), jamais des instances de composant. Réemploi perdu, nommé (FR-007).\n\nDécision owner du 2026-08-12 : `groupeCartes` est une grille native de cinq colonnes égales ; chaque `Review-card` remplit sa cellule. Les flèches sont des overlays absolus ancrés aux bords et ne participent pas au calcul des colonnes.\n\nPromotion 2.0.0 (2026-08-18). MAJEUR par ricochet de ds.review-card 2.0.0 : la collection `avis` perd trois champs (`tronque`, `initialeVisible`, `photo`) et en gagne deux (`avatar`, `note`). Le mapping d'un `repeat` se fait PAR NOM, donc la forme d'un enregistrement d'avis suit celle des props de l'enfant, sans exception.",
       "figma": {
         "representation": "component",
         "componentSetKey": "9bc775b834830afc0b67841e8d341cf2efa3037c"
@@ -1336,12 +1475,23 @@
               "initiale": "text",
               "date": "text",
               "texte": "text",
-              "tronque": "boolean",
-              "initialeVisible": "boolean",
-              "photo": "boolean",
+              "avatar": {
+                "enum": [
+                  "Initiale",
+                  "Photo"
+                ]
+              },
+              "note": {
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+                ]
+              },
               "photoUrl": "text",
-              "photoAlt": "text",
-              "verifie": "boolean"
+              "photoAlt": "text"
             }
           },
           "description": "La collection de cartes — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat (générique, jamais le contenu réel — FR-010)."
@@ -1471,7 +1621,7 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "1.6.0",
+      "version": "1.5.0",
       "status": "draft",
       "category": "section",
       "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
@@ -1480,12 +1630,6 @@
         "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a"
       },
       "props": [
-        {
-          "name": "ctaHref",
-          "type": "string",
-          "default": "#",
-          "description": "Code-only navigation target of the hero CTA — a CTA navigates, so web surfaces render the Bouton part as a LINK carrying this target. Site-relative by convention ('/devis', '#ancre'): the host never enters governed content. The canvas has no link concept — NONE binding, same class as backgroundUrl."
-        },
         {
           "name": "backgroundUrl",
           "type": "string",

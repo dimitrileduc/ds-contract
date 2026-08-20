@@ -1,0 +1,69 @@
+{
+  "gate": "C",
+  "status": "proposed",
+  "titre": "Deux contrats gouvernés extraits de la source nettoyée — molécule + section",
+  "objetARevoir": "Le diff révisable des deux nouveaux contrats (le diff EST la revue, Principe VI), PLUS une proposition de retrait ds.carte v3.0.0 (T029) à confirmer prop par prop (Gate A l'a explicitement renvoyé ici).",
+  "commitRef": "c53e6cda (branche 023-categories-gouvernees) — feat(023): US1c extraction des deux contrats gouvernés",
+  "contrats": [
+    {
+      "id": "ds.carte-categorie",
+      "name": "CarteCategorie",
+      "version": "1.0.0",
+      "category": "molecule",
+      "sourceFigma": "2495:6770 (key 0d1a03d07abf7225fb560b3d4163dd3575132c62)",
+      "modele": "Un axe Style {superpose, empile}. Empile = reprise pixel de ds.carte disposition Categorie (image FILL, titre/texte, ds.button). Superpose = patron ds.hero (plan photo absolu + voile dégradé + titre/texte blancs + flèche arrow-right). Sémantique partagée titre/texte/image/CTA.",
+      "decisionsOwner": [
+        "ctaType GOUVERNÉ {lien, bouton} (owner 2026-08-20) : lien = ds.button Link (Contactez-nous, pdf/download), bouton = ds.button outlineNoir encadré (flèche, Prendre rendez-vous). Libellé = contenu libre ctaLabel.",
+        "Décor du coin haut-droit PORTÉ (owner 2026-08-20) : vecteur monochrome extrait en assets/vectors/carte-categorie-decor.svg (stroke currentColor)."
+      ]
+    },
+    {
+      "id": "ds.categories-principales",
+      "name": "CategoriesPrincipales",
+      "version": "1.0.0",
+      "category": "section",
+      "sourceFigma": "2115:4277 (key 94f64a369a5db615d68935bb353614eaaadbffc2)",
+      "modele": "repeat de ds.carte-categorie dans une part grid ; enum FERMÉ colonnes {2,3} porté par l'extension de schéma E1 (layoutByProp.columns 2→3) ; style transmis à chaque carte (fixed-by-composition) ; wrap natif au-delà du compte. Axe menteur « Disposition » supprimé ; « Rdv » redevient une instance renseignée."
+    }
+  ],
+  "fideliteExtraction": {
+    "zeroCopieLocale": "les 3 copies locales converties en instances (Gate B) ; par construction, la section ne peut plus contenir de copie (repeat + component).",
+    "geometrieEnTokens": "ZÉRO mint (234 → 234 custom properties) : toute la géométrie de la source est déjà en jetons Piqueray. Un seul littéral géométrique nommé au registre (voile superposé, doctrine ds.hero).",
+    "regenerationDeterministe": "roundtrip contract→canvas→contract→code byte-identique ×2 (THE FULL LOOP RAN WITH ZERO AI).",
+    "differentielPropre": "npm run parity : 0 nouvelle dérive, 9 acquittements (dont CarteCategorie.Bouton — le Bouton vit dans la variante non-défaut Empile, comme Carte.Bouton). Cliché parity/snapshots/figma-components.json RAFRAÎCHI sur l'état post-mutation (solde la limite 017)."
+  },
+  "limitesNommees": [
+    "ctaType n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé (autorat assumé au Gate A).",
+    "texte est plat (text, non rich-text) : la composition repeat+arrayOf ne transporte que du texte plat — la plage forte « SupraMatic & ProMatic. » de ds.carte n'est pas reprise (limite de composition, pas esthétique).",
+    "ctaType n'est pas transporté PAR CARTE dans la section (arrayOf plat) — toutes les cartes rendent le CTA par défaut (lien) ; l'usage à CTA mixte (carte Maintenance bouton encadré) est porté hors composition (Odoo/usage).",
+    "Style superposé : le texte du master n'est pas lié aux props Titre/Texte (hardcodé) — le contrat lie les deux styles aux props partagées ; le binding/axe canvas est un suivi US3/sync.",
+    "Style superposé : hauteur de carte gouvernée par la rangée de grille (pas de token de hauteur) — la molécule seule (parité visuelle US3) rendra à sa taille de rangée.",
+    "TitreCategorie empilé (32px MEDIUM majuscules) hérite du défaut connu de ds.carte (pas de recette « Titre 3 medium ») — allowlisté, jamais absous ; nettoyage Medium→Regular = décision owner différée.",
+    "Description du master CategoriesPrincipales encore rédigée pour l'axe « Disposition » (prose périmée) — nettoyage de libellé canvas à faire (§VIII noms qui disent la vérité)."
+  ],
+  "propositionDsCarteV3": {
+    "decisionGateA": "retrait-categorie-v3 (validé Gate A)",
+    "statut": "PROPOSÉ ici, à exécuter APRÈS confirmation Gate C (Gate A : « à confirmer prop par prop au Gate C »)",
+    "propsARetirer": ["disposition: valeur categorie", "ctaLabel", "ctaIconLeftGlyph", "ctaIconRightGlyph"],
+    "partsARetirer": ["categorieImage", "TitreCategorie", "TexteCategorie", "Bouton (+ tokensByProp/literalsByProp categorie)"],
+    "effetVersion": "ds.carte 2.0.1 → 3.0.0 (majeur)",
+    "cascadeMesuree": [
+      "ds.reassurances (compose disposition=reassurance) : fonctionnellement intact, mais référence ds.carte — à re-vérifier.",
+      "text-styles gate : ds.carte perd son nœud custom TitreCategorie + ses nœuds catégorie → recompte (65/16 → à recalculer).",
+      "parity : le master canvas Carte garde la variante Categorie (2407:4905, cassée, orpheline 0 instance) → finding « figma ahead » à acquitter OU suppression de la variante orpheline (mutation canvas destructive, décision owner).",
+      "integrations/odoo/config/{inputs.lock.json, reassurances.authoring.json} : épinglage ds.carte 2.x → 3.0.0.",
+      "extract/figma/visual-parity/{subjects.ts, triage.ts} : sujet ds.carte catégorie à retirer/ajuster."
+    ],
+    "recommandation": "Confirmer la liste de props/parts, puis exécuter le retrait + les cascades en un lot, plutôt que de l'exécuter à l'aveugle avant revue (change majeur sur un contrat DIFFÉRENT, avec une décision de suppression de variante canvas)."
+  },
+  "portesVertes": "build, parity (0 nouvelle dérive), eval (N/N — voir proofs/gate-c.md), plugin:check, roundtrip ×2, core-browser, geometry:gate (invisible 0), tsc ×2, catalog.",
+  "decidedBy": "<owner — en attente>",
+  "decidedAt": "<en attente>",
+  "deviations": [],
+  "evidenceRefs": [
+    "audits/releve-extraction.md",
+    "contracts/carte-categorie.contract.json",
+    "contracts/categories-principales.contract.json",
+    "proofs/gate-c.md"
+  ]
+}

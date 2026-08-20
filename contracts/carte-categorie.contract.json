@@ -1,0 +1,418 @@
+{
+  "$schema": "./contract.schema.json",
+  "id": "ds.carte-categorie",
+  "name": "CarteCategorie",
+  "version": "1.0.0",
+  "description": "Piqueray CarteCategorie. Extracted from the cleaned Figma COMPONENT_SET on DS · Molécules (2495:6770), reviewed at Gate A — not authored. One category card with a single Style axis: `superpose` (photo plane + gradient scrim + white overlaid title/text + arrow affordance, ds.hero pattern) and `empile` (stacked photo + title/text + a governed ds.button CTA). Shared semantics: titre, texte, image, CTA label. Image URLs stay consumer/campaign inputs (route A5), never capture defaults.\n\nGouvernance (Gate A, 2026-08-20): le TYPE de CTA de la carte empilée est une option gouvernée `ctaType` {lien, bouton} — `lien` = bouton Link « Contactez-nous » à icônes pdf/download (reprise de ds.carte), `bouton` = bouton encadré outlineNoir « Prendre rendez-vous » à flèche (usage Maintenance/Rdv). Le libellé reste du contenu libre (`ctaLabel`).\n\nLimites nommées : (1) `ctaType` n'a PAS d'axe VARIANT sur le master (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé ; (2) le texte du style empilé perd la plage forte rich-text de ds.carte : la composition `repeat`+`arrayOf` de la section ne transporte que du texte plat (limite de composition, pas un choix esthétique) ; (3) le plan photo du style superposé est porté comme part d'anatomie absolue (A5, convention sav/devis), le master range ces pixels dans un paint IMAGE du root.",
+  "semantics": {
+    "element": "div",
+    "provenance": "extracted"
+  },
+  "props": [
+    {
+      "name": "style",
+      "type": {
+        "enum": [
+          "superpose",
+          "empile"
+        ]
+      },
+      "default": "superpose",
+      "bindings": {
+        "figma": {
+          "kind": "VARIANT",
+          "property": "Style",
+          "values": {
+            "superpose": "Superpose",
+            "empile": "Empile"
+          }
+        },
+        "code": {
+          "prop": "style"
+        }
+      }
+    },
+    {
+      "name": "ctaType",
+      "description": "Type de CTA gouverné de la carte empilée (Gate A, 2026-08-20). `lien` = ds.button Link à icônes pdf/download ; `bouton` = ds.button outlineNoir encadré à flèche. LIMITE NOMMÉE : le master CarteCategorie n'expose AUCUN axe VARIANT pour ce type (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé (autorat assumé au Gate A au-dessus d'une source incomplète). N'a d'effet que sur le style empilé.",
+      "type": {
+        "enum": [
+          "lien",
+          "bouton"
+        ]
+      },
+      "default": "lien",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "ctaType"
+        }
+      }
+    },
+    {
+      "name": "titre",
+      "type": "text",
+      "default": "Pour portes de garage",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Titre"
+        },
+        "code": {
+          "prop": "titre"
+        }
+      }
+    },
+    {
+      "name": "texte",
+      "description": "Corps de la carte. Type `text` (plat, non rich-text) DÉLIBÉRÉMENT : la section ds.categories-principales compose cette molécule via `repeat` sur une prop `arrayOf`, dont les champs sont plat par le schéma — un `texte` rich-text ne se transporterait pas par item. La plage forte « SupraMatic & ProMatic. » que porte ds.carte n'est donc pas reprise (limite de composition nommée, pas un choix esthétique).",
+      "type": "text",
+      "default": "SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.",
+      "bindings": {
+        "figma": {
+          "kind": "TEXT",
+          "property": "Texte"
+        },
+        "code": {
+          "prop": "texte"
+        }
+      }
+    },
+    {
+      "name": "imageUrl",
+      "description": "La ROUTE de l'image, jamais ses octets (gap A5, docs/FIGMA-CAPABILITY-MATRIX.md l.91 ; reprise verbatim de ds.carte.imageUrl). Défaut vide et il le reste ; le canevas dessine le lavis technique #D9D9D9, la photo maquette est hors contrat et préservée à la régénération par la passe de sauvetage.",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageUrl"
+        }
+      }
+    },
+    {
+      "name": "imageAlt",
+      "type": "text",
+      "default": "",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "imageAlt"
+        }
+      }
+    },
+    {
+      "name": "ctaLabel",
+      "description": "Libellé du CTA du style empilé — contenu libre (Gate A : le texte du CTA n'est jamais l'option). Binding NONE (précédent ds.carte.ctaLabel : la propriété TEXT vit sur le Button imbriqué, pas au niveau du set).",
+      "type": "text",
+      "default": "Contactez-nous",
+      "bindings": {
+        "figma": {
+          "kind": "NONE"
+        },
+        "code": {
+          "prop": "ctaLabel"
+        }
+      }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": {
+        "display": "flex",
+        "direction": "column"
+      },
+      "declared": {
+        "position": "relative"
+      },
+      "tokens": {
+        "font-family": "{font.family.montserrat}"
+      },
+      "tokensByProp": {
+        "prop": "style",
+        "map": {
+          "empile": {
+            "background-color": "{color.blanc}",
+            "gap": "{space.32}"
+          }
+        }
+      },
+      "layoutByProp": {
+        "prop": "style",
+        "map": {
+          "superpose": {
+            "justify": "end"
+          }
+        }
+      },
+      "parts": {
+        "photoSuperpose": {
+          "description": "Plan photo du style superposé (ds.hero.Background). Le master range ces pixels dans le paint IMAGE du root ; le contrat les porte comme part `img` absolue à route code-only (A5).",
+          "element": "img",
+          "attrs": {
+            "src": "{imageUrl}",
+            "alt": "{imageAlt}"
+          },
+          "declared": {
+            "position": "absolute",
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0",
+            "object-fit": "cover",
+            "z-index": "0"
+          },
+          "visibleWhen": {
+            "prop": "style",
+            "equals": "superpose"
+          }
+        },
+        "decor": {
+          "description": "Filet décoratif du coin haut-droit (vecteur monochrome extrait de la source, stroke currentColor). Décision owner 2026-08-20 : porté au contrat (fidèle à la source nettoyée).",
+          "vectorAsset": {
+            "asset": "carte-categorie-decor",
+            "width": 100,
+            "height": 131
+          },
+          "tokens": {
+            "color": "{color.blanc}"
+          },
+          "declared": {
+            "position": "absolute",
+            "top": "32px",
+            "right": "32px",
+            "z-index": "1"
+          },
+          "visibleWhen": {
+            "prop": "style",
+            "equals": "superpose"
+          }
+        },
+        "contenuSuperpose": {
+          "description": "Voile dégradé + contenu du style superposé, par-dessus la photo (z-index 2).",
+          "layout": {
+            "direction": "column"
+          },
+          "literals": {
+            "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%)"
+          },
+          "tokens": {
+            "gap": "{space.8}",
+            "padding-top": "{space.32}",
+            "padding-right": "{space.32}",
+            "padding-bottom": "{space.32}",
+            "padding-left": "{space.32}"
+          },
+          "declared": {
+            "position": "relative",
+            "z-index": "2"
+          },
+          "parts": {
+            "inner": {
+              "layout": {
+                "direction": "row",
+                "align": "end"
+              },
+              "tokens": {
+                "gap": "{space.16}"
+              },
+              "parts": {
+                "blocTexte": {
+                  "layout": {
+                    "direction": "column",
+                    "grow": true
+                  },
+                  "tokens": {
+                    "gap": "{space.8}"
+                  },
+                  "parts": {
+                    "TitreSuperpose": {
+                      "content": {
+                        "prop": "titre"
+                      },
+                      "tokens": {
+                        "color": "{color.blanc}",
+                        "font-size": "{font.size.40}",
+                        "font-weight": "{font.weight.regular}"
+                      },
+                      "literals": {
+                        "line-height": "50px"
+                      },
+                      "declared": {
+                        "text-transform": "uppercase"
+                      }
+                    },
+                    "TexteSuperpose": {
+                      "content": {
+                        "prop": "texte"
+                      },
+                      "tokens": {
+                        "color": "{color.blanc}",
+                        "font-size": "{font.size.18}",
+                        "font-weight": "{font.weight.regular}"
+                      },
+                      "literals": {
+                        "line-height": "27px"
+                      }
+                    }
+                  }
+                },
+                "Fleche": {
+                  "description": "Affordance flèche du style superposé — icône gouvernée arrow-right du registre (part officielle, jamais un calque caché — §VIII).",
+                  "icon": {
+                    "asset": "arrow-right",
+                    "size": 35
+                  },
+                  "tokens": {
+                    "color": "{color.blanc}"
+                  }
+                }
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "style",
+            "equals": "superpose"
+          }
+        },
+        "categorieImage": {
+          "description": "Plan photo du style empilé (reprise pixel de ds.carte disposition Categorie) : FILL horizontal, base 418px, croît/rétrécit vers la hauteur restante de l'instance.",
+          "element": "img",
+          "attrs": {
+            "src": "{imageUrl}",
+            "alt": "{imageAlt}"
+          },
+          "layout": {
+            "grow": true
+          },
+          "tokens": {
+            "height": "{size.carte.categorie-image}",
+            "min-height": "{space.0}"
+          },
+          "declared": {
+            "object-fit": "cover"
+          },
+          "visibleWhen": {
+            "prop": "style",
+            "equals": "empile"
+          }
+        },
+        "texteEmpile": {
+          "layout": {
+            "direction": "column"
+          },
+          "tokens": {
+            "gap": "{space.16}"
+          },
+          "parts": {
+            "TitreCategorie": {
+              "content": {
+                "prop": "titre"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.32}",
+                "font-weight": "{font.weight.medium}"
+              },
+              "literals": {
+                "line-height": "40px"
+              },
+              "declared": {
+                "text-align": "left",
+                "text-transform": "uppercase"
+              }
+            },
+            "TexteCategorie": {
+              "content": {
+                "prop": "texte"
+              },
+              "tokens": {
+                "color": "{color.noir-bleute}",
+                "font-size": "{font.size.18}",
+                "font-weight": "{font.weight.regular}"
+              },
+              "literals": {
+                "line-height": "27px"
+              },
+              "declared": {
+                "text-align": "left"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "style",
+            "equals": "empile"
+          }
+        },
+        "Bouton": {
+          "description": "CTA gouverné du style empilé. Deux instances ds.button mutuellement exclusives par `ctaType` : `lien` (Link, pdf/download) ou `bouton` (outlineNoir encadré, flèche). Le libellé est le contenu libre `ctaLabel`.",
+          "layout": {
+            "display": "flex",
+            "align": "start"
+          },
+          "declared": {
+            "align-self": "flex-start"
+          },
+          "parts": {
+            "lien": {
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "variant": "link",
+                  "children": "{ctaLabel}",
+                  "iconLeft": true,
+                  "iconRight": true,
+                  "iconLeftGlyph": "pdf",
+                  "iconRightGlyph": "download"
+                }
+              },
+              "visibleWhen": {
+                "prop": "ctaType",
+                "equals": "lien"
+              }
+            },
+            "bouton": {
+              "component": {
+                "id": "ds.button",
+                "props": {
+                  "variant": "outlineNoir",
+                  "children": "{ctaLabel}",
+                  "iconRight": true,
+                  "iconRightGlyph": "arrow-right"
+                }
+              },
+              "visibleWhen": {
+                "prop": "ctaType",
+                "equals": "bouton"
+              }
+            }
+          },
+          "visibleWhen": {
+            "prop": "style",
+            "equals": "empile"
+          }
+        }
+      }
+    }
+  },
+  "anchors": {
+    "figma": {
+      "fileKey": "d9FYAUcqdcNtsuaMgLefvJ",
+      "componentSetKey": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
+      "nodeId": "2495:6770",
+      "dumpedAt": "2026-08-20"
+    },
+    "code": {
+      "importPath": "src/components/CarteCategorie",
+      "export": "CarteCategorie"
+    }
+  },
+  "category": "molecule"
+}

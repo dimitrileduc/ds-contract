@@ -176,7 +176,7 @@ octet-identiques sur deux exécutions**.
       mock↔live sur `columns`/`repeat`, appliquer le double correctif (émetteur **et** mock).
 - [X] T025 [US1] E1 doc (claim APRÈS l'eval — Principe II ; le bump de docs/02 est le
       Principe VI) : documenter le champ `columns` dans `docs/02-contract-spec.md`.
-- [ ] T026 [US1] **Acquérir l'entrée d'extraction** : relevé frais **post-Gate B** de la source
+- [X] T026 [US1] **Acquérir l'entrée d'extraction** : relevé frais **post-Gate B** de la source
       nettoyée (dump des 2 masters — REST `FIGMA_TOKEN` ou pont —, consigné sous `audits/` ; dump
       volumineux non committé, reproductible, précédent 007), **jamais le cliché périmé** ; puis
       extraire le **contrat molécule** →
@@ -184,19 +184,31 @@ octet-identiques sur deux exécutions**.
       v1.0.0) : axe `style` {superpose, empile}, sémantique partagée (titre, description, lien,
       image), flèche du style superposé, `ds.button variant: link` du style empilé, enfants en
       **Fill** — **géométrie portée en tokens, jamais en littéraux** (FR-013).
-- [ ] T027 [US1] Extraire le **contrat section** →
+- [X] T027 [US1] Extraire le **contrat section** →
       `contracts/categories-principales.contract.json` (`ds.categories-principales`,
       `category: "section"`, v1.0.0) : `repeat` de la molécule + **enum colonnes {2,3}** via
       `layoutByProp` (E1), `style` transmis à la carte (`component.props: {style: "{style}"}`),
       wrap natif au-delà du compte (FR-014, FR-018) — dépend de T026.
-- [ ] T028 [P] [US1] Mints **from-dump** dans `tokens/primitives.tokens.json` :
+- [X] T028 [P] [US1] Mints **from-dump** dans `tokens/primitives.tokens.json` :
       `size.carte-categorie.*` / `size.categories-principales.*` pour la géométrie manquante,
       réutilisation des `space.N` existants — zéro nombre écrit à la main (D12, geometry-rides-tokens).
+      **▸ 2026-08-20 : ZÉRO mint requis.** Toute la géométrie relevée était déjà en jetons Piqueray
+      (`size.carte.{root-categorie,categorie-image}`, `space.{0,8,16,32,64}`, `radius.32`,
+      `border-width.1`, `color.{blanc,noir-bleute}`, `font.*`). Build : 234 → 234 custom properties.
+      Un seul littéral géométrique nommé au registre (`carte-categorie-scrim-named-literal`, voile
+      superposé, doctrine ds.hero) — `geometry:gate` reste à invisible 0.
 - [ ] T029 [P] [US1] **Si** le Gate A a retenu le retrait : `ds.carte` → **v3.0.0** (majeur, retrait
       de `disposition: categorie` + props CTA associées) dans `contracts/carte.contract.json`,
       `ds.reassurances` fonctionnellement intact, rafraîchir `integrations/odoo/config/inputs.lock.json`
       + configs authoring citant `ds.carte 2.x` (D3). **Sinon** : consigner la coexistence comme
       **dette nommée** (Principe V) — pas de no-op silencieux.
+      **▸ 2026-08-20 : PROPOSÉ au Gate C, PAS exécuté.** Gate A a retenu retrait-categorie-v3 ET a
+      explicitement renvoyé la confirmation « prop par prop **au Gate C** ». Le retrait est un change
+      MAJEUR sur un contrat DIFFÉRENT avec cascade mesurée (recompte text-styles, variante canvas
+      orpheline 2407:4905 → parity, `inputs.lock.json`/`reassurances.authoring.json`, sujets
+      visual-parity) + une décision de suppression de variante canvas. Liste props/parts + cascade
+      dans `gates/gate-c-contrats.json` (`propositionDsCarteV3`). À exécuter en un lot **après**
+      confirmation Gate C — pas à l'aveugle avant revue.
 - [ ] T030 [US1] **Rafraîchir d'abord (lecture seule) `parity/snapshots/figma-components.json`**
       sur l'état post-mutation — sans ce refresh, l'axe canvas du sweep compare les nouveaux
       contrats au cliché périmé du 2026-08-07 (limite nommée de 017) : rouge trompeur ou
@@ -204,8 +216,10 @@ octet-identiques sur deux exécutions**.
       invisible) + `npm run catalog` (leçon 018 : le build ne le régénère pas) ; **3 re-pins revus**
       (`evals/golden.json`, `figma-sync/plugin/engine.receipt.json`, `examples/polaris/figma/*.figma.js`) ;
       roundtrip déterministe **×2 octet-identique** (FR-015, SC-006) — dépend de T020–T029.
-- [ ] T031 [US1] Produire `gates/gate-c-contrats.json` (`status: proposed`) : référence du diff
+- [X] T031 [US1] Produire `gates/gate-c-contrats.json` (`status: proposed`) : référence du diff
       révisable (commit/PR + versions des deux contrats).
+      **▸ 2026-08-20** : `gates/gate-c-contrats.json` (proposed) + trace `proofs/gate-c.md` rédigés —
+      diff des 2 contrats + proposition ds.carte v3 (T029) + limites nommées. `commitRef` posé au commit.
 
 - [ ] T032 [US1] ⛔ **GATE C** — présenter le **diff des deux contrats** à l'owner comme revue
       design system (le diff EST la revue, Principe VI ; FR-003) ; validation ;

@@ -191,17 +191,30 @@ const custom = plain.filter(({ node }) => !node.textStyle);
 // Style gouverné), relevés par l'audit du run
 // specs/component-repairs/review-card/run-001/audit.json. Ce compte les
 // dénombre, il ne les absout pas.
-if (linked.length !== 62 || custom.length !== 15 || rich.length !== 21) {
-  fail(`global gate expected 62 linked / 15 historical custom / 21 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
+// 2026-08-20 (spec 023) : 62 -> 65 linked, 15 -> 16 custom. Les deux contrats
+// gouvernés carte-categorie + categories-principales ajoutent quatre textes.
+// TROIS rident un Text Style gouverné (Titre 2 majuscules 40/Regular/UPPER pour
+// le titre superposé, Texte 18/Regular pour les deux corps) — d'où +3 linked. Le
+// QUATRIÈME, `TitreCategorie` du style empilé (32px MEDIUM majuscules), n'a pas
+// de recette : c'est EXACTEMENT le défaut que ds.carte porte déjà sur son propre
+// TitreCategorie (le set n'a pas de « Titre 3 medium majuscules » ; « Titre 3
+// majuscules » est Regular). ds.carte-categorie reprend ce texte au pixel depuis
+// la source (§VIII : on ne corrige pas un défaut de source en code), donc il
+// hérite du défaut — allowlisté comme ds.carte, jamais absous. Nettoyage de
+// source (Medium -> Regular) = décision owner différée (Gate C).
+if (linked.length !== 65 || custom.length !== 16 || rich.length !== 21) {
+  fail(`global gate expected 65 linked / 16 historical custom / 21 rich; got ${linked.length} / ${custom.length} / ${rich.length}. Custom:\n${custom.map(({ key }) => key).join('\n')}`);
 }
 const customOwners = custom.reduce<Record<string, number>>((counts, { key }) => {
   const owner = key.split('#')[0];
   counts[owner] = (counts[owner] ?? 0) + 1;
   return counts;
 }, {});
-const expectedCustomOwners = { 'ds.carte': 1, 'ds.google-reviews': 5, 'ds.review-card': 9 };
+// Ordre = ordre de rencontre des nœuds custom (readdir des contrats) : "carte-categorie"
+// trie AVANT "carte" ('-' 0x2D < '.' 0x2E), donc ds.carte-categorie précède ds.carte.
+const expectedCustomOwners = { 'ds.carte-categorie': 1, 'ds.carte': 1, 'ds.google-reviews': 5, 'ds.review-card': 9 };
 if (JSON.stringify(customOwners) !== JSON.stringify(expectedCustomOwners)) {
   fail(`historical custom allowlist drifted: ${JSON.stringify(customOwners)}`);
 }
 
-console.log('figma-text-styles-piqueray ok: 18 independent recipes; strict marker preflight; 62 linked / 15 historical custom / 21 rich; second token apply preserves ids');
+console.log('figma-text-styles-piqueray ok: 18 independent recipes; strict marker preflight; 65 linked / 16 historical custom / 21 rich; second token apply preserves ids');

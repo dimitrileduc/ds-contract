@@ -3,6 +3,8 @@ export * from './Avantage';
 export * from './Button';
 export * from './CarouselControls';
 export * from './Carte';
+export * from './CarteCategorie';
+export * from './CategoriesPrincipales';
 export * from './Checkbox';
 export * from './Coordonnees';
 export * from './Copyright';

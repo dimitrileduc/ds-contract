@@ -1,7 +1,7 @@
 {
   "id": "ds.hero",
   "name": "Hero",
-  "version": "1.6.0",
+  "version": "1.5.0",
   "status": "draft",
   "category": "section",
   "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
@@ -10,12 +10,6 @@
     "componentSetKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a"
   },
   "props": [
-    {
-      "name": "ctaHref",
-      "type": "string",
-      "default": "#",
-      "description": "Code-only navigation target of the hero CTA — a CTA navigates, so web surfaces render the Bouton part as a LINK carrying this target. Site-relative by convention ('/devis', '#ancre'): the host never enters governed content. The canvas has no link concept — NONE binding, same class as backgroundUrl."
-    },
     {
       "name": "backgroundUrl",
       "type": "string",
