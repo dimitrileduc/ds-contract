@@ -153,27 +153,44 @@ export const TEXTE_SEO_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_texte_seo ${part}`);
 export const TEXTE_SEO_RICH_TEXT =
     '.s_pqr_texte_seo [data-pqr-part="texte-seo-title"]';
-/** ODOO-022 (US1) — Coordonnées : « du texte et des liens réseaux sociaux »
- *  (mots owner). Accroche (eyebrow, routée C3), titre (rich-text C4),
- *  étiquettes/valeurs Adresse/Horaires/Contact/Suivez-nous, et le bloc Tél/Email
- *  (marques link+line-break, Q-C1 Option A). Le soulignement du bloc contact et
- *  la couleur des ancres sociales sont posés au pont, jamais au contrat. */
+/** ODOO-022 (US1) — Coordonnées, périmètre RESSERRÉ (retour au gate 2026-08-20,
+ *  owner) : le rédacteur édite le contenu, PAS la structure. Sont éditables : le
+ *  titre (rich `strong`), les VALEURS Adresse/Horaires, et le bloc Tél/Email
+ *  (liens). Sont VERROUILLÉS (fixés par composition) : l'accroche « Contact » et
+ *  les 4 étiquettes de champ (Adresse, Horaires, Contact, Suivez-nous) — ce sont
+ *  des libellés de structure, identiques d'un site à l'autre. */
 export const COORDONNEES_EDITABLE_PARTS = [
-    '[data-pqr-part="section-header-eyebrow"]',
     '[data-pqr-part="coordonnees-title"]',
-    '[data-pqr-part="coordonnees-address-label"]',
     '[data-pqr-part="coordonnees-address-value"]',
-    '[data-pqr-part="coordonnees-hours-label"]',
     '[data-pqr-part="coordonnees-hours-value"]',
-    '[data-pqr-part="coordonnees-contact-label"]',
     '[data-pqr-part="coordonnees-contact-block"]',
-    '[data-pqr-part="coordonnees-social-label"]',
 ].map((part) => `.s_pqr_coordonnees ${part}`);
-/** Seul le titre porte la marque `strong` ; le bloc contact porte link+line-break
- *  (barre native + garde au save), les valeurs Adresse/Horaires portent
- *  line-break (touche Entrée, aucun bouton). */
+/** Seul le titre porte la marque `strong` (bouton Gras). */
 export const COORDONNEES_RICH_TEXT =
     '.s_pqr_coordonnees [data-pqr-part="coordonnees-title"]';
+/** Barre d'outils ALIGNÉE sur l'allowlist du save : ces zones n'exposent AUCUN
+ *  bouton de mise en forme. Les valeurs Adresse/Horaires sont du texte simple
+ *  (retour à la ligne à la touche Entrée) ; le bloc Tél/Email n'autorise que les
+ *  liens — édités via le popover natif de lien, pas via une barre de formatage.
+ *  Sans ça, Odoo montrait la barre native complète (gras, italique, couleurs…)
+ *  alors que le garde retire tout au save — des boutons qui ne « collent » pas. */
+export const COORDONNEES_NO_FORMAT = [
+    '[data-pqr-part="coordonnees-address-value"]',
+    '[data-pqr-part="coordonnees-hours-value"]',
+    '[data-pqr-part="coordonnees-contact-block"]',
+].map((part) => `.s_pqr_coordonnees ${part}`).join(", ");
+/** VERROU DUR des textes de structure. Quand une VALEUR (span inline) est
+ *  rouverte, Odoo rend son bloc PARENT `contenteditable` pour l'héberger — et
+ *  l'étiquette voisine hérite alors de l'éditabilité. On déclare donc ces textes
+ *  explicitement non-éditables (contenteditable=false), ce qui prime sur l'héritage.
+ *  Scopé à Coordonnées : l'accroche « Contact » + les 4 étiquettes de champ. */
+export const COORDONNEES_LOCKED_TEXT = [
+    '[data-pqr-part="section-header-eyebrow"]',
+    '[data-pqr-part="coordonnees-address-label"]',
+    '[data-pqr-part="coordonnees-hours-label"]',
+    '[data-pqr-part="coordonnees-contact-label"]',
+    '[data-pqr-part="coordonnees-social-label"]',
+].map((part) => `.s_pqr_coordonnees ${part}`);
 /** ODOO-022 (US2) — Réassurances : SEULES les cartes s'éditent (titre simple,
  *  texte rich `strong`) + le libellé du CTA. L'en-tête est FIXÉ par composition
  *  (R3), donc absent des zones rouvertes ; les glyphes/variante du CTA aussi. Les
@@ -468,7 +485,9 @@ export class PiquerayAuthoringPlugin extends Plugin {
     /** @type {import("plugins").WebsiteResources} */
     resources = {
         // Fermeture : la racine et tout son sous-arbre sortent de l'édition.
-        content_not_editable_selectors: [...PIQUERAY_ROOTS],
+        // + verrou dur des textes de structure de Coordonnées (l'ouverture d'une
+        // valeur inline rend son bloc parent éditable et contaminerait l'étiquette).
+        content_not_editable_selectors: [...PIQUERAY_ROOTS, ...COORDONNEES_LOCKED_TEXT],
         // Réouverture NOMMÉE. Elle fonctionne malgré la fermeture ci-dessus
         // parce que `isDescendantOfNotEditableNotSnippet()` ne bloque pas un
         // `.o_not_editable` situé dans un `[data-snippet]` — et nos racines en
@@ -569,7 +588,10 @@ export class PiquerayAuthoringPlugin extends Plugin {
             if (!targetedNodes.length) return undefined;
             const tousDans = (selecteur) =>
                 targetedNodes.every((node) => closestElement(node, selecteur));
-            if (tousDans(PIQUERAY_PLAIN_TEXT)) return DISABLED_NAMESPACE;
+            // Aucune barre de mise en forme : texte simple, PLUS les zones
+            // Coordonnées alignées sur l'allowlist (valeurs + bloc contact). Le
+            // popover natif de lien reste disponible séparément sur le bloc contact.
+            if (tousDans(PIQUERAY_PLAIN_TEXT) || tousDans(COORDONNEES_NO_FORMAT)) return DISABLED_NAMESPACE;
             if (tousDans(PIQUERAY_RICH_TEXT)) return PIQUERAY_STRONG_NAMESPACE;
             return undefined;
         },

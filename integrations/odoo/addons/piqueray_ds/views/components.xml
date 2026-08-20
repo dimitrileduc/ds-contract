@@ -413,15 +413,15 @@
       <div class="coordonnees__wrapper oe_unremovable oe_unmovable" data-pqr-part="coordonnees-wrapper">
         <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'Contact'"/><t t-set="title_part" t-value="'coordonnees-title'"/><t t-set="title_html"><span>Pourquoi choisir Piqueray ?</span></t></t>
         <div class="coordonnees__Adresse oe_unremovable oe_unmovable" data-pqr-part="coordonnees-address">
-          <span class="coordonnees__AdresseEtiquette o_pqr_editable" data-pqr-part="coordonnees-address-label" data-pqr-marks="">Adresse</span>
-          <span class="coordonnees__AdresseValeur o_pqr_editable" data-pqr-part="coordonnees-address-value" data-pqr-marks="line-break">Rue Alfred Drèze 7, 4860 Pepinster</span>
+          <span class="coordonnees__AdresseEtiquette" data-pqr-part="coordonnees-address-label">Adresse</span>
+          <span class="coordonnees__AdresseValeur o_pqr_editable" data-pqr-part="coordonnees-address-value" data-pqr-marks="link"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rue+Alfred+Dr%C3%A8ze+7%2C+4860+Pepinster" target="_blank" rel="noopener noreferrer">Rue Alfred Drèze 7, 4860 Pepinster</a></span>
         </div>
         <div class="coordonnees__Horaires oe_unremovable oe_unmovable" data-pqr-part="coordonnees-hours">
-          <span class="coordonnees__HorairesEtiquette o_pqr_editable" data-pqr-part="coordonnees-hours-label" data-pqr-marks="">Horaires</span>
+          <span class="coordonnees__HorairesEtiquette" data-pqr-part="coordonnees-hours-label">Horaires</span>
           <span class="coordonnees__HorairesValeur o_pqr_editable" data-pqr-part="coordonnees-hours-value" data-pqr-marks="line-break">Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00</span>
         </div>
         <div class="coordonnees__Contact oe_unremovable oe_unmovable" data-pqr-part="coordonnees-contact">
-          <span class="coordonnees__ContactEtiquette o_pqr_editable" data-pqr-part="coordonnees-contact-label" data-pqr-marks="">Contact</span>
+          <span class="coordonnees__ContactEtiquette" data-pqr-part="coordonnees-contact-label">Contact</span>
           <!-- Q-C1 = Option A : tél/email en vrais liens tel:/mailto: (marque
                link) ; le saut de ligne du contrat est un `\n` rendu par
                white-space: pre-line (marque line-break). rich_text_guard garde A
@@ -431,13 +431,13 @@
 Email: <a href="mailto:info@piqueray.be">info@piqueray.be</a></span>
         </div>
         <div class="coordonnees__suivezNous oe_unremovable oe_unmovable" data-pqr-part="coordonnees-social">
-          <span class="coordonnees__SuivezNousEtiquette o_pqr_editable" data-pqr-part="coordonnees-social-label" data-pqr-marks="">Suivez-nous</span>
+          <span class="coordonnees__SuivezNousEtiquette" data-pqr-part="coordonnees-social-label">Suivez-nous</span>
           <div class="coordonnees__rseauxSociaux oe_unremovable oe_unmovable" data-pqr-part="coordonnees-social-icons">
             <!-- Q-C2 = Option A : icônes cliquables, URL réglée au panneau
                  (SetLinkHrefAction, même grammaire CTA-href). L'icône elle-même
                  n'est jamais remplaçable ; l'ancre est inerte en édition (pont). -->
-            <span class="coordonnees__Facebook oe_unremovable oe_unmovable" aria-hidden="true" data-pqr-part="coordonnees-facebook"><a href="#" data-pqr-part="coordonnees-facebook-link"><t t-call="piqueray_ds.pqr_facebook"/></a></span>
-            <span class="coordonnees__Instagram oe_unremovable oe_unmovable" aria-hidden="true" data-pqr-part="coordonnees-instagram"><a href="#" data-pqr-part="coordonnees-instagram-link"><t t-call="piqueray_ds.pqr_instagram"/></a></span>
+            <span class="coordonnees__Facebook oe_unremovable oe_unmovable" aria-hidden="true" data-pqr-part="coordonnees-facebook"><a href="#" data-pqr-part="coordonnees-facebook-link" target="_blank" rel="noopener noreferrer"><t t-call="piqueray_ds.pqr_facebook"/></a></span>
+            <span class="coordonnees__Instagram oe_unremovable oe_unmovable" aria-hidden="true" data-pqr-part="coordonnees-instagram"><a href="#" data-pqr-part="coordonnees-instagram-link" target="_blank" rel="noopener noreferrer"><t t-call="piqueray_ds.pqr_instagram"/></a></span>
           </div>
         </div>
       </div>

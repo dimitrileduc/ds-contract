@@ -262,4 +262,20 @@
     <field name="url">/piqueray-harness/reassurances-visual</field><field name="view_id" ref="harness_reassurances_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-022-HARNESS-REASSURANCES END -->
+  <!-- ODOO-022-HARNESS-DEMO BEGIN -->
+  <!-- Pages de DÉMO pleine largeur (fluides) : le bloc est rendu directement,
+       sans cadre de mesure à largeur fixe — pour juger le responsive à l'oeil. -->
+  <template id="harness_reassurances_demo" name="Piqueray — Réassurances démo (pleine largeur)">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><t t-call="piqueray_ds.s_pqr_reassurances"/></div></t>
+  </template>
+  <record id="page_harness_reassurances_demo" model="website.page">
+    <field name="url">/piqueray-harness/reassurances-demo</field><field name="view_id" ref="harness_reassurances_demo"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_coordonnees_demo" name="Piqueray — Coordonnées démo (pleine largeur)">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><t t-call="piqueray_ds.s_pqr_coordonnees"/></div></t>
+  </template>
+  <record id="page_harness_coordonnees_demo" model="website.page">
+    <field name="url">/piqueray-harness/coordonnees-demo</field><field name="view_id" ref="harness_coordonnees_demo"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-022-HARNESS-DEMO END -->
 </odoo>

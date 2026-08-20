@@ -11,23 +11,24 @@
     "[pass] racine — actions Odoo interdites absentes du chrome visible — attendu « save-as-custom, resize, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0} »",
     "[pass] défaut — bloc contact = liens tel:/mailto: + saut de ligne (pre-line) — attendu « tel: + mailto: + white-space pre-line », observé « {\"tel\":\"tel:+3287463266\",\"mail\":\"mailto:info@piqueray.be\",\"ws\":\"pre-line\"} »",
     "[pass] défaut — plan Google en placeholder (aucun src) — attendu « src absent (placeholder) », observé « src=null »",
-    "[pass] éditions autorisées — accroche, titre et étiquette reçoivent la frappe — attendu « les trois zones acceptent la frappe au clic humain », observé « {\"eyebrow\":\"ContactNous joindre —\",\"title\":\"Pourquoi choisir Piqueray ?★\",\"addr\":\"AdresseNos\"} »",
-    "[pass] tentative interdite — plan et wrapper structurel ne sont pas éditables — attendu « contenteditable ≠ true sur le plan et le wrapper », observé « map=null wrapper=null »",
+    "[pass] défaut — adresse = lien Google Maps en nouvel onglet — attendu « href Google Maps + target=_blank », observé « {\"link\":\"https://www.google.com/maps/search/?api=1&query=Rue+Alfred+Dr%C3%A8ze+7%2C+4860+Pepinster\",\"target\":\"_blank\"} »",
+    "[pass] éditions autorisées — titre et valeur horaires reçoivent la frappe — attendu « titre + valeur horaires acceptent la frappe », observé « {\"title\":\"Pourquoi choisir Piqueray ?★\",\"hours\":\"Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ZZ\"} »",
+    "[pass] tentatives interdites — accroche, 4 étiquettes, plan et wrapper refusent la frappe — attendu « 5 zones de structure refusent la frappe + plan/wrapper non contenteditable », observé « refusées: accroche, etiquetteAdresse, etiquetteHoraires, etiquetteContact, etiquetteSuivezNous · map=null wrapper=null »",
     "[pass] lien Facebook — gouverné au panneau (origine repliée, javascript refusé, https accepté) — attendu « absolu même origine → /promo · javascript: ignoré · https accepté », observé « replié: /promo · injection: /promo · final: https://facebook.com/piqueray »",
-    "[pass] isolation — édition de B laisse A intacte — attendu « A = « Nous joindre… » · B = « Instance B… » », observé « [\"ContactNous joindre —\",\"ContactInstance B —\"] »",
+    "[pass] isolation — édition de B laisse A intacte — attendu « A horaires « …ZZ » · B horaires « B0… » », observé « [\"Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ZZ\",\"Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00B0\"] »",
     "[pass] save — Odoo persiste les deux instances — attendu « RPC save 2xx », observé « HTTP 200 »",
-    "[pass] public — deux instances et éditions persistées — attendu « HTTP 200 · A et B distinctes », observé « [\"ContactNous joindre —\",\"ContactInstance B —\"] »",
+    "[pass] public — deux instances et éditions persistées — attendu « HTTP 200 · A et B distinctes », observé « [\"Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ZZ\",\"Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00B0\"] »",
     "[pass] public — bloc contact : liens conservés, italique et URL exécutable retirés — attendu « ≥2 liens · 0 em/script · 0 URL exécutable », observé « {\"contactLinks\":3,\"forbiddenTags\":0,\"executableUrls\":[]} »",
     "[pass] w-auto — zéro débordement à 1728 et 1440, wrapper 576 tenu, plan fléchit — attendu « 0 overflow · wrapper≈576 · mapWidth(1440) < mapWidth(1728) », observé « [{\"viewportWidth\":1728,\"rootWidth\":1728,\"rootOverflow\":0,\"wrapperWidth\":576,\"mapWidth\":1152},{\"viewportWidth\":1440,\"rootWidth\":1440,\"rootOverflow\":0,\"wrapperWidth\":576,\"mapWidth\":864}] »",
-    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 instances persistées », observé « [\"ContactNous joindre —\",\"ContactInstance B —\"] »"
+    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 instances persistées », observé « [\"Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00ZZ\",\"Du lundi au vendredi de 8h00 à 12h00 et de 13h30 à 17h00B0\"] »"
   ],
   "artifacts": [
     {
       "path": "specs/019-odoo-production-foundation/proofs/coordonnees-functional.public.json",
-      "sha256": "5208cff6f232ddfe4d35fc3e9d0934cff6d60ff9db005bd3f3561b83bd05db60",
+      "sha256": "8891c7b5452ec05fc193c7640e73ed8bb1ca7f0d3f1c935b750e3085261c3b79",
       "kind": "json"
     }
   ],
   "limitCodes": [],
-  "durationMs": 109846
+  "durationMs": 111888
 }

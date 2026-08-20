@@ -51,6 +51,8 @@ async function readState(page: { locator: (selector: string) => any }): Promise<
       title: root.querySelector('[data-pqr-part="coordonnees-title"]')?.textContent?.trim() ?? '',
       addressLabel: root.querySelector('[data-pqr-part="coordonnees-address-label"]')?.textContent?.trim() ?? '',
       addressValue: root.querySelector('[data-pqr-part="coordonnees-address-value"]')?.textContent?.trim() ?? '',
+      addressLink: root.querySelector('[data-pqr-part="coordonnees-address-value"] a')?.getAttribute('href') ?? '',
+      addressTarget: root.querySelector('[data-pqr-part="coordonnees-address-value"] a')?.getAttribute('target') ?? '',
       hoursValue: root.querySelector('[data-pqr-part="coordonnees-hours-value"]')?.textContent?.trim() ?? '',
       contactText: bloc?.textContent?.trim() ?? '',
       telHref: bloc?.querySelector('a[href^="tel:"]')?.getAttribute('href') ?? '',
@@ -141,27 +143,37 @@ async function main() {
       const mapSrc = await first.locator('[data-pqr-part="coordonnees-map"]').getAttribute('src');
       receipt.constateSi('défaut — plan Google en placeholder (aucun src)', !mapSrc, 'src absent (placeholder)', `src=${JSON.stringify(mapSrc)}`);
 
-      // Éditions AUTORISÉES (clic humain) : accroche + titre + étiquette adresse.
-      const eyebrow = first.locator('[data-pqr-part="section-header-eyebrow"]');
-      const eyebrowAfter = await frapperAuClicHumain(eyebrow, 'Nous joindre — ');
+      // Défaut — l'adresse est un lien Google Maps qui ouvre un nouvel onglet.
+      receipt.constateSi('défaut — adresse = lien Google Maps en nouvel onglet',
+        /maps\.google|google\.com\/maps/.test(defaults.addressLink) && defaults.addressTarget === '_blank',
+        'href Google Maps + target=_blank',
+        JSON.stringify({ link: defaults.addressLink, target: defaults.addressTarget }));
+
+      // Éditions AUTORISÉES (clic humain) — SEUL le CONTENU : titre + valeurs.
       const title = first.locator('[data-pqr-part="coordonnees-title"]');
       const titleAfter = await frapperAuClicHumain(title, '★ ');
-      const addr = first.locator('[data-pqr-part="coordonnees-address-label"]');
-      const addrAfter = await frapperAuClicHumain(addr, 'Nos ');
-      receipt.constateSi('éditions autorisées — accroche, titre et étiquette reçoivent la frappe',
-        eyebrowAfter?.includes('Nous joindre') === true && titleAfter?.includes('★') === true && addrAfter?.includes('Nos') === true,
-        'les trois zones acceptent la frappe au clic humain',
-        JSON.stringify({ eyebrow: eyebrowAfter, title: titleAfter, addr: addrAfter }));
+      const hoursAfter = await frapperAuClicHumain(first.locator('[data-pqr-part="coordonnees-hours-value"]'), 'ZZ');
+      receipt.constateSi('éditions autorisées — titre et valeur horaires reçoivent la frappe',
+        titleAfter?.includes('★') === true && hoursAfter?.includes('ZZ') === true,
+        'titre + valeur horaires acceptent la frappe',
+        JSON.stringify({ title: titleAfter, hours: hoursAfter }));
 
-      // Tentative INTERDITE — geste de texte direct sur le plan (média, non
-      // éditable) : la frappe ne doit rien insérer (edge « verrou contourné »).
-      const map = first.locator('[data-pqr-part="coordonnees-map"]');
-      const mapCE = await map.getAttribute('contenteditable');
+      // Tentatives INTERDITES — la STRUCTURE ne s'édite pas (re-décision
+      // 2026-08-20) : accroche + les 4 étiquettes verrouillées (verrou dur), plus
+      // le plan média et le wrapper structurel. Edge « verrou contourné » (018).
+      const verrous: Record<string, string> = { accroche: 'section-header-eyebrow', etiquetteAdresse: 'coordonnees-address-label', etiquetteHoraires: 'coordonnees-hours-label', etiquetteContact: 'coordonnees-contact-label', etiquetteSuivezNous: 'coordonnees-social-label' };
+      const refuses: string[] = [];
+      for (const [nom, part] of Object.entries(verrous)) {
+        const avant = ((await first.locator(`[data-pqr-part="${part}"]`).textContent().catch(() => '')) ?? '').trim();
+        const apres = await frapperAuClicHumain(first.locator(`[data-pqr-part="${part}"]`), 'ZZ');
+        if (apres === null || !apres.includes('ZZ') || apres === avant) refuses.push(nom);
+      }
+      const mapCE = await first.locator('[data-pqr-part="coordonnees-map"]').getAttribute('contenteditable');
       const wrapperCE = await first.locator('[data-pqr-part="coordonnees-wrapper"]').getAttribute('contenteditable');
-      receipt.constateSi('tentative interdite — plan et wrapper structurel ne sont pas éditables',
-        mapCE !== 'true' && wrapperCE !== 'true',
-        'contenteditable ≠ true sur le plan et le wrapper',
-        `map=${mapCE} wrapper=${wrapperCE}`);
+      receipt.constateSi('tentatives interdites — accroche, 4 étiquettes, plan et wrapper refusent la frappe',
+        refuses.length === 5 && mapCE !== 'true' && wrapperCE !== 'true',
+        '5 zones de structure refusent la frappe + plan/wrapper non contenteditable',
+        `refusées: ${refuses.join(', ')} · map=${mapCE} wrapper=${wrapperCE}`);
 
       // Liens réseaux sociaux au panneau (Q-C2) — grammaire CTA-href.
       await select(frame, first);
@@ -175,15 +187,14 @@ async function main() {
         'absolu même origine → /promo · javascript: ignoré · https accepté',
         `replié: ${fbReplie} · injection: ${fbInjection} · final: ${fbFinal}`);
 
-      // Isolation : édition de la deuxième instance sans toucher la première.
+      // Isolation : édition de B (valeur horaires) sans toucher A.
       await select(frame, second);
-      const eyebrowB = second.locator('[data-pqr-part="section-header-eyebrow"]');
-      await frapperAuClicHumain(eyebrowB, 'Instance B — ');
+      await frapperAuClicHumain(second.locator('[data-pqr-part="coordonnees-hours-value"]'), 'B0 ');
       const edited = await readState(frame);
       receipt.constateSi('isolation — édition de B laisse A intacte',
-        edited.length === 2 && edited[0].eyebrow.includes('Nous joindre') && edited[1].eyebrow.includes('Instance B') && !edited[1].eyebrow.includes('Nous joindre'),
-        'A = « Nous joindre… » · B = « Instance B… »',
-        JSON.stringify(edited.map((e) => e.eyebrow)));
+        edited.length === 2 && edited[0].hoursValue.includes('ZZ') && edited[1].hoursValue.includes('B0') && !edited[1].hoursValue.includes('ZZ'),
+        'A horaires « …ZZ » · B horaires « B0… »',
+        JSON.stringify(edited.map((e) => e.hoursValue)));
 
       // Insertion hostile dans le bloc contact — la garde ne doit garder que
       // link + line-break à la sauvegarde.
@@ -218,7 +229,7 @@ async function main() {
       }));
       const responsive = await readResponsiveLayout(page);
       receipt.artefact(path.join(PROOFS, 'coordonnees-functional.public.json'), Buffer.from(JSON.stringify({ status: response?.status(), state, safety, responsive }, null, 2) + '\n'), 'json');
-      receipt.constateSi('public — deux instances et éditions persistées', response?.status() === 200 && state.length === 2 && state[0].eyebrow.includes('Nous joindre') && state[1].eyebrow.includes('Instance B'), 'HTTP 200 · A et B distinctes', JSON.stringify(state.map((s) => s.eyebrow)));
+      receipt.constateSi('public — deux instances et éditions persistées', response?.status() === 200 && state.length === 2 && state[0].hoursValue.includes('ZZ') && state[1].hoursValue.includes('B0'), 'HTTP 200 · A et B distinctes', JSON.stringify(state.map((s) => s.hoursValue)));
       receipt.constateSi('public — bloc contact : liens conservés, italique et URL exécutable retirés', safety.contactLinks >= 2 && safety.forbiddenTags === 0 && safety.executableUrls.length === 0, '≥2 liens · 0 em/script · 0 URL exécutable', JSON.stringify(safety));
       receipt.constateSi('w-auto — zéro débordement à 1728 et 1440, wrapper 576 tenu, plan fléchit',
         responsive.length === 2 && responsive.every((o) => o.rootOverflow !== undefined && o.rootOverflow <= 0.5 && Math.abs((o.wrapperWidth ?? 0) - 576) <= 2) && (responsive[1].mapWidth ?? 9999) < (responsive[0].mapWidth ?? 0),
@@ -233,7 +244,7 @@ async function main() {
       const page = await reopened.context.newPage();
       const frame = await enterEditor(page, env);
       const state = frame ? await readState(frame) : [];
-      receipt.constateSi('éditeur rouvert — DOM sauvegardé relu sans état parallèle', state.length === 2 && state[0].eyebrow.includes('Nous joindre') && state[1].eyebrow.includes('Instance B'), '2 instances persistées', JSON.stringify(state.map((s) => s.eyebrow)));
+      receipt.constateSi('éditeur rouvert — DOM sauvegardé relu sans état parallèle', state.length === 2 && state[0].hoursValue.includes('ZZ') && state[1].hoursValue.includes('B0'), '2 instances persistées', JSON.stringify(state.map((s) => s.hoursValue)));
     } finally {
       await reopened.context.close();
     }

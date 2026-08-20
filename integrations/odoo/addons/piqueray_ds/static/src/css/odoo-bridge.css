@@ -150,10 +150,12 @@
   flex-shrink: 0;
 }
 
-/* Q-C1 = Option A : le bloc contact rend ses liens tel:/mailto: comme le contrat
- * rendait ses <u> — soulignés, à la couleur d'hôte. Neutralisation UA seulement
- * (le contrat ne porte aucun canal text-decoration/color de lien). */
-.s_pqr_coordonnees [data-pqr-part="coordonnees-contact-block"] a {
+/* Liens de contenu de Coordonnées — soulignés, à la couleur d'hôte (neutralisation
+ * UA seulement ; le contrat ne porte aucun canal text-decoration/color de lien).
+ * Bloc contact (tel:/mailto:, Q-C1) ET valeur adresse (lien Google Maps, décision
+ * owner 2026-08-20) : l'adresse devient cliquable, destination éditable au popover. */
+.s_pqr_coordonnees [data-pqr-part="coordonnees-contact-block"] a,
+.s_pqr_coordonnees [data-pqr-part="coordonnees-address-value"] a {
   color: inherit;
   text-decoration: underline;
 }
