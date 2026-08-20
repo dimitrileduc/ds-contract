@@ -209,6 +209,13 @@ octet-identiques sur deux exécutions**.
       visual-parity) + une décision de suppression de variante canvas. Liste props/parts + cascade
       dans `gates/gate-c-contrats.json` (`propositionDsCarteV3`). À exécuter en un lot **après**
       confirmation Gate C — pas à l'aveugle avant revue.
+      **▸ 2026-08-20 : CONFIRMÉ par l'owner, mais DIFFÉRÉ.** À l'exécution, la cascade s'est révélée
+      bien plus large que la proposition : `reassurances.authoring.json` (config Odoo LIVRÉE, ~105
+      entrées) est fortement couplée à l'anatomie complète de ds.carte (~11 entrées de couverture à
+      retirer + ~20 épinglages à bumper + re-vérif couverture 100 %), sur une config sans rapport
+      avec les catégories. Contrat v3 esquissé + gardé (scratchpad), ds.carte **reverté à v2.0.1**
+      (base verte restaurée). À reprendre en travail ISOLÉ. Coexistence ds.carte 2.x = **dette nommée**
+      (Principe V) — pas un no-op silencieux. US3 n'en dépend pas et continue.
 - [ ] T030 [US1] **Rafraîchir d'abord (lecture seule) `parity/snapshots/figma-components.json`**
       sur l'état post-mutation — sans ce refresh, l'axe canvas du sweep compare les nouveaux
       contrats au cliché périmé du 2026-08-07 (limite nommée de 017) : rouge trompeur ou
@@ -221,7 +228,7 @@ octet-identiques sur deux exécutions**.
       **▸ 2026-08-20** : `gates/gate-c-contrats.json` (proposed) + trace `proofs/gate-c.md` rédigés —
       diff des 2 contrats + proposition ds.carte v3 (T029) + limites nommées. `commitRef` posé au commit.
 
-- [ ] T032 [US1] ⛔ **GATE C** — présenter le **diff des deux contrats** à l'owner comme revue
+- [X] T032 [US1] ⛔ **GATE C** — présenter le **diff des deux contrats** à l'owner comme revue
       design system (le diff EST la revue, Principe VI ; FR-003) ; validation ;
       `gates/gate-c-contrats.json` → `status: validated` + trace `proofs/gate-c.md`. **Bloque le
       câblage du différentiel (US3) et tout travail Odoo (US2).**

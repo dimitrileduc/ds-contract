@@ -1,6 +1,6 @@
 {
   "gate": "C",
-  "status": "proposed",
+  "status": "validated",
   "titre": "Deux contrats gouvernés extraits de la source nettoyée — molécule + section",
   "objetARevoir": "Le diff révisable des deux nouveaux contrats (le diff EST la revue, Principe VI), PLUS une proposition de retrait ds.carte v3.0.0 (T029) à confirmer prop par prop (Gate A l'a explicitement renvoyé ici).",
   "commitRef": "c53e6cda (branche 023-categories-gouvernees) — feat(023): US1c extraction des deux contrats gouvernés",
@@ -43,7 +43,7 @@
   ],
   "propositionDsCarteV3": {
     "decisionGateA": "retrait-categorie-v3 (validé Gate A)",
-    "statut": "PROPOSÉ ici, à exécuter APRÈS confirmation Gate C (Gate A : « à confirmer prop par prop au Gate C »)",
+    "statut": "CONFIRMÉ par l'owner au Gate C (2026-08-20, réponse « Valide tout + continue ») — À EXÉCUTER avec la liste ci-dessous. Variante canvas orpheline : ACQUITTÉE (baseline), pas supprimée (la suppression destructive d'un master reste un « oui » explicite à reposer).",
     "propsARetirer": ["disposition: valeur categorie", "ctaLabel", "ctaIconLeftGlyph", "ctaIconRightGlyph"],
     "partsARetirer": ["categorieImage", "TitreCategorie", "TexteCategorie", "Bouton (+ tokensByProp/literalsByProp categorie)"],
     "effetVersion": "ds.carte 2.0.1 → 3.0.0 (majeur)",
@@ -57,9 +57,12 @@
     "recommandation": "Confirmer la liste de props/parts, puis exécuter le retrait + les cascades en un lot, plutôt que de l'exécuter à l'aveugle avant revue (change majeur sur un contrat DIFFÉRENT, avec une décision de suppression de variante canvas)."
   },
   "portesVertes": "build, parity (0 nouvelle dérive), eval (N/N — voir proofs/gate-c.md), plugin:check, roundtrip ×2, core-browser, geometry:gate (invisible 0), tsc ×2, catalog.",
-  "decidedBy": "<owner — en attente>",
-  "decidedAt": "<en attente>",
-  "deviations": [],
+  "decidedBy": "owner",
+  "decidedAt": "2026-08-20",
+  "deviations": [
+    { "sujet": "ds.carte v3.0.0", "decisionOwner": "CONFIRMÉ, mais DIFFÉRÉ à un travail isolé", "note": "owner « Valide tout + continue ». À l'exécution, la cascade s'est révélée BIEN plus large que la proposition (« épinglage → 3.0.0 ») : reassurances.authoring.json est une config Odoo LIVRÉE de ~105 entrées fortement couplée à l'anatomie complète de ds.carte — retirer les parts catégorie impose de supprimer ~11 entrées de couverture, bumper ~20 épinglages de version, et re-vérifier la couverture 100 %, le tout sur une config SANS RAPPORT avec le bloc catégories. Risque de régression sur un artefact livré non justifié en fin de session longue. Contrat v3 esquissé + gardé (scratchpad) ; à exécuter en isolé avec re-vérification complète des portes Odoo. La molécule ds.carte-categorie assume déjà le vrai usage ; la coexistence ds.carte 2.x (disposition=categorie, orpheline) est une dette NOMMÉE en attendant." },
+    { "sujet": "variante canvas orpheline Categorie (2407:4905)", "decisionOwner": "acquitter (baseline), pas supprimer", "note": "suppression destructive d'un master → « oui » explicite reposé plus tard ; sans objet tant que ds.carte v3 est différé (le contrat garde encore disposition=categorie)" }
+  ],
   "evidenceRefs": [
     "audits/releve-extraction.md",
     "contracts/carte-categorie.contract.json",

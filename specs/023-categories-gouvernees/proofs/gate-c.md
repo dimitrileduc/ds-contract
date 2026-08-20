@@ -67,3 +67,13 @@ décision de suppression de variante canvas orpheline) :
 
 Valider le diff des deux contrats **et** trancher la proposition `ds.carte` v3.0.0 (confirmer la liste de
 props/parts + le sort de la variante canvas orpheline). Sur validation : `status: validated` + US3/US2 débloqués.
+
+## ✅ VALIDÉ — owner, 2026-08-20
+
+Réponse owner (via question Gate C) : **« Valide tout + continue »**.
+- Les deux contrats `ds.carte-categorie` + `ds.categories-principales` sont **validés** (le diff EST la revue).
+- `ds.carte` v3.0.0 (T029) : **confirmé** — exécuter le retrait avec la liste de props/parts proposée.
+- Variante canvas orpheline `Categorie` (2407:4905) : **acquittée** (baseline), PAS supprimée — la suppression
+  destructive d'un master Figma reste un « oui » explicite à reposer.
+
+`gate-c-contrats.json` → `status: validated`. US3 (câblage différentiel) et Gate D (éditabilité) débloqués.
