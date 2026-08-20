@@ -675,12 +675,18 @@
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
       "rootContracts": [
         "ds.hero",
-        "ds.presentation"
+        "ds.presentation",
+        "ds.sav",
+        "ds.devis",
+        "ds.faq"
       ],
       "reasonCode": "odoo-layout-bridge",
       "decisionRefs": [
         "hero.authoring.json",
-        "presentation.authoring.json"
+        "presentation.authoring.json",
+        "sav.authoring.json",
+        "devis.authoring.json",
+        "faq.authoring.json"
       ],
       "mechanism": "odoo-bridge"
     }
