@@ -1,0 +1,97 @@
+{
+  "__avertissement": "ESQUISSE (modèle cible du Gate A) — PAS le contrat final. §VIII : le contrat livré est EXTRAIT de la source Figma nettoyée ; toute valeur ici (défauts, tokens, littéraux) est remplacée par le relevé. Ce fichier n'est jamais lu par le pipeline.",
+  "id": "ds.carte-categorie",
+  "name": "CarteCategorie",
+  "version": "1.0.0",
+  "description": "Carte-catégorie gouvernée. Un seul axe de variante : le style (superpose = texte sur photo + flèche ; empile = photo et texte empilés + bouton lien gouverné). Sémantique partagée : titre, description, lien, image.",
+  "semantics": { "element": "div", "provenance": "extracted" },
+  "props": [
+    {
+      "name": "style",
+      "type": { "enum": ["superpose", "empile"] },
+      "default": "<relevé à l'audit>",
+      "bindings": {
+        "figma": { "kind": "VARIANT", "property": "Style", "values": { "superpose": "Superpose", "empile": "Empile" } },
+        "code": { "prop": "style" }
+      }
+    },
+    { "name": "titre", "type": "text", "bindings": { "figma": { "kind": "TEXT", "property": "Titre" }, "code": { "prop": "titre" } } },
+    { "name": "description", "type": "text — ou rich-text si le relevé observe des segments mixtes", "bindings": { "figma": { "kind": "TEXT", "property": "Description" }, "code": { "prop": "description" } } },
+    {
+      "name": "imageUrl",
+      "__doctrine": "La ROUTE de l'image, jamais ses octets (A5, matrice l. 91) — reprise verbatim de ds.carte.imageUrl : défaut vide et il le reste ; lavis technique #D9D9D9 au canvas ; photos maquette préservées par la passe de sauvetage (docs/handoff/08-status-what-doesnt-work.md §6).",
+      "type": "text", "default": "",
+      "bindings": { "figma": { "kind": "NONE" }, "code": { "prop": "imageUrl" } }
+    },
+    { "name": "imageAlt", "type": "text", "default": "", "bindings": { "figma": { "kind": "NONE" }, "code": { "prop": "imageAlt" } } },
+    {
+      "name": "ctaLabel",
+      "__note": "Style empile seulement (précédent ds.carte.ctaLabel — la propriété TEXT vit sur le Button imbriqué, pas au niveau du set).",
+      "type": "text",
+      "bindings": { "figma": { "kind": "NONE" }, "code": { "prop": "ctaLabel" } }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": { "display": "flex", "direction": "column" },
+      "__largeur": "AUCUNE largeur propre : la cellule de grille du parent gouverne (patron ds.equipe/MemberCard, width: fill). C'est ce qui évite la limite nommée de ds.reassurances (un parent ne restyle pas une instance).",
+      "parts": {
+        "photoSuperpose": {
+          "__patron": "ds.hero : plan photo hors flux",
+          "element": "img",
+          "attrs": { "src": "{imageUrl}", "alt": "{imageAlt}" },
+          "layout": { "position": "absolute" },
+          "declared": { "object-fit": "cover" },
+          "visibleWhen": { "prop": "style", "equals": "superpose" }
+        },
+        "scrim": {
+          "__note": "seulement si le relevé observe un dégradé de lisibilité (grammaire 015 : linear-gradient uniquement)",
+          "visibleWhen": { "prop": "style", "equals": "superpose" }
+        },
+        "contenuSuperpose": {
+          "layout": { "position": "relative" },
+          "parts": {
+            "Titre": { "content": { "prop": "titre" } },
+            "Description": { "content": { "prop": "description" } },
+            "Fleche": { "__affordance": "icône gouvernée arrow-right du registre (contracts/icons.registry.json) — une part officielle, jamais un calque caché" }
+          },
+          "visibleWhen": { "prop": "style", "equals": "superpose" }
+        },
+        "photoEmpile": {
+          "__reprise": "pixel-identique à l'actuel Carte/Categorie (image en espace restant, grow)",
+          "element": "img",
+          "attrs": { "src": "{imageUrl}", "alt": "{imageAlt}" },
+          "layout": { "grow": true },
+          "visibleWhen": { "prop": "style", "equals": "empile" }
+        },
+        "texteEmpile": {
+          "parts": {
+            "Titre": { "content": { "prop": "titre" } },
+            "Description": { "content": { "prop": "description" } }
+          },
+          "visibleWhen": { "prop": "style", "equals": "empile" }
+        },
+        "Bouton": {
+          "parts": {
+            "action": {
+              "component": {
+                "id": "ds.button",
+                "props": { "variant": "link", "children": "{ctaLabel}", "iconRight": true, "iconRightGlyph": "arrow-right" }
+              }
+            }
+          },
+          "visibleWhen": { "prop": "style", "equals": "empile" }
+        }
+      },
+      "tokens": { "__règle": "géométrie 100 % en tokens : réutilisation space.N + mint from-dump size.carte-categorie.* ; zéro littéral invisible (geometry:gate)" }
+    }
+  },
+  "anchors": {
+    "figma": { "fileKey": "d9FYAUcqdcNtsuaMgLefvJ", "componentSetKey": "<posé à l'adoption>", "nodeId": "<posé à l'adoption>" },
+    "code": { "importPath": "src/components/CarteCategorie", "export": "CarteCategorie" }
+  },
+  "category": "molecule",
+  "__lien": "La DESTINATION du lien n'est pas une prop de contrat (doctrine vérifiée : aucun contrat ne porte de href) — elle est portée côté Odoo par BuilderUrlPicker/pqrSetCtaHref (hôte <a t-att-href>, décision owner 2026-08-18).",
+  "__sort-de-ds.carte": "Sous-décision du Gate A (research D3) : option recommandée = retrait de disposition:categorie de ds.carte (v3.0.0 MAJEUR) si le recensement par position confirme l'exclusivité des usages ; repli = coexistence en dette nommée."
+}

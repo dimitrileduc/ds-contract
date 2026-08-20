@@ -1,0 +1,70 @@
+{
+  "__avertissement": "ESQUISSE (modèle cible du Gate A) — PAS le contrat final. §VIII : le contrat livré est EXTRAIT de la source Figma nettoyée. Ce fichier n'est jamais lu par le pipeline.",
+  "id": "ds.categories-principales",
+  "name": "CategoriesPrincipales",
+  "version": "1.0.0",
+  "description": "Section Catégories principales gouvernée : collection répétée de cartes-catégories + enum colonnes {2,3}. Le colonnage est un choix de design porté par la section, jamais dérivé du nombre de cartes ; au-delà du compte, les cartes passent à la ligne sur la même grille.",
+  "semantics": { "element": "div", "provenance": "extracted" },
+  "props": [
+    {
+      "name": "style",
+      "__note": "Transmis à chaque carte répétée (component.props {style: \"{style}\"}). Verdict Odoo attendu : fixed-by-composition (pas un choix rédacteur cette itération).",
+      "type": { "enum": ["superpose", "empile"] },
+      "bindings": {
+        "figma": { "kind": "VARIANT", "property": "Style", "values": { "superpose": "Superpose", "empile": "Empile" } },
+        "code": { "prop": "style" }
+      }
+    },
+    {
+      "name": "colonnes",
+      "type": { "enum": ["2", "3"] },
+      "default": "2",
+      "bindings": {
+        "figma": { "kind": "VARIANT", "property": "Colonnes", "values": { "2": "2", "3": "3" } },
+        "code": { "prop": "colonnes" }
+      }
+    },
+    {
+      "name": "cartes",
+      "type": { "arrayOf": { "titre": "text", "description": "text" } },
+      "__sample": "relevé de la source (contenus réels des usages), jamais inventé",
+      "bindings": { "figma": { "kind": "NONE" }, "code": { "prop": "cartes" } }
+    }
+  ],
+  "states": [],
+  "anatomy": {
+    "root": {
+      "layout": { "display": "flex", "direction": "row", "justify": "center", "width": "fill" },
+      "parts": {
+        "grid": {
+          "layout": { "display": "grid", "columns": 2, "width": "fill" },
+          "layoutByProp": {
+            "prop": "colonnes",
+            "map": { "3": { "columns": 3 } }
+          },
+          "__extension-E1": "layoutByProp.columns N'EXISTE PAS encore dans VariantLayoutSchema — extension ADDITIVE requise (contract-schema.ts:207) + refus nommé (columns hors grid) + émission emit-react (grid-template-columns dans la règle d'enum-classe) + emit-figma-script (gridColumnCount par combo, l. 3568-3572 existantes) + bump docs/02 + eval AVANT claim.",
+          "parts": {
+            "CarteCategorie": {
+              "layout": { "width": "fill" },
+              "component": {
+                "id": "ds.carte-categorie",
+                "props": { "style": "{style}" }
+              },
+              "repeat": { "itemsProp": "cartes", "sample": ["<relevé>"] },
+              "__vérification-nommée": "la transmission d'une prop enum parente sous repeat est prouvée côté React (emit-react.ts:2993, fixedAttrs) ; côté script Figma (compilation par combo) elle est à prouver sur le mock au premier build — vérification explicite, pas une hypothèse."
+            }
+          },
+          "tokens": { "gap": "<mint from-dump size.categories-principales.gap-colonnes>", "row-gap": "<mint from-dump …gap-rangees>" }
+        }
+      },
+      "tokens": { "__règle": "géométrie 100 % en tokens (space.N réutilisés — 89/128/64 existent déjà — + mints from-dump)" }
+    }
+  },
+  "anchors": {
+    "figma": { "fileKey": "d9FYAUcqdcNtsuaMgLefvJ", "componentSetKey": "94f64a369a5db615d68935bb353614eaaadbffc2", "nodeId": "2115:4277" },
+    "code": { "importPath": "src/components/CategoriesPrincipales", "export": "CategoriesPrincipales" }
+  },
+  "category": "section",
+  "__figma-cible": "Le set 2115:4277 nettoyé passe de l'axe menteur Disposition {Standard, Pleine largeur, PleineLargeurRdv, PleineLargeurTroisCartes} à des axes orthogonaux Style × Colonnes (≤ 4 variantes vraies ; une combinaison sans réalité design est retirable au Gate A). « Rdv » devient une INSTANCE renseignée (contenu préservé à l'identique), plus jamais une variante (FR-009).",
+  "__usages": "Les 7 usages de la page Pages (210:325) sont re-pointés en préservant colonnage (6×2, 1×3) et contenu (FR-011) ; les copies locales (3 identifiées + toute autre trouvée par POSITION) deviennent des instances (FR-010)."
+}
