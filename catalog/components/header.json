@@ -1,7 +1,7 @@
 {
   "id": "ds.header",
   "name": "Header",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "status": "draft",
   "category": "section",
   "description": "Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.",
@@ -11,14 +11,6 @@
   },
   "props": [
     {
-      "name": "fond",
-      "type": [
-        "solid",
-        "transparent"
-      ],
-      "default": "solid"
-    },
-    {
       "name": "items",
       "type": {
         "arrayOf": {
@@ -26,7 +18,8 @@
           "href": "text",
           "chevron": "boolean"
         }
-      }
+      },
+      "description": "La collection de navigation — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat. À la différence d'un sample générique (FR-010 de ds.google-reviews), celui-ci porte les libellés et routes RÉELS de tête de la maquette (audit 013 clos par le delta 022 : `/depannage-sav`). Côté produit, ces quatre paires existent une seconde fois dans l'arbre `website.menu` semé UNE FOIS à la livraison (spec 022, data-model §2.2, avec ses enfants) ; après le semis, le menu du CLIENT fait foi — jamais re-semé, jamais écrasé (FR-016). Un renommage de route se porte donc à la main aux deux endroits, aucune porte ne les compare — dette nommée. `chevron` est saisi par entrée ici ; côté Odoo il est dérivé (l'entrée a des enfants)."
     }
   ],
   "children": {

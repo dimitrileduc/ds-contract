@@ -1,20 +1,20 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v0.1.0)
+ * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v1.0.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PiquerayLogo } from './PiquerayLogo';
 
 const meta = {
-  title: 'Components/PiquerayLogo',
+  title: 'Atoms/PiquerayLogo',
   component: PiquerayLogo,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption.',
+          'Piqueray logo. Two Couleur variants, extracted from the Figma COMPONENT_SET « PiquerayLogo » on DS · Atomes, reviewed and adopted — not authored. The orange marque is constant; only the wordmark ink changes with Couleur — Default is the blue wordmark, Blanc the white wordmark for a dark surface (ds.header composes the Blanc variant on its noir-bleuté nav).',
       },
     },
   },

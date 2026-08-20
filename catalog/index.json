@@ -3,7 +3,7 @@
   "system": {
     "name": "DS Contracts POC",
     "catalogVersion": "0.7.0",
-    "gitCommit": "f279da78",
+    "gitCommit": "6146ee36",
     "source": "Compiled from contracts/*.contract.json + tokens/ + context/rules.json — do not edit."
   },
   "package": {
@@ -294,12 +294,13 @@
     {
       "id": "ds.piqueray-logo",
       "name": "PiquerayLogo",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "status": "draft",
+      "category": "atom",
       "propNames": [
         "couleur"
       ],
-      "summary": "PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure."
+      "summary": "Piqueray logo."
     },
     {
       "id": "ds.footer",
@@ -327,9 +328,20 @@
       "summary": "Piqueray Formulaire."
     },
     {
+      "id": "ds.notation",
+      "name": "Notation",
+      "version": "1.0.0",
+      "status": "draft",
+      "category": "atom",
+      "propNames": [
+        "note"
+      ],
+      "summary": "Bandeau de cinq étoiles portant une note entière de 1 à 5."
+    },
+    {
       "id": "ds.review-card",
       "name": "ReviewCard",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "molecule",
       "propNames": [
@@ -337,19 +349,17 @@
         "initiale",
         "date",
         "texte",
-        "tronque",
-        "initialeVisible",
-        "photo",
+        "avatar",
+        "note",
         "photoUrl",
-        "photoAlt",
-        "verifie"
+        "photoAlt"
       ],
       "summary": "Une carte d'avis Google, mesurée sur les octets natifs de l'aplat « Avis Google » (widget tiers Trustindex/Google, dernière zone hors gouvernance du fichier Piqueray — spec 006)."
     },
     {
       "id": "ds.google-reviews",
       "name": "GoogleReviews",
-      "version": "1.0.2",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
@@ -378,11 +388,10 @@
     {
       "id": "ds.header",
       "name": "Header",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "status": "draft",
       "category": "section",
       "propNames": [
-        "fond",
         "items"
       ],
       "summary": "Piqueray Header."
@@ -404,11 +413,10 @@
     {
       "id": "ds.hero",
       "name": "Hero",
-      "version": "1.6.0",
+      "version": "1.5.0",
       "status": "draft",
       "category": "section",
       "propNames": [
-        "ctaHref",
         "backgroundUrl",
         "backgroundAlt",
         "sousTitre"

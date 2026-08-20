@@ -1,0 +1,28 @@
+{
+  "receiptId": "spike-actif-odoo-022-nav-shell",
+  "scenarioId": "spike-actif",
+  "snapshotId": "odoo-19.0-20260803",
+  "status": "pass",
+  "spike": "S1b",
+  "date": "2026-08-20",
+  "method": "lecture du modèle `website.menu` et du gabarit `website.submenu` dans le conteneur épinglé (docker exec). La clarification de spec (« le lien parent est souligné quand la page courante est un enfant ») est CONFIRMÉE par la source — aucune correction de spec requise.",
+  "spec_verdict": "CONFIRME LA SPEC — pas de correction. FR-007 / SC-005 (parent souligné pour un enfant actif) est la sémantique NATIVE d'Odoo, calculée serveur.",
+  "observations": [
+    "[DOCUMENTÉ] calcul serveur — l'actif est une méthode Python du modèle, pas du JS — source website/models/website_menu.py:209 `def _is_active(self)` ; utilise `request.httprequest.url`. Conséquence : le mapping actif se fait dans le QWeb (`ODOO-022-HEADER-ACTIF` dans views/header.xml), AUCUN bundle JS frontend requis",
+    "[DOCUMENTÉ] règle d'activité — docstring website_menu.py:210-231 : « active si (URL == URL de la requête ET aucun enfant) OU (l'URL d'un menu enfant correspond à la requête) »",
+    "[DOCUMENTÉ] parent d'un enfant actif — website_menu.py:259 `if any(child._is_active() for child in self.child_id): return True` (récursif) — le PARENT est actif quand un descendant l'est. C'est exactement la clarification de spec du 2026-08-20",
+    "[DOCUMENTÉ] pose de la classe — le gabarit applique `active` par `submenu._is_active()` sur la feuille ET sur le toggle du déroulant — source website_templates.xml:7 (`t-attf-class=\"#{link_class or ''} #{submenu._is_active() and 'active'}\"` feuille) et :18 (`... #{submenu._is_active() and 'active'} ...` sur `a.dropdown-toggle`)",
+    "[DOCUMENTÉ] cas nuls — pas de requête ⇒ inactif ; un mega menu n'est jamais actif — source website_menu.py:232-236 (`if not request or self.is_mega_menu: return False`)",
+    "[DOCUMENTÉ] égalité d'URL — comparaison sur l'URL déslugée, fragment ignoré, query string devant être un sous-ensemble ; si le menu pointe une `page_id`, l'égalité de chemin est stricte — source website_menu.py:238-262"
+  ],
+  "artifacts": [
+    "website/models/website_menu.py (_is_active:209, récursion enfants:259)",
+    "website/views/website_templates.xml (submenu, classe active:7 et :18)"
+  ],
+  "limitCodes": [],
+  "consequences_for_qweb": [
+    "T019 : dans `views/header.xml`, poser la classe `actif` (celle que la CSS de ds.nav-item conditionne pour `Soulignement`) + `aria-current=\"page\"` quand `submenu._is_active()` est vrai — pour le lien de la barre (parent ou feuille).",
+    "T019 : l'entrée de sous-menu active garde le style Odoo par défaut (pas de piquerayisation du panneau — FR-009).",
+    "Pas de nouveau bundle JS ⇒ manifeste : `assets` inchangés côté actif ; le bump reste versions + data (vues + semis)."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "receiptId": "spike-seed-odoo-022-nav-shell",
+  "scenarioId": "spike-seed",
+  "snapshotId": "odoo-19.0-20260803",
+  "status": "pass",
+  "spike": "S2",
+  "date": "2026-08-20",
+  "method": "observation ORM de l'instance vivante (odoo shell, db piqueray_qa) + sémantique DOCUMENTÉE d'Odoo (noupdate, hooks). La PREUVE complète d'unicité sur les deux chemins est livrée par le scénario install-update (T026) ; le spike établit le mécanisme et nomme les deux chemins.",
+  "decision_D8": "Mécanisme « une fois » à DEUX crochets, car les deux chemins n'ont pas le même déclencheur : (1) INSTALL FRAIS → `post_init_hook` (clé de manifeste) retire les défauts et le semis `noupdate=\"1\"` crée l'arbre ; (2) UPDATE d'un site déjà installé (chemin de PRODUCTION — module déjà `installed` ici) → `migrations/19.0.1.5.0/post-migration.py` retire les défauts, le fichier `noupdate` crée les nouveaux enregistrements lors de l'update qui l'introduit. Retrait des défauts par (website_id, url) — PAS par xml_id (voir observation clé).",
+  "observations": [
+    "[OBSERVÉ] état de départ — le module de production est DÉJÀ installé ⇒ le chemin qui compte pour la livraison est l'UPDATE — attendu « piqueray_ds installé », observé « ir.module.module state = installed »",
+    "[OBSERVÉ] défauts à retirer — le site porte exactement les 2 entrées par défaut d'Odoo — attendu « Home + Contact us », observé « Top Menu for Website 1 (id 4, website_id=1) → [ 'Home' /  ·  'Contact us' /contactus ] »",
+    "[OBSERVÉ] CLÉ — les menus par défaut du site N'ONT PAS d'external id — attendu (hypothèse naïve) « removable par xml_id website.menu_home / website.menu_contactus », observé « ir.model.data pour les menus de website 1 = (none) ; les xmlids website.menu_home/menu_contactus/main_menu existent mais ne pointent PAS les menus vivants du site 1 ». Conséquence : le retrait cible (website_id=1, url ∈ {'/','/contactus'}), jamais un unlink par xml_id",
+    "[DOCUMENTÉ] noupdate — `<data noupdate=\"1\">` : Odoo crée l'enregistrement s'il est absent, ne l'écrase JAMAIS s'il existe (respecte l'édition client) — c'est ce qui protège le menu semé d'une régénération/upgrade ultérieure",
+    "[DOCUMENTÉ] migration — `migrations/<version>/post-migration.py` s'exécute UNE fois, à l'update qui atteint cette version — le crochet « une fois » pour le retrait des défauts sur un site déjà installé (les migrations ne tournent PAS sur install frais, d'où le second crochet post_init_hook)",
+    "[OBSERVÉ] structure module — aucun `migrations/` ni `data/` aujourd'hui ; manifeste 19.0.1.4.0 — attendu « à créer », observé « addon: __init__.py, __manifest__.py, views/{components,snippets}.xml, static/ ; pas de data/ ni migrations/ »"
+  ],
+  "artifacts": [
+    "odoo shell — website.menu_id.child_id (website 1), ir.model.data lookups",
+    "Odoo doc — ir.model.data noupdate ; base/migrations runner (post-migration)"
+  ],
+  "limitCodes": [
+    "SPIKE-S2-PROOF-DEFERRED : l'unicité effective sur les DEUX chemins (install frais + update) et la survie du menu client à l'update suivant sont PROUVÉES par le scénario install-update (T026), pas par ce spike de lecture. Le spike établit le mécanisme (deux crochets) et le point dur (retrait par (website_id,url), pas xml_id)."
+  ],
+  "consequences_for_qweb": [
+    "T021 : `data/menu_seed.xml` `<data noupdate=\"1\">` — 4 tops + 3 enfants (arbre D8), `website_id` ref site 1, `confidence:\"inferred\"` en commentaire sur « Motorisation ».",
+    "T021 : `migrations/19.0.1.5.0/post-migration.py` — unlink des menus (website_id=1, url ∈ {'/','/contactus'}) ; active `template_header_piqueray`, désactive `website.template_header_default` (S1).",
+    "T021/T022 : `post_init_hook` de manifeste pour le chemin install frais (même retrait des défauts) ; manifeste `data` += views/header.xml + data/menu_seed.xml.",
+    "T026 : le scénario install-update est LA preuve d'unicité + survie du menu client (SC-003, FR-016)."
+  ]
+}

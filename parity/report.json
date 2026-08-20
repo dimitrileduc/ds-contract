@@ -1,7 +1,7 @@
 {
   "summary": {
     "total": 0,
-    "acknowledged": 7,
+    "acknowledged": 8,
     "pending": 0,
     "bySurface": {}
   },
@@ -44,6 +44,30 @@
     },
     {
       "surface": "figma",
+      "classification": "ahead",
+      "subject": "Header.Fond",
+      "detail": "Figma set declares VARIANT property \"Fond\" the contract does not define",
+      "proposedPatch": {
+        "name": "fond",
+        "type": {
+          "enum": [
+            "Transparent"
+          ]
+        },
+        "bindings": {
+          "figma": {
+            "kind": "VARIANT",
+            "property": "Fond"
+          },
+          "code": {
+            "prop": "fond"
+          }
+        }
+      },
+      "remedy": "Review + append to the contract props[], bump version, then npm run build"
+    },
+    {
+      "surface": "figma",
       "classification": "behind",
       "subject": "SectionHeader.Bouton",
       "detail": "Contract composes ds.button but no Bouton instance exists inside the Figma component",
@@ -75,7 +99,7 @@
     "ds.footer@1.1.0",
     "ds.formulaire@2.0.0",
     "ds.google-reviews@2.0.0",
-    "ds.header@1.0.0",
+    "ds.header@2.0.0",
     "ds.hero-video@1.0.0",
     "ds.hero@1.5.0",
     "ds.input@1.0.0",
@@ -83,7 +107,7 @@
     "ds.member-picture@1.3.0",
     "ds.nav-item@1.2.0",
     "ds.notation@1.0.0",
-    "ds.piqueray-logo@0.1.0",
+    "ds.piqueray-logo@1.0.0",
     "ds.presentation@2.6.0",
     "ds.product-card@2.0.0",
     "ds.realisation@1.1.0",
