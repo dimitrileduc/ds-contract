@@ -250,12 +250,12 @@ retour au vert.
 > Séquencée **avant** US2 bien qu'elle soit P3 : US3 ne dépend que du Gate C (les contrats
 > existent), tandis qu'US2 est bloquée par le Gate D. Ordre dicté par les gates (plan §Phase 2).
 
-- [ ] T033 [US3] Vérifier que `parity/snapshots/figma-components.json` (rafraîchi en T030) est
+- [X] T033 [US3] Vérifier que `parity/snapshots/figma-components.json` (rafraîchi en T030) est
       bien l'état **post-mutation** (`extractedAt` postérieur au Gate B) et le **committer comme
       entrée capturée** ; re-rafraîchir (lecture seule) seulement si le canvas a bougé depuis —
       **solde la limite nommée de 017** (cliché du 2026-08-07 périmé) et rétablit l'axe
       canvas ⟷ contrat sur l'état vivant (D7).
-- [ ] T034 [US3] Vérifier que `npm run parity` **classe et compare les deux contrats sur les trois
+- [X] T034 [US3] Vérifier que `npm run parity` **classe et compare les deux contrats sur les trois
       axes** (code ⟷ contrat, canvas ⟷ contrat, variables ⟷ tokens) **sans exclusion silencieuse**
       — découverte automatique par `readdir contracts/` (`parity/diff.ts:77`), aucun registre à
       éditer (FR-020) — dépend de T033.
@@ -264,6 +264,14 @@ retour au vert.
       setNodeId, renderWidth}`) + baseline (`baseline.json`) ; prêt d'actifs de fixture si besoin
       (patron `ds.carte`, mécanique 017) — ferme l'angle mort où les sections échappaient à la
       parité visuelle (FR-021).
+      **▸ 2026-08-20 : BLOQUÉ sur `FIGMA_TOKEN`.** L'instrument de parité visuelle récupère l'image
+      de RÉFÉRENCE (master) par un GET REST (`FIGMA_TOKEN`, non défini dans ce worktree) et la valide
+      contre une version de fichier épinglée (`extract/figma/visual-parity/run.ts`). Impossible
+      d'établir/vérifier une baseline sans le token — je n'ajoute PAS de sujet que je ne peux pas
+      vérifier (règle des claims). À faire quand `FIGMA_TOKEN` est fourni (ou via capture pont si
+      l'instrument gagne ce chemin). **Le filet parity 3-axes garde déjà les 2 contrats** (T033/T034,
+      `npm run parity` propre, découverte auto par readdir) — l'axe APPARENCE (parité visuelle) est
+      le seul en attente.
 - [ ] T036 [US3] **Protocole de dérive injectée** (preuve, pas eval permanente, D7) : injecter une
       dérive de structure/binding **et** une dérive d'apparence sur chaque contrat, vérifier
       `npm run parity` + parité visuelle les signalent par nom avec remède proposé, retirer, vérifier
