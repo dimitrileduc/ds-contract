@@ -93,21 +93,21 @@ octet-identiques sur deux exécutions**.
 
 ### US1a — Audit lecture seule (§VIII — PAR POSITION, jamais par nom) → Gate A
 
-- [ ] T007 [US1] Recenser les **usages réels** du bloc sur la page `Pages` `210:325` **par
+- [X] T007 [US1] Recenser les **usages réels** du bloc sur la page `Pages` `210:325` **par
       position** (attendu 7 : 6×2 colonnes, 1×3 — le décompte live fait foi s'il diffère), avec
       colonnage et contenu de chacun → `specs/023-categories-gouvernees/audits/usages.md`.
-- [ ] T008 [P] [US1] Recenser **toutes les copies locales** de carte-catégorie sur le canvas **par
+- [X] T008 [P] [US1] Recenser **toutes les copies locales** de carte-catégorie sur le canvas **par
       position** (attendu 3+, toute copie supplémentaire comptée au même titre) → `audits/copies-locales.md`.
-- [ ] T009 [P] [US1] Relever le master section `CategoriesPrincipales` (`2115:4277`, 4 variantes
+- [X] T009 [P] [US1] Relever le master section `CategoriesPrincipales` (`2115:4277`, 4 variantes
       « Disposition ») et le set `Carte` (`2063:1622`, 2 variantes) ; recenser les usages de
       `Carte/Categorie` **par position** (décide le sort de `ds.carte`, research D3) → `audits/masters.md`.
-- [ ] T010 [US1] Rédiger le projet de modèle cible
+- [X] T010 [US1] Rédiger le projet de modèle cible
       `specs/023-categories-gouvernees/gates/gate-a-modele-cible.json` (`status: proposed`) :
       axe `Style` {Superpose, Empile}, colonnes portées par le parent, « Rdv » → contenu,
       renommage du master, `sortDeDsCarte` (retrait-categorie-v3 | coexistence-dette-nommée), **et
       une décision par copie dérivée** (préserver le pixel | re-caler sur la molécule) — dépend de T007–T009.
 
-- [ ] T011 [US1] ⛔ **GATE A** — présenter à l'owner le modèle cible **+ le sort de chaque copie
+- [X] T011 [US1] ⛔ **GATE A** — présenter à l'owner le modèle cible **+ le sort de chaque copie
       dérivée** (FR-001) ; obtenir la validation ; passer `gates/gate-a-modele-cible.json` à
       `status: validated` (+ `decidedBy/decidedAt/deviations/evidenceRefs`) et écrire la trace datée
       `proofs/gate-a.md`. **Bloque toute mutation du canvas.**

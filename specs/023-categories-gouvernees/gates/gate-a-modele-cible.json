@@ -1,0 +1,97 @@
+{
+  "gate": "A",
+  "status": "validated",
+  "titre": "Modèle cible du bloc « Catégories principales » — molécule + section",
+  "sourceAudits": [
+    "audits/usages.md",
+    "audits/copies-locales.md",
+    "audits/masters.md"
+  ],
+  "modeleCible": {
+    "molecule": {
+      "contratCible": "ds.carte-categorie (NOUVEAU, category: molecule, v1.0.0)",
+      "sourceFigma": "2063:1611 (Carte/Categorie, composant autonome page DS·Molécules 2052:1145)",
+      "axes": { "Style": ["Superpose", "Empile"] },
+      "styleEmpile": "extrait de 2063:1611 : image (Fill) + texte (titre/texte) + CTA",
+      "styleSuperpose": "OFFICIALISÉ depuis les copies locales Standard : plan photo position:absolute + contenu relative + flèche = icône arrow-right du registre (patron ds.hero) — titre + description, sans bouton CTA",
+      "ctaType": {
+        "decision": "option GOUVERNÉE — le TYPE de CTA est une prop/option de la molécule, INDÉPENDANTE du libellé (owner, 2026-08-20)",
+        "valeursObservees": ["lien-à-icônes (Contactez-nous : icônes Pdf/Download)", "bouton-encadré (Prendre rendez-vous : outline + flèche)", "flèche-seule (style Superpose)"],
+        "libelle": "le texte du CTA est du CONTENU libre, jamais l'option",
+        "valeursExactesFigees": "à l'extraction / Gate C"
+      },
+      "renommage": "composant 2063:1611 « Carte/Categorie » → master à 2 variantes Style ; nom aligné sur ds.carte-categorie (à confirmer : « CarteCategorie »)"
+    },
+    "section": {
+      "contratCible": "ds.categories-principales (NOUVEAU, category: section, v1.0.0)",
+      "sourceFigma": "2115:4277 (CategoriesPrincipales)",
+      "axes": { "Style": ["Superpose", "Empile"], "Colonnes": ["2", "3"] },
+      "axeSupprime": "Disposition",
+      "styleTransmis": "la section transmet Style à la carte répétée (component.props: { style: \"{style}\" }) — verdict Odoo fixed-by-composition",
+      "colonnes": "enum fermé {2,3} porté par le parent (extension schéma E1 columns + layoutByProp) ; wrap natif au-delà du compte",
+      "combinaisonSuperposeTrois": "GARDÉE (décision owner, cf. deviations) — les 4 combinaisons Style×Colonnes existent même si Superpose×3 n'a aucun usage actuel"
+    },
+    "rdv": {
+      "decision": "PAS une variante de section ni un 3e type de carte : c'est une carte EMPILÉE avec ctaType = bouton-encadré et libellé « Prendre rendez-vous »",
+      "greyEnRetrait": "ANNULÉ — vérifié par mesure (texte #26282C identique, opacité 1, aucun voile/effet sur les 2 cartes) : le « gris » était un artefact de capture, pas une donnée Figma. Aucune option « en retrait » à modéliser.",
+      "seuleVraieDifference": "le TYPE de CTA (bouton-encadré vs lien-à-icônes)"
+    },
+    "sortDeDsCarte": {
+      "recommande": "retrait-categorie-v3",
+      "decision": "retrait-categorie-v3",
+      "justification": "ds.carte.disposition=categorie pointe sur 2407:4905 — composant CASSÉ (743×3310, image 743×3106) ET ORPHELIN (0 instance, vérifié getInstancesAsync) ; la vraie carte utilisée (2063:1611, 16 instances) devient ds.carte-categorie ; ds.reassurances (disposition=reassurance → 2063:1606, 44 instances) reste intact",
+      "effet": "ds.carte → v3.0.0 majeur : retrait disposition=categorie + props CTA spécifiques (à confirmer prop par prop au Gate C), rafraîchir inputs.lock.json + configs authoring"
+    }
+  },
+  "copiesDerivees": [
+    {
+      "copieId": "Standard/item[0]",
+      "nodeId": "2115:4160",
+      "hote": "2115:4273 (Disposition=Standard)",
+      "style": "superpose",
+      "ecartObserve": "seule définition du style superposé — aucun composant gouverné",
+      "decision": "preserver-le-pixel",
+      "modalite": "devient la variante Style=Superpose de la molécule, officialisée à partir de cette copie → pixel préservé par construction"
+    },
+    {
+      "copieId": "Standard/item[1]",
+      "nodeId": "2115:4168",
+      "hote": "2115:4273 (Disposition=Standard)",
+      "style": "superpose",
+      "ecartObserve": "doublon de la copie #1",
+      "decision": "preserver-le-pixel",
+      "modalite": "officialisé avec la copie #1"
+    },
+    {
+      "copieId": "PleineLargeurRdv/item[1]",
+      "nodeId": "2115:4245",
+      "hote": "2115:4276 (Disposition=PleineLargeurRdv)",
+      "style": "empile",
+      "ecartObserve": "doublon empilé ; seul écart réel = ctaType bouton-encadré + libellé « Prendre rendez-vous » (PAS de gris — vérifié)",
+      "decision": "recaler-sur-la-molecule",
+      "modalite": "instance Empile gouvernée, ctaType = bouton-encadré, libellé « Prendre rendez-vous » ; aucune option grise à préserver"
+    }
+  ],
+  "decidedBy": "owner",
+  "decidedAt": "2026-08-20",
+  "deviations": [
+    {
+      "sujet": "Superpose × 3 colonnes",
+      "recommandationAgent": "retirer (aucun usage)",
+      "decisionOwner": "garder les 4 combinaisons Style×Colonnes",
+      "note": "coût faible ; assumé par l'owner pour la complétude de l'axe"
+    },
+    {
+      "sujet": "Option « en retrait » / texte gris",
+      "recommandationAgent": "proposée par erreur (mauvaise lecture de capture)",
+      "decisionOwner": "annulée — la mesure prouve un texte identique #26282C ; rien à modéliser",
+      "note": "le vrai écart est le ctaType, comme l'owner l'a signalé"
+    }
+  ],
+  "evidenceRefs": [
+    "audits/usages.md",
+    "audits/copies-locales.md",
+    "audits/masters.md",
+    "proofs/gate-a.md"
+  ]
+}
