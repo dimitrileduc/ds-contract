@@ -437,12 +437,16 @@ function layoutOverrideDecls(o: {
   direction?: string;
   align?: string;
   justify?: string;
+  columns?: number;
 }): string[] {
   const d: string[] = [];
   if (o.display) d.push(`display: ${o.display}`);
   if (o.direction) d.push(`flex-direction: ${o.direction}`);
   if (o.align) d.push(`align-items: ${ALIGN_CSS[o.align]}`);
   if (o.justify) d.push(`justify-content: ${JUSTIFY_CSS[o.justify]}`);
+  // v16 (spec 023, E1): a per-enum columns override re-emits the grid track
+  // template under the enum class — same shape as the base (l. 1648/1718).
+  if (o.columns) d.push(`grid-template-columns: repeat(${o.columns}, minmax(0, 1fr))`);
   return d;
 }
 
@@ -747,6 +751,18 @@ export function validateContract(
       }
       if (part.component) {
         errors.push(`${contract.id}: part "${name}" is a component instance — layoutByProp cannot restyle it (the child contract owns its layout)`);
+      }
+      // v16 (spec 023, E1): a columns override drives the grid track count, so
+      // it is only meaningful when the part's BASE layout is display:"grid" —
+      // the value-level mirror of the base columns↔grid refine
+      // (contract-schema.ts l. 181-187), enforced here because VariantLayout
+      // cannot see the base layout in isolation.
+      for (const [k, override] of Object.entries(lbp.map)) {
+        if (override.columns !== undefined && part.layout?.display !== 'grid') {
+          errors.push(
+            `${contract.id}: part "${name}" layoutByProp map key "${k}" sets columns but the part's base layout is not display:"grid" (columns requires grid)`,
+          );
+        }
       }
     }
     // v10 tokensByProp: the driving prop must be a declared enum, every map

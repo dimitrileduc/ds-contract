@@ -209,6 +209,14 @@ export const VariantLayoutSchema = z.strictObject({
   direction: z.enum(['row', 'column', 'row-reverse', 'column-reverse']).optional(),
   align: z.enum(['start', 'center', 'end', 'stretch']).optional(),
   justify: z.enum(['start', 'center', 'end', 'space-between']).optional(),
+  /** v16 (spec 023, E1): per-enum-value column-count override for a grid part
+   *  — the section `colonnes` {2,3} case. Licit ONLY when the part's base
+   *  layout is display:"grid" (mirror of the base columns↔grid refine, lines
+   *  181-187) — enforced by name in validateContract, since VariantLayout
+   *  can't see the base here. Natively CARRY-BOTH: code emits
+   *  grid-template-columns: repeat(N, minmax(0,1fr)) under the enum class;
+   *  the canvas sets gridColumnCount per compiled combo. */
+  columns: z.number().int().positive().optional(),
 });
 
 /** v7: layout driven by an enum prop. `map` values are OVERRIDES merged over
