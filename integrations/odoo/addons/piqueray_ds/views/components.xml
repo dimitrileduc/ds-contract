@@ -75,7 +75,7 @@
     <section class="s_pqr_google_reviews google-reviews pqr-controls-visible" data-snippet="s_pqr_google_reviews" data-name="Piqueray · Google Reviews"
              data-ds-contract="ds.google-reviews" data-ds-contract-version="2.0.0" data-ds-authoring-version="1.1.0"
              data-montrer-controles=""
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="google-reviews-default" data-pqr-part="root">
       <div class="google-reviews__resume" data-pqr-part="resume">
@@ -150,7 +150,7 @@
   <template id="s_pqr_presentation" name="Piqueray · Présentation">
     <section class="s_pqr_presentation presentation pqr-cta-on" data-snippet="s_pqr_presentation" data-name="Piqueray · Présentation"
              data-ds-contract="ds.presentation" data-ds-contract-version="2.6.0" data-ds-authoring-version="1.1.0"
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="presentation-default" data-pqr-part="root">
       <div class="presentation__colGauche" data-pqr-part="left-column">
@@ -170,7 +170,7 @@
   <template id="s_pqr_hero" name="Piqueray · Hero">
     <section class="s_pqr_hero hero" data-snippet="s_pqr_hero" data-name="Piqueray · Hero"
              data-ds-contract="ds.hero" data-ds-contract-version="1.5.0" data-ds-authoring-version="1.1.0"
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="hero-default" data-pqr-part="root">
       <img class="hero__Background o_editable_media oe_unremovable oe_unmovable" data-pqr-part="hero-background" alt=""/>
@@ -237,7 +237,7 @@
     ]"/>
     <section class="s_pqr_equipe equipe" data-snippet="s_pqr_equipe" data-name="Piqueray · Équipe"
              data-ds-contract="ds.equipe" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.1.0"
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="equipe-default" data-pqr-part="root">
       <div class="equipe__grid" data-pqr-member-list="" data-pqr-part="member-grid">
@@ -281,7 +281,7 @@
     ]"/>
     <section class="s_pqr_faq faq" data-snippet="s_pqr_faq" data-name="Piqueray · FAQ"
              data-ds-contract="ds.faq" data-ds-contract-version="1.3.0" data-ds-authoring-version="1.1.0"
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="faq-default" data-pqr-part="root">
       <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'centre'"/><t t-set="show_eyebrow" t-value="True"/><t t-set="eyebrow" t-value="'FAQ'"/><t t-set="title_part" t-value="'faq-title'"/><t t-set="title_html"><span>Questions fréquentes</span></t></t>
@@ -290,7 +290,7 @@
       </div>
       <template data-pqr-faq-blueprint=""><t t-call="piqueray_ds.faq_accordion_row"><t t-set="question" t-value="{'titre': 'Nouvelle question ?', 'contenu': 'Réponse'}"/><t t-set="question_index" t-value="'blueprint'"/></t></template>
       <div class="faq__cta" data-pqr-part="faq-cta">
-        <t t-call="piqueray_ds.pqr_button"><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Contactez-nous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
+        <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineNoir'"/><t t-set="label" t-value="'Contactez-nous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
       </div>
     </section>
   </template>
@@ -299,7 +299,7 @@
   <template id="s_pqr_devis" name="Piqueray · Devis">
     <section class="s_pqr_devis devis" data-snippet="s_pqr_devis" data-name="Piqueray · Devis"
              data-ds-contract="ds.devis" data-ds-contract-version="1.2.0" data-ds-authoring-version="1.1.0"
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="devis-default" data-pqr-part="root"
              data-fond="">
@@ -308,7 +308,7 @@
       <div class="devis__Container oe_unremovable oe_unmovable" data-pqr-part="devis-container">
         <span class="devis__Titre o_pqr_editable" data-pqr-part="devis-title" data-pqr-marks="">Prenez rendez-vous pour un devis gratuit, nous nous déplaçons chez vous</span>
         <div class="devis__Bouton oe_unremovable oe_unmovable" data-pqr-part="devis-cta">
-          <t t-call="piqueray_ds.pqr_button"><t t-set="variant" t-value="'outlineBlanc'"/><t t-set="label" t-value="'Prendre rendez-vous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
+          <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'outlineBlanc'"/><t t-set="label" t-value="'Prendre rendez-vous'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
         </div>
       </div>
     </section>
@@ -318,7 +318,7 @@
   <template id="s_pqr_sav" name="Piqueray · SAV">
     <section class="s_pqr_sav sav" data-snippet="s_pqr_sav" data-name="Piqueray · SAV"
              data-ds-contract="ds.sav" data-ds-contract-version="1.4.0" data-ds-authoring-version="1.1.0"
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="sav-default" data-pqr-part="root">
       <div class="sav__section oe_unremovable oe_unmovable" data-pqr-part="sav-section">
@@ -330,7 +330,7 @@
               <t t-call="piqueray_ds.pqr_section_header"><t t-set="disposition" t-value="'standard'"/><t t-set="emphase" t-value="'standard'"/><t t-set="alignement" t-value="'gauche'"/><t t-set="show_eyebrow" t-value="False"/><t t-set="eyebrow" t-value="'Plus de 50 ans d’expérience'"/><t t-set="title_part" t-value="'sav-title'"/><t t-set="title_html"><span>Dépannage / SAV</span></t></t>
               <span class="sav__vousRencontrezUnProblmeA o_pqr_editable" data-pqr-part="sav-text" data-pqr-marks="strong,line-break"><span>Vous rencontrez un problème avec </span><strong>votre installation </strong><span>Hörmann à Liège ? Il y a une panne de courant et </span><strong>votre porte de garage</strong><span> ne s’ouvre plus ? La télécommande de ma porte est cassée ? Votre porte ne se ferme plus correctement ?</span><br/><span>Pas de panique, Piqueray, </span><strong>votre distributeur Hörmann en province de Liège</strong><span> est là pour vous aider !</span></span>
               <div class="sav__Bouton oe_unremovable oe_unmovable" data-pqr-part="sav-cta">
-                <t t-call="piqueray_ds.pqr_button"><t t-set="variant" t-value="'default'"/><t t-set="label" t-value="'Demander de l’aide'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
+                <t t-call="piqueray_ds.pqr_button"><t t-set="link_href" t-value="'#'"/><t t-set="variant" t-value="'default'"/><t t-set="label" t-value="'Demander de l’aide'"/><t t-set="icon_left" t-value="False"/><t t-set="icon_right" t-value="True"/><t t-set="glyph_left" t-value="'arrow-left'"/><t t-set="glyph_right" t-value="'arrow-right'"/></t>
               </div>
             </div>
           </div>
@@ -373,7 +373,7 @@
     ]"/>
     <section class="s_pqr_texte_seo texte-seo" data-snippet="s_pqr_texte_seo" data-name="Piqueray · Texte SEO"
              data-ds-contract="ds.texte-seo" data-ds-contract-version="2.1.0" data-ds-authoring-version="1.1.0"
-             data-ds-graph-digest="102c372affc43178bc329e87fea540b0d39e9764e5c261194c96a1bf8ecffacc"
+             data-ds-graph-digest="48a081662356656df71bcbb71e75848178d10928bd4e366b49f4a20628a7273f"
              data-vcss="19.0.1.4.0" data-vxml="19.0.1.4.0" data-vjs="19.0.1.4.0"
              data-pqr-root-actions="move duplicate remove" data-pqr-instance="texte-seo-default" data-pqr-part="root">
       <div class="texte-seo__h2" data-pqr-part="texte-seo-h2">
