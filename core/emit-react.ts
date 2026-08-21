@@ -2391,6 +2391,29 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
 // Component (.tsx) generation
 // ---------------------------------------------------------------------------
 
+// Reserved React attribute keys a contract member could SHADOW when the props
+// interface `extends {attrs}<{el}>`. If a contract prop redeclares one of these
+// with a type NOT assignable to the base key's type, TypeScript refuses the
+// interface with `TS2430 incorrectly extends`. Receipt (spec 023):
+// `ds.carte-categorie` and `ds.categories-principales` carry a governed axis
+// prop named `style` {superpose, empile} (research D4/D6 — the name that "says
+// the truth", §VIII), which collides with `HTMLAttributes.style?: CSSProperties`.
+// The generated component never applies that prop to the DOM (it only picks a
+// class), so the fix is to Omit the colliding member name from the base — the
+// contract's definition is authoritative.
+//
+// Scoped deliberately to `style` ALONE: it is the only GLOBAL attribute whose
+// type is a plain object (`CSSProperties`), so no contract prop (string / enum
+// / number / boolean) can ever be assignable to it. Every other DOM attribute
+// is string / number / boolean or a string-literal union — a contract enum is a
+// subtype of `string`, a contract string sits under `role`'s `(string & {})`
+// escape hatch, etc. — so they extend cleanly and must NOT be Omitted (doing so
+// would gratuitously change out-of-scope output, e.g. polaris' string `title`,
+// `role`, `inputMode`, `spellCheck` props). If a future contract genuinely
+// collides on another non-assignable key, add exactly that key here, with an
+// eval — never widen speculatively.
+export const RESERVED_HTML_ATTR_KEYS: ReadonlySet<string> = new Set(['style']);
+
 export const ELEMENT_META: Record<string, { attrs: string; el: string; supportsDisabled: boolean }> = {
   button: { attrs: 'ButtonHTMLAttributes', el: 'HTMLButtonElement', supportsDisabled: true },
   span: { attrs: 'HTMLAttributes', el: 'HTMLSpanElement', supportsDisabled: false },
@@ -2648,6 +2671,23 @@ export function generateTsx(
     const doc = ev.description ?? `Fires when the ${ev.trigger} is activated.`;
     propLines.push(`  /** ${doc} */\n  ${ev.bindings.code.prop}?: () => void;`);
   }
+
+  // A contract member (prop / slot / event) whose emitted name collides with a
+  // reserved React attribute key would break `extends {attrs}<{el}>` (TS2430,
+  // e.g. `style` {superpose, empile} vs CSSProperties). Omit those keys from
+  // the base — the contract's declaration is authoritative. Empty set → the
+  // base is emitted verbatim, byte-identical to before for every non-colliding
+  // component. Sorted for order-independent determinism.
+  const ownMemberNames = new Set<string>([
+    ...contract.props.map((p) => p.bindings.code.prop),
+    ...slots.map((s) => s.slot.name),
+    ...events.map((e) => e.bindings.code.prop),
+  ]);
+  const omitKeys = [...ownMemberNames].filter((n) => RESERVED_HTML_ATTR_KEYS.has(n)).sort();
+  const attrsClause =
+    omitKeys.length > 0
+      ? `Omit<${meta.attrs}<${meta.el}>, ${omitKeys.map((k) => `'${k}'`).join(' | ')}>`
+      : `${meta.attrs}<${meta.el}>`;
 
   const destructured: string[] = [];
   // A toggled enum prop follows the controlled/uncontrolled pattern: no
@@ -3143,7 +3183,7 @@ export function generateTsx(
 import type { ${mrTypeImports} } from 'react';
 ${mrDepImports}${mrDepImports ? '\n' : ''}import styles from './${name}.module.css';
 
-${iconsConst}export interface ${name}Props extends ${meta.attrs}<${meta.el}> {
+${iconsConst}export interface ${name}Props extends ${attrsClause} {
 ${propLines.join('\n')}
 }
 
@@ -3207,7 +3247,7 @@ import { forwardRef${events.some((e) => e.toggles) ? ', useState' : ''}${control
 import type { ${typeImports} } from 'react';
 ${depImports}${depImports ? '\n' : ''}import styles from './${name}.module.css';
 
-${iconsConst}${roleMapConst}${elementMapConst}export interface ${name}Props extends ${meta.attrs}<${meta.el}> {
+${iconsConst}${roleMapConst}${elementMapConst}export interface ${name}Props extends ${attrsClause} {
 ${propLines.join('\n')}
 }
 

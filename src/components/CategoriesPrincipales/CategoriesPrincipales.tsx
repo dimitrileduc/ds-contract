@@ -8,7 +8,7 @@ import type { HTMLAttributes } from 'react';
 import { CarteCategorie } from '../CarteCategorie';
 import styles from './CategoriesPrincipales.module.css';
 
-export interface CategoriesPrincipalesProps extends HTMLAttributes<HTMLDivElement> {
+export interface CategoriesPrincipalesProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
   /** Style des cartes, transmis à chaque carte répétée (component.props {style}). Verdict Odoo attendu : fixed-by-composition (pas un choix rédacteur cette itération). */
   style?: 'superpose' | 'empile';
   /** Nombre de colonnes de la grille — enum FERMÉ {2,3}, aucune autre valeur offrable. Porté par la section (extension E1 layoutByProp.columns sur la part grid) ; au-delà du compte de cartes, wrap natif sur la même grille. */

@@ -154,7 +154,7 @@ octet-identiques sur deux exécutions**.
 - [X] T021 [P] [US1] E1 émetteur code : la règle d'enum-classe émise par `layoutByProp` porte
       `grid-template-columns: repeat(N, minmax(0, 1fr))` dans `core/emit-react.ts` (même forme que
       la base, l. 1648/1718).
-- [ ] T022 [P] [US1] E1 émetteur Figma : le combo compilé porte `columns` → `gridColumnCount` /
+- [X] T022 [P] [US1] E1 émetteur Figma : le combo compilé porte `columns` → `gridColumnCount` /
       `gridRowCount` existants dans `core/emit-figma-script.ts` (l. 3568-3572) ; **vérifier sur le
       mock au 1er build** la transmission des props parent→item sous `repeat` (research D4 — nommée,
       pas supposée).
@@ -164,16 +164,29 @@ octet-identiques sur deux exécutions**.
       couvert par le chemin grid existant). Moitié D4 (transmission `style` parent→item sous
       `repeat`) **en attente du 1er build de la section** (T030), exactement comme research D4 le
       prescrit (« à vérifier sur le mock au premier build »). Case laissée `[ ]` jusqu'à ce build.
+      **▸ 2026-08-21 : LES DEUX MOITIÉS VÉRIFIÉES au 1er build (T030).** Script généré
+      `figma-sync/08-categoriesprincipales.js` : (1) `columns`→grille — `if (l.mode === 'GRID') {
+      node.gridColumnCount = columns; node.gridRowCount = Math.ceil(flowChildren.length/columns) }`
+      (l.474-480), le wrap FR-018 est le comportement natif de la grille ; (2) transmission `style`
+      parent→item — les **4 variantes orthogonales** (`Style=Superpose/Empile × Colonnes=2/3`)
+      portent chacune la valeur `Style` **résolue** descendue sur les instances de carte répétées.
+      Build + `plugin:check` (mock) + roundtrip ×2 **verts** → transmission prouvée, zéro écart.
 - [X] T023 [US1] E1 eval de refus (`columns` hors grid → **refus par nom**) + déterminisme :
       ajouter la fixture + le cas dans `evals/`, lancer `npm run eval`, re-pin `evals/golden.json`
       revu (`scripts/update-golden.mjs`) — **AVANT toute phrase de capacité** (Principe II) — dépend de T020.
-- [ ] T024 [US1] Fidélité du mock (VII) : si un défaut live-only apparaît à la projection E1,
+- [X] T024 [US1] Fidélité du mock (VII) : si un défaut live-only apparaît à la projection E1,
       double correctif — `core/emit-figma-script.ts` **et** `scripts/plugin-engine-mock-figma.mjs`
       (le mock apprend à l'attraper headless pour toujours).
       **▸ 2026-08-20 (non déclenchée)** : aucune correction d'émetteur Figma pour E1 (le combo lit le
       `columns` résolu par le chemin grid existant) ⇒ aucun défaut live-only à apprendre au mock à ce
       stade. À **re-évaluer au 1er build de la section** (T030) : si la projection révèle un écart
       mock↔live sur `columns`/`repeat`, appliquer le double correctif (émetteur **et** mock).
+      **▸ 2026-08-21 : re-évaluation au 1er build → NON déclenchée, obligation soldée.** Le build de
+      la section, `plugin:check` (qui exécute le mock) et le roundtrip ×2 sont **verts** ; le combo
+      grid+repeat projette `gridColumnCount` et la transmission `style` sans écart mock↔live (T022).
+      Aucun défaut live-only sur `columns`/`repeat` ⇒ aucun double correctif à appliquer. NB : le
+      défaut réel trouvé à T030 (`style` × `HTMLAttributes.style`) est côté **émetteur React**, pas
+      Figma, et est de nature statique (`tsc`), donc hors du domaine de fidélité du mock Figma.
 - [X] T025 [US1] E1 doc (claim APRÈS l'eval — Principe II ; le bump de docs/02 est le
       Principe VI) : documenter le champ `columns` dans `docs/02-contract-spec.md`.
 - [X] T026 [US1] **Acquérir l'entrée d'extraction** : relevé frais **post-Gate B** de la source
@@ -216,13 +229,30 @@ octet-identiques sur deux exécutions**.
       avec les catégories. Contrat v3 esquissé + gardé (scratchpad), ds.carte **reverté à v2.0.1**
       (base verte restaurée). À reprendre en travail ISOLÉ. Coexistence ds.carte 2.x = **dette nommée**
       (Principe V) — pas un no-op silencieux. US3 n'en dépend pas et continue.
-- [ ] T030 [US1] **Rafraîchir d'abord (lecture seule) `parity/snapshots/figma-components.json`**
+- [X] T030 [US1] **Rafraîchir d'abord (lecture seule) `parity/snapshots/figma-components.json`**
       sur l'état post-mutation — sans ce refresh, l'axe canvas du sweep compare les nouveaux
       contrats au cliché périmé du 2026-08-07 (limite nommée de 017) : rouge trompeur ou
       vert-sur-périmé. Puis `npm run build` + **sweep complet** + `npm run geometry:gate` (0 littéral
       invisible) + `npm run catalog` (leçon 018 : le build ne le régénère pas) ; **3 re-pins revus**
       (`evals/golden.json`, `figma-sync/plugin/engine.receipt.json`, `examples/polaris/figma/*.figma.js`) ;
       roundtrip déterministe **×2 octet-identique** (FR-015, SC-006) — dépend de T020–T029.
+      **▸ 2026-08-21 : SWEEP COMPLET VERT — et il a attrapé un vrai défaut que la revue de diff du
+      Gate C n'avait pas vu** (raison d'être du gate tsc de T030). `npm run build` OK (38 composants) ;
+      `parity` **exit 0** (9 findings acquittés, dont `CarteCategorie.Bouton` baselisé — le `ds.button`
+      composé pas encore instancié sur le set, même patron que `Carte.Bouton`) ; `geometry:gate` **0
+      invisible** (5 littéraux nommés) ; `plugin:check` vert ; `core-browser-check` vert ; roundtrip
+      **×2 octet-identique** ; `catalog` frais.
+      **Défaut trouvé + corrigé** : `tsc` refusait les DEUX nouveaux composants (`TS2430`) — la prop
+      d'axe gouvernée `style` {superpose, empile} (D4/D6) entre en collision avec `HTMLAttributes.style?:
+      CSSProperties`. Correctif d'ÉMETTEUR (pas de renommage de contrat, Gate C préservé) :
+      `core/emit-react.ts` porte un set réservé (`{style}` seul — la seule clé DOM globale à type objet,
+      donc jamais satisfaisable par une prop string/enum ; commenté et extensible) et émet
+      `extends Omit<HTMLAttributes<…>, 'style'>` quand une prop du contrat entre en collision. Rayon
+      d'action VÉRIFIÉ chirurgical : seuls les 2 composants changent (1 ligne chacun) ; polaris prouvé
+      **octet-identique** (`generate.ts --check`, 76 fichiers), donc **le 3ᵉ re-pin polaris n'est PAS
+      requis** (émetteur Figma non touché ; réponse honnête, vérifiée). Re-pins effectués : `golden.json`
+      (diff = exactement les 2 hashes .tsx) + `engine.receipt.json` (bundle moteur, `--update-engine-receipt`).
+      `tsc --noEmit` + `tsc -p tsconfig.build.json` **verts** ; `npm run eval` **220/220**.
 - [X] T031 [US1] Produire `gates/gate-c-contrats.json` (`status: proposed`) : référence du diff
       révisable (commit/PR + versions des deux contrats).
       **▸ 2026-08-20** : `gates/gate-c-contrats.json` (proposed) + trace `proofs/gate-c.md` rédigés —

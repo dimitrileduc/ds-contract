@@ -15,7 +15,7 @@ const ICONS: Record<string, string> = {
     '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M14.0575 4.74133L13.1737 5.6252L16.9236 9.37508H0.625V10.6251H16.9234L13.1737 14.3749L14.0575 15.2588L19.3163 10L14.0575 4.74133Z" fill="currentColor"/>\n</svg>',
 };
 
-export interface CarteCategorieProps extends HTMLAttributes<HTMLDivElement> {
+export interface CarteCategorieProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
   style?: 'superpose' | 'empile';
   /** Type de CTA gouverné de la carte empilée (Gate A, 2026-08-20). `lien` = ds.button Link à icônes pdf/download ; `bouton` = ds.button outlineNoir encadré à flèche. LIMITE NOMMÉE : le master CarteCategorie n'expose AUCUN axe VARIANT pour ce type (binding NONE, code-gouverné) — l'axe Figma est un nettoyage de source différé (autorat assumé au Gate A au-dessus d'une source incomplète). N'a d'effet que sur le style empilé. */
   ctaType?: 'lien' | 'bouton';
