@@ -289,7 +289,7 @@ retour au vert.
       axes** (code ⟷ contrat, canvas ⟷ contrat, variables ⟷ tokens) **sans exclusion silencieuse**
       — découverte automatique par `readdir contracts/` (`parity/diff.ts:77`), aucun registre à
       éditer (FR-020) — dépend de T033.
-- [ ] T035 [P] [US3] Ajouter **+2 sujets** de parité visuelle dans
+- [~] T035 [P] [US3] Ajouter **+2 sujets** de parité visuelle dans
       `extract/figma/visual-parity/subjects.ts` (`{id, label, kind:'contract', contractId, fileKey,
       setNodeId, renderWidth}`) + baseline (`baseline.json`) ; prêt d'actifs de fixture si besoin
       (patron `ds.carte`, mécanique 017) — ferme l'angle mort où les sections échappaient à la
@@ -302,6 +302,18 @@ retour au vert.
       l'instrument gagne ce chemin). **Le filet parity 3-axes garde déjà les 2 contrats** (T033/T034,
       `npm run parity` propre, découverte auto par readdir) — l'axe APPARENCE (parité visuelle) est
       le seul en attente.
+      **▸ 2026-08-21 : DÉBLOQUÉ (token fourni depuis `main/.env.local`) — fait à 90 %, pin des scores
+      différée.** Proof : `proofs/us3/parite-visuelle.md`. (1) **Défaut réel corrigé** :
+      `loadRepoData` (`extract/fidelity-matrix/scripts/lib.ts`) ne lisait que `assets/icons/`, jamais
+      `assets/vectors/` → tout contrat à `vectorAsset` était REFUSÉ au rendu (gap silencieux :
+      `ds.piqueray-logo` aussi, refusé sans bruit). Corrigé (`['icons','vectors']`) — piqueray-logo
+      rend maintenant à **0.02 %**. (2) **+2 sujets** ajoutés et **mesurés** (molécule 45-70 %, section
+      40-85 % — frontières image + artefact `emit-html` DW-014-002, même classe que member-picture/
+      realisation baselinés). (3) **Baseline WRITE différée, nommée** : `--write-baseline` écrase EN
+      BLOC et la baseline date de 017 ; un `--summary` complet montre 38 échecs dont la plupart sont
+      de la dérive d'AUTRES specs (section-header ré-axé 016/018, review-card 2.0.0) — l'écrire
+      épinglerait cette dérive sous 023. Angle mort structurel FR-021 **fermé** (sujets définis +
+      rendent) ; pin des scores = rafraîchissement transverse revu (décision owner). Case `[~]`.
 - [~] T036 [US3] **Protocole de dérive injectée** (preuve, pas eval permanente, D7) : injecter une
       dérive de structure/binding **et** une dérive d'apparence sur chaque contrat, vérifier
       `npm run parity` + parité visuelle les signalent par nom avec remède proposé, retirer, vérifier
@@ -315,6 +327,11 @@ retour au vert.
       **▸ Moitié APPARENCE (parité visuelle) BLOQUÉE sur `FIGMA_TOKEN`** — même blocage que T035
       (l'instrument récupère l'image de référence master par GET REST). Case laissée `[~]`
       (partiel) : à solder quand le token est fourni. Limite nommée, pas contournée.
+      **▸ 2026-08-21 : token fourni → axe apparence DÉMONTRÉ détecteur** (`proofs/us3/parite-visuelle.md`).
+      Drift apparence injecté sur la molécule (`empile` bg blanc→sombre) → score brut Empile
+      **45.54 % → 70.65 %** (+25 pts), Superpose inchangé (contrôle) → retiré. L'axe apparence
+      **répond** à la variante touchée. Le proof « gate exit 1 sur régression vs baseline » attend
+      la pin de baseline (différée en T035, rafraîchissement transverse revu). Reste `[~]`.
 
 **Checkpoint US3** : les deux contrats sont **gardés**, pas seulement « réparés » (SC-005).
 
