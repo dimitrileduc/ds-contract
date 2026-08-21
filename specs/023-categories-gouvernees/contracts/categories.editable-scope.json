@@ -6,11 +6,12 @@
     { "id": "ds.carte-categorie", "version": "1.0.0", "via": "root.grid.CarteCategorie (repeat)" },
     { "id": "ds.button", "version": "2.0.1", "via": "CarteCategorie.Bouton.{lien|bouton} (empile)" }
   ],
-  "status": "proposed",
+  "status": "validated",
   "gate": {
-    "decidedBy": "<owner — en attente>",
-    "decidedAt": "<en attente>",
-    "deviations": []
+    "decidedBy": "owner",
+    "decidedAt": "2026-08-21",
+    "deviations": [],
+    "note": "Owner (question Gate D) : « Valide + transcris vers Odoo ». 35 verdicts validés en l'état, zéro révision."
   },
   "resolvedQuestions": {
     "Q-C1": "Colonnes {2,3} = un enum FERMÉ offert au rédacteur (sélecteur 2|3), JAMAIS dérivé du nombre de cartes ; au-delà du compte les cartes passent à la ligne sur la même grille (précédent Équipe). Aucune autre valeur offrable.",

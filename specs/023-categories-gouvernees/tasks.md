@@ -303,7 +303,7 @@ isolation et persistance aux trois points de contrôle.
       la table définit aussi l'état « **section vidée** » (rendu propre attendu, geste réversible —
       edge case de la spec, arrêté ICI, jamais improvisé à l'implémentation).
 
-- [ ] T038 [US2] ⛔ **GATE D** — présenter la table d'éditabilité à l'owner et obtenir sa
+- [X] T038 [US2] ⛔ **GATE D** — présenter la table d'éditabilité à l'owner et obtenir sa
       validation **explicite** ; `categories.editable-scope.json` → `status: validated` + trace
       `proofs/gate-d.md`. **Bloque TOUT Odoo** : code de module, provisionnement d'instance pour
       l'authoring, tâches de couche d'authoring (FR-004).
