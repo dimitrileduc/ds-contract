@@ -311,6 +311,14 @@ isolation et persistance aux trois points de contrôle.
 ### Couche Odoo dérivée (après Gate D)
 
 - [ ] T039 [US2] Transcription **1:1** du Gate D →
+      **▸ 2026-08-21 : phase US2 ATOMIQUE identifiée, non entamée ici.** Transcrire la table
+      n'est pas isolable : le check `odoo:authoring:check` et le build `odoo:derivation` exigent
+      d'ONBOARDER d'abord la section dans le machinery de scope Odoo (`ROOT_CONTRACT_IDS` +
+      map `s_pqr` de `check-authoring.ts`), et une fois dans le scope, `odoo:derivation` (dans
+      `npm run build`) réclame le SNIPPET (T041). Config + module + build + QA sont couplés. La
+      moitié QA (T043-T046) a besoin d'une **instance Docker** absente de ce worktree. US2 est donc
+      un lot FOCALISÉ à faire d'un coup avec Docker — pas une transcription rapide en fin de session.
+      La table Gate D (source 1:1) est prête et validée.
       `integrations/odoo/config/categories.authoring.json` (schéma 019) ; `npm run odoo:authoring:check`
       vérifie l'exhaustivité (100 % props+parts) — dépend de T038.
 - [ ] T040 [P] [US2] +1 entrée `ODOO-023-CATEGORIES-QWEB` (raison `odoo-qweb-composition`) dans
