@@ -390,6 +390,28 @@ export const PARITY_SUBJECTS: ParitySubject[] = [
     },
     fixtureAssetIds: ['carte-reassurance', 'carte-categorie'],
   },
+  {
+    // 023 — molecule to a single Style axis {Superpose, Empile}, extracted from
+    // the cleaned master (Gate A/B). `Empile` is the same stacked-photo visual
+    // as ds.carte Disposition=Categorie, so lend the SAME categorieImage fixture
+    // (3c54b9a6…, 017 pattern). `Superpose` is a full-bleed photo plane; no
+    // fixture lent yet → its score is measured, and any image-frontier gap is
+    // named at --write-baseline, never hidden.
+    id: 'carte-categorie', label: 'CarteCategorie (Piqueray)', kind: 'contract', contractId: 'ds.carte-categorie',
+    fileKey: PIQUERAY, setNodeId: '2495:6770',
+    comparisonPropsByVariant: {
+      'Style=Empile': { imageUrl: { $asset: 'carte-categorie' } },
+    },
+    fixtureAssetIds: ['carte-categorie'],
+  },
+  {
+    // 023 — section composing a repeated ds.carte-categorie grid (Style ×
+    // Colonnes {2,3}). Closes the blind spot where sections escaped visual
+    // parity (FR-021). Score measured at --write-baseline; the repeated cards'
+    // photo frontier is named there, not hidden.
+    id: 'categories-principales', label: 'CategoriesPrincipales (Piqueray)', kind: 'contract', contractId: 'ds.categories-principales',
+    fileKey: PIQUERAY, setNodeId: '2115:4277',
+  },
   { id: 'copyright', label: 'Copyright (Piqueray)', kind: 'contract', contractId: 'ds.copyright', fileKey: PIQUERAY, setNodeId: '2086:2330' },
   { id: 'field', label: 'Field (Piqueray)', kind: 'contract', contractId: 'ds.field', fileKey: PIQUERAY, setNodeId: '2056:1278', renderWidth: 280 },
   { id: 'footer-column', label: 'FooterColumn (Piqueray)', kind: 'contract', contractId: 'ds.footer-column', fileKey: PIQUERAY, setNodeId: '2079:2246', renderWidth: 169 },

@@ -60,10 +60,26 @@ export function loadRepoData(): RepoData {
       .map((f) => ContractSchema.parse(readJson(path.join(REPO, 'contracts', f))))
       .map((c) => [c.id, c]),
   );
+  // Both governed SVG dirs: `assets/icons/` (registry glyphs) AND
+  // `assets/vectors/` (part-level vector assets like carte-categorie-decor,
+  // piqueray-logo-*). validateContract checks a contract's icon AND vectorAsset
+  // parts against this single map, so a contract carrying a vectorAsset is
+  // refused if vectors are not loaded. Mirrors generate-components /
+  // build-plugin-zip / emitters-check, which all read ['icons','vectors'].
+  // (023: the first vectorAsset contract added as a visual-parity subject
+  // exposed that this loader read icons only — a silent, pre-existing gap.)
   const icons = new Map<string, string>(
-    readdirSync(path.join(REPO, 'assets', 'icons'))
-      .filter((f) => f.endsWith('.svg'))
-      .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(REPO, 'assets', 'icons', f), 'utf8').trim()]),
+    ['icons', 'vectors'].flatMap((subdir) =>
+      readdirSync(path.join(REPO, 'assets', subdir))
+        .filter((f) => f.endsWith('.svg'))
+        .map(
+          (f) =>
+            [f.replace(/\.svg$/, ''), readFileSync(path.join(REPO, 'assets', subdir, f), 'utf8').trim()] as [
+              string,
+              string,
+            ],
+        ),
+    ),
   );
   return {
     tokens: { primitives, semantic, light, dark, brands },
