@@ -403,8 +403,12 @@ isolation et persistance aux trois points de contrôle.
 - [ ] T047 **Sweep complet final** dans le worktree (F1) :
       `npm run build && npm run parity && npm run eval && npm run plugin:check && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs && npx tsc --noEmit && npx tsc -p tsconfig.build.json`
       **+** `npm run geometry:gate` — tout vert (FR-022, SC-006).
-- [ ] T048 [P] `npm run catalog` et vérifier `catalog/catalog.json` à jour (leçon 018 : le build ne
+- [X] T048 [P] `npm run catalog` et vérifier `catalog/catalog.json` à jour (leçon 018 : le build ne
       le régénère pas ; le Hub lit ce fichier).
+      **▸ 2026-08-21 : FAIT** — `npm run catalog` régénéré (38 composants, 234 tokens, dont
+      CarteCategorie + CategoriesPrincipales) et committé (76f81321). Seul diff de contenu vs le
+      cliché Gate C = le champ `gitCommit` (provenance, décale d'un commit — attendu, sans effet
+      sur les données lues par le Hub).
 - [ ] T049 [P] Rapport de clôture `specs/023-categories-gouvernees/RAPPORT-CLOTURE.md` + entrée
       **MILESTONES** datée **en nommant le trou de journal existant** (specs 011-016 absents — jamais
       comblé en silence, Principe V).
