@@ -302,10 +302,19 @@ retour au vert.
       l'instrument gagne ce chemin). **Le filet parity 3-axes garde déjà les 2 contrats** (T033/T034,
       `npm run parity` propre, découverte auto par readdir) — l'axe APPARENCE (parité visuelle) est
       le seul en attente.
-- [ ] T036 [US3] **Protocole de dérive injectée** (preuve, pas eval permanente, D7) : injecter une
+- [~] T036 [US3] **Protocole de dérive injectée** (preuve, pas eval permanente, D7) : injecter une
       dérive de structure/binding **et** une dérive d'apparence sur chaque contrat, vérifier
       `npm run parity` + parité visuelle les signalent par nom avec remède proposé, retirer, vérifier
       le retour au vert → archiver dans `specs/023-categories-gouvernees/proofs/us3/`.
+      **▸ 2026-08-21 : moitié STRUCTURE/BINDING (parity) FAITE et archivée** →
+      `proofs/us3/derive-injectee.md`. Dérive binding (section, `gap` `{space.64}`→`{space.32}`)
+      → `[code BEHIND] CategoriesPrincipales.root#gap` nommé + remède → **exit 1** ; dérive
+      structure (molécule, +prop `driftProbe`) → `[code BEHIND] CarteCategorie.driftProbe` nommé
+      → **exit 1** ; les deux retirées → parity **exit 0** (retour aux 9 acquittés). Découverte
+      auto par `readdir` (T034), exclusion silencieuse impossible.
+      **▸ Moitié APPARENCE (parité visuelle) BLOQUÉE sur `FIGMA_TOKEN`** — même blocage que T035
+      (l'instrument récupère l'image de référence master par GET REST). Case laissée `[~]`
+      (partiel) : à solder quand le token est fourni. Limite nommée, pas contournée.
 
 **Checkpoint US3** : les deux contrats sont **gardés**, pas seulement « réparés » (SC-005).
 
