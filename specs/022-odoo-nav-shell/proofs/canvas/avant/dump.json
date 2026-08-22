@@ -1,0 +1,33 @@
+{
+  "capturedFor": "022 — retrait de la variante Fond=Solid (avant-état §X)",
+  "date": "2026-08-20",
+  "file": { "name": "Piqueray (Copy)", "fileKey": "d9FYAUcqdcNtsuaMgLefvJ", "page_of_set": "DS · Organisms" },
+  "namedVersion": { "id": "2389749288451172052", "title": "022 — avant retrait Fond=Solid", "role": "point de restauration §X (l'unique route de recovery ; restore = UI native version-history, aucune API programmatique)" },
+  "set": {
+    "id": "84:285", "name": "Header", "type": "COMPONENT_SET",
+    "key": "4165b8449f68916cca476b62454ede85eea13420",
+    "bbox": { "x": 9322, "y": 2052, "w": 1808, "h": 292 },
+    "variantGroupProperties": { "Fond": { "values": ["Solid", "Transparent"] } },
+    "children": [
+      { "id": "84:284", "name": "Fond=Solid", "vp": { "Fond": "Solid" }, "bbox": { "x": 9362, "y": 2092, "w": 1728, "h": 86 } },
+      { "id": "84:286", "name": "Fond=Transparent", "vp": { "Fond": "Transparent" }, "bbox": { "x": 9362, "y": 2218, "w": 1728, "h": 86 } }
+    ]
+  },
+  "masters": [
+    { "id": "84:284", "name": "Fond=Solid", "type": "COMPONENT", "vp": { "Fond": "Solid" }, "bbox": { "x": 9362, "y": 2092, "w": 1728, "h": 86 }, "childSig": ["PiquerayLogo", "navWrapper"], "role": "MASTER À SUPPRIMER (T005) — contenu détruit par le geste" },
+    { "id": "84:286", "name": "Fond=Transparent", "type": "COMPONENT", "vp": { "Fond": "Transparent" }, "bbox": { "x": 9362, "y": 2218, "w": 1728, "h": 86 }, "childSig": ["PiquerayLogo", "navWrapper"], "role": "MASTER SURVIVANT — main de tous les usages" }
+  ],
+  "usages": [
+    { "id": "2490:5381", "name": "Header", "page": "DS · Organisms", "type": "INSTANCE", "bbox": { "x": -3798, "y": 534, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"], "note": "10e usage — vitrine sur la page DS (spec disait 9 ; réalité 10, nommé non caché)" },
+    { "id": "210:473", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 301, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "226:259", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 2229, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "230:483", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 4157, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "387:869", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 6085, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "237:828", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 8013, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "237:1127", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 9941, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "249:1655", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 11869, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "258:1995", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 13797, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] },
+    { "id": "274:2702", "name": "Header", "page": "Pages", "type": "INSTANCE", "bbox": { "x": 15725, "y": 0, "w": 1728, "h": 86 }, "mainId": "84:286", "variant": "Transparent", "childSig": ["PiquerayLogo", "navWrapper"] }
+  ],
+  "verification_rule": "T005 re-vérifie les 10 usages PAR POSITION : chaque (page, bbox, mainId=84:286, variant=Transparent, childSig) doit être IDENTIQUE après le geste. Une seule divergence = refus, jamais un downgrade."
+}

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/header.contract.json (ds.header v1.0.0)
+ * Source of truth: contracts/header.contract.json (ds.header v2.1.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -20,15 +20,17 @@ const meta = {
   },
   render: (args) => <Header key={JSON.stringify(args)} {...args} />,
   argTypes: {
-    fond: { control: 'select', options: ['solid', 'transparent'] },
-    items: { control: false },
+    items: {
+      control: false,
+      description:
+        "La collection de navigation — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat. À la différence d'un sample générique (FR-010 de ds.google-reviews), celui-ci porte les libellés et routes RÉELS de tête de la maquette (audit 013 clos par le delta 022 : `/depannage-sav`). Côté produit, ces quatre paires existent une seconde fois dans l'arbre `website.menu` semé UNE FOIS à la livraison (spec 022, data-model §2.2, avec ses enfants) ; après le semis, le menu du CLIENT fait foi — jamais re-semé, jamais écrasé (FR-016). Un renommage de route se porte donc à la main aux deux endroits, aucune porte ne les compare — dette nommée. `chevron` est saisi par entrée ici ; côté Odoo il est dérivé (l'entrée a des enfants).",
+    },
   },
   args: {
-    fond: 'solid',
     items: [
       { libelle: 'Portes de garage', href: '/portes-de-garage', chevron: true },
       { libelle: 'Portes d’entrée', href: '/portes-entree', chevron: true },
-      { libelle: 'Dépannage/SAV', href: '/motorisation', chevron: false },
+      { libelle: 'Dépannage/SAV', href: '/depannage-sav', chevron: false },
       { libelle: 'À propos', href: '/a-propos', chevron: false },
     ],
   },
@@ -38,29 +40,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
-
-export const Solid: Story = {
-  args: { fond: 'solid' },
-};
-
-export const Transparent: Story = {
-  args: { fond: 'transparent' },
-};
-/** Every legal combination the contract defines. */
-export const Matrix: Story = {
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div
-      style={{
-        display: 'grid',
-        gap: 16,
-        gridTemplateColumns: 'repeat(1, max-content)',
-        alignItems: 'center',
-        justifyItems: 'start',
-      }}
-    >
-      <Header fond="solid" />
-      <Header fond="transparent" />
-    </div>
-  ),
-};

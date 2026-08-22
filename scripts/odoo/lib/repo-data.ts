@@ -53,10 +53,43 @@ export const ROOT_SELECTOR: Record<string, string> = {
   'ds.coordonnees': '.s_pqr_coordonnees',
   'ds.reassurances': '.s_pqr_reassurances',
   'ds.categories-principales': '.s_pqr_categories_principales',
+  // Racine SHELL (spec 022) : le header n'est pas un snippet `.s_pqr_*` mais un
+  // gabarit système. Son préfixe est la classe BEM de `emit-html` (`.header`),
+  // celle que la CSS générée et le gabarit posent — le même adressage réel que
+  // les sections, un cran plus haut que le marqueur de snippet qu'il n'a pas.
+  'ds.header': '.header',
 };
 
-/** Les classes de racine, sans le point — l'alternative d'une regex de balise. */
-export const ROOT_CLASSES = Object.values(ROOT_SELECTOR).map((sel) => sel.slice(1));
+/** Les classes des racines POSABLES, sans le point — l'alternative d'une regex
+ *  de balise pour le relevé de dérive.
+ *
+ *  Dérivé de `ROOT_CONTRACT_IDS` et NON de toutes les clés de `ROOT_SELECTOR` :
+ *  une racine shell n'est jamais SAUVEGARDÉE (elle se re-rend à chaque requête),
+ *  donc elle n'a rien à faire dans un scan de blocs sauvegardés — et sa classe
+ *  `.header`, générique, y attraperait n'importe quelle barre de page. */
+export const ROOT_CLASSES = ROOT_CONTRACT_IDS.map((id) => ROOT_SELECTOR[id].slice(1));
+
+/**
+ * Les racines **shell** : rendues par un gabarit SYSTÈME (le header d'Odoo), pas
+ * par la bibliothèque de blocs. Spec 022.
+ *
+ * Distinctes des posables sur un point qui n'est pas cosmétique : une racine
+ * shell N'EST PAS inscriptible comme snippet (FR-001 — le header est un layout,
+ * pas un bloc droppable), et son HTML n'est JAMAIS sauvegardé (il se re-rend à
+ * chaque requête) — d'où deux conséquences tenues ailleurs :
+ *   · `check-module` exige l'ABSENCE d'inscription snippet pour ces racines ;
+ *   · le `graphDigest` reste celui des seules posables (il signe la structure du
+ *     HTML SAUVEGARDÉ ; y fondre le shell marquerait à tort « structure-stale »
+ *     chaque section sauvegardée au premier changement du header). Le shell entre
+ *     au lock par son sha256 par-entrée, pas par le digest — voir `check-inputs`.
+ * Leur CSS de fermeture est néanmoins émise (le gabarit consomme les classes).
+ */
+export const SHELL_CONTRACT_IDS = ['ds.header'] as const;
+
+/** Toutes les racines de l'intégration — posables ∪ shell, triées. La CSS et le
+ *  lock couvrent cette union ; seule la staleness du HTML sauvegardé (digest,
+ *  scan) reste cantonnée aux posables. */
+export const ALL_ROOT_CONTRACT_IDS = [...ROOT_CONTRACT_IDS, ...SHELL_CONTRACT_IDS] as const;
 
 /** Sources de jetons réellement lues par le build d'assets. Triées. */
 export const TOKEN_SOURCES = [

@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/header.contract.json (ds.header v1.0.0)
+ * Source of truth: contracts/header.contract.json (ds.header v2.1.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -31,9 +31,10 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "center",
     "justifyContent": "space-between",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "width": "1728px",
     "paddingLeft": "89px",
     "paddingRight": "89px",
     "paddingTop": "16px",
@@ -57,7 +58,8 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "row",
     "alignItems": "center",
-    "gap": "16px"
+    "gap": "16px",
+    "color": "#FFFFFF"
   },
   "Search": {
     "display": "inline-flex",
@@ -77,25 +79,25 @@ const S: Record<string, CSSProperties> = {
 const V: Record<string, CSSProperties> = {};
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
-  fond?: 'solid' | 'transparent';
+  /** La collection de navigation — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat. À la différence d'un sample générique (FR-010 de ds.google-reviews), celui-ci porte les libellés et routes RÉELS de tête de la maquette (audit 013 clos par le delta 022 : `/depannage-sav`). Côté produit, ces quatre paires existent une seconde fois dans l'arbre `website.menu` semé UNE FOIS à la livraison (spec 022, data-model §2.2, avec ses enfants) ; après le semis, le menu du CLIENT fait foi — jamais re-semé, jamais écrasé (FR-016). Un renommage de route se porte donc à la main aux deux endroits, aucune porte ne les compare — dette nommée. `chevron` est saisi par entrée ici ; côté Odoo il est dérivé (l'entrée a des enfants). */
   items?: Array<{ libelle: string; href: string; chevron: boolean }>;
 }
 
 /** Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
-  { fond = 'solid', items, style, children, ...rest },
+  { items, style, children, ...rest },
   ref,
 ) {
   return (
     <div ref={ref} style={{ ...S.root, ...style }}  {...rest}>
-      <PiquerayLogo couleur="default" />
+      <PiquerayLogo couleur="blanc" />
 <div style={{ ...S.navWrapper }}>
 <div style={{ ...S.nav }}>
 <NavItem actif={false} libelle="Portes de garage" href="/portes-de-garage" chevron />
 <NavItem actif={false} libelle="Portes d’entrée" href="/portes-entree" chevron />
-<NavItem actif={false} libelle="Dépannage/SAV" href="/motorisation" />
+<NavItem actif={false} libelle="Dépannage/SAV" href="/depannage-sav" />
 <NavItem actif={false} libelle="À propos" href="/a-propos" />
-<Button>Contactez-nous</Button>
+<Button variant="blanc" iconLeft={false} iconRight iconRightGlyph="arrow-right">Contactez-nous</Button>
 </div>
 <div style={{ ...S.iconsNav }}>
 <span style={{ ...S.Search }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ICONS["search"] }} />

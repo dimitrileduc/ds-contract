@@ -31,7 +31,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { repoPath, repoRelative } from './lib/canonical.js';
 import { validateOrThrow } from './lib/schemas.js';
-import { ROOT_CONTRACT_IDS, listAuthoringConfigs, loadAllContracts, walkLocalParts, type ContractSource } from './lib/repo-data.js';
+import { ALL_ROOT_CONTRACT_IDS, ROOT_CONTRACT_IDS, listAuthoringConfigs, loadAllContracts, walkLocalParts, type ContractSource } from './lib/repo-data.js';
 import type { Contract, Part } from '../contract-schema.js';
 import { runAsCli } from './lib/cli.js';
 import { ROOT_SELECTOR } from './lib/repo-data.js';
@@ -184,7 +184,10 @@ export function propTypeKey(type: unknown): string {
 
 /** Types de prop du contrat → mécanismes acceptables pour un verdict `controlled`. */
 const MECANISMES_PAR_TYPE: Record<string, readonly string[]> = {
-  text: ['plain-text', 'rich-text', 'computed-display'],
+  // `native-menu` (spec 022) : le libellé et la cible d'un lien de nav viennent du
+  // dialogue de menu natif d'Odoo (website.menu), pas d'un panneau à nous — une
+  // prop `text` de nav-item peut donc être gouvernée par ce mécanisme.
+  text: ['plain-text', 'rich-text', 'computed-display', 'native-menu'],
   'rich-text': ['rich-text'],
   boolean: ['boolean', 'computed-display'],
   number: ['number', 'ordered-repeat', 'computed-display'],
@@ -195,7 +198,10 @@ const MECANISMES_PAR_TYPE: Record<string, readonly string[]> = {
   // l'avatar est une prop DE LA CARTE, adressée par son propre componentPath,
   // pas la collection. L'admettre ici aurait laissé passer un verdict `media`
   // sur la liste entière, c'est-à-dire une décision qui ne veut rien dire.
-  arrayOf: ['ordered-repeat', 'computed-display'],
+  // `native-menu` (spec 022) rejoint la liste : la collection `items` du header
+  // EST l'arbre `website.menu`, gouverné par le dialogue natif — un repeat qui
+  // n'est pas géré par notre panneau, exactement ce que ce mécanisme nomme.
+  arrayOf: ['ordered-repeat', 'computed-display', 'native-menu'],
 };
 
 /** Le `contentKind` cohérent avec une part du contrat. */
@@ -405,9 +411,12 @@ function main() {
   // passerait au vert en n'ayant plus rien à vérifier. Les racines sont la
   // référence, pas le contenu du répertoire.
   if (explicites.length === 0) {
-    const nonCouvertes = ROOT_CONTRACT_IDS.filter((id) => !couvertes.has(id));
+    // Posables ∪ shell (spec 022) : le header est une racine de l'intégration et
+    // exige lui aussi une config exhaustive. Sans cette union, supprimer
+    // header.authoring.json passerait au vert par oubli.
+    const nonCouvertes = ALL_ROOT_CONTRACT_IDS.filter((id) => !couvertes.has(id));
     if (nonCouvertes.length > 0) {
-      console.log(`\n✖ ${nonCouvertes.length} racine(s) posable(s) sans config d'authoring :`);
+      console.log(`\n✖ ${nonCouvertes.length} racine(s) (posable ∪ shell) sans config d'authoring :`);
       for (const id of nonCouvertes) console.log(`    ${id}`);
       rouge += nonCouvertes.length;
     }

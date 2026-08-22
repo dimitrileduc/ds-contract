@@ -1,0 +1,168 @@
+{
+  "releveId": "header-bande-desktop-odoo-019-foundation",
+  "scenarioId": "header-bande-desktop",
+  "snapshotId": "odoo-019-foundation",
+  "kind": "releve",
+  "date": "2026-08-22",
+  "objet": "Comportement de la barre gouvernée entre la largeur de référence (1728) et le seuil mobile différé (~1000). Ce document MESURE une plage que la spec 022 n'a jamais couverte — il ne prononce aucun verdict pass/fail : il n'existe aucun critère à cette largeur.",
+  "instrument": "Chromium (playwright-core), instance Odoo isolée (COMPOSE_PROJECT_NAME=pqr022nav, port 8089), base neuve, menu semé intact, page /",
+  "seuils": [
+    {
+      "viewport": 1506,
+      "fait": "l'espace entre le logo et la nav atteint 0 px — la nav vient au contact du logo",
+      "derive": "espace = viewport − 1506 (décroissance 1:1 : 222 px à 1728)"
+    },
+    {
+      "viewport": 1470,
+      "fait": "les libellés de nav se replient sur 2 lignes (hauteur 16 → 32 px)"
+    },
+    {
+      "viewport": 1320,
+      "fait": "les libellés se replient sur 3 lignes (hauteur 48 px)"
+    },
+    {
+      "viewport": 1220,
+      "fait": "la PAGE déborde horizontalement (11 px à 1220, 207 px à 1024) — barre de défilement horizontale sur tout le site"
+    }
+  ],
+  "cause": ".header porte padding-inline 89 px et gap 64/32 en valeurs fixes, avec justify-content:space-between et aucune règle intermédiaire (components.pqr.css, fermeture de ds.header). La géométrie est fidèle au cadre 1728 ; rien ne décrit les largeurs inférieures.",
+  "portee": "NE remet PAS en cause SC-001 (mesuré dans le cadre 1728, 0,0129 %). Le différé nommé au rapport de clôture (limite 3) bornait le responsive « mobile, < ~1000 px » : la plage 1000–1728 n'était couverte ni par une décision, ni par une mesure, ni par une porte.",
+  "mesures": [
+    {
+      "viewport": 1728,
+      "espaceLogoNav": 222,
+      "libelleHMax": 16,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1600,
+      "espaceLogoNav": 94,
+      "libelleHMax": 16,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1512,
+      "espaceLogoNav": 6,
+      "libelleHMax": 16,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1506,
+      "espaceLogoNav": 0,
+      "libelleHMax": 16,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1470,
+      "espaceLogoNav": 0,
+      "libelleHMax": 32,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1440,
+      "espaceLogoNav": 0,
+      "libelleHMax": 32,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1400,
+      "espaceLogoNav": 0,
+      "libelleHMax": 32,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1366,
+      "espaceLogoNav": 0,
+      "libelleHMax": 32,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1320,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1300,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1280,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1260,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1240,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 0
+    },
+    {
+      "viewport": 1220,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 11
+    },
+    {
+      "viewport": 1200,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 31
+    },
+    {
+      "viewport": 1100,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 131
+    },
+    {
+      "viewport": 1024,
+      "espaceLogoNav": 0,
+      "libelleHMax": 48,
+      "libelleHMin": 16,
+      "chevauchement": 0,
+      "debordePage": 207
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/* PiquerayLogo — from ds.piqueray-logo v0.1.0 (core/emit-html.ts) */
+/* PiquerayLogo — from ds.piqueray-logo v1.0.0 (core/emit-html.ts) */
 
 .piqueray-logo, .piqueray-logo *, .piqueray-logo *::before, .piqueray-logo *::after {
   box-sizing: border-box;
@@ -217,7 +217,7 @@
   flex-shrink: 0;
 }
 
-/* Header — from ds.header v1.0.0 (core/emit-html.ts) */
+/* Header — from ds.header v2.1.0 (core/emit-html.ts) */
 
 .header, .header *, .header *::before, .header *::after {
   box-sizing: border-box;
@@ -228,9 +228,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: var(--size-header-root);
   padding-left: var(--space-89);
   padding-right: var(--space-89);
   padding-top: var(--space-16);
@@ -258,6 +259,7 @@
   flex-direction: row;
   align-items: center;
   gap: var(--space-16);
+  color: var(--color-blanc);
 }
 
 .header__Search svg {

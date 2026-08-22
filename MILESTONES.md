@@ -1354,6 +1354,70 @@ DW-014-002 (the visual-parity instrument still renders `emit-html`, never the
 delivered React surface), and the 89 stroke/paint/typography literals — 015's
 pattern applied to its next population, another spec.
 
+## 022 — the shell, projected: Piqueray's nav bar as an Odoo system header (2026-08-20)
+
+*(Journal gap named, not silent: `MILESTONES.md` skips specs **017, 018, 019, 020,
+021**. 022 files on top of that hole rather than pretend it isn't there — the
+record of those specs lives in their spec folders and the commit log.)*
+
+Two strict phases. **Amont** (phase 2, closed earlier): `ds.header` **1.0.0 →
+2.0.0** (MAJOR — the unused `Fond=Solid` variant retired at the source, one canvas
+gesture with a §X capture and a named version), `ds.piqueray-logo` adopted **1.0.0**.
+**Projection** (this milestone): the bar delivered as an Odoo **system header** —
+a template inheriting `website.layout` and replacing the native nav zone, rendering
+logo/links/CTA/icons from the governed CSS and the **native `website.menu` data**,
+edited by Odoo's own menu dialog. Suite stayed **219/219**; **zero** schema change
+(the `propsByProp` channel died with Solid), **zero** emitter edit (no polaris
+re-pin), one shell root added to the integration.
+
+**The proofs held.** SC-001 measured **0.0129 %** of pixels against the governed
+`emit-html` reference (the residual is almost entirely the CTA arrow glyph — the
+reference renders the registry's filled arrow, `pqr_button` inlines a stroked one,
+a 019 characteristic inherited, not a 022 defect). SC-006 is the load-bearing one:
+a full regeneration (`build → odoo:assets → -u`) reproduced the header CSS **to the
+byte** AND left the client's edited `website.menu` **byte-identical** — the
+apparence is governed and regenerable, the content is the client's and untouched
+(FR-016). SC-002/003/004/005 and the 8 sections all green.
+
+**Five premises were false when measured** (the SC-009 pattern, again): (1)
+`emit-html` renders **no** vectorAsset — the SC-001 reference logo was blank until
+the *instrument* (`render-html.mts`, not the emitter) was taught to inject the
+governed SVGs and a `dark` comparison surface; PHASE-AMONT gap #2 closed. (2) The
+now-active system header pushes every measurement frame down ~86 px, and the 80 px
+viewport guard clipped the capture by 6 px — a latent flaw for the sections too,
+fixed at the shared `viewportFor`. (3) The accessible home-link `<a>` around the
+logo lifted it 3.5 px (inline line-height > the 34 px box) — a `display:flex`
+bridge rule pinned it back. (4) Odoo caches the home render **per URL**; a scenario
+that edits the menu between reads measured a frozen bar until a cache-busting query
+was added. (5) Per-website menus carry **no xml_id** (spike S2) — the tops'
+`parent_id` isn't referencable in XML, so the seed's fixups (parent, default
+removal, header switch) live in a flag-guarded Python hook, deletion-of-a-seeded
+record named as an FR-016 edge (noupdate recreates it).
+
+One architecture call named: the lock pins the posables ∪ shell closure, but the
+`graphDigest` stays the **posables-only** signature — it marks staleness of *saved*
+section HTML, and the header is never saved; folding it in would falsely stale
+every section. The shell is pinned by per-entry sha256 instead. Left standing and
+cited without re-diagnosis: the two pre-existing reds (`odoo:qualification`,
+`editability-boundary` 43/44), and DW-014-002 still open (the instrument renders
+`emit-html`, not the delivered surface — 022 rendered the *reference* faithfully
+for the header by injecting vectors, but the delivered-surface question is untouched).
+
+**Post-delivery, the fixed-width limit was closed at the source (2.1.0).** The owner
+flagged the bar rendering 1728 px fixed while every section is FILL — and asked the
+right question: *shouldn't the Figma be fixed first?* It should (§VIII). An Odoo
+full-width bridge was started, then reverted as the forbidden workaround. The source
+truth (016's pinned dump) confirmed the master was `layoutSizingHorizontal: FIXED`
+— the odd one out. The gesture: master FIXED→FILL, and the 1px component-set stroke
+removed so the master stayed **exactly** 1728, keeping all **10 usages untouched**
+(a first attempt lost 2px and dragged 7 usages — §X caught it, reverted, and the
+stroke was the culprit). Re-mirrored into the contract (`layout.width: "fill"`,
+`referenceWidth: 1728`, fixed width token dropped — hero's exact shape), bumped
+2.1.0, re-pinned across lock/golden/engine-receipt/catalog/figma-sync. Result:
+`.header` renders `width: 100%` on both surfaces, the bar fills 1920→1920, and
+SC-001 holds at **0.0129%** (in the 1728 frame, `fill` = 1728, pixel-identical) —
+governed full-width, not a hosting hack. Still deferred: mobile responsive (burger).
+
 ## 2026-08-21 — 023 Catégories gouvernées : un colonnage réglable par le rédacteur
 
 Le bloc « Catégories principales » — réparé au pixel par 021 mais hors contrat —

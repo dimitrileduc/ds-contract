@@ -1,0 +1,32 @@
+{
+  "receiptId": "header-visual-odoo-019-foundation",
+  "scenarioId": "header-visual",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "header-default",
+  "observations": [
+    "[pass] captures — référence, public Odoo et rapport existent — attendu « 3 artefacts », observé « 3 artefacts »",
+    "[pass] comparaison — dimensions identiques et score mesuré (extract/image-parity) — attendu « statut mesurée, score numérique », observé « mesurée · 0.012921036708350141 % »",
+    "[pass] résidu sous le plafond déclaré (0.1 % — AA + glyphe flèche pqr_button hérité) — attendu « < 0.1 % », observé « 0.012921036708350141 % — composition, dimensions, positions logo/liens/CTA/icônes alignées ; résidu = anti-aliasing + flèche CTA (tracé pqr_button vs pleine du registre, caractéristique 019) »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/022-odoo-nav-shell/proofs/header-visual/reference/header-default.png",
+      "sha256": "e9d2ec99fa40b12218826124ca10f5268c12ad014eb59df48a8448773c34d6bc",
+      "kind": "image"
+    },
+    {
+      "path": "specs/022-odoo-nav-shell/proofs/header-visual/odoo/header-default.png",
+      "sha256": "d7424e54484214804f28d0aaa68cf495e50e6fdd04d6173d0954690ac2fbf33c",
+      "kind": "image"
+    },
+    {
+      "path": "specs/022-odoo-nav-shell/proofs/header-visual/diff/comparaison-image.json",
+      "sha256": "63004800af564026f221f73cf53c676d776a7b606258227de5564602f6306e37",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [
+    "SC-001-CTA-ARROW-GLYPH-INHERITED-019"
+  ]
+}

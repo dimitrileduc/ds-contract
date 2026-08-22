@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v0.1.0)
+ * Source of truth: contracts/piqueray-logo.contract.json (ds.piqueray-logo v1.0.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -57,7 +57,7 @@ export interface PiquerayLogoProps extends HTMLAttributes<HTMLDivElement> {
   couleur?: 'default' | 'blanc';
 }
 
-/** PROPOSED contract extracted from the design canvas (extract/figma dump v1) — API, anatomy, and token bindings inverted from the drawn structure. Semantics beyond the name/axis inference table, a11y, events, and slot accepts are not canvas-recoverable; review before adoption. */
+/** Piqueray logo. Two Couleur variants, extracted from the Figma COMPONENT_SET « PiquerayLogo » on DS · Atomes, reviewed and adopted — not authored. The orange marque is constant; only the wordmark ink changes with Couleur — Default is the blue wordmark, Blanc the white wordmark for a dark surface (ds.header composes the Blanc variant on its noir-bleuté nav). */
 export const PiquerayLogo = forwardRef<HTMLDivElement, PiquerayLogoProps>(function PiquerayLogo(
   { couleur = 'default', style, children, ...rest },
   ref,

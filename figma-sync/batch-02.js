@@ -1510,7 +1510,7 @@ const COMPONENTS = [
     "setName": "PiquerayLogo",
     "contractId": "ds.piqueray-logo",
     "anchorKey": "da9ca0f5f7fa0f396c8df4181a6236c26f4db9f5",
-    "description": "PiquerayLogo — generated from contract ds.piqueray-logo v0.1.0",
+    "description": "PiquerayLogo — generated from contract ds.piqueray-logo v1.0.0",
     "isSet": true,
     "boolProps": [],
     "textProps": [],

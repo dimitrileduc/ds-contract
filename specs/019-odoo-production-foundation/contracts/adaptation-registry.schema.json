@@ -40,14 +40,19 @@
         "mechanism"
       ],
       "properties": {
-        "adaptationId": { "type": "string", "pattern": "^ODOO-\\d{3}-[A-Z0-9-]+$" },
+        "adaptationId": {
+          "$comment": "Motif généralisé (ADDITIF) : toute campagne d'intégration `ODOO-NNN-…` est admise — 019 (fondation), 022 (wave B ET shell de nav). Les blocs discovered et les entrées de registre doivent toujours s'apparier (build-derivation-report).",
+          "type": "string",
+          "pattern": "^ODOO-\\d{3}-[A-Z0-9-]+$"
+        },
         "path": {
           "type": "string",
           "pattern": "^integrations/odoo/addons/piqueray_ds/(?!.*\\.\\.).+$"
         },
         "rootContracts": {
+          "$comment": "`ds.header` ajouté (ADDITIF) par spec 022 : la racine shell est une racine de l'intégration au même titre que les posables.",
           "type": "array",
-          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances", "ds.categories-principales"] },
+          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances", "ds.header", "ds.categories-principales"] },
           "minItems": 1,
           "uniqueItems": true
         },
@@ -59,6 +64,7 @@
           "uniqueItems": true
         },
         "mechanism": {
+          "$comment": "`seed` ajouté (ADDITIF) par spec 022 : semis unique de données natives (website.menu) à la livraison — ni qweb, ni bridge CSS.",
           "enum": [
             "qweb",
             "builder-option",
@@ -67,7 +73,8 @@
             "save-version",
             "odoo-bridge",
             "qualification",
-            "compatibility"
+            "compatibility",
+            "seed"
           ]
         }
       }

@@ -16,6 +16,10 @@ const TARGETS = [
   repoPath('integrations/odoo/addons/piqueray_ds/static/src/js'),
   repoPath('integrations/odoo/addons/piqueray_ds/static/src/xml'),
   repoPath('integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css'),
+  // Spec 022 : le semis du menu (ODOO-022-MENU-SEED) vit dans data/*.xml. La
+  // migration `.py` n'est PAS scannée (filtre js|xml|css) — c'est un crochet
+  // « une fois », pas une zone de rendu comptée ; seule la donnée semée l'est.
+  repoPath('integrations/odoo/addons/piqueray_ds/data'),
 ];
 
 function filesUnder(target: string): string[] {

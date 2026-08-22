@@ -1,0 +1,23 @@
+{
+  "receiptId": "header-regen-odoo-019-foundation",
+  "scenarioId": "header-regen",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "seeded-menu-edited",
+  "observations": [
+    "[pass] menu client capturé (modifié par US2, non trivial) — attendu « cliché non vide portant les éditions US2 », observé « 635 octets »",
+    "[pass] régénération repo — npm run build vert — attendu « exit 0 », observé « exit 0 »",
+    "[pass] apparence régénérable — la CSS du header est reproduite À L'OCTET (déterministe, non figée) — attendu « odoo:assets --check propre », observé « ✔ 8 sortie(s) générée(s) conformes, et deux constructions identiques à l'octet. »",
+    "[pass] update module — projection régénérée appliquée à l'instance — attendu « exit 0 », observé « exit 0 »",
+    "[pass] SC-006 / FR-016 — website.menu byte-identique avant/après la régénération — attendu « cliché identique », observé « identique »",
+    "[pass] la barre en ligne rend l'apparence gouvernée après régénération — attendu « logo + CTA + icônes + liens », observé « {\"logo\":true,\"cta\":true,\"icons\":true,\"links\":5} »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/022-odoo-nav-shell/proofs/sc-006-regeneration.json",
+      "sha256": "2058e2380a62e91f6d51c85345ec20d2a8b978cb581f4ecc18ac34f81e234728",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": []
+}

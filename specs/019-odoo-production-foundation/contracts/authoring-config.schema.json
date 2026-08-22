@@ -151,6 +151,7 @@
           "enum": ["controlled", "fixed-by-composition", "not-editable", "out-of-capacity"]
         },
         "mechanism": {
+          "$comment": "`native-menu` ajouté (ADDITIF) par spec 022 : le mécanisme de contrôle est le dialogue de menu natif d'Odoo (website.menu), pas un panneau du builder — nommé pour ne pas tordre `ordered-repeat` (qui désigne les collections gérées par NOTRE panneau).",
           "enum": [
             "plain-text",
             "rich-text",
@@ -160,6 +161,7 @@
             "media",
             "ordered-repeat",
             "computed-display",
+            "native-menu",
             "none"
           ]
         },

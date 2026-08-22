@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/header.contract.json (ds.header v1.0.0)
+ * Source of truth: contracts/header.contract.json (ds.header v2.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -18,19 +18,19 @@ const ICONS: Record<string, string> = {
 };
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
-  fond?: 'solid' | 'transparent';
+  /** La collection de navigation — code-only par construction (figma.kind:'NONE' obligatoire pour un arrayOf, R8). React mappe le tableau vivant ; html/react-inline/canevas rendent le `sample` du repeat. À la différence d'un sample générique (FR-010 de ds.google-reviews), celui-ci porte les libellés et routes RÉELS de tête de la maquette (audit 013 clos par le delta 022 : `/depannage-sav`). Côté produit, ces quatre paires existent une seconde fois dans l'arbre `website.menu` semé UNE FOIS à la livraison (spec 022, data-model §2.2, avec ses enfants) ; après le semis, le menu du CLIENT fait foi — jamais re-semé, jamais écrasé (FR-016). Un renommage de route se porte donc à la main aux deux endroits, aucune porte ne les compare — dette nommée. `chevron` est saisi par entrée ici ; côté Odoo il est dérivé (l'entrée a des enfants). */
   items?: Array<{ libelle: string; href: string; chevron: boolean }>;
 }
 
 /** Piqueray Header. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
 export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
-  { fond = 'solid', items, className, children, ...rest },
+  { items, className, children, ...rest },
   ref,
 ) {
-  const classes = [styles.root, styles[`fond-${fond}`], className].filter(Boolean).join(' ');
+  const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
     <div ref={ref} className={classes} {...rest}>
-      <PiquerayLogo couleur="default" />
+      <PiquerayLogo couleur="blanc" />
       <div className={styles.navWrapper}>
         <div className={styles.nav}>
           {items?.map((item, index) => (
@@ -42,7 +42,9 @@ export const Header = forwardRef<HTMLDivElement, HeaderProps>(function Header(
               chevron={item.chevron}
             />
           ))}
-          <Button>Contactez-nous</Button>
+          <Button variant="blanc" iconLeft={false} iconRight iconRightGlyph="arrow-right">
+            Contactez-nous
+          </Button>
         </div>
         <div className={styles.iconsNav}>
           <span

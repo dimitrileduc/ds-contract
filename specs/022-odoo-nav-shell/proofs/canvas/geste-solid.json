@@ -1,0 +1,29 @@
+{
+  "receiptId": "geste-solid-022-nav-shell",
+  "scenarioId": "canvas-geste-retrait-solid",
+  "task": "T005",
+  "date": "2026-08-20",
+  "file": { "name": "Piqueray (Copy)", "fileKey": "d9FYAUcqdcNtsuaMgLefvJ", "page": "DS · Organisms" },
+  "authorization": "feu vert owner explicite (AskUserQuestion « Supprimer maintenant », 2026-08-20) + décision de spec 2026-08-20 (retrait Solid, MAJOR 2.0.0).",
+  "recovery_anchor": { "namedVersion": "2389749288451172052", "title": "022 — avant retrait Fond=Solid", "restore": "UI native version-history (aucune API programmatique) — README page-parity §7" },
+  "safety_guard": "abort sauf si la cible == exactement { name:'Fond=Solid', vp.Fond:'Solid', type:COMPONENT, parent:84:285 }. Cible confirmée, geste exécuté.",
+  "gesture": {
+    "removed": { "id": "84:284", "name": "Fond=Solid", "vp": { "Fond": "Solid" }, "type": "COMPONENT", "parentSetId": "84:285" }
+  },
+  "result": {
+    "set_after": {
+      "id": "84:285", "type": "COMPONENT_SET", "present": true,
+      "variantGroupProperties": { "Fond": { "values": ["Transparent"] } },
+      "children": [ { "id": "84:286", "name": "Fond=Transparent", "type": "COMPONENT", "vp": { "Fond": "Transparent" } } ],
+      "solidGoneFromSet": true
+    },
+    "mono_variant_confirmed": true,
+    "residual_named": "la propriété de variante `Fond` SUBSISTE avec une valeur unique [Transparent] — Figma ne la retire pas au retrait du dernier autre master (mécanisme observé en T003, reproduit ici). Le contrat 2.0.0 retire la prop `fond` ; écart 'Fond:[Transparent] au canvas / aucune prop au contrat' = résiduel NOMMÉ, à réconcilier au refresh snapshot (T006) + sweep parity (T010).",
+    "usages_reverified_by_position": {
+      "count": 10, "allIntact": true,
+      "detail": "chaque usage : bbox IDENTIQUE au dump avant, mainId=84:286, variant=Transparent, 1728×86. 9 sur 'Pages' (y=0) + 1 vitrine 'DS · Organisms' (2490:5381). ZÉRO usage cassé, ZÉRO orphelin (0 usage Solid, audit 020 confirmé)."
+    },
+    "after_capture": "capture d'écran du set 84:285 : une seule variante rendue (Transparent) — marque orange + wordmark navy (état 'default' du logo, corrigé côté contrat en 2.0.0 → 'blanc'), CTA dark, 3 icônes ; le demi-haut (ex-Solid) est vide. byteLength 38556 → 12441 (contenu Solid parti)."
+  },
+  "next": "T006 refresh LECTURE du snapshot parity/snapshots/figma-components.json (le fichier a changé) AVANT tout sweep parity, puis contrats 2.0.0 / 1.0.0 (T007/T008)."
+}

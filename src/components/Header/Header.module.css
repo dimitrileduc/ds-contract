@@ -1,5 +1,5 @@
 /* GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/header.contract.json (ds.header v1.0.0)
+ * Source of truth: contracts/header.contract.json (ds.header v2.1.0)
  * Regenerate with: npm run generate
  */
 
@@ -15,9 +15,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
-  width: var(--size-header-root);
   padding-left: var(--space-89);
   padding-right: var(--space-89);
   padding-top: var(--space-16);
@@ -45,6 +46,7 @@
   flex-direction: row;
   align-items: center;
   gap: var(--space-16);
+  color: var(--color-blanc);
 }
 
 .Search svg {

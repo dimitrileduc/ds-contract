@@ -1,0 +1,32 @@
+{
+  "receiptId": "spike-header-odoo-022-nav-shell",
+  "scenarioId": "spike-header",
+  "snapshotId": "odoo-19.0-20260803",
+  "status": "pass",
+  "spike": "S1",
+  "date": "2026-08-20",
+  "method": "lecture de la source website 19 dans le conteneur épinglé (docker exec) + observation ORM de l'instance vivante (odoo shell, db piqueray_qa). Chaque assertion étiquetée DOCUMENTÉ (source) ou OBSERVÉ (instance).",
+  "decision_D6": "Route retenue : livrer un gabarit `template_header_piqueray` héritant `website.layout`, xpath `//header//nav` position=replace (le patron EXACT de `website.template_header_default`), et basculer l'actif à l'installation/migration (désactiver `website.template_header_default`, activer le nôtre). Le dialogue « Éditer le menu » opère sur `website.menu` indépendamment du gabarit de header qui le rend — il continue de fonctionner à travers notre gabarit (structurel, pas défensif).",
+  "observations": [
+    "[OBSERVÉ] instance — le header actif est le défaut Odoo — attendu « un template_header_* actif », observé « ir.ui.view actives clé~template_header : ['website.template_header_default','website.template_header_mobile'] » (odoo shell, website id=1)",
+    "[DOCUMENTÉ] zone header — les gabarits de header héritent `website.layout` et remplacent la zone nav — source website/views/website_templates.xml:524 `<template id=\"template_header_default\" inherit_id=\"website.layout\" active=\"True\">` puis `<xpath expr=\"//header//nav\" position=\"replace\">`",
+    "[DOCUMENTÉ] activation — exactement un gabarit de header est actif ; la bascule se fait par le flag `active` sur `ir.ui.view` — source website/static/src/builder/plugins/options/header/header_template_option.xml (`views: ['website.template_header_default']`, une liste de vues par option de header) ; un module livre son header actif par un enregistrement de données sur `ir.ui.view.active`",
+    "[DOCUMENTÉ] menu — le header itère les enfants du menu racine du site — source website_templates.xml:537 `<t t-foreach=\"website.menu_id.child_id\" t-as=\"submenu\"><t t-call=\"website.submenu\" .../>` ; c'est exactement la donnée que le dialogue « Éditer le menu » manipule",
+    "[DOCUMENTÉ] rendu d'une entrée — feuille vs déroulant — source website_templates.xml:8 (feuille : `<li ...><a t-att-href=\"submenu._clean_url()\" ...><span t-field=\"submenu.name\"/></a></li>`, condition `not (submenu.child_id or submenu.is_mega_menu)`) et :16 (déroulant : `<li class=\"...dropdown\"><a class=\"dropdown-toggle\" data-bs-toggle=\"dropdown\">...</a><ul class=\"dropdown-menu\">...récursion website.submenu...</ul></li>`, condition `show_dropdown`)",
+    "[DOCUMENTÉ] chevron ⇔ enfants — l'affordance de déroulant est portée par `show_dropdown = submenu.child_id.filtered(is_visible)` — source website_templates.xml:5 ; côté Piqueray on rend NOTRE chevron (OcticonChevronDown12) piloté par le même signal `bool(submenu.child_id)`, pas la caret Bootstrap de `dropdown-toggle`",
+    "[DOCUMENTÉ] champs consommés — `menu.name` (libellé), `menu._clean_url()` (cible page ou URL externe), `menu.new_window` (nouvel onglet) — source website_templates.xml:9-11 + website/models/website_menu.py:198 `_clean_url`",
+    "[DOCUMENTÉ] sous-menu par défaut — le panneau déroulant est du balisage Bootstrap Odoo (`dropdown-menu`, récursion `website.submenu`) — FR-009 (design Piqueray du sous-menu déféré) est tenu SANS effort : on réutilise `website.submenu` pour le panneau",
+    "[OBSERVÉ] compatibilité dialogue — le menu vit dans `website.menu` (modèle natif), pas dans le gabarit — attendu « le dialogue d'édition reste opérant quel que soit le header », observé « website.menu_id.child_id lu par l'ORM, éditable par le dialogue standard ; notre gabarit n'est qu'un lecteur »"
+  ],
+  "artifacts": [
+    "website/views/website_templates.xml (submenu:4, navbar:362, template_header_default:524)",
+    "website/models/website_menu.py (_clean_url:198)",
+    "website/static/src/builder/plugins/options/header/header_template_option.xml"
+  ],
+  "limitCodes": [],
+  "consequences_for_qweb": [
+    "T018 : `views/header.xml` = `template_header_piqueray` inherit `website.layout`, xpath `//header//nav` replace, rendu de NOTRE balisage (classes de components.pqr.css + data-pqr-part).",
+    "T018 : boucle `t-foreach=\"website.menu_id.child_id\" t-as=\"submenu\"` ; feuille → ds.nav-item ; parent (submenu.child_id) → ds.nav-item + chevron + panneau `t-call=\"website.submenu\"` par défaut.",
+    "T021/S2 : l'activation de notre header (active flag) fait partie du semis/migration."
+  ]
+}

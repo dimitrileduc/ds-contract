@@ -24,7 +24,9 @@ import { validateOrThrow } from './lib/schemas.js';
 import {
   REGISTRY_SOURCES,
   ROOT_CONTRACT_IDS,
+  SHELL_CONTRACT_IDS,
   TOKEN_SOURCES,
+  closureOf,
   loadOdooRepoData,
   type ContractSource,
 } from './lib/repo-data.js';
@@ -76,7 +78,15 @@ const pin = (rel: string, kind: string, id: string) => {
 /** Construit le snapshot depuis l'état COURANT du dépôt. */
 export function buildSnapshot(): InputSnapshot {
   const data = loadOdooRepoData();
-  const contracts = data.closure.map((id) => {
+  // Le lock épingle la fermeture des posables ∪ celle du shell (spec 022) : le
+  // header entre au lock par sa version + son sha256 par-entrée. Le `graphDigest`
+  // reste en revanche celui des SEULES posables (`data.graphDigest`) — il signe
+  // la structure du HTML sauvegardé, que le shell (rendu à chaque requête, jamais
+  // sauvegardé) ne peut pas rendre périmé. Un changement d'un contrat du shell est
+  // donc attrapé par la dérive `content` sur son entrée, pas par le digest.
+  const shellClosure = closureOf(SHELL_CONTRACT_IDS, data.contracts);
+  const closureIds = [...new Set([...data.closure, ...shellClosure])].sort();
+  const contracts = closureIds.map((id) => {
     const src = data.contracts.get(id) as ContractSource;
     return { kind: 'contract' as const, id: src.id, version: src.version, path: src.path, sha256: src.sha256 };
   });

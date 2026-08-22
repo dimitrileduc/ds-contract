@@ -29,7 +29,7 @@ import path from 'node:path';
 import { repoPath, repoRelative } from './lib/canonical.js';
 import { ODOO_PIN, readLock } from './check-inputs.js';
 import { runAsCli } from './lib/cli.js';
-import { ROOT_CONTRACT_IDS, closureOf, loadAllContracts } from './lib/repo-data.js';
+import { ROOT_CONTRACT_IDS, SHELL_CONTRACT_IDS, closureOf, loadAllContracts } from './lib/repo-data.js';
 import { Tally } from './lib/tally.js';
 
 const ADDON = repoPath('integrations', 'odoo', 'addons', 'piqueray_ds');
@@ -296,6 +296,20 @@ function testVues() {
     if (fautifs.length > 0 && inscrits.some((i) => fautifs.some((f) => i.includes(f)))) {
       ko('aucun composant interne posable', `inscrits à tort : ${fautifs.join(', ')}`);
     } else ok('aucun composant interne posable', `${INTERNES.length} composants restent internes`);
+  }
+
+  // Racine SHELL : jamais inscrite comme snippet (FR-001 — le header est un
+  // gabarit système, pas un bloc droppable). Ne pas l'inscrire suffit ; une
+  // inscription accidentelle doit rougir par son nom, comme 018 aurait dû rougir
+  // sur son bloc inatteignable.
+  const shellSnippetIds = SHELL_CONTRACT_IDS.map((id) => `s_pqr_${id.replace('ds.', '').replace(/-/g, '_')}`);
+  if (!existsSync(snippets)) {
+    saute('aucune racine shell inscrite comme snippet', 'snippets.xml absent — T028/T045');
+  } else {
+    const src = readFileSync(snippets, 'utf8');
+    const inscritesShell = shellSnippetIds.filter((snip) => new RegExp(`t-snippet="[^"]*\\b${snip}\\b`).test(src));
+    if (inscritesShell.length > 0) ko('aucune racine shell inscrite comme snippet', `inscrite(s) à tort : ${inscritesShell.join(', ')}`);
+    else ok('aucune racine shell inscrite comme snippet', `${SHELL_CONTRACT_IDS.join(', ')} reste(nt) gabarit système`);
   }
 
   if (!existsSync(components)) {

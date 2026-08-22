@@ -3,10 +3,10 @@
   "snapshotId": "odoo-019-foundation",
   "generatorVersion": "1.0.0",
   "coverage": {
-    "expectedProps": 234,
-    "decidedProps": 234,
-    "expectedParts": 334,
-    "decidedParts": 334,
+    "expectedProps": 246,
+    "decidedProps": 246,
+    "expectedParts": 356,
+    "decidedParts": 356,
     "missingDecisionIds": [],
     "extraDecisionIds": [],
     "invalidAddresses": []
@@ -15,9 +15,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css",
       "status": "clean",
-      "expectedSha256": "3bace062a90b084232d82b0c12e3279ddf0c2443138871d056f06c4c39d67182",
-      "actualSha256": "3bace062a90b084232d82b0c12e3279ddf0c2443138871d056f06c4c39d67182",
-      "bytes": 44271
+      "expectedSha256": "e727abac2d96874a334e57927b27b1e4be71eb9724de6f4360e761a8c5052c31",
+      "actualSha256": "e727abac2d96874a334e57927b27b1e4be71eb9724de6f4360e761a8c5052c31",
+      "bytes": 47811
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css",
@@ -70,10 +70,10 @@
     }
   ],
   "manualDelta": {
-    "files": 13,
-    "blocks": 63,
-    "lines": 3376,
-    "bytes": 193189,
+    "files": 15,
+    "blocks": 67,
+    "lines": 3576,
+    "bytes": 212453,
     "byReasonCode": [
       {
         "key": "odoo-builder-policy",
@@ -92,9 +92,9 @@
       {
         "key": "odoo-layout-bridge",
         "files": 1,
-        "blocks": 8,
-        "lines": 227,
-        "bytes": 10333
+        "blocks": 9,
+        "lines": 255,
+        "bytes": 11798
       },
       {
         "key": "odoo-media-dialog",
@@ -104,11 +104,25 @@
         "bytes": 24582
       },
       {
+        "key": "odoo-menu-seed",
+        "files": 1,
+        "blocks": 1,
+        "lines": 61,
+        "bytes": 2760
+      },
+      {
+        "key": "odoo-native-menu",
+        "files": 1,
+        "blocks": 1,
+        "lines": 49,
+        "bytes": 3291
+      },
+      {
         "key": "odoo-qweb-composition",
-        "files": 2,
-        "blocks": 22,
-        "lines": 677,
-        "bytes": 66607
+        "files": 3,
+        "blocks": 23,
+        "lines": 739,
+        "bytes": 78355
       },
       {
         "key": "odoo-repeat-dom",
@@ -150,16 +164,16 @@
       {
         "key": "odoo-bridge",
         "files": 1,
-        "blocks": 8,
-        "lines": 227,
-        "bytes": 10333
+        "blocks": 9,
+        "lines": 255,
+        "bytes": 11798
       },
       {
         "key": "qweb",
-        "files": 2,
-        "blocks": 22,
-        "lines": 677,
-        "bytes": 66607
+        "files": 3,
+        "blocks": 24,
+        "lines": 788,
+        "bytes": 81646
       },
       {
         "key": "repeat-action",
@@ -174,6 +188,13 @@
         "blocks": 1,
         "lines": 53,
         "bytes": 3057
+      },
+      {
+        "key": "seed",
+        "files": 1,
+        "blocks": 1,
+        "lines": 61,
+        "bytes": 2760
       }
     ]
   },
@@ -182,5 +203,5 @@
     "blocks": [],
     "registryEntries": []
   },
-  "canonicalDigest": "1058d007a91e2182f8b9e4bea5d4c9793116c8a55a2ac515abe33494e3f1b224"
+  "canonicalDigest": "9be3070ad739e8cfec8643ea0ee1261e6c15d8324a5bf680dcb1d1258f797f85"
 }

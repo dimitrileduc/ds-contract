@@ -15,6 +15,9 @@ private/
 .env.figma
 .env.local
 .env*
+# …sauf l’exemple de l’instance QA : `npm run odoo:module:check` EXIGE ce fichier,
+# il ne contient aucun secret (base jetable) et doit donc voyager avec le dépôt.
+!integrations/odoo/qa/.env.example
 build/
 Thumbs.db
 *.tmp

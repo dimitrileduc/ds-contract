@@ -1,0 +1,31 @@
+{
+  "receiptId": "repetition-clone-022-nav-shell",
+  "scenarioId": "canvas-repetition-clone",
+  "task": "T003",
+  "date": "2026-08-20",
+  "file": { "name": "Piqueray (Copy)", "fileKey": "d9FYAUcqdcNtsuaMgLefvJ", "page": "DS · Organisms" },
+  "purpose": "Répétition sur CLONE (réversible) du geste de retrait de la variante Fond=Solid — mécanisme À OBSERVER (aucun retrait de variante jamais exécuté dans ce dépôt). Le CLONE a été supprimé après observation ; le master réel n'a PAS été touché.",
+  "target_real": {
+    "set": { "id": "84:285", "name": "Header", "type": "COMPONENT_SET", "key": "4165b8449f68916cca476b62454ede85eea13420", "variantGroupProperties": { "Fond": ["Solid", "Transparent"] } },
+    "masters": {
+      "solid_to_delete": { "id": "84:284", "name": "Fond=Solid", "w": 1728, "h": 86 },
+      "transparent_survivor": { "id": "84:286", "name": "Fond=Transparent", "w": 1728, "h": 86 }
+    }
+  },
+  "observations": [
+    "[OBSERVÉ] clone créé — set 2495:5818 = COMPONENT_SET Fond=[Solid,Transparent], enfants Fond=Solid(2495:5819) + Fond=Transparent(2495:5836)",
+    "[OBSERVÉ] instances test créées — Transparent(2495:5853→main 2495:5836) et Solid(2495:5936→main 2495:5819)",
+    "[OBSERVÉ] GESTE — cloneSolid.remove() : le set RESTE un COMPONENT_SET (ne se replie PAS en COMPONENT), la propriété de variante `Fond` DEMEURE avec une seule valeur → variantGroupProperties={Fond:[Transparent]}, un seul enfant Fond=Transparent(2495:5836)",
+    "[OBSERVÉ] survie instance Transparent — removed=false, main toujours 2495:5836 : INTACTE",
+    "[OBSERVÉ] instance de la variante SUPPRIMÉE (Solid) — removed=false, main pointe encore 2495:5819 (référence pendante/orpheline) : Figma NE supprime PAS automatiquement l'instance d'une variante retirée. SANS OBJET pour le geste réel : audit 020 = 0 usage Solid (9/9 Transparent), donc aucune instance réelle orpheline",
+    "[OBSERVÉ] original 84:285 INTACT pendant toute la répétition — deux variantes [Fond=Solid, Fond=Transparent] présentes ; confirmé aussi par capture d'écran (les 2 variantes rendues)",
+    "[OBSERVÉ] nettoyage clone — instances test supprimées ; le set clone 2495:5818 détaché (parent=null, absent de tout arbre de page — findAll sur toutes les pages = 0). Le flag `.removed` reste false sur le handle (quirk cosmétique de l'API plugin sur un handle périmé) mais le nœud n'est PLUS sur le canevas (parent nul = hors document)"
+  ],
+  "mechanism_decision_for_T005": {
+    "gesture": "cloneSolid.remove() équivalent sur le master réel 84:284 (Fond=Solid).",
+    "expected_result": "le set 84:285 reste un COMPONENT_SET mono-variante avec Fond=[Transparent] ; le master 84:286 (Transparent) survit ; les 9 usages (tous Transparent) restent intacts (référence main = 84:286, non touché).",
+    "residual_named": "la propriété de variante `Fond` (valeur unique Transparent) SUBSISTE côté canvas après le retrait du master — Figma ne la retire pas automatiquement. Le contrat 2.0.0 retire la prop `fond` ; l'écart 'Fond:[Transparent] au canvas, aucune prop au contrat' est un résiduel NOMMÉ, réconcilié au refresh du snapshot (T006) puis au sweep parity (T010). Le plan (D3) mandate le retrait du MASTER, pas la conversion du set en composant simple — non fait, nommé.",
+    "instances_check": "re-vérifier les 9 usages PAR POSITION après le geste (intactes, toujours Transparent) — §X."
+  },
+  "reversibility": "GESTE RÉVERSIBLE — exécuté sur clone jeté. Aucune mutation du master réel. Le geste réel (T005) est précédé de la capture §X (T004) + version nommée, et attend le feu vert de l'owner."
+}

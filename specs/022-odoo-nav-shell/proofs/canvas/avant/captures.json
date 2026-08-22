@@ -1,0 +1,24 @@
+{
+  "capturedFor": "022 — vérification §X « non vide et correctement dimensionnée » avant le geste",
+  "date": "2026-08-20",
+  "method": "node.exportAsync({format:'PNG', constraint:{type:'SCALE', value:1}}) sur chaque cible ; byteLength>1000 = non vide ; w×h comparés à la bbox du dump du même relevé.",
+  "allNonEmpty": true,
+  "allCorrectlySized": true,
+  "captures": [
+    { "id": "84:285", "name": "Header (set)", "w": 1808, "h": 292, "byteLength": 38556, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "84:284", "name": "Fond=Solid (master À SUPPRIMER)", "w": 1728, "h": 86, "byteLength": 24726, "nonEmpty": true, "sizeMatchesDump": true, "note": "contenu détruit par le geste — recovery = version nommée 2389749288451172052 (restore UI native) ; état visuel vu en session (capture du set, variante haute = header fond blanc)" },
+    { "id": "84:286", "name": "Fond=Transparent (master survivant)", "w": 1728, "h": 86, "byteLength": 11239, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "2490:5381", "name": "Header usage (DS · Organisms)", "w": 1728, "h": 86, "byteLength": 10444, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "210:473", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10444, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "226:259", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10462, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "230:483", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10430, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "387:869", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10430, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "237:828", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10430, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "237:1127", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10432, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "249:1655", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10432, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "258:1995", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10463, "nonEmpty": true, "sizeMatchesDump": true },
+    { "id": "274:2702", "name": "Header usage (Pages)", "w": 1728, "h": 86, "byteLength": 10463, "nonEmpty": true, "sizeMatchesDump": true }
+  ],
+  "consistency_check": "Les 10 usages (~10.4 KB) ≈ le master Transparent (11239 B) et loin du Solid (24726 B, fond blanc+ombre) — confirme visuellement que 10/10 usages sont Transparent, 0 Solid (audit 020).",
+  "named_limit": "Transport PNG : le page-parity @1x chunké (016/017) n'est PAS déployé pour ce geste (proportionnalité : master 0 usage, cibles fines 1728×86). AUCUN octet PNG brut n'est persisté sur disque : la vérification §X « non vide + correctement dimensionnée » est portée par les métadonnées d'export (byteLength + w×h vs bbox du dump) ci-dessus, la recovery par la VERSION NOMMÉE 2389749288451172052 (restore = UI native version-history, README page-parity §7), l'état visuel par la capture de session du set (deux variantes). La re-vérification T005 est PAR POSITION (dump before/after), pas pixel."
+}
