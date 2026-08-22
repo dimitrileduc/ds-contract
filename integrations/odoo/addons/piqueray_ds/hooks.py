@@ -15,7 +15,7 @@
 #
 # Un seul corps, appelé par les DEUX chemins du spike S2 :
 #   · install frais            → post_init_hook (ci-dessous) ;
-#   · update d'un site installé → migrations/19.0.1.5.0/post-migration.py.
+#   · update d'un site installé → migrations/19.0.1.6.0/post-migration.py.
 
 FLAG = "piqueray_ds.shell_finalized"
 

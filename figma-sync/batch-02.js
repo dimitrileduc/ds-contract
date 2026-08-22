@@ -260,14 +260,14 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "fixedWidth": {
-            "px": 1728,
-            "varName": "size/faq/root"
-          },
           "bindings": {
             "paddingLeft": "space/89",
             "paddingRight": "space/89",
             "itemSpacing": "space/48"
+          },
+          "fillWidth": true,
+          "lits": {
+            "width": 1728
           },
           "children": [
             {
@@ -344,7 +344,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1788
+    "colW": 380
   },
   {
     "setName": "Input",

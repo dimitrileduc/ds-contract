@@ -135,6 +135,9 @@
     <BuilderRow label.translate="Contenus">
       <span data-pqr-control="faq-title"><span data-pqr-control="faq-cta-label">Le titre de section et le libellé du CTA se modifient directement dans le bloc.</span></span>
     </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="faq-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'faq-cta'"/></span>
+    </BuilderRow>
   </t>
 
   <t t-name="piqueray_ds.FaqRowOption">
@@ -165,6 +168,9 @@
     <BuilderRow label.translate="Alternative">
       <span data-pqr-control="devis-background-alt"><BuilderTextInput action="'pqrSetDevisBackgroundAlt'"/></span>
     </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="devis-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'devis-cta'"/></span>
+    </BuilderRow>
   </t>
   <!-- ODOO-019-DEVIS-PANEL END -->
 
@@ -184,6 +190,9 @@
     </BuilderRow>
     <BuilderRow label.translate="Alternative de la photo">
       <span data-pqr-control="sav-photo-alt"><BuilderTextInput action="'pqrSetSavPhotoAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="sav-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'sav-cta'"/></span>
     </BuilderRow>
   </t>
   <!-- ODOO-019-SAV-PANEL END -->
@@ -214,4 +223,58 @@
     </BuilderRow>
   </t>
   <!-- ODOO-019-TEXTE-SEO-PANEL END -->
+
+  <!-- ODOO-022-COORDONNEES-PANEL BEGIN -->
+  <t t-name="piqueray_ds.CoordonneesOption">
+    <BuilderRow label.translate="Piqueray · Coordonnées">
+      <span data-pqr-control="coordonnees-title"><span data-pqr-control="coordonnees-eyebrow"><span data-pqr-control="coordonnees-address"><span data-pqr-control="coordonnees-hours"><span data-pqr-control="coordonnees-contact"><span data-pqr-control="coordonnees-social-label">Le titre, l’accroche, les étiquettes/valeurs et les liens Tél/Email (dans le bloc contact) se modifient directement dans le bloc.</span></span></span></span></span></span>
+    </BuilderRow>
+    <!-- Q-C2 = Option A : icônes sociales cliquables, URL réglée au panneau
+         (SetLinkHrefAction, grammaire same-origin/https/mailto/tel, javascript:
+         refusé). Le plan Google n'a AUCUNE action média : placeholder jusqu'à
+         l'API custom (décision gate 2026-08-19). -->
+    <BuilderRow label.translate="Lien Facebook">
+      <span data-pqr-control="coordonnees-facebook-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'coordonnees-facebook-link'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien Instagram">
+      <span data-pqr-control="coordonnees-instagram-href"><BuilderUrlPicker action="'pqrSetLinkHref'" actionParam="'coordonnees-instagram-link'"/></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-022-COORDONNEES-PANEL END -->
+
+  <!-- ODOO-022-REASSURANCES-PANEL BEGIN -->
+  <t t-name="piqueray_ds.ReassurancesOption">
+    <BuilderRow label.translate="Piqueray · Réassurances">
+      <span data-pqr-control="reassurances-collection">Collection gouvernée (grille de 4 colonnes)</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Cartes">
+      <span data-pqr-control="reassurances-collection"><BuilderButton action="'pqrAddCarte'" preview="false">Ajouter une carte</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Libellé du CTA">
+      <span data-pqr-control="reassurances-cta-label">Le libellé du CTA se modifie directement dans le bloc.</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="reassurances-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'reassurances-cta'"/></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.CarteOption">
+    <BuilderRow label.translate="Carte">
+      <span data-pqr-control="carte-title"><span data-pqr-control="carte-body">Le titre et le texte de la carte se modifient directement.</span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Image">
+      <span data-pqr-control="carte-image-url"><BuilderButton action="'pqrReplaceCarteImage'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="carte-image-alt"><BuilderTextInput action="'pqrSetCarteImageAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ordre">
+      <span data-pqr-control="carte-move-up"><BuilderButton action="'pqrMoveCarteUp'" preview="false">Monter</BuilderButton></span>
+      <span data-pqr-control="carte-move-down"><BuilderButton action="'pqrMoveCarteDown'" preview="false">Descendre</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Collection">
+      <span data-pqr-control="carte-remove"><BuilderButton action="'pqrRemoveCarte'" preview="false" type="'danger'">Supprimer la carte</BuilderButton></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-022-REASSURANCES-PANEL END -->
 </templates>

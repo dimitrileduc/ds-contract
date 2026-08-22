@@ -61,8 +61,14 @@ import {
     MoveTexteSeoRowUpAction,
     RemoveTexteSeoRowAction,
     ToggleTexteSeoRowAction,
+    AddCarteAction,
+    RemoveCarteAction,
+    MoveCarteUpAction,
+    MoveCarteDownAction,
 } from "./repeat_action";
 import {
+    ReplaceCarteImageAction,
+    SetCarteImageAltAction,
     ReplaceDevisBackgroundAction,
     ReplaceMemberPortraitAction,
     ReplaceHeroBackgroundAction,
@@ -78,8 +84,10 @@ import {
 } from "./media_action";
 
 // ODOO-019-AUTHORING-ROOTS BEGIN
-/** Les seules racines posables. Fermées par défaut, sans exception. */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo"];
+/** Les seules racines posables. Fermées par défaut, sans exception.
+ *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
+ *  (US2). */
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -145,9 +153,58 @@ export const TEXTE_SEO_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_texte_seo ${part}`);
 export const TEXTE_SEO_RICH_TEXT =
     '.s_pqr_texte_seo [data-pqr-part="texte-seo-title"]';
+/** ODOO-022 (US1) — Coordonnées, périmètre RESSERRÉ (retour au gate 2026-08-20,
+ *  owner) : le rédacteur édite le contenu, PAS la structure. Sont éditables : le
+ *  titre (rich `strong`), les VALEURS Adresse/Horaires, et le bloc Tél/Email
+ *  (liens). Sont VERROUILLÉS (fixés par composition) : l'accroche « Contact » et
+ *  les 4 étiquettes de champ (Adresse, Horaires, Contact, Suivez-nous) — ce sont
+ *  des libellés de structure, identiques d'un site à l'autre. */
+export const COORDONNEES_EDITABLE_PARTS = [
+    '[data-pqr-part="coordonnees-title"]',
+    '[data-pqr-part="coordonnees-address-value"]',
+    '[data-pqr-part="coordonnees-hours-value"]',
+    '[data-pqr-part="coordonnees-contact-block"]',
+].map((part) => `.s_pqr_coordonnees ${part}`);
+/** Seul le titre porte la marque `strong` (bouton Gras). */
+export const COORDONNEES_RICH_TEXT =
+    '.s_pqr_coordonnees [data-pqr-part="coordonnees-title"]';
+/** Barre d'outils ALIGNÉE sur l'allowlist du save : ces zones n'exposent AUCUN
+ *  bouton de mise en forme. Les valeurs Adresse/Horaires sont du texte simple
+ *  (retour à la ligne à la touche Entrée) ; le bloc Tél/Email n'autorise que les
+ *  liens — édités via le popover natif de lien, pas via une barre de formatage.
+ *  Sans ça, Odoo montrait la barre native complète (gras, italique, couleurs…)
+ *  alors que le garde retire tout au save — des boutons qui ne « collent » pas. */
+export const COORDONNEES_NO_FORMAT = [
+    '[data-pqr-part="coordonnees-address-value"]',
+    '[data-pqr-part="coordonnees-hours-value"]',
+    '[data-pqr-part="coordonnees-contact-block"]',
+].map((part) => `.s_pqr_coordonnees ${part}`).join(", ");
+/** VERROU DUR des textes de structure. Quand une VALEUR (span inline) est
+ *  rouverte, Odoo rend son bloc PARENT `contenteditable` pour l'héberger — et
+ *  l'étiquette voisine hérite alors de l'éditabilité. On déclare donc ces textes
+ *  explicitement non-éditables (contenteditable=false), ce qui prime sur l'héritage.
+ *  Scopé à Coordonnées : l'accroche « Contact » + les 4 étiquettes de champ. */
+export const COORDONNEES_LOCKED_TEXT = [
+    '[data-pqr-part="section-header-eyebrow"]',
+    '[data-pqr-part="coordonnees-address-label"]',
+    '[data-pqr-part="coordonnees-hours-label"]',
+    '[data-pqr-part="coordonnees-contact-label"]',
+    '[data-pqr-part="coordonnees-social-label"]',
+].map((part) => `.s_pqr_coordonnees ${part}`);
+/** ODOO-022 (US2) — Réassurances : SEULES les cartes s'éditent (titre simple,
+ *  texte rich `strong`) + le libellé du CTA. L'en-tête est FIXÉ par composition
+ *  (R3), donc absent des zones rouvertes ; les glyphes/variante du CTA aussi. Les
+ *  gestes de collection (ajouter/supprimer/monter/descendre) vivent au panneau. */
+export const REASSURANCES_EDITABLE_PARTS = [
+    '[data-pqr-carte] [data-pqr-part="carte-title"]',
+    '[data-pqr-carte] [data-pqr-part="carte-body"]',
+    '[data-pqr-part="reassurances-cta"] [data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_reassurances ${part}`);
+export const REASSURANCES_RICH_TEXT =
+    '.s_pqr_reassurances [data-pqr-carte] [data-pqr-part="carte-body"]';
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
-export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}`;
+export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}`;
 export const PIQUERAY_STRONG_NAMESPACE = "pqr-strong";
 
 /**
@@ -167,6 +224,8 @@ export const PIQUERAY_REOPENED = [
     ...DEVIS_EDITABLE_PARTS,
     ...SAV_EDITABLE_PARTS,
     ...TEXTE_SEO_EDITABLE_PARTS,
+    ...COORDONNEES_EDITABLE_PARTS,
+    ...REASSURANCES_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -316,6 +375,30 @@ export class PiquerayTexteSeoRowOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+// ODOO-022 (US1) — panneau Coordonnées. Le texte se modifie en ligne ; le
+// panneau ne porte que les liens réseaux sociaux (Q-C2). Aucune action média :
+// le plan Google est un placeholder jusqu'à l'API custom (décision gate).
+export class PiquerayCoordonneesOption extends BaseOptionComponent {
+    static template = "piqueray_ds.CoordonneesOption";
+    static selector = ".s_pqr_coordonnees";
+    static editableOnly = false;
+}
+
+// ODOO-022 (US2) — panneaux Réassurances : la racine porte la collection
+// (ajouter une carte) + le CTA (libellé/lien) ; la carte porte son édition
+// (titre/texte), son image et les gestes d'ordre/suppression.
+export class PiquerayReassurancesOption extends BaseOptionComponent {
+    static template = "piqueray_ds.ReassurancesOption";
+    static selector = ".s_pqr_reassurances";
+    static editableOnly = false;
+}
+
+export class PiquerayCarteOption extends BaseOptionComponent {
+    static template = "piqueray_ds.CarteOption";
+    static selector = ".s_pqr_reassurances [data-pqr-carte]";
+    static editableOnly = false;
+}
+
 /** Le lien d'un CTA est réglé au panneau (le popover natif est inatteignable :
  * l'ancre est hors hit-testing en édition pour que son libellé reste éditable
  * — voir odoo-bridge.css, ODOO-019-CTA-LIEN-BRIDGE). Bonne pratique du noyau
@@ -371,13 +454,40 @@ export class SetCtaHrefAction extends BuilderAction {
     }
 }
 
+/** ODOO-022 — variante générique du lien : l'ancre PORTE elle-même l'adresse
+ * `data-pqr-part` (icône sociale cliquable, Q-C2), au lieu d'être un
+ * `a[data-pqr-part="button-root"]` sous une part hôte. Même grammaire, même
+ * porte (repli même origine, `javascript:` refusé) que le lien CTA — une seule
+ * mécanique, paramétrée par part. */
+export class SetLinkHrefAction extends BuilderAction {
+    static id = "pqrSetLinkHref";
+    ancre(editingElement, part) {
+        if (!part) return null;
+        return editingElement.matches?.(`a[data-pqr-part="${part}"]`)
+            ? editingElement
+            : editingElement.querySelector(`a[data-pqr-part="${part}"]`);
+    }
+    getValue({ editingElement, params: { mainParam } = {} }) {
+        return this.ancre(editingElement, mainParam)?.getAttribute("href") || "";
+    }
+    apply({ editingElement, value, params: { mainParam } = {} }) {
+        const ancre = this.ancre(editingElement, mainParam);
+        if (!ancre) return;
+        const href = normaliserCtaHref(value, window.location.origin);
+        if (href === null) return;
+        ancre.setAttribute("href", href);
+    }
+}
+
 export class PiquerayAuthoringPlugin extends Plugin {
     static id = "piquerayAuthoringPlugin";
 
     /** @type {import("plugins").WebsiteResources} */
     resources = {
         // Fermeture : la racine et tout son sous-arbre sortent de l'édition.
-        content_not_editable_selectors: [...PIQUERAY_ROOTS],
+        // + verrou dur des textes de structure de Coordonnées (l'ouverture d'une
+        // valeur inline rend son bloc parent éditable et contaminerait l'étiquette).
+        content_not_editable_selectors: [...PIQUERAY_ROOTS, ...COORDONNEES_LOCKED_TEXT],
         // Réouverture NOMMÉE. Elle fonctionne malgré la fermeture ci-dessus
         // parce que `isDescendantOfNotEditableNotSnippet()` ne bloque pas un
         // `.o_not_editable` situé dans un `[data-snippet]` — et nos racines en
@@ -428,9 +538,16 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption],
         builder_actions: {
             SetCtaHrefAction,
+            SetLinkHrefAction,
+            AddCarteAction,
+            RemoveCarteAction,
+            MoveCarteUpAction,
+            MoveCarteDownAction,
+            ReplaceCarteImageAction,
+            SetCarteImageAltAction,
             AddMemberAction,
             RemoveMemberAction,
             MoveMemberUpAction,
@@ -471,7 +588,10 @@ export class PiquerayAuthoringPlugin extends Plugin {
             if (!targetedNodes.length) return undefined;
             const tousDans = (selecteur) =>
                 targetedNodes.every((node) => closestElement(node, selecteur));
-            if (tousDans(PIQUERAY_PLAIN_TEXT)) return DISABLED_NAMESPACE;
+            // Aucune barre de mise en forme : texte simple, PLUS les zones
+            // Coordonnées alignées sur l'allowlist (valeurs + bloc contact). Le
+            // popover natif de lien reste disponible séparément sur le bloc contact.
+            if (tousDans(PIQUERAY_PLAIN_TEXT) || tousDans(COORDONNEES_NO_FORMAT)) return DISABLED_NAMESPACE;
             if (tousDans(PIQUERAY_RICH_TEXT)) return PIQUERAY_STRONG_NAMESPACE;
             return undefined;
         },

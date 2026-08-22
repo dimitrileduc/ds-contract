@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-**Last updated**: 2026-08-20
+**Last updated**: 2026-08-22
 
 ## What this is
 
@@ -60,6 +60,10 @@ Notes:
 - Feature specs run in git worktrees: make the worktree self-sufficient first (`npm install` + `npx playwright install chromium` inside it), then the FULL sweep — including `npm run eval` — runs there (constitution: Worktree Gates, F1). The runner symlinks *the checkout's own* `node_modules` into its scratch dir, which is exactly why a bare worktree fails it.
 - Two checks (one eval + the visual-parity instrument) drive real Chromium; if missing, the error names the fix (`npx playwright install chromium` or set `PLAYWRIGHT_CHROMIUM_PATH`).
 - Targeted checks (there is **no single-eval filter flag**): `npm run emitters:check`, `npm run mint:check`, `npm run mint:code:check`, `npm run extract:figma:*:check` (dialog, composite, tooltip, theme, repeat, …), `npm run parity`.
+
+## Pont Figma (figma-console MCP) — règles de ports
+
+Chaque session Claude spawne SON serveur figma-console ; le plugin Desktop Bridge se connecte à TOUS les serveurs des ports **9223-9232** (« Connected to N AI apps » = N serveurs en plage). Un serveur retombé sur 9233+ est hors plage → session sans pont. **Ne jamais forcer `FIGMA_WS_PORT` dans `.claude/settings.json`** (ça met toutes les sessions du repo sur la même chaise et le repli va hors plage). Les squatteurs habituels sont les figma-console **parasites spawnés par auggie** (`--mcp-auto-workspace`) — pour en libérer un : tuer la branche entière (parasite + `npm exec` + l'auggie superviseur, sinon respawn en ms), poser le port libéré dans `~/.claude.json` → `mcpServers.figma-console.env.FIGMA_WS_PORT` (la config gagne sur l'env de session, figé au démarrage), puis `/mcp` + rouvrir le plugin. Vérifier : `figma_get_status` probe → `portFallbackUsed:false`. Recette complète en mémoire projet (`pont-figma-ports-satures`).
 
 ## Architecture
 
@@ -126,6 +130,8 @@ Degradation is named, never silent. Extraction marks every heuristic (`confidenc
 - JSON sur disque — `specs/017-photos-honnetes/{registre/acquittements-photos.json (NOUVEAU), proofs/, contracts/}` · `extract/figma/visual-parity/{subjects.ts, triage.ts, baseline.json, fixture-assets/manifest.json}` · `evals/golden.json` + `figma-sync/plugin/engine.receipt.json` + `examples/polaris/figma/*.figma.js` (**trois re-pins**, research D14) · `contracts/{carte,member-card,member-picture}.contract.json` (**descriptions seules, patch — TROIS et non deux, compte re-mesuré**) · `extract/figma/photo-parity/` (NOUVEAU, promotion de `specs/016-canvas-vrai/{bridge,tools}/` + script `photos:verify`) · **aucun** `tokens/*.tokens.json`, **aucune** modification de schéma (017-photos-honnetes)
 - Python 3 / XML QWeb / JavaScript — un module **Odoo 19.0 écrit à la main** (vues QWeb `<template>` + `t-call`, snippet déclaré par héritage `xpath` de `website.snippets`, réglages OWL `BaseOptionComponent` + `Plugin` dans `registry.category("website-plugins")` du module `html_builder`, bundles `web.assets_frontend` et `website.website_builder_assets`, Bootstrap 5.3.3 servi sans condition) ; Docker + Compose pour l'instance jetable ; `playwright-core` + `extract/image-parity/` réutilisé tel quel pour la comparaison d'image (018-odoo-replique-manuelle)
 - JSON/CSS/XML sur disque — ÉDITÉ : `scripts/build-tokens.mjs` (+1 sortie additive préfixée), `evals/run.ts` (+1 cas C1), `docs/03-token-pipeline.md` ; GÉNÉRÉ : la sortie de jetons Odoo, écrite sous `specs/018-…/module/` ; ÉCRIT À LA MAIN : le module, les tableaux de zones, les reçus, le rapport de décision. **Aucun** contrat, **aucun** token, **aucun** `src/`, **aucun** `figma-sync/` touché — re-pin attendu : **zéro** (018-odoo-replique-manuelle)
+- Python 3 / XML QWeb / JavaScript (addon Odoo 19 écrit à la main, zones + Odoo 19 épinglé (`odoo:19.0-20260803` + `postgres:15`, compose QA) ; (022-odoo-production-wave-b)
+- JSON sur disque — 2 NOUVELLES configs `integrations/odoo/config/{coordonnees,reassurances}.authoring.json` (022-odoo-production-wave-b)
 - TypeScript (pin dépôt `typescript@^6`), Node ≥ 20, ESM via `tsx` ; Python 3 / XML QWeb / JavaScript (addon Odoo 19, zone manuelle comptée) + Zod (`@ds-contracts/schema` — **NON modifié** ; le canal `propsByProp` envisagé a été abandonné avec la variante Solid, décision owner 2026-08-20 — research D3), React 19 + CSS Modules (émetteur `react`, non touché), `core/emit-html.ts` (référence visuelle + source de `components.pqr.css`), Docker + Compose (instance `odoo:19.0-20260803` épinglée), `playwright-core` + `extract/image-parity` (instrument visuel 019 réutilisé tel quel), pont figma-console pour **UN geste d'écriture canvas unique** (suppression du master `Fond=Solid` sans usage — répétition sur clone, capture §X, version nommée), Figma en lecture pour tout le reste (022-odoo-nav-shell)
 - JSON sur disque — `contracts/{header,piqueray-logo}.contract.json` (bump **MAJOR 2.0.0** retrait Solid / adoption 1.0.0), `parity/snapshots/figma-components.json` (refresh lecture après le geste canvas), `integrations/odoo/config/{inputs.lock.json (repin), header.authoring.json (NOUVEAU), adaptation-registry.json (+entrées)}`, données de semis `website.menu` dans l'addon, reçus sous `specs/022-odoo-nav-shell/proofs/` (canvas §X compris) (022-odoo-nav-shell)
 

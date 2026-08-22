@@ -41,9 +41,9 @@
       ],
       "properties": {
         "adaptationId": {
-          "$comment": "Motif élargi (ADDITIF) par spec 022 : `ODOO-022-*` rejoint `ODOO-019-*`. Toute campagne d'intégration ODOO-0NN-… est admise ; les blocs discovered et les entrées de registre doivent toujours s'apparier (build-derivation-report).",
+          "$comment": "Motif généralisé (ADDITIF) : toute campagne d'intégration `ODOO-NNN-…` est admise — 019 (fondation), 022 (wave B ET shell de nav). Les blocs discovered et les entrées de registre doivent toujours s'apparier (build-derivation-report).",
           "type": "string",
-          "pattern": "^ODOO-0(19|22)-[A-Z0-9-]+$"
+          "pattern": "^ODOO-\\d{3}-[A-Z0-9-]+$"
         },
         "path": {
           "type": "string",
@@ -52,7 +52,7 @@
         "rootContracts": {
           "$comment": "`ds.header` ajouté (ADDITIF) par spec 022 : la racine shell est une racine de l'intégration au même titre que les posables.",
           "type": "array",
-          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.header"] },
+          "items": { "enum": ["ds.presentation", "ds.google-reviews", "ds.hero", "ds.equipe", "ds.sav", "ds.devis", "ds.texte-seo", "ds.faq", "ds.coordonnees", "ds.reassurances", "ds.header"] },
           "minItems": 1,
           "uniqueItems": true
         },

@@ -1,0 +1,42 @@
+{
+  "date": "2026-08-19",
+  "gates": [
+    {
+      "gate": "odoo:visual:selftest --strict --subjects coordonnees.mts",
+      "verdict": "pass",
+      "detail": "9/9, 0 skipped"
+    },
+    {
+      "gate": "odoo:visual:selftest --strict --subjects reassurances.mts",
+      "verdict": "pass",
+      "detail": "9/9, 0 skipped"
+    },
+    {
+      "gate": "odoo:visual:selftest --strict (bare)",
+      "verdict": "skips subject-checks by design",
+      "detail": "6 pass + 1 skip (aucun --subjects) — la forme --subjects ci-dessus exerce le contrôle sauté"
+    },
+    {
+      "gate": "odoo:qualification",
+      "verdict": "fail (PRE-EXISTING, hors 022)",
+      "detail": "google-reviews-performance -> google-reviews-functional.json hash incohérent ; fichiers non modifiés depuis HEAD ; voir qualification-report.md §5.1"
+    }
+  ],
+  "constitutionSweep": {
+    "build": "pass",
+    "parity": "pass (exit 0; findings icons AHEAD pré-existants, informatifs)",
+    "eval": "219/219",
+    "pluginCheck": "pass",
+    "roundtrip": "pass",
+    "coreBrowser": "pass",
+    "tsc": "pass"
+  },
+  "odooStaticGates": {
+    "inputsCheck": "pass",
+    "authoringCheck": "pass",
+    "derivationCheck": "pass (57 blocs)",
+    "moduleCheck": "pass (18/18, 10 roots)",
+    "assetsCheck": "pass",
+    "typecheck": "pass"
+  }
+}

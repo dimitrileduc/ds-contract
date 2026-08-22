@@ -48,6 +48,8 @@ export const ROOT_SELECTOR: Record<string, string> = {
   'ds.devis': '.s_pqr_devis',
   'ds.texte-seo': '.s_pqr_texte_seo',
   'ds.faq': '.s_pqr_faq',
+  'ds.coordonnees': '.s_pqr_coordonnees',
+  'ds.reassurances': '.s_pqr_reassurances',
   // Racine SHELL (spec 022) : le header n'est pas un snippet `.s_pqr_*` mais un
   // gabarit système. Son préfixe est la classe BEM de `emit-html` (`.header`),
   // celle que la CSS générée et le gabarit posent — le même adressage réel que

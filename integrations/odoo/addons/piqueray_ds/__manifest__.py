@@ -13,12 +13,12 @@
     "description": """
 Sections posables dérivées des contrats Piqueray gouvernés.
 
-Huit racines seulement sont inscrites dans la bibliothèque de blocs :
+Dix racines seulement sont inscrites dans la bibliothèque de blocs :
 `ds.presentation`, `ds.google-reviews`, `ds.hero`, `ds.equipe`, `ds.faq`,
-`ds.devis`, `ds.sav` et `ds.texte-seo`. Leurs dépendances internes
-(`ds.section-header`, `ds.button`, `ds.review-card`, `ds.member-card`,
-`ds.member-picture`, `ds.accordion-row`) sont composées par QWeb et ne sont
-jamais posables séparément.
+`ds.devis`, `ds.sav`, `ds.texte-seo`, `ds.coordonnees` et `ds.reassurances`.
+Leurs dépendances internes (`ds.section-header`, `ds.button`,
+`ds.review-card`, `ds.member-card`, `ds.member-picture`, `ds.accordion-row`,
+`ds.carte`) sont composées par QWeb et ne sont jamais posables séparément.
 
 La barre de navigation Piqueray (`ds.header`) est un gabarit SHELL système
 (spec 022) : elle hérite `website.layout` et remplace la zone header native —
@@ -28,7 +28,7 @@ jamais un snippet posable. Ses liens sont la donnée native `website.menu`,
 Les feuilles sous `static/src/css/generated/` sont produites par
 `npm run odoo:assets` et ne doivent jamais être éditées à la main.
 """,
-    "version": "19.0.1.5.0",
+    "version": "19.0.1.6.0",
     "category": "Website/Website",
     "author": "Piqueray",
     "license": "LGPL-3",
@@ -39,7 +39,7 @@ Les feuilles sous `static/src/css/generated/` sont produites par
     ],
     # Spec 022 : finalisation « une fois » du shell header à l'INSTALL frais
     # (parent des menus semés → racine du site, retrait des défauts d'Odoo,
-    # bascule du header). Le chemin UPDATE passe par migrations/19.0.1.5.0/.
+    # bascule du header). Le chemin UPDATE passe par migrations/19.0.1.6.0/.
     "post_init_hook": "post_init_hook",
     # AUCUNE page de test ici. Le banc d'éditabilité vivait dans ce `data` et
     # publiait donc une page de mesure sur le site réel, pendant qu'un commentaire

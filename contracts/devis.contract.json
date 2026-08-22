@@ -73,7 +73,9 @@
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 1728
       },
       "parts": {
         "Background": {
@@ -171,8 +173,7 @@
         "background-color": "{color.noir-pur}",
         "font-family": "{font.family.montserrat}",
         "padding-top": "{space.96}",
-        "padding-bottom": "{space.96}",
-        "width": "{size.devis.root}"
+        "padding-bottom": "{space.96}"
       },
       "declared": {
         "position": "relative"

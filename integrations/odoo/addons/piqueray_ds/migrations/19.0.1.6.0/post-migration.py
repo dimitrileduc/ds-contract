@@ -1,6 +1,7 @@
 # ZONE MANUELLE (spec 022). Chemin UPDATE du semis « une fois » (spike S2).
 #
-# Un site DÉJÀ installé (19.0.1.4.0 → 19.0.1.5.0, chemin de PRODUCTION) : les
+# Un site DÉJÀ installé (→ 19.0.1.6.0, chemin de PRODUCTION ; le palier est passé de 1.5.0 à 1.6.0 à la
+# fusion avec la wave B, qui avait bumpé 1.5.0 de son côté) : les
 # migrations ne tournent PAS à l'install frais, d'où le double crochet
 # (post_init_hook côté install). Odoo charge d'abord data/menu_seed.xml (crée les
 # 7 menus), PUIS exécute cette post-migration — les menus existent donc quand on

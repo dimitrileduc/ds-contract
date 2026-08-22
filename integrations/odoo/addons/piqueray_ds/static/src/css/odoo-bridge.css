@@ -131,6 +131,82 @@
 }
 /* ODOO-019-CTA-LIEN-BRIDGE END */
 
+/* ODOO-022-COORDONNEES-BRIDGE BEGIN
+ * Adaptation de largeur root-scopée (FR-007), aucune valeur de design dupliquée.
+ * La racine porte des largeurs FIXES fidèles à Figma (plan 1152 + wrapper 576 =
+ * 1728) ; sans pont, le `min-width` du plan déborderait sur une page plus
+ * étroite. Précédent exact : ODOO-019-GOOGLE-REVIEWS-BRIDGE (width:100%;
+ * min-width:0 sur l'enfant répété). Le contrat n'est pas modifié. */
+.s_pqr_coordonnees.coordonnees {
+  width: 100%;
+  max-width: 100%;
+}
+/* Le plan fléchit : son min-width de contrat est neutralisé, il absorbe tout le
+ * rétrécissement. */
+.s_pqr_coordonnees .coordonnees__googleMap {
+  min-width: 0;
+}
+/* Le wrapper garde ses 576px (ne participe pas au rétrécissement flex). */
+.s_pqr_coordonnees .coordonnees__wrapper {
+  flex-shrink: 0;
+}
+
+/* Liens de contenu de Coordonnées — soulignés, à la couleur d'hôte (neutralisation
+ * UA seulement ; le contrat ne porte aucun canal text-decoration/color de lien).
+ * Bloc contact (tel:/mailto:, Q-C1) ET valeur adresse (lien Google Maps, décision
+ * owner 2026-08-20) : l'adresse devient cliquable, destination éditable au popover. */
+.s_pqr_coordonnees [data-pqr-part="coordonnees-contact-block"] a,
+.s_pqr_coordonnees [data-pqr-part="coordonnees-address-value"] a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Q-C2 = Option A : icône sociale cliquable, sans surface visuelle ajoutée. */
+.s_pqr_coordonnees [data-pqr-part="coordonnees-social-icons"] a {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+}
+
+/* En ÉDITION, l'ancre sociale est inerte : un clic sélectionne le bloc (panneau)
+ * au lieu de naviguer. Le lien reste pleinement actif sur le site publié. Même
+ * forme que la parade CTA-lien plus haut, keyée sur le hook, pas la balise. */
+.odoo-editor-editable .s_pqr_coordonnees [data-pqr-part="coordonnees-social-icons"] a {
+  pointer-events: none;
+}
+/* ODOO-022-COORDONNEES-BRIDGE END */
+
+/* ODOO-022-REASSURANCES-BRIDGE BEGIN
+ * Adaptation de largeur root-scopée (FR-007), aucune valeur de design dupliquée.
+ * La racine porte une largeur FIXE fidèle à Figma (1550) ; sans pont, elle
+ * l'imposerait à la page. « C'est une grille de 4 colonnes » (owner, gate
+ * 2026-08-19) : la rangée flex du contrat devient une grille de 4 colonnes
+ * fluides — au-delà de 4 cartes, passage à la ligne (précédent Équipe) ; en
+ * dessous, rangée centrée ; sur page étroite, les colonnes rétrécissent.
+ * DW-002 nommé : la source déborde d'elle-même de 2px (4×364+3×32=1552 dans
+ * 1550) ; minmax(0, …) rétrécit — comportement fidèle documenté. Contrat intact. */
+.s_pqr_reassurances.reassurances {
+  width: 100%;
+  max-width: var(--pqr-size-reassurances-root);
+}
+.s_pqr_reassurances .reassurances__items {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, var(--pqr-size-carte-root)));
+  justify-content: center;
+}
+/* Les cartes remplissent leur cellule (0..363.5) au lieu de leur largeur fixe,
+ * et rétrécissent sous leur largeur de contenu (min-width: 0). */
+.s_pqr_reassurances [data-pqr-carte-list] > [data-pqr-carte] {
+  width: auto;
+  min-width: 0;
+}
+/* Le wrapper CTA est un hook d'adressage (data-pqr-part), pas une part du
+ * contrat : display:contents le retire du layout (même motif que presentation-cta). */
+.s_pqr_reassurances [data-pqr-part="reassurances-cta"] {
+  display: contents;
+}
+/* ODOO-022-REASSURANCES-BRIDGE END */
+
 /* ODOO-022-FOND-SOMBRE BEGIN
  * Fond sombre sous la barre, Odoo SEULEMENT (ni contrat ni Figma — clarification
  * de spec, FR-015). Le contrat ds.header 2.0.0 est Transparent (aucun fond) : la

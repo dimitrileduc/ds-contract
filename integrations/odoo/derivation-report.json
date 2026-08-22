@@ -3,10 +3,10 @@
   "snapshotId": "odoo-019-foundation",
   "generatorVersion": "1.0.0",
   "coverage": {
-    "expectedProps": 156,
-    "decidedProps": 156,
-    "expectedParts": 248,
-    "decidedParts": 248,
+    "expectedProps": 224,
+    "decidedProps": 224,
+    "expectedParts": 328,
+    "decidedParts": 328,
     "missingDecisionIds": [],
     "extraDecisionIds": [],
     "invalidAddresses": []
@@ -15,9 +15,9 @@
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/components.pqr.css",
       "status": "clean",
-      "expectedSha256": "5a53332a752169cd0d8da2a5eb0dc191703f5dbbe279454c46c525e5c5764e9b",
-      "actualSha256": "5a53332a752169cd0d8da2a5eb0dc191703f5dbbe279454c46c525e5c5764e9b",
-      "bytes": 37794
+      "expectedSha256": "99e04b8d0742c01d71cbfc17e320dd1fed747af430dc3313069b78130b75a6ba",
+      "actualSha256": "99e04b8d0742c01d71cbfc17e320dd1fed747af430dc3313069b78130b75a6ba",
+      "bytes": 44216
     },
     {
       "path": "integrations/odoo/addons/piqueray_ds/static/src/css/generated/fonts.pqr.css",
@@ -71,16 +71,16 @@
   ],
   "manualDelta": {
     "files": 15,
-    "blocks": 51,
-    "lines": 2567,
-    "bytes": 148633,
+    "blocks": 61,
+    "lines": 3078,
+    "bytes": 181432,
     "byReasonCode": [
       {
         "key": "odoo-builder-policy",
         "files": 3,
-        "blocks": 11,
-        "lines": 700,
-        "bytes": 35692
+        "blocks": 13,
+        "lines": 875,
+        "bytes": 46207
       },
       {
         "key": "odoo-internal-api",
@@ -92,16 +92,16 @@
       {
         "key": "odoo-layout-bridge",
         "files": 1,
-        "blocks": 6,
-        "lines": 154,
-        "bytes": 6786
+        "blocks": 8,
+        "lines": 228,
+        "bytes": 10229
       },
       {
         "key": "odoo-media-dialog",
         "files": 1,
-        "blocks": 5,
-        "lines": 448,
-        "bytes": 19208
+        "blocks": 6,
+        "lines": 509,
+        "bytes": 21844
       },
       {
         "key": "odoo-menu-seed",
@@ -120,32 +120,32 @@
       {
         "key": "odoo-qweb-composition",
         "files": 3,
-        "blocks": 17,
-        "lines": 515,
-        "bytes": 55377
+        "blocks": 21,
+        "lines": 628,
+        "bytes": 68165
       },
       {
         "key": "odoo-repeat-dom",
         "files": 4,
-        "blocks": 7,
-        "lines": 480,
-        "bytes": 17899
+        "blocks": 8,
+        "lines": 568,
+        "bytes": 21261
       },
       {
         "key": "odoo-version-policy",
         "files": 1,
         "blocks": 1,
         "lines": 53,
-        "bytes": 2964
+        "bytes": 3019
       }
     ],
     "byMechanism": [
       {
         "key": "builder-option",
         "files": 3,
-        "blocks": 11,
-        "lines": 700,
-        "bytes": 35692
+        "blocks": 13,
+        "lines": 875,
+        "bytes": 46207
       },
       {
         "key": "compatibility",
@@ -157,37 +157,37 @@
       {
         "key": "media",
         "files": 1,
-        "blocks": 5,
-        "lines": 448,
-        "bytes": 19208
+        "blocks": 6,
+        "lines": 509,
+        "bytes": 21844
       },
       {
         "key": "odoo-bridge",
         "files": 1,
-        "blocks": 6,
-        "lines": 154,
-        "bytes": 6786
+        "blocks": 8,
+        "lines": 228,
+        "bytes": 10229
       },
       {
         "key": "qweb",
         "files": 3,
-        "blocks": 18,
-        "lines": 564,
-        "bytes": 58668
+        "blocks": 22,
+        "lines": 677,
+        "bytes": 71456
       },
       {
         "key": "repeat-action",
         "files": 4,
-        "blocks": 7,
-        "lines": 480,
-        "bytes": 17899
+        "blocks": 8,
+        "lines": 568,
+        "bytes": 21261
       },
       {
         "key": "save-version",
         "files": 1,
         "blocks": 1,
         "lines": 53,
-        "bytes": 2964
+        "bytes": 3019
       },
       {
         "key": "seed",
@@ -203,5 +203,5 @@
     "blocks": [],
     "registryEntries": []
   },
-  "canonicalDigest": "bd4405ec47424bbc93d6f5603a39a602451b65eb8aee5ff9425d61397dbd863c"
+  "canonicalDigest": "fc0c7ce1633d9dbd44bcdc153e09df304c8d1c8640ec52c307dcac42a5a1ea48"
 }

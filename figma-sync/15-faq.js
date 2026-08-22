@@ -34,14 +34,14 @@ const COMPONENTS = [
             "primary": "MIN",
             "counter": "CENTER"
           },
-          "fixedWidth": {
-            "px": 1728,
-            "varName": "size/faq/root"
-          },
           "bindings": {
             "paddingLeft": "space/89",
             "paddingRight": "space/89",
             "itemSpacing": "space/48"
+          },
+          "fillWidth": true,
+          "lits": {
+            "width": 1728
           },
           "children": [
             {
@@ -118,7 +118,7 @@ const COMPONENTS = [
         }
       }
     ],
-    "colW": 1788
+    "colW": 380
   }
 ];
 const ROW_H = 240, PAD = 40;
@@ -420,6 +420,76 @@ function applyFrameSpec(node, spec) {
       if (spec.fixedHeight.varName) node.setBoundVariable('height', need(spec.fixedHeight.varName));
     }
   }
+  if (spec.lits) {
+    // v14 literals: no variable to bind — plain values, compile-parsed.
+    const li = spec.lits;
+    if (li.paddingTop !== undefined) node.paddingTop = li.paddingTop;
+    if (li.paddingBottom !== undefined) node.paddingBottom = li.paddingBottom;
+    if (li.paddingLeft !== undefined) node.paddingLeft = li.paddingLeft;
+    if (li.paddingRight !== undefined) node.paddingRight = li.paddingRight;
+    if (li.itemSpacing !== undefined) node.itemSpacing = li.itemSpacing;
+    if (li.gridColumnGap !== undefined) node.gridColumnGap = li.gridColumnGap;
+    if (li.gridRowGap !== undefined) node.gridRowGap = li.gridRowGap;
+    if (li.radius !== undefined) node.cornerRadius = li.radius;
+    if (li.strokeWeight !== undefined) node.strokeWeight = li.strokeWeight;
+    if (li.minWidth !== undefined) { try { node.minWidth = li.minWidth; } catch (e) { /* needs auto-layout */ } }
+    if (li.minHeight !== undefined) { try { node.minHeight = li.minHeight; } catch (e) { /* needs auto-layout */ } }
+    // #60 fix 1 (fillClear precedence): a spec-carried fill is NEVER
+    // trampled — fillClear only clears when no fill was spec'd. The compile
+    // side already drops fillClear when a fill binding exists (applyLiterals);
+    // this runtime guard makes the emitted script safe even for hand-fed
+    // specs carrying both.
+    if (li.fillClear && !spec.fill) node.fills = [];
+    else if (li.fillColor) node.fills = [{ type: 'SOLID', color: { r: li.fillColor.r, g: li.fillColor.g, b: li.fillColor.b }, opacity: li.fillColor.a === undefined ? 1 : li.fillColor.a }];
+    if (li.strokeColor) node.strokes = [{ type: 'SOLID', color: { r: li.strokeColor.r, g: li.strokeColor.g, b: li.strokeColor.b }, opacity: li.strokeColor.a === undefined ? 1 : li.strokeColor.a }];
+    if (li.radiusCorners) {
+      const rc = li.radiusCorners;
+      if (rc.tl !== undefined) node.topLeftRadius = rc.tl;
+      if (rc.tr !== undefined) node.topRightRadius = rc.tr;
+      if (rc.bl !== undefined) node.bottomLeftRadius = rc.bl;
+      if (rc.br !== undefined) node.bottomRightRadius = rc.br;
+    }
+    if (li.strokeSides) {
+      const sw = li.strokeSides;
+      if (sw.top !== undefined) node.strokeTopWeight = sw.top;
+      if (sw.right !== undefined) node.strokeRightWeight = sw.right;
+      if (sw.bottom !== undefined) node.strokeBottomWeight = sw.bottom;
+      if (sw.left !== undefined) node.strokeLeftWeight = sw.left;
+      // 016: our grammar never expresses strokesIncludedInLayout — a true
+      // inherited by an amend-reused node is a ghost fact (same class as
+      // strokeClear): it inflated Footer.Separator to h=2 where the origin
+      // LINE contributes 0. Normalize whenever we own the node's strokes.
+      // (NB: this block lives inside a template literal — no backticks here.)
+      // 016, measured live: a zero-height part with per-side strokes is a
+      // LINE, not a box — INSIDE stroke align (the border-box doctrine, right
+      // for boxes) makes Figma clamp the frame's height to the horizontal
+      // stroke total (0 became 2). CENTER, like the origin LINE's own stroke,
+      // leaves geometry at ~0; the weights were set after the bind-time
+      // resize, so re-affirm the zero height last. (Zero-WIDTH vertical rules
+      // would need the mirror rule — unproven, so not written.)
+      if (spec.fixedHeight && spec.fixedHeight.px === 0) {
+        node.strokeAlign = 'CENTER';
+        node.resize(node.width, 0);
+      }
+      try { node.strokesIncludedInLayout = false; } catch (e) { /* not a frame */ }
+    }
+    if (li.width !== undefined || li.height !== undefined) {
+      node.resize(li.width !== undefined ? li.width : node.width, li.height !== undefined ? li.height : node.height);
+      const mode = (spec.layout || { mode: 'HORIZONTAL' }).mode;
+      if (mode !== 'GRID') {
+        const horizontalIsPrimary = mode === 'HORIZONTAL';
+        if (li.width !== undefined) {
+          if (horizontalIsPrimary) node.primaryAxisSizingMode = 'FIXED'; else node.counterAxisSizingMode = 'FIXED';
+        }
+        if (li.height !== undefined) {
+          if (horizontalIsPrimary) node.counterAxisSizingMode = 'FIXED'; else node.primaryAxisSizingMode = 'FIXED';
+        }
+      }
+    }
+  }
+  if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
+    try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
+  }
   // A growing image with a fixed master-height is a proportional image plane,
   // not a permanently tall crop. When a consumer narrows the component (the
   // 743px category card is used at 474px), Figma must scale that basis with
@@ -604,7 +674,7 @@ async function buildNode(spec, registry) {
       // description.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (child.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((child.grow || child.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     } else if (
       spec.layout && spec.layout.stretchChildren &&
@@ -623,7 +693,7 @@ async function buildNode(spec, registry) {
     // HUG is the circular case Figma refuses. Measured live: the
     // SectionHeader title overflowed Presentation's 628 column in one line
     // (origin: two lines) — the Devis.Titre fix was this rule's local case.
-    if (childNode.type === 'TEXT' && (child.grow || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (child.grow || child.fillWidth || spec.fillWidth || spec.fixedWidth || (spec.layout && spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG parent */ }
     }
   }
@@ -1196,7 +1266,7 @@ async function amendSet(set, C) {
           // #60 fix 4 (amend path): same empty-child declared default.
           try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
         }
-        if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+        if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -1205,7 +1275,7 @@ async function amendSet(set, C) {
 
         // 016 CSS text-flow (see buildNode): TEXT in a width-constrained
         // variant root fills and wraps.
-        if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+        if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
           try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
       }
@@ -1298,7 +1368,7 @@ async function amendComponent(comp, C) {
       // #60 fix 4 (standalone amend path): same empty-child declared default.
       try { childNode.layoutSizingVertical = 'FILL'; } catch (e) { /* parent not auto-layout */ }
     }
-    if (childSpec.grow && 'layoutSizingHorizontal' in childNode) {
+    if ((childSpec.grow || childSpec.fillWidth) && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     } else if (v.spec.layout && v.spec.layout.stretchChildren && !childSpec.fixedWidth && childSpec.type !== 'instance' && 'layoutSizingHorizontal' in childNode) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
@@ -1307,7 +1377,7 @@ async function amendComponent(comp, C) {
 
     // 016 CSS text-flow (see buildNode): TEXT in a width-constrained root
     // fills and wraps.
-    if (childNode.type === 'TEXT' && (childSpec.grow || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
+    if (childNode.type === 'TEXT' && (childSpec.grow || childSpec.fillWidth || v.spec.fillWidth || v.spec.fixedWidth || (v.spec.layout && v.spec.layout.stretchChildren))) {
       try { childNode.textAutoResize = 'HEIGHT'; childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
   }

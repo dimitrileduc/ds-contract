@@ -50,7 +50,9 @@
       "layout": {
         "display": "flex",
         "direction": "column",
-        "align": "center"
+        "align": "center",
+        "width": "fill",
+        "referenceWidth": 1728
       },
       "parts": {
         "SectionHeader": {
@@ -132,7 +134,6 @@
       },
       "tokens": {
         "font-family": "{font.family.montserrat}",
-        "width": "{size.faq.root}",
         "padding-left": "{space.89}",
         "padding-right": "{space.89}",
         "gap": "{space.48}"

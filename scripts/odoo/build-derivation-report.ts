@@ -41,6 +41,8 @@ export function extractBlocks(files: string[]): { blocks: Block[]; overlap: stri
     let offset = 0;
     let found = 0;
     lines.forEach((line, index) => {
+      // Marqueurs de toute vague : ODOO-019-* (fondation) ET ODOO-022-* (wave B),
+      // etc. — la même généralisation `\d{3}` que la regex de libellé de 005.
       const begin = /\b(ODOO-\d{3}-[A-Z0-9-]+) BEGIN\b/.exec(line);
       const end = /\b(ODOO-\d{3}-[A-Z0-9-]+) END\b/.exec(line);
       if (begin) {

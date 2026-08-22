@@ -1,0 +1,410 @@
+{
+  "schemaNote": "Artefact du gate humain (FR-001..003) — granularité DÉCISION, transcrit après validation en integrations/odoo/config/coordonnees.authoring.json (schéma 019 authoring-config.schema.json, vocabulaire identique).",
+  "sectionId": "coordonnees",
+  "rootContract": {
+    "id": "ds.coordonnees",
+    "version": "2.2.0"
+  },
+  "status": "validated",
+  "gate": {
+    "decidedBy": "owner",
+    "decidedAt": "2026-08-19",
+    "deviations": [
+      "C1/C2 (mapUrl/mapAlt) : verdict changé controlled → not-editable. Le plan Google sera alimenté plus tard via une API custom (hors vague 022) ; d'ici là, PLACEHOLDER à la pose (boîte aux dimensions du contrat, sans src, identique des deux côtés de la mesure), AUCUN remplacement média offert au rédacteur.",
+      "Le rédacteur édite « du texte et des liens réseaux sociaux » (formulation owner) — le reste tel que proposé."
+    ],
+    "revisions": [
+      {
+        "decidedBy": "owner",
+        "decidedAt": "2026-08-20",
+        "changes": [
+          "PÉRIMÈTRE RESSERRÉ — le rédacteur édite le CONTENU, pas la STRUCTURE.",
+          "Accroche « Contact » (C3, controlled → fixed-by-composition) + les 4 étiquettes de champ (P5, P9, P12, P15, P18, → not-editable) : ce sont des libellés de structure, identiques d'un site à l'autre.",
+          "Barre d'outils ALIGNÉE sur l'allowlist du save : valeurs Adresse/Horaires et bloc Tél/Email n'exposent AUCUN bouton de formatage (le lien s'édite via le popover natif).",
+          "Adresse (P10) : devient un LIEN Google Maps (marque link), default sur la bonne adresse, ouverture en nouvel onglet (target=_blank). Édité via le popover, comme tél/email.",
+          "Liens externes (adresse Maps, icônes sociales) : target=_blank + rel=noopener noreferrer."
+        ]
+      }
+    ]
+  },
+  "resolvedQuestions": {
+    "Q-C1": "Option A validée : téléphone et email en liens tel:/mailto: (marques link+line-break) ; spike D9 maintenu avant intégration.",
+    "Q-C2": "Option A validée : icônes cliquables, URL réglée au panneau (grammaire CTA-href)."
+  },
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "allowed"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "allowed"
+    },
+    {
+      "action": "remove",
+      "verdict": "allowed"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden"
+    }
+  ],
+  "controls": [
+    {
+      "id": "C1",
+      "prop": "mapUrl",
+      "verdict": "not-editable",
+      "mechanism": "none",
+      "note": "DÉCISION GATE 2026-08-19 : alimentation future via API custom (hors vague 022) ; placeholder à la pose (dimensions du contrat, sans src) ; la proposition initiale controlled/computed-display est retirée"
+    },
+    {
+      "id": "C2",
+      "prop": "mapAlt",
+      "verdict": "not-editable",
+      "mechanism": "none",
+      "note": "DÉCISION GATE 2026-08-19 : suit C1 — l'alt entrera avec l'intégration API custom"
+    },
+    {
+      "id": "C3",
+      "prop": "accroche",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "note": "RE-DÉCISION 2026-08-20 : accroche verrouillée (libellé de structure)"
+    },
+    {
+      "id": "C4",
+      "prop": "titre",
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "marks": [
+        "strong"
+      ],
+      "gesture": "Édition en ligne + bouton gras",
+      "note": "Précédent : hero-title"
+    },
+    {
+      "id": "C5",
+      "path": [
+        "ds.section-header@2.2.0 via SectionHeader"
+      ],
+      "prop": "disposition",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "id": "C6",
+      "path": [
+        "ds.section-header@2.2.0 via SectionHeader"
+      ],
+      "prop": "alignement",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "id": "C7",
+      "path": [
+        "ds.section-header@2.2.0 via SectionHeader"
+      ],
+      "prop": "emphase",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "id": "C8",
+      "path": [
+        "ds.section-header@2.2.0 via SectionHeader"
+      ],
+      "prop": "accroche2",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "id": "C9",
+      "path": [
+        "ds.section-header@2.2.0 via SectionHeader"
+      ],
+      "prop": "titre",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "note": "La valeur vit sur C4 (routage racine)"
+    },
+    {
+      "id": "C10",
+      "path": [
+        "ds.section-header@2.2.0 via SectionHeader"
+      ],
+      "prop": "accroche",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "note": "La valeur vit sur C3 (routage racine)"
+    }
+  ],
+  "parts": [
+    {
+      "id": "P1",
+      "partPath": [
+        "root"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P2",
+      "partPath": [
+        "root",
+        "googleMap"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "note": "Aucun remplacement — ni clic direct (règle canvas commune) ni panneau : placeholder jusqu'à l'API custom (décision gate, voir C1)"
+    },
+    {
+      "id": "P3",
+      "partPath": [
+        "root",
+        "wrapper"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P4",
+      "partPath": [
+        "root",
+        "wrapper",
+        "SectionHeader"
+      ],
+      "child": "ds.section-header root",
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P5",
+      "partPath": [
+        "root",
+        "wrapper",
+        "SectionHeader",
+        "Accroche"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "note": "RE-DÉCISION 2026-08-20 : étiquette/accroche verrouillée (structure, verrou dur content_not_editable)"
+    },
+    {
+      "id": "P6",
+      "partPath": [
+        "root",
+        "wrapper",
+        "SectionHeader",
+        "Titre"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "marks": [
+        "strong"
+      ],
+      "gesture": "En ligne + gras",
+      "note": "Surface de C4"
+    },
+    {
+      "id": "P7",
+      "partPath": [
+        "root",
+        "wrapper",
+        "SectionHeader",
+        "Bouton"
+      ],
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "note": "Jamais rendu (disposition=standard)"
+    },
+    {
+      "id": "P8",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Adresse"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P9",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Adresse",
+        "AdresseEtiquette"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "note": "RE-DÉCISION 2026-08-20 : étiquette/accroche verrouillée (structure, verrou dur content_not_editable)"
+    },
+    {
+      "id": "P10",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Adresse",
+        "AdresseValeur"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "marks": [
+        "link"
+      ],
+      "gesture": "En ligne : lien Google Maps édité au popover ; default sur la bonne adresse, nouvel onglet",
+      "note": "RE-DÉCISION 2026-08-20 : l'adresse devient un lien Maps (adaptation Odoo, contrat intact) ; barre de formatage retirée"
+    },
+    {
+      "id": "P11",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Horaires"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P12",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Horaires",
+        "HorairesEtiquette"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "note": "RE-DÉCISION 2026-08-20 : étiquette/accroche verrouillée (structure, verrou dur content_not_editable)"
+    },
+    {
+      "id": "P13",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Horaires",
+        "HorairesValeur"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "marks": [
+        "line-break"
+      ],
+      "gesture": "En ligne, sauts de ligne autorisés"
+    },
+    {
+      "id": "P14",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Contact"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P15",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Contact",
+        "ContactEtiquette"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "note": "RE-DÉCISION 2026-08-20 : étiquette/accroche verrouillée (structure, verrou dur content_not_editable)"
+    },
+    {
+      "id": "P16",
+      "partPath": [
+        "root",
+        "wrapper",
+        "Contact",
+        "tl32087463266EmailInfopi"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "marks": [
+        "link",
+        "line-break"
+      ],
+      "gesture": "Q-C1 — Option A (recommandée) : tél/email en liens tel:/mailto:, édition en ligne ; Option B : texte simple + line-break, spans soulignés statiques",
+      "note": "Spike D9 obligatoire avant intégration (survie \\r + soulignement)"
+    },
+    {
+      "id": "P17",
+      "partPath": [
+        "root",
+        "wrapper",
+        "suivezNous"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P18",
+      "partPath": [
+        "root",
+        "wrapper",
+        "suivezNous",
+        "SuivezNousEtiquette"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "plain-text",
+      "note": "RE-DÉCISION 2026-08-20 : étiquette/accroche verrouillée (structure, verrou dur content_not_editable)"
+    },
+    {
+      "id": "P19",
+      "partPath": [
+        "root",
+        "wrapper",
+        "suivezNous",
+        "rseauxSociaux"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural"
+    },
+    {
+      "id": "P20",
+      "partPath": [
+        "root",
+        "wrapper",
+        "suivezNous",
+        "rseauxSociaux",
+        "Facebook"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "gesture": "Q-C2 — Option A (recommandée) : URL « Lien Facebook » au panneau (grammaire CTA-href) ; Option B : statique",
+      "note": "L'icône elle-même n'est jamais remplaçable"
+    },
+    {
+      "id": "P21",
+      "partPath": [
+        "root",
+        "wrapper",
+        "suivezNous",
+        "rseauxSociaux",
+        "Instagram"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "gesture": "Q-C2 — idem P20",
+      "note": "Idem P20"
+    }
+  ],
+  "widthAdaptation": {
+    "note": "FR-007 — geste d'addon, hors verdicts d'éditabilité : racine étirée à la page, min-width du plan neutralisé (le plan fléchit), wrapper 576px conservé ; zéro débordement à 1728 et 1440 px ; contrat intact.",
+    "marker": "ODOO-022-COORDONNEES-BRIDGE",
+    "reasonCode": "odoo-layout-bridge"
+  }
+}

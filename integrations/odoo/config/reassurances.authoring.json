@@ -1,0 +1,2839 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-reassurances-authoring",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": {
+    "id": "ds.reassurances",
+    "version": "1.2.0"
+  },
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "allowed"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "allowed"
+    },
+    {
+      "action": "remove",
+      "verdict": "allowed"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden"
+    }
+  ],
+  "controls": [
+    {
+      "decisionId": "reassurances-ctl-root-disposition-0",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "prop": "disposition"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-root-items-1",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "prop": "items"
+      },
+      "verdict": "controlled",
+      "mechanism": "ordered-repeat",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-carte-list]",
+      "label": "items"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutoncinqcartes-variant-11",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutoncinqcartes-children-12",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutoncinqcartes-iconleft-13",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutoncinqcartes-iconright-14",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutoncinqcartes-iconleftglyph-15",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutoncinqcartes-iconrightglyph-16",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonquatrecartes-variant-22",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonquatrecartes-children-23",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-cta\"] [data-pqr-part=\"button-label\"]",
+      "label": "children"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonquatrecartes-iconleft-24",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonquatrecartes-iconright-25",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonquatrecartes-iconleftglyph-26",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonquatrecartes-iconrightglyph-27",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-bouton-variant-33",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-bouton-children-34",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-bouton-iconleft-35",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-bouton-iconright-36",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-bouton-iconleftglyph-37",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-bouton-iconrightglyph-38",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonsecondaire-variant-44",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonsecondaire-children-45",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonsecondaire-iconleft-46",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonsecondaire-iconright-47",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonsecondaire-iconleftglyph-48",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-boutonsecondaire-iconrightglyph-49",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-disposition-55",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "disposition"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-accroche-56",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "accroche"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-titre-57",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-accroche2-58",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "accroche2"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-emphase-59",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "emphase"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-alignement-60",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "prop": "alignement"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-bouton-variant-65",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-bouton-children-66",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-bouton-iconleft-67",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-bouton-iconright-68",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-bouton-iconleftglyph-69",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-sectionheader-bouton-iconrightglyph-70",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-disposition-76",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "disposition"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-titre-77",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-title\"]",
+      "label": "titre"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-imageurl-78",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "imageUrl"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
+      "label": "imageUrl"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-imagealt-79",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "imageAlt"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
+      "label": "imageAlt"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-texte-80",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "controlled",
+      "mechanism": "rich-text",
+      "targetSelector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-body\"]",
+      "label": "texte"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-ctalabel-81",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "ctaLabel"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-ctaiconleftglyph-82",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "ctaIconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-ctaiconrightglyph-83",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "prop": "ctaIconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-action-variant-94",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-action-children-95",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-action-iconleft-96",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-action-iconright-97",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-action-iconleftglyph-98",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "reassurances-ctl-carte-action-iconrightglyph-99",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "reassurances-part-root-root-2",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-boutoncinqcartes-3",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "BoutonCinqCartes"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_reassurances",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-boutonquatrecartes-4",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "BoutonQuatreCartes"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-cta\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-boutons-5",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Boutons"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-boutons-bouton-6",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Boutons",
+          "Bouton"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_reassurances",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-boutons-boutonsecondaire-7",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "Boutons",
+          "BoutonSecondaire"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_reassurances",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-sectionheader-8",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "SectionHeader"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-items-9",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "items"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-items\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-root-items-carte-10",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "items",
+          "Carte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "repeat",
+      "selector": ".s_pqr_reassurances [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutoncinqcartes-root-17",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons-cinq\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutoncinqcartes-iconleft-18",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons-cinq\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutoncinqcartes-icononlyicon-19",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons-cinq\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutoncinqcartes-iconright-20",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons-cinq\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutoncinqcartes-label-21",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonCinqCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons-cinq\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonquatrecartes-root-28",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-cta\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonquatrecartes-iconleft-29",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-cta\"] [data-pqr-part=\"button-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonquatrecartes-icononlyicon-30",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-cta\"] [data-pqr-part=\"button-icon-only\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonquatrecartes-iconright-31",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-cta\"] [data-pqr-part=\"button-icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonquatrecartes-label-32",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonQuatreCartes"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-cta\"] [data-pqr-part=\"button-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-bouton-root-39",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-primaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-bouton-iconleft-40",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-primaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-bouton-icononlyicon-41",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-primaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-bouton-iconright-42",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-primaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-bouton-label-43",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-primaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonsecondaire-root-50",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-secondaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonsecondaire-iconleft-51",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-secondaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonsecondaire-icononlyicon-52",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-secondaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonsecondaire-iconright-53",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-secondaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-boutonsecondaire-label-54",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "BoutonSecondaire"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-boutons\"] [data-pqr-part=\"reassurances-boutons-secondaire\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-root-61",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-accroche-62",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "partPath": [
+          "root",
+          "Accroche"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-eyebrow\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-bouton-63",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "partPath": [
+          "root",
+          "Bouton"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-titre-64",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          }
+        ],
+        "partPath": [
+          "root",
+          "Titre"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"reassurances-title\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-bouton-root-71",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-bouton-iconleft-72",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-bouton-icononlyicon-73",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-bouton-iconright-74",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-sectionheader-bouton-label-75",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.section-header",
+              "version": "2.2.0"
+            },
+            "viaPart": "SectionHeader"
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "Bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-part=\"section-header-root\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-root-84",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-bouton-85",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Bouton"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-bouton-action-86",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Bouton",
+          "action"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_reassurances [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-categorieimage-87",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "categorieImage"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-reassuranceimage-88",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "reassuranceImage"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-text-89",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-text-textecategorie-90",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text",
+          "TexteCategorie"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-text-textereassurance-91",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text",
+          "TexteReassurance"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "rich-text",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-body\"]",
+      "allowedMarks": [
+        "strong"
+      ]
+    },
+    {
+      "decisionId": "reassurances-part-carte-text-titrecategorie-92",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text",
+          "TitreCategorie"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-text-titrereassurance-93",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "text",
+          "TitreReassurance"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-title\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-action-root-100",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-cta-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-action-iconleft-101",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-cta-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-action-icononlyicon-102",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-cta-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-action-iconright-103",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-cta-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "reassurances-part-carte-action-label-104",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.reassurances",
+              "version": "1.2.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte",
+              "version": "2.0.1"
+            },
+            "viaPart": "Carte",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "action"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_reassurances [data-pqr-carte] [data-pqr-part=\"carte-cta-root\"]",
+      "allowedMarks": []
+    }
+  ]
+}

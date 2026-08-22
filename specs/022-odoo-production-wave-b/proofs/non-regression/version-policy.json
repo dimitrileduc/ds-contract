@@ -1,0 +1,24 @@
+{
+  "receiptId": "version-policy-odoo-019-foundation",
+  "scenarioId": "version-policy",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "version-drift/cases",
+  "observations": [
+    "[pass] scanner — état current — attendu « current », observé « current »",
+    "[pass] scanner — état policy-stale — attendu « policy-stale », observé « policy-stale »",
+    "[pass] scanner — état structure-stale — attendu « structure-stale », observé « structure-stale »",
+    "[pass] scanner — état unknown — attendu « unknown », observé « unknown »",
+    "[pass] politique — seul policy-stale est remis au courant — attendu « réapplication de métadonnées sans réécriture HTML », observé « branche policy-stale explicite et aucune API de remplacement structurel »",
+    "[pass] structure — aucun claim de migration automatique — attendu « structure-stale signalé seulement », observé « classe pqr-structure-stale, aucune mutation de structure »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/version-policy.scan.json",
+      "sha256": "2cf04258fe84b16d3abd948ce8386623d2f144f7a59c41a405ffc2d38d266120",
+      "kind": "report"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 14
+}

@@ -229,6 +229,77 @@
     <field name="url">/piqueray-harness/texte-seo-visual</field><field name="view_id" ref="harness_texte_seo_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- ODOO-019-HARNESS-TEXTE-SEO END -->
+  <!-- ODOO-022-HARNESS-COORDONNEES BEGIN -->
+  <!-- Page vide : le scénario y pose la racine depuis la bibliothèque Website
+       (un #wrap que le Builder sait sauvegarder). -->
+  <template id="harness_coordonnees" name="Piqueray — banc Coordonnées">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_coordonnees" model="website.page">
+    <field name="url">/piqueray-harness/coordonnees</field><field name="view_id" ref="harness_coordonnees"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- Page de mesure : la racine rendue au clip épinglé (1776×660, boîte donnée
+       par le refus de render-html.mts en mode mesure). -->
+  <template id="harness_coordonnees_visual" name="Piqueray — Coordonnées visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1776px; height: 660px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_coordonnees"/></div></div></t>
+  </template>
+  <record id="page_harness_coordonnees_visual" model="website.page">
+    <field name="url">/piqueray-harness/coordonnees-visual</field><field name="view_id" ref="harness_coordonnees_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-022-HARNESS-COORDONNEES END -->
+  <!-- ODOO-022-HARNESS-REASSURANCES BEGIN -->
+  <template id="harness_reassurances" name="Piqueray — banc Réassurances">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_reassurances" model="website.page">
+    <field name="url">/piqueray-harness/reassurances</field><field name="view_id" ref="harness_reassurances"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- Page de mesure : la racine rendue au clip épinglé (1598×806). -->
+  <template id="harness_reassurances_visual" name="Piqueray — Réassurances visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="width: 1598px; height: 806px; padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_reassurances"/></div></div></t>
+  </template>
+  <record id="page_harness_reassurances_visual" model="website.page">
+    <field name="url">/piqueray-harness/reassurances-visual</field><field name="view_id" ref="harness_reassurances_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-022-HARNESS-REASSURANCES END -->
+  <!-- ODOO-022-HARNESS-DEMO BEGIN -->
+  <!-- Pages de DÉMO pleine largeur (fluides) : le bloc est rendu directement,
+       sans cadre de mesure à largeur fixe — pour juger le responsive à l'oeil. -->
+  <template id="harness_reassurances_demo" name="Piqueray — Réassurances démo (pleine largeur)">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><t t-call="piqueray_ds.s_pqr_reassurances"/></div></t>
+  </template>
+  <record id="page_harness_reassurances_demo" model="website.page">
+    <field name="url">/piqueray-harness/reassurances-demo</field><field name="view_id" ref="harness_reassurances_demo"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_coordonnees_demo" name="Piqueray — Coordonnées démo (pleine largeur)">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><t t-call="piqueray_ds.s_pqr_coordonnees"/></div></t>
+  </template>
+  <record id="page_harness_coordonnees_demo" model="website.page">
+    <field name="url">/piqueray-harness/coordonnees-demo</field><field name="view_id" ref="harness_coordonnees_demo"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- ODOO-022-HARNESS-DEMO END -->
+
+  <!-- HARNESS-SHOWCASE BEGIN — page de revue : les 8 sections gouvernées empilées
+       sur un seul lien éditeur, pour tout vérifier d'un coup. Banc uniquement. -->
+  <template id="harness_showcase" name="Piqueray — les 8 sections">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure">
+        <t t-call="piqueray_ds.s_pqr_hero"/>
+        <t t-call="piqueray_ds.s_pqr_presentation"/>
+        <t t-call="piqueray_ds.s_pqr_google_reviews"/>
+        <t t-call="piqueray_ds.s_pqr_sav"/>
+        <t t-call="piqueray_ds.s_pqr_equipe"/>
+        <t t-call="piqueray_ds.s_pqr_faq"/>
+        <t t-call="piqueray_ds.s_pqr_devis"/>
+        <t t-call="piqueray_ds.s_pqr_texte_seo"/>
+      </div>
+    </t>
+  </template>
+  <record id="page_harness_showcase" model="website.page">
+    <field name="url">/piqueray-harness/showcase</field><field name="view_id" ref="harness_showcase"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- HARNESS-SHOWCASE END -->
+
 
   <!-- ODOO-022-HARNESS-HEADER BEGIN
        Le SHELL en banc visuel (SC-001). Contrairement aux sections, le header est
