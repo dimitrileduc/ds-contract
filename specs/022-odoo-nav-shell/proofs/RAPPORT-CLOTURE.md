@@ -113,6 +113,61 @@ Sweep constitutionnel **219/219 evals** + suite Odoo (`inputs`, `authoring`,
     ordre que rien ne déclare et qu'aucun runner n'impose. Différé nommé : la
     réparation juste est que chaque scénario POSE l'état qu'il mesure.
 
+15. **Le correctif de largeur 2.1.0 n'est sur AUCUN axe de porte** (constaté
+    2026-08-22). Trois axes, trois angles morts. (a) `parity` : le **second** geste
+    canvas (master `Fond=Transparent` FIXED → FILL) n'a **pas** rafraîchi
+    `parity/snapshots/figma-components.json` — dernière écriture du cliché : le commit
+    du geste **amont** (`9b2841ec`), alors que le bump 2.1.0 est arrivé en `ecb8ac81`.
+    La limite 11 ci-dessus ne couvre que le geste amont. (b) Cela ne changerait rien :
+    le cliché ne porte **aucune géométrie** (`name`, `nodeId`, `key`, `description`,
+    `properties`, `nestedInstances` — rien d'autre) ; et 2.1.0 ayant **lâché** le jeton
+    de largeur, l'axe `canvas variables ⟷ tokens/` ne le voit plus non plus. La
+    géométrie roule sur les jetons **par construction** — une géométrie qui quitte les
+    jetons quitte l'axe. (c) `visual-parity` ne peut pas le voir : SC-001 est mesuré
+    dans le cadre 1728, où `fill` **vaut** 1728 — pixel-identique avant/après, ce
+    document le dit lui-même au n°4. **Net : le passage en pleine largeur est attesté
+    par UNE mesure manuelle (1920 → 1920) consignée au n°4, et par rien d'autre,
+    jamais plus.** La liste de re-pins du n°4 (contrat, authoring, lock, golden,
+    engine.receipt, catalog, figma-sync) est exacte et **ne contient pas** le cliché
+    parity : c'est le fait, pas un oubli de rédaction.
+
+16. **`docs/` portait déjà la décision — et la moitié livrée est celle contre laquelle
+    il met en garde** (§IX, receipt du 2026-08-22).
+    `docs/organisms-responsive-decisions.md` (2026-08-11), section `### Header`,
+    écrivait **avant** 022 : « Le root passé **seul** en Fill à 1440 ne déborde pas du
+    frame, mais le logo finit à `x = 269` alors que `navWrapper` commence à `x = 231` :
+    **chevauchement de 38 px** » — et décidait : « root **et conteneur interne** en
+    Fill ; logo et icônes en Hug ; **zone de navigation en Fill avec espacement
+    compressible, sans largeur fixe de nav** », plus la correction des wrappers de
+    chevrons. 2.1.0 a livré **le root seul** : `anatomy.root.parts.navWrapper` ne porte
+    **ni `width` ni `grow`**. Puis le n°13 a **re-mesuré depuis zéro**, sur instance
+    neuve, la conséquence que ce document énonçait — sans le citer. Aucun artefact de
+    022 ne le référence (`grep organisms-responsive specs/022-odoo-nav-shell/` → **0** ;
+    `research.md` cite `docs/` **une seule fois** au total). Le coût n'est pas la règle
+    CSS manquante : c'est d'avoir payé deux fois une mesure déjà écrite. La moitié
+    restante de la décision (navWrapper/nav en Fill, chevrons contenus) n'était portée
+    par **aucun** registre de différés — un addendum daté a été posé dans le document
+    source le 2026-08-22 pour qu'elle cesse d'être orpheline.
+
+17. **Trois fichiers LIVRÉS affirment encore l'état 2.0.0** (relevé 2026-08-22 ;
+    **nommés, non corrigés** — décision owner du jour : réparer les `.md`, pas le
+    code) :
+    · `integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css:212,219-221`
+    — dans le bloc d'adaptation **gouverné** `ODOO-022-FOND-SOMBRE` : « Le contrat
+    ds.header **2.0.0** » et « La largeur de la barre est celle du contrat
+    (`size.header.root` = 1728px, **fixe**) : le comportement plein-largeur/responsive
+    est un **différé nommé** » — les deux faux depuis le n°4, où le full-width desktop
+    est au contraire déclaré acquis ;
+    · `integrations/odoo/qa/visual/subjects/header.mts:8,33` — « Largeur du cadre =
+    `size.header.root` (1728px, **fixe** — responsive différé nommé) » et
+    `CONDITIONS.content` = « ds.header **2.0.0** mono-variante… », dans le fichier même
+    qui documente les conditions de mesure de la porte SC-001 ;
+    · `core/samples/header.css:233` (`width: var(--size-header-root)`) et
+    `core/samples/Header.inline.tsx:36` (`"width": "1728px"`) contre le livré
+    `src/components/Header/Header.module.css:18` (`width: 100%`) — instance fraîche du
+    trou déjà nommé au 018 (« `core/samples/` n'est PAS régénéré par `npm run build` ») ;
+    dernier commit du dossier : **2026-08-11**, avant 022.
+
 ## Faits renversés par la mesure (patron SC-009 de 018)
 
 Plusieurs prémisses tenues pour acquises se sont révélées fausses à l'exécution —

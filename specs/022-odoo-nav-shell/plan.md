@@ -166,6 +166,8 @@ scripts/odoo/lib/repo-data.ts                # ds.header racine SHELL (non posab
 scripts/odoo/{check-module,build-assets,check-authoring,build-derivation-report}.ts
                                              # adapter : une racine shell n'exige pas d'inscription snippet
 integrations/odoo/config/inputs.lock.json    # repin explicite (header 2.0.0, nav-item 1.2.0, piqueray-logo 1.0.0)
+#   ^ LIVRÉ header@2.1.0 (correction datée 2026-08-22) : un bump MINOR post-plan a suivi
+#     la MAJOR — root en fill. Clôture §Limites nommées n°4.
 integrations/odoo/config/header.authoring.json   # NOUVEAU — verdict par prop/part, occurrences imbriquées comprises
 integrations/odoo/config/adaptation-registry.json # +ODOO-022-* (header QWeb, semis, fond sombre, actif)
 integrations/odoo/addons/piqueray_ds/views/header.xml        # NOUVEAU — gabarit système + branchement website.menu

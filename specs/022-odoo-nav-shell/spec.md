@@ -5,6 +5,28 @@
 **Status**: Draft  
 **Input**: Description utilisateur : « Livrer la barre de navigation Piqueray dans le site Odoo, au design gouverné exact, tout en gardant le menu éditable par le client. C'est le "cadre" (shell) qui manque pour compléter la home — les 8 sections de contenu sont déjà en ligne. Odoo gère la nav comme un composant système (le header du site + un menu piloté par données), pas comme un bloc droppable : il faut y projeter notre design sans casser ce mécanisme. Le visiteur voit la barre au design exact (logo, liens, état de la page courante, déroulants) ; le client gère ses liens (ajouter, renommer, réordonner, imbriquer, pointer vers une page ou une URL) sans toucher au design ; l'owner garde l'apparence gouvernée par le contrat. Les déroulants fonctionnent dès la livraison au style Odoo par défaut ; leur design Piqueray, l'état survol et le menu mobile sont hors de cette itération. »
 
+> **Livrée et close le 2026-08-20** — rapport : `proofs/RAPPORT-CLOTURE.md`. Le champ
+> `Status` ci-dessus reste `Draft` par convention du dépôt (18 des 21 `spec.md` le
+> portent encore, closes comprises) ; c'est cette bannière qui fait foi sur l'état.
+>
+> *(Daté, non effacé — relevé de drift du 2026-08-22.)* **Cette spec décrit
+> `ds.header` 2.0.0 ; le dépôt livre 2.1.0.** FR-013, les clarifications et les
+> entités clés sont exacts **au jour où ils ont été écrits**, et le restent
+> intégralement sur le retrait de Solid ; ils sont **dépassés sur la largeur**. Une
+> **seconde évolution, non planifiée par cette spec**, a suivi la MAJOR : root en
+> `fill` + `referenceWidth: 1728` + jeton `size.header.root` lâché (bump MINOR
+> **2.1.0**), précédée d'un **second geste canvas §X** sur le master
+> `Fond=Transparent`. Motif, mesure et re-pins : clôture §« Limites nommées » n°4 ;
+> ce que ce correctif ne couvre pas : n°13 (plage desktop 1000–1728), n°15 (il n'est
+> sur aucun axe de porte), n°16 (`docs/` portait déjà la décision complète).
+>
+> Les artefacts de **planification** (`tasks.md`, `research.md`, `checklists/`,
+> `contracts/header-2.0.0.delta.md` §1, `contracts/piqueray-logo-adoption.md`) sont
+> **gelés à la date du plan** et ne sont volontairement pas réécrits. Ceux qui
+> décrivaient l'état **LIVRÉ** portent une correction datée : `plan.md`,
+> `data-model.md`, `quickstart.md`, `contracts/odoo-projection.md`, et un addendum en
+> tête du delta.
+
 ## Périmètre de la feature
 
 Cette feature livre le **shell** manquant de la home : la barre de navigation Piqueray, projetée

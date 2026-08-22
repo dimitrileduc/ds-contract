@@ -34,7 +34,7 @@
 | ProduitsECommerce | 2 × `FIXED 1596` | Track de carousel fixe ; déborde dès que le parent rétrécit. | Décision carousel |
 | Realisations | 3 × `FILL 1728` | Root correct ; en-têtes et grille restent partiellement fixes. | Mécanique + décision grille |
 | Footer | 9 × `FIXED 1728` | La rangée principale dépasse à 1440. | Mécanique desktop |
-| Header | 9 × `FIXED 1728` | Le passage en Fill seul crée un chevauchement à 1440. | Décision navigation/breakpoint |
+| Header | 9 × `FIXED 1728` | Le passage en Fill seul crée un chevauchement à 1440. | Décision navigation/breakpoint — **root passé en Fill par 022 (2.1.0) ; voir l'addendum daté sous « Header »** |
 | HeroVideo | 1 × `FIXED 1728` | Le passage du root en Fill suffit à 1440. | Mécanique |
 | Avis Google | 8 × `FIXED 1552` | Fausse rangée de cartes fixes et flèches dans des wrappers quasi nuls. | Grille 5 colonnes Fill + fix structurel |
 
@@ -173,6 +173,32 @@
 - Deux chevrons de `NavItem` dépassent aussi leur instance de 49 et 106 px dès la largeur nominale.
 - Décision : root et conteneur interne en Fill ; logo et icônes en Hug ; zone de navigation en Fill avec espacement compressible, sans largeur fixe de nav. Corriger les wrappers/contraintes des chevrons afin qu'ils restent dans chaque `NavItem`.
 - Le breakpoint compact/mobile, l'ouverture des menus et toutes les interactions de navigation restent hors scope.
+
+> **Addendum daté — 2026-08-22 (spec 022, `022-odoo-nav-shell`).** La décision
+> ci-dessus a été appliquée **à moitié**, et c'est la moitié contre laquelle ce
+> document met en garde.
+>
+> **Livré** : `ds.header` **2.1.0** met le **root** en Fill
+> (`anatomy.root.layout.width: "fill"`, `referenceWidth: 1728`, jeton
+> `size.header.root` lâché → orphelin), après un geste canvas §X sur le master
+> `Fond=Transparent` (FIXED → FILL, 10 usages laissés à 1728).
+> **Non livré** : le conteneur interne en Fill — `anatomy.root.parts.navWrapper` ne
+> porte **ni `width` ni `grow`** —, la zone de navigation à espacement compressible,
+> et la contention des chevrons.
+>
+> Conséquence **re-mesurée depuis zéro** le 2026-08-22 sur instance Odoo neuve
+> (`specs/022-odoo-nav-shell/proofs/header-bande-desktop.json`, 17 largeurs) au lieu
+> d'être lue ici : l'espace logo↔nav décroît 1:1 depuis 222 px et atteint **0 à
+> 1506 px**, les libellés se replient sur 2 lignes à **≤ 1470** puis 3 lignes à
+> **≤ 1320**, et **la page déborde horizontalement à ≤ 1220** (11 px à 1220, 207 px à
+> 1024). C'est le chevauchement prédit quatre lignes plus haut, payé une seconde
+> fois — ce document n'est cité par **aucun** artefact de 022 (§IX ; receipt consigné
+> en `specs/022-odoo-nav-shell/proofs/RAPPORT-CLOTURE.md` §« Limites nommées » n°16).
+>
+> **Reste ouvert, et n'était porté par aucun registre de différés avant cet
+> addendum** : navWrapper/nav en Fill + chevrons contenus. Le correctif 2.1.0 n'est
+> par ailleurs surveillé par **aucun** axe de porte (clôture n°15) : la largeur ayant
+> quitté les jetons, elle a quitté l'axe.
 
 ### HeroVideo
 

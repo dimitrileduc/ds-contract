@@ -155,9 +155,15 @@ l'addon.
 
 ## 4. Relations (vue d'ensemble)
 
+> *Correction datée — 2026-08-22.* Le diagramme portait `ds.header@2.0.0` : c'est la
+> version **planifiée**, pas la version **livrée**. Un bump MINOR post-plan (root en
+> `fill`) a suivi la MAJOR ; `inputs.lock.json`, `header.authoring.json` et
+> `catalog.json` portent tous **2.1.0**. Motif et re-pins : clôture §« Limites
+> nommées » n°4 ; angles morts de ce correctif : n°13, 15, 16.
+
 ```text
 ds.piqueray-logo@1.0.0 ─┐
-ds.nav-item@1.2.0 ──────┼─(composition)→ ds.header@2.0.0 ─(lock+fermeture)→ components.pqr.css ─┐
+ds.nav-item@1.2.0 ──────┼─(composition)→ ds.header@2.1.0 ─(lock+fermeture)→ components.pqr.css ─┐
 ds.button@2.0.1 ────────┘                                                                        │
                                                                                                  ▼
 website.menu (client) ──(t-foreach)→ views/header.xml (ODOO-022-HEADER-QWEB) ──→ barre en ligne
