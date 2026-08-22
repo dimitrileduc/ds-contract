@@ -2,7 +2,7 @@
   "$schema": "./contract.schema.json",
   "id": "ds.hero",
   "name": "Hero",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug.",
   "semantics": {
     "element": "div",
@@ -69,6 +69,21 @@
           "prop": "sousTitre"
         }
       }
+    },
+    {
+      "name": "sousTitre2",
+      "type": "boolean",
+      "default": true,
+      "description": "Extracted from Figma \"SousTitre2\" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22).",
+      "bindings": {
+        "figma": {
+          "kind": "BOOLEAN",
+          "property": "SousTitre2"
+        },
+        "code": {
+          "prop": "sousTitre2"
+        }
+      }
     }
   ],
   "states": [],
@@ -133,84 +148,87 @@
           "parts": {
             "Titres": {
               "layout": {
-                "direction": "column",
-                "align": "stretch",
+                "direction": "row",
+                "align": "end",
                 "width": "fill"
               },
               "literals": {
                 "background-image": "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%)"
               },
               "tokens": {
-                "gap": "{space.16}",
+                "gap": "{space.32}",
                 "padding-top": "{space.96}",
                 "padding-right": "{space.89}",
                 "padding-bottom": "{space.48}",
                 "padding-left": "{space.89}"
               },
               "parts": {
-                "SectionHeader": {
+                "colGauche": {
+                  "description": "Colonne gauche : titre puis sous-titre. Sa hauteur suit son contenu ; alignée en bas avec le CTA par le `align: end` de Titres.",
                   "layout": {
-                    "width": "fill"
-                  },
-                  "component": {
-                    "id": "ds.section-header",
-                    "props": {
-                      "titre": [
-                        {
-                          "text": "Portes de garage",
-                          "strong": true
-                        },
-                        {
-                          "text": " industrielles"
-                        }
-                      ],
-                      "accroche": "Plus de 50 ans d’expérience",
-                      "accroche2": false,
-                      "disposition": "standard",
-                      "emphase": "hero",
-                      "alignement": "gauche"
-                    }
-                  }
-                },
-                "wrapper": {
-                  "layout": {
-                    "direction": "row",
-                    "justify": "center",
-                    "align": "end",
+                    "direction": "column",
+                    "align": "stretch",
+                    "grow": true,
                     "width": "fill"
                   },
                   "tokens": {
-                    "gap": "{space.32}"
+                    "gap": "{space.16}"
                   },
                   "parts": {
-                    "sousTitre": {
-                      "description": "Rich Hero paragraph bound to the native SousTitre text property. Its two bold ranges remain governed by content.marks.strong. Width is parent-owned Fill, so the neighbouring Hug button keeps its measured width while the paragraph absorbs the available space.",
+                    "SectionHeader": {
                       "layout": {
-                        "grow": true,
                         "width": "fill"
                       },
-                    "tokens": {
-                      "color": "{color.blanc}",
-                      "font-size": "{font.size.24}",
-                      "font-weight": "{font.weight.medium}",
-                      "line-height": "{font.line-height.32}"
+                      "component": {
+                        "id": "ds.section-header",
+                        "props": {
+                          "titre": [
+                            {
+                              "text": "Portes de garage",
+                              "strong": true
+                            },
+                            {
+                              "text": " industrielles"
+                            }
+                          ],
+                          "accroche": "Plus de 50 ans d’expérience",
+                          "accroche2": false,
+                          "disposition": "standard",
+                          "emphase": "hero",
+                          "alignement": "gauche"
+                        }
+                      }
                     },
+                    "sousTitre": {
+                      "description": "Rich Hero paragraph bound to the native SousTitre text property. Its two bold ranges remain governed by content.marks.strong. Width is parent-owned Fill; the column above absorbs the available space, and `sousTitre2` decides whether it occupies any at all.",
+                      "layout": {
+                        "width": "fill"
+                      },
+                      "tokens": {
+                        "color": "{color.blanc}",
+                        "font-size": "{font.size.24}",
+                        "font-weight": "{font.weight.medium}",
+                        "line-height": "{font.line-height.32}"
+                      },
                       "content": {
                         "prop": "sousTitre",
                         "marks": {
                           "strong": "{font.weight.bold}"
                         }
+                      },
+                      "visibleWhen": {
+                        "prop": "sousTitre2"
                       }
-                    },
-                    "Bouton": {
-                      "component": {
-                        "id": "ds.button",
-                        "text": "Demander un devis gratuit",
-                        "props": {
-                          "variant": "outlineBlanc",
-                          "iconRight": true
-                        }
-                      }
+                    }
+                  }
+                },
+                "Bouton": {
+                  "component": {
+                    "id": "ds.button",
+                    "text": "Demander un devis gratuit",
+                    "props": {
+                      "variant": "outlineBlanc",
+                      "iconRight": true
                     }
                   }
                 }

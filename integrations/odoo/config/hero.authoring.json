@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "configId": "odoo-hero-authoring",
-  "authoringVersion": "1.1.0",
+  "authoringVersion": "1.2.0",
   "snapshotId": "odoo-019-foundation",
   "rootContract": {
     "id": "ds.hero",
-    "version": "1.5.0"
+    "version": "1.6.0"
   },
   "rootActions": [
     {
@@ -41,7 +41,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -59,7 +59,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -77,7 +77,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -95,7 +95,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -118,7 +118,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -141,7 +141,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -166,7 +166,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -189,7 +189,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -212,7 +212,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -235,7 +235,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -265,7 +265,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -295,7 +295,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -325,7 +325,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -355,7 +355,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -385,7 +385,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -415,7 +415,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -438,7 +438,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -463,7 +463,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -486,7 +486,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -509,7 +509,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -532,7 +532,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -547,6 +547,24 @@
       },
       "verdict": "fixed-by-composition",
       "mechanism": "none"
+    },
+    {
+      "decisionId": "hero-subtitle-visible",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.hero",
+              "version": "1.6.0"
+            }
+          }
+        ],
+        "prop": "sousTitre2"
+      },
+      "verdict": "controlled",
+      "mechanism": "boolean",
+      "targetSelector": ".s_pqr_hero [data-pqr-part=\"hero-subtitle\"]",
+      "label": "Afficher le sous-titre"
     }
   ],
   "parts": [
@@ -557,7 +575,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -577,7 +595,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -598,7 +616,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -619,7 +637,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -640,7 +658,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -662,7 +680,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -670,6 +688,7 @@
           "root",
           "blocTexte",
           "Titres",
+          "colGauche",
           "SectionHeader"
         ]
       },
@@ -679,13 +698,13 @@
       "allowedMarks": []
     },
     {
-      "decisionId": "hero-part-wrapper",
+      "decisionId": "hero-part-colgauche",
       "address": {
         "componentPath": [
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -693,12 +712,12 @@
           "root",
           "blocTexte",
           "Titres",
-          "wrapper"
+          "colGauche"
         ]
       },
       "verdict": "not-editable",
       "contentKind": "structural",
-      "selector": ".s_pqr_hero [data-pqr-part=\"hero-wrapper\"]",
+      "selector": ".s_pqr_hero [data-pqr-part=\"hero-left-column\"]",
       "allowedMarks": []
     },
     {
@@ -708,7 +727,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -716,7 +735,6 @@
           "root",
           "blocTexte",
           "Titres",
-          "wrapper",
           "Bouton"
         ]
       },
@@ -732,7 +750,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           }
         ],
@@ -740,7 +758,7 @@
           "root",
           "blocTexte",
           "Titres",
-          "wrapper",
+          "colGauche",
           "sousTitre"
         ]
       },
@@ -758,7 +776,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -785,7 +803,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -813,7 +831,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -841,7 +859,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -871,7 +889,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -905,7 +923,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -940,7 +958,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -975,7 +993,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -1010,7 +1028,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -1045,7 +1063,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -1072,7 +1090,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -1100,7 +1118,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -1128,7 +1146,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {
@@ -1156,7 +1174,7 @@
           {
             "contract": {
               "id": "ds.hero",
-              "version": "1.5.0"
+              "version": "1.6.0"
             }
           },
           {

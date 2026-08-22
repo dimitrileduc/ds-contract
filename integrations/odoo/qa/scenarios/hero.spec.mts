@@ -57,10 +57,10 @@ async function responsive(page: Page) {
       const host = root as HTMLElement;
       const background = host.querySelector<HTMLElement>('[data-pqr-part="hero-background"]');
       const content = host.querySelector<HTMLElement>('[data-pqr-part="hero-content"]');
-      const wrapper = host.querySelector<HTMLElement>('[data-pqr-part="hero-wrapper"]');
+      const colonneGauche = host.querySelector<HTMLElement>('[data-pqr-part="hero-left-column"]');
       const subtitle = host.querySelector<HTMLElement>('[data-pqr-part="hero-subtitle"]');
       const button = host.querySelector<HTMLElement>('[data-pqr-part="button-root"]');
-      if (!background || !content || !wrapper || !subtitle || !button) return { width: viewportWidth, missing: true };
+      if (!background || !content || !colonneGauche || !subtitle || !button) return { width: viewportWidth, missing: true };
       const rr = host.getBoundingClientRect();
       const br = background.getBoundingClientRect();
       const sr = subtitle.getBoundingClientRect();
@@ -72,7 +72,7 @@ async function responsive(page: Page) {
         overflow: host.scrollWidth - host.clientWidth,
         backgroundDelta: Math.max(Math.abs(br.left - rr.left), Math.abs(br.right - rr.right), Math.abs(br.top - rr.top), Math.abs(br.bottom - rr.bottom)),
         contentWidth: content.getBoundingClientRect().width,
-        wrapperWidth: wrapper.getBoundingClientRect().width,
+        colonneGaucheWidth: colonneGauche.getBoundingClientRect().width,
         subtitleInside: sr.left >= rr.left - 0.5 && sr.right <= rr.right + 0.5,
         ctaInside: cr.left >= rr.left - 0.5 && cr.right <= rr.right + 0.5,
         ctaWhiteSpace: getComputedStyle(button).whiteSpace,
@@ -123,6 +123,41 @@ async function main() {
       };
       const leaked = fixture.forbiddenRootActions.filter((name: keyof typeof forbiddenVisible) => forbiddenVisible[name] > 0);
       receipt.constateSi('racine — actions Odoo interdites absentes', leaked.length === 0, 'save-as-custom, resize, background, anchor absents', leaked.length ? leaked.join(', ') : JSON.stringify(forbiddenVisible));
+
+      // `sousTitre2` (contrat 1.6.0) : la bascule doit RETIRER le sous-titre du
+      // flux, pas seulement le vider. Un texte vidé garde sa boîte de ligne —
+      // 32 px en public, 96 px dans l'éditeur, mesurés le 2026-08-22 — et le bas
+      // du titre ne rejoint jamais celui du CTA. C'est cet écart qu'on mesure,
+      // pas la présence de la case.
+      // Pas de fonction interne dans `evaluate` : tsx y injecte son helper
+      // `__name`, absent du contexte de la page (ReferenceError au runtime).
+      const mesureColonnes = async () => first.evaluate((root: Element) => {
+        const sousTitre = root.querySelector('[data-pqr-part="hero-subtitle"]');
+        const titre = root.querySelector('[data-pqr-part="hero-title"]');
+        const cta = root.querySelector('[data-pqr-part="hero-cta"]');
+        return {
+          drapeau: root.classList.contains('pqr-soustitre-on'),
+          hauteurSousTitre: sousTitre ? Math.round(sousTitre.getBoundingClientRect().height) : null,
+          basTitre: titre ? Math.round(titre.getBoundingClientRect().bottom) : null,
+          basCta: cta ? Math.round(cta.getBoundingClientRect().bottom) : null,
+        };
+      });
+      const bascule = panel(page).locator('[data-pqr-control="hero-subtitle-visible"] input');
+      const affiche = await mesureColonnes();
+      await bascule.click();
+      await page.waitForTimeout(250);
+      const masque = await mesureColonnes();
+      await bascule.click();
+      await page.waitForTimeout(250);
+      const restaure = await mesureColonnes();
+      receipt.constateSi(
+        'sous-titre — masqué, il quitte le flux et le bas du titre rejoint le CTA',
+        affiche.drapeau && (affiche.hauteurSousTitre ?? 0) > 0 && affiche.basTitre !== affiche.basCta
+          && !masque.drapeau && masque.hauteurSousTitre === 0 && masque.basTitre === masque.basCta
+          && restaure.drapeau && (restaure.hauteurSousTitre ?? 0) > 0,
+        'affiché : hauteur > 0 et bas différents · masqué : hauteur 0 et bas égaux · réversible',
+        JSON.stringify({ affiche, masque, restaure }),
+      );
 
       // Édition HUMAINE du libellé CTA (geste partagé — voir lib/editor.mts) :
       // ce constat échoue si le CTA redevient un contrôle qui avale la souris,

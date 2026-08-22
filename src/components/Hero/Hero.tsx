@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v1.5.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v1.6.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';
@@ -16,11 +16,14 @@ export interface HeroProps extends HTMLAttributes<HTMLDivElement> {
   backgroundAlt?: string;
   /** The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges. */
   sousTitre?: Array<{ text: string; strong?: boolean }>;
+  /** Extracted from Figma "SousTitre2" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l'éditeur Odoo (mesuré 2026-08-22). */
+  sousTitre2?: boolean;
 }
 
 /** Piqueray Hero. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. The contract owns the complete Hero stack: a photographic Background plane, a mandatory VoileNavigation plane above the photo for header readability, then the content plane. The top veil is intrinsic to every Hero; it is neither a Page override nor a variant. The separate Titres scrim remains attached to the text area. The root is fluid while 1728 px remains its canvas authoring reference. SectionHeader and the rich SousTitre are parent-width Fill; the Button remains Hug. */
 export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
   {
+    sousTitre2 = true,
     backgroundUrl = '',
     backgroundAlt = '',
     sousTitre = [
@@ -40,7 +43,7 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
 ) {
   const classes = [styles.root, className].filter(Boolean).join(' ');
   return (
-    <div ref={ref} className={classes} {...rest}>
+    <div ref={ref} className={classes} data-sous-titre2={sousTitre2 || undefined} {...rest}>
       <img
         className={styles.Background}
         src={String(backgroundUrl)}
@@ -49,28 +52,30 @@ export const Hero = forwardRef<HTMLDivElement, HeroProps>(function Hero(
       <div className={styles.VoileNavigation}></div>
       <div className={styles.blocTexte}>
         <div className={styles.Titres}>
-          <SectionHeader
-            titre={[{ text: 'Portes de garage', strong: true }, { text: ' industrielles' }]}
-            accroche="Plus de 50 ans d’expérience"
-            accroche2={false}
-            disposition="standard"
-            emphase="hero"
-            alignement="gauche"
-          />
-          <div className={styles.wrapper}>
-            <span className={styles.sousTitre}>
-              {sousTitre.map((segment, index) =>
-                segment.strong ? (
-                  <strong key={index}>{segment.text}</strong>
-                ) : (
-                  <span key={index}>{segment.text}</span>
-                ),
-              )}
-            </span>
-            <Button variant="outlineBlanc" iconRight>
-              Demander un devis gratuit
-            </Button>
+          <div className={styles.colGauche}>
+            <SectionHeader
+              titre={[{ text: 'Portes de garage', strong: true }, { text: ' industrielles' }]}
+              accroche="Plus de 50 ans d’expérience"
+              accroche2={false}
+              disposition="standard"
+              emphase="hero"
+              alignement="gauche"
+            />
+            {sousTitre2 ? (
+              <span className={styles.sousTitre}>
+                {sousTitre.map((segment, index) =>
+                  segment.strong ? (
+                    <strong key={index}>{segment.text}</strong>
+                  ) : (
+                    <span key={index}>{segment.text}</span>
+                  ),
+                )}
+              </span>
+            ) : null}
           </div>
+          <Button variant="outlineBlanc" iconRight>
+            Demander un devis gratuit
+          </Button>
         </div>
       </div>
     </div>

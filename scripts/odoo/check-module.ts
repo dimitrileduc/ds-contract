@@ -381,6 +381,8 @@ function testVersions() {
   const guardDigest = guardSrc.match(/CURRENT_GRAPH_DIGEST = "([0-9a-f]{64})"/)?.[1];
   if (guardDigest !== lock.graphDigest) fautes.push(`version_guard.js : digest ${guardDigest ?? '(illisible)'} ≠ lock ${lock.graphDigest}`);
   compareModule('version_guard.js', guardSrc.match(/CURRENT_MODULE_VERSION = "([^"]+)"/)?.[1]);
+  const authoringVersion = guardSrc.match(/CURRENT_AUTHORING_VERSION = "([^"]+)"/)?.[1];
+  if (!authoringVersion) fautes.push('version_guard.js : CURRENT_AUTHORING_VERSION illisible');
   const guardMap = guardSrc.match(/const CONTRACT_VERSIONS = (\{[^}]*\})/)?.[1];
   if (!guardMap) fautes.push('version_guard.js : CONTRACT_VERSIONS illisible');
   else for (const [, id, version] of guardMap.matchAll(/"(ds\.[a-z0-9-]+)":\s*"([^"]+)"/g)) compare('version_guard.js', id, version);
@@ -389,6 +391,11 @@ function testVersions() {
   const scanDigest = scanSrc.match(/EXPECTED_GRAPH = '([0-9a-f]{64})'/)?.[1];
   if (scanDigest !== lock.graphDigest) fautes.push(`scan-saved-versions.ts : digest ${scanDigest ?? '(illisible)'} ≠ lock ${lock.graphDigest}`);
   compareModule('scan-saved-versions.ts', scanSrc.match(/const MODULE = '([^']+)'/)?.[1]);
+  const scanAuthoring = scanSrc.match(/const AUTHORING = '([^']+)'/)?.[1];
+  if (!scanAuthoring) fautes.push('scan-saved-versions.ts : AUTHORING illisible');
+  else if (authoringVersion && scanAuthoring !== authoringVersion) {
+    fautes.push(`scan-saved-versions.ts : authoring ${scanAuthoring} ≠ version_guard.js ${authoringVersion}`);
+  }
   const scanMap = scanSrc.match(/const CONTRACTS: Record<string, string> = (\{[^}]*\})/)?.[1];
   if (!scanMap) fautes.push('scan-saved-versions.ts : CONTRACTS illisible');
   else for (const [, id, version] of scanMap.matchAll(/'(ds\.[a-z0-9-]+)':\s*'([^']+)'/g)) compare('scan-saved-versions.ts', id, version);
@@ -404,10 +411,28 @@ function testVersions() {
       fautes.push(`components.xml : ${declarations} déclarations mais ${paires.length} paires contract/version appariées (attributs réordonnés ?)`);
     }
     for (const [, id, version] of paires) compare('components.xml', id, version);
+
+    // Le quart restant. Ces trois familles sont recopiées à la main sur chaque
+    // racine (11 digests, 33 versions de module, 11 versions d'authoring) et
+    // n'étaient comparées à RIEN : une racine oubliée sur onze passait au vert,
+    // exactement la panne que cette porte existe pour empêcher.
+    const digests = [...xml.matchAll(/data-ds-graph-digest="([0-9a-f]{64})"/g)].map(([, d]) => d);
+    const digestsFaux = [...new Set(digests.filter((d) => d !== lock.graphDigest))];
+    if (digestsFaux.length > 0) fautes.push(`components.xml : ${digestsFaux.length} digest(s) ≠ lock — ${digestsFaux.join(', ')}`);
+    if (manifestVersion) {
+      const modules = [...new Set([...xml.matchAll(/data-v(?:css|xml|js)="([^"]+)"/g)].map(([, v]) => v))];
+      const modulesFaux = modules.filter((v) => v !== manifestVersion);
+      if (modulesFaux.length > 0) fautes.push(`components.xml : version(s) module ≠ manifeste ${manifestVersion} — ${modulesFaux.join(', ')}`);
+    }
+    if (authoringVersion) {
+      const authorings = [...new Set([...xml.matchAll(/data-ds-authoring-version="([^"]+)"/g)].map(([, v]) => v))];
+      const authoringsFaux = authorings.filter((v) => v !== authoringVersion);
+      if (authoringsFaux.length > 0) fautes.push(`components.xml : version(s) d'authoring ≠ version_guard.js ${authoringVersion} — ${authoringsFaux.join(', ')}`);
+    }
   }
 
   if (fautes.length > 0) ko('les transcriptions de versions concordent avec le lock', fautes.join('\n      '));
-  else ok('les transcriptions de versions concordent avec le lock', `${lockVersions.size} contrats du lock, 3 transcriptions + version module ancrées`);
+  else ok('les transcriptions de versions concordent avec le lock', `${lockVersions.size} contrats du lock, 3 transcriptions ancrées — versions de contrat, digest, module et authoring`);
 }
 
 function main() {

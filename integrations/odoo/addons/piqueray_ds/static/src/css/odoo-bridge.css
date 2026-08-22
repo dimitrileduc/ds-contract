@@ -262,3 +262,14 @@
   min-height: 96px;
 }
 /* ODOO-023-CATEGORIES-BRIDGE END */
+
+/* ODOO-024-HERO-SOUSTITRE-MECHANICS BEGIN
+ * `sousTitre2` (contrat ds.hero 1.6.0) décide l'AFFICHAGE du sous-titre, pas son texte.
+ * Le retirer du flux est le seul geste qui aligne le bas du titre sur le bas du CTA :
+ * un texte seulement vidé garde sa boîte de ligne — 32 px, mesuré dans Figma ET dans
+ * l'éditeur Odoo le 2026-08-22, 0 px en public seulement. Même mécanique que
+ * `pqr-cta-on` sur la Présentation. */
+.s_pqr_hero:not(.pqr-soustitre-on) [data-pqr-part="hero-subtitle"] {
+  display: none !important;
+}
+/* ODOO-024-HERO-SOUSTITRE-MECHANICS END */
