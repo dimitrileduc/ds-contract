@@ -87,6 +87,32 @@ Sweep constitutionnel **219/219 evals** + suite Odoo (`inputs`, `authoring`,
     qualification de 022 n'exige pas de manifeste 019 vert (scénarios 022 =
     `scenarioId` distincts) ; politique respectée : ne pas aggraver.
 
+13. **Plage desktop 1000–1728 px — NON couverte, mesurée après coup (2026-08-22).**
+    La limite 3 ci-dessus différait le responsive « MOBILE (burger, réagencement
+    < ~1000 px) » et déclarait le full-width desktop acquis. Entre les deux, rien :
+    ni décision, ni mesure, ni porte. Relevé sur instance neuve
+    (`proofs/header-bande-desktop.json`, 17 largeurs) : l'espace logo↔nav décroît
+    1:1 depuis 222 px et atteint **0 à 1506 px** ; les libellés se replient sur
+    **2 lignes à ≤ 1470**, sur **3 lignes à ≤ 1320** ; et **à ≤ 1220 la PAGE
+    déborde horizontalement** (11 px à 1220, 207 px à 1024). Cause : `.header`
+    porte `padding-inline: 89px` + `gap` 64/32 en valeurs fixes avec
+    `justify-content: space-between`, sans règle intermédiaire. SC-001 n'est pas
+    en cause (mesuré dans le cadre 1728). Ce qui manquait n'était pas la règle
+    CSS — c'était le fait que **la limite nommée bornait au mauvais endroit**.
+
+14. **Les scénarios QA du header ne sont valides que dans UN ordre, non écrit.**
+    `header-nav` exige le menu semé **intact** (il déclare en tête réutiliser
+    l'instance sans réinstaller) ; `header-regen` exige au contraire les
+    **éditions posées par `header-menu`** (son premier constat est « menu client
+    capturé, modifié par US2, non trivial »). Le seul ordre valide est donc
+    `header-visual → header-nav → header-menu → header-regen → sections-intact`.
+    Constaté le 2026-08-22 en rejouant la suite sur une machine neuve : deux
+    ordres différents ont produit deux rouges — `header-nav` mesurant le menu
+    édité par son voisin, puis `header-regen` mesurant un menu pristine. Les deux
+    reçus commités sont exacts ; c'est leur **reproductibilité** qui dépend d'un
+    ordre que rien ne déclare et qu'aucun runner n'impose. Différé nommé : la
+    réparation juste est que chaque scénario POSE l'état qu'il mesure.
+
 ## Faits renversés par la mesure (patron SC-009 de 018)
 
 Plusieurs prémisses tenues pour acquises se sont révélées fausses à l'exécution —

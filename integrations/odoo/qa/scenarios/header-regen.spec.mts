@@ -11,6 +11,13 @@
  *      contrat, elle n'est pas figée à la main ;
  *   2. le menu du client (modifié par le scénario US2) est BYTE-IDENTIQUE avant et
  *      après une régénération complète `build → odoo:assets → update module`.
+ *
+ * ORDRE DE LA SUITE (limite 14 du rapport de clôture, constatée le 2026-08-22).
+ * Ces scénarios réutilisent l'instance et se transmettent l'état du menu :
+ *   header-visual → header-nav → header-menu → header-regen → sections-intact
+ * `header-nav` exige le menu semé INTACT ; `header-regen` exige au contraire les
+ * éditions posées par `header-menu`. Lancés dans un autre ordre, ils rougissent
+ * en mesurant l'état du voisin. Une base fraîche remet le menu au semis.
  */
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';

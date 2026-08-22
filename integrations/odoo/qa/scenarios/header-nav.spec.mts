@@ -11,6 +11,13 @@
  * Le scénario réutilise l'instance déjà installée (base URL depuis l'environnement
  * — PQR_ODOO_PORT) ; il ne réinstalle pas (la barre système + le menu semé sont
  * livrés par le post_init_hook à l'install).
+ *
+ * ORDRE DE LA SUITE (limite 14 du rapport de clôture, constatée le 2026-08-22).
+ * Ces scénarios réutilisent l'instance et se transmettent l'état du menu :
+ *   header-visual → header-nav → header-menu → header-regen → sections-intact
+ * `header-nav` exige le menu semé INTACT ; `header-regen` exige au contraire les
+ * éditions posées par `header-menu`. Lancés dans un autre ordre, ils rougissent
+ * en mesurant l'état du voisin. Une base fraîche remet le menu au semis.
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
