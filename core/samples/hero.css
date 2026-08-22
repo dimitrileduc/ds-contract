@@ -199,7 +199,7 @@
   font-size: var(--font-size-24);
 }
 
-/* Hero — from ds.hero v1.5.0 (core/emit-html.ts) */
+/* Hero — from ds.hero v1.6.0 (core/emit-html.ts) */
 
 .hero, .hero *, .hero *::before, .hero *::after {
   box-sizing: border-box;
@@ -258,11 +258,11 @@
 
 .hero__Titres {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  flex-direction: row;
+  align-items: flex-end;
   width: 100%;
   min-width: 0;
-  gap: var(--space-16);
+  gap: var(--space-32);
   padding-top: var(--space-96);
   padding-right: var(--space-89);
   padding-bottom: var(--space-48);
@@ -270,20 +270,19 @@
   background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 60%);
 }
 
-.hero__wrapper {
+.hero__colGauche {
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: center;
-  width: 100%;
-  min-width: 0;
-  gap: var(--space-32);
-}
-
-.hero__sousTitre {
+  flex-direction: column;
+  align-items: stretch;
   flex: 1 1 auto;
   min-width: 0;
   width: 100%;
+  gap: var(--space-16);
+}
+
+.hero__sousTitre {
+  width: 100%;
+  min-width: 0;
   color: var(--color-blanc);
   font-size: var(--font-size-24);
   font-weight: var(--font-weight-medium);

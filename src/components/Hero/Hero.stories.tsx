@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/hero.contract.json (ds.hero v1.5.0)
+ * Source of truth: contracts/hero.contract.json (ds.hero v1.6.0)
  * Regenerate with: npm run generate
  */
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -35,6 +35,11 @@ const meta = {
       description:
         "The hero paragraph (layer « Sous-titre », node 2111:3380) as a governed rich-text prop — 016/T042, lot B013-4: the 2026-08-05 live diagnosis showed this was the master's ONE unbound text, and lot L-B013-4 (T041) exposes the native TEXT property « SousTitre » it binds to. The two observed 700 ranges (« performance », « la solution idéale ») travel as segments; the Figma projection keeps one native TEXT value and reapplies the governed marks as native character ranges.",
     },
+    sousTitre2: {
+      control: 'boolean',
+      description:
+        'Extracted from Figma "SousTitre2" BOOLEAN property (added to the Hero master on 2026-08-22). Affichage du sous-titre. Masquer le retire du flux : la colonne gauche se réduit au titre et, les deux colonnes étant alignées en bas, le bas du titre tombe sur le bas du CTA. Vider le texte ne suffit pas — un TEXT vide garde sa boîte de ligne dans Figma comme dans l\'éditeur Odoo (mesuré 2026-08-22).',
+    },
   },
   args: {
     backgroundUrl: '',
@@ -48,6 +53,7 @@ const meta = {
       { text: 'la solution idéale', strong: true },
       { text: '.' },
     ],
+    sousTitre2: true,
   },
 } satisfies Meta<typeof Hero>;
 

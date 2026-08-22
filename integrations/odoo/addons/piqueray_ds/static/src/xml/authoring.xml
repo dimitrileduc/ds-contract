@@ -79,6 +79,9 @@
     <BuilderRow label.translate="Piqueray · Hero">
       <span data-pqr-control="hero-title"><span data-pqr-control="hero-subtitle"><span data-pqr-control="hero-cta-label">Le titre, le sous-titre et le CTA se modifient directement dans le bloc.</span></span></span>
     </BuilderRow>
+    <BuilderRow label.translate="Sous-titre">
+      <span data-pqr-control="hero-subtitle-visible"><BuilderCheckbox classAction="'pqr-soustitre-on'"/></span>
+    </BuilderRow>
     <BuilderRow label.translate="Image">
       <span data-pqr-control="hero-background-url"><BuilderButton action="'pqrReplaceHeroBackground'" preview="false">Remplacer</BuilderButton></span>
     </BuilderRow>

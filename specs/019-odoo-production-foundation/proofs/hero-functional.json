@@ -2,14 +2,31 @@
   "receiptId": "hero-functional-security-odoo-019-foundation",
   "scenarioId": "hero-functional-security",
   "snapshotId": "odoo-019-foundation",
-  "status": "skipped",
+  "status": "pass",
   "fixture": "hero-panel",
   "observations": [
-    "[skipped] éditeur Hero — attendu « (non exécuté) », observé « iframe de page ou builder absent »"
+    "[pass] catalogue — deux Hero indépendants sont insérés — attendu « 2 racines », observé « 2 racine(s) »",
+    "[pass] panneau — inventaire Hero strict — attendu « hero-background-alt, hero-background-url, hero-cta-href, hero-cta-label, hero-subtitle, hero-subtitle-visible, hero-title », observé « hero-background-alt, hero-background-url, hero-cta-href, hero-cta-label, hero-subtitle, hero-subtitle-visible, hero-title »",
+    "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
+    "[pass] racine — actions Odoo interdites absentes — attendu « save-as-custom, resize, background, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0,\"background\":0} »",
+    "[pass] sous-titre — masqué, il quitte le flux et le bas du titre rejoint le CTA — attendu « affiché : hauteur > 0 et bas différents · masqué : hauteur 0 et bas égaux · réversible », observé « {\"affiche\":{\"drapeau\":true,\"hauteurSousTitre\":128,\"basTitre\":448,\"basCta\":592},\"masque\":{\"drapeau\":false,\"hauteurSousTitre\":0,\"basTitre\":592,\"basCta\":592},\"restaure\":{\"drapeau\":true,\"hauteurSousTitre\":128,\"basTitre\":448,\"basCta\":592}} »",
+    "[pass] CTA — libellé éditable au clic humain — attendu « clic souris réel puis frappe insérée dans le libellé », observé « texte observé : Demander un• devis gratuit »",
+    "[pass] CTA — lien gouverné au panneau (relatif, origine repliée, javascript refusé) — attendu « absolu même origine → /promo · javascript: ignoré · /devis accepté », observé « replié: /promo · après injection: /promo · final: /devis »",
+    "[pass] média — dialogue Odoo limité aux images — attendu « Images seulement », observé « Images »",
+    "[pass] édition et média — A/B restent isolés — attendu « A édité avec média Odoo publié ou pending natif · B édité sans média », observé « [{\"title\":\"Hero instance A\",\"subtitle\":\"Sous-titre instance A\",\"label\":\"CTA instance A\",\"source\":\"data:image/*;base64,…\",\"alt\":\"Atelier industriel Piqueray\",\"pending\":true},{\"title\":\"Hero instance B\",\"subtitle\":\"Sous-titre instance B\",\"label\":\"CTA instance B\",\"source\":\"\",\"alt\":\"\",\"pending\":false}] »",
+    "[pass] save — Odoo persiste les deux Hero — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — contenu, média same-origin et isolation persistent — attendu « HTTP 200 · A avec média · B sans média », observé « [{\"title\":\"Hero instance A\",\"subtitle\":\"Texte sûrinterdithostile\",\"label\":\"CTA instance A\",\"source\":\"/web/image/306-ad815f8a/home-light.webp\",\"alt\":\"Atelier industriel Piqueray\",\"pending\":false},{\"title\":\"Hero instance B\",\"subtitle\":\"Sous-titre instance B\",\"label\":\"CTA instance B\",\"source\":\"\",\"alt\":\"\",\"pending\":false}] »",
+    "[pass] public — rich-text strong uniquement, aucune charge exécutable — attendu « 1 strong · 0 tag/handler/URL hostile », observé « {\"strong\":1,\"forbiddenTags\":0,\"handlers\":[],\"executableUrls\":[]} »",
+    "[pass] responsive — Fill/Hug et plan photo tiennent à 1728/1440 — attendu « hauteur 640 · 0 overflow · background full · contenu et CTA contenus », observé « [{\"width\":1728,\"rootWidth\":1728,\"rootHeight\":640,\"overflow\":0,\"backgroundDelta\":0,\"contentWidth\":1728,\"colonneGaucheWidth\":1288.59375,\"subtitleInside\":true,\"ctaInside\":true,\"ctaWhiteSpace\":\"nowrap\"},{\"width\":1440,\"rootWidth\":1440,\"rootHeight\":640,\"overflow\":0,\"backgroundDelta\":0,\"contentWidth\":1440,\"colonneGaucheWidth\":1000.59375,\"subtitleInside\":true,\"ctaInside\":true,\"ctaWhiteSpace\":\"nowrap\"}] »",
+    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 Hero et média A relus », observé « [{\"title\":\"Hero instance A\",\"subtitle\":\"Texte sûrinterdithostile\",\"label\":\"CTA instance A\",\"source\":\"/web/image/306-ad815f8a/home-light.webp\",\"alt\":\"Atelier industriel Piqueray\",\"pending\":false},{\"title\":\"Hero instance B\",\"subtitle\":\"Sous-titre instance B\",\"label\":\"CTA instance B\",\"source\":\"\",\"alt\":\"\",\"pending\":false}] »"
   ],
-  "artifacts": [],
-  "limitCodes": [
-    "ODOO-LIMIT-EDITOR-ENTRY"
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/hero-functional.public.json",
+      "sha256": "ed0c04fe6ac09001b22af9326d7956ea99126e8e1facdce59585a532455460b3",
+      "kind": "json"
+    }
   ],
-  "durationMs": 197378
+  "limitCodes": [],
+  "durationMs": 40913
 }

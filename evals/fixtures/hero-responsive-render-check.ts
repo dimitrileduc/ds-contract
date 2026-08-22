@@ -34,13 +34,13 @@ try {
     await page.setViewportSize({ width, height: 700 });
     const facts = await page.evaluate(() => {
       const root = document.querySelector<HTMLElement>('.hero')!;
-      const wrapper = document.querySelector<HTMLElement>('.hero__wrapper')!;
+      const colonneGauche = document.querySelector<HTMLElement>('.hero__colGauche')!;
       const subtitle = document.querySelector<HTMLElement>('.hero__sousTitre')!;
       const button = document.querySelector<HTMLElement>('.button')!;
       const label = document.querySelector<HTMLElement>('.button__label')!;
       const veil = document.querySelector<HTMLElement>('.hero__VoileNavigation')!;
       const rootRect = root.getBoundingClientRect();
-      const wrapperRect = wrapper.getBoundingClientRect();
+      const colonneGaucheRect = colonneGauche.getBoundingClientRect();
       const subtitleRect = subtitle.getBoundingClientRect();
       const buttonRect = button.getBoundingClientRect();
       const labelRect = label.getBoundingClientRect();
@@ -50,20 +50,20 @@ try {
         rootWidth: rootRect.width,
         rootOverflow: root.scrollWidth - root.clientWidth,
         rootClip: getComputedStyle(root).overflow,
-        wrapperOverflow: wrapper.scrollWidth - wrapper.clientWidth,
+        colonneGaucheOverflow: colonneGauche.scrollWidth - colonneGauche.clientWidth,
         subtitleWidth: subtitleRect.width,
         buttonWidth: buttonRect.width,
         buttonRight: buttonRect.right,
-        wrapperRight: wrapperRect.right,
+        colonneGaucheRight: colonneGaucheRect.right,
         buttonLines: Math.round(labelRect.height / lineHeight),
         veil: { width: veilRect.width, height: veilRect.height, z: getComputedStyle(veil).zIndex },
       };
     });
     if (Math.abs(facts.rootWidth - width) > 0.5) failures.push(`${width}: Hero width is ${facts.rootWidth}`);
-    if (facts.rootOverflow > 0.5 || facts.wrapperOverflow > 0.5) failures.push(`${width}: overflow ${facts.rootOverflow}/${facts.wrapperOverflow}`);
+    if (facts.rootOverflow > 0.5 || facts.colonneGaucheOverflow > 0.5) failures.push(`${width}: overflow ${facts.rootOverflow}/${facts.colonneGaucheOverflow}`);
     if (facts.rootClip !== 'hidden') failures.push(`${width}: Hero root does not own clipping`);
     if (facts.buttonLines !== 1) failures.push(`${width}: Button label wraps to ${facts.buttonLines} lines`);
-    if (facts.buttonRight > facts.wrapperRight + 0.5) failures.push(`${width}: Button leaves the wrapper`);
+    if (facts.buttonRight > facts.colonneGaucheRight + 0.5) failures.push(`${width}: Button leaves the left column`);
     if (facts.veil.width !== width || facts.veil.height !== 640 || facts.veil.z !== '1') failures.push(`${width}: veil geometry/stack drifted`);
     await page.screenshot({ path: `${evidenceRoot}/hero-${width}.png`, fullPage: false });
     console.log(`${width}: ${JSON.stringify(facts)}`);

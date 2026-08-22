@@ -1326,9 +1326,14 @@ const COMPONENTS = [
     "setName": "Hero",
     "contractId": "ds.hero",
     "anchorKey": "75f3b0746cdf57be051fb4cfc388588b5e03484a",
-    "description": "Hero — generated from contract ds.hero v1.5.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "Hero — generated from contract ds.hero v1.6.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": false,
-    "boolProps": [],
+    "boolProps": [
+      {
+        "property": "SousTitre2",
+        "default": true
+      }
+    ],
     "textProps": [],
     "forwardedProps": [],
     "swapProps": [],
@@ -1442,13 +1447,12 @@ const COMPONENTS = [
                   "type": "frame",
                   "name": "Titres",
                   "layout": {
-                    "mode": "VERTICAL",
+                    "mode": "HORIZONTAL",
                     "primary": "MIN",
-                    "counter": "MIN",
-                    "stretchChildren": true
+                    "counter": "MAX"
                   },
                   "bindings": {
-                    "itemSpacing": "space/16",
+                    "itemSpacing": "space/32",
                     "paddingTop": "space/96",
                     "paddingRight": "space/89",
                     "paddingBottom": "space/48",
@@ -1479,44 +1483,46 @@ const COMPONENTS = [
                   },
                   "children": [
                     {
-                      "type":"instance",
-                      "name": "SectionHeader",
-                      "dep":"SectionHeader",
-                      "depId": "ds.section-header",
-                      "depProps": {
-                        "Titre": "Portes de garage industrielles",
-                        "Accroche": "Plus de 50 ans d’expérience",
-                        "Accroche2": false,
-                        "Disposition": "Standard",
-                        "Emphase": "Hero",
-                        "Alignement": "Gauche"
-                      },
-                      "depRichTextRanges": [
-                        {
-                          "property": "Titre",
-                          "ranges": [
-                            {
-                              "start": 0,
-                              "end": 16,
-                              "fontStyle": "Bold"
-                            }
-                          ]
-                        }
-                      ],
-                      "fillWidth": true
-                    },
-                    {
                       "type": "frame",
-                      "name": "wrapper",
+                      "name": "colGauche",
                       "layout": {
-                        "mode": "HORIZONTAL",
-                        "primary": "CENTER",
-                        "counter": "MAX"
+                        "mode": "VERTICAL",
+                        "primary": "MIN",
+                        "counter": "MIN",
+                        "stretchChildren": true
                       },
+                      "grow": true,
                       "bindings": {
-                        "itemSpacing": "space/32"
+                        "itemSpacing": "space/16"
                       },
                       "children": [
+                        {
+                          "type":"instance",
+                          "name": "SectionHeader",
+                          "dep":"SectionHeader",
+                          "depId": "ds.section-header",
+                          "depProps": {
+                            "Titre": "Portes de garage industrielles",
+                            "Accroche": "Plus de 50 ans d’expérience",
+                            "Accroche2": false,
+                            "Disposition": "Standard",
+                            "Emphase": "Hero",
+                            "Alignement": "Gauche"
+                          },
+                          "depRichTextRanges": [
+                            {
+                              "property": "Titre",
+                              "ranges": [
+                                {
+                                  "start": 0,
+                                  "end": 16,
+                                  "fontStyle": "Bold"
+                                }
+                              ]
+                            }
+                          ],
+                          "fillWidth": true
+                        },
                         {
                           "type": "text",
                           "name": "sousTitre",
@@ -1539,21 +1545,23 @@ const COMPONENTS = [
                               "fontStyle": "Bold"
                             }
                           ],
+                          "visibleProp": "SousTitre2",
+                          "visibleDefault": true,
                           "fillWidth": true
-                        },
-                        {
-                          "type":"instance",
-                          "name": "Bouton",
-                          "dep":"Button",
-                          "depId": "ds.button",
-                          "depProps": {
-                            "Style": "Outline blanc",
-                            "Icone droite": true,
-                            "Libelle": "Demander un devis gratuit"
-                          }
                         }
                       ],
                       "fillWidth": true
+                    },
+                    {
+                      "type":"instance",
+                      "name": "Bouton",
+                      "dep":"Button",
+                      "depId": "ds.button",
+                      "depProps": {
+                        "Style": "Outline blanc",
+                        "Icone droite": true,
+                        "Libelle": "Demander un devis gratuit"
+                      }
                     }
                   ],
                   "fillWidth": true

@@ -941,6 +941,19 @@
         "categories.authoring.json"
       ],
       "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-024-HERO-SOUSTITRE-MECHANICS",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.hero"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "hero-subtitle-visible",
+        "hero.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
     }
   ]
 }
