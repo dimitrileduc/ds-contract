@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/sav.contract.json (ds.sav v1.3.0)
+ * Source of truth: contracts/sav.contract.json (ds.sav v1.4.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -20,38 +20,50 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "row",
     "alignItems": "center",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
     "gap": "10px"
   },
   "section": {
     "display": "flex",
-    "flexDirection": "row",
+    "flexDirection": "column",
     "alignItems": "flex-start",
-    "justifyContent": "center",
-    "width": "1550px",
+    "justifyContent": "flex-end",
+    "width": "100%",
+    "minWidth": 0,
     "height": "677px",
     "position": "relative"
   },
   "background": {
-    "width": "1550px",
-    "height": "475px",
-    "objectFit": "cover"
+    "display": "flex",
+    "width": "100%",
+    "minWidth": 0,
+    "height": "677px",
+    "objectFit": "cover",
+    "position": "absolute",
+    "top": "0",
+    "right": "0",
+    "left": "0"
   },
   "row": {
     "display": "flex",
     "flexDirection": "row",
-    "width": "1288px",
+    "width": "100%",
+    "minWidth": 0,
     "height": "561px",
-    "position": "absolute",
-    "alignSelf": "flex-end"
+    "paddingLeft": "131px",
+    "paddingRight": "131px"
   },
   "wrapper": {
     "display": "flex",
     "flexDirection": "row",
     "alignItems": "flex-start",
     "justifyContent": "center",
-    "width": "641px",
+    "flex": "1 1 auto",
+    "minWidth": 0,
+    "width": "100%",
     "height": "561px",
     "paddingTop": "48px",
     "paddingLeft": "48px",
@@ -59,8 +71,10 @@ const S: Record<string, CSSProperties> = {
     "position": "relative"
   },
   "WrapperBackground": {
+    "display": "flex",
+    "width": "100%",
+    "minWidth": 0,
     "backgroundColor": "#FFFFFF",
-    "width": "641px",
     "height": "561px",
     "position": "absolute",
     "alignSelf": "flex-end"
@@ -69,15 +83,19 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "flex-start",
+    "width": "100%",
+    "minWidth": 0,
     "gap": "32px",
-    "width": "546px",
     "position": "relative"
   },
   "vousRencontrezUnProblmeA": {
+    "width": "100%",
+    "minWidth": 0,
     "color": "#37373B",
     "fontSize": "18px",
     "lineHeight": "27px",
-    "height": "197px",
+    "paddingTop": "4px",
+    "paddingBottom": "4px",
     "whiteSpace": "pre-line"
   },
   "imgGroup": {
@@ -85,20 +103,27 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "flex-end",
     "justifyContent": "flex-start",
-    "width": "647px",
+    "flex": "1 1 auto",
+    "minWidth": 0,
+    "width": "100%",
     "height": "561px",
     "paddingLeft": "3px",
+    "paddingRight": "78px",
     "position": "relative"
   },
   "ImgGroupBackground": {
+    "display": "flex",
+    "width": "100%",
+    "minWidth": 0,
     "backgroundColor": "#F4F6FA",
-    "width": "647px",
-    "height": "478px",
+    "height": "561px",
     "position": "absolute",
     "alignSelf": "flex-start"
   },
   "img": {
-    "width": "563px",
+    "display": "flex",
+    "width": "100%",
+    "minWidth": 0,
     "height": "504px",
     "position": "relative",
     "objectFit": "contain"
@@ -126,6 +151,8 @@ export interface SAVProps extends HTMLAttributes<HTMLDivElement> {
 /** Piqueray SAV. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored.
 
 Limites nommées : les deux plans photo (`background` 2108:3094, `img` 2108:3098) portent chacun un paint IMAGE sur le master Figma. Le vocabulaire de contrat n'a AUCUN canal `background-image` (gap nommé A5, docs/FIGMA-CAPABILITY-MATRIX.md) : les `imageRef` observés sont donc CONSIGNÉS dans la description de chaque part, jamais liés. Ce qui est porté : le porteur `img` avec `src`/`alt` fournis par le code (convention realisation/carte/product-card) et le `object-fit` qui est l'orthographe CSS du `scaleMode` observé.
+
+v1.4.0 : responsive desktop gouverné sans variante de largeur. Le master et la section sont Fill ; la rangée de contenu est Fill avec 131 px de padding horizontal, donc 1288 px utiles à la référence 1550 et 1000 px à 1262. Les deux colonnes partagent l'espace restant. Le paragraphe rich-text est Hug afin que ses trois plages fortes et ses retours pilotent la hauteur. L'état owner réparé du 2026-08-11 fixe le fond de section à 677 px et le fond bleu du technicien à 561 px, soit la hauteur complète de leurs porteurs.
 
 v1.3.0 (016/T042, lot B013-4) : le paragraphe long cesse d'être cuit en dur — prop rich-text `texte` liée à la propriété TEXT native « Texte » que le lot L-B013-4 (T041) expose sur le master ; c'était le SEUL texte non lié du master au diagnostic vif du 2026-08-05 (le titre avait déjà sa propriété « Titre », les autres textes passent par les instances). Ses trois plages 700 voyagent en segments gouvernés (content.marks.strong) et le saut de ligne dur voyage dans la valeur de la prop. */
 export const SAV = forwardRef<HTMLDivElement, SAVProps>(function SAV(

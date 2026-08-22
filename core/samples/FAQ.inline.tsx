@@ -24,9 +24,10 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "center",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
-    "width": "1728px",
     "paddingLeft": "89px",
     "paddingRight": "89px",
     "gap": "48px"

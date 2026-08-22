@@ -2,23 +2,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Frame, Page } from 'playwright-core';
 import { PROOFS, Recueil } from '../lib/receipt.mts';
+import { insertSnippet } from '../lib/editor.mts';
 import { EDITOR_TIMEOUT_MS, NAV_TIMEOUT_MS, baseUrl, dockerDisponible, ouvrirSessionEditeur, ouvrirSessionPublique, withInstance, type QaEnv } from '../run.mts';
 
 // Réutilise le banc vide déjà qualifié pour l'insertion catalogue. Le sujet du
 // scénario est la coexistence 2×4, pas une route supplémentaire de production.
 const PAGE_PATH = '/piqueray-harness/presentation';
-async function insertSnippet(page: Page, search: string, label: string): Promise<void> {
-  const content = page.locator('.o_snippet_thumbnail')
-    .filter({ has: page.locator('.o_snippet_thumbnail_title', { hasText: 'Content' }) }).first();
-  await content.locator('button').click();
-  const dialog = page.locator('.modal').last();
-  await dialog.locator('input[type="search"]').fill(search);
-  await page.waitForTimeout(300);
-  const chooser = await dialog.locator('iframe').contentFrame();
-  if (!chooser) throw new Error('Iframe du catalogue Website absente.');
-  await chooser.locator(`[aria-label="${label}"]`).click();
-  await page.waitForTimeout(350);
-}
 async function enter(page: Page, env: QaEnv): Promise<Frame | null> {
   await page.goto(`${baseUrl(env)}/odoo/action-website.website_preview?path=${encodeURIComponent(PAGE_PATH)}&enable_editor=1`, { waitUntil: 'domcontentloaded', timeout: EDITOR_TIMEOUT_MS });
   const end = Date.now() + EDITOR_TIMEOUT_MS;
@@ -49,18 +38,18 @@ async function main() {
       const frame = await enter(page, env);
       if (!frame) { receipt.saute('éditeur combiné', 'frame éditable absente', 'ODOO-LIMIT-EDITOR-ENTRY'); return; }
       if (await frame.locator('.s_pqr_presentation, .s_pqr_google_reviews, .s_pqr_hero, .s_pqr_equipe, .s_pqr_devis, .s_pqr_sav').count() === 0) {
-        await insertSnippet(page, 'Présentation', 'Piqueray · Présentation');
-        await insertSnippet(page, 'Google Reviews', 'Piqueray · Google Reviews');
-        await insertSnippet(page, 'Équipe', 'Piqueray · Équipe');
-        await insertSnippet(page, 'Équipe', 'Piqueray · Équipe');
-        await insertSnippet(page, 'Hero', 'Piqueray · Hero');
-        await insertSnippet(page, 'Hero', 'Piqueray · Hero');
-        await insertSnippet(page, 'Présentation', 'Piqueray · Présentation');
-        await insertSnippet(page, 'Google Reviews', 'Piqueray · Google Reviews');
-        await insertSnippet(page, 'Devis', 'Piqueray · Devis');
-        await insertSnippet(page, 'Devis', 'Piqueray · Devis');
-        await insertSnippet(page, 'SAV', 'Piqueray · SAV');
-        await insertSnippet(page, 'SAV', 'Piqueray · SAV');
+        await insertSnippet(page, { search: 'Présentation', label: 'Piqueray · Présentation' });
+        await insertSnippet(page, { search: 'Google Reviews', label: 'Piqueray · Google Reviews' });
+        await insertSnippet(page, { search: 'Équipe', label: 'Piqueray · Équipe' });
+        await insertSnippet(page, { search: 'Équipe', label: 'Piqueray · Équipe' });
+        await insertSnippet(page, { search: 'Hero', label: 'Piqueray · Hero' });
+        await insertSnippet(page, { search: 'Hero', label: 'Piqueray · Hero' });
+        await insertSnippet(page, { search: 'Présentation', label: 'Piqueray · Présentation' });
+        await insertSnippet(page, { search: 'Google Reviews', label: 'Piqueray · Google Reviews' });
+        await insertSnippet(page, { search: 'Devis', label: 'Piqueray · Devis' });
+        await insertSnippet(page, { search: 'Devis', label: 'Piqueray · Devis' });
+        await insertSnippet(page, { search: 'SAV', label: 'Piqueray · SAV' });
+        await insertSnippet(page, { search: 'SAV', label: 'Piqueray · SAV' });
       }
       const presentations = frame.locator('.s_pqr_presentation');
       const reviews = frame.locator('.s_pqr_google_reviews');

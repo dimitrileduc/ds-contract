@@ -1,4 +1,327 @@
-/* ReviewCard — from ds.review-card v1.0.0 (core/emit-html.ts) */
+/* Notation — from ds.notation v1.0.0 (core/emit-html.ts) */
+
+.notation, .notation *, .notation *::before, .notation *::after {
+  box-sizing: border-box;
+}
+
+.notation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+}
+
+.notation__note1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.notation__note1Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note1Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note1Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.notation__note2Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note2Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note2Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.notation__note3Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note3Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note3Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.notation__note4Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note4Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note4Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.notation__note5Etoile1 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile1 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile2 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile2 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile3 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile3 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile4 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile4 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.notation__note5Etoile5 svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.notation__note5Etoile5 {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* ReviewCard — from ds.review-card v2.0.0 (core/emit-html.ts) */
 
 .review-card, .review-card *, .review-card *::before, .review-card *::after {
   box-sizing: border-box;
@@ -101,68 +424,6 @@
   flex-direction: row;
   align-items: center;
   gap: var(--space-8);
-}
-
-.review-card__etoiles {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--space-3);
-}
-
-.review-card__etoile1 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile1 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile2 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile2 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile3 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile3 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile4 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile4 {
-  display: inline-flex;
-  flex-shrink: 0;
-}
-
-.review-card__etoile5 svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.review-card__etoile5 {
-  display: inline-flex;
-  flex-shrink: 0;
 }
 
 .review-card__verification {

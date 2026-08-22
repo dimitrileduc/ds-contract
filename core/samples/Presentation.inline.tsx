@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/presentation.contract.json (ds.presentation v2.5.0)
+ * Source of truth: contracts/presentation.contract.json (ds.presentation v2.6.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -21,6 +21,8 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "flex-start",
     "justifyContent": "center",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "fontFamily": "Montserrat, sans-serif",
     "gap": "32px"
@@ -28,14 +30,18 @@ const S: Record<string, CSSProperties> = {
   "colGauche": {
     "display": "flex",
     "flexDirection": "column",
-    "width": "628px"
+    "flex": "1 1 auto",
+    "minWidth": 0,
+    "width": "100%"
   },
   "wrapper": {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "flex-start",
-    "gap": "16px",
-    "width": "627px"
+    "flex": "1 1 auto",
+    "minWidth": 0,
+    "width": "100%",
+    "gap": "16px"
   },
   "Texte": {
     "color": "#37373B",
@@ -54,7 +60,7 @@ export interface PresentationProps extends HTMLAttributes<HTMLDivElement> {
   titre?: string;
 }
 
-/** Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. */
+/** Piqueray Presentation. Extracted from the Figma COMPONENT_SET on DS · Organisms, reviewed and adopted — not authored. v2.6.0 makes the two-column composition fluid: the root, both columns and the nested SectionHeader are Fill at a 1287px authoring reference, with no max-width and no local padding. Page and site Containers own external spacing. */
 export const Presentation = forwardRef<HTMLDivElement, PresentationProps>(function Presentation(
   { bouton = true, titre = 'Piqueray, une histoire de famille ', texte = [{"text":"Depuis plus de 50 ans,","strong":true},{"text":" la société Piqueray est une référence en Province de Liège. Aujourd'hui dirigée par Florian et Cécilia Piqueray, l'entreprise perpétue les valeurs de "},{"text":"proximité et d'excellence technique","strong":true},{"text":". Dépositaire officiel "},{"text":"Hörmann","strong":true},{"text":", nous allions la force d'un leader mondial à "},{"text":"la souplesse d'une PME locale","strong":true},{"text":"."}], style, children, ...rest },
   ref,

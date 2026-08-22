@@ -1,5 +1,5 @@
 <!--
-  ReviewCard — static HTML+CSS emitted from contract ds.review-card v1.0.0 by core/emit-html.ts.
+  ReviewCard — static HTML+CSS emitted from contract ds.review-card v2.0.0 by core/emit-html.ts.
   Token values arrive via CSS custom properties (the same custom-property names the CSS Modules
   bind) — include the token stylesheet (src/styles/tokens.css) on the page or nothing resolves.
   Fidelity: no events, no interactivity beyond CSS states (:hover/:focus-visible/:disabled).
@@ -9,7 +9,7 @@
 <section class="showcase showcase--review-card">
   <div class="showcase__item">
     <p class="showcase__label">default</p>
-    <article class="review-card" data-part="root" data-initiale-visible="true" data-verifie="true">
+    <article class="review-card review-card--avatar-Initiale review-card--note-5" data-part="root">
       <div class="review-card__entete" data-part="entete">
         <div class="review-card__profil" data-part="profil">
           <div class="review-card__avatarInitiale" data-part="avatarInitiale">
@@ -28,69 +28,24 @@
 </svg></span>
       </div>
       <div class="review-card__notation" data-part="notation">
-        <div class="review-card__etoiles" data-part="etoiles">
-          <span class="review-card__etoile1" aria-hidden="true" data-part="etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="notation notation--note-5" data-part="etoiles">
+          <div class="notation__note5" data-part="note5">
+            <span class="notation__note5Etoile1" aria-hidden="true" data-part="note5Etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile2" aria-hidden="true" data-part="etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile2" aria-hidden="true" data-part="note5Etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile3" aria-hidden="true" data-part="etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile3" aria-hidden="true" data-part="note5Etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile4" aria-hidden="true" data-part="etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile4" aria-hidden="true" data-part="note5Etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile5" aria-hidden="true" data-part="etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile5" aria-hidden="true" data-part="note5Etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-        </div>
-        <div class="review-card__verification" data-part="verification">
-          <span class="review-card__coche" aria-hidden="true" data-part="coche"><svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 5.4L4.5 9L11.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></span>
-        </div>
-      </div>
-      <p class="review-card__temoignage" data-part="temoignage">Un témoignage neutre, exemple générique de contenu.</p>
-    </article>
-  </div>
-  <div class="showcase__item">
-    <p class="showcase__label">tronque=true</p>
-    <article class="review-card" data-part="root" data-tronque="true" data-initiale-visible="true" data-verifie="true">
-      <div class="review-card__entete" data-part="entete">
-        <div class="review-card__profil" data-part="profil">
-          <div class="review-card__avatarInitiale" data-part="avatarInitiale">
-            <span class="review-card__initialeTexte" data-part="initialeTexte">P</span>
           </div>
-          <div class="review-card__identite" data-part="identite">
-            <span class="review-card__auteur" data-part="auteur">Prénom N.</span>
-            <span class="review-card__date" data-part="date">il y a 2 mois</span>
-          </div>
-        </div>
-        <span class="review-card__marque" aria-hidden="true" data-part="marque"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-</svg></span>
-      </div>
-      <div class="review-card__notation" data-part="notation">
-        <div class="review-card__etoiles" data-part="etoiles">
-          <span class="review-card__etoile1" aria-hidden="true" data-part="etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
-</svg></span>
-          <span class="review-card__etoile2" aria-hidden="true" data-part="etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
-</svg></span>
-          <span class="review-card__etoile3" aria-hidden="true" data-part="etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
-</svg></span>
-          <span class="review-card__etoile4" aria-hidden="true" data-part="etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
-</svg></span>
-          <span class="review-card__etoile5" aria-hidden="true" data-part="etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
-</svg></span>
         </div>
         <div class="review-card__verification" data-part="verification">
           <span class="review-card__coche" aria-hidden="true" data-part="coche"><svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,13 +58,10 @@
     </article>
   </div>
   <div class="showcase__item">
-    <p class="showcase__label">photo=true</p>
-    <article class="review-card" data-part="root" data-initiale-visible="true" data-photo="true" data-verifie="true">
+    <p class="showcase__label">avatar=Photo</p>
+    <article class="review-card review-card--avatar-Photo review-card--note-5" data-part="root">
       <div class="review-card__entete" data-part="entete">
         <div class="review-card__profil" data-part="profil">
-          <div class="review-card__avatarInitiale" data-part="avatarInitiale">
-            <span class="review-card__initialeTexte" data-part="initialeTexte">P</span>
-          </div>
           <img class="review-card__avatarPhoto" src="" alt="" data-part="avatarPhoto"></img>
           <div class="review-card__identite" data-part="identite">
             <span class="review-card__auteur" data-part="auteur">Prénom N.</span>
@@ -124,22 +76,24 @@
 </svg></span>
       </div>
       <div class="review-card__notation" data-part="notation">
-        <div class="review-card__etoiles" data-part="etoiles">
-          <span class="review-card__etoile1" aria-hidden="true" data-part="etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="notation notation--note-5" data-part="etoiles">
+          <div class="notation__note5" data-part="note5">
+            <span class="notation__note5Etoile1" aria-hidden="true" data-part="note5Etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile2" aria-hidden="true" data-part="etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile2" aria-hidden="true" data-part="note5Etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile3" aria-hidden="true" data-part="etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile3" aria-hidden="true" data-part="note5Etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile4" aria-hidden="true" data-part="etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile4" aria-hidden="true" data-part="note5Etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
-          <span class="review-card__etoile5" aria-hidden="true" data-part="etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <span class="notation__note5Etoile5" aria-hidden="true" data-part="note5Etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
 </svg></span>
+          </div>
         </div>
         <div class="review-card__verification" data-part="verification">
           <span class="review-card__coche" aria-hidden="true" data-part="coche"><svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -148,6 +102,207 @@
         </div>
       </div>
       <p class="review-card__temoignage" data-part="temoignage">Un témoignage neutre, exemple générique de contenu.</p>
+      <span class="review-card__lireLaSuite" data-part="lireLaSuite">Lire la suite</span>
+    </article>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">note=1</p>
+    <article class="review-card review-card--avatar-Initiale review-card--note-1" data-part="root">
+      <div class="review-card__entete" data-part="entete">
+        <div class="review-card__profil" data-part="profil">
+          <div class="review-card__avatarInitiale" data-part="avatarInitiale">
+            <span class="review-card__initialeTexte" data-part="initialeTexte">P</span>
+          </div>
+          <div class="review-card__identite" data-part="identite">
+            <span class="review-card__auteur" data-part="auteur">Prénom N.</span>
+            <span class="review-card__date" data-part="date">il y a 2 mois</span>
+          </div>
+        </div>
+        <span class="review-card__marque" aria-hidden="true" data-part="marque"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+</svg></span>
+      </div>
+      <div class="review-card__notation" data-part="notation">
+        <div class="notation notation--note-1" data-part="etoiles">
+          <div class="notation__note1" data-part="note1">
+            <span class="notation__note1Etoile1" aria-hidden="true" data-part="note1Etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note1Etoile2" aria-hidden="true" data-part="note1Etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+            <span class="notation__note1Etoile3" aria-hidden="true" data-part="note1Etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+            <span class="notation__note1Etoile4" aria-hidden="true" data-part="note1Etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+            <span class="notation__note1Etoile5" aria-hidden="true" data-part="note1Etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+          </div>
+        </div>
+        <div class="review-card__verification" data-part="verification">
+          <span class="review-card__coche" aria-hidden="true" data-part="coche"><svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.4L4.5 9L11.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+        </div>
+      </div>
+      <p class="review-card__temoignage" data-part="temoignage">Un témoignage neutre, exemple générique de contenu.</p>
+      <span class="review-card__lireLaSuite" data-part="lireLaSuite">Lire la suite</span>
+    </article>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">note=2</p>
+    <article class="review-card review-card--avatar-Initiale review-card--note-2" data-part="root">
+      <div class="review-card__entete" data-part="entete">
+        <div class="review-card__profil" data-part="profil">
+          <div class="review-card__avatarInitiale" data-part="avatarInitiale">
+            <span class="review-card__initialeTexte" data-part="initialeTexte">P</span>
+          </div>
+          <div class="review-card__identite" data-part="identite">
+            <span class="review-card__auteur" data-part="auteur">Prénom N.</span>
+            <span class="review-card__date" data-part="date">il y a 2 mois</span>
+          </div>
+        </div>
+        <span class="review-card__marque" aria-hidden="true" data-part="marque"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+</svg></span>
+      </div>
+      <div class="review-card__notation" data-part="notation">
+        <div class="notation notation--note-2" data-part="etoiles">
+          <div class="notation__note2" data-part="note2">
+            <span class="notation__note2Etoile1" aria-hidden="true" data-part="note2Etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note2Etoile2" aria-hidden="true" data-part="note2Etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note2Etoile3" aria-hidden="true" data-part="note2Etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+            <span class="notation__note2Etoile4" aria-hidden="true" data-part="note2Etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+            <span class="notation__note2Etoile5" aria-hidden="true" data-part="note2Etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+          </div>
+        </div>
+        <div class="review-card__verification" data-part="verification">
+          <span class="review-card__coche" aria-hidden="true" data-part="coche"><svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.4L4.5 9L11.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+        </div>
+      </div>
+      <p class="review-card__temoignage" data-part="temoignage">Un témoignage neutre, exemple générique de contenu.</p>
+      <span class="review-card__lireLaSuite" data-part="lireLaSuite">Lire la suite</span>
+    </article>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">note=3</p>
+    <article class="review-card review-card--avatar-Initiale review-card--note-3" data-part="root">
+      <div class="review-card__entete" data-part="entete">
+        <div class="review-card__profil" data-part="profil">
+          <div class="review-card__avatarInitiale" data-part="avatarInitiale">
+            <span class="review-card__initialeTexte" data-part="initialeTexte">P</span>
+          </div>
+          <div class="review-card__identite" data-part="identite">
+            <span class="review-card__auteur" data-part="auteur">Prénom N.</span>
+            <span class="review-card__date" data-part="date">il y a 2 mois</span>
+          </div>
+        </div>
+        <span class="review-card__marque" aria-hidden="true" data-part="marque"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+</svg></span>
+      </div>
+      <div class="review-card__notation" data-part="notation">
+        <div class="notation notation--note-3" data-part="etoiles">
+          <div class="notation__note3" data-part="note3">
+            <span class="notation__note3Etoile1" aria-hidden="true" data-part="note3Etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note3Etoile2" aria-hidden="true" data-part="note3Etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note3Etoile3" aria-hidden="true" data-part="note3Etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note3Etoile4" aria-hidden="true" data-part="note3Etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+            <span class="notation__note3Etoile5" aria-hidden="true" data-part="note3Etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+          </div>
+        </div>
+        <div class="review-card__verification" data-part="verification">
+          <span class="review-card__coche" aria-hidden="true" data-part="coche"><svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.4L4.5 9L11.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+        </div>
+      </div>
+      <p class="review-card__temoignage" data-part="temoignage">Un témoignage neutre, exemple générique de contenu.</p>
+      <span class="review-card__lireLaSuite" data-part="lireLaSuite">Lire la suite</span>
+    </article>
+  </div>
+  <div class="showcase__item">
+    <p class="showcase__label">note=4</p>
+    <article class="review-card review-card--avatar-Initiale review-card--note-4" data-part="root">
+      <div class="review-card__entete" data-part="entete">
+        <div class="review-card__profil" data-part="profil">
+          <div class="review-card__avatarInitiale" data-part="avatarInitiale">
+            <span class="review-card__initialeTexte" data-part="initialeTexte">P</span>
+          </div>
+          <div class="review-card__identite" data-part="identite">
+            <span class="review-card__auteur" data-part="auteur">Prénom N.</span>
+            <span class="review-card__date" data-part="date">il y a 2 mois</span>
+          </div>
+        </div>
+        <span class="review-card__marque" aria-hidden="true" data-part="marque"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+</svg></span>
+      </div>
+      <div class="review-card__notation" data-part="notation">
+        <div class="notation notation--note-4" data-part="etoiles">
+          <div class="notation__note4" data-part="note4">
+            <span class="notation__note4Etoile1" aria-hidden="true" data-part="note4Etoile1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note4Etoile2" aria-hidden="true" data-part="note4Etoile2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note4Etoile3" aria-hidden="true" data-part="note4Etoile3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note4Etoile4" aria-hidden="true" data-part="note4Etoile4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#F98A0B"/>
+</svg></span>
+            <span class="notation__note4Etoile5" aria-hidden="true" data-part="note4Etoile5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 0L12.645 6.35942L19.5106 6.90983L14.2798 11.3906L15.8779 18.0902L10 14.5L4.12215 18.0902L5.72025 11.3906L0.489435 6.90983L7.35497 6.35942L10 0Z" fill="#E0E0E0"/>
+</svg></span>
+          </div>
+        </div>
+        <div class="review-card__verification" data-part="verification">
+          <span class="review-card__coche" aria-hidden="true" data-part="coche"><svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1 5.4L4.5 9L11.5 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
+        </div>
+      </div>
+      <p class="review-card__temoignage" data-part="temoignage">Un témoignage neutre, exemple générique de contenu.</p>
+      <span class="review-card__lireLaSuite" data-part="lireLaSuite">Lire la suite</span>
     </article>
   </div>
 </section>

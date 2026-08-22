@@ -69,6 +69,8 @@ import {
     RemoveCarteCategorieAction,
     MoveCarteCategorieUpAction,
     MoveCarteCategorieDownAction,
+    SetStyleCarteAction,
+    findCategoriesRoot,
 } from "./repeat_action";
 import {
     ReplaceCarteImageAction,
@@ -523,17 +525,14 @@ export class SetLinkHrefAction extends BuilderAction {
  * colonnage hors {2,3} n'est jamais offert. */
 export class SetColonnesAction extends BuilderAction {
     static id = "pqrSetColonnes";
-    section(editingElement) {
-        return editingElement?.closest?.(".s_pqr_categories_principales") || null;
-    }
     getValue({ editingElement }) {
-        return this.section(editingElement)?.dataset?.pqrColonnes || "2";
+        return findCategoriesRoot(editingElement)?.dataset?.pqrColonnes || "2";
     }
     isApplied(arg) {
         return this.getValue(arg) === String(arg.params.mainParam);
     }
     apply({ editingElement, params: { mainParam } }) {
-        const section = this.section(editingElement);
+        const section = findCategoriesRoot(editingElement);
         if (!section) return;
         const v = String(mainParam);
         if (v !== "2" && v !== "3") return; // enum fermé : refus silencieux
@@ -616,6 +615,7 @@ export class PiquerayAuthoringPlugin extends Plugin {
             RemoveCarteCategorieAction,
             MoveCarteCategorieUpAction,
             MoveCarteCategorieDownAction,
+            SetStyleCarteAction,
             ReplaceCarteCategorieImageAction,
             SetCarteCategorieImageAltAction,
             AddMemberAction,

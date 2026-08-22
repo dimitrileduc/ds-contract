@@ -1,10 +1,21 @@
 {
   "schemaNote": "Artefact du Gate D (FR-004) — granularité DÉCISION, transcrit APRÈS validation owner en integrations/odoo/config/categories.authoring.json (schéma 019, vocabulaire identique). Couvre 100 % des props ET des parts des DEUX contrats (ds.categories-principales racine + ds.carte-categorie composée par repeat), y compris les contrats composés (ds.button ×2 sous Bouton, icône arrow-right). Patron : specs/022-odoo-production-wave-b/contracts/reassurances.editable-scope.json.",
   "sectionId": "categories-principales",
-  "rootContract": { "id": "ds.categories-principales", "version": "1.0.0" },
+  "rootContract": {
+    "id": "ds.categories-principales",
+    "version": "1.0.0"
+  },
   "composedContracts": [
-    { "id": "ds.carte-categorie", "version": "1.0.0", "via": "root.grid.CarteCategorie (repeat)" },
-    { "id": "ds.button", "version": "2.0.1", "via": "CarteCategorie.Bouton.{lien|bouton} (empile)" }
+    {
+      "id": "ds.carte-categorie",
+      "version": "1.0.0",
+      "via": "root.grid.CarteCategorie (repeat)"
+    },
+    {
+      "id": "ds.button",
+      "version": "2.0.1",
+      "via": "CarteCategorie.Bouton.{lien|bouton} (empile)"
+    }
   ],
   "status": "validated",
   "gate": {
@@ -15,7 +26,7 @@
   },
   "resolvedQuestions": {
     "Q-C1": "Colonnes {2,3} = un enum FERMÉ offert au rédacteur (sélecteur 2|3), JAMAIS dérivé du nombre de cartes ; au-delà du compte les cartes passent à la ligne sur la même grille (précédent Équipe). Aucune autre valeur offrable.",
-    "Q-C2": "Style de carte (superpose/empile) = FIXÉ par la composition (la section transmet son style à chaque carte) — pas un choix rédacteur cette itération.",
+    "Q-C2": "AMENDÉE le 2026-08-22 (owner, en session). Énoncé d'origine (validé le 2026-08-21) : « Style de carte (superpose/empile) = FIXÉ par la composition — pas un choix rédacteur cette itération. » L'owner a renversé la seconde moitié : le style devient un enum FERMÉ {superpose, empile} offert au panneau de la SECTION (cat-ctl-sec-style : not-editable → controlled/enum). La première moitié tient : au niveau de la CARTE le style reste fixé par composition (cat-ctl-carte-style inchangé) — la section le transmet, la carte ne le choisit pas. Risque nommé avant décision et accepté : les deux styles ne partagent aucun nœud, la bascule reconstruit chaque carte, et le CTA (inexistant côté superposé) est mis de côté sur la carte pour être restitué à l'aller-retour.",
     "Q-C3": "ctaType (lien/bouton) = FIXÉ par composition (défaut lien) ; l'usage à CTA mixte (carte Maintenance « Prendre rendez-vous » bouton encadré) n'est PAS offert par carte (les champs d'un arrayOf sont plats) — porté hors composition, LIMITE NOMMÉE.",
     "Q-C4": "Libellé de CTA (empile) éditable en ligne + destination du lien au panneau par carte (mécanisme BuilderUrlPicker/pqrSetCtaHref, grammaire same-origin/https/mailto/tel, javascript: refusé) — précédent presentation/hero/faq/devis/sav.",
     "Q-C5": "Collection : 4 gestes (ajouter blueprint sans src, supprimer, monter, descendre — bornes 0..n) ; gestes natifs de l'éditeur neutralisés."
@@ -25,45 +36,353 @@
     "verdict": "supported"
   },
   "rootActions": [
-    { "action": "move", "verdict": "allowed" },
-    { "action": "duplicate", "verdict": "allowed" },
-    { "action": "remove", "verdict": "allowed" },
-    { "action": "save-as-custom", "verdict": "forbidden" },
-    { "action": "resize", "verdict": "forbidden" },
-    { "action": "background", "verdict": "forbidden" }
+    {
+      "action": "move",
+      "verdict": "allowed"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "allowed"
+    },
+    {
+      "action": "remove",
+      "verdict": "allowed"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden"
+    }
   ],
   "controls": [
-    { "id": "C1", "prop": "style", "verdict": "not-editable", "mechanism": "none", "note": "VARIANT de section fixé au poser (un bloc posé ne se re-rend pas) ; le style détermine superpose/empile pour toutes les cartes — pas un réglage de vague contenu (Q-C2)" },
-    { "id": "C2", "prop": "colonnes", "verdict": "controlled", "mechanism": "enum", "gesture": "Sélecteur 2|3 au panneau de section — enum FERMÉ, aucune autre valeur offrable", "note": "Q-C1 — 3 usages existants du mécanisme enum ; wrap natif au-delà du compte" },
-    { "id": "C3", "prop": "cartes", "verdict": "controlled", "mechanism": "ordered-repeat", "gesture": "Panneau : ajouter (blueprint sans src), supprimer, monter, descendre — bornes 0..n ; gestes natifs neutralisés", "note": "Q-C5 — précédent équipe/google-reviews. Section vidée = 0 carte, rendu propre (voir sectionVidee)" },
-    { "id": "C4", "path": ["ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"], "prop": "style", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Transmis depuis la section (component.props {style}) — Q-C2" },
-    { "id": "C5", "path": ["ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"], "prop": "ctaType", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Défaut lien ; non transporté par carte (arrayOf plat) — Q-C3, LIMITE NOMMÉE" },
-    { "id": "C6", "path": ["ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"], "prop": "titre", "verdict": "controlled", "mechanism": "plain-text", "gesture": "En ligne, par carte" },
-    { "id": "C7", "path": ["ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"], "prop": "texte", "verdict": "controlled", "mechanism": "plain-text", "gesture": "En ligne, par carte", "note": "type text (plat) — la molécule ne porte pas de plage forte rich-text (limite de composition arrayOf, nommée au contrat)" },
-    { "id": "C8", "path": ["ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"], "prop": "imageUrl", "verdict": "controlled", "mechanism": "computed-display", "gesture": "Bouton « Remplacer l'image » par carte → dialogue média natif, /web/image ; pose SANS src", "note": "Précédent équipe/carte ; route A5 (l'URL vit dans l'instance Odoo)" },
-    { "id": "C9", "path": ["ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"], "prop": "imageAlt", "verdict": "controlled", "mechanism": "plain-text", "gesture": "Champ alt au panneau de carte", "note": "LIMITE NOMMÉE : la route arrayOf ne porte pas d'alt — valeur dans l'instance Odoo, comme l'URL" },
-    { "id": "C10", "path": ["ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"], "prop": "ctaLabel", "verdict": "controlled", "mechanism": "plain-text", "gesture": "En ligne (empile) + destination du lien au panneau par carte (BuilderUrlPicker/pqrSetCtaHref)", "note": "Q-C4 — contenu libre (Gate A) ; sans effet en style superpose (pas de CTA)" },
-    { "id": "C11", "path": ["ds.button@2.0.1 via CarteCategorie.Bouton.lien"], "prop": "children", "verdict": "controlled", "mechanism": "plain-text", "gesture": "Surface de C10 (libellé du lien Contactez-nous)", "note": "Q-C4" },
-    { "id": "C12", "path": ["ds.button@2.0.1 via CarteCategorie.Bouton.lien"], "prop": "variant|iconLeft|iconRight|iconLeftGlyph|iconRightGlyph", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Identité DS : link + pdf/download figés (politique constante des sections)" },
-    { "id": "C13", "path": ["ds.button@2.0.1 via CarteCategorie.Bouton.bouton"], "prop": "children", "verdict": "controlled", "mechanism": "plain-text", "gesture": "Surface de C10 (libellé du bouton encadré Prendre rendez-vous)", "note": "Rendu seulement si ctaType=bouton (fixé par composition, C5) — donc figé de fait cette itération" },
-    { "id": "C14", "path": ["ds.button@2.0.1 via CarteCategorie.Bouton.bouton"], "prop": "variant|iconRight|iconRightGlyph", "verdict": "fixed-by-composition", "mechanism": "none", "note": "Identité DS : outlineNoir + arrow-right figés" }
+    {
+      "id": "C1",
+      "prop": "style",
+      "verdict": "not-editable",
+      "mechanism": "none",
+      "note": "VARIANT de section fixé au poser (un bloc posé ne se re-rend pas) ; le style détermine superpose/empile pour toutes les cartes — pas un réglage de vague contenu (Q-C2)"
+    },
+    {
+      "id": "C2",
+      "prop": "colonnes",
+      "verdict": "controlled",
+      "mechanism": "enum",
+      "gesture": "Sélecteur 2|3 au panneau de section — enum FERMÉ, aucune autre valeur offrable",
+      "note": "Q-C1 — 3 usages existants du mécanisme enum ; wrap natif au-delà du compte"
+    },
+    {
+      "id": "C3",
+      "prop": "cartes",
+      "verdict": "controlled",
+      "mechanism": "ordered-repeat",
+      "gesture": "Panneau : ajouter (blueprint sans src), supprimer, monter, descendre — bornes 0..n ; gestes natifs neutralisés",
+      "note": "Q-C5 — précédent équipe/google-reviews. Section vidée = 0 carte, rendu propre (voir sectionVidee)"
+    },
+    {
+      "id": "C4",
+      "path": [
+        "ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"
+      ],
+      "prop": "style",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "note": "Transmis depuis la section (component.props {style}) — Q-C2"
+    },
+    {
+      "id": "C5",
+      "path": [
+        "ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"
+      ],
+      "prop": "ctaType",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "note": "Défaut lien ; non transporté par carte (arrayOf plat) — Q-C3, LIMITE NOMMÉE"
+    },
+    {
+      "id": "C6",
+      "path": [
+        "ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"
+      ],
+      "prop": "titre",
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "gesture": "En ligne, par carte"
+    },
+    {
+      "id": "C7",
+      "path": [
+        "ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"
+      ],
+      "prop": "texte",
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "gesture": "En ligne, par carte",
+      "note": "type text (plat) — la molécule ne porte pas de plage forte rich-text (limite de composition arrayOf, nommée au contrat)"
+    },
+    {
+      "id": "C8",
+      "path": [
+        "ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"
+      ],
+      "prop": "imageUrl",
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "gesture": "Bouton « Remplacer l'image » par carte → dialogue média natif, /web/image ; pose SANS src",
+      "note": "Précédent équipe/carte ; route A5 (l'URL vit dans l'instance Odoo)"
+    },
+    {
+      "id": "C9",
+      "path": [
+        "ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"
+      ],
+      "prop": "imageAlt",
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "gesture": "Champ alt au panneau de carte",
+      "note": "LIMITE NOMMÉE : la route arrayOf ne porte pas d'alt — valeur dans l'instance Odoo, comme l'URL"
+    },
+    {
+      "id": "C10",
+      "path": [
+        "ds.carte-categorie@1.0.0 via CarteCategorie (repeat)"
+      ],
+      "prop": "ctaLabel",
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "gesture": "En ligne (empile) + destination du lien au panneau par carte (BuilderUrlPicker/pqrSetCtaHref)",
+      "note": "Q-C4 — contenu libre (Gate A) ; sans effet en style superpose (pas de CTA)"
+    },
+    {
+      "id": "C11",
+      "path": [
+        "ds.button@2.0.1 via CarteCategorie.Bouton.lien"
+      ],
+      "prop": "children",
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "gesture": "Surface de C10 (libellé du lien Contactez-nous)",
+      "note": "Q-C4"
+    },
+    {
+      "id": "C12",
+      "path": [
+        "ds.button@2.0.1 via CarteCategorie.Bouton.lien"
+      ],
+      "prop": "variant|iconLeft|iconRight|iconLeftGlyph|iconRightGlyph",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "note": "Identité DS : link + pdf/download figés (politique constante des sections)"
+    },
+    {
+      "id": "C13",
+      "path": [
+        "ds.button@2.0.1 via CarteCategorie.Bouton.bouton"
+      ],
+      "prop": "children",
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "gesture": "Surface de C10 (libellé du bouton encadré Prendre rendez-vous)",
+      "note": "Rendu seulement si ctaType=bouton (fixé par composition, C5) — donc figé de fait cette itération"
+    },
+    {
+      "id": "C14",
+      "path": [
+        "ds.button@2.0.1 via CarteCategorie.Bouton.bouton"
+      ],
+      "prop": "variant|iconRight|iconRightGlyph",
+      "verdict": "fixed-by-composition",
+      "mechanism": "none",
+      "note": "Identité DS : outlineNoir + arrow-right figés"
+    }
   ],
   "parts": [
-    { "id": "P1", "partPath": ["root"], "verdict": "not-editable", "contentKind": "structural", "note": "Racine grille de la section (display grid, colonnes via C2)" },
-    { "id": "P2", "partPath": ["root", "CarteCategorie"], "verdict": "not-editable", "contentKind": "repeat", "note": "Template répété (marqué par POSITION) ; gestes via C3 uniquement ; largeur FILL gouvernée par la cellule de grille" },
-    { "id": "P3", "partPath": ["root", "CarteCategorie", "(root)"], "verdict": "not-editable", "contentKind": "structural", "note": "Racine de la carte répétée" },
-    { "id": "P4", "partPath": ["root", "CarteCategorie", "photoSuperpose"], "verdict": "not-editable", "contentKind": "media", "note": "Plan photo superposé (style superpose) ; clic direct fermé, remplacement via C8" },
-    { "id": "P5", "partPath": ["root", "CarteCategorie", "decor"], "verdict": "not-editable", "contentKind": "media", "note": "Filet décoratif du coin (vecteur gouverné, identité DS) — jamais éditable" },
-    { "id": "P6", "partPath": ["root", "CarteCategorie", "contenuSuperpose"], "verdict": "not-editable", "contentKind": "structural", "note": "Voile dégradé + conteneur du contenu superposé" },
-    { "id": "P7", "partPath": ["root", "CarteCategorie", "contenuSuperpose", "inner", "blocTexte", "TitreSuperpose"], "verdict": "directly-editable", "contentKind": "plain-text", "gesture": "En ligne", "note": "Surface de C6 (style superpose)" },
-    { "id": "P8", "partPath": ["root", "CarteCategorie", "contenuSuperpose", "inner", "blocTexte", "TexteSuperpose"], "verdict": "directly-editable", "contentKind": "plain-text", "gesture": "En ligne", "note": "Surface de C7 (style superpose)" },
-    { "id": "P9", "partPath": ["root", "CarteCategorie", "contenuSuperpose", "inner", "Fleche"], "verdict": "not-editable", "contentKind": "media", "note": "Affordance flèche arrow-right (icône gouvernée, identité DS) — jamais éditable" },
-    { "id": "P10", "partPath": ["root", "CarteCategorie", "categorieImage"], "verdict": "not-editable", "contentKind": "media", "note": "Plan photo empilé (style empile) ; clic direct fermé, remplacement via C8" },
-    { "id": "P11", "partPath": ["root", "CarteCategorie", "texteEmpile", "TitreCategorie"], "verdict": "directly-editable", "contentKind": "plain-text", "gesture": "En ligne", "note": "Surface de C6 (style empile)" },
-    { "id": "P12", "partPath": ["root", "CarteCategorie", "texteEmpile", "TexteCategorie"], "verdict": "directly-editable", "contentKind": "plain-text", "gesture": "En ligne", "note": "Surface de C7 (style empile)" },
-    { "id": "P13", "partPath": ["root", "CarteCategorie", "Bouton"], "verdict": "not-editable", "contentKind": "component", "note": "Hôte structurel du CTA (style empile) ; seule la zone libellé est rouverte (C10/C11)" },
-    { "id": "P14", "partPath": ["root", "CarteCategorie", "Bouton", "lien", "(ds.button root, label, iconLeft, iconRight)"], "verdict": "not-editable", "contentKind": "component", "note": "Bouton lien composé ; label = surface C11 ; glyphes pdf/download figés (C12)" },
-    { "id": "P15", "partPath": ["root", "CarteCategorie", "Bouton", "bouton", "(ds.button root, label, iconRight)"], "verdict": "fixed-by-composition", "contentKind": "component", "note": "Bouton encadré : rendu seulement si ctaType=bouton (fixé par composition) — figé de fait cette itération (C13/C14)" }
+    {
+      "id": "P1",
+      "partPath": [
+        "root"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "note": "Racine grille de la section (display grid, colonnes via C2)"
+    },
+    {
+      "id": "P2",
+      "partPath": [
+        "root",
+        "CarteCategorie"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "repeat",
+      "note": "Template répété (marqué par POSITION) ; gestes via C3 uniquement ; largeur FILL gouvernée par la cellule de grille"
+    },
+    {
+      "id": "P3",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "(root)"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "note": "Racine de la carte répétée"
+    },
+    {
+      "id": "P4",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "photoSuperpose"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "note": "Plan photo superposé (style superpose) ; clic direct fermé, remplacement via C8"
+    },
+    {
+      "id": "P5",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "decor"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "note": "Filet décoratif du coin (vecteur gouverné, identité DS) — jamais éditable"
+    },
+    {
+      "id": "P6",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "contenuSuperpose"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "note": "Voile dégradé + conteneur du contenu superposé"
+    },
+    {
+      "id": "P7",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "contenuSuperpose",
+        "inner",
+        "blocTexte",
+        "TitreSuperpose"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "gesture": "En ligne",
+      "note": "Surface de C6 (style superpose)"
+    },
+    {
+      "id": "P8",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "contenuSuperpose",
+        "inner",
+        "blocTexte",
+        "TexteSuperpose"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "gesture": "En ligne",
+      "note": "Surface de C7 (style superpose)"
+    },
+    {
+      "id": "P9",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "contenuSuperpose",
+        "inner",
+        "Fleche"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "note": "Affordance flèche arrow-right (icône gouvernée, identité DS) — jamais éditable"
+    },
+    {
+      "id": "P10",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "categorieImage"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "note": "Plan photo empilé (style empile) ; clic direct fermé, remplacement via C8"
+    },
+    {
+      "id": "P11",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "texteEmpile",
+        "TitreCategorie"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "gesture": "En ligne",
+      "note": "Surface de C6 (style empile)"
+    },
+    {
+      "id": "P12",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "texteEmpile",
+        "TexteCategorie"
+      ],
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "gesture": "En ligne",
+      "note": "Surface de C7 (style empile)"
+    },
+    {
+      "id": "P13",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "Bouton"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "note": "Hôte structurel du CTA (style empile) ; seule la zone libellé est rouverte (C10/C11)"
+    },
+    {
+      "id": "P14",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "Bouton",
+        "lien",
+        "(ds.button root, label, iconLeft, iconRight)"
+      ],
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "note": "Bouton lien composé ; label = surface C11 ; glyphes pdf/download figés (C12)"
+    },
+    {
+      "id": "P15",
+      "partPath": [
+        "root",
+        "CarteCategorie",
+        "Bouton",
+        "bouton",
+        "(ds.button root, label, iconRight)"
+      ],
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "note": "Bouton encadré : rendu seulement si ctaType=bouton (fixé par composition) — figé de fait cette itération (C13/C14)"
+    }
   ],
   "coverageCheck": {
     "note": "100 % props+parts des DEUX contrats + composés — vérifié mécaniquement par npm run odoo:authoring:check APRÈS transcription en categories.authoring.json (FR-004). Props : section {style,colonnes,cartes} + molécule {style,ctaType,titre,texte,imageUrl,imageAlt,ctaLabel} + ds.button ×2 {children,variant,icônes,glyphes}. Parts : section {root,CarteCategorie} + molécule {root,photoSuperpose,decor,contenuSuperpose,inner,blocTexte,TitreSuperpose,TexteSuperpose,Fleche,categorieImage,texteEmpile,TitreCategorie,TexteCategorie,Bouton,lien,bouton}.",

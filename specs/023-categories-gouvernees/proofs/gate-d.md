@@ -17,6 +17,18 @@ titre/description/alt par carte (plain-text), image par carte (computed-display)
 du CTA empilé (BuilderUrlPicker/pqrSetCtaHref).
 **Fixé par composition / non éditable** : style de carte, ctaType, variantes/glyphes `ds.button`,
 structure, plans photo (remplacés via le contrôle image), décor, flèche.
+
+> **AMENDEMENT — 2026-08-22 (owner, en session).** Le **style de carte sort** de cette ligne :
+> il devient un **enum FERMÉ {superposé, empilé} offert au panneau de la SECTION**
+> (`cat-ctl-sec-style` : `not-editable` → `controlled` / `enum`). Le reste de la frontière est
+> **inchangé**, y compris `cat-ctl-carte-style` qui reste `fixed-by-composition` : la section
+> transmet le style, la carte ne le choisit pas. **Écart exact : UNE décision déplacée**,
+> `cat-ctl-sec-style` — aucune autre ligne de la table n'a bougé (compté sur le fichier, pas
+> reconstitué : `integrations/odoo/config/categories.authoring.json`, 50 décisions au total,
+> `controlled` 9 → 10 et `not-editable` 18 → 17).
+> Risque nommé avant décision et évité plutôt qu'accepté (le CTA, absent du superposé, est mis
+> de côté sur la carte et restitué à l'aller-retour).
+> Reçu : [amendement-2026-08-22.md](amendement-2026-08-22.md).
 **Edge « section vidée »** : rendu propre attendu, geste réversible (arrêté au Gate, jamais improvisé).
 
 ## Décision owner

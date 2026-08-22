@@ -89,3 +89,31 @@ export async function visibleCount(page: Page, selector: string): Promise<number
   }
   return count;
 }
+
+/** Pose un snippet Piqueray depuis le catalogue « Content » du Website Builder.
+ *
+ * Vit ICI et pas dans chaque scénario : la traversée est entièrement faite de
+ * sélecteurs de CHROME Odoo (`.o_snippet_thumbnail`, la modale, l'iframe du
+ * catalogue). Le jour où Odoo bouge l'un d'eux — l'image est épinglée mais
+ * remontable — une copie par scénario serait autant de fichiers à corriger.
+ *
+ * `viaDom` choisit la frappe sur la vignette : le clic Playwright par défaut,
+ * ou `HTMLElement.click()` quand la vignette est recouverte par un calque du
+ * catalogue et que le clic de pointeur serait intercepté. */
+export async function insertSnippet(
+  page: Page,
+  { search, label, viaDom = false }: { search: string; label: string; viaDom?: boolean },
+): Promise<void> {
+  const content = page.locator('.o_snippet_thumbnail')
+    .filter({ has: page.locator('.o_snippet_thumbnail_title', { hasText: 'Content' }) }).first();
+  await content.locator('button').click();
+  const dialog = page.locator('.modal').last();
+  await dialog.locator('input[type="search"]').fill(search);
+  await page.waitForTimeout(300);
+  const chooser = await dialog.locator('iframe').contentFrame();
+  if (!chooser) throw new Error('Iframe du catalogue Website absente.');
+  const vignette = chooser.locator(`[aria-label="${label}"]`);
+  if (viaDom) await vignette.evaluate((node) => (node as HTMLElement).click());
+  else await vignette.click();
+  await page.waitForTimeout(350);
+}

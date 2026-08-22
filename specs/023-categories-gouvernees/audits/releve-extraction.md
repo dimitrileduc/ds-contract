@@ -18,9 +18,20 @@ depuis la source vivante par les sondes ci-dessous (précédent 007).
 - **propDefs** : `Titre` (TEXT, défaut « Pour portes de garage »), `Texte` (TEXT, défaut « SupraMatic & ProMatic. … »), `Style` (VARIANT).
 - **Empile** (743×622) : root blanc (`color/blanc`), gap `space/32`, largeur `size/carte/root-categorie` (743).
   - `categorieImage` FRAME IMAGE FILL, hauteur `size/carte/categorie-image` (418).
+    > **Note du 2026-08-22 (ne corrige pas le relevé, le précise).** Ce « 418 » est la hauteur
+    > **à la largeur du master (743)**, pas une hauteur figée : les variantes de section le
+    > montrent à trois largeurs (744→418, 832→468, 533→300, rapport 1.78 constant). Le contrat
+    > l'avait d'abord porté comme jeton `height` — faux à toute autre largeur. Il le porte
+    > désormais comme `layout.aspectRatio`. Et « FILL » ici est **horizontal** : rendu par
+    > `layout.width:"fill"`, jamais par `layout.grow` (dont la projection CSS est un
+    > étirement d'axe principal, donc VERTICAL sous un root en colonne).
+    > Voir [../proofs/amendement-2026-08-22.md](../proofs/amendement-2026-08-22.md).
   - `text` : `TitreCategorie` (→prop Titre, `color/noir-bleute`, 32px, Medium), `TexteCategorie` (→prop Texte, `color/noir-bleute`, 18px).
   - `Bouton` → `action` INSTANCE de `Bouton` : Style **Link**, Libellé « Contactez-nous », Glyphe gauche 230:585 (pdf), Glyphe droite 230:599 (download), radius `radius/32`, gap `space/10`.
-- **Superpose** (744×418) : root IMAGE FILL, VERTICAL primary MAX (contenu en bas). Bordure `border-width/1` **sans peinture visible** (pas de bord rendu).
+- **Superpose** (744×418) : root IMAGE FILL, VERTICAL primary MAX (contenu en bas).
+  > **Note du 2026-08-22.** Ce 744×418 n'avait **pas** été porté au contrat : le style
+  > superposé n'avait aucune hauteur et rendait 743×**149** (écrasé sur son texte). Corrigé
+  > en faisant du plan photo un enfant EN FLUX porteur du rapport, le voile passant en absolu. Bordure `border-width/1` **sans peinture visible** (pas de bord rendu).
   - `Décor` VECTOR 98×128 absolu, coin haut-droit (614,32), contour sans remplissage → **SVG extrait** en `assets/vectors/carte-categorie-decor.svg` (stroke currentColor).
   - `wrapper` (bas) : dégradé GRADIENT_LINEAR **rgba(0,0,0,0) 0% → rgba(0,0,0,0.75) 100%** (haut→bas), pad `space/32`, gap `space/8`.
     - `inner` HORIZONTAL align end gap `space/16` : `Item1Titre` (blanc, 40px, Regular, line-height **50**, textCase **UPPER**), `Item1Texte` (blanc, 18px, line-height 27) ; `ArrowRight` INSTANCE 35×35.

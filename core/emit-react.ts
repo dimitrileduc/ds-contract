@@ -35,6 +35,12 @@ import {
   type RichTextSegment,
   SLOT_CONTROL_STYLE_CHANNELS,
 } from '../scripts/contract-schema.js';
+import {
+  ALIGN_CSS,
+  gridTracks,
+  JUSTIFY_CSS,
+  layoutOverrideDecls,
+} from './css-layout.js';
 
 /** Inset channels — meaningless (and silently dropped by CSS) on a part
  *  that is not absolutely positioned. */
@@ -188,19 +194,6 @@ const OVERLAY_CSS: Record<string, string[]> = {
   bottom: ['top: 100%', 'left: 0'],
   start: ['right: 100%', 'top: 0'],
   end: ['left: 100%', 'top: 0'],
-};
-
-const ALIGN_CSS: Record<string, string> = {
-  start: 'flex-start',
-  center: 'center',
-  end: 'flex-end',
-  stretch: 'stretch',
-};
-const JUSTIFY_CSS: Record<string, string> = {
-  start: 'flex-start',
-  center: 'center',
-  end: 'flex-end',
-  'space-between': 'space-between',
 };
 
 export const isEnum = (p: Prop): p is Prop & { type: { enum: string[] } } =>
@@ -429,26 +422,6 @@ export const isStructural = (part: Part) =>
   !part.content &&
   part.text === undefined &&
   !part.component;
-
-/** CSS declarations for a layoutByProp override (v7). Reversed directions
- *  are plain CSS here; the canvas resolves them by reversing child order. */
-function layoutOverrideDecls(o: {
-  display?: string;
-  direction?: string;
-  align?: string;
-  justify?: string;
-  columns?: number;
-}): string[] {
-  const d: string[] = [];
-  if (o.display) d.push(`display: ${o.display}`);
-  if (o.direction) d.push(`flex-direction: ${o.direction}`);
-  if (o.align) d.push(`align-items: ${ALIGN_CSS[o.align]}`);
-  if (o.justify) d.push(`justify-content: ${JUSTIFY_CSS[o.justify]}`);
-  // v16 (spec 023, E1): a per-enum columns override re-emits the grid track
-  // template under the enum class — same shape as the base (l. 1648/1718).
-  if (o.columns) d.push(`grid-template-columns: repeat(${o.columns}, minmax(0, 1fr))`);
-  return d;
-}
 
 // ---------------------------------------------------------------------------
 // Contract-level validation (beyond the Zod schema)
@@ -1661,7 +1634,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
         const display = part.layout?.display ?? 'flex';
         decls.push(`display: ${display}`);
         if (display === 'grid') {
-          if (part.layout?.columns) decls.push(`grid-template-columns: repeat(${part.layout.columns}, minmax(0, 1fr))`);
+          if (part.layout?.columns) decls.push(`grid-template-columns: ${gridTracks(part.layout.columns)}`);
         } else {
           if (part.layout?.direction) decls.push(`flex-direction: ${part.layout.direction}`);
           if (part.layout?.wrap) decls.push('flex-wrap: wrap');
@@ -1731,7 +1704,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
     const display = root.layout.display ?? 'flex';
     rootDecls.push(`display: ${display}`);
     if (display === 'grid') {
-      if (root.layout.columns) rootDecls.push(`grid-template-columns: repeat(${root.layout.columns}, minmax(0, 1fr))`);
+      if (root.layout.columns) rootDecls.push(`grid-template-columns: ${gridTracks(root.layout.columns)}`);
     } else {
       if (root.layout.direction) rootDecls.push(`flex-direction: ${root.layout.direction}`);
       if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
@@ -2087,7 +2060,7 @@ export function generateCss(contract: Contract, tokenInventory: Set<string>, err
       const display = part.layout?.display ?? 'flex';
       decls.push(`display: ${display}`);
       if (display === 'grid') {
-        if (part.layout?.columns) decls.push(`grid-template-columns: repeat(${part.layout.columns}, minmax(0, 1fr))`);
+        if (part.layout?.columns) decls.push(`grid-template-columns: ${gridTracks(part.layout.columns)}`);
       } else {
         if (part.layout?.direction) decls.push(`flex-direction: ${part.layout.direction}`);
         if (part.layout?.wrap) decls.push('flex-wrap: wrap');

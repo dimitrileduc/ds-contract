@@ -19,12 +19,13 @@ const S: Record<string, CSSProperties> = {
     "display": "flex",
     "flexDirection": "column",
     "alignItems": "center",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "backgroundColor": "#000000",
     "fontFamily": "Montserrat, sans-serif",
     "paddingTop": "96px",
     "paddingBottom": "96px",
-    "width": "1728px",
     "position": "relative"
   },
   "Background": {

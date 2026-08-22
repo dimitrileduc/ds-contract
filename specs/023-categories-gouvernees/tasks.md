@@ -648,3 +648,50 @@ Task T009: "Relever masters CategoriesPrincipales + Carte, usages Carte/Categori
 - 2 portes Odoo rouges **pré-existantes** (T003) : relevées, **pas** re-diagnostiquées ; 023 ne doit
   pas les aggraver.
 - Commit après chaque tâche ou groupe logique ; s'arrêter à un checkpoint pour valider une story.
+
+---
+
+## Amendement post-clôture — 2026-08-22 (owner, en session)
+
+Tâches **hors plan initial**, nées d'un essai de l'owner sur l'instance QA. Toutes exécutées et
+vérifiées. Reçu complet : [proofs/amendement-2026-08-22.md](proofs/amendement-2026-08-22.md).
+
+- [X] **A001** Diagnostiquer la hauteur de photo variable d'une carte à l'autre — mesurée sur
+      instance (418 → 472 px sur la carte voisine), cause : `layout.grow` ambigu d'axe (CSS = axe
+      principal, Figma = horizontal) sous un root en colonne.
+- [X] **A002** `contracts/carte-categorie.contract.json` — `categorieImage` : `layout.grow` →
+      `layout.width: "fill"`.
+- [X] **A003** `core/emit-figma-script.ts` — garde `constrainProportions` élargi à
+      `(spec.grow || spec.fillWidth)` : la bascule d'A002 l'aurait rendu muet sur ce nœud précis.
+- [X] **A004** Scanner les 38 contrats pour la même signature — **`ds.carte` / `root/categorieImage`**
+      la porte. **NON traité** (hors périmètre), consigné.
+- [X] **A005** Établir que la photo est **proportionnelle** dans la source (trois largeurs
+      concordantes : 744→418, 832→468, 533→300) et porter `layout.aspectRatio` sur `categorieImage`.
+- [X] **A006** Réparer la carte **superposée**, qui ne portait aucune hauteur (mesurée 743×149 au
+      lieu de 744×418) : `photoSuperpose` passe en flux avec `aspectRatio`, `contenuSuperpose` passe
+      en absolu calé bas. **Aucun changement de schéma** (`aspectRatio` n'existe pas dans
+      `VariantLayoutSchema`).
+- [X] **A007** ⛔ **GATE owner** — deux options présentées (A : deux blocs au catalogue ; B : un bloc
+      + réglage au panneau), risque de B nommé avant décision. **Owner : B.**
+- [X] **A008** `categories.editable-scope.json` + `categories.authoring.json` — Q-C2 amendée,
+      `cat-ctl-sec-style` : `not-editable` → `controlled`/`enum`. `authoringVersion` 1.1.0 → 1.2.0.
+- [X] **A009** QWeb — gabarit `carte_categorie_superpose`, aiguillage `carte_categorie_aiguillage`,
+      glyphes `pqr_categorie_decor` / `pqr_categorie_fleche`, `data-pqr-style` sur la racine,
+      **un blueprint par style**.
+- [X] **A010** Panneau + action — `BuilderSelect` « Type de carte », `SetStyleCarteAction`
+      (`pqrSetStyleCarte`) qui **reconstruit** chaque carte en reportant titre/texte/image/alt et en
+      **mettant de côté** le CTA (restitué à l'aller-retour).
+- [X] **A011** `addCarteCategorie` puise désormais dans le blueprint **du style courant**.
+- [X] **A012** Propager le nouveau `graphDigest` (`version_guard.js`, `scan-saved-versions.ts`,
+      `components.xml`, fixture `version-drift/cases.json`) + re-pins habituels.
+- [X] **A013** Corriger le bouton « Remplacer » **inerte sur le superposé** — défaut trouvé par
+      l'owner à l'essai : `carteCategorieImage()` cherchait la seule classe de la carte empilée.
+- [X] **A014** Vérifier le geste réel de bout en bout (bascule, aller-retour CTA, upload de photo)
+      et repasser toutes les portes — **eval 220/220**.
+- [ ] **A015** Masquer les réglages « Libellé / Lien du CTA » quand la carte est superposée. **NON
+      FAIT** : le `t-if` posé faisait sauter l'enregistrement du panneau entier ; retiré pour livrer
+      un panneau qui fonctionne. À reprendre avec le bon idiome OWL.
+- [ ] **A016** Rejouer `categories.spec.mts` (fixture déjà mise à jour) **et** l'étendre à la
+      bascule de style. **NON FAIT** : le scénario repart d'une base neuve et aurait effacé
+      l'instance en cours d'essai.
+- [ ] **A017** Re-chiffrer la parité visuelle du style superposé après le changement de modèle.

@@ -72,10 +72,16 @@ en bout :
 
 ## 5. Limites nommées (là où la capacité est revendiquée)
 
-- **Style superposé non exposé en snippet Odoo** — le snippet livre le style EMPILÉ (dominant 5/7
-  usages, surface d'édition complète) ; le superposé reste une variante de CONTRAT (cohérent avec le
-  verdict Gate D « style fixé par composition »). Un snippet superposé serait une itération ultérieure
-  (une seule racine = un snippet, plafond `check-module` = 11).
+- ~~**Style superposé non exposé en snippet Odoo**~~ — **LIMITE LEVÉE le 2026-08-22.** Énoncé
+  d'origine (exact à sa date) : *« le snippet livre le style EMPILÉ (dominant 5/7 usages, surface
+  d'édition complète) ; le superposé reste une variante de CONTRAT ; un snippet superposé serait une
+  itération ultérieure. »* L'owner a demandé le style au panneau en session. Livré **sans second
+  snippet** — donc sans toucher au plafond `check-module` : **un seul bloc**, un **réglage « Type de
+  carte »** sur la section, qui reconstruit chaque carte depuis le blueprint du style visé. Levée
+  conditionnée à trois défauts trouvés et corrigés au passage (axe `grow` ambigu, photo non
+  proportionnelle, carte superposée sans hauteur — elle rendait 743×149 au lieu de 744×418, donc le
+  style était **inutilisable en l'état** au moment où cette limite a été écrite).
+  Reçu : [proofs/amendement-2026-08-22.md](proofs/amendement-2026-08-22.md).
 - **Dialogue média non piloté** dans le scénario headless — le contrôle image est offert + repose sur
   le mécanisme média réutilisé (patron équipe/réassurances), le dialogue natif n'est pas *cliqué*
   (même choix que Réassurances).

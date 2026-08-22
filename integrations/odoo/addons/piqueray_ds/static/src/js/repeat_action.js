@@ -412,8 +412,8 @@ export class ToggleTexteSeoRowAction extends BuilderAction {
 export const REASSURANCES_ROOT = ".s_pqr_reassurances";
 export const CARTE = "[data-pqr-carte]";
 export const CARTE_LIST = "[data-pqr-carte-list]";
+export const PHOTO_REASSURANCE = ".carte__reassuranceImage";
 
-export const findReassurancesRoot = (element) => element?.closest?.(REASSURANCES_ROOT) || null;
 export const findCarte = (element) => element?.closest?.(CARTE) || null;
 
 export function cartesOf(root) {
@@ -448,7 +448,7 @@ export function addCarte(root) {
 }
 
 export function removeCarte(carte) {
-    const root = findReassurancesRoot(carte);
+    const root = findCarteRoot(carte);
     if (!root || !carte?.isConnected) return false;
     carte.remove();
     normalizeCartes(root);
@@ -456,7 +456,7 @@ export function removeCarte(carte) {
 }
 
 export function moveCarte(carte, direction) {
-    const root = findReassurancesRoot(carte);
+    const root = findCarteRoot(carte);
     if (!root || !carte?.isConnected) return false;
     if (direction === "up") {
         const previous = carte.previousElementSibling;
@@ -473,7 +473,7 @@ export function moveCarte(carte, direction) {
 
 export class AddCarteAction extends BuilderAction {
     static id = "pqrAddCarte";
-    apply({ editingElement }) { addCarte(findReassurancesRoot(editingElement)); }
+    apply({ editingElement }) { addCarte(findCarteRoot(editingElement)); }
 }
 
 export class RemoveCarteAction extends BuilderAction {
@@ -502,50 +502,57 @@ export class MoveCarteDownAction extends BuilderAction {
 // action sur la mauvaise section. Les sélecteurs génériques CARTE/CARTE_LIST et
 // le localisateur findCarte sont partagés (mêmes attributs DOM).
 export const CATEGORIES_ROOT = ".s_pqr_categories_principales";
+export const PHOTO_CATEGORIE = ".carte-categorie__categorieImage, .carte-categorie__photoSuperpose";
+
+/** La photo d'une carte, quelle que soit sa famille — l'UNION des classes
+ *  contractuelles portant une image. Une carte vit sous exactement une section,
+ *  donc l'union ne peut pas être ambiguë ; c'est la seule adresse à tenir à jour
+ *  quand une famille de cartes gagne un plan image (media_action.js l'importe). */
+export const PHOTO_CARTE = `${PHOTO_REASSURANCE}, ${PHOTO_CATEGORIE}`;
 
 export const findCategoriesRoot = (element) => element?.closest?.(CATEGORIES_ROOT) || null;
 
+/** La racine de collection d'une carte, quelle que soit sa famille. Les bornes,
+ *  le retrait et le déplacement sont un SEUL geste (mêmes attributs DOM, même
+ *  renumérotation) : seule la racine changeait, elle est donc paramétrée ici
+ *  plutôt que recopiée par section. */
+export const findCarteRoot = (element) =>
+    element?.closest?.(`${REASSURANCES_ROOT}, ${CATEGORIES_ROOT}`) || null;
+
 // La collection catégories partage EXACTEMENT le contrat DOM de Réassurances
 // (data-pqr-carte / data-pqr-carte-list / clé pqrCarteMarker) : on réutilise donc
-// directement les fonctions génériques cartesOf / normalizeCartes / nextCarteMarker
-// plutôt que d'en recopier des jumelles à l'identique. Seuls la racine
-// (findCategoriesRoot) et les ids d'action diffèrent (les ids builder sont globaux).
+// directement cartesOf / normalizeCartes / nextCarteMarker ET les mutations
+// removeCarte / moveCarte, dont la racine est paramétrée (findCarteRoot) plutôt
+// que recopiée. Seul `addCarteCategorie` reste propre : il choisit son blueprint
+// SELON LE STYLE de la section, ce que la version Réassurances ne fait pas. Les
+// ids d'action, eux, restent distincts (les ids builder sont globaux — les
+// partager ferait retomber une action sur la mauvaise section).
 
-/** Ajoute depuis le blueprint inerte ; l'état vide (section vidée) reste ajoutable. */
+/** Le style COURANT de la section. Il vit sur le parent, jamais sur la carte
+ *  (Q-C2 amendée le 2026-08-22) ; toute valeur hors enum retombe sur `empile`. */
+export function styleCourant(root) {
+    const v = root?.dataset?.pqrStyle;
+    return v === "superpose" ? "superpose" : "empile";
+}
+
+/** Le blueprint inerte d'un style. Le style empilé garde la clé VIDE (sélecteur
+ *  historique, partagé avec Réassurances) ; le superposé a une clé nommée. */
+export function blueprintDuStyle(root, style) {
+    const cle = style === "superpose" ? '[data-pqr-carte-blueprint="superpose"]' : '[data-pqr-carte-blueprint=""]';
+    return root?.querySelector(`template${cle}`)?.content?.firstElementChild || null;
+}
+
+/** Ajoute depuis le blueprint inerte DU STYLE COURANT ; l'état vide (section
+ *  vidée) reste ajoutable. */
 export function addCarteCategorie(root) {
     const list = root?.querySelector(CARTE_LIST);
-    const blueprint = root?.querySelector("template[data-pqr-carte-blueprint]");
-    const candidate = blueprint?.content?.firstElementChild;
+    const candidate = blueprintDuStyle(root, styleCourant(root));
     if (!list || !candidate) throw new Error("[piqueray_ds] blueprint CarteCategorie introuvable");
     const carte = candidate.cloneNode(true);
     carte.dataset.pqrCarteMarker = nextCarteMarker(root);
     list.append(carte);
     normalizeCartes(root);
     return carte;
-}
-
-export function removeCarteCategorie(carte) {
-    const root = findCategoriesRoot(carte);
-    if (!root || !carte?.isConnected) return false;
-    carte.remove();
-    normalizeCartes(root);
-    return true;
-}
-
-export function moveCarteCategorie(carte, direction) {
-    const root = findCategoriesRoot(carte);
-    if (!root || !carte?.isConnected) return false;
-    if (direction === "up") {
-        const previous = carte.previousElementSibling;
-        if (!previous?.matches(CARTE)) return false;
-        previous.before(carte);
-    } else {
-        const next = carte.nextElementSibling;
-        if (!next?.matches(CARTE)) return false;
-        next.after(carte);
-    }
-    normalizeCartes(root);
-    return true;
 }
 
 export class AddCarteCategorieAction extends BuilderAction {
@@ -555,16 +562,110 @@ export class AddCarteCategorieAction extends BuilderAction {
 
 export class RemoveCarteCategorieAction extends BuilderAction {
     static id = "pqrRemoveCarteCategorie";
-    apply({ editingElement }) { removeCarteCategorie(findCarte(editingElement)); }
+    apply({ editingElement }) { removeCarte(findCarte(editingElement)); }
 }
 
 export class MoveCarteCategorieUpAction extends BuilderAction {
     static id = "pqrMoveCarteCategorieUp";
-    apply({ editingElement }) { moveCarteCategorie(findCarte(editingElement), "up"); }
+    apply({ editingElement }) { moveCarte(findCarte(editingElement), "up"); }
 }
 
 export class MoveCarteCategorieDownAction extends BuilderAction {
     static id = "pqrMoveCarteCategorieDown";
-    apply({ editingElement }) { moveCarteCategorie(findCarte(editingElement), "down"); }
+    apply({ editingElement }) { moveCarte(findCarte(editingElement), "down"); }
+}
+
+/** ODOO-023 (amendement du 2026-08-22) — BASCULE DU STYLE DE CARTE.
+ *
+ *  Les deux styles ne partagent AUCUN nœud : l'empilé est photo + texte +
+ *  bouton, le superposé est photo pleine + voile + flèche. Basculer n'est donc
+ *  pas un changement de classe, c'est une RECONSTRUCTION de chaque carte depuis
+ *  le blueprint du style visé.
+ *
+ *  Ce qui est reporté : titre, texte, source et texte alternatif de l'image —
+ *  les quatre `data-pqr-part` que les deux styles portent sous le MÊME nom.
+ *
+ *  Ce qui ne peut pas l'être : le CTA, qui n'existe pas côté superposé. Plutôt
+ *  que de le perdre (le risque nommé à l'owner avant sa décision), on le MET DE
+ *  CÔTÉ sur la racine de la carte (`data-pqr-cta-*`), de sorte qu'un aller-retour
+ *  superposé→empilé le restitue à l'identique. L'attribut ne peint rien et ne
+ *  survit à rien d'autre qu'à l'instance : ce n'est pas un fait de contrat, c'est
+ *  la mémoire d'un geste d'éditeur.
+ */
+const TEXTE_PARTS = ["carte-title", "carte-text"];
+
+/** La photo de la carte, quel que soit son style. L'adresse d'authoring
+ *  (`data-pqr-part`) peut avoir été retirée par le dialogue média qui
+ *  reconstruit le nœud ; les classes contractuelles, elles, survivent — même
+ *  raisonnement que `carteImage` côté media_action.js. */
+function photoDeLaCarte(carte) {
+    return carte.querySelector('[data-pqr-part="carte-image"]')
+        || carte.querySelector(PHOTO_CATEGORIE);
+}
+
+function lireCarte(carte) {
+    const etat = { parts: {}, cta: {} };
+    for (const nom of TEXTE_PARTS) {
+        const noeud = carte.querySelector(`[data-pqr-part="${nom}"]`);
+        if (noeud) etat.parts[nom] = noeud.innerHTML;
+    }
+    const img = photoDeLaCarte(carte);
+    if (img) {
+        etat.src = img.getAttribute("src");
+        etat.alt = img.getAttribute("alt");
+    }
+    const label = carte.querySelector('[data-pqr-part="button-label"]');
+    const ancre = carte.querySelector('[data-pqr-part="button-root"]');
+    etat.cta.label = label ? label.innerHTML : carte.dataset.pqrCtaLabel;
+    etat.cta.href = ancre ? ancre.getAttribute("href") : carte.dataset.pqrCtaHref;
+    return etat;
+}
+
+function ecrireCarte(carte, etat) {
+    for (const nom of TEXTE_PARTS) {
+        const noeud = carte.querySelector(`[data-pqr-part="${nom}"]`);
+        if (noeud && etat.parts[nom] !== undefined) noeud.innerHTML = etat.parts[nom];
+    }
+    const img = photoDeLaCarte(carte);
+    if (img) {
+        if (etat.src) img.setAttribute("src", etat.src); else img.removeAttribute("src");
+        img.setAttribute("alt", etat.alt || "");
+    }
+    const label = carte.querySelector('[data-pqr-part="button-label"]');
+    const ancre = carte.querySelector('[data-pqr-part="button-root"]');
+    if (label && etat.cta.label !== undefined && etat.cta.label !== null) label.innerHTML = etat.cta.label;
+    if (ancre && etat.cta.href) ancre.setAttribute("href", etat.cta.href);
+    // Mise de côté : utile quand la carte visée n'a pas de CTA (superposé).
+    if (etat.cta.label !== undefined && etat.cta.label !== null) carte.dataset.pqrCtaLabel = etat.cta.label;
+    if (etat.cta.href) carte.dataset.pqrCtaHref = etat.cta.href;
+}
+
+/** Bascule TOUTES les cartes de la section vers `style`. Enum FERMÉ : toute
+ *  autre valeur est refusée sans toucher au DOM (dégradation au champ). */
+export function setStyleCartes(root, style) {
+    if (!root) return false;
+    if (style !== "empile" && style !== "superpose") return false;
+    if (styleCourant(root) === style) return true;
+    const candidat = blueprintDuStyle(root, style);
+    if (!candidat) throw new Error("[piqueray_ds] blueprint CarteCategorie introuvable pour le style " + style);
+    for (const carte of cartesOf(root)) {
+        const etat = lireCarte(carte);
+        const neuve = candidat.cloneNode(true);
+        neuve.dataset.pqrCarteMarker = carte.dataset.pqrCarteMarker || "";
+        ecrireCarte(neuve, etat);
+        carte.replaceWith(neuve);
+    }
+    root.dataset.pqrStyle = style;
+    normalizeCartes(root);
+    return true;
+}
+
+export class SetStyleCarteAction extends BuilderAction {
+    static id = "pqrSetStyleCarte";
+    getValue({ editingElement }) { return styleCourant(findCategoriesRoot(editingElement)); }
+    isApplied(arg) { return this.getValue(arg) === String(arg.params.mainParam); }
+    apply({ editingElement, params: { mainParam } }) {
+        setStyleCartes(findCategoriesRoot(editingElement), String(mainParam));
+    }
 }
 // ODOO-023-CATEGORIES-REPEAT END

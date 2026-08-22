@@ -17,7 +17,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Frame, Locator, Page } from 'playwright-core';
 import { PROOFS, REPO, Recueil } from '../lib/receipt.mts';
-import { enterEditor as enterHarnessEditor, frapperAuClicHumain, poserHref, select as sharedSelect, visibleCount } from '../lib/editor.mts';
+import { enterEditor as enterHarnessEditor, frapperAuClicHumain, insertSnippet, poserHref, select as sharedSelect, visibleCount } from '../lib/editor.mts';
 import {
   NAV_TIMEOUT_MS, baseUrl, dockerDisponible,
   ouvrirSessionEditeur, ouvrirSessionPublique, withInstance, type QaEnv,
@@ -30,18 +30,8 @@ const fixture = JSON.parse(readFileSync(path.join(REPO, 'integrations/odoo/qa/fi
 
 const enterEditor = (page: Page, env: QaEnv): Promise<Frame | null> => enterHarnessEditor(page, env, HARNESS_PATH);
 
-async function insertCategories(page: Page): Promise<void> {
-  const content = page.locator('.o_snippet_thumbnail')
-    .filter({ has: page.locator('.o_snippet_thumbnail_title', { hasText: 'Content' }) }).first();
-  await content.locator('button').click();
-  const dialog = page.locator('.modal').last();
-  await dialog.locator('input[type="search"]').fill('Catégories principales');
-  await page.waitForTimeout(300);
-  const chooser = await dialog.locator('iframe').contentFrame();
-  if (!chooser) throw new Error('Iframe du catalogue Website absente.');
-  await chooser.locator('[aria-label="Piqueray · Catégories principales"]').evaluate((node) => (node as HTMLElement).click());
-  await page.waitForTimeout(350);
-}
+const insertCategories = (page: Page): Promise<void> =>
+  insertSnippet(page, { search: 'Catégories principales', label: 'Piqueray · Catégories principales', viaDom: true });
 
 const rootPanel = (page: Page) => page.locator('.options-container:visible')
   .filter({ has: page.locator('[data-pqr-control="categories-colonnes"]') }).first();
@@ -106,7 +96,8 @@ async function main() {
       await insertCategories(page);
       await insertCategories(page);
       const roots = frame.locator(ROOT);
-      receipt.constateSi('catalogue — deux Catégories indépendantes sont insérées', await roots.count() === 2, '2 racines', `${await roots.count()} racine(s)`);
+      const nbRacines = await roots.count();
+      receipt.constateSi('catalogue — deux Catégories indépendantes sont insérées', nbRacines === 2, '2 racines', `${nbRacines} racine(s)`);
 
       const first = roots.first();
       const second = roots.nth(1);

@@ -40,6 +40,7 @@ import {
   type RichTextSegment,
 } from '../scripts/contract-schema.js';
 import { kebab } from '../extract/types.js';
+import { ALIGN_CSS, gridTracks, JUSTIFY_CSS, layoutOverrideDecls } from './css-layout.js';
 import {
   boolProps,
   BOTTOM_INSET_BORDER_SHADOW,
@@ -81,43 +82,13 @@ const OVERLAY_CSS: Record<string, string[]> = {
   start: ['right: 100%', 'top: 0'],
   end: ['left: 100%', 'top: 0'],
 };
-const ALIGN_CSS: Record<string, string> = {
-  start: 'flex-start', center: 'center', end: 'flex-end', stretch: 'stretch',
-};
-const JUSTIFY_CSS: Record<string, string> = {
-  start: 'flex-start', center: 'center', end: 'flex-end', 'space-between': 'space-between',
-};
-
-/** CSS declarations for a layoutByProp override (v7) — mirrors
- *  core/emit-react.ts layoutOverrideDecls (reversed directions are plain
- *  CSS here; the canvas resolves them by reversing compiled child order). */
-function layoutOverrideDecls(o: {
-  display?: string;
-  direction?: string;
-  align?: string;
-  justify?: string;
-  columns?: number;
-}): string[] {
-  const d: string[] = [];
-  if (o.display) d.push(`display: ${o.display}`);
-  if (o.direction) d.push(`flex-direction: ${o.direction}`);
-  if (o.align) d.push(`align-items: ${ALIGN_CSS[o.align]}`);
-  if (o.justify) d.push(`justify-content: ${JUSTIFY_CSS[o.justify]}`);
-  // v16 (spec 023, E1): a per-enum columns override re-emits the grid track
-  // count, exactly like the base grid does (mirrors emit-react.ts). Without it
-  // the columns enum was invisible in emit-html — the axis every non-React
-  // surface renders from (Odoo assets, visual-parity).
-  if (o.columns) d.push(`grid-template-columns: repeat(${o.columns}, minmax(0, 1fr))`);
-  return d;
-}
-
 function layoutDecls(part: Part): string[] {
   const d: string[] = [];
   if (isStructural(part)) {
     const display = part.layout?.display ?? 'flex';
     d.push(`display: ${display}`);
     if (display === 'grid') {
-      if (part.layout?.columns) d.push(`grid-template-columns: repeat(${part.layout.columns}, minmax(0, 1fr))`);
+      if (part.layout?.columns) d.push(`grid-template-columns: ${gridTracks(part.layout.columns)}`);
     } else {
       if (part.layout?.direction) d.push(`flex-direction: ${part.layout.direction}`);
       if (part.layout?.wrap) d.push('flex-wrap: wrap');
@@ -208,7 +179,7 @@ function componentCss(contract: Contract): string[] {
     const display = root.layout.display ?? 'flex';
     rootDecls.push(`display: ${display}`);
     if (display === 'grid') {
-      if (root.layout.columns) rootDecls.push(`grid-template-columns: repeat(${root.layout.columns}, minmax(0, 1fr))`);
+      if (root.layout.columns) rootDecls.push(`grid-template-columns: ${gridTracks(root.layout.columns)}`);
     } else {
       if (root.layout.direction) rootDecls.push(`flex-direction: ${root.layout.direction}`);
       if (root.layout.wrap) rootDecls.push('flex-wrap: wrap');
@@ -302,7 +273,7 @@ function componentCss(contract: Contract): string[] {
     } else if (phs.length === 1) {
       for (const value of enums.get(phs[0]) ?? []) {
         const resolved = refPath.replaceAll(`{${phs[0]}}`, value);
-        const key = `${phs[0]} ${value}`;
+        const key = `${phs[0]}\0${value}`;
         const entry = enumRules.get(key) ?? { prop: phs[0], value, decls: [] };
         entry.decls.push(`${route(cssProp)}: ${cssVar(resolved)}`);
         if (floorMirror) entry.decls.push(`min-width: ${cssVar(resolved)}`);

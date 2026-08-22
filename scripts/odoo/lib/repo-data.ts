@@ -31,6 +31,33 @@ import { repoPath, repoRelative, sortedBy, canonicalJson, sha256 } from './canon
  *  déjà présent (composé sous la carte empilée). */
 export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo', 'ds.coordonnees', 'ds.reassurances', 'ds.categories-principales'] as const;
 
+/** Préfixe de sélecteur imposé par racine. Un sélecteur non préfixé fuirait
+ *  d'une instance à l'autre : deux Présentations sur la même page partageraient
+ *  leurs contrôles.
+ *
+ *  Vit ICI, à côté de `ROOT_CONTRACT_IDS`, parce que DEUX portes en dépendent —
+ *  `check-authoring` (préfixage des sélecteurs) et `scan-saved-versions` (la
+ *  classe de section cherchée dans un bloc sauvegardé). Recopiée, la liste
+ *  vieillit en silence dans un sens qui ne se voit pas : une racine absente du
+ *  scan classe ses blocs `unknown` et les fait disparaître du relevé de dérive
+ *  sans qu'aucune porte ne rougisse. */
+export const ROOT_SELECTOR: Record<string, string> = {
+  'ds.presentation': '.s_pqr_presentation',
+  'ds.google-reviews': '.s_pqr_google_reviews',
+  'ds.hero': '.s_pqr_hero',
+  'ds.equipe': '.s_pqr_equipe',
+  'ds.sav': '.s_pqr_sav',
+  'ds.devis': '.s_pqr_devis',
+  'ds.texte-seo': '.s_pqr_texte_seo',
+  'ds.faq': '.s_pqr_faq',
+  'ds.coordonnees': '.s_pqr_coordonnees',
+  'ds.reassurances': '.s_pqr_reassurances',
+  'ds.categories-principales': '.s_pqr_categories_principales',
+};
+
+/** Les classes de racine, sans le point — l'alternative d'une regex de balise. */
+export const ROOT_CLASSES = Object.values(ROOT_SELECTOR).map((sel) => sel.slice(1));
+
 /** Sources de jetons réellement lues par le build d'assets. Triées. */
 export const TOKEN_SOURCES = [
   'tokens/primitives.tokens.json',

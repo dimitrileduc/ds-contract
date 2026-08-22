@@ -816,11 +816,15 @@ function applyFrameSpec(node, spec) {
       }
     }
   }
-  // A growing image with a fixed master-height is a proportional image plane,
-  // not a permanently tall crop. When a consumer narrows the component (the
-  // 743px category card is used at 474px), Figma must scale that basis with
-  // the width instead of retaining the master's 418px height.
-  if (spec.imgPlaceholder && spec.grow && spec.fixedHeight && 'constrainProportions' in node) {
+  // A width-filling image with a fixed master-height is a proportional image
+  // plane, not a permanently tall crop. When a consumer narrows the component
+  // (the 743px category card is used at 474px), Figma must scale that basis
+  // with the width instead of retaining the master's 418px height.
+  // fillWidth counts as much as grow: on a child of a COLUMN root, FILL
+  // horizontal is layout.width:"fill", never layout.grow (whose CSS
+  // projection is a main-axis, i.e. VERTICAL, stretch). Measured 2026-08-22 on
+  // ds.carte-categorie/categorieImage — the guard was silently dead there.
+  if (spec.imgPlaceholder && (spec.grow || spec.fillWidth) && spec.fixedHeight && 'constrainProportions' in node) {
     node.constrainProportions = true;
   }
 }

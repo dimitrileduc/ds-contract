@@ -1333,7 +1333,7 @@ const COMPONENTS = [
     "setName": "CarteCategorie",
     "contractId": "ds.carte-categorie",
     "anchorKey": "0d1a03d07abf7225fb560b3d4163dd3575132c62",
-    "description": "CarteCategorie — generated from contract ds.carte-categorie v1.0.0 · image frame: runtime slot, photo shown is a mockup sample †",
+    "description": "CarteCategorie — generated from contract ds.carte-categorie v1.1.0 · image frame: runtime slot, photo shown is a mockup sample †",
     "isSet": true,
     "boolProps": [],
     "textProps": [],
@@ -1364,9 +1364,9 @@ const COMPONENTS = [
               "layout": {
                 "mode": "HORIZONTAL",
                 "primary": "MIN",
-                "counter": "MIN"
+                "counter": "MIN",
+                "stretchChildren": true
               },
-              "insetOverlay": true,
               "imgPlaceholder": true,
               "lits": {
                 "fillColor": {
@@ -1376,6 +1376,8 @@ const COMPONENTS = [
                 }
               },
               "children": [],
+              "fillWidth": true,
+              "aspectRatio": 1.7799043062200957,
               "zIndex": 0
             },
             {
@@ -1496,7 +1498,11 @@ const COMPONENTS = [
                   ]
                 }
               ],
-              "zIndex": 2
+              "zIndex": 2,
+              "absolute": {
+                "h": "MIN",
+                "v": "MAX"
+              }
             }
           ]
         }
@@ -1528,11 +1534,6 @@ const COMPONENTS = [
                 "counter": "MIN",
                 "stretchChildren": true
               },
-              "grow": true,
-              "fixedHeight": {
-                "px": 418,
-                "varName": "size/carte/categorie-image"
-              },
               "imgPlaceholder": true,
               "lits": {
                 "fillColor": {
@@ -1541,7 +1542,9 @@ const COMPONENTS = [
                   "b": 0.8509803921568627
                 }
               },
-              "children": []
+              "children": [],
+              "fillWidth": true,
+              "aspectRatio": 1.777511961722488
             },
             {
               "type": "frame",
@@ -3640,11 +3643,15 @@ function applyFrameSpec(node, spec) {
   if (spec.fillWidth && node.parent && node.parent.layoutMode !== 'NONE') {
     try { node.layoutSizingHorizontal = 'FILL'; } catch (e) { /* page-level root */ }
   }
-  // A growing image with a fixed master-height is a proportional image plane,
-  // not a permanently tall crop. When a consumer narrows the component (the
-  // 743px category card is used at 474px), Figma must scale that basis with
-  // the width instead of retaining the master's 418px height.
-  if (spec.imgPlaceholder && spec.grow && spec.fixedHeight && 'constrainProportions' in node) {
+  // A width-filling image with a fixed master-height is a proportional image
+  // plane, not a permanently tall crop. When a consumer narrows the component
+  // (the 743px category card is used at 474px), Figma must scale that basis
+  // with the width instead of retaining the master's 418px height.
+  // fillWidth counts as much as grow: on a child of a COLUMN root, FILL
+  // horizontal is layout.width:"fill", never layout.grow (whose CSS
+  // projection is a main-axis, i.e. VERTICAL, stretch). Measured 2026-08-22 on
+  // ds.carte-categorie/categorieImage — the guard was silently dead there.
+  if (spec.imgPlaceholder && (spec.grow || spec.fillWidth) && spec.fixedHeight && 'constrainProportions' in node) {
     node.constrainProportions = true;
   }
 }
@@ -3734,6 +3741,13 @@ function applyInsetOverlay(parent, childNode, childSpec) {
   } catch (e) { /* parent not auto-layout — leave in flow */ }
 }
 
+function applyAspectRatio(node, spec) {
+  if (!(spec.aspectRatio > 0)) return;
+  try {
+    if (typeof node.lockAspectRatio === 'function') node.lockAspectRatio();
+    else if ('constrainProportions' in node) node.constrainProportions = true;
+  } catch (e) { /* node kind or older API does not expose ratio locking */ }
+}
 async function buildNode(spec, registry) {
   let node;
   if (spec.type === 'svg') {
@@ -3928,6 +3942,7 @@ async function buildNode(spec, registry) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) { /* HUG-only nodes */ }
     }
 
+    applyAspectRatio(childNode, child);
 
     // A property-backed, fixed-height text wrapper has no intrinsic width in
     // CSS. In a vertical column it fills the cross axis and its native TEXT
@@ -4527,6 +4542,7 @@ async function amendSet(set, C) {
           try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
         }
 
+    applyAspectRatio(childNode, childSpec);
 
     // A property-backed, fixed-height text wrapper has no intrinsic width in
     // CSS. In a vertical column it fills the cross axis and its native TEXT
@@ -4639,6 +4655,7 @@ async function amendComponent(comp, C) {
       try { childNode.layoutSizingHorizontal = 'FILL'; } catch (e) {}
     }
 
+    applyAspectRatio(childNode, childSpec);
 
     // A property-backed, fixed-height text wrapper has no intrinsic width in
     // CSS. In a vertical column it fills the cross axis and its native TEXT

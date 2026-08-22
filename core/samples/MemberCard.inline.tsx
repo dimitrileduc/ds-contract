@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE (inline-styles emitter) — DO NOT EDIT.
- * Source of truth: contracts/member-card.contract.json (ds.member-card v1.3.0)
+ * Source of truth: contracts/member-card.contract.json (ds.member-card v1.4.0)
  * Emitted by core/emit-react-inline.ts — the zero-infrastructure output:
  * every token reference was RESOLVED to its literal value from the design
  * tokens at emit time. Resolution mode: light (brand: default). To retheme,
@@ -35,13 +35,15 @@ const S: Record<string, CSSProperties> = {
     "color": "#26282C",
     "fontSize": "32px",
     "fontWeight": 400,
-    "lineHeight": "40px"
+    "lineHeight": "40px",
+    "textAlign": "center"
   },
   "Poste": {
     "color": "#F98A0B",
     "fontSize": "16px",
     "fontWeight": 600,
-    "lineHeight": "20px"
+    "lineHeight": "20px",
+    "textAlign": "center"
   }
 };
 

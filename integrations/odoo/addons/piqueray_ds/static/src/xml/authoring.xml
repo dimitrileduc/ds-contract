@@ -283,6 +283,21 @@
     <BuilderRow label.translate="Piqueray · Catégories principales">
       <span data-pqr-control="categories-collection">Collection gouvernée (grille 2 ou 3 colonnes)</span>
     </BuilderRow>
+    <!-- Enum FERMÉ {superpose, empile} — SECOND réglage de variante offert au
+         rédacteur (amendement owner du 2026-08-22 : Q-C2 disait « fixé par la
+         composition » ; l'owner a tranché pour un réglage de panneau après
+         avoir été averti que la bascule ne peut pas transporter le CTA, qui
+         n'existe pas côté superposé — il est mis de côté sur la carte et
+         restitué à l'aller-retour). La bascule RECONSTRUIT chaque carte : les
+         deux styles ne partagent aucun nœud. -->
+    <BuilderRow label.translate="Type de carte">
+      <span data-pqr-control="categories-style">
+        <BuilderSelect>
+          <BuilderSelectItem action="'pqrSetStyleCarte'" actionParam="'empile'" preview="false">Photo au-dessus du texte</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetStyleCarte'" actionParam="'superpose'" preview="false">Texte sur la photo</BuilderSelectItem>
+        </BuilderSelect>
+      </span>
+    </BuilderRow>
     <!-- Enum FERMÉ {2,3} — le PREMIER réglage de variante offert au rédacteur.
          Patron BuilderSelect/BuilderSelectItem (repris de la note ds.review-card) ;
          valeur par actionParam. Aucune autre valeur n'est offerte ; au-delà du
@@ -310,6 +325,10 @@
     <BuilderRow label.translate="Alternative">
       <span data-pqr-control="carte-image-alt"><BuilderTextInput action="'pqrSetCarteCategorieImageAlt'"/></span>
     </BuilderRow>
+    <!-- Le style superposé n'a PAS de CTA (titre + texte + flèche). Les deux
+         réglages disparaissent donc du panneau quand la carte est superposée :
+         un panneau qui offre un réglage sans cible est un mensonge d'interface.
+         La valeur mise de côté sur la carte revient si le style rebascule. -->
     <BuilderRow label.translate="Libellé du CTA">
       <span data-pqr-control="carte-cta-label">Le libellé du CTA se modifie directement dans la carte.</span>
     </BuilderRow>

@@ -199,7 +199,7 @@
   font-size: var(--font-size-24);
 }
 
-/* SAV — from ds.sav v1.3.0 (core/emit-html.ts) */
+/* SAV — from ds.sav v1.4.0 (core/emit-html.ts) */
 
 .sav, .sav *, .sav *::before, .sav *::after {
   box-sizing: border-box;
@@ -209,6 +209,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  min-width: 0;
   border: 0;
   font-family: var(--font-family-montserrat);
   gap: var(--space-10);
@@ -216,27 +218,37 @@
 
 .sav__section {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
-  width: var(--size-sav-section-w);
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 0;
   height: var(--size-sav-section-h);
   position: relative;
 }
 
 .sav__background {
-  width: var(--size-sav-background-w);
+  display: flex;
+  width: 100%;
+  min-width: 0;
   height: var(--size-sav-background-h);
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .sav__row {
   display: flex;
   flex-direction: row;
-  width: var(--size-sav-row-w);
+  width: 100%;
+  min-width: 0;
   height: var(--size-sav-row-h);
-  position: absolute;
-  align-self: flex-end;
+  padding-left: var(--size-sav-content-padding);
+  padding-right: var(--size-sav-content-padding);
 }
 
 .sav__wrapper {
@@ -244,7 +256,9 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  width: var(--size-sav-wrapper-w);
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   height: var(--size-sav-wrapper-h);
   padding-top: var(--space-48);
   padding-left: var(--space-48);
@@ -253,8 +267,10 @@
 }
 
 .sav__WrapperBackground {
+  display: flex;
+  width: 100%;
+  min-width: 0;
   background-color: var(--color-blanc);
-  width: var(--size-sav-wrapper-background-w);
   height: var(--size-sav-wrapper-background-h);
   position: absolute;
   align-self: flex-end;
@@ -264,16 +280,20 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+  min-width: 0;
   gap: var(--space-32);
-  width: var(--size-sav-inner);
   position: relative;
 }
 
 .sav__vousRencontrezUnProblmeA {
+  width: 100%;
+  min-width: 0;
   color: var(--color-noir);
   font-size: var(--font-size-18);
   line-height: var(--font-line-height-27);
-  height: var(--size-sav-vous-rencontrez-un-problme-a);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
   white-space: pre-line;
 }
 
@@ -286,22 +306,29 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;
-  width: var(--size-sav-img-group-w);
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   height: var(--size-sav-img-group-h);
   padding-left: var(--space-3);
+  padding-right: var(--size-sav-image-right-inset);
   position: relative;
 }
 
 .sav__ImgGroupBackground {
+  display: flex;
+  width: 100%;
+  min-width: 0;
   background-color: var(--color-bleu-clair);
-  width: var(--size-sav-img-group-background-w);
   height: var(--size-sav-img-group-background-h);
   position: absolute;
   align-self: flex-start;
 }
 
 .sav__img {
-  width: var(--size-sav-img-w);
+  display: flex;
+  width: 100%;
+  min-width: 0;
   height: var(--size-sav-img-h);
   position: relative;
   object-fit: contain;

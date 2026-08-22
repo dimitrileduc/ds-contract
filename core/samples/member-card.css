@@ -69,7 +69,7 @@
   opacity: 0;
 }
 
-/* MemberCard — from ds.member-card v1.3.0 (core/emit-html.ts) */
+/* MemberCard — from ds.member-card v1.4.0 (core/emit-html.ts) */
 
 .member-card, .member-card *, .member-card *::before, .member-card *::after {
   box-sizing: border-box;
@@ -98,6 +98,7 @@
   font-size: var(--font-size-32);
   font-weight: var(--font-weight-regular);
   line-height: 40px;
+  text-align: center;
 }
 
 .member-card__Poste {
@@ -105,6 +106,7 @@
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
+  text-align: center;
 }
 
 /* showcase chrome */

@@ -24,11 +24,12 @@ const S: Record<string, CSSProperties> = {
     "flexDirection": "row",
     "alignItems": "center",
     "justifyContent": "space-between",
+    "width": "100%",
+    "minWidth": 0,
     "border": 0,
     "borderBottomWidth": "1px",
     "gap": "24px",
     "paddingBlock": "16px",
-    "width": "1550px",
     "borderColor": "#000000",
     "position": "relative"
   },

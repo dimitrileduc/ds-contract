@@ -5,7 +5,7 @@
  * dimensions et format restent hors de la surface déclarée.
  */
 import { BuilderAction } from "./odoo19_compat";
-import { findCard, findMemberCard, findCarte } from "./repeat_action";
+import { findCard, findMemberCard, findCarte, PHOTO_CARTE } from "./repeat_action";
 
 // ODOO-019-GOOGLE-REVIEWS-MEDIA BEGIN
 function avatarHost(card) {
@@ -463,14 +463,20 @@ export class SetSavPhotoAltAction extends BuilderAction {
 // ODOO-022-REASSURANCES-MEDIA BEGIN
 // Image de carte (R2c) — même façade que le portrait Équipe : dialogue média
 // natif, source publiée /web/image only, cycle o_modified_image_to_save préservé.
+// `carteImage` / `reconcileCarteImage` servent TOUTES les familles de cartes
+// (Réassurances et Catégories) : la politique de source publiable n'a qu'une
+// écriture, l'adresse est paramétrée par PHOTO_CARTE (repeat_action.js).
 // Différence assumée : PAS de bascule `hidden`. La carte n'a qu'UN plan (pas
 // d'underlay funIa) ; masquer l'image vide effondrerait la boîte et ferait
 // diverger la mesure visuelle du contrat, qui pose une boîte vide dimensionnée.
 export function carteImage(editingElement) {
-    const image = findCarte(editingElement)?.querySelector(".carte__reassuranceImage") || null;
+    const image = findCarte(editingElement)?.querySelector(PHOTO_CARTE) || null;
     // Le dialogue média peut reconstruire le nœud et retirer l'adresse
     // d'authoring ; la classe contractuelle survit et permet de la restaurer.
-    if (image) image.dataset.pqrPart = "carte-image";
+    // Écriture GARDÉE : `getValue` passe ici à chaque recalcul d'état du
+    // panneau, et un `setAttribute` même à valeur inchangée émet une
+    // MutationRecord qui réveille le normaliseur (authoring.js).
+    if (image && image.dataset.pqrPart !== "carte-image") image.dataset.pqrPart = "carte-image";
     return image;
 }
 
@@ -528,41 +534,31 @@ export class SetCarteImageAltAction extends BuilderAction {
 // o_modified_image_to_save préservé. La carte empilée n'a qu'UN plan image ; on
 // ne masque pas la boîte vide (le contrat pose une boîte dimensionnée). Action à
 // identifiant PROPRE (les ids builder sont globaux).
-export function carteCategorieImage(editingElement) {
-    const image = findCarte(editingElement)?.querySelector(".carte-categorie__categorieImage") || null;
-    // Le dialogue média peut reconstruire le nœud et retirer l'adresse
-    // d'authoring ; la classe contractuelle survit et permet de la restaurer.
-    if (image) image.dataset.pqrPart = "carte-image";
-    return image;
-}
-
-export function reconcileCarteCategorieImage(editingElement) {
-    const image = carteCategorieImage(editingElement);
-    if (!image) return false;
-    const source = image.getAttribute("src") || "";
-    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
-    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
-    return Boolean(image.getAttribute("src"));
-}
-
+// Les DEUX styles de carte portent une photo, sous deux classes contractuelles
+// distinctes : `categorieImage` (empilé, photo au-dessus du texte) et
+// `photoSuperpose` (superposé, photo pleine sous le voile). Ne chercher que la
+// première rendait le bouton « Remplacer » inerte sur le style superposé —
+// constaté par l'owner le 2026-08-22, à l'ouverture du réglage de type de carte.
+// Les deux classes vivent dans PHOTO_CATEGORIE (repeat_action.js), agrégée dans
+// PHOTO_CARTE : les gestes ci-dessous délèguent aux helpers partagés.
 export class ReplaceCarteCategorieImageAction extends BuilderAction {
     static id = "pqrReplaceCarteCategorieImage";
     static dependencies = ["media"];
 
     async load({ editingElement }) {
         const carte = findCarte(editingElement);
-        const image = carteCategorieImage(carte);
+        const image = carteImage(carte);
         if (!carte || !image) return null;
         await this.dependencies.media.openMediaDialog({
             node: image,
             visibleTabs: ["IMAGES"],
         }, this.editable);
-        reconcileCarteCategorieImage(carte);
+        reconcileCarteImage(carte);
         return null;
     }
 
     apply({ editingElement }) {
-        reconcileCarteCategorieImage(editingElement);
+        reconcileCarteImage(editingElement);
     }
 }
 
@@ -571,13 +567,13 @@ export class ReplaceCarteCategorieImageAction extends BuilderAction {
 export class SetCarteCategorieImageAltAction extends BuilderAction {
     static id = "pqrSetCarteCategorieImageAlt";
     getValue({ editingElement }) {
-        return carteCategorieImage(editingElement)?.getAttribute("alt") || "";
+        return carteImage(editingElement)?.getAttribute("alt") || "";
     }
     apply({ editingElement, value }) {
-        const image = carteCategorieImage(editingElement);
+        const image = carteImage(editingElement);
         if (!image) return;
         image.setAttribute("alt", String(value || "").trim());
-        reconcileCarteCategorieImage(editingElement);
+        reconcileCarteImage(editingElement);
     }
 }
 // ODOO-023-CATEGORIES-MEDIA END

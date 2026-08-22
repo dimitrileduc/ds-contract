@@ -62,6 +62,12 @@ import {
   validateContract,
   ELEMENT_META,
 } from './emit-react.js';
+import {
+  ALIGN_CSS,
+  gridTracks,
+  JUSTIFY_CSS,
+  layoutOverridePairs,
+} from './css-layout.js';
 
 export interface EmitReactInlineCtx {
   /** Parsed DTCG trees — literals resolve through primitives + default brand
@@ -77,12 +83,6 @@ export interface EmitReactInlineResult {
   tsx: string;
 }
 
-const ALIGN_CSS: Record<string, string> = {
-  start: 'flex-start', center: 'center', end: 'flex-end', stretch: 'stretch',
-};
-const JUSTIFY_CSS: Record<string, string> = {
-  start: 'flex-start', center: 'center', end: 'flex-end', 'space-between': 'space-between',
-};
 const OVERLAY_CSS: Record<string, Record<string, string | number>> = {
   top: { bottom: '100%', left: 0 },
   bottom: { top: '100%', left: 0 },
@@ -187,7 +187,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       if (part.layout) {
         s.display = part.layout.display ?? 'flex';
         if (part.layout.display === 'grid') {
-          if (part.layout.columns) s.gridTemplateColumns = `repeat(${part.layout.columns}, minmax(0, 1fr))`;
+          if (part.layout.columns) s.gridTemplateColumns = gridTracks(part.layout.columns);
         } else {
           if (part.layout.direction) s.flexDirection = part.layout.direction;
           if (part.layout.wrap) s.flexWrap = 'wrap';
@@ -236,7 +236,7 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
       if (isStructural(part)) {
         s.display = part.layout?.display ?? 'flex';
         if (part.layout?.display === 'grid') {
-          if (part.layout.columns) s.gridTemplateColumns = `repeat(${part.layout.columns}, minmax(0, 1fr))`;
+          if (part.layout.columns) s.gridTemplateColumns = gridTracks(part.layout.columns);
         } else {
           if (part.layout?.direction) s.flexDirection = part.layout.direction;
           if (part.layout?.wrap) s.flexWrap = 'wrap';
@@ -379,15 +379,13 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
     if (part.layoutByProp) {
       for (const [value, _override] of Object.entries(part.layoutByProp.map)) {
         const merged = resolveLayout(part, { [part.layoutByProp.prop]: value });
+        // Une seule liste de champs, partagée avec emit-react/emit-html
+        // (core/css-layout.ts) ; ici les clés passent en camelCase parce que la
+        // surface est un objet de style React, pas une feuille CSS.
         const decls: StyleRecord = {};
-        if (merged?.display) decls.display = merged.display;
-        if (merged?.direction) decls.flexDirection = merged.direction;
-        if (merged?.align) decls.alignItems = ALIGN_CSS[merged.align];
-        if (merged?.justify) decls.justifyContent = JUSTIFY_CSS[merged.justify];
-        // v16 (spec 023, E1) : le champ `columns` de l'override doit ré-émettre la
-        // grille, comme le fait le chemin de base (l.190/239) et les émetteurs
-        // react/html — sans quoi la variante colonnes rendait sans son nombre de pistes.
-        if (merged?.columns) decls.gridTemplateColumns = `repeat(${merged.columns}, minmax(0, 1fr))`;
+        for (const [cssProp, value] of layoutOverridePairs(merged ?? {})) {
+          decls[camel(cssProp)] = value;
+        }
         addVariant(part.layoutByProp.prop, value, partName, decls);
       }
     }

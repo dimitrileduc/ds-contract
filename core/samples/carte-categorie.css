@@ -1,0 +1,262 @@
+/* Button — from ds.button v2.0.1 (core/emit-html.ts) */
+
+.button, .button *, .button *::before, .button *::after {
+  box-sizing: border-box;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  box-shadow: inset 0 0 0 var(--dsc-border-width, 0) var(--dsc-border-color, transparent);
+  background-color: transparent;
+  cursor: pointer;
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-22);
+  color: var(--color-blanc);
+  gap: var(--space-10);
+  padding-block: var(--space-16);
+  padding-inline: var(--space-32);
+  --dsc-border-width: var(--border-width-0);
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: relative;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: max(100%, 44px);
+  transform: translate(-50%, -50%);
+}
+
+.button--variant-default {
+  background-color: var(--color-noir-bleute);
+}
+
+.button--variant-orange {
+  background-color: var(--color-orange);
+}
+
+.button--variant-blanc {
+  background-color: var(--color-blanc);
+  color: var(--color-noir-bleute);
+}
+
+.button--variant-outlineBlanc {
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-blanc);
+}
+
+.button--variant-link {
+  color: var(--color-noir-bleute);
+  border-radius: var(--radius-32);
+  padding-block: var(--space-4);
+  padding-inline: var(--space-0);
+}
+
+.button--variant-outlineNoir {
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
+.button--variant-iconOnly {
+  width: var(--size-button-icon-only);
+  height: var(--size-button-icon-only);
+  gap: var(--space-0);
+  padding-inline: var(--space-16);
+  --dsc-border-width: var(--border-width-2);
+  --dsc-border-color: var(--color-noir-bleute);
+  color: var(--color-noir-bleute);
+}
+
+.button__iconLeft svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconLeft {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button__iconOnlyIcon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconOnlyIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.button--variant-iconOnly .button__label {
+  display: none;
+}
+
+.button__iconRight svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.button__iconRight {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* CarteCategorie — from ds.carte-categorie v1.1.0 (core/emit-html.ts) */
+
+.carte-categorie, .carte-categorie *, .carte-categorie *::before, .carte-categorie *::after {
+  box-sizing: border-box;
+}
+
+.carte-categorie {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  font-family: var(--font-family-montserrat);
+  position: relative;
+}
+
+.carte-categorie--style-empile {
+  background-color: var(--color-blanc);
+  gap: var(--space-32);
+}
+
+.carte-categorie--style-superpose {
+  justify-content: flex-end;
+}
+
+.carte-categorie__photoSuperpose {
+  display: flex;
+  aspect-ratio: 1.7799043062200957;
+  width: 100%;
+  min-width: 0;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.carte-categorie__decor svg {
+  display: block;
+  width: 100px;
+  height: 131px;
+}
+
+.carte-categorie__decor {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-blanc);
+  top: var(--space-32);
+  right: var(--space-32);
+  position: absolute;
+  z-index: 1;
+}
+
+.carte-categorie__contenuSuperpose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-top: var(--space-32);
+  padding-right: var(--space-32);
+  padding-bottom: var(--space-32);
+  padding-left: var(--space-32);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.carte-categorie__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: var(--space-16);
+}
+
+.carte-categorie__blocTexte {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: var(--space-8);
+}
+
+.carte-categorie__TitreSuperpose {
+  color: var(--color-blanc);
+  font-size: var(--font-size-40);
+  font-weight: var(--font-weight-regular);
+  line-height: 50px;
+  text-transform: uppercase;
+}
+
+.carte-categorie__TexteSuperpose {
+  color: var(--color-blanc);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
+}
+
+.carte-categorie__Fleche svg {
+  display: block;
+  width: 35px;
+  height: 35px;
+}
+
+.carte-categorie__Fleche {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-blanc);
+}
+
+.carte-categorie__categorieImage {
+  display: flex;
+  aspect-ratio: 1.777511961722488;
+  width: 100%;
+  min-width: 0;
+  object-fit: cover;
+}
+
+.carte-categorie__texteEmpile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.carte-categorie__TitreCategorie {
+  color: var(--color-noir-bleute);
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-medium);
+  line-height: 40px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.carte-categorie__TexteCategorie {
+  color: var(--color-noir-bleute);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-regular);
+  line-height: 27px;
+  text-align: left;
+}
+
+.carte-categorie__Bouton {
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+}
+
+/* showcase chrome */
+.showcase { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; font-family: sans-serif; }
+.showcase__label { margin: 0 0 8px; font: 12px/1 monospace; opacity: 0.6; }

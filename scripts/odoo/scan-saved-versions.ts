@@ -2,8 +2,9 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { canonicalJson, sha256 } from './lib/canonical.js';
 import { arg, runAsCli } from './lib/cli.js';
+import { ROOT_CLASSES } from './lib/repo-data.js';
 
-const EXPECTED_GRAPH = '55fee8f1bdae8944b350d9296efeef4e86654f941c839729f9db5727f07f26e5';
+const EXPECTED_GRAPH = '449ddb90a5968c79ba2dc513299f73315c2cbb97c49c9f79e4a1a08507a5096e';
 const AUTHORING = '1.1.0';
 const MODULE = '19.0.1.5.0';
 const CONTRACTS: Record<string, string> = { 'ds.google-reviews': '2.0.0', 'ds.presentation': '2.6.0', 'ds.hero': '1.5.0', 'ds.equipe': '1.2.0', 'ds.faq': '1.3.0', 'ds.devis': '1.2.0', 'ds.sav': '1.4.0', 'ds.texte-seo': '2.1.0', 'ds.coordonnees': '2.2.0', 'ds.reassurances': '1.2.0', 'ds.categories-principales': '1.0.0' };
@@ -17,6 +18,12 @@ export interface ScanEntry {
   state: VersionState;
   metadata: Record<string, string>;
 }
+
+/** Une balise de section/div portant l'une des classes de racine gouvernées.
+ *  L'alternative est DÉRIVÉE de `ROOT_SELECTOR` : une racine ajoutée au dépôt
+ *  entre dans le scan sans qu'on pense à l'écrire ici (une liste recopiée qui
+ *  oublie une racine classe ses blocs `unknown` — un trou vert). */
+const ROOT_TAG_RE = new RegExp(`<(?:section|div)\\b[^>]*(?:${ROOT_CLASSES.join('|')})[^>]*>`, 'g');
 
 const attrs = (tag: string): Record<string, string> => Object.fromEntries(
   [...tag.matchAll(/([\w:-]+)\s*=\s*["']([^"']*)["']/g)].map((match) => [match[1], match[2]]),
@@ -33,7 +40,7 @@ export function classify(attributes: Record<string, string>): VersionState {
 
 export function scanCases(cases: SavedCase[]) {
   const entries: ScanEntry[] = cases.flatMap<ScanEntry>(({ id, html }) => {
-    const tags = [...html.matchAll(/<(?:section|div)\b[^>]*(?:s_pqr_google_reviews|s_pqr_presentation|s_pqr_hero|s_pqr_equipe|s_pqr_faq|s_pqr_devis|s_pqr_sav|s_pqr_texte_seo|s_pqr_coordonnees|s_pqr_reassurances|s_pqr_categories_principales)[^>]*>/g)].map((m) => m[0]);
+    const tags = [...html.matchAll(ROOT_TAG_RE)].map((m) => m[0]);
     if (tags.length === 0) return [{ caseId: id, index: 0, contractId: null, state: 'unknown' as const, metadata: {} }];
     return tags.map((tag, index) => {
       const metadata = attrs(tag);

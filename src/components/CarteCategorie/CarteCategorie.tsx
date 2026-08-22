@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — DO NOT EDIT.
- * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v1.0.0)
+ * Source of truth: contracts/carte-categorie.contract.json (ds.carte-categorie v1.1.0)
  * Regenerate with: npm run generate
  */
 import { forwardRef } from 'react';

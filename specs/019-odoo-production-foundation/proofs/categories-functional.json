@@ -6,7 +6,7 @@
   "fixture": "categories-panel",
   "observations": [
     "[pass] catalogue — deux Catégories indépendantes sont insérées — attendu « 2 racines », observé « 2 racine(s) »",
-    "[pass] panneau racine — inventaire Piqueray strict (collection + colonnes) — attendu « categories-collection, categories-colonnes », observé « categories-collection, categories-colonnes »",
+    "[pass] panneau racine — inventaire Piqueray strict (collection + colonnes) — attendu « categories-collection, categories-colonnes, categories-style », observé « categories-collection, categories-colonnes, categories-style »",
     "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
     "[pass] racine — actions Odoo interdites absentes du chrome visible — attendu « save-as-custom, resize, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0} »",
     "[pass] défaut — 4 cartes empilées, CTA « Contactez-nous » par carte, colonnes 2 — attendu « 4 cartes · CTA Contactez-nous ×4 · colonnes 2 (grille 2 pistes) », observé « {\"n\":4,\"cta\":[\"Contactez-nous\",\"Contactez-nous\",\"Contactez-nous\",\"Contactez-nous\"],\"col\":\"2\",\"grid\":2} »",
@@ -34,5 +34,5 @@
     }
   ],
   "limitCodes": [],
-  "durationMs": 131469
+  "durationMs": 53622
 }

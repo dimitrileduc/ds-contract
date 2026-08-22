@@ -69,17 +69,16 @@ export function loadRepoData(): RepoData {
   // (023: the first vectorAsset contract added as a visual-parity subject
   // exposed that this loader read icons only — a silent, pre-existing gap.)
   const icons = new Map<string, string>(
-    ['icons', 'vectors'].flatMap((subdir) =>
-      readdirSync(path.join(REPO, 'assets', subdir))
+    ['icons', 'vectors'].flatMap((subdir) => {
+      // Répertoire absent = zéro glyphe, pas une exception : les trois copies
+      // sœurs dégradent ainsi (emitters-check, build-plugin-zip), et une porte
+      // de mesure qui plante là où ses sœurs sautent est une porte de moins.
+      const dir = path.join(REPO, 'assets', subdir);
+      if (!existsSync(dir)) return [] as Array<[string, string]>;
+      return readdirSync(dir)
         .filter((f) => f.endsWith('.svg'))
-        .map(
-          (f) =>
-            [f.replace(/\.svg$/, ''), readFileSync(path.join(REPO, 'assets', subdir, f), 'utf8').trim()] as [
-              string,
-              string,
-            ],
-        ),
-    ),
+        .map((f) => [f.replace(/\.svg$/, ''), readFileSync(path.join(dir, f), 'utf8').trim()] as [string, string]);
+    }),
   );
   return {
     tokens: { primitives, semantic, light, dark, brands },
