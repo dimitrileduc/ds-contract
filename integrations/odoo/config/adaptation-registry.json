@@ -809,6 +809,78 @@
         "reassurances.authoring.json"
       ],
       "mechanism": "odoo-bridge"
+    },
+    {
+      "adaptationId": "ODOO-023-CATEGORIES-QWEB",
+      "path": "integrations/odoo/addons/piqueray_ds/views/components.xml",
+      "rootContracts": [
+        "ds.categories-principales"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "categories.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-023-CATEGORIES-SNIPPET",
+      "path": "integrations/odoo/addons/piqueray_ds/views/snippets.xml",
+      "rootContracts": [
+        "ds.categories-principales"
+      ],
+      "reasonCode": "odoo-qweb-composition",
+      "decisionRefs": [
+        "categories.authoring.json"
+      ],
+      "mechanism": "qweb"
+    },
+    {
+      "adaptationId": "ODOO-023-CATEGORIES-REPEAT",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/repeat_action.js",
+      "rootContracts": [
+        "ds.categories-principales"
+      ],
+      "reasonCode": "odoo-repeat-dom",
+      "decisionRefs": [
+        "categories.authoring.json"
+      ],
+      "mechanism": "repeat-action"
+    },
+    {
+      "adaptationId": "ODOO-023-CATEGORIES-MEDIA",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/js/media_action.js",
+      "rootContracts": [
+        "ds.categories-principales"
+      ],
+      "reasonCode": "odoo-media-dialog",
+      "decisionRefs": [
+        "categories.authoring.json"
+      ],
+      "mechanism": "media"
+    },
+    {
+      "adaptationId": "ODOO-023-CATEGORIES-PANEL",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/xml/authoring.xml",
+      "rootContracts": [
+        "ds.categories-principales"
+      ],
+      "reasonCode": "odoo-builder-policy",
+      "decisionRefs": [
+        "categories.authoring.json"
+      ],
+      "mechanism": "builder-option"
+    },
+    {
+      "adaptationId": "ODOO-023-CATEGORIES-BRIDGE",
+      "path": "integrations/odoo/addons/piqueray_ds/static/src/css/odoo-bridge.css",
+      "rootContracts": [
+        "ds.categories-principales"
+      ],
+      "reasonCode": "odoo-layout-bridge",
+      "decisionRefs": [
+        "categories.authoring.json"
+      ],
+      "mechanism": "odoo-bridge"
     }
   ]
 }

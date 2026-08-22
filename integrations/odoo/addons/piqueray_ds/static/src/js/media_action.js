@@ -521,3 +521,63 @@ export class SetCarteImageAltAction extends BuilderAction {
     }
 }
 // ODOO-022-REASSURANCES-MEDIA END
+
+// ODOO-023-CATEGORIES-MEDIA BEGIN
+// Image de carte-catégorie empilée (C8) — même façade que Réassurances/Équipe :
+// dialogue média natif, source publiée /web/image only, cycle
+// o_modified_image_to_save préservé. La carte empilée n'a qu'UN plan image ; on
+// ne masque pas la boîte vide (le contrat pose une boîte dimensionnée). Action à
+// identifiant PROPRE (les ids builder sont globaux).
+export function carteCategorieImage(editingElement) {
+    const image = findCarte(editingElement)?.querySelector(".carte-categorie__categorieImage") || null;
+    // Le dialogue média peut reconstruire le nœud et retirer l'adresse
+    // d'authoring ; la classe contractuelle survit et permet de la restaurer.
+    if (image) image.dataset.pqrPart = "carte-image";
+    return image;
+}
+
+export function reconcileCarteCategorieImage(editingElement) {
+    const image = carteCategorieImage(editingElement);
+    if (!image) return false;
+    const source = image.getAttribute("src") || "";
+    if (!isPublishedAvatarSource(source) && !sourceEnAttenteNative(image, source)) image.removeAttribute("src");
+    if (!image.hasAttribute("alt")) image.setAttribute("alt", "");
+    return Boolean(image.getAttribute("src"));
+}
+
+export class ReplaceCarteCategorieImageAction extends BuilderAction {
+    static id = "pqrReplaceCarteCategorieImage";
+    static dependencies = ["media"];
+
+    async load({ editingElement }) {
+        const carte = findCarte(editingElement);
+        const image = carteCategorieImage(carte);
+        if (!carte || !image) return null;
+        await this.dependencies.media.openMediaDialog({
+            node: image,
+            visibleTabs: ["IMAGES"],
+        }, this.editable);
+        reconcileCarteCategorieImage(carte);
+        return null;
+    }
+
+    apply({ editingElement }) {
+        reconcileCarteCategorieImage(editingElement);
+    }
+}
+
+// C9 — LIMITE NOMMÉE : la route `cartes` (arrayOf) du contrat ne porte pas d'alt ;
+// la valeur vit dans l'instance Odoo, comme l'URL (précédent SetCarteImageAlt).
+export class SetCarteCategorieImageAltAction extends BuilderAction {
+    static id = "pqrSetCarteCategorieImageAlt";
+    getValue({ editingElement }) {
+        return carteCategorieImage(editingElement)?.getAttribute("alt") || "";
+    }
+    apply({ editingElement, value }) {
+        const image = carteCategorieImage(editingElement);
+        if (!image) return;
+        image.setAttribute("alt", String(value || "").trim());
+        reconcileCarteCategorieImage(editingElement);
+    }
+}
+// ODOO-023-CATEGORIES-MEDIA END

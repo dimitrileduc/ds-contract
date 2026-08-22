@@ -5,6 +5,7 @@
  * `--check` rouge avec le statut `tampered`.
  */
 /* Fermetures émises :
+ *   ds.categories-principales → ds.button, ds.carte-categorie, ds.categories-principales
  *   ds.coordonnees → ds.button, ds.coordonnees, ds.section-header
  *   ds.devis → ds.button, ds.devis
  *   ds.equipe → ds.equipe, ds.member-card, ds.member-picture
@@ -131,6 +132,169 @@
 .button__iconRight {
   display: inline-flex;
   flex-shrink: 0;
+}
+
+/* CarteCategorie — from ds.carte-categorie v1.0.0 (core/emit-html.ts) */
+
+.carte-categorie, .carte-categorie *, .carte-categorie *::before, .carte-categorie *::after {
+  box-sizing: border-box;
+}
+
+.carte-categorie {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  font-family: var(--pqr-font-family-montserrat);
+  position: relative;
+}
+
+.carte-categorie--style-empile {
+  background-color: var(--pqr-color-blanc);
+  gap: var(--pqr-space-32);
+}
+
+.carte-categorie--style-superpose {
+  justify-content: flex-end;
+}
+
+.carte-categorie__photoSuperpose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carte-categorie__decor svg {
+  display: block;
+  width: 100px;
+  height: 131px;
+}
+
+.carte-categorie__decor {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--pqr-color-blanc);
+  top: var(--pqr-space-32);
+  right: var(--pqr-space-32);
+  position: absolute;
+  z-index: 1;
+}
+
+.carte-categorie__contenuSuperpose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pqr-space-8);
+  padding-top: var(--pqr-space-32);
+  padding-right: var(--pqr-space-32);
+  padding-bottom: var(--pqr-space-32);
+  padding-left: var(--pqr-space-32);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 100%);
+  position: relative;
+  z-index: 2;
+}
+
+.carte-categorie__inner {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: var(--pqr-space-16);
+}
+
+.carte-categorie__blocTexte {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: var(--pqr-space-8);
+}
+
+.carte-categorie__TitreSuperpose {
+  color: var(--pqr-color-blanc);
+  font-size: var(--pqr-font-size-40);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: 50px;
+  text-transform: uppercase;
+}
+
+.carte-categorie__TexteSuperpose {
+  color: var(--pqr-color-blanc);
+  font-size: var(--pqr-font-size-18);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: 27px;
+}
+
+.carte-categorie__Fleche svg {
+  display: block;
+  width: 35px;
+  height: 35px;
+}
+
+.carte-categorie__Fleche {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--pqr-color-blanc);
+}
+
+.carte-categorie__categorieImage {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: var(--pqr-size-carte-categorie-image);
+  min-height: var(--pqr-space-0);
+  object-fit: cover;
+}
+
+.carte-categorie__texteEmpile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pqr-space-16);
+}
+
+.carte-categorie__TitreCategorie {
+  color: var(--pqr-color-noir-bleute);
+  font-size: var(--pqr-font-size-32);
+  font-weight: var(--pqr-font-weight-medium);
+  line-height: 40px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.carte-categorie__TexteCategorie {
+  color: var(--pqr-color-noir-bleute);
+  font-size: var(--pqr-font-size-18);
+  font-weight: var(--pqr-font-weight-regular);
+  line-height: 27px;
+  text-align: left;
+}
+
+.carte-categorie__Bouton {
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+}
+
+/* CategoriesPrincipales — from ds.categories-principales v1.0.0 (core/emit-html.ts) */
+
+.categories-principales, .categories-principales *, .categories-principales *::before, .categories-principales *::after {
+  box-sizing: border-box;
+}
+
+.categories-principales {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  gap: var(--pqr-space-64);
+}
+
+.categories-principales--colonnes-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 /* SectionHeader — from ds.section-header v2.2.0 (core/emit-html.ts) */

@@ -299,4 +299,19 @@
     <field name="url">/piqueray-harness/showcase</field><field name="view_id" ref="harness_showcase"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
   </record>
   <!-- HARNESS-SHOWCASE END -->
+
+  <!-- HARNESS-CATEGORIES BEGIN (spec 023, US2) -->
+  <template id="harness_categories_principales" name="Piqueray — banc Catégories principales">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure oe_empty"/></t>
+  </template>
+  <record id="page_harness_categories_principales" model="website.page">
+    <field name="url">/piqueray-harness/categories-principales</field><field name="view_id" ref="harness_categories_principales"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <template id="harness_categories_principales_visual" name="Piqueray — Catégories principales visuelle">
+    <t t-call="website.layout"><div id="wrap" class="oe_structure"><div class="pqr-mesure" style="padding: var(--pqr-space-24); box-sizing: border-box; background: var(--pqr-color-blanc); position: relative; z-index: 1;"><t t-call="piqueray_ds.s_pqr_categories_principales"/></div></div></t>
+  </template>
+  <record id="page_harness_categories_principales_visual" model="website.page">
+    <field name="url">/piqueray-harness/categories-principales-visual</field><field name="view_id" ref="harness_categories_principales_visual"/><field name="is_published" eval="True"/><field name="website_indexed" eval="False"/>
+  </record>
+  <!-- HARNESS-CATEGORIES END -->
 </odoo>

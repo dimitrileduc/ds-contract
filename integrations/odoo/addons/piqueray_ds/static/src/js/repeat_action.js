@@ -491,3 +491,80 @@ export class MoveCarteDownAction extends BuilderAction {
     apply({ editingElement }) { moveCarte(findCarte(editingElement), "down"); }
 }
 // ODOO-022-REASSURANCES-REPEAT END
+
+// ODOO-023-CATEGORIES-REPEAT BEGIN
+// Collection de cartes-catégories ordonnée, DOM comme seule source (même patron
+// que Réassurances/Équipe). La racine categories-principales EST la grille ; le
+// hook data-pqr-carte-list est un wrapper display:contents, les cartes restent
+// items directs de la grille. Add depuis le blueprint inerte, Remove/Move sur le
+// DOM, bornes 0..n. IDENTIFIANTS PROPRES (pqr*CarteCategorie*) : les ids du
+// builder sont globaux — réutiliser ceux de Réassurances ferait retomber une
+// action sur la mauvaise section. Les sélecteurs génériques CARTE/CARTE_LIST et
+// le localisateur findCarte sont partagés (mêmes attributs DOM).
+export const CATEGORIES_ROOT = ".s_pqr_categories_principales";
+
+export const findCategoriesRoot = (element) => element?.closest?.(CATEGORIES_ROOT) || null;
+
+// La collection catégories partage EXACTEMENT le contrat DOM de Réassurances
+// (data-pqr-carte / data-pqr-carte-list / clé pqrCarteMarker) : on réutilise donc
+// directement les fonctions génériques cartesOf / normalizeCartes / nextCarteMarker
+// plutôt que d'en recopier des jumelles à l'identique. Seuls la racine
+// (findCategoriesRoot) et les ids d'action diffèrent (les ids builder sont globaux).
+
+/** Ajoute depuis le blueprint inerte ; l'état vide (section vidée) reste ajoutable. */
+export function addCarteCategorie(root) {
+    const list = root?.querySelector(CARTE_LIST);
+    const blueprint = root?.querySelector("template[data-pqr-carte-blueprint]");
+    const candidate = blueprint?.content?.firstElementChild;
+    if (!list || !candidate) throw new Error("[piqueray_ds] blueprint CarteCategorie introuvable");
+    const carte = candidate.cloneNode(true);
+    carte.dataset.pqrCarteMarker = nextCarteMarker(root);
+    list.append(carte);
+    normalizeCartes(root);
+    return carte;
+}
+
+export function removeCarteCategorie(carte) {
+    const root = findCategoriesRoot(carte);
+    if (!root || !carte?.isConnected) return false;
+    carte.remove();
+    normalizeCartes(root);
+    return true;
+}
+
+export function moveCarteCategorie(carte, direction) {
+    const root = findCategoriesRoot(carte);
+    if (!root || !carte?.isConnected) return false;
+    if (direction === "up") {
+        const previous = carte.previousElementSibling;
+        if (!previous?.matches(CARTE)) return false;
+        previous.before(carte);
+    } else {
+        const next = carte.nextElementSibling;
+        if (!next?.matches(CARTE)) return false;
+        next.after(carte);
+    }
+    normalizeCartes(root);
+    return true;
+}
+
+export class AddCarteCategorieAction extends BuilderAction {
+    static id = "pqrAddCarteCategorie";
+    apply({ editingElement }) { addCarteCategorie(findCategoriesRoot(editingElement)); }
+}
+
+export class RemoveCarteCategorieAction extends BuilderAction {
+    static id = "pqrRemoveCarteCategorie";
+    apply({ editingElement }) { removeCarteCategorie(findCarte(editingElement)); }
+}
+
+export class MoveCarteCategorieUpAction extends BuilderAction {
+    static id = "pqrMoveCarteCategorieUp";
+    apply({ editingElement }) { moveCarteCategorie(findCarte(editingElement), "up"); }
+}
+
+export class MoveCarteCategorieDownAction extends BuilderAction {
+    static id = "pqrMoveCarteCategorieDown";
+    apply({ editingElement }) { moveCarteCategorie(findCarte(editingElement), "down"); }
+}
+// ODOO-023-CATEGORIES-REPEAT END

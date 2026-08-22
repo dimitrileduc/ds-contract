@@ -91,3 +91,6 @@ venv/
 
 # spec 019 — env local de l'instance jetable de qualification (jamais commité)
 integrations/odoo/qa/.env
+# spec 023 — le MODÈLE d'env (aucun secret) doit être commité : la règle large
+# `.env*` (ligne 17) l'attrapait, d'où son absence des worktrees frais. On le réinclut.
+!integrations/odoo/qa/.env.example

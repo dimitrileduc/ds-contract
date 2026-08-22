@@ -205,3 +205,31 @@
   display: contents;
 }
 /* ODOO-022-REASSURANCES-BRIDGE END */
+
+/* ODOO-023-CATEGORIES-BRIDGE BEGIN
+ * Pont MÉCANIQUE seulement, aucune valeur de design dupliquée. La racine porte
+ * déjà width:100% + display:grid (émis par emit-html) ; le colonnage {2,3} est
+ * une classe modificatrice générée (`--colonnes-3`, basculée par pqrSetColonnes).
+ * Deux seules adaptations Odoo : la neutralisation UA du soulignement d'ancre du
+ * CTA-lien, et la dissolution du hook de collection. La parade de focus du CTA en
+ * édition est déjà portée, générique, par ODOO-019-CTA-LIEN-BRIDGE (keyée sur
+ * [data-pqr-part="button-root"]). */
+.s_pqr_categories_principales a.button {
+  text-decoration: none;
+}
+/* Le hook de collection est un wrapper d'adressage (data-pqr-carte-list), pas une
+ * part du contrat : display:contents le retire du layout — les cartes restent
+ * items directs de la grille de la racine (même motif que reassurances-cta). */
+.s_pqr_categories_principales [data-pqr-carte-list] {
+  display: contents;
+}
+/* Section vidée (Gate D, edge « section vidée » — geste RÉVERSIBLE) : une grille
+ * sans item s'effondre à 0 px de haut et devient inatteignable au clic — le
+ * rédacteur ne pourrait plus la sélectionner pour rajouter une carte. En ÉDITION
+ * seulement, on lui donne une hauteur minimale sélectionnable (état vide propre et
+ * réversible). Sur le site publié, une section sans carte n'occupe rien : la
+ * parade est bornée à l'éditeur. */
+.odoo-editor-editable .s_pqr_categories_principales:not(:has([data-pqr-carte])) {
+  min-height: 96px;
+}
+/* ODOO-023-CATEGORIES-BRIDGE END */

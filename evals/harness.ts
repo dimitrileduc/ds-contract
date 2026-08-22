@@ -27,6 +27,7 @@ import { buildPlan as proposePrBuildPlan, contentsPutBody, summarize as proposeP
 import { emitReact as coreEmitReact, isMultiRoot as coreIsMultiRoot, validateContract as coreValidateContract } from '../core/emit-react.js';
 import { createFigmaEngine, iconComponentsFromRegistry, type IconRegistryEntry } from '../core/emit-figma-script.js';
 import { emitHtml as coreEmitHtml } from '../core/emit-html.js';
+import { emitReactInline as coreEmitReactInline } from '../core/emit-react-inline.js';
 import { tokenInventoryFromJson } from '../core/tokens.js';
 // DEPTH BUILD Stage A+B pins (pure — production capture/anatomy over committed
 // receipts; the evals NEVER launch a browser).
@@ -245,7 +246,7 @@ export {
   ContractSchema, schemaResolveTokens,
   proposePrBuildPlan, contentsPutBody, proposePrSummarize,
   coreEmitReact, coreIsMultiRoot, coreValidateContract,
-  createFigmaEngine, iconComponentsFromRegistry, coreEmitHtml, tokenInventoryFromJson,
+  createFigmaEngine, iconComponentsFromRegistry, coreEmitHtml, coreEmitReactInline, tokenInventoryFromJson,
   loadCaptureConfig, propSpaceFor,
   depthBuildUnion, buildMultiRootUnion, descendToRealRoots, depthNameUnion,
   depthPromoteAnatomy, promoteMultiRootAnatomy, depthKebab,

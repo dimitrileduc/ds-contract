@@ -25,8 +25,11 @@ import { repoPath, repoRelative, sortedBy, canonicalJson, sha256 } from './canon
 
 /** Les sections posables. Tout le reste de leur fermeture reste interne.
  *  Wave B (spec 022) ajoute `ds.coordonnees` et `ds.reassurances` : 8 → 10
- *  racines. La fermeture calculée tire `ds.carte` en plus (par Réassurances). */
-export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo', 'ds.coordonnees', 'ds.reassurances'] as const;
+ *  racines. La fermeture calculée tire `ds.carte` en plus (par Réassurances).
+ *  Spec 023 ajoute `ds.categories-principales` : 10 → 11 racines. Sa fermeture
+ *  tire `ds.carte-categorie` en plus (répétée par la section), `ds.button` étant
+ *  déjà présent (composé sous la carte empilée). */
+export const ROOT_CONTRACT_IDS = ['ds.presentation', 'ds.google-reviews', 'ds.hero', 'ds.equipe', 'ds.sav', 'ds.devis', 'ds.faq', 'ds.texte-seo', 'ds.coordonnees', 'ds.reassurances', 'ds.categories-principales'] as const;
 
 /** Sources de jetons réellement lues par le build d'assets. Triées. */
 export const TOKEN_SOURCES = [

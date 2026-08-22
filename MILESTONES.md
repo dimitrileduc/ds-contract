@@ -1353,3 +1353,50 @@ delta arithmetic. Left standing: MemberCard and the A5 image boundary (spec 017)
 DW-014-002 (the visual-parity instrument still renders `emit-html`, never the
 delivered React surface), and the 89 stroke/paint/typography literals — 015's
 pattern applied to its next population, another spec.
+
+## 2026-08-21 — 023 Catégories gouvernées : un colonnage réglable par le rédacteur
+
+Le bloc « Catégories principales » — réparé au pixel par 021 mais hors contrat —
+devient gouverné de bout en bout : deux contrats extraits d'une source nettoyée
+(molécule `ds.carte-categorie` à un axe Style, section `ds.categories-principales`
+avec un enum de colonnes {2,3}), scandés par **quatre gates owner** (A modèle
+cible, B pixel, C contrats, D éditabilité), tous validés et tracés. La pièce neuve
+est **US2** : `ds.categories-principales` devient la **11ᵉ racine posable Odoo**, et
+son sélecteur 2|3 colonnes offre au rédacteur un réglage de **colonnage** — le premier
+de ce genre, même si la couche Odoo portait déjà d'autres enums rédacteur (la note des
+avis Google, par ex. ; l'affirmation initiale « premier enum tout court » était fausse,
+corrigée à la revue). Prouvé sur instance jetable isolée, **18 constats sur 18** : bascule 2→3 avec
+la 4ᵉ carte qui passe à la ligne (3+1, zéro débordement), collection ordonnée,
+CTA gouverné (`javascript:` refusé), section vidée réversible, isolation,
+persistance aux trois points de contrôle.
+
+**Trois défauts que seule l'implémentation — ou la QA live — pouvait révéler.**
+`emit-html` **ignorait `columns`** : l'extension E1 avait patché `emit-react` (T021)
+mais pas son jumeau HTML, si bien que la classe `--colonnes-3` n'existait ni dans la
+CSS Odoo ni dans la parité visuelle — la bascule de colonnes aurait été sans effet
+visuel, et personne ne l'aurait vu tant qu'une section ne serait pas passée à 3.
+La **grille vidée s'effondrait à 0 px** et devenait insélectionnable : l'état vide
+que le Gate D exige « propre et réversible » ne l'était pas — trouvé en cliquant une
+section sans carte sur l'instance réelle, corrigé par une hauteur minimale bornée à
+l'éditeur. Et le **modèle d'env** (`.env.example`, sans secret) était happé par la
+règle large `.env*` du `.gitignore`, donc absent des worktrees frais et rouge à la
+porte de structure du module — un trou d'approvisionnement, pas un défaut de code.
+
+**Deux portes rouges pré-existantes, mesurées inchangées** : `odoo:qualification`
+(reçu 019) et `editability-boundary` (43/44, champ stale présentation) — mes
+changements `authoring.js` sont additifs, aucune part de présentation touchée. Et un
+détail de méthode qui a coûté deux faux « vert » : **un `| tail` ou un `; echo`
+final masque le code de sortie du process en amont** — la notification disait
+« exit 0 » sur un scénario qui avait exité 1. Le code de sortie ne se lit que sur le
+process lui-même.
+
+**Deux dettes laissées nommées, pas tues** (Principe V) : `ds.carte` → v3.0.0 (retrait
+de `disposition: categorie`) — confirmé par l'owner mais reverté à v2.0.1 quand la
+cascade s'est révélée bien plus large que la proposition (`reassurances.authoring.json`
+livrée, ~105 entrées) : à reprendre en travail ISOLÉ ; et la **pin de baseline de
+parité visuelle**, différée parce que `--write-baseline` écrase en bloc et épinglerait
+la dérive d'autres specs. Rapport complet : `specs/023-categories-gouvernees/
+RAPPORT-CLOTURE.md`.
+
+**Trou de journal, encore nommé** : `MILESTONES.md` saute toujours les specs 011-016.
+Cette entrée documente 023 ; elle ne comble pas le trou antérieur.

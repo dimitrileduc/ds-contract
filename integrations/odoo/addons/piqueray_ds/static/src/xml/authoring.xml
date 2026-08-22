@@ -277,4 +277,52 @@
     </BuilderRow>
   </t>
   <!-- ODOO-022-REASSURANCES-PANEL END -->
+
+  <!-- ODOO-023-CATEGORIES-PANEL BEGIN -->
+  <t t-name="piqueray_ds.CategoriesPrincipalesOption">
+    <BuilderRow label.translate="Piqueray · Catégories principales">
+      <span data-pqr-control="categories-collection">Collection gouvernée (grille 2 ou 3 colonnes)</span>
+    </BuilderRow>
+    <!-- Enum FERMÉ {2,3} — le PREMIER réglage de variante offert au rédacteur.
+         Patron BuilderSelect/BuilderSelectItem (repris de la note ds.review-card) ;
+         valeur par actionParam. Aucune autre valeur n'est offerte ; au-delà du
+         compte, la grille fait passer les cartes à la ligne (Q-C1). -->
+    <BuilderRow label.translate="Colonnes">
+      <span data-pqr-control="categories-colonnes">
+        <BuilderSelect>
+          <BuilderSelectItem action="'pqrSetColonnes'" actionParam="'2'" preview="false">2 colonnes</BuilderSelectItem>
+          <BuilderSelectItem action="'pqrSetColonnes'" actionParam="'3'" preview="false">3 colonnes</BuilderSelectItem>
+        </BuilderSelect>
+      </span>
+    </BuilderRow>
+    <BuilderRow label.translate="Cartes">
+      <span data-pqr-control="categories-collection"><BuilderButton action="'pqrAddCarteCategorie'" preview="false">Ajouter une catégorie</BuilderButton></span>
+    </BuilderRow>
+  </t>
+
+  <t t-name="piqueray_ds.CarteCategorieOption">
+    <BuilderRow label.translate="Catégorie">
+      <span data-pqr-control="carte-title"><span data-pqr-control="carte-text">Le titre et le texte se modifient directement dans la carte.</span></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Image">
+      <span data-pqr-control="carte-image-url"><BuilderButton action="'pqrReplaceCarteCategorieImage'" preview="false">Remplacer</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Alternative">
+      <span data-pqr-control="carte-image-alt"><BuilderTextInput action="'pqrSetCarteCategorieImageAlt'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Libellé du CTA">
+      <span data-pqr-control="carte-cta-label">Le libellé du CTA se modifie directement dans la carte.</span>
+    </BuilderRow>
+    <BuilderRow label.translate="Lien du CTA">
+      <span data-pqr-control="carte-cta-href"><BuilderUrlPicker action="'pqrSetCtaHref'" actionParam="'carte-cta-lien'"/></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Ordre">
+      <span data-pqr-control="carte-move-up"><BuilderButton action="'pqrMoveCarteCategorieUp'" preview="false">Monter</BuilderButton></span>
+      <span data-pqr-control="carte-move-down"><BuilderButton action="'pqrMoveCarteCategorieDown'" preview="false">Descendre</BuilderButton></span>
+    </BuilderRow>
+    <BuilderRow label.translate="Collection">
+      <span data-pqr-control="carte-remove"><BuilderButton action="'pqrRemoveCarteCategorie'" preview="false" type="'danger'">Supprimer la catégorie</BuilderButton></span>
+    </BuilderRow>
+  </t>
+  <!-- ODOO-023-CATEGORIES-PANEL END -->
 </templates>

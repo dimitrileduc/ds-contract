@@ -1,0 +1,1523 @@
+{
+  "schemaVersion": "1.0.0",
+  "configId": "odoo-categories-principales-authoring",
+  "authoringVersion": "1.0.0",
+  "snapshotId": "odoo-019-foundation",
+  "rootContract": {
+    "id": "ds.categories-principales",
+    "version": "1.0.0"
+  },
+  "rootActions": [
+    {
+      "action": "move",
+      "verdict": "allowed"
+    },
+    {
+      "action": "duplicate",
+      "verdict": "allowed"
+    },
+    {
+      "action": "remove",
+      "verdict": "allowed"
+    },
+    {
+      "action": "save-as-custom",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "resize",
+      "verdict": "forbidden"
+    },
+    {
+      "action": "background",
+      "verdict": "forbidden"
+    }
+  ],
+  "controls": [
+    {
+      "decisionId": "cat-ctl-sec-style",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "style"
+      },
+      "verdict": "not-editable",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-sec-colonnes",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "colonnes"
+      },
+      "verdict": "controlled",
+      "mechanism": "enum",
+      "targetSelector": ".s_pqr_categories_principales",
+      "label": "colonnes"
+    },
+    {
+      "decisionId": "cat-ctl-sec-cartes",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "prop": "cartes"
+      },
+      "verdict": "controlled",
+      "mechanism": "ordered-repeat",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte-list]",
+      "label": "cartes"
+    },
+    {
+      "decisionId": "cat-ctl-carte-style",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "style"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-carte-ctatype",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "ctaType"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-carte-titre",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "titre"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-title\"]",
+      "label": "titre"
+    },
+    {
+      "decisionId": "cat-ctl-carte-texte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "texte"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-text\"]",
+      "label": "texte"
+    },
+    {
+      "decisionId": "cat-ctl-carte-imageurl",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "imageUrl"
+      },
+      "verdict": "controlled",
+      "mechanism": "computed-display",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
+      "label": "imageUrl"
+    },
+    {
+      "decisionId": "cat-ctl-carte-imagealt",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "imageAlt"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
+      "label": "imageAlt"
+    },
+    {
+      "decisionId": "cat-ctl-carte-ctalabel",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "prop": "ctaLabel"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-label\"]",
+      "label": "ctaLabel"
+    },
+    {
+      "decisionId": "cat-ctl-lien-variant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-lien-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-label\"]",
+      "label": "libellé"
+    },
+    {
+      "decisionId": "cat-ctl-lien-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-lien-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-lien-iconleftglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-lien-iconrightglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-bouton-variant",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "prop": "variant"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-bouton-children",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "prop": "children"
+      },
+      "verdict": "controlled",
+      "mechanism": "plain-text",
+      "targetSelector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"] [data-pqr-part=\"button-label\"]",
+      "label": "libellé"
+    },
+    {
+      "decisionId": "cat-ctl-bouton-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "prop": "iconLeft"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-bouton-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "prop": "iconRight"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-bouton-iconleftglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "prop": "iconLeftGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    },
+    {
+      "decisionId": "cat-ctl-bouton-iconrightglyph",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "prop": "iconRightGlyph"
+      },
+      "verdict": "fixed-by-composition",
+      "mechanism": "none"
+    }
+  ],
+  "parts": [
+    {
+      "decisionId": "cat-part-sec-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-sec-root-cartecategorie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          }
+        ],
+        "partPath": [
+          "root",
+          "CarteCategorie"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "repeat",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte-list]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-photosuperpose",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "photoSuperpose"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-decor",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "decor"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-decor\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-contenusuperpose",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "contenuSuperpose"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-contenu-superpose\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-contenusuperpose-inner",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "contenuSuperpose",
+          "inner"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-contenu-inner\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-contenusuperpose-inner-bloctexte",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "contenuSuperpose",
+          "inner",
+          "blocTexte"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-bloc-texte\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-contenusuperpose-inner-bloctexte-titresuperpose",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "contenuSuperpose",
+          "inner",
+          "blocTexte",
+          "TitreSuperpose"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-title\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-contenusuperpose-inner-bloctexte-textesuperpose",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "contenuSuperpose",
+          "inner",
+          "blocTexte",
+          "TexteSuperpose"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-contenusuperpose-inner-fleche",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "contenuSuperpose",
+          "inner",
+          "Fleche"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-fleche\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-categorieimage",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "categorieImage"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-image\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-texteempile",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "texteEmpile"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-texte-empile\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-texteempile-titrecategorie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "texteEmpile",
+          "TitreCategorie"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-title\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-texteempile-textecategorie",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "texteEmpile",
+          "TexteCategorie"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-text\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-bouton",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Bouton"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-bouton-lien",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Bouton",
+          "lien"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "component",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-carte-root-bouton-bouton",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          }
+        ],
+        "partPath": [
+          "root",
+          "Bouton",
+          "bouton"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "component",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-lien-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-lien-root-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-lien-root-icononlyicon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-icon-only\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-lien-root-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "not-editable",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-lien-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "lien"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "directly-editable",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-lien\"] [data-pqr-part=\"button-label\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-bouton-root",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "partPath": [
+          "root"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "structural",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"] [data-pqr-part=\"button-root\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-bouton-root-iconleft",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconLeft"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"] [data-pqr-part=\"button-icon-left\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-bouton-root-icononlyicon",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconOnlyIcon"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"] [data-pqr-part=\"button-icon-only\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-bouton-root-iconright",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "iconRight"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "media",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"] [data-pqr-part=\"button-icon-right\"]",
+      "allowedMarks": []
+    },
+    {
+      "decisionId": "cat-part-bouton-root-label",
+      "address": {
+        "componentPath": [
+          {
+            "contract": {
+              "id": "ds.categories-principales",
+              "version": "1.0.0"
+            }
+          },
+          {
+            "contract": {
+              "id": "ds.carte-categorie",
+              "version": "1.0.0"
+            },
+            "viaPart": "CarteCategorie",
+            "repeat": true
+          },
+          {
+            "contract": {
+              "id": "ds.button",
+              "version": "2.0.1"
+            },
+            "viaPart": "bouton"
+          }
+        ],
+        "partPath": [
+          "root",
+          "label"
+        ]
+      },
+      "verdict": "fixed-by-composition",
+      "contentKind": "plain-text",
+      "selector": ".s_pqr_categories_principales [data-pqr-carte] [data-pqr-part=\"carte-cta-bouton\"] [data-pqr-part=\"button-label\"]",
+      "allowedMarks": []
+    }
+  ]
+}

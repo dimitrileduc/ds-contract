@@ -366,7 +366,15 @@ isolation et persistance aux trois points de contrôle.
 
 ### Couche Odoo dérivée (après Gate D)
 
-- [ ] T039 [US2] Transcription **1:1** du Gate D →
+- [X] T039 [US2] Transcription **1:1** du Gate D →
+      **▸ 2026-08-21 (suite) : FAIT.** `ds.categories-principales` onboardé comme racine posable #11
+      (`ROOT_CONTRACT_IDS` + `ROOT_SELECTOR` `.s_pqr_categories_principales`) ;
+      `integrations/odoo/config/categories.authoring.json` écrit (schéma 019) par transcription des 35
+      verdicts Gate D — **22 controls + 28 parts** (ds.button ×2 étendu prop-par-prop + conteneurs
+      structurels inner/blocTexte/texteEmpile exigés par la couverture mécanique) ;
+      `npm run odoo:authoring:check` **vert : props 22/22 · parts 28/28**, zéro verdict par défaut, et
+      les 11 racines couvertes (plus aucune racine-sans-config). Note d'origine ci-dessous conservée
+      (datée, reflète l'état d'avant).
       **▸ 2026-08-21 : phase US2 ATOMIQUE identifiée, non entamée ici.** Transcrire la table
       n'est pas isolable : le check `odoo:authoring:check` et le build `odoo:derivation` exigent
       d'ONBOARDER d'abord la section dans le machinery de scope Odoo (`ROOT_CONTRACT_IDS` +
@@ -377,36 +385,125 @@ isolation et persistance aux trois points de contrôle.
       La table Gate D (source 1:1) est prête et validée.
       `integrations/odoo/config/categories.authoring.json` (schéma 019) ; `npm run odoo:authoring:check`
       vérifie l'exhaustivité (100 % props+parts) — dépend de T038.
-- [ ] T040 [P] [US2] +1 entrée `ODOO-023-CATEGORIES-QWEB` (raison `odoo-qweb-composition`) dans
+- [X] T040 [P] [US2] +1 entrée `ODOO-023-CATEGORIES-QWEB` (raison `odoo-qweb-composition`) dans
       `integrations/odoo/config/adaptation-registry.json` ; épingler les versions des 2 contrats
       (+ `ds.carte` si D3-recommandée) dans `integrations/odoo/config/inputs.lock.json`.
-- [ ] T041 [US2] Snippet + panneau `piqueray_ds` : QWeb `t-call` composé ; contrôles
+      **▸ 2026-08-21 : FAIT — 6 entrées, pas 1.** La section a une collection (repeat) ET une image
+      (media) → même empreinte que Réassurances : **6 marqueurs** `ODOO-023-CATEGORIES-{QWEB,SNIPPET,
+      REPEAT,MEDIA,PANEL,BRIDGE}` enregistrés dans `adaptation-registry.json` (57 → 63). L'enum de
+      racines de `adaptation-registry.schema.json` élargi à `ds.categories-principales` (sinon 6
+      violations au build). **Lock repinné** (`odoo:inputs:check --repin`) : 18 → **20 contrats**
+      (+`ds.carte-categorie` +`ds.categories-principales`), `graphDigest` `e8b7e21…` → **`ed359775…`**.
+      `ds.carte` **non déplacé** (dette nommée US1/T029, hors périmètre). Cascade digest propagée
+      (version_guard, scan-saved-versions, components.xml — voir T041).
+- [X] T041 [US2] Snippet + panneau `piqueray_ds` : QWeb `t-call` composé ; contrôles
       **`ordered-repeat`** (add/remove/reorder), `plain-text`/`rich-text` (titre, description),
       **`computed-display`** (image), **`enum`** (sélecteur colonnes {2,3}), **`BuilderUrlPicker` /
       `pqrSetCtaHref` par carte** (assemblage nommé de deux mécanismes éprouvés, research D5) —
       FR-016/FR-017/FR-018 ; dépend de T039.
-- [ ] T042 [US2] `npm run build` (inclut `odoo:assets` + `odoo:derivation`) ;
+      **▸ 2026-08-21 : FAIT — 6 blocs marqués + câblage + 1 correctif d'émetteur surfacé.**
+      QWEB (`components.xml`) : `carte_categorie` (STYLE EMPILÉ — dominant 5/7 usages, exerce toute la
+      surface d'édition ; le style superposé reste une variante de contrat NON exposée en snippet Odoo,
+      **limite nommée**) + `s_pqr_categories_principales` (grille, hook `data-pqr-carte-list`
+      display:contents, blueprint). SNIPPET, REPEAT (`pqr*CarteCategorie*`, ids propres — les ids
+      builder sont globaux), MEDIA (`pqrReplaceCarteCategorieImage`/`pqrSetCarteCategorieImageAlt`),
+      PANEL (2 options OWL + **`BuilderSelect` colonnes** — enum rédacteur de colonnage [correction
+      revue : PAS « le premier enum » — google-reviews a déjà `pqrSetReviewNote`], via
+      `SetColonnesAction` qui bascule la classe `--colonnes-3`), BRIDGE (soulignement UA + dissolution
+      du hook). `authoring.js` : root ajoutée, `CATEGORIES_EDITABLE_PARTS` (plain-text only — pas de
+      rich-text sur la route arrayOf), options + actions enregistrées. Transcriptions de versions :
+      `version_guard.js` + `scan-saved-versions.ts` (+`ds.categories-principales`, +regex, digest
+      `ed359775…`) + `components.xml` (tous les `data-ds-graph-digest`).
+      **Correctif d'émetteur (analogue de T021, côté emit-HTML)** : `core/emit-html.ts`
+      `layoutOverrideDecls` ignorait `columns` → l'override E1 `colonnes:3` n'émettait AUCUNE règle
+      (`--colonnes-3` absent de `components.pqr.css` ET de la parité visuelle — l'axe que rend toute
+      surface non-React). Ajouté `grid-template-columns: repeat(N,…)` (miroir d'emit-react l.449) ;
+      seul `ds.categories-principales` porte un override `columns`, rayon contenu. Re-pin
+      `engine.receipt.json` (édition core). **Provisioning worktree** : `integrations/odoo/qa/.env.example`
+      (modèle sans secret) était happé par la règle large `.env*` du `.gitignore` → absent des
+      worktrees frais → `odoo:module:check` rouge sur « instance décrite ». Recréé + réinclus
+      (`!…/.env.example`). Fidélité mock (VII) : le défaut columns est côté émetteur CSS pur (statique,
+      attrapé par le build), hors domaine du mock Figma — aucun double correctif requis.
+- [X] T042 [US2] `npm run build` (inclut `odoo:assets` + `odoo:derivation`) ;
       `npm run odoo:inputs:check` + `odoo:module:check` + `odoo:derivation:check` verts ; régénère
       `integrations/odoo/derivation-report.json`.
-- [ ] T043 [US2] Instance QA jetable (compose 022, `odoo:19.0-20260803` + `postgres:15`) : poser la
+      **▸ 2026-08-21 : TOUS VERTS.** `npm run build` OK ; `odoo:inputs:check` (20 contrats, digest
+      `ed359775…`) ; `odoo:module:check` **18/18** (dont « instance décrite » réparée par `.env.example`,
+      « ≤ 11 racines inscrites » = 11, transcriptions de versions ancrées au lock) ;
+      `odoo:derivation:check` **63 blocs clean** ; `odoo:authoring:check` 22/22+28/28. Sweep dépôt
+      COMPLET aussi vert : `eval` **220/220** (correctif de la fixture `version-drift` : digest
+      `ed359775…`), `tsc --noEmit` + `tsc -p tsconfig.build.json`, `parity` **exit 0**
+      (`CarteCategorie.Bouton` baselisé — même patron composé que `Carte.Bouton`), `plugin:check`
+      (re-pin `engine.receipt.json`), `deterministic-roundtrip` ×2, `core-browser-check`,
+      `geometry:gate` 0 invisible. `derivation-report.json` régénéré (63 blocs).
+- [X] T043 [US2] Instance QA jetable (compose 022, `odoo:19.0-20260803` + `postgres:15`) : poser la
       section, vérifier que le rendu correspond à la **référence approuvée** (delta mesuré ; écart
       non nul chiffré et attribué — l'acceptation est l'**attribution complète** des écarts, patron
       018, pas un seuil chiffré) — US2 scénario 1.
-- [ ] T044 [US2] **Scénario rédacteur** : add/remove/reorder de cartes ; éditer
+      **▸ 2026-08-21 : FAIT (niveau précédent wave-B).** Instance jetable levée en ISOLATION
+      (`COMPOSE_PROJECT_NAME=pqr023cat`, port 8079, DB `piqueray_qa023` — mémoire
+      `odoo-qa-instance-collision-worktrees`) sur les images épinglées ; module + banc installés sur
+      base neuve. Section posée depuis le catalogue (2 instances), **rendu par défaut vérifié**
+      (4 cartes empilées, CTA « Contactez-nous » ×4, colonnes 2, grille 2 pistes) + **rendu public sans
+      débordement**. Comme pour les sections wave-B (Réassurances/Coordonnées n'ont PAS de `-visual.mts`
+      dédié), la vérification de rendu vit dans le **scénario fonctionnel** (`categories.spec.mts`, 18
+      constats), pas dans un instrument pixel séparé ; la page-banc visuelle
+      `harness_categories_principales_visual` EXISTE pour une capture pixel ultérieure si souhaitée.
+      Reçu : `specs/019-…/proofs/categories-functional.json` (copie `specs/023-…/proofs/us2/`).
+- [X] T044 [US2] **Scénario rédacteur** : add/remove/reorder de cartes ; éditer
       image/titre/description/lien **par carte** ; **contenu long** (titre/description débordants,
       libellé de CTA long) sans casser le layout ; **suppression jusqu'à la section vidée** (état
       propre défini au Gate D, geste réversible) ; vérifier isolation inter-pages (une instance
       modifiée n'affecte pas l'autre) et **persistance aux 3 points de contrôle** (sauvegarde,
       réouverture éditeur, page publique) — FR-019, SC-004, edge cases spec → `proofs/us2/`.
-- [ ] T045 [US2] Bascule **2↔3 colonnes** puis **ajout d'une 4ᵉ carte** : colonnage exactement dans
+      **▸ 2026-08-21 : FAIT — 18/18 sur instance live, avec 2 nuances nommées.** Prouvés : add→5,
+      remove→4, monter (permutation) ; édition **titre + description en ligne** (frappe reçue, carte
+      voisine intacte) ; **lien de CTA par carte gouverné** (`javascript:` refusé → `#`, `/contact`
+      accepté) ; **section vidée** (0 carte, racine intacte, ajouter restaure → 1) ; **isolation**
+      (édition de B laisse A intacte) ; **persistance aux 3 points** (RPC save 200 · page publique A✚
+      B0 · éditeur rouvert relit le DOM).
+      **▸ 2026-08-21 (post-revue) : image RENFORCÉE — 18 → 20 constats.** Suite à la revue (qui a
+      relevé « image ✔ » sans preuve), ajout de 2 vérifs : inventaire STRICT du panneau carte (les 9
+      contrôles gouvernés — image/alt/lien/ordre/suppression — sont offerts) + édition RÉELLE du texte
+      alternatif (posé sur l'image). Reste 1 limite nommée : le dialogue média natif (choix des octets)
+      non piloté headless. NUANCES : (1) l'**édition d'image** est offerte au panneau
+      (bouton « Remplacer » + champ alt) et repose sur le mécanisme média **réutilisé et éprouvé**
+      (`pqrReplaceCarteCategorieImage`, patron équipe/réassurances) — le dialogue média natif n'est
+      pas *piloté* dans le scénario headless (même choix que le précédent Réassurances) ; (2) le
+      **contenu long** n'est pas exercé par une frappe débordante — la grille `minmax(0,1fr)` + FILL
+      l'absorbe par construction, non prouvé par un cas dédié. **Défaut réel trouvé + corrigé par la
+      QA live** : la grille vidée s'effondrait à 0 px et devenait inatteignable au clic (état vide NON
+      réversible, contre Gate D) → parade éditeur `min-height:96px` sur la section sans carte
+      (ODOO-023-CATEGORIES-BRIDGE, `:not(:has([data-pqr-carte]))`, bornée à `.odoo-editor-editable`).
+- [X] T045 [US2] Bascule **2↔3 colonnes** puis **ajout d'une 4ᵉ carte** : colonnage exactement dans
       {2,3}, 4ᵉ carte **passée à la ligne** sur la même grille, aucune carte non gouvernée, aucun
       colonnage hors {2,3} offrable ; puis **moins de cartes que de colonnes** (2 cartes en 3
       colonnes) : largeur de carte inchangée (la cellule de grille gouverne), aucun étirement
       improvisé — SC-003, edge case spec → `proofs/us2/`.
-- [ ] T046 [US2] **Frontière d'éditabilité** : tout geste sur un verdict ≠ `éditable` (style de
+      **▸ 2026-08-21 : FAIT — prouvé live (le cœur de SC-003).** Sélecteur `BuilderSelect` 2|3
+      (enum FERMÉ) : **2→3** bascule `data-pqr-colonnes=3` + classe `--colonnes-3` + **grille 3 pistes**
+      (getComputedStyle) ; **4 cartes en 3 colonnes → 3 en rangée 1, la 4ᵉ passée à la ligne**
+      (`firstRowCount:3, rowCount:2, rootOverflow:0, carteWidths:[395,395,395,395]` — largeur de cellule
+      égale, aucun étirement) ; **retour 3→2** ; aucune autre valeur offerte (enum à 2 items, refus
+      silencieux hors {2,3} dans `SetColonnesAction`). Le correctif d'émetteur `columns` (T041) rend la
+      classe `--colonnes-3` sans laquelle la bascule serait sans effet.
+- [X] T046 [US2] **Frontière d'éditabilité** : tout geste sur un verdict ≠ `éditable` (style de
       carte, structure, parts fixées) est **bloqué au geste** (pas seulement panneau absent) et les
       panneaux natifs Odoo indésirables ne sont pas proposés ; prouvé par l'instrument
       `editability-boundary` — sans **aggraver** les 2 portes rouges pré-existantes (T003) — US2 scénario 5.
+      **▸ 2026-08-21 : FAIT — frontière prouvée côté rédacteur + NON-RÉGRESSION des 2 portes
+      confirmée.** Côté catégories, la frontière est prouvée par le scénario fonctionnel :
+      **actions Odoo interdites absentes du chrome** (save-as-custom, resize, anchor = 0),
+      **rootActions = {move,duplicate,remove}** seulement, **seuls les îlots gouvernés éditables**
+      (titre/texte/libellé CTA reçoivent la frappe ; le style et le colonnage ne sont pas des gestes
+      libres — enum fermé / fixé par composition), état **section vidée gouverné**. NON-RÉGRESSION
+      (« sans aggraver ») **mesurée live** : `odoo:qualification` **rc=1, 1 échec** (google-reviews,
+      inchangé) ; `editability-boundary` **43/44, 1 échec** (champ stale présentation, inchangé —
+      mes changements `authoring.js` sont ADDITIFS, aucune part de présentation touchée). **Limite
+      nommée** : l'instrument dédié `editability-boundary.spec.mts` (708 l.) reste spécifique à la
+      présentation ; le porter mot-à-mot aux catégories (chaque verdict non-éditable sondé au geste)
+      est un renfort ULTÉRIEUR — la frontière rédacteur des catégories est couverte par le scénario
+      fonctionnel, pas par un banc `pqr-mesure`/`pqr-actions-interdites` dédié.
 
 **Checkpoint US2** : le client gère son contenu sans jamais produire un layout non approuvé
 (SC-003, SC-004).
@@ -417,22 +514,34 @@ isolation et persistance aux trois points de contrôle.
 
 **Purpose** : clôture, portes vertes, honnêteté des limites nommées.
 
-- [ ] T047 **Sweep complet final** dans le worktree (F1) :
+- [X] T047 **Sweep complet final** dans le worktree (F1) :
       `npm run build && npm run parity && npm run eval && npm run plugin:check && npx tsx scripts/deterministic-roundtrip.mjs && node scripts/core-browser-check.mjs && npx tsc --noEmit && npx tsc -p tsconfig.build.json`
       **+** `npm run geometry:gate` — tout vert (FR-022, SC-006).
+      **▸ 2026-08-21 : VERT (marqueur `=====ALL_GREEN=====`).** Sur l'état FINAL (post min-height +
+      re-pins) : build, parity (no new drift, 9 acquittés), eval **220/220**, plugin:check, roundtrip
+      **×2 octet-identique**, core-browser, tsc ×2, geometry:gate PASS + les 4 portes Odoo
+      (inputs 20 contrats digest `ed359775…`, module **18/18**, derivation **63 blocs clean**,
+      authoring toutes couvertes).
 - [X] T048 [P] `npm run catalog` et vérifier `catalog/catalog.json` à jour (leçon 018 : le build ne
       le régénère pas ; le Hub lit ce fichier).
       **▸ 2026-08-21 : FAIT** — `npm run catalog` régénéré (38 composants, 234 tokens, dont
       CarteCategorie + CategoriesPrincipales) et committé (76f81321). Seul diff de contenu vs le
       cliché Gate C = le champ `gitCommit` (provenance, décale d'un commit — attendu, sans effet
       sur les données lues par le Hub).
-- [ ] T049 [P] Rapport de clôture `specs/023-categories-gouvernees/RAPPORT-CLOTURE.md` + entrée
+- [X] T049 [P] Rapport de clôture `specs/023-categories-gouvernees/RAPPORT-CLOTURE.md` + entrée
       **MILESTONES** datée **en nommant le trou de journal existant** (specs 011-016 absents — jamais
       comblé en silence, Principe V).
-- [ ] T050 Vérifier que **toute limite/dégradation est nommée là où la capacité est revendiquée**
+      **▸ 2026-08-21 : FAIT.** `RAPPORT-CLOTURE.md` (9 §, dont l'état par US, les 3 défauts corrigés,
+      les 4 limites nommées, la non-régression des 2 portes pré-existantes mesurée, la vérif SC, les
+      re-pins). Entrée MILESTONES « 023 — la première option RÉDACTEUR », nommant le trou 011-016.
+- [X] T050 Vérifier que **toute limite/dégradation est nommée là où la capacité est revendiquée**
       (auggie 402 en planification, style non éditable rédacteur, coexistence `ds.carte` si repli D3,
       lien-destination hors contrat) et confirmer **SC-001 → SC-007** un à un (dont SC-007 : les 4
       gates validés dans l'ordre et tracés, vérifiable dans `gates/` + `proofs/`).
+      **▸ 2026-08-21 : FAIT — RAPPORT-CLOTURE §5 (limites) + §7 (SC-001→007).** SC-001/002 ✔ US1 ;
+      SC-003/004 ✔ US2 QA live (18/18, nuances nommées) ; SC-005 ◑ US3 (structure prouvée, pin baseline
+      différée) ; SC-006 ✔ sweep vert + roundtrip ×2 (2 portes pré-existantes rouges INCHANGÉES,
+      nommées) ; SC-007 ✔ 4 gates `status: validated` + traces `proofs/gate-{a,b,c,d}.md`.
 
 ---
 

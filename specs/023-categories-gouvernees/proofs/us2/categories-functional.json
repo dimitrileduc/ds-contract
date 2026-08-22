@@ -1,0 +1,38 @@
+{
+  "receiptId": "categories-functional-odoo-019-foundation",
+  "scenarioId": "categories-functional",
+  "snapshotId": "odoo-019-foundation",
+  "status": "pass",
+  "fixture": "categories-panel",
+  "observations": [
+    "[pass] catalogue — deux Catégories indépendantes sont insérées — attendu « 2 racines », observé « 2 racine(s) »",
+    "[pass] panneau racine — inventaire Piqueray strict (collection + colonnes) — attendu « categories-collection, categories-colonnes », observé « categories-collection, categories-colonnes »",
+    "[pass] racine — seuls move, duplicate et remove sont déclarés — attendu « move, duplicate, remove », observé « duplicate, move, remove »",
+    "[pass] racine — actions Odoo interdites absentes du chrome visible — attendu « save-as-custom, resize, anchor absents », observé « {\"save-as-custom\":0,\"resize\":0,\"anchor\":0} »",
+    "[pass] défaut — 4 cartes empilées, CTA « Contactez-nous » par carte, colonnes 2 — attendu « 4 cartes · CTA Contactez-nous ×4 · colonnes 2 (grille 2 pistes) », observé « {\"n\":4,\"cta\":[\"Contactez-nous\",\"Contactez-nous\",\"Contactez-nous\",\"Contactez-nous\"],\"col\":\"2\",\"grid\":2} »",
+    "[pass] édition carte 0 — titre + texte reçoivent la frappe, carte 1 intacte — attendu « carte 0 = « ★ … / § … » · carte 1 inchangée », observé « {\"t\":[\"Pour portes de ★ garage\",\"Pour portails d’entrée\"],\"x\":[\"SupraMatic & ProMatic. Ouverture ultra-rapide et verrouillage mécanique anti-intrusion breveté.§\",\"RotaMatic (Battant) & LineaMatic (Coulissant). Fiabilité absolue et détection d’obstacles pour la sécurité de votre famille.\"]} »",
+    "[pass] panneau carte — inventaire strict (image, alt, lien, ordre, suppression offerts) — attendu « carte-cta-href, carte-cta-label, carte-image-alt, carte-image-url, carte-move-down, carte-move-up, carte-remove, carte-text, carte-title », observé « carte-cta-href, carte-cta-label, carte-image-alt, carte-image-url, carte-move-down, carte-move-up, carte-remove, carte-text, carte-title »",
+    "[pass] image — texte alternatif éditable par carte et posé sur l'image (C9) — attendu « alt = « Photo catégorie test » », observé « alt = \"Photo catégorie test\" »",
+    "[pass] colonnes — bascule 2→3 (enum fermé) : data + classe + grille à 3 pistes — attendu « colonnes 3 · classe --colonnes-3 · grille 3 pistes », observé « {\"col\":\"3\",\"class3\":true,\"grid\":3} »",
+    "[pass] colonnes — 4ᵉ carte passée à la ligne sur la même grille (3+1) — attendu « 3 cartes rangée 1 · 4ᵉ rangée 2 · 0 débordement », observé « {\"carteCount\":4,\"rowCount\":2,\"firstRowCount\":3,\"rootOverflow\":0,\"carteWidths\":[395,395,395,395]} »",
+    "[pass] colonnes — retour 3→2 (aucun colonnage hors {2,3} offrable) — attendu « colonnes 2 · grille 2 pistes », observé « {\"col\":\"2\",\"grid\":2} »",
+    "[pass] collection — ajouter puis supprimer (bornes n±1) — attendu « ajouter → 5 · supprimer → 4 », observé « ajouter → 5 · supprimer → 4 »",
+    "[pass] collection — monter la carte 1 la place en tête — attendu « les deux premières cartes permutent », observé « {\"before\":[\"Pour portes de ★ garage\",\"Pour portails d’entrée\"],\"after\":[\"Pour portails d’entrée\",\"Pour portes de ★ garage\"]} »",
+    "[pass] CTA carte — libellé éditable + lien gouverné (javascript refusé, relatif accepté) — attendu « libellé frappé · javascript ignoré · /contact accepté », observé « {\"label\":\"Contact•ez-nous\",\"inj\":\"#\",\"final\":\"/contact\"} »",
+    "[pass] section vidée — 0 carte se rend proprement, geste réversible (ajouter restaure) — attendu « vidée → 0 carte (racine intacte) · ajouter → 1 », observé « {\"vide\":0,\"racine\":true,\"restore\":1} »",
+    "[pass] isolation — édition de B laisse A intacte — attendu « B carte 0 = « B0 … » · A intacte », observé « {\"a\":\"Nouvelle catég✚ orie\",\"b\":\"B0 Pour portes de garage\"} »",
+    "[pass] save — Odoo persiste les deux instances — attendu « RPC save 2xx », observé « HTTP 200 »",
+    "[pass] public — deux instances et éditions persistées (A ✚, B B0) — attendu « HTTP 200 · A ✚ · B B0 », observé « [[\"Nouvelle catég✚ orie\"],[\"B0 Pour portes de garage\",\"Pour portails d’entrée\",\"Pour portes industrielles\",\"Pour l’automatisation\"]] »",
+    "[pass] public — grille sans débordement (colonnage gouverné {2,3}) — attendu « 0 débordement », observé « {\"overflow\":0,\"cols\":1} »",
+    "[pass] éditeur rouvert — DOM sauvegardé relu sans état parallèle — attendu « 2 instances persistées », observé « [[\"Nouvelle catég✚ orie\"],[\"B0 Pour portes de garage\",\"Pour portails d’entrée\",\"Pour portes industrielles\",\"Pour l’automatisation\"]] »"
+  ],
+  "artifacts": [
+    {
+      "path": "specs/019-odoo-production-foundation/proofs/categories-functional.public.json",
+      "sha256": "67957ec72557a793fdba9dea6388be9f484c135a7fa0de45aef6147148090df9",
+      "kind": "json"
+    }
+  ],
+  "limitCodes": [],
+  "durationMs": 131469
+}

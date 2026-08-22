@@ -96,12 +96,18 @@ function layoutOverrideDecls(o: {
   direction?: string;
   align?: string;
   justify?: string;
+  columns?: number;
 }): string[] {
   const d: string[] = [];
   if (o.display) d.push(`display: ${o.display}`);
   if (o.direction) d.push(`flex-direction: ${o.direction}`);
   if (o.align) d.push(`align-items: ${ALIGN_CSS[o.align]}`);
   if (o.justify) d.push(`justify-content: ${JUSTIFY_CSS[o.justify]}`);
+  // v16 (spec 023, E1): a per-enum columns override re-emits the grid track
+  // count, exactly like the base grid does (mirrors emit-react.ts). Without it
+  // the columns enum was invisible in emit-html — the axis every non-React
+  // surface renders from (Odoo assets, visual-parity).
+  if (o.columns) d.push(`grid-template-columns: repeat(${o.columns}, minmax(0, 1fr))`);
   return d;
 }
 

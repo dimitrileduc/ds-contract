@@ -50,6 +50,7 @@ export const ROOT_SELECTOR: Record<string, string> = {
   'ds.faq': '.s_pqr_faq',
   'ds.coordonnees': '.s_pqr_coordonnees',
   'ds.reassurances': '.s_pqr_reassurances',
+  'ds.categories-principales': '.s_pqr_categories_principales',
 };
 
 // ---------------------------------------------------------------------------

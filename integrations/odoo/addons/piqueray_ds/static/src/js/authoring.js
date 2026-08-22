@@ -65,10 +65,16 @@ import {
     RemoveCarteAction,
     MoveCarteUpAction,
     MoveCarteDownAction,
+    AddCarteCategorieAction,
+    RemoveCarteCategorieAction,
+    MoveCarteCategorieUpAction,
+    MoveCarteCategorieDownAction,
 } from "./repeat_action";
 import {
     ReplaceCarteImageAction,
     SetCarteImageAltAction,
+    ReplaceCarteCategorieImageAction,
+    SetCarteCategorieImageAltAction,
     ReplaceDevisBackgroundAction,
     ReplaceMemberPortraitAction,
     ReplaceHeroBackgroundAction,
@@ -86,8 +92,8 @@ import {
 // ODOO-019-AUTHORING-ROOTS BEGIN
 /** Les seules racines posables. Fermées par défaut, sans exception.
  *  Wave B (spec 022) ajoute `.s_pqr_coordonnees` (US1) et `.s_pqr_reassurances`
- *  (US2). */
-export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances"];
+ *  (US2). Spec 023 ajoute `.s_pqr_categories_principales`. */
+export const PIQUERAY_ROOTS = [".s_pqr_presentation", ".s_pqr_google_reviews", ".s_pqr_hero", ".s_pqr_equipe", ".s_pqr_faq", ".s_pqr_devis", ".s_pqr_sav", ".s_pqr_texte_seo", ".s_pqr_coordonnees", ".s_pqr_reassurances", ".s_pqr_categories_principales"];
 export const PIQUERAY_ROOT_SELECTOR = PIQUERAY_ROOTS.join(", ");
 export const PIQUERAY_LOCKED_DESCENDANTS = PIQUERAY_ROOTS.map((root) => `${root} *`).join(", ");
 export const PIQUERAY_PLAIN_TEXT = PIQUERAY_ROOTS.map(
@@ -202,6 +208,16 @@ export const REASSURANCES_EDITABLE_PARTS = [
 ].map((part) => `.s_pqr_reassurances ${part}`);
 export const REASSURANCES_RICH_TEXT =
     '.s_pqr_reassurances [data-pqr-carte] [data-pqr-part="carte-body"]';
+/** ODOO-023 — Catégories principales : SEULES les cartes s'éditent (titre + texte,
+ *  texte SIMPLE — le contrat ne porte pas de plage forte sur la route `cartes`
+ *  arrayOf) + le libellé du CTA lien de la carte empilée. Le style et le nombre de
+ *  colonnes sont gouvernés (fixé par composition / enum au panneau) ; l'en-tête
+ *  n'existe pas. AUCUNE zone rich-text (donc absente de PIQUERAY_RICH_TEXT). */
+export const CATEGORIES_EDITABLE_PARTS = [
+    '[data-pqr-carte] [data-pqr-part="carte-title"]',
+    '[data-pqr-carte] [data-pqr-part="carte-text"]',
+    '[data-pqr-carte] [data-pqr-part="carte-cta-lien"] [data-pqr-part="button-label"]',
+].map((part) => `.s_pqr_categories_principales ${part}`);
 /** Les zones rich-text des racines, réunies une fois : le fournisseur de
  *  namespace tourne à chaque changement de sélection dans l'éditeur. */
 export const PIQUERAY_RICH_TEXT = `${GOOGLE_REVIEWS_RICH_TEXT}, ${PRESENTATION_RICH_TEXT}, ${HERO_RICH_TEXT}, ${FAQ_RICH_TEXT}, ${SAV_RICH_TEXT}, ${TEXTE_SEO_RICH_TEXT}, ${COORDONNEES_RICH_TEXT}, ${REASSURANCES_RICH_TEXT}`;
@@ -226,6 +242,7 @@ export const PIQUERAY_REOPENED = [
     ...TEXTE_SEO_EDITABLE_PARTS,
     ...COORDONNEES_EDITABLE_PARTS,
     ...REASSURANCES_EDITABLE_PARTS,
+    ...CATEGORIES_EDITABLE_PARTS,
 ];
 /** La liste rejointe une fois, au chargement : `normalizeEditableParts` tourne à
  *  chaque passe du normalizer (séquence 1), et y refaire le `join` reconstruisait
@@ -399,6 +416,23 @@ export class PiquerayCarteOption extends BaseOptionComponent {
     static editableOnly = false;
 }
 
+// ODOO-023 (US2) — panneaux Catégories principales : la racine porte le sélecteur
+// de colonnes {2,3} + la collection (ajouter une carte) ; la carte porte son
+// édition (titre/texte en ligne), son image, le lien du CTA et les gestes
+// d'ordre/suppression. Le STYLE (superpose/empile) n'est PAS offert : fixé par
+// composition au poser (Gate D, C1).
+export class PiquerayCategoriesPrincipalesOption extends BaseOptionComponent {
+    static template = "piqueray_ds.CategoriesPrincipalesOption";
+    static selector = ".s_pqr_categories_principales";
+    static editableOnly = false;
+}
+
+export class PiquerayCarteCategorieOption extends BaseOptionComponent {
+    static template = "piqueray_ds.CarteCategorieOption";
+    static selector = ".s_pqr_categories_principales [data-pqr-carte]";
+    static editableOnly = false;
+}
+
 /** Le lien d'un CTA est réglé au panneau (le popover natif est inatteignable :
  * l'ancre est hors hit-testing en édition pour que son libellé reste éditable
  * — voir odoo-bridge.css, ODOO-019-CTA-LIEN-BRIDGE). Bonne pratique du noyau
@@ -479,6 +513,35 @@ export class SetLinkHrefAction extends BuilderAction {
     }
 }
 
+/** ODOO-023 — sélecteur de colonnes {2,3} de la section Catégories. C'est le
+ * PREMIER enum RÉDACTEUR de la couche Odoo (les variantes des autres sections
+ * sont fixées au poser). Mécanique : la valeur bascule la classe modificatrice
+ * `categories-principales--colonnes-3` (émise par emit-html ; la base porte 2) et
+ * l'attribut miroir `data-pqr-colonnes`. Enum FERMÉ : toute valeur hors {2,3} est
+ * refusée sans casser l'état courant (dégradation au champ, pas au DOM). Au-delà
+ * du compte de cartes, la grille native fait passer les cartes à la ligne — aucun
+ * colonnage hors {2,3} n'est jamais offert. */
+export class SetColonnesAction extends BuilderAction {
+    static id = "pqrSetColonnes";
+    section(editingElement) {
+        return editingElement?.closest?.(".s_pqr_categories_principales") || null;
+    }
+    getValue({ editingElement }) {
+        return this.section(editingElement)?.dataset?.pqrColonnes || "2";
+    }
+    isApplied(arg) {
+        return this.getValue(arg) === String(arg.params.mainParam);
+    }
+    apply({ editingElement, params: { mainParam } }) {
+        const section = this.section(editingElement);
+        if (!section) return;
+        const v = String(mainParam);
+        if (v !== "2" && v !== "3") return; // enum fermé : refus silencieux
+        section.classList.toggle("categories-principales--colonnes-3", v === "3");
+        section.dataset.pqrColonnes = v;
+    }
+}
+
 export class PiquerayAuthoringPlugin extends Plugin {
     static id = "piquerayAuthoringPlugin";
 
@@ -538,16 +601,23 @@ export class PiquerayAuthoringPlugin extends Plugin {
 
         // Inscrit les racines dans le panneau et, par conséquent, dans les
         // overlays structurels natifs d'Odoo.
-        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption],
+        builder_options: [PiquerayRootPolicyOption, PiquerayGoogleReviewsOption, PiquerayReviewCardOption, PiquerayPresentationOption, PiquerayHeroOption, PiquerayEquipeOption, PiquerayMemberCardOption, PiquerayFaqOption, PiquerayFaqRowOption, PiquerayDevisOption, PiqueraySavOption, PiquerayTexteSeoOption, PiquerayTexteSeoRowOption, PiquerayCoordonneesOption, PiquerayReassurancesOption, PiquerayCarteOption, PiquerayCategoriesPrincipalesOption, PiquerayCarteCategorieOption],
         builder_actions: {
             SetCtaHrefAction,
             SetLinkHrefAction,
+            SetColonnesAction,
             AddCarteAction,
             RemoveCarteAction,
             MoveCarteUpAction,
             MoveCarteDownAction,
             ReplaceCarteImageAction,
             SetCarteImageAltAction,
+            AddCarteCategorieAction,
+            RemoveCarteCategorieAction,
+            MoveCarteCategorieUpAction,
+            MoveCarteCategorieDownAction,
+            ReplaceCarteCategorieImageAction,
+            SetCarteCategorieImageAltAction,
             AddMemberAction,
             RemoveMemberAction,
             MoveMemberUpAction,

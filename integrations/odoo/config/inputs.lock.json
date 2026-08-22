@@ -48,6 +48,20 @@
       "version": "2.0.1"
     },
     {
+      "id": "ds.carte-categorie",
+      "kind": "contract",
+      "path": "contracts/carte-categorie.contract.json",
+      "sha256": "321567b1908fb4091584277fd512191608e488727ad0b670f98a882c660b154e",
+      "version": "1.0.0"
+    },
+    {
+      "id": "ds.categories-principales",
+      "kind": "contract",
+      "path": "contracts/categories-principales.contract.json",
+      "sha256": "de0ae77ec6adbf0843cb12fe5c25bccb67cdc3c3595d74a7acb7fac6565c6de2",
+      "version": "1.0.0"
+    },
+    {
       "id": "ds.coordonnees",
       "kind": "contract",
       "path": "contracts/coordonnees.contract.json",
@@ -153,7 +167,7 @@
       "version": "2.1.0"
     }
   ],
-  "graphDigest": "e8b7e2127b5eb8ffe626bea707b6698187412df7580900d04712ed958bdd8322",
+  "graphDigest": "55fee8f1bdae8944b350d9296efeef4e86654f941c839729f9db5727f07f26e5",
   "odoo": {
     "image": "odoo:19.0-20260803",
     "postgresImage": "postgres:15",
@@ -170,7 +184,7 @@
       "id": "named-literals",
       "kind": "registry",
       "path": "contracts/named-literals.registry.json",
-      "sha256": "219b139524a653a16777c0774adbb7a12655c0ca119ff63e2785d4e5ac845716"
+      "sha256": "e9e95913c3a2399c98705aa97f36975b85b9f93642f8ca99d4a3e76d8af59d51"
     }
   ],
   "schemaVersion": "1.0.0",

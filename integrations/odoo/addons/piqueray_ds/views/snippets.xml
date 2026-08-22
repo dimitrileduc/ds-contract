@@ -80,4 +80,12 @@
     </xpath>
   </template>
   <!-- ODOO-022-REASSURANCES-SNIPPET END -->
+  <!-- ODOO-023-CATEGORIES-SNIPPET BEGIN -->
+  <template id="snippets_piqueray_categories_principales" inherit_id="website.snippets" name="Piqueray · Catégories principales dans la bibliothèque">
+    <xpath expr="//snippets[@id='snippet_structure']" position="inside">
+      <t t-snippet="piqueray_ds.s_pqr_categories_principales" string="Piqueray · Catégories principales"
+         t-thumbnail="/website/static/src/img/snippets_thumbs/s_features_grid.svg" group="content"/>
+    </xpath>
+  </template>
+  <!-- ODOO-023-CATEGORIES-SNIPPET END -->
 </odoo>

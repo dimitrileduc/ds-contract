@@ -384,6 +384,10 @@ export function emitReactInline(contract: Contract, ctx: EmitReactInlineCtx): Em
         if (merged?.direction) decls.flexDirection = merged.direction;
         if (merged?.align) decls.alignItems = ALIGN_CSS[merged.align];
         if (merged?.justify) decls.justifyContent = JUSTIFY_CSS[merged.justify];
+        // v16 (spec 023, E1) : le champ `columns` de l'override doit ré-émettre la
+        // grille, comme le fait le chemin de base (l.190/239) et les émetteurs
+        // react/html — sans quoi la variante colonnes rendait sans son nombre de pistes.
+        if (merged?.columns) decls.gridTemplateColumns = `repeat(${merged.columns}, minmax(0, 1fr))`;
         addVariant(part.layoutByProp.prop, value, partName, decls);
       }
     }

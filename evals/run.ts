@@ -30,7 +30,7 @@ import {
   customPropDefs, parseModuleCss, resolveToRef, type TokenLookup,
   ContractSchema, schemaResolveTokens, type SchemaContract, type SchemaPart,
   proposePrBuildPlan, contentsPutBody, proposePrSummarize,
-  coreEmitReact, coreIsMultiRoot, coreValidateContract, createFigmaEngine, coreEmitHtml,
+  coreEmitReact, coreIsMultiRoot, coreValidateContract, createFigmaEngine, coreEmitHtml, coreEmitReactInline,
   iconComponentsFromRegistry, type IconRegistryEntry,
   tokenInventoryFromJson, loadCaptureConfig, propSpaceFor,
   depthBuildUnion, buildMultiRootUnion, descendToRealRoots, depthNameUnion,
@@ -3364,8 +3364,10 @@ const cases: Case[] = [
     // override on a non-grid part is refused BY NAME, the value-level mirror of
     // the base columns↔grid refine (contract-schema.ts l.181-187). This case
     // backs the capability BEFORE any docs claim (Principle II): the positive
-    // path emits BOTH track templates, the negative path fails validation with a
-    // named message. (The Figma-side byte determinism lands in golden.json when
+    // path emits BOTH track templates ON ALL THREE CSS SURFACES (react / html /
+    // react-inline — the field-copy in each emitter's layout override is easy to
+    // forget, so a mono-surface case is not enough), the negative path fails
+    // validation with a named message. (The Figma-side byte determinism lands in golden.json when
     // the ds.categories-principales section contract is extracted — task T030.)
     id: 'columns-override-grid-only',
     claim: 'C2-refusal',
@@ -3413,12 +3415,21 @@ const cases: Case[] = [
       const okErrs: string[] = [];
       coreValidateContract(okc, new Map([[okc.id, okc]]), okErrs, new Map());
       if (okErrs.length > 0) throw new Error(`grid + columns override must validate: ${okErrs.join('; ')}`);
-      const { css } = coreEmitReact(okc, { tokens: new Set(), icons: new Map(), contracts: new Map() });
-      if (!css.includes('grid-template-columns: repeat(2, minmax(0, 1fr))')) {
-        throw new Error('base grid track template (2) missing from emitted CSS');
-      }
-      if (!css.includes('grid-template-columns: repeat(3, minmax(0, 1fr))')) {
-        throw new Error('per-enum columns override track template (3) missing from emitted CSS');
+      // CARRY-BOTH prouvé sur les TROIS émetteurs CSS, pas seulement react : la
+      // revue de la spec 023 a montré que emit-html PUIS emit-react-inline avaient
+      // chacun laissé tomber `columns` dans leur override de layout (recopie de
+      // champs à la main). Un cas mono-surface ne l'attrape pas ; celui-ci teste la
+      // sous-chaîne de piste commune aux trois sorties (`repeat(N, minmax(0, 1fr))`).
+      const ctx = { tokens: new Set<string>(), icons: new Map(), contracts: new Map() };
+      const inlineCtx = { tokens: { primitives: {}, semantic: {}, light: {}, dark: {}, brands: { default: {} } }, icons: new Map(), contracts: new Map(), mode: 'light' as const };
+      const surfaces: Array<[string, string]> = [
+        ['react', coreEmitReact(okc, ctx).css],
+        ['html', coreEmitHtml(okc, ctx).css],
+        ['react-inline', coreEmitReactInline(okc, inlineCtx).tsx],
+      ];
+      for (const [surface, out] of surfaces) {
+        if (!out.includes('repeat(2, minmax(0, 1fr))')) throw new Error(`${surface}: base grid track template (2) missing`);
+        if (!out.includes('repeat(3, minmax(0, 1fr))')) throw new Error(`${surface}: per-enum columns override track template (3) missing`);
       }
       // Negative: base non-grid → refused BY NAME (columns requires grid).
       const badc = mk({ display: 'flex', direction: 'column' });
